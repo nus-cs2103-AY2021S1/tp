@@ -102,8 +102,11 @@ public class ParserUtil {
         requireNonNull(date, time);
         String trimmedDate = date.trim();
         String trimmedTime = time.trim();
-        if (!StartDateTime.isValidDateTime(trimmedDate, trimmedTime)) {
-            throw new ParseException(DateTimeUtil.DATE_TIME_CONSTRAINTS);
+        if (!DateTimeUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(DateTimeUtil.DATE_CONSTRAINTS);
+        }
+        if (!DateTimeUtil.isValidTime(trimmedTime)) {
+            throw new ParseException(DateTimeUtil.TIME_CONSTRAINTS);
         }
         return StartDateTime.createStartDateTime(trimmedDate, trimmedTime);
     }
@@ -117,11 +120,14 @@ public class ParserUtil {
     public static EndDateTime parseEndDateTime(String date, String time) throws ParseException {
         requireNonNull(date, time);
         String trimmedDate = date.trim();
-        String trimmedtime = time.trim();
-        if (!EndDateTime.isValidDateTime(trimmedDate, trimmedtime)) {
-            throw new ParseException(DateTimeUtil.DATE_TIME_CONSTRAINTS);
+        String trimmedTime = time.trim();
+        if (!DateTimeUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(DateTimeUtil.DATE_CONSTRAINTS);
         }
-        return EndDateTime.createEndDateTime(trimmedDate, trimmedtime);
+        if (!DateTimeUtil.isValidTime(trimmedTime)) {
+            throw new ParseException(DateTimeUtil.TIME_CONSTRAINTS);
+        }
+        return EndDateTime.createEndDateTime(trimmedDate, trimmedTime);
     }
 
 

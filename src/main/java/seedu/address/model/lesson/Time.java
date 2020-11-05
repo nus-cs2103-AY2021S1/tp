@@ -12,9 +12,9 @@ import seedu.address.commons.util.DateTimeUtil;
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
 public class Time {
+    public static final String MESSAGE_CONSTRAINTS = DateTimeUtil.TIME_CONSTRAINTS;
     public static final String RANGE_CONSTRAINTS = "Start time should be before end time";
     public static final LocalTime DEFAULT_TIME = LocalTime.parse("00:00", DateTimeUtil.TIME_FORMATTER);
-    public static final String VALIDATION_REGEX = "^(2[0-3]|[01][0-9]):([0-5][0-9])$";
     public final LocalTime value;
     public final boolean isDefault;
 
@@ -25,6 +25,7 @@ public class Time {
      */
     public Time(String time) {
         requireNonNull(time);
+        checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
         checkArgument(isValidTime(time), DateTimeUtil.TIME_CONSTRAINTS);
         value = LocalTime.parse(time, DateTimeUtil.TIME_FORMATTER);
         isDefault = false;
@@ -37,7 +38,7 @@ public class Time {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return DateTimeUtil.isValidTime(test);
     }
 
     @Override
