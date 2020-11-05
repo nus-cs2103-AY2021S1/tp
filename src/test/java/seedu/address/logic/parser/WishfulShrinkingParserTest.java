@@ -30,13 +30,27 @@ import seedu.address.logic.commands.ingredient.EditIngredientCommand;
 import seedu.address.logic.commands.ingredient.GetEditIngredientCommand;
 import seedu.address.logic.commands.ingredient.ListIngredientsCommand;
 import seedu.address.logic.commands.ingredient.SearchIngredientCommand;
-import seedu.address.logic.commands.recipe.*;
+import seedu.address.logic.commands.recipe.AddRecipeCommand;
+import seedu.address.logic.commands.recipe.ClearRecipeCommand;
+import seedu.address.logic.commands.recipe.CloseCommand;
+import seedu.address.logic.commands.recipe.DeleteRecipeCommand;
+import seedu.address.logic.commands.recipe.EditRecipeCommand;
+import seedu.address.logic.commands.recipe.GetEditRecipeCommand;
+import seedu.address.logic.commands.recipe.ListRecipesCommand;
+import seedu.address.logic.commands.recipe.RecommendCommand;
+import seedu.address.logic.commands.recipe.SearchRecipeCommand;
+import seedu.address.logic.commands.recipe.SelectRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientContainsKeywordsPredicate;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 import seedu.address.model.recipe.Recipe;
-import seedu.address.testutil.*;
+import seedu.address.testutil.EditIngredientDescriptorBuilder;
+import seedu.address.testutil.EditRecipeDescriptorBuilder;
+import seedu.address.testutil.IngredientBuilder;
+import seedu.address.testutil.IngredientUtil;
+import seedu.address.testutil.RecipeBuilder;
+import seedu.address.testutil.RecipeUtil;
 
 public class WishfulShrinkingParserTest {
 
