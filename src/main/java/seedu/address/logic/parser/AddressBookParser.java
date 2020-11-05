@@ -105,12 +105,14 @@ public class AddressBookParser {
         case SetCommand.COMMAND_WORD:
             return new SetCommandParser().parse(arguments);
 
+        //@@author WM71811
         case IngredientFindCommand.COMMAND_WORD:
             return new IngredientFindCommandParser().parse(arguments);
 
         case IngredientListCommand.COMMAND_WORD:
             return new IngredientListCommand();
 
+        //@@author
         case SetAllCommand.COMMAND_WORD:
             return new SetAllCommandParser().parse(arguments);
 
@@ -123,12 +125,14 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        //@@author WM71811
         case IngredientResetAllCommand.COMMAND_WORD:
             return new IngredientResetAllCommand();
 
         case IngredientRestockCommand.COMMAND_WORD:
             return new IngredientRestockCommand();
 
+        //@@author
         case SalesUpdateCommand.COMMAND_WORD:
             return new SalesUpdateCommandParser().parse(arguments);
 
