@@ -35,7 +35,7 @@ public class AddTeammateParticipationCommand extends Command {
         requireNonNull(index);
         toAdd = Person.getPersonFromList(index);
         if (isNull(toAdd)) {
-            logger.log(Level.INFO, "Teammate gitusername incorrect");
+            logger.log(Level.INFO, "Teammate not retrieved");
         }
     }
 

@@ -56,18 +56,6 @@ public class AddTeammateParticipationCommandTest {
     }
 
     @Test
-    public void execute_validGitUserIndexNotInList_throwsCommandException() {
-        Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
-        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        model.enter(project);
-
-        AddTeammateParticipationCommand addTeammateParticipationCommand =
-            new AddTeammateParticipationCommand(GIT_USERINDEX_FIRST_TEAMMATE);
-
-        assertThrows(NullPointerException.class, () -> addTeammateParticipationCommand.execute(model));
-    }
-
-    @Test
     public void execute_invalidGitUserIndex() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
