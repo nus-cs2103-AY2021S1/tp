@@ -31,10 +31,12 @@ import jimmy.mcgymmy.testutil.TypicalFoods;
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
+    private Model expectedModel = new ModelManager();
 
     @BeforeEach
     public void setup() {
         modelManager = new ModelManager();
+        expectedModel = new ModelManager();
     }
 
     @Test
@@ -125,6 +127,54 @@ public class ModelManagerTest {
         modelManager.undo();
         assertFalse(modelManager.canUndo());
     }
+
+    @Test
+    public void clear_empty_mcGymmyHasCorrectContent() {
+        McGymmy expected = new McGymmyBuilder().build();
+        modelManager.clearFilteredFood();
+        assertEquals(expected, modelManager.getMcGymmy());
+    }
+
+    @Test
+    public void clear_nonEmpty_mcGymmyHasCorrectContent() {
+        McGymmy expected = new McGymmyBuilder().build();
+        modelManager.addFood(getChickenRice());
+        modelManager.addFood(getNasiLemak());
+        modelManager.clearFilteredFood();
+        assertEquals(expected, modelManager.getMcGymmy());
+    }
+
+    @Test
+    public void find_empty_mcGymmyHasCorrectContent() {
+        modelManager.updateFilteredFoodList((food) -> food.getName()
+                .fullName.contains(getChickenRice().getName().fullName));
+
+        assertEquals(expectedModel.getFilteredFoodList(), modelManager.getFilteredFoodList());
+    }
+
+    @Test
+    public void find_nonEmpty_mcGymmyHasCorrectContent() {
+        expectedModel.addFood(getChickenRice());
+        modelManager.addFood(getChickenRice());
+        modelManager.addFood(getNasiLemak());
+        modelManager.updateFilteredFoodList((food) -> food.getName()
+                        .fullName.contains(getChickenRice().getName().fullName));
+        assertEquals(expectedModel.getFilteredFoodList(), modelManager.getFilteredFoodList());
+    }
+
+    @Test
+    public void findThenClear_nonEmpty_mcGymmyHasCorrectContent() {
+        expectedModel.addFood(getChickenRice());
+        modelManager.addFood(getChickenRice());
+        modelManager.addFood(getNasiLemak());
+        modelManager.updateFilteredFoodList((food) -> food.getName()
+                .fullName.contains(getNasiLemak().getName().fullName));
+        modelManager.clearFilteredFood();
+        modelManager.updateFilteredFoodList((food) -> true);
+        assertEquals(expectedModel.getFilteredFoodList(), modelManager.getFilteredFoodList());
+    }
+
+
 
     @Test
     public void undo_undoAfterAddFood_mcGymmyHasCorrectContent() {
