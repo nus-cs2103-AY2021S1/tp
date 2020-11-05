@@ -1,5 +1,6 @@
 package jimmy.mcgymmy.model;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 import java.util.function.Predicate;
 
@@ -35,22 +36,22 @@ class History {
      * Get the previous state from history
      * @throws AssertionError
      */
-    void pop() throws AssertionError {
+    void pop() throws EmptyStackException {
         assert !stack.empty() : "History is empty";
         stack.pop();
     }
 
-    McGymmy peekMcGymmy() throws AssertionError {
+    McGymmy peekMcGymmy() throws EmptyStackException {
         assert !stack.empty() : "History is empty";
         return stack.peek().getKey();
     }
 
-    Predicate<Food> peekPredicate() throws AssertionError {
+    Predicate<Food> peekPredicate() throws EmptyStackException {
         assert !stack.empty() : "History is empty";
         return stack.peek().getValue().getKey();
     }
 
-    MacroList peekMacroList() throws AssertionError {
+    MacroList peekMacroList() throws EmptyStackException {
         assert !stack.empty() : "History is empty";
         return stack.peek().getValue().getValue();
     }
