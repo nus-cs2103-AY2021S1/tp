@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
@@ -20,6 +21,9 @@ public class TimelineWindow extends UiPart<Stage> {
     private static final String FXML = "TimelineWindow.fxml";
 
     private Logic logic;
+
+    @FXML
+    private HBox timelineContainer;
 
     @FXML
     private ScrollPane scrollPane;
@@ -82,8 +86,22 @@ public class TimelineWindow extends UiPart<Stage> {
      *     </li>
      * </ul>
      */
-    public void show() {
+    public void show(String theme) {
         logger.fine("Showing timeline view of the application.");
+        ObservableList<String> timelineContainerStylesheets = timelineContainer.getStylesheets();
+        if (timelineContainerStylesheets.size() != 0) {
+            timelineContainerStylesheets.remove(0);
+        }
+        switch (theme) {
+        case "DarkTheme.css":
+            timelineContainerStylesheets.add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
+            break;
+        case "LightTheme.css":
+            timelineContainerStylesheets.add(getClass().getResource("/view/LightTheme.css").toExternalForm());
+            break;
+        default:
+            assert false : theme;
+        }
         getRoot().show();
         getRoot().centerOnScreen();
     }

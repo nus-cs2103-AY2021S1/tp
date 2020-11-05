@@ -27,7 +27,7 @@ public class AutocompleteCommandBox extends CommandBox {
     /**
      * Creates a {@code AutocompleteCommandBox} with the given {@code CommandExecutor}.
      */
-    public AutocompleteCommandBox(CommandExecutor commandExecutor) {
+    public AutocompleteCommandBox(CommandExecutor commandExecutor, String theme) {
         super(commandExecutor);
         suggestionsList = new HashMap<>();
 
@@ -36,7 +36,7 @@ public class AutocompleteCommandBox extends CommandBox {
                         .values()
                         .stream()
                         .flatMap(x -> x.getFilteredList().stream())
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList()), theme);
         disableFocusTraversal();
         setupAutocompleteTriggers();
         setupAutocompleteActionKeys();

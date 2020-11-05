@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.application.HostServices;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -24,6 +26,9 @@ public class HelpWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
+    @FXML
+    private HBox helpContainer;
 
     @FXML
     private Button copyButton;
@@ -70,7 +75,7 @@ public class HelpWindow extends UiPart<Stage> {
      *     </li>
      * </ul>
      */
-    public void show(HostServices hostServices) {
+    public void show(HostServices hostServices, String theme) {
         logger.fine("Showing help page about the application.");
         hyperlink.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -78,6 +83,20 @@ public class HelpWindow extends UiPart<Stage> {
                 hostServices.showDocument(hyperlink.getText());
             }
         });
+        ObservableList<String> helpContainerStylesheets = helpContainer.getStylesheets();
+        if (helpContainerStylesheets.size() != 0) {
+            helpContainerStylesheets.remove(0);
+        }
+        switch (theme) {
+        case "DarkTheme.css":
+            helpContainerStylesheets.add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
+            break;
+        case "LightTheme.css":
+            helpContainerStylesheets.add(getClass().getResource("/view/LightTheme.css").toExternalForm());
+            break;
+        default:
+            assert false : theme;
+        }
         getRoot().show();
         getRoot().centerOnScreen();
     }

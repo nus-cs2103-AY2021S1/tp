@@ -22,6 +22,7 @@ public class FzfModule {
     private int fzfStartPos; // caret position where fzf was triggered
     private double menuX;
     private double menuY;
+    private String theme;
 
     private TextField query = new TextField() {
         {
@@ -31,16 +32,17 @@ public class FzfModule {
     private TextField attachedTextField;
     private ContextMenu menu;
 
-    private FzfModule(TextField tf, Supplier<List<String>> supplier) {
+    private FzfModule(TextField tf, Supplier<List<String>> supplier, String theme) {
         this.optionSupplier = supplier;
         this.attachedTextField = tf;
+        this.theme = theme;
         menu = new ContextMenu();
 
         setupFzf();
     }
 
-    public static FzfModule attachTo(TextField tf, Supplier<List<String>> supplier) {
-        return new FzfModule(tf, supplier);
+    public static FzfModule attachTo(TextField tf, Supplier<List<String>> supplier, String theme) {
+        return new FzfModule(tf, supplier, theme);
     }
 
     private void setupFzf() {
@@ -119,9 +121,22 @@ public class FzfModule {
         return item;
     }
     private TextFlow buildTextFlow(String text, String query) {
+        Color color;
+        switch (theme) {
+        case "LightTheme.css":
+            color = Color.BLACK;
+            break;
+        case "DarkTheme.css":
+            color = Color.WHITE;
+            break;
+        default:
+            assert false : theme;
+            color = Color.BLACK;
+        }
+
         if (query.length() == 0) {
             Text t = new Text(text);
-            t.setFill(Color.WHITE);
+            t.setFill(color);
             return new TextFlow(t);
         }
         int filterIndex = text.toLowerCase().indexOf(query.toLowerCase());
@@ -130,8 +145,9 @@ public class FzfModule {
         Text textAfter = new Text(text.substring(filterIndex + query.length()));
         Text textFilter = new Text(text.substring(filterIndex, filterIndex + query.length()));
 
-        textBefore.setFill(Color.WHITE);
-        textAfter.setFill(Color.WHITE);
+
+        textBefore.setFill(color);
+        textAfter.setFill(color);
         textFilter.setFill(Color.ORANGE);
 
         return new TextFlow(textBefore, textFilter, textAfter);

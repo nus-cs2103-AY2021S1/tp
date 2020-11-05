@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javafx.application.HostServices;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -11,6 +12,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -26,6 +28,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> implements Observer {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String LIGHT_THEME = "light";
+    private static final String DARK_THEME = "dark";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -42,10 +46,19 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     private TimelineWindow timelineWindow;
 
     @FXML
+    private VBox mainContainer;
+
+    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem lightThemeMenuItem;
+
+    @FXML
+    private MenuItem darkThemeMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -83,6 +96,9 @@ public class MainWindow extends UiPart<Stage> implements Observer {
 
         helpWindow = new HelpWindow();
         timelineWindow = new TimelineWindow(logic);
+
+        // default theme is dark
+        setStylesheet(DARK_THEME, false);
     }
 
     public Stage getPrimaryStage() {
@@ -91,6 +107,8 @@ public class MainWindow extends UiPart<Stage> implements Observer {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(lightThemeMenuItem, KeyCombination.valueOf("F2"));
+        setAccelerator(darkThemeMenuItem, KeyCombination.valueOf("F3"));
     }
 
     /**
@@ -124,6 +142,56 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     }
 
     /**
+     * Sets the stylesheet to be used by the main container.
+     * @param theme the theme to be used. Can be light or dark.
+     * Guarantees that theme is a valid theme.
+     */
+    private void setStylesheet(String theme, boolean triggerResultDisplay) {
+        logger.info("Switching to " + theme + " theme");
+        assert theme.equals(LIGHT_THEME) || theme.equals(DARK_THEME);
+        ObservableList<String> mainContainerStylesheets = mainContainer.getStylesheets();
+        if (mainContainerStylesheets.size() != 0) {
+            mainContainerStylesheets.remove(0);
+        }
+        String feedbackToUser;
+        switch (theme) {
+        case DARK_THEME:
+            mainContainerStylesheets.add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
+            feedbackToUser = "Dark theme set successfully.";
+            break;
+        case LIGHT_THEME:
+            mainContainerStylesheets.add(getClass().getResource("/view/LightTheme.css").toExternalForm());
+            feedbackToUser = "Light theme set successfully.";
+            break;
+        default:
+            assert false : theme;
+            feedbackToUser = "Theme does not exist";
+        }
+
+        if (triggerResultDisplay) {
+            resultDisplay.setFeedbackToUser(feedbackToUser);
+        }
+
+        AutocompleteCommandBox commandBox = new AutocompleteCommandBox(this::executeCommand, getTheme());
+        commandBox.setupAutocompletionListeners("cn/", () -> logic.getFilteredPersonList().stream()
+                .map(p -> p.getName().fullName).collect(Collectors.toList()));
+        commandBox.setupAutocompletionListeners("mdn/", () -> logic.getFilteredModuleList().stream()
+                .map(m -> m.getModuleName().getModuleName()).collect(Collectors.toList()));
+        commandBox.setupAutocompletionListeners("mtn/", () -> logic.getFilteredMeetingList().stream()
+                .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     *
+     * @return Theme of the application
+     */
+    private String getTheme() {
+        String[] stylesheet = mainContainer.getStylesheets().get(0).split("/");
+        return stylesheet[stylesheet.length - 1];
+    }
+
+    /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
@@ -142,7 +210,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        AutocompleteCommandBox commandBox = new AutocompleteCommandBox(this::executeCommand);
+        AutocompleteCommandBox commandBox = new AutocompleteCommandBox(this::executeCommand, getTheme());
         commandBox.setupAutocompletionListeners("cn/", () -> logic.getFilteredPersonList().stream()
                 .map(p -> p.getName().fullName).collect(Collectors.toList()));
         commandBox.setupAutocompletionListeners("mdn/", () -> logic.getFilteredModuleList().stream()
@@ -175,10 +243,26 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
-            helpWindow.show(hostServices);
+            helpWindow.show(hostServices, getTheme());
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Sets the theme to light theme.
+     */
+    @FXML
+    public void toggleLight() {
+        setStylesheet(LIGHT_THEME, true);
+    }
+
+    /**
+     * Sets the theme to dark theme.
+     */
+    @FXML
+    public void toggleDark() {
+        setStylesheet(DARK_THEME, true);
     }
 
     @Override
@@ -214,7 +298,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         logger.info("UI show timeline triggered");
 
         if (!timelineWindow.isShowing()) {
-            timelineWindow.show();
+            timelineWindow.show(getTheme());
         } else {
             timelineWindow.focus();
         }
@@ -270,6 +354,14 @@ public class MainWindow extends UiPart<Stage> implements Observer {
 
             if (commandResult.isTriggerUpdateTimeline()) {
                 updateTimeline();
+            }
+
+            if (commandResult.isTriggerDarkTheme()) {
+                setStylesheet(DARK_THEME, false);
+            }
+
+            if (commandResult.isTriggerLightTheme()) {
+                setStylesheet(LIGHT_THEME, false);
             }
 
             return commandResult;

@@ -14,7 +14,7 @@
   </icons>
   <scene>
     <Scene>
-         <HBox alignment="CENTER">
+         <HBox alignment="CENTER" fx:id="helpContainer" styleClass="help-window">
             <children>
                <Label fx:id="helpMessage" text="Label">
                   <HBox.margin>
