@@ -1,12 +1,14 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_TIME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_TIME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_EXPERIMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_TIME_EXPERIMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_TIME_EXPERIMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EXPERIMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_EXPERIMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_LAB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,11 +57,11 @@ public class TypicalTasks {
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Deadline DEADLINE_TEST = new DeadlineBuilder()
-            .withTitle(VALID_TITLE_AMY).withDeadlineDateTime(VALID_DATE_TIME_AMY)
-            .withDescription(VALID_DESCRIPTION_AMY).withTag(VALID_TAG_FRIEND).build();
-    public static final Event EVENT_TEST = new EventBuilder().withTitle(VALID_TITLE_BOB)
-            .withStartDateTime(VALID_DATE_TIME_BOB).withEndDateTime(VALID_DATE_TIME_BOB)
-            .withDescription(VALID_DESCRIPTION_BOB).withTag(VALID_TAG_FRIEND).build();
+            .withTitle(VALID_TITLE_LAB).withDeadlineDateTime(VALID_DATETIME_LAB)
+            .withDescription(VALID_DESC_LAB).withTag(VALID_TAG_LAB).build();
+    public static final Event EVENT_TEST = new EventBuilder().withTitle(VALID_TITLE_EXPERIMENT)
+            .withStartDateTime(VALID_START_DATE_TIME_EXPERIMENT).withEndDateTime(VALID_END_DATE_TIME_EXPERIMENT)
+            .withDescription(VALID_DESC_EXPERIMENT).withTag(VALID_TAG_EXPERIMENT).build();
 
     private TypicalTasks() {} // prevents instantiation
 

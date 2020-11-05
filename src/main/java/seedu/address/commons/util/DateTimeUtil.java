@@ -16,7 +16,7 @@ public class DateTimeUtil {
     public static final String TIME_CONSTRAINTS =
             "Time should be a valid time in the format of HH:mm.";
     public static final String DATE_TIME_CONSTRAINTS =
-            "DateTime should be a valid date and time in the format of dd-MM-yyyy HH:mm.";
+            "DateTime should be a valid date and time in the format of dd-MM-yyyy HH:mm. e.g. 29-11-2020 23:59";
     public static final String DAY_MESSAGE_CONSTRAINTS =
             "Day should be in the format of MONDAY, TUESDAY, ..., SUNDAY";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu")
@@ -80,7 +80,25 @@ public class DateTimeUtil {
         }
         return true;
     }
+    /**
+     * Returns true if the start date is before the end date.
+     */
+    public static boolean isStartDateBeforeEndDate(LocalDate startDate, LocalDate endDate) {
+        return startDate.isBefore(endDate);
+    }
+    /**
+     * Returns true if the start time is before the end time.
+     */
+    public static boolean isStartTimeBeforeEndTime(LocalTime startTime, LocalTime endTime) {
+        return startTime.isBefore(endTime);
+    }
 
+    /**
+     * Returns true if the start time is before the end time.
+     */
+    public static boolean isStartDateTimeBeforeEndDateTime(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return startDateTime.isBefore(endDateTime);
+    }
     /**
      * @param input the string value for a date
      * @return a LocalDate object representing the specific date
@@ -89,4 +107,5 @@ public class DateTimeUtil {
         checkArgument(isValidDate(input), DATE_TIME_CONSTRAINTS);
         return LocalDate.parse(input, DateTimeUtil.DATE_FORMATTER);
     }
+
 }

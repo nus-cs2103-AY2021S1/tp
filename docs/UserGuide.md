@@ -212,7 +212,7 @@ Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTI
 
 * Adds an event to PlaNus,
     * with the specified title in `title:TITLE`,
-    * with the specified description in `description:DESCRIPTION`,
+    * with the specified description in `desc:DESCRIPTION`,
     * on the date specified in `date:DATE`, starting from the time specified in `from:START_TIME` to the time specified in `to:END_TIME`,
     * with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
   * the added event will be tracked for time analysis if it has a tag.
@@ -727,7 +727,7 @@ Therefore, the **time analysis for the week** will show that the **time spent on
 | **Exit**   | `exit`                                                       |
 | **List task**   | `list-task` |
 | **Add Event**  | `event title:TITLE [desc:DESCRIPTION] date:DATE from:TIME to:TIME tag:MODULE_CODE` <br> e.g. `event title:CS2103T Group meeting date:23-10-2020 from:20:00 to:22:00 tag:CS2103T` |
-| **Add Deadline**  | `deadline title:TITLE [desc:DESCRIPTION] [datetime:DATETIME] tag:MODULE_CODE` <br> e.g. `deadline title:Assignment2 submission datetime:23-10-2020 18:00 tag:CS2103T` |
+| **Add Deadline**  | `deadline title:TITLE [desc:DESCRIPTION] datetime:DATETIME tag:MODULE_CODE` <br> e.g. `deadline title:Assignment2 submission datetime:23-10-2020 18:00 tag:CS2103T` |
 | **Delete task** | `delete-task INDEX...` <br> e.g. `delete-task 3`, `delete-task 3, 4, 5`                       |
 | **Done task**   | `done INDEX:TIME_TAKEN...`<br> e.g. `done 1:20`, `done 1:20 2:60 3:120`    |
 | **Find task**   | `find-task ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g.`find-task title:dinner date:02-02-2020` |

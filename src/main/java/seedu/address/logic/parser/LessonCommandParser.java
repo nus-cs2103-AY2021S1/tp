@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.DateTimeUtil.isStartDateBeforeEndDate;
+import static seedu.address.commons.util.DateTimeUtil.isStartTimeBeforeEndTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
@@ -101,26 +103,11 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         Lesson lesson = new Lesson(title, tag, description, dayOfWeek, startTime, endTime, startDate, endDate);
         return new LessonCommand(lesson);
     }
-
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    /**
-     * Returns true if the start date is before the end date.
-     */
-    private static boolean isStartDateBeforeEndDate(LocalDate startDate, LocalDate endDate) {
-        return startDate.isBefore(endDate);
-    }
-
-    /**
-     * Returns true if the start time is before the end time.
-     */
-    private static boolean isStartTimeBeforeEndTime(LocalTime startTime, LocalTime endTime) {
-        return startTime.isBefore(endTime);
     }
 }
