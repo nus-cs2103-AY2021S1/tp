@@ -107,4 +107,22 @@ public class JsonResiRegStorageTest {
     public void saveResiReg_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveResiReg(new ResiReg(), null));
     }
+
+    /**
+     * Archives {@code resiReg}.
+     */
+    private void archiveResiReg(ReadOnlyResiReg resiReg, String filePath) {
+        try {
+            new JsonResiRegStorage(Paths.get(filePath))
+                    .archiveResiReg(resiReg);
+        } catch (IOException ioe) {
+            throw new AssertionError("There should not be an error writing to the file.", ioe);
+        }
+    }
+
+    @Test
+    public void archiveResiReg_nullResiReg_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> archiveResiReg(null, "SomeFile.json"));
+    }
+
 }
