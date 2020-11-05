@@ -441,7 +441,7 @@ Format: `c-clear`
 
 #### 3.10 Archiving an employee : `c-archive`
 
-Archives the specific employee from tCheck.
+Archives the specified employee from tCheck.
 
 Format: `c-archive INDEX`
 
@@ -455,7 +455,7 @@ _Employee Directory_ pane. (e.g. There are 2 employees listed in the current _Em
 should be less or equal to 2.)
 * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
  color label, named as `[Archived]`, in front of the name), command `c-active-list` needs to be used first to see a
-  list of all your employees. Then, `c-archive INDEX` can be used to archive a specific employee identified by `INDEX`.
+  list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified by `INDEX`.
 
 
 Examples:
@@ -486,7 +486,7 @@ Format: `c-archive-all`
 * Archives all employees in the _Employee Directory_ pane.
 * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
  color label, named as `[Archived]`, in front of the name), command `c-active-list` needs to be used first to see a
-  list of all your employees. Then, `c-archive INDEX` can be used to archive a specific employee identified by `INDEX`.
+  list of all your employees. Then, `c-archive-all` can be used to archive all employees.
 
 
 Examples:
@@ -531,57 +531,40 @@ Outcome:
 {Screenshot}
 
 #### 3.13 Unarchiving an employee : `c-unarchive`
-Archives the specific employee from tCheck.
+Unarchives the specified employee from the archived employee list.
 
-Format: `c-archive INDEX`
+Format: `c-unarchive INDEX`
 
 **:information_source: Notes:**<br>
 
-* Archives the employee at the specified `INDEX` in the _Employee Directory_ pane.
+* Unarchives the employee at the specified `INDEX` in the _Employee Directory_ pane.
 * The `INDEX` refers to the index number shown in the current _Employee Directory_ pane.
 * The `INDEX` **must be a positive integer** (e.g. 1, 2, 3, ...​)
 * The `INDEX` **should not be larger than** the total number of employees listed in the current 
 _Employee Directory_ pane. (e.g. There are 2 employees listed in the current _Employee Directory_ pane. The `INDEX`
 should be less or equal to 2.)
-* If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
- color label, named as `[Archived]`, in front of the name), command `c-active-list` needs to be used first to see a
-  list of all your employees. Then, `c-archive INDEX` can be used to archive a specific employee identified by `INDEX`.
+* If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
+ red color label, named as `[Archived]`, in front of the name. While employees in the active/unarchived employee list
+  don't have this red label.), command `c-archive-list` needs to be used first to see a list of all your archived employees. Then, `c-unarchive INDEX` can be used to unarchive a specified
+   employee identified by `INDEX`.
 
 
 Examples:
-* Let's say one of your employees, Alex Yeoh, is no longer working in your bubble tea shop. But he may come back
-to work again in the future. You, as a store manager, want to remove him from your employee directory without
-permanently deleting his information, so that you can retrieve/move back his information to your
-employee directory when he comes back to work again. In this case, you can follow these steps.
+* Let's say one of your ex-employees, Alex Yeoh, is now rehired to work in your bubble tea shop. Since he worked in
+ the store before, and you archived his data when he left last time. Now, instead of typing his information again and
+  use `c-add` command to add him into your employee directory. You can just unarchive him
+ and move his data to your current employee directory by following these steps.
 
-Steps to archive the first employee, Alex Yeoh, in the sample data:
-1. Type `c-archive 1` into the _Command Box_.
+Steps to unarchive the first employee, Alex Yeoh, in the archived employee list:
+1. Type `c-unarchive 1` into the _Command Box_.
 2. Press `Enter` to execute.
 
 
 Outcome:
-1. The _Result Display_ will show a success message with the employee's name that you have archived.
-2. Alex Yeoh's information will be removed from _Employee Directory_ pane.
+1. The _Result Display_ will show a success message with the employee's name that you have unarchived.
+2. Alex Yeoh's information will be removed from the archived employee list shown in _Employee Directory_ pane.
 
 {Screenshot}
-
-Unarchives the specified employee's contact detail from the tCheck's archived employee list.
-
-Format: `c-unarchive INDEX`
-
-* Unarchives the employee at the specified `INDEX`.
-* The index refers to the index number shown in the displayed `employees' contact details` panel.
-* The index **must be a positive integer** 1, 2, 3, ...
-
-<div markdown="span" class="alert alert-primary">:bulb: 
-
-**Tip:**
-Command `c-archive-list` can be used first to show a list of all archived employees' contact details. 
-Then, `c-unarchive INDEX` can be used to unarchive a specific employee.
-</div>
-
-Examples:
-* `c-archive-list` followed by `c-unarchive 2` unarchives the 2nd person in the archived employees' contact details.
 
 ### 4. Commands - General <a name="commands-general"></a>
 #### 4.1 Viewing help : `help`
