@@ -140,10 +140,16 @@ public class ModelManager implements Model {
 
     //=========== Utils  ================================================================================
 
+    /**
+     * Refilters all the {@code ModelAwareFilteredList}s in the {@code Model} based on their current predicate.
+     * <p>This method should be called whenever the state of the model changes (eg. when the contents of any of
+     * the lists change) to ensure all the lists filter based on the current state of the model.</p>
+     */
     private void refilterLists() {
         filteredStudents.refilter();
         filteredRooms.refilter();
         filteredAllocations.refilter();
+        filteredBinItems.refilter();
     }
 
     //=========== Student  ================================================================================
@@ -457,9 +463,17 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Essentially a FilteredList which allows predicates that use methods from the {@code Model}. This class
-     * contains a useful method to refilter the list after the state of the model or any of the elements in the
-     * underlying {@code ObservableList} have changed.
+     * Effectively a FilteredList which allows predicates that use methods from the {@code Model}, such as predicates
+     * which rely on other entities in the Model (eg. filtering the list of {@code Rooms} based on {@code Allocations}).
+     *
+     * <p>
+     * This class ensures that the current instance of {@code ModelManager} is passed to the predicate whenever the
+     * list is refiltered. If the {@code Model} instance used in the predicate is not refreshed, filtering will be
+     * done based on the old state of the {@code Model}.
+     *
+     * Note that this occurs even when the same {@code ModelManager} instance is used throughout the
+     * application's lifetime.
+     * </p>
      */
     private class ModelAwareFilteredList<T> {
         private final FilteredList<T> filteredList;

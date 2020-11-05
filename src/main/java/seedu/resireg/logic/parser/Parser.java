@@ -5,6 +5,9 @@ import seedu.resireg.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Parser that is able to parse user input into a {@code Command} of type {@code T}.
+ *
+ * Assumption: the Parser is stateless, ie. an instance behaves identically no matter how many times {@code parse()}
+ * is called.
  */
 public interface Parser<T extends Command> {
 
