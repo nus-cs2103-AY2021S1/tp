@@ -57,8 +57,6 @@ deactivate Model
 LogicManager -> ViewDetailsCommand : execute()
 activate ViewDetailsCommand
 
-'not sure whether item -> predicate.test(item) is required inside the function
-'or whether I have to instantiate a NameIsExactlyPredicate class above
 ViewDetailsCommand -> Model : updateFilteredItemList()
 activate Model
 
