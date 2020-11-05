@@ -83,8 +83,8 @@ public class EditSellerCommand extends Command {
         assert sellerToEdit != null;
         Name updatedName = editSellerDescriptor.getName().orElse(sellerToEdit.getName());
         Phone updatedPhone = editSellerDescriptor.getPhone().orElse(sellerToEdit.getPhone());
-        SellerId updatedId = editSellerDescriptor.getId().orElse((SellerId) sellerToEdit.getId());
-        return new Seller(updatedName, updatedPhone, updatedId);
+        SellerId unmodifiedSellerId = (SellerId) sellerToEdit.getId();
+        return new Seller(updatedName, updatedPhone, unmodifiedSellerId);
     }
 
 

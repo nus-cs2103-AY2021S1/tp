@@ -33,16 +33,16 @@ It is optimized for CLI users so that the bookkeeping can be done faster by typi
 **Bidder** - A bidder is a person who wishes to bid for the purchase of a certain property. It is assigned a unique Bidder Id.
 
 **Property** - A property is a listed estate that is up for bidder to place bids on. A property can only be added
-if a valid seller from the seller list is attached to the property. It is assigned a unique Property Id.
+if the given Seller Id exists in the seller list. It is assigned a unique Property Id.
 
 **Bid** - A Bid is an offer attempt by a bidder for a specific property. A bid can only be placed if the given Property Id
 and Bidder Id exists in the property list and bidder list.
 
 **Meeting** - A meeting can be of 3 types. 
 
- 1. View - For viewing of properties
- 2. Admin - For general admin meetings
- 3. Paperwork - For signing of paperwork related to the selling and buying of the house
+ 1. View - For viewing of properties.
+ 2. Admin - For general admin meetings.
+ 3. Paperwork - For signing of paperwork related to the selling and buying of the property.
  
  All types of meeting require a valid Property Id and Bidder Id for it to be added to the schedule.
 
@@ -54,7 +54,7 @@ and Bidder Id exists in the property list and bidder list.
 
 💡 VENUE indicates the venue of the meeting.
 
-💡 DATE indicates the meetingDate of the meeting.
+💡 DATE indicates the meeting date of the meeting.
 
 
 # Features
@@ -73,20 +73,68 @@ Displays a link to this User Guide.
 
 ---
 
+### Command Format Summary Tables
+
+| Command Format (Bidder)  | Example |
+| :--- | :--- |
+| add-b `n/BIDDER_NAME` `p/PHONE_NUMBER`  | add-b n/Marcus Duigan p/12345678  |
+| edit-b `<INDEX_NUMBER>` `[n/NEW_NAME]` `[p/NEW_PHONE_NUMBER]` | edit-b 1 n/Marcus Weagle Duigan p/987654321 |
+| find-b `[KEYWORDS]` | find-b duigan |
+| delete-b `<INDEX_NUMBER>` | delete-b 1 |
+| list-b | list-b |
+
+| Command Format (Seller)  | Example |
+| :--- | :--- |
+| add-s `n/SELLER_NAME` `p/PHONE_NUMBER`  | add-s n/Marcus Duigan p/12345678  |
+| edit-s `<INDEX_NUMBER>` `[n/NEW_NAME]` `[p/NEW_PHONE_NUMBER]` | edit-s 1 n/Marcus Weagle Duigan p/987654321 |
+| find-s `[KEYWORDS]` | find-s duigan |
+| delete-s `<INDEX_NUMBER>` | delete-s 1 |
+| list-s | list-s |
+
+| Command Format (Property)  | Example |
+| :--- | :--- |
+| add-p `n/PROPERTY_NAME` `s/SELLER_ID` `ap/ASKING_PRICE` `t/TYPE` `a/ADDRESS` `r/IS_RENTAL`  | add-p n/Sunrise s/S1 ap/100 t/Landed a/99 Sunrise Street r/No  |
+| edit-p `<INDEX_NUMBER>` `[n/NAME]` `[a/ADDRESS]` `[s/SELLER_ID]` `[ap/ASKING_PRICE]` `[t/PROPERTY_TYPE]` `[r/IS_RENTAL]`  | edit-p 1 n/Cove Residences a/23 Cove Street |
+| find-p `[p/PROPERTY_ID_KEYWORDS]` `[n/NAME_KEYWORDS]` `[a/ADDRESS_KEYWORDS]` `[s/SELLER_ID_KEYWORDS]` `[t/PROPERTY_TYPE_KEYWORDS]` `[ap/ASKING_PRICE_FILTER]` `[r/IS_RENTAL]` `[c/IS_CLOSED_DEAL]` | find-p n/Sunrise Cove a/Street Road |
+| delete-p `PROPERTY_ID` or delete-p `<INDEX_NUMBER>` | delete-p P23 or delete-p 5 |
+| list-p | list-p |
+
+| Command Format (Bid)  | Example |
+| :--- | :--- |
+| add-bid `b/PROPERTY_ID` `c/BIDDER_ID` `m/BID_AMOUNT`  | add-bid b/P1 c/B2 m/150000.20  |
+| edit-bid `<INDEX_NUMBER>` `b/[NEW_PROPERTY_ID]` `c/[NEW_BIDDER_ID]` `m/[NEW_BID_AMOUNT]` | edit-bid 1 b/ P99 c/ B12 m/1.20 |
+| find-bid `[KEYWORDS]` | find-bid P1 B2 $65000.00 |
+| delete-bid `<INDEX_NUMBER>` | delete-bid 1 |
+| list-bid | list-bid |
+
+| | Command Format (Meeting)  | Example |
+| :--- | :--- | :--- |
+| View | add-m q/v `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `t/<DATE>` | add-m q/v b/B12 p/P12 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00 |
+| Administrative | add-m q/a `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `t/<DATE>` | add-m q/a b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
+| Paperwork  |add-m q/p `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `t/<DATE>` | add-m q/p b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
+| |edit-m `<INDEX>` `b/BIDDER_ID` `p/PROPERTY_ID` `v/VENUE` `t/DATE` | edit-m 2 v/eunos |
+| |delete-m `<INDEX_NUMBER>` | delete-m 3 |
+| | list-m | list-m |
+
+| Command Format (Calendar)  | Example |
+| :--- | :--- |
+| next  | next  |
+| prev | prev |
 
 # Client
 Clients of PropertyFree consists of both bidders and sellers.
 
 - ```Sellers``` are the owners of the properties listed in PropertyFree.
-- ```Bidders``` are the interested properties who place a bid on a property.
+- ```Bidders``` are the interested buyers who place a bid on a property.
 
 💡 Note that the ```Tag``` and ```Id``` for both ```bidder```
 and ```seller``` are created automatically and ***cannot be modified***.
-- ```Tag```: visual identifier for clients
+- ```Tag```: Visual identifier for clients
 - ```Id```: Unique ID assigned to each client for identification.
 
 💡 Note also that PropertyFree assumes that all phone numbers are unique, and as such will not allow duplicates of
 phone number. 
+
 # Bidder Features
 
 ## **Adding a Bidder**
@@ -128,7 +176,7 @@ find-b duigan
 Expected Output:
 
 ```
-1 bidders listed.
+1 bidder(s) listed!
 ```
 
 ## View List **of Bidder**
@@ -147,7 +195,7 @@ list-b
 Expected Output:
 
 ```
-Listed all bidders.
+Listed all bidder(s).
 ```
 
 ## Edit **of Bidder**
@@ -155,11 +203,15 @@ Listed all bidders.
 Edits the information of a bidder who is corresponding to the index in the list of bidders. Names, phone number and tags can be edited. 
 
 - Command: `edit-b`
-- Format: `edit-b <INDEX> [n/NEW_NAME] [p/NEW_PHONE_NUMER]`
+- Format: `edit-b <INDEX_NUMBER> [n/NEW_NAME] [p/NEW_PHONE_NUMER]`
+
+
+> - Edits the bidder at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed bidder list. The index must be a **positive integer** 1, 2, 3...
+> - At least one optional field must be provided.
+> - Existing values will be updated to the input values.
+> - All other values will remain the same.
 
 Example:
-
-
 ```
 edit-b 1 n/Marcus Weagle Duigan p/987654321
 ```
@@ -173,8 +225,6 @@ Phone: 987654321
 Id: B1
 Tag: bidder
 ```
-
-The index will only correspond to the original list, NOT the filtered list (when used in search).???
 
 ## Delete **Bidder**
 
@@ -194,7 +244,7 @@ delete-b 1
 
 Expected Output:
 
-```java
+```
 Deleted Bidder:
 Name: Marcus Weagle Duigan
 Phone: 987654321
@@ -202,8 +252,6 @@ Id: B1
 Tag: bidder
 All related bids and meetings have been deleted.
 ```
-
-The index will only correspond to the original list, NOT the filtered list (when used in search).
 
 # Seller Features
 
@@ -246,7 +294,7 @@ find-s Ming
 Expected Output:
 
 ```
-1 seller(s) listed.
+1 seller(s) listed!
 ```
 
 ## View List **of Seller**
@@ -259,13 +307,13 @@ Brings user to the seller tab and shows the whole list of sellers. Can be used a
 Example:
 
 ```
-list-b
+list-s
 ```
 
 Expected Output:
 
 ```
-Listed all sellers.
+Listed all seller(s).
 ```
 
 ## Edit **of Seller**
@@ -273,11 +321,14 @@ Listed all sellers.
 Edits the information of a seller who is corresponding to the index in the list of sellers. Names, phone number and tags can be edited. 
 
 - Command: `edit-s`
-- Format: `edit-s <INDEX> [n/NEW_NAME] [p/NEW_PHONE_NUMER]`
+- Format: `edit-s <INDEX_NUMBER> [n/NEW_NAME] [p/NEW_PHONE_NUMER]`
+
+> - Edits the seller at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed seller list. The index must be a **positive integer** 1, 2, 3...
+
 
 Example:
 
-```java
+```
 edit-s 1 n/Joven Kor Ming Soon p/987654321
 ```
 
@@ -290,8 +341,6 @@ Phone: 987654321
 Id: S1
 Tag: seller
 ```
-
-The index will only correspond to the original list, NOT the filtered list (when used in search).
 
 ## Delete **Seller**
 
@@ -317,9 +366,6 @@ Tag: seller
 All related properties and meetings have been deleted.
 ```
 
-The index will only correspond to the original list, NOT the filtered list (when used in search).
-
-
 # Property Features
 
 ## Adding a property: 
@@ -329,7 +375,9 @@ Adds a property and its relevant details to the property list.
 - Command:  `add-p`
 - Format: `add-p n/PROPERTY_NAME s/SELLER_ID ap/ASKING_PRICE t/TYPE a/ADDRESS r/IS_RENTAL`
 
-:warning: The seller id must exist inside the seller list.
+💡 ```IS_RENTAL``` can be one of the following formats: Yes / yes / Y / y or No / no / N / n
+
+Warning: The seller id must exist inside the seller list.
 
 Example:
 
@@ -348,26 +396,35 @@ Asking price: $100.00
 Seller Id: S1
 ```
 
-💡 ```IS_RENTAL``` can be the following format : Yes / yes / Y / y or No / no / N / n
-
 ## Listing all properties
 
-Command: `list-p`  
-Shows a list of all properties in the property list.  
+Brings user to the property tab and shows the whole list of properties. Can be used after filtering / searching properties.
 
-Expected Output: `Listed all properties.`
+- Command: `list-p`
+- Format: `list-p`
+
+Example:
+```
+list-p
+```
+
+Expected Output:
+
+```
+Listed all properties.
+```
 
 ## Editing a property
 
 Edits an existing property in the property list.  
 
 - Command: `edit-p`
-- Format: `edit-p INDEX [n/NAME] [a/ADDRESS] [s/SELLER_ID] [ap/ASKING_PRICE] [t/PROPERTY_TYPE] [r/IS_RENTAL]`
+- Format: `edit-p <INDEX_NUMBER> [n/NAME] [a/ADDRESS] [s/SELLER_ID] [ap/ASKING_PRICE] [t/PROPERTY_TYPE] [r/IS_RENTAL]`
 
-> - Edits the property at the specified INDEX, which refers to the index shown on the displayed property list. The index must be a **positive integer** 1, 2, 3...
+> - Edits the property at the specified `INDEX_NUMBER`, which refers to the index shown on the displayed property list. The index must be a **positive integer** 1, 2, 3...
 > - At least one optional field must be provided.
-> - Existing values will be updated to the input values.
-> - All other values will remain the same.
+> - Edits the property at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed property list. The index must be a **positive integer** 1, 2, 3...
+
 
 Example:
 
@@ -418,11 +475,11 @@ Displays all properties whose names contains either `Cove` or `Sunrise`, asking 
 Deletes a property listing from the property list.
 
 - Command: `delete-p`
-- Format: `delete-p PROPERTY_ID` or `delete-p INDEX`
+- Format: `delete-p PROPERTY_ID` or `delete-p <INDEX_NUMBER>`
 
-> - Deletes the property at the specified INDEX or with the specified PROPERTY_ID.
-> - The index refers to the index shown on the displayed property list.
-> - The index must be a **positive number** e.g. 1, 2, 3,...
+> - Deletes the property with the specified `PROPERTY_ID`.
+> - Deletes the property at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed property list. The index must be a **positive integer** 1, 2, 3...
+
 
 Examples:
 
@@ -444,6 +501,9 @@ Address: Block 123
 Property type: HDB
 Asking price: $100.00
 Seller id: S2
+All related bids and 
+meetings have been 
+deleted.
 ```
 
 ---
@@ -503,7 +563,6 @@ Will delete a bid based on its number in the bid list
 - Format: `delete-bid <INDEX_NUMBER>`
 
 > - Deletes the bid at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed bid list. The index must be a **positive integer** 1, 2, 3...
->> - Warning: The ```BIDDER_ID``` and ```PROPERTY_ID``` must exist to be edited successfully.
 
 Example:
 
@@ -522,21 +581,10 @@ to property: P1
 
 ## Editing a Bid
 
-Will edit a bidder’s bid value for a specific property. The edited bid will be automatically sorted.
+Will edit a bid based on the values given for each parameter. The edited bid will be automatically sorted.
 
 - Command: `edit-bid`
-
-edit-bid command can edit multiple parameters at once and can be a combination of b/ c/ or m/
-
-##### Example formats
-
-- Format 1: `edit-bid <INDEX_NUMBER> b/[NEW_PROPERTY_ID]` (edits only the propertyId)
-- Format 2: `edit-bid <INDEX_NUMBER> c/[NEW_BIDDER_ID]` (edits only the bidderId)
-- Format 3: `edit-bid <INDEX_NUMBER> m/[NEW_BID_AMOUNT]` (edits only the bidAmount)
-- Format 4: `edit-bid <INDEX_NUMBER> b/[NEW_PROPERTY_ID] c/[NEW_BIDDER_ID]` (edits only the propertyId and bidderId)
-- Format 5: `edit-bid <INDEX_NUMBER> c/[NEW_BIDDER_ID] m/[NEW_BID_AMOUNT]` (edits only the bidderId and bidAmount)
-- Format 6: `edit-bid <INDEX_NUMBER> b/[NEW_PROPERTY_ID] m/[NEW_BID_AMOUNT]` (edits only the propertyId and bidAmount)
-- Format 7: `edit-bid <INDEX_NUMBER> b/[NEW_PROPERTY_ID] c/[NEW_BIDDER_ID] m/[NEW_BID_AMOUNT]` (edits all parameters)
+- Format: `edit-bid <INDEX_NUMBER> [b/PROPERTY_ID] [c/BIDDER_ID] [m/BID_AMOUNT]`
 
 > - Edits the bid at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed bid list. The index must be a **positive integer** 1, 2, 3...
 > - At least one optional field must be provided.
@@ -582,7 +630,7 @@ find-bid P1 B2 $65000.00
 Expected Output:
 
 ```
-1 bids listed!
+1 bid(s) listed!
 ```
 
 ---
@@ -676,6 +724,8 @@ Deletes a meeting from the calendar when a meeting is cancelled
 - Command: `delete-m`
 - Format: `delete-m <INDEX_NUMBER>`
 
+> - Deletes the meeting at the specified `INDEX_NUMBER`, which refers to the index shown on the displayed meeting list. The index must be a positive integer 1, 2, 3...
+
 Example:
 
 ```
@@ -715,7 +765,10 @@ Listed all meetings
 Edits an existing meeting detail that is in the list.
 
 - Command: `edit-m`
-- Format: `edit-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE`
+- Format: `edit-m <INDEX_NUMBER> b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE`
+
+> - Edits the meeting at the specified `INDEX_NUMBER`, which refers to the index shown on the displayed meeting list. The index must be a positive integer 1, 2, 3...
+
 
 Example:
 
@@ -732,8 +785,6 @@ Property Id: P12
 Venue: eunos
 Date: 12-05-2016
 ```
-The index will only correspond to the original list, NOT the filtered list (when used in find).
-
 
 ## Calendar Navigation Features
 
@@ -791,54 +842,5 @@ Picture Example:
 | ![november](images/CalendarPictures/Calendar_November.png) | ![october](images/CalendarPictures/Calendar_October.png) |
 
 ---
-
-
-### Command Format Summary Tables
-
-
-| Command Format (Property)  | Example |
-| :--- | :--- |
-| add-p n/PROPERTY_NAME s/SELLER_ID ap/ASKING_PRICE t/TYPE a/ADDRESS r/IS_RENTAL  | add-p n/Sunrise s/S1 ap/100 t/Landed a/99 Sunrise Street r/No  |
-| edit-p <INDEX_NUMBER> [n/NAME] [a/ADDRESS] [s/SELLER_ID] [ap/ASKING_PRICE] [t/PROPERTY_TYPE] [r/IS_RENTAL]  | edit-p 1 n/Cove Residences a/23 Cove Street |
-| find-p [p/PROPERTY_ID_KEYWORDS] [n/NAME_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/SELLER_ID_KEYWORDS] [t/PROPERTY_TYPE_KEYWORDS] [ap/ASKING_PRICE_FILTER] [r/IS_RENTAL] [c/IS_CLOSED_DEAL] | n/Sunrise Cove a/Street Road |
-| delete-p PROPERTY_ID or delete-p <INDEX_NUMBER> | delete-p P23 or delete-p 5 |
-| list-p | list-p |
-
-| Command Format (Bidder)  | Example |
-| :--- | :--- |
-| add-b n/BIDDER_NAME p/PHONE_NUMBER  | add-b n/Marcus Duigan p/12345678  |
-| edit-b <INDEX_NUMBER> [n/NEW_NAME] [p/NEW_PHONE_NUMBER] | edit-b 1 n/Marcus Weagle Duigan p/987654321 |
-| find-b [KEYWORDS] | find-b duigan |
-| delete-b <INDEX_NUMBER> | delete-b 1 |
-| list-b | list-b |
-
-| Command Format (Seller)  | Example |
-| :--- | :--- |
-| add-s n/SELLER_NAME p/PHONE_NUMBER  | add-b n/Marcus Duigan p/12345678  |
-| edit-s <INDEX_NUMBER> [n/NEW_NAME] [p/NEW_PHONE_NUMBER] | edit-s 1 n/Marcus Weagle Duigan p/987654321 |
-| find-s [KEYWORDS] | find-s duigan |
-| delete-s <INDEX_NUMBER> | delete-s 1 |
-| list-s | list-s |
-
-| Command Format (Bid)  | Example |
-| :--- | :--- |
-| add-bid b/PROPERTY_ID c/BIDDER_ID m/BID_AMOUNT  | add-bid b/P1 c/B2 m/150000.20  |
-| edit-bid <INDEX_NUMBER> b/[NEW_PROPERTY_ID] c/[NEW_BIDDER_ID] m/[NEW_BID_AMOUNT] | edit-bid 1 b/ P99 c/ B12 m/1.20 |
-| find-bid [KEYWORDS] | find-bid P1 B2 $65000.00 |
-| delete-bid <INDEX_NUMBER> | delete-bid 1 |
-| list-bid | list-bid |
-
-| | Command Format (Meeting)  | Example |
-| :--- | :--- | :--- |
-| View | add-m q/v b/<BIDDER_ID> p/<PROPERTY_ID> v/<VENUE> t/<DATE> | add-m q/v b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
-| Administrative | add-m q/a b/<BIDDER_ID> p/<PROPERTY_ID> v/<VENUE> t/<DATE> | add-m q/a b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
-| Paperwork  |add-m q/p b/<BIDDER_ID> p/<PROPERTY_ID> v/<VENUE> t/<DATE> | add-m q/p b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
-| |edit-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE | edit-m 2 v/eunos |
-| |delete-m <INDEX_NUMBER> | delete-m 3 |
-| | list-m | list-m |
-
-| Command Format (Calendar)  | Example |
-| :--- | :--- |
-| next  | next  |
-| prev | prev |
+#Thank You For Using PropertyFree!
 
