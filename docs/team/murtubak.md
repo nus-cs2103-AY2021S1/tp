@@ -44,7 +44,7 @@ Given below are my contributions to the project.
   * Highlights:
   * Credits:
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zFR=false&zA=murtubak&zR=AY2021S1-CS2103T-F12-3%2Ftp%5Bmaster%5D&zACS=258.1984652947332&zS=2020-08-14&zFS=&zU=2020-10-14&zMG=false&zFTF=commit&zFGS=groupByRepos)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=murtubak)
 
 * **Project management**:
   * Approved PRs.
