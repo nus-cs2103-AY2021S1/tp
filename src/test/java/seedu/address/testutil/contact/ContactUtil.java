@@ -27,8 +27,8 @@ public class ContactUtil {
      */
     public static String getContactDetails(Contact contact) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + contact.getName().getName() + " ");
-        sb.append(PREFIX_EMAIL + contact.getEmail().value + " ");
+        sb.append(PREFIX_NAME + contact.getName().toString() + " ");
+        sb.append(PREFIX_EMAIL + contact.getEmail().toString() + " ");
         contact.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
