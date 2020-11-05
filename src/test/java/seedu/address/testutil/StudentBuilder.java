@@ -1,7 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.commons.util.DateUtil.parseToDate;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.student.Name;
@@ -41,12 +42,12 @@ public class StudentBuilder {
     public static final String DEFAULT_QUESTION_NEWTON = "What is Newton's Second Law?";
     public static final String DEFAULT_QUESTION_MATH = "How do you inverse a matrix?";
     public static final String DEFAULT_SOLUTION = "Read your textbook";
-    public static final Exam DEFAULT_EXAM_FYE = new Exam("End of Year Examination 2020", "07/11/2020",
-            new Score("50/100"));
-    public static final Exam DEFAULT_EXAM_MYE = new Exam("Mid Year Examination 2020", "25/7/2020",
-            new Score("20/30"));
-    public static final Attendance DEFAULT_ATTENDANCE = new Attendance("14/4/1998", "present",
-            new Feedback("sleepy during lesson"));
+    public static final Exam DEFAULT_EXAM_FYE = new Exam("End of Year Examination 2020",
+            parseToDate("07/11/2020"), new Score("50/100"));
+    public static final Exam DEFAULT_EXAM_MYE = new Exam("Mid Year Examination 2020",
+            parseToDate("25/7/2020"), new Score("20/30"));
+    public static final Attendance DEFAULT_ATTENDANCE = new Attendance(parseToDate("14/4/1998"),
+            true, new Feedback("sleepy during lesson"));
 
     // Identity fields
     private Name name;
@@ -61,11 +62,10 @@ public class StudentBuilder {
     private PaymentDate paymentDate;
     private List<Detail> details = new ArrayList<>();
 
-    private List<Question> questions = new ArrayList<>();
-
     // Academic details
     private List<Exam> exams = new ArrayList<>();
     private List<Attendance> attendances = new ArrayList<>();
+    private List<Question> questions = new ArrayList<>();
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -90,8 +90,8 @@ public class StudentBuilder {
                 .map(UnsolvedQuestion::new)
                 .forEach(questions::add);
 
-        exams = Arrays.asList(DEFAULT_EXAM_FYE, DEFAULT_EXAM_MYE);
-        attendances = Arrays.asList(DEFAULT_ATTENDANCE);
+        exams = List.of(DEFAULT_EXAM_FYE, DEFAULT_EXAM_MYE);
+        attendances = List.of(DEFAULT_ATTENDANCE);
     }
 
     /**

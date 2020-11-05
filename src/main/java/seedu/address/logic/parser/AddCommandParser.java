@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.DateUtil.TODAY;
 import static seedu.address.logic.parser.CliSyntax.ALL_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.COMPULSORY_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
@@ -13,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.student.admin.Fee.FREE_OF_CHARGE;
-import static seedu.address.model.student.admin.PaymentDate.TODAY;
 
 import java.util.ArrayList;
 import java.util.List;

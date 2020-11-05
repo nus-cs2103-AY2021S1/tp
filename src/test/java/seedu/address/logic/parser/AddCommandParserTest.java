@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.DateUtil.TODAY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDITIONAL_DETAILS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDITIONAL_DETAILS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.CLASS_TIME_DESC_AMY;
@@ -34,7 +35,6 @@ import static seedu.address.logic.commands.CommandTestUtil.YEAR_DESC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.model.student.admin.Fee.FREE_OF_CHARGE;
-import static seedu.address.model.student.admin.PaymentDate.TODAY;
 import static seedu.address.testutil.TypicalStudents.AMY;
 import static seedu.address.testutil.TypicalStudents.BOB;
 

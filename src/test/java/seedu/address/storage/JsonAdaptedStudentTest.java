@@ -18,7 +18,7 @@ public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_SCHOOL = " ";
-    private static final String INVALID_YEAR = "F!ck!";
+    private static final String INVALID_YEAR = "!nval1d!";
 
     private static final String VALID_NAME = BOB.getName().toString();
     private static final String VALID_PHONE = BOB.getPhone().toString();
@@ -104,16 +104,16 @@ public class JsonAdaptedStudentTest {
     }
 
     @Test
-    public void toModelType_nullAdmin_throwsNullPointerException() {
+    public void toModelType_nullAdmin_throwsIllegalValueException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_SCHOOL, VALID_YEAR,
                 null, JSON_ADAPTED_ACADEMIC);
-        assertThrows(NullPointerException.class, student::toModelType);
+        assertThrows(IllegalValueException.class, student::toModelType);
     }
 
     @Test
-    public void toModelType_nullAcademic_throwsNullPointerException() {
+    public void toModelType_nullAcademic_throwsIllegalValueException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_SCHOOL, VALID_YEAR,
                 JSON_ADAPTED_ADMIN, null);
-        assertThrows(NullPointerException.class, student::toModelType);
+        assertThrows(IllegalValueException.class, student::toModelType);
     }
 }

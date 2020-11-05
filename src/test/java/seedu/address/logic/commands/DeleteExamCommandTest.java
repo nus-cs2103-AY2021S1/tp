@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.address.commons.util.DateUtil.parseToDate;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -31,7 +32,7 @@ public class DeleteExamCommandTest {
     private static final Index TEST_INDEX_SECOND_EXAM = INDEX_SECOND_PERSON;
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNotebook());
-    private Exam dummyExam = new Exam("Mid Year 2020", "26/7/2020", new Score("26/50"));
+    private Exam dummyExam = new Exam("Mid Year 2020", parseToDate("26/7/2020"), new Score("26/50"));
 
     @Test
     public void constructors_null_throwsNullPointerException() {

@@ -3,10 +3,14 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.address.logic.commands.AddAttendanceCommand.MESSAGE_INVALID_ATTENDANCE_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_ATTENDANCE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.ALICE;
@@ -28,7 +32,7 @@ import seedu.address.testutil.StudentBuilder;
 public class AddAttendanceCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNotebook());
-    private final Attendance validAttendance = new Attendance("12/02/2020", "present",
+    private final Attendance validAttendance = new Attendance(ATTENDANCE_DATE_AMY, true,
             new Feedback("sleepy"));
 
     @Test
@@ -106,6 +110,13 @@ public class AddAttendanceCommandTest {
     }
 
     @Test
+    public void execute_attendanceAlreadyExists_throwsCommandException() {
+        AddAttendanceCommand command = new AddAttendanceCommand(INDEX_FIRST_PERSON, DEFAULT_ATTENDANCE);
+
+        assertCommandFailure(command, model, MESSAGE_INVALID_ATTENDANCE_DATE);
+    }
+
+    @Test
     public void equals() {
         AddAttendanceCommand addAttendanceCommand = new AddAttendanceCommand(INDEX_FIRST_PERSON, validAttendance);
 
@@ -122,7 +133,7 @@ public class AddAttendanceCommandTest {
         assertFalse(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_SECOND_PERSON, validAttendance)));
 
         // different attendance -> return false;
-        Attendance altAttendance = new Attendance("17/02/2020", "absent", new Feedback("sleepy"));
+        Attendance altAttendance = new Attendance(ATTENDANCE_DATE_BOB, false, new Feedback("sleepy"));
         assertFalse(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_FIRST_PERSON, altAttendance)));
     }
 }

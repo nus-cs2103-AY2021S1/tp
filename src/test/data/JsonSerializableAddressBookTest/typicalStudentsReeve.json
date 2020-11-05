@@ -14,11 +14,11 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       }],
@@ -51,11 +51,11 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       }],
@@ -88,11 +88,11 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       } ],
@@ -125,11 +125,11 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       } ],
@@ -162,11 +162,11 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : true,
+        "status" : "solved",
         "question" : "What is Newton's Second Law?",
         "solution" : "Read your textbook"
       }, {
-        "status" : true,
+        "status" : "solved",
         "question" : "How do you inverse a matrix?",
         "solution" : "Read your textbook"
       } ],
@@ -199,11 +199,11 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       } ],
@@ -236,11 +236,11 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       } ],
