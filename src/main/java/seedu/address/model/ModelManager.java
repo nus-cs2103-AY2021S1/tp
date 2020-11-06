@@ -267,7 +267,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isClashingClassTime(Student toCheck) {
-        return scheduler.isClashingClassTime(toCheck, reeve.getStudentList());
+        return reeve.isClashingClassTime(toCheck);
     }
 }
 

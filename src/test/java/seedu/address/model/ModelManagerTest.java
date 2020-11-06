@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.AMY;
 import static seedu.address.testutil.TypicalStudents.BOB;
 import static seedu.address.testutil.notes.TypicalNotes.NOTE_EXISTENTIAL_CRISIS;
@@ -140,6 +141,17 @@ public class ModelManagerTest {
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(reeve, differentUserPrefs, notebook)));
 
+    }
+
+    @Test
+    public void isClashingClassTime() {
+        Reeve reeve = new ReeveBuilder().withPerson(AMY).withPerson(BOB).build();
+        Notebook notebook = new NotebookBuilder().withNote(NOTE_EXISTENTIAL_CRISIS).build();
+        UserPrefs userPrefs = new UserPrefs();
+        modelManager = new ModelManager(reeve, userPrefs, notebook);
+        assertTrue(modelManager.isClashingClassTime(AMY));
+        assertTrue(modelManager.isClashingClassTime(BOB));
+        assertFalse(modelManager.isClashingClassTime(ALICE));
     }
 
     @Test

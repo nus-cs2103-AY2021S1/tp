@@ -14,7 +14,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.admin.ClassTime;
 
 /**
  * This class provides the basic functionalities of event operations.
@@ -124,33 +123,6 @@ public class Scheduler implements ReadOnlyEvent, ReadOnlyVEvent {
             listOfEvents.add(LessonEvent.createLessonEvent(student, ld));
         }
         this.resetData(listOfEvents);
-    }
-
-    /**
-     * Checks if the student {@code toCheck} has clashing classtimes with student in {@code studentList}.
-     * @return true if student has clashing class time.
-     */
-    public boolean isClashingClassTime(Student toCheck, List<Student> studentList) {
-        requireAllNonNull(toCheck, studentList);
-        ClassTime toCheckClassTime = toCheck.getAdmin().getClassTime();
-        for (Student currStd : studentList) {
-            ClassTime currClassTime = currStd.getAdmin().getClassTime();
-            if (toCheckClassTime.dayOfWeek.equals(currClassTime.dayOfWeek)) {
-                LocalTime currStart = currClassTime.startTime;
-                LocalTime currEnd = currClassTime.endTime;
-
-                LocalTime toCheckStart = toCheckClassTime.startTime;
-                LocalTime toCheckEnd = toCheckClassTime.endTime;
-
-                if (currEnd.isAfter(toCheckStart) && currStart.isBefore(toCheckEnd)) {
-                    return true;
-                }
-
-            }
-
-        }
-        return false;
-
     }
 
 }

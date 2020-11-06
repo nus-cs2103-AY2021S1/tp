@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.ALICE_CLASS_EVENT;
 import static seedu.address.testutil.TypicalEvents.getTypicalEvents;
-import static seedu.address.testutil.TypicalStudents.ALICE;
-import static seedu.address.testutil.TypicalStudents.getTypicalPersons;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,8 +15,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import jfxtras.icalendarfx.components.VEvent;
-import seedu.address.model.student.Student;
-import seedu.address.testutil.StudentBuilder;
 
 public class SchedulerTest {
     private final Scheduler scheduler = new Scheduler();
@@ -121,31 +117,5 @@ public class SchedulerTest {
     public void mapClassTimeToLessonEvent_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> scheduler.mapClassTimesToLessonEvent(null));
     }
-
-    @Test
-    public void isClashingClassTime() {
-        List<Student> studentList = getTypicalPersons();
-
-        // Class time overlap exactly return true (Alice is in studentList)
-        assertTrue(scheduler.isClashingClassTime(ALICE, studentList));
-
-        // Class time half overlapped return true (Alice is "5 1500-1700")
-        Student studentWithHalfOverlapClassTime = new StudentBuilder(ALICE).withClassTime("5 1400-1600").build();
-        assertTrue(scheduler.isClashingClassTime(studentWithHalfOverlapClassTime, studentList));
-
-        // class time exactly contained in between another student's class time return true
-        Student studentWithContainedClassTime = new StudentBuilder(ALICE).withClassTime("5 1600-1630").build();
-        assertTrue(scheduler.isClashingClassTime(studentWithContainedClassTime, studentList));
-
-        // End Time of one student same as start time of another return false
-        Student studentWithEndTimeSameAsStartTime = new StudentBuilder(ALICE).withClassTime("5 1400-1500").build();
-        assertFalse(scheduler.isClashingClassTime(studentWithEndTimeSameAsStartTime, studentList));
-
-        // different dayOfWeek same time return false
-        Student studentWithDiffDaySameTime = new StudentBuilder(ALICE).withClassTime("4 1500-1700").build();
-        assertFalse(scheduler.isClashingClassTime(studentWithDiffDaySameTime, studentList));
-
-    }
-
 
 }
