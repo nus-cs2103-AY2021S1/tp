@@ -50,11 +50,11 @@ public class VersionedModuleList extends ModuleList {
         this.currentStatePointer += 1;
     }
 
-    public boolean isIndexZero() {
+    private boolean isIndexZero() {
         return currentStatePointer == 0;
     }
 
-    public boolean isLastIndex() {
+    private boolean isLastIndex() {
         return currentStatePointer >= moduleListStateList.size() - 1;
     }
 

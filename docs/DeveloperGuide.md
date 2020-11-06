@@ -244,7 +244,40 @@ Cons:
 - LONG methods.
 
 
-### \[Proposed\] Data archiving
+### Module list data archiving
+
+#### Implementation
+
+The module list data archiving function is facilitated by `ModelManager`. It keeps track of a additional `ModuleList` which stores archived modules as
+compared the the current `ModuleList` that stores currently relevant modules. Additionally, it implements the following operations:
+
+* `ModelManager#archiveModule()` - Archives a module by removing it from the current `ModuleList` and placing it in the archived `ModuleList`.
+
+* `ModelManager#unarchiveModule()` - Un-archives a module by removing it from the archived `ModuleList` and placing it in the current `ModuleList`.
+
+The following sequence diagram shows how the archive module operation works:
+![ArchiveModuleSequenceDiagram](images/Module/ArchiveModuleSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveModuleCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The `unarchivemodule` command does the opposite — it calls `Model#unarchiveModule()`, which removes the specified module  from the archived `ModuleList` and placing it in the current `ModuleList`.
+
+
+
+#### Design consideration:
+
+##### Aspect: Information used to calculate cap
+* Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
+    * Pros : Easy to implement
+    * Cons : User has to manually input every module taken
+
+* Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
+    * Pros :
+     * User does not need to input unnecessary modules.
+     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
+    * Cons : Will require additional storage.
 
 ### 1.1 Contact List Management
 
@@ -321,11 +354,11 @@ Figure ?.? Activity diagram representing the execution of `AddContactCommand`
 * Alternative 2: Use an `ArrayList` to store contacts
 
 
-### \[Proposed\] Calculate CAP feature
+### Calculate CAP feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total
+The calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total
 grade points and modular credits, both stored internally `gradePoints` and `modularCredits` respectively. Additionally, it implements the following operations:
 
 * `CalculateCapCommand#accumulate(ModuleList)` - Loops through a given `ModuleList` and updates the grade points and
@@ -464,6 +497,83 @@ to the rest of the project as the command is parsed and then executed.
     * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
     * Cons : Requires separate CAP to be stored for Cap Calculator to access
 
+### Undo/redo feature
+
+#### Implementation
+The undo/redo mechanism is facilitated by the respective versioned lists of each list type. For example
+`VersionedModuleList` for a `ModuleList` type. We will use `VersionedModuleList` to demonstrate the implementation of undo/redo mechanism. It extends `ModuleList` with an undo/redo history, stored internally as an `moduleListStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedModuleList#commit()` — Saves the current `ModuleList` state in its history.
+* `VersionedModuleList#undo()` — Restores the previous `ModuleList` state from its history.
+* `VersionedModuleList#redo()` — Restores a previously undone `ModuleList` state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitModuleList()`, `Model#undoModuleList()` and `Model#ModuleList()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedModuleList` will be initialized with the initial `ModuleList` state, and the `currentStatePointer` pointing to that single `ModuleList` state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `deletemodule 5` command to delete the 5th module in the `ModuleList`. The `deletemodule` command calls `Model#commitModuleList()`, causing the modified state of the `ModuleList` after the `deletemodule 5` command executes to be saved in the `moduleListStateList`, and the `currentStatePointer` is shifted to the newly inserted `ModuleList` state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `addmodule n/CS2103T​` to add a new module. The `addmodule` command also calls `Model#commitModuleList()`, causing another modified `ModuleList` state to be saved into the `moduleListStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitModuleList()`, so the `ModuleList` state will not be saved into the `moduleListStateList`.
+
+</div>
+
+Step 4. The user now decides that adding the module was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoModuleList()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous `ModuleList` state, and restores the `ModuleList` to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `ModuleList` state, then there are no previous `ModuleList` states to restore. The `undo` command uses `isIndexZero()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoModuleList()`, which shifts the `currentStatePointer` once to the right, pointing to the previously committed state, and restores the `ModuleList` to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `moduleListStateList.size() - 1`, pointing to the latest `ModuleList` state, then there are no undone `ModuleList` states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify `ModuleList`, such as `list`, will usually not call `Model#commitModuleList()`, `Model#undoModuleList()` or `Model#redoModuleList()`. Thus, the `ModuleListStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clearmodule`, which calls `Model#commitModuleList()`. Since the `currentStatePointer` is not pointing at the end of the `moduleListStateList`, all `ModuleList` states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `addmodule n/CS2103​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![CommitActivityDiagram](images/CommitActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How undo & redo executes
+
+* **Alternative 1 (current choice):** Saves the entire `moduleList`.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `deletemodule`, just save the module being deleted).
+  * Cons: We must ensure that the implementation of each individual command is correct.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -505,7 +615,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a module                | remove modules that are completed                      |
 | `* *`    | user                                       | find a module by name          | locate details of a module without having to go through the entire list |
 | `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
-| `* *`    | user                                       | calculate my cumulative average point   | plan my academic progress for the future      |
+| `* *`    | user                                       | calculate my CAP details   | plan my academic progress for the future      |
+| `* *`    | user                                       | archive a modules   | hide less relevant modules that might still be useful for future purposes|
 | `* *`    | user                                       | add graded assignments       | add the information of the assignments that contributed to my grade      |
 | `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
 | `* *`    | user                                       | delete graded assignments      | remove the assignments that are do not contribute to my grade anymore|
@@ -519,14 +630,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | filter tasks based on criteria | easily manage the tasks by group                       |
 | `*`      | user                                       | reset the status of a task     | change a task from labeled as completed to not completed |
 | `*`      | user                                       | archive a task                 | hide irrelevant tasks that might still be useful for future purposes |
-
+| `*`      | user                                       | quickly add a module tagged as completed                 | input data to calculate CAP details quickly |
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `CAP5BUDDY` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a new Module**
+**Use case: UC01 Add a new Module**
 
 **MSS**
 
@@ -536,7 +647,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-**Use case: Delete a module**
+**Use case: UC02 - Delete a module**
 
 **MSS**
 
@@ -559,7 +670,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-**Use case: Edit a module**
+**Use case: UC03 - Edit a module**
 
 **MSS**
 
@@ -588,7 +699,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   *{More to be added}*
 
-**Use case: View a module**
+**Use case: UC04 - View a module**
 
 **MSS**
 
@@ -609,24 +720,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 2.
 
-**Use case: Input module Cumulative Average Point(CAP) details**
+**Use case: UC05 - Archive a module**
 
 **MSS**
 
-1. User requests to input CAP details(Grade point and Credit) for a module.
-2. CAP5BUDDY saves CAP details under the specified module.
-
-Use case ends.
+1. User <ins>requests to show all the un-archived modules (UC09).</ins>
+2. User wants to archive a specific module from the list.
+3. CAP5BUDDY archives the module.
 
 **Extensions**
+* 1a. The list is empty.
 
-* 2a. Input contains invalid CAP details.
+  Use case ends here.
+
+* 2a. The given index is invalid or does not exist.
 
   * 2a1. CAP5BUDDY displays an error message.
-  * 2a2. User enters the correct data.
-  Use case resumes at step 1.
 
-**Use case: Calculate Cumulative Average Point(CAP)**
+    Use case resumes at step 2.
+    
+**Use case: UC06 - Un-archive a module**
+
+**MSS**
+
+1. User <ins>requests to show all the archived modules (UC10).</ins>
+2. User wants to un-archive a specific module from the list.
+3. CAP5BUDDY un-archives the module.
+
+**Extensions**
+* 1a. The list is empty.
+
+  Use case ends here.
+
+* 2a. The given index is invalid or does not exist.
+
+  * 2a1. CAP5BUDDY displays an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC07 - Calculate Cumulative Average Point(CAP)**
 
 **MSS**
 
@@ -637,7 +769,7 @@ Use case ends.
 
 **Extensions**
 
-* 2a. One or more modules do not contain details of grade point or credits.
+* 2a. There are no modules tagged as completed.
 
   * 2a1. CAP5BUDDY displays an error message.
 
@@ -646,16 +778,62 @@ Use case ends.
   Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
   Use case resumes at step 2.
 
-* 3a. One or more modules contain invalid details of grade point or credits.
 
-  * 3a1. CAP5BUDDY displays an error message.
+**Use case: UC08 - Calculate target CAP details**
 
-  * 3a2. User enters valid data.
+**MSS**
+
+1. User requests to calculate target CAP details
+2. CAP5BUDDY calculates and displays target CAP details to user.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. There are no modules marked as completed.
+
+  * 2a1. CAP5BUDDY displays an error message.
+
+  * 2a2. User enters required data.
 
   Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
   Use case resumes at step 2.
 
-  *{More to be added}*
+* 2b. User inputs invalid target cap value.
+ 
+   * 2b1. CAP5BUDDY displays an error message.
+ 
+   * 3b2. User enters valid input.
+ 
+   Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
+   Use case resumes at step 2.
+   
+* 2c. Target cap is unachievable.
+ 
+   * 2c1. CAP5BUDDY displays an error message.
+ 
+   * 4c2. User enters valid input.
+ 
+   Steps 3a1-3a2 are repeated until the data requirements are fulfilled.<br>
+   Use case resumes at step 2. 
+   
+**Use case: UC09 - View un-archived module list**
+
+**MSS**
+
+1. User requests to view the list of un-archived modules.
+2. CAP5BUDDY displays all the un-archived modules.
+
+Use case ends.
+
+**Use case: UC10 - View archived module list**
+
+**MSS**
+
+1. User requests to view the list of un-archived modules.
+2. CAP5BUDDY displays all the un-archived modules.
+
+Use case ends.
 
 **Use case: Add a task to todo list**
 
@@ -1017,6 +1195,38 @@ Use case ends.
     * CAP5BUDDY shows an error message.
 
       Use case resumes at step 2.
+      
+**Use case: Undo previous command**
+
+  **MSS**
+  1. User requests to undo previous command.
+  2. CAP5BUDDY undoes the previous command.
+  
+  Use case ends.
+
+  **Extensions**
+
+  * 2a. There are no commands to undo.
+
+    * CAP5BUDDY shows an error message.
+
+      Use case resumes at step 1.
+      
+**Use case: Redo undone command**
+
+  **MSS**
+  1. User requests to redo most recent undone command.
+  2. CAP5BUDDY redoes the undone command.
+  
+  Use case ends.
+
+  **Extensions**
+
+  * 2a. There are no commands to redo.
+
+    * CAP5BUDDY shows an error message.
+
+      Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
