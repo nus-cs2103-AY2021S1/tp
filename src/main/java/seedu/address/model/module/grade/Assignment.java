@@ -41,6 +41,7 @@ public class Assignment {
      * Default constructor for Assignment with only assignment name.
      */
     public Assignment(AssignmentName assignmentName) {
+        requireNonNull(assignmentName);
         this.assignmentName = assignmentName;
         this.assignmentPercentage = null;
         this.assignmentResult = null;

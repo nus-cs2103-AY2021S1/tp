@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.module.grade.comparator.AssignmentNameComparator;
 
 /**
@@ -133,6 +134,7 @@ public class GradeTracker implements ReadOnlyGradeTracker {
      * @return true if the assignment already exists
      */
     public boolean containsDuplicateAssignment(Assignment otherAssignment) {
+        requireNonNull(otherAssignment);
         for (Assignment eachAssignment : assignments) {
             if (eachAssignment.equals(otherAssignment)) {
                 return true;

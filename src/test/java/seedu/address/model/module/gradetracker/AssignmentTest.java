@@ -1,10 +1,11 @@
 package seedu.address.model.module.gradetracker;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.contact.Contact;
 import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.AssignmentName;
+import seedu.address.model.module.grade.AssignmentPercentage;
+import seedu.address.model.module.grade.AssignmentResult;
 import seedu.address.testutil.AssignmentBuilder;
-import seedu.address.testutil.ContactBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,8 +13,6 @@ import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.LAB_1;
 import static seedu.address.testutil.TypicalAssignments.QUIZ_2;
-import static seedu.address.testutil.TypicalContacts.ALICE;
-import static seedu.address.testutil.TypicalContacts.BOB;
 
 public class AssignmentTest {
 
@@ -23,6 +22,32 @@ public class AssignmentTest {
 
         // null AssignmentName -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> assignmentBuilder.withAssignmentName(null).build());
+    }
+
+    @Test
+    public void constructorNameOnly_nullArguments_throwsNullPointerException() {
+        // null AssignmentName -> throws NullPointerException
+        assertThrows(NullPointerException.class, () -> new Assignment(null));
+    }
+
+    @Test
+    public void setAssignmentValues() {
+        Assignment testAssignmentConstructor = new AssignmentBuilder().build();
+        AssignmentName quizName = new AssignmentName(VALID_ASSIGNMENT_NAME_1);
+        AssignmentPercentage quizPercentage = new AssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1);
+        AssignmentResult quizResult = new AssignmentResult(VALID_ASSIGNMENT_RESULT_1);
+
+        // check setAssignmentName
+        testAssignmentConstructor.setAssignmentName(quizName);
+        assertTrue(testAssignmentConstructor.getAssignmentName().get().equals(quizName));
+
+        //check setAssignmentPercentage
+        testAssignmentConstructor.setAssignmentPercentage(quizPercentage);
+        assertTrue(testAssignmentConstructor.getAssignmentPercentage().get().equals(quizPercentage));
+
+        //check setAssignmentResult
+        testAssignmentConstructor.setAssignmentResult(quizResult);
+        assertTrue(testAssignmentConstructor.getAssignmentResult().get().equals(quizResult));
     }
 
     @Test
