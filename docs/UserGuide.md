@@ -405,7 +405,7 @@ You can test yourself with a flashcard containing open-ended question by specify
     :bulb: Answer is <b>case insensitive</b>.
     </div>
     <div markdown="block" class="alert alert-danger">
-    The index <b>must be a positive integer</b> 1, 2, 3, ...
+    :exclamation: The index <b>must be a positive integer</b> 1, 2, 3, ...
     </div>
 
     ![TestOpenStep2](./images/TestOpenStep2.png)
@@ -431,7 +431,7 @@ You can also test yourself a flashcard containing a multiple choice question by 
 3. Using the indices of the previous displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the 2nd option, you can enter `test 1 o/2`.
 
     <div markdown="block" class="alert alert-danger">
-    The index and option <b>must both be a positive integer</b> 1, 2, 3, ...
+    :exclamation: The index and option <b>must both be a positive integer</b> 1, 2, 3, ...
     </div>
 
     ![TestMCQStep3](./images/TestMCQStep3.png)
