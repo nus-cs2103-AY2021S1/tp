@@ -220,7 +220,10 @@ Multiple ingredients are separated by `,`.
 </div> 
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-    You cannot add duplicate recipes into Wishful Shrinking. Duplicate recipes means recipes with both the same name and ingredients. You may add two recipes with the same name, but different ingredients, or vice versa. If two recipes have the same image, instructions and tags, but different names and ingredients, they are not considered duplicate recipes.
+    You cannot add duplicate recipes into Wishful Shrinking. Duplicate recipes means recipes with both the same
+     recipe name and ingredient names. You may add two recipes with the same name, but different ingredient names, or vice
+      versa. If two recipes have the same image, instructions and tags, but different recipe names or ingredient
+       names or both, they are not considered duplicate recipes.
 </div>
 
 * `CALORIES` **must be a positive integer** e.g. 150, 200...
@@ -334,10 +337,22 @@ Multiple ingredients are separated by `,`.
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
-</div> 
+</div>
+ 
 * All fields are optional, but **at least** the recipe index and one of the fields must be present to edit
-     a recipe.
+     a recipe.    
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
+    Specifying an empty tag prefix: `t/` will clear all tags if any of the specified recipe.
+</div> 
+     
 * You are not allowed to edit a recipe into an already existing recipe in the Recipe List.
+<div markdown="span" class="alert alert-primary">:memo: **Note:**
+    Duplicate recipes means recipes with both the same
+     recipe name and ingredient names. You may add two recipes with the same name, but different ingredient names, or vice
+      versa. If two recipes have the same image, instructions and tags, but different recipe names or ingredient
+       names or both, they are not considered duplicate recipes.
+</div>
+
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
     Modifying a recipe **will not** affect the recipes that have been eaten in the consumption list.
 </div>
@@ -477,15 +492,15 @@ Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-` and after the dash, only accepts alphanumeric characters
-, forward
- slashes and full stops.
+`QUANTITY` is separated with a mandatory space before `-` and after the dash, only accepts alphanumeric
+ characters, a single forward slash to represent fractions or a single full stop to represent decimal numbers.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.
 </div> 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-    Adding the same ingredients with different quantities **will not** accumulate in the fridge. To change the quantity of an ingredient, use `editF` instead.
+    You are not allowed to add duplicate ingredients. Duplicate ingredients are ingredients with the same
+     name regardless of quantity. 
 </div>
 
 Examples:
