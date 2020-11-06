@@ -340,15 +340,16 @@ Step 4. The user then decides to execute the command `list`. This will revert th
   * Pros: Greater degree of customisation with regards to GUI.
   * Cons: Difficult to implement as it requires the creation of multiple subclasses of `ListCommand`.
 
-### \[Proposed\] Customisation of Command Keywords using Alias Feature
+### Customisation of Command Keywords using Alias Feature
 
-#### Proposed Implementation
+#### Implementation
 
 The implementation for the customisation of command keyword shortcuts for various `Command` subclasses is by introducing a class called `AliasMap` which stores mappings between a command shortcut ('alias') and the actual command word of the class, as well as a class called `AliasCommand` which takes in two user input as parameters. The first parameter is the default command word for which the user wishes to create an alias, or if there is an existing alias for the command word, it must be the existing alias for which the user wishes to alter into a new alias. The second keyword determines what the command's (new) alias would be.
 
 Sample usage: By default, the only command word for `FindCommand` is `"find"`
-•	`alias find get` -> The user can now trigger a `FindCommand` with "get" alias. The "find" command word will still work.
-•	`alias get find` -> The "get" alias is removed from `AliasMap` object and only "find" can now trigger `FindCommand`. In other words, `FindCommand` no longer has an alias.
+
+* `alias find get` -> The user can now trigger a `FindCommand` with `"get"` alias. The `"find"` command word will still work.
+* `alias get find` -> The "get" alias is removed from `AliasMap` object and only `"find"` can now trigger `FindCommand`. In other words, `FindCommand` no longer has an alias.
 
 To maintain some degree of simplicity and neatness, we require that `AliasCommand` and `ResetAliasCommand` cannot have aliases themselves. Furthermore, any custom alias is restricted to 10 case-sensitive alphabetical characters and each command can only have up to a single alias at any point in time. Default command words of each `Command` subclasses cannot be used as aliases. 
 
