@@ -10,14 +10,14 @@
 - [3. Features](#3-features)
   * [3.1 Understanding the command format](#31-understanding-the-command-format)
   * [3.2 General features](#32-general-features)
-      + [3.2.1 Viewing help: `help`](#321-viewing-help-help)
-      + [3.2.2 Toggling between academic and administrative details: `toggle` (By: Hogan)](#322-toggling-between-academic-and-administrative-details-toggle-by-hogan)
-      + [3.2.3 Exiting the program: `exit`](#323-exiting-the-program-exit)
+    + [3.2.1 Viewing help: `help`](#321-viewing-help-help)
+    + [3.2.2 Toggling between academic and administrative details: `toggle` (By: Hogan)](#322-toggling-between-academic-and-administrative-details-toggle-by-hogan)
+    + [3.2.3 Exiting the program: `exit`](#323-exiting-the-program-exit)
   * [3.3 Features for managing student administrative details](#33-features-for-managing-student-administrative-details)
     + [3.3.1 Adding a student: `add` (By: Hogan)](#331-adding-a-student-add-by-hogan)
-    + [3.3.2 Editing a student: `edit` (By: Vaishak)](#332-editing-a-student-edit-by-vaishak)
-    + [3.3.3 Locating students: `find` (By: Choon Siong)](#333-locating-students-find-by-choon-siong)
-    + [3.3.4 Listing all students: `list`](#334-listing-all-students-list)
+    + [3.3.2 Listing all students: `list`](#332-listing-all-students-list)
+    + [3.3.3 Editing a student: `edit` (By: Vaishak)](#333-editing-a-student-edit-by-vaishak)
+    + [3.3.4 Locating students: `find` (By: Choon Siong)](#334-locating-students-find-by-choon-siong)
     + [3.3.5 Deleting a student: `delete`](#335-deleting-a-student-delete)
     + [3.3.6 Sorting the list of students: `sort` (By: Choon Siong)](#336-sorting-the-list-of-students-sort-by-choon-siong)
     + [3.3.7 Finding students with overdue fees: `overdue` (By: Ying Gao)](#337-finding-students-with-overdue-fees-overdue-by-ying-gao)
@@ -25,8 +25,7 @@
         + [3.3.8.1 Adding a detail: `detail add`](#3381-adding-a-detail-detail-add)
         + [3.3.8.2 Editing a detail: `detail edit`](#3382-editing-a-detail-detail-edit)
         + [3.3.8.3 Deleting a detail: `detail delete`](#3383-deleting-a-detail-detail-delete)
-    + [3.3.9 Viewing lesson schedule: `schedule` (By: Alex)](#339-viewing-lesson-schedule-schedule-by-alex)
-    + [3.3.10 Clearing all entries: `clear`](#3310-clearing-all-entries-clear)
+    + [3.3.9 Clearing all entries: `clear`](#339-clearing-all-entries-clear)
   * [3.4 Features for managing student academic details](#34-features-for-managing-student-academic-details)
     + [3.4.1 Recording questions from a student: `question` (By: Ying Gao)](#341-recording-questions-from-a-student-question-by-ying-gao)
         + [3.4.1.1 Adding a question: `question add`](#3411-adding-a-question-question-add)
@@ -39,6 +38,9 @@
     + [3.4.3 Recording attendance of a student: `attendance` (By: Vaishak)](#343-recording-attendance-of-a-student-attendance-by-vaishak)
         + [3.4.3.1 Adding an attendance record to a student: `attendance add`](#3431-adding-an-attendance-record-to-a-student-attendance-add)
         + [3.4.3.2 Deleting an attendance record for a student: `attendance delete`](#3432-deleting-an-attendance-record-for-a-student-attendance-delete)
+  * [3.5 Schedule Feature (By: Alex)](#35-schedule-feature-by-alex)
+    + [3.5.1 Viewing lesson schedule: `schedule`](#351-viewing-lesson-schedule-schedule)
+  * [3.6 Notes Feature (By: Choon Siong)](#36-notes-feature-by-choon-siong)
 - [4. Command summary](#4-command-summary)
 - [5. Glossary](#5-glossary)
 - [6. FAQ](#6-faq)
@@ -70,7 +72,7 @@ Here is a summary (Table 1) of the symbols that are used in this User Guide:
 Table 1: Summary of symbols
 
 Symbol | Meaning
--------|--------
+:-----:|:-------
 `command` | A grey highlight indicates a command that can be executed by **Reeve**.
 :information_source: | Indicates important information. 
 :bulb: | Indicates tips.
@@ -183,7 +185,8 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
     * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
 
 :information_source: | You **cannot** add duplicates of a student. Each student is uniquely identified by his/her `NAME`, `PHONE`, `SCHOOL` and `YEAR`.
--------|-------- 
+:------:|:-------
+
 
 Examples:
 * `add n/Alex p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214
@@ -191,7 +194,16 @@ t/1 1430-1630 f/25 d/12/12/2020`
 * `add n/John Doe p/98765432 s/Woodlands Secondary School y/s 2 v/347 Woodlands Ave 3, Singapore 730347
 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 
-#### 3.3.2 Editing a student: `edit` (By: Vaishak)
+#### 3.3.2 Listing all students: `list`
+
+You can view the list of all students in **Reeve**.
+
+Format: `list`
+
+:information source: | You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
+:------:|:-------
+
+#### 3.3.3 Editing a student: `edit` (By: Vaishak)
 
 Edits an existing student in **Reeve**.
 
@@ -215,7 +227,7 @@ Examples:
 *  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st student to be `Alex`, `99999999` and `Meridian Junior College` respectively.
 *  `edit 3 v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the venue and time of the third student to be `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
 
-#### 3.3.3 Locating students: `find` (By: Choon Siong)
+#### 3.3.4 Locating students: `find` (By: Choon Siong)
 
 Finds students who satisfy the given search criteria.
 
@@ -235,16 +247,6 @@ Examples:
 * `find s/yishun sec` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
 * `find s/yishun secondary` does not match `Yishun Sec`
 * `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
-
-#### 3.3.4 Listing all students: `list`
-
-You can view the list of all students in **Reeve**.
-
-Format: `list`
-
-<div markdown="block" class="alert alert-info">
-:information source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
-</div>
 
 #### 3.3.5 Deleting a student: `delete`
 
@@ -344,28 +346,7 @@ Examples:
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
 * `detail delete 4 i/1` deletes the 1st detail for the 4th student in **Reeve**.
 
-#### 3.3.9 Viewing lesson schedule: `schedule` (By: Alex) 
-
-You can view your upcoming classes on a timetable in either a daily or weekly format.
-
-Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
-
-* Displays a timetable view of your classes.
-* `DATE_TO_VIEW` refers to the date you wish to view the lesson schedule of.
-* A weekly view gives you an overview of all classes on the week of the given `DATE_TO_VIEW`. You could thus plan your time for the week ahead.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: `VIEW_MODE` can only be either **weekly** or **daily**. The case of the letters does not matter.
-
-:information_source: `DATE_TO_VIEW` must be in the format **dd/mm/yyyy**. For instance, 2/11/2020 refers to the date 2nd November 2020
-
-</div>
-
-Example:
-* `schedule m/weekly d/2/11/2020` shows the schedule of classes in the week of 2nd November 2020.
-
-#### 3.3.10 Clearing all entries: `clear`
+#### 3.3.9 Clearing all entries: `clear`
 
 You can clear all student data from **Reeve**.
 
@@ -507,7 +488,7 @@ Examples:
 * `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
 
 :information_source: | If you are editing the exams of a student, you will have to enter the `exam stats` command again to get the updated statistics.
--------|-------- 
+:------:|:-------
 
 #### 3.4.3 Recording attendance of a student: `attendance` (By: Vaishak)
 
@@ -554,6 +535,32 @@ Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 
 Example:
 * `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
+
+### 3.5 Schedule Feature (By: Alex)
+
+#### 3.5.1 Viewing lesson schedule: `schedule` 
+
+You can view your upcoming classes on a timetable in either a daily or weekly format.
+
+Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
+
+* Displays a timetable view of your classes.
+* `DATE_TO_VIEW` refers to the date you wish to view the lesson schedule of.
+* A weekly view gives you an overview of all classes on the week of the given `DATE_TO_VIEW`. You could thus plan your time for the week ahead.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `VIEW_MODE` can only be either **weekly** or **daily**. The case of the letters does not matter.
+
+:information_source: `DATE_TO_VIEW` must be in the format **dd/mm/yyyy**. For instance, 2/11/2020 refers to the date 2nd November 2020
+
+</div>
+
+Example:
+* `schedule m/weekly d/2/11/2020` shows the schedule of classes in the week of 2nd November 2020.
+
+### 3.6 Notes Feature (By: Choon Siong)
+
 
 ## 4. Command summary
 
