@@ -2,9 +2,6 @@ package chopchop.logic.commands;
 
 import static chopchop.commons.util.Enforce.enforceNonNull;
 
-import java.util.stream.Collectors;
-
-import chopchop.commons.util.Pair;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 

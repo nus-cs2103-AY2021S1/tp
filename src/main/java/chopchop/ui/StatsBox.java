@@ -6,7 +6,6 @@ package chopchop.ui;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
 import chopchop.logic.commands.CommandResult;

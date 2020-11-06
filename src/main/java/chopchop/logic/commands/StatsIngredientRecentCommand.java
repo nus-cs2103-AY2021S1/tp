@@ -2,11 +2,8 @@ package chopchop.logic.commands;
 
 import static chopchop.commons.util.Enforce.enforceNonNull;
 
-import java.util.stream.Collectors;
-
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
-import chopchop.model.usage.Usage;
 
 public class StatsIngredientRecentCommand extends Command {
     private static final int N_MOST_RECENT = 10;
