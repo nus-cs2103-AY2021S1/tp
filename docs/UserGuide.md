@@ -234,9 +234,9 @@ This is the table of prefixes used:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note for prefixes and keywords:**<br>
-* Date keywords must be in the format dd-MM-yyyy and time keywords must be in the format HHmm.
-* For prefix `d/`, date keywords are irrespective of time and time keywords are irrespective of date. For example, `find d/1300 25-11-2020` finds all assignments due on 25-11-2020, at any time of the day and all assignments due at 1300, on any date.
-* Keywords used with prefixes `n/`,`mod/` and `p/` are case-insensitive.
+* Date keywords must be in the format **dd-MM-yyyy** and time keywords must be in the format **HHmm**.
+* For prefix `d/`, date keywords are **irrespective of time** and time keywords are **irrespective of date**. For example, `find d/1300 25-11-2020` finds all assignments due on 25-11-2020, at any time of the day and all assignments due at 1300, on any date.
+* Keywords used with prefixes `n/`,`mod/` and `p/` are **case-insensitive**.
 </div>
 
 Here is an example with steps to follow:
@@ -302,7 +302,7 @@ Here is an example with steps to follow:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* One `INDEX` and at least one `PREFIX/EDITTED_FIELD` must be present. For example, `edit` will not work.
+* **One** `INDEX` and **at least one** `PREFIX/EDITTED_FIELD` must be present. For example, `edit` will not work.
 * `DATE_OR_TIME_OF_ASSIGNMENT` has date in the format **dd-MM-yyyy** and time in the format **HHmm** (24 hour).
 </div>
 
