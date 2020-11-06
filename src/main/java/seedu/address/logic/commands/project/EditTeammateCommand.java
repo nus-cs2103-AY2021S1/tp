@@ -155,7 +155,6 @@ public class EditTeammateCommand extends Command {
          */
         public EditTeammateDescriptor(EditTeammateDescriptor toCopy) {
             setTeammateName(toCopy.name);
-            setGitUserName(toCopy.gitUserName);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);

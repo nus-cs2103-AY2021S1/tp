@@ -8,6 +8,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 
 public class TypicalMainCatalogue {
+
     /**
      * Returns an {@code MainCatalogue} with all the typical projects and persons.
      */
@@ -16,6 +17,7 @@ public class TypicalMainCatalogue {
         for (Project project : getTypicalProjects()) {
             ab.addProject(project);
         }
+
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }

@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.project.Project;
@@ -83,6 +84,68 @@ public class TypicalProjects {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
+    public static final Supplier<Project> APEAKAPP_S = () -> new ProjectBuilder().withProjectName("Apeakapp")
+        .withProjectDescription("An app for you to speak your mind")
+        .withRepoUrl("https://github.com/a/a.git")
+        .withDeadline("21-03-2020 00:00:00")
+        .withTags("linguistics")
+        .withTasks(SampleDataUtil.getTask1(), SampleDataUtil.getTask2())
+        .build();
+
+    public static final Supplier<Project> BRICK_S = () -> new ProjectBuilder().withProjectName("Brick No Meier")
+        .withProjectDescription("To destroy the brick and mortar")
+        .withRepoUrl("https://github.com/b/b.git")
+        .withDeadline("21-03-2020 00:00:00")
+        .withTags("amazon", "evil")
+        .withTasks(SampleDataUtil.getTask3())
+        .build();
+
+    public static final Supplier<Project> CARACTIVE_S = () -> new ProjectBuilder().withProjectName("Caractive")
+        .withDeadline("21-03-2020 00:00:00")
+        .withRepoUrl("https://github.com/c/c.git")
+        .withProjectDescription("best car app for tesla")
+        .withTags("electric")
+        .withTasks(SampleDataUtil.getTask4()).build();
+
+    public static final Supplier<Project> DAYUM_S = () -> new ProjectBuilder().withProjectName("Dayum Snap")
+        .withDeadline("21-03-2020 00:00:00")
+        .withRepoUrl("https://github.com/d/d.git")
+        .withProjectDescription("yet another stories app")
+        .withTags("instagram", "snapchat").build();
+
+    public static final Supplier<Project> ELFIE_S = () -> new ProjectBuilder().withProjectName("Elfie save")
+        .withDeadline("21-03-2020 00:00:00")
+        .withRepoUrl("https://github.com/e/e.git")
+        .withProjectDescription("save elves from persecution").build();
+
+    public static final Supplier<Project> FANS_S = () -> new ProjectBuilder().withProjectName("Fans")
+        .withDeadline("21-03-2020 00:00:00")
+        .withRepoUrl("https://github.com/f/f.git")
+        .withProjectDescription("an app only for fans").build();
+
+    public static final Supplier<Project> GERRY_S = () -> new ProjectBuilder().withProjectName("Gerry Mander")
+        .withDeadline("21-03-2020 00:00:00")
+        .withRepoUrl("https://github.com/g/g.git")
+        .withProjectDescription("Call us to rig any election").build();
+
+    public static final Supplier<Project> HOON_S = () -> new ProjectBuilder().withProjectName("Hoon Meier")
+        .withDeadline("21-03-2020 00:00:00").withRepoUrl("https://github.com/h/h.git")
+        .withProjectDescription("Made with love and git").build();
+
+    public static final Supplier<Project> IDA_S = () -> new ProjectBuilder().withProjectName("Ida Mueller")
+        .withDeadline("21-03-2020 00:00:00").withRepoUrl(VALID_REPOURL_B)
+        .withProjectDescription("german quality software").build();
+
+    public static final Supplier<Project> AI_S = () -> new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_A)
+        .withDeadline(VALID_DEADLINE_A).withRepoUrl(VALID_REPOURL_A).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_A)
+        .withTags(VALID_PROJECT_TAG_B).withTasks(SampleDataUtil.getTask5(), SampleDataUtil.getTask6()).build();
+
+    public static final Supplier<Project> BOT_S = () -> new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_B)
+        .withDeadline(VALID_DEADLINE_B).withRepoUrl(VALID_REPOURL_B).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_B)
+        .withTags(VALID_PROJECT_TAG_A, VALID_PROJECT_TAG_B).withTasks(SampleDataUtil.getTask5()).build();
+
     private TypicalProjects() {
     } // prevents instantiation
 
@@ -101,4 +164,11 @@ public class TypicalProjects {
         return new ArrayList<>(ProjectBuilder.makeCopies(Arrays.asList(APEAKAPP, BRICK, CARACTIVE,
             DAYUM, ELFIE, FANS, GERRY)));
     }
+
+    //public static List<Project> getTypicalProjects() {
+    //  return new ArrayList<>(Arrays.asList(APEAKAPP_S.get(), BRICK_S.get(), CARACTIVE_S.get(), DAYUM_S.get(),
+    //       ELFIE_S.get(), FANS_S.get(), GERRY_S.get(), HOON_S.get(), IDA_S.get(), AI_S.get(), BOT_S.get() ));
+    //}
+
+
 }

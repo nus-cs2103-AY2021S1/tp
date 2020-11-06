@@ -4,7 +4,7 @@ import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class AddTeammateParticipationParser implements Parser<AddTeammateParticipationCommand> {
+public class AddTeammateParticipationCommandParser implements Parser<AddTeammateParticipationCommand> {
 
 
     /**
