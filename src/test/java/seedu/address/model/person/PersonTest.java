@@ -22,6 +22,7 @@ public class PersonTest {
         assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
     }
 
+    //@@author royleochan
     //------------- Tests for parseTags -------------//
     @Test
     public void parseTags() {
@@ -38,6 +39,7 @@ public class PersonTest {
         assertTrue(new PersonBuilder().withName("Test").withEmail("Test@gmail.com").withPhone("9001100")
                 .build().getPersonType() == Person.PersonType.CONTACT);
     }
+    //@@author
 
     @Test
     public void isSamePerson() {
