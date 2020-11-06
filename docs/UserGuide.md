@@ -514,9 +514,9 @@ All tCheck data (i.e. contact details, ingredient data, sales data) are saved in
  
 ## 5. FAQ <a name="FAQ"></a>
 
-**Q**: Why for single-word commands like `help`, it will ignore extra inputs that I inputted? <br>
-**A**: Any extra inputs after the single-word command, for example, the input `123` inside the input `c-list 123`, will
- be ignored because extra inputs does not affect the operation conducted by `c-list`. These single-word commands
+**Q**: Why does tCheck ignore additional or extra input that I add after single-word commands, like `help`? <br>
+**A**: Any extra input after a single-word command, for example, the input `123` inside the input `c-list 123`, will
+ be ignored because extra input does not affect the operation conducted by `c-list`. These single-word commands
  include: `s-list`, `s-rank`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-list`, `c-today`, `c-tomorrow`,
   `c-clear`, `c-archive-all`, `c-archive-list`, `help`, `exit`.
 
