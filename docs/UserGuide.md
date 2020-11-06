@@ -66,9 +66,9 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
  open the help window.<br>
    Some commands you can try:
 
-   * **`startproject 1 `** : Opens the first project.
+   * **`startproject 1 `** : Opens the first project
 
-   * **`exit`** : Exits the app.
+   * **`exit`** : Exits the app
 
 6. Refer to the Features below for details of each command.
 
@@ -132,7 +132,7 @@ Format: exit
 
 ### List all projects in the catalogue `listprojects`
 
-List all projects currently in the project catalogue
+List all projects currently in the project catalogue.
 
 Format: `listprojects`
 - Lists all projects if there are projects in the catalogue
@@ -141,7 +141,7 @@ Example: `listprojects` lists all projects in the catalogue to the user.
 
 ### List all persons in the catalogue `listpersons`
 
-List all persons currently in the catalogue
+List all persons currently in the catalogue.
 
 Format: `listpersons`
 - Lists all persons if there are persons in the catalogue
@@ -153,30 +153,32 @@ Example: `listpersons` lists all persons in the catalogue to the user.
 Leave the current page and go back to the parent scope (one level up).
 
 Format: `leave`
-- Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope.
-- If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect.
+- Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope
+- If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect
 
 # **Features** in project_list scope
 
 ### Start work on an existing project `startproject `
+
 Initialises the project specified.
 
 Format: `startproject (INDEX)`
-- Initialises the project at the specified INDEX.
-- The index refers to the index number shown in the displayed project list.
+- Initialises the project at the specified INDEX
+- The index refers to the index number shown in the displayed project list
 - The index must be a positive integer 1, 2, 3, …​
 
 Examples: `startproject 2` Initialises the second project in the project list.
 
 ### Add a new project to the catalogue `add `
+
 Adds a project to the project list.
 
 Format: `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS...] `
   - The fields can be entered in any order, as long as the prefixes are matched correctly
-  - Project Name can be any alphanumeric value (containing only alphabets and / or numbers).
-  - Repo URL must be a valid link.
-  - Description can be anything, as long as it is not blank.
-  - Any number of tags can be added, where each new tag would require the prefix tg/ before the tag.
+  - Project Name can be any alphanumeric value (containing only alphabets and / or numbers)
+  - Repo URL must be a valid link
+  - Description can be anything, as long as it is not blank
+  - Any number of tags can be added, where each new tag would require the prefix tg/ before the tag
 
 Example: `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging hell` 
 
@@ -185,15 +187,15 @@ Adds a new project with the
 - deadline of 29 February 2020 midnight 
 - URL for the team repository 
 - Coding in Greenwich as the description 
-- 2 tags "challenging" and "hell".
+- 2 tags "challenging" and "hell"
 
 ### Delete a project from the catalogue `delete `
 
-Deletes a project and all associated information from the project catalogue
+Deletes a project and all associated information from the project catalogue.
 
 Format: `delete (INDEX) `
-- Deletes the project at the specified INDEX.
-- The index refers to the index number shown in the displayed project list.
+- Deletes the project at the specified INDEX
+- The index refers to the index number shown in the displayed project list
 - The index must be a positive integer 1, 2, 3, …​
 
 Examples: `delete 2` deletes the second project from the catalogue.
@@ -203,10 +205,10 @@ Examples: `delete 2` deletes the second project from the catalogue.
 Finds projects whose names contain the given keywords.
 
 Format: `find [KEYWORD...]`
-- The search is case-insensitive. e.g run will match Run.
-- Only the name of the projects are searched.
-- Can be multiple words.
-- Keywords provided must be complete words and will only match complete words from the name of the project. 
+- The search is case-insensitive. e.g run will match Run
+- Only the name of the projects are searched
+- Can be multiple words
+- Keywords provided must be complete words and will only match complete words from the name of the project 
 
 Example: `find scare` returns the **Scare House** and **Easily scare Night** projects.
 
@@ -217,14 +219,14 @@ Outcome: The projects with matching names will be shown to the user.
 Updates the details of a project.
 
 Format: `edit (INDEX) [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] `
-  - Edits the project at the specified index.
-  - The index refers to the index number shown in the displayed task list.
-  - Any combination of the fields above can be entered.
-  - The information entered will replace all the data in each respective field.
-  - Project Name can be any alphanumeric value (containing only alphabets and / or numbers).
+  - Edits the project at the specified index
+  - The index refers to the index number shown in the displayed task list
+  - Any combination of the fields above can be entered
+  - The information entered will replace all the data in each respective field
+  - Project Name can be any alphanumeric value (containing only alphabets and / or numbers)
   - Repo URL must be a valid link
-  - Description can be anything, as long as it is not blank.
-  - Any number of tags can be added, separated by space " ".
+  - Description can be anything, as long as it is not blank
+  - Any number of tags can be added, separated by space " "
 
 Example: `edit 1 n/Resident Evil project /d new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
 
@@ -238,17 +240,21 @@ Creates a new task and adds it to the current project.
 
 Format: `addtask (tn/TASK NAME) (tp/TASK PROGRESS) (td/TASK DEADLINE) `
   - All fields above are required
-  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
-  - Task progress is a percentage value indicating how much of the task is done.
+  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
+  - Task progress is a percentage value indicating how much of the task is done
   - Task deadline is indicated by a date and time with format *DD-MM-YYYY hh:mm:ss* 
 
 Example: `addtask tn/Do User Guide tp/30 td/29-02-2020 00:00:00` creates a task named Do User Guide, 30% completed, and has a deadline of 29th Feb 2020, midnight.
 
 ### Assign a task to a teammate `assign `
 
-Assigns a task to a teammate within a project
+Assigns a task to a teammate within a project.
 
-Format: `assign TASKINDEX TEAMMATE_GIT_USERNAME  ` (teammate git username is the unique name of each teammate)
+Format: `assign TASKINDEX TEAMMATE_GIT_USERNAME  `
+
+  - TEAMMATE_GIT_USERNAME is the unique name of each teammate
+  - Assigns the teammate with the given git username to the task at the specified index
+  - The index refers to the index number shown in the displayed task list
 
 Example: `assign 3 Lucas98` assigns task number 3 in the list to user *Lucas98*.
 
@@ -257,24 +263,24 @@ Example: `assign 3 Lucas98` assigns task number 3 in the list to user *Lucas98*.
 Edits the indicated task in a project.
 
 Format: `edittask (INDEX) [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] `
-  - Edits the task at the specified index.
-  - The index refers to the index number shown in the displayed task list.
-  - Any combination and any number of the subsequent fields above can be entered.
-  - The information entered will replace all the data in each respective field.
-  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
-  - Task progress is a percentage value indicating how much of the task is done.
+  - Edits the task at the specified index
+  - The index refers to the index number shown in the displayed task list
+  - Any combination and any number of the subsequent fields above can be entered
+  - The information entered will replace all the data in each respective field
+  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
+  - Task progress is a percentage value indicating how much of the task is done
   - Task deadline is indicated by a date and time with the format *DD-MM-YYYY hh:mm:ss* 
 
 Example: `edittask 3 tn/Finish project` changes the name of task 3 in the list to Finish project.
 
 ### Delete a task from the project `deletetask `
 
-Deletes a task and all associated information from the project
+Deletes a task and all associated information from the project.
 
 Format: `deletetask (INDEX) `
 
-- Deletes the project at the specified INDEX.
-- The index refers to the index number shown in the displayed task list.
+- Deletes the project at the specified INDEX
+- The index refers to the index number shown in the displayed task list
 - The index must be a positive integer 1, 2, 3, …​
 
 Examples: `deletetask 2` deletes the second task shown in the displayed task list.
@@ -290,19 +296,17 @@ Filters tasks in the task list by various predicates:
 Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tp/TASK PROGRESS)||(tn/TASK_NAME)` 
   - User may choose one predicate to filter tasks by
   - Assignee name is the name of the Teammate who is assigned to the task
-  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
-  - Names provided must be complete words and will only match complete words from the name of the task or assignee. 
+  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
+  - Names provided must be complete words and will only match complete words from the name of the task or assignee 
   - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
   - Start date and end date in the time range follows the format *DD-MM-YYYY*
-  - Task progress is a percentage value indicating how much of the task is done.
+  - Task progress is a percentage value indicating how much of the task is done
 
 Example: `filter ta/Lucas` filters all the tasks who have Lucas assigned to them, and displays those tasks.
 
 ### List all tasks `alltasks `
 
-List all tasks in the task list of a project
-
-Enters the Task scope.
+List all tasks in the task list of a project and enters the Task scope.
 
 Format: `alltasks `
 
@@ -321,8 +325,8 @@ Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)`
   - User may choose the sorting order (`sa/` for ascending order and `sd/` for descending order)
   - User may choose one attribute of task to sort the task list
   - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
-  - Task progress is a percentage value indicating how much of the task is done.
-  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
+  - Task progress is a percentage value indicating how much of the task is done
+  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
 
 Example: `sort sa/ td/` sorts the task list by task deadline in ascending order. Then the tasks on the top of the list are those with imminent deadlines.
 
@@ -331,8 +335,8 @@ Example: `sort sa/ td/` sorts the task list by task deadline in ascending order.
 View all the details of a task, beyond the little information given in the project view.
 
 Format: `viewtask INDEX `
-  - View all the information of the task specified by the INDEX. 
-  - Index has to be a valid number that is in the range of tasks displayed on screen.
+  - View all the information of the task specified by the INDEX
+  - Index has to be a valid number that is in the range of tasks displayed on screen
 
 Example: `viewtask 4` displays all information from task number 4 in the list.
 
@@ -344,11 +348,11 @@ Creates a new teammate in a project with all the relevant fields contained in it
 
 Format: `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)`
   - All fields are necessary to fill in
-  - Teammate name has to be 1 or more words consisting only of letters.
+  - Teammate name has to be 1 or more words consisting only of letters
   - The Git User name has to be a unique Github registered User Name
-  - The phone number has to be a minimum of 3 and maximum of 16 numbers.
-  - The email has to have a proper prefix and proper domain name consisting of at least 2 letters.
-  - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank.
+  - The phone number has to be a minimum of 3 and maximum of 16 numbers
+  - The email has to have a proper prefix and proper domain name consisting of at least 2 letters
+  - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank
 
 Example: `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` creates a new teamamte in the respective project with:
   - name Lucas
@@ -362,18 +366,18 @@ Example: `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/1
 Update the information of a teammate.
 
 Format: `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]`
-  - Any combination or number of fields can be filled in.
-  - Teammate name has to be 1 or more words consisting only of letters.
-  - The Git User name cannot be changes, but is required to identify the teammate to edit.
-  - The phone number has to be a minimum of 3 and maximum of 16 numbers.
-  - The email has to have a proper prefix and proper domain name consisting of at least 2 letters.
-  - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank.
+  - Any combination or number of fields can be filled in
+  - Teammate name has to be 1 or more words consisting only of letters
+  - The Git User name cannot be changes, but is required to identify the teammate to edit
+  - The phone number has to be a minimum of 3 and maximum of 16 numbers
+  - The email has to have a proper prefix and proper domain name consisting of at least 2 letters
+  - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank
 
 Example: `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way` changes the name of the teammate to GeNiaaz and the address of said teammate to 5 Hacker Way.
 
 ### View a teammate’s details `viewteammate`
 
-View all of a specific teammate's details
+View all of a specific teammate's details.
 
 Format: `viewteammate GIT_USER_NAME`
 
@@ -381,11 +385,11 @@ Example: `viewteammate Lucas98` displays all the information about the teammate 
 
 ### Delete a teammate `deleteteammate`
 
-View all of a specific teammate's details
+View all of a specific teammate's details.
 
 Format: `deleteteammate GIT_USER_NAME`
 
-Example: `deleteteammate Lucas97` deletes the teammate 
+Example: `deleteteammate Lucas97` deletes the teammate with git username Lucas97.
 
 # **Features** in person scope
 
@@ -393,8 +397,8 @@ Example: `deleteteammate Lucas97` deletes the teammate
 Initialises the person specified.
 
 Format: `startperson (INDEX)`
-- Initialises the person at the specified INDEX.
-- The index refers to the index number shown in the displayed person list.
+- Initialises the person at the specified INDEX
+- The index refers to the index number shown in the displayed person list
 - The index must be a positive integer 1, 2, 3, …​
 
 Examples: `startperson 2` Initialises the second person in the person list.
