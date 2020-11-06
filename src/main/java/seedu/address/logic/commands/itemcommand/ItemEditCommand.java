@@ -40,12 +40,12 @@ public class ItemEditCommand extends ItemCommand {
             + "by the index number used in the displayed item list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "ITEM_NAME] "
-            + "[" + PREFIX_QUANTITY + "QUANTITY] "
-            + "[" + PREFIX_SUPPLIER + "SUPPLIER] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "[" + PREFIX_MAX_QUANTITY + "MAX_QUANTITY] "
-            + "[" + PREFIX_METRIC + "METRIC] "
+            + "[" + PREFIX_NAME + "ITEM_NAME | "
+            + PREFIX_QUANTITY + "QUANTITY | "
+            + PREFIX_SUPPLIER + "SUPPLIER | "
+            + PREFIX_TAG + "TAG |"
+            + PREFIX_MAX_QUANTITY + "MAX_QUANTITY | "
+            + PREFIX_METRIC + "METRIC]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_QUANTITY + "21 ";
 

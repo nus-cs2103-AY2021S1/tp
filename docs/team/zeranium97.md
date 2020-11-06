@@ -16,8 +16,13 @@ Given below are my contributions to the project.
   * Credits: *AB3 from CS2103T [Repo link](https://github.com/nus-cs2103-AY2021S1/tp)*
 
 * **Added Storage for Deliveries** Added Storage (Pull Request [\#107](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/107))
-  * What it does: convert a delivery into json and to be stored locally
+  * What it does: Convert a delivery into json and to be stored locally.
   * Justification: Allows the user to be able to save their deliveries.
+
+* **Added Delivery Add Command** Allows user to input `add-d` command
+  * What it does: Allows the adding of pending deliveries into OneShelf.
+  * Justification: A restaurant manager would want to be able add their pending deliveries.
+  * (Pull Request [#140](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/140))
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=zeranium97&tabRepo=AY2021S1-CS2103T-T12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code~test-code)
 
@@ -29,13 +34,15 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `Coming Soon`
-    * Updated documentation for `find` feature
+    * Added documentation for the features `delete` and `Coming Soon`.
+    * Updated documentation for `find` feature.
 
   * Developer Guide:
     * Added Use Cases.
-    * Modified Model and Storage section.
-    * Added `edit` and `find` implementation
+    * Updated Model section and UML Diagram.
+    * Updated Storage section and UML Diagram.
+    * Added `find` implementation including an activity diagram and sequence diagram.
+    * Added `edit` implementation including a class, activity and sequence diagram.
 
 * **Community**
    * Reported bugs (such as: [Unhandled Exceptions](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/78)
