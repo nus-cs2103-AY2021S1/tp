@@ -152,10 +152,9 @@ Adds a module to the module list.
 
 Format: `addMod m/MODULE_CODE`
 
-Note:
-
-- Modules should not share the same code.
-- It is recommended to use the exact code of the module.
+> Note:
+> - Modules should not share the same code.
+> - It is recommended to use the exact code of the module.
 
 Example:
 
@@ -174,16 +173,15 @@ Deletes a module based on the given `INDEX`
 
 Format: `deleteMod INDEX`
 
-Note:
-
-- `INDEX` refers to the index number shown in the Module view.
-- `INDEX` must be a positive integer starting from 1.
-- Deleting a module is irreversible.
+> Note:
+> - `INDEX` refers to the index number shown in the Module view.
+> - `INDEX` must be a positive integer starting from 1.
+> - Deleting a module is irreversible.
 
 Example:
 
-- Deletes a module at index _2_ in the module list.
-    - `deleteMod 2`
+- Deletes a module at index _1_ in the module list.
+    - `deleteMod 1`
 
 Expected Outcome:
 
@@ -197,13 +195,12 @@ Edits a module with the provided details.
 
 Format: `editMod INDEX m/MODULE_CODE`
 
-Note:
-
-- `INDEX` refers to the index number shown in the Module view.
-- `INDEX` must be a positive integer starting from 1.
-- New module code must be provided.
-- Existing values will be updated to the given values.
-- New module code should not already exist.
+> Note:
+> - `INDEX` refers to the index number shown in the Module view.
+> - `INDEX` must be a positive integer starting from 1.
+> - New module code must be provided.
+> - Existing values will be updated to the given values.
+> - New module code should not already exist.
 
 Example:
 
@@ -217,11 +214,10 @@ Finds and lists all modules in the current Module view whose field contains any 
 
 Format: `findMod KEYWORD`
 
-Note:
-
-- `KEYWORD` is not case-sensitive (e.g. _cs2100_ will match _CS2100_).
-- The search will look for matches in the module's code.
-- If no module matching the keyword is found, the Module view will be empty.
+> Note:
+> - `KEYWORD` is not case-sensitive (e.g. _cs2100_ will match _CS2100_).
+> - The search will look for matches in the module's code.
+> - If no module matching the keyword is found, the Module view will be empty.
 
 Example:
 
