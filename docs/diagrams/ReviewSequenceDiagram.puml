@@ -4,12 +4,13 @@ scale 0.5
 
 box UI UI_COLOR_T1
 participant ":MainWindow" as MainWindow UI_COLOR
+participant ":ReviewPanel" as ReviewPanel UI_COLOR
 end box
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant ":ReviewManager" as ReviewManager LOGIC_COLOR
+participant ":StudyManager" as StudyManager LOGIC_COLOR
 end box
 
 [-> MainWindow : executeCommand(commandText)
@@ -28,14 +29,18 @@ deactivate CommandResult
 CommandResult -[hidden]-> MainWindow
 destroy CommandResult
 
-MainWindow -> MainWindow : handleReview()
-create ReviewManager
-MainWindow -> ReviewManager
+create ReviewPanel
+MainWindow -> ReviewPanel
+
+MainWindow -> MainWindow : enterStudyMode(reviewPanel)
+
+create StudyManager
+ReviewPanel -> StudyManager
 loop in review mode
     alt right arrow key
-        MainWindow -> ReviewManager : hasNextFlashcard()
+        ReviewPanel -> StudyManager : hasNextFlashcard()
     else left arrow key
-        MainWindow ->ReviewManager : hasPreviousFlashcard()
+        ReviewPanel -> StudyManager : hasPreviousFlashcard()
     end
 end
 
