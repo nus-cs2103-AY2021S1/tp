@@ -12,7 +12,7 @@ public class TagCommandParser implements Parser<TagCommand> {
         String[] argsArr = trimArgs.split(" +");
         ParserUtil.argsLengthAtLeast(argsArr, TagCommand.COMMAND_WORD, TagCommand.MESSAGE_USAGE, 2);
 
-        Index index = ParserUtil.parseIndex(argsArr[0]);
+        Index index = ParserUtil.parseIndex(argsArr[0], "Order Item Index");
         StringBuilder tagText = new StringBuilder();
         for (int i = 1; i < argsArr.length; i++) {
             tagText.append((i > 1 ? " " : "") + argsArr[i]);

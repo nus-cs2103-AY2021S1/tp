@@ -22,6 +22,7 @@ public class UntagCommand extends Command {
 
     /**
      * Creates a {@code tag} for the order item at index {@code tagIndex}.
+     *
      * @param tagIndex
      */
     public UntagCommand(Index tagIndex) {
@@ -44,5 +45,12 @@ public class UntagCommand extends Command {
         OrderItem orderItem = order.get(index);
         model.untagOrderItem(orderItem);
         return new CommandResult(String.format(MESSAGE_UNTAG_SUCCESS, index + 1));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UntagCommand // instanceof handles nulls
+                && tagIndex.equals(((UntagCommand) other).tagIndex));
     }
 }
