@@ -2,8 +2,11 @@ package seedu.fma.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
+import javafx.util.Duration;
 import seedu.fma.model.log.Log;
 
 /**
@@ -51,6 +54,14 @@ public class LogCard extends UiPart<Region> {
         calories.setText(String.valueOf(log.getCalories()));
 
         comments.setText("Comments: " + log.getComment().value);
+
+        // Add hover tool tip when comment is too long
+        if (log.getComment().value.length() > 40) {
+            Tooltip commentToolTip = new Tooltip(log.toString());
+            comments.setFont(Font.font("Segoe UI", 12));
+            comments.setTooltip(commentToolTip);
+            commentToolTip.setShowDelay(Duration.seconds(1));
+        }
     }
 
     @Override
