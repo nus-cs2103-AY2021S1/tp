@@ -13,6 +13,7 @@ import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.ReadOnlyOrderManager;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.ReadOnlyVendorManager;
 import seedu.address.model.vendor.Vendor;
 
 
@@ -48,23 +49,23 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getVendorManagerFilePath();
 
     /**
      * Sets the user prefs' menu manager file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setVendorManagerFilePath(Path vendorManagerFilePath);
 
     /**
      * Replaces menu manager data with the data in {@code menuManager}.
      */
 
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setVendorManager(ReadOnlyVendorManager vendorManager);
 
     /**
-     * Returns the AddressBook
+     * Returns the VendorManager
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyVendorManager getVendorManager();
 
     /**
      * Returns true if a vendor with the same identity as {@code vendor} exists in the address book.

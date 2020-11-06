@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalVendors.getTypicalVendorManager;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class PriceCommandTest {
     private List<MenuManager> menuManagers = TypicalVendors.getManagers();
 
     private Model initialiseModel() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), menuManagers, new OrderManager());
+        Model model = new ModelManager(getTypicalVendorManager(), new UserPrefs(), menuManagers, new OrderManager());
         model.selectVendor(0);
         return model;
     }
@@ -37,7 +37,7 @@ public class PriceCommandTest {
         PriceCommand priceCommand = new PriceCommand(predicate);
         List<MenuItem> list = model.getFilteredMenuItemList();
         //List<Food> filteredList = list.stream().filter(x -> x.getPrice() < 2.2).collect(Collectors.toList());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), menuManagers,
+        Model expectedModel = new ModelManager(getTypicalVendorManager(), new UserPrefs(), menuManagers,
                 new OrderManager());
         expectedModel.selectVendor(0);
         String expectedMessage = String.format(Messages.MESSAGE_FOOD_LISTED_PRICE_CONTEXT,

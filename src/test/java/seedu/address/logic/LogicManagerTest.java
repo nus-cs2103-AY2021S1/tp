@@ -18,16 +18,16 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.OrderManager;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.vendor.ReadOnlyVendorManager;
+import seedu.address.model.vendor.VendorManager;
 import seedu.address.storage.JsonPresetManagerStorage;
 import seedu.address.storage.JsonProfileManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.JsonVendorManagerStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.TypicalVendors;
 
@@ -40,24 +40,24 @@ public class LogicManagerTest {
     private Model model;
     private Logic logic;
 
-    private AddressBook book;
+    private VendorManager book;
     private UserPrefs userPrefs;
 
     @BeforeEach
     public void setUp() {
-        this.book = TypicalVendors.getTypicalAddressBook();
+        this.book = TypicalVendors.getTypicalVendorManager();
         this.userPrefs = new UserPrefs();
         this.model = new ModelManager(book, userPrefs, getManagers(), new OrderManager());
 
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonVendorManagerStorage vendorManagerStorage =
+                new JsonVendorManagerStorage(temporaryFolder.resolve("vendorManager.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonPresetManagerStorage orderManagerStorage =
                 new JsonPresetManagerStorage(temporaryFolder.resolve("presets.json"));
         JsonProfileManagerStorage profileManagerStorage =
                 new JsonProfileManagerStorage(temporaryFolder.resolve("profile.json"));
         StorageManager storage = new StorageManager(
-                addressBookStorage,
+                vendorManagerStorage,
                 userPrefsStorage,
                 orderManagerStorage,
                 profileManagerStorage
@@ -81,13 +81,13 @@ public class LogicManagerTest {
     //TODO: pass
     //    @Test
     //    public void execute_storageThrowsIoException_throwsCommandException() {
-    //        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-    //        JsonAddressBookStorage addressBookStorage =
-    //                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder
-    //                .resolve("ioExceptionAddressBook.json"));
+    //        // Setup LogicManager with JsonVendorManagerIoExceptionThrowingStub
+    //        JsonVendorManagerStorage vendorManagerStorage =
+    //                new JsonVendorManagerIoExceptionThrowingStub(temporaryFolder
+    //                .resolve("ioExceptionVendorManager.json"));
     //        JsonUserPrefsStorage userPrefsStorage =
     //                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-    //        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+    //        StorageManager storage = new StorageManager(vendorManagerStorage, userPrefsStorage);
     //        logic = new LogicManager(model, storage);
     //
     //        // Execute add command
@@ -101,8 +101,8 @@ public class LogicManagerTest {
     //    }
 
     //    @Test
-    //    public void getAddressBook_success() {
-    //        assertEquals(this.book, logic.getAddressBook());
+    //    public void getVendorManager_success() {
+    //        assertEquals(this.book, logic.getVendorManager());
     //    }
 
     @Test
@@ -127,8 +127,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getAddressBookFilePath_success() {
-        assertEquals(userPrefs.getAddressBookFilePath(), logic.getAddressBookFilePath());
+    public void getVendorManagerFilePath_success() {
+        assertEquals(userPrefs.getVendorManagerFilePath(), logic.getVendorManagerFilePath());
     }
 
     @Test
@@ -179,7 +179,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getVendorManager(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -199,11 +199,11 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonVendorManagerIoExceptionThrowingStub extends JsonVendorManagerStorage {
+        private JsonVendorManagerIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveVendorManager(ReadOnlyVendorManager vendorManager, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

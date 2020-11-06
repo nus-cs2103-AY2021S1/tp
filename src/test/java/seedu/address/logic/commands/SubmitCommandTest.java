@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalVendors.getTypicalVendorManager;
 
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
@@ -28,10 +28,10 @@ import seedu.address.model.order.OrderManager;
 import seedu.address.model.profile.Profile;
 import seedu.address.model.vendor.Address;
 import seedu.address.model.vendor.Phone;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonPresetManagerStorage;
 import seedu.address.storage.JsonProfileManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.JsonVendorManagerStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.TypicalModel;
@@ -39,8 +39,8 @@ import seedu.address.testutil.TypicalVendors;
 
 public class SubmitCommandTest {
 
-    private static final Path TYPICAL_ADDRESSBOOK_FILEPATH = Paths.get
-            ("test/data/JsonSerializableAddressBookTest/typicalVendorsAddressBook.json");
+    private static final Path TYPICAL_VendorManager_FILEPATH = Paths.get
+            ("test/data/JsonSerializableVendorManagerTest/typicalVendorsVendorManager.json");
     private static final Path TYPICAL_USERPREFS_FILEPATH = Paths.get
             ("test/data/JsonUserPrefsStorageTest/TypicalUserPref.json");
     private static final Path TYPICAL_PRESET_FILEPATH = Paths.get
@@ -49,14 +49,14 @@ public class SubmitCommandTest {
             ("test/data/JsonProfileStorageTest/TypicalProfile.json");
 
     public static Storage getDefaultStorage() {
-        return new StorageManager(new JsonAddressBookStorage(TYPICAL_ADDRESSBOOK_FILEPATH),
+        return new StorageManager(new JsonVendorManagerStorage(TYPICAL_VendorManager_FILEPATH),
                 new JsonUserPrefsStorage(TYPICAL_USERPREFS_FILEPATH),
                 new JsonPresetManagerStorage(TYPICAL_PRESET_FILEPATH),
                 new JsonProfileManagerStorage(TYPICAL_PROFILE_FILEPATH));
     }
 
     public static Storage getStorageWithoutProfile() {
-        return new StorageManager(new JsonAddressBookStorage(TYPICAL_ADDRESSBOOK_FILEPATH),
+        return new StorageManager(new JsonVendorManagerStorage(TYPICAL_VendorManager_FILEPATH),
                 new JsonUserPrefsStorage(TYPICAL_USERPREFS_FILEPATH),
                 new JsonPresetManagerStorage(TYPICAL_PRESET_FILEPATH), null
         );
@@ -64,7 +64,7 @@ public class SubmitCommandTest {
 
     @Test
     public void execute_vendorNotSelected_throwsException() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+        Model model = new ModelManager(getTypicalVendorManager(), new UserPrefs(), TypicalVendors.getManagers(),
                 new OrderManager());
         assertCommandFailure(new SubmitCommand(),
                 model, Messages.MESSAGE_VENDOR_NOT_SELECTED);

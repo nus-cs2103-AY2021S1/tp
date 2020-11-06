@@ -10,11 +10,11 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.MenuItem;
 import seedu.address.model.food.NameContainsKeywordsPredicate;
+import seedu.address.model.vendor.VendorManager;
 import seedu.address.storage.StorageManager;
 
 /**
@@ -86,13 +86,13 @@ public class FoodCommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        VendorManager expectedVendorManager = new VendorManager(actualModel.getVendorManager());
         //check first filtered food list
         List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredMenuItemListSize());
 
         assertThrows(CommandException.class, expectedMessage, () ->
                 command.execute(actualModel, new StorageManager()));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedVendorManager, actualModel.getVendorManager());
         assertEquals(expectedFilteredList, actualModel.getFilteredMenuItemList());
     }
     /**
