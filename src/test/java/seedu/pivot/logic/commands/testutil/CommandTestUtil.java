@@ -16,13 +16,11 @@ import java.util.List;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.Command;
 import seedu.pivot.logic.commands.CommandResult;
-import seedu.pivot.logic.commands.EditCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.Pivot;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
-import seedu.pivot.testutil.EditCaseDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -67,18 +65,6 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_CASEPERSON_NAME;
     public static final String SEX_DESC_BOB = " " + PREFIX_SEX + VALID_CASEPERSON_SEX_BOB;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_CASEPERSON_PHONE;
-
-    public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_AMY;
-    public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_BOB;
-
-    static {
-        EDIT_CASE_DESCRIPTOR_AMY = new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_AMY)
-                .withStatus(VALID_STATUS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        EDIT_CASE_DESCRIPTOR_BOB = new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_BOB)
-                .withStatus(VALID_STATUS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    }
 
     /**
      * Executes the given {@code command}, confirms that <br>

@@ -4,7 +4,6 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.pivot.logic.commands.AddCommand;
-import seedu.pivot.logic.commands.EditCommand.EditCaseDescriptor;
 import seedu.pivot.model.investigationcase.Case;
 
 /**
@@ -26,16 +25,6 @@ public class CaseUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + investigationCase.getTitle().getAlphaNum() + " ");
         sb.append(PREFIX_STATUS + investigationCase.getStatus().name() + " ");
-        return sb.toString();
-    }
-
-    /**
-     * Returns the part of command string for the given {@code EditCaseDescriptor}'s details.
-     */
-    public static String getEditCaseDescriptorDetails(EditCaseDescriptor descriptor) {
-        StringBuilder sb = new StringBuilder();
-        descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.getAlphaNum()).append(" "));
-        descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_STATUS).append(status.name()).append(" "));
         return sb.toString();
     }
 }
