@@ -22,4 +22,11 @@ public class Title extends Alphanumeric {
     public static boolean isValidTitle(String title) {
         return isValidAlphanum(title, CAN_BE_BLANK);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Title // instanceof handles nulls
+                && getAlphaNum().equals(((Title) other).getAlphaNum())); // state check
+    }
 }

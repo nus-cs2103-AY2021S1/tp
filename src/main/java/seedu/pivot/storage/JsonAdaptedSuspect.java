@@ -7,8 +7,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.exceptions.IllegalValueException;
-import seedu.pivot.model.investigationcase.Name;
-import seedu.pivot.model.investigationcase.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Address;
+import seedu.pivot.model.investigationcase.caseperson.Email;
+import seedu.pivot.model.investigationcase.caseperson.Name;
+import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
 
 
 /**
@@ -20,13 +24,23 @@ public class JsonAdaptedSuspect {
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedSuspect.class);
 
     private final String name;
+    private final String sex;
+    private final String phone;
+    private final String email;
+    private final String address;
 
     /**
      * Constructs a {@code JsonAdaptedSuspect} with the given suspect details.
      */
     @JsonCreator
-    public JsonAdaptedSuspect(@JsonProperty("name") String name) {
+    public JsonAdaptedSuspect(@JsonProperty("name") String name, @JsonProperty("sex") String sex,
+                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                              @JsonProperty("address") String address) {
         this.name = name;
+        this.sex = sex;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
     }
 
     /**
@@ -34,6 +48,10 @@ public class JsonAdaptedSuspect {
      */
     public JsonAdaptedSuspect(Suspect source) {
         this.name = source.getName().getAlphaNum();
+        this.sex = source.getSex().toString();
+        this.phone = source.getPhone().toString();
+        this.email = source.getEmail().toString();
+        this.address = source.getAddress().toString();
     }
 
     /**
@@ -52,6 +70,43 @@ public class JsonAdaptedSuspect {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
-        return new Suspect(modelName);
+
+        if (sex == null) {
+            logger.warning("Suspect sex is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Sex.class.getSimpleName()));
+        }
+        if (!Sex.isValidSex(sex)) {
+            logger.warning("Suspect gender is invalid. Check data");
+            throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
+        }
+        final Sex modelSex = Sex.createSex(sex);
+
+        if (phone == null) {
+            logger.warning("Suspect phone is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isValidPhone(phone)) {
+            logger.warning("Suspect phone is invalid. Check data");
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Phone modelPhone = new Phone(phone);
+
+        if (email == null) {
+            logger.warning("Suspect email is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        }
+        if (!Email.isValidEmail(email)) {
+            logger.warning("Suspect email is invalid. Check data");
+            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        }
+        final Email modelEmail = new Email(email);
+
+        if (address == null) {
+            logger.warning("Suspect address is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        }
+        final Address modelAddress = new Address(address);
+
+        return new Suspect(modelName, modelSex, modelPhone, modelEmail, modelAddress);
     }
 }

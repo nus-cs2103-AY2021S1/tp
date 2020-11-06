@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes command delete document command;
+
+:DeleteCommandParser gets case index and document index;
+
+:DeleteDocumentCommand gets the documents of the current case;
+
+:Command checks if the user input index is valid;
+
+:Remove the document and creates a new Case with the updated documents;
+
+:Command updates model with the updated case;
+
+stop
+@enduml

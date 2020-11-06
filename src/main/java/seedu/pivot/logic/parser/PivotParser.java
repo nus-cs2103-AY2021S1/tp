@@ -1,13 +1,12 @@
 package seedu.pivot.logic.parser;
 
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.pivot.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.pivot.logic.commands.AddCommand;
-import seedu.pivot.logic.commands.ClearCommand;
 import seedu.pivot.logic.commands.Command;
 import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.EditCommand;
@@ -16,7 +15,11 @@ import seedu.pivot.logic.commands.FindCommand;
 import seedu.pivot.logic.commands.HelpCommand;
 import seedu.pivot.logic.commands.ListCommand;
 import seedu.pivot.logic.commands.OpenCommand;
+import seedu.pivot.logic.commands.RedoCommand;
 import seedu.pivot.logic.commands.ReturnCommand;
+import seedu.pivot.logic.commands.UndoCommand;
+import seedu.pivot.logic.commands.archivecommands.ArchiveCommand;
+import seedu.pivot.logic.commands.archivecommands.UnarchiveCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 
 /**
@@ -55,9 +58,6 @@ public class PivotParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
@@ -75,6 +75,18 @@ public class PivotParser {
 
         case ReturnCommand.COMMAND_WORD:
             return new ReturnCommand();
+
+        case ArchiveCommand.COMMAND_WORD:
+            return new ArchiveCommandParser().parse(arguments);
+
+        case UnarchiveCommand.COMMAND_WORD:
+            return new UnarchiveCommandParser().parse(arguments);
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

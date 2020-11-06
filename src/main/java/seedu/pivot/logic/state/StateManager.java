@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.ui.UiStateManager;
 
 /**
@@ -13,6 +14,8 @@ import seedu.pivot.ui.UiStateManager;
 public class StateManager {
 
     private static Optional<Index> state = Optional.empty();
+    private static ArchiveStatus currentSection = ArchiveStatus.DEFAULT;
+    private static Optional<String> tabState = Optional.empty();
     private static final Logger logger = LogsCenter.getLogger(StateManager.class);
 
     /**
@@ -70,5 +73,64 @@ public class StateManager {
     public static void refresh() {
         logger.info("StateManager: Requests UIStateManager to refresh state");
         UiStateManager.refresh();
+    }
+
+    /**
+     * Sets the archiveStatus of the program to be at archived section.
+     *
+     */
+    public static void setArchivedSection() {
+        logger.info("StateManager: Setting archiveStatus:" + ArchiveStatus.ARCHIVED);
+        currentSection = ArchiveStatus.ARCHIVED;
+        UiStateManager.setStatusBarArchived();
+    }
+
+    /**
+     * Sets the archiveStatus of the program to be at default section.
+     *
+     */
+    public static void setDefaultSection() {
+        logger.info("StateManager: Setting archiveStatus:" + ArchiveStatus.DEFAULT);
+        currentSection = ArchiveStatus.DEFAULT;
+        UiStateManager.setStatusBarDefault();
+    }
+
+    /**
+     * Checks if the program is at the archived section
+     */
+    public static boolean atArchivedSection() {
+        return currentSection.equals(ArchiveStatus.ARCHIVED);
+    }
+
+    /**
+     * Checks if the program is at the default section
+     */
+    public static boolean atDefaultSection() {
+        return currentSection.equals(ArchiveStatus.DEFAULT);
+    }
+
+    /**
+     * Sets the tabState of program to given tabType
+     * @param tabType
+     */
+    public static void setTabState(String tabType) {
+        logger.info("StateManager: Setting tabState with tab" + tabType);
+        assert (tabType != null) : "tabType should not be null";
+        assert (atCasePage()) : "State should not be null";
+        tabState = Optional.of(tabType);
+        UiStateManager.setTabState(tabType);
+    }
+
+    /**
+     * Resets the tabState to empty state.
+     */
+    public static void resetTabState() {
+        logger.info("StateManager: Resetting tabState");
+        tabState = Optional.empty();
+        UiStateManager.resetTabState();
+    }
+
+    public static String getTabState() {
+        return tabState.orElse(null);
     }
 }

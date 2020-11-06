@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.pivot.model.investigationcase.CasePerson;
+import seedu.pivot.model.investigationcase.caseperson.CasePerson;
 
 public class CasePersonCard extends UiPart<Region> {
 
@@ -26,6 +26,20 @@ public class CasePersonCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label sex;
+    @FXML
+    private Label phone;
+    @FXML
+    private Label phoneTitle;
+    @FXML
+    private Label email;
+    @FXML
+    private Label emailTitle;
+    @FXML
+    private Label address;
+    @FXML
+    private Label addressTitle;
 
 
     /**
@@ -36,6 +50,36 @@ public class CasePersonCard extends UiPart<Region> {
         this.casePerson = casePerson;
         id.setText(displayedIndex + ". ");
         name.setText(casePerson.getName().toString());
+        sex.setText("(" + casePerson.getSex().toString() + ")");
+
+        String checkPhone = casePerson.getPhone().toString();
+        boolean phoneTest = !checkPhone.isBlank();
+        if (phoneTest) {
+            phone.setText(casePerson.getPhone().toString());
+        } else {
+            phone.setManaged(false);
+        }
+        phoneTitle.setManaged(phoneTest);
+
+        String checkEmail = casePerson.getEmail().toString();
+        boolean emailTest = !checkEmail.isBlank();
+        if (emailTest) {
+            email.setText(casePerson.getEmail().toString());
+        } else {
+            email.setManaged(false);
+        }
+        emailTitle.setManaged(emailTest);
+
+        String checkAddress = casePerson.getAddress().toString();
+        boolean addressTest = !checkAddress.isBlank();
+        if (addressTest) {
+            address.setText(casePerson.getAddress().toString());
+        } else {
+            address.setManaged(false);
+        }
+        addressTitle.setManaged(addressTest);
+
+
     }
 
     @Override

@@ -1,6 +1,7 @@
 package seedu.pivot.logic.parser;
 
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_REFERENCE;
@@ -10,6 +11,8 @@ import seedu.pivot.logic.commands.documentcommands.AddDocumentCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Document;
+import seedu.pivot.model.investigationcase.Reference;
+import seedu.pivot.model.investigationcase.caseperson.Name;
 
 public class AddDocumentCommandParser implements Parser<AddDocumentCommand> {
 
@@ -21,7 +24,7 @@ public class AddDocumentCommandParser implements Parser<AddDocumentCommand> {
      */
     @Override
     public AddDocumentCommand parse(String args) throws ParseException {
-        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(StateManager.atCasePage()) : ASSERT_CASE_PAGE;
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_REFERENCE);
@@ -32,8 +35,15 @@ public class AddDocumentCommandParser implements Parser<AddDocumentCommand> {
         }
 
         Index index = StateManager.getState();
-        Document doc = new Document(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()),
-                    ParserUtil.parseReference(argMultimap.getValue(PREFIX_REFERENCE).get()));
+
+
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Reference reference = ParserUtil.parseReference(argMultimap.getValue(PREFIX_REFERENCE).get());
+
+        if (!reference.isExists()) {
+            throw new ParseException(Reference.MESSAGE_CONSTRAINTS);
+        }
+        Document doc = new Document(name, reference);
 
         return new AddDocumentCommand(index, doc);
     }

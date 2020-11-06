@@ -12,14 +12,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.exceptions.IllegalValueException;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
 import seedu.pivot.model.investigationcase.Status;
-import seedu.pivot.model.investigationcase.Suspect;
 import seedu.pivot.model.investigationcase.Title;
-import seedu.pivot.model.investigationcase.Victim;
-import seedu.pivot.model.investigationcase.Witness;
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Witness;
 import seedu.pivot.model.tag.Tag;
 
 /**
@@ -32,6 +33,7 @@ class JsonAdaptedCase {
     private final String title;
     private final String description;
     private final String status;
+    private final String archiveStatus;
     private final List<JsonAdaptedDocument> documents = new ArrayList<>();
     private final List<JsonAdaptedSuspect> suspects = new ArrayList<>();
     private final List<JsonAdaptedVictim> victims = new ArrayList<>();
@@ -48,11 +50,13 @@ class JsonAdaptedCase {
             @JsonProperty("suspects") List<JsonAdaptedSuspect> suspects,
             @JsonProperty("victims") List<JsonAdaptedVictim> victims,
             @JsonProperty("witnesses") List<JsonAdaptedWitness> witnesses,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("archiveStatus") String archiveStatus) {
 
         this.title = title;
         this.description = description;
         this.status = status;
+        this.archiveStatus = archiveStatus;
         if (documents != null) {
             this.documents.addAll(documents);
         }
@@ -75,8 +79,9 @@ class JsonAdaptedCase {
      */
     public JsonAdaptedCase(Case source) {
         title = source.getTitle().getAlphaNum();
-        description = source.getDescription().getAlphaNum();
+        description = source.getDescription().toString();
         status = source.getStatus().name();
+        archiveStatus = source.getArchiveStatus().toString();
         documents.addAll(source.getDocuments().stream()
                 .map(JsonAdaptedDocument::new)
                 .collect(Collectors.toList()));
@@ -122,10 +127,7 @@ class JsonAdaptedCase {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(description)) {
-            logger.warning("Description is invalid. Check data");
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
-        }
+
         final Description modelDescription = new Description(description);
 
         if (status == null) {
@@ -134,7 +136,7 @@ class JsonAdaptedCase {
                     Status.class.getSimpleName()));
         }
         if (!Status.isValidStatus(status)) {
-            logger.warning("Description is invalid. Check data");
+            logger.warning("Status is invalid. Check data");
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
         final Status modelStatus = Status.createStatus(status);
@@ -161,8 +163,15 @@ class JsonAdaptedCase {
 
         final Set<Tag> modelTags = new HashSet<>(caseTags);
 
+        if (archiveStatus == null) {
+            logger.warning("archiveStatus is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ArchiveStatus.class.getSimpleName()));
+        }
+        final ArchiveStatus modelArchiveStatus = ArchiveStatus.valueOf(archiveStatus);
+
         return new Case(modelTitle, modelDescription, modelStatus, modelDocument,
-                modelSuspects, modelVictims, modelWitnesses, modelTags);
+                modelSuspects, modelVictims, modelWitnesses, modelTags, modelArchiveStatus);
     }
 
 }
