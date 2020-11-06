@@ -264,8 +264,6 @@ Format: `delete STUDENT_INDEX`
 
 :information_source: `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
-:information_source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
-
 </div>
 
 Examples:
