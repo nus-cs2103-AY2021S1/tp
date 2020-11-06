@@ -528,7 +528,7 @@ Priorities: High (must have) - `☆ ☆ ☆`, Medium (nice to have) - `* *`, Low
 | \* \*    | advanced user       | have autocompletions for a command                       | quickly and efficiently complete an operation.                                                            |
 | \* \*    | advanced user       | redo the previous command using a keyboard shortcut      | do the same task without typing again, e.g. if two students wish to pay the same bill.                    |
 | \* \*    | busy OHS Admin           | find a student by partial searching for their first name | type quickly without worrying about typos.                                                                |
-| \* \*    | carless user      | undo my last command                                     | fix any change that I made erroneously.                                                                   |
+| \* \*    | careless user      | undo my last command                                     | fix any change that I made erroneously.                                                                   |
 | \* \*    | advanced user       | view previous commands using a keyboard shortcut         | check if I made an error in adding or deleting records.                                                   |
 | \* \* \* | OHS admin                | view a list of vacant rooms                              | start assigning rooms to students before the semester starts.                                             |
 | \* \*    | OHS admin                | archive the current Semester's data                      | keep the data for auditing purposes, but not have it distract me while dealing with a new semester. |
@@ -857,13 +857,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all students using the `students` command. Multiple students in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `delete-student 1`<br>
       Expected: First student is deleted from the list. Name of the deleted student shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete-student 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete-student`, `delete-student x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
