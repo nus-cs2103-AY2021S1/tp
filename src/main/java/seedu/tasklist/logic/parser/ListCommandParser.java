@@ -15,8 +15,8 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (!hasArgumentIndex) {
             return new ListCommand(Index.fromZeroBased(0));
         } else {
-            boolean argumentRange = args.trim().matches("^([1-9]|[1-4][0-9]|50)$");
-            if (argumentRange) {
+            boolean isWithinArgumentRange = args.trim().matches("^([1-9]|[1-4][0-9]|50)$"); //Argument range is 1 to 50
+            if (isWithinArgumentRange) {
                 Index index = ParserUtil.parseListIndex(args);
                 return new ListCommand(index);
             } else {
