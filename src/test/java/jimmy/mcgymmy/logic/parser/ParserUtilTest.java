@@ -26,9 +26,13 @@ import jimmy.mcgymmy.testutil.TypicalIndexes;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PROTEIN = "+651%)";
-    private static final String INVALID_FAT = " ";
-    private static final String INVALID_CARB = "example.com";
+    private static final String INVALID_PROTEIN_1 = "+651%)";
+    private static final String INVALID_PROTEIN_2 = "2000";
+    private static final String INVALID_FAT_1 = " ";
+    private static final String INVALID_FAT_2 = "2000 ";
+    private static final String INVALID_CARB_1 = "example.com";
+    private static final String INVALID_CARB_2 = " 1000 ";
+
     private static final String INVALID_TAG = "#food";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -108,7 +112,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseProtein_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseProtein(INVALID_PROTEIN));
+        assertThrows(ParseException.class, () -> ParserUtil.parseProtein(INVALID_PROTEIN_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseProtein(INVALID_PROTEIN_2));
     }
 
     @Test
@@ -131,7 +136,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseCarb_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCarb(INVALID_FAT));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCarb(INVALID_CARB_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCarb(INVALID_CARB_2));
     }
 
     @Test
@@ -154,7 +160,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseFat_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseFat(INVALID_CARB));
+        assertThrows(ParseException.class, () -> ParserUtil.parseFat(INVALID_FAT_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseFat(INVALID_FAT_2));
     }
 
     @Test
