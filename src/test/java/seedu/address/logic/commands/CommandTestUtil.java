@@ -2,12 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -75,6 +70,12 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditProjectDescriptor DESC_A;
     public static final EditCommand.EditProjectDescriptor DESC_B;
+
+    //Invalid attributes for task
+    public static final String INVALID_TASK_NAME = " "+PREFIX_TASK_NAME+"";
+    public static final String INVALID_DEADLINE = " "+PREFIX_TASK_DEADLINE+"29022020000000";
+    public static final String INVALID_PROGRESS = " "+PREFIX_TASK_PROGRESS+"101";
+
 
     static {
         DESC_A = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_A)

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
@@ -34,7 +33,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME, PREFIX_TASK_DEADLINE, PREFIX_DESCRIPTION,
-                        PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE);
+                        PREFIX_TASK_PROGRESS);
 
         Index index;
 
@@ -59,9 +58,6 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         if (argMultimap.getValue(PREFIX_TASK_PROGRESS).isPresent()) {
             editTaskDescriptor.setProgress(ParserUtil.parseTaskProgress(
                 argMultimap.getValue(PREFIX_TASK_PROGRESS).get()));
-        }
-        if (argMultimap.getValue(PREFIX_TASK_IS_DONE).isPresent()) {
-            editTaskDescriptor.setIsDone(ParserUtil.parseDoneStatus(argMultimap.getValue(PREFIX_TASK_IS_DONE).get()));
         }
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
