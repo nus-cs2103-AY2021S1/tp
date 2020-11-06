@@ -48,7 +48,7 @@ class ImportCommandTest {
     }
 
     @Test
-    public void invalidImport_failure() {
+    public void invalidFileNotFoundImport_failure() {
         ModelManager model1 = new ModelManager();
         ImportCommand importCommand = new ImportCommand();
         importCommand.setParameters(NOT_FOUND_FILE_STUB);
