@@ -37,8 +37,8 @@ public class ListStudentsCommand extends Command {
             "Parameters: "
                     + "[" + PREFIX_NAME + "NAME] "
                     + "[" + PREFIX_PHONE + "PHONE] "
-                    + "[" + PREFIX_EMAIL + "EMAIL +] "
-                    + "[" + PREFIX_FACULTY + "FACULTY +] "
+                    + "[" + PREFIX_EMAIL + "EMAIL] "
+                    + "[" + PREFIX_FACULTY + "FACULTY] "
                     + "[" + PREFIX_STUDENT_ID + "STUDENT_ID]\n"
                     + "Example: " + COMMAND_WORD
                     + " " + PREFIX_NAME + "dameeth");
