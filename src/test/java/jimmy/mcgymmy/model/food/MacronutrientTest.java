@@ -71,7 +71,7 @@ class MacronutrientTest {
 
     @Test
     public void multiplier_lessThan1_throwAssertionException() {
-        
+
         // Boundary value
         assertThrows(AssertionError.class, () -> new MacronutrientStub(10, 0));
 
