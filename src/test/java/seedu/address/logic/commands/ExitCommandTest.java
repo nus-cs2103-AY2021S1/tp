@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEM
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
@@ -21,6 +22,7 @@ public class ExitCommandTest {
 
     @Test
     public void execute_exit_failed() {
-        assertCommandFailure(new ExitCommand("exit 3"), expectedModel, ExitCommand.MESSAGE_INCORRECT_FORMAT);
+        assertCommandFailure(new ExitCommand("exit 3"), expectedModel,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ExitCommand.MESSAGE_USAGE));
     }
 }
