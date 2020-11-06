@@ -70,7 +70,7 @@ Refer to the features below for details of each command.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#5-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 4. How to use this guide
