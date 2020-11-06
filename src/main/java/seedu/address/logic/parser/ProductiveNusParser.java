@@ -64,7 +64,7 @@ public class ProductiveNusParser {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommand(userInput);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
