@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,53 +19,92 @@ import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
 
 /**
- * Sets an assignment identified using it's displayed index from the address book as done.
+ * Sets assignment(s) identified using it's displayed index(es) from ProductiveNus as done.
  */
 public class DoneCommand extends Command {
 
     public static final String COMMAND_WORD = "done";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the assignment identified by the index number "
+            + ": Marks the assignment(s) identified by the index number(s) "
             + "used in the displayed assignment list as done.\n"
-            + "Parameters: INDEX (must be a positive integer) \n"
-            + "Example: " + COMMAND_WORD + " 1 ";
+            + "Parameters: INDEX [MORE_INDEXES] (must be a positive integer, "
+            + "must not contain duplicates and cannot be greater than the size of the current "
+            + "assignment list)\n"
+            + "Examples: \n"
+            + COMMAND_WORD + " 1\n"
+            + COMMAND_WORD + " 1 2 3";
 
     public static final String MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS = "Marks assignment as done: %1$s";
+    public static final String MESSAGE_MARK_ASSIGNMENTS_AS_DONE_SUCCESS = "Mark assignments as done: %1$s";
+    // for done single index
     public static final String MESSAGE_ALREADY_MARKED_ASSIGNMENT_AS_DONE = "This assignment is already marked as done.";
+    // for done multiple indexes
+    public static final String MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENTS_AS_DONE =
+            "These assignments are already marked as done: %1$s";
+    public static final String MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENT_AS_DONE =
+            "This assignment is already marked as done: %1$s";
 
-    private final Index targetIndex;
+    private final List<Index> targetIndexes;
 
     /**
-     * Constructs a DoneCommand to mark the specified assignment as done.
-     * @param targetIndex index of the assignment in the filtered assignment list to be marked done.
+     * Constructs a DoneCommand to mark the specified assignment(s) as done.
+     * @param targetIndexes index(es) of the assignment(s) in the filtered assignment list to be marked done.
      */
-    public DoneCommand(Index targetIndex) {
-        requireNonNull(targetIndex);
-        this.targetIndex = targetIndex;
+    public DoneCommand(List<Index> targetIndexes) {
+        requireNonNull(targetIndexes);
+        this.targetIndexes = targetIndexes;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
+        List<Assignment> assignmentsToMarkDone = new ArrayList<>();
+        List<Integer> assignmentsAlreadyMarkedDone = new ArrayList<>();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+        targetIndexes.sort(CommandLogic.INDEX_COMPARATOR);
+
+        CommandLogic.checkForDuplicatedIndexes(targetIndexes);
+        CommandLogic.checkForInvalidIndexes(targetIndexes, model, DoneCommand.MESSAGE_USAGE);
+
+        boolean isMultipleIndexes = targetIndexes.size() > 1;
+        boolean hasException = false;
+
+        for (Index targetIndex : targetIndexes) {
+            Assignment assignmentToMarkDone = lastShownList.get(targetIndex.getZeroBased());
+
+            if (assignmentToMarkDone.isMarkedDone() && model.hasAssignment(assignmentToMarkDone)) {
+                hasException = true;
+                assignmentsAlreadyMarkedDone.add(targetIndex.getOneBased());
+                continue;
+            }
+
+            assert(!assignmentToMarkDone.isMarkedDone());
+            Assignment assignmentMarkedDone = createAssignmentMarkedDone(assignmentToMarkDone);
+
+            model.setAssignment(assignmentToMarkDone, assignmentMarkedDone);
+            model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
+            assignmentsToMarkDone.add(assignmentToMarkDone);
         }
 
-        Assignment assignmentToMarkDone = lastShownList.get(targetIndex.getZeroBased());
-
-        if (assignmentToMarkDone.isMarkedDone() && model.hasAssignment(assignmentToMarkDone)) {
-            throw new CommandException(MESSAGE_ALREADY_MARKED_ASSIGNMENT_AS_DONE);
+        if (hasException) {
+            if (isMultipleIndexes && assignmentsAlreadyMarkedDone.size() > 1) {
+                // sort so that the numbers will appear in ascending order later
+                assignmentsAlreadyMarkedDone.sort(null);
+                throw new CommandException(String.format(MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENTS_AS_DONE,
+                        assignmentsAlreadyMarkedDone));
+            } else if (isMultipleIndexes) {
+                throw new CommandException(String.format(MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENT_AS_DONE,
+                        assignmentsAlreadyMarkedDone));
+            } else {
+                throw new CommandException(MESSAGE_ALREADY_MARKED_ASSIGNMENT_AS_DONE);
+            }
         }
 
-        assert(!assignmentToMarkDone.isMarkedDone());
-        Assignment assignmentMarkedDone = createAssignmentMarkedDone(assignmentToMarkDone);
-
-        model.setAssignment(assignmentToMarkDone, assignmentMarkedDone);
-        model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
-        return new CommandResult(String.format(MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS, assignmentMarkedDone));
+        return isMultipleIndexes
+                ? new CommandResult(String.format(MESSAGE_MARK_ASSIGNMENTS_AS_DONE_SUCCESS, assignmentsToMarkDone))
+                : new CommandResult(String.format(MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS, assignmentsToMarkDone));
     }
 
     /**
@@ -92,6 +131,6 @@ public class DoneCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DoneCommand // instanceof handles nulls
-                && targetIndex.equals(((DoneCommand) other).targetIndex)); // state check
+                && targetIndexes.equals(((DoneCommand) other).targetIndexes)); // state check
     }
 }

@@ -24,7 +24,7 @@ import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
 
 /**
- * Edits the details of an existing assignment in the address book.
+ * Edits the details of an existing assignment in ProductiveNus.
  */
 public class EditCommand extends Command {
 
@@ -42,7 +42,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_ASSIGNMENT_SUCCESS = "Edited Assignment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in ProductiveNus.";
 
     private final Index index;
     private final EditAssignmentDescriptor editAssignmentDescriptor;

@@ -53,7 +53,7 @@ public class FindCommandParserTest {
         //invalid module code
         assertParseFailure(parser, " mod/CS386", ModuleCode.MESSAGE_CONSTRAINTS);
         //invalid priority
-        assertParseFailure(parser, " priority/NO", Priority.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " p/NO", Priority.MESSAGE_CONSTRAINTS);
         //preamble present
         assertParseFailure(parser, " preamble mod/CS2100", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -88,6 +88,6 @@ public class FindCommandParserTest {
 
         assertParseSuccess(parser, " d/1200 24-10-2020", expectedFindCommandByDeadline);
 
-        assertParseSuccess(parser, " priority/HIGH LOW", expectedFindCommandByPriority);
+        assertParseSuccess(parser, " p/HIGH LOW", expectedFindCommandByPriority);
     }
 }

@@ -35,7 +35,13 @@ public class CommandResult {
     }
 
     public String getFeedbackToUser() {
-        return feedbackToUser;
+        if (feedbackToUser.contains("[") && feedbackToUser.contains("]")) {
+            String bracketRemovedFeedbackToUser = feedbackToUser.replaceAll("\\[", "")
+                    .replaceAll("]", "");
+            return bracketRemovedFeedbackToUser;
+        } else {
+            return feedbackToUser;
+        }
     }
 
     public boolean isShowHelp() {

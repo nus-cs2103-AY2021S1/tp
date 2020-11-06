@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
+        model = new ModelManager(getTypicalProductiveNus(), new UserPrefs(), null);
     }
 
     @Test
     public void execute_newAssignment_success() {
         Assignment validAssignment = new AssignmentBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+        Model expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
         expectedModel.addAssignment(validAssignment);
 
         assertCommandSuccess(new AddCommand(validAssignment), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateAssignment_throwsCommandException() {
-        Assignment assignmentInList = model.getAddressBook().getAssignmentList().get(0);
+        Assignment assignmentInList = model.getProductiveNus().getAssignmentList().get(0);
         assertCommandFailure(new AddCommand(assignmentInList), model, AddCommand.MESSAGE_DUPLICATE_ASSIGNMENT);
     }
 

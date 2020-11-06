@@ -34,7 +34,7 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
      */
     public boolean contains(Assignment toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameAssignment);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -133,7 +133,7 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
     private boolean assignmentsAreUnique(List<Assignment> assignments) {
         for (int i = 0; i < assignments.size() - 1; i++) {
             for (int j = i + 1; j < assignments.size(); j++) {
-                if (assignments.get(i).isSameAssignment(assignments.get(j))) {
+                if (assignments.get(i).equals(assignments.get(j))) {
                     return false;
                 }
             }

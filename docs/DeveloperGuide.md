@@ -306,7 +306,7 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
 
 
 ### \[Implemented\] Remind assignments feature
-The user can set reminders for assignments.
+The user can set reminders for a single assignment or multiple assignments at a time.
 Reminded assignments will be displayed in the `Your Reminders` section in ProductiveNUS for easy referral.
 
 #### Reasons for Implementation
@@ -315,14 +315,29 @@ It is likely that the user will want to receive reminders for assignments with d
 Displaying reminded assignments in a list separate from the main assignment list allows for easy referral and is hence more convenient for the user.
 
 #### Current Implementation
-- The remind command is a typical command used in ProductiveNUS.
-- It extends `Command` and overrides the method `execute` in `CommandResult`.
+- The remind command extends abstract class `Command` and overrides the method `execute` in `CommandResult`.
 - `RemindCommandParser` implements `Parser<RemindCommand>` and it parses the user's input to return a `RemindCommand` object.
-- The constructor of `RemindCommand` takes in an `Index` which is parsed from the zero based index of the user's input.
+- The constructor of `RemindCommand` takes in `List<Index>`, and each `Index` in `List<Index>` is parsed from the zero based index of the user's input.
 
 It implements the following operations:
 * `remind 3` - Sets reminders for the 3rd assignment in the displayed assignment list.
-* `remind 2` - Sets reminders for the 2nd assignment in the displayed assignment list.
+* `remind 1 4` - Sets reminders for the 1st and 4th assignment in the displayed assignment list.
+
+#### Usage Scenario
+The following is a usage scenario of when the user wants to set reminders for the 2nd and 3rd assignment in their displayed assignment list.
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("remind 2 3")` API call.
+![Interactions Inside the Logic Component for the `remind 2 3` Command](images/RemindMultipleSequenceDiagram.png)
+
+1. `execute("remind 2 3")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
+1. `parseCommand("remind 2 3")` parses the String `"remind 2 3"` and returns an initialized `RemindCommandParser` object. 
+1. `parseCommand("remind 2 3")` calls the `parse` method in `RemindCommandParser` and checks if indexes inputted are valid.
+1. If the indexes are valid, it returns a `RemindCommand` object, which takes in `List<Index>` containing `Index` `2` and `3`.
+1. There is return call to `LogicManager` which then calls the overridden `execute` method of `RemindCommand`.
+1. The `execute` method of `RemindCommand` will call the `checkForDuplicatedIndexes` method of `CommandLogic` to check for duplicated indexes 
+1. The `checkForInvalidIndexes` method of the `CommandLogic` is then called to check for any indexes not found in the displayed assignment list.
+1. The `setAssignment` method of `Model` is repeatedly called, once for each `Index` in `List<Index>`. In this case, the loop terminates after 2 times.
+1. A `CommandResult` object is returned from `execute()`.
 
 
 ### List by days feature
@@ -448,27 +463,23 @@ A usage scenario would be when a user wants to undo the most recent command that
 5. The `execute` method of `UndoCommand` will call the `getPreviousModel` of the `Model` object and reassign `Model`.
 6. The `execute` method returns a `CommandResult` object.
 
-### \[Coming up\] Delete multiple assignments feature
-The user can delete multiple assignments at a time, when more than one index is keyed in.
+### \[Implemented\] Updating of Upcoming tasks in real time
+
+The displayed task list under `Upcoming tasks` updates in real time when the deadline of an assignment or the end time of a lesson has passed.
 
 #### Reasons for Implementation
-It will provide convenience to users who want to delete more than one assignment at a time, and it makes the deleting process faster.
-
+It is likely that the user will refer to the `Upcoming tasks` to quickly view what is up next on their academic schedule. It is hence important that the `Upcoming tasks` accurately reflect what is next on their academic schedule.
 
 #### Current Implementation
-- The `delete` command is a typical command used in ProductiveNUS. 
-- It extends `Command` and overrides the method `execute` in `CommandResult`.
-- `DeleteCommandParser` implements `Parser<DeleteCommand>` and it parses the user's input (index of the assignment as a positive integer)) to return a `DeleteCommand` object.
-- The constructor of `DeleteCommand` takes in an `Index` which is parsed from the one based index of the user's input.
- 
-It can implement the following operations:
-* `delete 1 3` — Deletes the assignment at the first and third index in list.
-* `delete 1` — Deletes the assignment at the first index in list.
+- The updating of `Upcoming tasks` in real time is implemented with **multithreading**.
+- The GUI of ProductiveNUS is implemented using JavaFX. Hence, Thread safety using synchronised thread actions cannot be achieved as JavaFx is modelled to execute on a **single JavaFX-Launcher thread.**
+- Therefore, this feature makes use of `javafx.concurrent.Task<V>` for multithreading operations, which is designed to handle multithreading operations in JavaFX applications in a **thread-safe manner**.
+- A `Timer` object is used alongside `javafx.concurrent.Task` to periodically check `Upcoming tasks` every second. The `Timer` object has `isDaemon` set to true.
+- If the deadline of the upcoming assignment or the end time of the upcoming lesson has passed, the `updateTasks()` method in `AddressBook` is called.
 
-### \[Proposed\] Data archiving
+Below is an Activity Diagram illustrating the flow of activities when the application starts up.
 
-_{Explain here how the data archiving feature will be implemented}_
-
+                               ------------------------------Activity diagram illustrating multithreading (will add later)--------------------------------
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -501,20 +512,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | student                                    | import my timetable         | better schedule my assignments with my lesson timings taken into account              |
-| `* * *`  | forgetful student                                       | receive reminders for my lessons and assignments               |  avoid forgetting to attend lessons or do my work                                                                      |
-| `* * *`  | poor time manager                                       | add and schedule assignments                |  keep track of what needs to be done                                 |
-| `* * *`  | poor time manager                                       | delete assignments          | remove assignments that i have completed or added wrongly |
-| `* * *`    | student                                       | view lessons and assignments together   | view all assignments i have to complete amidst my lessons                |
-| `* * *`      | particular student | use a scheduler with a user-friendly interface           | use the application easily and enjoyably                                                 |
-| `* * *`      | new user | navigate the UI easily           | use the application efficiently                                                 |                                      |
-| `* * *`      | slow/confused student | i can access and view my academic duties easily           | quickly find out what i need to do for the week
-| `* * *`      | experienced vim-user | use my keyboard to key in assignments           | save time tracking down my assignments                                                 ||
-| `* * `      | beginner user | view a tutorial           | benefit from the features of ProductiveNUS                                                 ||
-| `* * `      | experienced vim-user | use shortcuts in my commands            | access my academic schedule more quickly                                              ||
-*{More to be added}*
+| Priority | As a … | I want to … | So that I can… |
+|-|-|-|-|
+| `* * *` | student | import my timetable | better schedule my assignments with my lesson timings taken into account |
+| `* * *` | forgetful student | view reminders for my lessons and assignments | avoid forgetting to attend lessons or do my work |
+| `* * *` | poor time manager | add and schedule assignments | keep track of what needs to be done |
+| `* * *` | poor time manager | delete assignments | remove assignments that i have completed or added wrongly |
+| `* * *` | student | view lessons and assignments together | view all assignments i have to complete amidst my lessons |
+| `* * *` | particular student | use a scheduler with a user-friendly interface | use the application easily and enjoyably |
+| `* * *` | new user | navigate the UI easily | use the application efficiently |
+| `* * *` | slow/confused student | i can access and view my academic duties easily | quickly find out what i need to do for the week |
+| `* * ` | beginner user | view a summary of the features | quickly learn about the features available |
+| `* * ` | experienced user | use shortcuts in my commands | manage my academic schedule quicker |
 
 ### Use cases
 
