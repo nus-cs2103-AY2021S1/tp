@@ -27,7 +27,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
-public class MainWindow extends UiPart<Stage> implements Observer {
+public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
     private static final String LIGHT_THEME = "light";
@@ -309,18 +309,23 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         setStylesheet(DARK_THEME, true);
     }
 
-    @Override
-    public void update() {
-        logger.info("UI update triggered");
-        if (logic.getSelectedMeeting() == null) {
-            selectedMeetingPlaceholder.getChildren().remove(0);
-        } else {
-            MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(),
-                    logic.getFilteredMeetingList().indexOf(logic.getSelectedMeeting()) + 1);
-            if (selectedMeetingPlaceholder.getChildren().size() == 1) {
-                selectedMeetingPlaceholder.getChildren().set(0, selectedMeeting.getRoot());
+    /**
+     * Updates the selected meeting when the meeting view command is executed or any details of the selected meeting
+     * is changed.
+     */
+    public void updateSelectedMeeting() {
+        logger.info("UI update selected meeting triggered");
+        if (logic.getFilteredMeetingList().size() != 0) {
+            if (logic.getSelectedMeeting() == null && selectedMeetingPlaceholder.getChildren().size() > 0) {
+                selectedMeetingPlaceholder.getChildren().remove(0);
             } else {
-                selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
+                MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(),
+                        logic.getFilteredMeetingList().indexOf(logic.getSelectedMeeting()) + 1);
+                if (selectedMeetingPlaceholder.getChildren().size() == 1) {
+                    selectedMeetingPlaceholder.getChildren().set(0, selectedMeeting.getRoot());
+                } else {
+                    selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
+                }
             }
         }
     }
@@ -328,7 +333,6 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     /**
      * Updates the timeline window whenever a change is made in meetings
      */
-    @Override
     public void updateTimeline() {
         timelineWindow.hide();
         timelineWindow = timelineWindow.updateLogic(logic);
@@ -389,7 +393,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
             }
 
             if (commandResult.isTriggerUpdate()) {
-                update();
+                updateSelectedMeeting();
             }
 
             if (commandResult.isShowTimeline()) {
