@@ -42,6 +42,12 @@ public interface StudentRecordList extends Iterable<StudentRecord> {
     void setStudentRecords(List<StudentRecord> studentRecords);
 
     /**
+     * Returns a random Student Record from the Student Record List
+     * @return A random Student Record
+     */
+    StudentRecord getRandomStudentRecord();
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}
      */
     ObservableList<StudentRecord> asUnmodifiableObservableList();

@@ -17,6 +17,7 @@ import seedu.taskmaster.commons.core.LogsCenter;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.ScoreEqualsPredicate;
 import seedu.taskmaster.model.record.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecordEqualsPredicate;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.session.exceptions.NoSessionException;
@@ -305,6 +306,11 @@ public class ModelManager implements Model {
         filteredStudentRecords.setPredicate(predicate);
     }
 
+    @Override
+    public void showRandomStudent() {
+        StudentRecord randomRecord = taskmaster.getRandomStudentRecord();
+        filteredStudentRecords.setPredicate(new StudentRecordEqualsPredicate(randomRecord));
+    }
 
     @Override
     public void showLowestScoringStudents() {
@@ -314,6 +320,7 @@ public class ModelManager implements Model {
         updateFilteredStudentRecordList(studentRecordPredicate);
     }
 
+    //=========== Current Session Accessor =================================================================
     @Override
     public SimpleObjectProperty<Session> getCurrentSession() {
         return this.taskmaster.getCurrentSession();

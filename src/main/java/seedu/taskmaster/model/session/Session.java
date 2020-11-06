@@ -117,6 +117,13 @@ public class Session {
                     studentRecord.getAttendanceType());
         }
     }
+    /**
+     * Returns a random Student Record from the Session.
+     * @return A random Student Record
+     */
+    public StudentRecord getRandomStudentRecord() {
+        return studentRecords.getRandomStudentRecord();
+    }
 
     @Override
     public String toString() {

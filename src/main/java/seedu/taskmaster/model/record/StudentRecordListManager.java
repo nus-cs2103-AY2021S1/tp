@@ -6,6 +6,7 @@ import static seedu.taskmaster.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -220,6 +221,17 @@ public class StudentRecordListManager implements StudentRecordList {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns a random Student Record from the Student Record List
+     * @return A random Student Record
+     */
+    @Override
+    public StudentRecord getRandomStudentRecord() {
+        Random random = new Random();
+        int index = random.nextInt(internalList.size());
+        return internalList.get(index);
     }
 
     /**

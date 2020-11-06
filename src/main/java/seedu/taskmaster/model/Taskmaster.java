@@ -306,6 +306,20 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
+     * Returns a random Student Record from the current Session.
+     * @return A random Student Record
+     * @throws NoSessionException
+     * @throws NoSessionSelectedException
+     */
+    public StudentRecord getRandomStudentRecord() throws NoSessionException, NoSessionSelectedException {
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        } else if (currentSession.isNull().get()) {
+            throw new NoSessionSelectedException();
+        }
+        return currentSession.get().getRandomStudentRecord();
+    }
+    /**
      * Returns the lowest score amongst all students in the student list.
      */
     public double getLowestScore() throws NoSessionException, NoSessionSelectedException {
