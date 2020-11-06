@@ -54,7 +54,7 @@ public class SingleRecipeCard extends UiPart<HBox> {
         this.recipe = recipe;
         name.setText(recipe.getName().fullName);
         instruction.setText(recipe.getInstruction().stream()
-                .map(item -> item.toString() + ".\n")
+                .map(item -> (recipe.getInstruction().indexOf(item) + 1) + ") " + item.toString() + ".\n")
                 .reduce("", (a, b) -> a + b).trim());
         Image rawImage = new Image(recipe.getRecipeImage().getValue(), 340, 0, true, true);
         PixelReader reader = rawImage.getPixelReader();
