@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
+import jimmy.mcgymmy.model.date.Date;
 import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.food.Fat;
 import jimmy.mcgymmy.model.food.Name;
@@ -45,8 +46,18 @@ public class ParserUtilTest {
             .get("src", "test", "data", "JsonSerializableMcGymmyTest", "typicalFoodMcGymmy.json").toString();
     private static final String INVALID_FILE_1 = Paths
             .get("src", "test", "data", "JsonSerializableMcGymmyTest", "typical.json").toString();
-    private static final String INVALID_FILE_2 = Paths
+    private static final String VALID_DIR = Paths
             .get("src", "test", "data", "JsonSerializableMcGymmyTest").toString();
+    private static final String INVALID_DIR = Paths
+            .get("src", "test", "data", "J").toString();
+
+    private static final String NO_JSON_NAME = "mc";
+    private static final String JSON_NAME = "mc.json";
+
+    private static final String INVALID_DATE = "invalid date";
+    private static final String DOES_NOT_EXIST_DATE = "invalid date";
+    private static final String VALID_DATE = "12/12/2020";
+    private static final String VALID_DATE_2 = "12-12-2020";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -228,13 +239,78 @@ public class ParserUtilTest {
 
     @Test
     public void parseFile_withFolderPath() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseFile(INVALID_FILE_2));
+        assertThrows(ParseException.class, () -> ParserUtil.parseFile(VALID_DIR));
     }
 
     @Test
     public void parseFile_withValidFilePath() throws ParseException {
-        Path path = Paths.get("src", "test", "data",
-                "JsonSerializableMcGymmyTest", "typicalFoodMcGymmy.json");
+        Path path = Paths.get(VALID_FILE);
         assertEquals(path, ParserUtil.parseFile(VALID_FILE));
+    }
+
+    @Test
+    public void parseDir_withInvalidFolderPath() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDir(VALID_FILE));
+    }
+
+    @Test
+    public void parseDir_withNotFoundFolderPath() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDir(INVALID_DIR));
+    }
+
+    @Test
+    public void parseDir_withValidFolderPath() throws Exception {
+        Path path = Paths.get(VALID_DIR);
+        assertEquals(path, ParserUtil.parseDir(VALID_DIR));
+    }
+
+    @Test
+    public void parseOutputName_withEmptyString() {
+        //Empty name
+        assertThrows(ParseException.class, () -> ParserUtil.parseOutputName(""));
+
+        //With spaces
+        assertThrows(ParseException.class, () -> ParserUtil.parseOutputName(" "));
+        assertThrows(ParseException.class, () -> ParserUtil.parseOutputName("  "));
+    }
+
+    @Test
+    public void parseOutputName_withNoJsonName() throws Exception {
+        //No spaces around it
+        String name = ParserUtil.parseOutputName(NO_JSON_NAME);
+        assertEquals(name, NO_JSON_NAME + ".json");
+
+        //Leading and trailing spaces
+        String name2 = ParserUtil.parseOutputName(" " + NO_JSON_NAME + " ");
+        assertEquals(name2, NO_JSON_NAME + ".json");
+    }
+
+    @Test
+    public void parseOutputName_withJsonName() throws Exception {
+
+        //Test valid name
+        String name = ParserUtil.parseOutputName(JSON_NAME);
+        assertEquals(name, JSON_NAME);
+
+        //Test with leading and trailing spaces
+        String name2 = ParserUtil.parseOutputName(" " + JSON_NAME + " ");
+        assertEquals(name2, JSON_NAME);
+    }
+
+    @Test
+    public void parseDate_withInvalidDate() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
+    }
+
+    @Test
+    public void parseDate_withNoSuchDate() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(DOES_NOT_EXIST_DATE));
+    }
+
+    @Test
+    public void parseDate_withValidDate() throws Exception {
+        Date date = ParserUtil.parseDate(VALID_DATE);
+        Date date2 = ParserUtil.parseDate(VALID_DATE_2);
+        assertEquals(date, date2);
     }
 }

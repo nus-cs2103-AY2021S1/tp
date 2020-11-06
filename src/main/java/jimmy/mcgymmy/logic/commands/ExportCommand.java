@@ -23,7 +23,7 @@ public class ExportCommand extends Command {
     public static final String SHORT_DESCRIPTION = "Export McGymmy save file to directory";
     public static final String MESSAGE_SUCCESS = "Exported to %s";
     public static final String MESSAGE_FAILURE = "File failed to save to %s";
-    public static final String DEFAULT_FILENAME = "/mcgymmy.json";
+    public static final String DEFAULT_FILENAME = "mcgymmy.json";
 
     private static final Logger exportLogger = LogsCenter.getLogger(ExportCommand.class);
 
