@@ -1,13 +1,12 @@
 package seedu.address.model.module.gradetracker;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.contact.ContactName;
-import seedu.address.model.module.ModuleName;
-import seedu.address.model.module.grade.AssignmentName;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.module.grade.AssignmentName;
 
 public class AssignmentNameTest {
 

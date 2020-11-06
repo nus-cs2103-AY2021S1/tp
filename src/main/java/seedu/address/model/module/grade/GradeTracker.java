@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
-import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.module.grade.comparator.AssignmentNameComparator;
 
 /**
@@ -81,7 +80,7 @@ public class GradeTracker implements ReadOnlyGradeTracker {
     }
 
     public List<Assignment> getSortedAssignments() {
-        List<Assignment> sortedAssignments = new SortedList<Assignment>(assignments
+        List<Assignment> sortedAssignments = new SortedList<>(assignments
                 .asUnmodifiableObservableList(), comparator);
         return sortedAssignments;
     }
@@ -120,11 +119,7 @@ public class GradeTracker implements ReadOnlyGradeTracker {
                 break;
             }
         }
-        if (Grade.isValidGrade(gradeTracker.grade.gradeResult) && areAssignmentsValid) {
-            return true;
-        } else {
-            return false;
-        }
+        return Grade.isValidGrade(gradeTracker.grade.gradeResult) && areAssignmentsValid;
     }
 
     /**

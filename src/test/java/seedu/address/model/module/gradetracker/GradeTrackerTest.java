@@ -1,25 +1,24 @@
 package seedu.address.model.module.gradetracker;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.ContactList;
-import seedu.address.model.ContactListTest;
-import seedu.address.model.ReadOnlyContactList;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.exceptions.DuplicateContactException;
-import seedu.address.model.module.grade.*;
-import seedu.address.testutil.AssignmentBuilder;
-import seedu.address.testutil.ContactBuilder;
-
-import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADEPOINT_4;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_1;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.LAB_1;
 import static seedu.address.testutil.TypicalAssignments.QUIZ_2;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.Grade;
+import seedu.address.model.module.grade.GradePoint;
+import seedu.address.model.module.grade.GradeTracker;
+import seedu.address.testutil.AssignmentBuilder;
 
 public class GradeTrackerTest {
 
@@ -36,7 +35,7 @@ public class GradeTrackerTest {
     }
 
     @Test
-    public void containsDuplicateAssignment_Assignment_returnsFalse() {
+    public void containsDuplicateAssignment_differentAssignment_returnsFalse() {
         GradeTracker gradeTracker = new GradeTracker();
         gradeTracker.addAssignment(QUIZ_2);
         assertFalse(gradeTracker.containsDuplicateAssignment(LAB_1));
@@ -116,8 +115,8 @@ public class GradeTrackerTest {
         gradeTracker.addAssignment(QUIZ_2);
         Assignment editedQuiz2 = new AssignmentBuilder(QUIZ_2).withAssignmentName(VALID_ASSIGNMENT_NAME_2).build();
         gradeTracker.setAssignment(QUIZ_2, editedQuiz2);
-        assertTrue(gradeTracker.getAssignments().get(0).equals(editedQuiz2));
-        assertFalse(gradeTracker.getAssignments().get(0).equals(QUIZ_2));
+        assertEquals(gradeTracker.getAssignments().get(0), editedQuiz2);
+        assertNotEquals(gradeTracker.getAssignments().get(0), QUIZ_2);
     }
 
     @Test

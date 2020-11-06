@@ -1,11 +1,11 @@
 package seedu.address.model.module.gradetracker;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.module.grade.AssignmentPercentage;
-import seedu.address.model.module.grade.AssignmentResult;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.module.grade.AssignmentResult;
 
 public class AssignmentResultTest {
 
