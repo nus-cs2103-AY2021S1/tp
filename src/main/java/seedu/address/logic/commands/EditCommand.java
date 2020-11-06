@@ -22,6 +22,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.exceptions.PersonTagConstraintException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -77,24 +78,28 @@ public class EditCommand extends Command {
         assert filteredList.size() == 1;
         Person personToEdit = filteredList.get(0);
 
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        try {
+            Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            }
+
+            // update address book
+            model.setPerson(personToEdit, editedPerson);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+            // update meeting book
+            model.updatePersonInMeetingBook(personToEdit, editedPerson);
+
+            // update module book
+            model.updatePersonInModuleBook(personToEdit, editedPerson);
+
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson),
+                    false, false, true, false, true);
+        } catch (PersonTagConstraintException e) {
+            throw new CommandException(e.getMessage(), e);
         }
-
-        // update address book
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
-        // update meeting book
-        model.updatePersonInMeetingBook(personToEdit, editedPerson);
-
-        // update module book
-        model.updatePersonInModuleBook(personToEdit, editedPerson);
-
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson),
-                false, false, true, false, true);
     }
 
     /**
