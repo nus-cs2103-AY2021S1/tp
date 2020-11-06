@@ -110,9 +110,10 @@ Input Field | Restrictions and how to specify
 `KEYWORD`      | `KEYWORD` has no character limit but must be one word (no spaces).
 
 <div markdown="span" class="alert alert-primary">:memo: Note:
-
-* **Can be empty** means you can specify the prefix but not pass a value.<br>eg. passing `r/` is valid. 
-* **Cannot be empty** means you have to specify a value when you specify the prefix.<br>eg. passing `c/` is invalid.
+<ul>
+<li><b>Can be empty</b> means you can specify the prefix but not pass a value.<br>eg. passing <code>r/</code> is valid. </li>
+<li> <b>Cannot be empty</b> means you have to specify a value when you specify the prefix.<br>eg. passing <code>c/</code> is invalid.</li>
+</ul>
 </div>
 
 ## Features
@@ -218,7 +219,7 @@ Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
     - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
 * Although all fields are optional, a minimum of one field has to be given.
 <div markdown="span" class="alert alert-primary">:memo: Note:
-<code>filter r/</code> will filter for all unrated flashcards.</div><br>
+<code>filter r/</code> will filter for all unrated flashcards.</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
