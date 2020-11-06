@@ -300,7 +300,7 @@ current inventory.
 #### Implementation
 
 There are three main view modes, display of all items, display of all recipes, and viewing of detailed item.
-The list item and list recipe feature facilitates the switch between viewing the item list and recipe list.
+The list item and list recipe features facilitates the switch between viewing the item list and recipe list.
 
 In `InventoryMainWindow`, whenever a command is executed, the `InventoryListPanel` is refreshed,
 to be filled with the relevant inventory list.
@@ -330,11 +330,11 @@ A possible alternative implementation which might be more convenient for users w
 the user to switch between the two tabs with a mouse click. This will allow for easier, more visual navigation.
 This might be implemented by constructing additional scenes in JavaFX, and displaying the scene the user wishes to view.
 
-This was not chosen as our target group is defined to be fast typists, and in line with the rest of our commands, which
-all require CLI input, switching to usage of the mouse would not be convenient. Furthermore, the current implementation 
+This alternative was not chosen as our target group is defined to be fast typists, and in line with the rest of our commands, 
+which all require CLI input, switching to usage of the mouse would not be convenient. Furthermore, the current implementation 
 is also more extensible, as we can easily mix and match items and recipes to display by filtering the item and recipe
 lists in the command as required, rather than constructing a new scene from scratch. The implementation here was then
-adapted to implement the view detailed item command easily.
+adapted to implement the view detailed item command easily, and could also be useful for future developments.
 
 ### Find items feature
 
