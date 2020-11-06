@@ -1040,19 +1040,34 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all sales using the `s-list` command. The full list of drinks sales will be shown.
     
     1. Test case: `s-update BSBM/123`
+       
        Expected: The sales number for `BSBM` changes to 123. There is no order in this updated list of drink sales.
        
     1. Test case: `s-update BSBM/321 BSBBT/40 BSPM/988`
+       
        Expected: The sales number for `BSBM`, `BSBBT` and `BSPM` changes to 321, 40, and 988 respectively. There is no 
        order in this updated list of drink sales.
        
     1. Test case: `s-update BSBM/999999999999999`
+       
        Expected: No sales update is performed. Error details shown in the Result Display. User is able to edit the
        input.
        
     1. Other incorrect `s-update` commands to try: `s-update`, `s-update AAAA/32`
+       
        Expected: Similar to previous.
+       
+### Listing sales of drinks in descending order
 
+1. List the sales of a drink item after an update is performed.
+
+    1. Prerequisite: Perform a sales update using the `s-update` command. The updated list of drink sales is not
+     ordered.
+     
+    1. Test case: `s-list`
+       
+       Expected: The list of drinks sales is now ordered from most to least number of sales.
+       
 
 ### Saving data
 
