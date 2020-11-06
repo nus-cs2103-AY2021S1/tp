@@ -27,7 +27,7 @@ public class Overlap {
         return timeOfDayOverlap && dateOverlap;
     }
     /**
-     * Returns true if date and time of this timeslot will overlap with another timeslot in PlaNus.
+     * Returns true if date and time of this time slot will overlap with another time slot in PlaNus.
      */
     public static boolean isSameTimeSlot(TimeSlot first, TimeSlot second) {
         if (first == second) {
@@ -42,11 +42,11 @@ public class Overlap {
     /**
      * Checks if a time slot overlaps with an existing lesson in PlaNus.
      */
-    private static boolean overlapWithOtherLessons(Model model, TimeSlot timeSlot) {
+    private static boolean overlapWithOtherLessons(Model model, TimeSlot timeSlot, TimeSlot ignore) {
         requireNonNull(model);
         ObservableList<Lesson> existingLessons = model.getFilteredLessonList();
         for (Lesson lesson: existingLessons) {
-            if (isSameTimeSlot(lesson, timeSlot)) {
+            if (lesson != ignore && isSameTimeSlot(lesson, timeSlot)) {
                 return true;
             }
         }
@@ -55,11 +55,11 @@ public class Overlap {
     /**
      * Checks if a time slot overlaps with an existing event in PlaNus.
      */
-    private static boolean overlapWithOtherEvents(Model model, TimeSlot timeSlot) {
+    private static boolean overlapWithOtherEvents(Model model, TimeSlot timeSlot, TimeSlot ignore) {
         requireNonNull(model);
         ObservableList<Task> existingTasks = model.getFilteredTaskList();
         for (Task task: existingTasks) {
-            if (task instanceof Event && isSameTimeSlot((Event) task, timeSlot)) {
+            if (task instanceof Event && task != ignore && isSameTimeSlot((Event) task, timeSlot)) {
                 return true;
             }
         }
@@ -69,6 +69,15 @@ public class Overlap {
      * Checks if a time slot overlaps with an existing lesson or event in PlaNus.
      */
     public static boolean overlapWithOtherTimeSlots(Model model, TimeSlot timeSlot) {
-        return overlapWithOtherLessons(model, timeSlot) || overlapWithOtherEvents(model, timeSlot);
+        return overlapWithOtherLessons(model, timeSlot, null)
+                || overlapWithOtherEvents(model, timeSlot, null);
+    }
+
+    /**
+     * Checks if an edited time slot overlaps with an existing lesson or event in PlaNus.
+     */
+    public static boolean overlapWithOtherTimeSlots(Model model, TimeSlot prevTimeSlot, TimeSlot currentTimeSlot) {
+        return overlapWithOtherLessons(model, currentTimeSlot, prevTimeSlot)
+                || overlapWithOtherEvents(model, currentTimeSlot, prevTimeSlot);
     }
 }

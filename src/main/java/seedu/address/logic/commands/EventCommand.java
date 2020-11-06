@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.EVENT_OVERLAP_CONSTRAINTS;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EVENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
@@ -30,11 +32,9 @@ public class EventCommand extends Command {
             + PREFIX_DATE + "01-01-2020 "
             + PREFIX_START_TIME + "17:00 "
             + PREFIX_END_TIME + "19:00 "
-            + PREFIX_DESCRIPTION + "bytedance online sharing session ";
+            + PREFIX_DESCRIPTION + "ByteDance online sharing session ";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in PlaNus.";
-    public static final String OVERLAP_CONSTRAINTS = "This event overlaps with another event or lesson";
 
     private final Event event;
 
@@ -53,7 +53,7 @@ public class EventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
         if (Overlap.overlapWithOtherTimeSlots(model, event)) {
-            throw new CommandException(OVERLAP_CONSTRAINTS);
+            throw new CommandException(EVENT_OVERLAP_CONSTRAINTS);
         }
         model.addTask(event);
         model.addTaskToCalendar(event);

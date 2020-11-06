@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.LESSON_OVERLAP_CONSTRAINTS;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
@@ -39,8 +41,6 @@ public class LessonCommand extends Command {
             + PREFIX_END_DATE + "01-11-2020 ";
 
     public static final String MESSAGE_SUCCESS = "New lesson added: %1$s";
-    public static final String MESSAGE_DUPLICATE_LESSON = "This lesson already exists in PlaNus.";
-    public static final String OVERLAP_CONSTRAINTS = "This lesson overlaps with another event or lesson";
 
     private final Lesson lesson;
 
@@ -59,7 +59,7 @@ public class LessonCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_LESSON);
         }
         if (Overlap.overlapWithOtherTimeSlots(model, lesson)) {
-            throw new CommandException(OVERLAP_CONSTRAINTS);
+            throw new CommandException(LESSON_OVERLAP_CONSTRAINTS);
         }
         model.addLesson(lesson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, lesson));
