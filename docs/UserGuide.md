@@ -533,7 +533,7 @@ Adds a bid to the bid list which is automatically sorted by property followed by
 - Command: `add-bid`
 - Format: `add-bid b/PROPERTY_ID c/BIDDER_ID m/BID_AMOUNT`
 
-> - Warning: The ```BIDDER_ID``` and ```PROPERTY_ID``` must exist to be added successfully.
+> ⚠️: The ```BIDDER_ID``` and ```PROPERTY_ID``` must exist to be added successfully.
 
 Example:
 
@@ -603,8 +603,8 @@ Will edit a bid based on the values given for each parameter. The edited bid wil
 > - Edits the bid at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed bid list. The index must be a **positive integer** 1, 2, 3...
 > - At least one optional field must be provided.
 > - Existing values will be updated to the input values.
-> - All other values will remain the same.
-> - Warning: The ```BIDDER_ID``` and ```PROPERTY_ID``` input must be in the bidder and property list to be edited successfully.   
+> - All other values will remain the same.  
+> - ⚠️: The ```BIDDER_ID``` and ```PROPERTY_ID``` input must be in the bidder and property list to be edited successfully.   
        
 Example:
 
