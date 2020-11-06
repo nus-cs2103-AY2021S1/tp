@@ -22,7 +22,7 @@ public class EditModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "editMod";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the module id of the module identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the module code of the module identified "
             + "by the index number used in the displayed module list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "

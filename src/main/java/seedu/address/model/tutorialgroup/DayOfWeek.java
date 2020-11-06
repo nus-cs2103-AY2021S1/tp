@@ -13,7 +13,7 @@ import java.util.List;
 public class DayOfWeek {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Day of the week can only be MON/TUE/WED/THU/FRI/SAT/SUN";
+            "DAY_OF_WEEK can only be MON/TUE/WED/THU/FRI/SAT/SUN";
 
 
     private final String day;
