@@ -27,12 +27,12 @@ import seedu.address.model.tutorialgroup.TutorialGroupId;
 import seedu.address.testutil.StudentBuilder;
 
 public class ParticipationBelowCommandTest {
-    public final Module CS2100 = new Module(new ModuleId("CS2100"));
-    public final Module CS2103T = new Module(new ModuleId("CS2103T"));
-    public final Module CS2040 = new Module(new ModuleId("CS2040"));
-    public final Module CS2030 = new Module(new ModuleId("CS2030"));
+    public final Module cs2100 = new Module(new ModuleId("CS2100"));
+    public final Module cs2103T = new Module(new ModuleId("CS2103T"));
+    public final Module cs2040 = new Module(new ModuleId("CS2040"));
+    public final Module cs2030 = new Module(new ModuleId("CS2030"));
 
-    public final TutorialGroup T05 = new TutorialGroup(
+    public final TutorialGroup t05 = new TutorialGroup(
             new TutorialGroupId("T05"),
             new DayOfWeek("MON"),
             new TimeOfDay("13:00"),
@@ -40,7 +40,7 @@ public class ParticipationBelowCommandTest {
             getTypicalStudentList()
     );
 
-    public final TutorialGroup B06 = new TutorialGroup(
+    public final TutorialGroup b06 = new TutorialGroup(
             new TutorialGroupId("B06"),
             new DayOfWeek("THU"),
             new TimeOfDay("12:00"),
@@ -48,21 +48,21 @@ public class ParticipationBelowCommandTest {
 
     );
 
-    public final TutorialGroup S12 = new TutorialGroup(
+    public final TutorialGroup s12 = new TutorialGroup(
             new TutorialGroupId("S12"),
             new DayOfWeek("FRI"),
             new TimeOfDay("08:00"),
             new TimeOfDay("10:30")
     );
 
-    public final TutorialGroup V04 = new TutorialGroup(
+    public final TutorialGroup v04 = new TutorialGroup(
             new TutorialGroupId("V04"),
             new DayOfWeek("TUE"),
             new TimeOfDay("09:00"),
             new TimeOfDay("10:00")
     );
 
-    public final Student ALEX = new StudentBuilder()
+    public final Student alex = new StudentBuilder()
             .withName("Alex Tan")
             .withEmail("alextan@u.nus.edu")
             .withPhone("91234567")
@@ -72,7 +72,7 @@ public class ParticipationBelowCommandTest {
             .withParticipation("96")
             .build();
 
-    public final Student BENG = new StudentBuilder()
+    public final Student beng = new StudentBuilder()
             .withName("Ah Beng")
             .withEmail("abeng@u.nus.edu")
             .withPhone("81234567")
@@ -82,7 +82,7 @@ public class ParticipationBelowCommandTest {
             .build();
 
     // don't add attendance to this student
-    public final Student CHARLIE = new StudentBuilder()
+    public final Student charlie = new StudentBuilder()
             .withName("CHARLIE CHEN")
             .withEmail("charlie@hi.com")
             .withPhone("82223333")
@@ -90,7 +90,7 @@ public class ParticipationBelowCommandTest {
             .withStudentId("A1928835B")
             .build();
 
-    public final Student DAVID = new StudentBuilder()
+    public final Student david = new StudentBuilder()
             .withName("David Ong")
             .withEmail("dong@u.nus.edu")
             .withPhone("81320987")
@@ -100,7 +100,7 @@ public class ParticipationBelowCommandTest {
             .withParticipation("24")
             .build();
 
-    public final Student ELIZABETH = new StudentBuilder()
+    public final Student elizabeth = new StudentBuilder()
             .withName("Elizabeth Teo")
             .withEmail("eteo@u.nus.edu")
             .withPhone("89993333")
@@ -109,7 +109,7 @@ public class ParticipationBelowCommandTest {
             .withParticipation("100")
             .build();
 
-    public final Student FIONA = new StudentBuilder()
+    public final Student fiona = new StudentBuilder()
             .withName("Fiona Chan")
             .withEmail("fionachan@u.nus.edu")
             .withPhone("82938378")
@@ -118,27 +118,28 @@ public class ParticipationBelowCommandTest {
             .withAttendance("1", "2", "4", "10")
             .build();
 
+    private Model model = new ModelManager(getTypicalTrackr(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTrackr(), new UserPrefs());
+
     /**
      * Returns an {@code Trackr} with all the typical modules, tutorial groups and students.
      */
     public Trackr getTypicalTrackr() {
         Trackr trackr = new Trackr();
         // populate modules with the same tutorial groups and students
-        trackr.addModule(CS2103T);
-        for (TutorialGroup tutorialGroup : new ArrayList<>(Arrays.asList(T05, B06, S12, V04))) {
-            if (!CS2103T.getUniqueTutorialGroupList().contains(tutorialGroup)) {
-                trackr.addTutorialGroup(tutorialGroup, CS2103T);
+        trackr.addModule(cs2103T);
+        for (TutorialGroup tutorialGroup : new ArrayList<>(Arrays.asList(t05, b06, s12, v04))) {
+            if (!cs2103T.getUniqueTutorialGroupList().contains(tutorialGroup)) {
+                trackr.addTutorialGroup(tutorialGroup, cs2103T);
             }
         }
-        for (Student student : Arrays.asList(ALEX, BENG, CHARLIE, DAVID, ELIZABETH, FIONA)) {
-            if (!T05.getUniqueStudentList().contains(student)) {
-                trackr.addStudent(CS2103T, T05, student);
+        for (Student student : Arrays.asList(alex, beng, charlie, david, elizabeth, fiona)) {
+            if (!t05.getUniqueStudentList().contains(student)) {
+                trackr.addStudent(cs2103T, t05, student);
             }
         }
         return trackr;
     }
-    private Model model = new ModelManager(getTypicalTrackr(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTrackr(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -174,10 +175,10 @@ public class ParticipationBelowCommandTest {
 
     @Test
     public void execute_zeroUpperBound_noModuleFound() {
-        model.setViewToTutorialGroup(CS2103T);
-        model.setViewToStudent(T05);
-        expectedModel.setViewToTutorialGroup(CS2103T);
-        expectedModel.setViewToStudent(T05);
+        model.setViewToTutorialGroup(cs2103T);
+        model.setViewToStudent(t05);
+        expectedModel.setViewToTutorialGroup(cs2103T);
+        expectedModel.setViewToStudent(t05);
         String expectedMessage = String.format(ParticipationBelowCommand.MESSAGE_PARTICIPATION_BELOW_SUCCESS, 0);
         ParticipationBelowSpecifiedScorePredicate predicate = preparePredicate(0);
         ParticipationBelowCommand command = new ParticipationBelowCommand(predicate, 0);
@@ -188,32 +189,32 @@ public class ParticipationBelowCommandTest {
 
     @Test
     public void execute_validUpperBound_multipleModulesFound() {
-        model.setViewToTutorialGroup(CS2103T);
-        model.setViewToStudent(T05);
-        expectedModel.setViewToTutorialGroup(CS2103T);
-        expectedModel.setViewToStudent(T05);
+        model.setViewToTutorialGroup(cs2103T);
+        model.setViewToStudent(t05);
+        expectedModel.setViewToTutorialGroup(cs2103T);
+        expectedModel.setViewToStudent(t05);
         String expectedMessage = String.format(ParticipationBelowCommand.MESSAGE_PARTICIPATION_BELOW_SUCCESS, 50);
         ParticipationBelowSpecifiedScorePredicate predicate = preparePredicate(50);
         ParticipationBelowCommand command = new ParticipationBelowCommand(predicate, 50);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENG, CHARLIE, DAVID, FIONA), model.getFilteredStudentList());
+        assertEquals(Arrays.asList(beng, charlie, david, fiona), model.getFilteredStudentList());
     }
 
 
     @Test
     public void execute_topUpperBound_multipleModulesFound() {
-        model.setViewToTutorialGroup(CS2103T);
-        model.setViewToStudent(T05);
-        expectedModel.setViewToTutorialGroup(CS2103T);
-        expectedModel.setViewToStudent(T05);
+        model.setViewToTutorialGroup(cs2103T);
+        model.setViewToStudent(t05);
+        expectedModel.setViewToTutorialGroup(cs2103T);
+        expectedModel.setViewToStudent(t05);
         String expectedMessage = String.format(ParticipationBelowCommand.MESSAGE_PARTICIPATION_BELOW_SUCCESS,
                 101);
         ParticipationBelowSpecifiedScorePredicate predicate = preparePredicate(101);
         ParticipationBelowCommand command = new ParticipationBelowCommand(predicate, 101);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALEX, BENG, CHARLIE, DAVID, ELIZABETH, FIONA), model.getFilteredStudentList());
+        assertEquals(Arrays.asList(alex, beng, charlie, david, elizabeth, fiona), model.getFilteredStudentList());
     }
 
     /**

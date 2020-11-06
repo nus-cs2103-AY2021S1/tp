@@ -9,13 +9,15 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentList;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.Trackr;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
@@ -27,17 +29,14 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
 import seedu.address.testutil.StudentBuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class DeleteStudentCommandTest {
 
-    public final Module CS2100 = new Module(new ModuleId("CS2100"));
-    public final Module CS2103T = new Module(new ModuleId("CS2103T"));
-    public final Module CS2040 = new Module(new ModuleId("CS2040"));
-    public final Module CS2030 = new Module(new ModuleId("CS2030"));
+    public final Module cs2100 = new Module(new ModuleId("CS2100"));
+    public final Module cs2103T = new Module(new ModuleId("CS2103T"));
+    public final Module cs2040 = new Module(new ModuleId("CS2040"));
+    public final Module cs2030 = new Module(new ModuleId("CS2030"));
 
-    public final TutorialGroup T05 = new TutorialGroup(
+    public final TutorialGroup t05 = new TutorialGroup(
             new TutorialGroupId("T05"),
             new DayOfWeek("MON"),
             new TimeOfDay("13:00"),
@@ -45,7 +44,7 @@ public class DeleteStudentCommandTest {
             getTypicalStudentList()
     );
 
-    public final TutorialGroup B06 = new TutorialGroup(
+    public final TutorialGroup b06 = new TutorialGroup(
             new TutorialGroupId("B06"),
             new DayOfWeek("THU"),
             new TimeOfDay("12:00"),
@@ -53,21 +52,21 @@ public class DeleteStudentCommandTest {
 
     );
 
-    public final TutorialGroup S12 = new TutorialGroup(
+    public final TutorialGroup s12 = new TutorialGroup(
             new TutorialGroupId("S12"),
             new DayOfWeek("FRI"),
             new TimeOfDay("08:00"),
             new TimeOfDay("10:30")
     );
 
-    public final TutorialGroup V04 = new TutorialGroup(
+    public final TutorialGroup v04 = new TutorialGroup(
             new TutorialGroupId("V04"),
             new DayOfWeek("TUE"),
             new TimeOfDay("09:00"),
             new TimeOfDay("10:00")
     );
 
-    public final Student ALEX = new StudentBuilder()
+    public final Student alex = new StudentBuilder()
             .withName("Alex Tan")
             .withEmail("alextan@u.nus.edu")
             .withPhone("91234567")
@@ -77,7 +76,7 @@ public class DeleteStudentCommandTest {
             .withParticipation("96")
             .build();
 
-    public final Student BENG = new StudentBuilder()
+    public final Student beng = new StudentBuilder()
             .withName("Ah Beng")
             .withEmail("abeng@u.nus.edu")
             .withPhone("81234567")
@@ -87,7 +86,7 @@ public class DeleteStudentCommandTest {
             .build();
 
     // don't add attendance to this student
-    public final Student CHARLIE = new StudentBuilder()
+    public final Student charlie = new StudentBuilder()
             .withName("CHARLIE CHEN")
             .withEmail("charlie@hi.com")
             .withPhone("82223333")
@@ -95,7 +94,7 @@ public class DeleteStudentCommandTest {
             .withStudentId("A1928835B")
             .build();
 
-    public final Student DAVID = new StudentBuilder()
+    public final Student david = new StudentBuilder()
             .withName("David Ong")
             .withEmail("dong@u.nus.edu")
             .withPhone("81320987")
@@ -105,7 +104,7 @@ public class DeleteStudentCommandTest {
             .withParticipation("24")
             .build();
 
-    public final Student ELIZABETH = new StudentBuilder()
+    public final Student elizabeth = new StudentBuilder()
             .withName("Elizabeth Teo")
             .withEmail("eteo@u.nus.edu")
             .withPhone("89993333")
@@ -114,7 +113,7 @@ public class DeleteStudentCommandTest {
             .withParticipation("100")
             .build();
 
-    public final Student FIONA = new StudentBuilder()
+    public final Student fiona = new StudentBuilder()
             .withName("Fiona Chan")
             .withEmail("fionachan@u.nus.edu")
             .withPhone("82938378")
@@ -122,151 +121,153 @@ public class DeleteStudentCommandTest {
             .withStudentId("A2038468T")
             .withAttendance("1", "2", "4", "10")
             .build();
+
+    public final Module cs2100Two = new Module(new ModuleId("CS2100"));
+    public final Module cs2103TTwo = new Module(new ModuleId("CS2103T"));
+    public final Module cs2040Two = new Module(new ModuleId("CS2040"));
+    public final Module cs2030Two = new Module(new ModuleId("CS2030"));
+
+    public final TutorialGroup t05Two = new TutorialGroup(
+            new TutorialGroupId("T05"),
+            new DayOfWeek("MON"),
+            new TimeOfDay("13:00"),
+            new TimeOfDay("14:00"),
+            getTypicalStudentList()
+    );
+
+    public final TutorialGroup b06Two = new TutorialGroup(
+            new TutorialGroupId("B06"),
+            new DayOfWeek("THU"),
+            new TimeOfDay("12:00"),
+            new TimeOfDay("14:00")
+
+    );
+
+    public final TutorialGroup s12Two = new TutorialGroup(
+            new TutorialGroupId("S12"),
+            new DayOfWeek("FRI"),
+            new TimeOfDay("08:00"),
+            new TimeOfDay("10:30")
+    );
+
+    public final TutorialGroup v04Two = new TutorialGroup(
+            new TutorialGroupId("V04"),
+            new DayOfWeek("TUE"),
+            new TimeOfDay("09:00"),
+            new TimeOfDay("10:00")
+    );
+
+    public final Student alexTwo = new StudentBuilder()
+            .withName("Alex Tan")
+            .withEmail("alextan@u.nus.edu")
+            .withPhone("91234567")
+            .withTags("CS2103T")
+            .withStudentId("A1234567X")
+            .withAttendance("1", "2", "3", "6")
+            .withParticipation("96")
+            .build();
+
+    public final Student bengTwo = new StudentBuilder()
+            .withName("Ah Beng")
+            .withEmail("abeng@u.nus.edu")
+            .withPhone("81234567")
+            .withTags("CS2103T")
+            .withStudentId("A7654321B")
+            .withAttendance("1", "2", "5", "13")
+            .build();
+
+    // don't add attendance to this student
+    public final Student charlieTwo = new StudentBuilder()
+            .withName("CHARLIE CHEN")
+            .withEmail("charlie@hi.com")
+            .withPhone("82223333")
+            .withTags("CS2103T")
+            .withStudentId("A1928835B")
+            .build();
+
+    public final Student davidTwo = new StudentBuilder()
+            .withName("David Ong")
+            .withEmail("dong@u.nus.edu")
+            .withPhone("81320987")
+            .withTags("CS2103T", "UTCP")
+            .withStudentId("A1837538N")
+            .withAttendance("1", "4", "3", "12")
+            .withParticipation("24")
+            .build();
+
+    public final Student elizabethTwo = new StudentBuilder()
+            .withName("Elizabeth Teo")
+            .withEmail("eteo@u.nus.edu")
+            .withPhone("89993333")
+            .withTags("CS2103T", "DDP")
+            .withStudentId("A1938563M")
+            .withParticipation("100")
+            .build();
+
+    public final Student fionaTwo = new StudentBuilder()
+            .withName("Fiona Chan")
+            .withEmail("fionachan@u.nus.edu")
+            .withPhone("82938378")
+            .withTags("CS1231S")
+            .withStudentId("A2038468T")
+            .withAttendance("1", "2", "4", "10")
+            .build();
+
+    private Model model = new ModelManager(getFirstTypicalTrackr(), new UserPrefs());
+    private Module moduleInView = cs2103T;
+    private TutorialGroup tgInView = t05;
+
     /**
      * Returns an {@code Trackr} with all the typical modules, tutorial groups and students.
      */
     public Trackr getFirstTypicalTrackr() {
         Trackr trackr = new Trackr();
         // populate modules with the same tutorial groups and students
-        trackr.addModule(CS2103T);
-        for (TutorialGroup tutorialGroup : new ArrayList<>(Arrays.asList(T05, B06, S12, V04))) {
-            if (!CS2103T.getUniqueTutorialGroupList().contains(tutorialGroup)) {
-                trackr.addTutorialGroup(tutorialGroup, CS2103T);
+        trackr.addModule(cs2103T);
+        for (TutorialGroup tutorialGroup : new ArrayList<>(Arrays.asList(t05, b06, s12, v04))) {
+            if (!cs2103T.getUniqueTutorialGroupList().contains(tutorialGroup)) {
+                trackr.addTutorialGroup(tutorialGroup, cs2103T);
             }
         }
-        for (Student student : Arrays.asList(ALEX, BENG, CHARLIE, DAVID, ELIZABETH, FIONA)) {
-            if (!T05.getUniqueStudentList().contains(student)) {
-                trackr.addStudent(CS2103T, T05, student);
+        for (Student student : Arrays.asList(alex, beng, charlie, david, elizabeth, fiona)) {
+            if (!t05.getUniqueStudentList().contains(student)) {
+                trackr.addStudent(cs2103T, t05, student);
             }
         }
         return trackr;
     }
 
-    public final Module CS2100Two = new Module(new ModuleId("CS2100"));
-    public final Module CS2103TTwo = new Module(new ModuleId("CS2103T"));
-    public final Module CS2040Two = new Module(new ModuleId("CS2040"));
-    public final Module CS2030Two = new Module(new ModuleId("CS2030"));
-
-    public final TutorialGroup T05Two = new TutorialGroup(
-            new TutorialGroupId("T05"),
-            new DayOfWeek("MON"),
-            new TimeOfDay("13:00"),
-            new TimeOfDay("14:00"),
-            getTypicalStudentList()
-    );
-
-    public final TutorialGroup B06Two = new TutorialGroup(
-            new TutorialGroupId("B06"),
-            new DayOfWeek("THU"),
-            new TimeOfDay("12:00"),
-            new TimeOfDay("14:00")
-
-    );
-
-    public final TutorialGroup S12Two = new TutorialGroup(
-            new TutorialGroupId("S12"),
-            new DayOfWeek("FRI"),
-            new TimeOfDay("08:00"),
-            new TimeOfDay("10:30")
-    );
-
-    public final TutorialGroup V04Two = new TutorialGroup(
-            new TutorialGroupId("V04"),
-            new DayOfWeek("TUE"),
-            new TimeOfDay("09:00"),
-            new TimeOfDay("10:00")
-    );
-
-    public final Student ALEXTwo = new StudentBuilder()
-            .withName("Alex Tan")
-            .withEmail("alextan@u.nus.edu")
-            .withPhone("91234567")
-            .withTags("CS2103T")
-            .withStudentId("A1234567X")
-            .withAttendance("1", "2", "3", "6")
-            .withParticipation("96")
-            .build();
-
-    public final Student BENGTwo = new StudentBuilder()
-            .withName("Ah Beng")
-            .withEmail("abeng@u.nus.edu")
-            .withPhone("81234567")
-            .withTags("CS2103T")
-            .withStudentId("A7654321B")
-            .withAttendance("1", "2", "5", "13")
-            .build();
-
-    // don't add attendance to this student
-    public final Student CHARLIETwo = new StudentBuilder()
-            .withName("CHARLIE CHEN")
-            .withEmail("charlie@hi.com")
-            .withPhone("82223333")
-            .withTags("CS2103T")
-            .withStudentId("A1928835B")
-            .build();
-
-    public final Student DAVIDTwo = new StudentBuilder()
-            .withName("David Ong")
-            .withEmail("dong@u.nus.edu")
-            .withPhone("81320987")
-            .withTags("CS2103T", "UTCP")
-            .withStudentId("A1837538N")
-            .withAttendance("1", "4", "3", "12")
-            .withParticipation("24")
-            .build();
-
-    public final Student ELIZABETHTwo = new StudentBuilder()
-            .withName("Elizabeth Teo")
-            .withEmail("eteo@u.nus.edu")
-            .withPhone("89993333")
-            .withTags("CS2103T", "DDP")
-            .withStudentId("A1938563M")
-            .withParticipation("100")
-            .build();
-
-    public final Student FIONATwo = new StudentBuilder()
-            .withName("Fiona Chan")
-            .withEmail("fionachan@u.nus.edu")
-            .withPhone("82938378")
-            .withTags("CS1231S")
-            .withStudentId("A2038468T")
-            .withAttendance("1", "2", "4", "10")
-            .build();
     /**
      * Returns an {@code Trackr} with all the typical modules, tutorial groups and students.
      */
     public Trackr getSecondTypicalTrackr() {
         Trackr trackr = new Trackr();
         // populate modules with the same tutorial groups and students
-        trackr.addModule(CS2103TTwo);
-        for (TutorialGroup tutorialGroup : new ArrayList<>(Arrays.asList(T05Two, B06Two, S12Two, V04Two))) {
-            if (!CS2103TTwo.getUniqueTutorialGroupList().contains(tutorialGroup)) {
-                trackr.addTutorialGroup(tutorialGroup, CS2103TTwo);
+        trackr.addModule(cs2103TTwo);
+        for (TutorialGroup tutorialGroup : new ArrayList<>(Arrays.asList(t05Two, b06Two, s12Two, v04Two))) {
+            if (!cs2103TTwo.getUniqueTutorialGroupList().contains(tutorialGroup)) {
+                trackr.addTutorialGroup(tutorialGroup, cs2103TTwo);
             }
         }
-        for (Student student : Arrays.asList(ALEXTwo, BENGTwo, CHARLIETwo, DAVIDTwo, ELIZABETHTwo, FIONATwo)) {
-            if (!T05Two.getUniqueStudentList().contains(student)) {
-                trackr.addStudent(CS2103TTwo, T05Two, student);
+        for (Student student : Arrays.asList(alexTwo, bengTwo, charlieTwo, davidTwo, elizabethTwo, fionaTwo)) {
+            if (!t05Two.getUniqueStudentList().contains(student)) {
+                trackr.addStudent(cs2103TTwo, t05Two, student);
             }
         }
         return trackr;
     }
 
-    private Model model = new ModelManager(getFirstTypicalTrackr(), new UserPrefs());
-    private Module moduleInView = CS2103T;
-    private TutorialGroup tgInView = T05;
-
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        model.setViewToTutorialGroup(CS2103T);
-        model.setViewToStudent(T05);
+        model.setViewToTutorialGroup(cs2103T);
+        model.setViewToStudent(t05);
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
 
-    String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
         ModelManager expectedModel = new ModelManager(getSecondTypicalTrackr(), new UserPrefs());
-        expectedModel.setViewToTutorialGroup(CS2103T);
-        expectedModel.setViewToStudent(T05);
+        expectedModel.setViewToTutorialGroup(cs2103T);
+        expectedModel.setViewToStudent(t05);
         expectedModel.deleteStudent(studentToDelete);
         assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
     }
