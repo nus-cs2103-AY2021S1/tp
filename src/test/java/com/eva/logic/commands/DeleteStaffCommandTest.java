@@ -3,6 +3,7 @@ package com.eva.logic.commands;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandFailure;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static com.eva.logic.commands.CommandTestUtil.showStaffAtIndex;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_STAFFS;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static com.eva.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
@@ -11,6 +12,7 @@ import static com.eva.testutil.staff.TypicalStaffs.getTypicalStaffDatabase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.eva.commons.core.PanelState;
 import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.Messages;
@@ -61,7 +63,8 @@ public class DeleteStaffCommandTest {
         Model expectedModel = new ModelManager(model.getPersonDatabase(), model.getStaffDatabase(),
                 model.getApplicantDatabase(), new UserPrefs());
         expectedModel.deleteStaff(staffToDelete);
-        showNoStaff(expectedModel);
+        expectedModel.setPanelState(PanelState.STAFF_LIST);
+        expectedModel.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
 
         assertCommandSuccess(deleteStaffCommand, model, expectedResult, expectedModel);
     }
