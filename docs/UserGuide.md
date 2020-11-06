@@ -19,7 +19,7 @@ This guide will help you to get started with tCheck, and provide useful tips alo
     * [Features](#features)
         * [Commands - Sales Tracking](#commands-sales-tracking) 
         * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
-        * [Commands - Contact details](#commands-contact-details)
+        * [Commands - Manpower Management](#commands-manpower-management)
         * [Commands - General](#commands-general)
     * [Command summary](#command-summary)
 
@@ -259,7 +259,7 @@ Ingredient Type | Minimum Stock Level
 
 Format: `i-restock`
 
-### 3. Commands - Contact details <a name="commands-contact-details"></a>
+### 3. Commands - Manpower Management <a name="commands-manpower-management"></a>
 
 #### 3.1 Adding an employee : `c-add`
 
@@ -283,8 +283,75 @@ Shows a list of all employees in the contact list.
 
 
 Format: `c-list`
+  
+#### 3.3 Editing a person : `c-edit`
 
-#### 3.3 Locating all employees who are available to work today: `c-today`
+
+Edits the corresponding contact information in the contact list.
+
+Format: `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG] ...`
+
+* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, ...​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
+* You can remove all the employees’s tags by typing `t/` without
+    specifying any tags after it.
+
+Examples:
+*  `c-edit 1 p/91234567 e/81234567` Edits the phone number and emergency contact of the 1st employee to be `91234567` and
+ `81234567` respectively.
+*  `c-edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
+
+
+#### 3.4 Locating persons by keywords: `c-find`
+
+Finds all active(unarchived) contacts that contain the KEYWORD(s) in their names.
+
+Format: `c-find KEYWORD [MORE_KEYWORDS] ...`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`.
+* Employees matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+
+Examples:
+* `c-find John` returns `john` and `John Doe`.
+* `c-find alex david` returns `Alex Yeoh`, `David Li`.<br>
+
+#### 3.5 Locating employees based on matching tags: `c-tag-find`
+
+Finds all employees whose tags contain the one or more `KEYWORD(s)`.
+
+Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
+
+**:information_source: Notes:**<br>
+* The search is case-insensitive. e.g `Friday` will match `friday`.
+* The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.
+* Only the tag names are searched.
+* Only full words will be matched. e.g. `Fri` will not match `Friday`.
+* Employees whose tag(s) matching at least one keyword will be listed in the _Employee Directory_ pane
+ (i.e. `OR` search).  e.g. `Friday Monday` will find employees whose tags contain `Friday` or `Monday`.
+
+
+Examples:
+* Let's say you want to find out who are the available to work on `Monday` or `Friday`. In this case, the two key
+ words are `Monday` and `Friday`. You can follow these steps.
+
+Steps to find employees who are available to work on `Monday` or `Friday`:
+1. Type `c-tag-find monday friday` into the _Command Box_.
+2. Press `Enter` to execute.
+
+Outcome:
+1. The _Result Display_ will show the total number of employees who are can work on `Friday` or `Monday`.
+
+2. Employees who are can work on `Friday` or `Monday` will be listed in the _Employee Directory_ pane.
+
+{Screenshot}
+
+#### 3.6 Locating all employees who are available to work today: `c-today`
 
 Finds employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc).
 
@@ -318,7 +385,7 @@ Outcome:
 
 {Screenshot}
 
-#### 3.4 Locating all employees who are available to work tomorrow: `c-tomorrow`
+#### 3.7 Locating all employees who are available to work tomorrow: `c-tomorrow`
 
 Finds employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Tuesday`, etc).
 
@@ -349,73 +416,6 @@ Outcome:
     
     c. The success message.
 2. The available manpower for tomorrow will be listed in the _Employee Directory_ pane.
-
-{Screenshot}
-  
-#### 3.5 Editing a person : `c-edit`
-
-
-Edits the corresponding contact information in the contact list.
-
-Format: `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG] ...`
-
-* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, ...​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
-* You can remove all the employees’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `c-edit 1 p/91234567 e/81234567` Edits the phone number and emergency contact of the 1st employee to be `91234567` and
- `81234567` respectively.
-*  `c-edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
-
-
-#### 3.6 Locating persons by keywords: `c-find`
-
-Finds all active(unarchived) contacts that contain the KEYWORD(s) in their names.
-
-Format: `c-find KEYWORD [MORE_KEYWORDS] ...`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`.
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`.
-* Employees matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
-
-Examples:
-* `c-find John` returns `john` and `John Doe`.
-* `c-find alex david` returns `Alex Yeoh`, `David Li`.<br>
-
-#### 3.7 Locating employees based on matching tags: `c-tag-find`
-
-Finds all employees whose tags contain the one or more `KEYWORD(s)`.
-
-Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
-
-**:information_source: Notes:**<br>
-* The search is case-insensitive. e.g `Friday` will match `friday`.
-* The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.
-* Only the tag names are searched.
-* Only full words will be matched. e.g. `Fri` will not match `Friday`.
-* Employees whose tag(s) matching at least one keyword will be listed in the _Employee Directory_ pane
- (i.e. `OR` search).  e.g. `Friday Monday` will find employees whose tags contain `Friday` or `Monday`.
-
-
-Examples:
-* Let's say you want to find out who are the available to work on `Monday` or `Friday`. In this case, the two key
- words are `Monday` and `Friday`. You can follow these steps.
-
-Steps to find employees who are available to work on `Monday` or `Friday`:
-1. Type `c-tag-find monday friday` into the _Command Box_.
-2. Press `Enter` to execute.
-
-Outcome:
-1. The _Result Display_ will show the total number of employees who are can work on `Friday` or `Monday`.
-
-2. Employees who are can work on `Friday` or `Monday` will be listed in the _Employee Directory_ pane.
 
 {Screenshot}
 
@@ -612,16 +612,16 @@ Action | Format, Examples
 **View all ingredients that the user should restock**| `i-restock`
 **List**| `i-list`
 
-### Employees' Contact Details
+### Manpower Management
 
 Action | Format, Examples
 -------|------------------------------
 **Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
 **List** | `c-list`
-**List avalible manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
 **Find by name** | `c-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-find James Jake`
 **Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-tag-find Friday Monday PartTime`
+**Find available manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
 **Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive-all` <br>3. **List all archived data:**  `c-archive-list`</br>
