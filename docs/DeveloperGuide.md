@@ -176,23 +176,65 @@ The `StudentRecordList`,
 * can mark the attendance of a student in the `Session`.
 
 The `StudentRecord`,
-* represents a record of a student's attendance in a particular `Session`
+* represents an immutable record of a student's attendance in a particular `Session`
 * contains
   * a `NusnetId` that indicates which student the record represents
   * the `Name` of the student represented
   * the `AttendanceType` of the student for the `Session`
-  * a `ClassParticipation` representing points awarded to the student for participating in the `Session`
+  * a `ClassParticipation` representing the score awarded to the student for participating in the `Session`
+
+When the user wants to update the attendance or class participation score, a new `StudentRecord` object will be created. 
 
 Given below is the Sequence Diagram for interactions within the `StudentRecordListManager` component when `StudentRecordListManager#markStudentAttendance(nusnetId, attendanceType)` is called.
 
 ![Interactions inside the StudentRecordListManager class for the `markStudentAttendance'` method call](images/StudentRecordListAttendanceSequenceDiagram.png)
 
+Considerations for `markStudentAttendance`:
+    
+On one hand, the mark command uses an index to identify the record, for ease of usage for the user, as compared to 
+having to type out the record's NUSNET ID. On the other hand, the mark attendance method within the `Model` identifies 
+the record to mark using its NUSNET ID, to ensure correctness. Furthermore, the student records have to be stored in a 
+JavaFX `ObservableList` to be easily displayable on the GUI. In the end, I decided to find the record to mark by 
+iterating through the record list and comparing NUSNET IDs, since each student's NUSNET ID must be unique. The `O(N)`
+time complexity of this method does not incur significant time cost because we expect there to be no more than 1000
+students recorded in any session created by TAs using TAskmaster.
 
-Alternative implementations:
-* Store a `Student` object in the `StudentRecord` instead of just their `Name` and `NusnetId`.
-  * Doing so will incur unnecessary memory usage, because `StudentRecord` only needs the `Name` for display purposes, and `NusnetId` for identification purposes.
-  * This memory usage is significant when one considers the fact that it will be likely that for most users, the same students (that the TA is teaching) will be contained in multiple `Session` objects.
-  * Since editing of `NusnetId` is not allowed, there will be no issues with syncing of data. For example, even if the name of a particular student is edited after his `StudentRecord` was saved, we can find that student using their `NusnetId`.
+Design alternatives:
+- Make `StudentRecord` mutable.
+
+    This was the original design of `StudentRecord` which made sense at the time because a student's record
+    would be frequently updated for marking of attendnace and awarding of class participation scores. However,
+    the JavaFX `ObservableList` interface is **not notified when contained objects are modified**, only when 
+    objects were added or deleted. This resulted in a bug where the GUI will not show the changes made when a
+    student record was updated. In the end, it was decided that `StudentRecord` should be immutable to fix this bug.
+
+- Make each `StudentRecordList` be dependent on and backed by the `StudentList` maintained by TAskmaster.
+
+    This alternative was eventually rejected because it did not make sense from a design perspective. Each
+    student record list represents the record of students **for that particular session only**. If we 
+    implemented this alternative, edits to the student list will result in changes to all the student record
+    lists, which does not follow the design of the student record list. For example:
+    - suppose a TA is currently teaching three students, `A, B, C`
+    - when the TA creates a new session `S1` , it will contain three corresponding student records
+    - subsequently after the session is over, student `A` informs the TA that he is going to drop the module
+    - when the TA deletes student `A` from the student list, the student record list of `S1` will update and
+    no longer reflect that `A` was enrolled in the module when `S1` occurred
+
+- Have `StudentRecord` contain the whole `Student` object, not just its `Name` and `NusnetId`
+
+    This was considered and ultimately rejected because of the design considerations in the previous 
+    alternative. Each student record, once created, is supposed to be independent of the student in the
+    student list. This implies that subsequent changes to the student should not be known by the student
+    record. Moreover, each student record only needs to know the name and NUSNET ID of the student at the moment 
+    it was created and there is no need for it to know the rest of the student's information. 
+    
+    Furthermore, having
+    each student record contain a student object will incur significant memory usage, especially since for most
+    TAs, the same set of students will be enrolled in multiple sessions, each with a student record list. 
+    Following the **Law of Demeter**, it was decided to restrict the student record to only have the name and NUSNET ID.
+    Since editing of `NusnetId` is not allowed, there will be no issues with syncing of data. For example, even if the
+    name of a particular student is edited after his `StudentRecord` was saved, we can find that student using their
+    `NusnetId`.
 
 <br>
 

@@ -6,6 +6,7 @@ import static seedu.taskmaster.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -135,6 +136,24 @@ public class StudentRecordListManager implements StudentRecordList {
     }
 
     /**
+     * Returns the lowest score amongst all students in the student list.
+     */
+    @Override
+    public double getLowestScore() {
+        double lowestScore = Integer.MAX_VALUE;
+        for (int i = 0; i < internalList.size(); i++) {
+            StudentRecord studentRecord = internalList.get(i);
+            double score = studentRecord.getClassParticipation().getRawScore();
+
+            if (score < lowestScore) {
+                lowestScore = score;
+            }
+        }
+
+        return lowestScore;
+    }
+
+    /**
      * Creates and returns a {@code StudentRecord} with the details of {@code studentRecordToEdit}
      * edited with {@code editStudentRecordDescriptor}.
      * Note that the {@code name} and {@code nusnetId} should not be edited.
@@ -202,6 +221,16 @@ public class StudentRecordListManager implements StudentRecordList {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns a random Student Record from the Student Record List
+     * @return A random Student Record
+     */
+    @Override
+    public StudentRecord getRandomStudentRecord(Random random) {
+        int index = random.nextInt(internalList.size());
+        return internalList.get(index);
     }
 
     /**

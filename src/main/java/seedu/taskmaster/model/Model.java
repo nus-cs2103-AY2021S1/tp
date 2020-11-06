@@ -2,6 +2,7 @@ package seedu.taskmaster.model;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 
 import javafx.beans.property.SimpleObjectProperty;
@@ -18,11 +19,14 @@ import seedu.taskmaster.model.student.Student;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /** {@code Predicate} that always evaluates to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
-    /** {@code Predicate} that always evaluate to true */
+    /** {@code Predicate} that always evaluates to true */
     Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
+
+    /** {@code Predicate} that always evaluates to true */
+    Predicate<StudentRecord> PREDICATE_SHOW_ALL_STUDENT_RECORDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -80,6 +84,9 @@ public interface Model {
      */
     void addSession(Session session);
 
+    /**
+     * Changes the currentSession to a Session with that name.
+     */
     void changeSession(SessionName sessionName);
 
     /**
@@ -134,6 +141,13 @@ public interface Model {
 
     void updateFilteredSessionList(Predicate<Session> predicate);
 
+    void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate);
+
+    /**
+     * Updates the filter of the filtered student list to show the students with the lowest score.
+     */
+    void showLowestScoringStudents();
+
     /**
      * Marks the attendance of the given student record {@code target} with the given {@code attendanceType}.
      * The student must exist in the student list.
@@ -164,6 +178,11 @@ public interface Model {
      * Updates the corresponding attendance statuses with the Attendances in the given list.
      */
     void updateStudentRecords(List<StudentRecord> studentRecords);
+
+    /**
+     * Updates the filter of the filtered student list to show a random student.
+     */
+    void showRandomStudent(Random random);
 
     /**
      * Clears the attendance statuses of all students in the student list.

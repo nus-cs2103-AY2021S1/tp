@@ -12,8 +12,8 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 - [UI](#ui "Go to UI")
 - [Commands](#commands "Go to Commands")
     - [Adding a student: `add-student`](#adding-a-student-add-student "Go to Adding a student")
-    - [Listing all students: `list`](#listing-all-students-list "Go to Listing all students")
-    - [Finding students by name: `find`](#finding-students-by-name-find "Go to Finding students by name")
+    - [Listing all students: `list-students`](#listing-all-students-list-students "Go to Listing all students")
+    - [Finding students by name: `find-students`](#finding-students-by-name-find-students "Go to Finding students by name")
     - [Editing a student: `edit-student`](#editing-a-student-edit-student "Go to Editing a student")
     - [Deleting a student: `delete-student`](#deleting-a-student-delete-student "Go to Deleting a student")
     - [Adding a session: `add-session`](#adding-a-session-add-session "Go to Adding a session")
@@ -23,6 +23,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
     - [Marking all students' attendance: `mark all`](#marking-all-students-attendance-mark-all "Go to Marking all students' attendance")
     - [Scoring a student's participation: `score`](#scoring-a-students-participation-score "Go to Scoring a student's participation mark")
     - [Scoring all students' participation: `score all`](#scoring-all-students-participation-score-all "Go to Scoring all students' participation marks")
+    - [View lowest scoring students: `lowest-score`](#View-lowest-scoring-students-lowest-score "Go to View lowest scoring students")
     - [Clear all students: `clear`](#clearing-all-entries-clear "Go to Clearing all entries")
     - [Exit the program: `exit`](#exiting-the-program-exit "Go to Exiting the program")
 - [Command Summary](#command-summary "Go to Command Summary")
@@ -39,7 +40,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 
 ### Usage
 1. Add the students that you are currently teaching into TAskmaster using the `add-student` command.
-    * You can use the `list`, `edit-student` and `delete-student` commands to read and modify your student list.
+    * You can use the `list-students`, `edit-student`, `find-students` and `delete-student` commands to read and modify your student list.
 2. Create a new session that represents a tutorial, lab or recitation session using the `add-session` command.
     * This session will read your student list and create a list of corresponding student records belonging to that session
     * Each student in the student list will be represented by a student record
@@ -81,16 +82,16 @@ Example usage:
 add-student n/John Tan u/johntan98 e/johntan98@gmail.com i/e0012345 t/tardy
 ```
 
-### Listing all students: `list`
+### Listing all students: `list-students`
 Shows a list of all students in the student list.
 ```
-list
+list-students
 ```
 
-### Finding students by name: `find`
+### Finding students by name: `find-students`
 Finds students whose name contains any of the given keywords.
 ```
-find KEYWORD [MORE_KEYWORDS]
+find-students KEYWORD [MORE_KEYWORDS]
 ```
 - The search is case-insensitive (e.g. `hans` will match `Hans`).
 - The order of the keywords does not matter (e.g. `Hans Bo` will match `Bo Hans`).
@@ -101,10 +102,10 @@ find KEYWORD [MORE_KEYWORDS]
 Example usages:
 ```
 // Returns 'john' and 'John Doe'
-find John
+find-students John
 
 // Returns 'Alex Yeoh', 'David Li'
-find alex david
+find-students alex david
 ```
 
 ### Editing a student: `edit-student`
@@ -242,6 +243,14 @@ score all cp/10
 score all cp/2.94
 ```
 
+### View lowest scoring students: `lowest-score`
+Displays all students with the lowest score in the list.
+```
+lowest-score
+```
+- Lists the records of all students in the current session with the lowest score.
+- Will show no students if the student record list is empty.
+
 ### Clearing all entries: `clear`
 Clears all saved data in taskmaster (both students and sessions).
 ```
@@ -261,8 +270,8 @@ exit
 | Action            | Format, Examples                                                                                              |
 |-------------------|---------------------------------------------------------------------------------------------------------------|
 | Add student       | ```add-student n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]``` <br> e.g., ```add-student n/John Tan u/johntan98```<br>```e/johntan98@gmail.com i/e0012345 t/tardy```  |
-| List students     | ```list```                                                                                               |
-| Find students     | ```find KEYWORD [MORE_KEYWORDS]``` <br> e.g., ```find alex david```                                      |
+| List students     | ```list-students```                                                                                               |
+| Find students     | ```find-students KEYWORD [MORE_KEYWORDS]``` <br> e.g., ```find-students alex david```                                      |
 | Edit student      | ```edit-student INDEX [n/NAME] [u/TELEGRAM] [e/EMAIL] [i/NUSNETID] [t/TAG]...```<br> e.g., ```edit-student 1 u/johntan98 e/johntan98@gmail.com```                                                           |
 | Delete student    | ```delete-student INDEX``` <br> e.g., ```delete-student 3```                                                             |
 | Add session       | ```add-session s/SESSION_NAME dt/SESSION_DATE_TIME``` <br> e.g., ```add-session s/CS2103 Tutorial 9 dt/23-10-2020 0900```|
@@ -271,6 +280,7 @@ exit
 | Mark all          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
 | Score             | ```score INDEX cp/SCORE``` <br> e.g., `score 1 cp/5`                                             |
 | Score all         | ```score all cp/SCORE``` <br> e.g., `score all cp/10`
+| Lowest score      | `lowest-score`
 | Clear             | ```clear```                                                                                              |
 | Exit              | ```exit```                                                                                              |
 

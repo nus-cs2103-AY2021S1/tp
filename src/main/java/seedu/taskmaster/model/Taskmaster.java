@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -63,6 +64,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * {@code students} must not contain duplicate students.
      */
     public void setStudents(List<Student> students) {
+        currentSession.setValue(null);
         this.students.setStudents(students);
     }
 
@@ -92,6 +94,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * {@code sessionName} must already exist in the session list.
      */
     public void deleteSession(SessionName sessionName) {
+        currentSession.setValue(null);
         sessions.delete(sessionName);
     }
 
@@ -128,6 +131,13 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         return sessions.contains(sessionName);
     }
 
+    /**
+     * Returns the Session with the sessionName
+     */
+    Session getSession(SessionName sessionName) {
+        return sessions.get(sessionName);
+    }
+
     /* Student-Level Operations */
 
     /**
@@ -143,6 +153,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * The student must not already exist in the student list.
      */
     public void addStudent(Student student) {
+        currentSession.setValue(null);
         students.add(student);
     }
 
@@ -154,7 +165,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
-
+        currentSession.setValue(null);
         students.setStudent(target, editedStudent);
     }
 
@@ -163,6 +174,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * {@code key} must exist in the student list.
      */
     public void removeStudent(Student key) {
+        currentSession.setValue(null);
         students.remove(key);
     }
 
@@ -293,6 +305,35 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         currentSession.get().scoreAllParticipation(nusnetIds, score);
     }
 
+    /**
+     *
+     * Returns a Student Record from the current Session given a random object.
+     * @param random
+     * @return A random Student Record
+     * @throws NoSessionException
+     * @throws NoSessionSelectedException
+     */
+    public StudentRecord getRandomStudentRecord(Random random) throws NoSessionException, NoSessionSelectedException {
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        } else if (currentSession.isNull().get()) {
+            throw new NoSessionSelectedException();
+        }
+        return currentSession.get().getRandomStudentRecord(random);
+    }
+    /**
+     * Returns the lowest score amongst all students in the student list.
+     */
+    public double getLowestScore() throws NoSessionException, NoSessionSelectedException {
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        } else if (currentSession.isNull().get()) {
+            throw new NoSessionSelectedException();
+        }
+
+        return currentSession.get().getLowestScore();
+    }
+
     /* Util Methods */
 
     @Override
@@ -365,6 +406,14 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         }
 
         currentSession.get().updateStudentRecords(studentRecords);
+    }
+
+    public boolean inSession() {
+        return !this.currentSession.isNull().get();
+    }
+
+    public SessionName currentSessionName() {
+        return this.currentSession.get().getSessionName();
     }
 
     @Override

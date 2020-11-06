@@ -132,11 +132,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up all the placeholders of this window.
+     * Fills inner parts of the ui
+     * @param fillWithStudents true if filling with students, false otherwise
      */
-    void fillInnerParts(boolean bool) {
+    void fillInnerParts(boolean fillWithStudents) {
 
-        fillWithStudents(bool);
+        fillMainList(fillWithStudents);
         viewListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
 
         SessionListPanel sessionListPanel = new SessionListPanel(logic.getFilteredSessionList(),
@@ -155,12 +156,16 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Decides on what to fill the main list with.
+     * @param fillWithStudents true if filling with students, false otherwise
      */
-    void fillWithStudents(boolean bool) {
-        if (bool) {
+    void fillMainList(boolean fillWithStudents) {
+        if (fillWithStudents) {
             mainListPanel = new StudentListPanel(logic.getFilteredStudentList());
         } else {
-            mainListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList());
+            String sessionName = currentSession.get().getSessionName().name;
+            String sessionDateTime = currentSession.get().getSessionDateTime().getDisplayDateTimeString();
+            mainListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList(),
+                    sessionName, sessionDateTime);
         }
     }
 
@@ -216,7 +221,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleStudent() {
-        fillInnerParts(true);
         changeSession(null);
     }
 

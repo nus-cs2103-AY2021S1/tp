@@ -26,7 +26,7 @@ public class ClassParticipation {
     }
 
     /**
-     * Returns the class participation score as an integer.
+     * Returns the class participation score as an double.
      */
     public double getRawScore() {
         return this.score;
@@ -36,10 +36,6 @@ public class ClassParticipation {
     public String toString() {
         String formattedScore = String.format("%.2f", score);
         return "Class Participation Score: " + formattedScore;
-    }
-
-    public String description() {
-        return this.toString();
     }
 
     @Override
