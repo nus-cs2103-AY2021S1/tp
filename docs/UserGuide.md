@@ -289,8 +289,8 @@ exit
 | Mark all          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
 | Score             | ```score INDEX cp/SCORE``` <br> e.g., `score 1 cp/5`                                             |
 | Score all         | ```score all cp/SCORE``` <br> e.g., `score all cp/10`
-| Lowest score      | `lowest-score`      |
-| Random student    | `random-student`     |
+| Lowest score      | ```lowest-score```      |
+| Random student    | ```random-student```     |
 | Clear             | ```clear```                                                                                              |
 | Exit              | ```exit```                                                                                              |
 
