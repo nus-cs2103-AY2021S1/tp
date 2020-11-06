@@ -53,7 +53,7 @@ Given below are my contributions to the project.
 
   * PRs reviewed (with non-trivial review comments): 
 
-    [#86](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/86),
+    [\#86](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/86),
     [\#94](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/94), [\#125](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/125),
     [\#126](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/126), [\#127](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/127),
     [\#130](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/130), [\#132](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/132),
