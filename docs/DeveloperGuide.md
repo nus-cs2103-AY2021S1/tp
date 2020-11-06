@@ -442,6 +442,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CommonCents` and the **Actor** is the `user`, unless specified otherwise)
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC01 - Add an expense entry**
 
 **MSS**
@@ -458,9 +459,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Common Cents shows an error message.
 
       Use case resumes at step 1.
+</div>
 
-
-**Use case: UC02 - Add a revenue**
+<div markdown="block" class="alert alert-success">
+**Use case: UC02 - Adding a revenue**
 
 **MSS**
 
@@ -476,8 +478,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Common Cents shows an error message.
 
       Use case resumes at step 1.
+</div>
 
-**Use case: UC03 - Delete an expense**
+<div markdown="block" class="alert alert-success">
+**Use case: UC03 - Deleting an expense**
 
 **MSS**
 
@@ -493,8 +497,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Common cents shows an error message.
 
       Use case resumes at step 1.
+</div>
 
-**Use case: UC04 - Delete a revenue**
+<div markdown="block" class="alert alert-success">
+**Use case: UC04 - Deleting a revenue**
 
 **MSS**
 
@@ -510,7 +516,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Common cents shows an error message.
 
       Use case resumes at step 1.
+</div>
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Undoing an add command**
 
 **MSS**
@@ -526,7 +534,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests <u> delete an expense (UC03)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the delete command and displays success message.
+</div>
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Undoing a edit command**
 
 **MSS**
@@ -534,8 +544,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests <u> edit an expense (UC)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the edit command and displays success message.
+</div>
 
-
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Add an account**
 
 **MSS**
@@ -558,7 +569,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Common Cents shows an error message.
 
       Use case resumes at step 1.
+</div>
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Listing accounts**
 
 **MSS**
@@ -567,7 +580,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Common Cents displays the name of the accounts and their indices.
 
     Use case ends.
+</div>
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Delete a account**
 
 **MSS**
@@ -596,7 +611,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2c1. Common Cents shows an error message.
           
       Use case resumes at step 2.
+</div>
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Editing the account's name**
 
 **MSS**
@@ -626,7 +643,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2c1. Common cents shows an error message.
     
       Use case resumes at step 2.
+</div>
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Switching to an account**
 
 **MSS**
@@ -650,7 +669,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. Common cents shows an error message.
     
       Use case resumes at step 2.
-      
+</div>
+
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Exiting app**
     
 **MSS**
@@ -659,6 +680,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Common Cents responds with exit message and closes.
 
     Use case ends.
+</div>
+      
 
 
 
