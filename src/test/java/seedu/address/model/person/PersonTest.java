@@ -35,7 +35,7 @@ public class PersonTest {
         // EP: all other tags -> returns CONTACT PersonType
         assertTrue(new PersonBuilder().withName("Test").withEmail("Test@gmail.com").withPhone("9001100")
                 .withTags("blah").build().getPersonType() == Person.PersonType.CONTACT);
-        // EP: no tags -> returns CONTACT PersonType
+        // EP: no tag -> returns CONTACT PersonType
         assertTrue(new PersonBuilder().withName("Test").withEmail("Test@gmail.com").withPhone("9001100")
                 .build().getPersonType() == Person.PersonType.CONTACT);
     }
