@@ -29,4 +29,4 @@ Given below are my contributions to the project.
     * Added implementation details of order commands such as `clear`, `tag` and `untag`: [\#223](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/223)
     * Added implementation details of features like friendly-syntax : [\#121](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/121)
 * **Community**:
-  * PRs reviewed (with non-trivial review comments):[\#187](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/187)
+  * PRs reviewed (with non-trivial review comments):[\#222](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/222)
