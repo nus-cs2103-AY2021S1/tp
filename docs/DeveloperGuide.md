@@ -253,9 +253,11 @@ All lifeline with the destroy marker (x) should end with the mark (x) but due to
 </div>
 
 <div markdown="span" class="alert alert-info">:memo:                                                          
-**Note:**                                                                                                     
-For source code with similar implementations, their sequence and activity diagrams may have been condensed into
- a single general diagram to avoid repetitiveness. When this is done, they will be indicated by the icon: :bell:. 
+**Note:** :bell: can indicate either: <br>
+- Source code with similar implementations have had their sequence or/and activity diagrams condensed into a
+ single general diagram <br>
+- Similar use case extensions are grouped <br>
+to avoid repetitiveness  
 </div>                 
                                                                                        
 ### 3.1 Add Features <a id="31-add-features"></a>
@@ -386,7 +388,7 @@ The following sequence diagram shows how list operation works when `execute(reci
 
 ![ListSequenceDiagram](images/implementation/ListSequence.png)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" style="overflow:auto">
 
 :bell: **Note**                                                                                                
                                                                                                                
@@ -447,24 +449,25 @@ The following sequence diagram shows how delete operation works when `execute(de
 ![DeleteActivity](images/implementation/ActivityDiagram/DeleteActivityDiagram.png)
 
 The following sequence diagram shows how delete operation works when `execute(deleteR 1)`, `execute(deleteF 1
-)` or `execute(deleteC 1)` is called:
-
+)` or `execute(deleteC 1)` is called
 ![DeleteSequence](images/implementation/DeleteSequence.png)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" style="overflow:auto">
 
 :bell: **Note**                                                                                                 
                                                                                                                 
-These are condensed diagrams. Several terms in the sequence diagram above have been substituted by a common term 
+These are condensed diagrams. Several terms in the sequence and activity diagram above have been substituted by a
+ common term 
 :<br>                                                                                                           
                                                                                                                 
 Common Term | Recipe-specific term  | Ingredient-specific term | Calorie-specific term                          
-------------|-----------------|----------------------------|---------------------------------------------       
+------------|-----------------------|--------------------------|---------------------------------------------       
 delete | `deleteR` | `deleteF` | `deleteC`
 DeleteCommandParser | `DeleteRecipeCommandParser` | `DeleteIngredientCommandParser` | `DeleteConusmptionCommandParser`                                                                     
 DeleteCommand | `DeleteRecipeCommand` | `DeleteIngredientCommand` | `DeleteConusmptionCommand`                          
 deleteType(1) | `deleteRecipe(1)` | `deleteIngredient(1)` | `deleteConsumption(1)`
-remove(key) | `removeRecipe(key)` | `removeIngredient(key)` | `removeConsumption(key)`    
+remove(key) | `removeRecipe(key)` | `removeIngredient(key)` | `removeConsumption(key)`
+    
 </div>
 
 Given below is an example usage scenario and how the mechanism behaves:
@@ -506,6 +509,7 @@ The following activity diagram shows how edit operation generally works when a r
  `execute("editR 1 n/Pea soup")` <br>
  or an ingredient is edited <br>
  `execute("editF 1 i/tomato")`
+ 
 ![EditActivity](images/implementation/ActivityDiagram/EditActivityDiagram.png)
 
 The following sequence diagram shows how edit operation generally works when a recipe is edited: <br>
@@ -515,10 +519,11 @@ The following sequence diagram shows how edit operation generally works when a r
 
 ![EditSequence](images/implementation/EditSequence.png)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" style="overflow:auto">
 :bell: **Note**                                                                                               
                                                                                                               
-These are condensed diagrams. Several terms in the sequence diagram above has substituted by a common term:<br>
+These are condensed diagrams. Several terms in the sequence and activity diagram above has substituted by a common
+ term:<br>
                                                                                                               
 Common Term | Recipe-specific term  | Ingredient-specific term                                                
 ------------|-----------------|-------------------------------------------------------------------------      
@@ -580,21 +585,28 @@ Command and Parser make use of Substitutability:
 * `GetEditRecipeCommandParser` implements `Parser<GetEditRecipeCommand>`
 * `GetEditIngredientCommandParser` implements `Parser<GetEditIngredientCommand>`
 
+The following activity diagram shows how get edit operation works when `execute(editR 1)` or `execute(editF 1)` API
+ call:
+
+![GetEditActivity](images/implementation/ActivityDiagram/GetEditActivityDiagram.png)
+
 The following sequence diagram shows how get edit operation works when `execute(editR 1)` or `execute(editF 1)` API call:
 
 ![GetEditSequence](images/implementation/GetEditSequence.png)
+
 <div markdown="block" class="alert alert-info">
 
 :bell: **Note**                                                                                               
                                                                                                               
-This is a condensed diagram. Several terms in the sequence diagram above has substituted by a common term:<br>
+These are condensed diagrams. Several terms in the sequence and activity diagram above has substituted by a common
+ term:<br>
                                                                                                               
 Common Term | Recipe-specific term  | Ingredient-specific term                                                
 ------------|-----------------|-------------------------------------------------------------------------      
 edit | `editR` | `editF`
 GetEditCommandParser | `GetEditRecipeCommandParser` | `GetEditIngredientCommandParser`                                      
 GetEditCommand | `GetEditRecipeCommand` | `GetEditIngredientCommand`                           
-commandType: `editR <existing recipe>` or `editF <existing ingredient>`
+commandType| `editR <existing recipe>` | `editF <existing ingredient>`
 
 </div>
 
@@ -662,7 +674,7 @@ The following sequence diagram shows how the search operation generally works wh
 
 ![SearchSequence](images/implementation/SearchSequence.png)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" style="overflow:auto">
 
 :bell: **Note**                                                                                                   
                                                                                                                   
@@ -749,7 +761,7 @@ The following sequence diagram shows how clear operation works when `execute(cle
 
 ![ClearSequenceDiagram](images/implementation/ClearSequence.png)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" style="overflow:auto">
 
 :bell: **Note**                                                                                                    
                                                                                                                    
@@ -816,6 +828,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 ### 5.2 User Stories <a id="52-user-stories"></a>
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+
 | Priority | As a...           | Who...                                                        | I want to...                                                           | So that I can...                                                                      |
 |----------|-------------------|---------------------------------------------------------------|------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
 | **       | Potential user    | wants to work towards being healthier                         | be able to find out and read about the product before using it         | gauge if it is suitable before spending time to install it                            |
@@ -855,7 +868,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### 5.3 Use Cases <a id="53-use-cases"></a>
 For all use cases below, the **System** is the `Wishful Shrinking` and the **Actor** is the `User`, unless specified otherwise.
 
+<div markdown="block" class="alert alert-info">
+
+:bell: **Note**                                                                                                    
+                                                                                                                   
+These are common extensions that can apply to some commands. Let x be the step the extension begins at.
+
+**Invalid Index Extension** applicable to `delete`, `list`, `edit`, `select` commands 
+* xa. The given index is not a positive integer that is greater than 0 or not a valid index in the item list.
+    * xa1. Wishful Shrinking shows an error message.
+    * xa2. User enters new index.
+        Steps xa1-(x+1)a2 are repeated until the index entered is valid.
+      Use case resumes at step x+1.
+
+</div>
+
 #### 5.3.1 Recipe Related Use Cases <a id="531-recipe-related-use-cases"></a>
+
 **Use case: Add a recipe**
 
 **MSS**
@@ -864,6 +893,15 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
   1. Wishful Shrinking adds the recipe to the list of recipes.
 
      Use case ends.
+     
+**Extensions**
+
+* 1a. The new recipe is a duplicate or invalid recipe.
+    * 1a1. Wishful Shrinking shows an error message.
+    * 1a2. User enters new recipe data.
+    Steps 1a1-1a2 are repeated until the data enter is valid.
+    
+    Use case resumes at step 2.  
 
 **Use case: View recipes**
 
@@ -897,11 +935,9 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 
   Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. Wishful Shrinking shows an error message.
-
-      Use case resumes at step 2.
+<div markdown="block" class="alert alert-info">
+      :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
+</div>
       
 **Use case: Getting a recipe to edit**
 
@@ -921,11 +957,9 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 
   Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. Wishful Shrinking shows an error message.
-
-      Use case resumes at step 2.
+<div markdown="block" class="alert alert-info">
+      :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
+</div>
       
 **Use case: Edit recipe**
 
@@ -938,19 +972,16 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
      
 **Extensions**
 
-* 1a. The new recipe is a duplicate recipe.
-    * 3a1. Wishful Shrinking shows an error message.
-    * 3a2. User enters new recipe data.
-    Steps 3a1-3a2 are repeated until the data enter is valid.
+* 1a. The new recipe is a duplicate, unchanged or invalid recipe.
+    * 1a1. Wishful Shrinking shows an error message.
+    * 1a2. User enters new recipe data.
+    Steps 1a1-1a2 are repeated until the data enter is valid..
     
     Use case resumes from step 2.
-
-* 1a. The given index is invalid. 
-
- * 3a1. Wishful Shrinking shows an error message.
-
-   Use case ends.
-  
+   
+<div markdown="block" class="alert alert-info">
+      :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
+</div> 
       
 **Use case: Search for recipe**
 
@@ -959,7 +990,15 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
   1. User wants to search for recipes by their title, ingredients or tags in the recipe collection.
   1. Wishful Shrinking lists the recipes that has the specified title, ingredients or tags, if present.
 
-     Use case ends. 
+     Use case ends.
+     
+**Extensions**
+* 1a. The search fields are invalid.
+    * 1a1. Wishful Shrinking shows an error message.
+    * 1a2. User enters new field data.
+    Steps 1a1-1a2 are repeated until the data enter is valid.
+    
+    Use case resumes at step 2.  
   
 **Use case: Recommend recipes**
 
@@ -988,6 +1027,15 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
   1. Wishful Shrinking adds the specified ingredients into the fridge.
 
      Use case ends.
+     
+**Extensions**
+
+* 1a. The new ingredient is a duplicate or invalid ingredient.
+    * 1a1. Wishful Shrinking shows an error message.
+    * 1a2. User enters new ingredient data.
+    Steps 1a1-1a2 are repeated until the data enter is valid.
+    
+    Use case resumes at step 2. 
 	  
 **Use case: View ingredients**
 
@@ -1021,11 +1069,9 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 
   Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. Wishful Shrinking shows an error message.
-
-      Use case resumes at step 2.
+<div markdown="block" class="alert alert-info">
+     :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
+</div>
 	  
 **Use case: Getting an ingredient to edit**
 
@@ -1044,11 +1090,9 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 
   Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. Wishful Shrinking shows an error message.
-
-      Use case resumes at step 2.
+<div markdown="block" class="alert alert-info">
+      :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
+</div>
 	  
 **Use case: Edit ingredient**
 
@@ -1061,18 +1105,16 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
      
 **Extensions**
 
-* 1a. The new ingredient is a duplicate ingredient.
-    * 3a1. Wishful Shrinking shows an error message.
-    * 3a2. User enters new data.
-    Steps 3a1-3a2 are repeated until the data enter is valid.
+* 1a. The new ingredient is a duplicate, unchanged or invalid ingredient.
+    * 1a1. Wishful Shrinking shows an error message.
+    * 1a2. User enters new data.
+    Steps 1a1-1a2 are repeated until the data enter is valid.
     
     Use case resumes from step 2.
 
-* 1a. The given index is invalid. 
-
- * 1a1. Wishful Shrinking shows an error message.
-
-   Use case ends.
+<div markdown="block" class="alert alert-info">
+      :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
+</div>
   
 	  
 **Use case: Search for ingredient**
@@ -1083,6 +1125,14 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
   1. Wishful Shrinking lists the ingredients in the fridge that has the specified name, if present.
 
      Use case ends.
+     
+**Extensions**
+* 1a. The search field is invalid.
+    * 1a1. Wishful Shrinking shows an error message.
+    * 1a2. User enters new field data.
+    Steps 1a1-1a2 are repeated until the data enter is valid.
+    
+    Use case resumes at step 2.
 
 **Use case: Clear all ingredients in fridge**
 
@@ -1111,11 +1161,9 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 
   Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. Wishful Shrinking shows an error message.
-
-      Use case resumes at step 2.
+<div markdown="block" class="alert alert-info">
+  :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
+</div>
       
 **Use case: View recipes ate**
 
@@ -1150,11 +1198,9 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 
   Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. Wishful Shrinking shows an error message.
-
-      Use case resumes at step 2.
+<div markdown="block" class="alert alert-info">
+  :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
+</div>
 
 
 
@@ -1188,14 +1234,9 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
      Use case ends.
 **Extensions**
 
-* 2a. The given index is invalid.
-
-    * 2a1. Wishful Shrinking shows an error message.
-
-      Use case ends.
-
-
-*{More to be added}*
+<div markdown="block" class="alert alert-info">
+  :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
+</div>
 
 ### 5.4 Non-Functional Requirements <a id="54-non-function-requirements"></a>
 
