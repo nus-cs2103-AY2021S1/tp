@@ -1,26 +1,40 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SEARCH_KEYWORD;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Telegram;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventTime;
 import seedu.address.model.module.ModularCredits;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.AssignmentName;
+import seedu.address.model.module.grade.AssignmentPercentage;
+import seedu.address.model.module.grade.AssignmentResult;
 import seedu.address.model.module.grade.Grade;
+import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Criterion;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.TaskName;
 
 /**
@@ -44,18 +58,66 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String keywords} into a {@code List<String>}.
+     *
+     * @param keywords String containing search keywords provided by the user.
+     * @return List of search keywords.
+     * @throws ParseException If the given {@code keywords} is invalid.
+     */
+    public static List<String> parseSearchKeywords(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        if (trimmedKeywords.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_SEARCH_KEYWORD));
+        } else {
+            String[] keywordArray = keywords.split("\\s+");
+            assert keywordArray.length > 0 : "There must be at least one search keyword provided";
+            return Arrays.asList(keywordArray);
+        }
+    }
+
+    // ==================== ContactList ===============================================================
+    /**
+     * Parses a {@code String name} into a {@code ContactName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static ContactName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!ContactName.isValidName(trimmedName)) {
+            throw new ParseException(ContactName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new ContactName(trimmedName);
     }
 
     /**
@@ -88,32 +150,7 @@ public class ParserUtil {
         return new Telegram(trimmedTelegram);
     }
 
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
+    // ==================== ModuleList ===============================================================
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -146,39 +183,54 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String lesson} into a {@code ModuleLesson}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code lesson} is invalid.
+     */
+    public static ModuleLesson parseModuleLesson(String lesson) throws ParseException {
+        requireNonNull(lesson);
+        String trimmedLesson = lesson.trim();
+        if (!ModuleLesson.isValidLesson(trimmedLesson)) {
+            throw new ParseException(ModuleLesson.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleLesson(trimmedLesson);
+    }
+
+    /**
      * Parses a {@code String assignmentName}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static String parseAssignmentName(String assignmentName) throws ParseException {
+    public static AssignmentName parseAssignmentName(String assignmentName) throws ParseException {
         String trimmedAssignmentName = assignmentName.trim();
-        if (!Assignment.isValidAssignmentName(trimmedAssignmentName)) {
+        if (!AssignmentName.isValidAssignmentName(trimmedAssignmentName)) {
             throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_NAME_CONSTRAINTS);
         }
-        return trimmedAssignmentName;
+        return new AssignmentName(trimmedAssignmentName);
     }
 
     /**
      * Parses a {@code String assignmentPercentage}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static double parseAssignmentPercentage(String assignmentPercentage) throws ParseException {
+    public static AssignmentPercentage parseAssignmentPercentage(String assignmentPercentage) throws ParseException {
         double trimmedAssignmentPercentage = Double.parseDouble(assignmentPercentage.trim());
-        if (!Assignment.isValidAssignmentPercentage(trimmedAssignmentPercentage)) {
+        if (!AssignmentPercentage.isValidAssignmentPercentage(trimmedAssignmentPercentage)) {
             throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_PERCENTAGE_CONSTRAINTS);
         }
-        return trimmedAssignmentPercentage;
+        return new AssignmentPercentage(trimmedAssignmentPercentage);
     }
 
     /**
      * Parses a {@code String assignmentResult}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static double parseAssignmentResult(String assignmentResult) throws ParseException {
+    public static AssignmentResult parseAssignmentResult(String assignmentResult) throws ParseException {
         double trimmedAssignmentResult = Double.parseDouble(assignmentResult.trim());
-        if (!Assignment.isValidAssignmentResult(trimmedAssignmentResult)) {
+        if (!AssignmentResult.isValidAssignmentResult(trimmedAssignmentResult)) {
             throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
         }
-        return trimmedAssignmentResult;
+        return new AssignmentResult(trimmedAssignmentResult);
     }
 
     /**
@@ -188,7 +240,7 @@ public class ParserUtil {
     public static ModularCredits parseModularCredits(String modularCredits) throws ParseException {
         double trimmedModularCredits;
         if (!ModularCredits.isValidModularCredits(modularCredits)) {
-            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
+            throw new ParseException(ModularCredits.MESSAGE_CONSTRAINTS);
         } else {
             trimmedModularCredits = Double.parseDouble(modularCredits.trim());
         }
@@ -204,6 +256,19 @@ public class ParserUtil {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
         return trimmedGrade;
+    }
+    /**
+     * Parses a {@code String modularCredits}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static GradePoint parseGradePoint(String gradePoint) throws ParseException {
+        double trimmedGradePoint;
+        if (!GradePoint.isValidGradePoint(gradePoint)) {
+            throw new ParseException(GradePoint.MESSAGE_CONSTRAINTS);
+        } else {
+            trimmedGradePoint = Double.parseDouble(gradePoint.trim());
+        }
+        return new GradePoint(trimmedGradePoint);
     }
 
     // ==================== TodoList ===============================================================
@@ -233,8 +298,6 @@ public class ParserUtil {
         assert priority != null;
         String priorityAllUpperCase = priority.toUpperCase();
         switch(priorityAllUpperCase) {
-        case("HIGHEST"):
-            return Priority.HIGHEST;
         case("HIGH"):
             return Priority.HIGH;
         case("NORMAL"):
@@ -243,6 +306,25 @@ public class ParserUtil {
             return Priority.LOW;
         default:
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static Status parseTaskStatus(String status) throws ParseException {
+        assert status != null;
+        String priorityAllUpperCase = status.toUpperCase();
+        switch(priorityAllUpperCase) {
+        case("COMPLETED"):
+            return Status.COMPLETED;
+        case("INCOMPLETE"):
+            return Status.NOT_COMPLETED;
+        default:
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
     }
 
@@ -270,9 +352,8 @@ public class ParserUtil {
         assert criterion != null;
         String criterionAllUpperCase = criterion.toUpperCase();
         switch(criterionAllUpperCase) {
-        case("DESCRIPTION"):
-        case("DESC"):
-            return Criterion.DESCRIPTION;
+        case("NAME"):
+            return Criterion.NAME;
         case("DATE"):
         case("DEADLINE"):
             return Criterion.DATE;
@@ -281,6 +362,55 @@ public class ParserUtil {
             return Criterion.PRIORITY;
         default:
             throw new ParseException(Criterion.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    ///////////////////// Scheduler /////////////////////////////
+
+    /**
+     * Checks and parses the given input into an EventName.
+     * @param name name of event.
+     * @return EventName the container for the name.
+     * @throws ParseException invalid name.
+     */
+    public static EventName parseEventName(String name) throws ParseException {
+        if (EventName.isValidName(name)) {
+            return new EventName(name);
+        } else {
+            throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses the input string and creates an EventTime object based on that.
+     * @param date string to be parsed.
+     * @return EventTime.
+     */
+    public static EventTime parseEventTime(String date) throws ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
+        try {
+            LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+            return new EventTime(localDateTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(EventTime.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Returns a LocalDateTime based on the given input.
+     *
+     * @param date date in string.
+     * @return LocalDateTime datetime object.
+     * @throws ParseException when the given string is in the wrong format.
+     */
+    public static LocalDateTime parseDate(String date) throws ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
+        try {
+            LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+            return localDateTime;
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Invalid date and time entered. Please follow this format: "
+                    + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)");
         }
     }
 }
