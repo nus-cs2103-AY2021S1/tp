@@ -1,5 +1,7 @@
 package seedu.address.logic.parser.data;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.ArrayList;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -16,12 +18,18 @@ public class InstructionParser {
      * @return ArrayList of String objects of the instructions in the parameter
      * @throws ParseException
      */
-    public static ArrayList<Instruction> parse(String instructionString) {
+    public static ArrayList<Instruction> parse(String instructionString) throws ParseException {
         String[] instructionsToken = instructionString.split("\\.");
         ArrayList<Instruction> instructions = new ArrayList<>();
         for (int i = 0; i < instructionsToken.length; i++) {
-            String instr = (i + 1) + ") " + instructionsToken[i].trim();
-            instructions.add(new Instruction(instr));
+            if (!instructionsToken[i].trim().equals("")) {
+                String instr = instructionsToken[i].trim();
+                instructions.add(new Instruction(instr));
+            }
+        }
+        if (instructions.size() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "This recipe must contain instruction"));
         }
         return instructions;
     }
