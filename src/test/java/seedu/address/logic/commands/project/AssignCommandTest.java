@@ -59,6 +59,7 @@ public class AssignCommandTest {
     @Test
     public void execute_validIndexPersonInvalidAssign_throwsCommandException() {
 
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -113,7 +114,7 @@ public class AssignCommandTest {
         Task taskToAssign = project.getFilteredSortedTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         Participation assignee = project.getParticipation(ALICE.getGitUserNameString());
         project.updateTaskFilter(task -> task.getTaskName().contains(taskToAssign.getTaskName()));
-        ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString());
         String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssign, assignee);
 
