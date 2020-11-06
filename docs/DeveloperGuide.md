@@ -25,9 +25,6 @@ title: Developer Guide
         - [Non-Functional Requirements](#non-functional-requirements)
         - [Glossary](#glossary)
     - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-        - [Launch and shutdown](#launch-and-shutdown)
-        - [Deleting a flashcard](#deleting-a-flashcard)
-        - [Saving data](#saving-data)
     - [Appendix: Effort](#appendix-effort)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -84,10 +81,9 @@ The sections below give more details of each component.
 
 ### UI component
 
-
-**API** :
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+**API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/flashcard/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `FlashcardViewCard` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
@@ -181,7 +177,7 @@ Question and answer are mandatory inputs while the rest are optional inputs. Whe
 
 It implements the following operations:
 * `AddCommand#execute()` - Add the flashcard to the `ModelManager` and `FlashcardDeck`
-* `AddCommandParser# parse (String args)` - Conduct input validation and parse user’s input
+* `AddCommandParser#parse(String args)` - Conduct input validation and parse user’s input
 
 The following sequence diagram shows how the `add` operation works:
 
@@ -212,7 +208,7 @@ Given below is an example of how the review mechanism behaves at each step:
 Step 1. The user launches the application.
 
 Step 2. The user executes `review` command. `MainWindow` will receive a `CommandResult` and calls `CommandResult#isReviewMode` which returns true. A new `ReviewPanel` 
-is created and `MainWindow#enterStudyMode` is then called with this `ReviewPanel`, to enter review mode.
+is created and `MainWindow#enterStudyMode(StudyPanel studyPanel)` is then called with this `ReviewPanel`, to enter review mode.
 
 Step 3. In `MainWindow#enterStudyMode`, the UI elements are altered to show the review user interface. In `ReviewPanel` a listener is set 
 up to listen for arrow key presses, and a new `StudyManager` is created to keep track of state.
