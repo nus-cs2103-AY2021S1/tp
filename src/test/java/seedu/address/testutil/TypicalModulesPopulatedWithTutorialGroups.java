@@ -22,7 +22,7 @@ public class TypicalModulesPopulatedWithTutorialGroups {
     public static final Module CS2030 = new Module(new ModuleId("CS2030"));
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code Trackr} with all the typical modules.
      */
     public static Trackr getTypicalModuleList() {
         Trackr tr = new Trackr();
