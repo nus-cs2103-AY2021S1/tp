@@ -58,6 +58,11 @@ public class EditTeammateCommandTest {
 
         assertCommandSuccess(editTeammateCommand, model, expectedMessage, expectedModel);
 
+        for (Person p : Person.getAllPeople()) {
+            System.out.println(p.getPersonName());
+        }
+
+
     }
 
     @Test

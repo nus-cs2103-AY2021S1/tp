@@ -8,7 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
+import static seedu.address.testutil.TypicalMainCatalogue.getTypicalMainCatalogue;
 
 import java.util.HashMap;
 
@@ -31,7 +31,7 @@ public class AssignCommandTest {
 
     @Test
     public void execute_validIndexPersonInvalidAssign_throwsCommandException() {
-
+        Project.getAllProjects().clear();
 
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
