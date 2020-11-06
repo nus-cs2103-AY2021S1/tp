@@ -46,6 +46,8 @@ Given below are my contributions to the project.
   * Added the ability to search for a recipe in the recipe list by its ingredients or tags, in addition to name. (Pull requests [\#109](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/109))
     * Justification: This feature improves upon the original "search for contact by name" feature that was originally in AddressBook Level 3, and later implemented in Wishful Shrinking, as it now allows users to search for recipes not only by name, but also by the ingredients it contains, which is essential in recipes, and also tags, which are helpful for the user to filter their favourite recipes.
 
+  * Wrote additional tests for existing features to increase coverage from 63.5% to 67.5% (Pull requests [\#246](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/246))
+
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `searchR`, `recommend` and `deleteC` [\#110](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/110)
