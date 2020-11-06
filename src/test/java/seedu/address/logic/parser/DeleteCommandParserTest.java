@@ -35,17 +35,18 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_validArgsMultipleInputs_returnsDeleteCommand() throws ParseException {
         List<Index> parsedIndexes = ParserUtil.parseIndexes("1 2");
-
         assertParseSuccess(parser, "1 2", new DeleteCommand(parsedIndexes));
     }
 
     @Test
     public void parse_invalidArgsAlphabet_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "b hcc", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidArgsSpecialChar_throwsParseException() {
+        assertParseFailure(parser, "*", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "% ^ &", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }
