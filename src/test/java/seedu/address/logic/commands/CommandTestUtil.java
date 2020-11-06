@@ -90,7 +90,8 @@ public class CommandTestUtil {
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Vendor> expectedFilteredList = new ArrayList<>(actualModel.getObservableVendorList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, new StorageManager()));
+        assertThrows(CommandException.class, expectedMessage, () ->
+                command.execute(actualModel, new StorageManager()));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getObservableVendorList());
     }
