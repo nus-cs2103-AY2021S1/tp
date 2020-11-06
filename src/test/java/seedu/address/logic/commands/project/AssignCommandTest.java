@@ -43,6 +43,7 @@ public class AssignCommandTest {
 
     @Test
     public void execute_invalidIndexValidPerson_throwsCommandException() {
+        Project.getAllProjects().clear();
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         Index outOfBoundIndex = Index.fromOneBased(project.getFilteredSortedTaskList().size() + 1);
@@ -56,6 +57,7 @@ public class AssignCommandTest {
 
     @Test
     public void execute_validIndexPersonInvalidAssign_throwsCommandException() {
+        Project.getAllProjects().clear();
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -72,6 +74,8 @@ public class AssignCommandTest {
 
     @Test
     public void execute_validIndexValidPersonUnfilteredList_success() {
+        Project.getAllProjects().clear();
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -102,6 +106,8 @@ public class AssignCommandTest {
 
     @Test
     public void execute_validIndexValidPersonFilteredList_success() {
+        Project.getAllProjects().clear();
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
