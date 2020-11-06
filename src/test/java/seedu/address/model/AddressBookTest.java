@@ -88,7 +88,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void setTag_nullTag_returnsNullPointerException() {
+    public void setTag_nullTag_throwsNullPointerException() {
         AddressBook dummyAddressBook = addressBook;
         dummyAddressBook.addTag(CS2103);
         assertThrows(NullPointerException.class, () -> dummyAddressBook.setTag(CS2103, null));
