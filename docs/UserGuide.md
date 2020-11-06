@@ -328,12 +328,12 @@ Finds all employees whose tags contain the one or more `KEYWORD(s)`.
 Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
 
 **:information_source: Notes:**<br>
-* The search is case-insensitive. e.g `Friday` will match `friday`.
-* The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.
-* Only the tag names are searched.
-* Only full words will be matched. e.g. `Fri` will not match `Friday`.
+* The search is case-insensitive. e.g `Friday` will match `friday`.<br>
+* The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.<br>
+* Only the tag names are searched.<br>
+* Only full words will be matched. e.g. `Fri` will not match `Friday`.<br>
 * Employees whose tag(s) matching at least one keyword will be listed in the _Employee Directory_ pane
- (i.e. `OR` search).  e.g. `Friday Monday` will find employees whose tags contain `Friday` or `Monday`.
+ (i.e. `OR` search).  e.g. `Friday Monday` will find employees whose tags contain `Friday` or `Monday`.<br>
 
 
 Examples:
@@ -360,10 +360,10 @@ Format: `c-today`
 **:information_source: Note:**<br>
 * In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
 . You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
-tag(s) by using editing employee's information feature (Refer to `c-edit` command).
-* The search is case-insensitive. e.g `Friday` will match `friday`.
-* The application will automatically get today's day based on the current computer's date.
-* Only full words will be marched. e.g `Fri` will not match `Friday`
+tag(s) by using editing employee's information feature (Refer to `c-edit` command).<br>
+* The search is case-insensitive (e.g `Friday` will match `friday`).<br>
+* The application will automatically get today's day based on the current computer's date.<br>
+* Only full words will be marched (e.g `Fri` will not match `Friday`).<br>
 
 Examples:
 * Let's say today is `Thursday`. You want to find out who are the available manpower for today. You can follow these
@@ -394,10 +394,10 @@ Format: `c-tomorrow`
 **:information_source: Note:**<br>
 * In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
 . You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
-tag(s) by using editing employee's information feature (Refer to `c-edit` command).
-* The search is case-insensitive. e.g `Friday` will match `friday`.
-* The application will automatically get tomorrow's day based on the current computer's date.
-* Only full words will be marched. e.g `Fri` will not match `Friday`
+tag(s) by using editing employee's information feature (Refer to `c-edit` command).<br>
+* The search is case-insensitive. e.g `Friday` will match `friday`.<br>
+* The application will automatically get tomorrow's day based on the current computer's date.<br>
+* Only full words will be marched (e.g `Fri` will not match `Friday`).<br>
 
 Examples:
 * Let's say tomorrow is `Friday`. You want to find out who are the available manpower for tomorrow. You can follow these
@@ -447,15 +447,16 @@ Format: `c-archive INDEX`
 
 **:information_source: Notes:**<br>
 
-* Archives the employee at the specified `INDEX` in the _Employee Directory_ pane.
-* The `INDEX` refers to the index number shown in the current _Employee Directory_ pane.
-* The `INDEX` **must be a positive integer** (e.g. 1, 2, 3, ...​)
+* Archives the employee at the specified `INDEX` in the _Employee Directory_ pane.<br>
+* The `INDEX` refers to the index number shown in the current _Employee Directory_ pane.<br>
+* The `INDEX` **must be a positive integer** (e.g. 1, 2, 3, ...​).<br>
 * The `INDEX` **should not be larger than** the total number of employees listed in the current 
 _Employee Directory_ pane. (e.g. There are 2 employees listed in the current _Employee Directory_ pane. The `INDEX`
-should be less or equal to 2.)
+should be less or equal to 2.)<br>
 * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
  color label, named as `[Archived]`, in front of the name), command `c-active-list` needs to be used first to see a
-  list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified by `INDEX`.
+  list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified
+  by `INDEX`.<br>
 
 
 Examples:
@@ -483,10 +484,10 @@ Format: `c-archive-all`
 
 **:information_source: Notes:**<br>
 
-* Archives all employees in the _Employee Directory_ pane.
+* Archives all employees in the _Employee Directory_ pane.<br>
 * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
  color label, named as `[Archived]`, in front of their names), command `c-active-list` needs to be used first to see a
-  list of all your employees. Then, `c-archive-all` can be used to archive all employees.
+  list of all your employees. Then, `c-archive-all` can be used to archive all employees.<br>
 
 
 Examples:
@@ -514,7 +515,7 @@ Format: `c-archive-list`
 **:information_source: Notes:**<br>
 
 * Archived employees will be shown with a red color label, named as `[Archived]`, in front of their names. You may
- refer to the screenshot below.
+ refer to the screenshot below.<br>
 
 Examples:
 * Let's say you want to see an archived employee's information, you can follow these steps.
@@ -537,17 +538,17 @@ Format: `c-unarchive INDEX`
 
 **:information_source: Notes:**<br>
 
-* Unarchives the employee at the specified `INDEX` in the _Employee Directory_ pane.
-* The `INDEX` refers to the index number shown in the current _Employee Directory_ pane.
-* The `INDEX` **must be a positive integer** (e.g. 1, 2, 3, ...​)
-* The `INDEX` **should not be larger than** the total number of employees listed in the current 
+* Unarchives the employee at the specified `INDEX` in the _Employee Directory_ pane.<br>
+* The `INDEX` refers to the index number shown in the current _Employee Directory_ pane.<br>
+* The `INDEX` **must be a positive integer** (e.g. 1, 2, 3, ...​).<br>
+* The `INDEX` **should not be larger than** the total number of employees listed in the current
 _Employee Directory_ pane. (e.g. There are 2 employees listed in the current _Employee Directory_ pane. The `INDEX`
-should be less or equal to 2.)
+should be less or equal to 2.)<br>
 * If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
  red color label, named as `[Archived]`, in front of their names. While employees in the active/unarchived employee list
   don't have this red label.), command `c-archive-list` needs to be used first to see a list of all your archived
   employees. Then, `c-unarchive INDEX` can be used to unarchive a specified
-   employee identified by `INDEX`.
+   employee identified by `INDEX`.<br>
 
 
 Examples:
@@ -586,7 +587,7 @@ All tCheck data (i.e. ingredient data, sales data, employees' data) will be save
  file automatically after each command executes. There is no need to save manually by entering any command.
  
  **:information_source: Notes:**<br>
- * User should not attempt to make any change in all data files.
+ * User should not attempt to make any change in all data files.<br>
 
 #### 4.4 Calendar :
 
@@ -596,7 +597,7 @@ tCheck also provides a calendar pane when you start the application. It will aut
  your work planning.
 
  **:information_source: Notes:**<br>
- * In the current version, tCheck only can show the calendar for the current month.
+ * In the current version, tCheck only can show the calendar for the current month.<br>
  
  {Screenshot}
  
