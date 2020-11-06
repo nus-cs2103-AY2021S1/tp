@@ -38,13 +38,17 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.global.AddCommand;
+import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.RepoUrl;
 import seedu.address.model.tag.ProjectTag;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.ProjectBuilder;
+import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TypicalTasks;
 
 public class AddTaskCommandParserTest {
     private AddTaskCommandParser parser = new AddTaskCommandParser();
@@ -63,14 +67,13 @@ public class AddTaskCommandParserTest {
         testTask2.add(null);
         testTask2.add("0");
         testTask2.add("false");
-        Project expectedProject = new ProjectBuilder(BOT).withTags(VALID_PROJECT_TAG_B).withTasks(
-                testTask1).build();
+        Task expectedTask = new TaskBuilder(TypicalTasks.TASK_A).withTaskDescription("").build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B
                 + REPOURL_DESC_B
-                + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG, new AddCommand(
-                expectedProject));
+                + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG, new AddTaskCommand(
+                expectedTask));
 
         // multiple project names - last name accepted
         assertParseSuccess(parser, PROJECT_NAME_DESC_AMY + PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B
