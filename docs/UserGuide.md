@@ -23,6 +23,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
     - [Marking all students' attendance: `mark all`](#marking-all-students-attendance-mark-all "Go to Marking all students' attendance")
     - [Scoring a student's participation: `score`](#scoring-a-students-participation-score "Go to Scoring a student's participation mark")
     - [Scoring all students' participation: `score all`](#scoring-all-students-participation-score-all "Go to Scoring all students' participation marks")
+    - [View lowest scoring students: `lowest-score`](#View-lowest-scoring-students-lowest-score "Go to View lowest scoring students")
     - [Clear all students: `clear`](#clearing-all-entries-clear "Go to Clearing all entries")
     - [Exit the program: `exit`](#exiting-the-program-exit "Go to Exiting the program")
 - [Command Summary](#command-summary "Go to Command Summary")
@@ -242,6 +243,14 @@ score all cp/10
 score all cp/2.94
 ```
 
+### View lowest scoring students: `lowest-score`
+Displays all students with the lowest score in the list.
+```
+lowest-score
+```
+- Lists the records of all students in the current session with the lowest score.
+- Will show no students if the student record list is empty.
+
 ### Clearing all entries: `clear`
 Clears all saved data in taskmaster (both students and sessions).
 ```
@@ -271,6 +280,7 @@ exit
 | Mark all          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
 | Score             | ```score INDEX cp/SCORE``` <br> e.g., `score 1 cp/5`                                             |
 | Score all         | ```score all cp/SCORE``` <br> e.g., `score all cp/10`
+| Lowest score      | `lowest-score`
 | Clear             | ```clear```                                                                                              |
 | Exit              | ```exit```                                                                                              |
 

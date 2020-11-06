@@ -135,6 +135,24 @@ public class StudentRecordListManager implements StudentRecordList {
     }
 
     /**
+     * Returns the lowest score amongst all students in the student list.
+     */
+    @Override
+    public double getLowestScore() {
+        double lowestScore = Integer.MAX_VALUE;
+        for (int i = 0; i < internalList.size(); i++) {
+            StudentRecord studentRecord = internalList.get(i);
+            double score = studentRecord.getClassParticipation().getRawScore();
+
+            if (score < lowestScore) {
+                lowestScore = score;
+            }
+        }
+
+        return lowestScore;
+    }
+
+    /**
      * Creates and returns a {@code StudentRecord} with the details of {@code studentRecordToEdit}
      * edited with {@code editStudentRecordDescriptor}.
      * Note that the {@code name} and {@code nusnetId} should not be edited.

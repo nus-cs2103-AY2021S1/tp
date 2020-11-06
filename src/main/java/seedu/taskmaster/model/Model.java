@@ -18,11 +18,14 @@ import seedu.taskmaster.model.student.Student;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /** {@code Predicate} that always evaluates to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
-    /** {@code Predicate} that always evaluate to true */
+    /** {@code Predicate} that always evaluates to true */
     Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
+
+    /** {@code Predicate} that always evaluates to true */
+    Predicate<StudentRecord> PREDICATE_SHOW_ALL_STUDENT_RECORDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -80,6 +83,9 @@ public interface Model {
      */
     void addSession(Session session);
 
+    /**
+     * Changes the currentSession to a Session with that name.
+     */
     void changeSession(SessionName sessionName);
 
     /**
@@ -133,6 +139,13 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     void updateFilteredSessionList(Predicate<Session> predicate);
+
+    void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate);
+
+    /**
+     * Updates the filter of the filtered student list to show the students with the lowest score.
+     */
+    void showLowestScoringStudents();
 
     /**
      * Marks the attendance of the given student record {@code target} with the given {@code attendanceType}.

@@ -131,6 +131,13 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         return sessions.contains(sessionName);
     }
 
+    /**
+     * Returns the Session with the sessionName
+     */
+    Session getSession(SessionName sessionName) {
+        return sessions.get(sessionName);
+    }
+
     /* Student-Level Operations */
 
     /**
@@ -296,6 +303,19 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         }
 
         currentSession.get().scoreAllParticipation(nusnetIds, score);
+    }
+
+    /**
+     * Returns the lowest score amongst all students in the student list.
+     */
+    public double getLowestScore() throws NoSessionException, NoSessionSelectedException {
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        } else if (currentSession.isNull().get()) {
+            throw new NoSessionSelectedException();
+        }
+
+        return currentSession.get().getLowestScore();
     }
 
     /* Util Methods */
