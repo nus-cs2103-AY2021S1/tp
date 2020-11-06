@@ -38,7 +38,7 @@ public class IngredientCard extends UiPart<Region> {
     private Label id;
 
     /**
-     * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
+     * Creates a {@code IngredientCode} with the given {@code Ingredient} and index to display.
      */
     public IngredientCard(Ingredient ingredient, int displayedIndex) {
         super(FXML);

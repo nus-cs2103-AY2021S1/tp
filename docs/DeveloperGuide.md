@@ -97,6 +97,10 @@ title: Developer Guide
     - [6.1 Launch and Shutdown](#61-launch-and-shutdown)
     - [6.2 Deleting a Recipe](#62-deleting-a-recipe)
     - [6.3 Saving Data](#63-saving-data)
+7. [Appendix: Model Component](#7-appendix-model-component)
+    - [7.1 Recipe](#71-recipe)
+    - [7.2 Ingredient](#72-ingredient)
+    - [7.3 Consumption](#73-consumption)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -207,6 +211,13 @@ The `UI` component,
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The more details of the Recipe, Ingredient, Consumption class diagrams
+ is attached at the [back](#7-appendix-model-component)
+
+</div>
 
 The `Model`,
 
@@ -1238,4 +1249,14 @@ testers are expected to do more *exploratory* testing.
    1. Test case: delete WishfulShrinking.json data file.
       Expected: If WishfulShrinking.json file cannot be found, the app will create the data file populated with
        sample recipes.
- 
+
+## 7. **Appendix: *Model Component*** <a id="7-model-component"></a>
+
+### 7.1 Recipe <a id="71-recipe"></a>
+![Recipe in Model Component](images/ModelClass_Recipe.png)
+
+### 7.2 Ingredient <a id="72-ingredient"></a>
+![Ingredient in Model Component](images/ModelClass_Ingredient.png)
+
+### 7.3 Consumption <a id="72-consumption"></a>
+![Consumption in Model Component](images/ModelClass_Consumption.png)

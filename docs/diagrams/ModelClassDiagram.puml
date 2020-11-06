@@ -16,18 +16,15 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Package Recipe {
-Class Recipe
-Class Ingredient
-Class Name
-Class Calories
-Class Instruction
-Class Image
-Class UniqueRecipeList
+
 }
 
-Package Tag {
-Class Tag
+Package Ingredient {
 }
+
+Package Consumption {
+}
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -36,24 +33,18 @@ HiddenOutside ..> Model
 WishfulShrinking .up.|> ReadOnlyWishfulShrinking
 
 ModelManager .up.|> Model
-Model .right.> ObservableList
-ModelManager o--> "1" WishfulShrinking
+Model .right..> ObservableList
+ModelManager o---> "1" WishfulShrinking
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-WishfulShrinking *--> "1" UniqueRecipeList
-UniqueRecipeList o--> "*" Recipe
-Recipe *--> Name
-Recipe *--> Ingredient
-Recipe *--> Calories
-Recipe *--> Instruction
-Recipe *--> Image
-Recipe --> "*" Tag
+WishfulShrinking *---> "1" Recipe
+ModelManager --->"1" Recipe : filtered recipe list
 
-Name -[hidden]right-> Ingredient
-Ingredient -[hidden]right-> Calories
-Calories -[hidden]right-> Instruction
-Instruction -[hidden]right-> Image
+WishfulShrinking *---> "1" Ingredient
+ModelManager --->"1" Ingredient : filtered ingredient list
 
-ModelManager -->"1" Recipe : filtered list
+WishfulShrinking *---> "1" Consumption
+ModelManager -->"1" Consumption : filtered consumption list
+
 @enduml
