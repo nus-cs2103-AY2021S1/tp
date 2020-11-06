@@ -21,6 +21,7 @@ import seedu.taskmaster.logic.commands.LowestScoreCommand;
 import seedu.taskmaster.logic.commands.MarkCommand;
 import seedu.taskmaster.logic.commands.NewSessionCommand;
 import seedu.taskmaster.logic.commands.ParticipationCommand;
+import seedu.taskmaster.logic.commands.RandomStudentCommand;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
 
 /**
@@ -82,6 +83,9 @@ public class TaskmasterParser {
 
         case LowestScoreCommand.COMMAND_WORD:
             return new LowestScoreCommand();
+
+        case RandomStudentCommand.COMMAND_WORD:
+            return new RandomStudentCommand();
 
         case NewSessionCommand.COMMAND_WORD:
             return new NewSessionCommandParser().parse(arguments);
