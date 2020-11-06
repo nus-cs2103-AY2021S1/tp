@@ -336,7 +336,7 @@ remove data that are no longer needed. The command is:
   
 * `i-reset-all` - Resets the ingredients' levels of all ingredients to zero.
   
-#### Completed Implementation
+#### Implementation
   
 The completed reset all ingredients' levels mechanism is facilitated by `IngredientBook`. It implements 
 `ReadOnlyIngredientBook` interface, which will allow the ingredients to be displayed in the user interface.
