@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.TypicalPersons.DESC_A;
@@ -66,7 +65,7 @@ public class AddTeammateCommandTest {
         assertEquals(addTeammateCommand1Copy, addTeammateCommand1);
 
         // different types -> returns false
-        assertFalse(addTeammateCommand1.equals("this test will return false"));
+        assertNotEquals(addTeammateCommand1, "this test will return false");
 
         // null -> returns false
         assertNotEquals(addTeammateCommand1, null);

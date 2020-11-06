@@ -110,7 +110,7 @@ public class SampleDataUtil {
                     getTaskSet(task1)),
             new Project(new ProjectName("Basket Web"), new Deadline("21-04-2021 00:00:00"),
                     new RepoUrl("http://github.com/a/b.git"),
-                    new ProjectDescription("Puts all your ususal searches into one place"),
+                    new ProjectDescription("Puts all your usual searches into one place"),
                     getTagSet("internet", "iot"), new HashMap<>(),
                     getTaskSet(task2, task3)),
             new Project(new ProjectName("Charletan"), new Deadline("21-04-2021 00:00:00"),

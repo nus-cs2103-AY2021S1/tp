@@ -15,6 +15,7 @@ public class TeammateTestUtil {
     public static final String VALID_TEAMMATE_GIT_USERNAME_A = "Sparrow32";
     public static final String VALID_TEAMMATE_GIT_USERNAME_B = "Tatey";
     public static final String VALID_TEAMMATE_GIT_USERNAME_C = "Modi";
+    public static final String INVALID_TEAMMATE_GIT_USERNAME = "$";
 
     public static final String VALID_TEAMMATE_PHONE_A = "92883923";
     public static final String VALID_TEAMMATE_PHONE_B = "92824833";
@@ -58,6 +59,6 @@ public class TeammateTestUtil {
         + "May Theresa";
     public static final String INVALID_TEAMMATE_PHONE_DESC_A = " " + PREFIX_TEAMMATE_PHONE + "3818djfjjd";
     public static final String INVALID_TEAMMATE_EMAIL_DESC_A = " " + PREFIX_TEAMMATE_EMAIL + "hey @";
-    public static final String INVALID_TEAMMATE_ADDRESS_DESC_A = " " + PREFIX_TEAMMATE_ADDRESS + "  the Platform  ";
+    public static final String INVALID_TEAMMATE_ADDRESS_DESC_A = " " + PREFIX_TEAMMATE_ADDRESS + " ";
 
 }
