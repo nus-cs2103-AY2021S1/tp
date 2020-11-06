@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_R + "30 "
             + PREFIX_C + "my abs hurt:( \n";
 
-    public static final String MESSAGE_SUCCESS = "New log added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New log added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_LOG = "This log already exists in the log book";
 
     private final Log toAdd;

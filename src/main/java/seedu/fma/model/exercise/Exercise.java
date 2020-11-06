@@ -73,8 +73,8 @@ public class Exercise {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" CaloriesPerRep: ")
+        builder.append(getName()  + "\n")
+                .append("CaloriesPerRep: ")
                 .append(getCaloriesPerRep());
         return builder.toString();
     }

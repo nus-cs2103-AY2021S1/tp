@@ -25,7 +25,7 @@ public class AddExCommand extends Command {
             + PREFIX_E + "<exercise name> "
             + PREFIX_C + "<calories per rep>";
 
-    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New exercise added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_LOG = "This exercise already exists in the log book";
 
     private final Exercise toAdd;
