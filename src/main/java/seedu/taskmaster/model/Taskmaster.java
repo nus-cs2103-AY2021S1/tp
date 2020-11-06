@@ -406,6 +406,14 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         currentSession.get().updateStudentRecords(studentRecords);
     }
 
+    public boolean inSession() {
+        return this.currentSession.isNull().get();
+    }
+
+    public SessionName currentSessionName() {
+        return this.currentSession.get().getSessionName();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
