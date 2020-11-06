@@ -375,16 +375,18 @@ All related properties and meetings have been deleted.
 
 # Property Features
 
-## Adding a property: 
+## Adding a property
 
 Adds a property and its relevant details to the property list.
 
 - Command:  `add-p`
 - Format: `add-p n/PROPERTY_NAME s/SELLER_ID ap/ASKING_PRICE t/TYPE a/ADDRESS r/IS_RENTAL`
 
-💡 ```IS_RENTAL``` can be one of the following formats: Yes / yes / Y / y or No / no / N / n
+💡 ```IS_RENTAL``` can be one of the following formats: Yes / yes / Y / y or No / no / N / n  
+💡 Property name refers to the generic brand name and can be the same for multiple properties, whereas address refers to the full address of the property and must be unique.  
 
-Warning: The seller id must exist inside the seller list.
+⚠️ : The seller id must exist inside the seller list.  
+⚠️ : Price must be greater than 0 and less or equals to 1 trillion.
 
 Example:
 
@@ -402,6 +404,8 @@ Property type: Landed
 Asking price: $100.00
 Seller Id: S1
 ```
+
+ℹ️ As seen in the example, a unique unmodifiable property id is automatically generated for every new property.  
 
 ## Listing all properties
 
@@ -432,6 +436,7 @@ Edits an existing property in the property list.
 > - At least one optional field must be provided.
 > - Edits the property at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed property list. The index must be a **positive integer** 1, 2, 3...
 
+💡 Note that the property id cannot be modified.  
 
 Example:
 
@@ -457,7 +462,7 @@ Format: `find-p [p/PROPERTY_ID_KEYWORDS] [n/NAME_KEYWORDS] [a/ADDRESS_KEYWORDS] 
 
 |   |**Formats**|
 |---|---|
-|💡|<p>Format for attributes that search by keywords (property name, address, seller id, property id, property type): keywords delimited by whitespace. <br>For example, `n/Sunrise Cove a/Street Road`<br><br> Format for asking price filter: `< / <= / == / > / >= PRICE`<br>For example, `ap/<= 100`<br><br>Format for is rental: `y / yes / n / no`<br><br>Format for is closed deal: `close` or `active`</p>|
+|💡|Format for attributes that search by keywords (property name, address, seller id, property id, property type): keywords delimited by whitespace. <br>For example, `n/Sunrise Cove a/Street Road`<br><br> Format for asking price filter: `< / <= / == / > / >= PRICE`<br>For example, `ap/<= 100`<br><br>Format for is rental: `y / yes / n / no`<br><br>Format for is closed deal: `close` or `active`|
 
 > - The search is case insensitive for all attributes. e.g. `cove` will match `Cove`.
 > - For keywords-based search, the order of keywords does not matter. e.g. `Street Main` will match with `Main Street`.
@@ -479,7 +484,9 @@ Displays all properties whose names contains either `Cove` or `Sunrise`, asking 
 
 ## Deleting a property
 
-Deletes a property listing from the property list.
+Deletes a property listing from the property list.  
+
+💡 Automatically deletes all bids and meetings associated with the property being deleted.
 
 - Command: `delete-p`
 - Format: `delete-p PROPERTY_ID` or `delete-p <INDEX_NUMBER>`
