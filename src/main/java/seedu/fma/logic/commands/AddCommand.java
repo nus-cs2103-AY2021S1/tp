@@ -23,9 +23,9 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a log to the log book. "
             + "Parameters: "
-            + PREFIX_E + "EXERCISE "
-            + PREFIX_R + "REPS "
-            + PREFIX_C + "COMMENT \n"
+            + PREFIX_E + "<exercise name> "
+            + PREFIX_R + "<reps> "
+            + PREFIX_C + "[comment] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_E + "Sit ups "
             + PREFIX_R + "30 "
