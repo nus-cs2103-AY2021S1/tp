@@ -2,6 +2,9 @@ package seedu.pivot.logic.commands.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TITLE;
@@ -27,20 +30,13 @@ import seedu.pivot.testutil.EditCaseDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    // for case
     public static final String VALID_TITLE_AMY = "Amy Bee Disappearance";
     public static final String VALID_TITLE_BOB = "Bob Choo Salon Theft";
     public static final String VALID_STATUS_AMY = "active";
     public static final String VALID_STATUS_BOB = "closed";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-
-    public static final String VALID_CASEPERSON_NAME_AMY = "Amy";
-    public static final String VALID_CASEPERSON_NAME_BOB = "Bob";
-    public static final String VALID_GENDER_AMY = "F";
-    public static final String VALID_GENDER_BOB = "M";
-
-    public static final String INVALID_CASEPERSON_NAME = "James&";
-
 
     public static final String PREFIX_WITH_TITLE_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String PREFIX_WITH_TITLE_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
@@ -57,6 +53,24 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    // for caseperson
+    public static final String VALID_CASEPERSON_NAME_AMY = "Amy";
+    public static final String VALID_CASEPERSON_NAME_BOB = "Bob";
+    public static final String VALID_CASEPERSON_SEX_AMY = "F";
+    public static final String VALID_CASEPERSON_SEX_BOB = "M";
+    public static final String VALID_CASEPERSON_PHONE = "91234567";
+    public static final String VALID_CASEPERSON_EMAIL = "peterjack@example.com";
+    public static final String VALID_CASEPERSON_ADDRESS = "Bishan Blk 123";
+
+    public static final String INVALID_CASEPERSON_NAME = "James&";
+
+    // inputs
+    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_AMY;
+    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_BOB;
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_CASEPERSON_NAME;
+    public static final String SEX_DESC_BOB = " " + PREFIX_SEX + VALID_CASEPERSON_SEX_BOB;
+    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_CASEPERSON_PHONE;
 
     public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_AMY;
     public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_BOB;

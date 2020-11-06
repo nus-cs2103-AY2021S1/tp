@@ -10,21 +10,21 @@
     } ],
     "witnesses": [ {
       "name" : "Janice",
-      "gender" : "F",
-      "phone" : "",
+      "sex" : "F",
+      "phone" : "912345678",
       "email" : "",
       "address" : ""
     } ],
     "suspects": [ {
       "name" : "Peter",
-      "gender" : "M",
+      "sex" : "M",
       "phone" : "912345678",
       "email" : "peter@gmail.com",
       "address" : "Blk 123"
     } ],
     "victims" : [ {
       "name" : "Tom",
-      "gender" : "M",
+      "sex" : "M",
       "phone" : "912345678",
       "email" : "tom@gmail.com",
       "address" : "Blk 123"
@@ -33,7 +33,7 @@
     "archiveStatus" : "DEFAULT"
   }, {
     "title" : "Benson Meier Robbery",
-    "description": "",
+    "description": "Was hit with a very big banana!",
     "status": "CLOSED",
     "documents": [ {
       "name" : "name",
@@ -41,15 +41,15 @@
     } ],
     "witnesses": [ {
       "name" : "Janice",
-      "gender" : "F",
-      "phone" : "",
+      "sex" : "F",
+      "phone" : "912345678",
       "email" : "",
       "address" : ""
     } ],
     "suspects": [],
     "victims" : [ {
       "name" : "Tom",
-      "gender" : "M",
+      "sex" : "M",
       "phone" : "912345678",
       "email" : "tom@gmail.com",
       "address" : "Blk 123"

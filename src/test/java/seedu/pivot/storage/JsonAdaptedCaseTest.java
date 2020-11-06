@@ -18,7 +18,6 @@ import seedu.pivot.model.investigationcase.Title;
 
 public class JsonAdaptedCaseTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_DESCRIPTION = "Esm@nd@";
     private static final String INVALID_DOCUMENT_REFERENCE = "invalid :across ?/\0 OS";
     private static final String INVALID_DOCUMENT_NAME = " ";
     private static final String INVALID_STATUS = "status";
@@ -26,7 +25,7 @@ public class JsonAdaptedCaseTest {
     private static final String INVALID_WITNESS_NAME = "T|M";
     private static final String INVALID_SUSPECT_NAME = "!!!";
     private static final String INVALID_VICTIM_NAME = "P@ul";
-    private static final String INVALID_GENDER = "P";
+    private static final String INVALID_SEX = "P";
     private static final String INVALID_PHONE = "phone";
     private static final String INVALID_EMAIL = "abc";
 
@@ -78,16 +77,6 @@ public class JsonAdaptedCaseTest {
     }
 
     @Test
-    public void toModelType_invalidDescription_throwsIllegalValueException() {
-        JsonAdaptedCase person =
-                new JsonAdaptedCase(VALID_NAME, INVALID_DESCRIPTION, VALID_STATUS,
-                        VALID_DOCUMENTS,
-                        VALID_SUSPECTS, VALID_VICTIMS, VALID_WITNESSES, VALID_TAGS, VALID_ARCHIVE_STATUS);
-        String expectedMessage = Description.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedCase person =
                 new JsonAdaptedCase(VALID_NAME, null, VALID_STATUS, VALID_DOCUMENTS,
@@ -128,7 +117,7 @@ public class JsonAdaptedCaseTest {
     @Test
     public void toModelType_invalidSuspect_throwsIllegalValueException() {
         List<JsonAdaptedSuspect> invalidSuspects = new ArrayList<>(VALID_SUSPECTS);
-        invalidSuspects.add(new JsonAdaptedSuspect(INVALID_SUSPECT_NAME, INVALID_GENDER, INVALID_PHONE,
+        invalidSuspects.add(new JsonAdaptedSuspect(INVALID_SUSPECT_NAME, INVALID_SEX, INVALID_PHONE,
                 INVALID_EMAIL, VALID_ADDRESS));
         JsonAdaptedCase person =
                 new JsonAdaptedCase(VALID_NAME, VALID_DESCRIPTION, VALID_STATUS, VALID_DOCUMENTS,
@@ -139,7 +128,7 @@ public class JsonAdaptedCaseTest {
     @Test
     public void toModelType_invalidVictims_throwsIllegalValueException() {
         List<JsonAdaptedVictim> invalidVictims = new ArrayList<>(VALID_VICTIMS);
-        invalidVictims.add(new JsonAdaptedVictim(INVALID_VICTIM_NAME, INVALID_GENDER, INVALID_PHONE,
+        invalidVictims.add(new JsonAdaptedVictim(INVALID_VICTIM_NAME, INVALID_SEX, INVALID_PHONE,
                 INVALID_EMAIL, VALID_ADDRESS));
         JsonAdaptedCase person =
                 new JsonAdaptedCase(VALID_NAME, VALID_DESCRIPTION, VALID_STATUS, VALID_DOCUMENTS,
@@ -150,7 +139,7 @@ public class JsonAdaptedCaseTest {
     @Test
     public void toModelType_invalidWitnesses_throwsIllegalValueException() {
         List<JsonAdaptedWitness> invalidWitnesses = new ArrayList<>(VALID_WITNESSES);
-        invalidWitnesses.add(new JsonAdaptedWitness(INVALID_WITNESS_NAME, INVALID_GENDER, INVALID_PHONE,
+        invalidWitnesses.add(new JsonAdaptedWitness(INVALID_WITNESS_NAME, INVALID_SEX, INVALID_PHONE,
                 INVALID_EMAIL, VALID_ADDRESS));
         JsonAdaptedCase person =
                 new JsonAdaptedCase(VALID_NAME, VALID_DESCRIPTION, VALID_STATUS, VALID_DOCUMENTS,

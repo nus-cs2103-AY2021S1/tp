@@ -20,7 +20,7 @@ public abstract class AddCommand extends Command {
             + ": Adds an item of a specified type to opened case in PIVOT.\n"
             + "Format: '" + COMMAND_WORD + " TYPE PARAMETERS'\n\n"
             + "TYPE 'suspect','victim','witness'\n"
-            + "Parameters: n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]\n"
+            + "Parameters: n:NAME g:GENDER p:PHONE [e:EMAIL] [a:ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " suspect n:John g:M p:912345678 e:john@email.com a:Blk 123\n\n"
             + "TYPE 'doc'\n"
             + "Parameters: n:NAME r:REFERENCE\n"

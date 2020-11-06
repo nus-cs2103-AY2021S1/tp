@@ -29,6 +29,6 @@ public class Name extends Alphanumeric {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && getAlphaNum().equals(((Name) other).getAlphaNum())); // state check
+                && getAlphaNum().toLowerCase().equals(((Name) other).getAlphaNum().toLowerCase())); // state check
     }
 }

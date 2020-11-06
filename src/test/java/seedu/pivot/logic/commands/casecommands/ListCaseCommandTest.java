@@ -3,7 +3,7 @@ package seedu.pivot.logic.commands.casecommands;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.showCaseAtIndex;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ public class ListCaseCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showCaseAtIndex(model, INDEX_FIRST_PERSON);
+        showCaseAtIndex(model, FIRST_INDEX);
         expectedModel.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
         assertCommandSuccess(new ListCaseCommand(), model, ListCaseCommand.MESSAGE_LIST_CASE_SUCCESS, expectedModel);
     }

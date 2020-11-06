@@ -9,9 +9,9 @@ import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.exceptions.IllegalValueException;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Witness;
 
 
@@ -25,7 +25,7 @@ public class JsonAdaptedWitness {
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedWitness.class);
 
     private final String name;
-    private final String gender;
+    private final String sex;
     private final String phone;
     private final String email;
     private final String address;
@@ -34,11 +34,11 @@ public class JsonAdaptedWitness {
      * Constructs a {@code JsonAdaptedWitness} with the given {@code witnessName}.
      */
     @JsonCreator
-    public JsonAdaptedWitness(@JsonProperty("name") String name, @JsonProperty("gender") String gender,
+    public JsonAdaptedWitness(@JsonProperty("name") String name, @JsonProperty("sex") String sex,
                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                               @JsonProperty("address") String address) {
         this.name = name;
-        this.gender = gender;
+        this.sex = sex;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -49,7 +49,7 @@ public class JsonAdaptedWitness {
      */
     public JsonAdaptedWitness(Witness source) {
         this.name = source.getName().getAlphaNum();
-        this.gender = source.getGender().toString();
+        this.sex = source.getSex().toString();
         this.phone = source.getPhone().toString();
         this.email = source.getEmail().toString();
         this.address = source.getAddress().toString();
@@ -72,15 +72,15 @@ public class JsonAdaptedWitness {
         }
         final Name modelName = new Name(name);
 
-        if (gender == null) {
+        if (sex == null) {
             logger.warning("Witness gender is null. Check data");
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Sex.class.getSimpleName()));
         }
-        if (!Gender.isValidGender(gender)) {
+        if (!Sex.isValidSex(sex)) {
             logger.warning("Witness gender is invalid. Check data");
-            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
         }
-        final Gender modelGender = Gender.createGender(gender);
+        final Sex modelSex = Sex.createSex(sex);
 
         if (phone == null) {
             logger.warning("Witness phone is null. Check data");
@@ -108,7 +108,7 @@ public class JsonAdaptedWitness {
         }
         final Address modelAddress = new Address(address);
 
-        return new Witness(modelName, modelGender, modelPhone, modelEmail, modelAddress);
+        return new Witness(modelName, modelSex, modelPhone, modelEmail, modelAddress);
     }
 
 }

@@ -6,7 +6,7 @@ import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.pivot.logic.commands.Command.TYPE_CASE;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.logic.commands.AddCommand;
-import seedu.pivot.logic.commands.ClearCommand;
 import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.ExitCommand;
 import seedu.pivot.logic.commands.FindCommand;
@@ -41,18 +40,18 @@ public class PivotParserTest {
         assertEquals(new AddCaseCommand(investigationCase), command);
     }
 
-    @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
-    }
+    //    @Test
+    //    public void parseCommand_clear() throws Exception {
+    //        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+    //        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    //    }
 
     @Test
     public void parseCommand_delete_case() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + TYPE_CASE + " "
-                        + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCaseCommand(INDEX_FIRST_PERSON), command);
+                        + FIRST_INDEX.getOneBased());
+        assertEquals(new DeleteCaseCommand(FIRST_INDEX), command);
     }
 
     //    @Test

@@ -2,11 +2,13 @@ package seedu.pivot.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_MISSING_PREFIX_INVALID_COMMAND;
+import static seedu.pivot.commons.util.StringUtil.capitaliseFirstLetter;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -14,7 +16,6 @@ import java.util.Set;
 
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.commons.util.StringUtil;
-import seedu.pivot.logic.commands.EditCommand;
 import seedu.pivot.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.model.investigationcase.Description;
@@ -23,9 +24,9 @@ import seedu.pivot.model.investigationcase.Status;
 import seedu.pivot.model.investigationcase.Title;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.tag.Tag;
 
 /**
@@ -33,22 +34,24 @@ import seedu.pivot.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index provided is invalid. "
+            + "Index should be a positive non-zero unsigned integer.";
 
     /**
-     * Obtains the parsed index and throws relevant parse exception based on messageUsage
+     * Obtains the parsed index and throws relevant parse exception based on indexString
      * @param indexString
      * @param messageUsage
      * @return Index
      * @throws ParseException if specified index is invalid (not non-zero unsigned integer)
      */
     public static Index getParsedIndex(String indexString, String messageUsage) throws ParseException {
-        try {
-            return ParserUtil.parseIndex(indexString);
-        } catch (ParseException pe) {
+        String trimmedIndex = indexString.trim();
+        if (trimmedIndex.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, messageUsage), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, messageUsage));
         }
+
+        return parseIndex(indexString);
     }
 
     /**
@@ -76,7 +79,8 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedTitle)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedTitle);
+        String formattedTitle = capitaliseFirstLetter(trimmedTitle);
+        return new Name(formattedTitle);
     }
 
     /**
@@ -160,26 +164,26 @@ public class ParserUtil {
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        if (!Description.isValidDescription(trimmedDescription)) {
+        if (!Description.isValidDescriptionToAdd(trimmedDescription)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
     }
 
     /**
-     * Parses a {@code String gender} into a {@code Gender}.
+     * Parses a {@code String sex} into a {@code Sex}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code gender} is invalid.
+     * @throws ParseException if the given {@code sex} is invalid.
      */
-    public static Gender parseGender(String gender) throws ParseException {
-        requireNonNull(gender);
-        String trimmedGender = gender.trim();
-        if (!Gender.isValidGender(trimmedGender)) {
-            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+    public static Sex parseSex(String sex) throws ParseException {
+        requireNonNull(sex);
+        String trimmedSex = sex.trim();
+        if (!Sex.isValidSex(trimmedSex)) {
+            throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
         }
 
-        return Gender.createGender(trimmedGender);
+        return Sex.createSex(trimmedSex);
     }
 
     /**
@@ -229,15 +233,16 @@ public class ParserUtil {
      * @return An EditPersonDescriptor.
      * @throws ParseException If no fields are edited.
      */
-    public static EditPersonDescriptor parseEditedPersonFields(ArgumentMultimap argMultimap) throws ParseException {
+    public static EditPersonDescriptor parseEditedPersonFields(ArgumentMultimap argMultimap, String errorMessage)
+            throws ParseException {
         requireNonNull(argMultimap);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
-            editPersonDescriptor.setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
+        if (argMultimap.getValue(PREFIX_SEX).isPresent()) {
+            editPersonDescriptor.setSex(ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
@@ -250,7 +255,7 @@ public class ParserUtil {
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(String.format(MESSAGE_MISSING_PREFIX_INVALID_COMMAND, errorMessage));
         }
 
         return editPersonDescriptor;

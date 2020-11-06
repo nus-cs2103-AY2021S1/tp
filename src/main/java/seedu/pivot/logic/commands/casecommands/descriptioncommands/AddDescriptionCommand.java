@@ -1,4 +1,4 @@
-package seedu.pivot.logic.commands.casecommands;
+package seedu.pivot.logic.commands.casecommands.descriptioncommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
@@ -12,6 +12,8 @@ import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
@@ -21,7 +23,7 @@ import seedu.pivot.model.investigationcase.Description;
 /**
  * Adds a Description to an opened Case in PIVOT.
  */
-public class AddDescriptionCommand extends AddCommand {
+public class AddDescriptionCommand extends AddCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DESC
             + ": Adds a description to opened case in PIVOT. "
@@ -32,7 +34,9 @@ public class AddDescriptionCommand extends AddCommand {
             + PREFIX_DESC + "7 people arrested for rioting";
 
     public static final String MESSAGE_ADD_DESCRIPTION_SUCCESS = "New description added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DESCRIPTION = "This description already exists for the case!";
+    public static final String MESSAGE_DESCRIPTION_ALREADY_EXISTS = "This case already has a description!";
+
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(AddDescriptionCommand.class);
 
     private final Index index;
@@ -64,10 +68,11 @@ public class AddDescriptionCommand extends AddCommand {
         Case stateCase = lastShownList.get(index.getZeroBased());
         Description stateCaseDescription = stateCase.getDescription();
 
-        // check for same description
-        if (stateCaseDescription.equals(this.description)) {
-            logger.warning("Failed to add description: Tried to add a description that exists in PIVOT");
-            throw new CommandException(MESSAGE_DUPLICATE_DESCRIPTION);
+        // check if the case already has a description
+        if (stateCaseDescription.hasDescription()) {
+            logger.warning("Failed to add description: Tried to add a description to a case "
+                    + "which already has a description in  PIVOT");
+            throw new CommandException(MESSAGE_DESCRIPTION_ALREADY_EXISTS);
         }
 
         // create new updated case
@@ -75,7 +80,7 @@ public class AddDescriptionCommand extends AddCommand {
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
                 stateCase.getTags(), stateCase.getArchiveStatus());
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description));
+        model.commitPivot(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description), this);
 
         return new CommandResult(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description));
     }
@@ -86,5 +91,10 @@ public class AddDescriptionCommand extends AddCommand {
                 || (other instanceof AddDescriptionCommand // instanceof handles nulls
                 && index.equals(((AddDescriptionCommand) other).index)
                 && description.equals(((AddDescriptionCommand) other).description));
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }

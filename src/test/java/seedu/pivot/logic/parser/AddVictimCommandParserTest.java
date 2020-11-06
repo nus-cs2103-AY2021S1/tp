@@ -1,23 +1,25 @@
 package seedu.pivot.logic.parser;
 
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.INVALID_CASEPERSON_NAME;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.SEX_DESC_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_BOB;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_GENDER_BOB;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_PHONE;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.index.Index;
+import seedu.pivot.logic.commands.testutil.CommandTestUtil;
 import seedu.pivot.logic.commands.victimcommands.AddVictimCommand;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.caseperson.Name;
@@ -25,13 +27,8 @@ import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.testutil.CasePersonBuilder;
 
 public class AddVictimCommandParserTest {
-    // Todo: move static fields to CommandTestUtil
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_BOB;
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_CASEPERSON_NAME;
-    public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
 
-    private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static Index index = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
 
     private AddVictimCommandParser parser = new AddVictimCommandParser();
 
@@ -48,19 +45,20 @@ public class AddVictimCommandParserTest {
     //TODO: add all the fields in for victim here
     @Test
     public void parse_allFieldsPresent_success() {
-        Victim expectedVictim = new CasePersonBuilder().withName(VALID_CASEPERSON_NAME_BOB).withGender(VALID_GENDER_BOB)
+        Victim expectedVictim = new CasePersonBuilder().withName(VALID_CASEPERSON_NAME_BOB)
+                .withSex(CommandTestUtil.VALID_CASEPERSON_SEX_BOB).withPhone(VALID_CASEPERSON_PHONE)
                 .buildVictim();
 
         // normal input
-        assertParseSuccess(parser, NAME_DESC_BOB + GENDER_DESC_BOB,
+        assertParseSuccess(parser, NAME_DESC_BOB + SEX_DESC_BOB + PHONE_DESC_BOB,
                 new AddVictimCommand(index, expectedVictim));
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + GENDER_DESC_BOB,
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + SEX_DESC_BOB + PHONE_DESC_BOB,
                 new AddVictimCommand(index, expectedVictim));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + GENDER_DESC_BOB,
+        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + SEX_DESC_BOB + PHONE_DESC_BOB,
                 new AddVictimCommand(index, expectedVictim));
     }
 
@@ -75,10 +73,10 @@ public class AddVictimCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + GENDER_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + SEX_DESC_BOB + PHONE_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + GENDER_DESC_BOB,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + SEX_DESC_BOB + PHONE_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVictimCommand.MESSAGE_USAGE));
     }
 }
