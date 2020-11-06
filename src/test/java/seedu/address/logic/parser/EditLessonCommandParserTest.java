@@ -33,7 +33,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateTimeUtil;
+import seedu.address.logic.commands.EditLessonCommand;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
@@ -42,6 +44,14 @@ import seedu.address.model.task.Title;
 public class EditLessonCommandParserTest {
 
     private final EditLessonCommandParser parser = new EditLessonCommandParser();
+
+    @Test
+    public void parse_validArgs_returnsEditLessonCommand() {
+        //edit title
+        EditLessonCommand.EditLessonDescriptor editLessonDescriptor = new EditLessonCommand.EditLessonDescriptor();
+        editLessonDescriptor.setTitle(new Title(VALID_TITLE_CS2100));
+        EditLessonCommand expectedEditLessonCommand = new EditLessonCommand(index, editLessonDescriptor);
+    }
 
     @Test
     public void parse_invalidTimeRange_returnsFalse() {

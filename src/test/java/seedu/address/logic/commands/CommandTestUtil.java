@@ -81,7 +81,7 @@ public class CommandTestUtil {
             LocalTime.of(12, 0), LocalTime.of(14, 0),
             LocalDate.of(2020, 1, 1), LocalDate.of(2020, 11, 1));
     //valid lesson
-    public static final String VALID_TITLE_CS2000 = "CS2103T Lecture";
+    public static final String VALID_TITLE_CS2000 = "CS2000 Lecture";
     public static final String VALID_DESC_CS2000 = "Best lecture ever!";
     public static final String VALID_DAY_CS2000 = "Monday";
     public static final String VALID_START_TIME_CS2000 = "13:00";
