@@ -42,10 +42,6 @@ public class ViewEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toView));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 
     @Override
     public boolean equals(Object other) {

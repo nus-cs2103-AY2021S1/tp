@@ -46,8 +46,4 @@ public class FindModuleCommand extends Command {
                 && predicate.equals(((FindModuleCommand) other).predicate)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

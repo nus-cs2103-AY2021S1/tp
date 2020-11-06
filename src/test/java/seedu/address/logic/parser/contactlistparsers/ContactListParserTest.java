@@ -37,7 +37,7 @@ public class ContactListParserTest {
     private final ContactListParser parser = new ContactListParser();
 
     @Test
-    public void parseCommand_addContactInput_commandCreated() throws ParseException  {
+    public void parseCommand_addContactInput_commandCreated() throws ParseException {
         Contact contact = new ContactBuilder().build();
         AddContactCommand command = (AddContactCommand) parser.parseCommand(PersonUtil.getAddCommand(contact));
         assertEquals(new AddContactCommand(contact), command);

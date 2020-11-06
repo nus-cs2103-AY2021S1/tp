@@ -73,9 +73,5 @@ public class AddTaskCommand extends Command {
             && toAdd.equals(((AddTaskCommand) other).toAdd));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }
 

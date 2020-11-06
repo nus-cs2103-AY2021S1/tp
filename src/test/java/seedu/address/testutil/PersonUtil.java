@@ -5,16 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
-//import java.util.Set;
+import java.util.Set;
+
 import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
 import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
-import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
-import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
-
-import java.util.Set;
-//import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Person.
@@ -49,7 +45,9 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.toString()).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.toString()).append(" "));
-        descriptor.getTelegram().ifPresent(telegram -> sb.append(PREFIX_TELEGRAM).append(telegram.toString()).append(" "));
+        descriptor.getTelegram().ifPresent(telegram ->
+                sb.append(PREFIX_TELEGRAM).append(telegram.toString()).append(" "));
+
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

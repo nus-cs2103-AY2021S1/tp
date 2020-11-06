@@ -12,8 +12,4 @@ public class HelpTaskCommand extends Command {
         return null;
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

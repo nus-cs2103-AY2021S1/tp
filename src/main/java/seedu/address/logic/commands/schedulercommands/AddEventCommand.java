@@ -49,10 +49,6 @@ public class AddEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.event));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 
     @Override
     public boolean equals(Object other) {
