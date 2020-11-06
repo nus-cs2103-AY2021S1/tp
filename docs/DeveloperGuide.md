@@ -263,17 +263,12 @@ Given below is the class diagram of these Predicate classes:
 
 
 ##### FindCommand Class
-The FindCommand Class contains static `String` attributes of error messages to be displayed in the event of invalid user input.  The constructor of `FindCommand` takes in a `Predicate<Assignment>` depending on the prefix or keywords in the user's input. Its attribute `predicate` of type `Predicate<Assignment>` is initialised to this value.
-
-
-- This class contains static `String` attributes of error messages to be displayed in the event of invalid user input.
-- `FindCommand` extends abstract class `Command` and overrides the method `execute` in `CommandResult`.
+The FindCommand class extends abstract class `Command`. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and a `Predicate<Assignment>` attribute, `predicate`. The constructor of `FindCommand` takes in a `Predicate<Assignment>` depending on the prefix or keywords in the user's input and its attribute `predicate` is initialized to this value. It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, it calls the `updatedFilteredAssignmentList` method of a `Model` object, `model`, it takes in, so that the filter of the filtered assignment list will be updated by the given predicate and a list of filtered assignments will be displayed to the user, along with an indication message on the number of assignments listed.
+ 
+ 
 
 ##### FindCommandParser Class
-- The `FindCommandParser` class contains private methods to parse each keyword field, and to check for valid input format.
 
-
-- `FindCommandParser` implements `Parser<FindCommand>` and it parses the user's input to return a `FindCommand` object.
 
 Given below is the class diagram of `FindCommandParser` class.
 
