@@ -10,12 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.util.ArrayList;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.task.Task;
 import seedu.address.model.util.Overlap;
 
 public class LessonCommand extends Command {
@@ -58,10 +55,7 @@ public class LessonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ArrayList<Task> tasksToAdd = lesson.createRecurringTasks();
-        boolean isTaskInModel = tasksToAdd.stream()
-                .anyMatch(model::hasTask);
-        if (isTaskInModel) {
+        if (model.hasLesson(lesson)) {
             throw new CommandException(MESSAGE_DUPLICATE_LESSON);
         }
         if (Overlap.overlapWithOtherTimeSlots(model, lesson)) {

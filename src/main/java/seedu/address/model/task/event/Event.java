@@ -16,7 +16,6 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.deadline.Deadline;
 
-
 /**
  * Represents a Task in the PlaNus task list.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -61,12 +60,12 @@ public class Event extends Task implements TimeSlot {
         return endDateTime;
     }
 
-    public LocalDateTime getEndDateTimeValue() {
-        return endDateTime.getValue();
-    }
-
     public LocalDateTime getStartDateTimeValue() {
         return startDateTime.getValue();
+    }
+
+    public LocalDateTime getEndDateTimeValue() {
+        return endDateTime.getValue();
     }
     public DayOfWeek getDayOfWeek() {
         return getStartDateTimeValue().getDayOfWeek();
