@@ -40,13 +40,13 @@ import seedu.address.testutil.TypicalVendors;
 public class SubmitCommandTest {
 
     private static final Path TYPICAL_ADDRESSBOOK_FILEPATH = Paths.get
-            ("src/data/JsonSerializableAddressBookTest/typicalVendorsAddressBook.json");
+            ("test/data/JsonSerializableAddressBookTest/typicalVendorsAddressBook.json");
     private static final Path TYPICAL_USERPREFS_FILEPATH = Paths.get
-            ("src/data/JsonUserPrefsStorageTest/TypicalUserPref.json");
+            ("test/data/JsonUserPrefsStorageTest/TypicalUserPref.json");
     private static final Path TYPICAL_PRESET_FILEPATH = Paths.get
-            ("src/data/JsonSerializablePresetManagerTest/storagePreset.json");
+            ("test/data/JsonSerializablePresetManagerTest/storagePreset.json");
     private static final Path TYPICAL_PROFILE_FILEPATH = Paths.get
-            ("src/data/JsonProfileStorageTest/TypicalProfile.json");
+            ("test/data/JsonProfileStorageTest/TypicalProfile.json");
 
     public static Storage getDefaultStorage() {
         return new StorageManager(new JsonAddressBookStorage(TYPICAL_ADDRESSBOOK_FILEPATH),
