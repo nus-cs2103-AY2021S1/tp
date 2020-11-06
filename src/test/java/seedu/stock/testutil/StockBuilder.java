@@ -103,6 +103,16 @@ public class StockBuilder {
     }
 
     /**
+     * Sets the {@code lowQuantity} of the {@code Stock} that we are building.
+     * @param lowQuantity The low quantity to be set into the stock.
+     * @return A new {@code StockBuilder} with the new {@code LowQuantity}.
+     */
+    public StockBuilder withLowQuantity(String lowQuantity) {
+        this.quantity = new Quantity(this.quantity.toString(), lowQuantity);
+        return this;
+    }
+
+    /**
      * Sets the {@code Location} of the {@code Stock} that we are building.
      */
     public StockBuilder withLocation(String location) {
