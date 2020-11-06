@@ -113,13 +113,13 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores fitNUS data.
-* exposes an unmodifiable 
+* exposes an unmodifiable
     * `ObservableList<Exercise>`
     * `ObservableList<Routine>`
     * `ObservableList<Lesson>`
     * `ObservableList<Body>`
     * `ObservableList<DailyCalorie>`
-    
+
     that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -224,7 +224,7 @@ Alternative 1 was chosen for the command to add an Exercise to a Routine to be s
 
     * Pros: Allow users to understand more about the Routine at a glance.
     * Cons: Cluttering of the UI.
-    
+
 Alternative 1 was chosen to not support Tag for Routine. The UI has a lot of information at the moment, and adding Tag
  to Routine would only serve to confuse the user. Furthermore, users are able to glean which Exercise is in the Routine
   from the UI as of now, and adding Tag would only clutter up the RoutineListCard. A Routine can store many Exercise and
@@ -486,7 +486,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. fitNUS shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. The given routine name does not exist.
 
     * 3b1. fitNUS shows an error message.
@@ -515,7 +515,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. fitNUS shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. The given routine is invalid.
 
     * 3a1. fitNUS shows an error message.
@@ -643,7 +643,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1.  fitNUS informs the user that the input is incorrect.
 
       Use case ends.
-      
+
 **Use case 8 (C11): Set height**
 
 **MSS**
@@ -661,7 +661,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1.  fitNUS informs the user that the input is incorrect.
 
       Use case ends.
-      
+
 **Use case 8 (C112): Set weight**
 
 **MSS**
@@ -732,7 +732,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `routine_create`, `routine_create r/EXISTING_ROUTINE`, `...`<br>
       Expected: Similar to previous.
-      
+
 1. Deleting a Routine
 
    1. Prerequisites: Routine must already exist in fitNUS. In this case, the first Routine is the one to be deleted.
@@ -753,7 +753,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `weight w/300`<br>
       Expected: Weight does not update or change on GUI. Error will be shown for an unrealistic weight for a user.
-      
+
    1. Other incorrect delete commands to try: `weight w/0`, `weight w/-1`, `...`<br>
       Expected: Similar to previous.
 
@@ -764,10 +764,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `weight w/370`<br>
       Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
-      
+
    1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
       Expected: Similar to previous.
-      
+
 1. Setting user height
 
    1. Test case: `weight h/170`<br>
@@ -775,7 +775,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `weight w/370`<br>
       Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
-      
+
    1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
       Expected: Similar to previous.
 
@@ -786,10 +786,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `height w/370`<br>
       Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
-      
+
    1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
       Expected: Similar to previous.
-      
+
 1. Adding calorie count
 
    1. Test case: `calorie_add c/1500`<br>
@@ -797,7 +797,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `calorie_add c/2147483648`<br>
       Expected: Error will be thrown because this value is bigger than what Java can handle. Calorie Graph and today's calorie count will not update.
-      
+
    1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
 
@@ -808,7 +808,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `calorie_minus c/2147483648`<br>
       Expected: Error will be thrown because this value is bigger than what Java can handle. Calorie Graph and today's calorie count will not update.
-      
+
    1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
 
