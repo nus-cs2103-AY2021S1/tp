@@ -131,9 +131,13 @@ Classes used by multiple components are in the `seedu.cc.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
 ### Undo feature
 
-#### Proposed Implementation
+#### Implementation
 
 The undo mechanism is facilitated by `ActiveAccountManager` which implements the interface `ActiveAccount`. The `ActiveAccountManager` 
 stores its previous state as an `ActiveAccount` attribute when a entry command is executed. On the other hand, the `ActiveAccount` sets the previous 
@@ -172,7 +176,7 @@ which will set data of the previous state attribute to the current `ActiveAccoun
 ![UndoState3](images/UndoState3.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `ActiveAccountManager` does not have a previous state 
-(i.e The `previousState` attribute in `ActiveAccountManager` is empty)then there are no previous `ActiveAccountManager` states to restore. 
+(i.e The `previousState` attribute in `ActiveAccountManager` is empty) then there are no previous `ActiveAccountManager` states to restore. 
 The `undo` command uses `Model#hasNoPreviousState()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
@@ -182,10 +186,12 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**:<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:**:
+
  * The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
  * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
    of the undo command. 
+   
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
@@ -211,20 +217,12 @@ Hence, the `undo` command only works on the previously stated commands which int
   * Pros: More commands can be undone, for instance commands dealing with accounts.
   * Cons: 
     * May have performance issues in terms of memory usage. 
-    * We must ensure that the implementation is done with considerations over how Model and ActiveAccount interacts 
-    (i.e avoid unnecessary changes to Model and ActiveAccount that can result in errors).
+    * We must ensure that the implementation avoids unnecessary changes to Model or ActiveAccount that can result in errors.
 
 * **Alternative 3:** Individual command knows how to undo/redo by
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the entry being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-  
-
-_{more aspects and alternatives to be added}
-
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
 
 ### Edit account feature
 
@@ -257,10 +255,12 @@ The following sequence diagram shows how an edit account operation works:
 
 ![EditAccountSequenceDiagram](images/EditAccountSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+
 * The lifeline for `EditAccountCommandParser` and `EditAccountCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
 * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
 of the edit account command. 
+
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
