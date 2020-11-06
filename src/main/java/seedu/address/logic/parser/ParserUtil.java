@@ -33,7 +33,7 @@ public class ParserUtil {
     public static final int MINIMUM_AMOUNT = 0;
     public static final int MAXIMUM_LENGTH_OF_TAG = 50;
     public static final String MESSAGE_EXCEED_MAXIMUM_TAG = "The length of tag entered is greater than 50 characters.\n"
-            + "Please re-enter tags which are not beyond 50 characters!";
+            + "Please re-enter tags of length below 50 characters";
     public static final String MESSAGE_EXCEED_MAXIMUM_AMOUNT = "The amount entered is greater than "
             + "999 KG / L, which is the maximum capacity for any kind of ingredient for one stall.\n"
             + "Please double check the current amount and enter the actual current amount !";
