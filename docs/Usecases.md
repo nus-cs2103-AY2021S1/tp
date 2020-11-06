@@ -97,11 +97,12 @@ Usecase end
 #### Usecase 5: Crafts items
 - Software System: Inventoryinator (`inv`)
 - Use Case UC5 - Craft items
-- Precondition: Inventoryinator is running, with item a, b and c registered in system with a + b -> c recipe r
+- Precondition: Inventoryinator is running, with item a, b and c added in system (UC1)
+- With also added recipe r where items a + b -> c (UC3)
 - Actor: User<br>
 
 **MSS:**
-1. User enters order to craft **n** of item c from recipe r, with items a,b
+1. User enters order to craft **n** of item c from recipe r, with items a, b
 2. `inv` validates existance of items a, b, c, and retrieves recipe r
 3. `inv` validates quantities of items a, b and evaluates whether **n** of item c can be crafted.
 4. `inv` updates the quantities of items a, b and c and returns a message of success.
