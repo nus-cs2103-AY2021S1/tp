@@ -93,7 +93,7 @@ Examples:
    * `add n/Cai Shen Ye`
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/h`
    * `add n/Betsy Crowe s/friend s/enemy from jac e/betsycrowe@example.com a/Newgate Prison p/1234567 
-   o/This client is new. l/high pn/Medishield`
+   o/This client is new. l/high pn/Life Time Policy`
 
 Notes: 
 
