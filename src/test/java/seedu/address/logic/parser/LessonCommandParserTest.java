@@ -11,6 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_CS2103T_NO_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2103T;
@@ -26,10 +28,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.util.DateTimeUtil;
@@ -37,7 +35,6 @@ import seedu.address.logic.commands.LessonCommand;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
 
 public class LessonCommandParserTest {
@@ -199,10 +196,7 @@ public class LessonCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsLessonCommand() {
-        Lesson expectedLesson = new Lesson(new Title(VALID_TITLE_CS2103T), new Tag(VALID_TAG_CS2103T),
-                new Description(VALID_DESC_CS2103T), DayOfWeek.MONDAY, LocalTime.of(12, 0),
-                LocalTime.of(14, 0), LocalDate.of(2020, 1, 1),
-                LocalDate.of(2020, 11, 1));
+        Lesson expectedLesson = VALID_LESSON_CS2103T;
         LessonCommand expectedLessonCommand = new LessonCommand(expectedLesson);
         // no leading and trailing whitespaces
         assertParseSuccess(parser,
@@ -234,10 +228,7 @@ public class LessonCommandParserTest {
                 expectedLessonCommand
         );
         // omit optional description
-        Lesson expectedLesson2 = new Lesson(new Title(VALID_TITLE_CS2103T), new Tag(VALID_TAG_CS2103T),
-                Description.defaultDescription(), DayOfWeek.MONDAY, LocalTime.of(12, 0),
-                LocalTime.of(14, 0), LocalDate.of(2020, 1, 1),
-                LocalDate.of(2020, 11, 1));
+        Lesson expectedLesson2 = VALID_LESSON_CS2103T_NO_DESC;
         LessonCommand expectedLessonCommand2 = new LessonCommand(expectedLesson2);
         assertParseSuccess(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s",

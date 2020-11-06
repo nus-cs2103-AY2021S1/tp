@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_EXPERIMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_LAB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_TIME_EXPERIMENT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_TIME_EXPERIMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATETIME_EXPERIMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATETIME_EXPERIMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EXPERIMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_EXPERIMENT;
@@ -37,6 +37,12 @@ public class TypicalTasks {
     public static final Deadline DEADLINE4 = new DeadlineBuilder().withTitle("Grade Mission")
             .withDeadlineDateTime("04-04-2020 12:00").withIncompleteStatus()
             .withDescription("grading all student mission").withTag("CS1101S").build();
+    public static final Deadline DEADLINE5 = new DeadlineBuilder().withTitle("Assignment 10")
+            .withDeadlineDateTime("02-02-2020 12:59").withTag("CS2102").withCompleteStatus().build();
+    public static final Event EVENT4 = new EventBuilder().withTitle("Project meeting 2020")
+            .withStartDateTime("05-05-2020 12:00").withEndDateTime("05-05-2020 14:00")
+            .withDescription("dicuss v1.3 content").withTag("CS2103T").build();
+    //events
     public static final Event EVENT1 = new EventBuilder().withTitle("Project meeting")
             .withStartDateTime("05-05-2020 12:00").withEndDateTime("05-05-2020 14:00")
             .withDescription("discuss v1.3 content").withTag("CS2103T").build();
@@ -46,21 +52,12 @@ public class TypicalTasks {
     public static final Event EVENT3 = new EventBuilder().withTitle("Project meeting3")
             .withStartDateTime("05-05-2020 18:00").withEndDateTime("05-05-2020 20:00")
             .withDescription("discuss v1.3 content").withTag("CS2103T").build();
-
-
-    // Manually added
-    public static final Deadline DEADLINE5 = new DeadlineBuilder().withTitle("Assignment 10")
-            .withDeadlineDateTime("02-02-2020 12:59").withTag("CS2102").withCompleteStatus().build();
-    public static final Event EVENT4 = new EventBuilder().withTitle("Project meeting 2020")
-            .withStartDateTime("05-05-2020 12:00").withEndDateTime("05-05-2020 14:00")
-            .withDescription("dicuss v1.3 content").withTag("CS2103T").build();
-
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Deadline DEADLINE_TEST = new DeadlineBuilder()
             .withTitle(VALID_TITLE_LAB).withDeadlineDateTime(VALID_DATETIME_LAB)
             .withDescription(VALID_DESC_LAB).withTag(VALID_TAG_LAB).build();
     public static final Event EVENT_TEST = new EventBuilder().withTitle(VALID_TITLE_EXPERIMENT)
-            .withStartDateTime(VALID_START_DATE_TIME_EXPERIMENT).withEndDateTime(VALID_END_DATE_TIME_EXPERIMENT)
+            .withStartDateTime(VALID_START_DATETIME_EXPERIMENT).withEndDateTime(VALID_END_DATETIME_EXPERIMENT)
             .withDescription(VALID_DESC_EXPERIMENT).withTag(VALID_TAG_EXPERIMENT).build();
 
     private TypicalTasks() {} // prevents instantiation
@@ -69,11 +66,11 @@ public class TypicalTasks {
      * Returns an {@code Planus} with all the typical tasks.
      */
     public static Planus getTypicalPlanus() {
-        Planus ab = new Planus();
+        Planus planus = new Planus();
         for (Task task : getTypicalTasks()) {
-            ab.addTask(task);
+            planus.addTask(task);
         }
-        return ab;
+        return planus;
     }
 
     public static List<Task> getTypicalTasks() {
