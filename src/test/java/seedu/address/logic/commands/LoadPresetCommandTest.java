@@ -54,7 +54,7 @@ public class LoadPresetCommandTest {
     }
 
     @Test
-    public void execute_listAllPresets_success() throws CommandException, IOException {
+    public void execute_listAllPresets_success() throws IOException {
         Model model = TypicalModel.getModelManagerWithMenu();
         Storage storage = StorageManagerBuilder
                 .buildForPreset(Paths.get("src", "test", "data",

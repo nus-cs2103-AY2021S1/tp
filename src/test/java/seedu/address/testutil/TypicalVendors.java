@@ -13,11 +13,11 @@ import java.util.HashSet;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.AddressBook;
 import seedu.address.model.food.MenuItem;
 import seedu.address.model.menu.Menu;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.vendor.Vendor;
+import seedu.address.model.vendor.VendorManager;
 
 /**
  * A utility class containing a list of {@code Vendor} objects to be used in tests.
@@ -65,10 +65,10 @@ public class TypicalVendors {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical Vendors.
+     * Returns an {@code VendorManager} with all the typical Vendors.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static VendorManager getTypicalVendorManager() {
+        VendorManager ab = new VendorManager();
         for (Vendor vendor : getTypicalVendors()) {
             ab.addVendor(vendor);
         }

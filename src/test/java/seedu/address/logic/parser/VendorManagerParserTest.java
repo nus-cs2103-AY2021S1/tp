@@ -21,9 +21,9 @@ import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.vendor.NameContainsKeywordsPredicate;
 
-public class AddressBookParserTest {
+public class VendorManagerParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final SupperStrikersParser parser = new SupperStrikersParser();
 
     //TODO: make this pass
     //    @Test

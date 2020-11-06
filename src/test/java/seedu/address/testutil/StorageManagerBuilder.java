@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonPresetManagerStorage;
 import seedu.address.storage.JsonProfileManagerStorage;
 import seedu.address.storage.JsonSerializablePresetManager;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.JsonVendorManagerStorage;
 import seedu.address.storage.StorageManager;
 
 public class StorageManagerBuilder {
@@ -28,7 +28,7 @@ public class StorageManagerBuilder {
             FileUtil.createIfMissing(presetPath);
             JsonUtil.saveJsonFile(new JsonSerializablePresetManager(new ArrayList<>(), true), presetPath);
         }
-        return new StorageManager(new JsonAddressBookStorage(invalidPath), new JsonUserPrefsStorage(invalidPath),
+        return new StorageManager(new JsonVendorManagerStorage(invalidPath), new JsonUserPrefsStorage(invalidPath),
                 new JsonPresetManagerStorage(presetPath), new JsonProfileManagerStorage(invalidPath));
     }
 

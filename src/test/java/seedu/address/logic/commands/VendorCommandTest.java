@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.VendorCommand.MESSAGE_RESET_VENDOR_SUCCESS;
-import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalVendors.getTypicalVendorManager;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ import seedu.address.testutil.TypicalVendors;
 public class VendorCommandTest {
 
     private Model initialiseModel() {
-        return new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+        return new ModelManager(getTypicalVendorManager(), new UserPrefs(), TypicalVendors.getManagers(),
                 new OrderManager());
     }
 

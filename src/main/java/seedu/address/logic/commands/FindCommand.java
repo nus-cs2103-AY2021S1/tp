@@ -19,7 +19,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds and lists all food items containing "
             + "any of the specified keywords in their name\n"
             + "Format: find KEYWORD [MORE_KEYWORDS]\n"
-            + "- KEYWORD are NOT Case-Sensitive\n"
+            + "- KEYWORD are NOT case-sensitive\n"
             + "- KEYWORD filters tags as well.\n"
             + "Examples:\n"
             + "find milo: lists all food items containing the word 'milo' in their name.\n"

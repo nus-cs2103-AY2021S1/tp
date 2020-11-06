@@ -194,6 +194,9 @@ public class ParserUtil {
     public static String[] checkPresetSyntax(String modeType) throws ParseException {
         requireNonNull(modeType);
         String trimArgs = modeType.trim();
+        if (modeType.equals("")) {
+            throw new ParseException(PresetCommand.MESSAGE_USAGE);
+        }
         int firstSpace = trimArgs.indexOf(' ');
         String[] argsArr = new String[2];
 
