@@ -5,20 +5,28 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_DATE_CS21
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_TIME_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_DATE_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_CS2000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_CS2000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_CS2000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_CS2000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_CS2000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CS2000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2103T;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
@@ -30,16 +38,23 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.EditLessonCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
+
 
 public class EditLessonCommandParserTest {
 
@@ -47,10 +62,95 @@ public class EditLessonCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsEditLessonCommand() {
+        Index index = INDEX_FIRST_TASK;
         //edit title
         EditLessonCommand.EditLessonDescriptor editLessonDescriptor = new EditLessonCommand.EditLessonDescriptor();
-        editLessonDescriptor.setTitle(new Title(VALID_TITLE_CS2100));
+        editLessonDescriptor.setTitle(new Title(VALID_TITLE_CS2000));
         EditLessonCommand expectedEditLessonCommand = new EditLessonCommand(index, editLessonDescriptor);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_TITLE, VALID_TITLE_CS2000),
+                expectedEditLessonCommand);
+
+        //edit tag
+        EditLessonCommand.EditLessonDescriptor editLessonDescriptor1 = new EditLessonCommand.EditLessonDescriptor();
+        editLessonDescriptor1.setTag(new Tag(VALID_TAG_CS2000));
+        EditLessonCommand expectedEditLessonCommand1 = new EditLessonCommand(index, editLessonDescriptor1);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_TAG, VALID_TAG_CS2000),
+                expectedEditLessonCommand1);
+
+        //edit day
+        EditLessonCommand.EditLessonDescriptor editLessonDescriptor2 = new EditLessonCommand.EditLessonDescriptor();
+        editLessonDescriptor2.setDayOfWeek(DayOfWeek.MONDAY);
+        EditLessonCommand expectedEditLessonCommand2 = new EditLessonCommand(index, editLessonDescriptor2);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_DAY, VALID_DAY_CS2000),
+                expectedEditLessonCommand2);
+
+        //edit description
+        EditLessonCommand.EditLessonDescriptor editLessonDescriptor3 = new EditLessonCommand.EditLessonDescriptor();
+        editLessonDescriptor3.setDescription(new Description(VALID_DESC_CS2000));
+        EditLessonCommand expectedEditLessonCommand3 = new EditLessonCommand(index, editLessonDescriptor3);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2000),
+                expectedEditLessonCommand3);
+
+        //edit start time
+        EditLessonCommand.EditLessonDescriptor editLessonDescriptor4 = new EditLessonCommand.EditLessonDescriptor();
+        editLessonDescriptor4.setStartTime(LocalTime.parse(VALID_START_TIME_CS2000));
+        EditLessonCommand expectedEditLessonCommand4 = new EditLessonCommand(index, editLessonDescriptor4);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_START_TIME, VALID_START_TIME_CS2000),
+                expectedEditLessonCommand4);
+
+        //edit end time
+        EditLessonCommand.EditLessonDescriptor editLessonDescriptor5 = new EditLessonCommand.EditLessonDescriptor();
+        editLessonDescriptor5.setEndTime(LocalTime.parse(VALID_END_TIME_CS2000));
+        EditLessonCommand expectedEditLessonCommand5 = new EditLessonCommand(index, editLessonDescriptor5);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_END_TIME, VALID_END_TIME_CS2000),
+                expectedEditLessonCommand5);
+
+        //edit start date
+        EditLessonCommand.EditLessonDescriptor editLessonDescriptor6 = new EditLessonCommand.EditLessonDescriptor();
+        try {
+            editLessonDescriptor6.setStartDate(ParserUtil.parseDate(VALID_START_DATE_CS2000));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        EditLessonCommand expectedEditLessonCommand6 = new EditLessonCommand(index, editLessonDescriptor6);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_START_DATE, VALID_START_DATE_CS2000),
+                expectedEditLessonCommand6);
+
+        //edit end date
+        EditLessonCommand.EditLessonDescriptor editLessonDescriptor7 = new EditLessonCommand.EditLessonDescriptor();
+        try {
+            editLessonDescriptor7.setEndDate(ParserUtil.parseDate(VALID_END_DATE_CS2000));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        EditLessonCommand expectedEditLessonCommand7 = new EditLessonCommand(index, editLessonDescriptor7);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_END_DATE, VALID_END_DATE_CS2000),
+                expectedEditLessonCommand7);
+
     }
 
     @Test

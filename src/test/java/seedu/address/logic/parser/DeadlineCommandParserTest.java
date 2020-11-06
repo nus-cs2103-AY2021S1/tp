@@ -41,19 +41,6 @@ public class DeadlineCommandParserTest {
     private final DeadlineCommandParser parser = new DeadlineCommandParser();
 
     @Test
-    public void parse_invalidDateTime_returnsFalse() {
-        //invalid date time
-        assertParseFailure(parser,
-                String.format(" %s%s %s%s %s%s %s%s",
-                        PREFIX_TITLE, VALID_TITLE_LAB,
-                        PREFIX_TAG, VALID_TAG_LAB,
-                        PREFIX_DATE_TIME, INVALID_DATETIME_LAB,
-                        PREFIX_DESCRIPTION, VALID_DESC_LAB
-                ),
-                DateTimeUtil.DATE_TIME_CONSTRAINTS);
-    }
-
-    @Test
     public void parse_validArgs_returnsDeadlineCommand() {
         Deadline expectedDeadline = Deadline.createDeadline(new Title(VALID_TITLE_LAB),
                 new DeadlineDateTime(VALID_DATETIME_LAB),
@@ -116,6 +103,19 @@ public class DeadlineCommandParserTest {
     }
 
     @Test
+    public void parse_invalidDateTime_returnsFalse() {
+        //invalid date time
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_LAB,
+                        PREFIX_TAG, VALID_TAG_LAB,
+                        PREFIX_DATE_TIME, INVALID_DATETIME_LAB,
+                        PREFIX_DESCRIPTION, VALID_DESC_LAB
+                ),
+                DateTimeUtil.DATE_TIME_CONSTRAINTS);
+    }
+
+    @Test
     public void parse_emptyArgs_returnsFalse() {
         //empty title
         assertParseFailure(parser,
@@ -146,15 +146,6 @@ public class DeadlineCommandParserTest {
                         PREFIX_DESCRIPTION, VALID_DESC_LAB
                 ),
                 DateTimeUtil.DATE_TIME_CONSTRAINTS);
-
-        //empty description
-        assertParseFailure(parser,
-                String.format(" %s%s %s%s %s%s",
-                        PREFIX_TITLE, VALID_TITLE_LAB,
-                        PREFIX_TAG, VALID_TAG_LAB,
-                        PREFIX_DATE_TIME, VALID_DATETIME_LAB,
-                        PREFIX_DESCRIPTION, ""),
-                Description.MESSAGE_CONSTRAINTS);
     }
 
     @Test
