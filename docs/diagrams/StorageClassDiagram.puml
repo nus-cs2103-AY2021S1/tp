@@ -21,4 +21,5 @@ JsonCliniCalStorage .left.|> CliniCalStorage
 JsonCliniCalStorage .down.> JsonSerializableCliniCalStorage
 JsonSerializableCliniCalStorage .right.> JsonSerializablePatient
 JsonSerializablePatient .right.> JsonAdaptedAllergy
+JsonSerializableCliniCalStorage .down.> JsonSerializableAppointment
 @enduml

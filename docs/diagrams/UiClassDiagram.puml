@@ -13,6 +13,9 @@ Class HelpWindow
 Class ResultDisplay
 Class PatientListPanel
 Class PatientCard
+Class AppointmentListPanel
+Class AppointmentCard
+Class CalendarDisplay
 Class StatusBarFooter
 Class CommandBox
 }
@@ -35,8 +38,12 @@ MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PatientListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> AppointmentListPanel
+MainWindow *-down-> CalendarDisplay
 
 PatientListPanel -down-> PatientCard
+
+AppointmentListPanel -down-> AppointmentCard
 
 MainWindow -left-|> UiPart
 
@@ -45,9 +52,13 @@ CommandBox --|> UiPart
 PatientListPanel --|> UiPart
 PatientCard --|> UiPart
 StatusBarFooter --|> UiPart
-HelpWindow -down-|> UiPart
+HelpWindow --|> UiPart
+AppointmentListPanel --|> UiPart
+AppointmentCard --|> UiPart
+CalendarDisplay --|> UiPart
 
-PatientCard ..> Model
+PatientCard .down.> Model
+AppointmentCard .down.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
@@ -55,6 +66,8 @@ PatientListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+PatientListPanel -[hidden]right- AppointmentCard
+AppointmentListPanel -[hidden]right- CalendarDisplay
 
 MainWindow -[hidden]-|> UiPart
 @enduml
