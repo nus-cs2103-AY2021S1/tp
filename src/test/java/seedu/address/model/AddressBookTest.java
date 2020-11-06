@@ -79,7 +79,7 @@ public class AddressBookTest {
 
 
     @Test
-    public void setTag_tagInAddressBook_returnsTrue() {
+    public void setTag_tagInAddressBook_success() {
         AddressBook dummyAddressBook = addressBook;
         dummyAddressBook.addTag(CS2103);
         dummyAddressBook.setTag(CS2103, CS2101);
@@ -95,7 +95,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void removeTag_tagInAddressBook_returnsFalse() {
+    public void removeTag_tagInAddressBook_success() {
         AddressBook dummyAddressBook = addressBook;
         dummyAddressBook.addTag(CS2103);
         dummyAddressBook.removeTag(CS2103);
@@ -104,7 +104,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void removeTag_nullTag_returnsNullPointerException() {
+    public void removeTag_nullTag_throwsNullPointerException() {
         AddressBook dummyAddressBook = addressBook;
         assertThrows(NullPointerException.class, () -> dummyAddressBook.removeTag(null));
     }

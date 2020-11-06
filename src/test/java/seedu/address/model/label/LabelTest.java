@@ -67,7 +67,7 @@ class LabelTest {
     }
 
     @Test
-    public void setLabel_labelInTag_returnsTrue() {
+    public void setLabel_labelInTag_success() {
         String validLabel = "CS2103T";
         String anotherValidLabel = "CS2101";
         Label label = new Label(validLabel);
