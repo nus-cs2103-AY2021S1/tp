@@ -38,6 +38,7 @@ public class CdCommand extends Command {
     public static final String MESSAGE_PARENT_PATH_NOT_BLANK = "../ does not accept any arguments";
     public static final String MESSAGE_NO_PARENT_PATH = "Current path does not have a parent path.";
     public static final String MESSAGE_UNKNOWN_ADDRESS_TYPE = "The address type being proceed is unknown";
+    public static final String MESSAGE_NO_PERMISSION = "You have no permission to open %s.";
 
     private AddressType addressType;
     private String addressString;
@@ -99,6 +100,11 @@ public class CdCommand extends Command {
             canonicalPath = pathToSet.getCanonicalPath();
         } catch (IOException exception) {
             throw new CommandException(exception.getMessage());
+        }
+
+        // Check if user has read permission to that path
+        if (!pathToSet.canRead()) {
+            throw new CommandException(String.format(MESSAGE_NO_PERMISSION, canonicalPath));
         }
 
         FileAddress newPath = new FileAddress(canonicalPath);

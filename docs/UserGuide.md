@@ -127,9 +127,14 @@ Examples:
 Opens the file specified by the unique tag name.<br>
 You can open a file using its tag, with the default application in your operating system.
 Additionally, you can open all files with a specific label. This could potentially open many files.
-This command only accepts one tag or one label but not both.
+
+Please take note of the following:
+* This command only accepts one tag or one label but not both.
+* Please ensure that you have read permission to the files that you want to open.
 <div markdown="block" class="alert alert-info">
-Tip: You can tag many files that you want to open at the same time with the same label, so you can open them at once.
+
+**:information_source: You can tag many files that you want to open at the same time with the same label, so you can open them at once.**
+
 </div>
 
 Format: `open t>TAG_NAME` or `open l>LABEL`
@@ -155,7 +160,10 @@ Examples:
 
 ### Renaming a tag : `retag`
 
-Renames a tag.
+Renames a tag. <br>
+Changes the specified tag's nickname into the new one. 
+Note that this command can only change nickname.
+It can't change any other information.
 
 Format: `retag o>OLD_TAG_NAME t>NEW_TAG_NAME`
 
@@ -169,8 +177,10 @@ Examples:
 
 Adds one or more label to an existing tag.<br>
 You can use label to categorise tags.
-<div markdown="block" class="alert alert-info">
-Warning: Duplicated labels will only be added once. 
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Duplicated labels will only be added once.**
+
 </div>
 
 Format: `label t>TAG_NAME l>LABEL1 [l>LABEL2]...`
@@ -183,7 +193,9 @@ Examples:
 
 ### Deleting multiple labels from a tag : `unlabel`
 
-Delete one or more label from a tag.
+Delete one or more label from a tag. <br>
+If some labels are invalid, all the other valid labels will be deleted from the tag, 
+and the invalid ones will be shown to the user.
 
 Format: ` unlabel t>TAG_NAME l>LABEL1 [l>LABEL2]...`
 
@@ -202,7 +214,10 @@ If the keyword matches its name and/or label partially, it will also be found an
 
 Format: `find KEYWORD`
 
+Tagging file:
 ![before](images/screenshots/pre_find_command.png)
+
+Executing find command:
 ![after](images/screenshots/find_command.png)
         
 Examples:
@@ -215,7 +230,7 @@ Changes the current directory of the HelloFile internal File Explorer. <br>
 You can change the current directory in 3 ways:
 By using `f>` to go to a folder using an absolute path,
 by using `./` to go to a folder using a relative path,
-or using '../' to go to the parent folder.
+or using `../` to go to the parent folder.
 Alternative, you can click on the folder in the *File Explorer Panel* to navigate.
 
 Format 1: `cd f>ABSOLUTE_FILE_PATH`
@@ -237,40 +252,54 @@ Lists all added tags.
 
 Format: `ls`
 
+Before executing command:
 ![before](images/screenshots/find_command.png)
+
+After executing command:
 ![after](images/screenshots/list_command.png)
 
 ### Undoing command : `undo`
 
 Undo a recently executed command.<br>
 You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear`, and `redo`.
-<div markdown="block" class="alert alert-info">
-**Warning: Command history will be deleted once the app is closed!
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Command history will be deleted once the app is closed!**
 </div>
 
 Format: `undo`
 
+Before executing command:
 ![before](images/screenshots/clear_command.png)
+
+After executing command:
 ![after](images/screenshots/undo_command.png)
 
 ### Redoing command : `redo`
 
 Redo a recently executed command.<br>
 Redo only exists when undo has been executed.
-<div markdown="block" class="alert alert-info">
-**Warning: Command history will be deleted once the app is closed!
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Command history will be deleted once the app is closed!**
+
 </div>
 
 Format: `redo`
 
+Before executing command:
 ![before](images/screenshots/undo_command.png)
+
+After executing command:
 ![after](images/screenshots/redo_command.png)
 
 ### Clearing all tags : `clear`
 
 Clears the list of all tags.<br>
-<div markdown="block" class="alert alert-info">
-**Warning: All tags will be deleted!**
+<div markdown="block" class="alert alert-warning">
+
+**:warning: All tags will be deleted!**
+
 </div>
 
 Format: `clear`
@@ -304,17 +333,19 @@ HelloFile comes in light and dark themes. To change the theme, navigate to the t
 and select `view`, followed by `theme`. A new pop up window will be shown with available themes along with a quick preview
  as illustrated below.
 ![Fig. 1](images/screenshots/changing_themes.png)
+
 ![Fig. 2](images/screenshots/changing_themes2.png)
 
 ### Changing view sizes
 HelloFile allows you to resize the view of each sub components for a clearer view of tags and folders. You can simply
  drag each view to the size desired.
 ![Fig. 3. Resizing taskbar](images/screenshots/taskbar_resize.png)
+
 ![Fig. 4. Resizing filebar](images/screenshots/filebar_resize.png)
 
 ### Persistent customisation
 All of your customisation options are saved and persists even when you close the application. HelloFile remembers your choices
- so you can your time on more productive pursuits.
+ so you can spend your time on more productive pursuits.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -331,7 +362,7 @@ All of your customisation options are saved and persists even when you close the
 **Q**: Can I contribute to the project?<br>
 **A**: Sorry, as this is a school project, we are not accepting any contributors at this period.
 
-**Q**: Why does list command use `ls` as the keyword instead of `list`?
+**Q**: Why does list command use `ls` as the keyword instead of `list`? <br>
 **A**: In most command lines, `ls` is the default keyword for listing files and folders. We would like the transition 
 from command line to HelloFile to be as smooth as possible for our target users.
 
@@ -341,7 +372,7 @@ from command line to HelloFile to be as smooth as possible for our target users.
 
 Action | Format, Examples
 --------|------------------
-**Tag** | `tag t>TAG_NAME f>FILE_PATH , [l>LABEL]` <br> e.g., `tag t>newTag f>c:>myfolder>file.jpg l>MyFile` or `tag t>newTag f>c:/myfolder/file.jpg` 
+**Tag** | `tag t>TAG_NAME f>FILE_PATH [l>LABEL]` <br> e.g., `tag t>newTag f>c:/myfolder/file.jpg l>MyFile` or `tag t>newTag f>c:/myfolder/file.jpg` 
 **Show** | `show t>TAG_NAME`
 **Untag** | `untag t>TAG_NAME`
 **Retag** | `retag o>OLD_TAG_NAME t>NEW_TAG_NAME` <br> e.g., `retag o>mytag t>newtag`
