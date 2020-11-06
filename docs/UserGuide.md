@@ -66,7 +66,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
  open the help window.<br>
    Some commands you can try:
 
-   * **`startproject 1 `** : Opens the first project
+   * **`startproject 1 `** : Opens the first project.
 
    * **`exit`** : Exits the app.
 
