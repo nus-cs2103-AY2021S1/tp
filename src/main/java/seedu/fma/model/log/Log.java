@@ -126,7 +126,7 @@ public class Log {
 
     @Override
     public String toString() {
-        return getExercise().getName() + "\n"
+        return "Exercise: " + getExercise().getName() + "\n"
             + "Time: " + getPrettyDateTime() + "\n"
             + "Rep: " + getReps() + "\n"
             + "Calories: " + getCalories() + "\n"

@@ -49,13 +49,13 @@ If you are unmotivated for a workout, FixMyAbs will be your partner in helping y
 **:information_source: Notes about the command format:**<br>
 
 - Words in `<>` are the parameters to be supplied by the user.<br>
-  e.g. in `add e/<exercise>`, `exercise` is a parameter which can be used as `add e/Sit ups`.
+  e.g. in `add e/<exercise name>`, `exercise` is a parameter which can be used as `add e/Sit ups`.
 
 - Items in square brackets are optional.<br>
-  e.g `e/<exercise> c/[comments]` can be used as `e/Sit ups c/my abs hurt` or as `e/Sit ups c/`.
+  e.g `e/<exercise name> c/[comments]` can be used as `e/Sit ups c/my abs hurt` or as `e/Sit ups c/`.
 
 - Parameters can be in any order.<br>
-  e.g. if the command specifies `e/<exercise> r/<rep>`, `r/<rep> e/<exercise>` is also acceptable.
+  e.g. if the command specifies `e/<exercise name> r/<rep>`, `r/<rep> e/<exercise name>` is also acceptable.
 
 - Exercise names are case-insensitive and whitespace-insensitive.<br>
   e.g. `Sit ups`, `SITUPS`, and `S i T u P   s` are all recognised as the same exercise.
@@ -77,7 +77,7 @@ Adds a log.
 - Exercise must already be present in the Exercise list. [Exercise names are case-insensitive and whitespace-insensitive.](#command-format)
 - The comment may be left blank. (`c/` is compulsory)
 
-Format: `add e/<exercise> r/<reps> c/[comment]`
+Format: `add e/<exercise name> r/<reps> c/[comment]`
 
 Constraints:
 - reps must be within range 1-1000 inclusive
@@ -145,7 +145,7 @@ Success:
 
 Finds all logs that contain ALL keywords (case-insensitive) anywhere in the log.
 
-Format: `find <keywords>`
+Format: `find <keywords in logs>`
 
 ![Ui](images/screenshots/v1.3find.png)
 
@@ -156,7 +156,7 @@ Success:
 
 Adds an exercise.
 
-Format: `addex e/<exercise> c/<calories per rep>`
+Format: `addex e/<exercise name> c/<calories per rep>`
 
 - The exercise must not already exist. [Exercise names are case-insensitive and whitespace-insensitive.](#command-format)
 - Calories per rep would be used to calculate the calories burnt for each log.
@@ -233,12 +233,12 @@ Exercise log data are saved in the hard disk automatically after any command tha
 
 | Action     | Format                                    | Examples                                  |
 | ---------- | ----------------------------------------- | ----------------------------------------- |
-| **Add**    | `add e/<exercise> r/<reps> c/[comments]`  | e.g. `add e/Sit ups r/30 c/Send help`       |
+| **Add**    | `add e/<exercise name> r/<reps> c/[comments]`  | e.g. `add e/Sit ups r/30 c/Send help`       |
 | **Delete** | `delete <index>`                          | e.g. `delete 3`                      |
 | **Edit**   | `edit <index> [r/reps] [c/comment]`       | e.g.`edit 1 r/20 c/no abs were hurt` |
 | **List**   | `list`                                    |
 | **Add exercise**   | `addex e/<exercise name> c/<calories per rep>` | e.g. `addex e/Lunges c/5` |
 | **Edit exercise**   | `editex <index> [e/exercise name] [c/calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6` |
 | **Delete exercise**   | `deleteex <index>` | e.g. `deleteex 1` |
-| **Find**   | `find <keywords>`                         | e.g.`find pushups`                   |
+| **Find**   | `find <keywords in logs>`                         | e.g.`find pushups`                   |
 | **Exit**   | `exit`                                    |

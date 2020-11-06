@@ -17,7 +17,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String AC_SUGGESTION = COMMAND_WORD + " "
-            + PREFIX_E + "<exercise> "
+            + PREFIX_E + "<exercise name> "
             + PREFIX_R + "<reps> "
             + PREFIX_C + "<comment> ";
 
@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_R + "30 "
             + PREFIX_C + "my abs hurt:( \n";
 
-    public static final String MESSAGE_SUCCESS = "New log added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New log added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_LOG = "This log already exists in the log book";
 
     private final Log toAdd;
