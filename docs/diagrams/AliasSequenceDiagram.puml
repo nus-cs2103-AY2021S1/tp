@@ -7,11 +7,14 @@ participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
 participant "s:AliasCommand" as AliasCommand LOGIC_COLOR
 end box
 
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
 
-[-> LogicManager : execute(alias)
+[-> LogicManager : execute("alias find get")
 activate LogicManager
 
-LogicManager -> ExpenseBookParser : parseCommand(alias)
+LogicManager -> ExpenseBookParser : parseCommand("alias find get")
 activate ExpenseBookParser
 
 create AliasCommand
@@ -27,8 +30,14 @@ deactivate ExpenseBookParser
 LogicManager -> AliasCommand : execute()
 activate AliasCommand
 
+AliasCommand -> Model : setAlias(prev, new)
+activate Model
+
+Model --> AliasCommand
+deactivate Model
+
 deactivate AliasCommand
-AliasCommand -[hidden]-> LogicManager : result
+AliasCommand --> LogicManager : result
 destroy AliasCommand
 
 [<--LogicManager
