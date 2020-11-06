@@ -28,6 +28,7 @@ public class AddModuleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the timetable. "
             + "Parameters: "
             + PREFIX_NAME + "MODULE NAME "
+            + PREFIX_PARTICIPANT + "PARTICIPANT...\n"
             + "[" + PREFIX_PARTICIPANT + "PARTICIPANTS]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103 "

@@ -27,8 +27,6 @@ public class CommandHistory {
      * @return Command text if there is any
      */
     public Optional<String> up() {
-        System.out.println(index);
-        System.out.println(length);
         if (length == 0) {
             return Optional.empty();
         } else if (index == 0) {
@@ -49,8 +47,6 @@ public class CommandHistory {
      * @return Command text if there is any
      */
     public Optional<String> down() {
-        System.out.println(index);
-        System.out.println(length);
         if (length == 0) {
             return Optional.empty();
         } else if (index == length - 1) {
