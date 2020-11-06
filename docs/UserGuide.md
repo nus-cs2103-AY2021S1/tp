@@ -153,6 +153,7 @@ Adds a module to the module list.
 Format: `addMod m/MODULE_CODE`
 
 > Note:
+> - Method can only be called in the Module view.
 > - Modules should not share the same code.
 > - It is recommended to use the exact code of the module.
 
@@ -174,6 +175,7 @@ Deletes a module based on the given `INDEX`
 Format: `deleteMod INDEX`
 
 > Note:
+> - Method can only be called in the Module view.
 > - `INDEX` refers to the index number shown in the Module view.
 > - `INDEX` must be a positive integer starting from 1.
 > - Deleting a module is irreversible.
@@ -196,6 +198,7 @@ Edits a module with the provided details.
 Format: `editMod INDEX m/MODULE_CODE`
 
 > Note:
+> - Method can only be called in the Module view.
 > - `INDEX` refers to the index number shown in the Module view.
 > - `INDEX` must be a positive integer starting from 1.
 > - New module code must be provided.
@@ -215,15 +218,17 @@ Finds and lists all modules in the current Module view whose field contains any 
 Format: `findMod KEYWORD`
 
 > Note:
+> - Method can only be called in the Module view.
 > - `KEYWORD` is not case-sensitive (e.g. _cs2100_ will match _CS2100_).
-> - The search will look for matches in the module's code.
+> - `KEYWORD` can be a substring.
+> - The search will look for matches in the module's code. 
 > - If no module matching the keyword is found, the Module view will be empty.
 
 Example:
 
-- Finds a module with `KEYWORD` _cs2100_.
+- Finds a module with `KEYWORD` _cs20_.
 
-    - `findMod cs2100`
+    - `findMod cs20`
 
 Expected Outcome:
 
@@ -235,7 +240,15 @@ Shows all the modules you have added in the Module view.
 
 Format: `listMod`
 
-> You should perform the following features while in the Module view.
+> Note
+> - Method can be called in ANY view.
+
+Example:
+- Lists all modules in Trackr.
+    - `listMod`
+    
+Expected Outcome:
+
 ### 4.3 Tutorial Group features
 
 #### 4.3.1 View all Tutorial Groups in a Module: `viewTG`
