@@ -30,8 +30,9 @@
 }
 
 .text-field {
-    -fx-background-color: derive(#2A9D8F, 20%);
+    -fx-background-color: derive(#028090, 20%);
     -fx-font-size: 20pt;
+    -fx-prompt-text-fill: derive(black, 65%);
     -fx-font-family: "Segoe UI Semibold";
 }
 
@@ -41,32 +42,31 @@
     -fx-border-radius: 18 18 18 18;
 }
 
-.tab-header-area {
+.tab-pane .tab-header-area {
     -fx-background-color: derive(#028090, 20%);
 }
 
-.tab-header-background {
+.tab-pane .tab-header-background {
     -fx-background-color: derive(#028090, 20%);
 }
 
-.tab-content-area {
+.tab-pane .tab-content-area {
     -fx-background-color: derive(#028090, 20%);
 }
 
-.tab:selected {
-    -fx-background-color: derive(black, 25%);
-    -fx-pref-width: 350;
+.tab-pane .tab:selected {
+    -fx-background-color: derive(#05668D, 10%);
     -fx-pref-height: 60;
+    -fx-effect: innershadow(gaussian, #03394E, 10, 0.1, -2, 2);
 }
 
-.tab {
-    -fx-background-color: derive(#028090, 50%);
-    -fx-pref-width: 350;
+.tab-pane .tab {
+    -fx-background-color: derive(#05668D, 50%);
     -fx-pref-height: 60;
- }
+    -fx-effect: innershadow(gaussian, #28BCF6, 10, 0.1, -2, 2);
+}
 
-.tab-label {
-    -fx-pref-width: 350;
+.tab-pane .tab-label {
     -fx-font-family: "Sitka Banner";
     -fx-text-fill: white;
     -fx-font-weight: 700;
@@ -91,10 +91,10 @@
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+            transparent
+            transparent
+            derive(-fx-base, 80%)
+            transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -121,37 +121,92 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-.list-view {
+.list-view-task-lesson {
     -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-color: derive(#2A9D8F, 20%);
+    -fx-padding: 3;
+    -fx-background-color: derive(#05668D, 20%);
 }
 
-.list-cell {
+.list-view-task-lesson .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 5;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 18 18 18 18;
 }
 
-.list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+.list-view-task-lesson .list-cell:filled:even {
+    -fx-background-color: transparent, #02B68F;
+    -fx-background-insets: 0, 3;
+    -fx-effect: dropshadow(gaussian, #0B2B37, 10, 0, 1, 1);
 }
 
-.list-cell:filled:odd {
-    -fx-background-color: #515658;
+.list-view-task-lesson .list-cell:filled:odd {
+    -fx-background-color: transparent, #018D6F;
+    -fx-background-insets: 0, 3;
+    -fx-effect: dropshadow(gaussian, #0B2B37, 10, 0, 1, 1);
 }
 
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+.list-view-task-lesson .list-cell:filled:selected {
+    -fx-effect: dropshadow(gaussian, #0B2B37, 10, 0, 5, 5);
 }
 
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+.list-view-task-lesson .list-cell:filled:selected #cardPane {
+    -fx-effect: null;
 }
 
-.list-cell .label {
+.list-view-task-lesson .list-cell .label {
     -fx-text-fill: white;
+}
+
+.list-view-task-lesson .list-cell:empty {
+    -fx-padding: 2 ;
+    -fx-background-color: transparent ;
+    -fx-background-insets: 0 ;
+}
+
+.list-view-module {
+    -fx-background-insets: 0;
+    -fx-padding: 3;
+    -fx-background-color: derive(#05668D, 20%);
+}
+
+.list-view-module .list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 3;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 18 18 18 18;
+}
+
+.list-view-module .list-cell:filled:even {
+    -fx-background-color: transparent, #02B68F;
+    -fx-background-insets: 0, 3;
+    -fx-effect: dropshadow(gaussian, #0B2B37, 10, 0, 1, 1);
+}
+
+.list-view-module .list-cell:filled:odd {
+    -fx-background-color: transparent, #018D6F;
+    -fx-background-insets: 0, 3;
+    -fx-effect: dropshadow(gaussian, #0B2B37, 10, 0, 1, 1);
+}
+
+.list-view-module .list-cell:filled:selected {
+    -fx-effect: dropshadow(gaussian, #0B2B37, 10, 0, 5, 5);
+}
+
+.list-view-module .list-cell:filled:selected #cardPane {
+    -fx-effect: null;
+}
+
+.list-view-module .list-cell .label {
+    -fx-text-fill: white;
+}
+
+.list-view-module .list-cell:empty {
+    -fx-padding: 2 ;
+    -fx-background-color: transparent ;
+    -fx-background-insets: 0 ;
 }
 
 .cell_big_label {
@@ -167,23 +222,33 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#2A9D8F, 20%);
+    -fx-background-color: derive(#028090, 50%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#028090, 20%);
-     -fx-border-color: derive(#028090, 10%);
-     -fx-border-top-width: 1px;
+    -fx-background-color: derive(#028090, 20%);
+    -fx-border-color: derive(#028090, 10%);
+    -fx-border-top-width: 1px;
+    -fx-padding: 5 10 5 10;
+}
+
+.pane-with-border-rounded {
+    -fx-background-color: derive(#028090, 20%);
+    -fx-border-color: derive(#028090, 10%);
+    -fx-border-top-width: 1px;
     -fx-padding: 5 10 5 10;
     -fx-background-radius: 18 18 18 18;
     -fx-border-radius: 18 18 18 18;
+
 }
 
 .vbox-with-border {
-    -fx-background-color: derive(#2A9D8F, 20%);
-    -fx-border-color: derive(#2A9D8F, 10%);
+    -fx-background-color: derive(#05668D, 20%);
+    -fx-border-color: derive(#05668D, 10%);
     -fx-border-top-width: 1px;
     -fx-border-radius: 18 18 0 0;
+    -fx-background-radius: 18 18 0 0;
+    -fx-effect: dropshadow(gaussian, #0B2B37, 10, 0, 3, 3);
 }
 
 .vbox-with-border .label-header {
@@ -193,6 +258,10 @@
     -fx-font-weight: 700;
     -fx-text-fill: white;
     -fx-padding: 5 5 5 5;
+}
+
+.empty-container {
+    -fx-background-color: derive(#05668D, 20%);
 }
 
 .vbox-data {
@@ -288,8 +357,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #2A9D8F;
+    -fx-background-color: white;
+    -fx-text-fill: #2A9D8F;
 }
 
 .button:focused {
@@ -368,6 +437,7 @@
 
 #cardPane {
     -fx-background-color: transparent;
+    -fx-effect: dropshadow(gaussian, #0B2B37, 10, 0, 1, 1);
     -fx-border-width: 0;
 }
 
@@ -392,7 +462,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent, #028090, transparent, #028090;
     -fx-background-radius: 0;
 }
 

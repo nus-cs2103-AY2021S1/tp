@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.panel;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,9 +15,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.event.Event;
+import seedu.address.ui.UiPart;
 
 public class CalendarPanel extends UiPart<Region> {
-    private static final String FXML = "CalendarPanel.fxml";
+    private static final String FXML = "panel/CalendarPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CalendarPanel.class);
 
     @FXML

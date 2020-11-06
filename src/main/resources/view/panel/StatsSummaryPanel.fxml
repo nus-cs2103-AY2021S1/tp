@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label styleClass="label-bright" stylesheets="@DarkTheme.css" text="Modules" VBox.vgrow="NEVER">
+      <Label styleClass="label-header" text="Modules" VBox.vgrow="NEVER">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <ListView fx:id="tagListView" VBox.vgrow="ALWAYS" />
+      <ListView fx:id="tagListView" styleClass="list-view-module" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

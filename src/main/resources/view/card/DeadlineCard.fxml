@@ -37,7 +37,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="title" styleClass="cell_big_label" text="\$first" />
+        <Label fx:id="title" styleClass="cell_big_label" text="\$first" wrapText="true" />
       </HBox>
          <FlowPane fx:id="tags" />
          <HBox spacing="5.0">
@@ -46,18 +46,18 @@
             <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
             </children>
          </HBox>
-         <HBox fx:id="dateTimeHolder" spacing="5.0">
+         <VBox fx:id="datetimeHolder">
             <children>
                <Label text="Date &amp; Time:" />
             <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime" />
             </children>
-         </HBox>
-         <HBox fx:id="descriptionHolder" spacing="5.0">
+         </VBox>
+         <VBox fx:id="descriptionHolder">
             <children>
                <Label text="Description:" />
-            <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+            <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true" />
             </children>
-         </HBox>
+         </VBox>
          <HBox fx:id="durationHolder" spacing="5.0">
             <children>
                <Label text="Duration:" />

@@ -6,7 +6,7 @@
 
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="date" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Label" VBox.vgrow="NEVER" />
+        <Label fx:id="date" styleClass="label-bright" stylesheets="@../DarkTheme.css" text="Label" VBox.vgrow="NEVER" />
         <ListView fx:id="scheduleView" VBox.vgrow="ALWAYS" />
     </children>
 </VBox>

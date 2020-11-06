@@ -36,7 +36,7 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="title" styleClass="cell_big_label" text="title" />
+                <Label fx:id="title" styleClass="cell_big_label" text="title" wrapText="true" />
             </HBox>
          <FlowPane fx:id="tags" />
             <HBox spacing="5.0">
@@ -51,12 +51,12 @@
                <Label fx:id="to" styleClass="cell_small_label" text="to" />
             </children>
          </HBox>
-            <HBox fx:id="descriptionHolder" spacing="5.0">
-                <children>
+         <VBox fx:id="descriptionHolder">
+            <children>
                     <Label text="Description:" />
-                    <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-                </children>
-            </HBox>
+                    <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true" />
+            </children>
+         </VBox>
         </VBox>
         <rowConstraints>
             <RowConstraints />
