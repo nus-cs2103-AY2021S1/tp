@@ -11,9 +11,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_EXPERIMENT
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_EXPERIMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_EXPERIMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATETIME_EXPERIMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_EXPERIMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATETIME_EXPERIMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EXPERIMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEETING;
@@ -201,7 +201,7 @@ public class EditTaskCommandParserTest {
         assertParseFailure(parser,
                 String.format(" %s %s%s %s%s",
                         "1",
-                        PREFIX_START_TIME, VALID_START_TIME_EXPERIMENT,
+                        PREFIX_START_TIME, VALID_START_DATETIME_EXPERIMENT,
                         PREFIX_START_TIME, VALID_START_TIME_MEETING
                 ),
                 expectedErrorMessage);
@@ -210,7 +210,7 @@ public class EditTaskCommandParserTest {
         assertParseFailure(parser,
                 String.format(" %s %s%s %s%s",
                         "1",
-                        PREFIX_END_TIME, VALID_END_TIME_EXPERIMENT,
+                        PREFIX_END_TIME, VALID_END_DATETIME_EXPERIMENT,
                         PREFIX_END_TIME, VALID_END_TIME_MEETING
                 ),
                 expectedErrorMessage);

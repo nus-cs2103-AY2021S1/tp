@@ -25,6 +25,5 @@ public class LessonCommandTest {
         expectedModel.addLesson(lesson);
         String expectedMessage = String.format(MESSAGE_SUCCESS, lesson);
         assertCommandSuccess(lessonCommand, model, expectedMessage, expectedModel);
-        
     }
 }
