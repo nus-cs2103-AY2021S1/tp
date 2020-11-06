@@ -750,6 +750,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `    | Store manager      | see all archived contact details | still find my former employees' contacts when needed |
 | `* * `    | Second-time user      | reset all ingredient levels to zero   | record new ingredient levels conveniently |
 
+
 ### Use cases
 
 (For all use cases below, the **System** is the `tCheck` and the **Actor** is the `user`, unless specified otherwise)
