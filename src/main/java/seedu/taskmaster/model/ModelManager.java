@@ -5,6 +5,7 @@ import static seedu.taskmaster.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -309,8 +310,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void showRandomStudent() {
-        StudentRecord randomRecord = taskmaster.getRandomStudentRecord();
+    public void showRandomStudent(Random random) {
+        StudentRecord randomRecord = taskmaster.getRandomStudentRecord(random);
         updateFilteredStudentRecordList(new StudentRecordEqualsPredicate(randomRecord));
     }
 
@@ -344,7 +345,10 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return taskmaster.equals(other.taskmaster)
                 && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
+                && filteredStudents.equals(other.filteredStudents)
+                && filteredSessions.equals(other.filteredSessions)
+                && ((filteredStudentRecords == null && other.filteredStudentRecords == null)
+                        || filteredStudentRecords.equals(filteredStudentRecords));
     }
 
 }
