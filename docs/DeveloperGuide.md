@@ -960,6 +960,14 @@ testers are expected to do more *exploratory* testing.
         
 ### Quizzing flashcards
 
+1. Entering quiz mode in the application
+
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+       
+    1. Test case: `quiz` <br>
+        Expected: Main window of application switches to quiz mode and displays the first flashcard in the flashcard deck.
+
 ### Sorting of flashcards
 
 ### Viewing a flashcard
