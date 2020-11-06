@@ -4,7 +4,11 @@ import chopchop.testutil.IngredientBuilder;
 import chopchop.testutil.RecipeBuilder;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 
 import static chopchop.testutil.TypicalIngredients.BANANA_REF;
 import static chopchop.testutil.TypicalRecipes.STEP_BANANA_SALAD;
@@ -59,7 +63,6 @@ public class NameContainsKeywordsFilterPredicateTest {
         predicate = new NameContainsKeywordsFilterPredicate(Arrays.asList("aPRIcot", "bAnAnA"));
         assertTrue(predicate.test(new IngredientBuilder().withName("Apricot banana").build()));
         assertTrue(predicate.test(new RecipeBuilder().withName("Apricot Banana").build()));
-
     }
 
     @Test
