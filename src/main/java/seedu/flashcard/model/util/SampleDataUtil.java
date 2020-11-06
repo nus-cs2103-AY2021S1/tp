@@ -53,7 +53,7 @@ public class SampleDataUtil {
                     getTagSet("definitions"), new Diagram("")),
 
             new Flashcard(new Question("Use cases does not capture the functional requirements of a system. T/F?"),
-                    new Answer("F.Use cases capture the functional requirements of a system."),
+                    new Answer("F. Use cases capture the functional requirements of a system."),
                     new Category("Use Cases"), new Note(""), new Rating("2"),
                     getTagSet(), new Diagram("")),
 
