@@ -84,7 +84,7 @@ public class ProfileCommandTest {
         expectedStorage.saveProfileManager(expectedProfile);
 
 
-        String expectedMessage = "Profile Successfully added!";
+        String expectedMessage = "Profile successfully added!";
         assertCommandSuccess(
                 new ProfileCommand(expectedPhone, expectedAddress),
                 model,
