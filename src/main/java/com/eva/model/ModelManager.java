@@ -407,4 +407,19 @@ public class ModelManager implements Model {
 
     }
 
+    @Override
+    public String toString() {
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append(getApplicantDatabase()).append("\n")
+                .append(getStaffDatabase()).append("\n")
+                .append(getPersonDatabase()).append("\n")
+                .append(getUserPrefs()).append("\n")
+                .append(getCurrentViewStaff()).append("\n")
+                .append(getCurrentViewApplicant()).append("\n")
+                .append(getFilteredApplicantList()).append("\n")
+                .append(getFilteredStaffList()).append("\n")
+                .append(getFilteredPersonList()).append("\n");
+        return toReturn.toString();
+
+    }
 }
