@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javafx.application.Platform;
@@ -17,8 +18,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import seedu.address.commons.core.LogsCenter;
 
 public class FzfModule {
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Supplier<List<String>> optionSupplier;
     private boolean isFzfMode = false;
@@ -31,7 +34,7 @@ public class FzfModule {
             setSkin(createDefaultSkin());
         }
     };
-    private TextField attachedTextField;
+    private final TextField attachedTextField;
     private ContextMenu menu;
 
     private FzfModule(TextField tf, Supplier<List<String>> supplier) {
@@ -152,6 +155,7 @@ public class FzfModule {
     }
     private void toggleFzfOn(int caretPos, double x, double y) {
         if (!isFzfMode) {
+            logger.info("Fzf mode toggled ON");
             fzfStartPos = caretPos;
             isFzfMode = true;
             menuX = x;
@@ -160,6 +164,7 @@ public class FzfModule {
     }
     private void toggleFzfOff() {
         if (isFzfMode) {
+            logger.info("Fzf mode toggled OFF");
             isFzfMode = false;
             query.setText("");
         }

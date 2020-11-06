@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+mainframe sd execute command
+
+box Logic LOGIC_COLOR_T1
+participant "c:AddTagCommand" as AddTagCommand LOGIC_COLOR
+participant "taggedPerson:Person" as Person LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> AddTagCommand : execute()
+activate AddTagCommand
+
+create Person
+AddTagCommand -> Person
+activate Person
+
+Person --> AddTagCommand : taggedPerson
+deactivate Person
+
+AddTagCommand -> Model : setPerson(p, taggedPerson)
+activate Model
+
+Model --> AddTagCommand
+deactivate Model
+
+AddTagCommand -> Model : updatePersonInMeetingBook(p, taggedPerson)
+activate Model
+
+Model --> AddTagCommand
+deactivate Model
+
+AddTagCommand -> Model : updatePersonInModuleBook(p, taggedPerson)
+activate Model
+
+Model --> AddTagCommand
+deactivate Model
+
+create CommandResult
+AddTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddTagCommand
+deactivate CommandResult
+
+AddTagCommand -->[ : result
+destroy AddTagCommand
+@enduml
