@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
 
@@ -18,7 +19,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager();
         expectedModel.setProductiveNus(new ProductiveNus());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("clear"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -27,7 +28,16 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalProductiveNus(), new UserPrefs(), null);
         expectedModel.setProductiveNus(new ProductiveNus());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("clear"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_emptyProductiveNus_fail() {
+        Model model = new ModelManager();
+        Model expectedModel = new ModelManager();
+        expectedModel.setProductiveNus(new ProductiveNus());
+
+        assertCommandFailure(new ExitCommand("clear 3"), expectedModel, ExitCommand.MESSAGE_INCORRECT_FORMAT);
     }
 
 }

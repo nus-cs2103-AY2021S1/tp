@@ -24,7 +24,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD
             + " [INDEX] (must be a positive integer)";
 
-    public static final String MESSAGE_SUCCESS = "Listed your assignments";
+    public static final String MESSAGE_INDEX_NOT_IN_RANGE = "Index should only be from 1 to 50.";
 
     private final Index numberOfDays;
 
