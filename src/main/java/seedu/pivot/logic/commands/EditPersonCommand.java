@@ -9,10 +9,13 @@ import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.commons.util.CollectionUtil;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 
+/**
+ * Represents an Edit command for editing a Case Person in PIVOT.
+ */
 public abstract class EditPersonCommand extends EditCommand {
 
     protected final Index caseIndex;
@@ -20,24 +23,23 @@ public abstract class EditPersonCommand extends EditCommand {
     protected final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param  caseIndex of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param caseIndex of the Case Person in the filtered person list to edit.
+     * @param editPersonDescriptor contains details to edit the person with.
      */
     public EditPersonCommand(Index caseIndex, Index personIndex, EditPersonDescriptor editPersonDescriptor) {
         requireAllNonNull(caseIndex, personIndex, editPersonDescriptor);
-
         this.caseIndex = caseIndex;
         this.personIndex = personIndex;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the person with.
+     * Each non-empty field value will replace the corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Gender gender;
+        private Sex sex;
         private Phone phone;
         private Email email;
         private Address address;
@@ -46,12 +48,11 @@ public abstract class EditPersonCommand extends EditCommand {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             requireNonNull(toCopy);
             setName(toCopy.name);
-            setGender(toCopy.gender);
+            setSex(toCopy.sex);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -61,7 +62,7 @@ public abstract class EditPersonCommand extends EditCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, gender, phone, email, address);
+            return CollectionUtil.isAnyNonNull(name, sex, phone, email, address);
         }
 
         public void setName(Name name) {
@@ -72,12 +73,12 @@ public abstract class EditPersonCommand extends EditCommand {
             return Optional.ofNullable(name);
         }
 
-        public void setGender(Gender gender) {
-            this.gender = gender;
+        public void setSex(Sex sex) {
+            this.sex = sex;
         }
 
-        public Optional<Gender> getGender() {
-            return Optional.ofNullable(gender);
+        public Optional<Sex> getSex() {
+            return Optional.ofNullable(sex);
         }
 
         public void setPhone(Phone phone) {
@@ -120,7 +121,7 @@ public abstract class EditPersonCommand extends EditCommand {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getGender().equals(e.getGender())
+                    && getSex().equals(e.getSex())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress());

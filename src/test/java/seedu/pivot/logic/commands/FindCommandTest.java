@@ -33,6 +33,17 @@ public class FindCommandTest {
     private Model model = new ModelManager(getTypicalPivot(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalPivot(), new UserPrefs());
 
+    public void setUpMainPageDefaultSection() {
+        StateManager.setDefaultSection();
+        StateManager.resetState();
+    }
+
+    public void setUpMainPageArchivedSection() {
+        StateManager.setArchivedSection();
+        StateManager.resetState();
+    }
+
+
     @Test
     public void equals() {
         DetailsContainsKeywordsPredicate firstPredicate =
@@ -62,6 +73,8 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
+        setUpMainPageDefaultSection();
+
         String expectedMessage = String.format(MESSAGE_CASES_LISTED_OVERVIEW, 0);
         DetailsContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
@@ -72,7 +85,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywordsArchivedSection_multiplePersonsFound() {
-        StateManager.setArchivedSection();
+        setUpMainPageArchivedSection();
 
         String expectedMessage = String.format(MESSAGE_CASES_LISTED_OVERVIEW, 3);
         DetailsContainsKeywordsPredicate predicate = preparePredicate("Junk Klook Louis Kurz Elle Kunz");
@@ -87,7 +100,8 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywordsDefaultSection_multiplePersonsFound() {
-        StateManager.setDefaultSection();
+        setUpMainPageDefaultSection();
+
         String expectedMessage = String.format(MESSAGE_CASES_LISTED_OVERVIEW, 3);
         DetailsContainsKeywordsPredicate predicate = preparePredicate("Junk Klook Louis Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);

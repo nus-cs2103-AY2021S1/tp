@@ -3,8 +3,12 @@ package seedu.pivot.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 
+/**
+ * Represents a Redo command to redo user's previous undo.
+ */
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
 
@@ -20,7 +24,13 @@ public class RedoCommand extends Command {
             throw new CommandException(MESSAGE_REDO_FAILURE);
         }
 
-        String stateCommand = model.redoPivot();
-        return new CommandResult(MESSAGE_REDO_SUCCESS + stateCommand);
+        model.redoPivot();
+        String redoneCommand = model.getCommandMessage();
+
+        if (model.isMainPageCommand()) {
+            StateManager.resetState();
+        }
+
+        return new CommandResult(MESSAGE_REDO_SUCCESS + redoneCommand);
     }
 }

@@ -118,11 +118,16 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Label sectionLabel;
 
-    // For Section Label
-    private final String firstInit = "Welcome to PIVOT. ";
-    private final String preamble = "You are now at the ";
-    private final String homepage = "Homepage";
+    private final String homepage = "Home";
     private final String archive = "Archive";
+    private final String casePanel = "Case Page";
+    private final String mainPanel = "Main Page";
+    private String currentPage = homepage;
+    private String currentPanel = mainPanel;
+
+    // For changing CSS
+    private final String darkThemeResource = getClass().getResource("/view/DarkTheme.css").toExternalForm();
+    private final String blueThemeResource = getClass().getResource("/view/BlueTheme.css").toExternalForm();
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -146,6 +151,8 @@ public class MainWindow extends UiPart<Stage> {
             @Override
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
                 updateCaseInformationPanel((Index) newValue);
+                currentPanel = newValue == null ? mainPanel : casePanel;
+                updateSectionLabel(EMPTY);
             }
         });
 
@@ -161,11 +168,23 @@ public class MainWindow extends UiPart<Stage> {
         UiStateManager.getCurrentSection().addListener(new ChangeListener<Object>() {
             @Override
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-                String section = "";
                 if (newValue != null) {
-                    section = newValue.equals(ArchiveStatus.DEFAULT) ? homepage : archive;
+                    boolean isDefaultPage = newValue.equals(ArchiveStatus.DEFAULT);
+                    currentPage = isDefaultPage ? homepage : archive;
+
+                    if (isDefaultPage) {
+                        primaryStage.getScene().getStylesheets().remove(darkThemeResource);
+                        if (!primaryStage.getScene().getStylesheets().contains(blueThemeResource)) {
+                            primaryStage.getScene().getStylesheets().add(blueThemeResource);
+                        }
+                    } else {
+                        primaryStage.getScene().getStylesheets().remove(blueThemeResource);
+                        if (!primaryStage.getScene().getStylesheets().contains(darkThemeResource)) {
+                            primaryStage.getScene().getStylesheets().add(darkThemeResource);
+                        }
+                    }
                 }
-                sectionLabel.setText(preamble + section);
+                updateSectionLabel(EMPTY);
             }
         });
 
@@ -230,7 +249,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        sectionLabel.setText(firstInit + preamble + homepage);
+        // For Section Label
+        String firstInit = "Welcome to PIVOT. ";
+        updateSectionLabel(firstInit);
 
         updateCaseInformationPanel(indexSimpleObjectProperty.get());
     }
@@ -279,22 +300,33 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setTabSelected(String tabType) {
-        switch (tabType) {
-        case TYPE_DOC:
-            caseTabPane.getSelectionModel().select(documentTab);
-            break;
-        case TYPE_SUSPECT:
-            caseTabPane.getSelectionModel().select(suspectTab);
-            break;
-        case TYPE_VICTIM:
-            caseTabPane.getSelectionModel().select(victimTab);
-            break;
-        case TYPE_WITNESS:
-            caseTabPane.getSelectionModel().select(witnessTab);
-            break;
-        default:
+        if (tabType == null) {
             caseTabPane.getSelectionModel().clearSelection();
+        } else {
+            switch (tabType) {
+            case TYPE_DOC:
+                caseTabPane.getSelectionModel().select(documentTab);
+                break;
+            case TYPE_SUSPECT:
+                caseTabPane.getSelectionModel().select(suspectTab);
+                break;
+            case TYPE_VICTIM:
+                caseTabPane.getSelectionModel().select(victimTab);
+                break;
+            case TYPE_WITNESS:
+                caseTabPane.getSelectionModel().select(witnessTab);
+                break;
+            default:
+                caseTabPane.getSelectionModel().clearSelection();
+            }
         }
+
+    }
+
+    private void updateSectionLabel(String firstInit) {
+        String divider = " - ";
+        String preamble = "You are now at ";
+        sectionLabel.setText(firstInit + preamble + currentPage + divider + currentPanel);
     }
 
     /**

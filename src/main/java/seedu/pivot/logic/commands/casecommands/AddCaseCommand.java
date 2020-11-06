@@ -12,15 +12,17 @@ import java.util.logging.Logger;
 import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 
 /**
- * Adds a case to PIVOT.
+ * Represents an Add command for adding Cases into PIVOT.
  */
-public class AddCaseCommand extends AddCommand {
+public class AddCaseCommand extends AddCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_CASE
             + ": Adds a case to PIVOT.\n"
@@ -34,6 +36,8 @@ public class AddCaseCommand extends AddCommand {
 
     public static final String MESSAGE_ADD_CASE_SUCCESS = "New case added: %1$s";
     public static final String MESSAGE_DUPLICATE_CASE = "This case already exists in PIVOT";
+
+    private static final Page pageType = Page.MAIN;
     private static final Logger logger = LogsCenter.getLogger(AddCaseCommand.class);
 
     private final Case investigationCase;
@@ -61,7 +65,8 @@ public class AddCaseCommand extends AddCommand {
         }
 
         model.addCase(investigationCase);
-        model.commitPivot(String.format(MESSAGE_ADD_CASE_SUCCESS, investigationCase));
+        model.commitPivot(String.format(MESSAGE_ADD_CASE_SUCCESS, investigationCase), this);
+
         if (StateManager.atDefaultSection()) {
             model.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
         }
@@ -77,5 +82,10 @@ public class AddCaseCommand extends AddCommand {
         return other == this // short circuit if same object
                 || (other instanceof AddCaseCommand // instanceof handles nulls
                 && investigationCase.equals(((AddCaseCommand) other).investigationCase));
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }

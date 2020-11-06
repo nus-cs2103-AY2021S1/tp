@@ -3,7 +3,6 @@ package seedu.pivot.model.investigationcase;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.pivot.commons.util.StringUtil;
 import seedu.pivot.model.investigationcase.caseperson.CasePerson;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
@@ -22,15 +21,24 @@ public class DetailsContainsKeywordsPredicate implements Predicate<Case> {
     @Override
     public boolean test(Case investigationCase) {
         return keywords.stream()
-                .anyMatch(keyword ->
-                        StringUtil.containsWordIgnoreCase(investigationCase.getTitle().getAlphaNum(), keyword)
-                                || StringUtil.containsWordIgnoreCase(investigationCase.getDescription().toString(),
-                                keyword)
-                                || StringUtil.containsWordIgnoreCase(investigationCase.getStatus().toString(), keyword)
-                                || StringUtil.containsWordIgnoreCase(getDocumentsInfo(investigationCase), keyword)
-                                || StringUtil.containsWordIgnoreCase(getSuspectsInfo(investigationCase), keyword)
-                                || StringUtil.containsWordIgnoreCase(getVictimsInfo(investigationCase), keyword)
-                                || StringUtil.containsWordIgnoreCase(getWitnessesInfo(investigationCase), keyword)
+                .anyMatch(keyword -> {
+                    String keywordLowerCase = keyword.toLowerCase();
+                    String titleLowerCase = investigationCase.getTitle().getAlphaNum().toLowerCase();
+                    String descriptionLowerCase = investigationCase.getDescription().toString().toLowerCase();
+                    String statusLowerCase = investigationCase.getStatus().toString().toLowerCase();
+                    String documentsLowerCase = getDocumentsInfo(investigationCase).toLowerCase();
+                    String suspectsLowerCase = getSuspectsInfo(investigationCase).toLowerCase();
+                    String victimsLowerCase = getVictimsInfo(investigationCase).toLowerCase();
+                    String witnessLowerCase = getWitnessesInfo(investigationCase).toLowerCase();
+
+                    return titleLowerCase.contains(keywordLowerCase)
+                            || descriptionLowerCase.contains(keywordLowerCase)
+                            || statusLowerCase.contains(keywordLowerCase)
+                            || documentsLowerCase.contains(keywordLowerCase)
+                            || suspectsLowerCase.contains(keywordLowerCase)
+                            || victimsLowerCase.contains(keywordLowerCase)
+                            || witnessLowerCase.contains(keywordLowerCase);
+                }
                 );
     }
 
@@ -100,7 +108,7 @@ public class DetailsContainsKeywordsPredicate implements Predicate<Case> {
      */
     public void appendPersonDetails(StringBuilder builder, CasePerson person) {
         builder.append(person.getName()).append(" ");
-        builder.append(person.getGender().toString()).append(" ");
+        builder.append(person.getSex().toString()).append(" ");
         builder.append(person.getPhone()).append(" ");
         builder.append(person.getEmail()).append(" ");
         builder.append(person.getAddress()).append(" ");

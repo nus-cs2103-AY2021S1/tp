@@ -3,6 +3,7 @@ package seedu.pivot.logic.commands.witnesscommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 
 import java.util.List;
@@ -13,6 +14,8 @@ import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.DeleteCommand;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
@@ -20,25 +23,25 @@ import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.caseperson.Witness;
 
 /**
- * Deletes a case identified using it's displayed index from PIVOT.
+ * Represents a Delete command for deleting Witnesses from a Case in PIVOT based on its Index.
  */
-public class DeleteWitnessCommand extends DeleteCommand {
+public class DeleteWitnessCommand extends DeleteCommand implements Undoable {
 
     public static final String MESSAGE_DELETE_WITNESS_SUCCESS = "Deleted witness: %1$s";
 
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(DeleteWitnessCommand.class);
 
     private final Index caseIndex;
     private final Index witnessIndex;
 
     /**
-     * Creates a DeleteWitnessCommand to delete the witness at specified index, in the case at specified index.
+     * Creates a DeleteWitnessCommand to delete the witness from the case at specified index.
      * @param caseIndex The index of the case to delete the witness.
      * @param witnessIndex The index of the witness to be deleted.
      */
     public DeleteWitnessCommand(Index caseIndex, Index witnessIndex) {
-        requireNonNull(caseIndex);
-        requireNonNull(witnessIndex);
+        requireAllNonNull(caseIndex, witnessIndex);
         this.caseIndex = caseIndex;
         this.witnessIndex = witnessIndex;
     }
@@ -70,7 +73,7 @@ public class DeleteWitnessCommand extends DeleteCommand {
                 stateCase.getVictims(), updatedWitnesses, stateCase.getTags(), stateCase.getArchiveStatus());
 
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_DELETE_WITNESS_SUCCESS, witnessToDelete));
+        model.commitPivot(String.format(MESSAGE_DELETE_WITNESS_SUCCESS, witnessToDelete), this);
         model.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_WITNESS_SUCCESS, witnessToDelete));
@@ -82,5 +85,10 @@ public class DeleteWitnessCommand extends DeleteCommand {
                 || (other instanceof DeleteWitnessCommand // instanceof handles nulls
                 && caseIndex.equals(((DeleteWitnessCommand) other).caseIndex)
                 && witnessIndex.equals(((DeleteWitnessCommand) other).witnessIndex)); // state check
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }

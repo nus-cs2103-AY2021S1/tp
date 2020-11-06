@@ -31,7 +31,7 @@ public class Phone {
      */
     public static boolean isValidPhone(String test) {
         String trimmedTest = test.trim();
-        return trimmedTest.isBlank() || trimmedTest.matches(VALIDATION_REGEX);
+        return trimmedTest.matches(VALIDATION_REGEX);
     }
 
     @Override

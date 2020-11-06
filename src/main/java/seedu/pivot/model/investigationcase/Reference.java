@@ -16,7 +16,7 @@ import seedu.pivot.commons.util.FileUtil;
 public class Reference {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "File should be placed in the ./reference folder. "
+            "File should be placed in the ./references folder. "
                     + "Please only enter the non-blank file name with its extension.";
 
     private static final String DEFAULT_FILEPATH = "./references/";

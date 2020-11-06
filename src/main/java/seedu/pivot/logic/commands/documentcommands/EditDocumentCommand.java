@@ -3,6 +3,7 @@ package seedu.pivot.logic.commands.documentcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_DOCUMENT;
 import static seedu.pivot.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_REFERENCE;
@@ -16,6 +17,8 @@ import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.EditCommand;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
@@ -24,12 +27,15 @@ import seedu.pivot.model.investigationcase.Document;
 import seedu.pivot.model.investigationcase.Reference;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 
-public class EditDocumentCommand extends EditCommand {
+/**
+ * Represents an Edit command for editing a Document in a Case in PIVOT.
+ */
+public class EditDocumentCommand extends EditCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DOC
             + ": Edits the document of the opened case at the specified index.\n"
             + "Parameters: "
-            + "INDEX "
+            + "INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_REFERENCE + "REFERENCE]\n"
             + "Example: " + COMMAND_WORD + " " + TYPE_DOC + " " + "1" + " "
@@ -38,6 +44,8 @@ public class EditDocumentCommand extends EditCommand {
 
 
     public static final String MESSAGE_EDIT_DOCUMENT_SUCCESS = "Edited document: %1$s";
+
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(EditDocumentCommand.class);
 
     private final Index index;
@@ -91,6 +99,12 @@ public class EditDocumentCommand extends EditCommand {
         Document editedDocument =
                 new Document(name.orElse(documentToEdit.getName()), reference.orElse(documentToEdit.getReference()));
 
+        //check for duplicate
+        if (documents.contains(editedDocument)) {
+            logger.warning("Failed to edit document: Edited to a document that exists in PIVOT");
+            throw new CommandException(MESSAGE_DUPLICATE_DOCUMENT);
+        }
+
         documents.set(documentIndex.getZeroBased(), editedDocument);
 
         Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
@@ -99,8 +113,13 @@ public class EditDocumentCommand extends EditCommand {
 
         //update model
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument));
+        model.commitPivot(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument), this);
 
         return new CommandResult(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument));
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }

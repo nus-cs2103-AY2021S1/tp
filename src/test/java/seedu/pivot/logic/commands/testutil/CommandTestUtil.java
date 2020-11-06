@@ -2,8 +2,10 @@ package seedu.pivot.logic.commands.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.pivot.testutil.Assert.assertThrows;
 
@@ -14,19 +16,18 @@ import java.util.List;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.Command;
 import seedu.pivot.logic.commands.CommandResult;
-import seedu.pivot.logic.commands.EditCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.Pivot;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
-import seedu.pivot.testutil.EditCaseDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
+    // for case
     public static final String VALID_TITLE_AMY = "Amy Bee Disappearance";
     public static final String VALID_TITLE_BOB = "Bob Choo Salon Theft";
     public static final String VALID_STATUS_AMY = "active";
@@ -34,41 +35,36 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String VALID_CASEPERSON_NAME_AMY = "Amy";
-    public static final String VALID_CASEPERSON_NAME_BOB = "Bob";
-    public static final String VALID_GENDER_AMY = "F";
-    public static final String VALID_GENDER_BOB = "M";
-
-    public static final String INVALID_CASEPERSON_NAME = "James&";
-
-
     public static final String PREFIX_WITH_TITLE_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String PREFIX_WITH_TITLE_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
 
     public static final String PREFIX_WITH_STATUS_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
     public static final String PREFIX_WITH_STATUS_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
-    public static final String PREFIX_WITH_TAG_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String PREFIX_WITH_TAG_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     // '&' not allowed in title
     public static final String PREFIX_WITH_INVALID_TITLE_AMY = " " + PREFIX_TITLE + "James&";
     public static final String PREFIX_WITH_INVALID_STATUS = " " + PREFIX_STATUS + "status";
-    public static final String PREFIX_WITH_INVALID_TAG = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_AMY;
-    public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_BOB;
+    // for caseperson
+    public static final String VALID_CASEPERSON_NAME_AMY = "Amy";
+    public static final String VALID_CASEPERSON_NAME_BOB = "Bob";
+    public static final String VALID_CASEPERSON_SEX_AMY = "F";
+    public static final String VALID_CASEPERSON_SEX_BOB = "M";
+    public static final String VALID_CASEPERSON_PHONE = "91234567";
+    public static final String VALID_CASEPERSON_EMAIL = "peterjack@example.com";
+    public static final String VALID_CASEPERSON_ADDRESS = "Bishan Blk 123";
 
-    static {
-        EDIT_CASE_DESCRIPTOR_AMY = new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_AMY)
-                .withStatus(VALID_STATUS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        EDIT_CASE_DESCRIPTOR_BOB = new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_BOB)
-                .withStatus(VALID_STATUS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    }
+    public static final String INVALID_CASEPERSON_NAME = "James&";
+
+    // inputs
+    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_AMY;
+    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_BOB;
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_CASEPERSON_NAME;
+    public static final String SEX_DESC_BOB = " " + PREFIX_SEX + VALID_CASEPERSON_SEX_BOB;
+    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_CASEPERSON_PHONE;
 
     /**
      * Executes the given {@code command}, confirms that <br>

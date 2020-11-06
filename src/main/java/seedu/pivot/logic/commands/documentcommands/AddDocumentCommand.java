@@ -3,6 +3,8 @@ package seedu.pivot.logic.commands.documentcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_DOCUMENT;
+import static seedu.pivot.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_REFERENCE;
 
@@ -13,13 +15,18 @@ import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Document;
 
-public class AddDocumentCommand extends AddCommand {
+/**
+ * Represents an Add command for adding Documents into Cases in PIVOT.
+ */
+public class AddDocumentCommand extends AddCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DOC
             + ": Adds a document to the opened case.\n"
@@ -31,8 +38,9 @@ public class AddDocumentCommand extends AddCommand {
             + PREFIX_REFERENCE + "test1.txt";
 
     public static final String MESSAGE_ADD_DOCUMENT_SUCCESS = "New document added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DOCUMENT = "This document already exists in the case.";
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(AddDocumentCommand.class);
+
     private final Index index;
     private final Document doc;
 
@@ -43,9 +51,7 @@ public class AddDocumentCommand extends AddCommand {
      * @param doc document to be added.
      */
     public AddDocumentCommand(Index index, Document doc) {
-        requireNonNull(index);
-        requireNonNull(doc);
-
+        requireAllNonNull(index, doc);
         this.index = index;
         this.doc = doc;
     }
@@ -80,7 +86,7 @@ public class AddDocumentCommand extends AddCommand {
                 stateCase.getTags(), stateCase.getArchiveStatus());
 
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc));
+        model.commitPivot(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc), this);
 
         return new CommandResult(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc));
     }
@@ -91,5 +97,10 @@ public class AddDocumentCommand extends AddCommand {
                 || (other instanceof AddDocumentCommand // instanceof handles nulls
                 && doc.equals(((AddDocumentCommand) other).doc)
                 && index.equals(((AddDocumentCommand) other).index));
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }

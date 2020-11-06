@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.pivot.commons.core.GuiSettings;
 import seedu.pivot.commons.core.LogsCenter;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Case;
 
@@ -117,10 +120,19 @@ public class ModelManager implements Model {
 
     //=========== Versioned Pivot ===========================================================================
     @Override
-    public void commitPivot(String command) {
-        requireNonNull(command);
+    public void commitPivot(String commandMessage, Undoable command) {
+        requireAllNonNull(commandMessage, command);
         this.versionedPivot.purgeStates();
-        this.versionedPivot.commit(new Pivot(this.pivot), command);
+
+        ObservableList<Case> cases = this.pivot.getCaseList();
+        List<Case> newCases = new ArrayList<>();
+        for (int i = 0; i < cases.size(); i++) {
+            newCases.add(new Case(cases.get(i)));
+        }
+        Pivot newPivot = new Pivot();
+        newPivot.setCases(newCases);
+
+        this.versionedPivot.commit(newPivot, commandMessage, command);
     }
 
     @Override
@@ -129,10 +141,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String redoPivot() {
+    public void redoPivot() {
         ReadOnlyPivot pivot = this.versionedPivot.redo();
         this.setPivot(pivot);
-        return this.versionedPivot.getStateCommand();
     }
 
     @Override
@@ -141,11 +152,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String undoPivot() {
-        String command = this.versionedPivot.getStateCommand();
+    public void undoPivot() {
         ReadOnlyPivot pivot = this.versionedPivot.undo();
         this.setPivot(pivot);
-        return command;
+    }
+
+    @Override
+    public String getCommandMessage() {
+        return this.versionedPivot.getCommandMessageResult();
+    }
+
+    @Override
+    public boolean isMainPageCommand() {
+        return this.versionedPivot.isMainPageCommand();
     }
 
     //=========== Filtered Case List Accessors =============================================================
@@ -180,6 +199,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return pivot.equals(other.pivot)
+                && versionedPivot.equals(other.versionedPivot)
                 && userPrefs.equals(other.userPrefs)
                 && filteredCases.equals(other.filteredCases);
     }
