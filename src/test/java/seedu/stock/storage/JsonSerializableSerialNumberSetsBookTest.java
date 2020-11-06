@@ -39,7 +39,7 @@ public class JsonSerializableSerialNumberSetsBookTest {
     }
 
     @Test
-    public void toModelType_duplicateSerialNumberSetss_throwsIllegalValueException() throws Exception {
+    public void toModelType_duplicateSerialNumberSets_throwsIllegalValueException() throws Exception {
         JsonSerializableSerialNumberSetsBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_STOCK_FILE,
                 JsonSerializableSerialNumberSetsBook.class).get();
         assertThrows(IllegalValueException.class,
