@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.UndoCommand;
 
 class UndoCommandParserTest {
@@ -26,10 +27,10 @@ class UndoCommandParserTest {
 
     @Test
     public void parse_validInput_success() {
-        String validInput = "";       // Empty parameter
-        String validInput2 = "   ";   // White spaces
-        String validInput3 = "\t";   // Tab
-        String validInput4 = "\n";   // Newline
+        String validInput = ""; // Empty parameter
+        String validInput2 = "   "; // White spaces
+        String validInput3 = "\t"; // Tab
+        String validInput4 = "\n"; // Newline
         UndoCommand expectedCommand = new UndoCommand();
 
         assertParseSuccess(parser, validInput, expectedCommand);
