@@ -70,27 +70,23 @@ not be so obvious!
 --------------------------------------------------------------------------------------------------------------------
 #### 3.2.2. General Symbols and Syntax 
 
-The table below explains the general syntax used throughout the user guide.
+The following table gives you general symbols and syntax used in this user guide.
 
 | Syntax |  What it means |
 |----------|-------------|
-| `command` |  A grey highlighted block specifies a executable command that can be entered into the command box.  |
-| _italics_ | Italicised text indicates that the text has a definition specific to tCheck, or it is a caption for a Figure in the guide. |
-|<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a tip. |
-|<div markdown="block" class="alert alert-danger"> :warning: </div> | A warning sign indicates that the following text is important. |
+| `command` |  The grey block specifies the execuable command which can be entered in the command box |
+|<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a note |
 
-
-Important cautions that needs to be known before using the feature.
 
 #### 3.2.3. Command Syntax and Usage
 
-The table below explains some important technical terms to help you understand and use commands in Homerce.
+The following table gives you technical terms used in this user guide.
 
 | Technical Term | What it means |
 | ---------------| --------------|
-| Command Word | The first word of a command. It determines the action that tCheck should perform. |
-| Prefix | The characters at the start of a parameter. It distinguishes one parameter from another.|
-| Parameter | The word following each prefix. They are values given to a command to perform the specified action.|
+| Command Word | The first word of a command. tCheck uses this command word to decide what king of actions it should perform. |
+| Prefix | It is used to distinguish different kinds of parameters. |
+| Parameter | Values given for specific operations. |
 
 **Example:** <br>
 `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
@@ -101,7 +97,6 @@ The table below explains some important technical terms to help you understand a
 * Parameters - `NAME`, `PHONE_NUMBER`, `EMERGENCY_CONTACT`, `ADDRESS`, `TAG`
 
 The following points explain the format of a command. 
-More examples will be provided for each command in [Section 4 - Features](#4-features).
 
 1. Words in `UPPER_CASE` are the parameters to be supplied<br>
     - In `c-delete INDEX`, `INDEX` is a parameter and the command can be used as `c-delete 1`.
@@ -111,7 +106,7 @@ More examples will be provided for each command in [Section 4 - Features](#4-fea
     or as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road`.
 
 3. Items with `…​` after them can be used multiple times, including zero times.<br>
-    - `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Friday t/PartTime`, `t/Friday` etc.
+    - `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Friday``t/Friday t/PartTime`, `t/Friday` etc.
 
 4. Parameters can be in any order.<br>
     - If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
