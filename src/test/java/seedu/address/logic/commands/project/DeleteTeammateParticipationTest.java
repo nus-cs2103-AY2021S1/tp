@@ -10,23 +10,18 @@ import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_SECOND_TEAM
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalPersons.DESC_A;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 
 public class DeleteTeammateParticipationTest {
 
     @Test
     public void execute_validGitUserIndex_success() {
-        Person.getAllPeople().clear();
-        Person.getAllPeople().add(DESC_A);
-
-        Project.getAllProjects().clear();
+//        Person.getAllPeople().clear();
+//        Person.getAllPeople().add(DESC_A);
 
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
@@ -49,6 +44,7 @@ public class DeleteTeammateParticipationTest {
 
     @Test
     public void execute_invalidGitUserIndex_throwsNullPointerException() {
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
