@@ -18,8 +18,10 @@ import seedu.address.model.module.Module;
  * A utility class containing a list of {@code Module} objects to be used in tests.
  */
 public class TypicalModules {
+    // Manually added - Modules's details found in {@code CommandTestUtil}
     public static final Module CS2030 = new ModuleBuilder().withName("CS2030")
-        .withZoomLink("Lecture", "https://nus-sg.zoom.us/CS2030").build();
+        .withZoomLink("Lecture", "https://nus-sg.zoom.us/CS2030")
+            .withGradePoint(5.0).withTag("completed").build();
     public static final Module CS2101 = new ModuleBuilder().withName("CS2101")
         .withZoomLink("Lecture", "https://nus-sg.zoom.us/CS2101").build();
     public static final Module CS2105 = new ModuleBuilder().withName("CS2105")
@@ -36,9 +38,8 @@ public class TypicalModules {
         .withZoomLink("Lecture", "https://nus-sg.zoom.us/ma1101r").build();
 
     // Manually added - Modules's details found in {@code CommandTestUtil}
-    public static final Module CS2103 = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T)
+    public static final Module CS2103T = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T)
         .withZoomLink(VALID_MODULE_LESSON_LECTURE, VALID_ZOOM_LINK_CS2103T).build();
-
     public static final Module ES2660 = new ModuleBuilder().withName(VALID_MODULENAME_ES2660)
         .withZoomLink(VALID_MODULE_LESSON_TUTORIAL, VALID_ZOOM_LINK_ES2660).build();
 

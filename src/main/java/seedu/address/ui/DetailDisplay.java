@@ -37,7 +37,7 @@ public class DetailDisplay extends UiPart<Region> {
             smallDetailsPlaceHolder.getChildren().remove(SMALL_DETAILS_CARD_INDEX);
         }
         smallDetailsPlaceHolder.getChildren().add(smallDetailsPanel.getRoot());
-        zoomLinkPanel = new ZoomLinkPanel(FXCollections.observableArrayList(result.getZoomLinks()));
+        zoomLinkPanel = new ZoomLinkPanel(FXCollections.observableArrayList(result.getDisplayZoomLinks()));
         listPlaceholder.getChildren().add(zoomLinkPanel.getRoot());
         assignmentPanel = new AssignmentPanel(FXCollections.observableArrayList(result.getAssignments()));
         assignmentListPlaceHolder.getChildren().add(assignmentPanel.getRoot());

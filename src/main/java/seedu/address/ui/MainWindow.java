@@ -219,7 +219,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            if (commandText.contains("view")) {
+            if (commandText.contains("view") && !commandText.contains("archive")) {
                 detailDisplay.setDisplay((ViewCommandResult) commandResult);
                 resultDisplay.setFeedbackToUser("ViewModule has been successfully executed!");
             } else {

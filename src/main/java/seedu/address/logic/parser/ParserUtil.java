@@ -34,6 +34,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Criterion;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.TaskName;
 
 /**
@@ -305,6 +306,25 @@ public class ParserUtil {
             return Priority.LOW;
         default:
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static Status parseTaskStatus(String status) throws ParseException {
+        assert status != null;
+        String priorityAllUpperCase = status.toUpperCase();
+        switch(priorityAllUpperCase) {
+        case("COMPLETED"):
+            return Status.COMPLETED;
+        case("INCOMPLETE"):
+            return Status.NOT_COMPLETED;
+        default:
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
     }
 

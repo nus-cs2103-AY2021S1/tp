@@ -59,12 +59,11 @@ public class EditEventCommand extends Command {
         List<Event> lastShownList = model.getFilteredEventList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());
         Event updatedEvent = createEditedEvent(eventToEdit, descriptor);
-        System.out.println(eventToEdit.equals(updatedEvent));
         if (model.hasEvent(updatedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
@@ -84,7 +83,8 @@ public class EditEventCommand extends Command {
         if (this == other) {
             return true;
         } else if (other instanceof EditEventCommand) {
-            return this.descriptor.equals(((EditEventCommand) other).descriptor);
+            EditEventCommand toTest = (EditEventCommand) other;
+            return this.index.equals(toTest.index) && this.descriptor.equals(toTest.descriptor);
         } else {
             return false;
         }
@@ -94,9 +94,15 @@ public class EditEventCommand extends Command {
         requireNonNull(toEdit);
         requireNonNull(descriptor);
         Set<Tag> updatedTags = descriptor.getTags().orElse(toEdit.getTags());
-        EventName updatedName = descriptor.getName().orElse(toEdit.getName());
+        EventName updatedName = toEdit.getName();
+        if (!descriptor.getName().get().equals(new EventName())) {
+            updatedName = descriptor.getName().get();
+        }
         //TODO: Implement Event to take in Tags
-        EventTime updatedTime = descriptor.getTime().orElse(toEdit.getTime());
+        EventTime updatedTime = toEdit.getTime();
+        if (!descriptor.getTime().get().equals(new EventTime())) {
+            updatedTime = descriptor.getTime().get();
+        }
         return new Event(updatedName, updatedTime);
     }
 

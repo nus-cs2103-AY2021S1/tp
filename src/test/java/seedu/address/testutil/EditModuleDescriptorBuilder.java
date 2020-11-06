@@ -69,7 +69,6 @@ public class EditModuleDescriptorBuilder {
         descriptor.setTags(tagSet);
         return this;
     }
-
     /**
      * Sets the {@code ModularCredits} of the {@code EditModuleDescriptor} that we are building.
      */
@@ -77,9 +76,6 @@ public class EditModuleDescriptorBuilder {
         descriptor.setModularCredits(new ModularCredits(mc));
         return this;
     }
-
-
-
     /**
      * Sets the {@code GradePoint} of the {@code EditModuleDescriptor} that we are building.
      */
