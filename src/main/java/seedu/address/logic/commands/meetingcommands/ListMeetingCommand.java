@@ -5,7 +5,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.EntityType;
 import seedu.address.model.Model;
 
 /**
@@ -21,6 +20,6 @@ public class ListMeetingCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
-        return new CommandResult(MESSAGE_SUCCESS).setEntity(EntityType.MEETING);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

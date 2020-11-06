@@ -7,7 +7,7 @@ title: Developer Guide
 
 Refer to the guide <<SettingUp#, here>>.
 
-== Design
+Design
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -62,20 +62,63 @@ The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/uidiagram/Ui-Component.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of two components:
+- `MainWindow` 
+- `HelpWindow`
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+---
+#### [`MainWindow.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+
+`MainWindow` is made up of the following parts:
+- [`ResultDisplay`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/ResultDisplay.java)
+- [`CommandBox`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CommandBox.java)
+- [`TabBar`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/TabBar.java)
+- [`StatusBarFooter`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/TabBar.java) 
+- [`CalendarView`]((https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java))
+- [`MeetingListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/meeting/MeetingListPanel.java)
+
+![Breakdown of Ui Component](images/uidiagram/Ui-Component-Breakdown.png)
+*Note that the font colour in the picture is only different for visibility purposes.*
+
+The `TabBar` component itself consists of the following parts:
+- [`PropertyListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/property/PropertyListPanel.java)
+- [`BidderListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/bidder/BidderListPanel.java)
+- [`SellerListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/seller/SellerListPanel.java)
+- [`BidListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/bid/BidListPanel.java)
+
+Each panel will display the list of the entities corresponding to the name of the panel.
+
+---
+#### [`HelpWindow.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/HelpWindow.java)
+
+The `HelpWindow` is a pop up window that is activated upon clicking of the Help button in PropertyFree, or when the `help` command
+is executed.
+
+The `Copy URL` button would automically copy the link of PropertyFree's User Guide into the user's clipboard.
+
+![Breakdown of Ui Component](images/uidiagram/Ui-Component-HelpWindow.png)
+
+---
+
+All the above-mentioned components in `MainWindow` and `HelpWindow`, inherit from the abstract `UiPart` class.
+
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` 
+files that are in the `src/main/resources/view` folder. 
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 * Returns what to be printed out on the UI
+
+{ end of `ui` section written by: Kor Ming Soon }
 
 ### Logic component
 
@@ -99,27 +142,88 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/modelDiagram/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address//model/Model.java)
+    
+> Note that the usage of the term `ENTITY` in this section represents any of the following entities in PropertyFree:
+> `Property`, `Seller`, `Bidder`, `Bid` and `Meeting`.
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
 * does not depend on any of the other three components.
 
+* stores the following `ENTITY` book data which consists of the following:
+    - `PropertyBook`
+    - `SellerAddressBook` 
+    - `BidderAddressBook`
+    - `MeetingBook`
+    - `BidBook`
+    
+* exposes an unmodifiable `ObservableList<ENTITY>` that can be 'observed' by the UI component.
 
-<div markdown="span" class="alert alert-info"> 
+  *e.g. the UI is bounded to the 5 different lists so that 
+  the UI automatically updates when the data in any of the lists are changed.*
 
-:information_source: 
+The following segment of the `Model` components further breaks down each `ENTITY` for a more elaborate 
+explanation of each entities' design.
+- Property
+- Bidder and Seller
+- Bid
+- Meeting  
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+### Property 
 
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
-</div>
+#### ID
+The follow class diagram depicts the design behind `Id` and the subclasses: `SellerId`, `BidderId` and `PropertyId`.
+![Id Diagram](images/modelDiagram/IdModelDiagram.png)
+---
+### Bidder and Seller 
+The following class diagram depicts how the `Bidder` and `Seller` are created. The `Bidder` and `Seller` both extend from the
+abstract `ClientPerson` which in turn extends from abstract `Person`.  
+
+![Bidder and Seller Diagram](images/modelDiagram/BidderSellerModelDiagram.png)
+
+Note that the `CLIENTId` (BidderId / SellerId) design is elaborated in [Id] in the `Property` segment.
+
+ ##### Design Considerations
+
+ 1. Alternative 1 (current choice): Extending `Bidder` and `Seller` from `ClientPerson`, and `ClientPerson` from `Person`.
+    - Pros: 
+        - Neater segmentation of entities
+        - Easier extensibility for additional entities who require an `Id`
+        in the future if necessary (e.g Person representing an organization or company)
+    - Cons: 
+        - Increased code complexity
+
+ 2. Alternative 2: Extending `Bidder` and `Seller` directly from `Person`
+    - Pros: 
+        - Sufficient and possible coverage for current requirements of PropertyFree
+        - Lesser code complexity
+        - Lesser changes to AB3 code base
+    - Cons: 
+        - Lesser extensibility and increased possibility of coupling if more entities are introduced
+        
+ 3. Alternative 3 (current choice): Changing `Tag` from `Set<Tag>` in original AB3 implementation
+    - Pros: 
+        - Lesser code complexity and fewer testing required for extension.
+        - Better suited for PropertyFree's purpose as a client management system where the purpose of the client is already 
+        well specified without need for `Set<Tag>`
+        - Improved UI by having `Tag` acting as a form of visual identifier, instead of complete removal of `Tag`
+    - Cons: 
+        - Refactoring from original AB3 implementation required substantial time
+        
+        *`Tag` was kept in `Person` instead of `ClientPerson` to reduce refactoring required from AB3.*
+       
+
+--- 
+### Bid 
+
+### Meeting 
+
 
 
 ### Storage component
@@ -140,15 +244,29 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented. The details of the features are
-categorized accordingly to the entities. Specifically: Bidder, Seller, Bid, Property and Meeting.
+This section describes noteworthy details on how certain features are implemented. The details of the features are
+categorized accordingly to the features: 
+1. `Add`
+2. `Edit`
+3. `Find`
+4. `Sort`
+5. `Delete`
+6. `List`
 
-### 1. Bidder / Seller
+Additional features apart from the above-mentioned feature includes:
+- Automated transferring 
+
+
+  
  
- Despite being two separate entities, bidder and seller entities will be presented together in the implementation as
- both entities are very similar in terms of implementation.
  
- ### **Implementation**
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  #### 1.1 **Delete**: delete a bidder / seller - `delete-b` or `delete-s`
  
