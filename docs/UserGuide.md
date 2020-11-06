@@ -232,12 +232,11 @@ You can find your assignments based on keywords you enter. The types of keywords
 
 This is the table of prefixes used:
 
-| Prefix | Syntax | Examples |
+| Prefix | Syntax | Example |
 |-|-|-|
-| `n/` | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | - `n/Tutorial`<br>- `n/tutorial essay` |
-| `mod/` | mod/MODULE_CODE [MORE MODULE_CODE] | - `mod/ST2334`<br>- `mod/CS2100 cs2103t` |
-| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | - `d/24-10-2020` <br>- `d/1200`<br>- `d/1300 25-11-2020` |
-| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | - `p/high`<br>- `p/LOW` |
+| `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
+| `mod/` | mod/MODULE_CODE | - `mod/ST2334` |
+| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
 
 <div markdown="block" class="alert alert-primary">
 
@@ -286,14 +285,15 @@ For example, `remind 1` will set reminders for the first assignment in your assi
    ![Remind1InYourReminders](images/Remind1InYourReminders.png)
    *Figure X: "Statistics tutorial" (highlighted in red) is added into `Your reminders`*
 
-You can set reminders for **more than one** assignments at a time as well. 
+You can set reminders for **more than one** assignments at a time as well. Here is an example with steps for you to follow:
 
-For example, `remind 2 4` will set reminders for the second and fourth assignment in your assignment list ("Essay" and "Assignment 3" respectively as shown in Figure X) and adds both assignments to `Your reminders` (Figure X).
-
+1) To set reminders assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your assignment list as shown in Figure X), you can simply enter `remind 2 4` into the Command Box.
 
    ![Remind24](images/Remind24.png)
    *Figure X: Before "Essay" and "Assignment 3" are added into `Your reminders`*
-      
+
+2) You have successfully set reminders for both assignments, and they can now be found under `Your reminders`.
+
    ![Remind24InYourReminders](images/Remind24InYourReminders.png)
    *Figure X: "Essay" and "Assignment 3" (highlighted in red) are added into `Your reminders`*
 
