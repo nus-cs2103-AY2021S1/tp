@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateParticipationException;
 
@@ -24,6 +25,9 @@ public class AddTeammateParticipationCommandTest {
 
     @Test
     public void execute_validGitUserIndex_success() {
+        Person.getAllPeople().clear();
+        Project.getAllProjects().clear();
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -45,6 +49,9 @@ public class AddTeammateParticipationCommandTest {
 
     @Test
     public void execute_validGitUserDuplicateParticipation_throwsCommandException() {
+        Person.getAllPeople().clear();
+        Project.getAllProjects().clear();
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
