@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTags.CS2101;
@@ -56,5 +58,20 @@ public class UndoCommandTest {
         model.undoAddressBook();
         model.undoAddressBook();
         assertCommandFailure(new UndoCommand(), model, UndoCommand.MESSAGE_FAILURE);
+    }
+
+    @Test
+    public void equals() {
+        UndoCommand undoCommand1 = new UndoCommand();
+        UndoCommand undoCommand2 = new UndoCommand();
+
+        // same object -> returns true
+        assertEquals(undoCommand1, undoCommand2);
+
+        // different types -> returns false
+        assertNotEquals(undoCommand1, 1);
+
+        // null -> returns false
+        assertNotEquals(undoCommand1, null);
     }
 }

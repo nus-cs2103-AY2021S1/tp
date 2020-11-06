@@ -9,7 +9,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-
 /**
  * Reverts the {@code model}'s address book to its previously undone state.
  */
@@ -44,5 +43,16 @@ public class RedoCommand extends Command {
         logger.info(MESSAGE_SUCCESS + "\n" + model.getAddressBook());
 
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj == null) {
+            return false;
+        } else {
+            return obj instanceof RedoCommand;
+        }
     }
 }
