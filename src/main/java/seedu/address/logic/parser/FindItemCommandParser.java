@@ -28,6 +28,8 @@ public class FindItemCommandParser implements Parser<FindItemCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindItemCommand.MESSAGE_USAGE));
         }
 
+        assert !trimmedArgs.isBlank() : "Argument should not be blank";
+
         List<String> nameKeywords = Arrays.stream(trimmedArgs.split(REGEX_ENTRIES))
                 .map(String::strip)
                 .collect(Collectors.toList());

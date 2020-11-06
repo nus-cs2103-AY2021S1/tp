@@ -17,6 +17,17 @@ import seedu.address.testutil.ItemBuilder;
 public class NameMatchesKeywordsPredicateTest {
 
     @Test
+    public void nullConstructor_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new NameMatchesKeywordsPredicate(null));
+    }
+
+    @Test
+    public void test_nullTest_throwsNullPointerException() {
+        NameMatchesKeywordsPredicate predicate = new NameMatchesKeywordsPredicate(Collections.singletonList("Apple"));
+        assertThrows(NullPointerException.class, () -> predicate.test(null));
+    }
+
+    @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
