@@ -31,7 +31,7 @@ public class RoutineDeleteExerciseCommandParserTest {
         Routine legDay = new Routine(new Name("Leg Day"));
 
         // whitespace only preamble
-        assertParseSuccess(parser, " r/Leg Day e/Curls", new RoutineDeleteExerciseCommand(legDay, SPRINTS));
+        assertParseSuccess(parser, " r/Leg Day e/Sprints", new RoutineDeleteExerciseCommand(legDay, SPRINTS));
     }
 
     @Test

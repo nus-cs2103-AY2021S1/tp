@@ -30,7 +30,7 @@ public class RoutineAddExerciseCommandParserTest {
     public void parse_allRoutineFieldsPresent_success() {
 
         // whitespace only preamble
-        assertParseSuccess(parser, " r/Leg Day e/Curls", new RoutineAddExerciseCommand(legDay, SPRINTS));
+        assertParseSuccess(parser, " r/Leg Day e/Sprints", new RoutineAddExerciseCommand(legDay, SPRINTS));
     }
 
     @Test
