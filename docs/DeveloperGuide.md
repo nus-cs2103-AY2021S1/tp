@@ -792,7 +792,8 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Application must be in main window and not in review or quiz mode.
    
    1. Test case (specifying compulsory inputs only): `add q/Does software projects often involve workflows? a/Yes` <br>
-       Expected: A new flashcard is added to the end of the list of flashcards. The compulsory inputs will be set to 
+       Expected: A new flashcard is added to the end of the list of flashcards. Flashcard list panel will then update
+       to display all the flashcards in the flashcard deck. The compulsory inputs will be set to 
        what was specified in the command, whereas category will be set to `General` by default when not stated in the
        input. Result display will output the message: 
        `New flashcard added:  Question: Does software projects often involve workflows?`
