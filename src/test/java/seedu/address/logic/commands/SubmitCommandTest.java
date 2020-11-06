@@ -40,13 +40,13 @@ import seedu.address.testutil.TypicalVendors;
 public class SubmitCommandTest {
 
     private static final Path TYPICAL_VendorManager_FILEPATH = Paths.get
-            ("test/data/JsonSerializableVendorManagerTest/typicalVendorsVendorManager.json");
+            ("src/test/data/JsonSerializableVendorManagerTest/typicalVendorsVendorManager.json");
     private static final Path TYPICAL_USERPREFS_FILEPATH = Paths.get
-            ("test/data/JsonUserPrefsStorageTest/TypicalUserPref.json");
+            ("src/test/data/JsonUserPrefsStorageTest/TypicalUserPref.json");
     private static final Path TYPICAL_PRESET_FILEPATH = Paths.get
-            ("test/data/JsonSerializablePresetManagerTest/storagePreset.json");
+            ("src/test/data/JsonSerializablePresetManagerTest/storagePreset.json");
     private static final Path TYPICAL_PROFILE_FILEPATH = Paths.get
-            ("test/data/JsonProfileStorageTest/TypicalProfile.json");
+            ("src/test/data/JsonProfileStorageTest/TypicalProfile.json");
 
     public static Storage getDefaultStorage() {
         return new StorageManager(new JsonVendorManagerStorage(TYPICAL_VendorManager_FILEPATH),
@@ -131,9 +131,8 @@ public class SubmitCommandTest {
                 Assertions.assertTrue(false);
             }
         }
-        expectedMessage.append(String.format("Estimated total: $%.2f\n", calculatedTotal));
+        expectedMessage.append("\n" + String.format("Estimated total: $%.2f\n", calculatedTotal));
 
-        // Code broken here (I think because StorageManager doesn't have a Profile)
         assertCommandSuccess(new SubmitCommand(), model, storage, expectedMessage.toString(), expectedModel);
     }
 }
