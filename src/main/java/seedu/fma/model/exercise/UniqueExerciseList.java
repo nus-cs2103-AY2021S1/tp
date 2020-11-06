@@ -79,11 +79,6 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         }
     }
 
-    /*public void setExercises(UniqueExerciseList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }*/
-
     /**
      * Replaces the contents of this list with {@code exercises}.
      * {@code exercises} must not contain duplicate Exercises.

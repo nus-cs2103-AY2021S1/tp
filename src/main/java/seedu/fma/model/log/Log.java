@@ -57,6 +57,10 @@ public class Log {
         return dateTime;
     }
 
+    public Log setExercise(Exercise newExercise) {
+        return new Log(newExercise, reps, comment, dateTime);
+    }
+
     /**
      * Gets date time in string format
      *
