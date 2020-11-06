@@ -20,9 +20,27 @@ import chopchop.model.recipe.Recipe;
 public class SampleDataUtil {
     public static Ingredient[] getSampleIngredients() {
         return new Ingredient[] {
-            new Ingredient("Apple", Mass.grams(10), new ExpiryDate("2020-04-04"), new HashSet<>()),
-            new Ingredient("Blueberry", Count.of(5), null, new HashSet<>()),
-            new Ingredient("Custard", Volume.millilitres(200.5), null, new HashSet<>()),
+            new Ingredient("Apple", Count.of(8), new ExpiryDate("2020-12-15"),
+                new HashSet<>(Arrays.asList(new Tag("fruit"), new Tag("low calorie")))),
+            new Ingredient("Banana", Count.of(5), new ExpiryDate("2020-11-18"),
+                new HashSet<>(Arrays.asList(new Tag("fruit"), new Tag("low calorie")))),
+            new Ingredient("Egg", Count.of(12), new ExpiryDate("2020-12-01"),
+                new HashSet<>(Arrays.asList(
+                    new Tag("high protein"), new Tag("breakfast"), new Tag("frequently used")))),
+            new Ingredient("French Vinaigrette", Volume.millilitres(300), new ExpiryDate("2021-05-01"),
+                new HashSet<>(Arrays.asList(new Tag("high calorie"), new Tag("salad dressing")))),
+            new Ingredient("Pineapple Juice", Volume.litres(2), new ExpiryDate("2020-12-31"),
+                new HashSet<>(Arrays.asList(new Tag("high sugar level"), new Tag("drink"), new Tag("fruit")))),
+            new Ingredient("Granulated Sugar", Mass.grams(200), new ExpiryDate("2021-10-10"),
+                new HashSet<>(Arrays.asList(new Tag("sweet"), new Tag("kitchen"), new Tag("baking")))),
+            new Ingredient("Honey", Mass.grams(650), new ExpiryDate("2021-07-06"),
+                new HashSet<>(Arrays.asList(new Tag("sweet"), new Tag("high sugar level"), new Tag("baking")))),
+            new Ingredient("Flour", Mass.kilograms(3.5), null,
+                new HashSet<>(Arrays.asList(new Tag("staple food"), new Tag("baking"), new Tag("carbohydrate")))),
+            new Ingredient("Olive Oil", Volume.litres(1.5), new ExpiryDate("2022-05-07"),
+                new HashSet<>(Arrays.asList(new Tag("kitchen"), new Tag("healthy"), new Tag("salad dressing")))),
+            new Ingredient("Ginger Root", Mass.grams(200), new ExpiryDate("2021-01-02"),
+                new HashSet<>(Arrays.asList(new Tag("baking"), new Tag("healthy")))),
         };
     }
 
