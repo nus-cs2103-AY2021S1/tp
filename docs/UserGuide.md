@@ -8,6 +8,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 * Table of Contents
     - [Quick start](#quick-start)
+    - [Application layout](#application-layout)
     - [Notes about the command format](#notes-about-the-command-format)
     - [Common Input Fields](#common-input-fields)
     - [Features](#features)
@@ -28,7 +29,6 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - [View the statistics of a flashcard](#view-the-statistics-of-flashcard-stats): `stats`
         - [Exit the program](#exit-the-program--exit): `exit`
         - [Saving the data](#saving-the-data)
-    - FAQ
     - [Command summary](#command-summary)
         
 
@@ -59,6 +59,14 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
   
 
 1. Refer to the [Features](#features) below for details of each command.
+
+## Application layout
+
+The figures below show the annotated version of the graphic user interface. This will help you better identify the various sections and elements in the application, as well as understand the technical terms stated in this documentation.
+
+![filedirectory](images/ug/label1.png)
+
+![filedirectory](images/ug/label2.png)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Notes about the command format
@@ -111,6 +119,7 @@ Input Field | Restrictions and how to specify
 
 * **Can be empty**  means you can specify the prefix but not pass a value.<br>eg. passing `r/` is valid.
 * **Cannot be empty** means you have to specify a value when you specify the prefix.<br>eg. passing `c/` is invalid.
+* All input fields should not contain other input prefixes. eg. passing in `What is c/?` as a `QUESTION` to `q/QUESTION` is not supported.
 
 ## Features
 

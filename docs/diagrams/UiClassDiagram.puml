@@ -16,8 +16,6 @@ Class FlashcardListPanel
 Class FlashcardListCard
 Class FlashcardViewCard
 Class StudyPanel
-Class ReviewPanel
-Class QuizPanel
 
 }
 
@@ -41,25 +39,22 @@ MainWindow *-down-> CommandBox
 FlashcardListPanel -down-> "*" FlashcardListCard
 MainWindow -down-> FlashcardViewCard
 MainWindow -down-> HelpWindow
-MainWindow -right..> StudyPanel
-MainWindow -left..> ReviewPanel
-MainWindow -right..> QuizPanel
-
-QuizPanel -down-|> StudyPanel
-ReviewPanel -down-|> StudyPanel
+MainWindow .down> StudyPanel
+StudyPanel --> MainWindow
 
 HelpWindow --|> UiPart
 ResultDisplay --|> UiPart
 FlashcardListPanel --|> UiPart
 FlashcardViewCard --|> UiPart
 StudyPanel --|> UiPart
-MainWindow -right-|> UiPart
+CommandBox --|> UiPart
+MainWindow -down-|> UiPart
 
 FlashcardListCard ..> Model
 
-StudyPanel -[hidden]right-> FlashcardListPanel
-HelpWindow -[hidden]left-> FlashcardListPanel
+
+CommandBox -[hidden]left-> ResultDisplay
 ResultDisplay -[hidden]left-> HelpWindow
-FlashcardViewCard -[hidden]right-> FlashcardListPanel
-StudyPanel -[hidden]left-> ResultDisplay
+FlashcardListPanel -[hidden]left-> FlashcardViewCard
+
 @enduml
