@@ -18,6 +18,7 @@ import seedu.cc.model.account.entry.RevenueDescriptionContainsKeywordsPredicate;
 public class FindCommandParserTest {
     private static final String WHITE_SPACE = " ";
     private static final String KEYWORDS = "pots flower rent";
+    private static final List<String> KEYWORD_LIST = Arrays.asList(KEYWORDS.split("\\s+"));
     private static final String EXPENSE_STRING = "expense";
     private static final String REVENUE_STRING = "revenue";
     private static final String INVALID_USER_INPUT_NO_KEYWORDS = WHITE_SPACE + PREFIX_KEYWORDS + WHITE_SPACE;
@@ -32,17 +33,16 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, WHITE_SPACE, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             FindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommandWithBothPredicates() {
-        List<String> keywordList = Arrays.asList("pots", "flower", "rent");
         ExpenseDescriptionContainsKeywordsPredicate expensePredicate = new
-            ExpenseDescriptionContainsKeywordsPredicate(keywordList);
+            ExpenseDescriptionContainsKeywordsPredicate(KEYWORD_LIST);
         RevenueDescriptionContainsKeywordsPredicate revenuePredicate = new
-            RevenueDescriptionContainsKeywordsPredicate(keywordList);
+            RevenueDescriptionContainsKeywordsPredicate(KEYWORD_LIST);
         FindCommand expectedFindCommand = new FindCommand(expensePredicate, revenuePredicate);
 
         assertParseSuccess(parser, VALID_USER_INPUT_NO_CATEGORY, expectedFindCommand);
@@ -50,9 +50,8 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommandWithExpensePredicate() {
-        List<String> keywordList = Arrays.asList("pots", "flower", "rent");
         ExpenseDescriptionContainsKeywordsPredicate expensePredicate = new
-            ExpenseDescriptionContainsKeywordsPredicate(keywordList);
+            ExpenseDescriptionContainsKeywordsPredicate(KEYWORD_LIST);
         FindCommand expectedFindCommand = new FindCommand(expensePredicate);
 
         assertParseSuccess(parser, VALID_USER_INPUT_WITH_EXPENSE_CATEGORY, expectedFindCommand);
@@ -60,9 +59,8 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommandWithRevenuePredicate() {
-        List<String> keywordList = Arrays.asList("pots", "flower", "rent");
         RevenueDescriptionContainsKeywordsPredicate revenuePredicate = new
-            RevenueDescriptionContainsKeywordsPredicate(keywordList);
+            RevenueDescriptionContainsKeywordsPredicate(KEYWORD_LIST);
         FindCommand expectedFindCommand = new FindCommand(revenuePredicate);
 
         assertParseSuccess(parser, VALID_USER_INPUT_WITH_REVENUE_CATEGORY, expectedFindCommand);
