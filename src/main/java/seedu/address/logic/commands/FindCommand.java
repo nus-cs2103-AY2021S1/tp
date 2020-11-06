@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
 
 /**
- * Finds and lists all assignments in ProductiveNus whose name contains any of the argument keywords.
+ * Finds and lists all assignments in ProductiveNus based on prefix and argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -33,9 +33,7 @@ public class FindCommand extends Command {
     public static final String NO_PREFIX_AND_KEYWORD = "At least one prefix and keyword must be keyed in.";
 
     public static final String MORE_THAN_ONE_PREFIX_MESSAGE =
-            "Multiple assignment fields detected. Finding is done one field at a time.\n"
-             + "Fields and its prefix: n/ to find by name, d/ to find by date or time, \n"
-             + "p/ to find by priority and mod/ to find by module code.";
+            "Multiple prefixes detected. There should only be one prefix used.\n";
 
     private final Predicate<Assignment> predicate;
 

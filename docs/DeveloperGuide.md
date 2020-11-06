@@ -243,18 +243,21 @@ We thus concluded that finding by specific fields would be beneficial for users,
 ##### Prefixes used in identifying keywords
 The use of prefixes before keywords allows for validation of keywords in the user's input.
 
-The following prefixes are used to identify the fields and its keywords:
-- `/n` for Name
-- `/mod` for Module code
-- `/d` for Due date or time
-- `/p` for Priority
+The following prefixes are used to identify the type of keywords:
+- `/n` for Name keywords
+- `/mod` for Module code keywords
+- `/d` for Due date or time keywords
+- `/p` for Priority keywords
 
 ##### Predicate classes 
-The following Predicate classes implements `Predicate<Assignment>` and are inputted in the constructor of `FindCommand` when the user inputs keywords of its assigned field:
-- NameContainsKeywordsPredicate for name field
-- ModuleCodeContainsKeywordsPredicate for module code field
-- DeadlineContainsKeywordsPredicate for deadline field
-- PriorityContainsKeywordsPredicate for priority field
+The following Predicate classes implements `Predicate<Assignment>` and are passed into the constructor of `FindCommand` when the user inputs keywords of its assigned field:
+
+- NameContainsKeywordsPredicate for name keywords
+- ModuleCodeContainsKeywordsPredicate for module code keywords
+- DeadlineContainsKeywordsPredicate for date or time keywords
+- PriorityContainsKeywordsPredicate for priority keywords
+
+The keywords are stored in a `List<String>` that is passed into the constructor of the predicate so that the overriden `test` method from `Predicate<Assignment>` class can evaluate the keywords with the specific attribute of an assignment, being name, module code, deadline or priority, to return a boolean value.
 
 Given below is the class diagram of these Predicate classes:
 
@@ -263,30 +266,18 @@ Given below is the class diagram of these Predicate classes:
 
 
 ##### FindCommand Class
-The FindCommand class extends abstract class `Command`. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and a `Predicate<Assignment>` attribute, `predicate`. The constructor of `FindCommand` takes in a `Predicate<Assignment>` depending on the prefix or keywords in the user's input and its attribute `predicate` is initialized to this value. It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, it calls the `updatedFilteredAssignmentList` method of a `Model` object, `model`, it takes in, so that the filter of the filtered assignment list will be updated by the given predicate and a list of filtered assignments will be displayed to the user, along with an indication message on the number of assignments listed.
+The `FindCommand` class extends abstract class `Command` and it is responsible for finding assignments based on the user's input keywords. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and a `Predicate<Assignment>` attribute, `predicate`. The constructor of `FindCommand` takes in a `Predicate<Assignment>` depending on the prefix or keywords in the user's input and its attribute `predicate` is initialized to this value. It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, it calls the `updatedFilteredAssignmentList` method of a `Model` object, `model`, it takes in, so that the filter of the filtered assignment list will be updated by the given predicate and a list of filtered assignments will be displayed to the user, along with an indication message on the number of assignments listed.
  
  
 
 ##### FindCommandParser Class
+The `FindCommandParser` class implements `Parser<FindCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `FindCommand` object. It contains private methods which checks for the presence of multiple prefixes and invalid keywords, which will throw a `ParseException` if detected.
 
+Its `parse` method takes in a string of user input. If there are no multiple prefixes found and user input is not empty, it would then check for the type of prefix present as well as whether there is a preamble before the prefix and after the `find` input command. This ensures that there are no invalid command formats used by the user. 
 
-Given below is the class diagram of `FindCommandParser` class.
+If no invalid command format is detected, each keyword in the string of keywords are parsed in a for loop. For name, module code and priority keywords, parsing is done via its parse method in `ParserUtil` to ensure that each keyword is valid. These parse methods are `parseName`, `parseModuleCode` and `parsePriority` respectively and they throw `ParseExceptions` in the event of invalid input. For date or time keywords, Regular expressions are used to identify its format, with date format being identified with `^\\d{2}-\\d{2}-\\d{4}$` and time format being identified with `^\\d{4}$`. Once the date and time keywords inputted by the user are identified, date keywords are parsed into `LocalDate` and time keywords are parsed into `LocalTime`. A `ParseException` will be thrown if a `DateTimeException` is caught in the event of failed parsing of date with `DateTimeFormatter` pattern `dd_MM-uuuu` or time with the `DateTimeFormatter` pattern `HHmm`.
 
-
-
-
-
-
------- CLASS DIAGRAM---------
-
-
-
-
-
-
-
-
-
+Upon successful parsing, a `FindCommand` object is returned.
 
 #### Usage Scenario
 
