@@ -49,8 +49,8 @@ class StatisticsTest {
         assertEquals(newStatistics.getCorrectRate(), 0.0);
 
         Statistics updatedStatistics = new Statistics(3, 2);
-        assertEquals(updatedStatistics.getCorrectRate(),
-                ((double) updatedStatistics.getTimesTestedCorrect()) / updatedStatistics.getTimesTested() * 100);
+        assertEquals(updatedStatistics.getCorrectRate(), (
+                (double) updatedStatistics.getTimesTestedCorrect()) / updatedStatistics.getTimesTested() * 100);
     }
 
     @Test

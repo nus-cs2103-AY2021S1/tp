@@ -1,15 +1,16 @@
 package quickcache.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import quickcache.model.flashcard.Answer;
-import quickcache.model.flashcard.OpenEndedQuestion;
-import quickcache.model.flashcard.Question;
-import quickcache.model.flashcard.Statistics;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import quickcache.model.flashcard.Answer;
+import quickcache.model.flashcard.OpenEndedQuestion;
+import quickcache.model.flashcard.Question;
+import quickcache.model.flashcard.Statistics;
 
 public class FeedbackTest {
 
