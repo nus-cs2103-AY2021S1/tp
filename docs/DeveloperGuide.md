@@ -811,10 +811,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all flashcards using the `list` command. At least one flashcard in the list.
 
-   1. Test case: `delete 1` <br>
+   1. Test case (valid index): `delete 1` <br>
       Expected: First flashcard is deleted from the list of flashcards. Result display will output the status of the deleted flashcard. 
 
-   1. Test case: `delete 0` <br>
+   1. Test case (invalid index): `delete 0` <br>
       Expected: No flashcard will be deleted from the list of flashcards and input text will turn red to signal an error.
       Result display will output the invalid command error message.
 
@@ -866,7 +866,7 @@ testers are expected to do more *exploratory* testing.
                 
      1. Test case: `clear` <br>
         Expected: Flashcard list panel updates to show no flashcard stored in the flashcard deck. Result display will output
-                a success message: `Flashcard Deck has been cleared!`
+        a success message: `Flashcard Deck has been cleared!`
      
 ### Filtering for flashcards
 
@@ -896,11 +896,11 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
                 
-    1. Test case: `fav 1` <br> 
+    1. Test case (valid index): `fav 1` <br> 
         Expected: Flashcard list pane updates to show a favourite(heart) icon beside the flashcard of index 1. Result display
         will output the status of the favourited flashcard.
 
-    1. Test case: `fav 0` <br>
+    1. Test case (invalid index): `fav 0` <br>
         Expected: No flashcard is favourited from the list of flashcards and input text will turn red to signal an error.
         Result display will output the invalid command error message.
 
@@ -914,11 +914,11 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
                 
-    1. Test case: `unfav 1` <br> 
+    1. Test case (valid index): `unfav 1` <br> 
             Expected: Flashcard list pane updates to unfavourite and remove the favourite(heart) icon beside the flashcard of index 1 (if any). Result display
             will output the status of the unfavourited flashcard.
     
-    1. Test case: `unfav 0` <br>
+    1. Test case (invalid index): `unfav 0` <br>
         Expected: No flashcard is unfavourited from the list of flashcards and input text will turn red to signal an error.
         Result display will output the invalid command error message.
 
@@ -942,7 +942,7 @@ testers are expected to do more *exploratory* testing.
        `QUESTION`, `ANSWER`, `CATEGORY`, `NOTE` and/or `TAG`. Result display will
        output a success message indicating the number of flashcards found.
        
-   1. Test case: `find` <br>
+   1. Test case (missing keyword): `find` <br>
        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
        Result display will output the invalid command error message.
 
