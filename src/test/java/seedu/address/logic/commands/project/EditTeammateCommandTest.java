@@ -54,6 +54,8 @@ public class EditTeammateCommandTest {
         expectedModel.enter(projectCopy);
 
         assertCommandSuccess(editTeammateCommand, model, expectedMessage, expectedModel);
+        Person.getAllPeople().clear();
+        Project.getAllProjects().clear();
     }
 
     @Test
@@ -86,6 +88,7 @@ public class EditTeammateCommandTest {
 
         assertCommandSuccess(editTeammateCommand, model, expectedMessage, expectedModel);
         Person.getAllPeople().clear();
+        Project.getAllProjects().clear();
     }
 
     @Test
