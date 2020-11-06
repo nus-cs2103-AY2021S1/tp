@@ -36,7 +36,7 @@ public class OptionalParameterTest {
     }
 
     @Test
-    public void optionalParameter_required() {
+    public void optionalParameter_notRequired() {
         assertFalse(OPTIONAL_PARAMETER.isRequired());
     }
 
