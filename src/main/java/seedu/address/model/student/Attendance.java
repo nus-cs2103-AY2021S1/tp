@@ -22,7 +22,6 @@ public class Attendance {
     // attendance
     public static final int MIN_WEEK = 1;
     public static final int MAX_WEEK = 13;
-
     // class participation
     public static final int MIN_VALUE = -100;
     public static final int MIN_SCORE = 0;
