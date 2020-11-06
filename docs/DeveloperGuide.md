@@ -746,12 +746,70 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `routine_delete`, `routine_delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. Adding a Routine
+1. Setting user weight
 
-   1. Test case: `routine_create r/Leg Workout`<br>
-      Expected: Creates a Routine called "Leg Workout"
+   1. Test case: `weight w/70`<br>
+      Expected: Updates user's weight to 70kg. GUI will reflect this change as well. BMI on GUI will recalculate.
 
-   1. Other incorrect delete commands to try: `routine_create`, `routine_create r/EXISTING_ROUTINE`, `...`<br>
+   1. Test case: `weight w/300`<br>
+      Expected: Weight does not update or change on GUI. Error will be shown for an unrealistic weight for a user.
+      
+   1. Other incorrect delete commands to try: `weight w/0`, `weight w/-1`, `...`<br>
+      Expected: Similar to previous.
+
+1. Setting user height
+
+   1. Test case: `weight h/170`<br>
+      Expected: Updates user's height to 170cm. GUI will reflect this change as well. BMI on GUI will recalculate.
+
+   1. Test case: `weight w/370`<br>
+      Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
+      
+   1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
+      Expected: Similar to previous.
+      
+1. Setting user height
+
+   1. Test case: `weight h/170`<br>
+      Expected: Updates user's height to 170cm. GUI will reflect this change as well. BMI on GUI will recalculate.
+
+   1. Test case: `weight w/370`<br>
+      Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
+      
+   1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
+      Expected: Similar to previous.
+
+1. Setting user height
+
+   1. Test case: `height h/170`<br>
+      Expected: Updates user's height to 170cm. GUI will reflect this change as well. BMI on GUI will recalculate.
+
+   1. Test case: `height w/370`<br>
+      Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
+      
+   1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
+      Expected: Similar to previous.
+      
+1. Adding calorie count
+
+   1. Test case: `calorie_add c/1500`<br>
+      Expected: Increases calorie count for today by 1500. GUI will reflect this change as well in Calorie Graph.
+
+   1. Test case: `calorie_add c/2147483648`<br>
+      Expected: Error will be thrown because this value is bigger than what Java can handle. Calorie Graph and today's calorie count will not update.
+      
+   1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
+      Expected: Similar to previous.
+
+1. Deducting calorie count
+
+   1. Test case: `calorie_minus c/1500`<br>
+      Expected: Decreases calorie count for today by 1500. GUI will reflect this change as well in Calorie Graph.
+
+   1. Test case: `calorie_minus c/2147483648`<br>
+      Expected: Error will be thrown because this value is bigger than what Java can handle. Calorie Graph and today's calorie count will not update.
+      
+   1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
