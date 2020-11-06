@@ -399,50 +399,28 @@ _{Explain here how the data archiving feature will be implemented}
 
 **Target user profile**:
 
-* has a need to manage a significant number of business accounts, each with a significant number of financial entries
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has a need to manage a significant number of business accounts, each with a significant number of financial entries
+* Prefers desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage financial entries faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* Can manage financial entries faster than a typical mouse/GUI driven app
+* Provides a simple UI for business owners to see all the desired information easily
+* Provides an aesthetic UI which is pleasant to the eye
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *` | user | be able to exit the app |  |
-| `* * *` | user | be able to add my expense/revenues entries to the userboard |  |
-| `* * *` | user                              | be able to delete my expense/revenue entries from the userboard |  |
-| `* * *`  | user                                | view my expenditure by category |                  |
-| `* * *`  | user                                       | be able to view a help FAQ on the functionality of the program | navigate through the different aspects of it |
-| `* * *`  | user                                       | be able to save my tasks and load them when the app is re-opened |                                    |
-| `* * *`  | user with many side businesses    | keep my accounts and expenses separate                       | understand where my inflow and outflow of finances come from |
-| `* * *`  | user                              | have my expenses/revenues be calculated on demand            |                                                              |
-| `* * *` | clumsy user | be able to edit my expense/revenues | fix wrongly keyed-in information |
-| `* * *` | user | be able to view my net profits on the userboard |  |
-| `* * *` | clumsy user | be able to undo my commands | to reverse unwanted/wrong commands |
-| `* * *` | fast typist | be able to maximize my typing speed |  |
-| `* * *` | user | have commands that are short but as intuitive as possible |  |
-| `* * *` | user who as an eye for aesthetics | have an app that is elegant and visually appealing | be encouraged to use the app more |
-| `* * *` | user | have an app that is intuitive and easy to use | easily navigate through it |
-| `* * *` | user with limited time | have an app that is user friendly and efficient |  |
-|          |                                   |                                                              |                                                              |
-|          |                                   |                                                              |                                                              |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+| Priority | As a …​                                 | I want to …​                                   | So that I can…​                                                                 |
+| -------- | ------------------------------------------ | ------------------------------------------------- | -------------------------------------------------------------------- |
+| `* * *`  | user                                       | exit the app                                      |                                                                      |
+| `* * *`  | user                                       | add an expense/revenue entry                       |                                                                      |
+| `* * *`  | user                                       | delete an entry                                   | remove entries that I no longer need                                 |
+| `* *`    | user                                       | have multiple accounts for different businesses   | keep expense/earning entries for the respective businesses separate  |
 
 *{More to be added}*
 
