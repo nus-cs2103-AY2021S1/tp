@@ -8,6 +8,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 * Table of Contents
     - [Quick start](#quick-start)
+    - [Notes about the command format](#Notes-about-the-command-format)
+    - [Common Input Fields](#Common-Input-Fields)
     - [Features](#features)
         - [Add a flashcard](#add-a-flashcard--add): `add`
         - [Clear all flashcards](#clear-all-flashcards--clear): `clear`
@@ -47,27 +49,11 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
    * **`delete 3`**: Deletes the 3rd flashcard in the current list.
    
-   * **`edit 2 q/What is a revision control software? a/It is the software tool that automate the process of Revision Control`**: Edits the 2nd flashcard in the current list with the specified attributes.
-
-   * **`filter c/OOP`** : Filters out flashcard(s) belonging to the OOP category. 
-   
-   * **`fav 1`** : Favourites the 1st flashcard in the current list.
-     
-   * **`unfav 1`** : Unfavourites the 1st flashcard in the current list.
-   
-   * **`find general`**: Finds all flashcards containing general.
-
    * **`list`** : Lists all flashcards.
 
    * **`review`** : Reviews the current list of flashcards.
    
-   * **`quiz`** : Quizzes the current list of flashcards.
-   
-   * **`sort reviewed -d`** : Sorts the list of flashcards according to review frequency in descending order.
-   
    * **`view 1`** : Views the 1st flashcard in the current list.
-   
-   * **`stats 1`** : Views the statistics of the 1st flashcard in the current list.
 
    * **`exit`** : Exits the app.
   
@@ -75,38 +61,61 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Notes about the command format
 
-## Features
-
+This section will give you some useful information about the various command formats and notations you will see in [Features](#features).
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
-
 * Words in UPPER_CASE are the parameters to be supplied by the user.<br>
-  e.g. in add `q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/`What is my name?
+  eg. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is my name?`
 
 * Words in lower_case are to be specified exactly. e.g. in `sort <success|reviewed>`, `success` and `reviewed` 
 must be specified exactly.
 
 * Items in square brackets are optional (zero or one instance).<br>
-  e.g `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name?` or as `q/What is my name? c/topic 1`
-  * Note: Multiple instances of the same prefix will not throw an error. 
-  However, the app will only read the last instance in the input. 
-  * e.g `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category 
-  
-* Items in square brackets with trailing ellipsis are optional (zero, one or multiple instances).<br>
-  e.g. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
-  `q/What is my name? t/topic1 t/fun` 
-  * Note: Multiple instances of the tag prefix is accepted, and the app will read every instance
-  in the input.
+  * eg. `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name?` or as `q/What is my name? c/topic 1`
+  * eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category 
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `q/QUESTION a/ANSWER, a/ANSWER q/QUESTION` is also acceptable.
+* Items in square brackets with trailing ellipsis are optional (zero, one or multiple instances).<br>
+  eg. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
+  `q/What is my name? t/topic1 t/fun` 
+  * Multiple instances of the tag prefix is accepted, and the app will read every instance
+  in the input.
   
 * Items in angle brackets `<>` are either/or options. Each option is delineated by a `|` . 
-  e.g `<success|reviewed>` can be used as `success` or `reviewed` but not both.
+  eg. `<success|reviewed>` can be used as `success` or `reviewed` but not both.
+
+* Multiple instances of the same prefix will not throw an error. 
+    However, the app will only read the **last instance** in the input (except for tags).
+
+* Parameters can be in any order.<br>
+  eg. if the command specifies `q/QUESTION a/ANSWER, a/ANSWER q/QUESTION` is also acceptable.
 
 </div>
+
+## Common Input Fields
+
+This section will help you understand the different fields you will see in [Features](#features). It gives an overview of what they are, how to specify them and any restrictions.
+
+Input Field | Restrictions and how to specify
+-----------|-----------------------
+`q/QUESTION`    | This is the question on the flashcard.<br>`QUESTION` has no character limit or restrictions (eg. can have spaces).<br>Cannot be empty.
+`a/ANSWER`      | This is the answer on the flashcard.<br>`ANSWER` has no character limit or restrictions (eg. can have spaces).<br>Cannot be empty.
+`c/CATEGORY`    | This is the category of the flashcard.<br>`CATEGORY` must be alphanumeric and have a maximum of 50 characters. It can consist of multiple words but there should only be 1 space between words.<br>Cannot be empty.
+`r/RATING`      | This is the star rating of the flashcard.<br>`RATING` must be a number between 1 and 5 inclusive.<br>Can be empty.
+`d/DIAGRAM`     | This is the diagram of the flashcard (associated with a question in the view pane).<br>`DIAGRAM` must be a valid relative or absolute path to a file. <br>Currently only supports file path **without** spaces.<br>Only supports the following image file types: jpg, png, jpeg, bmp, gif<br>Can be empty.
+`n/NOTE`        | This is the notes of the flashcard (associated with an answer in the view pane).<br>`NOTE` has no character limit or restrictions.<br>Can be empty.
+`t/TAG`         | These are tags of the flashcard. A flashcard can have more than one tag.<br>`TAG` must be alphanumeric and have a maximum of 50 characters.<br>Must **only** be one word.<br>Cannot be empty.
+`INDEX`         | `INDEX` refers to the index number shown in the displayed flashcard list.<br>Every visible flashcard on the display list has an `INDEX`.<br>`INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
+`KEYWORD`      | `KEYWORD` has no character limit but must be one word (no spaces).
+
+<div markdown="span" class="alert alert-primary">:memo: Note:</div>
+
+* **Can be empty** means you can specify the prefix but not pass a value.<br>eg. passing `r/` is valid. 
+* **Cannot be empty** means you have to specify a value when you specify the prefix.<br>eg. passing `c/` is invalid.
+
+
+## Features
 
 ### Add a flashcard : `add`
 
@@ -114,17 +123,8 @@ Adds a flashcard.
 
 Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM] [t/TAG]...`
 
-* `RATING` must be a number between 1 and 5 inclusive.
-* `CATEGORY` must be alphanumeric and have a maximum of 50 characters. 
-     It can consist of multiple words but there should only be 1 space between words.
-* `DIAGRAM` can be defined by a valid relative or absolute path and only supports file path without spaces in it. Unintended behaviour may occur if file path with spaces is used. eg. `d/image s/diagram.png`
-* `DIAGRAM` only supports the following image file types.
-  * jpeg
-  * png
-  * bmp
-  * jpg
-  * gif
-* `TAG` must be alphanumeric, have a maximum of 50 characters and should be 1 word.
+* Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
+* After a new flashcard is added, all flashcards will be listed. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the category is not specified, the flashcard will have the <b>General</b> category.
@@ -166,9 +166,8 @@ Deletes the specified flashcard.
 
 Format: `delete INDEX`
 
-* Deletes the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+* Deletes the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
+* `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples:
 *  `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list.
@@ -179,12 +178,11 @@ Edits a flashcard.
 
 Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM] [t/TAG]...`
 
-* Edits the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+* Edits the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
+* Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
 * Although all fields are optional, a minimum of one field has to be given.
-* Specifying empty values to note, rating, tag or diagram eg. `r/` will remove the corresponding field in the flashcard.
-* Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes 
+* Specifying empty values to `NOTE`, `RATING`, `TAG` or `DIAGRAM` eg. `r/` will remove the corresponding field in the flashcard.
+* Although `QUESTION`, `ANSWER` and `CATEGORY` are optional values, you are not allowed to specify an empty value to those attributes 
 once the prefix is declared e.g. `c/` is not allowed and will not remove category.
 
 Examples:
@@ -214,14 +212,21 @@ This will return all the flashcards whose fields match all the fields specified 
 Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 
 * Filters the specified flashcard based on category, rating, favourite status or tags.
+* Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
+* Specifying `f/yes` filters for favourited flashcards while `f/no` filters for unfavourited flashcards.
 * Supports filtering of one or more different fields. For example:
     - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
 * Although all fields are optional, a minimum of one field has to be given.
-* Note: `filter r/` will filter for all unrated flashcards.
+<div markdown="span" class="alert alert-primary">:memo: Note:
+<code>filter r/</code> will filter for all unrated flashcards.
+</div><br>
+<div markdown="1" class="alert alert-primary">:bulb: **Tip:**</div> 
+
+Want to list all your flashcards after using `filter`? Use the [list](#list-all-flashcards--list) command.
 
 Examples:
 *  `filter c/SDLC` filters and lists all flashcards belonging to the SDLC category.
-*  `filter t/examinable t/study` filters and lists all flashcards that have both “examinable” and “study”.
+*  `filter t/examinable t/study` filters and lists all flashcards that have both an “examinable” tag and a “study” tag.
 *  `filter r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
 
 **Steps for filtering for a flashcard based on category and tag**:
@@ -240,12 +245,11 @@ Favourites the specified flashcard.
 
 Format: `fav INDEX`
 
-* Favourites the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+* Favourites the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
+* `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
-* `list` followed by `fav 2` favourite the 2nd flashcard in the displayed list.
+* `list` followed by `fav 2` favourites the 2nd flashcard in the displayed list.
 
 ### Unfavourite a flashcard  : `unfav`
 
@@ -253,21 +257,24 @@ Unfavourites the specified flashcard.
 
 Format: `unfav INDEX`
 
-* Unfavourites the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+* Unfavourites the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
+* `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
-* `list` followed by `unfav 2` unfavourite the 2nd flashcard in the displayed list.
+* `list` followed by `unfav 2` unfavourites the 2nd flashcard in the displayed list.
 
 ### Find flashcards : `find`
 
 Searches for all flashcards matching any of the search keywords.
 
 Format: `find KEYWORD [KEYWORD]...`
-* Finds all flashcards containing any of the keywords
-* The keywords are **case insensitive**
-* Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. Eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
+* Finds all flashcards containing any of the keywords.
+* Refer to [common input fields](#Common-Input-fields) on how to specify the different fields.
+* The keywords are **case insensitive**.
+* Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
+<div markdown="1" class="alert alert-primary">:bulb: **Tip:**</div> 
+
+Want to list all your flashcards after using `find`? Use the [list](#list-all-flashcards--list) command.
 
 Examples: 
 * `find general` 
@@ -293,6 +300,8 @@ Format: `list`
 Reviews the current list of flashcards. This puts the user in review mode and the user can no 
 longer input commands to the textbox.
 
+Format: `review`
+
 Upon entering review mode, the following user input will be recognised:
 * `↓ key` shows answer and notes of the current flashcard  
 * `↑ key` hides answer and notes of the current flashcard  
@@ -300,10 +309,8 @@ Upon entering review mode, the following user input will be recognised:
 * `← key` moves to the previous flashcard (if there is a previous flashcard)
 * `q` quits review mode
 
-Format: `review`
-
 <div markdown="span" class="alert alert-primary">:memo: Note:
-The review and success frequency of a flashcard is not affected by review mode.
+The review and success frequency of a flashcard is <b>not affected</b> by review mode.
 </div>
 <br>
 
@@ -325,6 +332,8 @@ The review and success frequency of a flashcard is not affected by review mode.
 
 Quizzes the current list of flashcards. This puts the user in quiz mode and the user can no longer input commands to the textbox.
 
+Format: `quiz`
+
 Upon entering quiz mode, the following user input will be recognised:
 * `↓ key` shows answer and notes of the current flashcard  
 * `q` quits quiz mode
@@ -338,9 +347,7 @@ The quiz mode works in conjunction with the [statistics](#view-the-statistics-of
 * Pressing `y` will increase the review and success frequency of the flashcard.
 * Pressing `n` will increase the review frequency of the flashcard.
 
-Format: `quiz`
-
-<div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly even if the user quits the quiz prematurely.
+<div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses <code>y</code> or <code>n</code>, the review and success frequency of the flashcard is updated accordingly even if the user quits the quiz prematurely.
 </div>
 <br>
 
@@ -377,6 +384,8 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequencies of a flashcard are only affected by quiz mode.
 </div>
+<div markdown="span" class="alert alert-primary">:memo: Note: Sorting results in a permanent change in the ordering of the flashcards. This means your list of flashcards will follow the sorted order even after you relaunch the app.
+</div>
     
 ### View a flashcard  : `view`
 
@@ -384,10 +393,13 @@ Views the specified flashcard. A "snapshot" of the flashcard is taken and displa
 
 Format: `view INDEX [-a]`
 
-* Views the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+* Views the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
+* `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 * If `-a` is specified, the answer and notes of the flashcard will be shown too.
+
+Examples:
+* `view 1` shows the 1st flashcard (in the displayed list) on the view pane without answer and notes.
+* `view 1 -a` shows the 1st flashcard (in the displayed list) on the view pane with answer and notes.
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
@@ -418,21 +430,20 @@ View the statistics of a flashcard.
 
 Format: `stats INDEX`
 
-* Shows the statistics of the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+* Shows the statistics of the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
+* `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
-The statistics of the flashcard will be displayed in the view pane. The statistics feature works in conjunction with the [quiz](#quiz-flashcards-quiz) feature.
+Example:
+* `stats 1` shows the statistics of the 1st flashcard (in the displayed list) on the view pane.
+
+The statistics feature works in conjunction with the [quiz](#quiz-flashcards-quiz) feature.
 
 The following information will be displayed on the view pane:
 * Question of the flashcard.
 * Reviewed count of the flashcard.
 * Correct count of the flashcard.
-* Pie chart to show the graphical representation of correct attempts vs wrong attempts in quiz mode of the flashcard.
+* Pie chart to show the graphical representation of correct attempts vs wrong attempts in quiz mode of the flashcard. (No pie chart will be shown if the flashcard has not been reviewed.)
 
-<div markdown="span" class="alert alert-primary">:memo: Note: No pie chart will be shown if the flashcard has not been reviewed.    
-</div>
-<br>
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane containing the statistics will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
 </div>
