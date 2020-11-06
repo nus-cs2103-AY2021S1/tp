@@ -44,12 +44,19 @@ destroy ViewDetailsCommandParser
 InventoryParser --> LogicManager
 deactivate InventoryParser
 
-'not sure whether model is required inside execute()
+LogicManager -> Model: resetItemFilters()
+activate Model
+Model --> LogicManager
+deactivate Model
+
+LogicManager -> Model: resetRecipeFilters()
+activate Model
+Model --> LogicManager
+deactivate Model
+
 LogicManager -> ViewDetailsCommand : execute()
 activate ViewDetailsCommand
 
-'not sure whether item -> predicate.test(item) is required inside the function
-'or whether I have to instantiate a NameIsExactlyPredicate class above
 ViewDetailsCommand -> Model : updateFilteredItemList()
 activate Model
 
@@ -67,6 +74,6 @@ ViewDetailsCommand --> LogicManager : commandResult
 deactivate ViewDetailsCommand
 
 destroy CommandResult
-[<--LogicManager
+[<--LogicManager : commandResult
 deactivate LogicManager
 @enduml
