@@ -363,29 +363,24 @@ Step 6. As a result of the successful update of the patient's profile picture, a
         * New dependencies need to be created to associate with the newly created `ImageCommand` class.
         * Thus, our team decided to implement the first alternative as it follows the existing architecture closely and minimizes the risk of breaking the existing architecture.
 
-##### 3.2.2.2 Aspect: Image type
+##### 3.2.2.2 Aspect: Image filetypes
 
-* **Current Implementation:** All types of files are accepted, including `.jpg` and `.png`.
-
-    * Pros:
-        * User do not need to convert `.jpg` to `.png` file or vice versa before setting desired image file as profile picture.
-        * This enhances usability.
-
-    * Cons:
-        * Non-image files are still stored in 'data' folder even though the patient's profile picture in CliniCal will not be updated visually.
-
-* **Alternative Implementation:** Accept only some types of files i.e `.jpg` and `.png`.
+* **Current Implementation:** Only `.jpg` and `.png` filetypes are accepted. Using other image filetypes would throw an exception message.
 
     * Pros:
-        * Acts as a form of validation check and non-image files will not be stored in the 'data' folder. This helps to save disk space.
-
+        * This serves as a form of validation check to ensure that the user only uses supported image filetypes.
     * Cons:
-        * User is only limited to certain types of image files.
-        * As such, our team decided to implement the first alternative as this design maximizes application usability.
-        * User will not need to spend additional time converting their images into accepted file types.
-        * Furthermore, our team assessed that users can easily delete non-image files from the 'data' folder if the need arises.
+        * User is limited to `.jpg` and `.png` filetypes.
 
-_{more aspects and alternatives to be added}_
+* **Alternative Implementation:** Accept different image filetypes such as `.raw`, `.tiff` or `.psd`.
+
+    * Pros:
+        * User can freely use any types of image file when adding patients' profile picture.
+    * Cons:
+        * Some filetypes may not be well-supported in JavaFX, for example `.psd` which is a Photoshop document. This may
+          introduce compatibility issues to our application.
+        * Our team assessed that the most common image filetypes are `.jpg` and `.png`. Hence, our team decided to support
+          only `.jpg` and `.png` filetypes in CliniCal.
 
 ### 3.3 View Command History feature
 
@@ -568,7 +563,7 @@ Step 4. Next, `MainWindow#executeCommand` method is executed which in turn calls
 Step 5. Finally, `MainWindow#handleProfilePanel()` method is executed to display the first patient's profile.
 
 <p align="center">
-    <img src="images/ProfileCommandSequenceDiagram.png" width="350"/>
+    <img src="images/ProfileCommandSequenceDiagram.png"/>
     <br>
     <em style="color:#CC5500">Figure 26. Sequence Diagram for ProfileCommand</em>
 </p>
@@ -576,7 +571,7 @@ Step 5. Finally, `MainWindow#handleProfilePanel()` method is executed to display
 The following activity diagram summarizes the main steps taken to display the patient's profile.
 
 <p align="center">
-    <img src="images/ProfileCommandActivityDiagram.png" width="350"/>
+    <img src="images/ProfileCommandActivityDiagram.png"/>
     <br>
     <em style="color:#CC5500">Figure 27. Activity Diagram for steps 1 to 5</em>
 </p>
@@ -829,6 +824,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. CliniCal shows a message that the command history is cleared.
 
       Use case ends.
+      
+##### Use case: UC10 - Displaying patient's profile
+
+**MSS**
+
+1. User keys in command to display patient's profile.
+2. CliniCal displays the specified patient's profile.
+3. User presses esc or 'close' button to exit the window.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command is invalid.
+    * 1a1. CliniCal shows an error message.
+
+    Use case resumes at step 1.
 
 ## **Appendix D: Non-Functional Requirements**
 
