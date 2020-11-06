@@ -13,19 +13,19 @@
     },
     "academic": {
       "questions": [{
-        "status" : true,
-        "question" : "",
-        "solution" : " "
+        "status" : "solved",
+        "question" : "How do birds fly?",
+        "solution" : "They don't"
       }],
       "attendanceList" : [{
         "date" : "23-9-2019",
-        "attendanceStatus" : "you wot m8",
-        "feedback" : " "
+        "attendanceStatus" : "present",
+        "feedback" : ""
       }],
       "exams" : [ {
-        "examName" : " ",
-        "examDate" : "23-9-2019",
-        "score" : "100/50"
+        "examName" : "End of Year",
+        "examDate" : "23/9/2019",
+        "score" : "10/50"
       }]
     }
   } ]

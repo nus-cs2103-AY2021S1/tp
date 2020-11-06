@@ -2,32 +2,32 @@
 
 **Table of Contents**
 - [1. Introduction](#1-introduction)
-  * [1.1 About Reeve](#11-about-reeve)
+  * [1.1 About **Reeve**](#11-about-reeve)
   * [1.2 Understanding the User Guide](#12-understanding-the-user-guide)
 - [2. Quick start](#2-quick-start)
-  * [2.1 Setting Up Reeve](#21-setting-up-reeve)
+  * [2.1 Setting up **Reeve**](#21-setting-up-reeve)
   * [2.2 Making sense of **Reeve**'s layout](#22-making-sense-of-reeves-layout)
 - [3. Features](#3-features)
   * [3.1 Understanding the command format](#31-understanding-the-command-format)
-  * [3.2 General Features](#32-general-features)
+  * [3.2 General features](#32-general-features)
       + [3.2.1 Viewing help: `help`](#321-viewing-help-help)
       + [3.2.2 Toggling between academic and administrative details: `toggle` (By: Hogan)](#322-toggling-between-academic-and-administrative-details-toggle-by-hogan)
       + [3.2.3 Exiting the program: `exit`](#323-exiting-the-program-exit)
-  * [3.3 Managing Student Administrative Details Features](#33-managing-student-administrative-details-features)
-    + [3.3.1 Adding a student: `add` (By: Alex and Hogan)](#331-adding-a-student-add-by-alex-and-hogan)
+  * [3.3 Features for managing student administrative details](#33-features-for-managing-student-administrative-details)
+    + [3.3.1 Adding a student: `add` (By: Hogan)](#331-adding-a-student-add-by-hogan)
     + [3.3.2 Editing a student: `edit` (By: Vaishak)](#332-editing-a-student-edit-by-vaishak)
     + [3.3.3 Locating students: `find` (By: Choon Siong)](#333-locating-students-find-by-choon-siong)
     + [3.3.4 Listing all students: `list`](#334-listing-all-students-list)
     + [3.3.5 Deleting a student: `delete`](#335-deleting-a-student-delete)
     + [3.3.6 Sorting the list of students: `sort` (By: Choon Siong)](#336-sorting-the-list-of-students-sort-by-choon-siong)
     + [3.3.7 Finding students with overdue fees: `overdue` (By: Ying Gao)](#337-finding-students-with-overdue-fees-overdue-by-ying-gao)
-    + [3.3.8 Managing details for a student: `detail` (By: Vaishak)](#338-managing-additional-details-for-a-student-detail-by-vaishak)
+    + [3.3.8 Managing details for a student: `detail` (By: Vaishak)](#338-managing-details-for-a-student-detail-by-vaishak)
         + [3.3.8.1 Adding a detail: `detail add`](#3381-adding-a-detail-detail-add)
         + [3.3.8.2 Editing a detail: `detail edit`](#3382-editing-a-detail-detail-edit)
         + [3.3.8.3 Deleting a detail: `detail delete`](#3383-deleting-a-detail-detail-delete)
-    + [3.3.9 Scheduling: `schedule`](#339-viewing-lesson-schedule-schedule-by-alex)
+    + [3.3.9 Viewing lesson schedule: `schedule` (By: Alex)](#339-viewing-lesson-schedule-schedule-by-alex)
     + [3.3.10 Clearing all entries: `clear`](#3310-clearing-all-entries-clear)
-  * [3.4 Managing Student Academic DetailsFeatures](#34-managing-student-academic-details-features)
+  * [3.4 Features for managing student academic details](#34-features-for-managing-student-academic-details)
     + [3.4.1 Recording questions from a student: `question` (By: Ying Gao)](#341-recording-questions-from-a-student-question-by-ying-gao)
         + [3.4.1.1 Adding a question: `question add`](#3411-adding-a-question-question-add)
         + [3.4.1.2 Resolving a question: `question solve`](#3412-resolving-a-question-question-solve)
@@ -79,7 +79,7 @@ Symbol | Meaning
 
 This section serves to explain how to set up **Reeve** on your computer and how to make sense of the visual layout of the application.
 
-### 2.1 Setting Up Reeve
+### 2.1 Setting up Reeve
 1. Ensure you have Java `11` or above installed in your Computer.
 
 2. Download the latest `jar` file from [here](https://github.com/AY2021S1-CS2103T-W15-2/tp/releases).
@@ -128,7 +128,7 @@ The following points explain how to make sense of the command format:
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-### 3.2 General Features
+### 3.2 General features
 
 This section serves to provide you a detailed explanation of the general features which will help you to maximise the potential of **Reeve**.
 
@@ -155,7 +155,7 @@ You can exit the program. Any changes you have made to **Reeve** is automaticall
 
 Format: `exit`
 
-### 3.3 Managing Student Administrative Details Features
+### 3.3 Features for managing student administrative details
 
 Reeve's student administrative features allows you to keep track of key administrative details of each of your students such as phone number, class venue, tuition fee, etc.
 Thereafter, you will be able to view, edit find or delete these students.
@@ -267,7 +267,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in **Reeve**.
 * `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-#### 3.2.6 Sorting the list of students: `sort` (By: Choon Siong)
+#### 3.3.6 Sorting the list of students: `sort` (By: Choon Siong)
 
 Sorts the list of students by a specified comparison means. The comparison means must be their name, class time or year.
 
@@ -344,19 +344,26 @@ Examples:
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
 * `detail delete 4 i/1` deletes the 1st detail for the 4th student in **Reeve**.
 
-#### 3.3.9 Scheduling: `schedule` (By: Alex) 
+#### 3.3.9 Viewing lesson schedule: `schedule` (By: Alex) 
 
-##### 3.3.9.1 Viewing classes on a Timetable: `schedule view`  
+You can view your upcoming classes on a timetable in either a daily or weekly format.
 
-List the classes that the user has on a timetable. The timetable can be viewed in either a daily or weekly format.
+Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
 
-Format: `schedule view mode/VIEW_MODE date/DATE_TO_VIEW`
+* Displays a timetable view of your classes.
+* `DATE_TO_VIEW` refers to the date you wish to view the lesson schedule of.
+* A weekly view gives you an overview of all classes on the week of the given `DATE_TO_VIEW`. You could thus plan your time for the week ahead.
 
-* mode can be either **weekly** or **daily**. The case of the letters does not matter.
-* Date must be in the format of **yyyy-mm-dd**. For instance, 2020-11-02 refers to the date 2nd November 2020
-* Both mode and date are compulsory.
+<div markdown="block" class="alert alert-info">
 
-Example: `schedule view mode/weekly date/2020-11-02` Shows the schedule of classes in the week of 2020-11-02. Figure 3.4.1.1 depicts a sample output of the command.
+:information_source: `VIEW_MODE` can only be either **weekly** or **daily**. The case of the letters does not matter.
+
+:information_source: `DATE_TO_VIEW` must be in the format **dd/mm/yyyy**. For instance, 2/11/2020 refers to the date 2nd November 2020
+
+</div>
+
+Example:
+* `schedule m/weekly d/2/11/2020` shows the schedule of classes in the week of 2nd November 2020.
 
 #### 3.3.10 Clearing all entries: `clear`
 
@@ -364,7 +371,7 @@ You can clear all student data from **Reeve**.
 
 Format: `clear`
 
-### 3.4 Managing Student Academic Details Features
+### 3.4 Features for Managing Student Academic Details
 
 Reeve's student academics features allows you to keep track of key academic details of each of your students such as questions, exams and etc.
 Thereafter, you will be able to view, edit or delete these details of each student.
@@ -380,7 +387,9 @@ General Format: `question COMMAND_WORD STUDENT_INDEX DETAILS`
 * The format of `DETAILS` varies with each command word as explained below.
 
 <div markdown="block" class="alert alert-info">
+
 :information_source: `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+
 </div>
 
 ##### 3.4.1.1 Adding a question: `question add`
@@ -393,7 +402,9 @@ Format: `question add STUDENT_INDEX t/QUESTION_TEXT`
 * The `QUESTION_TEXT` field refers to the question the student raised, and can be a full sentence.
 
 <div markdown="block" class="alert alert-info">
+
 :information_source: `QUESTION_TEXT` must not be empty.
+
 </div>
 
 Example:

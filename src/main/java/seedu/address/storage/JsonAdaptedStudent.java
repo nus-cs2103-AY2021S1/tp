@@ -68,11 +68,10 @@ class JsonAdaptedStudent {
         final Phone modelPhone = getModelPhone();
         final School modelSchool = getModelSchool();
         final Year modelYear = getModelYear();
+        final Admin modelAdmin = getModelAdmin();
+        final Academic modelAcademic = getModelAcademic();
 
-        Admin admin = jsonAdaptedAdmin.toModelType();
-        Academic academic = jsonAdaptedAcademic.toModelType();
-
-        return new Student(modelName, modelPhone, modelSchool, modelYear, admin, academic);
+        return new Student(modelName, modelPhone, modelSchool, modelYear, modelAdmin, modelAcademic);
     }
 
     private Name getModelName() throws IllegalValueException {
@@ -115,6 +114,22 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(Year.MESSAGE_CONSTRAINTS);
         }
         return new Year(year);
+    }
+
+    private Admin getModelAdmin() throws IllegalValueException {
+        if (jsonAdaptedAdmin == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Admin.class.getSimpleName()));
+        }
+        return jsonAdaptedAdmin.toModelType();
+    }
+
+    private Academic getModelAcademic() throws IllegalValueException {
+        if (jsonAdaptedAcademic == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Academic.class.getSimpleName()));
+        }
+        return jsonAdaptedAcademic.toModelType();
     }
 
 }

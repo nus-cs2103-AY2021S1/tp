@@ -13,13 +13,13 @@
     },
     "academic": {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : " ",
         "solution" : ""
       } ],
       "attendanceList" : [{
         "date" : "14/04/1998",
-        "attendanceStatus" : true,
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
