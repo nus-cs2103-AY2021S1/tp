@@ -22,11 +22,13 @@ public class DeleteTeammateParticipationTest {
     @Test
     public void execute_validGitUserIndex_success() {
         Person.getAllPeople().clear();
+        Person.getAllPeople().add(DESC_A);
+
+        Project.getAllProjects().clear();
 
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
-        Person.getAllPeople().add(DESC_A);
         project.addParticipation(DESC_A);
         model.addParticipation(project.getParticipation(DESC_A.getGitUserNameString()));
 
