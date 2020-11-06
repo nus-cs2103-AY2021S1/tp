@@ -65,7 +65,7 @@ public class AttendanceBelowCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
     }
 
-    // todo: fix test case
+    //    todo
     //    @Test
     //    public void execute_validUpperBound_multipleModulesFound() {
     //        model.setViewToTutorialGroup(CS2103T);
@@ -79,8 +79,7 @@ public class AttendanceBelowCommandTest {
     //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     //        assertEquals(Arrays.asList(CHARLIE, ELIZABETH), model.getFilteredStudentList());
     //    }
-
-    // todo: fix test case
+    //
     //    @Test
     //    public void execute_topUpperBound_multipleModulesFound() {
     //        model.setViewToTutorialGroup(CS2103T);

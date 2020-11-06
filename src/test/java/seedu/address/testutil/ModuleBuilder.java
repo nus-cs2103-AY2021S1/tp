@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
+import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 /**
  * A utility class to help with building Module objects.
@@ -11,6 +12,8 @@ public class ModuleBuilder {
     public static final String DEFAULT_MODULE_ID = "CS2100";
 
     private ModuleId moduleId;
+
+    private UniqueTutorialGroupList ugl = new UniqueTutorialGroupList();
 
     /**
      * Creates a {@code ModuleBuilder} with the default details.
@@ -34,8 +37,16 @@ public class ModuleBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code UniqueTutorialGroupList} of the {@code Module} that we are building.
+     */
+    public ModuleBuilder withUniqueTutorialGroupList(UniqueTutorialGroupList ugl) {
+        this.ugl = ugl;
+        return this;
+    }
+
     public Module build() {
-        return new Module(moduleId);
+        return new Module(moduleId, ugl);
     }
 
 }
