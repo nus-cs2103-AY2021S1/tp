@@ -290,7 +290,7 @@ Format: `preset MODE [NAME]`
 * `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
   * if `NAME` already exists and in save mode, the new preset will overwrite the existing preset.
   * `NAME` is **case-sensitive**.
-* Presets are split by vendor, therefore running `preset save PresetName` for two different vendors will not affect one
+* Presets are split by vendors, therefore running `preset save PresetName` for two different vendors will not affect one
 another. Similar for `preset load`.
 
 Examples:
