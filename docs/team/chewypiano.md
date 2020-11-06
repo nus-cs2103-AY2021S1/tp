@@ -46,7 +46,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#216](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/216),
-  [\#101](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/101), [\#143](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/143),
+  [\#101](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/101), [\#246](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/246), [\#143](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/143),
   [\#49](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/49), [\#219](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/219),
   [\#229](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/229). Full list of PR's reviewed: [PRs](https://github.com/AY2021S1-CS2103T-W17-3/tp/pulls?q=is%3Apr+reviewed-by%3A%40me).
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/chewypiano/ped/issues/1), [2](https://github.com/chewypiano/ped/issues/2), [3](https://github.com/chewypiano/ped/issues/3), [4](https://github.com/chewypiano/ped/issues/4))
