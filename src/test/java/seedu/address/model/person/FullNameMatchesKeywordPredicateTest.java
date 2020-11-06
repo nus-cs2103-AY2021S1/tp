@@ -59,7 +59,11 @@ public class FullNameMatchesKeywordPredicateTest {
         predicate = new FullNameMatchesKeywordPredicate(Arrays.asList("Alice Bib"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
-        // lower-case keyword
+        // Non-full name keyword
+        predicate = new FullNameMatchesKeywordPredicate(Arrays.asList("Alice"));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Lower-case keyword
         predicate = new FullNameMatchesKeywordPredicate(Arrays.asList("alice bob"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
