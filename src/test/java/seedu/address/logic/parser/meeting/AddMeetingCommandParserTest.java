@@ -96,7 +96,7 @@ public class AddMeetingCommandParserTest {
         // invalid date
         assertParseFailure(parser, MEETING_TYPE_A + BIDDER_ID_DESC_A + PROPERTY_ID_DESC_A
                 + MEETING_VENUE_DESC_A + INVALID_MEETING_DATE_DESC_A
-                + START_TIME_DESC_A + END_TIME_DESC_A, MeetingDate.MESSAGE_CONSTRAINTS);
+                + START_TIME_DESC_A + END_TIME_DESC_A, MeetingDate.MESSAGE_CONSTRAINTS_PAST_DATE);
 
 
         // invalid start time

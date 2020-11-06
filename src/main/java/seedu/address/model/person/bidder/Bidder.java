@@ -16,8 +16,9 @@ public class Bidder extends ClientPerson {
 
     /**
      * Constructs the bidder with the name, phone, tags, and id.
-     * @param name name of the bidder.
-     * @param phone phone number.
+     *
+     * @param name     name of the bidder.
+     * @param phone    phone number.
      * @param bidderId identifier.
      */
     public Bidder(Name name, Phone phone, BidderId bidderId) {

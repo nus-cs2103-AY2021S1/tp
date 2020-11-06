@@ -160,7 +160,7 @@ public abstract class Meeting {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("\nMeeting Type:" + checkMeetingType());
+        builder.append("\nMeeting Type: " + checkMeetingType());
         builder.append("\nBidder Id: ")
                 .append(getBidderId())
                 .append("\nProperty Id: ")

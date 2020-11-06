@@ -44,7 +44,7 @@ public class EditSellerCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Seller editedSeller = new SellerBuilder().build();
+        Seller editedSeller = model.getSellerAddressBook().getSellerList().get(0);
         EditSellerDescriptor sellerDescriptor = new EditSellerDescriptorBuilder(editedSeller).build();
         EditSellerCommand editSellerCommand = new EditSellerCommand(INDEX_FIRST_PERSON, sellerDescriptor);
 

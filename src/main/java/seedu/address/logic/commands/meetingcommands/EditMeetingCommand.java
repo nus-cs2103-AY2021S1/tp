@@ -42,9 +42,9 @@ public class EditMeetingCommand extends Command {
             + "\n[" + PREFIX_MEETING_BIDDER_ID + "B12] "
             + "\n[" + PREFIX_MEETING_PROPERTY_ID + "P14] "
             + "\n[" + PREFIX_MEETING_DATE + "20-10-2020] "
-            + "\n[" + PREFIX_MEETING_VENUE + "bedok]\n"
-            + "\n[" + PREFIX_MEETING_STARTTIME + "12:30]\n"
-            + "\n[" + PREFIX_MEETING_ENDTIME + "13:30]\n"
+            + "\n[" + PREFIX_MEETING_VENUE + "bedok]"
+            + "\n[" + PREFIX_MEETING_STARTTIME + "12:30]"
+            + "\n[" + PREFIX_MEETING_ENDTIME + "13:30]"
             + "\nExample: " + COMMAND_WORD + " 1 "
             + PREFIX_MEETING_VENUE + "eunos "
             + PREFIX_MEETING_DATE + "20-10-2019 ";
