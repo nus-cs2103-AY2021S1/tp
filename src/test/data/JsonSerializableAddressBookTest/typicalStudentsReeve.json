@@ -14,17 +14,17 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       }],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : true,
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -51,17 +51,17 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       }],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : true,
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -88,17 +88,17 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : true,
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -125,17 +125,17 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : true,
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -162,17 +162,17 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : true,
+        "status" : "solved",
         "question" : "What is Newton's Second Law?",
         "solution" : "Read your textbook"
       }, {
-        "status" : true,
+        "status" : "solved",
         "question" : "How do you inverse a matrix?",
         "solution" : "Read your textbook"
       } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : true,
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -199,17 +199,17 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : true,
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -236,17 +236,17 @@
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : true,
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
