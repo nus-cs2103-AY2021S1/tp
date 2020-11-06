@@ -17,7 +17,8 @@ public class VendorCommandParser implements Parser<VendorCommand> {
      */
     @Override
     public VendorCommand parse(String args) throws ParseException {
-        String trimArgs = args.trim();
+        String cleanedArgs = args.replaceAll("( )+", " ");
+        String trimArgs = cleanedArgs.trim();
         String[] argsArr = trimArgs.split(" ");
         // No arguments supplied
         if (argsArr.length == 1 && argsArr[0].equals("")) {
