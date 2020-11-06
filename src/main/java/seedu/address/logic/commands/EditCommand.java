@@ -12,6 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
@@ -58,6 +60,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in Reeve.";
 
+    private static Logger logger = Logger.getLogger("Edit Student Log");
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -81,27 +84,38 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        logger.log(Level.INFO, "Beginning command execution");
         List<Student> lastShownList = model.getSortedStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.log(Level.WARNING, "Invalid student index input error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor, editAdminDescriptor);
 
-        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+        boolean changesMadeToStudent = !studentToEdit.isSameStudent(editedStudent);
+        boolean modelContainsEditedStudent = model.hasStudent(editedStudent);
+        boolean duplicateStudentAdded = changesMadeToStudent && modelContainsEditedStudent;
+        if (duplicateStudentAdded) {
+            logger.log(Level.WARNING, "Duplicate student input error");
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
         ClassTime studentToEditClassTime = studentToEdit.getAdmin().getClassTime();
         ClassTime editedStudentClassTime = editedStudent.getAdmin().getClassTime();
-        if (!(editedStudentClassTime.equals(studentToEditClassTime)) && model.isClashingClassTime(editedStudent)) {
+        boolean classTimeIsChanged = !(editedStudentClassTime.equals(studentToEditClassTime));
+        boolean modelContainsClashingClassTime = model.isClashingClassTime(editedStudent);
+        boolean newClassTimeIsClashing = classTimeIsChanged && modelContainsClashingClassTime;
+        if (newClassTimeIsClashing) {
+            logger.log(Level.WARNING, "Clashing class time input error");
             throw new CommandException(Messages.MESSAGE_CLASHING_LESSON);
         }
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        logger.log(Level.INFO, "Execution complete");
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
 

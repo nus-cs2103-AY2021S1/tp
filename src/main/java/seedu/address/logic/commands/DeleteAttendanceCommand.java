@@ -81,6 +81,7 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
                 .anyMatch(attendance -> attendance.getLessonDate().equals(attendanceDate));
 
         if (!containsAttendanceAtDate) {
+            logger.log(Level.WARNING, "Invalid attendance date error");
             throw new CommandException(MESSAGE_INVALID_ATTENDANCE_DATE);
         }
 

@@ -66,8 +66,10 @@ public class AddAttendanceCommand extends AttendanceCommand {
             logger.log(Level.WARNING, "Invalid student index input error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
+
         Student studentToAddAttendance = lastShownList.get(index.getZeroBased());
         if (studentToAddAttendance.containsAttendance(attendanceToAdd)) {
+            logger.log(Level.WARNING, "Invalid attendance date error");
             throw new CommandException(MESSAGE_INVALID_ATTENDANCE_DATE);
         }
 
