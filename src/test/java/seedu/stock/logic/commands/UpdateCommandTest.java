@@ -45,7 +45,7 @@ public class UpdateCommandTest {
 
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(model.getFilteredStockList().get(1), updatedStock);
+        expectedModel.setStock(model.getFilteredStockList().get(2), updatedStock);
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
     }
@@ -60,7 +60,7 @@ public class UpdateCommandTest {
 
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(model.getFilteredStockList().get(1), updatedStock);
+        expectedModel.setStock(model.getFilteredStockList().get(2), updatedStock);
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
     }
@@ -75,7 +75,7 @@ public class UpdateCommandTest {
 
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(model.getFilteredStockList().get(1), updatedStock);
+        expectedModel.setStock(model.getFilteredStockList().get(2), updatedStock);
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
     }
@@ -90,7 +90,7 @@ public class UpdateCommandTest {
 
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(model.getFilteredStockList().get(1), updatedStock);
+        expectedModel.setStock(model.getFilteredStockList().get(2), updatedStock);
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
     }
@@ -166,8 +166,8 @@ public class UpdateCommandTest {
 
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(model.getFilteredStockList().get(0), updatedStockApple);
-        expectedModel.setStock(model.getFilteredStockList().get(1), updatedStockBanana);
+        expectedModel.setStock(model.getFilteredStockList().get(1), updatedStockApple);
+        expectedModel.setStock(model.getFilteredStockList().get(2), updatedStockBanana);
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
     }

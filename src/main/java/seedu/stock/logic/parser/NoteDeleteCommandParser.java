@@ -20,8 +20,6 @@ public class NoteDeleteCommandParser implements Parser<NoteDeleteCommand> {
 
     private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
     private static final Prefix[] validPrefixesForNoteDelete = { PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX };
-    private static final Prefix[] invalidPrefixesForDeleteNote =
-            ParserUtil.getInvalidPrefixesForCommand(validPrefixesForNoteDelete);
 
     @Override
     public NoteDeleteCommand parse(String args) throws ParseException {
@@ -30,7 +28,7 @@ public class NoteDeleteCommandParser implements Parser<NoteDeleteCommand> {
 
         // Check if command format is correct
         if (!areAllPrefixesPresent(argMultimap, validPrefixesForNoteDelete)
-                || isAnyPrefixPresent(argMultimap, invalidPrefixesForDeleteNote)
+                || ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForNoteDelete)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     NoteDeleteCommand.MESSAGE_USAGE));
@@ -47,17 +45,6 @@ public class NoteDeleteCommandParser implements Parser<NoteDeleteCommand> {
         NoteIndex noteIndex = ParserUtil.parseNoteIndex(noteIndexInput);
 
         return new NoteDeleteCommand(serialNumber, noteIndex);
-    }
-
-    /**
-     * Returns true if any one of the prefixes does not contain an empty {@code Optional} value
-     * in the given {@code ArgumentMultimap}.
-     * @param argumentMultimap map of prefix to keywords entered by user
-     * @param prefixes prefixes to parse
-     * @return boolean true if a prefix specified is present
-     */
-    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**

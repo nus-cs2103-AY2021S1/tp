@@ -17,8 +17,6 @@ public class NoteCommandParser implements Parser<NoteCommand> {
 
     private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
     private static final Prefix[] validPrefixesForNote = { PREFIX_NOTE, PREFIX_SERIAL_NUMBER };
-    private static final Prefix[] invalidPrefixesForNote =
-            ParserUtil.getInvalidPrefixesForCommand(validPrefixesForNote);
 
     @Override
     public NoteCommand parse(String args) throws ParseException {
@@ -27,7 +25,7 @@ public class NoteCommandParser implements Parser<NoteCommand> {
 
         // Check if command format is correct
         if (!areAllPrefixesPresent(argMultimap, validPrefixesForNote)
-                || isAnyPrefixPresent(argMultimap, invalidPrefixesForNote)
+                || ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForNote)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     NoteCommand.MESSAGE_USAGE));
@@ -45,17 +43,6 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         Note noteToAdd = ParserUtil.parseNote(noteInput);
 
         return new NoteCommand(serialNumber, noteToAdd);
-    }
-
-    /**
-     * Returns true if any one of the prefixes does not contain an empty {@code Optional} value
-     * in the given {@code ArgumentMultimap}.
-     * @param argumentMultimap map of prefix to keywords entered by user
-     * @param prefixes prefixes to parse
-     * @return boolean true if a prefix specified is present
-     */
-    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**

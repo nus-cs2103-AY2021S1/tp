@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.stock.commons.core.LogsCenter;
+import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.SourceQuantityDistributionStatisticsCommand;
 import seedu.stock.logic.commands.SourceStatisticsCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
@@ -16,6 +17,9 @@ import seedu.stock.logic.parser.exceptions.ParseException;
 public class StatisticsCommandParser implements Parser<StatisticsCommand> {
 
     private static final Logger logger = LogsCenter.getLogger(StatisticsCommandParser.class);
+    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+    private static final Prefix[] validPrefixesForStatistics = { PREFIX_STATISTICS_TYPE };
+
 
     @Override
     public StatisticsCommand parse(String userInput) throws ParseException {
@@ -24,7 +28,11 @@ public class StatisticsCommandParser implements Parser<StatisticsCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatisticsCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_STATISTICS_TYPE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, allPossiblePrefixes);
+
+        if (ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForStatistics)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
 
         List<String> values = argMultimap.getAllValues(PREFIX_STATISTICS_TYPE);
 

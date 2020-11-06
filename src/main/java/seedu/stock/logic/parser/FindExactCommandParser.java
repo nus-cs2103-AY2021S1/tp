@@ -29,8 +29,6 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
     private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
     private static final Prefix[]
             validPrefixesForFindExact = { PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER };
-    private static final Prefix[] invalidPrefixesForFindExact =
-            ParserUtil.getInvalidPrefixesForCommand(validPrefixesForFindExact);
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -43,8 +41,8 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
                 ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
         // Check if command format is correct
-        if (!isAnyPrefixPresent(argMultimap, validPrefixesForFindExact)
-                || isAnyPrefixPresent(argMultimap, invalidPrefixesForFindExact)
+        if (!ParserUtil.isAnyPrefixPresent(argMultimap, validPrefixesForFindExact)
+                || ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForFindExact)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
         }
@@ -58,14 +56,6 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
                 parsePrefixAndKeywords(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER);
 
         return new FindExactCommand(predicatesToTest);
-    }
-
-    /**
-     * Returns true if any one of the prefixes does not contain an empty {@code Optional} value
-     * in the given {@code ArgumentMultimap}.
-     */
-    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**
