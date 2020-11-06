@@ -5,6 +5,8 @@ import java.io.IOException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.vendor.Phone;
 import seedu.address.storage.Storage;
 
 
@@ -21,25 +23,25 @@ public class ProfileCommand extends Command {
             + "profile 92030888 25 Lower Kent Ridge Rd, Singapore 119081: "
                 + "Saves your address as '25 Lower Kent Ridge Rd, Singapore 119081' and phone number as '92030888'";
 
-    public static final String MESSAGE_SUCCESS = "Profile Successfully added!";
+    public static final String MESSAGE_SUCCESS = "Profile successfully added!";
 
-    private final String address;
-    private final String phone;
+    private final Address address;
+    private final Phone phone;
 
     /**
      * ProfileCommand constructor
      * @param address address of Profile as String
      * @param phone phone number of Profile as String
      */
-    public ProfileCommand(String address, String phone) {
-        this.address = address;
+    public ProfileCommand(Phone phone, Address address) {
         this.phone = phone;
+        this.address = address;
     }
 
     @Override
     public CommandResult execute(Model model, Storage storage) throws CommandException {
         try {
-            Profile profile = new Profile(address, phone);
+            Profile profile = new Profile(phone, address);
             storage.saveProfileManager(profile);
         } catch (IOException ie) {
             throw new CommandException(ProfileCommand.MESSAGE_USAGE);

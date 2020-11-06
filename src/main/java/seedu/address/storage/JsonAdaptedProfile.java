@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.vendor.Phone;
 
 public class JsonAdaptedProfile {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Profile's %s field is missing!";
@@ -45,14 +47,20 @@ public class JsonAdaptedProfile {
      */
     public Profile toModelType() throws IllegalValueException {
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Address"));
-        }
-
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Phone"));
         }
+        if (!Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
 
-        return new Profile(address, phone);
+        if (address == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Address"));
+        }
+        if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Profile(new Phone(phone), new Address(address));
     }
 }

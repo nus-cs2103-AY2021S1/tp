@@ -17,7 +17,7 @@ public class SwitchVendorCommand extends VendorCommand {
 
     public static final String COMMAND_WORD = "vendor";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects a Vendor in the AddressBook. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects a Vendor in the VendorManager. "
             + "Parameters: "
             + " Index of Vendor";
 
@@ -30,7 +30,7 @@ public class SwitchVendorCommand extends VendorCommand {
     private final Index vendorIndex;
 
     /**
-     * Creates a VendorCommand to select the vendor at the specified {@code index} of the AddressBook
+     * Creates a VendorCommand to select the vendor at the specified {@code index} of the VendorManager
      */
     public SwitchVendorCommand(Index index) {
         requireNonNull(index);

@@ -138,6 +138,10 @@ public class OrderItem extends Food {
         return builder.toString();
     }
 
+    public String addCommandString() {
+        return String.format("%s x%d", getName(), getQuantity());
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

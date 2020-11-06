@@ -13,7 +13,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY = "The order item quantity "
             + "provided is invalid";
     public static final String MESSAGE_INVALID_PRICE = "%s is not a non-negative unsigned real number.";
-    public static final String MESSAGE_INVALID_INEQUALITY = "%s is not a valid inequality sign.";
+    public static final String MESSAGE_PRICE_GREATER_THAN_LIMIT = "%s is too large a price for any item in the menu.";
+    public static final String MESSAGE_INVALID_INEQUALITY = "%s is not a valid inequality sign. It must be either "
+            + "\"<\", \"<=\", \">\", or \">=\" (without quotes). See User Guide for more info.";
 
     public static final String MESSAGE_VENDOR_NOT_SELECTED = "A vendor has not been selected yet,"
             + " please choose a vendor.";
@@ -22,7 +24,7 @@ public class Messages {
     public static final String MESSAGE_INSUFFICIENT_ARGUMENTS = "%s command requires at least %s argument(s).\n%s";
     public static final String MESSAGE_TOO_MANY_ARGUMENTS = "%s command should not have more than %s arguments.\n%s";
     public static final String MESSAGE_CHAIN =
-            "1. You can further chain the current filter with another `find` or `price` command.\n"
+            "1. You can further chain the current filter with another `find` or `price` or `sort` command.\n"
             + "2. Filters can be reset with the `menu` command.";
     public static final String MESSAGE_FOOD_LISTED_OVERVIEW = "%1$d food listed!\n" + MESSAGE_CHAIN;
     public static final String MESSAGE_FOOD_LISTED_PRICE_CONTEXT = "%1$d food with price %2$s listed!\n"

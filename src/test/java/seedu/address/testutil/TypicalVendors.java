@@ -13,11 +13,11 @@ import java.util.HashSet;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.AddressBook;
 import seedu.address.model.food.MenuItem;
 import seedu.address.model.menu.Menu;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.vendor.Vendor;
+import seedu.address.model.vendor.VendorManager;
 
 /**
  * A utility class containing a list of {@code Vendor} objects to be used in tests.
@@ -37,17 +37,17 @@ public class TypicalVendors {
             .withEmail("heinz@example.com").withAddress("wall street").withMenu(menu).build();
     public static final Vendor DANIEL = new VendorBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").withMenu(menu).build();
-    public static final Vendor ELLE = new VendorBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Vendor ELLE = new VendorBuilder().withName("Elle Meyer").withPhone("94822243")
             .withEmail("werner@example.com").withAddress("michegan ave").withMenu(menu).build();
-    public static final Vendor FIONA = new VendorBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Vendor FIONA = new VendorBuilder().withName("Fiona Kunz").withPhone("94824270")
             .withEmail("lydia@example.com").withAddress("little tokyo").withMenu(menu).build();
-    public static final Vendor GEORGE = new VendorBuilder().withName("George Best").withPhone("9482442")
+    public static final Vendor GEORGE = new VendorBuilder().withName("George Best").withPhone("94824421")
             .withEmail("anna@example.com").withAddress("4th street").withMenu(menu).build();
 
     // Manually added
-    public static final Vendor HOON = new VendorBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Vendor HOON = new VendorBuilder().withName("Hoon Meier").withPhone("84824241")
                 .withEmail("stefan@example.com").withAddress("little india").withMenu(menu).build();
-    public static final Vendor IDA = new VendorBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Vendor IDA = new VendorBuilder().withName("Ida Mueller").withPhone("84821311")
                 .withEmail("hans@example.com").withAddress("chicago ave").withMenu(menu).build();
 
     // Manually added - Vendor's details found in {@code CommandTestUtil}
@@ -65,10 +65,10 @@ public class TypicalVendors {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical Vendors.
+     * Returns an {@code VendorManager} with all the typical Vendors.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static VendorManager getTypicalVendorManager() {
+        VendorManager ab = new VendorManager();
         for (Vendor vendor : getTypicalVendors()) {
             ab.addVendor(vendor);
         }

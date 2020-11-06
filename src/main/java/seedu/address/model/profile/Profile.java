@@ -12,9 +12,9 @@ public class Profile {
      * @param address address of profile as String
      * @param phone phone number of profile as String
      */
-    public Profile(String address, String phone) {
-        this.address = new Address(address);
-        this.phone = new Phone(phone);
+    public Profile(Phone phone, Address address) {
+        this.phone = phone;
+        this.address = address;
     }
 
     public Address getAddress() {

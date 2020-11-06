@@ -28,8 +28,4 @@ public class UndoCommand extends Command {
         return new CommandResult(MESSAGE_UNDO_SUCCESS);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
 }

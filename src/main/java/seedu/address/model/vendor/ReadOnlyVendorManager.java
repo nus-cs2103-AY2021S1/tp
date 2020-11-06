@@ -1,12 +1,11 @@
-package seedu.address.model;
+package seedu.address.model.vendor;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.vendor.Vendor;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a vendor manager
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyVendorManager {
 
     /**
      * Returns an unmodifiable view of the vendors list.

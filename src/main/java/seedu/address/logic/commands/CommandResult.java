@@ -80,8 +80,7 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && isPreset == otherCommandResult.isPreset;
+                && exit == otherCommandResult.exit;
     }
 
     @Override

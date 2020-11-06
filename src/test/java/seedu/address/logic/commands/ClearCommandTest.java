@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalVendors.getTypicalVendorManager;
 
 import java.util.HashSet;
 
@@ -35,7 +35,7 @@ public class ClearCommandTest {
     }
 
     private Model initialiseModel() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+        Model model = new ModelManager(getTypicalVendorManager(), new UserPrefs(), TypicalVendors.getManagers(),
                 new OrderManager());
         model.selectVendor(0);
         return model;
@@ -43,7 +43,7 @@ public class ClearCommandTest {
 
     @Test
     public void execute_vendorNotSelected_throwsException() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+        Model model = new ModelManager(getTypicalVendorManager(), new UserPrefs(), TypicalVendors.getManagers(),
                 new OrderManager());
         assertCommandFailure(new ClearCommand(), model, Messages.MESSAGE_VENDOR_NOT_SELECTED);
     }

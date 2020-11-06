@@ -6,6 +6,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.TypicalVendors;
+
 public class PhoneTest {
 
     @Test
@@ -28,13 +30,15 @@ public class PhoneTest {
         assertFalse(seedu.address.model.vendor.Phone.isValidPhone("")); // empty string
         assertFalse(seedu.address.model.vendor.Phone.isValidPhone(" ")); // spaces only
         assertFalse(seedu.address.model.vendor.Phone.isValidPhone("91")); // less than 3 numbers
+        assertFalse(seedu.address.model.vendor.Phone.isValidPhone("911")); // exactly 3 numbers
+        assertFalse(Phone.isValidPhone("124293842033123")); // long phone numbers
         assertFalse(seedu.address.model.vendor.Phone.isValidPhone("phone")); // non-numeric
         assertFalse(seedu.address.model.vendor.Phone.isValidPhone("9011p041")); // alphabets within digits
         assertFalse(seedu.address.model.vendor.Phone.isValidPhone("9312 1534")); // spaces within digits
 
         // valid phone numbers
-        assertTrue(seedu.address.model.vendor.Phone.isValidPhone("911")); // exactly 3 numbers
         assertTrue(seedu.address.model.vendor.Phone.isValidPhone("93121534"));
-        assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+        assertTrue(seedu.address.model.vendor.Phone.isValidPhone(TypicalVendors.ALICE.getPhone().toString()));
     }
+
 }

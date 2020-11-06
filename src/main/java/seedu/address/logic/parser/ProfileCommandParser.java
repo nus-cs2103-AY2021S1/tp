@@ -13,23 +13,23 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
      */
     @Override
     public ProfileCommand parse(String args) throws ParseException {
-        String trimArgs = args.trim();
-        String[] strArgs = trimArgs.split(" ");
-        if (strArgs.length < 2) {
-            throw new ParseException(ProfileCommand.MESSAGE_USAGE);
+        String cleanedArgs = args.replaceAll("( )+", " ");
+        String trimArgs = cleanedArgs.trim();
+        int firstSpace = trimArgs.indexOf(' ');
+        String[] argsArr = new String[2];
+        argsArr[0] = trimArgs;
+        argsArr[1] = "";
+        if (firstSpace != -1) {
+            argsArr[0] = trimArgs.substring(0, firstSpace).trim();
+            argsArr[1] = trimArgs.substring(firstSpace + 1).trim();
         }
-        String phoneStr = strArgs[0];
-        StringBuilder builder = new StringBuilder();
-        for (int i = 1; i < strArgs.length; i++) {
-            builder.append(strArgs[i]);
-            builder.append(" ");
-        }
-        String addressStr = builder.toString();
 
-        if (!Address.isValidAddress(addressStr) || !Phone.isValidPhone(phoneStr)) {
+        if (argsArr[1].equals("")) {
             throw new ParseException(ProfileCommand.MESSAGE_USAGE);
         }
 
-        return new ProfileCommand(addressStr, phoneStr);
+        Phone phone = ParserUtil.parsePhone(argsArr[0]);
+        Address address = ParserUtil.parseAddress(argsArr[1]);
+        return new ProfileCommand(phone, address);
     }
 }

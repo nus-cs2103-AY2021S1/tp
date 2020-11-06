@@ -20,7 +20,7 @@ public class TagCommand extends Command {
             + "Format: tag INDEX REMARK\n"
             + "- The INDEX refers to the index number of the order item.\n"
             + "- INDEX must be positive number and must not exceed the size of the order list.\n"
-            + "- REMARK is any non-empty string"
+            + "- REMARK is any non-empty string\n"
             + "Examples:\n"
             + "tag 2 1 no ice: tags order item INDEX 2, with tag \"1 no ice\"";
     public static final String MESSAGE_TAG_SUCCESS = "Tag \"%s\" has been added to order item %d.\n";
@@ -30,6 +30,7 @@ public class TagCommand extends Command {
 
     /**
      * Creates a {@code tag} for the order item at index {@code tagIndex}.
+     *
      * @param tagIndex
      * @param tag
      */
@@ -54,5 +55,13 @@ public class TagCommand extends Command {
         OrderItem orderItem = order.get(index);
         model.tagOrderItem(orderItem, tag);
         return new CommandResult(String.format(MESSAGE_TAG_SUCCESS, tag.tagName, index + 1));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TagCommand // instanceof handles nulls
+                && tagIndex.equals(((TagCommand) other).tagIndex))
+                && tag.equals(((TagCommand) other).tag);
     }
 }

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.vendor.Phone;
 
 public class JsonSerializableProfileManager {
     private final JsonAdaptedProfile jsonAdaptedProfile;
@@ -35,9 +37,6 @@ public class JsonSerializableProfileManager {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Profile toModelType() {
-        return new Profile(
-                jsonAdaptedProfile.getAddress(),
-                jsonAdaptedProfile.getPhone()
-        );
+        return new Profile(new Phone(jsonAdaptedProfile.getPhone()), new Address(jsonAdaptedProfile.getAddress()));
     }
 }

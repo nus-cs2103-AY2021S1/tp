@@ -17,7 +17,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     @Override
     public AddCommand parse(String args) throws ParseException {
         String trimArgs = args.trim();
-        String[] argsArr = trimArgs.split(" ");
+        String finalArgs = trimArgs.replaceAll("( )+", " ");
+        String[] argsArr = finalArgs.split(" ");
         ParserUtil.checkArgsLength(argsArr, AddCommand.COMMAND_WORD, AddCommand.MESSAGE_USAGE, 1, 2);
         Index index = ParserUtil.parseIndex(argsArr[0], "Menu Index");
 

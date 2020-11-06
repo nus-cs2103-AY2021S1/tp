@@ -12,7 +12,7 @@ public class UntagCommandParser implements Parser<UntagCommand> {
         String[] argsArr = trimArgs.split(" +");
         ParserUtil.checkArgsLength(argsArr, UntagCommand.COMMAND_WORD, UntagCommand.MESSAGE_USAGE, 1);
 
-        Index index = ParserUtil.parseIndex(argsArr[0]);
+        Index index = ParserUtil.parseIndex(argsArr[0], "Order Item Index");
 
         return new UntagCommand(index);
     }

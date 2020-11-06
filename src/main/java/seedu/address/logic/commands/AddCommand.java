@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + "add 2 3: add item at INDEX 2, of QUANTITY 3\n"
             + "add 1: add item at INDEX 1, of default QUANTITY 1";
 
-    public static final String MESSAGE_ADD_SUCCESS = "%1$s has been added to your Order";
+    public static final String MESSAGE_ADD_SUCCESS = "%s x%d has been added to your Order";
 
     private final Index addIndex;
     private final int quantity;
@@ -73,7 +73,7 @@ public class AddCommand extends Command {
         OrderItem orderItem = new OrderItem(menu.get(index), quantity);
         model.addOrderItem(orderItem);
 
-        return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, orderItem));
+        return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, orderItem.getName(), this.quantity));
     }
 
     @Override
