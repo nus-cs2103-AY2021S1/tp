@@ -8,6 +8,10 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
+//@@author SQwQ-reused
+//Reused from
+//https://github.com/AY1920S1-CS2103T-F12-2/main/blob/master/src/main/java/unrealunity/visit/ui/EmptyVisitList.java
+//with modifications
 /**
  * Controller for a help page
  */

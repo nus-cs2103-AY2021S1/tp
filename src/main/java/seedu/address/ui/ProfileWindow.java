@@ -36,6 +36,10 @@ import seedu.address.model.patient.Sex;
 import seedu.address.model.visit.Visit;
 import seedu.address.model.visit.VisitHistory;
 
+//@@author Q-gabe-reused
+//Reused from
+//https://github.com/AY1920S1-CS2103T-F12-2/main/blob/master/src/main/java/unrealunity/visit/ui/ProfileWindow.java
+//with modifications
 
 /**
  * Popup window displaying patient's parameters.

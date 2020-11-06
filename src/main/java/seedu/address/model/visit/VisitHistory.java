@@ -9,6 +9,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.patient.Name;
 
+//@@author SQwQ-reused
+//Reused from
+//https://github.com/AY1920S1-CS2103T-F12-2/main/blob/master/src/main/java/unrealunity/visit/model/person/VisitList.java
+//with modifications
+
 /**
  * Represents a patient's visit history in the CliniCal application.
  */

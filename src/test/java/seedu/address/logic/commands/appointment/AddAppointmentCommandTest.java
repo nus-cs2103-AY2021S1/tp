@@ -10,7 +10,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NAME_FI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NAME_SECOND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_FIRST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_SECOND;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
+import static seedu.address.testutil.TypicalPatients.getTypicalCliniCal;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -22,21 +26,69 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CliniCal;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyCliniCal;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AddAppointmentCommandTest {
 
+    private Model model = new ModelManager(getTypicalCliniCal(), new UserPrefs());
     @Test
     public void constructor_nullAppointment_throwsAssertionError() {
         assertThrows(AssertionError.class, () -> new AddAppointmentCommand(null, null, null));
+    }
+
+    @Test
+    public void constructor_nullIndex_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> new AddAppointmentCommand(null,
+                new AppointmentDateTime("12/12/2020 12:00"), new AppointmentDateTime("12/12/2020 13:00")));
+    }
+
+    @Test
+    public void constructor_nullStartTime_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> new AddAppointmentCommand(Index.fromZeroBased(0),
+                null, new AppointmentDateTime("12/12/2020 13:00")));
+    }
+
+    @Test
+    public void constructor_nullEndTime_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> new AddAppointmentCommand(Index.fromZeroBased(0),
+                new AppointmentDateTime("12/12/2020 12:00"), null));
+    }
+
+    @Test
+    public void execute_validIndexUnfilteredList_success() {
+        Patient patientToAdd = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
+        Appointment appointmentToAdd = new Appointment(patientToAdd.getName(), patientToAdd.getIcNumber(),
+                new AppointmentDateTime("12/12/2020 12:00"), new AppointmentDateTime("12/12/2020 13:00"));
+        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(appointmentToAdd);
+
+        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, appointmentToAdd);
+
+        ModelManager expectedModel = new ModelManager(model.getCliniCal(), new UserPrefs());
+        expectedModel.addAppointment(appointmentToAdd);
+
+        assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
+        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(outOfBoundIndex,
+                new AppointmentDateTime("12/12/2020 12:00"), new AppointmentDateTime("12/12/2020 13:00"));
+
+        assertCommandFailure(addAppointmentCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
     }
 
     @Test

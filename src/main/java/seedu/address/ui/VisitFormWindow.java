@@ -21,6 +21,10 @@ import seedu.address.logic.commands.SaveVisitCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.visit.Visit;
 
+//@@author Q-gabe-reused
+//Reused from
+//https://github.com/AY1920S1-CS2103T-F12-2/main/blob/master/src/main/java/unrealunity/visit/ui/VisitRecordWindow.java
+//with modifications
 /**
  * Instantiates a window for logging visit details.
  *
