@@ -46,12 +46,15 @@ This diagram shows our interface.
 5. The *Command Box* at the bottom of the app window is at the bottom. You can type your commands here.
 
 ### Basic workflow
-1. Tag important files with the `tag` command for ease of access.
+1. Tag important files with the `tag` command for ease of access.<br>
 ![Tag](images/screenshots/tag.PNG)
-2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.
+2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.<br>
 ![Open](images/screenshots/open.PNG)
-3. To find the location of tagged files, use the `show` command to get the file path of the file.
-4. If you have made a happy little accident, you can recover by using `undo` and `redo`.
+3. To find the location of tagged files, use the `show` command to get the file path of the file.<br>
+![Show](images/screenshots/show.PNG)
+4. If you have made a happy little accident, you can recover by using `undo` and `redo`.<br>
+![Undo](images/screenshots/undo.PNG) <br>
+![Redo](images/screenshots/open.PNG) <br>
 5. To exit the application, either close the application window, or use the `exit` command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -365,6 +368,15 @@ All of your customisation options are saved and persists even when you close the
 **Q**: Why does list command use `ls` as the keyword instead of `list`? <br>
 **A**: In most command lines, `ls` is the default keyword for listing files and folders. We would like the transition 
 from command line to HelloFile to be as smooth as possible for our target users.
+
+--------------------------------------------------------------------------------------------------------------------
+## Glossary
+Terminology | Definition
+--------|------------------
+**CLI** | Command Line Interface is a command line program that accepts text input to execute operating system functions
+**GUI** | Graphical User Interface is a form of user interface that allows users to interact with electronic devices through graphical icons, instead of text-based user interfaces.
+**Absolute path** | The complete address of a file location. Usually, the address consists of the root element and the complete directory list required to locate the file Example: `C:\Users\a.txt` (Windows), `/home/usr/b.txt` (Linux)).
+**Relative path** | The partial address of a file location. Usually, the address does not consist root element. Example: `./Users/Files/a.txt`,
 
 --------------------------------------------------------------------------------------------------------------------
 
