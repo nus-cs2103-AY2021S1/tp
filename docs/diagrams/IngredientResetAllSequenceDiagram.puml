@@ -46,7 +46,7 @@ create CommandResult
 IngredientResetAllCommand -> CommandResult : CommandResult(message)
 activate CommandResult
 
-CommandResult -> IngredientResetAllCommand
+CommandResult --> IngredientResetAllCommand
 deactivate CommandResult
 
 IngredientResetAllCommand --> LogicManager :commandResult
