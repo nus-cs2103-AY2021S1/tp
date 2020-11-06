@@ -48,7 +48,7 @@ Refer to the features below for details of each command.
 
 1. Please ensure that you have Java `11` or above installed in your Computer.
 
-1. You have to download the latest `mcgymmy.jar` from [here](https://github.com/AY2021S1-CS2103T-W17-3/tp).
+1. You can download the latest `mcgymmy.jar` [here](https://github.com/AY2021S1-CS2103T-W17-3/tp).
 
 1. Afterwards, copy the file to the folder you want to use as the _home folder_ for your McGymmy.
 
@@ -80,7 +80,7 @@ Each of the commands explained below will have an image which shows the output.
 
 ![Usage](images/CommandImagesForUG/Usage.png)
 
-If you are just looking for a particular command:
+If you are looking for a particular command:
 1. Press `Ctrl-F` for Windows and other operating systems, `CMD + F` for Mac OS.
 1. Search for the command in the search bar.
 
@@ -118,18 +118,18 @@ We will follow the following convention for each command's format:
 * Prefixes that precede parameters represent *flags* that indicate which parameter is being referenced. Parameters that are not preceded by a flag are denoted as *flag-less* parameters. For simplicity, the [flag + parameter input] together will be referenced as a single parameter.<br>
   e.g. in `find example -t lunch`, `example` represents a flag-less parameter while `-t lunch` is referred as a parameter with flag `-t` and parameter input `lunch`.
 
+* Flag-less parameters always have to be the first parameter after the command word.<br>
+  e.g. in `edit 1 -n chicken`, the flag-less parameter is `1` and the `n` parameter is `chicken`. However for `edit -n chicken 1`, there is no flag-less parameter, and the `n` parameter is `chicken 1`.
+  
 * Items in square brackets are optional.<br>
   e.g. `-n NAME [-f FATS]` can be used as `-n bacon -f 10` or as `-n bacon`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[commnand;]…​` can be used as ` ` (i.e. 0 times), `delete 1;`, `delete 2; delete 1;` etc.
 
 * Parameters and optional parameters with flags can be in any order.<br>
   e.g. if the command specifies `-c CARBS -p PROTEIN [-f FATS]`, `-p PROTEIN [-f FATS] -c CARBS` is also acceptable.
 
-* Flag-less parameters always have to be the first parameter after the command word.<br>
-  e.g. in `edit 1 -n chicken`, the flag-less parameter is `1` and the `n` parameter is `chicken`. However for `edit -n chicken 1`, there is no flag-less parameter, and the `n` parameter is `chicken 1`.
-  
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[commnand;]…​` can be used as ` ` (i.e. 0 times), `delete 1;`, `delete 2; delete 1;` etc.
+
 * Entering the same parameter twice will concatenate the inputs.<br>
   e.g. in `add -n potato -n chip`, the `n` parameters will be concatenated to `potato chip`, and a new item with the name `potato chip` will be created.
 
@@ -137,7 +137,9 @@ We will follow the following convention for each command's format:
 
 ### 5.1 Viewing help : `help`
 
-You can view information on the available commands in the terminal.
+Stuck and unsure of how to execute a certain command? The `help` command allows you to view
+information on all available commands. It also enables you to display detailed information on a specific
+command. This way, you won't have any trouble utilising McGymmy to its full potential.
 
 Format: `help [COMMAND]`
 
@@ -149,7 +151,9 @@ Examples:
 
 ### 5.2 Adding a food item: `add`
 
-You can add a food item to McGymmy.
+The `add` command allows you to store your food items into McGymmy with ease. You can also
+specify additional details for your food item entry, creating a more detailed and customisable
+diet-tracking experience.
 
 Format: `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE] [-t TAG]`
 
@@ -164,7 +168,7 @@ Examples:
 
 :information_source:
  * The default value for `PROTEIN`, `FATS` and `CARBS` is 0. The default date is the day in which the food item is added.<br>
- * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer.<br>
+ * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer, less than 1000g.<br>
  * To view the list of supported date formats, see *Appendix A*.<br>
 
 </div>
@@ -173,9 +177,14 @@ Examples:
 
 ### 5.3 Tagging food items : `tag`
 
-You can tag a food item in McGymmy.
+Tags are customisable labels that help organise your food items. The `tag` command enables
+you to tag food items with a specific label, which allows you to locate and filter the food
+items with greater ease and create a more organised food list. 
 
 Format: `tag INDEX -t TAG_NAME`
+
+Examples:
+* `tag 1 -t Breakfast` - adds the `Breakfast` tag to the first food item in your list.
 
 <div markdown="block" class="alert alert-info">
 
@@ -194,9 +203,13 @@ Format: `tag INDEX -t TAG_NAME`
 
 ### 5.4 Untagging food items : `untag`
 
-You can untag a food item in McGymmy.
+Wrongly tagged a food item? Not to worry, the `untag` command allows for quick and easy
+removal of a specified tag.
 
 Format: `untag INDEX -t TAG_NAME`
+
+Examples:
+* `untag 1 -t Breakfast` - removes the `Breakfast` tag from the first food item in your list.
 
 <div markdown="block" class="alert alert-info">
 
@@ -214,15 +227,11 @@ Format: `untag INDEX -t TAG_NAME`
 
 ### 5.5 Finding a food item: `find`
 
-You can find food items based on the keywords supplied.
+Easy and quick filtering of food items is made possible via the `find` command.
+This command allows you to specify certain criteria to filter the current food list by,
+allowing you to easily locate past entries.
 
 Format: `find [KEYWORDS] [-n WORDS_IN_NAME] [-t WORDS_IN_TAG] [-d DATE]`
-
-Examples:
-* `find` - finds all food items
-* `find -n Sushi -d 20/04/2020` - finds all food items with the word "Sushi" in it's name and date "20/04/2020"
-* `find -t lunch dinner` - finds all food items with tag "lunch" and/or tag "dinner"
-* `find sushi lunch` - finds all food items that have the keywords "sushi" and/or "lunch" in their name and/or tag
 
 <div markdown="block" class="alert alert-info">
 
@@ -235,11 +244,18 @@ Examples:
 
 </div>
 
+Examples:
+* `find` - finds all food items
+* `find -n Sushi -d 20/04/2020` - finds all food items with the word "Sushi" in it's name and date "20/04/2020"
+* `find -t lunch dinner` - finds all food items with tag "lunch" and/or tag "dinner"
+* `find sushi lunch` - finds all food items that have the keywords "sushi" and/or "lunch" in their name and/or tag
+
 ![find_command_example](images/CommandImagesForUG/Find.png)
 
 ### 5.6 Clearing food items: `clear`
 
-You can clear food items currently shown in the list.
+The `clear` command allows you to quickly delete
+all entries in the current displayed list, preventing your food list from getting clogged up.
 
 Format: `clear`
 
@@ -259,7 +275,7 @@ Examples:
 
 ### 5.7 Listing all food items : `list`
 
-You can view a list of all food items in McGymmy.
+The `list` command lets you display the entire list of food items stored in your McGymmy.
 
 Format: `list`
 
@@ -276,7 +292,8 @@ Format: `list`
 
 ### 5.8 Editing a food item : `edit`
 
-You can edit the details of a food item at the specified index.
+The `edit` command allows for quick and easy changes to be made on existing food items in
+McGymmy.
 
 Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 
@@ -289,19 +306,19 @@ Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer.<br>
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* To view the list of supported date formats, see *Appendix A*.
 
 </div>
 
 Examples:
 *  `edit 3 -n banana -p 120` Changes the `name` and `protein` values of the 3rd item in the list to `banana` and `120` respectively.
 
-:information_source:  To view the list of supported date formats, see *Appendix A*.<br>
-
 ![edit command example](images/CommandImagesForUG/Edit.png)
 
 ### 5.9 Deleting a food item: `delete`
 
-You can delete a food item at the specified index.
+The `delete` command allows you to instantly remove a food item from the current
+displayed list of food items.
 
 Format: `delete INDEX`
 
@@ -322,7 +339,8 @@ Examples:
 
 ### 5.10 Importing another save file: `import`
 
-You can import a previously saved file into McGymmy from your local directory
+The `import` command allows you to load a previously saved file from your local directory
+into McGymmy. This allows for easy transfer of McGymmy data between multiple computers.
 
 Format: `import FILEPATH`
 
@@ -332,6 +350,7 @@ Format: `import FILEPATH`
 
 * Imports the saved file at `FILEPATH`
 * Both relative and absolute paths work for the import feature.
+* The imported file will simply override the existing food list.
 
 </div>
 
@@ -354,7 +373,9 @@ Examples:
 
 ### 5.11 Exporting your save file to a folder: `export`
 
-You can export a saved file to a folder to your local directory
+The `export` command allows you to export your current food list as file on
+your computer. This would make it easy to send and transfer your existing McGymmy data
+between multiple computers.
 
 Format: `export DIRPATH [-o FILENAME]`
 
@@ -389,7 +410,8 @@ Examples:
 
 ### 5.12 Undoing the previous command : `undo`
 
-Undoes the change made by the previous command
+The `undo` command allows you to reverse the change of the previous command. This makes
+it easier to reverse mistakes made in McGymmy.
 
 Format: `undo`
 
@@ -409,7 +431,10 @@ For example, if the user calls the following commands in sequence:
 
 ### 5.13 Creating a macro command : `macro`
 
-Adds a macro to run several commands in succession.
+Macros are custom shortcuts that ease the diet-tracking process. It allows you to create custom
+commands by combining multiple commands together. This is a powerful tool that removes the need for
+repetitive long-winded command execution. The `macro` command specifically stores a new macro into
+your McGymmy system.
 
 *__WARNING:__* this is an advanced feature!
 
@@ -462,7 +487,8 @@ Examples:
 
 ### 5.14 List all macros : `listmacro`
 
-Displays information on the available macros in the terminal.
+The `listmacro` command displays information on the available macros in the terminal, which allows you to keep track of
+all macros currently in the McGymmy system.
 
 Format: `listmacro [macro]`
 
@@ -474,7 +500,7 @@ Examples:
 
 ### 5.15 Deleting a macro: `remmacro`
 
-Deletes the given macro.
+The `remmacro` command allows you to remove an existing macro from your McGymmy system.
 
 Format: `remmacro MACRONAME`
 

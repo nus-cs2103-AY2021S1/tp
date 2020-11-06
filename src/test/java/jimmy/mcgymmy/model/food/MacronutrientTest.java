@@ -93,11 +93,21 @@ class MacronutrientTest {
         MacronutrientStub(int amount, int caloricMultiplier) throws IllegalValueException {
             super(amount, caloricMultiplier);
         }
+
+        @Override
+        String getMessageConstraint() {
+            return null;
+        }
     }
 
     private static class InvalidMacronutrientStub extends Macronutrient {
         InvalidMacronutrientStub() throws IllegalValueException {
             super(1, INVALID_MULTIPLIER);
+        }
+
+        @Override
+        String getMessageConstraint() {
+            return null;
         }
     }
 

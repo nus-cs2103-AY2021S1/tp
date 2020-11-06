@@ -19,7 +19,7 @@ import jimmy.mcgymmy.model.macro.MacroList;
 
 
 /**
- * Represents the in-memory model of mcgymmmy data.
+ * Represents the in-memory model of McGymmy data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

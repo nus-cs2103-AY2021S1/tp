@@ -14,6 +14,7 @@ import java.util.Set;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 
+import javafx.util.Pair;
 import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.FileUtil;
@@ -31,8 +32,6 @@ import jimmy.mcgymmy.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -42,7 +41,7 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(Index.MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -256,55 +255,30 @@ public class ParserUtil {
     }
 
     /**
-     * Because Java does not support tuples/pairs.
-     * Also a ton of boilerplate because module guidelines
-     * doesn't let me use public variables even here.
+     * Splits a string using the delimiter,
+     * storing the first string as the head, and the rest as the tail.
+     *
+     * @param input raw input string.
+     * @param delimiter Java regex string to split the string by.
+     * @return Pair of (first word, array of the rest of the words)
      */
-    public static class HeadTailString {
-        // mandated private fields from the Church of OOP.
-        private final String head;
-        private final String[] tail;
-
-        // package private because it can only be created here
-        HeadTailString(String head, String[] tail) {
-            this.head = head;
-            this.tail = tail;
+    public static Pair<String, String[]> splitString(String input, String delimiter) {
+        try {
+            String[] headTail = input.split(delimiter);
+            return new Pair<>(headTail[0], Arrays.copyOfRange(headTail, 1, headTail.length));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new Pair<>("", new String[]{""});
         }
+    }
 
-        /**
-         * Splits a string using the delimiter,
-         * storing the first string as the head, and the rest as the tail.
-         *
-         * @param input raw input string.
-         * @param delimiter Java regex string to split the string by.
-         * @return HeadTailString object which is essentially a pair (String, String[]) but with Java cruft.
-         */
-        public static HeadTailString splitString(String input, String delimiter) {
-            try {
-                String[] headTail = input.split(delimiter);
-                return new HeadTailString(headTail[0], Arrays.copyOfRange(headTail, 1, headTail.length));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return new HeadTailString("", new String[]{""});
-            }
-        }
-
-        /**
-         * Splits a string by whitespaces,
-         * storing the first string as the head, and the rest as the tail.
-         *
-         * @param input raw input string.
-         * @return HeadTailString object which is essentially a pair (String, String[]) but with Java cruft.
-         */
-        public static HeadTailString splitString(String input) {
-            return HeadTailString.splitString(input, "\\s+");
-        }
-
-        public String getHead() {
-            return head;
-        }
-
-        public String[] getTail() {
-            return tail;
-        }
+    /**
+     * Splits a string by whitespaces,
+     * storing the first string as the head, and the rest as the tail.
+     *
+     * @param input raw input string.
+     * @return Pair of (first word, array of the rest of the words)
+     */
+    public static Pair<String, String[]> splitString(String input) {
+        return splitString(input, "\\s+");
     }
 }
