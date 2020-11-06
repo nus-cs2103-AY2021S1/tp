@@ -270,7 +270,7 @@ You can specify an assignment's index to edit its fields. These fields are the n
 <div markdown="span" class="alert alert-success">
 
 **:bulb: Tip:**
-You can edit more than one field of an assignment at a time! For example, you can key in `edit 1 n/Tutorial mod/CS2103T` to edit both the name and module code in a single command.
+You can edit more than one field of an assignment at a time so that you can conveniently amend all spelling errors or mistakes when adding assignments! For example, you can key in `edit 1 n/Tutorial mod/CS2103T` to edit both the name and module code in a single command.
 </div>
 
 This is the table of prefixes used:
