@@ -3,81 +3,76 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="dashboardVbox" fx:id="taskDashboardVBox" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="720.0" stylesheets="@Extensions.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
    <children>
-      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0">
-         <padding>
-            <Insets bottom="5" left="15" right="5" top="5" />
-         </padding>
+      <HBox fx:id="taskDashboardPane" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="91.0" prefWidth="700.0" spacing="5" stylesheets="@Extensions.css" VBox.vgrow="NEVER">
          <children>
-            <HBox fx:id="taskDashboardPane" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="91.0" prefWidth="700.0" spacing="5" stylesheets="@Extensions.css">
-               <children>
-                  <Label id="Title" fx:id="taskName" maxWidth="1.7976931348623157E308" prefHeight="84.0" prefWidth="693.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$first" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="50.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="15" top="5" />
-                     </padding>
-                  </Label>
-               </children>
-            </HBox>
-            <Label id="taskPD" fx:id="publishDate" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$publishDate">
+            <Label id="Title" fx:id="taskName" maxWidth="1.7976931348623157E308" prefHeight="84.0" prefWidth="693.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$first" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="50.0" />
                </font>
                <padding>
-                  <Insets bottom="10" top="10" />
+                  <Insets bottom="15" top="5" />
                </padding>
             </Label>
-            <Label id="taskDeadline" fx:id="deadline" prefHeight="82.0" prefWidth="694.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$deadline">
-               <font>
-                  <Font size="50.0" />
-               </font>
-               <padding>
-                  <Insets bottom="10" />
-               </padding>
-            </Label>
-            <Label id="taskProgress" fx:id="progress" layoutX="25.0" layoutY="271.0" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$progress">
-               <font>
-                  <Font size="50.0" />
-               </font>
-               <padding>
-                  <Insets bottom="10" />
-               </padding>
-            </Label>
-            <Label id="Header" fx:id="header1" layoutX="25.0" layoutY="384.0" maxWidth="1.7976931348623157E308" prefHeight="84.0" prefWidth="683.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header1">
-               <font>
-                  <Font size="50.0" />
-               </font>
-               <padding>
-                  <Insets bottom="5" />
-               </padding>
-            </Label>
-            <Text id="taskDesc" fx:id="taskDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="\$taskDescription">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="5.0" />
-               </VBox.margin>
-            </Text>
-            <Label id="Header" fx:id="header2" maxWidth="1.7976931348623157E308" prefHeight="84.0" prefWidth="693.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header2">
-               <font>
-                  <Font size="50.0" />
-               </font>
-               <padding>
-                  <Insets bottom="5" />
-               </padding>
-            </Label>
-            <Text id="List" fx:id="assignees" strokeType="OUTSIDE" strokeWidth="0.0" text="assignees">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Text>
          </children>
-      </VBox>
+      </HBox>
+      <Label id="taskPD" fx:id="publishDate" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$publishDate">
+         <font>
+            <Font size="50.0" />
+         </font>
+         <padding>
+            <Insets bottom="10" top="10" />
+         </padding>
+      </Label>
+      <Label id="taskDeadline" fx:id="deadline" prefHeight="82.0" prefWidth="694.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$deadline">
+         <font>
+            <Font size="50.0" />
+         </font>
+         <padding>
+            <Insets bottom="10" />
+         </padding>
+      </Label>
+      <Label id="taskProgress" fx:id="progress" layoutX="25.0" layoutY="271.0" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$progress">
+         <font>
+            <Font size="50.0" />
+         </font>
+         <padding>
+            <Insets bottom="10" />
+         </padding>
+      </Label>
+      <Label id="Header" fx:id="header1" layoutX="25.0" layoutY="384.0" maxWidth="1.7976931348623157E308" prefHeight="84.0" prefWidth="683.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header1">
+         <font>
+            <Font size="50.0" />
+         </font>
+         <padding>
+            <Insets bottom="5" />
+         </padding>
+      </Label>
+      <Text id="taskDesc" fx:id="taskDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="\$taskDescription" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="10.0" top="5.0" />
+         </VBox.margin>
+      </Text>
+      <Label id="Header" fx:id="header2" maxWidth="1.7976931348623157E308" prefHeight="84.0" prefWidth="693.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header2">
+         <font>
+            <Font size="50.0" />
+         </font>
+         <padding>
+            <Insets bottom="5" />
+         </padding>
+      </Label>
+      <Text id="List" fx:id="assignees" strokeType="OUTSIDE" strokeWidth="0.0" text="assignees" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </Text>
    </children>
-</StackPane>
+</VBox>

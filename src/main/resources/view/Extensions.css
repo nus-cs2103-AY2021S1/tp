@@ -33,6 +33,10 @@
     -fx-font: 15pt"Arial";
 }
 
+#dashboardVbox {
+    -fx-background-color: derive(#FEE5B6, 20%);
+}
+
 /*----------------------------------------- Project Dashboard ---------------------------------------------------*/
 
 #dashboardDeadline {

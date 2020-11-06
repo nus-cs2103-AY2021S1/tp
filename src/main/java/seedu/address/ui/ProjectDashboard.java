@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import seedu.address.model.participation.Participation;
 import seedu.address.model.project.Project;
@@ -29,6 +30,8 @@ public class ProjectDashboard extends UiPart<Region> {
 
     public final Project project;
 
+    @FXML
+    private VBox dashBoardVBox;
     @FXML
     private HBox dashboardPane;
     @FXML
