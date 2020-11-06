@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalVendors.getTypicalVendorManager;
 
 import java.util.Collections;
 
@@ -17,7 +17,7 @@ import seedu.address.testutil.TypicalVendors;
 public class MenuCommandTest {
 
     private Model initialiseModel() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+        Model model = new ModelManager(getTypicalVendorManager(), new UserPrefs(), TypicalVendors.getManagers(),
                 new OrderManager());
         model.selectVendor(0);
         return model;

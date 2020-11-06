@@ -13,18 +13,18 @@ import seedu.address.model.Model;
 import seedu.address.model.profile.Profile;
 import seedu.address.model.vendor.Address;
 import seedu.address.model.vendor.Phone;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonPresetManagerStorage;
 import seedu.address.storage.JsonProfileManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.JsonVendorManagerStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.TypicalModel;
 
 public class ProfileCommandTest {
 
-    private static final Path TYPICAL_ADDRESSBOOK_FILEPATH = Paths.get
-            ("src/test/data/JsonSerializableAddressBookTest/typicalVendorsAddressBook.json");
+    private static final Path TYPICAL_VendorManager_FILEPATH = Paths.get
+            ("src/test/data/JsonSerializableVendorManagerTest/typicalVendorsVendorManager.json");
     private static final Path TYPICAL_USERPREFS_FILEPATH = Paths.get
             ("src/test/data/JsonUserPrefsStorageTest/TypicalUserPref.json");
     private static final Path TYPICAL_PRESET_FILEPATH = Paths.get
@@ -33,7 +33,7 @@ public class ProfileCommandTest {
             ("src/test/data/JsonProfileStorageTest/TypicalProfile.json");
 
     private Storage getDefaultStorage() {
-        return new StorageManager(new JsonAddressBookStorage(TYPICAL_ADDRESSBOOK_FILEPATH),
+        return new StorageManager(new JsonVendorManagerStorage(TYPICAL_VendorManager_FILEPATH),
                 new JsonUserPrefsStorage(TYPICAL_USERPREFS_FILEPATH),
                 new JsonPresetManagerStorage(TYPICAL_PRESET_FILEPATH),
                 new JsonProfileManagerStorage(TYPICAL_PROFILE_FILEPATH));

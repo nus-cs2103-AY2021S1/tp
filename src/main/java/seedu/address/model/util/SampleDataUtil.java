@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.food.MenuItem;
 import seedu.address.model.menu.Menu;
 import seedu.address.model.tag.Tag;
@@ -14,10 +12,14 @@ import seedu.address.model.vendor.Address;
 import seedu.address.model.vendor.Email;
 import seedu.address.model.vendor.Name;
 import seedu.address.model.vendor.Phone;
+import seedu.address.model.vendor.ReadOnlyVendorManager;
 import seedu.address.model.vendor.Vendor;
+import seedu.address.model.vendor.VendorManager;
+
+
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code VendorManager} with sample data.
  */
 //todo: Add the image urls under the file path parameter here
 public class SampleDataUtil {
@@ -116,8 +118,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyVendorManager getSampleVendorManager() {
+        VendorManager sampleAb = new VendorManager();
         for (Vendor sampleVendor : getSampleVendors()) {
             sampleAb.addVendor(sampleVendor);
         }
