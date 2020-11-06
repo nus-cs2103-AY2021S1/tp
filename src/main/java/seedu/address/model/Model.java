@@ -15,7 +15,7 @@ import seedu.address.model.task.event.Event;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> !(task instanceof Event && ((Event) task).isLesson());
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> !(task instanceof Event && task.isLesson());
     Predicate<Lesson> PREDICATE_SHOW_ALL_LESSONS = unused -> true;
     Predicate<Task> PREDICATE_SHOW_ALL_CALENDAR_TASKS = unused -> true;
 

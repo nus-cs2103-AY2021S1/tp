@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.core.Messages.LESSON_OVERLAP_CONSTRAINTS;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_LESSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_CS2000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.LessonCommand.MESSAGE_DUPLICATE_LESSON;
-import static seedu.address.logic.commands.LessonCommand.MESSAGE_OVERLAP;
 import static seedu.address.logic.commands.LessonCommand.MESSAGE_SUCCESS;
 
 import org.junit.jupiter.api.Test;
@@ -52,24 +52,20 @@ public class LessonCommandTest {
         LessonCommand lessonCommand2 = new LessonCommand(lesson2);
         model.addLesson(lesson2);
         String expectedMessage2 = String.format(MESSAGE_DUPLICATE_LESSON, lesson2);
-        assertCommandFailure(lessonCommand2, model, expectedMessage);
+        assertCommandFailure(lessonCommand2, model, expectedMessage2);
     }
     @Test
     public void overlappingLesson_executeFail() {
         //overlapping lesson
         model.addLesson(VALID_LESSON_CS2103T);
-        Lesson lesson = VALID_LESSON_CS2000;
-        LessonCommand lessonCommand = new LessonCommand(lesson);
-        String expectedMessage = String.format(MESSAGE_OVERLAP, lesson);
-        assertCommandFailure(lessonCommand, model, expectedMessage);
+        LessonCommand lessonCommand = new LessonCommand(VALID_LESSON_CS2000);
+        assertCommandFailure(lessonCommand, model, LESSON_OVERLAP_CONSTRAINTS);
     }
     @Test
     public void overlappingEventAndLesson_executeFail() {
         //lesson to be added clashes with existing event
         model.addTask(VALID_EVENT_MEETING);
-        Lesson lesson = VALID_LESSON_CS2100;
-        LessonCommand lessonCommand = new LessonCommand(lesson);
-        String expectedMessage = String.format(MESSAGE_OVERLAP, lesson);
-        assertCommandFailure(lessonCommand, model, expectedMessage);
+        LessonCommand lessonCommand = new LessonCommand(VALID_LESSON_CS2100);
+        assertCommandFailure(lessonCommand, model, LESSON_OVERLAP_CONSTRAINTS);
     }
 }

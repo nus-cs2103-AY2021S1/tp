@@ -21,8 +21,6 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.deadline.Deadline;
-import seedu.address.model.task.deadline.DeadlineDateTime;
 import seedu.address.model.task.event.EndDateTime;
 import seedu.address.model.task.event.Event;
 import seedu.address.model.task.event.StartDateTime;
@@ -51,11 +49,6 @@ public class CommandTestUtil {
     //valid lesson that overlaps with CS2103T
     public static final String VALID_TITLE_CS2000 = "CS2103T Lecture";
     public static final String VALID_DESC_CS2000 = "Best lecture ever!";
-    public static final String VALID_DAY_CS2000 = "Monday";
-    public static final String VALID_START_TIME_CS2000 = "13:00";
-    public static final String VALID_END_TIME_CS2000 = "14:00";
-    public static final String VALID_START_DATE_CS2000 = "01-01-2020";
-    public static final String VALID_END_DATE_CS2000 = "01-11-2020";
     public static final String VALID_TAG_CS2000 = "CS2103T";
     public static final Lesson VALID_LESSON_CS2000 = new Lesson(new Title(VALID_TITLE_CS2000),
             new Tag(VALID_TAG_CS2000), new Description(VALID_DESC_CS2000), DayOfWeek.MONDAY,
@@ -117,13 +110,8 @@ public class CommandTestUtil {
     public static final String VALID_DESC_LAB = "Prepare for demo during tutorial";
     public static final String VALID_DATETIME_LAB = "01-01-2020 22:00";
     public static final String VALID_TAG_LAB = "CS2100";
-    public static final Deadline VALID_DEADLINE_LAB = Deadline.createDeadline(new Title(VALID_TITLE_LAB),
-            new DeadlineDateTime(VALID_DATETIME_LAB), new Description(VALID_DESC_LAB), new Tag(VALID_TAG_LAB));
     //valid deadline
-    public static final String VALID_TITLE_ESSAY = "Do final essay";
-    public static final String VALID_DESC_ESSAY = "At least 800 words";
     public static final String VALID_DATETIME_ESSAY = "01-01-2020 23:59";
-    public static final String VALID_TAG_ESSAY = "ES2660";
     //invalid deadline
     public static final String INVALID_DATETIME_LAB = "01-13-2020 23:59";
 

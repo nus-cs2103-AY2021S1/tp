@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.LESSON_OVERLAP_CONSTRAINTS;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
@@ -15,7 +17,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,8 +28,8 @@ import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.util.Overlap;
 
 /**
  * Edits the details of an existing lesson in PlaNus lesson list.
@@ -60,7 +61,6 @@ public class EditLessonCommand extends Command {
 
     public static final String MESSAGE_EDIT_LESSON_SUCCESS = "Edited Lesson: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_LESSON = "This lesson already exists in PlaNus.";
 
     private final Index index;
     private final EditLessonDescriptor editLessonDescriptor;
@@ -94,17 +94,9 @@ public class EditLessonCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_LESSON);
         }
 
-        ArrayList<Task> associatedTasks = lessonToEdit.getAssociatedTasks();
-
-        model.deleteTask(associatedTasks.toArray(new Task[0]));
-        model.deleteTaskInCalendar(associatedTasks.toArray(new Task[0]));
-        ArrayList<Task> tasksToAdd = editedLesson.createRecurringTasks();
-        for (Task taskToAdd: tasksToAdd) {
-            if (model.hasTask(taskToAdd)) {
-                throw new CommandException(MESSAGE_DUPLICATE_LESSON);
-            }
-            model.addTask(taskToAdd);
-            model.addTaskToCalendar(taskToAdd);
+        // check for overlap with the lesson to be edited ignored
+        if (Overlap.overlapWithOtherTimeSlots(model, lessonToEdit, editedLesson)) {
+            throw new CommandException(LESSON_OVERLAP_CONSTRAINTS);
         }
 
         model.setLesson(lessonToEdit, editedLesson);

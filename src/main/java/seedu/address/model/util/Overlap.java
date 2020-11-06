@@ -27,7 +27,7 @@ public class Overlap {
         return timeOfDayOverlap && dateOverlap;
     }
     /**
-     * Returns true if date and time of this timeslot will overlap with another timeslot in PlaNus.
+     * Returns true if date and time of this time slot will overlap with another time slot in PlaNus.
      */
     public static boolean isSameTimeSlot(TimeSlot first, TimeSlot second) {
         if (first == second) {
@@ -39,27 +39,32 @@ public class Overlap {
                 && Overlap.isOverlappingTimePeriod(first.getStartDateTimeValue(), first.getEndDateTimeValue(),
                 second.getStartDateTimeValue(), second.getEndDateTimeValue());
     }
+
     /**
      * Checks if a time slot overlaps with an existing lesson in PlaNus.
+     * Ignores the {@code timeSlotNotToCheck} time slot. Null if all time slots are to be checked.
      */
-    private static boolean overlapWithOtherLessons(Model model, TimeSlot timeSlot) {
+
+    private static boolean overlapWithOtherLessons(Model model, TimeSlot timeSlot, TimeSlot timeSlotNotToCheck) {
         requireNonNull(model);
         ObservableList<Lesson> existingLessons = model.getFilteredLessonList();
         for (Lesson lesson: existingLessons) {
-            if (isSameTimeSlot(lesson, timeSlot)) {
+            if (lesson != timeSlotNotToCheck && isSameTimeSlot(lesson, timeSlot)) {
                 return true;
             }
         }
         return false;
     }
+
     /**
      * Checks if a time slot overlaps with an existing event in PlaNus.
+     * Ignores the {@code timeSlotNotToCheck} time slot. Null if all time slots are to be checked.
      */
-    private static boolean overlapWithOtherEvents(Model model, TimeSlot timeSlot) {
+    private static boolean overlapWithOtherEvents(Model model, TimeSlot timeSlot, TimeSlot timeSlotNotToCheck) {
         requireNonNull(model);
         ObservableList<Task> existingTasks = model.getFilteredTaskList();
         for (Task task: existingTasks) {
-            if (task instanceof Event && isSameTimeSlot((Event) task, timeSlot)) {
+            if (task instanceof Event && task != timeSlotNotToCheck && isSameTimeSlot((Event) task, timeSlot)) {
                 return true;
             }
         }
@@ -69,6 +74,15 @@ public class Overlap {
      * Checks if a time slot overlaps with an existing lesson or event in PlaNus.
      */
     public static boolean overlapWithOtherTimeSlots(Model model, TimeSlot timeSlot) {
-        return overlapWithOtherLessons(model, timeSlot) || overlapWithOtherEvents(model, timeSlot);
+        return overlapWithOtherLessons(model, timeSlot, null)
+                || overlapWithOtherEvents(model, timeSlot, null);
+    }
+
+    /**
+     * Checks if an edited time slot overlaps with an existing lesson or event in PlaNus.
+     */
+    public static boolean overlapWithOtherTimeSlots(Model model, TimeSlot timeSlotToEdit, TimeSlot editedTimeSlot) {
+        return overlapWithOtherLessons(model, editedTimeSlot, timeSlotToEdit)
+                || overlapWithOtherEvents(model, editedTimeSlot, timeSlotToEdit);
     }
 }
