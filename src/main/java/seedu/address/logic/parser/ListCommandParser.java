@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
-import seedu.tasklist.commons.core.index.Index;
-import seedu.tasklist.logic.commands.ListCommand;
-import seedu.tasklist.logic.parser.exceptions.ParseException;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ListCommandParser implements Parser<ListCommand> {
     /**

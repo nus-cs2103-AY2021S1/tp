@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import seedu.tasklist.logic.commands.exceptions.CommandException;
-import seedu.tasklist.model.Model;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 
 /**
  * Terminates the program.

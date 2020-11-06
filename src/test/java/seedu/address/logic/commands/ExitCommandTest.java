@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
-import static seedu.tasklist.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.tasklist.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.tasklist.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
 import org.junit.jupiter.api.Test;
 
