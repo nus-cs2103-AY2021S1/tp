@@ -8,33 +8,51 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane>
     <columnConstraints>
       <ColumnConstraints minWidth="10" prefWidth="200" />
     </columnConstraints>
-    <VBox VBox.vgrow="ALWAYS" alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" VBox.vgrow="ALWAYS">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="5" />
+        <Insets bottom="5" left="5" right="5" top="5" />
       </padding>
       <ImageView fx:id="recipeImage" pickOnBounds="true" />
-      <HBox spacing="5" alignment="CENTER_LEFT">
+      <HBox alignment="CENTER_LEFT" spacing="5">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+            <VBox.margin>
+               <Insets bottom="2.0" />
+            </VBox.margin>
       </HBox>
       <FlowPane fx:id="tags" />
       <HBox>
-        <Label text="Ingredients: " styleClass="cell_medium_label"/>
-        <Label fx:id="ingredients" styleClass="cell_small_label" text="\$ingredients"/>
+
+        <Label fx:id="ingredients" styleClass="cell_small_label" text="\$ingredients" wrapText="true">
+               <HBox.margin>
+                  <Insets bottom="2.0" />
+               </HBox.margin></Label>
+
       </HBox>
-      <Label fx:id="calories" styleClass="cell_small_label" text="\$calories" />
-      <Label fx:id="instruction" styleClass="cell_small_label" text="\$instruction" wrapText="true"/>
+      <Label fx:id="calories" styleClass="cell_small_label" text="\$calories">
+            <VBox.margin>
+               <Insets bottom="2.0" />
+            </VBox.margin></Label>
+      <Label fx:id="instruction" styleClass="cell_small_label" text="\$instruction" wrapText="true">
+            <VBox.margin>
+               <Insets bottom="2.0" />
+            </VBox.margin></Label>
     </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
   </GridPane>
 </HBox>

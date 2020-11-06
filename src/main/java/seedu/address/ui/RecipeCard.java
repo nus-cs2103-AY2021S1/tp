@@ -63,19 +63,11 @@ public class RecipeCard extends UiPart<Region> {
                 .reduce("", (a, b) -> a + b).trim());
 
         try {
-            Image rawImage = new Image(recipe.getRecipeImage().getValue(), 340, 0, true, true);
-            PixelReader reader = rawImage.getPixelReader();
-            WritableImage newImage = new WritableImage(reader, 0, 0, 310, 150);
-            recipeImage.setImage(newImage);
-            recipeImage.setPreserveRatio(true);
+            setImageToRecipeCard(recipe);
         } catch (IllegalArgumentException | NoSuchElementException | NullPointerException ex) {
             recipe.setDefaultImage();
         } finally {
-            Image rawImage = new Image(recipe.getRecipeImage().getValue(), 340, 0, true, true);
-            PixelReader reader = rawImage.getPixelReader();
-            WritableImage newImage = new WritableImage(reader, 0, 0, 310, 150);
-            recipeImage.setImage(newImage);
-            recipeImage.setPreserveRatio(true);
+            setImageToRecipeCard(recipe);
         }
 
         //Responsive resizing
@@ -93,6 +85,13 @@ public class RecipeCard extends UiPart<Region> {
         this.recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+    void setImageToRecipeCard(Recipe recipe) {
+        Image rawImage = new Image(recipe.getRecipeImage().getValue(), 340, 0, true, true);
+        PixelReader reader = rawImage.getPixelReader();
+        WritableImage newImage = new WritableImage(reader, 0, 0, 310, 150);
+        recipeImage.setImage(newImage);
+        recipeImage.setPreserveRatio(true);
     }
 
     @Override
