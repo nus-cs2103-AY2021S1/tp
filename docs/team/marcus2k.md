@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Marcus Ng's Project Portfolio Page
+title: Marcus's Project Portfolio Page
 ---
 
 ## Project: AddressBook Level 3
@@ -29,8 +29,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=marcus2k&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=false)
 
 * **Project management**:
-  * Opened issues
-  * Resolved issues
+  * Opened and resolved issues
   * Reviewed and merged PRs
 
 * **Enhancements to existing features**:
