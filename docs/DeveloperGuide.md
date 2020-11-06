@@ -8,8 +8,8 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. **Purpose of this guide**
-This guide is made to help developers understand how McGymmy (MG) works.
-One of the major goals is to centralise all the jimmy.mcgymmy documentation within McGymmy itself.
+This guide aims to help developers understand how McGymmy (MG) works.
+One of the major goals is to centralise all the McGymmy documentation within McGymmy itself.
 Another major goal is to better help developers extend McGymmy to improve on its features.
 
 ##  2. Icon Legend
