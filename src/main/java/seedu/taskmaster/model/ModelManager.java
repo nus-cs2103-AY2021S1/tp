@@ -5,6 +5,7 @@ import static seedu.taskmaster.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -128,7 +129,7 @@ public class ModelManager implements Model {
         updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
         filteredStudentRecords = null;
         taskmaster.addSession(session);
-        taskmaster.changeSession(session.getSessionName());
+        changeSession(session.getSessionName());
     }
 
     /**
@@ -139,8 +140,11 @@ public class ModelManager implements Model {
         if (sessionName == null) {
             filteredStudentRecords = null;
             studentRecordPredicate = PREDICATE_SHOW_ALL_STUDENT_RECORDS;
+            updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
             taskmaster.changeSession(null);
             return;
+        } else if (taskmaster.inSession() && sessionName.equals(taskmaster.currentSessionName())) {
+            filteredStudentRecords.setPredicate(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
         } else {
             /*
              * Note that the implementation of this method requires that the filteredStudentRecords field is updated
@@ -148,7 +152,6 @@ public class ModelManager implements Model {
              * it must be loaded first.
              */
             assert taskmaster.hasSession(sessionName);
-
             studentRecordPredicate = PREDICATE_SHOW_ALL_STUDENT_RECORDS;
             // Update filteredStudentRecords before Session is changed.
             filteredStudentRecords = new FilteredList<>(taskmaster.getSession(sessionName).getStudentRecords());
@@ -307,9 +310,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void showRandomStudent() {
-        StudentRecord randomRecord = taskmaster.getRandomStudentRecord();
-        filteredStudentRecords.setPredicate(new StudentRecordEqualsPredicate(randomRecord));
+    public void showRandomStudent(Random random) {
+        StudentRecord randomRecord = taskmaster.getRandomStudentRecord(random);
+        updateFilteredStudentRecordList(new StudentRecordEqualsPredicate(randomRecord));
     }
 
     @Override
@@ -342,7 +345,10 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return taskmaster.equals(other.taskmaster)
                 && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
+                && filteredStudents.equals(other.filteredStudents)
+                && filteredSessions.equals(other.filteredSessions)
+                && ((filteredStudentRecords == null && other.filteredStudentRecords == null)
+                        || filteredStudentRecords.equals(filteredStudentRecords));
     }
 
 }
