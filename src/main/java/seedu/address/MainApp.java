@@ -18,27 +18,27 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderManager;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.vendor.ReadOnlyVendorManager;
+import seedu.address.model.vendor.VendorManager;
 import seedu.address.storage.JsonPresetManagerStorage;
 import seedu.address.storage.JsonProfileManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.JsonVendorManagerStorage;
 import seedu.address.storage.MenuItemStorage;
 import seedu.address.storage.PresetManagerStorage;
 import seedu.address.storage.ProfileManagerStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.VendorManagerStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -59,7 +59,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing VendorManager ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -67,12 +67,13 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        VendorManagerStorage vendorManagerStorage = new JsonVendorManagerStorage(userPrefs.getVendorManagerFilePath());
         PresetManagerStorage presetManagerStorage = new JsonPresetManagerStorage(userPrefs.getOrderManagerFilePath());
         ProfileManagerStorage profileManagerStorage = new JsonProfileManagerStorage(
                 userPrefs.getProfileManagerFilePath()
         );
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, presetManagerStorage, profileManagerStorage);
+        storage = new StorageManager(vendorManagerStorage, userPrefsStorage, presetManagerStorage,
+                profileManagerStorage);
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
@@ -88,17 +89,17 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyVendorManager> vendorManagerOptional;
         List<Optional<ReadOnlyMenuManager>> menuManagersOptional;
-        ReadOnlyAddressBook initialData;
+        ReadOnlyVendorManager initialData;
         List<MenuManager> initialMenuManagers = new ArrayList<>();
         OrderManager initialOrderManager = new OrderManager();
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (addressBookOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            vendorManagerOptional = storage.readVendorManager();
+            if (vendorManagerOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample VendorManager");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = vendorManagerOptional.orElseGet(SampleDataUtil::getSampleVendorManager);
             menuManagersOptional = new MenuItemStorage().readMenuManagers(initialData.getVendorList());
             menuManagersOptional.forEach(x -> x.ifPresentOrElse(y ->
                     initialMenuManagers.add(new MenuManager(y)), () -> {
@@ -107,15 +108,15 @@ public class MainApp extends Application {
                 }
             ));
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty VendorManager");
+            initialData = new VendorManager();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty VendorManager");
+            initialData = new VendorManager();
             assert model != null;
         }
         try {
-            storage.saveAddressBook(initialData);
+            storage.saveVendorManager(initialData);
         } catch (IOException e) {
             logger.warning("Something unexpected occurred!");
             assert false;
@@ -190,7 +191,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty VendorManager");
             initializedPrefs = new UserPrefs();
         }
 
@@ -206,13 +207,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting VendorManager " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Supper Strikers ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

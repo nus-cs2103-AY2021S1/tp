@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalOrderItems.NUGGETS;
-import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalVendors.getTypicalVendorManager;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class RemoveCommandTest {
 
 
     private Model initialiseModel() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+        Model model = new ModelManager(getTypicalVendorManager(), new UserPrefs(), TypicalVendors.getManagers(),
                 new OrderManager());
         model.selectVendor(0);
         try {
@@ -51,7 +51,7 @@ public class RemoveCommandTest {
         OrderItem orderItemToRemove = lastShownList.get(first.getZeroBased());
         String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ORDERITEM_SUCCESS, orderItemToRemove);
 
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+        Model expectedModel = new ModelManager(getTypicalVendorManager(), new UserPrefs(), TypicalVendors.getManagers(),
                 new OrderManager());
         expectedModel.selectVendor(0);
 
@@ -66,7 +66,7 @@ public class RemoveCommandTest {
         OrderItem itemRemoved = new OrderItemBuilder(NUGGETS).withQuantity(1).build();
         OrderItem remainingItems = new OrderItemBuilder(NUGGETS).withQuantity(4).build();
 
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+        Model expectedModel = new ModelManager(getTypicalVendorManager(), new UserPrefs(), TypicalVendors.getManagers(),
                 new OrderManager());
         expectedModel.selectVendor(0);
         try {

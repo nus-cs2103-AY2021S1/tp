@@ -128,7 +128,7 @@ Finds and lists all food items containing any of the specified keywords in their
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-- `KEYWORD` are NOT **Case-Sensitive**.
+- `KEYWORD` are NOT **case-sensitive**.
 - `KEYWORD` filters tags as well.
 
 Examples:
@@ -171,20 +171,43 @@ Examples:
 * `add 1`: add item at INDEX 1, of default QUANTITY 1.
 
 
-### Removing an item : `remove`
+### Removing an order item : `remove`
 
 Removes the specified item from the supper order.
 
 Format: `remove INDEX [QUANTITY]`
 
-- `INDEX` refers to the index number shown in the displayed supper order list.
-
+* `INDEX` refers to the index number shown in the displayed supper order list.
 * `INDEX` must be a positive integer and must not exceed the size of the supper order list.
 * `QUANTITY` can be specified to indicate the number of item to be deleted. Otherwise, it deletes all quantities of the item at the specified index.
 
 Examples:
 * `remove 2`: remove item at INDEX 2.
 * `remove 1 2`: remove item at INDEX 1, of quantity 2.
+
+
+### Tag an order item: `tag`
+
+Tags an order item with remark.
+
+Format: `tag INDEX REMARK`
+
+- The INDEX refers to the index number of the order item.
+- INDEX must be positive number and must not exceed the size of the order list.
+- REMARK is any non-empty string
+
+Examples:
+* `tag 5 2 no egg`: tags order item number 5 with remark "2 no egg"
+
+
+### Untag an order item: `untag`
+
+Clears the tag of the specified order item.
+
+Format: `untag INDEX`
+
+- The INDEX refers to the index number of the order item.
+- INDEX must be positive number and must not exceed the size of the order list.
 
 
 ### Clearing the order: `clear`
@@ -230,23 +253,24 @@ Example:
 
 Add delivery address and phone number for submission.
 
-Format: `profile a/ADDRESS p/PHONE`
-
-- `ADDRESS` represents your delivery address.
+Format: `profile PHONE ADDRESS`
 
 - `PHONE` represents your contact number and must be at least 3 digits long.
 
+- `ADDRESS` represents your delivery address.
+
 Examples:
 
-- `profile a/25 Lower Kent Ridge Rd, Singapore 119081 p/92030888`: Saves your address as '25 Lower Kent Ridge Rd, Singapore 119081' and phone nubmer as '92030888'
+- `profile 92030888 25 Lower Kent Ridge Rd, Singapore 119081`: Saves your address as '25 Lower Kent Ridge Rd, Singapore 119081' and phone number as '92030888'
+
 
 ### Generate order text: `submit`
 
-Displays a copy-paste-able text of the order.
+Displays a copy-paste-able text of profile with order. A profile must be set up before using `submit`.
 
 Format: `submit`
 
-- Text obtained is automatically copied to clipboard.
+- Text obtained will be copied to clipboard if possible.
 - Note that anything written after the `submit` command will be ignored.
 
 Example:
@@ -265,8 +289,9 @@ Format: `preset MODE [NAME]`
   * `delete`: Used to delete a preset. (`NAME` must be specified)
 * `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
   * if `NAME` already exists and in save mode, the new preset will overwrite the existing preset.
-  * `NAME` is **Case-Sensitive**.
-  * `NAME` is Vendor Specific, and is unique to each vendor.
+  * `NAME` is **case-sensitive**.
+* Presets are split by vendors, therefore running `preset save PresetName` for two different vendors will not affect one
+another. Similar for `preset load`.
 
 Examples:
 * `preset save`: saves the user's supper order with the default preset name.
@@ -299,6 +324,8 @@ Action | Format
 **Price** | `price INEQUALITY PRICE`
 **Add** | `add INDEX [QUANTITY]`
 **Remove** | `remove INDEX [QUANTITY]`
+**Tag** | `tag INDEX REMARK`
+**Untag** | `untag INDEX`
 **Clear** | `clear`
 **Undo** | `undo`
 **Total** | `total`

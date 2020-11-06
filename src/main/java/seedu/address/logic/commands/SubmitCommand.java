@@ -74,7 +74,7 @@ public class SubmitCommand extends Command {
             feedback.append(CLIPBOARD_SUCCESS_MESSAGE);
         }
         feedback.append(orderText.toString());
-        feedback.append(String.format(ESTIMATE_TOTAL_MESSAGE, order.getTotal()));
+        feedback.append("\n" + String.format(ESTIMATE_TOTAL_MESSAGE, order.getTotal()));
 
         return new CommandResult(feedback.toString());
     }

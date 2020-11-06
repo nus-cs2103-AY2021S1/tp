@@ -13,7 +13,8 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.vendor.VendorManager;
+import seedu.address.testutil.VendorManagerBuilder;
 
 public class ModelManagerTest {
 
@@ -23,7 +24,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new VendorManager(), new VendorManager(modelManager.getVendorManager()));
     }
 
     @Test
@@ -34,14 +35,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setVendorManagerFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setVendorManagerFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -58,15 +59,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setVendorManagerFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setVendorManagerFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setVendorManagerFilePath_validPath_setsVendorManagerFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setVendorManagerFilePath(path);
+        assertEquals(path, modelManager.getVendorManagerFilePath());
     }
 
     @Test
@@ -75,12 +76,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasVendor_vendorNotInAddressBook_returnsFalse() {
+    public void hasVendor_vendorNotInVendorManager_returnsFalse() {
         assertFalse(modelManager.hasVendor(ALICE));
     }
 
     //@Test
-    //public void hasVendor_vendorInAddressBook_returnsTrue() {
+    //public void hasVendor_vendorInVendorManager_returnsTrue() {
     //        modelManager.addVendor(ALICE);
     //        assertTrue(modelManager.hasVendor(ALICE));
     //}
@@ -92,13 +93,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withVendor(ALICE).withVendor(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        VendorManager vendorManager = new VendorManagerBuilder().withVendor(ALICE).withVendor(BENSON).build();
+        VendorManager differentVendorManager = new VendorManager();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(vendorManager, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(vendorManager, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -110,17 +111,17 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different vendorManager -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentVendorManager, userPrefs)));
 
         // different filteredList -> returns false
         //        String[] keywords = ALICE.getName().fullName.split("\\s+");
         //        modelManager.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        //        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        //        assertFalse(modelManager.equals(new ModelManager(vendorManager, userPrefs)));
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setVendorManagerFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(vendorManager, differentUserPrefs)));
     }
 }
