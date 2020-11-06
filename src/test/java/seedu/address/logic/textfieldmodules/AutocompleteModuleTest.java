@@ -8,6 +8,8 @@ import static seedu.address.testutil.SimulatedKeyPress.TAB_EVENT;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,6 +30,14 @@ class AutocompleteModuleTest {
 
     private TextField textField;
 
+    @BeforeAll
+    private static void setHeadless() {
+        System.setProperty("testfx.robot", "glass");
+        System.setProperty("testfx.headless", "true");
+        System.setProperty("prism.order", "sw");
+        System.setProperty("prism.text", "t2k");
+    }
+
     @Start
     private void start(Stage stage) {
         textField = new TextField();
@@ -36,7 +46,6 @@ class AutocompleteModuleTest {
     }
 
     @Test
-    @Disabled
     public void textFieldWithAutocompleteModule_getFirstSuggestionWithEmptyPrefix_success(FxRobot robot) {
         // Setup
         AutocompleteModule ac = AutocompleteModule.attachTo(textField);
@@ -53,7 +62,6 @@ class AutocompleteModuleTest {
         assertEquals(expected, actual);
     }
     @Test
-    @Disabled
     public void textFieldWithAutocompleteModule_getFirstSuggestionWithNonEmptyPrefix_success(FxRobot robot) {
         // Setup
         AutocompleteModule ac = AutocompleteModule.attachTo(textField);
@@ -68,6 +76,7 @@ class AutocompleteModuleTest {
         // Simulate user trigger ac
         textField.setText(sampleCmdPrefix);
         textField.end();
+        robot.sleep(500);
         robot.write(prefix);
         textField.fireEvent(TAB_EVENT);
 
@@ -77,7 +86,6 @@ class AutocompleteModuleTest {
         assertEquals(expected, actual);
     }
     @Test
-    @Disabled
     public void textFieldWithAutocompleteModule_lockInFirstSuggestions_success(FxRobot robot) {
         // Setup
         AutocompleteModule ac = AutocompleteModule.attachTo(textField);
@@ -92,6 +100,7 @@ class AutocompleteModuleTest {
         // Simulate user trigger ac
         textField.setText(sampleCmdPrefix);
         textField.end();
+        robot.sleep(500);
         robot.write(prefix);
         textField.fireEvent(TAB_EVENT);
         textField.fireEvent(ENTER_EVENT);
@@ -102,7 +111,6 @@ class AutocompleteModuleTest {
         assertEquals(expected, actual);
     }
     @Test
-    @Disabled
     public void textFieldWithAutocompleteModule_getFirstSuggestionWithPrefixWithNoMatch_prefixReturned(FxRobot robot) {
         // Setup
         AutocompleteModule ac = AutocompleteModule.attachTo(textField);
@@ -117,6 +125,7 @@ class AutocompleteModuleTest {
         // Simulate user trigger ac
         textField.setText(sampleCmdPrefix);
         textField.end();
+        robot.sleep(500);
         robot.write(prefix);
         textField.fireEvent(TAB_EVENT);
 
@@ -126,7 +135,6 @@ class AutocompleteModuleTest {
         assertEquals(expected, actual);
     }
     @Test
-    @Disabled
     public void textFieldWithAutocompleteModule_iterateThroughAllSuggestionsForward_success(FxRobot robot) {
         // Setup
         AutocompleteModule ac = AutocompleteModule.attachTo(textField);
@@ -137,6 +145,7 @@ class AutocompleteModuleTest {
         // Simulate user trigger ac
         textField.setText(sampleCmdPrefix);
         textField.end();
+        robot.sleep(500);
         robot.write(prefix);
 
         for (int i = 0; i < sampleNameList.size() + 1; i++) {
@@ -149,7 +158,6 @@ class AutocompleteModuleTest {
         assertEquals(expected, actual);
     }
     @Test
-    @Disabled
     public void textFieldWithAutocompleteModule_iterateThroughAllSuggestionsBackward_success(FxRobot robot) {
         // Setup
         AutocompleteModule ac = AutocompleteModule.attachTo(textField);
@@ -164,6 +172,7 @@ class AutocompleteModuleTest {
         // Simulate user trigger ac
         textField.setText(sampleCmdPrefix);
         textField.end();
+        robot.sleep(500);
         robot.write(prefix);
 
         for (int i = 0; i < sampleNameList.size() + 1; i++) {

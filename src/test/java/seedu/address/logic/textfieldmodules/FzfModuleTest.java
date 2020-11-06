@@ -7,6 +7,7 @@ import static seedu.address.testutil.SimulatedKeyPress.DOWN_ARROW_EVENT;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,6 +28,14 @@ class FzfModuleTest {
     private FzfModule fzfModule;
     private StackPane stackPane;
 
+    @BeforeAll
+    private static void setHeadless() {
+        System.setProperty("testfx.robot", "glass");
+        System.setProperty("testfx.headless", "true");
+        System.setProperty("prism.order", "sw");
+        System.setProperty("prism.text", "t2k");
+    }
+
     @Start
     private void start(Stage stage) {
         textField = new TextField();
@@ -38,12 +47,11 @@ class FzfModuleTest {
     }
 
     @Test
-    @Disabled
     public void textFieldWithFzfModule_lockInFirstSuggestion_success(FxRobot robot) {
 
         textField.fireEvent(CTRL_SPACE_EVENT);
         textField.fireEvent(DOWN_ARROW_EVENT);
-        robot.sleep(10);
+        robot.sleep(500);
         robot.write('\n');
 
         String expected = sampleNameList.get(0);
@@ -53,7 +61,6 @@ class FzfModuleTest {
     }
 
     @Test
-    @Disabled
     public void textFieldWithFzfModule_nonEmptyQuery_validNumberOfSuggestions(FxRobot robot) {
 
         String query = "br";
