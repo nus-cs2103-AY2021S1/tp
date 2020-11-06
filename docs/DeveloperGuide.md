@@ -837,33 +837,272 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Exiting the application
+   
+   1. Prerequisites: The application must be launched.
+   
+   1. Test case: `exit` <br>
+       Expected: The application exits and the window closes itself automatically.
+   
+### Adding a flashcard
 
+1. Adding a flashcard when in main window of application
+
+   1. Prerequisites: Application must be in main window and not in review or quiz mode.
+   
+   1. Test case (specifying compulsory inputs only): `add q/Does software projects often involve workflows? a/Yes` <br>
+       Expected: A new flashcard is added to the end of the list of flashcards. Flashcard list panel will then update
+       to display all the flashcards in the flashcard deck. The compulsory inputs will be set to 
+       what was specified in the command, whereas category will be set to `General` by default when not stated in the
+       input. Result display will output the message: 
+       `New flashcard added:  Question: Does software projects often involve workflows?`
+
+   1. Test case (missing a compulsory input (`a/ANSWER`)): `add q/What does SWE stand for?` <br>
+       Expected: No flashcard added to the list of flashcards and input text will turn red to signal an error.
+       Result display will output the invalid command error message.
+   
+   1. Test case (missing a compulsory input (`q/QUESTION`)): `add a/Software Engineering` <br>
+       Expected: No flashcard added to the list of flashcards and input text will turn red to signal an error.
+       Result display will output the invalid command error message.
+       
 ### Deleting a flashcard
 
 1. Deleting a flashcard while all flashcards are being shown
 
-   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
+   1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+      how to add a flashcard if flashcard deck is empty.
 
-   1. Test case: `delete 1`<br>
-      Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message. Timestamp in the status bar is updated.
+   1. Test case (valid index): `delete 1` <br>
+      Expected: First flashcard is deleted from the list of flashcards. Result display will output the status of the deleted flashcard. 
 
-   1. Test case: `delete 0`<br>
-      Expected: No flashcard is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case (invalid index): `delete 0` <br>
+      Expected: No flashcard will be deleted from the list of flashcards and input text will turn red to signal an error.
+      Result display will output the invalid command error message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Other incorrect delete commands to try: `delete` and `delete x` (where x is larger than the list size or x is a negative integer)<br>
+      Expected: Similar to test case iii.
+      
+### Listing flashcards
 
-1. _{ more test cases …​ }_
+1. Listing all flashcards in the flashcard deck
 
-### Saving data
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+        how to add a flashcard if flashcard deck is empty.
+    
+    1. Test case: `list` <br>
+        Expected: Flashcard list panel updates to show all flashcard stored in the flashcard deck. Result display will output
+        a success message: `Listed all flashcards`
+    
+### Editing a flashcard
 
-1. Dealing with missing/corrupted data files
+1. Editing a flashcard while all flashcards are being shown
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+        how to add a flashcard if flashcard deck is empty.
+    
+    1. Test case (editing one field of flashcard): `edit 1 q/Is this edited?` <br>
+        Expected: The `QUESTION` of flashcard at index 1 will be modified to become `Is this edited?`. The remaining fields
+        of this flashcard will remain the same. Result display will output the status of the edited flashcard.
+        
+    1. Test case (editing multiple fields of flashcard): `edit 1 q/Is this edited? a/Yes` <br> 
+        Expected: The `QUESTION` and `ANSWER` of flashcard at index 1 will be modified to become `Is this edited?` 
+        and `Yes` respectively.The remaining fields of this flashcard will remain the same. Result display will output the status of the edited flashcard.
+    
+    1. Test case (missing flashcard field input): `edit 1` where `INDEX` <br> 
+        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
+        Result display will output the message: `At least one field to edit must be provided.`
+        
+    1. Test case (missing flashcard field input and index): `edit` <br>
+        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
+        Result display will output the invalid command error message.
+     
+     :bulb: **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
 
-1. _{ more test cases …​ }_
+### Clearing all flashcards
 
+1. Clearing all flashcards in the flashcard deck
+
+     1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+        how to add a flashcard if flashcard deck is empty.
+                
+     1. Test case: `clear` <br>
+        Expected: Flashcard list panel updates to show no flashcard stored in the flashcard deck. Result display will output
+        a success message: `Flashcard Deck has been cleared!`
+     
+### Filtering for flashcards
+
+1. Filtering for selected flashcards in the flashcard deck
+
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+        how to add a flashcard if flashcard deck is empty.
+                
+    1. Test case (filtering by one flashcard field): `filter c/General` <br>
+        Expected: Flashcard list panel updates to show only flashcards belonging to `General` category. Result display will
+        output a success message indicating the number of flashcards filtered.
+            
+    1. Test case (filtering by multiple flashcard fields): `filter c/General r/3` <br> 
+        Expected: Flashcard list panel updates to show only flashcards belonging to `General` category and have a rating of `3`. 
+        Result display will output a success message indicating the number of flashcards filtered.
+        
+    1. Test case (missing flashcard field input): `filter` <br>
+        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
+        Result display will output the invalid command error message.
+        
+    :bulb: **Note:** Filtering of flashcards can also be tested on other fields such as `FAVOURITE` and `TAG`. 
+    
+### Favouriting a flashcard
+
+1. Favouriting a flashcard in the flashcard deck
+
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+        how to add a flashcard if flashcard deck is empty.
+                
+    1. Test case (valid index): `fav 1` <br> 
+        Expected: Flashcard list pane updates to show a favourite(heart) icon beside the flashcard of index 1. Result display
+        will output the status of the favourited flashcard.
+
+    1. Test case (invalid index): `fav 0` <br>
+        Expected: No flashcard is favourited from the list of flashcards and input text will turn red to signal an error.
+        Result display will output the invalid command error message.
+
+    1. Other incorrect favourite commands to try: `fav` and `fav x` (where x is larger than the list size or x is a negative integer) <br>
+        Expected: Similar to test case iii.
+        
+### Unfavouriting a flashcard
+
+1. Unfavouriting a flashcard in the flashcard deck
+
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+        how to add a flashcard if flashcard deck is empty.
+                
+    1. Test case (valid index): `unfav 1` <br> 
+            Expected: Flashcard list pane updates to unfavourite and remove the favourite(heart) icon beside the flashcard of index 1 (if any). Result display
+            will output the status of the unfavourited flashcard.
+    
+    1. Test case (invalid index): `unfav 0` <br>
+        Expected: No flashcard is unfavourited from the list of flashcards and input text will turn red to signal an error.
+        Result display will output the invalid command error message.
+
+    1. Other incorrect unfavourite commands to try: `unfav` and `unfav x` (where x is larger than the list size or x is a negative integer) <br>
+        Expected: Similar to test case iii.
+
+### Finding flashcards
+
+1. Finding flashcards in the flashcard deck
+    
+   1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+       
+   1. Test case (finding by one keyword): `find general` <br>
+       Expected: Flashcard list panel updates to show only flashcards that have `general` contained within 
+       `QUESTION`, `ANSWER`, `CATEGORY`, `NOTE` and/or `TAG`. Result display will
+       output a success message indicating the number of flashcards found.
+   
+   1. Test case (finding by multiple keywords): `find general stuff` <br>
+       Expected: Flashcard list panel updates to show only flashcards that have `general` and/or `stuff` contained within 
+       `QUESTION`, `ANSWER`, `CATEGORY`, `NOTE` and/or `TAG`. Result display will
+       output a success message indicating the number of flashcards found.
+       
+   1. Test case (missing keyword): `find` <br>
+       Expected: Flashcard list panel will not update and input text will turn red to signal an error.
+       Result display will output the invalid command error message.
+
+### Reviewing flashcards
+
+1. Entering review mode in the application to review flashcards
+    
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+    
+    1. Test case: `review` <br>
+        Expected: Main window of application switches to review mode and displays the first flashcard in the flashcard deck.
+        
+### Quizzing flashcards
+
+1. Entering quiz mode in the application
+
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+       
+    1. Test case: `quiz` <br>
+        Expected: Main window of application switches to quiz mode and displays the first flashcard in the flashcard deck.
+
+### Sorting of flashcards
+
+1. Sort flashcards according to review frequency
+
+    1. Prerequisites: Flashcard deck contains more than one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+       
+    1. Test case (sort flashcards in an ascending order): `sort reviewed -a` <br>
+        Expected: Flashcard list panel updates to show a list of all flashcards sorted according to review frequency in ascending order.
+        Result display will output a success message indicating the number of flashcards sorted.
+    
+    1. Test case (sort flashcards in an descending order): `sort reviewed -d` <br>
+        Expected: Flashcard list panel updates to show a list of all flashcards sorted according to review frequency in descending order.
+        Result display will output a success message indicating the number of flashcards sorted.
+        
+    1. Test case (sort flashcards with missing inputs): `sort` <br>
+        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
+        Result display will output the invalid command error message.
+        
+1. Sort flashcards according to success rate
+
+    1. Prerequisites: Flashcard deck contains more than one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+       
+    1. Test case (sort flashcards in an ascending order): `sort success -a` <br>
+        Expected: Flashcard list panel updates to show a list of all flashcards sorted according to success rate in ascending order.
+        Result display will output a success message indicating the number of flashcards sorted.
+        
+    1. Test case (sort flashcards in an descending order): `sort success -d` <br>
+        Expected: Flashcard list panel updates to show a list of all flashcards sorted according to success rate in descending order.
+        Result display will output a success message indicating the number of flashcards sorted.
+
+    1. Test case (sort flashcards with missing inputs): `sort` <br>
+        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
+        Result display will output the invalid command error message.
+        
+### Viewing a flashcard
+
+1. Viewing a flashcard
+
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+       
+    1. Test case (view flashcard without answer): `view 1` <br>
+        Expected: Flashcard view panel on the right updates with the details of the flashcard at index 1 in the flashcard
+        deck. Result display will output the status of the selected flashcard.
+        
+    1. Test case (view flashcard with answer): `view 1 -a` <br>
+        Expected: Flashcard view and flashcard answer panel on the right updates with the details and answer of the flashcard
+        respectively, at index 1 in the flashcard deck. Result display will output the status of the selected flashcard.
+
+    1. Test case (view flashcard at invalid index): `view 0` <br>
+        Expected: Flashcard view and flashcard answer panel will not update and input text will turn red to signal an error.
+        Result display will output the invalid command error message.
+            
+    1. Other incorrect view commands to try: `view 0 -a` and `view x` (where x is larger than the list size or x is a negative integer) <br>
+        Expected: Similar to test case iv.
+               
+### Viewing the statistics of a flashcard
+    
+1. Viewing the statistics of a flashcard
+    
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+       
+    1. Test case (view statistics of flashcard at valid index): `stats 1` <br>
+        Expected: Flashcard view panel updates to display a pie chart along with statistics of reviewed count and correct
+        count. Result display will output the status of the selected flashcard.
+    
+    1. Test case (view statistics of flashcard at invalid index): `stats 0` <br>
+        Expected: Flashcard view panel will not update and input text will turn red to signal an error.
+        Result display will output the invalid command error message.
+    
+    1. Other incorrect stats command to try: `stats x` (where x is larger than the list size or x is a negative integer) <br>
+        Expected: Similar to test case iii.
+        
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
@@ -905,6 +1144,3 @@ This section documents the effort in morphing AB3 to SWEe! .
 * General UI enhancements
     * Significant styling was done to make our app look better compared to AB3.
     * We also ensured proper scaling of our app to different windows sizes, with the ability to scroll some panes.
-
-
-
