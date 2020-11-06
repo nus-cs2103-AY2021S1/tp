@@ -49,7 +49,7 @@ public class ViewTaskCommandTest {
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
 
         expectedModel.enter(project);
-        expectedModel.enterTask(taskToView);
+        expectedModel.enter(taskToView);
 
         assertCommandSuccess(viewTaskCommand, model, expectedMessage, expectedModel);
     }
@@ -69,7 +69,7 @@ public class ViewTaskCommandTest {
         String expectedMessage = String.format(ViewTaskCommand.MESSAGE_VIEW_TASK_SUCCESS, taskToView);
 
         expectedModel.enter(project);
-        expectedModel.enterTask(taskToView);
+        expectedModel.enter(taskToView);
 
         assertCommandSuccess(viewTaskCommand, model, expectedMessage, expectedModel);
     }
