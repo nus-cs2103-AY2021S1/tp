@@ -34,7 +34,12 @@ public class ListCommand extends Command {
 
     private final Index numberOfDays;
 
+    /**
+     * Constructor of List Command which takes in an Index.
+     * @param numberOfDays Number of days as Index.
+     */
     public ListCommand(Index numberOfDays) {
+        assert numberOfDays != null;
         this.numberOfDays = numberOfDays;
     }
 
