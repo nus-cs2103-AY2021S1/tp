@@ -6,11 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROGRESS;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalProjects.AI;
-import static seedu.address.testutil.TypicalProjects.BOT;
 import static seedu.address.testutil.TypicalTasks.TASK_A_DEADLINE;
 import static seedu.address.testutil.TypicalTasks.TASK_A_NAME;
 import static seedu.address.testutil.TypicalTasks.TASK_A_PROGRESS;
@@ -18,21 +15,12 @@ import static seedu.address.testutil.TypicalTasks.TASK_B_DEADLINE;
 import static seedu.address.testutil.TypicalTasks.TASK_B_NAME;
 import static seedu.address.testutil.TypicalTasks.TASK_B_PROGRESS;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.global.AddCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDescription;
-import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.RepoUrl;
-import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TypicalTasks;
 

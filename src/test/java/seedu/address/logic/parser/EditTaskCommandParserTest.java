@@ -1,37 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_A;
-import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_B;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROGRESS;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROJECT_DESCRIPTION_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROJECT_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_REPOURL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESCRIPTION_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESCRIPTION_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PROJECT_NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PROJECT_TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.PROJECT_TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.REPOURL_DESC_A;
-import static seedu.address.logic.commands.CommandTestUtil.REPOURL_DESC_B;
-import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_DG;
-import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_MODEL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_A;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_A;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_A;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_A;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
@@ -46,16 +18,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.global.EditCommand;
-import seedu.address.logic.commands.global.EditCommand.EditProjectDescriptor;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.ProjectDescription;
-import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.RepoUrl;
-import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 public class EditTaskCommandParserTest {
@@ -129,7 +95,7 @@ public class EditTaskCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_PROJECT;
-        String userInput = targetIndex.getOneBased()  + TASK_A_DESCRIPTION+ TASK_A_NAME;
+        String userInput = targetIndex.getOneBased() + TASK_A_DESCRIPTION + TASK_A_NAME;
 
         EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
                 .withTaskName(SampleDataUtil.getValidTask().get(0))

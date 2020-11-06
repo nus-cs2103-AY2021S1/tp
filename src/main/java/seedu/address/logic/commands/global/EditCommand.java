@@ -63,7 +63,8 @@ public class EditCommand extends Command {
 
     /**
      * Creates an EditCommand.
-     * @param index of the project in the filtered project list to edit
+     *
+     * @param index                 of the project in the filtered project list to edit
      * @param editProjectDescriptor details to edit the project with
      */
     public EditCommand(Index index, EditProjectDescriptor editProjectDescriptor) {
@@ -106,20 +107,21 @@ public class EditCommand extends Command {
         Deadline updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
         RepoUrl updatedRepoUrl = editProjectDescriptor.getRepoUrl().orElse(projectToEdit.getRepoUrl());
         ProjectDescription updatedProjectDescription = editProjectDescriptor.getProjectDescription()
-            .orElse(projectToEdit.getProjectDescription());
+                .orElse(projectToEdit.getProjectDescription());
         Set<ProjectTag> updatedProjectTags = editProjectDescriptor.getProjectTags().orElse(
-            projectToEdit.getProjectTags());
+                projectToEdit.getProjectTags());
         Set<Task> updatedTasks = editProjectDescriptor.getTasks().orElse(projectToEdit.getTasks());
         HashMap<GitUserName, Participation> updatedParticipationList = new HashMap<>();
-        if(!updatedProjectName.equals(projectToEdit.getProjectName())){
-            for(int i = 0 ; i < projectToEdit.getParticipationList().size();i++){
-                projectToEdit.getParticipationList().forEach(participation -> participation.setProject(updatedProjectName.toString()));
+        if (!updatedProjectName.equals(projectToEdit.getProjectName())) {
+            for (int i = 0; i < projectToEdit.getParticipationList().size(); i++) {
+                projectToEdit.getParticipationList()
+                        .forEach(participation -> participation.setProject(updatedProjectName.toString()));
                 updatedParticipationList = projectToEdit.getParticipationHashMap();
             }
         }
 
         return new Project(updatedProjectName, updatedDeadline, updatedRepoUrl, updatedProjectDescription,
-                updatedProjectTags,updatedParticipationList , updatedTasks);
+                updatedProjectTags, updatedParticipationList, updatedTasks);
     }
 
     @Override
@@ -152,7 +154,8 @@ public class EditCommand extends Command {
         private Set<ProjectTag> projectTags;
         private Set<Task> tasks;
 
-        public EditProjectDescriptor() {}
+        public EditProjectDescriptor() {
+        }
 
         /**
          * Copy constructor.
