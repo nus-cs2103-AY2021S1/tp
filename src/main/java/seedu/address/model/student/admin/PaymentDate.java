@@ -36,7 +36,7 @@ public class PaymentDate {
      */
     public static boolean isValidDate(String test) {
         try {
-            return parseToDate(test).compareTo(LocalDate.now()) <= 0;
+            return !parseToDate(test).isAfter(LocalDate.now());
         } catch (IllegalArgumentException e) {
             return false;
         }

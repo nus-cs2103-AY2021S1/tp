@@ -162,6 +162,19 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_clashingClassTimeUnfilteredList_failure() {
+        String clash = getClassTimeInputString();
+        assertEditClassTimeFailure(clash);
+    }
+
+    @Test
+    public void execute_clashingClassTimeFilteredList_failure() {
+        String clash = getClassTimeInputString();
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        assertEditClassTimeFailure(clash);
+    }
+
+    @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY,
                 new EditAdminDescriptorBuilder().build());
@@ -188,6 +201,23 @@ public class EditCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB,
                 new EditAdminDescriptorBuilder().build())));
+    }
+
+    /**
+     * Tests that a class time clash error is thrown.
+     */
+    private void assertEditClassTimeFailure(String classTimeInput) {
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().build();
+        EditAdminDescriptor adminDescriptor = new EditAdminDescriptorBuilder().withTime(classTimeInput).build();
+        EditCommand command = new EditCommand(INDEX_FIRST_PERSON, descriptor, adminDescriptor);
+
+        assertCommandFailure(command, model, Messages.MESSAGE_CLASHING_LESSON);
+    }
+
+    private String getClassTimeInputString() {
+        return model.getSortedStudentList().get(INDEX_SECOND_PERSON.getZeroBased())
+                .getClassTime()
+                .convertClassTimeToUserInputString();
     }
 
 }

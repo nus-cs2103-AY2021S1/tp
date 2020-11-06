@@ -94,9 +94,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        ClassTime studentToEditClassTime = studentToEdit.getAdmin().getClassTime();
-        ClassTime editedStudentClassTime = editedStudent.getAdmin().getClassTime();
-        if (!(editedStudentClassTime.equals(studentToEditClassTime)) && model.isClashingClassTime(editedStudent)) {
+        ClassTime studentToEditClassTime = studentToEdit.getClassTime();
+        ClassTime editedStudentClassTime = editedStudent.getClassTime();
+        if (!(editedStudentClassTime.equals(studentToEditClassTime)) && model.hasClashingClassTimeWith(editedStudent)) {
             throw new CommandException(Messages.MESSAGE_CLASHING_LESSON);
         }
 
