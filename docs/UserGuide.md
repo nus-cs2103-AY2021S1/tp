@@ -116,6 +116,12 @@ simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the informatio
    ![UserGuideAddCommand](images/UserGuideAddCommand.PNG)
    *Figure 1: Information of the assignment added labelled*
 
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+* `DEADLINE_OF_ASSIGNMENT` must be in the format dd-MM-yyyy and time in the format HHmm (24-hour).
+</div>
+
 <div markdown="span" class="alert alert-success">
 **:bulb: Tip:**
 If the lab report assignment is of **high priority**, you can enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH`
