@@ -82,7 +82,7 @@ public class ProductiveNusParser {
             return new ExitCommand(userInput);
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommand(userInput);
 
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);
