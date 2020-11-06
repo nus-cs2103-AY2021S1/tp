@@ -29,6 +29,7 @@ import com.eva.model.person.Phone;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.person.staff.leave.LeaveTaken;
@@ -139,8 +140,9 @@ public class EditCommand extends Command {
         } else if (personToEdit instanceof Applicant) {
             ApplicationStatus applicationStatus = ((Applicant) personToEdit).getApplicationStatus();
             Optional<InterviewDate> updatedInterviewDate = editPersonDescriptor.getInterviewDate();
+            Application application = ((Applicant) personToEdit).getApplication();
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                    updatedTags, newComments, updatedInterviewDate, applicationStatus);
+                    updatedTags, newComments, updatedInterviewDate, applicationStatus, application);
         } else {
             throw new CommandException("Invalid personType");
         }
