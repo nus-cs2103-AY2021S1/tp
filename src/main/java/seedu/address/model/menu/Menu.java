@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.MenuItem;
 import seedu.address.model.food.exceptions.DuplicateFoodException;
@@ -129,27 +127,6 @@ public class Menu implements Iterable<MenuItem> {
         } else {
             internalList.sort(itemComparator.reversed());
         }
-    }
-
-    /**
-     * Replaces the contents of this list with {@code menuItems}.
-     * {@code menuItems} must not contain duplicate menu items.
-     */
-    public void setOrderedMenuItemList(List<JsonAdaptedMenuItem> items) {
-        requireAllNonNull(items);
-        List<MenuItem> menuItemList = items.stream().map(x -> {
-            try {
-                return x.toModelType();
-            } catch (IllegalValueException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }).collect(Collectors.toList());
-        if (!itemsAreUnique(menuItemList)) {
-            throw new DuplicateFoodException();
-        }
-
-        internalList.setAll(menuItemList);
     }
 
     /**
