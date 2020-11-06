@@ -1,34 +1,21 @@
 @startuml
 start
-:User executes edit command: edit info;
-:Logic executes edit command;
-:EditCommandParser parses the command;
+:User executes delete command: delete 1;
+:Logic executes delete command;
+:DeleteCommandParser parses the command: delete 1;
 
-if () then ([index valid])
-    :parses the edit command: edit info;
+if () then ([index > 0 and index is integer])
+:execute DeleteCommand;
 
-    if () then ([fields to edit specified])
-    :execute EditCommand;
-
-        if () then ([is duplicate item])
+        if () then ([is invalid index])
         :throw command exception;
 
-        else ([not a duplicate])
-
-            if () then ([edited item is same as original])
-            :throw command exception;
-
-            else ([edited item different from original])
-            :item is updated;
-            endif
+        else ([is valid index])
+        :item is deleted;
 
         endif
 
-    else ([no fields to edit specified])
-    :throw parse exception;
-    endif
-
-else ([index invalid])
+else ([index <= 0 or index not integer])
     :throw parser exception;
 
 endif

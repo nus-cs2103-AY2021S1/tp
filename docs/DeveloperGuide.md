@@ -443,6 +443,9 @@ Command and Parser makes use of Substitutability:
 * `DeleteIngredientCommandParser` implements `Parser<DeleteIngredientCommand>`
 * `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>`
 
+The following sequence diagram shows how delete operation works when `execute(deleteR 1)`, `execute(deleteF 1)` or `execute(deleteC 1)` is called:
+![DeleteActivity](images/implementation/ActivityDiagram/DeleteActivityDiagram.png)
+
 The following sequence diagram shows how delete operation works when `execute(deleteR 1)`, `execute(deleteF 1
 )` or `execute(deleteC 1)` is called:
 
@@ -452,7 +455,7 @@ The following sequence diagram shows how delete operation works when `execute(de
 
 :bell: **Note**                                                                                                 
                                                                                                                 
-This is a condensed diagram. Several terms in the sequence diagram above have been substituted by a common term 
+These are condensed diagrams. Several terms in the sequence diagram above have been substituted by a common term 
 :<br>                                                                                                           
                                                                                                                 
 Common Term | Recipe-specific term  | Ingredient-specific term | Calorie-specific term                          
@@ -499,6 +502,12 @@ Command and Parser make use of Substitutability:
 * `EditRecipeCommandParser` implements `Parser<EditRecipeCommand>`
 * `EditIngredientCommandParser` implements `Parser<EditIngredientCommand>`
 
+The following activity diagram shows how edit operation generally works when a recipe is edited: <br>
+ `execute("editR 1 n/Pea soup")` <br>
+ or an ingredient is edited <br>
+ `execute("editF 1 i/tomato")`
+![EditActivity](images/implementation/ActivityDiagram/EditActivityDiagram.png)
+
 The following sequence diagram shows how edit operation generally works when a recipe is edited: <br>
  `execute("editR 1 n/Pea soup")` <br>
  or an ingredient is edited <br>
@@ -509,7 +518,7 @@ The following sequence diagram shows how edit operation generally works when a r
 <div markdown="block" class="alert alert-info">
 :bell: **Note**                                                                                               
                                                                                                               
-This is a condensed diagram. Several terms in the sequence diagram above has substituted by a common term:<br>
+These are condensed diagrams. Several terms in the sequence diagram above has substituted by a common term:<br>
                                                                                                               
 Common Term | Recipe-specific term  | Ingredient-specific term                                                
 ------------|-----------------|-------------------------------------------------------------------------      
