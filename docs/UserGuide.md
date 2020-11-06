@@ -119,6 +119,7 @@ Input Field | Restrictions and how to specify
 
 * **Can be empty**  means you can specify the prefix but not pass a value.<br>eg. passing `r/` is valid.
 * **Cannot be empty** means you have to specify a value when you specify the prefix.<br>eg. passing `c/` is invalid.
+* All input fields should not contain other input prefixes. eg. passing in `What is c/?` as a `QUESTION` to `q/QUESTION` is not supported.
 
 ## Features
 
