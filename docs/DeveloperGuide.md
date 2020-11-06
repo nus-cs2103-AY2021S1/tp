@@ -658,7 +658,7 @@ testers are expected to do more *exploratory* testing.
    <br>
    Expected: A new data file is generated
 
-   1. Open the data file inside the `data` folder using any text editor and edit the file.
+   1. Open the data file inside the `data` folder using any text editor and edit the file to invalid values.
    <br>
    Expected: A new empty data file is generated which overwrites the old one.
 
