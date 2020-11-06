@@ -43,6 +43,7 @@ public class LoadPresetCommand extends PresetCommand {
             int currentIndex = model.getVendorIndex();
             if (currentIndex >= allLists.size()) {
                 throw new CommandException(FILE_OPS_ERROR_MESSAGE);
+                // TODO: update message to be more consistent?
             }
             if (displayAllPresets) {
                 List<Preset> vendorPresets = allLists.get(currentIndex);
@@ -66,7 +67,6 @@ public class LoadPresetCommand extends PresetCommand {
                     .orElseThrow(() -> new CommandException(String.format(Messages.MESSAGE_PRESET_NOT_FOUND,
                             presetName)));
 
-            model.showDefaultMenu();
             model.setOrder(orderItems);
 
         } catch (DataConversionException | IOException | IndexOutOfBoundsException e) {
