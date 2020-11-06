@@ -171,15 +171,4 @@ class MacronutrientTest {
         }
     }
 
-    private static class InvalidMacronutrientStub extends Macronutrient {
-        InvalidMacronutrientStub() throws IllegalValueException {
-            super(1, INVALID_MULTIPLIER);
-        }
-
-        @Override
-        String getMessageConstraint() {
-            return null;
-        }
-    }
-
 }
