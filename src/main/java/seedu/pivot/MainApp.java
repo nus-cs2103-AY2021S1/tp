@@ -25,6 +25,7 @@ import seedu.pivot.model.util.SampleDataUtil;
 import seedu.pivot.storage.JsonPivotStorage;
 import seedu.pivot.storage.JsonUserPrefsStorage;
 import seedu.pivot.storage.PivotStorage;
+import seedu.pivot.storage.ReferenceStorage;
 import seedu.pivot.storage.Storage;
 import seedu.pivot.storage.StorageManager;
 import seedu.pivot.storage.UserPrefsStorage;
@@ -58,7 +59,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         PivotStorage pivotStorage = new JsonPivotStorage(userPrefs.getPivotFilePath());
-        storage = new StorageManager(pivotStorage, userPrefsStorage);
+        ReferenceStorage referenceStorage = new ReferenceStorage();
+        storage = new StorageManager(pivotStorage, userPrefsStorage, referenceStorage);
 
         initLogging(config);
 
@@ -81,6 +83,7 @@ public class MainApp extends Application {
             pivotOptional = storage.readPivot();
             if (!pivotOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PIVOT");
+                storage.addReferenceTestFile(); //includes test1.txt as sample data
             }
             initialData = pivotOptional.orElseGet(SampleDataUtil::getSamplePivot);
         } catch (DataConversionException e) {
@@ -91,7 +94,9 @@ public class MainApp extends Application {
             initialData = new Pivot();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        ModelManager modelManager = new ModelManager(initialData, userPrefs);
+        modelManager.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
+        return modelManager;
     }
 
     private void initLogging(Config config) {

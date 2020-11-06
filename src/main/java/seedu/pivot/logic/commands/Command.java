@@ -8,12 +8,15 @@ import seedu.pivot.model.Model;
  */
 public abstract class Command {
 
+    public static final String TYPE_TITLE = "title";
+    public static final String TYPE_STATUS = "status";
     public static final String TYPE_CASE = "case";
     public static final String TYPE_DESC = "desc";
     public static final String TYPE_DOC = "doc";
     public static final String TYPE_SUSPECT = "suspect";
     public static final String TYPE_WITNESS = "witness";
     public static final String TYPE_VICTIM = "victim";
+    public static final String TYPE_ARCHIVE = "archive";
 
     /**
      * Executes the command and returns the result message.
@@ -23,5 +26,7 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public abstract CommandResult execute(Model model) throws CommandException;
+
+
 
 }

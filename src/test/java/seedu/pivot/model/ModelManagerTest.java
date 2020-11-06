@@ -3,10 +3,10 @@ package seedu.pivot.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalCases.ALICE;
-import static seedu.pivot.testutil.TypicalCases.BENSON;
+import static seedu.pivot.testutil.TypicalCases.ALICE_PAULINE_ASSAULT;
+import static seedu.pivot.testutil.TypicalCases.BENSON_MEIER_ROBBERY;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.GuiSettings;
-import seedu.pivot.model.investigationcase.NameContainsKeywordsPredicate;
+import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
 import seedu.pivot.testutil.PivotBuilder;
 
 public class ModelManagerTest {
@@ -61,41 +61,41 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setPivotFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setPivotFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setPivotFilePath_validPath_setsPivotFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setPivotFilePath(path);
         assertEquals(path, modelManager.getPivotFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasCase_nullCase_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasCase(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasCase(ALICE));
+    public void hasCase_caseNotInPivot_returnsFalse() {
+        assertFalse(modelManager.hasCase(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addCase(ALICE);
-        assertTrue(modelManager.hasCase(ALICE));
+    public void hasCase_caseInPivot_returnsTrue() {
+        modelManager.addCase(ALICE_PAULINE_ASSAULT);
+        assertTrue(modelManager.hasCase(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredCaseList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCaseList().remove(0));
     }
 
     @Test
     public void equals() {
-        Pivot pivot = new PivotBuilder().withCase(ALICE).withCase(BENSON).build();
+        Pivot pivot = new PivotBuilder().withCase(ALICE_PAULINE_ASSAULT).withCase(BENSON_MEIER_ROBBERY).build();
         Pivot differentPivot = new Pivot();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -113,16 +113,16 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
+        // different Pivot -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentPivot, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getTitle().getAlphaNum().split("\\s+");
-        modelManager.updateFilteredCaseList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = ALICE_PAULINE_ASSAULT.getTitle().getAlphaNum().split("\\s+");
+        modelManager.updateFilteredCaseList(new DetailsContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(pivot, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
+        modelManager.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

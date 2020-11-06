@@ -2,11 +2,11 @@ package seedu.pivot.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.pivot.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.pivot.logic.commands.Command.TYPE_CASE;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,10 +15,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.logic.commands.AddCommand;
-import seedu.pivot.logic.commands.ClearCommand;
 import seedu.pivot.logic.commands.DeleteCommand;
-import seedu.pivot.logic.commands.EditCommand;
-import seedu.pivot.logic.commands.EditCommand.EditCaseDescriptor;
 import seedu.pivot.logic.commands.ExitCommand;
 import seedu.pivot.logic.commands.FindCommand;
 import seedu.pivot.logic.commands.HelpCommand;
@@ -28,10 +25,9 @@ import seedu.pivot.logic.commands.casecommands.DeleteCaseCommand;
 import seedu.pivot.logic.commands.casecommands.ListCaseCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.NameContainsKeywordsPredicate;
+import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
 import seedu.pivot.testutil.CaseBuilder;
 import seedu.pivot.testutil.CaseUtil;
-import seedu.pivot.testutil.EditCaseDescriptorBuilder;
 
 public class PivotParserTest {
 
@@ -44,28 +40,28 @@ public class PivotParserTest {
         assertEquals(new AddCaseCommand(investigationCase), command);
     }
 
-    @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
-    }
+    //    @Test
+    //    public void parseCommand_clear() throws Exception {
+    //        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+    //        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    //    }
 
     @Test
     public void parseCommand_delete_case() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + TYPE_CASE + " "
-                        + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCaseCommand(INDEX_FIRST_PERSON), command);
+                        + FIRST_INDEX.getOneBased());
+        assertEquals(new DeleteCaseCommand(FIRST_INDEX), command);
     }
 
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Case investigationCase = new CaseBuilder().build();
-        EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder(investigationCase).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + CaseUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
-    }
+    //    @Test
+    //    public void parseCommand_edit() throws Exception {
+    //        Case investigationCase = new CaseBuilder().build();
+    //        EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder(investigationCase).build();
+    //        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+    //                + INDEX_FIRST_PERSON.getOneBased() + " " + CaseUtil.getEditCaseDescriptorDetails(descriptor));
+    //        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    //    }
 
     @Test
     public void parseCommand_exit() throws Exception {
@@ -78,7 +74,7 @@ public class PivotParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new DetailsContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

@@ -1,5 +1,6 @@
 package seedu.pivot.model.investigationcase;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
@@ -9,7 +10,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Witness;
 import seedu.pivot.model.tag.Tag;
 
 /**
@@ -18,10 +23,19 @@ import seedu.pivot.model.tag.Tag;
  */
 public class Case {
 
+    private static final String DESCRIPTION_HEADER = "Description: ";
+    private static final String STATUS_HEADER = "Status: ";
+    private static final String DOCUMENTS_HEADER = "Documents: ";
+    private static final String SUSPECTS_HEADER = "Suspects: ";
+    private static final String VICTIMS_HEADER = "Victims: ";
+    private static final String WITNESSES_HEADER = "Witnesses: ";
+    private static final String TAGS_HEADER = "Tags: ";
+
     // Identity fields
     private final Title title;
     private final Description description;
     private final Status status;
+    private final ArchiveStatus archiveStatus;
 
     // Data fields
     private final List<Suspect> suspects = new ArrayList<>();
@@ -33,9 +47,9 @@ public class Case {
     /**
      * Every field must be present and not null.
      */
-
     public Case(Title title, Description description, Status status, List<Document> documents,
-                List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
+                List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags,
+                ArchiveStatus archiveStatus) {
         requireAllNonNull(title, description, status, documents, suspects, victims, witnesses, tags);
         this.title = title;
         this.description = description;
@@ -45,14 +59,32 @@ public class Case {
         this.victims.addAll(victims);
         this.tags.addAll(tags);
         this.witnesses.addAll(witnesses);
+        this.archiveStatus = archiveStatus;
+    }
+
+    /**
+     * Creates a deep copy of a Case.
+     * @param toCopy Original case to be copied.
+     */
+    public Case(Case toCopy) {
+        requireNonNull(toCopy);
+        this.title = toCopy.getTitle();
+        this.description = toCopy.getDescription();
+        this.status = toCopy.getStatus();
+        this.documents.addAll(toCopy.getDocuments());
+        this.suspects.addAll(toCopy.getSuspects());
+        this.victims.addAll(toCopy.getVictims());
+        this.tags.addAll(toCopy.getTags());
+        this.witnesses.addAll(toCopy.getWitnesses());
+        this.archiveStatus = toCopy.getArchiveStatus();
     }
 
     public Title getTitle() {
-        return title;
+        return new Title(title.getAlphaNum());
     }
 
     public Description getDescription() {
-        return description;
+        return new Description(description.getDescription());
     }
 
     public Status getStatus() {
@@ -83,8 +115,12 @@ public class Case {
         return witnesses.stream().collect(Collectors.toList());
     }
 
+    public ArchiveStatus getArchiveStatus() {
+        return archiveStatus;
+    }
+
     /**
-     * Returns true if both cases of the same name have at least one other identity field that is the same.
+     * Returns true if both cases have the same title.
      * This defines a weaker notion of equality between two cases.
      */
     public boolean isSameCase(Case otherCase) {
@@ -93,8 +129,7 @@ public class Case {
         }
 
         return otherCase != null
-                && otherCase.getTitle().equals(getTitle())
-                && otherCase.getStatus().equals(getStatus());
+                && otherCase.getTitle().equals(getTitle());
     }
 
     /**
@@ -132,21 +167,51 @@ public class Case {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append(" Description: ")
-                .append(getDescription())
-                .append(" Status: ")
-                .append(getStatus())
-                .append(" Documents: ");
-        getDocuments().forEach(builder::append);
-        builder.append(" Suspects: ");
-        getSuspects().forEach(builder::append);
-        builder.append(" Victims: ");
-        getVictims().forEach(builder::append);
-        builder.append(" Witnesses: ");
-        getWitnesses().forEach(builder::append);
-        builder.append(" Tags: ");
-        getTags().forEach(builder::append);
+        builder.append(getTitle()).append("\n")
+                .append(DESCRIPTION_HEADER).append(getDescription()).append("\n")
+                .append(STATUS_HEADER).append(getStatus());
+
+        // Documents
+        if (!getDocuments().isEmpty()) {
+            builder.append("\n");
+            builder.append(DOCUMENTS_HEADER);
+        }
+        Stream<String> docs = getDocuments().stream().map(x -> x.getName().toString());
+        builder.append(docs.collect(Collectors.joining(", ")));
+
+        // Suspects
+        if (!getSuspects().isEmpty()) {
+            builder.append("\n");
+            builder.append(SUSPECTS_HEADER);
+        }
+        Stream<String> suspects = getSuspects().stream().map(x -> x.getName().toString());
+        builder.append(suspects.collect(Collectors.joining(", ")));
+
+        // Victims
+        if (!getVictims().isEmpty()) {
+            builder.append("\n");
+            builder.append(VICTIMS_HEADER);
+        }
+        Stream<String> victims = getVictims().stream().map(x -> x.getName().toString());
+        builder.append(victims.collect(Collectors.joining(", ")));
+
+        // Witnesses
+        if (!getWitnesses().isEmpty()) {
+            builder.append("\n");
+            builder.append(WITNESSES_HEADER);
+        }
+        Stream<String> witnesses = getWitnesses().stream().map(x -> x.getName().toString());
+        builder.append(witnesses.collect(Collectors.joining(", ")));
+
+        // Tags
+        if (!getTags().isEmpty()) {
+            builder.append("\n");
+            builder.append(TAGS_HEADER);
+        }
+        for (Tag tag : getTags()) {
+            builder.append(tag.tagName);
+        }
+
         return builder.toString();
     }
 

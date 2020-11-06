@@ -1,5 +1,10 @@
 package seedu.pivot.ui;
 
+import static seedu.pivot.logic.commands.Command.TYPE_DOC;
+import static seedu.pivot.logic.commands.Command.TYPE_SUSPECT;
+import static seedu.pivot.logic.commands.Command.TYPE_VICTIM;
+import static seedu.pivot.logic.commands.Command.TYPE_WITNESS;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -12,6 +17,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -24,8 +31,9 @@ import seedu.pivot.logic.Logic;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.parser.exceptions.ParseException;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.CasePerson;
+import seedu.pivot.model.investigationcase.caseperson.CasePerson;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -35,10 +43,6 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
     private static final String EMPTY = "";
-    private static final String HEADER_DOCUMENTS = "DOCUMENTS";
-    private static final String HEADER_SUSPECTS = "SUSPECTS";
-    private static final String HEADER_WITNESSES = "WITNESSES";
-    private static final String HEADER_VICTIMS = "VICTIMS";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -54,6 +58,8 @@ public class MainWindow extends UiPart<Stage> {
     private CasePersonListPanel witnessListPanel;
     private CasePersonListPanel victimListPanel;
     private SimpleObjectProperty<Index> indexSimpleObjectProperty;
+    private SimpleObjectProperty<String> tabSimpleObjectProperty;
+    private SimpleObjectProperty<ArchiveStatus> archiveStatusSimpleObjectProperty;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -94,18 +100,34 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane victimListPanelPlaceholder;
 
-    // Titles
     @FXML
-    private Label caseDocumentsTitle;
+    private TabPane caseTabPane;
 
     @FXML
-    private Label caseSuspectsTitle;
+    private Tab documentTab;
 
     @FXML
-    private Label caseWitnessesTitle;
+    private Tab suspectTab;
 
     @FXML
-    private Label caseVictimsTitle;
+    private Tab witnessTab;
+
+    @FXML
+    private Tab victimTab;
+
+    @FXML
+    private Label sectionLabel;
+
+    private final String homepage = "Home";
+    private final String archive = "Archive";
+    private final String casePanel = "Case Page";
+    private final String mainPanel = "Main Page";
+    private String currentPage = homepage;
+    private String currentPanel = mainPanel;
+
+    // For changing CSS
+    private final String darkThemeResource = getClass().getResource("/view/DarkTheme.css").toExternalForm();
+    private final String blueThemeResource = getClass().getResource("/view/BlueTheme.css").toExternalForm();
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -129,7 +151,46 @@ public class MainWindow extends UiPart<Stage> {
             @Override
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
                 updateCaseInformationPanel((Index) newValue);
+                currentPanel = newValue == null ? mainPanel : casePanel;
+                updateSectionLabel(EMPTY);
             }
+        });
+
+        tabSimpleObjectProperty = UiStateManager.getTabState();
+        UiStateManager.getTabState().addListener(new ChangeListener<Object>() {
+            @Override
+            public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+                setTabSelected((String) newValue);
+            }
+        });
+
+        archiveStatusSimpleObjectProperty = UiStateManager.getCurrentSection();
+        UiStateManager.getCurrentSection().addListener(new ChangeListener<Object>() {
+            @Override
+            public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+                if (newValue != null) {
+                    boolean isDefaultPage = newValue.equals(ArchiveStatus.DEFAULT);
+                    currentPage = isDefaultPage ? homepage : archive;
+
+                    if (isDefaultPage) {
+                        primaryStage.getScene().getStylesheets().remove(darkThemeResource);
+                        if (!primaryStage.getScene().getStylesheets().contains(blueThemeResource)) {
+                            primaryStage.getScene().getStylesheets().add(blueThemeResource);
+                        }
+                    } else {
+                        primaryStage.getScene().getStylesheets().remove(blueThemeResource);
+                        if (!primaryStage.getScene().getStylesheets().contains(darkThemeResource)) {
+                            primaryStage.getScene().getStylesheets().add(darkThemeResource);
+                        }
+                    }
+                }
+                updateSectionLabel(EMPTY);
+            }
+        });
+
+        caseTabPane.widthProperty().addListener((observable, oldValue, newValue) -> {
+            caseTabPane.setTabMinWidth(caseTabPane.getWidth() / 4 - 25);
+            caseTabPane.setTabMaxWidth(caseTabPane.getWidth() / 4 - 25);
         });
     }
 
@@ -175,6 +236,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        logger.info("MainWindow: Setup Placeholders");
         personListPanel = new PersonListPanel(logic.getFilteredCaseList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -187,6 +249,10 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        // For Section Label
+        String firstInit = "Welcome to PIVOT. ";
+        updateSectionLabel(firstInit);
+
         updateCaseInformationPanel(indexSimpleObjectProperty.get());
     }
 
@@ -195,24 +261,23 @@ public class MainWindow extends UiPart<Stage> {
      * @param index
      */
     private void updateCaseInformationPanel(Index index) {
+        logger.info("MainWindow: Updating Case Information Panel");
         setMainWindowPanel(index);
     }
 
     private void setMainWindowPanel(Index index) {
+        logger.info("Updating Case Information Panel with index:" + index);
         Case investigationCase = null;
+        caseTabPane.setVisible(index != null);
 
         if (index != null) {
+            logger.info("Updating Case Information Panel with Case");
             investigationCase = logic.getFilteredCaseList().get(indexSimpleObjectProperty.get().getZeroBased());
         }
 
         caseTitle.setText(investigationCase == null ? EMPTY : investigationCase.getTitle().toString());
         caseDescription.setText(investigationCase == null ? EMPTY : investigationCase.getDescription().toString());
         caseStatus.setText(investigationCase == null ? EMPTY : investigationCase.getStatus().toString());
-
-        caseDocumentsTitle.setText(investigationCase == null ? EMPTY : HEADER_DOCUMENTS);
-        caseSuspectsTitle.setText(investigationCase == null ? EMPTY : HEADER_SUSPECTS);
-        caseWitnessesTitle.setText(investigationCase == null ? EMPTY : HEADER_WITNESSES);
-        caseVictimsTitle.setText(investigationCase == null ? EMPTY : HEADER_VICTIMS);
 
         documentListPanel = new DocumentListPanel(FXCollections.observableList(
                 investigationCase == null ? new ArrayList<>() : investigationCase.getDocuments()));
@@ -234,6 +299,36 @@ public class MainWindow extends UiPart<Stage> {
         victimListPanelPlaceholder.getChildren().add(victimListPanel.getRoot());
     }
 
+    private void setTabSelected(String tabType) {
+        if (tabType == null) {
+            caseTabPane.getSelectionModel().clearSelection();
+        } else {
+            switch (tabType) {
+            case TYPE_DOC:
+                caseTabPane.getSelectionModel().select(documentTab);
+                break;
+            case TYPE_SUSPECT:
+                caseTabPane.getSelectionModel().select(suspectTab);
+                break;
+            case TYPE_VICTIM:
+                caseTabPane.getSelectionModel().select(victimTab);
+                break;
+            case TYPE_WITNESS:
+                caseTabPane.getSelectionModel().select(witnessTab);
+                break;
+            default:
+                caseTabPane.getSelectionModel().clearSelection();
+            }
+        }
+
+    }
+
+    private void updateSectionLabel(String firstInit) {
+        String divider = " - ";
+        String preamble = "You are now at ";
+        sectionLabel.setText(firstInit + preamble + currentPage + divider + currentPanel);
+    }
+
     /**
      * Sets the default size based on {@code guiSettings}.
      */
@@ -251,6 +346,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
+        logger.info("MainWindow: Handling Help");
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
@@ -267,6 +363,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
+        logger.info("MainWindow: Handling Exit");
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);

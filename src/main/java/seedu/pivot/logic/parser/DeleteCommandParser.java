@@ -1,9 +1,10 @@
 package seedu.pivot.logic.parser;
 
-import static seedu.pivot.commons.core.Messages.MESSAGE_INCORRECT_CASE_PAGE;
-import static seedu.pivot.commons.core.Messages.MESSAGE_INCORRECT_MAIN_PAGE;
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INCORRECT_CASE_PAGE;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INCORRECT_MAIN_PAGE;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.commands.Command.TYPE_CASE;
+import static seedu.pivot.logic.commands.Command.TYPE_DESC;
 import static seedu.pivot.logic.commands.Command.TYPE_DOC;
 import static seedu.pivot.logic.commands.Command.TYPE_SUSPECT;
 import static seedu.pivot.logic.commands.Command.TYPE_VICTIM;
@@ -15,6 +16,7 @@ import java.util.regex.Matcher;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.casecommands.DeleteCaseCommand;
+import seedu.pivot.logic.commands.casecommands.descriptioncommands.DeleteDescriptionCommand;
 import seedu.pivot.logic.commands.documentcommands.DeleteDocumentCommand;
 import seedu.pivot.logic.commands.suspectcommands.DeleteSuspectCommand;
 import seedu.pivot.logic.commands.victimcommands.DeleteVictimCommand;
@@ -43,6 +45,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return parseCasePage(matcher);
         }
 
+        // Might be Dead code, above if conditions are binary
         throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
     }
 
@@ -88,7 +91,13 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteCommand.MESSAGE_USAGE_CASE_PAGE));
         }
+
+        Index caseIndex = StateManager.getState();
+
         final String deleteType = matcher.group("commandWord");
+        if (deleteType.equals(TYPE_DESC)) {
+            return new DeleteDescriptionCommand(caseIndex);
+        }
         final String indexString = matcher.group("arguments");
 
         if (deleteType.equals(TYPE_CASE)) {
@@ -96,7 +105,6 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
 
         Index index = ParserUtil.getParsedIndex(indexString, DeleteCommand.MESSAGE_USAGE_CASE_PAGE);
-        Index caseIndex = StateManager.getState();
 
         switch (deleteType) {
         case TYPE_DOC:

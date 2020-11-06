@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,7 +14,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.logic.parser.exceptions.ParseException;
-import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.Title;
 import seedu.pivot.model.tag.Tag;
 
@@ -42,10 +41,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(FIRST_INDEX, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(FIRST_INDEX, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -66,9 +65,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseTitle_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseTitle(nameWithWhitespace));
+        String titleWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        Title expectedTitle = new Title(VALID_NAME);
+        assertEquals(expectedTitle, ParserUtil.parseTitle(titleWithWhitespace));
     }
 
     @Test

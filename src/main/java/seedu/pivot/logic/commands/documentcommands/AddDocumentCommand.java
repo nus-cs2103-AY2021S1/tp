@@ -1,22 +1,28 @@
 package seedu.pivot.logic.commands.documentcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_DOCUMENT;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_REFERENCE;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Document;
 
-public class AddDocumentCommand extends AddCommand {
+public class AddDocumentCommand extends AddCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DOC
             + ": Adds a document to the opened case.\n"
@@ -27,8 +33,10 @@ public class AddDocumentCommand extends AddCommand {
             + PREFIX_NAME + "Location file "
             + PREFIX_REFERENCE + "test1.txt";
 
-    private static final String MESSAGE_ADD_DOCUMENT_SUCCESS = "New document added: %1$s";
-    private static final String MESSAGE_DUPLICATE_DOCUMENT = "This document already exists in the case.";
+    public static final String MESSAGE_ADD_DOCUMENT_SUCCESS = "New document added: %1$s";
+    private static final Page pageType = Page.CASE;
+    private static final Logger logger = LogsCenter.getLogger(AddDocumentCommand.class);
+
     private final Index index;
     private final Document doc;
 
@@ -48,13 +56,14 @@ public class AddDocumentCommand extends AddCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Adding document to current case...");
         requireNonNull(model);
 
         List<Case> lastShownList = model.getFilteredCaseList();
 
         //check for valid index
-        assert(StateManager.atCasePage()) : "Program should be at case page";
-        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : ASSERT_CASE_PAGE;
+        assert(index.getZeroBased() < lastShownList.size()) : ASSERT_VALID_INDEX;
 
         //get current case in state
         Case stateCase = lastShownList.get(index.getZeroBased());
@@ -62,6 +71,7 @@ public class AddDocumentCommand extends AddCommand {
 
         //check for duplicate
         if (updatedDocuments.contains(this.doc)) {
+            logger.warning("Failed to add document: Tried to add a document that exists in PIVOT");
             throw new CommandException(MESSAGE_DUPLICATE_DOCUMENT);
         }
 
@@ -71,10 +81,10 @@ public class AddDocumentCommand extends AddCommand {
         //create new updated case
         Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(), stateCase.getStatus(),
                 updatedDocuments, stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
-                stateCase.getTags());
+                stateCase.getTags(), stateCase.getArchiveStatus());
 
         model.setCase(stateCase, updatedCase);
-        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
+        model.commitPivot(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc), this);
 
         return new CommandResult(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc));
     }
@@ -85,5 +95,10 @@ public class AddDocumentCommand extends AddCommand {
                 || (other instanceof AddDocumentCommand // instanceof handles nulls
                 && doc.equals(((AddDocumentCommand) other).doc)
                 && index.equals(((AddDocumentCommand) other).index));
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }

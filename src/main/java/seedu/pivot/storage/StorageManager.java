@@ -24,11 +24,12 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code PivotStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(PivotStorage pivotStorage, UserPrefsStorage userPrefsStorage) throws IOException {
+    public StorageManager(PivotStorage pivotStorage, UserPrefsStorage userPrefsStorage,
+                          ReferenceStorage referenceStorage) throws IOException {
         super();
         this.pivotStorage = pivotStorage;
         this.userPrefsStorage = userPrefsStorage;
-        this.referenceStorage = new ReferenceStorage();
+        this.referenceStorage = referenceStorage;
     }
 
     // ================ UserPrefs methods ==============================

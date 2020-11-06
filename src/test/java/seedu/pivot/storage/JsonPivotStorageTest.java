@@ -3,9 +3,9 @@ package seedu.pivot.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalCases.ALICE;
-import static seedu.pivot.testutil.TypicalCases.HOON;
-import static seedu.pivot.testutil.TypicalCases.IDA;
+import static seedu.pivot.testutil.TypicalCases.ALICE_PAULINE_ASSAULT;
+import static seedu.pivot.testutil.TypicalCases.HOON_MEIER_ARSON;
+import static seedu.pivot.testutil.TypicalCases.IDA_MUELLER_STABBING;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 
 import java.io.IOException;
@@ -72,14 +72,14 @@ public class JsonPivotStorageTest {
         assertEquals(original, new Pivot(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addCase(HOON);
-        original.removeCase(ALICE);
+        original.addCase(HOON_MEIER_ARSON);
+        original.removeCase(ALICE_PAULINE_ASSAULT);
         jsonPivotStorage.savePivot(original, filePath);
         readBack = jsonPivotStorage.readPivot(filePath).get();
         assertEquals(original, new Pivot(readBack));
 
         // Save and read without specifying file path
-        original.addCase(IDA);
+        original.addCase(IDA_MUELLER_STABBING);
         jsonPivotStorage.savePivot(original); // file path not specified
         readBack = jsonPivotStorage.readPivot().get(); // file path not specified
         assertEquals(original, new Pivot(readBack));

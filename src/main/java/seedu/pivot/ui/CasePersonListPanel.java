@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.pivot.commons.core.LogsCenter;
-import seedu.pivot.model.investigationcase.CasePerson;
+import seedu.pivot.model.investigationcase.caseperson.CasePerson;
 
 public class CasePersonListPanel extends UiPart<Region> {
     private static final String FXML = "CasePersonListPanel.fxml";
@@ -24,6 +24,7 @@ public class CasePersonListPanel extends UiPart<Region> {
         super(FXML);
         casePersonListView.setItems(casePersonList);
         casePersonListView.setCellFactory(listView -> new CasePersonViewCell());
+
     }
 
     /**
