@@ -14,7 +14,7 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String AC_SUGGESTION = COMMAND_WORD + " <keywords>";
+    public static final String AC_SUGGESTION = COMMAND_WORD + " <keywords in logs>";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all logs that contain all of "
             + "the specified keywords (case-insensitive) anywhere in the log and displays them.\n"

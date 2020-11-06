@@ -145,7 +145,7 @@ Success:
 
 Finds all logs that contain ALL keywords (case-insensitive) anywhere in the log.
 
-Format: `find <keywords>`
+Format: `find <keywords in logs>`
 
 ![Ui](images/screenshots/v1.3find.png)
 
@@ -240,5 +240,5 @@ Exercise log data are saved in the hard disk automatically after any command tha
 | **Add exercise**   | `addex e/<exercise name> c/<calories per rep>` | e.g. `addex e/Lunges c/5` |
 | **Edit exercise**   | `editex <index> [e/exercise name] [c/calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6` |
 | **Delete exercise**   | `deleteex <index>` | e.g. `deleteex 1` |
-| **Find**   | `find <keywords>`                         | e.g.`find pushups`                   |
+| **Find**   | `find <keywords in logs>`                         | e.g.`find pushups`                   |
 | **Exit**   | `exit`                                    |
