@@ -116,6 +116,33 @@ public class TypicalProjects {
         .withRepoUrl("https://github.com/e/e.git")
         .withProjectDescription("save elves from persecution").build();
 
+    public static final Supplier<Project> FANS_S = () -> new ProjectBuilder().withProjectName("Fans")
+        .withDeadline("21-03-2020 00:00:00")
+        .withRepoUrl("https://github.com/f/f.git")
+        .withProjectDescription("an app only for fans").build();
+
+    public static final Supplier<Project> GERRY_S = () -> new ProjectBuilder().withProjectName("Gerry Mander")
+        .withDeadline("21-03-2020 00:00:00")
+        .withRepoUrl("https://github.com/g/g.git")
+        .withProjectDescription("Call us to rig any election").build();
+
+    public static final Supplier<Project> HOON_S = () -> new ProjectBuilder().withProjectName("Hoon Meier")
+        .withDeadline("21-03-2020 00:00:00").withRepoUrl("https://github.com/h/h.git")
+        .withProjectDescription("Made with love and git").build();
+
+    public static final Supplier<Project> IDA_S = () -> new ProjectBuilder().withProjectName("Ida Mueller")
+        .withDeadline("21-03-2020 00:00:00").withRepoUrl(VALID_REPOURL_B)
+        .withProjectDescription("german quality software").build();
+
+    public static final Supplier<Project> AI_S = () -> new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_A)
+        .withDeadline(VALID_DEADLINE_A).withRepoUrl(VALID_REPOURL_A).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_A)
+        .withTags(VALID_PROJECT_TAG_B).withTasks(SampleDataUtil.getTask5(), SampleDataUtil.getTask6()).build();
+
+    public static final Supplier<Project> BOT_S = () -> new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_B)
+        .withDeadline(VALID_DEADLINE_B).withRepoUrl(VALID_REPOURL_B).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_B)
+        .withTags(VALID_PROJECT_TAG_A, VALID_PROJECT_TAG_B).withTasks(SampleDataUtil.getTask5()).build();
 
     private TypicalProjects() {
     } // prevents instantiation
@@ -131,15 +158,15 @@ public class TypicalProjects {
         return ab;
     }
 
-//    public static List<Project> getTypicalProjects() {
-//        return new ArrayList<>(ProjectBuilder.makeCopies(Arrays.asList(APEAKAPP, BRICK, CARACTIVE,
-//            DAYUM, ELFIE, FANS, GERRY)));
-//    }
-
     public static List<Project> getTypicalProjects() {
-        return new ArrayList<>(Arrays.asList(APEAKAPP_S.get(), BRICK_S.get(), CARACTIVE_S.get(), DAYUM_S.get(),
-            ELFIE_S.get()));
+        return new ArrayList<>(ProjectBuilder.makeCopies(Arrays.asList(APEAKAPP, BRICK, CARACTIVE,
+            DAYUM, ELFIE, FANS, GERRY)));
     }
+
+//    public static List<Project> getTypicalProjects() {
+//        return new ArrayList<>(Arrays.asList(APEAKAPP_S.get(), BRICK_S.get(), CARACTIVE_S.get(), DAYUM_S.get(),
+//            ELFIE_S.get(), FANS_S.get(), GERRY_S.get(), HOON_S.get(), IDA_S.get(), AI_S.get(), BOT_S.get() ));
+//    }
 
 
 }
