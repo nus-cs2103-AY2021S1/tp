@@ -177,7 +177,13 @@ Example:
 
 Format: `list [NUMBER_OF_DAYS]`
 
-You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date and time and `NUMBER_OF_DAYS` later.
+You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date and time and `NUMBER_OF_DAYS` later. The index must be a number from 1 to 50.
+
+<div markdown="span" class="alert alert-success">
+
+**:bulb: Tip:**
+You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
+</div>
 
 Here is an example with steps for you to follow: 
 
@@ -193,12 +199,6 @@ Here is an example with steps for you to follow:
 ![ListCommand2](images/ListCommandDiagram2.png)
 *Figure X: The displayed message and the updated list*
 
-<div markdown="span" class="alert alert-success">
-
-**:bulb: Tip:**
-You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
-</div>
-
 More examples: 
 - `list`
 - `list 7`
@@ -212,9 +212,15 @@ More examples:
 
 ### Finding assignments : `find`
 
-Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 
 You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
+
+<div markdown="span" class="alert alert-success">
+
+**:bulb: Tip:**
+You can find assignments with multiple keywords of the same type to widen your search!
+</div>
 
 This is the table of prefixes used:
 
@@ -230,7 +236,7 @@ This is the table of prefixes used:
  **:clipboard: Pointers to note for prefixes and keywords:**<br>
 * Date keywords must be in the format dd-MM-yyyy and time keywords must be in the format HHmm.
 * For prefix `d/`, date keywords are irrespective of time and time keywords are irrespective of date. For example, `find d/1300 25-11-2020` finds all assignments due on 25-11-2020, at any time of the day and all assignments due at 1300, on any date.
-* For prefixes `n/`,`mod/` and `p/`, keywords are case-insensitive.
+* Keywords used with prefixes `n/`,`mod/` and `p/` are case-insensitive.
 </div>
 
 Here is an example with steps to follow:
@@ -247,6 +253,7 @@ Here is an example with steps to follow:
 ![FindCommand2](images/FindCommandDiagram2.png)
 *Figure X: The displayed message and the updated list*
 
+
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
@@ -256,9 +263,15 @@ Here is an example with steps to follow:
 
 ### Editing your assignment : `edit`
 
-Format: `edit INDEX PREFIX/EDITTED_FIELD`
+Format: `edit INDEX PREFIX/EDITTED_FIELD [MORE_PREFIX/EDITTED_FIELD]`
 
 You can specify an assignment's index to edit its fields. These fields are the name, module code and deadline of assignment.
+
+<div markdown="span" class="alert alert-success">
+
+**:bulb: Tip:**
+You can edit more than one field of an assignment at a time! For example, you can key in `edit 1 n/Tutorial mod/CS2103T` to edit both the name and module code in a single command.
+</div>
 
 This is the table of prefixes used:
 
@@ -289,8 +302,8 @@ Here is an example with steps to follow:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
+* One `INDEX` and at least one `PREFIX/EDITTED_FIELD` must be present. For example, `edit` will not work.
 * `DATE_OR_TIME_OF_ASSIGNMENT` has date in the format **dd-MM-yyyy** and time in the format **HHmm** (24 hour).
-* You can edit more than one field of an assignment at a time. For example, you can key in `edit 1 n/Tutorial mod/CS2103T` to edit both the name and module code in a single command.
 </div>
 
 ### Setting reminders for assignments : `remind`
