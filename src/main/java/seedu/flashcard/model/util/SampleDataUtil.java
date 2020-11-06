@@ -26,7 +26,7 @@ public class SampleDataUtil {
                     getTagSet(), new Diagram("")),
 
             new Flashcard(new Question("What is a revision control software?"),
-                    new Answer("It is the software tool that automate the process of Revision Control"),
+                    new Answer("It is the software tool that automates the process of Revision Control"),
                     new Category("Revision history"), new Note(""), new Rating("2"),
                     getTagSet("preloaded"), new Diagram("")),
 
@@ -57,7 +57,7 @@ public class SampleDataUtil {
                     new Category("Use Cases"), new Note(""), new Rating("2"),
                     getTagSet(), new Diagram("")),
 
-            new Flashcard(new Question("Can a use case can include another use case? "
+            new Flashcard(new Question("Can a use case include another use case? "
                     + "If so, how is it represented?"),
                     new Answer("A use case can include another use case. "
                             + "Underlined text is commonly used to show an inclusion of a use case."),
@@ -73,8 +73,8 @@ public class SampleDataUtil {
                     new Category("Defensive programming"), new Note(""), new Rating("1"),
                     getTagSet(), new Diagram("")),
 
-            new Flashcard(new Question("A set of 20 test cases that finds 8 defects is more effective than another s"
-                    + "et of 40 test cases that finds the same 8 defects.T/F?"),
+            new Flashcard(new Question("A set of 20 test cases that finds 8 defects is more effective than another "
+                    + "set of 40 test cases that finds the same 8 defects.T/F?"),
                     new Answer("F. It is more efficient rather than effective."),
                     new Category("Test Cases"), new Note(""), new Rating("1"),
                     getTagSet(), new Diagram("")),
