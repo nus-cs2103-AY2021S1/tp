@@ -33,24 +33,20 @@ public class AddTaskCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TASK_A_NAME + TASK_A_DEADLINE
-                + TASK_A_PROGRESS, new AddTaskCommand(
-                expectedTask));
+                + TASK_A_PROGRESS, new AddTaskCommand(expectedTask));
 
         // multiple task names - last name accepted
         assertParseSuccess(parser, TASK_B_NAME + TASK_A_NAME + TASK_A_DEADLINE
-                + TASK_A_PROGRESS, new AddTaskCommand(
-                expectedTask));
+                + TASK_A_PROGRESS, new AddTaskCommand(expectedTask));
 
 
         // multiple deadlines - last deadline accepted
         assertParseSuccess(parser, TASK_A_NAME + TASK_B_DEADLINE + TASK_A_DEADLINE
-                + TASK_A_PROGRESS, new AddTaskCommand(
-                expectedTask));
+                + TASK_A_PROGRESS, new AddTaskCommand(expectedTask));
 
-        // multiple progress - last repoUrl accepted
-        assertParseSuccess(parser, TASK_A_NAME + TASK_A_DEADLINE
-                + TASK_B_PROGRESS + TASK_A_PROGRESS, new AddTaskCommand(
-                expectedTask));
+        // multiple progress - last progress accepted
+        assertParseSuccess(parser, TASK_A_NAME + TASK_A_DEADLINE + TASK_B_PROGRESS
+                + TASK_A_PROGRESS, new AddTaskCommand(expectedTask));
     }
 
     @Test
@@ -58,24 +54,20 @@ public class AddTaskCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE);
         // missing name prefix
         assertParseFailure(parser, SampleDataUtil.getValidTask().get(0) + TASK_A_DEADLINE
-                        + TASK_A_PROGRESS,
-                expectedMessage);
+                        + TASK_A_PROGRESS, expectedMessage);
 
         // missing deadline prefix
         assertParseFailure(parser, TASK_A_NAME + SampleDataUtil.getValidTask().get(2)
-                        + TASK_A_PROGRESS,
-                expectedMessage);
+                        + TASK_A_PROGRESS, expectedMessage);
 
-        // missing email prefix
+        // missing progress prefix
         assertParseFailure(parser, TASK_A_NAME + TASK_A_DEADLINE
-                        + SampleDataUtil.getValidTask().get(3),
-                expectedMessage);
+                        + SampleDataUtil.getValidTask().get(3), expectedMessage);
 
 
         // all prefixes missing
         assertParseFailure(parser, SampleDataUtil.getValidTask().get(0) + SampleDataUtil.getValidTask().get(2)
-                        + SampleDataUtil.getValidTask().get(3),
-                expectedMessage);
+                        + SampleDataUtil.getValidTask().get(3), expectedMessage);
     }
 
     @Test
