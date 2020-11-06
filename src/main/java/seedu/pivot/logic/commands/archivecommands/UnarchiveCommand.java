@@ -71,7 +71,6 @@ public class UnarchiveCommand extends Command implements Undoable {
 
         model.deleteCase(caseToUnarchive);
         model.addCase(updatedCase);
-        //model.setCase(caseToUnarchive, updatedCase);
 
         model.updateFilteredCaseList(Model.PREDICATE_SHOW_ARCHIVED_CASES);
         model.commitPivot(String.format(MESSAGE_UNARCHIVE_CASE_SUCCESS, updatedCase), this);
