@@ -131,7 +131,7 @@ public class SubmitCommandTest {
                 Assertions.assertTrue(false);
             }
         }
-        expectedMessage.append(String.format("Estimated total: $%.2f\n", calculatedTotal));
+        expectedMessage.append("\n" + String.format("Estimated total: $%.2f\n", calculatedTotal));
 
         assertCommandSuccess(new SubmitCommand(), model, storage, expectedMessage.toString(), expectedModel);
     }

@@ -42,7 +42,8 @@ public class LoadPresetCommand extends PresetCommand {
 
             int currentIndex = model.getVendorIndex();
             if (currentIndex >= allLists.size()) {
-                throw new CommandException(FILE_OPS_ERROR_MESSAGE);
+                throw new CommandException(String.format(Messages.MESSAGE_PRESET_NOT_FOUND,
+                        presetName));
             }
             if (displayAllPresets) {
                 List<Preset> vendorPresets = allLists.get(currentIndex);
