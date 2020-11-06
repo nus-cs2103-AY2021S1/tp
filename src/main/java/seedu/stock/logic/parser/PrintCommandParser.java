@@ -14,6 +14,10 @@ import seedu.stock.logic.parser.exceptions.ParseException;
  */
 public class PrintCommandParser implements Parser<PrintCommand> {
 
+    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+
+    private static final Prefix[] validPrefixesForPrint = { PREFIX_FILE_NAME};
+
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public static final String INVALID_PRINT_ARGUMENT = "File name is invalid. File name should only contain"
@@ -26,8 +30,12 @@ public class PrintCommandParser implements Parser<PrintCommand> {
      */
     public PrintCommand parse(String args) throws ParseException {
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_FILE_NAME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
+
+        // Invalid prefixes used in Print command
+        if (ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForPrint)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrintCommand.MESSAGE_USAGE));
+        }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_FILE_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
