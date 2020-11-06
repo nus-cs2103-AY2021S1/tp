@@ -97,6 +97,10 @@ title: Developer Guide
     - [6.1 Launch and Shutdown](#61-launch-and-shutdown)
     - [6.2 Deleting a Recipe](#62-deleting-a-recipe)
     - [6.3 Saving Data](#63-saving-data)
+7. [Appendix: Model Component](#7-appendix-model-component)
+    - [7.1 Recipe](#71-recipe)
+    - [7.2 Ingredient](#72-ingredient)
+    - [7.3 Consumption](#73-consumption)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -208,6 +212,13 @@ The `UI` component,
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The more details of the Recipe, Ingredient, Consumption class diagrams
+ is attached at the [back](#7-appendix-model-component)
+
+</div>
+
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
@@ -272,7 +283,9 @@ API call:
 Some term in the sequence diagram above has changed to a common substitutable term:<br>
 
 * AddCommandParser : `AddRecipeCommandParser` or `AddIngredientCommandParser`
+
 * info: `n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy` or `i/tomato`
+
 * add(type): `addRecipe(type)` or `addIngredient(type)`
 
 * type: `recipe` or `ingredient`
@@ -374,9 +387,13 @@ The following sequence diagram shows how list operation works when `execute(reci
 Some term in the sequence diagram above has changed to a common substitutable term:
 
 * userInput: `recipes`, `fridge` or `calories`
+
 * ListCommand: `ListRecipeCommand`, `ListIngredientCommand` or `ListConusmptionCommand`
+
 * getFilteredList(): `getFilteredRecipeList()`, `getFilteredIngredientList()` or `getFilteredConsumptionList()`
+
 * Type: `Recipe`, `Ingredient` or `Consumption`
+
 </div>
 
 Given below is an example usage scenario and how the mechanism behaves:
@@ -421,14 +438,20 @@ The following sequence diagram shows how delete operation works when `execute(de
 
 ![DeleteSequence](images/implementation/DeleteSequence.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note** 
 
 Some term in the sequence diagram above has changed to a common substitutable term:
+
 * delete: `deleteR`, `deleteF` or `deleteC`
+
 * DeleteCommand: `DeleteRecipeCommand`, `DeleteIngredientCommand` or `DeleteConusmptionCommand`
+
 * DeleteCommandParser: `DeleteRecipeCommandParser`, `DeleteIngredientCommandParser` or `DeleteConusmptionCommandParser`
+
 * deleteType(1): `deleteRecipe(1)`, `deleteIngredient(1)` or `deleteConsumption(1)`
+
 * remove(key): `removeRecipe(key)`, `removeIngredient(key)`, `removeConsumption(key)`
 </div>
 
@@ -466,14 +489,20 @@ The following sequence diagram shows how edit operation works when `execute("edi
 
 ![EditSequence](images/implementation/EditSequence.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note** 
+
 Some term in the sequence diagram above has changed to a common substitutable term:
 
 * edit: `editR`or `editF`
+
 * EditCommand: `EditRecipeCommand` or `EditIngredientCommand`
+
 * EditCommandParser: `EditRecipeCommandParser` or `EditIngredientCommandParser`
+
 * updateFilteredList(predicate): `updateFilteredRecipeList(predicate)` or `updateFilteredIngredientList(predicate)`
+
 * set(old, new): `setRecipe(oldRecipe, new Recipe)` or `setIngredient(oldIngredient, newIngredient)`
 </div>
 
@@ -539,13 +568,18 @@ Command and Parser make use of Substitutability:
 The following sequence diagram shows how get edit operation works when `execute(editR 1)` or `execute(editF 1)` API call:
 
 ![GetEditSequence](images/implementation/GetEditSequence.png)
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note** 
 
 Some terms in the sequence diagram above has changed to a common substitutable term:
+
 * delete: `editR` or `editF`
+
 * GetEditCommand: `GetEditRecipeCommand` or `GetEditIngredientCommand`
+
 * GetEditCommandParser: `GetEditRecipeCommandParser` or `GetEditIngredientCommandParser`
+
 * commandType: `recipeCommand` or `ingredientCommand`
 </div>
 
@@ -607,12 +641,16 @@ The following sequence diagram shows how search operation works when `execute("s
 
 ![SearchSequence](images/implementation/SearchSequence.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note** 
 
 Some term in the sequence diagram above has changed to a common substitutable term:
+
 * search: `searchR` or `searchF`
+
 * info: `n/burger` or `avocado`
+
 * updateFilteredList(predicate): `updateFilteredRecipeList(predicate)` or `updateFilteredIngredientList(predicate)`
 </div>
 
@@ -681,12 +719,16 @@ The following sequence diagram shows how clear operation works when `execute(cle
 
 ![ClearSequenceDiagram](images/implementation/ClearSequence.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note** 
+
 Some term in the sequence diagram above has changed to a common substitutable term:
 
 * clear: `clearR`, `clearF` or `clearC`
+
 * ClearCommand: `ClearRecipeCommand`, `ClearIngredientCommand` or `ClearConusmptionCommand`
+
 * clearType(): `clearRecipe()`, `clearIngredient()` or `clearConsumption()`
 </div>
 
@@ -1105,6 +1147,24 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
   1. Wishful Shrinking shows all valid commands.
 
      Use case ends.
+**Use case: Select a recipe in the recipe list**
+
+**MSS**
+
+  1. User requests to view a single recipe.
+  1. Wishful Shrinking opens a drawer that contains only the requested recipe.
+  1. User requests to close the drawer.
+  1. Wishful Shrinking closes the drawer.
+
+     Use case ends.
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. Wishful Shrinking shows an error message.
+
+      Use case ends.
+
 
 *{More to be added}*
 
@@ -1189,4 +1249,14 @@ testers are expected to do more *exploratory* testing.
    1. Test case: delete WishfulShrinking.json data file.
       Expected: If WishfulShrinking.json file cannot be found, the app will create the data file populated with
        sample recipes.
- 
+
+## 7. **Appendix: *Model Component*** <a id="7-model-component"></a>
+
+### 7.1 Recipe <a id="71-recipe"></a>
+![Recipe in Model Component](images/ModelClass_Recipe.png)
+
+### 7.2 Ingredient <a id="72-ingredient"></a>
+![Ingredient in Model Component](images/ModelClass_Ingredient.png)
+
+### 7.3 Consumption <a id="72-consumption"></a>
+![Consumption in Model Component](images/ModelClass_Consumption.png)
