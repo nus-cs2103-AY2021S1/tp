@@ -304,7 +304,7 @@ This feature allows the user to find specific existing entries using a given key
   
 #### Implementation
 
-The proposed Find entries feature is facilitated by `FindCommand`. It extends `Command` and 
+The Find entries feature is facilitated by `FindCommand`. It extends `Command` and 
 is identified by `CommonCentsParser` and `FindCommandParser`. The FindCommand interacts 
 with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
 operations: 
@@ -340,10 +340,6 @@ such as `CommandResult` and `Storage` are left out of the sequence diagram as th
 of the find entries command.
 </div>
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![FindActivityDiagram](images/FindActivityDiagram.png)
-
 #### Design consideration
 Explanation why a certain design is chosen.
 
@@ -353,7 +349,7 @@ Explanation why a certain design is chosen.
         * Easy to implement as the arguments can be tokenized in the event of inputs with multiple arguments.
         * Able to handle multiple arguments as input for Category (with prefix "c/") is optional.
     * Cons: Less convenience for the user. 
-     
+
 ### Get total revenue/expenses feature
 
 #### Implementation
@@ -440,11 +436,11 @@ Priorities are represented by the number of `*`
 | `* * *` | user | be able to exit the app |  |
 | `* * *` | user | be able to add my expense/revenues entries to the userboard |  |
 | `* * *` | user | be able to delete my expense/revenue entries from the userboard |  |
-| `* * *` | user | view my expenditure by category |                  |
+| `* * *` | user | view my expenditure by category |  |
 | `* * *` | new user | be able to view a help FAQ on the functionality of the program | navigate through the different aspects of it |
 | `* * *` | user | be able to save my tasks and load them when the app is re-opened |                                    |
 | `* * *` | user with many side businesses | keep my accounts and expenses separate | understand where my inflow and outflow of finances come from |
-| `* * *` | user | have my expenses/revenues be calculated on demand |                                                              |
+| `* * *` | user | have my expenses/revenues be calculated on demand |  |
 | `* * *` | clumsy user | be able to edit my expenses/revenues | fix wrongly keyed-in information |
 | `* * *` | user | be able to find specific expenses/revenues| check for its specific information |
 | `* * *` | user | be able to view my net profits on the userboard |  |
@@ -461,13 +457,13 @@ Priorities are represented by the number of `*`
 *{More to be added}*
 
 ### Use cases 
-This capture different scenarios of how a user will perform tasks while using _Common Cents_. 
+This captures different scenarios of how a user will perform tasks while using _Common Cents_. 
 (Update the number once all the use cases are done) (Comment)
 
 (For all use cases below, the **System** is the `CommonCents` and the **Actor** is the `user`, unless specified otherwise)
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC01 - Add an expense entry**
+**Use case: UC01 - Adding an expense**
 
 **MSS**
 
@@ -571,7 +567,125 @@ This capture different scenarios of how a user will perform tasks while using _C
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Add an account**
+**Use case: UC - Finding specific expenses**
+
+**MSS**
+
+1. User requests to find some specific expenses by giving keywords.
+2. Common Cents filters the expense list to show the required expenses and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1b. User does not input a keyword or a list of keywords.
+
+    * 1b1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1c. User inputs a keyword or a list of keywords that do not exist in any of the expenses' description.
+
+    * 1c1. Common Cents shows an empty expense list and displays a message to inform user that no expense is found.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+**Use case: UC - Finding specific revenues**
+
+**MSS**
+
+1. User requests to find some specific revenues by giving keywords.
+2. Common Cents filters the revenue list to show the required revenues and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1b. User does not input a keyword or a list of keywords.
+
+    * 1b1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1c. User inputs a keyword or a list of keywords that do not exist in any of the revenues' description.
+
+    * 1c1. Common Cents shows an empty revenue list and displays a message to inform user that no revenue is found.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+**Use case: UC - Finding specific entries (either expenses or revenues)**
+
+**MSS**
+
+1. User requests to find some specific entries by giving keywords.
+2. Common Cents filters both expense and revenue lists to show the required entries and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1b. User does not input a keyword or a list of keywords.
+
+    * 1b1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1c. User inputs a keyword or a list of keywords that do not exist in any of the entries' description.
+
+    * 1c1. Common Cents shows an empty expense and revenue lists and displays a message to inform user that no expense is found.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+**Use case: UC - Adding an account**
+
+**MSS**
+
+1. User request to add a new account.
+2. Common Cents adds account to account list and displays success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1b. The account to be added has the same name as an existing account in Common Cents.
+
+    * 1b1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+**Use case: UC - Adding an account**
 
 **MSS**
 
@@ -768,12 +882,12 @@ Basic instructions to test entry-level commands of _Common Cents_.
       Pie chart and total revenue value are updated.
       
    1. Test case: `add c/wronginput d/buying paint a/6.45 t/arts`<br>
-      Expected: No entry is added, Error details shown in the status message
+      Expected: No entry is added, Error details shown in the status message.
       
    1. Other incorrect add commands to try: `add `, `add c/expense d/ a/6.45`, `add c/revenue d/selling paintings a/x`(where x is not a valid monetary value).<br>
       Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
-1. Deleting a entry while all entries are being shown
+1. Deleting an entry while all entries are being shown
 
    1. Prerequisites: List all entries using the `list` command. Multiple entries in the list.
 
@@ -791,6 +905,51 @@ Basic instructions to test entry-level commands of _Common Cents_.
    1. Other incorrect delete commands to try: `delete 0 c/revenue`, `delete x` (where x is larger than the account list size or smaller than 1), `...`.<br>
       Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
+1. Finding all entries that have specific keywords
+
+   1. Prerequisites: Delete the existing `CommonCents.json` file in the `data` folder. Use the default data. 
+   
+   1. Test case: `find c/expense k/canvas`<br>
+        Expected: 
+        * Expense list is updated with only 1 expense that has the description `canvas` inside. 
+        * Revenue list remains the same. 
+        * Result display shows "Entries updated". 
+        * Pie chart and total expense value remain.
+    
+   1. Test case: `find c/revenue k/cases`<br>
+        Expected: 
+        * Expense list remains the same.
+        * Revenue list is updated with only 1 revenue that has the description containing `cases`.
+        * Result display shows "Entries updated". 
+        * Pie chart and total expense value remain. 
+
+   1. Test case: `find k/cases canvas`<br>
+        Expected: 
+        * Both lists are updated with 1 expense that has the description containing `canvas` and 
+        1 revenue that has the description containing `cases`.
+        * Result display shows "Entries updated". 
+        * Pie chart and total expense value remain. 
+         
+   1. Test case: `find c/expense k/nonexistent`<br>
+        Expected: 
+        * Expense list is updated with no entries inside.
+        * Revenue list remains the same. 
+        * Result display shows "No entries found". 
+        * Pie chart and total expense value remain. 
+   
+   1. Test case: `find c/revenue k/nonexistent`<br>
+       Expected: 
+       * Expense list remains the same.
+       * Revenue list is updated with no entries inside. 
+       * Result display shows "No entries found". 
+       * Pie chart and total expense value remain.
+
+   1. Test case: `find c/expense`<br>
+       Expected: Neither list is updated. Error details shown in the status message.
+   
+   1. Other incorrect delete commands to try: `find c/revenue`, `find k/`, `find`,... .<br>
+        Expected: Similar behaviour with previous testcase. Note that error details may differ based on 
+        which parameters of the input that is in an incorrect format. 
 
 1. Undoing an entry-level command
 
