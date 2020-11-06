@@ -418,12 +418,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | busy student                               | filter flashcards by different fields                                    | refine list of flashcards and only display the relevant flashcards I am interested in       |
 | `* * `   | busy student                               | sort flashcards according to review frequency                            | focus on flashcards that are least reviewed                                                 |
 | `* * `   | busy student                               | sort flashcards according to success rate                                | focus on flashcards that are often incorrectly answered                                     |
-| `* `     | busy student                               | choose how many questions for each round of quiz                         | decide on how extensively I want to be tested depending on the amount of time I have        |
-| `* `     | busy student                               | create different flashcard decks for different exams                     | be efficient by revising content that are tested                                            |
-| `* `     | busy student                               | sort flashcards according to ratings                                     | prioritize flashcards to review due to time constraint                                      |
-| `* `     | busy student                               | highlight/bold important keywords                                        | decide on how extensively I want to be tested depending on the amount of time I have        |
-| `* `     | efficient student                          | mass delete flashcards at once                                           | decide on how extensively I want to be tested depending on the amount of time I have        |
-| `* `     | busy student                               | choose how many questions for each round of quiz                         | can save time without having to delete flashcards individually                              |
 
 ### Use cases
 
