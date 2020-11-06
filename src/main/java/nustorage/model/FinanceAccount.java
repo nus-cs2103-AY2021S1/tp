@@ -102,9 +102,4 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
                 || (other instanceof FinanceAccount // instanceof handles nulls
                 && financeRecords.equals(((FinanceAccount) other).financeRecords));
     }
-
-    @Override
-    public int hashCode() {
-        return financeRecords.hashCode();
-    }
 }

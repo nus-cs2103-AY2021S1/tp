@@ -13,7 +13,6 @@ import nustorage.commons.core.LogsCenter;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
 
-
 /**
  * Represents the in-memory model of the NUStorage data.
  */
@@ -171,11 +170,12 @@ public class ModelManager implements Model {
     public FinanceRecord getFinanceRecord(InventoryRecord inventoryRecord) {
         return financeAccount.getFinanceRecord(inventoryRecord.getFinanceId());
     }
-    // @Override
-    // public List<FinanceRecord> viewFinanceRecords() {
-    //     // TODO: DORA IMPLEMENT VIEW FINANCE RECORDS.
-    //     return null;
-    // }
+
+    @Override
+    public boolean hasFinanceRecord(FinanceRecord financeRecord) {
+        requireNonNull(financeRecord);
+        return financeAccount.hasFinanceRecord(financeRecord);
+    }
 
     @Override
     public void updateFilteredFinanceList(Predicate<FinanceRecord> predicate) {
