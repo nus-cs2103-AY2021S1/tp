@@ -19,7 +19,7 @@ public class AddCommand extends Command {
     public static final String AC_SUGGESTION = COMMAND_WORD + " "
             + PREFIX_E + "<exercise name> "
             + PREFIX_R + "<reps> "
-            + PREFIX_C + "<comment> ";
+            + PREFIX_C + "[comment] ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a log to the log book. "
             + "Parameters: "

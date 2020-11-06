@@ -52,7 +52,7 @@ If you are unmotivated for a workout, FixMyAbs will be your partner in helping y
   e.g. in `add e/<exercise name>`, `exercise` is a parameter which can be used as `add e/Sit ups`.
 
 - Items in square brackets are optional.<br>
-  e.g `e/<exercise name> c/[comments]` can be used as `e/Sit ups c/my abs hurt` or as `e/Sit ups c/`.
+  e.g `e/<exercise name> c/[comment]` can be used as `e/Sit ups c/my abs hurt` or as `e/Sit ups c/`.
 
 - Parameters can be in any order.<br>
   e.g. if the command specifies `e/<exercise name> r/<rep>`, `r/<rep> e/<exercise name>` is also acceptable.
@@ -156,7 +156,7 @@ Success:
 
 Adds an exercise.
 
-Format: `addex e/<exercise name> c/<calories per rep>`
+Format: `addex e/<exercise name> c/calories per rep`
 
 - The exercise must not already exist. [Exercise names are case-insensitive and whitespace-insensitive.](#command-format)
 - Calories per rep would be used to calculate the calories burnt for each log.
@@ -173,7 +173,7 @@ Success:
 
 Edits an existing exercise in the application, either with a new name, or new calories per rep.
 
-Format: `editex <index> [e/exercise] [c/calories]`
+Format: `editex <index> [e/exercise] [c/calories per rep]`
 
 * Edits the existing exercise at the specified `index`. The index refers to the index number shown in the displayed exercise list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
@@ -233,12 +233,13 @@ Exercise log data are saved in the hard disk automatically after any command tha
 
 | Action     | Format                                    | Examples                                  |
 | ---------- | ----------------------------------------- | ----------------------------------------- |
-| **Add**    | `add e/<exercise name> r/<reps> c/[comments]`  | e.g. `add e/Sit ups r/30 c/Send help`       |
-| **Delete** | `delete <index>`                          | e.g. `delete 3`                      |
-| **Edit**   | `edit <index> [r/reps] [c/comment]`       | e.g.`edit 1 r/20 c/no abs were hurt` |
-| **List**   | `list`                                    |
+| **Add Log**    | `add e/<exercise name> r/<reps> c/[comment]`  | e.g. `add e/Sit ups r/30 c/Send help`, `add e/Sit ups r/30 c/`       |
+| **Delete Log** | `delete <index>`                          | e.g. `delete 3`                      |
+| **Edit Log**   | `edit <index> [r/reps] [c/comment]`       | e.g.`edit 1 r/20 c/no abs were hurt`, `edit 1 r/20`, `edit 1 c/no abs were hurt` |
+| **List Logs**   | `list`                                    |
 | **Add exercise**   | `addex e/<exercise name> c/<calories per rep>` | e.g. `addex e/Lunges c/5` |
-| **Edit exercise**   | `editex <index> [e/exercise name] [c/calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6` |
+| **Edit exercise**   | `editex <index> [e/exercise name] [c/calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6`, `editex 1 e/One-legged Lunges`, `editex 1 c/6` |
 | **Delete exercise**   | `deleteex <index>` | e.g. `deleteex 1` |
 | **Find**   | `find <keywords in logs>`                         | e.g.`find pushups`                   |
+| **Help**   | `help`                         | e.g.`help`                   |
 | **Exit**   | `exit`                                    |
