@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+scale 0.75
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+Package Flashcard {
+Class Flashcard
+Class Question
+Class Answer
+Class Category
+Class Note
+Class Rating
+Class Diagram
+Class Statistics
+}
+
+Package Tag {
+Class Tag
+}
+
+Flashcard *--> "1" Question
+Flashcard *--> "1" Answer
+Flashcard *--> "1" Category
+Flashcard *--> "1" Note
+Flashcard *--> "1" Rating
+Flashcard *--> "1" Diagram
+Flashcard *--> "1" Statistics
+Flashcard *--> "*" Tag
+
+@enduml
