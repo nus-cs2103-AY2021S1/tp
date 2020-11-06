@@ -15,36 +15,36 @@ import seedu.address.testutil.RecipeBuilder;
 
 public class ConsumptionTest {
 
-    private final Consumption alice = new Consumption(SANDWICH);
+    private final Consumption sandwich = new Consumption(SANDWICH);
 
     @Test
     public void equals() {
         // same values -> returns true
-        Consumption aliceCopy = new ConsumptionBuilder(alice).build();
-        assertTrue(alice.equals(aliceCopy));
+        Consumption sandwichCopy = new ConsumptionBuilder(sandwich).build();
+        assertTrue(sandwich.equals(sandwichCopy));
 
         // same object -> returns true
-        assertTrue(alice.equals(new Consumption(SANDWICH)));
+        assertTrue(sandwich.equals(new Consumption(SANDWICH)));
 
         // null -> returns false
-        assertFalse(alice.equals(null));
+        assertFalse(sandwich.equals(null));
 
         // different type -> returns false
-        assertFalse(alice.equals(5));
+        assertFalse(sandwich.equals(5));
 
         // different recipe -> returns false
-        assertFalse(alice.equals(MARGARITAS));
+        assertFalse(sandwich.equals(MARGARITAS));
 
         // different name -> returns false
         Consumption editedAlice = new Consumption(new RecipeBuilder(SANDWICH).withName(VALID_NAME_MARGARITAS).build());
-        assertFalse(alice.equals(editedAlice));
+        assertFalse(sandwich.equals(editedAlice));
 
         // different ingredients -> returns false
         editedAlice =
                 new Consumption(new RecipeBuilder(SANDWICH)
                         .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS)
                         .build());
-        assertFalse(alice.equals(editedAlice));
+        assertFalse(sandwich.equals(editedAlice));
 
     }
 }
