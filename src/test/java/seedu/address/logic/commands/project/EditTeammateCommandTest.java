@@ -6,8 +6,11 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_GIT_USERNAME_A;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
+
 import java.util.HashMap;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.parser.ParsePersonUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
