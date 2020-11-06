@@ -80,31 +80,56 @@ The following sequence diagram shows how the Priority operation works:
   * Pros: Will use less memory (No need to show the parser field).
   * Cons: Increased coupling
 
-### \[Proposed\] Policy feature
+### Policy feature
 
-#### Proposed Implementation
+#### Implementation
 
-Policy (class) is a field in Person that is uniquely different from the current fields in Person
- such as phone, address, email, etc. A Person can have up to a single Policy. 
- 
- Policy class contains 3 attributes: String name, String description.
+Policy class is implemented as shown in this class diagram:
 
-Prior to adding a Policy field to a Person, User creates the Policy objects 
-via `addp` (Add Policy Command). A collection stores these Policy objects to be referenced and
- a json file stores Policy objects that are created. 
- 
- A user can then add one of these Policy objects as a field in a Person object by specifying with 
-  `z/ [POLICY_NAME]` during Add Command.
-  
-Sequence diagram to create new Policy:
+![Policy0](images/PolicyClassDiagram.png)
 
-<img src="images/AddPolicySequenceDiagram.png"/>
+PolicyName and PolicyDescription are separate classes rather than String fields.
+Implenting Policy class this way conforms to the same structure as Person class where String fields are
+their own classes.
+It also allows for abstraction of methods specified for each of the field classes such as 
+checking for validity of their String field.
 
-Additionally, a new Command, ClearPolicyCommand will clear the collection of Policy classes
-in the list to facilitate the management of Policy objects.
+Example:
 
-When adding the Policy field to a Person object, the Policy name has to be correct, and
-the Policy object should already be created.
+* `PolicyName#isValidPolicyName` & `PolicyDescription#isValidPolicyDescription`
+
+As shown in [**`Model`**](#model-component) above, each Person has an optional Policy field.
+The Policy field can be added to a client using the `add` command, which is specified by the
+PolicyName Prefix followed by a valid PolicyName. The PolicyName must be valid and a corresponding
+Policy must already be in the PolicyList maintained by ModelManager. The specific Policy object
+is then referenced from the PolicyList and maintained in the Person object.
+
+Thus, Commands to add Policy objects into the PolicyList have been implemented.
+
+Given below is the Sequence Diagram that shows how the Add Policy Command `addp` works.
+
+![AddPolicyCommand](images/AddPolicySequenceDiagram.png)
+
+First, ClientListParser will parse if the correct command, `addp` in this case, is called. Then,
+AddPolicyParser will parse the parameters for the Policy's name and description for their validity
+and values. AddPolicyParser then constructs an AddPolicyCommand with the given Policy using the
+name and description. The Command object is returned to LogicManager which calls the execute 
+method of the Command. Execute checks if the Policy already exists in the Policy List stored
+in Model and if it is not, then the policy is added to the Policy List.
+
+Clear Policy list Command `clearp` was also implemented to give the user more control over
+the policy list. `clearp` clears the policy list as well as all the policies allocated to clients 
+through interaction with Model's ClientList and PolicyList.
+The Command works similar to the Add Policy Command as illustrated in the sequence diagram.
+
+PolicyList is a List class stored in Model. It stores Policies in a HashMap. A HashMap was used
+because checking if a key is in the HashMap can be done quickly. Additionally, HashMap was chosen
+over HashTable because we do not require the Collection to be synchronized. Thus, HashMap is more 
+apt due to its higher efficiency and speed.
+
+Lastly, PolicyList is also stored in memory as json file. This requires json-adapted classes to be
+created. The storage classes are shown in [**`Storage`**](#storage-component). They were implemented
+using AB3's storage classes as template.
 
 ### Archive feature
 
