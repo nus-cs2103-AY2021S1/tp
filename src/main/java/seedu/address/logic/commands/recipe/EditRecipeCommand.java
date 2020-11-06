@@ -106,11 +106,13 @@ public class EditRecipeCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_INGREDIENTS);
         }
 
-        model.setRecipe(recipeToEdit, editedRecipe);
-        model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
         if (recipeToEdit.isSameRecipe(editedRecipe)) {
             throw new CommandException(MESSAGE_NOT_EDITED);
         }
+
+        model.setRecipe(recipeToEdit, editedRecipe);
+        model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
+
         return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe),
                 ListRecipesCommand.COMMAND_WORD);
     }
