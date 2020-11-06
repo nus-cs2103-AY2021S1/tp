@@ -88,6 +88,7 @@ public class StatsCommand extends Command {
                 String.format(MESSAGE_DISPLAY_STATISTICS_FLASHCARDS_BY_TAG_SUCCESS,
                     statsWithTagsMessage), aggregatedStatistics);
         } else {
+            requireNonNull(targetIndex);
             List<Flashcard> lastShownList = model.getFilteredFlashcardList();
 
             if (targetIndex.getZeroBased() >= lastShownList.size()) {

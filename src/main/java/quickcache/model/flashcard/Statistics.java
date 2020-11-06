@@ -1,8 +1,5 @@
 package quickcache.model.flashcard;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 /**
  * A class to store information of a flashcard's statistics.
  */
@@ -65,18 +62,7 @@ public class Statistics {
             return 0.0;
         }
 
-        return round(((double) timesTestedCorrect) / timesTested * 100, 2);
-    }
-
-    // Solution below adapted from https://stackoverflow.com/questions/2808535
-    private double round(double value, int places) {
-        if (places < 0) {
-            throw new IllegalArgumentException();
-        }
-
-        BigDecimal bd = BigDecimal.valueOf(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
+        return ((double) timesTestedCorrect) / timesTested * 100;
     }
 
     /**

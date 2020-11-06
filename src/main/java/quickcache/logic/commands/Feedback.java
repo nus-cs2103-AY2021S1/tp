@@ -62,14 +62,15 @@ public class Feedback {
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        Feedback feedback = (Feedback) object;
-        return isCorrect == feedback.isCorrect
-                && Objects.equals(body, feedback.body)
-                && Objects.equals(question, feedback.question);
+        Feedback otherFeedback = (Feedback) object;
+        return isCorrect == otherFeedback.isCorrect
+                && Objects.equals(body, otherFeedback.body)
+                && Objects.equals(question, otherFeedback.question)
+                && Objects.equals(statistics, otherFeedback.statistics);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(isCorrect, body, question);
+        return Objects.hash(isCorrect, body, question, statistics);
     }
 }
