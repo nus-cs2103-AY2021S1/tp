@@ -48,7 +48,7 @@ public class ContactCard extends UiPart<Region> {
         }
         email.setText(contact.getEmail().toString());
         if (contact.getTelegram().isPresent()) {
-            telegram.setText(contact.getTelegram().get().telegramUsername);
+            telegram.setText(contact.getTelegram().get().toString());
         } else {
             telegram.setText("-");
         }
