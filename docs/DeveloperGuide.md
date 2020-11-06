@@ -811,14 +811,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all flashcards using the `list` command. At least one flashcard in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First flashcard is deleted from the list of flashcards. Details of the deleted flashcard shown in the result display. 
+   1. Test case: `delete 1` <br>
+      Expected: First flashcard is deleted from the list of flashcards. Result display will output the status of the deleted flashcard. 
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete 0` <br>
       Expected: No flashcard is deleted from the list of flashcards. Invalid command error message shown in the result display.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size or x is a negative integer)<br>
-      Expected: Similar to previous.
+   1. Other incorrect delete commands to try: `delete` and `delete x` (where x is larger than the list size or x is a negative integer)<br>
+      Expected: Similar to test case iii.
       
 ### Listing flashcards
 
@@ -839,19 +839,23 @@ testers are expected to do more *exploratory* testing.
             how to add a flashcard if flashcard deck is empty.
     
     1. Test case (editing one field of flashcard): `edit INDEX q/Is this edited?` where `INDEX` is the index of the particular
-        flashcard in the deck to be edited.<br>
+        flashcard in the deck to be edited. <br>
         Expected: The `QUESTION` of flashcard at index `INDEX` will be modified to become `Is this edited?`. The remaining fields
         of this flashcard will remain the same. Result display will output the status of the edited flashcard.
         
     1. Test case (editing multiple fields of flashcard): `edit INDEX q/Is this edited? a/Yes` where `INDEX` is the index of the particular
-        flashcard in the deck to be edited.<br> 
+        flashcard in the deck to be edited. <br> 
         Expected: The `QUESTION` and `ANSWER` of flashcard at index `INDEX` will be modified to become `Is this edited?` 
         and `Yes` respectively.The remaining fields of this flashcard will remain the same. Result display will output the status of the edited flashcard.
     
-    1. Test case (missing flashcard field input): `edit INDEX` where `INDEX` is the index of the particular flashcard in the deck to be edited.<br> 
+    1. Test case (missing flashcard field input): `edit INDEX` where `INDEX` is the index of the particular flashcard in the deck to be edited. <br> 
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the message: `At least one field to edit must be provided.`
         
+    1. Test case (missing flashcard field input and index): `edit` <br>
+        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
+        Invalid command error message shown in the result display.
+     
      :bulb: **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
 
 ### Clearing all flashcards
@@ -888,6 +892,20 @@ testers are expected to do more *exploratory* testing.
     
 ### Favouriting a flashcard
 
+1. Favouriting a flashcard in flashcard deck in flashcard deck
+
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+                how to add a flashcard if flashcard deck is empty.
+                
+    1. Test case: `fav 1` <br> 
+        Expected: Flashcard list pane updates to show a favourite(heart) icon beside the flashcard of index 1. Result display
+        will output the status of the favourited flashcard.
+
+    1. Test case: `fav 0` <br>
+        Expected: No flashcard is favourited from the list of flashcards. Invalid command error message shown in the result display.
+
+    1. Other incorrect favourite commands to try: `fav` and `fav x` (where x is larger than the list size or x is a negative integer)<br>
+        Expected: Similar to test case iii.
 ### Unfavouriting a flashcard
 
 ### Finding flashcards
