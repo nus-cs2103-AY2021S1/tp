@@ -30,7 +30,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ProductiveNusParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -79,7 +79,7 @@ public class AddressBookParser {
             return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            return new ExitCommand(userInput);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();

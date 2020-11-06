@@ -106,6 +106,14 @@ public class AssignmentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Priority} of the {@code Assignment} that we are building.
+     */
+    public AssignmentBuilder withPriority(String priorityLevel) {
+        this.priority = new Priority(priorityLevel);
+        return this;
+    }
+
     public Assignment build() {
         return new Assignment(name, deadline, moduleCode, remind, schedule, priority, done);
     }

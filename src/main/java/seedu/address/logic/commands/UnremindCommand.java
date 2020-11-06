@@ -20,7 +20,7 @@ import seedu.address.model.task.Name;
 
 
 /**
- * Removes reminders for an assignment identified using it's displayed index from the address book.
+ * Removes reminders for an assignment identified using it's displayed index from ProductiveNus.
  */
 public class UnremindCommand extends NegateCommand {
 

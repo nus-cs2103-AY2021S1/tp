@@ -42,6 +42,7 @@ public abstract class Task {
 
         return otherTask != null
                 && otherTask.getName().equals(getName())
+                && otherTask.getModuleCode().equals(getModuleCode())
                 && (otherTask.getTime().equals(getTime()));
     }
 }

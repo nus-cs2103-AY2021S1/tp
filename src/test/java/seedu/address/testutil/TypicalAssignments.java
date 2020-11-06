@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.ProductiveNus;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Priority;
 
 /**
  * A utility class containing a list of {@code Assignment} objects to be used in tests.
@@ -51,18 +52,24 @@ public class TypicalAssignments {
             .withDeadline(VALID_DEADLINE_LAB).withModuleCode(VALID_MODULE_CODE_LAB).build();
     public static final Assignment LAB_REMIND = new AssignmentBuilder().withName(VALID_NAME_LAB)
             .withDeadline(VALID_DEADLINE_LAB).withModuleCode(VALID_MODULE_CODE_LAB).withRemindersSet().build();
+    public static final Assignment LAB_PRIORITY = new AssignmentBuilder().withName(VALID_NAME_LAB)
+            .withDeadline(VALID_DEADLINE_LAB).withModuleCode(VALID_MODULE_CODE_LAB)
+            .withPriority(Priority.HIGH_PRIORITY).build();
+    public static final Assignment LAB_PRIORITY_REMIND = new AssignmentBuilder().withName(VALID_NAME_LAB)
+            .withDeadline(VALID_DEADLINE_LAB).withModuleCode(VALID_MODULE_CODE_LAB).withPriority(Priority.HIGH_PRIORITY)
+            .withRemindersSet().build();
 
     private TypicalAssignments() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical assignments.
+     * Returns an {@code ProductiveNus} with all the typical assignments.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static ProductiveNus getTypicalProductiveNus() {
+        ProductiveNus pn = new ProductiveNus();
         for (Assignment assignment : getTypicalAssignments()) {
-            ab.addAssignment(assignment);
+            pn.addAssignment(assignment);
         }
-        return ab;
+        return pn;
     }
 
     public static List<Assignment> getTypicalAssignments() {

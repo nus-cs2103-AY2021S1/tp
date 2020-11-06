@@ -20,7 +20,7 @@ import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
 
 /**
- * Sets priority for an assignment identified using it's displayed index from the address book.
+ * Sets priority for an assignment identified using it's displayed index from ProductiveNus.
  */
 public class PrioritizeCommand extends Command {
 
