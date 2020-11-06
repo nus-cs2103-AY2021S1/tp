@@ -20,7 +20,11 @@ public class Overlap {
      */
     private static boolean isOverlappingTimePeriod(LocalDateTime startA, LocalDateTime endA, LocalDateTime startB,
                                                   LocalDateTime endB) {
-        return (startA.isBefore(endB)) && (endA.isAfter(startB));
+        boolean timeOfDayOverlap = (startA.toLocalDate().isBefore(endB.toLocalDate()))
+                && (endA.toLocalDate().isAfter(startB.toLocalDate()));
+        boolean dateOverlap = (startA.toLocalTime().isBefore(endB.toLocalTime()))
+                && (endA.toLocalTime().isAfter(startB.toLocalTime()));
+        return timeOfDayOverlap && dateOverlap;
     }
     /**
      * Returns true if date and time of this timeslot will overlap with another timeslot in PlaNus.
@@ -42,7 +46,7 @@ public class Overlap {
         requireNonNull(model);
         ObservableList<Lesson> existingLessons = model.getFilteredLessonList();
         for (Lesson lesson: existingLessons) {
-            if (Overlap.isSameTimeSlot(lesson, timeSlot)) {
+            if (isSameTimeSlot(lesson, timeSlot)) {
                 return true;
             }
         }
@@ -55,7 +59,7 @@ public class Overlap {
         requireNonNull(model);
         ObservableList<Task> existingTasks = model.getFilteredTaskList();
         for (Task task: existingTasks) {
-            if (task instanceof Event && Overlap.isSameTimeSlot((Event) task, timeSlot)) {
+            if (task instanceof Event && isSameTimeSlot((Event) task, timeSlot)) {
                 return true;
             }
         }
