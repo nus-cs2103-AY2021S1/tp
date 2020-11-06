@@ -10,3 +10,45 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
+
+## Code Contributed
+
+You can view my contributions [here](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=elgoh).
+
+### Enhancements Implemented
+
+I was responsible for implementing the following features of NUStorage:
+
+- Inventory
+    - Logic
+        - CreateInventoryCommand Class
+        - CreateInventoryCommandParser
+        - EditInventoryCommand
+        - EditInventoryCommandParser
+        - FindInventoryCommand
+        - FindInventoryCommandParser
+    - Model
+        - Inventory class
+        - Inventory Record classes
+        - Inventory Record exceptions
+        - Integration of Inventory into model
+- Test cases for the above
+
+### Contributions to User Guide
+
+I contributed to the inventory commands for the user guide related to the operations listed above.
+
+### Contributions to Developer Guide
+
+I contributed to the Model section of the developer guide, which documents how `Model` class works with `Inventory` and `FinanceAccount` to execute our programme. I also created the class diagram for the Model.
+
+### Contributions to Team Based Task
+
+I helped my teammates with debugging of code and gives them constructive feedback on how to improve our code and functionalities.
+
+### Contributions to Other Projects
+
+I helped review bugs for "" as part of the PE dry run, during which I reported about 15 errors ranging from simple UI suggestions to potential programme-breaking bugs.
+
+       
+        
