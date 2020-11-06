@@ -219,50 +219,66 @@ Example:
 Adds a new document to the current case with the specified `TITLE` and `FILE_NAME`.
 
 Format: `add doc n:TITLE r:FILE_NAME`
-- `TITLE` should only contain alphanumeric and spaces, and it should not be blank(no value, spaces only).
+- `TITLE` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
 - This document with file name `FILE_NAME` must be manually added to the `references` folder provided before it can be added to the PIVOT system.
 
 Example: 
 - `add doc n:Case Details r:case_details.pdf` adds a new document with title “Case Details” with the file name case_details.pdf to the investigation case.
 
 
+<div markdown="block" class="alert alert-info">
 
-#### Add suspect to the current case: `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+**:information_source: Notes about the restrictions for the fields of a person (suspect/victim/witness):**<br>
 
-Adds a new suspect to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
+* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
+* `SEX` should only be either M or F, and is case-insensitive.
+* `PHONE` should only contain numbers, and it should be at least 3 digits long.
+* `EMAIL` should be of the format local-part@domain.top-level-domain and adhere to the following constraints:
+    1. The local-part should only contain alphanumeric characters and these special characters,
+    excluding the parentheses, (_!#$%&'*+/=?`{|}~^.-). The local part should not start with a '.'.
+    2. This is followed by a '@' and then a domain name and then followed by a top-level domain (e.g. '.com').
+    The domain name must:
+        - start and end with alphanumeric characters.
+        - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
+        - not contain consecutive periods, but consecutive hyphens are allowed.
+* There are no restrictions on `ADDRESS`.
+</div>
 
-Format: `add suspect n:NAME g:GENDER`
+#### Add suspect to the current case: `add suspect n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-Example: `add suspect n:John Doe g:M`
+Adds a new suspect to the current case with the specified `NAME`, `SEX` and `PHONE`. The other fields are optional.
 
-Gender must either be `M` or `F`, not case-sensitive.
+Format: `add suspect n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-#### Add victim to the current case: `add victim n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Example:
+- `add suspect n:John Doe sex:M p:91234567` adds a `male` suspect named `John Doe` with the phone number `91234567`.
+The other fields will be left blank as it was not specified.
 
-Adds a new victim to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
+#### Add victim to the current case: `add victim n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-Format: `add victim n:NAME g:GENDER`
+Adds a new victim to the current case with the specified `NAME`, `SEX` and `PHONE`. The other fields are optional.
 
-Example: `add victim n:James Lee g:M`
+Format: `add victim n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-Gender must either be `M` or `F`, not case-sensitive.
+Example:
+- `add victim n:James Lee sex:M p:91234567` adds a `male` victim named `James Lee` with the phone number `91234567`.
+The other fields will be left blank as it was not specified.
 
-#### Add witness to the current case: `add witness n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Add witness to the current case: `add witness n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-Adds a new witness to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
+Adds a new witness to the current case with the specified `NAME`, `SEX` and `PHONE`. The other fields are optional.
 
-Format: `add witness n:NAME g:GENDER`
+Format: `add witness n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-Example: `add witness n:John Doe g:M`
-
-Gender must either be `M` or `F`, not case-sensitive.
-
+Example:
+- `add witness n:Joseph Tan sex:M p:91234567` adds a `male` witness named `Joseph Tan` with the phone number `91234567`.
+The other fields will be left blank as it was not specified.
 
 #### Edit title in the current case: `edit title t:TITLE`
 Edits the title of the case with the specified `TITLE`. Cannot be edited to another existing case title in the PIVOT program (Both Home and Archive).
 
 Format: `edit title t:TITLE`
-- `TITLE` should only contain alphanumeric and spaces, and it should not be blank(no value, spaces only).
+- `TITLE` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
 
 Example: 
 - `edit title t:Murder case 29` updates the title of this case to “Murder case 29”.
@@ -285,7 +301,7 @@ A document cannot be edited to contain duplicates in the document list.
 
 Format: `edit doc DOC_NO [n:NAME] [r:REFERENCE]`
 - `DOC_NO` must be a valid index (starting from 1) of the document list.
-- `NAME` should only contain alphanumeric and spaces, and it should not be blank(no value, spaces only).
+- `NAME` should only contain alphanumeric characters and spaces, and it should not be blank(no value, spaces only).
 - The specified `REFERENCE` must be a valid file name in the `references` folder provided before it can be added to the PIVOT system.
 
 Example: 
@@ -294,42 +310,57 @@ name `Fire outbreak details` and reference `newFireDoc.pdf`.
 <br>
 This document `newFireDoc.pdf` must be manually added to the `references` folder provided and must be present before the document can be successfully updated.
 
-#### Edit an existing suspect in the current case: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Edits the fields of the suspect specified with the index in the case.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the restrictions for the fields of a person (suspect/victim/witness):**<br>
+
+* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
+* `SEX` should only be either M or F, and is case-insensitive.
+* `PHONE` should only contain numbers, and it should be at least 3 digits long.
+* `EMAIL` should be of the format local-part@domain.top-level-domain and adhere to the following constraints:
+    1. The local-part should only contain alphanumeric characters and these special characters,
+    excluding the parentheses, (_!#$%&'*+/=?`{|}~^.-). The local part should not start with a '.'.
+    2. This is followed by a '@' and then a domain name and then followed by a top-level domain (e.g. '.com').
+    The domain name must:
+        - start and end with alphanumeric characters.
+        - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
+        - not contain consecutive periods, but consecutive hyphens are allowed.
+* There are no restrictions on `ADDRESS`.
+</div>
+
+#### Edit an existing suspect in the current case: `edit suspect INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Edits the fields of the suspect specified with the index in the case that is currently open.
 At least one of the fields is to be specified to make edits.
 
-Format: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit suspect INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Example: `edit suspect 1 e:newEmail@mail.com a:New Road Crescent` edits the first suspect in the list with the email 
+Example:
+- `edit suspect 1 e:newEmail@mail.com a:New Road Crescent` edits the first suspect in the list with the email 
 `newEmail@mail.com` and the address `New Road Crescent`.
 
-Gender must either be `M` or `F`, not case-sensitive.
+#### Edit an existing victim in the current case: `edit victim INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-#### Edit an existing victim in the current case: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
-
-Edits the fields of the victim specified with the index in the case.
+Edits the fields of the victim specified with the index in the case that is currently open.
 At least one of the fields is to be specified to make edits.
 
-Format: `edit victim VICTIM_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit victim VICTIM_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Example: `edit victim 1 e:newEmail@mail.com a:New Road Crescent` edits the first victim in the list with the email 
+Example:
+- `edit victim 1 e:newEmail@mail.com a:New Road Crescent` edits the first victim in the list with the email 
 `newEmail@mail.com` and the address `New Road Crescent`.
 
-Gender must either be `M` or `F`, not case-sensitive.
+#### Edit an existing witness in the current case: `edit witness INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-
-#### Edit an existing witness in the current case: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
-
-Edits the fields of the witness specified with the index in the case. 
+Edits the fields of the witness specified with the index in the case that is currently open. 
 At least one of the fields is to be specified to make edits.
 
-Format: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit witness INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Example: `edit witness 1 e:newEmail@mail.com a:New Road Crescent` edits the first witness in the list with the email 
+Example:
+- `edit witness 1 e:newEmail@mail.com a:New Road Crescent` edits the first witness in the list with the email 
 `newEmail@mail.com` and the address `New Road Crescent`.
-
-Gender must either be `M` or `F`, not case-sensitive.
 
 #### Delete document: `delete doc DOC_NO `
 Deletes the document specified with `DOC_NO` from the list of documents.
