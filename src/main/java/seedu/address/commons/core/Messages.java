@@ -36,6 +36,9 @@ public class Messages {
             + "Please check your command carefully.";
     public static final String MESSAGE_INVALID_DONE_TASK_TYPE = "You can only mark a deadline as done.\n"
             + "One or more task selected is not in deadline type";
+    public static final String INVALID_DURATION_FORMAT = "The duration must be a positive integer";
+    public static final String INVALID_DONE_INDEX_FORMAT = "Index for done command must be in the form: "
+            + "INDEX:DURATION";
 
     // edit error messages
     public static final String MESSAGE_INVALID_EVENT_EDIT_TYPE = "You cannot edit system generated lesson event";

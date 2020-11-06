@@ -39,17 +39,9 @@ public class DeleteLessonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Lesson> lastShownList = model.getFilteredLessonList();
-        Lesson[] lessonsToDelete = new Lesson[targetIndexes.length];
-        if (Index.hasDuplicateIndex(targetIndexes)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_INDEX);
-        }
-        for (int i = 0; i < targetIndexes.length; i++) {
-            if (targetIndexes[i].getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_LESSONS_DISPLAYED_INDEX);
-            }
-            lessonsToDelete[i] = lastShownList.get(targetIndexes[i].getZeroBased());
-        }
-
+        Lesson[] lessonsToDelete =
+                checkIndexValidity(targetIndexes, lastShownList, Messages.MESSAGE_INVALID_LESSONS_DISPLAYED_INDEX)
+                .toArray(new Lesson[0]);
         model.deleteLesson(lessonsToDelete);
         return new CommandResult(buildMessage(lessonsToDelete));
     }
