@@ -30,9 +30,6 @@ deactivate EditCommandParser
 ReeveParser -> EditCommandParser : parse()
 activate EditCommandParser
 
-EditCommandParser -> EditCommandParser : parseStudent()
-EditCommandParser -> EditCommandParser : parseAdmin()
-
 create Command
 EditCommandParser -> Command
 activate Command
@@ -41,7 +38,7 @@ Command --> EditCommandParser : command
 deactivate Command
 
 EditCommandParser --> ReeveParser : command
-deactivate EditCommandParser
+destroy EditCommandParser
 
 ReeveParser --> LogicManager : command
 deactivate ReeveParser
