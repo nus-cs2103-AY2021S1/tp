@@ -6,16 +6,15 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
  * Represents Protein in food item in McGymmy.
  */
 public class Protein extends Macronutrient {
-    public static final int MULTIPLIER = 4;
-    public static final int DEFAULT_PROTEIN = 0;
-    public static final String MESSAGE_CONSTRAINTS =
-            "Protein " + Macronutrient.MESSAGE_CONSTRAINTS;
+    private static final int PROTEIN_MULTIPLIER = 4;
+    private static final int DEFAULT_PROTEIN = 0;
+    public static final String MESSAGE_CONSTRAINTS = "Protein" + Macronutrient.MESSAGE_CONSTRAINTS;
 
     /**
      * @param amount A valid amount.
      */
     public Protein(int amount) throws IllegalValueException {
-        super(amount, MULTIPLIER);
+        super(amount, PROTEIN_MULTIPLIER);
     }
 
     /**
@@ -30,5 +29,10 @@ public class Protein extends Macronutrient {
             assert false : "Error in creation of default";
             throw new IllegalArgumentException("Error in creation using default values.");
         }
+    }
+
+    @Override
+    String getMessageConstraint() {
+        return MESSAGE_CONSTRAINTS;
     }
 }

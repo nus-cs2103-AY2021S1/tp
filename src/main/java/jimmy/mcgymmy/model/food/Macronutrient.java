@@ -4,13 +4,21 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
+/**
+ * Represents a food item with hidden internal logic.
+ */
 public abstract class Macronutrient {
-    public static final String MESSAGE_CONSTRAINTS = "values should only contain non-negative integer values.";
+
+    private static final int LOWER_BOUND = 0; //Inclusive
+    private static final int UPPER_BOUND = 999; //Non inclusive
     private static final String VALIDATION_REGEX = "(\\d){1,3}";
+
+    protected static final String MESSAGE_CONSTRAINTS = String.format(
+            " can only contain non-negative integers between %d and %d", LOWER_BOUND, UPPER_BOUND);
+
     private final int amount;
-    private final int caloricMultiplier;
     private final int totalCalories;
-    private String type;
+    private final int caloricMultiplier;
 
     /**
      * Represents macronutrients of 3 types
@@ -24,12 +32,10 @@ public abstract class Macronutrient {
         // use this instead of assert because the amount < 0 error is more because of user input than developer's fault
         AppUtil.checkArgument(isValidAmount(amount), getMessageConstraint());
 
-        assert (caloricMultiplier == 4 || caloricMultiplier == 9) : "Invalid Macronutrient Multiplier";
         // initialise variables
         this.amount = amount;
         this.caloricMultiplier = caloricMultiplier;
         this.totalCalories = caloricMultiplier * amount;
-
     }
 
     /**
@@ -43,12 +49,10 @@ public abstract class Macronutrient {
     }
 
     private boolean isValidAmount(int amount) {
-        return amount >= 0 && amount < 1000;
+        return amount >= LOWER_BOUND && amount <= UPPER_BOUND;
     }
 
-    private String getMessageConstraint() {
-        return this.getMacronutrientType() + " amount can only take in value larger than 0 and less than 1000";
-    }
+    abstract String getMessageConstraint();
 
     @Override
     public String toString() {

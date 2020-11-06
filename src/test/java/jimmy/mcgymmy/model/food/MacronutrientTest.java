@@ -84,20 +84,25 @@ class MacronutrientTest {
         assertEquals(defaultProtein1.getCaloricMultiplier(), CORRECT_PROTEIN_MULTIPLIER);
     }
 
-    @Test
-    public void constructor_invalidMultiplier_throwsAssertionError() {
-        assertThrows(AssertionError.class, InvalidMacronutrientStub::new);
-    }
-
     private static class MacronutrientStub extends Macronutrient {
         MacronutrientStub(int amount, int caloricMultiplier) throws IllegalValueException {
             super(amount, caloricMultiplier);
+        }
+
+        @Override
+        String getMessageConstraint() {
+            return null;
         }
     }
 
     private static class InvalidMacronutrientStub extends Macronutrient {
         InvalidMacronutrientStub() throws IllegalValueException {
             super(1, INVALID_MULTIPLIER);
+        }
+
+        @Override
+        String getMessageConstraint() {
+            return null;
         }
     }
 
