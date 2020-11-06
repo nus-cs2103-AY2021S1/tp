@@ -22,15 +22,15 @@ public class Task implements Comparable<Task> {
     public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
 
     public static final String NAME_MESSAGE_CONSTRAINTS =
-        "Task name can be any values, and it should not be blank";
+            "Task name can be any values, and it should not be blank";
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS =
-        "Task description can be any values, and it should not be blank";
+            "Task description can be any values, and it should not be blank";
     public static final String PUBLISH_DATE_MESSAGE_CONSTRAINTS =
-        "Publish date should only be in the format of dd-MM-yyyy";
+            "Publish date should only be in the format of dd-MM-yyyy";
     public static final String PROGRESS_MESSAGE_CONSTRAINTS =
-        "Progress values should only contain integers between 0 and 100 inclusive, and it should not be blank";
+            "Progress values should only contain integers between 0 and 100 inclusive, and it should not be blank";
     public static final String IS_DONE_MESSAGE_CONSTRAINTS =
-        "Is done values should only contain booleans, and it should not be blank";
+            "Is done values should only contain booleans, and it should not be blank";
 
     private final String taskName;
     private final String description;
@@ -46,9 +46,9 @@ public class Task implements Comparable<Task> {
     public Task(String taskName, String description, Deadline deadline, double progress) {
         requireAllNonNull(taskName, progress);
         this.taskName = taskName;
-        if(description == null){
+        if (description == null) {
             this.description = "";
-        }else {
+        } else {
             this.description = description;
         }
         publishDate = LocalDate.now();
@@ -183,7 +183,7 @@ public class Task implements Comparable<Task> {
      */
     public boolean hasAssigneeWhoseGitNameIs(GitUserName assigneeGitUserName) {
         return assignees.stream()
-            .anyMatch(assignee -> assignee.equals(assigneeGitUserName.toString()));
+                .anyMatch(assignee -> assignee.equals(assigneeGitUserName.toString()));
     }
 
     /**
@@ -220,8 +220,8 @@ public class Task implements Comparable<Task> {
         return Double.compare(task.getProgress(), getProgress()) == 0
                 && getTaskName().equals(task.getTaskName())
                 && (getDescription() == task.getDescription()
-                    || (getDescription() != null && task.getDescription() != null)
-                        && getDescription().equals(task.getDescription()))
+                || (getDescription() != null && task.getDescription() != null)
+                && getDescription().equals(task.getDescription()))
                 && Objects.equals(getDeadline(), task.getDeadline());
         //        if (Double.compare(task.getProgress(), getProgress()) != 0) {
         //            return false;
