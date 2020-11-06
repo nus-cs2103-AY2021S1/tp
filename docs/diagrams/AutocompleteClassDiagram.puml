@@ -9,32 +9,28 @@ skinparam classAttributeFontColor WHITE
 show members
 hide empty members
 
-package UI <<Rectangle>>{
-Interface Ui <<Interface>>
 Class UiManager
 Class MainWindow
 Class CommandBox
-Class AutocompleteCommandBox {
+Class TextField
+Class AutocompleteModule {
 -boolean isAutocompleteMode
 -boolean hasSetPrefix
-+void setupAutocompletionListeners(commandPrefix, suggestionSupplier)
++void addSuggestions(commandPrefix, suggestionSupplier)
 }
 Class Suggestions {
 -String prefix
--List<String> list
 
 +void setPrefix(prefix)
-+void setList(list)
 +String nextSuggestion(prefix)
 +String prevSuggestion(prefix)
 }
-}
 
 
-UiManager -up-> Ui
 UiManager --> MainWindow
-MainWindow *-> AutocompleteCommandBox
-AutocompleteCommandBox -up-|> CommandBox
-AutocompleteCommandBox -> "*"Suggestions
+MainWindow *--> CommandBox
+CommandBox -> "1"TextField
+AutocompleteModule --> "1"TextField : attaches to >
+AutocompleteModule -> "*"Suggestions
 
 @enduml

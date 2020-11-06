@@ -2,46 +2,56 @@
 !include style.puml
 
 Actor User
-participant ":AutocompleteCommandBox" as AutocompleteCommandBox LOGIC_COLOR
-participant ":Suggestion" as Suggestion LOGIC_COLOR
 
-User -> AutocompleteCommandBox : types "cname/" into commandBox's TextField
+box UI UI_COLOR_T1
+participant ":TextField" as TextField UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant "acMod:AutocompleteModule" as AutocompleteModule LOGIC_COLOR
+participant "cname:Suggestion" as Suggestion LOGIC_COLOR
+end box
+
+User -> TextField : types "cname/" into commandBox's TextField
+    activate TextField
 
 alt !isAutocompleteMode
-    AutocompleteCommandBox -> AutocompleteCommandBox : toggleAutocompleteModeOn()
-    activate AutocompleteCommandBox
-    deactivate AutocompleteCommandBox
+    TextField -> AutocompleteModule : toggleAutocompleteModeOn()
+    activate AutocompleteModule
+    AutocompleteModule --> TextField
+    deactivate AutocompleteModule
 end
+    deactivate TextField
 
 loop isAutocompleteMode
-    User -> AutocompleteCommandBox : Presses any key
-    activate AutocompleteCommandBox
+    User -> TextField : Presses any key
+    activate TextField
     alt keyPressed == TAB
 
         alt !hasSetPrefix
-            AutocompleteCommandBox -> Suggestion : setPrefix(prefix)
-            note right: prefix refers to whatever the user had typed after the \ncommand prefix ("cname/") to the point the user presses TAB
+            TextField -> AutocompleteModule : setPrefix(cname, prefix)
+            AutocompleteModule -> Suggestion : setPrefix(prefix)
             ||||
         end
 
         alt isShiftDown()
-            AutocompleteCommandBox -> Suggestion : prevSuggestion()
+            TextField -> Suggestion : prevSuggestion()
             activate Suggestion
-            Suggestion --> AutocompleteCommandBox
+            Suggestion --> TextField
             deactivate Suggestion
             ||||
         else else
-            AutocompleteCommandBox -> Suggestion : nextSuggestion()
+            TextField -> Suggestion : nextSuggestion()
             activate Suggestion
-            Suggestion --> AutocompleteCommandBox
+            Suggestion --> TextField
             deactivate Suggestion
             ||||
         end
     else
 
     end
-    AutocompleteCommandBox-[hidden]->User
-    deactivate AutocompleteCommandBox
+    TextField-[hidden]->User
+    deactivate TextField
 end
 
 @enduml

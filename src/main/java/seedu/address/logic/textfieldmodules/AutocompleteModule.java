@@ -25,7 +25,7 @@ public class AutocompleteModule {
     private String modeType = "";
     private int commandPrefixPos;
 
-    private TextField attachedTextField;
+    private final TextField attachedTextField;
 
     private AutocompleteModule(TextField textField) {
         attachedTextField = textField;
@@ -64,8 +64,7 @@ public class AutocompleteModule {
             if (isAutocompleteMode) {
                 if (caretPos < commandPrefixPos) {
                     toggleAutocompleteModeOff();
-                    hasSetPrefix = false;
-                    logger.info("Autocomplete prefix has been unset");
+                    unsetPrefix();
                 }
             }
             for (String cmdP : suggestionsList.keySet().toArray(new String[]{})) {
@@ -86,9 +85,7 @@ public class AutocompleteModule {
                 Suggestions suggestions = suggestionsList.get(modeType);
                 if (!hasSetPrefix) {
                     String prefix = attachedTextField.getText().substring(commandPrefixPos);
-                    suggestions.setPrefix(prefix);
-                    hasSetPrefix = true;
-                    logger.info("Autocomplete prefix has set to :" + prefix);
+                    setPrefix(suggestions, prefix);
                 }
                 if (event.isShiftDown()) {
                     // Shift + TAB : Previous Suggestion
@@ -102,8 +99,7 @@ public class AutocompleteModule {
                     attachedTextField.replaceText(commandPrefixPos, endIndex, next);
                 }
                 if (suggestions.isBackToPrefix()) {
-                    hasSetPrefix = false;
-                    logger.info("Autocomplete prefix has been unset");
+                    unsetPrefix();
                 }
                 event.consume();
             }
@@ -126,11 +122,10 @@ public class AutocompleteModule {
                     event.getCode() == KeyCode.BACK_SPACE
                             || event.getCode() == KeyCode.ENTER
                             || (event.getCode() == KeyCode.W && event.isControlDown()))) {
-                hasSetPrefix = false;
-                logger.info("Autocomplete prefix has been unset");
+                unsetPrefix();
                 if (event.getCode() == KeyCode.ENTER) {
                     toggleAutocompleteModeOff();
-                    removePrefixFromCompletion();
+                    removeCommandPrefixFromCompletion();
                     event.consume();
                 }
             }
@@ -163,13 +158,24 @@ public class AutocompleteModule {
         logger.info("Autocomplete Mode toggled OFF");
         attachedTextField.getStyleClass().remove(AC_MODE_STYLE_CLASS);
     }
-    private void removePrefixFromCompletion() {
+    private void removeCommandPrefixFromCompletion() {
         String currentText = attachedTextField.getText();
         String result = currentText.substring(0 , commandPrefixPos - modeType.length())
                 + currentText.substring(commandPrefixPos);
         int caretPosition = attachedTextField.getCaretPosition();
         attachedTextField.setText(result);
         attachedTextField.positionCaret(caretPosition - modeType.length());
+    }
+    private void unsetPrefix() {
+        if (hasSetPrefix) {
+            hasSetPrefix = false;
+            logger.info("Autocomplete prefix has been unset");
+        }
+    }
+    private void setPrefix(Suggestions suggestions, String prefix) {
+        suggestions.setPrefix(prefix);
+        hasSetPrefix = true;
+        logger.info("Autocomplete prefix has set to :" + prefix);
     }
 
     public HashMap<String, Suggestions> getSuggestionsList() {

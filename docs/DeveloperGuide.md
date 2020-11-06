@@ -135,42 +135,59 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Autocomplete Feature
 
-This autocomplete mechanism is facilitated by `AutocompleteCommandBox`. It extends `CommandBox` with an autocomplete mode, which is a state stored internally as `isAutocompleteMode`. This feature also adds
-a new private class `Suggestions` to facilitate suggestion generation.
-This new `AutocompleteCommandBox` class exposes one public function:
+![Autocomplete Example](images/AutocompleteExample.gif)
 
-* `setupAutocompletionListeners(String commandPrefix, Suppler<List<Strings>> data)` — Attaches a new autocomplete listener which triggers autocomplete mode with `commandPrefix` and generates suggestions from `data` supplier.
-
-![Structure of the UI Component](images/AutocompleteCommandBoxClassDiagram.png)
-
-The following acitivity diagram gives a high level overview of the Autocomplete mechanism:
+#### Overview
+The following activity diagram gives a high level overview of the Autocomplete logic.
 
 ![AutocompleteActivityDiagram](images/AutocompleteActivityDiagram.png)
 
 From this diagram we see that there is 2 states of the mechanism:
 
-* `isAutocompleteMode` — Triggered by commandPrefix
-* `hasSetPrefix` — Set using `Tab` / `Shift-Tab`
+* `isAutocompleteMode` — Which is triggered after user has typed in `commandPrefix`.
+* `hasSetPrefix` — Set using `Tab` / `Shift-Tab` while in autocomplete mode.
 
-Prefix in the context of the autocomplete class refers to the string we use to filter out suggestions. For example, the prefix
-'ja' would give me 'jay', 'jason' as possible suggestions.
+There are also 2 other important terms which are used, first of which is the `commandPrefix`. This refers to the specific series of characters that when the user inputs into a TextField, will trigger
+the autocomplete mode. And secondly, `prefix` which refers to the string that will be used to generate the suggestions. In the image below, "cn/" is the `commandPrefix` while
+"alex" is the `prefix`.
 
-#### Sample scenario : Generating name suggestions
+![CommandPrefixVsPrefix](images/CommandPrefixVsPrefix.png)
+
+#### Structure of Autocomplete
+
+The autocomplete mechanism is facilitated by `AutocompleteModule` which can be attached to a JavaFX `TextField`. 
+An instance of `AutocompleteModule` will must be binded to one `TextField` object which will be enhanced with Autocomplete capabilities. 
+`AutocompleteModule` will setup the relevant listeners to its attached `TextField` object and will internally store and managed the `isAutocompleteMode` and `hasSetPrefix` states. 
+This feature also makes use of the `Suggestions` class to facilitate suggestion generation based on given `prefix`. Below is a class diagram representing this structure.
+
+![Structure of the UI Component](images/AutocompleteClassDiagram.png)
+
+This new feature exposes 2 new public function of `AutocompleteModule` :
+* `attachTo(TextField textField)` — This method attaches the given `TextField` with the autocomplete module and returns the new `AutocompleteModule` object.
+* `addSuggestions(String commandPrefix, Suppler<List<Strings>> data)` — Attaches a new autocomplete trigger which triggers autocomplete mode with `commandPrefix` and generates suggestions from `data` supplier.
+
+Now we can do a deeper dive into the mechanisms of the feature by examining a sample usuage.
+
+#### Deep Dive : Autocomplete Mechanism
 
 Given below is an example usage scenario and how the autocomplete mechanism behaves at each step.
 
 ##### Initialization
 
-Initialisation Code Snippet :
-```
- AutocompleteCommandBox commandBox = new AutocompleteCommandBox(cmdExecutor);
- commandBox.setupAutocompletionListeners("cname/", () -> logic.getFilteredPersonList().stream()
-         .map(p -> p.getName().fullName).collect(Collectors.toList()));
+Sample Initialisation Code Snippet :
 
 ```
-The above code snippet will first initialise the new `AutocompleteCommandBox` object and attach an autocompletion listener, the following sequence diagram describes the processes.
-See here that the commandPrefix is set to `cname/` and we are generating suggestions from the person list.
+// In MainWindow.java
+CommandBox commandBox = new CommandBox(cmdExecutor);
+TextField commandTextField = commandBox.getCommandTextField()
 
+AutocompleteModule acMod = AutocompleteModule.attachTo(commandTextField);
+acMod.addSuggestions("cname/", () -> List.of("Alice", "Bob", "Charlie")).collect(Collectors.toList()));
+```
+
+The above code first initialises a sample `CommandBox` object from which we extract out it's `TextField` object. We then proceed to attach the `AutocompleteModule` to the `TextField` object
+and add a sample `Suggestions` object (with commandPrefix "cname/" and generating suggestions from an arbitary list).
+Below is a sequence diagram explaining how a `AutocompleteModule` enhances the `TextField` object.
 
 ![AutocompleteActivityDiagram](images/AutocompleteInitializationSequenceDiagram.png)
 
@@ -178,9 +195,9 @@ Refer to the Side Note in this section on why `disableFocusTraversal()` is requi
 
 ##### Triggering Autocomplete Mode
 
-After the autocomplete listener has been attached, users can trigger Autocomplete mode by typing in command prefix. In this case its `cname/`, and upon typing this prefix
+With the autocomplete module has been attached, Autocomplete mode will be triggered when the last few characters in the `TextField` matches the command prefix. In this case its `cname/`, and upon typing this prefix
 the command box text will turn yellow signalling that the user is in autocomplete mode. In this mode, anything the user types after the command prefix till the point the user presses `TAB` will be
-considered the `prefix` that will be used to generate suggestions. After `TAB` is used to set the prefix, pressing `TAB` or `Shift-TAB` will allow users to cycle through the suggestions.
+considered the `prefix` that will be used to generate suggestions. After `TAB` pressed, prefix is set and first suggestions is shown. Pressing `TAB` or `Shift-TAB` will allow users to cycle through the suggestions forward and backward respectively.
 Below is the sequence diagram for this flow.
 
 ![AutocompleteActivityDiagram](images/AutocompleteFlowSequenceDiagram.png)
@@ -203,7 +220,7 @@ On the other hand, pressing `Enter` allows the user to lock in their suggestion,
   * Pros: Able to support names with spaces.
   * Cons:
       * Slightly more difficult to implement, as there are more edge cases.
-      * Unable to support editing of suggestions.
+      * User can only enter autocomplete mod at the end of strings and not in the middle.
 
 * **Alternative 2:** Using regex to match pattern (e.g. `.*<CMD_PREFIX>\S*`)
   * Pros:

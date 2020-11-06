@@ -34,7 +34,7 @@ public class FzfModule {
             setSkin(createDefaultSkin());
         }
     };
-    private TextField attachedTextField;
+    private final TextField attachedTextField;
     private ContextMenu menu;
 
     private FzfModule(TextField tf, Supplier<List<String>> supplier) {
