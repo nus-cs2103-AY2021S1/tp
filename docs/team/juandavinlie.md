@@ -29,6 +29,7 @@ Given below is a summary of my contributions.
 * **Other Enhancements**: 
   * Engineered the mechanisms of switching between the different views (Module, Tutorial Group, Students) Trackr has.
   * Engineered the way Trackr stores all data and how they communicate to one another.
+  * Added tests for classes.
 
 * **Documentation**:
   * User Guide:
