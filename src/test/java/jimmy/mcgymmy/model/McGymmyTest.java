@@ -76,12 +76,12 @@ public class McGymmyTest {
 
     @Test
     public void hashCode_returnsCorrectHashCode() {
-        Food ChickenRice = TypicalFoods.getChickenRice();
-        Food Apple = TypicalFoods.getApple();
+        Food chickenRice = TypicalFoods.getChickenRice();
+        Food apple = TypicalFoods.getApple();
         Fridge fridge = new Fridge();
-        fridge.add(ChickenRice);
-        fridge.add(Apple);
-        McGymmy mcGymmy = new McGymmyBuilder().withFood(ChickenRice).withFood(Apple).build();
+        fridge.add(chickenRice);
+        fridge.add(apple);
+        McGymmy mcGymmy = new McGymmyBuilder().withFood(chickenRice).withFood(apple).build();
         assertEquals(fridge.hashCode(), mcGymmy.hashCode());
     }
 }

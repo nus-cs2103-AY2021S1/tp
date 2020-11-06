@@ -196,7 +196,7 @@ public class ParserUtil {
         //Create the directory
         Path path = Path.of(directory);
         File file = new File(directory);
-        if (!file.exists()) {
+        if (!file.exists() || !file.isDirectory()) {
             throw new ParseException(String.format("Directory does not exist %s", path.toString()));
         }
         return path;
@@ -210,7 +210,8 @@ public class ParserUtil {
      * @throws ParseException when outputPath is empty.
      */
     public static String parseOutputName(String outputPath) throws ParseException {
-        if (outputPath.trim().equals("")) {
+        outputPath = outputPath.trim();
+        if (outputPath.equals("")) {
             throw new ParseException("Filename cannot be empty");
         }
         if (!outputPath.contains(".json")) {
