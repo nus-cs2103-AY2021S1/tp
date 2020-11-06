@@ -47,6 +47,22 @@ public class RandomStudentCommandTest {
     }
 
     @Test
+    public void execute_emptySession_exceptionThrown() {
+        Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
+        Session emptySession = new Session(
+                new SessionName("Empty Session"),
+                new SessionDateTime(LocalDateTime.of(2020, 11, 1, 12, 0)),
+                new ArrayList<>());
+        model.addSession(emptySession);
+
+        RandomStudentCommand randomStudentCommand = new RandomStudentCommand();
+
+        String expectedMessage = "The session list has no students!";
+
+        assertCommandFailure(randomStudentCommand, model, expectedMessage);
+    }
+
+    @Test
     public void execute_success() {
         long seed = System.currentTimeMillis();
 

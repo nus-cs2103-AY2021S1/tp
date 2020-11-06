@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.taskmaster.commons.util.CollectionUtil;
+import seedu.taskmaster.model.session.exceptions.EmptySessionException;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.model.student.exceptions.DuplicateStudentException;
@@ -229,8 +230,12 @@ public class StudentRecordListManager implements StudentRecordList {
      */
     @Override
     public StudentRecord getRandomStudentRecord(Random random) {
-        int index = random.nextInt(internalList.size());
-        return internalList.get(index);
+        try {
+            int index = random.nextInt(internalList.size());
+            return internalList.get(index);
+        } catch (IllegalArgumentException e) {
+            throw new EmptySessionException();
+        }
     }
 
     /**
