@@ -38,7 +38,7 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
 
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data with {@code newData}.
      */
     public void resetData(ReadOnlyFinanceAccount newData) {
         requireNonNull(newData);

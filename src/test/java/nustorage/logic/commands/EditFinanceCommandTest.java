@@ -114,13 +114,13 @@ public class EditFinanceCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of finance record list
      */
     @Test
     public void execute_invalidFinanceRecordIndexFilteredList_failure() {
         showFinanceRecordAtIndex(model, INDEX_FIRST);
         Index outOfBoundIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of finance records list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFinanceAccount().getFinanceList().size());
 
         EditFinanceCommand editFinanceCommand = new EditFinanceCommand(outOfBoundIndex,

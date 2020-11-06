@@ -15,7 +15,7 @@ import nustorage.model.record.InventoryRecord;
 
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the NUStorage data.
  */
 public class ModelManager implements Model {
 
@@ -28,7 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<FinanceRecord> filteredFinance;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given userPrefs.
      */
     public ModelManager(ReadOnlyUserPrefs userPrefs) {
         super();

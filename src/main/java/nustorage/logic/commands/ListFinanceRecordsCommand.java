@@ -7,7 +7,7 @@ import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
 
 /**
- * List all finance records in the address book to the user.
+ * List all finance records to the user.
  */
 public class ListFinanceRecordsCommand extends Command {
 

@@ -7,7 +7,7 @@ import nustorage.model.Inventory;
 import nustorage.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the inventory and finance account
  */
 public class ClearCommand extends Command {
 

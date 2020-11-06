@@ -6,7 +6,7 @@ import static nustorage.model.Model.PREDICATE_SHOW_ALL_INVENTORY;
 import nustorage.model.Model;
 
 /**
- * Lists all inventory in the address book to the user.
+ * Lists all inventory to the user.
  */
 public class ListInventoryCommand extends Command {
 
