@@ -8,11 +8,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.person.Body;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Weight;
+import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
 import seedu.address.model.routine.Routine;
-import seedu.address.model.slot.Slot;
+import seedu.address.model.timetable.Slot;
 
 /**
  * The API of the Model component.
@@ -211,14 +211,14 @@ public interface Model {
     void addLesson(Lesson lesson);
 
     /**
-     * Replaces the given person {@code target} with {@code editedLesson}.
+     * Replaces the given body {@code target} with {@code editedLesson}.
      * {@code target} must exist in FitNUS.
      * The lesson identity of {@code editedLesson} must not be the same as another existing lesson in FitNUS.
      */
     void setLesson(Lesson target, Lesson editedLesson);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered body list
      */
     ObservableList<Routine> getFilteredRoutineList();
 

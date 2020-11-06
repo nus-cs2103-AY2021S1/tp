@@ -1,4 +1,4 @@
-package seedu.address.model.slot;
+package seedu.address.model.timetable;
 
 import java.util.List;
 import java.util.function.Predicate;

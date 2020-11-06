@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import seedu.address.model.FitNus;
 import seedu.address.model.ReadOnlyFitNus;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
 /**

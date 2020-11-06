@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Height;
-
 public class HeightTest {
 
     private final Height sampleHeight = new Height(170.0);

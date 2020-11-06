@@ -24,11 +24,11 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.person.Body;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Weight;
+import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
 import seedu.address.model.routine.Routine;
-import seedu.address.model.slot.Slot;
+import seedu.address.model.timetable.Slot;
 import seedu.address.testutil.LessonBuilder;
 
 public class AddCommandTest {
@@ -79,7 +79,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(lessonAddCS1000Command.equals(null));
 
-        // different person -> returns false
+        // different body -> returns false
         assertFalse(lessonAddCS1000Command.equals(lessonAddCS2000Command));
     }
 

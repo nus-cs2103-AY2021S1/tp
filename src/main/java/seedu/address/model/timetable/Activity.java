@@ -1,6 +1,8 @@
-package seedu.address.model.person;
+package seedu.address.model.timetable;
 
 import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.util.Name;
 
 public abstract class Activity {
 

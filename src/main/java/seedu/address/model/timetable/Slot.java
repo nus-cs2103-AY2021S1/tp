@@ -1,12 +1,8 @@
-package seedu.address.model.slot;
+package seedu.address.model.timetable;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-
-import seedu.address.model.person.Activity;
-import seedu.address.model.timetable.Day;
-import seedu.address.model.timetable.Duration;
 
 public class Slot implements Comparable<Slot> {
 

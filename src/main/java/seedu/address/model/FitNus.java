@@ -12,12 +12,12 @@ import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.UniqueExerciseList;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.UniqueLessonList;
-import seedu.address.model.person.Body;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Weight;
+import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
 import seedu.address.model.routine.Routine;
 import seedu.address.model.routine.UniqueRoutineList;
-import seedu.address.model.slot.Slot;
+import seedu.address.model.timetable.Slot;
 import seedu.address.model.timetable.Timetable;
 
 /**
@@ -161,7 +161,7 @@ public class FitNus implements ReadOnlyFitNus {
         addWeight(newBody.getWeight());
     }
 
-    //// person-level operations
+    //// body-level operations
 
     /**
      * Returns true if an exercise with the same identity as {@code exercise} exists in fitNUS.

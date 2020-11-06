@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddWeightCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Weight;
+import seedu.address.model.body.Weight;
 
 public class AddWeightCommandParser {
 

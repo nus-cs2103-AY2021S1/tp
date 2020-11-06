@@ -18,7 +18,7 @@ import seedu.address.logic.commands.routines.RoutineDeleteExerciseCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Name;
+import seedu.address.model.util.Name;
 import seedu.address.model.routine.Routine;
 
 /**

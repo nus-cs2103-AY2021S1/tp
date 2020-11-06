@@ -10,7 +10,7 @@ import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.routines.RoutineCreateCommand;
-import seedu.address.model.person.Name;
+import seedu.address.model.util.Name;
 import seedu.address.model.routine.Routine;
 
 public class RoutineCreateCommandParserTest {

@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.ExerciseAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.person.Name;
+import seedu.address.model.util.Name;
 import seedu.address.model.tag.Tag;
 
 /**

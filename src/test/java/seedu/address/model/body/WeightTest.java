@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Weight;
-
 public class WeightTest {
     private final Weight sampleWeight = new Weight(70.0);
     private final Weight sampleWeight2 = new Weight(70.0);

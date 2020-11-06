@@ -15,9 +15,9 @@ import seedu.address.model.ReadOnlyFitNus;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.person.Body;
+import seedu.address.model.body.Body;
 import seedu.address.model.routine.Routine;
-import seedu.address.model.slot.Slot;
+import seedu.address.model.timetable.Slot;
 
 /**
  * An Immutable FitNus that is serializable to JSON format.

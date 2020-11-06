@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.exceptions.DuplicateExerciseException;
 import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
-import seedu.address.model.person.Activity;
+import seedu.address.model.timetable.Activity;
 import seedu.address.model.routine.exceptions.DuplicateRoutineException;
 import seedu.address.model.routine.exceptions.RoutineNotFoundException;
 

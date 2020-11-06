@@ -52,7 +52,7 @@ public class LessonTest {
         // different type -> returns false
         assertFalse(GES1028.equals(5));
 
-        // different person -> returns false
+        // different body -> returns false
         assertFalse(GES1028.equals(CS2106));
 
         // different name -> returns false

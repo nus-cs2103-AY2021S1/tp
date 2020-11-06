@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Body;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Weight;
+import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
 
 /**
  * Jackson-friendly version of {@link Body}.
@@ -19,7 +19,7 @@ class JsonAdaptedBody {
     private final double weight;
 
     /**
-     * Constructs a {@code JsonAdaptedBody} with the given person details.
+     * Constructs a {@code JsonAdaptedBody} with the given body details.
      */
     @JsonCreator
     public JsonAdaptedBody(@JsonProperty("height") double height,

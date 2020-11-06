@@ -1,4 +1,4 @@
-package seedu.address.model.slot.exceptions;
+package seedu.address.model.timetable.exceptions;
 
 public class SlotOverlapDurationException extends RuntimeException {
 

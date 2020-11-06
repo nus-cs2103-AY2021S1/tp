@@ -20,9 +20,9 @@ import seedu.address.logic.commands.ExerciseFindCommand;
 import seedu.address.logic.commands.ExerciseListCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.TimetableAddLessonCommand;
-import seedu.address.logic.commands.TimetableAddRoutineCommand;
-import seedu.address.logic.commands.TimetableDeleteSlotCommand;
+import seedu.address.logic.commands.timetable.TimetableAddLessonCommand;
+import seedu.address.logic.commands.timetable.TimetableAddRoutineCommand;
+import seedu.address.logic.commands.timetable.TimetableDeleteSlotCommand;
 import seedu.address.logic.commands.lessons.LessonAddCommand;
 import seedu.address.logic.commands.lessons.LessonDeleteCommand;
 import seedu.address.logic.commands.lessons.LessonEditCommand;
@@ -46,6 +46,9 @@ import seedu.address.logic.parser.routines.RoutineDeleteCommandParser;
 import seedu.address.logic.parser.routines.RoutineDeleteExerciseCommandParser;
 import seedu.address.logic.parser.routines.RoutineFindCommandParser;
 import seedu.address.logic.parser.routines.RoutineViewCommandParser;
+import seedu.address.logic.parser.timetable.TimetableAddLessonCommandParser;
+import seedu.address.logic.parser.timetable.TimetableAddRoutineCommandParser;
+import seedu.address.logic.parser.timetable.TimetableDeleteSlotCommandParser;
 
 /**
  * Parses user input.

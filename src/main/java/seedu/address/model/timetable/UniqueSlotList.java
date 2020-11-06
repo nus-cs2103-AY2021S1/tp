@@ -1,4 +1,4 @@
-package seedu.address.model.slot;
+package seedu.address.model.timetable;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,10 +7,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Activity;
-import seedu.address.model.slot.exceptions.DuplicateSlotException;
-import seedu.address.model.slot.exceptions.SlotNotFoundException;
-import seedu.address.model.slot.exceptions.SlotOverlapDurationException;
+import seedu.address.model.timetable.exceptions.DuplicateSlotException;
+import seedu.address.model.timetable.exceptions.SlotNotFoundException;
+import seedu.address.model.timetable.exceptions.SlotOverlapDurationException;
 
 /**
  * A list of slots that enforces uniqueness between its elements and does not allow nulls.
