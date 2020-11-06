@@ -39,19 +39,23 @@ public class Overlap {
                 && Overlap.isOverlappingTimePeriod(first.getStartDateTimeValue(), first.getEndDateTimeValue(),
                 second.getStartDateTimeValue(), second.getEndDateTimeValue());
     }
+
     /**
      * Checks if a time slot overlaps with an existing lesson in PlaNus.
+     * Ignores the {@code timeSlotNotToCheck} time slot. Null if all time slots are to be checked.
      */
-    private static boolean overlapWithOtherLessons(Model model, TimeSlot timeSlot, TimeSlot ignore) {
+
+    private static boolean overlapWithOtherLessons(Model model, TimeSlot timeSlot, TimeSlot timeSlotNotToCheck) {
         requireNonNull(model);
         ObservableList<Lesson> existingLessons = model.getFilteredLessonList();
         for (Lesson lesson: existingLessons) {
-            if (lesson != ignore && isSameTimeSlot(lesson, timeSlot)) {
+            if (lesson != timeSlotNotToCheck && isSameTimeSlot(lesson, timeSlot)) {
                 return true;
             }
         }
         return false;
     }
+
     /**
      * Checks if a time slot overlaps with an existing event in PlaNus.
      * Ignores the {@code timeSlotNotToCheck} time slot. Null if all time slots are to be checked.
