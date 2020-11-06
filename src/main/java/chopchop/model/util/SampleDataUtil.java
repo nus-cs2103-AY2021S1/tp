@@ -66,7 +66,6 @@ public class SampleDataUtil {
 
     public static Recipe[] getSampleRecipe() {
         return new Recipe[] {
-
             new Recipe("Apple Tart",
                 Arrays.asList(
                     new IngredientReference("Apple", Count.of(5)),
