@@ -86,9 +86,15 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("contact delete Alex Yeoh")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for any user input.
 
-![Interactions Inside the Logic Component for the `contact delete Alex Yeoh` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component](images/UserInputSequenceDiagram.png)
+
+Given below are the Sequence Diagrams for the `execute("contact delete Alex Yeoh")` API call.
+
+![Get resultant command sd for the `contact delete Alex Yeoh` Command](images/GetDeleteCommandSequenceDiagram.png)
+
+![Execute command sd for the `contact delete Alex Yeoh` Command](images/ExecuteDeleteCommandSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -240,9 +246,11 @@ As modules and meetings cannot exist without contacts, the code also sets the Me
 to a new `MeetingBook` and `ModuleBook` object respectively, which resets both books. As there are no existing meetings,
 the SelectedMeeting is set to `null`.
 
-Given below is the sequence diagram of how the mechanism behaves when called using the `contact clear` command.
+Given below are the sequence diagrams of how the mechanism behaves when called using the `contact clear` command.
 
-![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+![GetClearSequenceCommandDiagram](images/GetClearCommandSequenceDiagram.png)
+
+![ExecuteClearSequenceCommandDiagram](images/ExecuteClearCommandSequenceDiagram.png)
 
 ### Listing all Contacts
 
@@ -260,9 +268,11 @@ Execution Code Snippet :
 
 The above code snippet updates the `FilteredList` of Persons in the `model` using the `PREDICATE_SHOW_ALL_PERSONS`. This fills the `FilteredList` with all Persons in the AddressBook and displays it.
 
-Given below is the sequence diagram of how the mechanism behaves when called using the `contact list` command.
+Given below are the sequence diagrams of how the mechanism behaves when called using the `contact list` command.
 
-![ListSequenceDiagram](images/ListSequenceDiagram.png)
+![GetListSequenceCommandDiagram](images/GetListCommandSequenceDiagram.png)
+
+![ExecuteListSequenceCommandDiagram](images/ExecuteListCommandSequenceDiagram.png)
 
 ### Deleting Contacts
 
@@ -619,17 +629,23 @@ The above code snippet updates the Person in each of the three books.
 
 #### Sequence Diagram
 
-Given below is the sequence diagram of how the mechanism behaves when called using the `tag add` command.
+Given below are the sequence diagrams of how the mechanism behaves when called using the `tag add` command.
 
-![AddTagSequenceDiagram](images/AddTagSequenceDiagram.png)
+![GetAddTagCommandSequenceDiagram](images/GetAddTagCommandSequenceDiagram.png)
 
-Given below is the sequence diagram of how the mechanism behaves when called using the `tag clear` command.
+![ExecuteAddTagCommandSequenceDiagram](images/ExecuteAddTagCommandSequenceDiagram.png)
 
-![ClearTagSequenceDiagram](images/ClearTagSequenceDiagram.png)
+Given below are the sequence diagrams of how the mechanism behaves when called using the `tag clear` command.
 
-Given below is the sequence diagram of how the mechanism behaves when called using the `tag delete` command.
+![GetClearTagCommandSequenceDiagram](images/GetClearTagCommandSequenceDiagram.png)
 
-![DeleteTagSequenceDiagram](images/DeleteTagSequenceDiagram.png)
+![ExecuteClearTagCommandSequenceDiagram](images/ExecuteClearTagCommandSequenceDiagram.png)
+
+Given below are the sequence diagrams of how the mechanism behaves when called using the `tag delete` command.
+
+![GetDeleteTagCommandSequenceDiagram](images/GetDeleteTagCommandSequenceDiagram.png)
+
+![ExecuteDeleteTagCommandSequenceDiagram](images/ExecuteDeleteTagCommandSequenceDiagram.png)
 
 ### Adding a Meeting
 

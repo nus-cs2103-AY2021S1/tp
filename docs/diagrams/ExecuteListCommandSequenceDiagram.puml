@@ -1,6 +1,6 @@
 @startuml
 !include style.puml
-mainframe sd get resultant command
+mainframe sd execute command
 
 box Logic LOGIC_COLOR_T1
 participant "c:ListCommand" as ListCommand LOGIC_COLOR
