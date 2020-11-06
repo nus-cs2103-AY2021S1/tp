@@ -41,15 +41,8 @@ public class FilterRecipeCommand extends Command {
     public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
 
-        Predicate<? super Recipe> p = x -> true;
-        if (ingredientPredicates != null && tagPredicates != null) {
-            p = ingredientPredicates.and(tagPredicates);
-        } else if (ingredientPredicates != null) {
-            p = ingredientPredicates;
-        } else if (tagPredicates != null) {
-            p = tagPredicates;
-        }
         List<Predicate> predicates = Arrays.asList(tagPredicates, ingredientPredicates, namePredicates);
+        Predicate<? super Recipe> p = x -> true;
         p = predicates.stream().filter(x -> x != null).collect(Collectors.reducing(p, (x, y) -> x.and(y)));
         model.updateFilteredRecipeList(p);
 

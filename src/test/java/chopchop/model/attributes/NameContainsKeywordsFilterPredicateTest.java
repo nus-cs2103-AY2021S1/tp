@@ -31,7 +31,8 @@ public class NameContainsKeywordsFilterPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsFilterPredicate firstPredicateCopy = new NameContainsKeywordsFilterPredicate(firstPredicateKeywordList);
+        NameContainsKeywordsFilterPredicate firstPredicateCopy = new NameContainsKeywordsFilterPredicate(
+                                                                     firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false

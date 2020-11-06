@@ -1,6 +1,5 @@
 package chopchop.model.attributes;
 
-import chopchop.commons.util.StringUtil;
 import chopchop.model.Entry;
 
 import java.util.ArrayList;
