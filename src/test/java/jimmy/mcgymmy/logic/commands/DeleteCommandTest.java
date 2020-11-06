@@ -83,7 +83,6 @@ public class DeleteCommandTest {
      */
     private void showNoFood(Model model) {
         model.updateFilteredFoodList(p -> false);
-
         assertTrue(model.getFilteredFoodList().isEmpty());
     }
 }

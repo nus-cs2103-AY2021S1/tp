@@ -12,8 +12,9 @@ import jimmy.mcgymmy.logic.parser.PrimitiveCommandParser;
 import jimmy.mcgymmy.model.macro.exceptions.DuplicateMacroException;
 
 /**
- * Immutable container for macros. Ensures a macro's name is not taken before
- * allowing it to be added. Defensive by being immutable.
+ * Immutable container for macros.
+ * Ensures a macro's name is not taken before allowing it to be added.
+ * Defensive by being immutable.
  */
 public class MacroList {
     private final Map<String, Macro> macros;

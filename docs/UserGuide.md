@@ -173,7 +173,6 @@ Examples:
  * The default value for `PROTEIN`, `FATS` and `CARBS` is 0. The default date is the day in which the food item is added.<br>
  * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer, less than 1000g.<br>
  * To view the list of supported date formats, see *Appendix A*.<br>
-
 </div>
 
 ![add command example](images/CommandImagesForUG/Add.png)
@@ -196,7 +195,7 @@ Examples:
 * Tags `TAG_NAME` for food item at the specified `INDEX`.
 * `TAG_NAME` is case-sensitive.
 * The index refers to the index number shown in the displayed food list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31
 * Tags for food items must be less than 20 characters.
 * The list will show all items after tagging
 
@@ -221,7 +220,7 @@ Examples:
 * Untags `TAG_NAME` for food item at the specified `INDEX`.
 * `TAG_NAME` is case-sensitive.
 * The index refers to the index number shown in the displayed food list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31
 * The list will show all items after untagging
 
 </div>
@@ -305,8 +304,8 @@ Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 :information_source:
 
 * Edits the food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer.<br>
+* The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31
+ * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer, less than 1000g.<br>
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * To view the list of supported date formats, see *Appendix A*.
@@ -331,7 +330,7 @@ Format: `delete INDEX`
 
 * Deletes the food at the specified `INDEX`.
 * The index refers to the index number shown in the displayed food list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31
 
 </div>
 

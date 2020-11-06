@@ -31,7 +31,6 @@ import jimmy.mcgymmy.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -39,10 +38,19 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
+        String validationRegex = "[0-9]+";
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+
+        // if contains non-digit -> invalid index
+        if (!trimmedIndex.matches(validationRegex)) {
             throw new ParseException(Index.MESSAGE_INVALID_INDEX);
         }
+
+        // contains all digit but still cannot parse -> index to large
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(Index.MESSAGE_INDEX_TOO_LARGE);
+        }
+
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
@@ -55,9 +63,6 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
         try {
             return new Name(trimmedName);
         } catch (IllegalValueException e) {
@@ -191,7 +196,7 @@ public class ParserUtil {
         //Create the directory
         Path path = Path.of(directory);
         File file = new File(directory);
-        if (!file.exists()) {
+        if (!file.exists() || !file.isDirectory()) {
             throw new ParseException(String.format("Directory does not exist %s", path.toString()));
         }
         return path;
@@ -205,7 +210,8 @@ public class ParserUtil {
      * @throws ParseException when outputPath is empty.
      */
     public static String parseOutputName(String outputPath) throws ParseException {
-        if (outputPath.trim().equals("")) {
+        outputPath = outputPath.trim();
+        if (outputPath.equals("")) {
             throw new ParseException("Filename cannot be empty");
         }
         if (!outputPath.contains(".json")) {
