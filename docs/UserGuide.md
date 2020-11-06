@@ -9,6 +9,9 @@ If you can type fast, McGymmy can log your food intake faster than traditional G
 This document aims to showcase all of McGymmy's commands.
 Open this document in a modern internet browser (Mozilla Firefox, Google Chrome, or Microsoft Edge).
 
+* Table of Contents
+{:toc}
+
 ##  1. Icon Legend
 <div markdown="span" class="alert alert-primary">
 
@@ -33,9 +36,6 @@ Thus, we recommend you to start by first understanding how McGymmy works at a hi
 :bulb: **Tip:** Press `Ctrl-F` for Windows and Other OSs and `CMD + F` for Mac OS to open the find prompt in your browser. You can type in keywords such as `add` or `edit` to quickly navigate to those parts of the document.
 
 </div>
-
-* Table of Contents
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
