@@ -13,6 +13,9 @@ import jimmy.mcgymmy.logic.parser.parameter.Parameter;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.storage.JsonMcGymmyStorage;
 
+/**
+ * Exports the current McGymmy to a directory.
+ */
 public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
