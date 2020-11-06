@@ -3,9 +3,20 @@ package com.eva.testutil.staff;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import com.eva.commons.util.DateUtil;
 import com.eva.model.EvaDatabase;
+import com.eva.model.comment.Comment;
+import com.eva.model.person.Address;
+import com.eva.model.person.Email;
+import com.eva.model.person.Name;
+import com.eva.model.person.Phone;
 import com.eva.model.person.staff.Staff;
+import com.eva.model.person.staff.leave.Leave;
+import com.eva.model.tag.Tag;
+import com.eva.model.util.SampleDataUtil;
 
 public class TypicalStaffs {
     public static final Staff ALEX = new StaffBuilder().withName("Alex Yeoh").withPhone("87438807")
@@ -52,9 +63,38 @@ public class TypicalStaffs {
     public static EvaDatabase<Staff> getTypicalStaffDatabase() {
         EvaDatabase<Staff> ab = new EvaDatabase<>();
         for (Staff staff : getTypicalStaffs()) {
-            ab.addPerson(staff);
+            Staff copy = makeCopy(staff);
+            ab.addPerson(copy);
         }
         return ab;
+    }
+
+    private static Staff makeCopy(Staff toCopy) {
+        String name = toCopy.getName().fullName;
+        String email = toCopy.getEmail().value;
+        String phone = toCopy.getPhone().value;
+        String address = toCopy.getAddress().value;
+        List<String> tags = toCopy.getTags().stream().map(tag -> tag.tagName).collect(Collectors.toList());
+        List<String[]> leaveDates = toCopy.getLeaves().stream()
+                .map(leave -> new String[] {
+                        DateUtil.dateToString(leave.getStartDate()),
+                        DateUtil.dateToString(leave.getEndDate())
+                })
+                .collect(Collectors.toList());
+        List<String> comments = toCopy.getComments().stream()
+                .map(comment -> {
+                    String date = comment.getDate().toString();
+                    String title = comment.title.getTitleDescription();
+                    String description = comment.getDescription();
+                    return String.format("%1$s|%2$s|%3$s", title, date, description);
+                })
+                .collect(Collectors.toList());
+        Set<Tag> tagSet = SampleDataUtil.getTagSet(tags);
+        Set<Comment> commentSet = SampleDataUtil.getCommentSet(comments);
+        Set<Leave> leaveSet = SampleDataUtil.getLeaveSet(leaveDates);
+
+        return new Staff(new Name(name), new Phone(phone), new Email(email), new Address(address),
+                tagSet, leaveSet, commentSet);
     }
 
     public static List<Staff> getTypicalStaffs() {

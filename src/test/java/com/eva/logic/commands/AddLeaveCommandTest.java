@@ -1,8 +1,9 @@
 package com.eva.logic.commands;
 
-//import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static com.eva.logic.commands.CommandTestUtil.assertCommandFailure;
+import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static com.eva.testutil.Assert.assertThrows;
-//import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static com.eva.testutil.staff.TypicalStaffs.getTypicalStaffDatabase;
@@ -20,6 +21,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.GuiSettings;
+import com.eva.commons.core.Messages;
 import com.eva.commons.core.PanelState;
 import com.eva.commons.core.index.Index;
 import com.eva.model.Model;
@@ -45,8 +47,7 @@ class AddLeaveCommandTest {
     public static final Index INDEX = Index.fromZeroBased(1);
     public static final Staff STAFF = new StaffBuilder().build();
     public static final List<Leave> LEAVE_LIST = new ArrayList<>(STAFF.getLeaves());
-    private Model model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
-            getTypicalApplicantDatabase(), new UserPrefs());
+    private Model model;
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
@@ -58,14 +59,14 @@ class AddLeaveCommandTest {
         assertThrows(NullPointerException.class, () -> new AddLeaveCommand(INDEX, null));
     }
 
-    /*
     @Test
     public void execute_leaveAcceptedByModelOnStaffList_addSuccessful() throws Exception {
-        Staff staffToAddLeave = model.getFilteredStaffList().get(INDEX_FIRST_PERSON.getZeroBased());
+        ModelManager expectedModel = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+
+        Staff staffToAddLeave = expectedModel.getFilteredStaffList().get(INDEX_FIRST_PERSON.getZeroBased());
         AddLeaveCommand addLeaveCommand = new AddLeaveCommand(INDEX_FIRST_PERSON, LEAVE_LIST);
 
-        ModelManager expectedModel = new ModelManager(model.getPersonDatabase(), model.getStaffDatabase(),
-                model.getApplicantDatabase(), new UserPrefs());
         StringBuilder sb = new StringBuilder();
         for (Leave leave : LEAVE_LIST) {
             expectedModel.addStaffLeave(staffToAddLeave, leave);
@@ -73,10 +74,66 @@ class AddLeaveCommandTest {
         }
 
         String expectedMessage = String.format(AddLeaveCommand.MESSAGE_SUCCESS, staffToAddLeave.getName(), sb);
-
-        assertCommandSuccess(addLeaveCommand, model, expectedMessage, expectedModel);
+        CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
+        model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        assertCommandSuccess(addLeaveCommand, model, expectedResult, expectedModel);
     }
-     */
+
+    @Test
+    public void execute_leaveAcceptedByModelOnStaffProfile_addSuccessful() throws Exception {
+        ModelManager expectedModel = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        expectedModel.setPanelState(PanelState.STAFF_PROFILE);
+
+        Staff staffToAddLeave = expectedModel.getFilteredStaffList().get(INDEX_FIRST_PERSON.getZeroBased());
+        AddLeaveCommand addLeaveCommand = new AddLeaveCommand(INDEX_FIRST_PERSON, LEAVE_LIST);
+
+        StringBuilder sb = new StringBuilder();
+        for (Leave leave : LEAVE_LIST) {
+            expectedModel.addStaffLeave(staffToAddLeave, leave);
+            sb.append(leave.toString()).append(", ");
+        }
+        expectedModel.setCurrentViewStaff(new CurrentViewStaff(staffToAddLeave, INDEX_FIRST_PERSON));
+
+        String expectedMessage = String.format(AddLeaveCommand.MESSAGE_SUCCESS, staffToAddLeave.getName(), sb);
+        CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
+        model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        model.setPanelState(PanelState.STAFF_PROFILE);
+        assertCommandSuccess(addLeaveCommand, model, expectedResult, expectedModel);
+    }
+
+    @Test
+    public void execute_leaveRejectedByModelOnApplicantProfile_addFailure() throws Exception {
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
+                AddLeaveCommand.MESSAGE_WRONG_PANEL);
+        model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        model.setPanelState(PanelState.APPLICANT_PROFILE);
+        AddLeaveCommand addLeaveCommand = new AddLeaveCommand(INDEX_FIRST_PERSON, LEAVE_LIST);
+        assertCommandFailure(addLeaveCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_leaveRejectedByModelOnApplicantList_addFailure() throws Exception {
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
+                AddLeaveCommand.MESSAGE_WRONG_PANEL);
+        model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        model.setPanelState(PanelState.APPLICANT_LIST);
+        AddLeaveCommand addLeaveCommand = new AddLeaveCommand(INDEX_FIRST_PERSON, LEAVE_LIST);
+        assertCommandFailure(addLeaveCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+        model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        AddLeaveCommand addLeaveCommand = new AddLeaveCommand(outOfBoundIndex, LEAVE_LIST);
+        assertCommandFailure(addLeaveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
 
     /*
     @Test
@@ -387,5 +444,14 @@ class AddLeaveCommandTest {
         public PanelState getPanelState() {
             return this.panelState;
         }
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show no one.
+     */
+    private void showNoStaff(Model model) {
+        model.updateFilteredStaffList(p -> false);
+
+        assertTrue(model.getFilteredStaffList().isEmpty());
     }
 }
