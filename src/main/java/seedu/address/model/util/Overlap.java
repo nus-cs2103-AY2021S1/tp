@@ -20,7 +20,7 @@ public class Overlap {
      */
     private static boolean isOverlappingTimePeriod(LocalDateTime startA, LocalDateTime endA, LocalDateTime startB,
                                                   LocalDateTime endB) {
-        return (startA.isBefore(endB) || startA.isEqual(endB)) && (endA.isAfter(startB) || endA.isEqual(startB));
+        return (startA.isBefore(endB)) && (endA.isAfter(startB));
     }
     /**
      * Returns true if date and time of this timeslot will overlap with another timeslot in PlaNus.
