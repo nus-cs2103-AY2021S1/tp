@@ -114,7 +114,7 @@ class JsonAdaptedQuickCache {
                         String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
             }
             if (!MultipleChoiceQuestion.isValidQuestion(question)) {
-                throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
+                throw new IllegalValueException(MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
             }
 
             if (choices == null || choices.size() == 0) {
@@ -156,7 +156,7 @@ class JsonAdaptedQuickCache {
                         String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
             }
             if (!OpenEndedQuestion.isValidQuestion(question)) {
-                throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
+                throw new IllegalValueException(OpenEndedQuestion.MESSAGE_CONSTRAINTS);
             }
             if (answer == null) {
                 throw new IllegalValueException(

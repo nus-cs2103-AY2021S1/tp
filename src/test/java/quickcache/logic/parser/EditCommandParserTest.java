@@ -3,12 +3,14 @@ package quickcache.logic.parser;
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_THREE;
 import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_TWO;
+import static quickcache.logic.commands.CommandTestUtil.DIFFICULTY_DESC_LOW;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_THREE;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_THREE;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_TWO;
+import static quickcache.logic.commands.CommandTestUtil.VALID_DIFFICULTY_LOW;
 import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_THREE;
 import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_TWO;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
@@ -86,11 +88,11 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_FLASHCARD;
-        String userInput = targetIndex.getOneBased() + QUESTION_DESC_THREE + ANSWER_DESC_THREE;
+        String userInput = targetIndex.getOneBased() + QUESTION_DESC_THREE + ANSWER_DESC_THREE + DIFFICULTY_DESC_LOW;
 
         EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
             .withQuestion(VALID_QUESTION_THREE)
-            .withAnswer(VALID_ANSWER_THREE).build();
+            .withAnswer(VALID_ANSWER_THREE).withDifficulty(VALID_DIFFICULTY_LOW).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

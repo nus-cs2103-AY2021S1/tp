@@ -12,6 +12,7 @@ import quickcache.model.Model;
 import quickcache.model.ModelManager;
 import quickcache.model.QuickCache;
 import quickcache.model.UserPrefs;
+import quickcache.model.flashcard.Choice;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.testutil.EditFlashcardDescriptorBuilder;
 import quickcache.testutil.FlashcardBuilder;
@@ -39,6 +40,21 @@ public class EditCommandTest {
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_choicesInOpenEndedUnfilteredList_throwsCommandException() {
+        Flashcard editedFlashcard = new FlashcardBuilder().build();
+        Choice[] choices = new Choice[1];
+        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(editedFlashcard)
+                .withChoices(choices).build();
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD, descriptor);
+
+        String expectedMessage = "Choices should not be provided for open ended question";
+
+        Model expectedModel = new ModelManager(new QuickCache(model.getQuickCache()), new UserPrefs());
+
+        assertThrows(CommandException.class, expectedMessage, () -> editCommand.execute(expectedModel));
     }
 
     @Test
