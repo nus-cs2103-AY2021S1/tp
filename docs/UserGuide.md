@@ -8,8 +8,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 * Table of Contents
     - [Quick start](#quick-start)
-    - [Notes about the command format](#Notes-about-the-command-format)
-    - [Common Input Fields](#Common-Input-Fields)
+    - [Notes about the command format](#notes-about-the-command-format)
+    - [Common Input Fields](#common-input-fields)
     - [Features](#features)
         - [Add a flashcard](#add-a-flashcard--add): `add`
         - [Clear all flashcards](#clear-all-flashcards--clear): `clear`
@@ -109,12 +109,8 @@ Input Field | Restrictions and how to specify
 `INDEX`         | `INDEX` refers to the index number shown in the displayed flashcard list.<br>Every visible flashcard on the display list has an `INDEX`.<br>`INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 `KEYWORD`      | `KEYWORD` has no character limit but must be one word (no spaces).
 
-<div markdown="span" class="alert alert-primary">:memo: Note:
-<ul>
-<li><b>Can be empty</b> means you can specify the prefix but not pass a value.<br>eg. passing <code>r/</code> is valid. </li>
-<li> <b>Cannot be empty</b> means you have to specify a value when you specify the prefix.<br>eg. passing <code>c/</code> is invalid.</li>
-</ul>
-</div>
+* **Can be empty**  means you can specify the prefix but not pass a value.<br>eg. passing `r/` is valid.
+* **Cannot be empty** means you have to specify a value when you specify the prefix.<br>eg. passing `c/` is invalid.
 
 ## Features
 
@@ -124,7 +120,7 @@ Adds a flashcard.
 
 Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM] [t/TAG]...`
 
-* Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
+* Refer to [common input fields](#common-input-fields) on what the different fields are and how to specify them.
 * After a new flashcard is added, all flashcards will be listed. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -180,7 +176,7 @@ Edits a flashcard.
 Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM] [t/TAG]...`
 
 * Edits the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
-* Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
+* Refer to [common input fields](#common-input-fields) on what the different fields are and how to specify them.
 * Although all fields are optional, a minimum of one field has to be given.
 * Specifying empty values to `NOTE`, `RATING`, `TAG` or `DIAGRAM` eg. `r/` will remove the corresponding field in the flashcard.
 * Although `QUESTION`, `ANSWER` and `CATEGORY` are optional values, you are not allowed to specify an empty value to those attributes 
@@ -213,7 +209,7 @@ This will return all the flashcards whose fields match all the fields specified 
 Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 
 * Filters the specified flashcard based on category, rating, favourite status or tags.
-* Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
+* Refer to [common input fields](#common-input-fields) on what the different fields are and how to specify them.
 * Specifying `f/yes` filters for favourited flashcards while `f/no` filters for unfavourited flashcards.
 * Supports filtering of one or more different fields. For example:
     - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
@@ -270,7 +266,7 @@ Searches for all flashcards matching any of the search keywords.
 
 Format: `find KEYWORD [KEYWORD]...`
 * Finds all flashcards containing any of the keywords.
-* Refer to [common input fields](#Common-Input-fields) on how to specify the different fields.
+* Refer to [common input fields](#common-input-fields) on how to specify the different fields.
 * The keywords are **case insensitive**.
 * Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
 
