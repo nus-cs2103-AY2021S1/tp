@@ -34,6 +34,10 @@ public class TypicalAssignments {
             .withDeadline("10-10-2020 1700").withModuleCode("CS2101").build();
     public static final Assignment ORAL_PRESENTATION = new AssignmentBuilder().withName("Oral presentation")
             .withDeadline("03-12-2020 0400").withModuleCode("CS2101").build();
+    public static final Assignment MA1101R_TUTORIAL_ONE = new AssignmentBuilder().withName("MA1101R Tut 1")
+            .withDeadline("03-12-2020 0400").withModuleCode("MA1101R").withPriority("HIGH").build();
+    public static final Assignment MA1101R_TUTORIAL_TWO = new AssignmentBuilder().withName("MA1101R Tut 2")
+            .withDeadline("03-12-2020 0400").withModuleCode("MA1101R").withPriority("low").build();
 
     // Manually added
     public static final Assignment READ = new AssignmentBuilder().withName("Read notes").withDeadline("01-01-2020 0100")
@@ -74,6 +78,6 @@ public class TypicalAssignments {
 
     public static List<Assignment> getTypicalAssignments() {
         return new ArrayList<>(Arrays.asList(CS1231S_HW, CS2103T_TUT, CS2106_LAB, CS2106_TUTORIAL_QUIZ,
-                IS1103_MISSION, PEER_REVIEW, ORAL_PRESENTATION));
+                IS1103_MISSION, PEER_REVIEW, ORAL_PRESENTATION, MA1101R_TUTORIAL_ONE, MA1101R_TUTORIAL_TWO));
     }
 }
