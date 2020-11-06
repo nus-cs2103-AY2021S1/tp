@@ -365,9 +365,10 @@ Examples:
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** For those who are more inclined to use a gui to import:
-* Click on file
-* Click on Import
-* Navigate using the GUI to the save file
+
+1. Click on file
+1. Click on Import
+1. Navigate using the GUI to the save file
 
 </div>
 
@@ -400,11 +401,12 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** For those who are more inclined to use a gui to export:
-* Click on `file` option in the menubar above the command box
-* Click on `Export` button to open the directory selector
-* Navigate using the GUI to the save file
-* Click on `Select Folder` when done
+:bulb: **Tip:** For those who are more inclined to use a gui to export.
+
+1. Click on `file` option in the menubar above the command box
+1. Click on `Export` button to open the directory selector
+1. Navigate using the GUI to the save file
+1. Click on `Select Folder` when done
 
 </div>
 
