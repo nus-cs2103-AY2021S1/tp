@@ -35,6 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Name name;
 
+        argMultimap.checkDuplicatePrefix(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL);
+
         try {
             name = ParserUtil.parseName(argMultimap.getPreamble());
         } catch (ParseException pe) {

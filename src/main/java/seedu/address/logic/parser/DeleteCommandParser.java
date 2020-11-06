@@ -36,6 +36,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG, PREFIX_MODULE);
+        argMultimap.checkDuplicatePrefix(PREFIX_NAME, PREFIX_MODULE);
 
         if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG, PREFIX_MODULE)) {
             Set<String> nameSet = ParserUtil.parseAllNames(argMultimap.getAllValues(PREFIX_NAME));

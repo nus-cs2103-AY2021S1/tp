@@ -20,6 +20,8 @@ public class ListModuleCommandParser implements Parser<ListModuleCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE);
 
+        argMultimap.checkDuplicatePrefix(PREFIX_MODULE);
+
         if (!arePrefixesPresent(argMultimap, PREFIX_MODULE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListModuleCommand.MESSAGE_USAGE));
