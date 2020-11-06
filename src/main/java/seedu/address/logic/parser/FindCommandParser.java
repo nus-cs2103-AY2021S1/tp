@@ -92,7 +92,6 @@ public class FindCommandParser implements Parser<FindCommand> {
     private static FindCommand findByPriority(String[] keywords) throws ParseException {
         for (String keyword : keywords) {
             ParserUtil.parsePriority(keyword);
-            System.out.println(keyword);
         }
         return new FindCommand(new PriorityContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
@@ -119,12 +118,13 @@ public class FindCommandParser implements Parser<FindCommand> {
         boolean isPrefixDeadlinePresent = argMultimap.getValue(PREFIX_DEADLINE).isPresent();
         boolean isPrefixModuleCodePresent = argMultimap.getValue(PREFIX_MODULE_CODE).isPresent();
         boolean isPrefixPriorityPresent = argMultimap.getValue(PREFIX_PRIORITY).isPresent();
+        boolean isMoreThanOnePrefixPresent = moreThanOnePrefixPresent(
+                argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_DEADLINE, PREFIX_PRIORITY);
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        } else if (moreThanOnePrefixPresent(
-                argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_DEADLINE, PREFIX_PRIORITY)) {
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.NO_PREFIX_AND_KEYWORD));
+        } else if (isMoreThanOnePrefixPresent) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MORE_THAN_ONE_PREFIX_MESSAGE));
         } else if (isPrefixNamePresent && isPreambleMissing) {
@@ -137,7 +137,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             keywords = getKeywords(PREFIX_DEADLINE, argMultimap);
             return findByDeadline(keywords);
         } else if (isPrefixPriorityPresent && isPreambleMissing) {
-            keywords = argMultimap.getValue(PREFIX_PRIORITY).get().split("\\s+");
+            keywords = getKeywords(PREFIX_PRIORITY, argMultimap);
             return findByPriority(keywords);
         } else {
             throw new ParseException(

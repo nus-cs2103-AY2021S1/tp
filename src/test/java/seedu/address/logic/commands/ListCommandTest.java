@@ -1,13 +1,11 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
-import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -55,8 +53,8 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(
-                Index.fromZeroBased(0)), model, String.format(
+        index = Index.fromZeroBased(0);
+        assertCommandSuccess(new ListCommand(index), model, String.format(
                 Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, model.getFilteredAssignmentList().size()), expectedModel);
     }
 
@@ -66,21 +64,19 @@ public class ListCommandTest {
         model.updateFilteredAssignmentList(showLimitedAssignments());
         String expectedMessage = String.format(
                 Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, model.getFilteredAssignmentList().size());
-        ListCommand listForOneDay = new ListCommand(Index.fromZeroBased(1));
+        ListCommand listForOneDay = new ListCommand(index);
         expectedModel.updateFilteredAssignmentList(showLimitedAssignments());
         assertCommandSuccess(listForOneDay, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredAssignmentList());
     }
 
     @Test
-    public void execute_fourDaysFromCurrentDate_showAssignments() {
-        index = Index.fromZeroBased(4);
+    public void execute_fiftyDaysFromCurrentDate_showAssignments() {
+        index = Index.fromZeroBased(50);
         model.updateFilteredAssignmentList(showLimitedAssignments());
         String expectedMessage = String.format(
                 Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, model.getFilteredAssignmentList().size());
-        ListCommand listForFourDays = new ListCommand(Index.fromZeroBased(4));
+        ListCommand listForFiftyDays = new ListCommand(index);
         expectedModel.updateFilteredAssignmentList(showLimitedAssignments());
-        assertCommandSuccess(listForFourDays, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredAssignmentList());
+        assertCommandSuccess(listForFiftyDays, model, expectedMessage, expectedModel);
     }
 }

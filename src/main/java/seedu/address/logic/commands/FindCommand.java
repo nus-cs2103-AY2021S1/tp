@@ -37,6 +37,8 @@ public class FindCommand extends Command {
             "Deadline field should have date or time keywords in the format dd-MM-yyyy and HHmm respectively.\n"
              + "It should not be left empty.";
 
+    public static final String NO_PREFIX_AND_KEYWORD = "At least one prefix and keyword must be keyed in.";
+
     public static final String MORE_THAN_ONE_PREFIX_MESSAGE =
             "Multiple assignment fields detected. Finding is done one field at a time.\n"
              + "Fields and its prefix: n/ to find by name, d/ to find by date or time, \n"
