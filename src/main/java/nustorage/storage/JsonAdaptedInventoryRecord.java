@@ -54,7 +54,7 @@ class JsonAdaptedInventoryRecord {
     /**
      * Converts this Jackson-friendly adapted inventory record object into the model's {@code InventoryRecord} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted inventory record.
      */
     public InventoryRecord toModelType() throws IllegalValueException {
         if (this.itemName == null) {

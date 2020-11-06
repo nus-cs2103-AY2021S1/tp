@@ -25,7 +25,6 @@ public class CreateInventoryRecordCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Inventory record created: %1$s";
     public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This item already exists in the Inventory";
-    public static final String MESSAGE_INVALID_QUANTITY = "The provided quantity is invalid";
     public static final String MESSAGE_INVALID_ITEM_NAME = "Item name must be provided";
     private final InventoryRecord newInventoryRecord;
     private final FinanceRecord newFinanceRecord;

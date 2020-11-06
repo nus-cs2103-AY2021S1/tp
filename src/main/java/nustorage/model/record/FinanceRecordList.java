@@ -19,7 +19,7 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent finance record as the given argument.
      */
     public boolean contains(FinanceRecord toCheck) {
         requireNonNull(toCheck);
@@ -27,8 +27,8 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a finance record to the list.
+     * The finance record must not already exist in the list.
      */
     public void add(FinanceRecord toAdd) {
         requireNonNull(toAdd);
@@ -39,9 +39,9 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the finance record {@code target} in the list with {@code editedRecord}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The unique ID of {@code editedRecord} must not be the same as another existing finance record in the list.
      */
     public void setFinanceRecord(FinanceRecord target, FinanceRecord editedRecord) {
         requireAllNonNull(target, editedRecord);
@@ -63,8 +63,8 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent finance record from the list.
+     * The finance record must exist in the list.
      */
     public void remove(FinanceRecord toRemove) {
         requireNonNull(toRemove);
@@ -81,8 +81,8 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code financeRecords}.
+     * {@code financeRecords} must not contain duplicate finance records.
      */
     public void setFinanceRecords(List<FinanceRecord> financeRecords) {
         requireAllNonNull(financeRecords);
