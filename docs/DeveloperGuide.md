@@ -398,35 +398,58 @@ The following sequence diagram shows how the filter operation works:
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: CS2103 Students 
 
-* has a need to manage a significant number of flashcards
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has a need to organise all the quiz questions on Luminus 
+* Has a need to consolidate and summarize large amount of information from CS2103 textbook
+* Has a need to organise key learning points from textbook in website and quiz questions on Luminus in a single platform
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
+* Has technical background
 
 **Value proposition**:
-* Remind students on what is due soon
-* Help students keep track of their CS2103T progress (assignments, results)
-* Provide students with the ease of access to CS2103T content
-* Aid students in learning and revision of CS2103T topics (through flashcards and “self-quiz”)
-
+* Provide a centralised platform to organise textbook content on CS2103 website and quiz questions on Luminus
+* Store quiz's questions and their answers through a flashcard
+* Customize each flashcard through flashcard's category, tags
+* Allow users to rate/favourite flashcards
+* Allow users to add a note to a flashcard
+* Allow users to revise effectively by through quiz and review feature
+* Provide statistics of the each flashcard so that users can better identify flashcards to focus on
+* Search for flashcards easily by search keywords
+* Filter the list of flashcards by various fields
+* Sort the list of flashcards according to most/least reviewed
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | busy student                               | add a new flashcard            |                                                                        |
-| `* * *`  | student                                    | delete a flashcard             | remove entries that that are not relevant or helpful to my learning.   |
-| `* * *`  | student                                    | list the flashcards            |                                                                        |
-| `* * *`  | student                                    | review the flashcards          |                                                                        |
-
-*{More to be added}*
+| Priority | As a …​                                     | I want to …​                                                              | So that I can…​                                                                              |
+| -------- | ------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                                                   | refer to instructions when I forget how to use the App                                      |
+| `* * *`  | potential user exploring the app           | see sample data in the App                                               | easily see how the app will look like when it is in use                                     |
+| `* * *`  | user ready to start using the app          | purge all current data                                                   | get rid of sample/experimental data I used for exploring the app                            |
+| `* * *`  | busy student                               | add a flashcard easily via a single command                              |                                                                                             |
+| `* * *`  | student                                    | to know whether there are potential duplicates when adding new flashcard |  optimise my list of flashcards and ensure that there are no repeats to prevent cluttering  |
+| `* * *`  | student                                    | list all the flashcards                                                  |                                                                                             |
+| `* * *`  | student                                    | delete flashcard                                                         | remove flashcards that are not relevant or helpful for my learning                          |
+| `* * *`  | careful student                            | edit details of flashcard                                                | make sure that the content in the flashcard is accurate and relevant                        |
+| `* * *`  | organized student                          | create custom category for flashcards                                    | better organize the content to my liking so that it is easier to review                     |
+| `* * *`  | busy student                               | find flashcards easily                                                   | save time without having to look through the whole list of flashcards                       |
+| `* * `   | hardworking student                        | review flashcards 1 by 1                                                 | revise for exams by testing myself                                                          |
+| `* * `   | student                                    | skip particular flashcards while reviewing                               | save time by reviewing relevant flashcards only                                             |
+| `* * `   | hardworking student                        | add a note to the flashcard                                              | note down important learning points to prevent myself from making the same mistake          |
+| `* * `   |  student                                   | rate flashcards                                                          | know importance of each flashcard                                                           |
+| `* * `   | organised student                          | tag flashcards                                                           | further manage and organise the flashcards                                                  |
+| `* * `   | student                                    | add a diagram to flashcard                                               | create flashcards with question based on diagram                                            |
+| `* * `   | student                                    | view individual flashcard                                                | look at flashcard in more details                                                           |
+| `* * `   | student                                    | quiz myself                                                              | revise for exams by through mock quiz and keep track of scores                              |
+| `* * `   | student                                    | view statistics of flashcard                                             | keep track of how well I did and know whether I have grasped the content properly           |
+| `* * `   | busy student                               | filter flashcards by different fields                                    | refine list of flashcards and only display the relevant flashcards I am interested in       |
+| `* * `   | busy student                               | sort flashcards according to review frequency                            | focus on flashcards that are least reviewed                                                 |
+| `* * `   | busy student                               | sort flashcards according to success rate                                | focus on flashcards that are often incorrectly answered                                     |
 
 ### Use cases
 
