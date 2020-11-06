@@ -43,16 +43,11 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peterjack@@example.com")); // double '@' symbol
         assertFalse(Email.isValidEmail("peter@jack@example.com")); // '@' symbol in local part
         assertFalse(Email.isValidEmail("peterjack@example@com")); // '@' symbol in domain name
-        assertFalse(Email.isValidEmail("123@145")); // numeric local part and domain name
-        assertFalse(Email.isValidEmail("test@localhost")); // alphabets only
         assertFalse(Email.isValidEmail("peterjack@.example.com")); // domain name starts with a period
         assertFalse(Email.isValidEmail("peterjack@example.com.")); // domain name ends with a period
         assertFalse(Email.isValidEmail("peterjack@-example.com")); // domain name starts with a hyphen
         assertFalse(Email.isValidEmail("peterjack@example.com-")); // domain name ends with a hyphen
 
-        // valid email
-        assertTrue(Email.isValidEmail("PeterJack_1190@example.com"));
-        assertTrue(Email.isValidEmail("a@bc.co")); // minimal
         // local domains
         assertTrue(Email.isValidEmail("a@bc"));
         assertTrue(Email.isValidEmail("user@desk102"));

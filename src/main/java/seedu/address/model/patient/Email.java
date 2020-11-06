@@ -11,28 +11,8 @@ import org.apache.commons.validator.routines.EmailValidator;
  */
 public class Email {
 
-<<<<<<< HEAD
-    private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
-    public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
-            + "and adhere to the following constraints:\n"
-            + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-            + "the parentheses, (" + SPECIAL_CHARACTERS + ") .\n"
-            + "2. This is followed by a '@' and then a domain name. "
-            + "The domain name must:\n"
-            + "    - be at least 2 characters long\n"
-            + "    - start and end with alphabet characters\n"
-            + "    - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.";
-    // alphanumeric and special characters
-    private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]+";
-    private static final String DOMAIN_FIRST_CHARACTER_REGEX = "[A-Za-z]+"; // alphabet characters
-    private static final String DOMAIN_MIDDLE_REGEX = "[a-zA-Z0-9.-]*"; // alphanumeric, period and hyphen
-    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[.]{1}[A-Za-z]{2,4}$"; // alphabet characters
-    public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
-            + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
-=======
     public static final String MESSAGE_CONSTRAINTS = "Emails should be a valid email.";
     // This class uses a validator from an external library rather than a regex.
->>>>>>> 50f09241dd0faec9b5626421b2f0717b5c53327d
 
     public final String value;
 
