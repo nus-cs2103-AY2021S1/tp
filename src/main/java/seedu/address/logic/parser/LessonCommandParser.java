@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.DateTimeUtil.isStartDateBeforeEndDate;
 import static seedu.address.commons.util.DateTimeUtil.isStartTimeBeforeEndTime;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
@@ -48,14 +49,8 @@ public class LessonCommandParser implements Parser<LessonCommand> {
                 PREFIX_START_TIME, PREFIX_END_TIME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", LessonCommand.MESSAGE_USAGE));
         }
-        if (argMultimap.hasMultipleValues(PREFIX_TITLE)
-                || argMultimap.hasMultipleValues(PREFIX_DAY)
-                || argMultimap.hasMultipleValues(PREFIX_DESCRIPTION)
-                || argMultimap.hasMultipleValues(PREFIX_TAG)
-                || argMultimap.hasMultipleValues(PREFIX_START_DATE)
-                || argMultimap.hasMultipleValues(PREFIX_END_DATE)
-                || argMultimap.hasMultipleValues(PREFIX_START_TIME)
-                || argMultimap.hasMultipleValues(PREFIX_END_TIME)) {
+        if (Parser.argMultimapHasRepeatedAttributes(argMultimap, PREFIX_TITLE, PREFIX_DAY, PREFIX_DESCRIPTION,
+                PREFIX_TAG, PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_START_TIME, PREFIX_DATE_TIME)) {
             throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
         }
         Description description = Description.defaultDescription();

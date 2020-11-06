@@ -24,7 +24,7 @@ public class LessonCommand extends Command {
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_TAG + "TAG "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + PREFIX_DAY + "DAY "
             + PREFIX_START_TIME + "TIME "
             + PREFIX_END_TIME + "TIME "

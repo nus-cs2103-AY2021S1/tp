@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -26,7 +27,8 @@ public class EventCommand extends Command {
             + PREFIX_DATE + "EVENT DATE "
             + PREFIX_START_TIME + "START TIME "
             + PREFIX_END_TIME + "END TIME "
-            + PREFIX_DESCRIPTION + "DESCRIPTION \n"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_TAG + "TAG] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "career talk "
             + PREFIX_DATE + "01-01-2020 "

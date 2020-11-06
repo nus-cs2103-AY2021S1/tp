@@ -17,7 +17,7 @@ public class FindTaskCommand extends Command {
             + "containing the specified valid search phrase (case-insensitive)"
             + "and displays them as a list with index numbers.\n"
             + "Parameters: ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...\n"
-            + "For list of all available attribute, please refer to the user guide by typing 'help' command\n"
+            + "For list of all available attributes, please refer to the user guide by typing 'help' command\n"
             + "Example: " + COMMAND_WORD + " title:meet zijian desc:play games";
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
     private final TaskContainsKeywordsPredicate predicate;

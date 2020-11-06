@@ -59,11 +59,11 @@ public class DoneCommand extends Command {
      * returns message built by the list of tasks done.
      */
     public static String buildMessage(Task[] tasks) {
-        String message = "";
-        for (int i = 0; i < tasks.length; i++) {
-            message += String.format(MESSAGE_DONE_TASK_SUCCESS, tasks[i].getTitle()) + "\n";
+        StringBuilder message = new StringBuilder();
+        for (Task task : tasks) {
+            message.append(String.format(MESSAGE_DONE_TASK_SUCCESS, task.getTitle())).append("\n");
         }
-        return message;
+        return message.toString();
     }
 
     @Override
