@@ -45,13 +45,31 @@
 .tab .tab-label {
     -fx-alignment: CENTER;
     -fx-text-fill: #828282;
-    -fx-font-size: 12px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
 
 .tab:selected .tab-label {
     -fx-alignment: CENTER;
     -fx-text-fill: #ffffff;
+}
+
+.tab {
+    -fx-background-color: #383838;
+    -fx-pref-width: 575;
+    -fx-pref-height: 75;
+}
+
+.tab-header-background {
+    -fx-background-color: #383838;
+}
+
+.tab-selected-line {
+    -fx-border-color: #008fff;
+}
+
+.jfx-tab-pane .tab-header-area .jfx-rippler {
+    -jfx-rippler-fill : #008fff;
 }
 
 /* The following CSS is from jfxtras source code. Pasted for modification. */

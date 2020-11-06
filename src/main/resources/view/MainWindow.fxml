@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTabPane?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
@@ -7,7 +8,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -34,9 +34,8 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-
-            <TabPane prefWidth="340" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-              <tabs>
+        <JFXTabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+               <tabs>
                 <Tab text="Overview">
                   <content>
                     <HBox>
@@ -60,8 +59,8 @@
                     </VBox>
                   </content>
                 </Tab>
-              </tabs>
-            </TabPane>
+               </tabs>
+            </JFXTabPane>
 
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="460.0" minHeight="120.0" prefHeight="190.0" prefWidth="340.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
