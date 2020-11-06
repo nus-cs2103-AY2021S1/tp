@@ -10,7 +10,9 @@ import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_SECOND_TEAM
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalPersons.DESC_A;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;

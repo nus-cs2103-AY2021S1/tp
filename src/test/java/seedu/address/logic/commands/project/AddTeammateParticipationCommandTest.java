@@ -11,7 +11,9 @@ import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_SECOND_TEAM
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalPersons.DESC_A;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -34,7 +36,7 @@ public class AddTeammateParticipationCommandTest {
 
         String expectedMessage =
             String.format(AddTeammateParticipationCommand.MESSAGE_ADD_TEAMMATE_PARTICIPATION_SUCCESS,
-                VALID_TEAMMATE_GIT_USERNAME_A );
+                VALID_TEAMMATE_GIT_USERNAME_A);
         AddTeammateParticipationCommand addTeammateParticipationCommand =
             new AddTeammateParticipationCommand(GIT_USERINDEX_FIRST_TEAMMATE);
 

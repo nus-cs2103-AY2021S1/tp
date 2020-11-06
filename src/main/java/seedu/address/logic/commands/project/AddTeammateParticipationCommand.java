@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.project;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.logging.Level;
@@ -26,7 +25,6 @@ public class AddTeammateParticipationCommand extends Command {
         + "Example: " + COMMAND_WORD + " LucasTai98 ";
 
     private static final Logger logger = Logger.getLogger("AddTeammateParticipationCommandLogger");
-//    private final Person toAdd;
     private final GitUserIndex gitUserIndex;
 
     /**
@@ -34,11 +32,7 @@ public class AddTeammateParticipationCommand extends Command {
      */
     public AddTeammateParticipationCommand(GitUserIndex index) {
         requireNonNull(index);
-//        toAdd = Person.getPersonFromList(index);
         gitUserIndex = index;
-//        if (isNull(toAdd)) {
-//            logger.log(Level.INFO, "Teammate not retrieved");
-//        }
     }
 
     /**

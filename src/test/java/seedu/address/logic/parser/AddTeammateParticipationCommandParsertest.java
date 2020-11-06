@@ -20,10 +20,9 @@ import seedu.address.model.project.Project;
 
 public class AddTeammateParticipationCommandParsertest {
 
-    private AddTeammateParticipationCommandParser parser = new AddTeammateParticipationCommandParser();
-
     @Test
     public void parse_validArgs_returnAddTeammateParticipationCommand() {
+        AddTeammateParticipationCommandParser parser = new AddTeammateParticipationCommandParser();
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -36,6 +35,7 @@ public class AddTeammateParticipationCommandParsertest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        AddTeammateParticipationCommandParser parser = new AddTeammateParticipationCommandParser();
         assertParseFailure(parser, INVALID_TEAMMATE_GIT_USERNAME,
             String.format(MESSAGE_INVALID_GIT_INDEX));
     }

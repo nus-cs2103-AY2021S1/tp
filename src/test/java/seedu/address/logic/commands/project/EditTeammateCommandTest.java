@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import java.util.HashMap;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.GitUserIndex;
@@ -34,7 +35,8 @@ public class EditTeammateCommandTest {
         model.enter(project);
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
 
-        EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate).build();
+        EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate)
+            .build();
         EditTeammateCommand editTeammateCommand = new EditTeammateCommand(
             ParsePersonUtil.parseGitUserIndex("Sparrow32"), descriptor);
 
@@ -64,7 +66,8 @@ public class EditTeammateCommandTest {
         model.enter(project);
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
 
-        EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate).build();
+        EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate)
+            .build();
         EditTeammateCommand editTeammateCommand = new EditTeammateCommand(
             ParsePersonUtil.parseGitUserIndex("Sparrow32"), descriptor);
 
@@ -86,7 +89,7 @@ public class EditTeammateCommandTest {
     }
 
     @Test
-    public void execute_PhoneModified_success() throws ParseException {
+    public void execute_phoneModified_success() throws ParseException {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
         Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
@@ -95,7 +98,8 @@ public class EditTeammateCommandTest {
         model.enter(project);
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
 
-        EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate).build();
+        EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate)
+            .build();
         EditTeammateCommand editTeammateCommand = new EditTeammateCommand(
             ParsePersonUtil.parseGitUserIndex("Sparrow32"), descriptor);
 
@@ -126,7 +130,8 @@ public class EditTeammateCommandTest {
         model.enter(project);
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
 
-        EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate).build();
+        EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate)
+            .build();
         EditTeammateCommand editTeammateCommand = new EditTeammateCommand(
             ParsePersonUtil.parseGitUserIndex("Sparrow32"), descriptor);
 
@@ -148,7 +153,7 @@ public class EditTeammateCommandTest {
     }
 
     @Test
-    public void execute_AddressModified_success() throws ParseException {
+    public void execute_addressModified_success() throws ParseException {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
         Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
@@ -157,7 +162,8 @@ public class EditTeammateCommandTest {
         model.enter(project);
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
 
-        EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate).build();
+        EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate)
+            .build();
         EditTeammateCommand editTeammateCommand = new EditTeammateCommand(
             ParsePersonUtil.parseGitUserIndex("Sparrow32"), descriptor);
 
@@ -189,7 +195,8 @@ public class EditTeammateCommandTest {
         model.enter(project);
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
 
-        EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate).build();
+        EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate)
+            .build();
         EditTeammateCommand editTeammateCommand = new EditTeammateCommand(
             ParsePersonUtil.parseGitUserIndex("Sparrow32"), descriptor);
 

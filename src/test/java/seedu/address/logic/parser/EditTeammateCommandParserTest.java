@@ -24,7 +24,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_FIRST_TEAMMATE;
 import static seedu.address.testutil.TypicalPersons.DESC_A;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.project.EditTeammateCommand;
 import seedu.address.model.person.Address;
@@ -75,20 +77,20 @@ public class EditTeammateCommandParserTest {
             Phone.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone.
-        assertParseFailure(parser, VALID_TEAMMATE_GIT_USERNAME_A + TEAMMATE_PHONE_DESC_A +
-                INVALID_TEAMMATE_PHONE_DESC_A, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, VALID_TEAMMATE_GIT_USERNAME_A + TEAMMATE_PHONE_DESC_A
+            + INVALID_TEAMMATE_PHONE_DESC_A, Phone.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser,
-            VALID_TEAMMATE_GIT_USERNAME_A + INVALID_TEAMMATE_PHONE_DESC_A + INVALID_TEAMMATE_EMAIL_DESC_A +
-                INVALID_TEAMMATE_ADDRESS_DESC_A, Phone.MESSAGE_CONSTRAINTS);
+            VALID_TEAMMATE_GIT_USERNAME_A + INVALID_TEAMMATE_PHONE_DESC_A + INVALID_TEAMMATE_EMAIL_DESC_A
+                + INVALID_TEAMMATE_ADDRESS_DESC_A, Phone.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         GitUserIndex targetIndex = GIT_USERINDEX_FIRST_TEAMMATE;
-        String userInput = targetIndex.getGitUserName() +
-            TEAMMATE_NAME_DESC_B + TEAMMATE_PHONE_DESC_B + TEAMMATE_ADDRESS_DESC_B + TEAMMATE_EMAIL_DESC_B;
+        String userInput = targetIndex.getGitUserName()
+            + TEAMMATE_NAME_DESC_B + TEAMMATE_PHONE_DESC_B + TEAMMATE_ADDRESS_DESC_B + TEAMMATE_EMAIL_DESC_B;
 
         EditTeammateCommand.EditTeammateDescriptor descriptor =
             new EditTeammateDescriptorBuilder(DESC_A)
@@ -105,8 +107,8 @@ public class EditTeammateCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         GitUserIndex targetIndex = GIT_USERINDEX_FIRST_TEAMMATE;
-        String userInput = targetIndex.getGitUserName() +
-            TEAMMATE_ADDRESS_DESC_B + TEAMMATE_EMAIL_DESC_B;
+        String userInput = targetIndex.getGitUserName()
+            + TEAMMATE_ADDRESS_DESC_B + TEAMMATE_EMAIL_DESC_B;
 
         EditTeammateCommand.EditTeammateDescriptor descriptor =
             new EditTeammateDescriptorBuilder()
@@ -166,9 +168,9 @@ public class EditTeammateCommandParserTest {
     @Test
     public void parse_multipleRepeatedFieldsAcceptsLast_success() {
         GitUserIndex targetIndex = GIT_USERINDEX_FIRST_TEAMMATE;
-        String userInput = targetIndex.getGitUserName() +
-            TEAMMATE_ADDRESS_DESC_A + TEAMMATE_EMAIL_DESC_A + TEAMMATE_PHONE_DESC_A +
-            TEAMMATE_ADDRESS_DESC_B + TEAMMATE_EMAIL_DESC_B + TEAMMATE_PHONE_DESC_B;
+        String userInput = targetIndex.getGitUserName()
+            + TEAMMATE_ADDRESS_DESC_A + TEAMMATE_EMAIL_DESC_A + TEAMMATE_PHONE_DESC_A
+            + TEAMMATE_ADDRESS_DESC_B + TEAMMATE_EMAIL_DESC_B + TEAMMATE_PHONE_DESC_B;
 
         EditTeammateCommand.EditTeammateDescriptor descriptor =
             new EditTeammateDescriptorBuilder()
