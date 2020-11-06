@@ -128,6 +128,8 @@ public class ProductiveNusParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        String expectedMessage = String.format(MESSAGE_UNKNOWN_COMMAND, HelpCommand.MESSAGE_HELP);
+        assertThrows(ParseException.class,
+                expectedMessage, () -> parser.parseCommand("unknownCommand"));
     }
 }
