@@ -90,7 +90,8 @@ public class FoodCommandTestUtil {
         //check first filtered food list
         List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredMenuItemListSize());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, new StorageManager()));
+        assertThrows(CommandException.class, expectedMessage, () ->
+                command.execute(actualModel, new StorageManager()));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredMenuItemList());
     }

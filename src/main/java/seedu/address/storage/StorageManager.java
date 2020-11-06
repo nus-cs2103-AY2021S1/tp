@@ -39,8 +39,7 @@ public class StorageManager implements Storage {
     }
 
     public StorageManager() {
-
-    }
+    } // useless
 
     // ================ UserPrefs methods ==============================
 

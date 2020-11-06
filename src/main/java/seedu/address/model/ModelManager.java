@@ -197,7 +197,7 @@ public class ModelManager implements Model {
      * Shows the current menu at the default state.
      */
     public void showDefaultMenu() {
-        filteredMenuItems = new FilteredList<>(menuManagers.get(getVendorIndex()).getMenuItemList());
+        filteredMenuItems = new FilteredList<>(getMenuManager(getVendorIndex()).getMenuItemList());
         isSortedAsc = false;
     }
 
