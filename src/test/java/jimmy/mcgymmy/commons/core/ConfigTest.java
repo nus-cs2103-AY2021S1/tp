@@ -25,20 +25,6 @@ public class ConfigTest {
     }
 
     @Test
-    public void loggerLevelCorrect() {
-        Config defaultConfig = new Config();
-
-        //Check default level
-        assertEquals(defaultConfig.getLogLevel(), Level.INFO);
-        assertNotSame(defaultConfig.getLogLevel(), Level.SEVERE);
-
-        //Check setLogLevel
-        defaultConfig.setLogLevel(Level.SEVERE);
-        assertEquals(defaultConfig.getLogLevel(), Level.SEVERE);
-        assertNotSame(defaultConfig.getLogLevel(), Level.INFO);
-    }
-
-    @Test
     public void getPathTest() {
 
         //Check if getPath is correct
