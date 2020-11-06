@@ -11,11 +11,8 @@ public class ImportCommand extends Command {
 
     public static final String COMMAND_WORD = "import";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports a NUSMods timetable to ProductiveNus. "
-            + "Parameters: "
-            + PREFIX_TIMETABLE_URL + "TIMETABLE URL "
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TIMETABLE_URL + "https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1 ";
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " "
+            + PREFIX_TIMETABLE_URL + "TIMETABLE URL ";
     public static final String MESSAGE_SUCCESS = "Timetable imported.";
 
     private final TimetableData data;

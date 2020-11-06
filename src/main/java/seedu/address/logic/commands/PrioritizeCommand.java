@@ -26,13 +26,8 @@ public class PrioritizeCommand extends Command {
 
     public static final String COMMAND_WORD = "prioritize";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sets LOW, MEDIUM or HIGH priority for the assignment identified by the index number "
-            + "used in the displayed assignment list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_PRIORITY + "PRIORITY LEVEL\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PRIORITY + Priority.LOW_PRIORITY;
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " INDEX (must be a positive integer) "
+            + PREFIX_PRIORITY + "PRIORITY LEVEL";
 
     public static final String MESSAGE_PRIORITIZE_ASSIGNMENT_SUCCESS = "Set priority for Assignment: %1$s";
 

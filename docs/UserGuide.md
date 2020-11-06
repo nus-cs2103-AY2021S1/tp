@@ -40,9 +40,23 @@ Wondering what each icon is used for? You can refer to the table below to find o
 
 All commands and their examples are demarcated with `markups`. `Markups` appear as a grey box as shown.
 
-You can find out more about the command terminologies here:
+### Date and time format
 
-* Prefix: An indicator to identify your input.
+All commands with date and/or time parameters have a specific format you must follow, else your input will be deemed as invalid.
+
+#### Date
+
+Date parameters must be in the format `dd-MM-yyyy`, where `dd` is day of the month, `MM` is month and `yyyy` is year. The number of repeated letters indicate the number of digits required for day of the month, month and year. 
+
+For example, `dd` means that the day of the month has to be a 2-digit number. Hence, for dates you want to input from the 1st to the 9th of any month, you must key in `09-01-2020`. `9-01-2020` will be deemed as invalid.
+
+Likewise for month and year, `09-1-2020` and `09-01-20` will be deemed as invalid.
+
+#### Time
+
+Time parameters must be in the format `HHmm`, where `HH` is the hour of the day and `mm` is the minute of the hour. You must input the time according to the 24-hour clock system.
+
+For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -101,6 +115,12 @@ simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the informatio
 
    ![UserGuideAddCommand](images/UserGuideAddCommand.PNG)
    *Figure 1: Information of the assignment added labelled*
+
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+* `DEADLINE_OF_ASSIGNMENT` must be in the format dd-MM-yyyy and time in the format HHmm (24-hour).
+</div>
 
 <div markdown="span" class="alert alert-success">
 **:bulb: Tip:**
@@ -171,13 +191,19 @@ Follow these steps and try importing your timetable:
 </div>
 
 Example:
-* `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` will 
+* `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` 
 
 ### Listing assignments : `list`
 
 Format: `list [NUMBER_OF_DAYS]`
 
-You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date and time and `NUMBER_OF_DAYS` later.
+You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date and time and `NUMBER_OF_DAYS` later. The index must be a number from 1 to 50.
+
+<div markdown="span" class="alert alert-success">
+
+**:bulb: Tip:**
+You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
+</div>
 
 Here is an example with steps for you to follow: 
 
@@ -212,25 +238,30 @@ More examples:
 
 ### Finding assignments : `find`
 
-Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 
 You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
 
+<div markdown="span" class="alert alert-success">
+
+**:bulb: Tip:**
+You can find assignments with multiple keywords of the same type to widen your search!
+</div>
+
 This is the table of prefixes used:
 
-| Prefix | Syntax | Examples |
+| Prefix | Syntax | Example |
 |-|-|-|
-| `n/` | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | - `n/Tutorial`<br>- `n/tutorial essay` |
-| `mod/` | mod/MODULE_CODE [MORE MODULE_CODE] | - `mod/ST2334`<br>- `mod/CS2100 cs2103t` |
-| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | - `d/24-10-2020` <br>- `d/1200`<br>- `d/1300 25-11-2020` |
-| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | - `p/high`<br>- `p/LOW` |
+| `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
+| `mod/` | mod/MODULE_CODE | - `mod/ST2334` |
+| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
 
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note for prefixes and keywords:**<br>
-* Date keywords must be in the format dd-MM-yyyy and time keywords must be in the format HHmm.
-* For prefix `d/`, date keywords are irrespective of time and time keywords are irrespective of date. For example, `find d/1300 25-11-2020` finds all assignments due on 25-11-2020, at any time of the day and all assignments due at 1300, on any date.
-* For prefixes `n/`,`mod/` and `p/`, keywords are case-insensitive.
+* Date keywords must be in the format **dd-MM-yyyy** and time keywords must be in the format **HHmm**.
+* For prefix `d/`, date keywords are **irrespective of time** and time keywords are **irrespective of date**. For example, `find d/1300 25-11-2020` finds all assignments due on 25-11-2020, at any time of the day and all assignments due at 1300, on any date.
+* Keywords used with prefixes `n/`,`mod/` and `p/` are **case-insensitive**.
 </div>
 
 Here is an example with steps to follow:
@@ -242,47 +273,93 @@ Here is an example with steps to follow:
 
 2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
 
-3) A message that indicates the number of assignments found will be displayed in the Message Box.
+3) A message that indicates the number of assignments found is displayed in the Message Box.
 
-![FindCommand1](images/FindCommandDiagram2.png)
+![FindCommand2](images/FindCommandDiagram2.png)
 *Figure X: The displayed message and the updated list*
+
 
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* `DATE_OR_TIME_OF_ASSIGNMENT` has date in the format **dd-MM-yyyy** and time in the format **HHmm** (24 hour).
 * You can only **find assignments with keywords of the same prefix**. For example, `find n/Assignment d/23-10-2020` will not work.
+</div>
+
+### Editing your assignment : `edit`
+
+Format: `edit INDEX PREFIX/EDITTED_FIELD [MORE_PREFIX/EDITTED_FIELD]`
+
+You can specify an assignment's index to edit its fields. These fields are the name, module code and deadline of assignment.
+
+<div markdown="span" class="alert alert-success">
+
+**:bulb: Tip:**
+You can edit more than one field of an assignment at a time so that you can conveniently amend all spelling errors or mistakes when adding assignments! For example, you can key in `edit 1 n/Tutorial mod/CS2103T` to edit both the name and module code in a single command.
+</div>
+
+This is the table of prefixes used:
+
+| Prefix | Syntax | Example |
+|-|-|
+| `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
+| `mod/` | mod/MODULE_CODE | - `mod/ST2334` |
+| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
+
+<div markdown="block" class="alert alert-primary">
+
+Here is an example with steps to follow:
+
+1) To edit the name of the assignment with the first index in the assignment list to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
+
+![EditCommand1](images/EditCommand1.png)
+
+*Figure X: `edit 1 n/Statistics Lab` inputted by user*
+
+2) The assignment name will be changed to "Statistics Lab".
+
+3) A message that indicates details of the new edited assignment is displayed in the Message Box.
+
+![EditCommand2](images/EditCommand2.png)
+
+*Figure X: The displayed message and the edited assignment*
+
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+* **One** `INDEX` and **at least one** `PREFIX/EDITTED_FIELD` must be present. For example, `edit` will not work.
+* `DATE_OR_TIME_OF_ASSIGNMENT` has date in the format **dd-MM-yyyy** and time in the format **HHmm** (24 hour).
 </div>
 
 ### Setting reminders for assignments : `remind`
 
 Format: `remind INDEX [MORE_INDEXES]`
 
-You can set reminders for specific assignments which will be displayed in `Your Reminders` (Highlighted in red in the figure below) for your easy referral.
+You can set reminders for specific assignments which will be displayed in `Your reminders` (Highlighted in red in the figure below) for your easy referral.
 
    ![YourReminders](images/YourReminders.png)
-   *Figure X: `Your Reminders` highlighted in red*
+   *Figure X: `Your reminders` highlighted in red*
 
 You can use the `INDEX` of the assignment as shown in your assignment list to set reminders for that assignment. 
 
-For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the Figure X) and adds it to `Your Reminders` (Figure X).
+For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the Figure X) and adds it to `Your reminders` (Figure X).
 
    ![Remind1](images/Remind1.png)
-   *Figure X: Before "Statistics tutorial" is added into `Your Reminders`*
+   *Figure X: Before "Statistics tutorial" is added into `Your reminders`*
       
    ![Remind1InYourReminders](images/Remind1InYourReminders.png)
-   *Figure X: "Statistics tutorial" (highlighted in red) is added into `Your Reminders`*
+   *Figure X: "Statistics tutorial" (highlighted in red) is added into `Your reminders`*
 
-You can set reminders for **more than one** assignments at a time as well. 
+You can set reminders for **more than one** assignments at a time as well. Here is an example with steps for you to follow:
 
-For example, `remind 2 4` will set reminders for the second and fourth assignment in your assignment list ("Essay" and "Assignment 3" respectively as shown in Figure X) and adds both assignments to `Your Reminders` (Figure X).
-
+1) To set reminders assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your assignment list as shown in Figure X), you can simply enter `remind 2 4` into the Command Box.
 
    ![Remind24](images/Remind24.png)
-   *Figure X: Before "Essay" and "Assignment 3" are added into `Your Reminders`*
-      
+   *Figure X: Before "Essay" and "Assignment 3" are added into `Your reminders`*
+
+2) You have successfully set reminders for both assignments, and they can now be found under `Your reminders`.
+
    ![Remind24InYourReminders](images/Remind24InYourReminders.png)
-   *Figure X: "Essay" and "Assignment 3" (highlighted in red) are added into `Your Reminders`*
+   *Figure X: "Essay" and "Assignment 3" (highlighted in red) are added into `Your reminders`*
 
 
 <div markdown="block" class="alert alert-primary">
@@ -297,21 +374,21 @@ For example, `remind 2 4` will set reminders for the second and fourth assignmen
 
 Format: `unremind INDEX`
 
-You can remove your reminded assignments from `Your Reminders` by specifying the `INDEX` of the assignment as shown in your **reminded assignments list**. 
+You can remove your reminded assignments from `Your reminders` by specifying the `INDEX` of the assignment as shown in `Your reminders`. 
 
-For example, `unremind 1` will remove the first assignment in `Your Reminders` ("CS2106 Lab" as shown in the figure below).
+For example, `unremind 1` will remove the first assignment in `Your reminders` ("CS2106 Lab" as shown in the figure below).
 
    ![Unemind1](images/Unremind1.png)
-   *Figure X: Before "Statistics tutorial" (highlighted in red) is removed from `Your Reminders`*
+   *Figure X: Before "Statistics tutorial" (highlighted in red) is removed from `Your reminders`*
       
    ![Unremind1YourReminders](images/Unremind1YourReminders.png)
-   *Figure X: "Statistics tutorial" is removed from`Your Reminders`*
+   *Figure X: "Statistics tutorial" is removed from`Your reminders`*
 
 <div markdown="block" class="alert alert-primary">
   
 **:clipboard: Pointers to note:**<br>
 * At least one `INDEX` must be present. For example, `unremind` will not work.
-* The `INDEX` must be found in `Your Reminders`.
+* The `INDEX` must be found in `Your reminders`.
 
 </div>
 
@@ -333,13 +410,13 @@ For example, `prioritize 1 p/LOW` will set a low priority tag for the first assi
   
 **:clipboard: Pointers to note:**<br>
 * The `INDEX` must be found in your assignment list.
-* Priority levels you can use are `LOW`, `MEDIUM` and `HIGH`.
+* Priority levels you can use are `LOW`, `MEDIUM` and `HIGH` and they are case-insensitive.
 * If the assignment already has a priority tag, this command will replace the previous priority tag with the new one.
 </div>
 
 ### Removing priority for assignments : `unprioritize`
 
-Format: `unprioritze INDEX`
+Format: `unprioritize INDEX`
 
 You can remove a priority tag from an assignment that has a priority tag by specifying the `INDEX` of the assignment
 you wish to have the priority tag removed.
@@ -413,7 +490,7 @@ you can simply enter `undone 2` into the command line based on the index labelle
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
-* Assignments are marked as not done**by default**
+* Assignments are marked as not done **by default**
 * The index must be present. For example, `undone` without any index will not work.
 * The index **must be found in your assignment list**
 </div>
@@ -518,40 +595,41 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 **Q**: I am not free during the time that my assignment has been scheduled. How do I reschedule?<br>
 **A**:
-You can reschedule by using the schedule command on that assignment again.
+You can reschedule by using the schedule command on that assignment again.<br>
 
-1. Find out the index of the assignment that you want to reschedule.
-
-DIAGRAM
-
-2. Type the schedule command with the correct index into the command box .
-
-DIAGRAM
-
+1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the diagram below.<br>
+   ![UserGuideReschedule](images/UserGuideReschedule.PNG)
+   *Figure 20a: Index of the assignment to reschedule labelled*
+   
 <div markdown="span" class="alert alert-success">
 **:bulb: Tip:**
 You can copy the entire command if you intend to reschedule the assignment more than once. 
-You can paste the command into the command box after step 3 and repeat step 2-3 until you have obtain your
+You can paste the command into the command box after step 2 and repeat step 1-2 until you have obtained your
  ideal schedule.
 </div>
 
-3. Press ENTER to reschedule your assignment.
+2. Press ENTER to reschedule your assignment and your assignment will be scheduled to another time or day as shown in the diagram below.<br>
+   ![UserGuideRescheduleSuccess](images/UserGuideRescheduleSuccess.PNG)
+   *Figure 20b: New suggested time for assignment labelled*
+<br>
 
-DIAGRAM
-
-**Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?
-**A**: 
+**Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?<br>
+**A**: <br>
 *For Windows Users:*
-1. Go to the folder where you have downloaded and saved the productivenus.jar file.
-2. Copy the file directory of the folder. The file directory is labelled in the diagram below.
-DIAGRAM
-3. Open your command interpreter. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
-4. Your command interpreter will start, and the command interpreter should look something similar to the diagram below.
-<br>
-DIAGRAM
-4. In the command interpreter, type `cd ` and paste the file directory that you have copied in step 2.
-<br>For example, `cd C:\Desktop\ProductiveNUS`.
-5. Press ENTER and the file directory will be shown in the command interpreter.
-<br>
-DIAGRAM
+1. Open the folder where you have downloaded and saved the productivenus.jar file.
+2. Copy the file directory of the folder. You can refer to the labelled diagram below.<br>
+   ![UserGuideLocateDirectory](images/UserGuideLocateDirectory.PNG)
+   *Figure 21a: File directory labelled*
+   
+3. Open your command prompt. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
+4. Your command prompt will start, and it should look something similar to the diagram below.<br>
+   ![UserGuideCommandPrompt](images/UserGuideCommandPrompt.PNG)
+   *Figure 21b: Interface of Command Prompt*
+   
+4. In the command prompt, type `cd ` and paste the file directory that you have copied in step 2.
+<br>For example, `cd C:\Users\YourUserName\Desktop\ProductiveNUS`.
+5. Press ENTER and the file directory will be shown in the command prompt as shown in the diagram below.<br>
+   ![UserGuideChangeDirectory](images/UserGuideChangeDirectory.PNG)
+   *Figure 21c: After changing file directory in Command Prompt*
+   
 6. Finally, type `java -jar productivenus.jar` and press ENTER to start the app.

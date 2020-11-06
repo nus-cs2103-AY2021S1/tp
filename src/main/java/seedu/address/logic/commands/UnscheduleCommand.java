@@ -27,12 +27,7 @@ public class UnscheduleCommand extends NegateCommand {
     public static final String COMMAND_WORD_SUFFIX = "schedule";
     public static final String COMMAND_WORD = NegateCommand.COMMAND_WORD + COMMAND_WORD_SUFFIX;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the scheduler from the assignment identified by the index number "
-            + "used in the displayed assignment list."
-            + " Assignments will no longer have schedulers set.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " INDEX (must be a positive integer)";
 
     public static final String MESSAGE_UNSCHEDULE_ASSIGNMENT_SUCCESS = "Removed scheduler for Assignment: %1$s";
     public static final String MESSAGE_UNSCHEDULED_ASSIGNMENT = "This assignment does not have schedulers set.";
