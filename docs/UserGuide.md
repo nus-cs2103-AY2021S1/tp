@@ -123,7 +123,7 @@ part of the parameter for the nearest previous prefix, which is `S/`. This will 
 **Example 3:**
 `help i/Milk i don't know what to do `
 **How the command is processed:**
-In this case, `help` is a command which does not take in amy parameter. Hence, the situation is unexpected prefix(es) entered for commands which do not take in any parameter.
+In this case, `help` is a command which does not take in any parameter. Hence, the situation is unexpected prefix(es) entered for commands which do not take in any parameter.
 Thus, tCheck will ignore all words come after the command word `help` and the command will be processed in the same way as `help`.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -562,7 +562,7 @@ Action | Format, Examples
 -------|------------------------------
 **Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
 **List** | `c-list`
-**List avalible manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
+**List available manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
