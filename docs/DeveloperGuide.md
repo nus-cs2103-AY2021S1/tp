@@ -819,7 +819,19 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size or x is a negative integer)<br>
       Expected: Similar to previous.
+      
+### Listing flashcards
 
+1. Listing all flashcards in the flashcard deck
+
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+        how to add a flashcard if flashcard deck is empty.
+    
+    1. Test case: `list` <br>
+        Expected: Flashcard list panel updates to show all flashcard stored in the flashcard deck. Result display will output
+        a success message: `Listed all flashcards`
+    
+    
 ### Saving data
 
 1. Dealing with missing/corrupted data files
