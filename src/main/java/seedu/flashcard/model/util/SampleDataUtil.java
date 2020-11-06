@@ -33,7 +33,7 @@ public class SampleDataUtil {
             new Flashcard(new Question("Non-functional requirements specify the constraints under "
                     + "which system is developed and operated. T/F?"),
                     new Answer("T"),
-                    new Category("Non functional requirements"), new Note(""), new Rating(""),
+                    new Category("Non functional requirements"), new Note(""), new Rating("2"),
                     getTagSet(), new Diagram("")),
 
             new Flashcard(new Question("Explain software architecture."),
@@ -43,25 +43,25 @@ public class SampleDataUtil {
                             + "simple and technically viable structure that is well-understood and agreed-upon "
                             + "by everyone in the development team, "
                             + "and it forms the basis for the implementation."),
-                    new Category("Architecture Diagrams"), new Note(""), new Rating("4"),
+                    new Category("Architecture Diagrams"), new Note(""), new Rating("1"),
                     getTagSet("definitions"), new Diagram("")),
 
             new Flashcard(new Question("Explain use cases."),
                     new Answer("A use case describes an interaction between the user and the system for a specific "
                             + "functionality of the system."),
-                    new Category("Use Cases"), new Note(""), new Rating("4"),
+                    new Category("Use Cases"), new Note(""), new Rating("1"),
                     getTagSet("definitions"), new Diagram("")),
 
             new Flashcard(new Question("Use cases do not capture the functional requirements of a system. T/F?"),
                     new Answer("F. Use cases capture the functional requirements of a system."),
-                    new Category("Use Cases"), new Note(""), new Rating("2"),
+                    new Category("Use Cases"), new Note(""), new Rating("1"),
                     getTagSet(), new Diagram("")),
 
             new Flashcard(new Question("Can a use case include another use case? "
                     + "If so, how is it represented?"),
                     new Answer("A use case can include another use case. "
                             + "Underlined text is commonly used to show an inclusion of a use case."),
-                    new Category("Use Cases"), new Note(""), new Rating("1"),
+                    new Category("Use Cases"), new Note(""), new Rating("2"),
                     getTagSet(), new Diagram("")),
 
             new Flashcard(new Question("List down some factors that determines the suitability of "
@@ -70,13 +70,13 @@ public class SampleDataUtil {
                             + "2. Will the code be used by programmers other than the author? "
                             + "3. The level of programming language support for defensive programming. "
                             + "4. The overhead of being defensive."),
-                    new Category("Defensive programming"), new Note(""), new Rating("1"),
+                    new Category("Defensive programming"), new Note(""), new Rating("3"),
                     getTagSet(), new Diagram("")),
 
             new Flashcard(new Question("A set of 20 test cases that finds 8 defects is more effective than another "
                     + "set of 40 test cases that finds the same 8 defects.T/F?"),
                     new Answer("F. It is more efficient rather than effective."),
-                    new Category("Test Cases"), new Note(""), new Rating("1"),
+                    new Category("Test Cases"), new Note(""), new Rating("3"),
                     getTagSet(), new Diagram("")),
 
             new Flashcard(new Question("Define Boundary Value Analysis (BVA)."),
@@ -87,7 +87,7 @@ public class SampleDataUtil {
                             + "suggests that when picking test inputs from an equivalence partition, values "
                             + "near boundaries (i.e. boundary values) "
                             + "are more likely to find bugs."),
-                    new Category("Test Cases"), new Note(""), new Rating("5"),
+                    new Category("Test Cases"), new Note(""), new Rating("2"),
                     getTagSet("definitions"), new Diagram("")),
 
         };
