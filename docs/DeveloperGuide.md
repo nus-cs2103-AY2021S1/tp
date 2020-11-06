@@ -831,6 +831,27 @@ testers are expected to do more *exploratory* testing.
         Expected: Flashcard list panel updates to show all flashcard stored in the flashcard deck. Result display will output
         a success message: `Listed all flashcards`
     
+### Editing a flashcard
+
+### Clearing all flashcards
+
+### Filtering for flashcards
+
+### Favouriting a flashcard
+
+### Unfavouriting a flashcard
+
+### Finding flashcards
+
+### Reviewing flashcards
+
+### Quizzing flashcards
+
+### Sorting of flashcards
+
+### Viewing a flashcard
+
+### Viewing the statistics of a flashcard
     
 ### Saving data
 
