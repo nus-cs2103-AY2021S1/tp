@@ -206,6 +206,7 @@ Format: `find [KEYWORD...]`
 - The search is case-insensitive. e.g run will match Run.
 - Only the name of the projects are searched.
 - Can be multiple words.
+- Keywords provided must be complete words and will only match complete words from the name of the project. 
 
 Example: `find scare` returns the **Scare House** and **Easily scare Night** projects.
 
