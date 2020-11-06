@@ -3,12 +3,15 @@ package seedu.address.model.patient;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import org.apache.commons.validator.routines.EmailValidator;
+
 /**
  * Represents a Patient's email in the CliniCal application.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
 
+<<<<<<< HEAD
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -26,6 +29,10 @@ public class Email {
     private static final String DOMAIN_LAST_CHARACTER_REGEX = "[.]{1}[A-Za-z]{2,4}$"; // alphabet characters
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
+=======
+    public static final String MESSAGE_CONSTRAINTS = "Emails should be a valid email.";
+    // This class uses a validator from an external library rather than a regex.
+>>>>>>> 50f09241dd0faec9b5626421b2f0717b5c53327d
 
     public final String value;
 
@@ -55,7 +62,7 @@ public class Email {
         if (test.equals("N/A")) {
             return true;
         }
-        return test.matches(VALIDATION_REGEX);
+        return EmailValidator.getInstance(true).isValid(test);
     }
 
     @Override
