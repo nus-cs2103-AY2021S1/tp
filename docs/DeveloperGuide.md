@@ -273,7 +273,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. System gives corresponding error message.
 
       Use case ends.
+    
+* 1d. User attempts to add a client with invalid fields.
+   
+    * 1d1. System gives corresponding error message.
+
+      Use case ends.
       
+* 1e. User attempts to add a client with policy name that corresponds to none of the policies in the policy list.
+   
+    * 1e1. System gives corresponding error message.
+
+      Use case ends.
+        
 **UC02 - User deletes client**
 
 **MSS**
@@ -431,6 +443,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. System gives corresponding error message.
     
         Use case ends.
+
+**UC09 - User clears policy list**    
+
+**MSS**
+
+1. User chooses clear policy list.
+2. System gives success message.
+    
+    Use case ends.
+
+**UC10 - User exits I4I**    
+
+**MSS**
+
+1. User chooses to exit I4I.
+2. System exits the program.
+    
+    Use case ends.
+
+
 
 ### Non-Functional Requirements
 
