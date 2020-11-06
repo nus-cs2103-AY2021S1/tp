@@ -165,11 +165,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void showAllPersons(){
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
