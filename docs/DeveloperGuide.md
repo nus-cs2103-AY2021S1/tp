@@ -904,9 +904,25 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `fav 0` <br>
         Expected: No flashcard is favourited from the list of flashcards. Invalid command error message shown in the result display.
 
-    1. Other incorrect favourite commands to try: `fav` and `fav x` (where x is larger than the list size or x is a negative integer)<br>
+    1. Other incorrect favourite commands to try: `fav` and `fav x` (where x is larger than the list size or x is a negative integer) <br>
         Expected: Similar to test case iii.
+        
 ### Unfavouriting a flashcard
+
+1. Unfavouriting a flashcard in flashcard deck in flashcard deck
+
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+                how to add a flashcard if flashcard deck is empty.
+                
+    1. Test case: `unfav 1` <br> 
+            Expected: Flashcard list pane updates to unfavourite and remove the favourite(heart) icon beside the flashcard of index 1 (if any). Result display
+            will output the status of the unfavourited flashcard.
+    
+    1. Test case: `unfav 0` <br>
+        Expected: No flashcard is unfavourited from the list of flashcards. Invalid command error message shown in the result display.
+
+    1. Other incorrect favourite commands to try: `unfav` and `unfav x` (where x is larger than the list size or x is a negative integer) <br>
+        Expected: Similar to test case iii.
 
 ### Finding flashcards
 
