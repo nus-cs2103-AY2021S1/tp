@@ -64,14 +64,17 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts i.e. 
+`CommandBox`, `ResultDisplay`, `StockCardPanel`, `StatusBarFooter`, `Tabs`
+etc. 
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
-
-* Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+1. The user enters a command into  the CommandBox.
+1. The `UI` component then executes the user commands using the `Logic` component.
+1. The `UI` component listens for changes to `Model` data so that the UI can be updated with the modified data.
+1. The `UI` might change the tabs of the Main Window based on the user commands.
 
 ### Logic component
 
@@ -349,6 +352,15 @@ The following activity diagram summarizes what happens when the update feature i
   * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently
     undergoing the update to be corrupted as the original data that has been updated will be lost,
     but some fields may not be already updated due to the midway interruption.
+
+### Bookmark Feature
+
+The mechanism for bookmark feature is facilitated by BookmarkCommandParser, BookmarkCommand and Model.
+
+#### BookmarkCommand
+
+`BookmarkCommand` class extends the `Command` interface. 
+
 
 ### Suggestion Feature
 
