@@ -223,7 +223,7 @@ Format: `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTIO
   - Description can be anything, as long as it is not blank.
   - Any number of tags can be added, separated by space " ".
 
-Example: `edit n/Resident Evil project /d new horror` changes the name of the project to **Evil project**, and the description to **new horror**.
+Example: `edit 1 n/Resident Evil project /d new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
 
 # **Features** in project scope
 
