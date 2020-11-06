@@ -82,7 +82,8 @@ public class Assignment {
             return true;
         }
 
-        return getAssignmentName().equals((otherAssignment.getAssignmentName()));
+        return otherAssignment != null
+                && getAssignmentName().equals((otherAssignment.getAssignmentName()));
     }
 
     @Override

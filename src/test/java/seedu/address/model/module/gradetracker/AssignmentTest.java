@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAssignments.LAB_1;
+import static seedu.address.testutil.TypicalAssignments.QUIZ_2;
 import static seedu.address.testutil.TypicalContacts.ALICE;
 import static seedu.address.testutil.TypicalContacts.BOB;
 
@@ -26,78 +28,52 @@ public class AssignmentTest {
     @Test
     public void isSameAssignment() {
         // same object -> returns true
-        assertTrue(.isSameContact(ALICE));
+        assertTrue(QUIZ_2.isSameAssignment(QUIZ_2));
 
         // null -> returns false
-        assertFalse(ALICE.isSameContact(null));
+        assertFalse(QUIZ_2.isSameAssignment(null));
 
-        // same name, different telegram and email -> returns false
-        Contact editedAlice = new ContactBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
-                .withTelegram(VALID_TELEGRAM_AMY).build();
-        assertFalse(ALICE.isSameContact(editedAlice));
+        // different assignment name -> returns false
+        Assignment editedQuiz2 = new AssignmentBuilder(QUIZ_2).withAssignmentName(VALID_ASSIGNMENT_NAME_2).build();
+        assertFalse(QUIZ_2.isSameAssignment(editedQuiz2));
 
-        // different name -> returns false
-        editedAlice = new ContactBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameContact(editedAlice));
+        // same name but different assignment percentage -> returns true
+        editedQuiz2 = new AssignmentBuilder(QUIZ_2).withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_2).build();
+        assertTrue(QUIZ_2.isSameAssignment(editedQuiz2));
 
-        // same name, same email, different attributes -> returns true
-        editedAlice = new ContactBuilder(ALICE).withTelegram(VALID_TELEGRAM_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        assertTrue(ALICE.isSameContact(editedAlice));
-
-        // same name, same telegram, different email -> returns false
-        editedAlice = new ContactBuilder(ALICE).withEmail(VALID_EMAIL_AMY).build();
-        assertFalse(ALICE.isSameContact(editedAlice));
-
-        // same name, same email, same telegram, different tags -> returns true
-        editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameContact(editedAlice));
-    }
-
-    @Test
-    public void markAsImportant_validContact_success() {
-        Contact contact = new ContactBuilder().build();
-        assertTrue(contact.markAsImportant().isImportant());
-    }
-
-    @Test
-    public void markAsNotImportant_validContact_success() {
-        Contact contact = new ContactBuilder().build();
-        assertFalse(contact.markAsNotImportant().isImportant());
+        // same name but different assignment result -> returns true
+        editedQuiz2 = new AssignmentBuilder(QUIZ_2).withAssignmentResult(VALID_ASSIGNMENT_RESULT_2).build();
+        assertTrue(QUIZ_2.isSameAssignment(editedQuiz2));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Contact aliceCopy = new ContactBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Assignment QUIZ_2_COPY = new AssignmentBuilder(QUIZ_2).build();
+        assertTrue(QUIZ_2.equals(QUIZ_2_COPY));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(QUIZ_2.equals(QUIZ_2));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(QUIZ_2.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(10));
+        assertFalse(QUIZ_2.equals(10));
 
         // different person -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(QUIZ_2.equals(LAB_1));
 
         // different name -> returns false
-        Contact editedAlice = new ContactBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Assignment editedQuiz2 = new AssignmentBuilder(QUIZ_2).withAssignmentName(VALID_ASSIGNMENT_NAME_2).build();
+        assertFalse(QUIZ_2.equals(editedQuiz2));
 
         // different email -> returns false
-        editedAlice = new ContactBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedQuiz2 = new AssignmentBuilder(QUIZ_2).withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_2).build();
+        assertFalse(QUIZ_2.equals(editedQuiz2));
 
         // different telegram -> returns false
-        editedAlice = new ContactBuilder(ALICE).withTelegram(VALID_TELEGRAM_AMY).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedQuiz2 = new AssignmentBuilder(QUIZ_2).withAssignmentResult(VALID_ASSIGNMENT_RESULT_2).build();
+        assertFalse(QUIZ_2.equals(editedQuiz2));
     }
 }

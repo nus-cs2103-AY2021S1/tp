@@ -17,7 +17,7 @@ import static seedu.address.logic.commands.CommandTestUtil.*;
 public class TypicalAssignments {
 
     public static final Assignment QUIZ_2 = new AssignmentBuilder().withAssignmentName("Quiz 1")
-            .withAssignmentPercentage(20).withAssignmentResult(80).build();
+            .withAssignmentPercentage(30).withAssignmentResult(80).build();
     public static final Assignment LAB_1 = new AssignmentBuilder().withAssignmentName("Lab 2")
             .withAssignmentPercentage(5).withAssignmentResult(90).build();
     public static final Assignment ORAL_PRESENTATION_3 = new AssignmentBuilder()

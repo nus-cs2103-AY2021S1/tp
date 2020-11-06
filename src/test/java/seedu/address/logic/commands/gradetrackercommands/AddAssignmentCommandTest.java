@@ -19,7 +19,6 @@ import static seedu.address.testutil.TypicalModules.getTypicalModulesWithAssignm
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
@@ -34,7 +33,7 @@ import seedu.address.testutil.AssignmentBuilder;
 
 public class AddAssignmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalModulesWithAssignmentList(), new ArchivedModuleList(),
+    private Model model = new ModelManager(getTypicalModulesWithAssignmentList(), new ModuleList(),
             new ContactList(), new TodoList(), new EventList(), new UserPrefs());
     private Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
 
@@ -65,7 +64,7 @@ public class AddAssignmentCommandTest {
 
         String expectedMessage = String.format(AddAssignmentCommand.MESSAGE_SUCCESS, assignmentOralPresentation2);
 
-        Model expectedModel = new ModelManager(new ModuleList(model.getModuleList()), new ArchivedModuleList(),
+        Model expectedModel = new ModelManager(new ModuleList(model.getModuleList()), new ModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
         expectedModel.setModule(moduleToUpdate, moduleWithAddedAssignment);
 
