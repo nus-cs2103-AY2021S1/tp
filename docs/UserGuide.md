@@ -76,7 +76,7 @@ The following table gives you general symbols and syntax used in this user guide
 |----------|-------------|
 | `command` |  The grey block specifies the execuable command which can be entered in the command box |
 |<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a note |
-
+|<div markdown="span" class="alert alert-primary">:bulb:  | An bulb indicates that the following text is a tip |
 
 #### 3.2.3. Command Syntax and Usage
 
@@ -98,18 +98,18 @@ The following table gives you technical terms used in this user guide.
 
 The following points explain the format of a command. 
 
-1. Words in `UPPER_CASE` are the parameters to be supplied<br>
-    - In `c-delete INDEX`, `INDEX` is a parameter and the command can be used as `c-delete 1`.
+* Words in `UPPER_CASE` are the parameters to be supplied<br>
+   e.g. In `c-delete INDEX`, `INDEX` is a parameter and the command can be used as `c-delete 1`.
 
-2. Items in square brackets are optional.<br>
-    - `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` can be used as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road t/Friday` 
+* Items in square brackets are optional.<br>
+   e.g. `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` can be used as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road t/Friday` 
     or as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road`.
 
-3. Items with `…​` after them can be used multiple times, including zero times.<br>
-    - `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Friday``t/Friday t/PartTime`, `t/Friday` etc.
+* Items with `…​` after them can be used multiple times, including zero times.<br>
+   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Friday`, `t/Friday t/PartTime`, etc.
 
-4. Parameters can be in any order.<br>
-    - If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
+* Parameters can be in any order.<br>
+   e.g. If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
     
 
 
