@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPECTED_HOURS;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -70,7 +71,10 @@ public class ScheduleCommand extends Command {
 
         Assignment assignmentToSchedule = lastShownList.get(targetIndex.getZeroBased());
 
-        Schedule schedule = createValidSchedule(assignmentToSchedule, model.getFilteredTaskList());
+
+        List<Task> taskList = new ArrayList<>(model.getFilteredTaskList());
+        taskList.remove(assignmentToSchedule);
+        Schedule schedule = createValidSchedule(assignmentToSchedule, taskList);
 
         Assignment scheduledAssignment = createScheduledAssignment(assignmentToSchedule, schedule);
 
@@ -86,8 +90,7 @@ public class ScheduleCommand extends Command {
 
         LocalDateTime nearestTime = roundToHour(LocalDateTime.now().plusHours(1));
 
-        List<LocalDateTime> possibleTime = generateAllPossibleTime(nearestTime,
-                newDeadline, taskList);
+        List<LocalDateTime> possibleTime = generateAllPossibleTime(nearestTime, newDeadline, taskList);
 
         if (possibleTime.isEmpty()) {
             throw new CommandException("No possible schedule");
@@ -96,9 +99,7 @@ public class ScheduleCommand extends Command {
     }
 
     private LocalDateTime roundToHour(LocalDateTime time) {
-        int min = time.getMinute();
-        time = time.minusMinutes(min % 60);
-        return time;
+        return time.truncatedTo(ChronoUnit.HOURS);
     }
 
     private Schedule getRandom(List<LocalDateTime> list) {
@@ -110,7 +111,7 @@ public class ScheduleCommand extends Command {
 
     private List<LocalDateTime> generateAllPossibleTime(LocalDateTime start, LocalDateTime end, List<Task> taskList) {
         List<LocalDateTime> possibleTime = new ArrayList<>();
-        for (LocalDateTime i = start; i.isBefore(end); i = i.plusHours(1)) {
+        for (LocalDateTime i = start; !i.plusHours(expectedHours).isAfter(end); i = i.plusHours(1)) {
             boolean canSchedule = true;
             // working hours
             if (!isWorkingHour(i, i.plusHours(expectedHours))) {
@@ -118,11 +119,13 @@ public class ScheduleCommand extends Command {
             }
             // no overlap
             for (Task j: taskList) {
-                if (haveOverlap(i, i.plusHours(expectedHours), j)) {
+                if (!haveNoOverlap(i, i.plusHours(expectedHours), j)) {
+                    if(canSchedule) {
+                        System.out.println(i + " " + j.getTime());
+                    }
                     canSchedule = false;
                 }
             }
-
             if (canSchedule) {
                 possibleTime.add(i);
             }
@@ -131,19 +134,19 @@ public class ScheduleCommand extends Command {
     }
 
     private boolean isWorkingHour(LocalDateTime start, LocalDateTime end) {
-        return !start.toLocalTime().isBefore(WORKING_START_TIME) && !end.toLocalTime().isAfter(WORKING_END_TIME);
+        return !start.toLocalTime().isBefore(WORKING_START_TIME) && !end.toLocalTime().isAfter(WORKING_END_TIME) && !end.toLocalTime().isBefore(WORKING_START_TIME);
     }
 
-    private boolean haveOverlap(LocalDateTime start, LocalDateTime end, Task task) {
+    private boolean haveNoOverlap(LocalDateTime start, LocalDateTime end, Task task) {
         if (task instanceof Assignment) {
             if (!((Assignment) task).getSchedule().isScheduled()) {
-                return false;
+                return true;
             }
-            return (!start.isBefore(((Assignment) task).getSchedule().getSuggestedStartTime().toLocalDateTime())
-                    && !end.isAfter(((Assignment) task).getSchedule().getSuggestedEndTime().toLocalDateTime()));
+            return (!end.isAfter(((Assignment) task).getSchedule().getSuggestedStartTime().toLocalDateTime())
+                    || (!start.isBefore(((Assignment) task).getSchedule().getSuggestedEndTime().toLocalDateTime())));
         }
-        return (!start.isBefore(task.getTime().toLocalDateTime())
-                && !end.isAfter(((Lesson) task).getEndTime().toLocalDateTime()));
+        return (!end.isAfter(task.getTime().toLocalDateTime())
+                || (!start.isBefore(((Lesson) task).getEndTime().toLocalDateTime())));
     }
 
     /**
