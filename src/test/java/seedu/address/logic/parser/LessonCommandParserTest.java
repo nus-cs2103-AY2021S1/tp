@@ -228,8 +228,7 @@ public class LessonCommandParserTest {
                 expectedLessonCommand
         );
         // omit optional description
-        Lesson expectedLesson2 = VALID_LESSON_CS2103T_NO_DESC;
-        LessonCommand expectedLessonCommand2 = new LessonCommand(expectedLesson2);
+        LessonCommand expectedLessonCommand2 = new LessonCommand(VALID_LESSON_CS2103T_NO_DESC);
         assertParseSuccess(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
                         PREFIX_TITLE, VALID_TITLE_CS2103T,
@@ -422,6 +421,21 @@ public class LessonCommandParserTest {
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
                         PREFIX_TITLE, VALID_TITLE_CS2103T,
                         PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedErrorMessage);
+
+        // multiple descriptions
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
                         PREFIX_TAG, VALID_TAG_CS2103T,
                         PREFIX_DAY, VALID_DAY_CS2103T,
                         PREFIX_START_TIME, VALID_START_TIME_CS2103T,
