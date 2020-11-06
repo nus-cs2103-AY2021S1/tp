@@ -109,7 +109,7 @@ public class ModelManager implements Model {
 
     @Override
     public ReadOnlyTrackr<Module> getModuleList() {
-        return moduleList;
+        return new Trackr(moduleList);
     }
 
     //=========== Module Operations ================================================================================
