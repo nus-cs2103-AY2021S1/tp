@@ -80,4 +80,43 @@ public class LoadPresetCommandTest {
         assertCommandSuccess(loadPresetCommand, model, storage, expectedMessage, expectedModel);
     }
 
+    @Test
+    public void execute_presetNotFound_throwsException() throws IOException {
+        Model model = TypicalModel.getModelManagerWithMenu();
+        Storage storage = StorageManagerBuilder
+                .buildForPreset(Paths.get("src", "test", "data",
+                        "LoadPresetCommandTest", "presetNotFound.json"), true);
+        Name searchForName = new Name("Invalid Preset");
+        LoadPresetCommand loadPresetCommand = new LoadPresetCommand(Optional.of(searchForName));
+        String expectedMessage = String.format(Messages.MESSAGE_PRESET_NOT_FOUND, searchForName);
+        assertCommandFailure(loadPresetCommand, model, storage, expectedMessage);
+
+
+        List<Preset> currentPreset = new ArrayList<>();
+        List<OrderItem> orderItems = new ArrayList<>();
+        orderItems.add(new OrderItem(model.getFilteredMenuItemList().get(1), 2));
+        currentPreset.add(new Preset("MyTestPreset", orderItems));
+        List<List<Preset>> allPresets = new ArrayList<>();
+        allPresets.add(currentPreset);
+        storage.savePresetManager(allPresets);
+
+        assertCommandFailure(loadPresetCommand, model, storage, expectedMessage);
+    }
+
+    @Test
+    public void execute_noPresetsToDisplay_throwsException() throws IOException {
+        Model model = TypicalModel.getModelManagerWithMenu();
+        Storage storage = StorageManagerBuilder
+                .buildForPreset(Paths.get("src", "test", "data",
+                        "LoadPresetCommandTest", "noPresetsToDisplay.json"), true);
+        LoadPresetCommand loadPresetCommand = new LoadPresetCommand(Optional.empty());
+        String expectedMessage = Messages.MESSAGE_PRESET_NO_SAVED_PRESETS;
+
+        assertCommandFailure(loadPresetCommand, model, storage, expectedMessage);
+
+        List<List<Preset>> allPresets = new ArrayList<>();
+        allPresets.add(new ArrayList<>());
+        storage.savePresetManager(allPresets);
+        assertCommandFailure(loadPresetCommand, model, storage, expectedMessage);
+    }
 }
