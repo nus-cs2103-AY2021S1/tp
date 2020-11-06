@@ -6,7 +6,6 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.pivot.testutil.Assert.assertThrows;
 
@@ -43,13 +42,10 @@ public class CommandTestUtil {
 
     public static final String PREFIX_WITH_STATUS_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
     public static final String PREFIX_WITH_STATUS_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
-    public static final String PREFIX_WITH_TAG_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String PREFIX_WITH_TAG_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     // '&' not allowed in title
     public static final String PREFIX_WITH_INVALID_TITLE_AMY = " " + PREFIX_TITLE + "James&";
     public static final String PREFIX_WITH_INVALID_STATUS = " " + PREFIX_STATUS + "status";
-    public static final String PREFIX_WITH_INVALID_TAG = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
