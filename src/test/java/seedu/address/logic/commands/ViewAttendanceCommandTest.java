@@ -29,7 +29,7 @@ public class ViewAttendanceCommandTest {
     private TutorialGroup tgInView = V04;
 
     @Test
-    public void execute_tutorialGroupViewViewAttendance_throwsCommandException() {
+    public void execute_tutorialGroupViewViewAttendance_failure() {
         model.setCurrentViewToTutorialGroup();
         ViewAttendanceCommand command = new ViewAttendanceCommand(INDEX_FIRST_PERSON);
         String expectedMessage = ViewAttendanceCommand.MESSAGE_WRONG_VIEW;
