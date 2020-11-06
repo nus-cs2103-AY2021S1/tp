@@ -131,7 +131,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setIngredientBook(ReadOnlyIngredientBook ingredientBook) {
-        this.ingredientBook.setData(ingredientBook);
+        this.ingredientBook.setIngredientsData(ingredientBook);
     }
 
     @Override
@@ -148,13 +148,6 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
-    }
-
-    //Added here
-    @Override
-    public boolean hasIngredient(Ingredient ingredient) {
-        requireNonNull(ingredient);
-        return ingredientBook.hasIngredient(ingredient);
     }
 
     @Override

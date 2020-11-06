@@ -171,11 +171,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasIngredient(Ingredient ingredient) {
-            return false;
-        }
-
-        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }

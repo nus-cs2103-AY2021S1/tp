@@ -38,7 +38,7 @@ public class IngredientBook implements ReadOnlyIngredientBook {
      */
     public IngredientBook(ReadOnlyIngredientBook toBeCopied) {
         this();
-        setData(toBeCopied);
+        setIngredientsData(toBeCopied);
     }
 
     //// list overwrite operations
@@ -47,7 +47,7 @@ public class IngredientBook implements ReadOnlyIngredientBook {
         this.ingredients.setIngredients(ingredients);
     }
 
-    public void setData(ReadOnlyIngredientBook newAmount) {
+    public void setIngredientsData(ReadOnlyIngredientBook newAmount) {
         requireNonNull(newAmount);
 
         setIngredients(newAmount.getIngredientList());
@@ -63,7 +63,6 @@ public class IngredientBook implements ReadOnlyIngredientBook {
         requireNonNull(ingredient);
         return ingredients.contains(ingredient);
     }
-
 
     public void setIngredient(Ingredient target, Ingredient newAmount) {
         requireAllNonNull(target, newAmount);

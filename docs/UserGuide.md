@@ -222,8 +222,8 @@ Examples:
 **:information_source: Notes about ingredients:**<br>
 
 * Unit of measurement for ingredients:<br>
-   * - Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
-   * - Unit for liquids (Milk, Black Tea and Green Tea) : **L**<br>
+   * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
+   * Unit for liquids (Milk, Black Tea and Green Tea) : **L**<br>
 
 * All ingredients' initial levels (the levels you see when running tCheck for the very first time) are set to 0.<br>
 
@@ -232,17 +232,17 @@ Examples:
 * Please note that the ingredient names are **case-sensitive** to ensure consistency with the ingredient names displayed in Ingredient Tracker section of _Main View_.<br>
 
 * Please be informed that a prefix is chosen for an ingredient using the following logic : 
-   * 1. Use the fist letter of the ingredient name. 
-   * 2. If that letter is taken by another ingredient, use the first letter of the second word for that ingredient. 
-   * 3. If the ingredient name does not have a second word or if the first letter of the second word is not unique, use the second letter of the first word of the ingredient name.
+   1. Use the fist letter of the ingredient name. 
+   2. If that letter is taken by another ingredient, use the first letter of the second word for that ingredient. 
+   3. If the ingredient name does not have a second word or if the first letter of the second word is not unique, use the second letter of the first word of the ingredient name.
 
-* Here is a comprehensive list of all available ingredients in a T-Sugar stall:<br>
-    * - Milk<br>
-    * - Pearl<br>
-    * - Boba<br>
-    * - Black Tea<br>
-    * - Green Tea<br>
-    * - Brown Sugar<br>
+* Here is a comprehensive list of all available ingredients and their pre-determined default levels in a T-Sugar bubble tea stall:<br>
+    * Milk, 50 L<br>
+    * Pearl, 20 KG<br>
+    * Boba, 20 KG<br>
+    * Black Tea, 50 L<br>
+    * Green Tea, 50 L<br>
+    * Brown Sugar, 20 KG<br>
 
 </div>
 
