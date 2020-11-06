@@ -8,7 +8,6 @@ import static seedu.address.testutil.contact.TypicalContacts.getTypicalContactLi
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -23,9 +22,9 @@ public class ListContactCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+        model = new ModelManager(new ModuleList(), new ModuleList(),
                 getTypicalContactList(), new TodoList(), new EventList(), new UserPrefs());
-        expectedModel = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+        expectedModel = new ModelManager(new ModuleList(), new ModuleList(),
                 model.getContactList(), new TodoList(), new EventList(), new UserPrefs());
     }
 

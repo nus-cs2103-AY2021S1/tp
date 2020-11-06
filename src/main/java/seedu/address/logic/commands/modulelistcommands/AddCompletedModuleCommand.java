@@ -53,12 +53,17 @@ public class AddCompletedModuleCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddModuleCommand // instanceof handles nulls
+                || (other instanceof AddCompletedModuleCommand // instanceof handles nulls
                 && toAdd.equals(((AddCompletedModuleCommand) other).toAdd));
     }
 
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return COMMAND_WORD + " " + toAdd.toString();
     }
 }

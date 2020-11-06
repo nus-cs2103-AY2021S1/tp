@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -25,7 +24,7 @@ import seedu.address.model.contact.Contact;
 
 public class DeleteContactCommandTest {
 
-    private Model model = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+    private Model model = new ModelManager(new ModuleList(), new ModuleList(),
             getTypicalContactList(), new TodoList(), new EventList(), new UserPrefs());
 
     @Test

@@ -57,7 +57,7 @@ public class AssignmentCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Assignment)) {
+        if (!(other instanceof AssignmentCard)) {
             return false;
         }
 

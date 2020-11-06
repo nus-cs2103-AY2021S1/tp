@@ -20,7 +20,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
@@ -40,9 +39,9 @@ import seedu.address.testutil.todolist.FindTaskCriteriaBuilder;
 
 public class FindTaskCommandTest {
 
-    private Model model = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+    private Model model = new ModelManager(new ModuleList(), new ModuleList(),
             new ContactList(), getTypicalTodoList(), new EventList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+    private Model expectedModel = new ModelManager(new ModuleList(), new ModuleList(),
             new ContactList(), getTypicalTodoList(), new EventList(), new UserPrefs());
 
     @Test

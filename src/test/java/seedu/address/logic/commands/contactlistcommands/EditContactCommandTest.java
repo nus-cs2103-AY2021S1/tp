@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
@@ -33,7 +32,7 @@ import seedu.address.testutil.contact.EditContactDescriptorBuilder;
 
 public class EditContactCommandTest {
 
-    private Model model = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+    private Model model = new ModelManager(new ModuleList(), new ModuleList(),
             getTypicalContactList(), new TodoList(), new EventList(), new UserPrefs());
 
     @Test
@@ -64,7 +63,7 @@ public class EditContactCommandTest {
 
         String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+        Model expectedModel = new ModelManager(new ModuleList(), new ModuleList(),
                 new ContactList(model.getContactList()), new TodoList(), new EventList(), new UserPrefs());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
 
@@ -86,7 +85,7 @@ public class EditContactCommandTest {
 
         String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+        Model expectedModel = new ModelManager(new ModuleList(), new ModuleList(),
                 new ContactList(model.getContactList()), new TodoList(), new EventList(), new UserPrefs());
         expectedModel.setContact(firstContact, editedContact);
 
@@ -101,7 +100,7 @@ public class EditContactCommandTest {
 
         String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+        Model expectedModel = new ModelManager(new ModuleList(), new ModuleList(),
                 new ContactList(model.getContactList()), new TodoList(), new EventList(), new UserPrefs());
 
         assertCommandSuccess(editContactCommand, model, expectedMessage, expectedModel);
@@ -122,7 +121,7 @@ public class EditContactCommandTest {
 
         String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+        Model expectedModel = new ModelManager(new ModuleList(), new ModuleList(),
                 new ContactList(model.getContactList()), new TodoList(), new EventList(), new UserPrefs());
 
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);

@@ -16,9 +16,10 @@ import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.model.Model;
-import seedu.address.model.ModuleList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventNameContainsKeyWordsPredicate;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
@@ -125,7 +126,6 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .build();
     }
-
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
@@ -161,7 +161,7 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        ModuleList expectedModuleList = new ModuleList(actualModel.getModuleList());
+        // ModuleList expectedModuleList = new ModuleList(actualModel.getModuleList());
         // List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
@@ -179,9 +179,20 @@ public class CommandTestUtil {
         model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredModuleList().size());
     }
-
     /**
-     * Updates {@code model}'s filtered list to show only the contact at the given {@code targetIndex} in the
+     * Updates {@code model}'s archived module filtered list to show only the module at the given {@code targetIndex}
+     * in the {@code model}'s archived module list.
+     */
+    public static void showArchivedModuleAtIndex(Model model, Index targetIndex) {
+        model.displayArchivedModules();
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+        Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
+        final String[] splitName = module.getName().fullName.split("\\s+");
+        model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredModuleList().size());
+    }
+
+    /**Updates {@code model}'s filtered list to show only the contact at the given {@code targetIndex} in the
      * {@code model}'s contact list.
      */
     public static void showContactAtIndex(Model model, Index targetIndex) {
@@ -190,6 +201,18 @@ public class CommandTestUtil {
         final String[] splitName = contact.getName().toString().split("\\s+");
         model.updateFilteredContactList(new ContactNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredContactList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
+     * {@code model}'s event list.
+     */
+    public static void showEventAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
+        Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
+        final String[] splitName = event.getName().getName().split("\\s+");
+        model.updateFilteredEventList(new EventNameContainsKeyWordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredEventList().size());
     }
 
 }
