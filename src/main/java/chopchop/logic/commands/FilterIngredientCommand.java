@@ -42,7 +42,6 @@ public class FilterIngredientCommand extends Command {
 
         List<Predicate<Entry>> predicates = Arrays.asList(expPredicate, tagPredicates, namePredicates);
         Predicate<Entry> p = x -> true;
-        // p = predicates.stream().filter(x -> x != null).collect(Collectors.reducing(p, (x, y) -> x.and(y)));
         p = predicates.stream().filter(x -> x != null).reduce(p, (x, y) -> x.and(y));
         model.updateFilteredIngredientList(p);
 
