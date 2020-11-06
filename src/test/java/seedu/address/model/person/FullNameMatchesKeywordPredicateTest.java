@@ -18,14 +18,17 @@ public class FullNameMatchesKeywordPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        FullNameMatchesKeywordPredicate firstPredicate = new FullNameMatchesKeywordPredicate(firstPredicateKeywordList);
-        FullNameMatchesKeywordPredicate secondPredicate = new FullNameMatchesKeywordPredicate(secondPredicateKeywordList);
+        FullNameMatchesKeywordPredicate firstPredicate = new FullNameMatchesKeywordPredicate(
+                firstPredicateKeywordList);
+        FullNameMatchesKeywordPredicate secondPredicate = new FullNameMatchesKeywordPredicate(
+                secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        FullNameMatchesKeywordPredicate firstPredicateCopy = new FullNameMatchesKeywordPredicate(firstPredicateKeywordList);
+        FullNameMatchesKeywordPredicate firstPredicateCopy = new FullNameMatchesKeywordPredicate(
+                firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +44,8 @@ public class FullNameMatchesKeywordPredicateTest {
     @Test
     public void test_nameMatchesKeywords_returnsTrue() {
         // One keyword
-        FullNameMatchesKeywordPredicate predicate = new FullNameMatchesKeywordPredicate(Collections.singletonList("Alice Bob"));
+        FullNameMatchesKeywordPredicate predicate = new FullNameMatchesKeywordPredicate(
+                Collections.singletonList("Alice Bob"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
