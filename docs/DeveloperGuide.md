@@ -414,8 +414,10 @@ The problems _Common Cents_ aims to tackle.
 * Prefers typing to mouse interactions
 * Is reasonably comfortable using CLI apps
 
-**Value proposition**: Manages financial entries faster than a typical mouse/GUI driven app.
-
+**Value proposition**: 
+* Can manage financial entries faster than a typical mouse/GUI driven app
+* Provides a simple UI for business owners to see all the desired information easily
+* Provides an aesthetic UI which is pleasant to the eye
 
 ### User stories
 This section describes the features of _Common Cents_ from an end-user perspective. 
@@ -454,6 +456,7 @@ Priorities are represented by the number of `*`
 | `* *` | user | have incentive every time I use the app (maybe a little game or puzzle) | be motivated to use it to track my spending more |
 | `* *` | user | have an app that caters specifically to different types of accounts (business or personal) | efficiently manage my expenses and revenues | 
 | `*` | user | be given tips and tricks on how to use the app to plan my spending | save my money effectively |
+
 *{More to be added}*
 
 ### Use cases 
