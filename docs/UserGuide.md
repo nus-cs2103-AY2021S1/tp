@@ -56,6 +56,18 @@ and Bidder Id exists in the property list and bidder list.
 
 💡 DATE indicates the meeting date of the meeting.
 
+#Keyboard Navigation
+1. When the `CommandBox` is not in focused (i.e when cursor is not blinking):
+
+        PRESS ENTER 
+
+2. Next Month in `Calender`:
+
+        PRESS SHIFT
+        
+3. Previous Month in `Calendar`:
+
+        PRESS CONTROL
 
 # Features
 

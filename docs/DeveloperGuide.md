@@ -173,13 +173,6 @@ explanation of each entities' design.
 - Bidder and Seller
 - Bid
 - Meeting  
-
-### Property 
-
-
-#### ID
-The follow class diagram depicts the design behind `Id` and the subclasses: `SellerId`, `BidderId` and `PropertyId`.
-![Id Diagram](images/modelDiagram/IdModelDiagram.png)
 ---
 ### Bidder and Seller 
 The following class diagram depicts how the `Bidder` and `Seller` are created. The `Bidder` and `Seller` both extend from the
@@ -218,13 +211,17 @@ Note that the `CLIENTId` (BidderId / SellerId) design is elaborated in [Id] in t
         
         *`Tag` was kept in `Person` instead of `ClientPerson` to reduce refactoring required from AB3.*
        
+#### ID
+The follow class diagram depicts the design behind `Id` and the subclasses: `SellerId`, `BidderId` and `PropertyId`.
+![Id Diagram](images/modelDiagram/IdModelDiagram.png)
 
 --- 
+
+### Property 
+
 ### Bid 
 
 ### Meeting 
-
-
 
 ### Storage component
 
@@ -254,7 +251,8 @@ categorized accordingly to the features:
 6. `List`
 
 Additional features apart from the above-mentioned feature includes:
-- Automated transferring 
+- Automated change of `TabBar` and `ENTITYListPanel` with corresponding ENTITY command.
+- `next` and `prev` command for UI 
 
 
   
