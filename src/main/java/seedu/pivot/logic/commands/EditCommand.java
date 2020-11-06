@@ -8,8 +8,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.pivot.commons.util.CollectionUtil;
-import seedu.pivot.model.investigationcase.ArchiveStatus;
-import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
 import seedu.pivot.model.investigationcase.Status;
@@ -20,14 +18,14 @@ import seedu.pivot.model.investigationcase.caseperson.Witness;
 import seedu.pivot.model.tag.Tag;
 
 /**
- * Edits the details of an existing case in PIVOT.
+ * Represents an Edit command for editing items of different types to PIVOT.
  */
 public abstract class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the specified type "
-            + "to the current case in program is at.\n"
+            + "in the current case.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Format: '" + COMMAND_WORD + " TYPE PARAMETERS'\n\n"
             + "TYPE 'title'\n"
@@ -40,32 +38,8 @@ public abstract class EditCommand extends Command {
             + "Parameters: INDEX [n:NAME] [r:REFERENCE]\n"
             + "Example: " + COMMAND_WORD + " doc 1 n:meeting notes\n\n"
             + "TYPE 'suspect','victim','witness'\n"
-            + "Parameters: INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]\n"
+            + "Parameters: INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " suspect 1 e:newEmail@mail.com a:new road crescent\n\n";
-
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-
-    /**
-     * Creates and returns a {@code Case} with the details of {@code caseToEdit}
-     * edited with {@code editCaseDescriptor}.
-     */
-    private static Case createEditedCase(Case caseToEdit, EditCaseDescriptor editCaseDescriptor) {
-        assert caseToEdit != null;
-
-        Title updatedTitle = editCaseDescriptor.getTitle().orElse(caseToEdit.getTitle());
-        Description updatedDescription = editCaseDescriptor.getDescription().orElse(caseToEdit.getDescription());
-        Status updatedStatus = editCaseDescriptor.getStatus().orElse(caseToEdit.getStatus());
-        List<Document> updatedDocuments = editCaseDescriptor.getDocuments().orElse(caseToEdit.getDocuments());
-        List<Suspect> updatedSuspects = editCaseDescriptor.getSuspects().orElse(caseToEdit.getSuspects());
-        List<Victim> updatedVictims = editCaseDescriptor.getVictims().orElse(caseToEdit.getVictims());
-        Set<Tag> updatedTags = editCaseDescriptor.getTags().orElse(caseToEdit.getTags());
-        ArchiveStatus updatedArchiveStatus = caseToEdit.getArchiveStatus();
-        List<Witness> updatedWitnesses =
-                editCaseDescriptor.getWitnesses().orElse(caseToEdit.getWitnesses());
-        return new Case(updatedTitle, updatedDescription, updatedStatus, updatedDocuments,
-                updatedSuspects, updatedVictims, updatedWitnesses, updatedTags, updatedArchiveStatus);
-    }
-
 
     /**
      * Stores the details to edit the case with. Each non-empty field value will replace the
