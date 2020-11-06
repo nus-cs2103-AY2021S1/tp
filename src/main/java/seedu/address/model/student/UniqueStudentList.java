@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.student.admin.ClassTimeClashPredicate;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
 
@@ -101,9 +100,8 @@ public class UniqueStudentList implements Iterable<Student> {
     /**
      * Returns true if the student to be added has a class time that clashes with the other students.
      */
-    public boolean isClashingClassTime(Student test) {
-        ClassTimeClashPredicate predicate = new ClassTimeClashPredicate(test);
-        return internalList.stream().anyMatch(predicate);
+    public boolean hasClashingClassTimeWith(Student test) {
+        return internalList.stream().anyMatch(test::hasClashingClassTimeWith);
     }
 
     /**

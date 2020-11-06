@@ -96,7 +96,7 @@ public class EditCommand extends Command {
 
         ClassTime studentToEditClassTime = studentToEdit.getClassTime();
         ClassTime editedStudentClassTime = editedStudent.getClassTime();
-        if (!(editedStudentClassTime.equals(studentToEditClassTime)) && model.isClashingClassTime(editedStudent)) {
+        if (!(editedStudentClassTime.equals(studentToEditClassTime)) && model.hasClashingClassTimeWith(editedStudent)) {
             throw new CommandException(Messages.MESSAGE_CLASHING_LESSON);
         }
 

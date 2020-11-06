@@ -54,6 +54,13 @@ public class Admin {
     }
 
     /**
+     * Returns true if the given Admin objects have a clash in class time.
+     */
+    public boolean hasClashingClassTime(Admin other) {
+        return classTime.clashesWith(other.classTime);
+    }
+
+    /**
      * Get details of student formatted for GUI use.
      * @return formatted details.
      */

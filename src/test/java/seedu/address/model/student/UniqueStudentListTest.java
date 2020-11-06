@@ -166,18 +166,18 @@ public class UniqueStudentListTest {
     public void isClashingClassTime() {
         // one student
         uniqueStudentList.setStudents(Collections.singletonList(ALICE));
-        assertTrue(uniqueStudentList.isClashingClassTime(ALICE)); // same class time -> clashes
+        assertTrue(uniqueStudentList.hasClashingClassTimeWith(ALICE)); // same class time -> clashes
         Student test = new StudentBuilder(BOB).withClassTime("5 1600-1800").build();
-        assertTrue(uniqueStudentList.isClashingClassTime(test)); // clashes
-        assertFalse(uniqueStudentList.isClashingClassTime(BOB)); // does not clash
+        assertTrue(uniqueStudentList.hasClashingClassTimeWith(test)); // clashes
+        assertFalse(uniqueStudentList.hasClashingClassTimeWith(BOB)); // does not clash
 
         // multiple students
         uniqueStudentList.setStudents(Arrays.asList(ALICE, BOB));
-        assertTrue(uniqueStudentList.isClashingClassTime(ALICE)); // contains student
-        assertTrue(uniqueStudentList.isClashingClassTime(BOB)); // contains student
-        assertTrue(uniqueStudentList.isClashingClassTime(test)); // clashes with ALICE
+        assertTrue(uniqueStudentList.hasClashingClassTimeWith(ALICE)); // contains student
+        assertTrue(uniqueStudentList.hasClashingClassTimeWith(BOB)); // contains student
+        assertTrue(uniqueStudentList.hasClashingClassTimeWith(test)); // clashes with ALICE
         test = new StudentBuilder(BOB).withClassTime("3 1200-1230").build();
-        assertFalse(uniqueStudentList.isClashingClassTime(test)); // does not clash
+        assertFalse(uniqueStudentList.hasClashingClassTimeWith(test)); // does not clash
     }
 
     @Test

@@ -149,9 +149,9 @@ public class ModelManagerTest {
         Notebook notebook = new NotebookBuilder().withNote(NOTE_EXISTENTIAL_CRISIS).build();
         UserPrefs userPrefs = new UserPrefs();
         modelManager = new ModelManager(reeve, userPrefs, notebook);
-        assertTrue(modelManager.isClashingClassTime(AMY));
-        assertTrue(modelManager.isClashingClassTime(BOB));
-        assertFalse(modelManager.isClashingClassTime(ALICE));
+        assertTrue(modelManager.hasClashingClassTimeWith(AMY));
+        assertTrue(modelManager.hasClashingClassTimeWith(BOB));
+        assertFalse(modelManager.hasClashingClassTimeWith(ALICE));
     }
 
     @Test
