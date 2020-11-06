@@ -83,8 +83,12 @@ Constraints:
 - reps must be within range 1-1000 inclusive
 
 Examples:
+- `add e/Sit ups r/1 c/` Adds a log with an existing exercise `Sit ups`, 1 rep and no comment.
+- `add e/Sit ups r/1 c/my abs hurt :(` Adds a log with an existing exercise `Sit ups`, 1 rep and a comment of `no abs
+ were hurt`.
+- `add e/sit ups r/20 c/my abs hurt :(` Adds a log an existing exercise `sit ups`, 20 reps and a comment of `no
+ abs were hurt`.
 
-- `add e/Sit ups r/1 c/my abs hurt :(`
 
 ![Ui](images/screenshots/v1.3add.png)
 
@@ -96,6 +100,8 @@ Success:
 Shows a list of all logs logged by the user in the application.
 
 Format: `list`
+
+Example: `list`
 
 ![Ui](images/screenshots/v1.3list_success.png)
 
@@ -113,8 +119,8 @@ Constraints:
 - Existing values will be updated to the input values.
 
 Examples:
-
-- `edit 1 c/no abs were hurt` Edits the log at index 1, with a comment of `no abs were hurt`.
+- `edit 1 r/20` Edits the log at index 1, with 20 reps.
+- `edit 2 c/no abs were hurt` Edits the log at index 2, with a comment of `no abs were hurt`.
 - `edit 1 r/20 c/no abs were hurt` Edits the log at index 1, with reps of `20` and a comment of `no abs were hurt`.
 
 ![Ui](images/screenshots/v1.3edit.png)
@@ -133,8 +139,7 @@ Format: `delete <index>`
 - The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-
-- `list` followed by `delete 2`deletes the 2nd log.
+- `delete 2` Deletes the 2nd log.
 
 ![Ui](images/screenshots/v1.3delete.png)
 
@@ -146,6 +151,10 @@ Success:
 Finds all logs that contain ALL keywords (case-insensitive) anywhere in the log.
 
 Format: `find <keywords in logs>`
+
+Examples:
+- `find abs` Find log(s) which contain(s) the word `abs`.
+- `find Oct` Find log(s) which contain(s) the word `Oct`.
 
 ![Ui](images/screenshots/v1.3find.png)
 
@@ -163,6 +172,10 @@ Format: `addex e/<exercise name> c/calories per rep`
 
 Constraints:
 - calories must be within range 1-1000 inclusive
+
+Examples:
+- `addex e/Sit ups c/20` Adds an exercise with name`Sit ups` and 20 calories per rep.
+- `addex e/Jumping jacks c/50` Adds an exercise with name`Jumping jacks`and 50 calories per rep.
 
 ![Ui](images/screenshots/v1.3addex.png)
 
@@ -183,6 +196,12 @@ Format: `editex <index> [e/exercise] [c/calories per rep]`
 Constraints:
 - calories must be within range 1-1000 inclusive
 
+Examples:
+- `editex 2 e/Sit ups` Edits an exercise at index `2` with name `Sit ups`.
+- `editex 3 c/50` Edits an exercise at index `3` with 50 calories per rep.
+- `editex 3 e/Sit ups c/50` Edits an exercise at index `3` with name `Sit ups` and 50 calories per rep.
+
+
 ![Ui](images/screenshots/editex.png)
 
 Success:
@@ -199,8 +218,7 @@ Format: `deleteex <index>`
 - The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-
-- `list` followed by `deleteex 1`deletes the 1st exercise.
+- `deleteex 1` deletes the 1st exercise in the exercise list.
 
 ![Ui](images/screenshots/deleteex.png)
 

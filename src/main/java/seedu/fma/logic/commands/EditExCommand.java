@@ -36,7 +36,7 @@ public class EditExCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_C + "3000";
 
-    public static final String MESSAGE_EDIT_EXERCISE_SUCCESS = "Edited exercise: %1$s";
+    public static final String MESSAGE_EDIT_EXERCISE_SUCCESS = "Edited exercise: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the log book.";
 

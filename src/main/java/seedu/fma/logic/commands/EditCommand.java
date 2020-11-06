@@ -41,7 +41,7 @@ public class EditCommand extends Command {
             + PREFIX_R + "3000 "
             + PREFIX_C + "I love my abs 3000";
 
-    public static final String MESSAGE_EDIT_LOG_SUCCESS = "Edited Log: %1$s";
+    public static final String MESSAGE_EDIT_LOG_SUCCESS = "Edited Log: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LOG = "This log already exists in the log book.";
 
