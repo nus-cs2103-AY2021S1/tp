@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/josiahkhoo.png" width="200px">
 
 [[github](https://github.com/josiahkhoo)]
-[[portfolio](team/josiah.md)]
+[[portfolio](team/josiahkhoo.md)]
 
 * Role: Team Lead
 
