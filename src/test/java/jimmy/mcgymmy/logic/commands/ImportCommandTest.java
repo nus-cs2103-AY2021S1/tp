@@ -52,7 +52,8 @@ class ImportCommandTest {
         ModelManager model1 = new ModelManager();
         ImportCommand importCommand = new ImportCommand();
         importCommand.setParameters(NOT_FOUND_FILE_STUB);
-        assertCommandFailure(importCommand, model1, ImportCommand.MESSAGE_IMPORT_FOOD_FAILURE);
+        assertCommandFailure(importCommand, model1,
+                String.format(ImportCommand.MESSAGE_IMPORT_FOOD_FAILURE, NOT_FOUND_FILE_STUB.consume()));
     }
 
     @Test
@@ -60,6 +61,7 @@ class ImportCommandTest {
         ModelManager model1 = new ModelManager();
         ImportCommand importCommand = new ImportCommand();
         importCommand.setParameters(INVALID_FILE_STUB);
-        assertCommandFailure(importCommand, model1, ImportCommand.MESSAGE_IMPORT_FOOD_FAILURE);
+        assertCommandFailure(importCommand, model1,
+                String.format(ImportCommand.MESSAGE_IMPORT_FOOD_FAILURE, INVALID_FILE_STUB.consume()));
     }
 }
