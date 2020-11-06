@@ -667,7 +667,7 @@ Creates a meeting of the various type to be added to the schedule. To create the
 attribute. 
 
 - Command: `add-m`
-- Format: `add-m q/MEETING_TYPE b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE s/STARTTIME v/ENDTIME`
+- Format: `add-m q/MEETING_TYPE b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME`
 
 | Attributes      |Example Inputs |Remarks|
 |------|------|-----| 
@@ -751,13 +751,13 @@ Listed all meetings
 
 ## Editing an Existing Meeting
 
-Edits an existing meeting detail that is in the list.
+Edits an existing meeting in the meeting list. The existing meeting to be editted will have its parameters updated with the new values provided by the user.
 
 - Command: `edit-m`
-- Format: `edit-m <INDEX_NUMBER> b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE`
+- Format: `edit-m <INDEX_NUMBER> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME`
 
 > - Edits the meeting at the specified `INDEX_NUMBER`, which refers to the index shown on the displayed meeting list. The index must be a positive integer 1, 2, 3...
-
+More than one parameter can be updated for the existing meeting to be editted.
 
 
 Example:
@@ -776,14 +776,39 @@ Venue: eunos
 Date: 12-05-2016
 ```
 
-The index will only correspond to the original list, NOT the filtered list (when used in find).
+## Sorting the existing Meeting List
+
+
+Sorts the meeting in the meeting list according to the meeting date. The sort will be either ascending or descending meeting dates.
+
+- Command: `sort-m o/asc`
+                     `sort-m o/dsc`
+- Format: `sort-m o/<ORDER>`
+
+
+💡 The order is either asc or dsc which will sort the meetings according to the meeting date either ascending or descending respectively.
+
+> - Sorts the meeting in the displayed meeting list according to the meeting date.
+
+
+Example:
+
+```
+sort-m o/asc
+```
+
+Expected Output:
+
+```
+Successfully sorted meeting
+```
 
 ## Find an Existing Meeting
 
 Finds an existing meeting detail that is in the list.
 
 - Command: `find-m`
-- Format: `find-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE s/STARTTIME v/ENDTIME`
+- Format: `find-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME`
 
 💡 Meetings can be found with by specifying at least one of the attributes. Not all attributes are compulsory.
 
@@ -899,11 +924,12 @@ Picture Example:
 
 |  Command Format (Meeting)  | Example |
 | :---| :--- |
-| add-m q/MEETING_TYPE b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE s/STARTTIME v/ENDTIME | add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00  |
+| add-m q/MEETING_TYPE b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME | add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00  |
 | delete-m <INDEX> | delete-m 1 |
-| find-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE s/STARTTIME v/ENDTIME | find-m b/B1 p/P1|
+| find-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME | find-m b/B1 p/P1|
 | list-m | list-m |
-
+| edit-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME | edit-m  b/B1 p/P1 |
+| sort-m o/<ORDER> | sort-m o/asc |
 
 | Command Format (Calendar)  | Example |
 | :--- | :--- |
