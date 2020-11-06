@@ -101,8 +101,6 @@ public class EditTaskCommandTest {
         EditTaskCommand editTaskCommand = new EditTaskCommand(ParserUtil.parseIndex("1"),
                 new EditTaskCommand.EditTaskDescriptor());
 
-        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
-
         Project projectCopy = new Project(project.getProjectName(), project.getDeadline(),
                 project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
                 new HashMap<>(), project.getTasks());

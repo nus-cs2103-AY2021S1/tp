@@ -46,7 +46,11 @@ public class Task implements Comparable<Task> {
     public Task(String taskName, String description, Deadline deadline, double progress) {
         requireAllNonNull(taskName, progress);
         this.taskName = taskName;
-        this.description = description;
+        if(description == null){
+            this.description = "";
+        }else {
+            this.description = description;
+        }
         publishDate = LocalDate.now();
         if (deadline == null) {
             this.deadline = null;
