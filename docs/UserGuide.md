@@ -169,7 +169,7 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `add` Command.
  * The default value for `PROTEIN`, `FATS` and `CARBS` is 0. The default date is the day in which the food item is added.<br>
  * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer, less than 1000g.<br>
  * To view the list of supported date formats, see *Appendix A*.<br>
