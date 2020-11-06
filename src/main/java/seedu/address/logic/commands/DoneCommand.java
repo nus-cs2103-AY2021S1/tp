@@ -25,15 +25,8 @@ public class DoneCommand extends Command {
 
     public static final String COMMAND_WORD = "done";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the assignment(s) identified by the index number(s) "
-            + "used in the displayed assignment list as done.\n"
-            + "Parameters: INDEX [MORE_INDEXES] (must be a positive integer, "
-            + "must not contain duplicates and cannot be greater than the size of the current "
-            + "assignment list)\n"
-            + "Examples: \n"
-            + COMMAND_WORD + " 1\n"
-            + COMMAND_WORD + " 1 2 3";
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD
+            + " INDEX [MORE_INDEXES] (must be positive integers)";
 
     public static final String MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS = "Marks assignment as done: %1$s";
     public static final String MESSAGE_MARK_ASSIGNMENTS_AS_DONE_SUCCESS = "Mark assignments as done: %1$s";

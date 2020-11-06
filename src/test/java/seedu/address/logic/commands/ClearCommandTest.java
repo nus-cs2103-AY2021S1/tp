@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ProductiveNus;
@@ -37,7 +38,8 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager();
         expectedModel.setProductiveNus(new ProductiveNus());
 
-        assertCommandFailure(new ExitCommand("clear 3"), expectedModel, ExitCommand.MESSAGE_INCORRECT_FORMAT);
+        assertCommandFailure(new ClearCommand("clear 3"), expectedModel,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
     }
 
 }
