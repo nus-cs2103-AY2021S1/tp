@@ -350,7 +350,6 @@ Format: `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me
   - The email has to have a proper prefix and proper domain name consisting of at least 2 letters.
   - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank.
 
-
 Example: `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` creates a new teamamte in the respective project with:
   - name Lucas
   - Git name of Lucas98
@@ -369,7 +368,6 @@ Format: `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/E
   - The phone number has to be a minimum of 3 and maximum of 16 numbers.
   - The email has to have a proper prefix and proper domain name consisting of at least 2 letters.
   - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank.
-
 
 Example: `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way` changes the name of the teammate to GeNiaaz and the address of said teammate to 5 Hacker Way.
 
