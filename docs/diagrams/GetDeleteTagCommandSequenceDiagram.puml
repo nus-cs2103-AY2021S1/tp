@@ -1,9 +1,8 @@
 @startuml
 !include style.puml
+mainframe sd get resultant command
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":DeleteTagCommandParser" as DeleteTagCommandParser LOGIC_COLOR
 participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
 participant "argMultimap:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
@@ -17,20 +16,14 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("tag delete Alex Yeoh t/friends")
-activate LogicManager
-
-LogicManager -> AddressBookParser : parseCommand("tag delete Alex Yeoh t/friends")
-activate AddressBookParser
-
 create DeleteTagCommandParser
-AddressBookParser -> DeleteTagCommandParser : DeleteTagCommandParser()
+[-> DeleteTagCommandParser : DeleteTagCommandParser()
 activate DeleteTagCommandParser
 
-DeleteTagCommandParser --> AddressBookParser
+DeleteTagCommandParser -->[
 deactivate DeleteTagCommandParser
 
-AddressBookParser -> DeleteTagCommandParser : parse("Alex Yeoh t/friends")
+[-> DeleteTagCommandParser : parse("Alex Yeoh t/friends")
 activate DeleteTagCommandParser
 
 DeleteTagCommandParser -> ArgumentTokenizer : tokenize(args, PREFIX_TAG)
@@ -65,50 +58,6 @@ activate DeleteTagCommand
 DeleteTagCommand --> DeleteTagCommandParser : c
 deactivate DeleteTagCommand
 
-DeleteTagCommandParser --> AddressBookParser : c
+DeleteTagCommandParser -->[ : c
 destroy DeleteTagCommandParser
-
-AddressBookParser --> LogicManager : c
-deactivate AddressBookParser
-
-LogicManager -> DeleteTagCommand : execute()
-activate DeleteTagCommand
-
-create Person
-DeleteTagCommand -> Person
-activate Person
-
-Person --> DeleteTagCommand : editedPerson
-deactivate Person
-
-DeleteTagCommand -> Model : setPerson(p, editedPerson)
-activate Model
-
-Model --> DeleteTagCommand
-deactivate Model
-
-DeleteTagCommand -> Model : updatePersonInMeetingBook(p, editedPerson)
-activate Model
-
-Model --> DeleteTagCommand
-deactivate Model
-
-DeleteTagCommand -> Model : updatePersonInModuleBook(p, editedPerson)
-activate Model
-
-Model --> DeleteTagCommand
-deactivate Model
-
-create CommandResult
-DeleteTagCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> DeleteTagCommand
-deactivate CommandResult
-
-DeleteTagCommand --> LogicManager : result
-destroy DeleteTagCommand
-
-[<--LogicManager
-deactivate LogicManager
 @enduml
