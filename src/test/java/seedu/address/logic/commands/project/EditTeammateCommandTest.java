@@ -28,13 +28,15 @@ public class EditTeammateCommandTest {
     @Test
     public void execute_noFieldsModified_success() throws ParseException {
 
+        Person.getAllPeople().clear();
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
         Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
         Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
-        ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
         EditTeammateCommand.EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate)
             .build();
@@ -60,6 +62,8 @@ public class EditTeammateCommandTest {
 
     @Test
     public void execute_nameModified_success() throws ParseException {
+        Person.getAllPeople().clear();
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
         Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
@@ -79,9 +83,9 @@ public class EditTeammateCommandTest {
             project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
             new HashMap<>(), project.getTasks());
         project.addParticipation(originalTeammate);
-        model.addPerson(originalTeammate);
+//        model.addPerson(originalTeammate);
 
-        expectedModel.addPerson(editedTeammate);
+//        expectedModel.addPerson(editedTeammate);
         projectCopy.addParticipation(editedTeammate);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
@@ -91,6 +95,8 @@ public class EditTeammateCommandTest {
 
     @Test
     public void execute_phoneModified_success() throws ParseException {
+
+        Person.getAllPeople().clear();
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
         Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
@@ -110,9 +116,9 @@ public class EditTeammateCommandTest {
             project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
             new HashMap<>(), project.getTasks());
         project.addParticipation(originalTeammate);
-        model.addPerson(originalTeammate);
-
-        expectedModel.addPerson(editedTeammate);
+//        model.addPerson(originalTeammate);
+//
+//        expectedModel.addPerson(editedTeammate);
         projectCopy.addParticipation(editedTeammate);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
@@ -122,6 +128,8 @@ public class EditTeammateCommandTest {
 
     @Test
     public void execute_emailModified_success() throws ParseException {
+        Person.getAllPeople().clear();
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
         Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
@@ -141,9 +149,9 @@ public class EditTeammateCommandTest {
             project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
             new HashMap<>(), project.getTasks());
         project.addParticipation(originalTeammate);
-        model.addPerson(originalTeammate);
-
-        expectedModel.addPerson(editedTeammate);
+//        model.addPerson(originalTeammate);
+//
+//        expectedModel.addPerson(editedTeammate);
         projectCopy.addParticipation(editedTeammate);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
@@ -153,6 +161,8 @@ public class EditTeammateCommandTest {
 
     @Test
     public void execute_addressModified_success() throws ParseException {
+        Person.getAllPeople().clear();
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
         Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
@@ -172,9 +182,9 @@ public class EditTeammateCommandTest {
             project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
             new HashMap<>(), project.getTasks());
         project.addParticipation(originalTeammate);
-        model.addPerson(originalTeammate);
-
-        expectedModel.addPerson(editedTeammate);
+//        model.addPerson(originalTeammate);
+//
+//        expectedModel.addPerson(editedTeammate);
         projectCopy.addParticipation(editedTeammate);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
@@ -184,6 +194,8 @@ public class EditTeammateCommandTest {
 
     @Test
     public void execute_multipleFieldsModified_success() throws ParseException {
+
+        Person.getAllPeople().clear();
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
         Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
@@ -204,9 +216,9 @@ public class EditTeammateCommandTest {
             project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
             new HashMap<>(), project.getTasks());
         project.addParticipation(originalTeammate);
-        model.addPerson(originalTeammate);
-
-        expectedModel.addPerson(editedTeammate);
+//        model.addPerson(originalTeammate);
+//
+//        expectedModel.addPerson(editedTeammate);
         projectCopy.addParticipation(editedTeammate);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
