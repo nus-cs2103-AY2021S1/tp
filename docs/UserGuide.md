@@ -152,12 +152,12 @@ link. Imported lesson information can be found in the `Upcoming tasks`.
  
 Follow these steps and try importing your timetable:
 
-1) At your NUSMods timetable website, click on the "Share/Sync" button to obtain your timetable share link URL.
+1) At your NUSMods timetable website, click on the "Share/Sync" button to obtain your timetable share link URL. However do note that special term timetables are not yet supported in this version!
 
    ![NusModsShareSync](images/NusModsShareSync.PNG)
    *Figure X: The "Share/Sync" at the NUSMods website highlighted in green*
 
-2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command.
+2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command. Do ensure that you have a working internet connection or no lessons will be imported.
 
 3) Added lesson information can be found in your task list.
 
@@ -168,6 +168,7 @@ Follow these steps and try importing your timetable:
 
  **:clipboard: Pointers to note:**<br>
 * Importing a new timetable will override your previous timetable data.
+* Depending on your timetable size and internet connection, the import process may take up to 5 seconds.
 </div>
 
 Example:
