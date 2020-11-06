@@ -58,29 +58,6 @@ public class BookmarkCommandTest {
     }
 
 
-    @Test
-    public void execute_bookmarkAlreadyBookmarked_success() {
-        Set<SerialNumber> serialNumbersToBookmark = new LinkedHashSet<>();
-        List<Stock> stocksToBookmark = new ArrayList<>();
-
-        Stock firstStock = model.getFilteredStockList().get(INDEX_FIRST_STOCK.getZeroBased());
-
-        serialNumbersToBookmark.add(SERIAL_NUMBER_FIRST_STOCK);
-        stocksToBookmark.add(firstStock);
-
-        BookmarkCommand bookmarkCommand = new BookmarkCommand(serialNumbersToBookmark);
-
-        String expectedMessage = String.format(BookmarkCommand.MESSAGE_ALREADY_BOOKMARKED,
-                stocksAsString(stocksToBookmark));
-
-        Model expectedModel = new ModelManager(getTypicalStockBook(), new UserPrefs(),
-                getTypicalSerialNumberSetsBook());
-
-        expectedModel.sortFilteredStockList(SortUtil.generateGeneralComparator());
-
-        assertCommandSuccess(bookmarkCommand, model, expectedMessage, expectedModel);
-    }
-
 
     @Test
     public void execute_bookmarkInvalidSerialNumber_success() {
