@@ -504,7 +504,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
+1.  User requests to <u>list flashcards (UC02)</u>
 2.  User requests to delete a specific flashcard based on the index in the list
 3.  SWEe! deletes the flashcard
 
@@ -527,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
+1.  User requests to <u>list flashcards (UC02)</u>
 2.  User requests to edit the details of a specific flashcard based on the index in the list
 3.  SWEe! edits the flashcard
 
@@ -556,7 +556,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
+1.  User requests to <u>list flashcards (UC02)</u>
 2.  User requests to favourite a specific flashcard based on the index in the list
 3.  SWEe! favourites the flashcard
 
@@ -579,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
+1.  User requests to <u>list flashcards (UC02)</u>
 2.  User requests to unfavourite a specific flashcard based on the index in the list
 3.  SWEe! unfavourites the flashcard
 
@@ -602,7 +602,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
+1.  User requests to <u>list flashcards (UC02)</u>
 2.  User requests to clear all flashcards in the list
 3.  SWEe! clears the list
 
@@ -655,7 +655,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list flashcards (UC02)_
+1.  User requests to <u>list flashcards (UC02)</u>
 2.  User requests to sort the list in an order based on a sort criteria
 3.  SWEe! displays the list of flashcards in the specified order
 
@@ -667,15 +667,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
   
-* 2a. The given sort criteria is invalid.
+* 2a. Input format is invalid.
 
     * 2a1. SWEe! shows an error message.
-
-      Use case ends.
-
-* 2b. The given order is invalid.
-
-    * 2b1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -738,7 +732,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
+1.  User requests to <u>list flashcards (UC02)</u>
 2.  User requests to view a specific flashcard based on the index in the list
 3.  SWEe! shows the flashcard in detail
 
@@ -761,7 +755,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
+1.  User requests to <u>list flashcards (UC02)</u>
 2.  User requests to view the statistics of a specific flashcard based on the index in the list
 3.  SWEe! shows the flashcard's statistics
 
