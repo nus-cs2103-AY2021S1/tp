@@ -272,7 +272,9 @@ API call:
 Some term in the sequence diagram above has changed to a common substitutable term:<br>
 
 * AddCommandParser : `AddRecipeCommandParser` or `AddIngredientCommandParser`
+
 * info: `n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy` or `i/tomato`
+
 * add(type): `addRecipe(type)` or `addIngredient(type)`
 
 * type: `recipe` or `ingredient`
@@ -374,9 +376,13 @@ The following sequence diagram shows how list operation works when `execute(reci
 Some term in the sequence diagram above has changed to a common substitutable term:
 
 * userInput: `recipes`, `fridge` or `calories`
+
 * ListCommand: `ListRecipeCommand`, `ListIngredientCommand` or `ListConusmptionCommand`
+
 * getFilteredList(): `getFilteredRecipeList()`, `getFilteredIngredientList()` or `getFilteredConsumptionList()`
+
 * Type: `Recipe`, `Ingredient` or `Consumption`
+
 </div>
 
 Given below is an example usage scenario and how the mechanism behaves:
@@ -421,14 +427,20 @@ The following sequence diagram shows how delete operation works when `execute(de
 
 ![DeleteSequence](images/implementation/DeleteSequence.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note** 
 
 Some term in the sequence diagram above has changed to a common substitutable term:
+
 * delete: `deleteR`, `deleteF` or `deleteC`
+
 * DeleteCommand: `DeleteRecipeCommand`, `DeleteIngredientCommand` or `DeleteConusmptionCommand`
+
 * DeleteCommandParser: `DeleteRecipeCommandParser`, `DeleteIngredientCommandParser` or `DeleteConusmptionCommandParser`
+
 * deleteType(1): `deleteRecipe(1)`, `deleteIngredient(1)` or `deleteConsumption(1)`
+
 * remove(key): `removeRecipe(key)`, `removeIngredient(key)`, `removeConsumption(key)`
 </div>
 
@@ -466,14 +478,20 @@ The following sequence diagram shows how edit operation works when `execute("edi
 
 ![EditSequence](images/implementation/EditSequence.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note** 
+
 Some term in the sequence diagram above has changed to a common substitutable term:
 
 * edit: `editR`or `editF`
+
 * EditCommand: `EditRecipeCommand` or `EditIngredientCommand`
+
 * EditCommandParser: `EditRecipeCommandParser` or `EditIngredientCommandParser`
+
 * updateFilteredList(predicate): `updateFilteredRecipeList(predicate)` or `updateFilteredIngredientList(predicate)`
+
 * set(old, new): `setRecipe(oldRecipe, new Recipe)` or `setIngredient(oldIngredient, newIngredient)`
 </div>
 
@@ -539,13 +557,18 @@ Command and Parser make use of Substitutability:
 The following sequence diagram shows how get edit operation works when `execute(editR 1)` or `execute(editF 1)` API call:
 
 ![GetEditSequence](images/implementation/GetEditSequence.png)
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note** 
 
 Some terms in the sequence diagram above has changed to a common substitutable term:
+
 * delete: `editR` or `editF`
+
 * GetEditCommand: `GetEditRecipeCommand` or `GetEditIngredientCommand`
+
 * GetEditCommandParser: `GetEditRecipeCommandParser` or `GetEditIngredientCommandParser`
+
 * commandType: `recipeCommand` or `ingredientCommand`
 </div>
 
@@ -607,12 +630,16 @@ The following sequence diagram shows how search operation works when `execute("s
 
 ![SearchSequence](images/implementation/SearchSequence.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note** 
 
 Some term in the sequence diagram above has changed to a common substitutable term:
+
 * search: `searchR` or `searchF`
+
 * info: `n/burger` or `avocado`
+
 * updateFilteredList(predicate): `updateFilteredRecipeList(predicate)` or `updateFilteredIngredientList(predicate)`
 </div>
 
@@ -681,12 +708,16 @@ The following sequence diagram shows how clear operation works when `execute(cle
 
 ![ClearSequenceDiagram](images/implementation/ClearSequence.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note** 
+
 Some term in the sequence diagram above has changed to a common substitutable term:
 
 * clear: `clearR`, `clearF` or `clearC`
+
 * ClearCommand: `ClearRecipeCommand`, `ClearIngredientCommand` or `ClearConusmptionCommand`
+
 * clearType(): `clearRecipe()`, `clearIngredient()` or `clearConsumption()`
 </div>
 
