@@ -31,7 +31,7 @@ public class ChangeSessionCommandTest {
     }
 
     @Test
-    public void execute_validSession_fromStudentListToSession_success() {
+    public void execute_validSession_fromStudentListToSessionSuccess() {
         Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         model.addSession(existingSession);
         String expectedMessage = String.format(ChangeSessionCommand.MESSAGE_SUCCESS, existingSession.getSessionName());
@@ -43,7 +43,7 @@ public class ChangeSessionCommandTest {
     }
 
     @Test
-    public void execute_validSession_sameSessionToSameSession_success() {
+    public void execute_validSession_sameSessionToSameSessionSuccess() {
         Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         model.addSession(existingSession);
         String expectedMessage = String.format(ChangeSessionCommand.MESSAGE_SUCCESS, existingSession.getSessionName());
