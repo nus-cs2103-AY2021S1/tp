@@ -167,10 +167,4 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
-
-    @Test
-    public void parseTags_collectionWithBothProfAndTaTag_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(Tag.PROF_TAG_NAME,
-                Tag.TA_TAG_NAME)));
-    }
 }

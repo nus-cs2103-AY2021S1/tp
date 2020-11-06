@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.exceptions.PersonTagConstraintException;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -32,6 +33,10 @@ public class PersonTest {
         // EP: ta tag -> returns TA PersonType
         assertTrue(new PersonBuilder().withName("Test").withEmail("Test@gmail.com").withPhone("9001100")
                 .withTags("ta").build().getPersonType() == Person.PersonType.TA);
+        // EP: prof and ta tag -> throws PersonTagConstraintException
+        assertThrows(PersonTagConstraintException.class, () -> new PersonBuilder().withName("Test")
+                .withEmail("Test@gmail.com").withPhone("9001100")
+                .withTags("ta", "prof").build());
         // EP: all other tags -> returns CONTACT PersonType
         assertTrue(new PersonBuilder().withName("Test").withEmail("Test@gmail.com").withPhone("9001100")
                 .withTags("blah").build().getPersonType() == Person.PersonType.CONTACT);
