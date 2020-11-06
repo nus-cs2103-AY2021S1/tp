@@ -61,7 +61,7 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
 
 # 1. Overview <a id="1-overview"></a>
 Welcome to the Wishful Shrinking User Guide! In this section, you will be given an overview of what Wishful
- Shrinking is about and what you can get out of reading this document.
+ Shrinking is about and what you can get out of reading this document. <br><br>
 
 
 ## 1.1 Introduction <a id="11-introduction"></a>
@@ -74,14 +74,14 @@ Wishful Shrinking is your desktop diet manager. It is an app that helps you **ma
 
 Wishful Shrinking targets **office workers** who tend to discount healthy eating. Office workers are also more
  familiar with desktop applications and typing and correspondingly, Wishful Shrinking is optimized for fast and efficient typers as it uses a Command Line Interface (CLI) with the added beauty of a Graphical User Interface (GUI).
- Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.
+ Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems. <br><br>
 
 ## 1.2 Purpose <a id="12-purpose"></a>
 This user guide provides in-depth documentation on the **installation process, step-by-step instructions** for
- each feature and **troubleshooting recommendations**.
+ each feature and **troubleshooting recommendations**. <br><br>
 
 # 2. About the User Guide <a id="2-about-the-user-guide"></a>
-This section will explain the symbols in the user guide, and the format and parameters of commands.
+This section will explain the symbols in the user guide, and the format and parameters of commands. <br><br>
 
 ## 2.1 Symbols <a id="21-symbols"></a>
 
