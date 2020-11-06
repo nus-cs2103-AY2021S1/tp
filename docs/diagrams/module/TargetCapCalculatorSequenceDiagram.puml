@@ -1,0 +1,63 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModuleListParser" as ModuleListParser LOGIC_COLOR
+participant ":TargetCapCalculatorParser" as TargetCapCalculatorParser LOGIC_COLOR
+participant "t:TargetCapCalculatorCommand" as TargetCapCalculatorCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute(targetcap 5)
+activate LogicManager
+
+LogicManager -> ModuleListParser : parseCommand(targetcap 5)
+activate ModuleListParser
+
+create TargetCapCalculatorParser
+ModuleListParser -> TargetCapCalculatorParser
+activate TargetCapCalculatorParser
+
+TargetCapCalculatorParser --> ModuleListParser
+deactivate TargetCapCalculatorParser
+
+ModuleListParser -> TargetCapCalculatorParser : parse("5")
+activate TargetCapCalculatorParser
+
+create TargetCapCalculatorCommand
+TargetCapCalculatorParser -> TargetCapCalculatorCommand
+activate TargetCapCalculatorCommand
+
+TargetCapCalculatorCommand --> TargetCapCalculatorParser : command
+deactivate TargetCapCalculatorCommand
+
+TargetCapCalculatorParser --> ModuleListParser : command
+deactivate TargetCapCalculatorParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TargetCapCalculatorParser -[hidden]-> ModuleListParser
+destroy TargetCapCalculatorParser
+
+ModuleListParser --> LogicManager : command
+deactivate ModuleListParser
+
+LogicManager -> TargetCapCalculatorCommand : execute()
+activate TargetCapCalculatorCommand
+TargetCapCalculatorCommand -> TargetCapCalculatorCommand : calculateCapNeeded(List<Module>)
+activate TargetCapCalculatorCommand #DarkSalmon
+return
+create CommandResult
+TargetCapCalculatorCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TargetCapCalculatorCommand
+deactivate CommandResult
+
+TargetCapCalculatorCommand --> LogicManager : result
+deactivate TargetCapCalculatorCommand
+TargetCapCalculatorCommand -[hidden]-> LogicManager : result
+destroy TargetCapCalculatorCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

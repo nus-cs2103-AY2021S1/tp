@@ -243,6 +243,52 @@ Cons:
 - Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
 - LONG methods.
 
+## Module Tracker Features
+
+### Calculate CAP 
+
+#### Implementation
+
+The calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total
+grade points and modular credits, both stored internally `gradePoints` and `modularCredits` respectively. Additionally, it implements the following operations:
+
+* `CalculateCapCommand#calculateCap()` - Calculates CAP using data from modules tagged as completed in current `ModuleList` and archived `ModuleList`.
+
+The following sequence diagram shows how the calculate cap operation works:
+![CalculateCapSequenceDiagram](images/Module/CalculateCapSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Design consideration:
+
+##### Aspect: Information used to calculate cap
+* Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
+    * Pros : Easy to implement.
+    * Cons : User has to manually input every module to be used as data for calculation.
+
+* Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
+    * Pros :
+     * User does not need to input unnecessary modules.
+     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
+    * Cons : Will require additional storage.
+    
+### Calculate target CAP details
+
+#### Implementation
+
+The calculate CAP function is facilitated by `TargetCapCalculatorCommand`. It extends Command. Additionally, it implements the following operations:
+
+* `TargetCapCalculatorCommand#calculateCapNeeded()` - Calculates CAP needed for planned modules for user to achieve input target CAP using data from modules in current `ModuleList` and archived `ModuleList`.
+
+The following sequence diagram shows how the target cap operation works:
+![CalculateCapSequenceDiagram](images/Module/TargetCapCalculatorSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 
 ### Module list data archiving
 
@@ -263,21 +309,6 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 </div>
 
 The `unarchivemodule` command does the opposite — it calls `Model#unarchiveModule()`, which removes the specified module  from the archived `ModuleList` and placing it in the current `ModuleList`.
-
-
-
-#### Design consideration:
-
-##### Aspect: Information used to calculate cap
-* Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
-    * Pros : Easy to implement
-    * Cons : User has to manually input every module taken
-
-* Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
-    * Pros :
-     * User does not need to input unnecessary modules.
-     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
-    * Cons : Will require additional storage.
 
 ### 1.1 Contact List Management
 
@@ -354,37 +385,7 @@ Figure ?.? Activity diagram representing the execution of `AddContactCommand`
 * Alternative 2: Use an `ArrayList` to store contacts
 
 
-### Calculate CAP feature
 
-#### Implementation
-
-The calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total
-grade points and modular credits, both stored internally `gradePoints` and `modularCredits` respectively. Additionally, it implements the following operations:
-
-* `CalculateCapCommand#accumulate(ModuleList)` - Loops through a given `ModuleList` and updates the grade points and
-modular credits count accordingly.
-
-* `CalculateCapCommand#calculateCap()` - Calculates CAP based the grade points and modular credits counter.
-
-The following sequence diagram shows how the calculate cap operation works:
-![CalculateCapSequenceDiagram](images/CalculateCapSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-#### Design consideration:
-
-##### Aspect: Information used to calculate cap
-* Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
-    * Pros : Easy to implement
-    * Cons : User has to manually input every module taken
-
-* Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
-    * Pros :
-     * User does not need to input unnecessary modules.
-     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
-    * Cons : Will require additional storage.
 
 ### TodoList feature
 
@@ -758,7 +759,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case: UC07 - Calculate Cumulative Average Point(CAP)**
+**Use case: UC07 - Calculate CAP**
 
 **MSS**
 
@@ -1243,6 +1244,8 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Module List**: A list of all modules currently being tracked and stored in the CAP5BUDDY.
+* **CAP**: Calculate Cumulative Average Point, a grading number that rates academic level in NUS.
+
 
 --------------------------------------------------------------------------------------------------------------------
 

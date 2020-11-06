@@ -24,7 +24,7 @@ activate UndoCommand
 UndoCommand --> ModuleListParser
 deactivate UndoCommand
 
-ModuleListParser --> LogicManager : u
+ModuleListParser --> LogicManager : command
 deactivate ModuleListParser
 
 LogicManager -> UndoCommand : execute()

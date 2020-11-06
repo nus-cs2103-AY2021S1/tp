@@ -33,22 +33,22 @@ create ArchiveModuleCommand
 ArchiveModuleParser -> ArchiveModuleCommand
 activate ArchiveModuleCommand
 
-ArchiveModuleCommand --> ArchiveModuleParser : d
+ArchiveModuleCommand --> ArchiveModuleParser : command
 deactivate ArchiveModuleCommand
 
-ArchiveModuleParser --> ModuleListParser : d
+ArchiveModuleParser --> ModuleListParser : command
 deactivate ArchiveModuleParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 ArchiveModuleParser -[hidden]-> ModuleListParser
 destroy ArchiveModuleParser
 
-ModuleListParser --> LogicManager : d
+ModuleListParser --> LogicManager : command
 deactivate ModuleListParser
 
 LogicManager -> ArchiveModuleCommand : execute()
 activate ArchiveModuleCommand
 
-ArchiveModuleCommand -> Model : archiveModule(module)
+ArchiveModuleCommand -> Model : archiveModule(Module)
 activate Model
 
 Model --> ArchiveModuleCommand
@@ -63,6 +63,9 @@ deactivate CommandResult
 
 ArchiveModuleCommand --> LogicManager : result
 deactivate ArchiveModuleCommand
+
+ArchiveModuleCommand -[hidden]-> LogicManager : result
+destroy ArchiveModuleCommand
 
 [<--LogicManager
 deactivate LogicManager
