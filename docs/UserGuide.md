@@ -258,7 +258,7 @@ Displays a random student from the current session
 random-student
 ```
 - Lists a random student from the current session.
-- Will show no students if the student record list is empty.
+- Does not work if the session has no students.
 
 ### Clearing all entries: `clear`
 Clears all saved data in taskmaster (both students and sessions).
@@ -290,7 +290,7 @@ exit
 | Score             | ```score INDEX cp/SCORE``` <br> e.g., `score 1 cp/5`                                             |
 | Score all         | ```score all cp/SCORE``` <br> e.g., `score all cp/10`
 | Lowest score      | `lowest-score`      |
-| Random student    |`random-student`     |
+| Random student    | `random-student`     |
 | Clear             | ```clear```                                                                                              |
 | Exit              | ```exit```                                                                                              |
 
