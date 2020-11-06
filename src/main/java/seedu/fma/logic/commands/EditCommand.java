@@ -2,7 +2,6 @@ package seedu.fma.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_C;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_E;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_R;
 import static seedu.fma.model.Model.PREDICATE_SHOW_ALL_LOGS;
 
