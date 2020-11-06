@@ -724,6 +724,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User enters `down` key to show answer
 4.  User enters `y`/`n` key depending on whether user answers the flashcard correctly
 5.  SWEe! shows the next flashcard to quiz
+
     Steps 3-5 are repeated until the user finishes quizzing all flashcards or until the user enters `q` key to quit quiz mode
 
     Use case ends.
