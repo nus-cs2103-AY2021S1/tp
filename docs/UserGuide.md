@@ -547,18 +547,18 @@ McGymmy's data is saved in the hard disk automatically after any command that ch
 **A1**:  
 1. Install the app in the other computer.
 1. Export your save file from your previous McGymmy using the `export` function in section `5.11`.
-1. Use the `import` function in section `5.10` to import the save file to your McGymmy.
+1. Use the `import` function in section [`5.10`](#510-importing-another-save-file-import) to import the save file to your McGymmy.
 <br><br>
 
 **Q2**: How do I backup my current version of McGymmy?<br>
 **A2**: 
-1. Use the `export` function in section `5.11` to export the save file to a directory of your choice.
+1. Use the `export` function in section [`5.11`](#511-exporting-your-save-file-to-a-folder-export) to export the save file to a directory of your choice.
 1. A Copy of your save file will be created at the location.
 
 **Q3**: How do I find out what I ate on a particular day?<br>
 **A3**: 
 For those who prefer typing:
-1. Use the find command in section `5.5` and add the `-d` tag before specifying a date
+1. Use the find command in section [`5.5`](#55-finding-a-food-item-find) and add the `-d` tag before specifying a date
 1. You will see the food you ate on that day
 <br>
 For those who prefer clicking:
