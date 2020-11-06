@@ -19,49 +19,51 @@ title: Developer Guide
     - [3.1. Add Features](#31-add-features)
         * [3.1.1 Implementation](#311-implementation)
         * [3.1.2 Design Consideration - **Add Recipe**](#312-design-consideration-add-recipe)
-            * [Aspect 1: Concern while adding the first feature](#3121-aspect-1)
+            * [Aspect 1: Concern while adding a new feature](#3121-aspect-1)
             * [Aspect 2: Should we allow adding duplicate recipes](#3122-aspect-2)
         * [3.1.3 Design Consideration - **Add Ingredient**](#313-design-consideration-add-ingredient)
-            * [Aspect 1: Concern while adding the first feature](#3131-aspect-1)
+            * [Aspect 1: Concern while adding a new feature](#3131-aspect-1)
             * [Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity](#3132-aspect-2)
+	    * [Aspect 3: Should we allow adding duplicate ingredients and stacking quantities] (#"3133-aspect-3")
 	    <br><br>
     - [3.2. Eat Recipe Feature](#32-eat-recipe-feature)
         * [3.2.1 Implementation](#321-implementation)
         * [3.2.2 Design Consideration](#322-design-consideration)
-            * [Aspect: What is the information we should extract from a recipe to save in consumption list](#3221-aspect)
+            * [Aspect: What fields to extract from the eaten recipes to save in the Consumption List](#3221-aspect)
 	    <br><br>
     - [3.3. List Features](#33-list-features)
         * [3.3.1 Implementation](#331-implementation)
         * [3.3.2 Design Consideration - **List Recipes**](#332-design-consideration-list-recipe)
-            * [Aspect: Concern while adding the first feature](#3321-aspect)
+            * [Aspect: Concern while adding a new feature](#3321-aspect)
         * [3.3.3 Design Consideration - **List Ingredients**](#333-design-consideration-list-ingredient)
              * [Aspect: Concern while adding a new feature](#3331-aspect)
         * [3.3.4 Design Consideration - **List Consumptions**](#334-design-consideration-list-consumption)
              * [Aspect 1: Concern while adding a new feature](#3341-aspect-1)
-             * [Aspect 2: What is the information we should list from a recipe in consumption list](#3342-aspect-2)
+             * [Aspect 2: What information in the recipe is useful to display in the consumption list](#3342-aspect-2)
 	     <br><br>
     - [3.4. Delete Features](#34-delete-features)
         * [3.4.1 Implementation](#341-implementation)
         * [3.4.2 Design Consideration - **Delete Recipe**](#342-design-consideration-delete-recipe)
-            * [Aspect: Concern while adding the first feature](#3421-aspect)
+            * [Aspect: Concern while adding a new feature](#3421-aspect)
         * [3.4.3 Design Consideration - **Delete Ingredient**](#343-design-consideration-delete-ingredient)
             * [Aspect: Concern while adding a new feature](#3431-aspect)
         * [3.4.4 Design Consideration - **Delete Consumption**](#344-design-consideration-delete-consumption)
-            * [Aspect: Concern while adding a new feature](#3441-aspect)
+            * [Aspect 1: Concern while adding a new feature](#3441-aspect-1)
+	    * [Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present)] (#"3422-aspect-2")
 	    <br><br>
     - [3.5. Edit Features](#35-edit-features)
         * [3.5.1 Implementation](#351-implementation)
         * [3.5.2 Design Consideration - **Edit Recipe**](#352-design-consideration-edit-recipe)
-            * [Aspect: Concern while adding a new feature](#3521-aspect)
+            * [Aspect 1: Concern while adding a new feature](#3521-aspect-1)
+	    * [Aspect 2: How to provide users with more ease while editing a recipe] (#"3522-aspect-2")
         * [3.5.3 Design Consideration - **Edit Ingredient**](#353-design-consideration-edit-ingredient)
-            * [Aspect: Concern while adding a new feature](#3531-aspect)
-        * [3.5.4 Common Design Consideration](#354-common-design-consideration)
-            * [Aspect: How do we provide users more ease while editing an ingredient](#3541-aspect)
+            * [Aspect 1: Concern while adding a new feature](#3531-aspect-1)
+	    * [Aspect 2: How to provide users with more ease while editing an ingredient] (#"3522-aspect-2")
 	    <br><br>
     - [3.6. Get Edit Features](#36-get-edit-features)
         * [3.6.1 Implementation](#361-implementation)
         * [3.6.2 Design Consideration - **Get Edit Recipe**](#362-design-consideration-get-edit-recipe)
-            * [Aspect: Concern while adding a new feature](#3621-aspect)
+            * [Aspect: Concern while adding a new feature](#3621-aspect)	    
         * [3.6.3 Design Consideration - **Get Edit Ingredient**](#363-design-consideration-get-edit-ingredient)
             * [Aspect: Concern while adding a new feature](#3631-aspect)
 	    <br><br>
@@ -81,7 +83,8 @@ title: Developer Guide
     - [3.9. Recommend Feature](#39-recommend-feature)
         * [3.9.1 Implementation](#391-implementation)
         * [3.9.2 Design Consideration](#392-design-consideration)
-            * [Aspect: How do we quickly and accurately compare the ingredients in each recipe and the user’s fridge](#3921-aspect)
+            * [Aspect 1: How do we quickly and accurately compare the ingredients between each recipe and the user’s fridge](#3921-aspect-1)
+	    * [Aspect 2: Should we take an ingredient's quantity into account when recommending recipes] (#"3922-aspect-2")
 	    <br><br>
     - [3.10. Clear Features](#310-clear-features)
         * [3.10.1 Implementation](#3101-implementation)
@@ -106,7 +109,7 @@ title: Developer Guide
     - [6.1 Launch and Shutdown](#61-launch-and-shutdown)
     - [6.2 Deleting a Recipe](#62-deleting-a-recipe)
     - [6.3 Saving Data](#63-saving-data)
-7. [Appendix C: Model Components](#7-appendix-model-component)
+7. [Appendix C: Model Components](#7-model-component)
     - [7.1 Recipe](#71-recipe)
     - [7.2 Ingredient](#72-ingredient)
     - [7.3 Consumption](#73-consumption)
@@ -148,11 +151,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).<br><br>
 The ***Architecture Diagram*** given below explains the high-level design of the App.
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-Given below is a quick overview of each component.
+Given below is a quick overview of each component. <br><br>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for:
 * At app launch: Initializes the components in the correct sequence and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary. <br><br>
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -161,13 +164,13 @@ The rest of the App consists of four components:
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk. <br><br>
 
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
- API `interface` mentioned in the previous point. <br>
+ API `interface` mentioned in the previous point. <br><br>
 
 The *Sequence Diagram* below shows how the **architecture components interact with each other** for the scenario
  where the user issues the command `deleteR 1`.
@@ -183,12 +186,12 @@ The **UI Component** class diagram is given below.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java) <br><br>
 
 The UI consists of a `MainWindow` that is made up of the parts: `CommandBox`, `ResultDisplay`, `RecipeListPanel
 `, `IngredientListPanel`, `ConsumptionListPanel` and `StatusBarFooter`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework and JFoenix components. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework and JFoenix components. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/resources/view/MainWindow.fxml) <br><br>
 
 The `UI` component:
 
@@ -201,7 +204,7 @@ The **Logic Component** class diagram is given below.
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java) <br><br>
 
 The `Logic` component defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface. <br>                              
 
@@ -240,7 +243,7 @@ The `Model` component:
 The **Storage Component** class diagram is given below.
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java) <br><br>
 
 The `Storage` component:
 * Can save `UserPref` objects in json format and read it back.
@@ -316,7 +319,7 @@ Given below is an example usage scenario and how the mechanism behaves:
  returned to `LogicManager`. <br><br>
 
 #### 3.1.2 Design Consideration - **Add Recipe**: <a id="312-design-consideration-add-recipe"></a>
-##### Aspect 1: Concern while adding the first feature <a id="3121-aspect-1"></a>
+##### Aspect 1: Concern while adding a new feature <a id="3121-aspect-1"></a>
 * Workflow must be consistent with other commands. <br><br>
 
 ##### Aspect 2: Should we allow adding duplicate recipes <a id="3122-aspect-2"></a>
@@ -329,14 +332,14 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Cons: Storage will be cluttered with duplicate recipes. <br><br>
 
 #### 3.1.3 Design Considerations - **Add Ingredient**: <a id="313-design-consideration-add-ingredient"></a>
-##### Aspect 1: Concern while adding the first feature <a id="3131-aspect-1"></a>
-* Workflow must be consistent with add recipe command.
+##### Aspect 1: Concern while adding a new feature <a id="3131-aspect-1"></a>
+* Workflow must be consistent with add recipe command. <br><br>
 
 ##### Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity <a id="3132-aspect-2"></a>
 * **Alternative 1 (*current choice*):** Add a quantity field in the Ingredient class as well as a
  IngredientParser class that parses the user input ingredients into an arraylist of Ingredient objects
   * Pros: Easy to implement.
-  * Cons: The parser may confuse ingredients that have prefixes that Wishful Shrinking uses to identify fields in the names, eg "-" or ","
+  * Cons: The parser may confuse ingredients that have prefixes that Wishful Shrinking uses to identify fields in the names, eg "-" or ",". <br><br>
   
 ##### Aspect 3: Should we allow adding duplicate ingredients and stacking quantities <a id="3133-aspect-3"></a>
 * **Alternative 1 (*current choice*):** Restricted to unique ingredients.
@@ -421,8 +424,8 @@ Given below is an example usage scenario and how the mechanism behaves:
  `LogicManager`. <br><br>
 
 #### 3.3.2 Design Consideration - **List Recipes**: <a id="332-design-consideration-list-recipe"></a>
-##### Aspect: Concern while adding the first feature <a id="3321-aspect"></a>
-* Workflow must be consistent with other commands.
+##### Aspect: Concern while adding a new feature <a id="3321-aspect"></a>
+* Workflow must be consistent with other commands. <br><br>
 
 #### 3.3.3 Design Consideration - **List Ingredients**: <a id="333-design-consideration-list-ingredient"></a>
 ##### Aspect: Concern while adding a new feature <a id="3331-aspect"></a>
@@ -430,7 +433,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 #### 3.3.4 Design Consideration - **List Consumption**: <a id="334-design-consideration-list-consumption"></a>
 ##### Aspect 1: Concern while adding a new feature <a id="3341-aspect-1"></a>
-* Workflow must be consistent with other commands.
+* Workflow must be consistent with other commands. <br><br>
 
 ##### Aspect 2: What information in the recipe is useful to display in the consumption list <a id="3342-aspect-2"></a>
 * **Alternative 1 (*current choice*):** Listing each recipe with its image, name and calories.
@@ -443,14 +446,14 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 ### 3.4 Delete Features <a id="34-delete-features"></a>
 Delete features - `Delete Recipe`, `Delete Ingredient` and `Delete Consumption` allows the users to delete saved items 
-in the recipe list, ingredient list or consumption list respectively
+in the recipe list, ingredient list or consumption list respectively. <br><br>
 
 #### 3.4.1 Implementation <a id="341-implementation"></a>
 Command and Parser makes use of Substitutability:
 * `DeleteRecipeCommand`, `DeleteIngredientCommand` and `DeleteConsumptionCommand` extends `Command`
 * `DeleteRecipeCommandParser` implements `Parser<DeleteRecipeCommand>`
 * `DeleteIngredientCommandParser` implements `Parser<DeleteIngredientCommand>`
-* `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>`
+* `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>` <br><br>
 
 The following activity diagram shows how delete operation works when `execute("deleteR 1")`, `execute("deleteF 1")` or `execute("deleteC 1")` is called:
 ![DeleteActivity](images/implementation/ActivityDiagram/DeleteActivityDiagram.png)
@@ -486,30 +489,31 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After the successfully deleting the item, a `CommandResult` object is instantiated and returned to `LogicManager`. <br><br>
 
 #### 3.4.2 Design Consideration - **Delete Recipe**: <a id="342-design-consideration-delete-recipe"></a>
-##### Aspect 1: Concern while adding the first feature <a id="3421-aspect"></a>
-* Workflow must be consistent with other commands.
-##### Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present)
+##### Aspect 1: Concern while adding a new feature <a id="3421-aspect-1"></a>
+* Workflow must be consistent with other commands. <br><br>
+
+##### Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present) <a id="3422-aspect-2"></a>
 * **Alternative 1 (*current choice*):** Store a copy of the recipe in the consumption list so that it is not deleted if the recipe is deleted from the recipe list.
     * Pros: Recipes consumed will be accurate.                                       
     * Cons: Use additonal memory space.  <br><br>
   
 #### 3.4.3 Design Consideration - **Delete Ingredient**: <a id="343-design-consideration-delete-ingredient"></a>
 ##### Aspect: Concern while adding a new feature <a id="3431-aspect"></a>
-* Workflow must be consistent with other commands.
+* Workflow must be consistent with other commands. <br><br>
 
-### 3.4.4 Design Consideration - **Delete Consumption**: <a id="344-design-consideration-delete-consumption"></a>
+#### 3.4.4 Design Consideration - **Delete Consumption**: <a id="344-design-consideration-delete-consumption"></a>
 ##### Aspect: Concern while adding a new feature <a id="3441-aspect"></a>
 * Workflow must be consistent with other commands. <br><br>
 
 ### 3.5 Edit Features <a id="35-edit-features"></a>
 Edit features - `Edit Recipe` and `Edit Ingredient` allows users to edit an existing recipe or ingredient in
- the recipe list or ingredient list respectively.
+ the recipe list or ingredient list respectively. <br><br>
 
 #### 3.5.1 Implementation <a id="351-implementation"></a>
 Command and Parser make use of Substitutability:
 * `EditRecipeCommand` and `EditIngredientCommand` extends `Command`
 * `EditRecipeCommandParser` implements `Parser<EditRecipeCommand>`
-* `EditIngredientCommandParser` implements `Parser<EditIngredientCommand>`
+* `EditIngredientCommandParser` implements `Parser<EditIngredientCommand>` <br><br>
 
 The following activity diagram shows how edit operation generally works when a recipe is edited: <br>
  e.g. `execute("editR 1 n/Pea soup")` <br>
@@ -552,13 +556,13 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After the successfully editing the recipe, a `CommandResult` object is instantiated and returned to `LogicManager`. <br><br>
 
 #### 3.5.2 Design Considerations - **Edit Recipe** <a id="352-design-consideration-edit-recipe"></a>
-##### Aspect 1: Concern while adding a new feature <a id="3521-aspect"></a>
-* Workflow must be consistent with other commands.
+##### Aspect 1: Concern while adding a new feature <a id="3521-aspect-1"></a>
+* Workflow must be consistent with other commands. <br><br>
 
-##### Aspect 2: How to provide users with more ease while editing a recipe 
+##### Aspect 2: How to provide users with more ease while editing a recipe <a id="3522-aspect-2"></a>
 * **Alternative 1 (current choice):** User can directly edit on the existing recipe, after getting its command in the command box
   * Pros: Easy for users to edit a recipe.
-  * Cons: Involves another command to set the command box to show the information of the recipe that the user wishes to edit.
+  * Cons: Involves another command to set the command box to show the information of the recipe that the user wishes to edit. 
 
 * **Alternative 2:** User needs to retype the existing recipe's field that they wish to modify, if they want to modify only a part of the
  existing field
@@ -566,10 +570,10 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Cons: Not user friendly. <br><br>
 
 #### 3.5.3 Design Considerations - **Edit Ingredient** <a id="353-design-consideration-edit-ingredient"></a>
-##### Aspect 1: Concern while adding a new feature <a id="3531-aspect"></a>
-* Workflow must be consistent with other commands.
+##### Aspect 1: Concern while adding a new feature <a id="3531-aspect-1"></a>
+* Workflow must be consistent with other commands. <br><br>
 
-##### Aspect 2: How to provide users with more ease while editing an ingredient 
+##### Aspect 2: How to provide users with more ease while editing an ingredient <a id="3522-aspect-2"></a>
 * **Alternative 1 (current choice):** User can directly edit the existing ingredient, after getting its command in the command box
   * Pros: Easy for users to edit an ingredient.
   * Cons: Involves another command to set the command box to show the information of the ingredient that the user wishes to edit.
@@ -581,13 +585,13 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 ### 3.6 Get Edit features <a id="36-get-edit-features"></a>
 Get Edit features - `Get Edit Recipe` and `Get Edit Ingredient` allows users to get the command of an existing
- recipe or ingredient to edit.
+ recipe or ingredient to edit. <br><br>
 
 #### 3.6.1 Implementation <a id="361-implementation"></a>
 Command and Parser make use of Substitutability:
 * `GetEditRecipeCommand` and `GetEditIngredientCommand` extends `Command`
 * `GetEditRecipeCommandParser` implements `Parser<GetEditRecipeCommand>`
-* `GetEditIngredientCommandParser` implements `Parser<GetEditIngredientCommand>`
+* `GetEditIngredientCommandParser` implements `Parser<GetEditIngredientCommand>` <br><br>
 
 The following sequence diagram shows how get edit operation works when `execute("editR 1")` or `execute("editF 1")` is called:
 
@@ -632,7 +636,7 @@ Select Recipe feature allows users to select and view a recipe's information fro
 #### 3.7.1 Implementation <a id="371-implementation"></a>
 Command and Parser make use of Substitutability:
 * `SelectRecipeCommand` extends `Command`
-* `SelectRecipeCommandParser` implements `Parser<SelectRecipeCommand>`
+* `SelectRecipeCommandParser` implements `Parser<SelectRecipeCommand>` <br><br>
 
 The following sequence diagram shows how select recipe operation works when `execute("selectR 1")` is called:
 
@@ -663,7 +667,7 @@ Search features - `Search Recipe` and `Search Ingredient` allows users to search
 Command and Parser make use of Substitutability:
 * `SearchRecipeCommand` and `SearchIngredientCommand` extends `Command`
 * `SearchRecipeCommandParser` implements `Parser<SearchRecipeCommand>`
-* `SearchIngredientCommandParser` implements `Parser<SearchIngredientCommand>`
+* `SearchIngredientCommandParser` implements `Parser<SearchIngredientCommand>` <br><br>
 
 The following sequence diagram shows how the search operation generally works when searching for recipes: <br>
  e.g. `execute("searchR n/burger")` <br> 
@@ -700,7 +704,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 #### 3.8.2 Design Considerations - **Search Recipe** <a id="382-design-consideration-search-recipe"></a>
 ##### Aspect 1: Concern while adding a new feature <a id="3821-aspect-1"></a>
-* Workflow must be consistent with other commands
+* Workflow must be consistent with other commands. <br><br>
 
 ##### Aspect 2: How do we successfully search and filter the recipes based on the user's search  <a id="3822-aspect-2"></a>
 * **Alternative 1 (*current choice*):** User can only search for recipes based on one field (name, tag or
@@ -722,7 +726,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 Recommend feature allows users to get the list of recipes whose ingredients matches the ingredients in their fridge.  <br><br>
 
 Substitutability is used in Command:
-* `RecommendCommand` extends `Command`
+* `RecommendCommand` extends `Command` <br><br>
 
 The following sequence diagram shows how recommend operation works when `execute("recommend")` is called:
 
@@ -762,7 +766,7 @@ Clear features - `Clear Recipes`, `Clear Ingredients` and `Clear Consumption` al
 
 #### 3.10.1 Implementation <a id="3101-implementation"></a>
 Command and Parser make use of Substitutability:
-* `ClearRecipeCommand`, `ClearIngredientCommand` and `ClearConsumptionCommand` extends `Command`
+* `ClearRecipeCommand`, `ClearIngredientCommand` and `ClearConsumptionCommand` extends `Command` <br><br>
 
 The following sequence diagram shows how clear operation works when `execute("clearR")`, `execute("clearF")` or
  `execute("clearC")` is called:
@@ -1237,7 +1241,7 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 1.  Search-related features might be slow if there are more than 2000 recipes or ingredients in the database.
 1.  The application does not need internet connection to function, but the user can use the internet connection to download images for recipes.
 1.  The application uses local database.
-1.  The local database will be immediately updated after each updating command.
+1.  The local database will be immediately updated after each updating command. <br><br>
 
 ### 5.5 Glossary <a id="55-glossary"></a>
 
@@ -1311,7 +1315,7 @@ testers are expected to do more *exploratory* testing.
        
    1. Test case: delete WishfulShrinking.json data file. <br>
       Expected: If WishfulShrinking.json file cannot be found, the app will create the data file populated with
-       sample recipes.
+       sample recipes. <br><br>
 
 ## 7. **Appendix C: *Model Component*** <a id="7-model-component"></a>
 
@@ -1321,5 +1325,5 @@ testers are expected to do more *exploratory* testing.
 ### 7.2 Ingredient <a id="72-ingredient"></a>
 ![Ingredient in Model Component](images/ModelClass_Ingredient.png)
 
-### 7.3 Consumption <a id="72-consumption"></a>
+### 7.3 Consumption <a id="73-consumption"></a>
 ![Consumption in Model Component](images/ModelClass_Consumption.png)
