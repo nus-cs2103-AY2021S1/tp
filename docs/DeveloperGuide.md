@@ -833,6 +833,23 @@ testers are expected to do more *exploratory* testing.
     
 ### Editing a flashcard
 
+1. Editing a flashcard while all flashcards are being shown
+
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+            how to add a flashcard if flashcard deck is empty.
+    
+    1. Test case (editing one field of flashcard): `edit INDEX q/Is this edited?` where `INDEX` is the index of the particular
+        flashcard in the deck to be edited.<br>
+        Expected: The `QUESTION` of flashcard at index `INDEX` will be modified to become `Is this edited?`. The remaining fields
+        of this flashcard will remain the same. Result display will output the status of the edited flashcard.
+        
+    1. Test case (editing multiple fields of flashcard): `edit INDEX q/Is this edited? a/Yes` where `INDEX` is the index of the particular
+        flashcard in the deck to be edited.<br> 
+        Expected: The `QUESTION` and `ANSWER` of flashcard at index `INDEX` will be modified to become `Is this edited?` 
+        and `Yes` respectively.The remaining fields of this flashcard will remain the same. Result display will output the status of the edited flashcard.
+        
+     :bulb: **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
+
 ### Clearing all flashcards
 
 ### Filtering for flashcards
