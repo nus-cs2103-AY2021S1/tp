@@ -150,11 +150,13 @@ The image below is a labeled diagram of each of Wishful Shrinking's components.<
    <br><br><br>
    
    Below is a brief explanation on each of the components:
-   * **List of recipes/ingredients/consumption**: The left window will display either a list of recipes, a list of
-    ingredients or the consumption list depending on your input. In the image above, it is displaying the Recipe
-     List.
-   * **Command Result**: The Command Result box will show the result of your input into the Command Box.
-   * **Command Box**: Here is where you will type all your commands.
+   
+Component | Explanation
+--------|------------------
+**Recipe/Fridge/Consumption tabs** | These are the tabs for recipe-related commands, fridge-related commands and consumption-related commands. The coloured tab shows which tab you are currently in. <br><br> By default, you will be in the **Recipes** tab whenever you start up Wishful Shrinking. When you execute a command, you will automatically be switched to the related tab. <br><br> In the image above, the user is currently in the Recipes tab. 
+**List of recipes/ingredients/consumption** | The left window will display either a list of recipes, a list of ingredients or the consumption list depending on your input. <br><br> In the image above, it is displaying the Recipe List.
+ **Command Result** | The Command Result box will show the result of your input into the Command Box.
+ **Command Box** | Here is where you will type all your commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
