@@ -17,7 +17,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String AC_SUGGESTION = COMMAND_WORD + " "
-            + PREFIX_E + "<exercise> "
+            + PREFIX_E + "<exercise name> "
             + PREFIX_R + "<reps> "
             + PREFIX_C + "<comment> ";
 

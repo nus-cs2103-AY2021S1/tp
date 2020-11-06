@@ -16,13 +16,13 @@ public class AddExCommand extends Command {
     public static final String COMMAND_WORD = "addex";
 
     public static final String AC_SUGGESTION = COMMAND_WORD + " "
-            + PREFIX_E + "<exercise> "
+            + PREFIX_E + "<exercise name> "
             + PREFIX_C + "<calories per rep>";
 
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exercise to the log book. "
             + "Parameters: "
-            + PREFIX_E + "<exercise> "
+            + PREFIX_E + "<exercise name> "
             + PREFIX_C + "<calories per rep>";
 
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
