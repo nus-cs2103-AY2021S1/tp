@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTags.CS2101;
 import static seedu.address.testutil.TypicalTags.CS2103;
 import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
 
@@ -75,6 +76,39 @@ public class AddressBookTest {
         Tag editedCS2103 = new TagBuilder(CS2103).build();
         assertTrue(addressBook.hasTag(editedCS2103));
     }
+
+
+    @Test
+    public void setTag_tagInAddressBook_returnsTrue() {
+        AddressBook dummyAddressBook = addressBook;
+        dummyAddressBook.addTag(CS2103);
+        dummyAddressBook.setTag(CS2103, CS2101);
+        Tag expectedTag = new TagBuilder(CS2101).build();
+        assertTrue(dummyAddressBook.hasTag(expectedTag));
+    }
+
+    @Test
+    public void setTag_nullTag_returnsNullPointerException() {
+        AddressBook dummyAddressBook = addressBook;
+        dummyAddressBook.addTag(CS2103);
+        assertThrows(NullPointerException.class, () -> dummyAddressBook.setTag(CS2103, null));
+    }
+
+    @Test
+    public void removeTag_tagInAddressBook_returnsFalse() {
+        AddressBook dummyAddressBook = addressBook;
+        dummyAddressBook.addTag(CS2103);
+        dummyAddressBook.removeTag(CS2103);
+        Tag expectedTag = new TagBuilder(CS2101).build();
+        assertFalse(dummyAddressBook.hasTag(expectedTag));
+    }
+
+    @Test
+    public void removeTag_nullTag_returnsNullPointerException() {
+        AddressBook dummyAddressBook = addressBook;
+        assertThrows(NullPointerException.class, () -> dummyAddressBook.removeTag(null));
+    }
+
 
     @Test
     public void getTagList_modifyList_throwsUnsupportedOperationException() {
