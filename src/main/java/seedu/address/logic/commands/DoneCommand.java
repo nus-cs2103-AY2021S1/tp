@@ -48,16 +48,8 @@ public class DoneCommand extends Command {
                 checkIndexValidity(targetIndexes, lastShownList, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX)
                         .toArray(new Deadline[0]);
 
-        for (Index targetIndex : targetIndexes) {
-            Task task = lastShownList.get(targetIndex.getZeroBased());
-            if (task instanceof Event) {
-                throw new CommandException(Messages.MESSAGE_INVALID_DONE_TASK_TYPE);
-            }
-        }
-
-        if (!allHaveIncompleteStatus(deadlinesToMarkAsDone)) {
-            throw new CommandException(Messages.MESSAGE_INCORRECT_TASK_STATUS);
-        }
+        checkIfAllAreDeadlines(lastShownList);
+        checkAllHaveIncompleteStatus(deadlinesToMarkAsDone);
         model.markAsDone(deadlinesToMarkAsDone, durations);
         return new CommandResult(buildMessage(deadlinesToMarkAsDone));
     }
@@ -81,12 +73,20 @@ public class DoneCommand extends Command {
                 && Arrays.equals(targetIndexes, ((DoneCommand) other).targetIndexes)); // state check
     }
 
-    private boolean allHaveIncompleteStatus(Deadline[] deadlinesToMarkAsDone) {
-        for (int i = 0; i < deadlinesToMarkAsDone.length; i++) {
-            if (deadlinesToMarkAsDone[i].isDone()) {
-                return false;
+    private void checkAllHaveIncompleteStatus(Deadline[] deadlinesToMarkAsDone) throws CommandException {
+        for (Deadline deadline : deadlinesToMarkAsDone) {
+            if (deadline.isDone()) {
+                throw new CommandException(Messages.MESSAGE_INCORRECT_TASK_STATUS);
             }
         }
-        return true;
+    }
+
+    private void checkIfAllAreDeadlines(List<Task> lastShownList) throws CommandException {
+        for (Index targetIndex : targetIndexes) {
+            Task task = lastShownList.get(targetIndex.getZeroBased());
+            if (task instanceof Event) {
+                throw new CommandException(Messages.MESSAGE_INVALID_DONE_TASK_TYPE);
+            }
+        }
     }
 }

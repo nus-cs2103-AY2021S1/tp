@@ -54,12 +54,13 @@ public class Overlap {
     }
     /**
      * Checks if a time slot overlaps with an existing event in PlaNus.
+     * Ignores the {@code timeSlotNotToCheck} time slot. Null if all time slots are to be checked.
      */
-    private static boolean overlapWithOtherEvents(Model model, TimeSlot timeSlot, TimeSlot ignore) {
+    private static boolean overlapWithOtherEvents(Model model, TimeSlot timeSlot, TimeSlot timeSlotNotToCheck) {
         requireNonNull(model);
         ObservableList<Task> existingTasks = model.getFilteredTaskList();
         for (Task task: existingTasks) {
-            if (task instanceof Event && task != ignore && isSameTimeSlot((Event) task, timeSlot)) {
+            if (task instanceof Event && task != timeSlotNotToCheck && isSameTimeSlot((Event) task, timeSlot)) {
                 return true;
             }
         }
@@ -76,8 +77,8 @@ public class Overlap {
     /**
      * Checks if an edited time slot overlaps with an existing lesson or event in PlaNus.
      */
-    public static boolean overlapWithOtherTimeSlots(Model model, TimeSlot prevTimeSlot, TimeSlot currentTimeSlot) {
-        return overlapWithOtherLessons(model, currentTimeSlot, prevTimeSlot)
-                || overlapWithOtherEvents(model, currentTimeSlot, prevTimeSlot);
+    public static boolean overlapWithOtherTimeSlots(Model model, TimeSlot timeSlotToEdit, TimeSlot editedTimeSlot) {
+        return overlapWithOtherLessons(model, editedTimeSlot, timeSlotToEdit)
+                || overlapWithOtherEvents(model, editedTimeSlot, timeSlotToEdit);
     }
 }
