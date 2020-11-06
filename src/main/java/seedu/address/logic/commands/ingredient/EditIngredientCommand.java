@@ -32,7 +32,7 @@ public class EditIngredientCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_INGREDIENT + "INGREDIENT "
             + "[" + PREFIX_QUANTITY + "QUANTITY" + "]" + "\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " 1"
             + PREFIX_INGREDIENT + "bread, oranges" + PREFIX_QUANTITY + "2kg" + ", cheese ";
 
     public static final String MESSAGE_EDIT_INGREDIENT_SUCCESS = "Edited Ingredient: %1$s";
