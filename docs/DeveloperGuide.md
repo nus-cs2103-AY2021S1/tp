@@ -337,7 +337,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees**
 
-* A deadline will be added only if there is no duplicate deadline existing in PlaNus.
+* A deadline will be added only if there is no duplicate deadline existing in PlaNus and it does not
+overlap with any other lesson or event in PlaNus.
 
 **MSS**
 
@@ -455,7 +456,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees**
 
-* A task will be edited only if the task is still valid after being edited.
+* A task will be edited only if the attributes of the edited task are all valid and the edited task
+does not overlap with any other lesson or event in PlaNus.
 
 **MSS**
 
@@ -512,7 +514,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees**
 
-* A new lesson will be added only there is no duplicate lesson already existing in PlaNus.
+* A new lesson will be added only there is no duplicate lesson already existing in PlaNus and it does not 
+overlap with any other lesson or event in PlaNus.
 
 **MSS**
 
@@ -575,7 +578,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees**
 
-* A lesson will be edited only if the lesson is still valid after being edited.
+* A lesson will be edited only if the attributes of the edited lesson are all valid and the edited lesson
+does not overlap with any other lesson or event in PlaNus.
 
 **MSS**
 
@@ -680,7 +684,7 @@ or a **deadline**.
 manner with a specified start and end date and a start and end time.
 * **tag**: A tag is an attribute that can be associated with a task or lesson to represent a module code. PlaNus' time analysis
 feature is based on the tags of the tasks and lessons.
-* **description**: A description is one or two sentences used to explain or add remarks to a task or lesson. It can be optional.
+* **description**: A description is one or two sentences used to explain or add remarks to a task or lesson. It is optional.
 
 --------------------------------------------------------------------------------------------------------------------
 
