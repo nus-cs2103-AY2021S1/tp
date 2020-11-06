@@ -105,6 +105,7 @@ public class DeleteDetailCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
         expectedModel.setStudent(clone, expectedStudent);
+        showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }

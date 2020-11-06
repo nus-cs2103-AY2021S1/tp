@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_DATE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -70,7 +69,6 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
         Student updatedStudent = updateStudentAttendance(studentToDeleteAttendance, updatedAttendance);
 
         model.setStudent(studentToDeleteAttendance, updatedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), getUserInputDateString()));
