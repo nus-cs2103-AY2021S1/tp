@@ -10,8 +10,11 @@ import seedu.address.model.event.EventTime;
 public class EventUtil {
 
     public static final EventName VALID_NAME = EventUtil.makeEventName("Test");
+    public static final String VALID_NAME_STRING = "Test";
     public static final EventTime VALID_DATE = EventUtil.makeEventTime("1-2-2020 1200");
+    public static final String VALID_DATE_STRING = "1-2-2020 1200";
     public static final Event VALID_EVENT = EventUtil.makeEvent(VALID_NAME, VALID_DATE);
+    public static final Event DEFAULT_EVENT = new Event(new EventName("Homework"), new EventTime());
 
     /**
      * Creates an EventName based on the given String input.
