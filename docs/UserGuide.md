@@ -87,7 +87,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 3. Copy the file to the folder you want to use as the _home folder_ for **Reeve**.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/ReeveGUI.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -108,20 +108,25 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 ### 2.2 Making sense of **Reeve**'s layout
 ![Reeve's Layou](images/ReeveLayout.png)
 
-1. *Menu*
-These tabs allows you to simply click on them and get what is needed. 
+1. **Menu**
 
-2. *Main Panel*
-The main panel shows your list of students for easy reference. It also displays your schedule when the schedule command is called. 
+    These tabs allows you to simply click on them and get what is needed. 
 
-3. *Result Display*
-The result display is where Reeve provides responses to your commands.
+2. **Main Panel**
 
-4. *Notes Panel*
-The notes panel displays all your notes that you have added.
+    The main panel shows your list of students for easy reference. It also displays your schedule when the schedule command is called. 
 
-5. *Command Box*
-The command box allows you to type any commands that is accepted in Reeve.
+3. **Result Display**
+
+    The result display is where Reeve provides responses to your commands.
+
+4. **Notes Panel**
+
+    The notes panel displays all your notes that you have added.
+
+5. **Command Box**
+
+    The command box allows you to type any commands that is accepted in Reeve.
 
 ## 3. Features
 
