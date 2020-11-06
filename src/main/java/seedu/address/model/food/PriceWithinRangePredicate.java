@@ -16,8 +16,11 @@ public class PriceWithinRangePredicate implements Predicate<MenuItem> {
      */
     public PriceWithinRangePredicate(Inequality inequality, double price) throws ParseException {
         this.inequality = inequality;
-        if (price < 0) {
+        if (price < 0 ) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_PRICE, price));
+        }
+        if (price > 100) {
+            throw new ParseException(String.format(Messages.MESSAGE_PRICE_GREATER_THAN_LIMIT, price));
         }
         this.price = price;
     }

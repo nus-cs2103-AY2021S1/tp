@@ -14,7 +14,8 @@ public class PriceCommandParser implements Parser<PriceCommand> {
      */
     public PriceCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        String[] argsArr = trimmedArgs.split(" ");
+        String finalArgs = trimmedArgs.replaceAll("( )+", " ");
+        String[] argsArr = finalArgs.split(" ");
         ParserUtil.checkArgsLength(argsArr, PriceCommand.COMMAND_WORD, PriceCommand.MESSAGE_USAGE, 2);
         Inequality inequality = ParserUtil.parseInequality(argsArr[0]);
         double price = ParserUtil.parsePrice(argsArr[1]);
