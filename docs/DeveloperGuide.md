@@ -313,7 +313,7 @@ The following describes the flow of how `DeleteCommand` is performed.
 
 1. Upon successfully parsing the user input, the `DeleteCommand#execute(Model model)` is called which checks whether
 the specified `Index` is a valid index based on the `UniqueStudentList`, in the case where it is invalid, a `CommandException` is thrown and no student will be deleted.
-2. Otherwise, the `Student` at the specified valid `Index` is then removed from the UniqueStudentList#students observable list using the Model#deleteStudent(Student target) method.
+2. Otherwise, the `Student` at the specified valid `Index` is then removed from the `UniqueStudentList` using the `Model#deleteStudent(Student target)` method.
 3. The specified student is deleted from the `UniqueStudentList` and a success message is shown in the result display.
 
 <div markdown="block" class="alert alert-info">
