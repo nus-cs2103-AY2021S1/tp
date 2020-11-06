@@ -1,12 +1,24 @@
 package com.eva.testutil.applicant;
 
+import static com.eva.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static com.eva.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static com.eva.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static com.eva.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static com.eva.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static com.eva.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static com.eva.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static com.eva.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static com.eva.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static com.eva.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.testutil.ApplicantBuilder;
 import com.eva.testutil.PersonBuilder;
 
-import static com.eva.logic.commands.CommandTestUtil.*;
-
+/**
+ * Contains sample applicants that can be used for tests.
+ */
 public class TypicalApplicants {
     public static final Applicant ALICE = new ApplicantBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")

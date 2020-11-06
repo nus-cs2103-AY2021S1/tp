@@ -8,20 +8,18 @@ import static com.eva.testutil.Assert.assertThrows;
 import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalStaffDatabase;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.Messages;
 import com.eva.commons.core.PanelState;
 import com.eva.logic.commands.exceptions.CommandException;
-import com.eva.model.person.staff.Staff;
-import org.junit.jupiter.api.Test;
-
-import com.eva.logic.parser.Prefix;
 import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
 import com.eva.model.ModelManager;
 import com.eva.model.UserPrefs;
+import com.eva.model.person.staff.Staff;
+
 
 public class ClearCommandTest {
 
@@ -50,7 +48,7 @@ public class ClearCommandTest {
     }
 
     @Test
-   public void execute_nonEmptyAddressBookStaff_success() {
+    public void execute_nonEmptyAddressBookStaff_success() {
         Model model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
@@ -68,9 +66,9 @@ public class ClearCommandTest {
                 getTypicalApplicantDatabase(), new UserPrefs());
         model.setPanelState(PanelState.STAFF_LIST);
         assertThrows(CommandException.class,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
-                        String.format(MESSAGE_WRONG_PANEL, "applicants", PREFIX_APPLICANT)),
-                () -> new ClearCommand(PREFIX_APPLICANT).execute(model));
+            String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
+            String.format(MESSAGE_WRONG_PANEL, "applicants", PREFIX_APPLICANT)), () ->
+                        new ClearCommand(PREFIX_APPLICANT).execute(model));
     }
 
     @Test
@@ -79,8 +77,8 @@ public class ClearCommandTest {
                 getTypicalApplicantDatabase(), new UserPrefs());
         model.setPanelState(PanelState.APPLICANT_LIST);
         assertThrows(CommandException.class,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
-                        String.format(MESSAGE_WRONG_PANEL, "staff", PREFIX_STAFF)),
-                () -> new ClearCommand(PREFIX_STAFF).execute(model));
+            String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
+            String.format(MESSAGE_WRONG_PANEL, "staff", PREFIX_STAFF)), () ->
+                        new ClearCommand(PREFIX_STAFF).execute(model));
     }
 }

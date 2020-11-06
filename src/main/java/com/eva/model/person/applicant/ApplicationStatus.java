@@ -1,10 +1,7 @@
 package com.eva.model.person.applicant;
 
-import java.util.Objects;
-
 import static com.eva.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
-
 
 /**
  * Represents the application status of an applicant - accepted, rejected or processing.

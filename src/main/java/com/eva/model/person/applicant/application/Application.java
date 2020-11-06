@@ -1,7 +1,5 @@
 package com.eva.model.person.applicant.application;
 
-import com.eva.model.person.applicant.Applicant;
-
 import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;

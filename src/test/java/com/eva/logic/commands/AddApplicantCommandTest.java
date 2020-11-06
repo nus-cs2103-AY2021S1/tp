@@ -1,5 +1,20 @@
 package com.eva.logic.commands;
 
+import static com.eva.testutil.Assert.assertThrows;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.PanelState;
 import com.eva.logic.commands.exceptions.CommandException;
@@ -16,19 +31,8 @@ import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.testutil.ApplicantBuilder;
+
 import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.function.Predicate;
-
-import static com.eva.testutil.Assert.assertThrows;
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class AddApplicantCommandTest {
 
@@ -44,7 +48,8 @@ public class AddApplicantCommandTest {
 
         CommandResult commandResult = new AddApplicantCommand(validApplicant).execute(modelStub);
 
-        assertEquals(String.format(AddApplicantCommand.MESSAGE_SUCCESS, validApplicant), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddApplicantCommand.MESSAGE_SUCCESS, validApplicant),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validApplicant), modelStub.applicantsAdded);
     }
 
@@ -54,8 +59,8 @@ public class AddApplicantCommandTest {
         AddApplicantCommand addApplicantCommand = new AddApplicantCommand(validApplicant);
         ModelStub modelStub = new ModelStubWithApplicant(validApplicant);
 
-        assertThrows(CommandException.class, AddApplicantCommand.MESSAGE_DUPLICATE_PERSON,
-                () -> addApplicantCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddApplicantCommand.MESSAGE_DUPLICATE_PERSON, () -> addApplicantCommand.execute(modelStub));
     }
 
     @Test
@@ -87,12 +92,12 @@ public class AddApplicantCommandTest {
      */
     public class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -117,27 +122,7 @@ public class AddApplicantCommandTest {
         }
 
         @Override
-        public void setCurrentViewStaff(CurrentViewStaff currentViewStaff) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setCurrentViewApplicant(CurrentViewApplicant currentViewStaff) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public Path getPersonDatabaseFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getStaffDatabaseFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getApplicantDatabaseFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -147,7 +132,17 @@ public class AddApplicantCommandTest {
         }
 
         @Override
+        public Path getStaffDatabaseFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setStaffDatabaseFilePath(Path staffDatabaseFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getApplicantDatabaseFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -158,11 +153,6 @@ public class AddApplicantCommandTest {
 
         @Override
         public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPersonDatabase(ReadOnlyEvaDatabase<Person> newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -197,6 +187,11 @@ public class AddApplicantCommandTest {
         }
 
         @Override
+        public void setPersonDatabase(ReadOnlyEvaDatabase<Person> newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -227,12 +222,12 @@ public class AddApplicantCommandTest {
         }
 
         @Override
-        public void setStaffDatabase(ReadOnlyEvaDatabase<Staff> newData) {
+        public ReadOnlyEvaDatabase<Staff> getStaffDatabase() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyEvaDatabase<Staff> getStaffDatabase() {
+        public void setStaffDatabase(ReadOnlyEvaDatabase<Staff> newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -262,8 +257,18 @@ public class AddApplicantCommandTest {
         }
 
         @Override
+        public void setCurrentViewStaff(CurrentViewStaff currentViewStaff) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public CurrentViewApplicant getCurrentViewApplicant() {
             return null;
+        }
+
+        @Override
+        public void setCurrentViewApplicant(CurrentViewApplicant currentViewStaff) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -282,12 +287,12 @@ public class AddApplicantCommandTest {
         }
 
         @Override
-        public void setApplicantDatabase(ReadOnlyEvaDatabase<Applicant> newData) {
+        public ReadOnlyEvaDatabase<Applicant> getApplicantDatabase() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyEvaDatabase<Applicant> getApplicantDatabase() {
+        public void setApplicantDatabase(ReadOnlyEvaDatabase<Applicant> newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -350,18 +355,18 @@ public class AddApplicantCommandTest {
      */
     private class ModelStubAcceptingApplicantAdded extends ModelStub {
         final ArrayList<Applicant> applicantsAdded = new ArrayList<>();
-        PanelState panelState;
+        private PanelState panelState;
 
         @Override
-        public boolean hasApplicant(Applicant Applicant) {
-            requireNonNull(Applicant);
-            return applicantsAdded.stream().anyMatch(Applicant::isSamePerson);
+        public boolean hasApplicant(Applicant applicant) {
+            requireNonNull(applicant);
+            return applicantsAdded.stream().anyMatch(applicant::isSamePerson);
         }
 
         @Override
-        public void addApplicant(Applicant Applicant) {
-            requireNonNull(Applicant);
-            applicantsAdded.add(Applicant);
+        public void addApplicant(Applicant applicant) {
+            requireNonNull(applicant);
+            applicantsAdded.add(applicant);
         }
 
         @Override
@@ -371,7 +376,7 @@ public class AddApplicantCommandTest {
 
         @Override
         public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
-            return ;
+            return;
         }
 
         @Override

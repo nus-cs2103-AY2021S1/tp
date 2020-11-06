@@ -1,22 +1,26 @@
 package com.eva.logic.commands;
 
+import static com.eva.logic.commands.CommandTestUtil.assertChangePanelCommandSuccess;
+import static com.eva.logic.commands.CommandTestUtil.assertCommandFailure;
+import static com.eva.logic.commands.CommandTestUtil.showApplicantAtIndex;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
+import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static com.eva.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
+import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
+import static com.eva.testutil.TypicalPersons.getTypicalStaffDatabase;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import com.eva.commons.core.Messages;
 import com.eva.commons.core.PanelState;
 import com.eva.commons.core.index.Index;
 import com.eva.model.Model;
 import com.eva.model.ModelManager;
 import com.eva.model.UserPrefs;
-import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
-import org.junit.jupiter.api.Test;
-
-import static com.eva.logic.commands.CommandTestUtil.*;
-import static com.eva.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
-import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static com.eva.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static com.eva.testutil.TypicalPersons.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for

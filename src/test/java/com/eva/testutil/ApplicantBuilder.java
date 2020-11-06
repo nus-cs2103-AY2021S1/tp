@@ -15,7 +15,9 @@ import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.tag.Tag;
 import com.eva.model.util.SampleDataUtil;
 
-
+/**
+ * A utility class to help with building Applicant objects.
+ */
 public class ApplicantBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
@@ -49,6 +51,10 @@ public class ApplicantBuilder {
         interviewDate = Optional.empty();
     }
 
+    /**
+     * Creates a {@code ApplicantBuilder} with the details of the provided applicant.
+     * @param applicantToCopy
+     */
     public ApplicantBuilder(Applicant applicantToCopy) {
         name = applicantToCopy.getName();
         phone = applicantToCopy.getPhone();
@@ -108,16 +114,26 @@ public class ApplicantBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code InterviewDate} of the {@code Applicant} that we are building.
+     */
     public ApplicantBuilder withInterviewDate(String interviewDate) {
         this.interviewDate = Optional.ofNullable(new InterviewDate(interviewDate));
         return this;
     }
 
+    /**
+     * Sets the {@code ApplicationStatus} of the {@code Applicant} that we are building.
+     */
     public ApplicantBuilder withApplicationStatus(String applicationStatus) {
         this.applicationStatus = new ApplicationStatus(applicationStatus);
         return this;
     }
 
+    /**
+     * Builds an applicant with the relevant attributes.
+     * @return applicant containing the attributes.
+     */
     public Applicant build() {
         return new Applicant(name, phone, email, address, tags, comments,
                 interviewDate, applicationStatus);
