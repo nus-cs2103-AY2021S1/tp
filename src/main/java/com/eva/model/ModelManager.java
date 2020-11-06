@@ -401,7 +401,25 @@ public class ModelManager implements Model {
                 && staffDatabase.equals(other.staffDatabase)
                 && applicantDatabase.equals(other.applicantDatabase)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredStaffs.equals(other.filteredStaffs)
+                && filteredApplicants.equals(other.filteredApplicants);
+
     }
 
+    @Override
+    public String toString() {
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append(getApplicantDatabase()).append("\n")
+                .append(getStaffDatabase()).append("\n")
+                .append(getPersonDatabase()).append("\n")
+                .append(getUserPrefs()).append("\n")
+                .append(getCurrentViewStaff()).append("\n")
+                .append(getCurrentViewApplicant()).append("\n")
+                .append(getFilteredApplicantList()).append("\n")
+                .append(getFilteredStaffList()).append("\n")
+                .append(getFilteredPersonList()).append("\n");
+        return toReturn.toString();
+
+    }
 }

@@ -103,4 +103,22 @@ public class Experience {
         return builder.toString();
         */
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Education)) {
+            return false;
+        }
+
+        Experience otherExperience = (Experience) other;
+        return otherExperience.getStartDate().equals(getStartDate())
+                && otherExperience.getCompanyName().equals(getCompanyName())
+                && otherExperience.getDescription().equals(getDescription())
+                && otherExperience.getPosition().equals(getPosition())
+                && otherExperience.getEndDate().equals(getEndDate());
+    }
 }
