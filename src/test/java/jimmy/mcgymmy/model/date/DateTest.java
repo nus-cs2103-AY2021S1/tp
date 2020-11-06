@@ -31,14 +31,14 @@ class DateTest {
     private static final String VALID_DATE_STRING_1_DD_MMM_YYYY = "20 Apr 2020";
 
     private static final String VALID_DATE_STRING_1_SLASH_D_M_YYYY = "2/9/2020";
-    private static final String VALID_DATE_STRING_1_SLASH_D_MM_YYYY = "20/4/2020";
+    private static final String VALID_DATE_STRING_1_SLASH_DD_M_YYYY = "20/4/2020";
     private static final String VALID_DATE_STRING_1_SLASH_YYYY_MM_DD = "2020/04/20";
     private static final String VALID_DATE_STRING_1_SLASH_DD_MM_YYYY = "20/04/2020";
 
     private static final String VALID_DATE_STRING_1_DASH_D_M_YYYY = "2-9-2020";
     private static final String VALID_DATE_STRING_1_DASH_YYYY_M_D = "2020-9-2";
     private static final String VALID_DATE_STRING_1_DASH_DD_MM_YYYY = "20-04-2020";
-    private static final String VALID_DATE_STRING_1_DASH_YYYY_DD_MM = "2020-4-20";
+    private static final String VALID_DATE_STRING_1_DASH_YYYY_M_DD = "2020-4-20";
     private static final String VALID_DATE_STRING_1_DASH_DD_M_YYYY = "20-4-2020";
 
     private static final String VALID_DATE_STRING_LEAP_YEAR_FEB = "29 Feb 2020";
@@ -68,18 +68,18 @@ class DateTest {
         // format: "yyyy-M-d"
         assertEquals(new Date(VALID_DATE_STRING_1_DASH_YYYY_M_D).toString(), VALID_DATE_STRING_2_D_MMM_YYYY);
         // format: "yyyy-M-dd"
-        assertEquals(new Date(VALID_DATE_STRING_1_DASH_YYYY_DD_MM).toString(), VALID_DATE_STRING_1_DD_MMM_YYYY);
+        assertEquals(new Date(VALID_DATE_STRING_1_DASH_YYYY_M_DD).toString(), VALID_DATE_STRING_1_DD_MMM_YYYY);
         // format: "dd-M-yyyy"
         assertEquals(new Date(VALID_DATE_STRING_1_DASH_DD_M_YYYY).toString(), VALID_DATE_STRING_1_DD_MMM_YYYY);
         // format: "dd/M/yyyy"
-        assertEquals(new Date(VALID_DATE_STRING_1_SLASH_D_MM_YYYY).toString(), VALID_DATE_STRING_1_DD_MMM_YYYY);
+        assertEquals(new Date(VALID_DATE_STRING_1_SLASH_DD_M_YYYY).toString(), VALID_DATE_STRING_1_DD_MMM_YYYY);
         // format: "dd-MM-yyyy"
         assertEquals(new Date(VALID_DATE_STRING_1_DASH_DD_MM_YYYY).toString(), VALID_DATE_STRING_1_DD_MMM_YYYY);
         // format: "yyyy/MM/dd"
         assertEquals(new Date(VALID_DATE_STRING_1_SLASH_YYYY_MM_DD).toString(), VALID_DATE_STRING_1_DD_MMM_YYYY);
         // format: "dd/MM/yyyy"
         assertEquals(new Date(VALID_DATE_STRING_1_SLASH_DD_MM_YYYY).toString(), VALID_DATE_STRING_1_DD_MMM_YYYY);
-        // format: "d MMM yyyy"
+        // format: "dd MMM yyyy"
         assertEquals(new Date(VALID_DATE_STRING_1_DD_MMM_YYYY).toString(), VALID_DATE_STRING_1_DD_MMM_YYYY);
         // format: "yyyy-MM-dd"
         assertEquals(new Date(VALID_DATE_STRING_1_YYYY_MM_DD).toString(), VALID_DATE_STRING_1_DD_MMM_YYYY);
