@@ -48,7 +48,8 @@ public class Messages {
     // misc error messages
     public static final String MESSAGE_START_BEFORE_END = "start time is cannot be before end time!";
     public static final String MESSAGE_MULTIPLE_ATTRIBUTES = "Please do not include more than one of each attribute.";
-    public static final String OVERLAP_CONSTRAINTS = "This %1$s overlaps with another event or %1$s";
+    public static final String OVERLAP_CONSTRAINTS =
+            "This %1$s overlaps with another existing event or lesson in PlaNus.";
     public static final String LESSON_OVERLAP_CONSTRAINTS = String.format(OVERLAP_CONSTRAINTS, "lesson");
     public static final String EVENT_OVERLAP_CONSTRAINTS = String.format(OVERLAP_CONSTRAINTS, "event");
 }
