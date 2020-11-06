@@ -8,12 +8,12 @@ import seedu.address.model.appointment.Appointment;
 
 
 /**
- * Utility methods for manipulation of Appointment and VEvent objects.
+ * Maps Appointment objects to VEvent objects
  */
 public class VEventUtil {
 
     /**
-     * Maps all appointments in @param appointments to a list of vEvents
+     * Maps all Appointment objects in @param appointments to a list of VEvent objects
      */
     public static ArrayList<VEvent> appsToVEventsMapper(List<? extends Appointment> appointments) {
         ArrayList<VEvent> resultVEventList = new ArrayList<>();
@@ -24,7 +24,7 @@ public class VEventUtil {
     }
 
     /**
-     * Maps an appointment to vEvent
+     * Maps an Appointment object to a VEvent object
      */
     public static VEvent appToVEventMapper(Appointment appToMap) {
         VEvent resultVEvent = new VEvent();
@@ -37,8 +37,8 @@ public class VEventUtil {
     }
 
     /**
-     * Compares between 2 vEvents to see whether they are the same. Attributes used to determine this include
-     * patient name, start, and end time
+     * Returns true if {@code vEventOne} and {@code vEventTwo} are the same by comparing
+     * summary, starting time, and ending time
      *
      * @param vEventOne first event to be compared
      * @param vEventTwo second event to be compared

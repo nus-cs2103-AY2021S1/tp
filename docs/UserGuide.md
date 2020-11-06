@@ -24,15 +24,17 @@ If you are new to CliniCal, this user guide will get you up and running in no ti
 ### 2.1 Formatting
 
 The CliniCal User Guide contains different formatting used throughout the document which is used to convey different meanings. 
-This table below will illustrate what they mean.
+This table below illustrates what each formatting means.
 
 | Formatting    | What                            | Meaning   | Example                     |
 | ----------    |-------------------------------------|-----------|--------------------------|
 | `add`      | Words in light-blue highlight, also known as a mark-up| A command that can be typed into CliniCal|`help`|
-| `p/PHONE_NUMBER` | Words in UPPER_CASE | Parameters to be supplied by the user (can be in any order!)|`p/91234567`|
+| `p/PHONE_NUMBER` | Words in UPPER_CASE | A parameter to be supplied by the user |`p/91234567`|
 | `n/NAME [s/SEX]` | Words in square brackets| Optional|`n/John Doe` or <br> `n/John s/M` |
 | `[g/ALLERGY]…` | Words with `…` after them| Parameters that can be input multiple times including 0 times|`g/sulfa g/zyrtec` or `g/levocetirizine `|
 | [Blue underline](#2-about-this-document)| Blue words that show underline on mouse-over| A clickable hyperlink, to either an external webpage or other parts of this User Guide|[1. Introduction](#1-introduction)|
+
+[**SOME OF THE CONTENTS INSIDE THE TABLE ABOVE AND THE NOTE BELOW SEEMS TO BE REDUNDANT**]
 
 <div markdown="block" class="alert alert-info">
 
@@ -70,9 +72,9 @@ You can follow the steps below to get CliniCal up and running:
 
    * `list` : Lists all your patients.
 
-   * `add``n/John Doe p/98765432 ic/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to the patient database.
+   * `add n/John Doe p/98765432 ic/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to the patient database.
 
-   * `delete``3` : Deletes the 3rd patient shown in the patient list.
+   * `delete 3` : Deletes the 3rd patient shown in the patient list.
 
    * `clear` : Deletes all your patients.
 
@@ -124,7 +126,6 @@ This would be the home page of CliniCal, where the appointment list would be on 
 * If the patient name in the appointment list is too long and becomes cutoff, simply resize the window to make it wider!
 
 </div>
-
 
 ### 4.2 Patients Tab
 
@@ -254,10 +255,12 @@ Examples:
 * `add n/John Doe p/98765432 ic/S3857462J e/johnd@example.com a/Pickle street, block 123, #01-01` Adds a new patient named 'John Doe' with the respective fields.
 * `add n/Betsy Crowe ic/G7667353B e/betsycrowe@example.com a/Newgate Prison p/1234567 g/penicillin` Adds a new patient named 'Betsy Crowe' with the respective fields.
 
-<div markdown="block" class="alert alert-primary">
-:bulb: <span style="font-weight:bold">Tips:</span>
+<div markdown="block" class="alert alert-info">
 
-* Note that only Singaporean IC format(@xxxxxxx#) is accepted for NRIC.
+**:information_source: Note:**<br>
+
+* Only Singaporean NRIC format is accepted for NRIC field.
+* `N/A` is accepted as a special placeholder for all optional fields.
 * A patient can have any number of allergies (including 0).
 * The color tag can be any standard HTML color name, such as <span style="color:red">red</span>, <span style="color:green">green</span> or <span style="color:orange">orange</span>.
 * Check out <a href="https://www.w3schools.com/colors/colors_names.asp">this link</a> for an extensive list.
@@ -309,7 +312,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s
 * Edits the patient at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive number** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Note that only Singaporean IC format(@xxxxxxx#) is accepted for NRIC.
 * When editing allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
 * You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it. The same applies for color tags of a patient.
 
@@ -323,6 +325,8 @@ Examples:
 
 **:information_source: Note:**<br>
 
+* `N/A` is accepted as a special placeholder for all optional fields.
+* Only Singaporean NRIC format is accepted for NRIC field.
 * If you have edited **patient name** or **patient NRIC**, please make sure to update the changes to any relevant appointments, using the `editappt` command.
 
 </div>
@@ -616,6 +620,7 @@ Example: You want to reschedule the first appointment in the appointment list.
 
 **:information_source: Note:**<br>
 
+* Only Singaporean NRIC format is accepted for NRIC field.
 * Please make sure to **update the changes to the relevant patient**, using the `edit` command.
 
 </div>
