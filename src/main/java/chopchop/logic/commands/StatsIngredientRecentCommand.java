@@ -23,10 +23,7 @@ public class StatsIngredientRecentCommand extends Command {
         enforceNonNull(model);
 
         var output = model.getRecentlyUsedIngredients(N_MOST_RECENT);
-        var msgOutput = output.stream()
-            .map(Usage::getListViewPair)
-            .collect(Collectors.toList());
-        return CommandResult.statsMessage(msgOutput, msgOutput.isEmpty()
+        return CommandResult.statsMessage(output, output.isEmpty()
             ? "No ingredients were used recently"
             : "Here are your recently used ingredients");
     }

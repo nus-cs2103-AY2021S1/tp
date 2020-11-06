@@ -126,7 +126,7 @@ public class UsageList<T extends Usage> {
 
     }
 
-    public List<T> getRecentlyUsed(int n) {
+    public List<Pair<String, String>> getRecentlyUsed(int n) {
         assert n >= 0;
 
         var sorted = new ArrayList<>(this.usages);
@@ -140,7 +140,7 @@ public class UsageList<T extends Usage> {
             i++;
         }
 
-        return output;
+        return output.stream().map(Usage::getListViewPair).collect(Collectors.toList());
     }
 
     public List<Pair<String, String>> getMostUsed() {
