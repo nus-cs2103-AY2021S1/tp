@@ -5,14 +5,13 @@ import static java.util.Objects.requireNonNull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import chopchop.logic.history.HistoryManager;
+import chopchop.model.Entry;
 import chopchop.model.Model;
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
 import chopchop.model.attributes.NameContainsKeywordsFilterPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
-import chopchop.model.recipe.Recipe;
 
 /**
  * Filters and lists all recipes in recipe book that match all filtering criteria.
@@ -41,9 +40,9 @@ public class FilterRecipeCommand extends Command {
     public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
 
-        List<Predicate> predicates = Arrays.asList(tagPredicates, ingredientPredicates, namePredicates);
-        Predicate<? super Recipe> p = x -> true;
-        p = predicates.stream().filter(x -> x != null).collect(Collectors.reducing(p, (x, y) -> x.and(y)));
+        List<Predicate<Entry>> predicates = Arrays.asList(ingredientPredicates, tagPredicates, namePredicates);
+        Predicate<Entry> p = x -> true;
+        p = predicates.stream().filter(x -> x != null).reduce(p, (x, y) -> x.and(y));
         model.updateFilteredRecipeList(p);
 
         var sz = model.getFilteredRecipeList().size();

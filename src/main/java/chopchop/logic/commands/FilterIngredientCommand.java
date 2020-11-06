@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Entry;
@@ -41,9 +40,10 @@ public class FilterIngredientCommand extends Command {
     public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
 
-        List<Predicate> predicates = Arrays.asList(expPredicate, tagPredicates, namePredicates);
+        List<Predicate<Entry>> predicates = Arrays.asList(expPredicate, tagPredicates, namePredicates);
         Predicate<Entry> p = x -> true;
-        p = predicates.stream().filter(x -> x != null).collect(Collectors.reducing(p, (x, y) -> x.and(y)));
+        // p = predicates.stream().filter(x -> x != null).collect(Collectors.reducing(p, (x, y) -> x.and(y)));
+        p = predicates.stream().filter(x -> x != null).reduce(p, (x, y) -> x.and(y));
         model.updateFilteredIngredientList(p);
 
         var sz = model.getFilteredIngredientList().size();
