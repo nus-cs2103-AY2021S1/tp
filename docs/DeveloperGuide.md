@@ -409,7 +409,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-      
+**UC08 - User adds a new policy**    
+
+**MSS**
+
+1. User chooses to add a new policy with a name and description.
+2. System gives success message.
+    
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters wrong add policy command format.
+
+    * 1a1. System gives corresponding error message.
+    
+        Use case ends.
+        
+* 1b. User attempts to add an existing policy.
+
+    * 1b1. System gives corresponding error message.
+    
+        Use case ends.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
