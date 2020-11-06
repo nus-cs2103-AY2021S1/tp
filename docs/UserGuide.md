@@ -190,7 +190,7 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `tag` command.
 
 * Tags `TAG_NAME` for food item at the specified `INDEX`.
 * `TAG_NAME` is case-sensitive.
@@ -215,7 +215,7 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `untag` command.
 
 * Untags `TAG_NAME` for food item at the specified `INDEX`.
 * `TAG_NAME` is case-sensitive.
@@ -237,7 +237,7 @@ Format: `find [KEYWORDS] [-n WORDS_IN_NAME] [-t WORDS_IN_TAG] [-d DATE]`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `find` command.
 
 * Filters the displayed list of food items to only include food items corresponding to the provided parameters.
 * The `[KEYWORDS]`, `[WORDS_IN_NAME]` and `[WORDS_IN_TAG]` parameters will only find food items that contain at least one of the complete words specified.<br>
@@ -262,11 +262,11 @@ all entries in the current displayed list, preventing your food list from gettin
 Format: `clear`
 
 Examples:
-* `clear` - clears food items
+* `clear` - clears food items in the currently displayed screen.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `clear` command.
 
 * Clears all food item that is shown on the list.
 * You can clear specific groups of item by using find then clear.
@@ -283,7 +283,7 @@ Format: `list`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `list` command.
 
 * Lists all food items in McGymmy
 * All additional input after the *command word* `list` will be ignored. E.g. `list` and `list 123` will have the same effect.
@@ -301,7 +301,7 @@ Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `edit` command.
 
 * Edits the food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list.
 * The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31
@@ -326,7 +326,7 @@ Format: `delete INDEX`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `delete` command.
 
 * Deletes the food at the specified `INDEX`.
 * The index refers to the index number shown in the displayed food list.
@@ -348,7 +348,7 @@ Format: `import FILEPATH`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `import` command.
 
 * Imports the saved file at `FILEPATH`
 * Both relative and absolute paths work for the import feature.
@@ -383,7 +383,7 @@ Format: `export DIRPATH [-o FILENAME]`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `export` command.
 
 * Exports the saved file to `DIRPATH` with `FILENAME`
 * Default filename is `mcgymmy.json`
@@ -419,7 +419,7 @@ Format: `undo`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `undo` command.
 
 * Undo command can be called multiple times.
 * Help command will be ignored when undoing. 
@@ -508,7 +508,7 @@ Format: `remmacro MACRONAME`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `remmacro` command.
 
 * Deletes the macro with the name `MACRONAME`.
 * If you accidentally delete a macro you need, `undo` can revert it.
@@ -525,7 +525,7 @@ Format: `exit`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `exit` command.
 
 * Exits McGymmy and closes the McGymmy window.
 * Data will be automatically saved (see also section on *Saving the data* below).
