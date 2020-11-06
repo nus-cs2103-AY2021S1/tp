@@ -15,7 +15,7 @@ title: Developer Guide
         - [[Implemented] Add feature](#implemented-add-feature)
         - [[Implemented] Review feature](#implemented-review-feature)
         - [[Implemented] Sort feature](#implemented-sort-feature)
-        - [[Implemented] Favourite/unfavourite feature](#implemented-favouriteunfavourite-feature)
+        - [[Implemented] Favourite/Unfavourite feature](#implemented-favouriteunfavourite-feature)
         - [[Implemented] Filter feature](#implemented-filter-feature)
     - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
     - [Appendix: Requirements](#appendix-requirements)
