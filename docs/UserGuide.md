@@ -471,9 +471,9 @@ User data automatically saves when there is a change in data.
 |**list witness**       | `list witness`                                                                    |
 |**add description**    | `add desc d:DESC`                                                                 |
 |**add document**       | `add doc n:TITLE r:FILE_NAME`                                                     |
-|**add suspect**        | `add suspect n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                      |
-|**add victim**         | `add victim n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                       |
-|**add witness**        | `add witness n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                      |
+|**add suspect**        | `add suspect n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                        |
+|**add victim**         | `add victim n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                         |
+|**add witness**        | `add witness n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                        |
 |**open doc**           | `open doc DOC_NO`                                                                 |
 |**edit title**         | `edit title t:TITLE`                                                              |
 |**edit description**   | `edit desc d:DESC`                                                                |
