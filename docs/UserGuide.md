@@ -195,7 +195,7 @@ Examples:
 * Tags `TAG_NAME` for food item at the specified `INDEX`.
 * `TAG_NAME` is case-sensitive.
 * The index refers to the index number shown in the displayed food list.
-* The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31
+* The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31 or the size of the list, whichever lower.
 * Tags for food items must be less than 20 characters.
 * The list will show all items after tagging
 
@@ -220,7 +220,7 @@ Examples:
 * Untags `TAG_NAME` for food item at the specified `INDEX`.
 * `TAG_NAME` is case-sensitive.
 * The index refers to the index number shown in the displayed food list.
-* The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31
+* The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31 or the size of the list, whichever lower.
 * The list will show all items after untagging
 
 </div>
@@ -304,7 +304,7 @@ Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 :information_source: Notes about the `edit` command.
 
 * Edits the food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list.
-* The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31
+* The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31 or the size of the list, whichever lower.
  * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer, less than 1000g.<br>
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -330,7 +330,7 @@ Format: `delete INDEX`
 
 * Deletes the food at the specified `INDEX`.
 * The index refers to the index number shown in the displayed food list.
-* The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31
+* The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31 or the size of the list, whichever lower.
 
 </div>
 
