@@ -109,8 +109,8 @@ For more information on macros and the full parsing process please read the sect
 1. `Logic` uses the `McGymmyParser` class to parse the user command.
 1. This results in a `CommandExecutable` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a food item).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `UI`.
+1. In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions, such as displaying help to the user.
 
 Note that our implementation of this component is different from the one in the parent project, [AddressBook3](https://se-education.org/addressbook-level3/).
 One notable difference is the use of several `Parameter` classes in the various `Commands`.
