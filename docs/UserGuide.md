@@ -544,6 +544,10 @@ You can import external flashcards into your local QuickCache as well.
     
 4. Press enter and the flashcards within the file will be imported in your local QuickCache.
 
+    <div markdown="block" class="alert alert-danger">
+    :exclamation: Flashcards that has previously been imported and has not been modified will be ignored. Flashcards that already exists will not be imported as well.
+    </div>
+    
     ![ImportStep4](./images/ImportStep4.png)
 
 Good job! You have successfully imported flashcards from an external file.
