@@ -1,7 +1,7 @@
 package seedu.pivot.logic.commands;
 
 /**
- * Lists all cases in PIVOT to the user.
+ * Represents a List command for listing items of different types in PIVOT.
  */
 public abstract class ListCommand extends Command {
 
