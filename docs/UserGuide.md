@@ -448,7 +448,7 @@ Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; 
 
 :information_source: Notes about the `macro` command.
 
-* If any of the jargon below seem unclear, refer to *How to intepret the each command's format* under section *5. Features* above.
+* If any of the jargon below seem unclear, refer to *How to intepret the each command's format* under section *[5. Features](#5-features)* above.
 
 * Creates a macro with name `MACRONAME` which takes in parameters `FLAG_1 FLAG_2...` which executes `COMMAND_1; COMMAND_2; ...`.
 
