@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
-public class PersonHasTagsAndNamePredicateTest {
+public class PersonHasTagsAndKeywordInNamePredicateTest {
 
     @Test
     public void equals() {
@@ -21,16 +21,16 @@ public class PersonHasTagsAndNamePredicateTest {
         List<Tag> firstPredicateTagList = Collections.singletonList(new Tag("first"));
         List<Tag> secondPredicateTagList = Arrays.asList(new Tag("first"), new Tag("second"));
 
-        PersonHasTagsAndNamePredicate firstPredicate = new PersonHasTagsAndNamePredicate(
+        PersonHasTagsAndKeywordInNamePredicate firstPredicate = new PersonHasTagsAndKeywordInNamePredicate(
                 firstPredicateKeywordList, firstPredicateTagList);
-        PersonHasTagsAndNamePredicate secondPredicate = new PersonHasTagsAndNamePredicate(
+        PersonHasTagsAndKeywordInNamePredicate secondPredicate = new PersonHasTagsAndKeywordInNamePredicate(
                 secondPredicateKeywordList, secondPredicateTagList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        PersonHasTagsAndNamePredicate firstPredicateCopy = new PersonHasTagsAndNamePredicate(
+        PersonHasTagsAndKeywordInNamePredicate firstPredicateCopy = new PersonHasTagsAndKeywordInNamePredicate(
                 firstPredicateKeywordList, firstPredicateTagList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -45,16 +45,55 @@ public class PersonHasTagsAndNamePredicateTest {
     }
 
     @Test
-    public void test_nameMatchesKeywords_returnsTrue() {
+    public void test_nameContainsKeywords_returnsTrue() {
+        // One matching letter
+        PersonHasTagsAndKeywordInNamePredicate predicate = new PersonHasTagsAndKeywordInNamePredicate(
+                Collections.singletonList("l"),
+                Collections.singletonList(new Tag("friend")));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
         // One keyword
-        PersonHasTagsAndNamePredicate predicate = new PersonHasTagsAndNamePredicate(
-                Collections.singletonList("Alice Bob"),
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
+                Collections.singletonList("lice"),
                 Collections.singletonList(new Tag("friend")));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new PersonHasTagsAndNamePredicate(
-                Arrays.asList("Alice Bob", "Carol Tan"),
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
+                Arrays.asList("Alice", "Bob"),
+                Collections.singletonList(new Tag("friend")));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Only one matching keyword
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
+                Arrays.asList("Bob", "Carol"),
+                Collections.singletonList(new Tag("friend")));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Mixed-case keywords
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
+                Arrays.asList("bOb", "cAroL"),
+                Collections.singletonList(new Tag("friend")));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+    }
+
+    @Test
+    public void test_initialsContainsKeywords() {
+        // One keyword
+        PersonHasTagsAndKeywordInNamePredicate predicate = new PersonHasTagsAndKeywordInNamePredicate(
+                Collections.singletonList("ab"),
+                Collections.singletonList(new Tag("friend")));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Only one matching keyword
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
+                Arrays.asList("ab", "ac"),
+                Collections.singletonList(new Tag("friend")));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Mixed-case keywords
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
+                Arrays.asList("aB", "Ac"),
                 Collections.singletonList(new Tag("friend")));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
@@ -62,84 +101,78 @@ public class PersonHasTagsAndNamePredicateTest {
     @Test
     public void test_personHasTags_returnsTrue() {
         // one tag
-        PersonHasTagsAndNamePredicate predicate = new PersonHasTagsAndNamePredicate(
+        PersonHasTagsAndKeywordInNamePredicate predicate = new PersonHasTagsAndKeywordInNamePredicate(
                 Collections.singletonList("Alice Bob"),
                 Collections.singletonList(new Tag("friend")));
         assertTrue(predicate.test(new PersonBuilder().withTags("friend", "male").build()));
 
         // multiple tags
-        predicate = new PersonHasTagsAndNamePredicate(
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
                 Collections.singletonList("Alice Bob"),
                 Arrays.asList(new Tag("friend"), new Tag("male")));
         assertTrue(predicate.test(new PersonBuilder().withTags("friend", "male").build()));
 
         // person has one of the tags
-        predicate = new PersonHasTagsAndNamePredicate(
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
                 Collections.singletonList("Alice Bob"),
                 Arrays.asList(new Tag("prof"), new Tag("male")));
         assertTrue(predicate.test(new PersonBuilder().withTags("friend", "male").build()));
     }
 
     @Test
-    public void test_personDoesNotHaveNameOrTags_returnsFalse() {
+    public void test_personDoesNotHaveKeywordOrInitialsOrTags_returnsFalse() {
         // zero name keywords
-        PersonHasTagsAndNamePredicate predicate = new PersonHasTagsAndNamePredicate(
+        PersonHasTagsAndKeywordInNamePredicate predicate = new PersonHasTagsAndKeywordInNamePredicate(
                 Collections.emptyList(),
                 Collections.singletonList(new Tag("fake")));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
-        // not full name
-        predicate = new PersonHasTagsAndNamePredicate(
-                Collections.singletonList("Alice"),
+        // no matching keyword
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
+                Collections.singletonList("Carol"),
                 Collections.singletonList(new Tag("fake")));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
-        // lower-case name keyword
-        predicate = new PersonHasTagsAndNamePredicate(
-                Collections.singletonList("alice bob"),
+        // incomplete initials
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
+                Collections.singletonList("ab"),
                 Collections.singletonList(new Tag("fake")));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // mixed-case name keyword
-        predicate = new PersonHasTagsAndNamePredicate(
-                Collections.singletonList("aLice boB"),
-                Collections.singletonList(new Tag("fake")));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob Carol").build()));
 
         // name keywords match phone, email and address, but does not match name
-        predicate = new PersonHasTagsAndNamePredicate(
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
                 Arrays.asList("12345", "alice@email.com", "Main", "Street"),
                 Collections.singletonList(new Tag("fake")));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // no tag keywords
-        predicate = new PersonHasTagsAndNamePredicate(
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
                 Arrays.asList("fake"),
                 Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withTags("friend").build()));
 
         // no matching tag
-        predicate = new PersonHasTagsAndNamePredicate(
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
                 Arrays.asList("fake"),
                 Collections.singletonList(new Tag("prof")));
         assertFalse(predicate.test(new PersonBuilder().withTags("friend").build()));
 
         // no matching tags
-        predicate = new PersonHasTagsAndNamePredicate(
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
                 Arrays.asList("fake"),
                 Arrays.asList(new Tag("prof"), new Tag("male")));
         assertFalse(predicate.test(new PersonBuilder().withTags("friend").build()));
 
         // mixed-case tag
-        predicate = new PersonHasTagsAndNamePredicate(
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
                 Arrays.asList("fake"),
                 Collections.singletonList(new Tag("frIenD")));
         assertFalse(predicate.test(new PersonBuilder().withTags("friend").build()));
 
         // name and tags do not match
-        predicate = new PersonHasTagsAndNamePredicate(
-                Arrays.asList("Charles Darwin"),
+        predicate = new PersonHasTagsAndKeywordInNamePredicate(
+                Arrays.asList("Charles", "ab"),
                 Collections.singletonList(new Tag("prof")));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").withTags("friend").build()));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob Carol").withTags("friend").build()));
     }
 }
