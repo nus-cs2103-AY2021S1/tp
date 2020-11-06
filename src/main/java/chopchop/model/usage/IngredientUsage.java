@@ -34,7 +34,7 @@ public class IngredientUsage extends Usage {
     @Override
     public Pair<String, String> getListViewPair() {
         return new Pair<>(this.getName(),
-            String.format("%s Qty: %s", this.getPrintableDate(), this.getQty().toString()));
+            String.format("%s \nQty: %s", this.getPrintableDate(), this.getQty().toString()));
     }
 
     @Override
