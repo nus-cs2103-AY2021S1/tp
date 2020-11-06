@@ -21,31 +21,6 @@ import seedu.address.model.project.Project;
 public class DeleteTeammateParticipationTest {
 
     @Test
-    public void execute_validGitUserIndex_success() {
-        //Person.getAllPeople().clear();
-        //Person.getAllPeople().add(DESC_A);
-
-        Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
-        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        model.enter(project);
-        project.addParticipation(DESC_A);
-        model.addParticipation(project.getParticipation(DESC_A.getGitUserNameString()));
-
-        Model expectedModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
-        Project expectedProject = expectedModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        expectedModel.enter(expectedProject);
-
-        String expectedMessage =
-            String.format(DeleteTeammateParticipationCommand.MESSAGE_DELETE_TEAMMATE_PARTICIPATION_SUCCESS,
-                DESC_A.toString());
-        DeleteTeammateParticipationCommand deleteTeammateParticipationCommand =
-            new DeleteTeammateParticipationCommand(GIT_USERINDEX_FIRST_TEAMMATE);
-
-        assertCommandSuccess(deleteTeammateParticipationCommand, model, expectedMessage, expectedModel);
-    }
-
-
-    @Test
     public void execute_invalidGitUserIndex_throwsNullPointerException() {
 
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
