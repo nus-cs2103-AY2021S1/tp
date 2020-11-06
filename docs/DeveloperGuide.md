@@ -28,6 +28,7 @@ title: Developer Guide
         - [Launch and shutdown](#launch-and-shutdown)
         - [Deleting a flashcard](#deleting-a-flashcard)
         - [Saving data](#saving-data)
+    - [Appendix: Effort](#appendix-effort)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -869,7 +870,7 @@ This section documents the effort in morphing AB3 to SWEe! .
     * They involved much UI work as we had to design an entirely new screen. Our app now has 2 distinct screens as compared to the 1 screen of AB3.
     * It was challenging to integrate these 2 features as they were not a conventional command to type into the commandbox:
         * We had to handle keyboard input outside of the command box in these 2 features which is a functionality not present in AB3.
-        * We had to design a new pattern to activate these 2 commands and execute them (read Review implementation).
+        * We had to design a new pattern to activate these 2 commands and execute them (read [Review implementation](#implemented-review-feature)).
         * Creation of an entirely new logic component `StudyManager` to handle the logic of these 2 features.
     
 * `View` and `Stats` feature
