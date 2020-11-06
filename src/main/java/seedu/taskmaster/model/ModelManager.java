@@ -309,7 +309,8 @@ public class ModelManager implements Model {
     @Override
     public void showRandomStudent() {
         StudentRecord randomRecord = taskmaster.getRandomStudentRecord();
-        filteredStudentRecords.setPredicate(new StudentRecordEqualsPredicate(randomRecord));
+        //filteredStudentRecords.setPredicate(new StudentRecordEqualsPredicate(randomRecord));
+        updateFilteredStudentRecordList(new StudentRecordEqualsPredicate(randomRecord));
     }
 
     @Override
