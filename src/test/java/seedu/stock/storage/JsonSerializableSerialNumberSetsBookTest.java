@@ -17,13 +17,16 @@ public class JsonSerializableSerialNumberSetsBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
             "JsonSerializableSerialNumberSetsBookTest");
-    private static final Path TYPICAL_STOCKS_FILE = TEST_DATA_FOLDER.resolve("typicalSerialNumberSets.json");
-    private static final Path INVALID_STOCK_FILE = TEST_DATA_FOLDER.resolve("invalidSerialNumberSets.json");
-    private static final Path DUPLICATE_STOCK_FILE = TEST_DATA_FOLDER.resolve("duplicateSerialNumberSets.json");
+    private static final Path TYPICAL_SERIAL_NUMBER_SETS_FILE =
+            TEST_DATA_FOLDER.resolve("typicalSerialNumberSets.json");
+    private static final Path INVALID_SERIAL_NUMBER_SET_FILE =
+            TEST_DATA_FOLDER.resolve("invalidSerialNumberSets.json");
+    private static final Path DUPLICATE_SERIAL_NUMBER_SET_FILE =
+            TEST_DATA_FOLDER.resolve("duplicateSerialNumberSets.json");
 
     @Test
     public void toModelType_typicalSerialNumberSetsFile_success() throws Exception {
-        JsonSerializableSerialNumberSetsBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_STOCKS_FILE,
+        JsonSerializableSerialNumberSetsBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_SERIAL_NUMBER_SETS_FILE,
                 JsonSerializableSerialNumberSetsBook.class).get();
         SerialNumberSetsBook serialNumberSetsBookFromFile = dataFromFile.toModelType();
         SerialNumberSetsBook typicalSerialNumberSetsSerialNumberSetsBook =
@@ -33,14 +36,14 @@ public class JsonSerializableSerialNumberSetsBookTest {
 
     @Test
     public void toModelType_invalidSerialNumberSetsFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableSerialNumberSetsBook dataFromFile = JsonUtil.readJsonFile(INVALID_STOCK_FILE,
+        JsonSerializableSerialNumberSetsBook dataFromFile = JsonUtil.readJsonFile(INVALID_SERIAL_NUMBER_SET_FILE,
                 JsonSerializableSerialNumberSetsBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateSerialNumberSets_throwsIllegalValueException() throws Exception {
-        JsonSerializableSerialNumberSetsBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_STOCK_FILE,
+        JsonSerializableSerialNumberSetsBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_SERIAL_NUMBER_SET_FILE,
                 JsonSerializableSerialNumberSetsBook.class).get();
         assertThrows(IllegalValueException.class,
                 JsonSerializableSerialNumberSetsBook.MESSAGE_DUPLICATE_SERIAL_NUMBER_SET,
