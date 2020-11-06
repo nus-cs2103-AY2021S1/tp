@@ -57,8 +57,4 @@ public class ArchiveModuleCommand extends Command {
                 && targetIndex.equals(((ArchiveModuleCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

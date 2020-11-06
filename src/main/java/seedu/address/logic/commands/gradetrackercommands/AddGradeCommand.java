@@ -66,8 +66,4 @@ public class AddGradeCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, gradeToAdd));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

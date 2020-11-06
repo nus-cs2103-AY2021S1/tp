@@ -72,8 +72,4 @@ public class AddAssignmentCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, assignmentToAdd));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

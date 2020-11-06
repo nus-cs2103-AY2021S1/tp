@@ -56,8 +56,4 @@ public class DeleteModuleCommand extends Command {
                 && targetIndex.equals(((DeleteModuleCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

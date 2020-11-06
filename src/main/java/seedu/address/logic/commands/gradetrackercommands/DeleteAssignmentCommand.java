@@ -78,8 +78,4 @@ public class DeleteAssignmentCommand extends Command {
             && targetIndex.equals(((DeleteAssignmentCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

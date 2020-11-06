@@ -57,8 +57,4 @@ public class SortContactCommand extends Command {
         return this.comparator.equals(s.comparator);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

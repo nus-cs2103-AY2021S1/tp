@@ -64,11 +64,6 @@ public class AddModuleCommand extends Command {
     }
 
     @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    @Override
     public String toString() {
         return COMMAND_WORD + " " + module.toString();
     }

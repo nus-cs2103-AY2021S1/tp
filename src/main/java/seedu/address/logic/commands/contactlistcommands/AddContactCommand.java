@@ -72,10 +72,5 @@ public class AddContactCommand extends Command {
                 && toAdd.equals(((AddContactCommand) other).toAdd));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
 }
 
