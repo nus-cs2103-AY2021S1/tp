@@ -46,8 +46,8 @@ public class EditCommandTest {
     public void execute_choicesInOpenEndedUnfilteredList_throwsCommandException() {
         Flashcard editedFlashcard = new FlashcardBuilder().build();
         Choice[] choices = new Choice[1];
-        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(editedFlashcard).
-                withChoices(choices).build();
+        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(editedFlashcard)
+                .withChoices(choices).build();
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD, descriptor);
 
         String expectedMessage = "Choices should not be provided for open ended question";
