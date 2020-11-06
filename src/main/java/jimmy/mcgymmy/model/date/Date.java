@@ -12,7 +12,7 @@ import jimmy.mcgymmy.commons.util.AppUtil;
 
 /**
  * Represents the Date of the food item is consumed in McGymmy.
- * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
+ * Guarantees: immutable; is valid as declared in {@link Date#isValid(String)}
  */
 public class Date {
     private static final String[] SUPPORTED_FORMATS = {
@@ -34,7 +34,7 @@ public class Date {
 
     private static final String OUTPUT_FORMAT = "d MMM yyyy";
 
-    private LocalDate date;
+    private final LocalDate date;
 
     /**
      * Constructs a {@code Date}.
@@ -45,7 +45,11 @@ public class Date {
         requireNonNull(date);
         Optional<String> format = getFormat(date);
         AppUtil.checkArgument(format.isPresent(), MESSAGE_CONSTRAINTS);
+        assert format.isPresent() : "Error in AppUtil Check";
         this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern(format.get()));
+        AppUtil.checkArgument(
+                this.date.format(DateTimeFormatter.ofPattern(format.get())).equals(date),
+                MESSAGE_CONSTRAINTS);
     }
 
     private Date() {
