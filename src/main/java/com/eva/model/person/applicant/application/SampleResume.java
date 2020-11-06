@@ -1,14 +1,10 @@
-package com.eva.logic.parser;
+package com.eva.model.person.applicant.application;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.eva.model.person.applicant.application.Application;
-import com.eva.model.person.applicant.application.Education;
-import com.eva.model.person.applicant.application.Experience;
-
 public class SampleResume {
-    private final String name = "Alex Yeoh";
+    private final String name = "Royce";
     private final List<Education> educationList = new ArrayList<>();
     private final List<Experience> experienceList = new ArrayList<>();
 
@@ -27,10 +23,6 @@ public class SampleResume {
 
     public String getName() {
         return name;
-    }
-
-    public Application generateSampleApplication() {
-        return new Application(this.name, this.getExperienceList(), this.getEducationList());
     }
 
     public List<Education> getEducationList() {

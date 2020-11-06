@@ -134,9 +134,9 @@ Classes used by multiple components are in the `com.eva.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 3.1 \[Proposed\] Undo/redo feature
+### 3.1 Staff Management System
 
-#### 3.1.1 Proposed Implementation
+#### 3.1.1 Leave System
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -211,6 +211,31 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+  
+### 3.2. Applicant Management System
+
+Nikhila to update
+
+#### 3.2.1 Application System:
+
+Royce to update
+
+#### 3.2.2 Design consideration:
+
+##### Aspect: How undo & redo executes
+
+* **Alternative 1 (current choice):** Saves the entire eva database.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+### 3.2. Panels (List/Profile) display
+
+Ben to update
 
 _{more aspects and alternatives to be added}_
 
@@ -263,7 +288,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User types in `add s- n/<staffname> a/address e/<email> p/<phoneno> c/<comments>`
+1.  User types in `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…[c/COMMENTS]…`
 2.  Eva adds in the staff record
 3.  Eva displays the staff record added to User
     Use case ends.
@@ -292,7 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `delete <index_of_staff> s-`. 
+1. User types in `dels INDEX`. 
 2. Eva deletes the staff record permanently.
 3. Eva displays the confirmed message of deletion of that staff record.  
     Use case ends.
@@ -303,14 +328,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Eva informs the user that there are no such records.
     * 1a2. Eva requests the user to type the command in again. 
-    * 1a3  User types in `delete <index_of_staff> s-` with correct index of staff
+    * 1a3  User types in `dels INDEX` with correct index of staff
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
 * 1b. Eva does not detect any input for <index>.
 
     * 1b1. Eva requests the user to type the command in again. 
-    * 1b2. User types in the new command `delete <index_of_staff> s-`.    
+    * 1b2. User types in the new command `dels INDEX`.    
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
@@ -321,7 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`. 
+1. User types in `addc INDEX s- ti/TITLE d/Date desc/DESCRIPTION`. 
 2. Eva adds the comment to staff record permanently.
 3. Eva displays the confirmed message of addition of comment to that staff record.  
     Use case ends.
@@ -332,14 +357,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Eva informs the user that there are no such records.
     * 1a2. Eva requests the user to type the command in again. 
-    * 1a3  User types in `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>` with correct index of staff
+    * 1a3  User types in `addc INDEX s- ti/TITLE d/Date desc/DESCRIPTION` with correct index of staff
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
 * 1b. Eva does not detect any input for <index>.
 
     * 1b1. Eva requests the user to type the command in again. 
-    * 1b2. User types in the new command `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`.    
+    * 1b2. User types in the new command `addc INDEX s- ti/TITLE d/Date desc/DESCRIPTION`.    
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
     
@@ -538,43 +563,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-***Use case: UC12 - Adding an applicant to record quickly***
-
-Similar to Use Case 01, except that instead of s-, key in a-.
-
-Example: `add a- n/<applicantname> a/address e/<email> p/<phoneno> c/<comments>`
-
-***Use case: UC13 - Deleting an applicant from record quickly***
-
-Similar to Use Case 02, except that instead of s-, key in a-.
-
-Example: `delete <index_of_applicant> a-`
-    
-***Use case: UC14 - Adding a Comment on applicant quickly***
-
-Similar to Use Case 03, just that instead of s-, key in a-.
-
-Example: `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`    
-
-***Use case: UC15 - Deleting a Comment on applicant quickly***
-
-Similar to Use Case 04 except that instead of s-, key in a-.
-
-Example: `delete <index_of_applicant> a- c- t:<title>`
-
-***Use case: UC16 - Adding a staff to record quickly***
-
-
-***Use case: UC17 - Deleting a staff to record quickly***
-
-
-***Use case: UC18 - Adding a Comment on staff quickly***
-
-
-***Use case: UC19 - Deleting a Comment on staff quickly***
-
-
-***Use case: UC20 - Adding an application to an applicant***
+***Use case: UC12 - Adding an application to an applicant***
 
 **MSS**
 
@@ -594,7 +583,7 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
     * 1b1. Eva informs the user that the applicant's index specified cannot be found.
     Use case ends.
 
-***Use case: UC21 - Deleting an application from an applicant***
+***Use case: UC13 - Deleting an application from an applicant***
 
 **MSS**
 
@@ -610,7 +599,7 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
     * 1a1. Eva informs the user that the applicant's index specified cannot be found.
     Use case ends.
 
-***Use case: UC22 - list all staff records***
+***Use case: UC14 - list all staff records***
 
 **MSS**
 
@@ -625,7 +614,7 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
     * 1a1. Eva informs the user that no records exist.
     Use case ends.
 
-***Use case: UC23 - list all applicant records***
+***Use case: UC15 - list all applicant records***
 
 **MSS**
 
@@ -640,11 +629,11 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
     * 1a1. Eva informs the user that no records exist.
     Use case ends.
 
-***Use case: UC24 - find staff records by name***
+***Use case: UC16 - find staff records by name***
 
-***Use case: UC25 - find applicant records by name***
+***Use case: UC17 - find applicant records by name***
 
-***Use case: UC26 - viewing staff profile***
+***Use case: UC18 - viewing staff profile***
 
 1. User <u>opens staff list (UC22)<u/>
 2. User types in `view 1`
@@ -662,11 +651,11 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
     Steps 1a1-1a3 are repeated until the command entered is correct.
     Use case resumes from step 3.
 
-***Use case: UC27 - viewing applicant profile***
+***Use case: UC19 - viewing applicant profile***
 
 Similar to UC26, except that User <u>opens applicant list (UC23)<u/> in step 1.
 
-***Use case: UC28 - help***
+***Use case: UC20 - help***
 
 **MSS**
 
@@ -674,7 +663,7 @@ Similar to UC26, except that User <u>opens applicant list (UC23)<u/> in step 1.
 2. Eva shows a message explaining how to access the help page. <br>
     Use case ends.
         
-***Use case: UC29 - clear***
+***Use case: UC21 - clear***
 
 **MSS**
 
@@ -682,7 +671,7 @@ Similar to UC26, except that User <u>opens applicant list (UC23)<u/> in step 1.
 2. Eva clears all entries. <br>
     Use case ends.
     
-***Use case: UC30 - Exiting the program***
+***Use case: UC22 - Exiting the program***
 
 **MSS**
 
@@ -747,7 +736,14 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### 6.3 Saving data
+
+### 6.3 Add staff
+
+### 6.4 Add/del comment
+
+### 6.5 Add/del leave
+
+### 6.6 Saving data
 
 1. Dealing with missing/corrupted data files
 

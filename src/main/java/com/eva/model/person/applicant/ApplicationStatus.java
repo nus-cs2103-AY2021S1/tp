@@ -3,8 +3,6 @@ package com.eva.model.person.applicant;
 import static com.eva.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
-
-
 /**
  * Represents the application status of an applicant - accepted, rejected or processing.
  */
@@ -71,4 +69,17 @@ public class ApplicationStatus {
     public String toString() {
         return value.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ApplicationStatus that = (ApplicationStatus) o;
+        return value == that.value;
+    }
+
 }
