@@ -30,7 +30,7 @@ Given below are my contributions to the project.
     of the student records in a session setting, without modifying the student list separately maintained by TAskmaster.
     - Highlights: This enhancement requires the implementation of an immutable `StudentRecord` class and a
     `StudentRecordList` as a data structure that supports the controlled addition and editing of student records. This
-    was challenging as it required an in-depth analysis of design alternatives (discussion found in the [developer guide](docs/DeveloperGuide.md#studentrecordlist))
+    was challenging as it required an in-depth analysis of design alternatives (discussion found in the [developer guide](../DeveloperGuide.md#studentrecordlist))
     to how the `StudentRecord` and `StudentRecordList` classes should be implemented.
     - Credits: The design of `StudentRecordList` was inspired by the design of `UniquePersonList` in AB3.
             
