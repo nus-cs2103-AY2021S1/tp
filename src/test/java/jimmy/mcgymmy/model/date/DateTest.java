@@ -65,4 +65,12 @@ class DateTest {
         // not instance of Date -> returns false
         assertFalse(testDate1.equals(EXPECTED_DATE_STRING_1));
     }
+
+    @Test
+    void hasCode_returnsCorrectHashCode() throws IllegalValueException {
+        String dateStr = "2020-04-20";
+        Date actual = new Date(dateStr);
+        LocalDate expected = LocalDate.parse(dateStr);
+        assertEquals(actual.hashCode(), expected.hashCode());
+    }
 }
