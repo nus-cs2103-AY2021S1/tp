@@ -21,8 +21,6 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.deadline.Deadline;
-import seedu.address.model.task.deadline.DeadlineDateTime;
 import seedu.address.model.task.event.EndDateTime;
 import seedu.address.model.task.event.Event;
 import seedu.address.model.task.event.StartDateTime;
