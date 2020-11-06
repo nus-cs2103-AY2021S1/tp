@@ -85,7 +85,8 @@ public class ReeveParserTest {
         EditCommand.EditAdminDescriptor editAdminDescriptor = new EditAdminDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " "
-                + StudentUtil.getEditStudentDescriptorDetails(editStudentDescriptor));
+                + StudentUtil.getEditStudentDescriptorDetails(editStudentDescriptor)
+                + StudentUtil.getEditAdminDescriptorDetails(editAdminDescriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, editStudentDescriptor, editAdminDescriptor), command);
     }
 

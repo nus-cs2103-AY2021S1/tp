@@ -170,7 +170,8 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editStudentDescriptor.equals(e.editStudentDescriptor);
+                && editStudentDescriptor.equals(e.editStudentDescriptor)
+                && editAdminDescriptor.equals(e.editAdminDescriptor);
     }
 
     /**
