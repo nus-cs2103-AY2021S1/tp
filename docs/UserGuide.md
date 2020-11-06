@@ -116,6 +116,12 @@ simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the informatio
    ![UserGuideAddCommand](images/UserGuideAddCommand.PNG)
    *Figure 1: Information of the assignment added labelled*
 
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+* `DEADLINE_OF_ASSIGNMENT` must be in the format dd-MM-yyyy and time in the format HHmm (24-hour).
+</div>
+
 <div markdown="span" class="alert alert-success">
 **:bulb: Tip:**
 If the lab report assignment is of **high priority**, you can enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH`
@@ -166,12 +172,12 @@ link. Imported lesson information can be found in the `Upcoming tasks`.
  
 Follow these steps and try importing your timetable:
 
-1) At your NUSMods timetable website, click on the "Share/Sync" button to obtain your timetable share link URL. However do note that special term timetables are not yet supported in this version!
+1) At your NUSMods timetable website, click on the "Share/Sync" button to obtain your timetable share link URL.
 
    ![NusModsShareSync](images/NusModsShareSync.PNG)
    *Figure X: The "Share/Sync" at the NUSMods website highlighted in green*
 
-2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command. Do ensure that you have a working internet connection or no lessons will be imported.
+2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command.
 
 3) Added lesson information can be found in your task list.
 
@@ -182,17 +188,22 @@ Follow these steps and try importing your timetable:
 
  **:clipboard: Pointers to note:**<br>
 * Importing a new timetable will override your previous timetable data.
-* Depending on your timetable size and internet connection, the import process may take up to 5 seconds.
 </div>
 
 Example:
-* `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` will 
+* `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` 
 
 ### Listing assignments : `list`
 
 Format: `list [NUMBER_OF_DAYS]`
 
-You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date and time and `NUMBER_OF_DAYS` later.
+You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date and time and `NUMBER_OF_DAYS` later. The index must be a number from 1 to 50.
+
+<div markdown="span" class="alert alert-success">
+
+**:bulb: Tip:**
+You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
+</div>
 
 Here is an example with steps for you to follow: 
 
@@ -227,9 +238,15 @@ More examples:
 
 ### Finding assignments : `find`
 
-Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 
 You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
+
+<div markdown="span" class="alert alert-success">
+
+**:bulb: Tip:**
+You can find assignments with multiple keywords of the same type to widen your search!
+</div>
 
 This is the table of prefixes used:
 
@@ -242,9 +259,9 @@ This is the table of prefixes used:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note for prefixes and keywords:**<br>
-* `DATE_OR_TIME_OF_ASSIGNMENT` has date in the format **dd-MM-yyyy** and time in the format **HHmm** (24 hour). You can refer to [Date and time format](#date-and-time-format) for more information.
-* For prefix `d/`, date keywords are irrespective of time and time keywords are irrespective of date. For example, `find d/1300 25-11-2020` finds all assignments due on 25-11-2020, at any time of the day and all assignments due at 1300, on any date.
-* For prefixes `n/`,`mod/` and `p/`, keywords are case-insensitive.
+* Date keywords must be in the format **dd-MM-yyyy** and time keywords must be in the format **HHmm**.
+* For prefix `d/`, date keywords are **irrespective of time** and time keywords are **irrespective of date**. For example, `find d/1300 25-11-2020` finds all assignments due on 25-11-2020, at any time of the day and all assignments due at 1300, on any date.
+* Keywords used with prefixes `n/`,`mod/` and `p/` are **case-insensitive**.
 </div>
 
 Here is an example with steps to follow:
@@ -256,15 +273,61 @@ Here is an example with steps to follow:
 
 2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
 
-3) A message that indicates the number of assignments found will be displayed in the Message Box.
+3) A message that indicates the number of assignments found is displayed in the Message Box.
 
-![FindCommand1](images/FindCommandDiagram2.png)
+![FindCommand2](images/FindCommandDiagram2.png)
 *Figure X: The displayed message and the updated list*
+
 
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
 * You can only **find assignments with keywords of the same prefix**. For example, `find n/Assignment d/23-10-2020` will not work.
+</div>
+
+### Editing your assignment : `edit`
+
+Format: `edit INDEX PREFIX/EDITTED_FIELD [MORE_PREFIX/EDITTED_FIELD]`
+
+You can specify an assignment's index to edit its fields. These fields are the name, module code and deadline of assignment.
+
+<div markdown="span" class="alert alert-success">
+
+**:bulb: Tip:**
+You can edit more than one field of an assignment at a time so that you can conveniently amend all spelling errors or mistakes when adding assignments! For example, you can key in `edit 1 n/Tutorial mod/CS2103T` to edit both the name and module code in a single command.
+</div>
+
+This is the table of prefixes used:
+
+| Prefix | Syntax | Example |
+|-|-|
+| `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
+| `mod/` | mod/MODULE_CODE | - `mod/ST2334` |
+| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
+
+<div markdown="block" class="alert alert-primary">
+
+Here is an example with steps to follow:
+
+1) To edit the name of the assignment with the first index in the assignment list to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
+
+![EditCommand1](images/EditCommand1.png)
+
+*Figure X: `edit 1 n/Statistics Lab` inputted by user*
+
+2) The assignment name will be changed to "Statistics Lab".
+
+3) A message that indicates details of the new edited assignment is displayed in the Message Box.
+
+![EditCommand2](images/EditCommand2.png)
+
+*Figure X: The displayed message and the edited assignment*
+
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+* **One** `INDEX` and **at least one** `PREFIX/EDITTED_FIELD` must be present. For example, `edit` will not work.
+* `DATE_OR_TIME_OF_ASSIGNMENT` has date in the format **dd-MM-yyyy** and time in the format **HHmm** (24 hour).
 </div>
 
 ### Setting reminders for assignments : `remind`
@@ -347,13 +410,13 @@ For example, `prioritize 1 p/LOW` will set a low priority tag for the first assi
   
 **:clipboard: Pointers to note:**<br>
 * The `INDEX` must be found in your assignment list.
-* Priority levels you can use are `LOW`, `MEDIUM` and `HIGH`.
+* Priority levels you can use are `LOW`, `MEDIUM` and `HIGH` and they are case-insensitive.
 * If the assignment already has a priority tag, this command will replace the previous priority tag with the new one.
 </div>
 
 ### Removing priority for assignments : `unprioritize`
 
-Format: `unprioritze INDEX`
+Format: `unprioritize INDEX`
 
 You can remove a priority tag from an assignment that has a priority tag by specifying the `INDEX` of the assignment
 you wish to have the priority tag removed.
@@ -427,7 +490,7 @@ you can simply enter `undone 2` into the command line based on the index labelle
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
-* Assignments are marked as not done**by default**
+* Assignments are marked as not done **by default**
 * The index must be present. For example, `undone` without any index will not work.
 * The index **must be found in your assignment list**
 </div>
