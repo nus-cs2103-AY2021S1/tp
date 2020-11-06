@@ -27,11 +27,10 @@ import seedu.stock.testutil.TypicalStocks;
 import seedu.stock.testutil.UpdateStockDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
-  and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model)
+ * and unit tests for UpdateCommand.
  */
 public class UpdateCommandTest {
-
     private SerialNumberSetsBook serialNumbers = getTypicalSerialNumberSetsBook();
     private Model model = new ModelManager(getTypicalStockBook(), new UserPrefs(), serialNumbers);
 
