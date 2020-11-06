@@ -24,6 +24,8 @@ public class SampleDataUtil {
                 new HashSet<>(Arrays.asList(new Tag("fruit"), new Tag("low calorie")))),
             new Ingredient("Banana", Count.of(5), new ExpiryDate("2020-11-18"),
                 new HashSet<>(Arrays.asList(new Tag("fruit"), new Tag("low calorie")))),
+            new Ingredient("Cream", Mass.grams(460), new ExpiryDate("2020-11-15"),
+                new HashSet<>(Arrays.asList(new Tag("high calorie"), new Tag("high sugar level")))),
             new Ingredient("Egg", Count.of(12), new ExpiryDate("2020-12-01"),
                 new HashSet<>(Arrays.asList(
                     new Tag("high protein"), new Tag("breakfast"), new Tag("frequently used")))),
@@ -35,7 +37,7 @@ public class SampleDataUtil {
                 new HashSet<>(Arrays.asList(new Tag("baking"), new Tag("healthy")))),
             new Ingredient("Granulated Sugar", Mass.grams(200), new ExpiryDate("2021-10-10"),
                 new HashSet<>(Arrays.asList(new Tag("sweet"), new Tag("kitchen"), new Tag("baking")))),
-            new Ingredient("Honey", Mass.grams(650), new ExpiryDate("2021-07-06"),
+            new Ingredient("Honey", Volume.millilitres(650), new ExpiryDate("2021-07-06"),
                 new HashSet<>(Arrays.asList(new Tag("sweet"), new Tag("high sugar level"), new Tag("baking")))),
             new Ingredient("Olive Oil", Volume.litres(1.5), new ExpiryDate("2022-05-07"),
                 new HashSet<>(Arrays.asList(new Tag("kitchen"), new Tag("healthy"), new Tag("salad dressing")))),
@@ -54,6 +56,20 @@ public class SampleDataUtil {
 
     public static Recipe[] getSampleRecipe() {
         return new Recipe[] {
+            new Recipe("Sweet Banana Salad",
+                new ArrayList<>(Arrays.asList(
+                    new IngredientReference("Banana", Count.of(2)),
+                    new IngredientReference("Cream", Mass.grams(20)),
+                    new IngredientReference("Honey", Volume.millilitres(15))
+                )),
+                new ArrayList<>(Arrays.asList(
+                    new Step("Cut the banana and put it into a bowl."),
+                    new Step("Pour the cream into the bowl, and mix them well."),
+                    new Step("Add honey at the top.")
+                )),
+                new HashSet<>(Arrays.asList(
+                    new Tag("simple recipe"), new Tag("healthy"), new Tag("fruit")
+                ))),
             new Recipe("Apple blue mix",
                 Arrays.stream(getSampleIngredients())
                     .map((x)-> new IngredientReference(x.getName(), x.getQuantity()))
