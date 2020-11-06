@@ -415,12 +415,29 @@ _{Explain here how the data archiving feature will be implemented}
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                                   | So that I can…​                                                                 |
-| -------- | ------------------------------------------ | ------------------------------------------------- | -------------------------------------------------------------------- |
-| `* * *`  | user                                       | exit the app                                      |                                                                      |
-| `* * *`  | user                                       | add an expense/revenue entry                       |                                                                      |
-| `* * *`  | user                                       | delete an entry                                   | remove entries that I no longer need                                 |
-| `* *`    | user                                       | have multiple accounts for different businesses   | keep expense/earning entries for the respective businesses separate  |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *` | user | be able to exit the app |  |
+| `* * *` | user | be able to add my expense/revenues entries to the userboard |  |
+| `* * *` | user | be able to delete my expense/revenue entries from the userboard |  |
+| `* * *` | user | view my expenditure by category |                  |
+| `* * *` | new user | be able to view a help FAQ on the functionality of the program | navigate through the different aspects of it |
+| `* * *` | user | be able to save my tasks and load them when the app is re-opened |                                    |
+| `* * *` | user with many side businesses | keep my accounts and expenses separate | understand where my inflow and outflow of finances come from |
+| `* * *` | user | have my expenses/revenues be calculated on demand |                                                              |
+| `* * *` | clumsy user | be able to edit my expenses/revenues | fix wrongly keyed-in information |
+| `* * *` | user | be able to find specific expenses/revenues| check for its specific information |
+| `* * *` | user | be able to view my net profits on the userboard |  |
+| `* * *` | clumsy user | be able to undo my commands | to reverse unwanted/wrong commands |
+| `* * *` | fast typist | be able to maximize my typing speed |  |
+| `* * *` | user | have commands that are short but as intuitive as possible |  |
+| `* *` | user who as an eye for aesthetics | have an app that is elegant and visually appealing | be motivated to use the app more |
+| `* *` | user | have an app that is intuitive and easy to use | easily navigate through it |
+| `* *` | user with limited time | have an app that is user friendly and efficient | save time |
+| `* *` | user | be able to use the app in dark mode | protect my eyesight |
+| `* *` | user | have incentive every time I use the app (maybe a little game or puzzle) | be motivated to use it to track my spending more |
+| `* *` | user | have an app that caters specifically to different types of accounts (business or personal) | efficiently manage my expenses and revenues | 
+| `*` | user | be given tips and tricks on how to use the app to plan my spending | save my money effectively |
 
 *{More to be added}*
 
@@ -429,6 +446,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CommonCents` and the **Actor** is the `user`, unless specified otherwise)
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC01 - Add an expense entry**
 
 **MSS**
@@ -445,9 +463,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Common Cents shows an error message.
 
       Use case resumes at step 1.
+</div>
 
-
-**Use case: UC02 - Add a revenue**
+<div markdown="block" class="alert alert-success">
+**Use case: UC02 - Adding a revenue**
 
 **MSS**
 
@@ -463,8 +482,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Common Cents shows an error message.
 
       Use case resumes at step 1.
+</div>
 
-**Use case: UC03 - Delete an expense**
+<div markdown="block" class="alert alert-success">
+**Use case: UC03 - Deleting an expense**
 
 **MSS**
 
@@ -480,8 +501,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Common cents shows an error message.
 
       Use case resumes at step 1.
+</div>
 
-**Use case: UC04 - Delete a revenue**
+<div markdown="block" class="alert alert-success">
+**Use case: UC04 - Deleting a revenue**
 
 **MSS**
 
@@ -497,7 +520,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Common cents shows an error message.
 
       Use case resumes at step 1.
+</div>
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Undoing an add command**
 
 **MSS**
@@ -513,7 +538,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests <u> delete an expense (UC03)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the delete command and displays success message.
+</div>
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Undoing a edit command**
 
 **MSS**
@@ -521,8 +548,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests <u> edit an expense (UC)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the edit command and displays success message.
+</div>
 
-
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Add an account**
 
 **MSS**
@@ -545,7 +573,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Common Cents shows an error message.
 
       Use case resumes at step 1.
+</div>
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Listing accounts**
 
 **MSS**
@@ -554,7 +584,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Common Cents displays the name of the accounts and their indices.
 
     Use case ends.
+</div>
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Delete a account**
 
 **MSS**
@@ -583,7 +615,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2c1. Common Cents shows an error message.
           
       Use case resumes at step 2.
+</div>
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Editing the account's name**
 
 **MSS**
@@ -613,7 +647,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2c1. Common cents shows an error message.
     
       Use case resumes at step 2.
+</div>
 
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Switching to an account**
 
 **MSS**
@@ -637,7 +673,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. Common cents shows an error message.
     
       Use case resumes at step 2.
-      
+</div>
+
+<div markdown="block" class="alert alert-success">
 **Use case: UC - Exiting app**
     
 **MSS**
@@ -646,6 +684,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Common Cents responds with exit message and closes.
 
     Use case ends.
+</div>
+      
 
 
 
