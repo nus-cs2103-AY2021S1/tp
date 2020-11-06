@@ -192,6 +192,9 @@ Format: `archive`
 
 ![UI after archiving](./images/AfterArchive.png)
 
+<div markdown="span" class="alert alert-info">:information_source: Performing <code>undo</code> on an <code>archive</code> command will reset and restore the state of the previous semester, but the created archival folder will not be deleted. Any changes followed by another <code>archive</code> command will overwrite the contents of that folder.
+</div>
+
 
 ### Student Management
 
