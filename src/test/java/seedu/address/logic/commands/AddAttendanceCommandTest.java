@@ -2,8 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.ATTENDANCE_TEST;
 import static seedu.address.testutil.TypicalStudents.ATTENDANCE_TEST_WEEK_2;
 
@@ -40,6 +43,38 @@ public class AddAttendanceCommandTest {
                 zeroAttendance.getAttendance().listOutAttendedWeeks()),
                 commandResult.getFeedbackToUser());
         assertEquals(modelStub.getFilteredStudentList().get(1), validOutcome);
+    }
+
+    @Test
+    public void equals() {
+        int[] weekOne = new int[] {1};
+        int[] weekTwo = new int[] {2};
+        AddAttendanceCommand addAttendanceCommandIndexOneWeekOne =
+                new AddAttendanceCommand(INDEX_FIRST_PERSON, weekOne);
+        AddAttendanceCommand addAttendanceCommandIndexOneWeekTwo =
+                new AddAttendanceCommand(INDEX_FIRST_PERSON, weekTwo);
+        AddAttendanceCommand addAttendanceCommandIndexTwoWeekOne =
+                new AddAttendanceCommand(INDEX_SECOND_PERSON, weekOne);
+
+        // same object -> returns true
+        assertTrue(addAttendanceCommandIndexOneWeekOne.equals(addAttendanceCommandIndexOneWeekOne));
+
+        // same values -> returns true
+        AddAttendanceCommand addAttendanceCommandIndexOneWeekOneCopy =
+                new AddAttendanceCommand(INDEX_FIRST_PERSON, weekOne);
+        assertTrue(addAttendanceCommandIndexOneWeekOne.equals(addAttendanceCommandIndexOneWeekOneCopy));
+
+        // different types -> returns false
+        assertFalse(addAttendanceCommandIndexOneWeekOne.equals(1));
+
+        // null -> returns false
+        assertFalse(addAttendanceCommandIndexOneWeekOne.equals(null));
+
+        // different person -> returns false
+        assertFalse(addAttendanceCommandIndexOneWeekOne.equals(addAttendanceCommandIndexOneWeekTwo));
+
+        // different person -> returns false
+        assertFalse(addAttendanceCommandIndexOneWeekOne.equals(addAttendanceCommandIndexTwoWeekOne));
     }
 
     /**

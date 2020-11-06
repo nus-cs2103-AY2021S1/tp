@@ -1,8 +1,12 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalModulesPopulatedWithTutorialGroups.CS2103T;
 import static seedu.address.testutil.TypicalModulesPopulatedWithTutorialGroups.getTypicalTrackr;
 import static seedu.address.testutil.TypicalStudents.ATTENDANCE_TEST;
@@ -24,6 +28,15 @@ import seedu.address.model.student.Attendance;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 public class DeleteAttendanceCommandTest {
+    @Test
+    public void constructor_nullIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteAttendanceCommand(null, new int[]{2}));
+    }
+
+    @Test
+    public void constructor_nullWeeksToAdd_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteAttendanceCommand(INDEX_FIRST_PERSON, null));
+    }
 
     @Test
     public void execute_validIndexValidWeekDeleteAttendance_success() {
@@ -81,5 +94,37 @@ public class DeleteAttendanceCommandTest {
         DeleteAttendanceCommand command = new DeleteAttendanceCommand(invalidIndex, validWeek);
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 
+    }
+
+    @Test
+    public void equals() {
+        int[] weekOne = new int[] {1};
+        int[] weekTwo = new int[] {2};
+        DeleteAttendanceCommand deleteAttendanceCommandIndexOneWeekOne =
+                new DeleteAttendanceCommand(INDEX_FIRST_PERSON, weekOne);
+        DeleteAttendanceCommand deleteAttendanceCommandIndexOneWeekTwo =
+                new DeleteAttendanceCommand(INDEX_FIRST_PERSON, weekTwo);
+        DeleteAttendanceCommand deleteAttendanceCommandIndexTwoWeekOne =
+                new DeleteAttendanceCommand(INDEX_SECOND_PERSON, weekOne);
+
+        // same object -> returns true
+        assertTrue(deleteAttendanceCommandIndexOneWeekOne.equals(deleteAttendanceCommandIndexOneWeekOne));
+
+        // same values -> returns true
+        DeleteAttendanceCommand deleteAttendanceCommandIndexOneWeekOneCopy =
+                new DeleteAttendanceCommand(INDEX_FIRST_PERSON, weekOne);
+        assertTrue(deleteAttendanceCommandIndexOneWeekOne.equals(deleteAttendanceCommandIndexOneWeekOneCopy));
+
+        // different types -> returns false
+        assertFalse(deleteAttendanceCommandIndexOneWeekOne.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteAttendanceCommandIndexOneWeekOne.equals(null));
+
+        // different person -> returns false
+        assertFalse(deleteAttendanceCommandIndexOneWeekOne.equals(deleteAttendanceCommandIndexOneWeekTwo));
+
+        // different person -> returns false
+        assertFalse(deleteAttendanceCommandIndexOneWeekOne.equals(deleteAttendanceCommandIndexTwoWeekOne));
     }
 }
