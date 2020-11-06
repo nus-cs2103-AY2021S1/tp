@@ -17,13 +17,6 @@ Class ReadOnlyUserPrefs
 
 Package Flashcard {
 Class Flashcard
-Class Question
-Class Answer
-Class Category
-Class Note
-Class Rating
-Class Diagram
-Class Statistics
 Class UniqueFlashcardList
 }
 
@@ -44,22 +37,10 @@ ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 FlashcardDeck *--> "1" UniqueFlashcardList
-UniqueFlashcardList o--> "*" Flashcard
-Flashcard *--> Question
-Flashcard *--> Answer
-Flashcard *--> Category
-Flashcard *--> Note
-Flashcard *--> Rating
-Flashcard *--> Diagram
-Flashcard *--> Statistics
-Flashcard *--> "*" Tag
-
-Rating -[hidden]right-> Diagram
-Diagram -[hidden]right-> Statistics
-Statistics -[hidden]right-> Question
-Question -[hidden]right-> Answer
-Answer -[hidden]right-> Category
-Category -[hidden]right-> Note
+UniqueFlashcardList o-left-> "*" Flashcard
+Flashcard *-right-> "*" Tag
 
 ModelManager -->"1" Flashcard : filtered list
+ModelManager -->"1" Flashcard : sorted list
+
 @enduml
