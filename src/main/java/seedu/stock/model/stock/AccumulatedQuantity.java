@@ -35,7 +35,7 @@ public class AccumulatedQuantity {
         }
     }
 
-    public String getAccumulatedQuantity() {
+    public String getValue() {
         return this.accumulatedQuantity;
     }
 

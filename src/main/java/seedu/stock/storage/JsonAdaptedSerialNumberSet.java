@@ -33,7 +33,7 @@ class JsonAdaptedSerialNumberSet {
      */
     public JsonAdaptedSerialNumberSet(SerialNumberSet serialNumberSet) {
         this.source = serialNumberSet.getSource().value;
-        this.accumulatedQuantity = serialNumberSet.getAccumulatedQuantity().getAccumulatedQuantity();
+        this.accumulatedQuantity = serialNumberSet.getAccumulatedQuantity().getValue();
     }
 
     /**
