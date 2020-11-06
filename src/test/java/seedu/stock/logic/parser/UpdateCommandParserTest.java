@@ -1,6 +1,5 @@
 package seedu.stock.logic.parser;
 
-
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.commands.CommandTestUtil.INCREMENT_QUANTITY_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_INCREMENT_QUANTITY_DESC;
@@ -8,11 +7,13 @@ import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_NEW_QUANTITY_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_NEW_QUANTITY_DESC2;
-import static seedu.stock.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
+import static seedu.stock.logic.commands.CommandTestUtil.INVALID_SERIAL_NUMBER_DESC;
+import static seedu.stock.logic.commands.CommandTestUtil.INVALID_SERIAL_NUMBER_DESC2;
 import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.NEW_QUANTITY_DESC_APPLE;
+import static seedu.stock.logic.commands.CommandTestUtil.QUANTITY_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_LOCATION_APPLE;
@@ -32,8 +33,12 @@ import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
 import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.QuantityAdder;
+import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.testutil.UpdateStockDescriptorBuilder;
 
+/**
+ * Contains unit tests for UpdateCommandParser.
+ */
 public class UpdateCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
@@ -43,39 +48,50 @@ public class UpdateCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no serial number specified
+        // EP: no serial number specified
         assertParseFailure(parser, NAME_DESC_APPLE, MESSAGE_INVALID_FORMAT);
 
-        // no keyword specified
+        // EP: no prefix specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
 
-        // random user input without keywords
+        // EP: random user input without prefixes
         assertParseFailure(parser, "thisIsRandom", MESSAGE_INVALID_FORMAT);
 
-        // invalid keyword without any valid keywords
+        // EP: invalid prefix and prefix unknown to Warenager.
         assertParseFailure(parser, "x/invalid", MESSAGE_INVALID_FORMAT);
+
+        // EP: invalid prefix and prefix is known to Warenager.
+        assertParseFailure(parser, QUANTITY_DESC_BANANA, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
+        // EP: invalid name
         assertParseFailure(parser, SERIAL_NUMBER_DESC_APPLE + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
 
-        // invalid quantity prefix
-        assertParseFailure(parser, SERIAL_NUMBER_DESC_BANANA + INVALID_QUANTITY_DESC, MESSAGE_INVALID_FORMAT);
-
-        // invalid new quantity
+        // EP: invalid new quantity
         assertParseFailure(parser, SERIAL_NUMBER_DESC_APPLE + INVALID_NEW_QUANTITY_DESC, Quantity.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, SERIAL_NUMBER_DESC_APPLE + INVALID_NEW_QUANTITY_DESC2, Quantity.MESSAGE_CONSTRAINTS);
 
-        // invalid increment quantity
+        // EP: invalid increment quantity
         assertParseFailure(parser, SERIAL_NUMBER_DESC_APPLE + INVALID_INCREMENT_QUANTITY_DESC,
                 QuantityAdder.MESSAGE_CONSTRAINTS);
 
-        // invalid location
+        // EP: invalid location
         assertParseFailure(parser, SERIAL_NUMBER_DESC_APPLE + INVALID_LOCATION_DESC, Location.MESSAGE_CONSTRAINTS);
 
-        // invalid field followed by a valid field
+        // EP: invalid serial number
+        assertParseFailure(parser, INVALID_SERIAL_NUMBER_DESC, SerialNumber.MESSAGE_CONSTRAINTS);
+
+        // EP: invalid serial numbers
+        assertParseFailure(parser, INVALID_SERIAL_NUMBER_DESC + INVALID_SERIAL_NUMBER_DESC2,
+                SerialNumber.MESSAGE_CONSTRAINTS);
+
+        // EP: serial numbers some valid, but some invalid
+        assertParseFailure(parser, SERIAL_NUMBER_DESC_APPLE + INVALID_SERIAL_NUMBER_DESC2,
+                SerialNumber.MESSAGE_CONSTRAINTS);
+
+        // EP: invalid field followed by a valid field
         assertParseFailure(parser, SERIAL_NUMBER_DESC_APPLE + INVALID_LOCATION_DESC + NAME_DESC_BANANA,
                 Location.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, SERIAL_NUMBER_DESC_BANANA + INVALID_NEW_QUANTITY_DESC + NAME_DESC_BANANA,
@@ -83,7 +99,7 @@ public class UpdateCommandParserTest {
         assertParseFailure(parser, SERIAL_NUMBER_DESC_APPLE + NAME_DESC_APPLE + INVALID_INCREMENT_QUANTITY_DESC
                 + VALID_SOURCE_APPLE, QuantityAdder.MESSAGE_CONSTRAINTS);
 
-        // multiple invalid fields
+        // EP: multiple invalid fields
         assertParseFailure(parser, SERIAL_NUMBER_DESC_APPLE + INVALID_NAME_DESC + INVALID_NEW_QUANTITY_DESC,
                 Name.MESSAGE_CONSTRAINTS);
     }
