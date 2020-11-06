@@ -109,20 +109,20 @@ Unexpected prefix(es) entered for commands which do not take in any parameter | 
 
 **Example 1:**
 `i-set i/Milk i/Boba m/90`
-**How is the command processed:**
+**How the command is processed:**
 In this case, the situation is duplicate valid prefixes detected. Hence, only the last, in this case, the second prefix and its following parameters are accepted.
 Thus, the command will be processed in the same way as `i-set i/Boba m/90`.
 
 **Example 2:**
 `i-set-all M/10 P/10 B/10 L/10 G/10 S/10 T/10`
-**How is the command processed:**
+**How the command is processed:**
 In this example, the prefixes `M/`, `P/`, `B/`, `L`, `G` and `S/` are valid but `T/` is invalid. Hence, the situation is
 invalid prefix entered. Since tCheck will not be able to recognize the `T/` entered as a prefix. Thus, it will be treated as
 part of the parameter for the nearest previous prefix, which is `S/`. This will cause the command to fail because `10 T/20` is an invalid format for amount and appropriate error message will be shown.
 
 **Example 3:**
 `help i/Milk i don't know what to do `
-**How is the command processed:**
+**How the command is processed:**
 In this case, `help` is a command which does not take in amy parameter. Hence, the situation is unexpected prefix(es) entered for commands which do not take in any parameter.
 Thus, tCheck will ignore all words come after the command word `help` and the command will be processed in the same way as `help`.
 
