@@ -17,14 +17,14 @@ public class VersionedContactListTest {
 
     @Test
     public void constructor() {
-        assertEquals(getTypicalContactList(), versionedContactList.getCurrentContactList());
+        assertEquals(getTypicalContactList(), versionedContactList);
     }
     @Test
     public void execute_commit_success() {
         //Initiate empty VersionedContactList
         VersionedContactList initialVersionedContactList = new VersionedContactList();
         initialVersionedContactList.commit(VALID_CONTACT_LIST);
-        assertEquals(initialVersionedContactList.getCurrentContactList(), VALID_CONTACT_LIST);
+        assertEquals(initialVersionedContactList, VALID_CONTACT_LIST);
     }
 
     @Test
@@ -38,13 +38,13 @@ public class VersionedContactListTest {
         VersionedContactList initialVersionedContactList = new VersionedContactList();
         initialVersionedContactList.commit(VALID_CONTACT_LIST);
         //Make sure that commit was successful
-        assertEquals(initialVersionedContactList.getCurrentContactList(), VALID_CONTACT_LIST);
+        assertEquals(initialVersionedContactList, VALID_CONTACT_LIST);
         try {
             initialVersionedContactList.undo();
         } catch (VersionedListException ve) {
             throw new AssertionError("Execution of method should not fail.", ve);
         }
-        assertEquals(initialVersionedContactList.getCurrentContactList(), new ContactList());
+        assertEquals(initialVersionedContactList, new ContactList());
     }
 
     @Test
@@ -58,15 +58,15 @@ public class VersionedContactListTest {
         VersionedContactList initialVersionedContactList = new VersionedContactList();
         initialVersionedContactList.commit(VALID_CONTACT_LIST);
         //Make sure that commit was successful
-        assertEquals(initialVersionedContactList.getCurrentContactList(), VALID_CONTACT_LIST);
+        assertEquals(initialVersionedContactList, VALID_CONTACT_LIST);
         try {
             initialVersionedContactList.undo();
             //make sure that undo was successful
-            assertEquals(initialVersionedContactList.getCurrentContactList(), new ContactList());
+            assertEquals(initialVersionedContactList, new ContactList());
             initialVersionedContactList.redo();
         } catch (VersionedListException ve) {
             throw new AssertionError("Execution of method should not fail.", ve);
         }
-        assertEquals(initialVersionedContactList.getCurrentContactList(), VALID_CONTACT_LIST);
+        assertEquals(initialVersionedContactList, VALID_CONTACT_LIST);
     }
 }

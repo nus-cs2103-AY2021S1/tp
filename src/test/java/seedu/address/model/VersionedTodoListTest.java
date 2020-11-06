@@ -15,14 +15,14 @@ public class VersionedTodoListTest {
     private final VersionedTodoList versionedTodoList = new VersionedTodoList(VALID_TODO_LIST);
     @Test
     public void constructor() {
-        assertEquals(VALID_TODO_LIST, versionedTodoList.getCurrentTodoList());
+        assertEquals(VALID_TODO_LIST, versionedTodoList);
     }
     @Test
     public void execute_commit_success() {
         //Initiate empty VersionedTodoList
         VersionedTodoList initialVersionedTodoList = new VersionedTodoList();
         initialVersionedTodoList.commit(VALID_TODO_LIST);
-        assertEquals(initialVersionedTodoList.getCurrentTodoList(), VALID_TODO_LIST);
+        assertEquals(initialVersionedTodoList, VALID_TODO_LIST);
     }
 
     @Test
@@ -36,13 +36,13 @@ public class VersionedTodoListTest {
         VersionedTodoList initialVersionedTodoList = new VersionedTodoList();
         initialVersionedTodoList.commit(VALID_TODO_LIST);
         //Make sure that commit was successful
-        assertEquals(initialVersionedTodoList.getCurrentTodoList(), VALID_TODO_LIST);
+        assertEquals(initialVersionedTodoList, VALID_TODO_LIST);
         try {
             initialVersionedTodoList.undo();
         } catch (VersionedListException ve) {
             throw new AssertionError("Execution of method should not fail.", ve);
         }
-        assertEquals(initialVersionedTodoList.getCurrentTodoList(), new TodoList());
+        assertEquals(initialVersionedTodoList, new TodoList());
     }
 
     @Test
@@ -56,15 +56,15 @@ public class VersionedTodoListTest {
         VersionedTodoList initialVersionedTodoList = new VersionedTodoList();
         initialVersionedTodoList.commit(VALID_TODO_LIST);
         //Make sure that commit was successful
-        assertEquals(initialVersionedTodoList.getCurrentTodoList(), VALID_TODO_LIST);
+        assertEquals(initialVersionedTodoList, VALID_TODO_LIST);
         try {
             initialVersionedTodoList.undo();
             //make sure that undo was successful
-            assertEquals(initialVersionedTodoList.getCurrentTodoList(), new TodoList());
+            assertEquals(initialVersionedTodoList, new TodoList());
             initialVersionedTodoList.redo();
         } catch (VersionedListException ve) {
             throw new AssertionError("Execution of method should not fail.", ve);
         }
-        assertEquals(initialVersionedTodoList.getCurrentTodoList(), VALID_TODO_LIST);
+        assertEquals(initialVersionedTodoList, VALID_TODO_LIST);
     }
 }

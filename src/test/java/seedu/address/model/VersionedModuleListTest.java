@@ -11,10 +11,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.exceptions.VersionedListException;
 import seedu.address.testutil.ModuleListBuilder;
 
-
-
-
-
 public class VersionedModuleListTest {
     private static final ModuleList VALID_MODULE_LIST = new ModuleListBuilder().withModule(CS2030)
             .withModule(CS2101).build();
@@ -23,14 +19,14 @@ public class VersionedModuleListTest {
 
     @Test
     public void constructor() {
-        assertEquals(getTypicalModuleList(), versionedModuleList.getCurrentModuleList());
+        assertEquals(getTypicalModuleList(), versionedModuleList);
     }
     @Test
     public void execute_commit_success() {
         //Initiate empty VersionedModuleList
         VersionedModuleList initialVersionedModuleList = new VersionedModuleList();
         initialVersionedModuleList.commit(VALID_MODULE_LIST);
-        assertEquals(initialVersionedModuleList.getCurrentModuleList(), VALID_MODULE_LIST);
+        assertEquals(initialVersionedModuleList, VALID_MODULE_LIST);
     }
 
     @Test
@@ -44,13 +40,13 @@ public class VersionedModuleListTest {
         VersionedModuleList initialVersionedModuleList = new VersionedModuleList();
         initialVersionedModuleList.commit(VALID_MODULE_LIST);
         //Make sure that commit was successful
-        assertEquals(initialVersionedModuleList.getCurrentModuleList(), VALID_MODULE_LIST);
+        assertEquals(initialVersionedModuleList, VALID_MODULE_LIST);
         try {
             initialVersionedModuleList.undo();
         } catch (VersionedListException ve) {
             throw new AssertionError("Execution of method should not fail.", ve);
         }
-        assertEquals(initialVersionedModuleList.getCurrentModuleList(), new ModuleList());
+        assertEquals(initialVersionedModuleList, new ModuleList());
     }
 
     @Test
@@ -64,15 +60,15 @@ public class VersionedModuleListTest {
         VersionedModuleList initialVersionedModuleList = new VersionedModuleList();
         initialVersionedModuleList.commit(VALID_MODULE_LIST);
         //Make sure that commit was successful
-        assertEquals(initialVersionedModuleList.getCurrentModuleList(), VALID_MODULE_LIST);
+        assertEquals(initialVersionedModuleList, VALID_MODULE_LIST);
         try {
             initialVersionedModuleList.undo();
             //make sure that undo was successful
-            assertEquals(initialVersionedModuleList.getCurrentModuleList(), new ModuleList());
+            assertEquals(initialVersionedModuleList, new ModuleList());
             initialVersionedModuleList.redo();
         } catch (VersionedListException ve) {
             throw new AssertionError("Execution of method should not fail.", ve);
         }
-        assertEquals(initialVersionedModuleList.getCurrentModuleList(), VALID_MODULE_LIST);
+        assertEquals(initialVersionedModuleList, VALID_MODULE_LIST);
     }
 }

@@ -38,6 +38,7 @@ public class VersionedModuleList extends ModuleList {
         moduleListStateList.subList(this.currentStatePointer + 1, moduleListStateList.size()).clear();
         moduleListStateList.add(new ModuleList(moduleList));
         this.currentStatePointer += 1;
+        super.resetData(moduleList);
     }
 
     /**
@@ -47,8 +48,9 @@ public class VersionedModuleList extends ModuleList {
         if (isIndexZero()) {
             throw new VersionedListException(MESSAGE_NO_UNDO_HISTORY);
         }
-        //!isIndexZero() : "Assertion error, there are no instructions to undo";
+        assert !isIndexZero() : "Assertion error, there are no instructions to undo";
         this.currentStatePointer -= 1;
+        super.resetData(moduleListStateList.get(currentStatePointer));
     }
 
     /**
@@ -60,21 +62,20 @@ public class VersionedModuleList extends ModuleList {
         }
         assert !isLastIndex() : "Assertion error, there are no instructions to redo";
         this.currentStatePointer += 1;
+        super.resetData(moduleListStateList.get(currentStatePointer));
     }
 
+    /**
+     * Returns true if state pointer is at 0.
+     */
     public boolean isIndexZero() {
         return currentStatePointer == 0;
     }
 
+    /**
+     * Returns true if state pointer greater than the size of the eventList state list
+     */
     public boolean isLastIndex() {
         return currentStatePointer >= moduleListStateList.size() - 1;
-    }
-
-    /**
-     * Returns the module list the current state pointer is pointing to in the form
-     * of an observable list
-     */
-    public ReadOnlyModuleList getCurrentModuleList() {
-        return moduleListStateList.get(currentStatePointer);
     }
 }

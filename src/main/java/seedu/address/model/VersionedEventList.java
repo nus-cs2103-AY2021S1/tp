@@ -39,6 +39,7 @@ public class VersionedEventList extends EventList {
         eventListStateList.subList(this.currentStatePointer + 1, eventListStateList.size()).clear();
         eventListStateList.add(new EventList(eventList));
         this.currentStatePointer += 1;
+        super.resetData(eventList);
     }
 
     /**
@@ -49,6 +50,7 @@ public class VersionedEventList extends EventList {
             throw new VersionedListException(MESSAGE_NO_UNDO_HISTORY);
         }
         this.currentStatePointer -= 1;
+        super.resetData(eventListStateList.get(currentStatePointer));
     }
 
     /**
@@ -60,6 +62,7 @@ public class VersionedEventList extends EventList {
         }
         assert !isLastIndex() : "Assertion error, there are no instructions to redo";
         this.currentStatePointer += 1;
+        super.resetData(eventListStateList.get(currentStatePointer));
     }
 
     /**
@@ -74,13 +77,5 @@ public class VersionedEventList extends EventList {
      */
     public boolean isLastIndex() {
         return currentStatePointer >= eventListStateList.size() - 1;
-    }
-
-    /**
-     * Returns the event list the current state pointer is pointing to in the form
-     * of an observable list
-     */
-    public ReadOnlyEventList getCurrentEventList() {
-        return eventListStateList.get(currentStatePointer);
     }
 }

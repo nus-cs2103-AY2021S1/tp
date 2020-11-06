@@ -18,14 +18,14 @@ public class VersionedEventListTest {
 
     @Test
     public void constructor() {
-        assertEquals(VALID_EVENT_LIST, versionedEventList.getCurrentEventList());
+        assertEquals(VALID_EVENT_LIST, versionedEventList);
     }
     @Test
     public void execute_commit_success() {
         //Initiate empty VersionedEventList
         VersionedEventList initialVersionedEventList = new VersionedEventList();
         initialVersionedEventList.commit(VALID_EVENT_LIST);
-        assertEquals(initialVersionedEventList.getCurrentEventList(), VALID_EVENT_LIST);
+        assertEquals(initialVersionedEventList, VALID_EVENT_LIST);
     }
 
     @Test
@@ -39,13 +39,13 @@ public class VersionedEventListTest {
         VersionedEventList initialVersionedEventList = new VersionedEventList();
         initialVersionedEventList.commit(VALID_EVENT_LIST);
         //Make sure that commit was successful
-        assertEquals(initialVersionedEventList.getCurrentEventList(), VALID_EVENT_LIST);
+        assertEquals(initialVersionedEventList, VALID_EVENT_LIST);
         try {
             initialVersionedEventList.undo();
         } catch (VersionedListException ve) {
             throw new AssertionError("Execution of method should not fail.", ve);
         }
-        assertEquals(initialVersionedEventList.getCurrentEventList(), new EventList());
+        assertEquals(initialVersionedEventList, new EventList());
     }
 
     @Test
@@ -59,15 +59,15 @@ public class VersionedEventListTest {
         VersionedEventList initialVersionedEventList = new VersionedEventList();
         initialVersionedEventList.commit(VALID_EVENT_LIST);
         //Make sure that commit was successful
-        assertEquals(initialVersionedEventList.getCurrentEventList(), VALID_EVENT_LIST);
+        assertEquals(initialVersionedEventList, VALID_EVENT_LIST);
         try {
             initialVersionedEventList.undo();
             //make sure that undo was successful
-            assertEquals(initialVersionedEventList.getCurrentEventList(), new EventList());
+            assertEquals(initialVersionedEventList, new EventList());
             initialVersionedEventList.redo();
         } catch (VersionedListException ve) {
             throw new AssertionError("Execution of method should not fail.", ve);
         }
-        assertEquals(initialVersionedEventList.getCurrentEventList(), VALID_EVENT_LIST);
+        assertEquals(initialVersionedEventList, VALID_EVENT_LIST);
     }
 }
