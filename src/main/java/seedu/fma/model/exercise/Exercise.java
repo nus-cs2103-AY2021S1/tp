@@ -74,7 +74,7 @@ public class Exercise {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Exercise: ")
-                .append(getName()  + "\n")
+                .append(getName() + "\n")
                 .append("CaloriesPerRep: ")
                 .append(getCaloriesPerRep());
         return builder.toString();
