@@ -232,7 +232,7 @@ Example: `edit 1 n/Resident Evil project /d new horror` changes the name of the 
 
 # **Features** in project scope
 
-## **Task**-related features
+## **Task-related features**
 
 ### Add task to a project `addtask `
 
@@ -340,7 +340,7 @@ Format: `viewtask INDEX `
 
 Example: `viewtask 4` displays all information from task number 4 in the list.
 
-## **Teammate**-related features
+## **Teammate-related features**
 
 ### Create a new teammate in a project `newteammate`
 
