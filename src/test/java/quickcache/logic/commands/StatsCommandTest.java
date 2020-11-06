@@ -7,11 +7,9 @@ import static quickcache.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static quickcache.logic.commands.CommandTestUtil.showFlashcardAtIndex;
 import static quickcache.testutil.TypicalFlashcards.getTypicalQuickCache;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +19,6 @@ import quickcache.model.Model;
 import quickcache.model.ModelManager;
 import quickcache.model.UserPrefs;
 import quickcache.model.flashcard.Flashcard;
-import quickcache.model.flashcard.FlashcardContainsTagPredicate;
 import quickcache.model.flashcard.FlashcardPredicate;
 import quickcache.model.flashcard.Question;
 import quickcache.model.flashcard.Statistics;
@@ -64,7 +61,7 @@ public class StatsCommandTest {
     public void execute_validTag_success() {
         Set<Tag> tagsToMatch = new HashSet<>();
         tagsToMatch.add(TypicalTags.TEST_TAG);
-        FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
+        FlashcardPredicate flashcardPredicate = FlashcardPredicate.prepareOnlyTagsFlashcardPredicate(tagsToMatch);
 
         StatsCommand statsCommand = new StatsCommand(flashcardPredicate, tagsToMatch);
 
@@ -93,7 +90,7 @@ public class StatsCommandTest {
     public void execute_invalidTag_success() {
         Set<Tag> tagsToMatch = new HashSet<>();
         tagsToMatch.add(TypicalTags.INVALID_TAG);
-        FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
+        FlashcardPredicate flashcardPredicate = FlashcardPredicate.prepareOnlyTagsFlashcardPredicate(tagsToMatch);
 
         StatsCommand statsCommand = new StatsCommand(flashcardPredicate, tagsToMatch);
 
@@ -111,12 +108,6 @@ public class StatsCommandTest {
         Statistics expectedStatistics = new Statistics(timesTested, timesTestedCorrect);
 
         assertCommandSuccess(statsCommand, model, expectedMessage, expectedModel, expectedStatistics);
-    }
-
-    private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
-        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
-        predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
-        return new FlashcardPredicate(predicates);
     }
 
     @Test
