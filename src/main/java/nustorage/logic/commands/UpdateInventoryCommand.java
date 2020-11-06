@@ -97,8 +97,7 @@ public class UpdateInventoryCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the inventory with.
      */
     public static class UpdateInventoryDescriptor {
         private Integer changeInQuantity;

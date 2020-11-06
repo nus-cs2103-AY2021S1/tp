@@ -252,7 +252,7 @@ This creates a new finance record of amount `$30000` on `3rd March 2020`
 Enter the example command into the command box as shown below:
 ![Add finance command example](images/commands/add_finance_command.jpg)
 
-__Expected Result:__ Finance record of amount `$30000` on `3rd March 2020` is added to the finance account:
+__Result:__ Finance record of amount `$30000` on `3rd March 2020` is added to the finance account:
 ![Add finance result example](images/commands/add_finance_result.jpg)
 
 ---
@@ -283,7 +283,7 @@ __Example:__ `delete_finance 1` deletes the finance record with index `1`.
 Enter the example command into the command box as shown below:
 ![Delete finance command example](images/commands/delete_finance_command.jpg)
 
-__Expected Result:__ record at index `1` is removed from the finance account records.
+__Result:__ record at index `1` is removed from the finance account records.
 ![Delete finance result example](images/commands/delete_finance_result.jpg)
 
 ---
@@ -315,7 +315,7 @@ This changes the amount of the finance record with the ID of `1` to `120`.
 Enter the example command into the command box as shown below:
 ![Edit finance command example](images/commands/edit_finance_command.jpg)
 
-__Expected Result:__ finance amount changed from `$100` to `$120` while the date remains unchanged.
+__Result:__ finance amount changed from `$100` to `$120` while the date remains unchanged.
 
 ![Edit finance result example](images/commands/edit_finance_result.jpg)
 
@@ -545,7 +545,7 @@ Steps to migrate data:
 
 ### 7.2. How do I combine data from two devices?
 
-Currently, NUStorage does not support the merging of data between different devices. NUStorage only supports moving of data from one device to another. Please see FAQ 6.1 regarding how to migrate data.
+Currently, NUStorage does not support the merging of data between different devices. NUStorage only supports moving of data from one device to another. Please see FAQ 7.1 regarding how to migrate data.
 
 ### 7.3. Can I directly modify the storage file?
 
