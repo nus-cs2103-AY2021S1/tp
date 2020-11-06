@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalMainCatalogue.getTypicalMainCatalogue;
 import static seedu.address.testutil.TypicalPersons.DESC_A;
-import static seedu.address.testutil.TypicalPersons.DESC_A;
 
 import java.util.HashMap;
 
