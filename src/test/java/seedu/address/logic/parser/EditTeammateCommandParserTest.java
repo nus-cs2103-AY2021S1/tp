@@ -5,16 +5,20 @@ import static seedu.address.logic.commands.TeammateTestUtil.INVALID_TEAMMATE_ADD
 import static seedu.address.logic.commands.TeammateTestUtil.INVALID_TEAMMATE_EMAIL_DESC_A;
 import static seedu.address.logic.commands.TeammateTestUtil.INVALID_TEAMMATE_NAME_DESC_A;
 import static seedu.address.logic.commands.TeammateTestUtil.INVALID_TEAMMATE_PHONE_DESC_A;
+import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_ADDRESS_DESC_A;
 import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_ADDRESS_DESC_B;
 import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_EMAIL_DESC_A;
 import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_EMAIL_DESC_B;
+import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_NAME_DESC_A;
 import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_NAME_DESC_B;
 import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_PHONE_DESC_A;
 import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_PHONE_DESC_B;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_ADDRESS_B;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_EMAIL_B;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_GIT_USERNAME_A;
+import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_NAME_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_NAME_B;
+import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_B;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -98,7 +102,112 @@ public class EditTeammateCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    @Test
+    public void parse_someFieldsSpecified_success() {
+        GitUserIndex targetIndex = GIT_USERINDEX_FIRST_TEAMMATE;
+        String userInput = targetIndex.getGitUserName() +
+            TEAMMATE_ADDRESS_DESC_B + TEAMMATE_EMAIL_DESC_B;
 
+        EditTeammateCommand.EditTeammateDescriptor descriptor =
+            new EditTeammateDescriptorBuilder()
+                .withEmail(VALID_TEAMMATE_EMAIL_B)
+                .withAddress(VALID_TEAMMATE_ADDRESS_B).build();
 
+        EditTeammateCommand expectedCommand = new EditTeammateCommand(targetIndex, descriptor);
 
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_oneFieldsSpecified_success() {
+
+        GitUserIndex gitUserIndex;
+        String userInput;
+        EditTeammateCommand.EditTeammateDescriptor descriptor;
+        EditTeammateCommand expectedCommand;
+
+        // teammateName
+        gitUserIndex = GIT_USERINDEX_FIRST_TEAMMATE;
+        userInput = gitUserIndex.getGitUserName() + TEAMMATE_NAME_DESC_B;
+        descriptor =
+            new EditTeammateDescriptorBuilder()
+                .withTeammatetName(VALID_TEAMMATE_NAME_B).build();
+        expectedCommand = new EditTeammateCommand(gitUserIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // phone
+        gitUserIndex = GIT_USERINDEX_FIRST_TEAMMATE;
+        userInput = gitUserIndex.getGitUserName() + TEAMMATE_PHONE_DESC_B;
+        descriptor =
+            new EditTeammateDescriptorBuilder()
+                .withPhone(VALID_TEAMMATE_PHONE_B).build();
+        expectedCommand = new EditTeammateCommand(gitUserIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // email
+        gitUserIndex = GIT_USERINDEX_FIRST_TEAMMATE;
+        userInput = gitUserIndex.getGitUserName() + TEAMMATE_EMAIL_DESC_B;
+        descriptor =
+            new EditTeammateDescriptorBuilder()
+                .withEmail(VALID_TEAMMATE_EMAIL_B).build();
+        expectedCommand = new EditTeammateCommand(gitUserIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // address
+        gitUserIndex = GIT_USERINDEX_FIRST_TEAMMATE;
+        userInput = gitUserIndex.getGitUserName() + TEAMMATE_ADDRESS_DESC_B;
+        descriptor =
+            new EditTeammateDescriptorBuilder()
+                .withAddress(VALID_TEAMMATE_ADDRESS_B).build();
+        expectedCommand = new EditTeammateCommand(gitUserIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_multipleRepeatedFieldsAcceptsLast_success() {
+        GitUserIndex targetIndex = GIT_USERINDEX_FIRST_TEAMMATE;
+        String userInput = targetIndex.getGitUserName() +
+            TEAMMATE_ADDRESS_DESC_A + TEAMMATE_EMAIL_DESC_A + TEAMMATE_PHONE_DESC_A +
+            TEAMMATE_ADDRESS_DESC_B + TEAMMATE_EMAIL_DESC_B + TEAMMATE_PHONE_DESC_B;
+
+        EditTeammateCommand.EditTeammateDescriptor descriptor =
+            new EditTeammateDescriptorBuilder()
+                .withEmail(VALID_TEAMMATE_EMAIL_B)
+                .withAddress(VALID_TEAMMATE_ADDRESS_B)
+                .withPhone(VALID_TEAMMATE_PHONE_B).build();
+
+        EditTeammateCommand expectedCommand = new EditTeammateCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_invalidValueFollowedByValidValue_success() {
+
+        GitUserIndex gitUserIndex;
+        String userInput;
+        EditTeammateCommand.EditTeammateDescriptor descriptor;
+        EditTeammateCommand expectedCommand;
+
+        // other valid values specified
+        gitUserIndex = GIT_USERINDEX_FIRST_TEAMMATE;
+        userInput = gitUserIndex.getGitUserName() + INVALID_TEAMMATE_NAME_DESC_A + TEAMMATE_NAME_DESC_A;
+        descriptor =
+            new EditTeammateDescriptorBuilder()
+                .withTeammatetName(VALID_TEAMMATE_NAME_A).build();
+        expectedCommand = new EditTeammateCommand(gitUserIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // other valid values specified
+        gitUserIndex = GIT_USERINDEX_FIRST_TEAMMATE;
+        userInput = gitUserIndex.getGitUserName() + INVALID_TEAMMATE_NAME_DESC_A + TEAMMATE_NAME_DESC_A
+            + TEAMMATE_PHONE_DESC_A;
+        descriptor =
+            new EditTeammateDescriptorBuilder()
+                .withTeammatetName(VALID_TEAMMATE_NAME_A)
+                .withPhone(VALID_TEAMMATE_PHONE_A).build();
+        expectedCommand = new EditTeammateCommand(gitUserIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+    }
 }
