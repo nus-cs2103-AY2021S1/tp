@@ -20,6 +20,10 @@ import seedu.address.model.project.Project;
 
 public class AddTeammateParticipationCommandParsertest {
 
+    /**
+     * Parses valid arguments and returns Teammate Participation Command
+     * (required by checkstyle)
+     */
     @Test
     public void parse_validArgs_returnAddTeammateParticipationCommand() {
         AddTeammateParticipationCommandParser parser = new AddTeammateParticipationCommandParser();
@@ -33,6 +37,10 @@ public class AddTeammateParticipationCommandParsertest {
             new AddTeammateParticipationCommand(GIT_USERINDEX_FIRST_TEAMMATE));
     }
 
+    /**
+     * Parses invalid arguments and throws parse exception
+     * (required by checkstyle)
+     */
     @Test
     public void parse_invalidArgs_throwsParseException() {
         AddTeammateParticipationCommandParser parser = new AddTeammateParticipationCommandParser();
