@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.ModelManager;
@@ -18,9 +17,8 @@ public class TypicalModel {
      * Returns a {@code ModelManager} with the typical menu.
      */
     public static ModelManager getModelManagerWithMenu() {
-        List<MenuManager> menuManagers = new ArrayList<>();
-        menuManagers.add(TypicalMenuItems.getTypicalMenuManager());
-        VendorManager vendorManager = new VendorManager();
+        VendorManager vendorManager = TypicalVendors.getTypicalVendorManager();
+        List<MenuManager> menuManagers = TypicalVendors.getManagers();
         ModelManager model = new ModelManager(vendorManager, new UserPrefs(), menuManagers, new OrderManager());
         model.selectVendor(0);
         return model;

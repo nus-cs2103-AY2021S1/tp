@@ -44,22 +44,6 @@ public class ModelManager implements Model {
     private boolean isSortedAsc = false;
 
     /**
-     * Initializes a ModelManager with the given vendorManager and userPrefs.
-     */
-    public ModelManager(ReadOnlyVendorManager vendorManager, ReadOnlyUserPrefs userPrefs) {
-        super();
-        requireAllNonNull(vendorManager, userPrefs);
-
-        logger.fine("Initializing with address book: " + vendorManager + " and user prefs " + userPrefs);
-
-        this.vendorManager = new VendorManager(vendorManager);
-        this.menuManagers = new ArrayList<>();
-        this.orderManager = new OrderManager();
-
-        this.userPrefs = new UserPrefs(userPrefs);
-    }
-
-    /**
      * Initializes a ModelManager with the given vendorManager, userPrefs, menuManager and orderManager.
      */
     public ModelManager(
@@ -329,7 +313,11 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return vendorManager.equals(other.vendorManager)
-                && userPrefs.equals(other.userPrefs);
+                && userPrefs.equals(other.userPrefs)
+                && menuManagers.equals(other.menuManagers)
+                && orderManager.equals(other.orderManager)
+                && filteredMenuItems.equals(other.filteredMenuItems)
+                && isSortedAsc == other.isSortedAsc;
     }
 
 }
