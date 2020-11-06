@@ -446,7 +446,7 @@ Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; 
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:
+:information_source: Notes about the `macro` command.
 
 * If any of the jargon below seem unclear, refer to *How to intepret the each command's format* under section *5. Features* above.
 
