@@ -228,8 +228,7 @@ public class StudentRecordListManager implements StudentRecordList {
      * @return A random Student Record
      */
     @Override
-    public StudentRecord getRandomStudentRecord() {
-        Random random = new Random();
+    public StudentRecord getRandomStudentRecord(Random random) {
         int index = random.nextInt(internalList.size());
         return internalList.get(index);
     }

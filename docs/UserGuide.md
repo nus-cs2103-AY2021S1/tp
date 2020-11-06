@@ -147,7 +147,6 @@ Adds a session into the session list.
 ```
 add-session s/SESSION_NAME dt/SESSION_DATE_TIME
 ```
-- The `SESSION_DATE_TIME` must be of the format `dd-MM-yyyy HHmm`.
 - The `SESSION_DATE_TIME` must be a valid date of the format `dd-MM-yyyy HHmm`.
 - Duplicate session names are not allowed.
 
