@@ -250,11 +250,11 @@ The following prefixes are used to identify the fields and its keywords:
 - `/p` for Priority
 
 ##### Predicate classes 
-The following Predicate classes implements `Predicate<Assignment>` and are used when the user inputs keywords of its assigned field:
-- NameContainsKeywordsPredicate
-- ModuleCodeContainsKeywordsPredicate
-- DeadlineContainsKeywordsPredicate
-- PriorityContainsKeywordsPredicate
+The following Predicate classes implements `Predicate<Assignment>` and are inputted in the constructor of `FindCommand` when the user inputs keywords of its assigned field:
+- NameContainsKeywordsPredicate for name field
+- ModuleCodeContainsKeywordsPredicate for module code field
+- DeadlineContainsKeywordsPredicate for deadline field
+- PriorityContainsKeywordsPredicate for priority field
 
 Given below is the class diagram of these Predicate classes:
 
@@ -263,12 +263,16 @@ Given below is the class diagram of these Predicate classes:
 
 
 ##### FindCommand Class
-- `FindCommand` extends abstract class `Command` and overrides the method `execute` in `CommandResult`.
-- The constructor of `FindCommand` takes in a Predicate depending on the prefix or keywords in the user's input. 
+The FindCommand Class contains static `String` attributes of error messages to be displayed in the event of invalid user input.  The constructor of `FindCommand` takes in a `Predicate<Assignment>` depending on the prefix or keywords in the user's input. Its attribute `predicate` of type `Predicate<Assignment>` is initialised to this value.
+
+
 - This class contains static `String` attributes of error messages to be displayed in the event of invalid user input.
+- `FindCommand` extends abstract class `Command` and overrides the method `execute` in `CommandResult`.
 
 ##### FindCommandParser Class
-- The `FindCommandParser` class contains private methods to parse each type of keyword field, and to check for valid input format.
+- The `FindCommandParser` class contains private methods to parse each keyword field, and to check for valid input format.
+
+
 - `FindCommandParser` implements `Parser<FindCommand>` and it parses the user's input to return a `FindCommand` object.
 
 Given below is the class diagram of `FindCommandParser` class.
