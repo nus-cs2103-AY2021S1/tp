@@ -16,7 +16,7 @@ public class MacroTest {
 
     private static final String[] COMMAND = {"Command"};
     private static final String[] ARGUMENTS = {"Hello", "World"};
-    private static Macro MACRO_TEST;
+    private static Macro testMacro;
 
     static {
         try {
@@ -26,8 +26,8 @@ public class MacroTest {
         }
     }
 
-    private static void initialiseMacros() throws IllegalValueException{
-        MACRO_TEST = new Macro("name", ARGUMENTS, COMMAND);
+    private static void initialiseMacros() throws IllegalValueException {
+        testMacro = new Macro("name", ARGUMENTS, COMMAND);
     }
 
     @Test
@@ -58,6 +58,6 @@ public class MacroTest {
         options.addOption(option2);
 
         //Check if the option is correct
-        assertEquals(MACRO_TEST.getOptions().toString(), options.toString());
+        assertEquals(testMacro.getOptions().toString(), options.toString());
     }
 }
