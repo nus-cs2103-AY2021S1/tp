@@ -71,7 +71,6 @@ public class EditTaskParser implements Parser<EditTaskCommand> {
         if (optionalEditedDate.isPresent()) {
             String editedDate = optionalEditedDate.get();
             if (editedDate.equals("")) {
-                System.out.println("HALO");
                 editTaskDescriptor.setIsDateDeleted(true);
             } else {
                 editTaskDescriptor.setIsDateDeleted(false);

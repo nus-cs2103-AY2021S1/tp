@@ -101,7 +101,6 @@ public class EditTaskCommand extends Command {
             editedTask = editedTask.setTags(updatedTag);
         }
 
-        System.out.println(editTaskDescriptor.getIsPriorityDeleted());
         if (editTaskDescriptor.getIsPriorityDeleted()) {
             editedTask = editedTask.setPriority(null);
         } else if (taskToEdit.getPriority().isPresent() || editTaskDescriptor.getPriority().isPresent()) {
