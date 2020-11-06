@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODEL;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODEL;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,13 +24,13 @@ public class DeleteTaskCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        Index[] indexes = {INDEX_FIRST_TASK};
+        Index[] indexes = {INDEX_FIRST_MODEL};
         assertParseSuccess(parser, "1", new DeleteTaskCommand(indexes));
     }
 
     @Test
     public void parse_manyValidArgs_returnsDeleteCommand() {
-        Index[] indexes = {INDEX_FIRST_TASK, INDEX_SECOND_TASK};
+        Index[] indexes = {INDEX_FIRST_MODEL, INDEX_SECOND_MODEL};
         assertParseSuccess(parser, "1 2", new DeleteTaskCommand(indexes));
     }
 

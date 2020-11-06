@@ -6,13 +6,13 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DURATION;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODEL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_DURATION;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_MODEL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DURATION;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODEL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_DURATION;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_MODEL;
 import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
 
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ public class DoneCommandTest {
 
     @Test
     public void execute_oneValidIndexUnfilteredList_success() {
-        Index[] indexes = {INDEX_FIRST_TASK};
+        Index[] indexes = {INDEX_FIRST_MODEL};
         int[] durations = {INDEX_FIRST_DURATION};
         Deadline[] tasksToDone = new Deadline[indexes.length];
         for (int i = 0; i < indexes.length; i++) {
@@ -52,7 +52,7 @@ public class DoneCommandTest {
 
     @Test
     public void execute_manyValidIndexUnfilteredList_success() {
-        Index[] indexes = {INDEX_FIRST_TASK, INDEX_THIRD_TASK};
+        Index[] indexes = {INDEX_FIRST_MODEL, INDEX_THIRD_MODEL};
         int[] durations = {INDEX_FIRST_DURATION, INDEX_THIRD_DURATION};
         Deadline[] tasksToDone = new Deadline[indexes.length];
         for (int i = 0; i < indexes.length; i++) {
@@ -81,7 +81,7 @@ public class DoneCommandTest {
 
     @Test
     public void execute_duplicatedIndex_throwsCommandException() {
-        Index[] indexes = {INDEX_FIRST_TASK, INDEX_FIRST_TASK};
+        Index[] indexes = {INDEX_FIRST_MODEL, INDEX_FIRST_MODEL};
         int[] durations = {INDEX_FIRST_DURATION, INDEX_SECOND_DURATION};
 
         DoneCommand doneCommand = new DoneCommand(indexes, durations);
@@ -91,7 +91,7 @@ public class DoneCommandTest {
 
     @Test
     public void execute_incorrectStatusTask_throwsCommandException() {
-        Index[] indexes = {INDEX_FOURTH_TASK};
+        Index[] indexes = {INDEX_FOURTH_MODEL};
         int[] durations = {INDEX_FOURTH_DURATION};
 
         DoneCommand doneCommand = new DoneCommand(indexes, durations);
@@ -113,8 +113,8 @@ public class DoneCommandTest {
 
     @Test
     public void execute_oneValidIndexFilteredList_success() {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
-        Index[] indexes = {INDEX_FIRST_TASK};
+        showTaskAtIndex(model, INDEX_FIRST_MODEL);
+        Index[] indexes = {INDEX_FIRST_MODEL};
         int[] durations = {INDEX_FIRST_DURATION};
         Deadline[] tasksToDone = new Deadline[indexes.length];
         for (int i = 0; i < indexes.length; i++) {
@@ -125,7 +125,7 @@ public class DoneCommandTest {
         String expectedMessage = String.format(DoneCommand.buildMessage(tasksToDone));
 
         Model expectedModel = new ModelManager(model.getPlanus(), new UserPrefs());
-        showTaskAtIndex(expectedModel, INDEX_FIRST_TASK);
+        showTaskAtIndex(expectedModel, INDEX_FIRST_MODEL);
         expectedModel.markAsDone(tasksToDone, durations);
 
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
@@ -133,9 +133,9 @@ public class DoneCommandTest {
 
     @Test
     public void execute_oneInvalidIndexFilteredList_throwsCommandException() {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        showTaskAtIndex(model, INDEX_FIRST_MODEL);
 
-        Index outOfBoundIndex = INDEX_SECOND_TASK;
+        Index outOfBoundIndex = INDEX_SECOND_MODEL;
         Index[] indexes = {outOfBoundIndex};
         int[] durations = {INDEX_SECOND_DURATION};
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -149,7 +149,7 @@ public class DoneCommandTest {
     @Test
     public void execute_mixValidInvalidIndexList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        Index[] indexes = {INDEX_FIRST_TASK, outOfBoundIndex};
+        Index[] indexes = {INDEX_FIRST_MODEL, outOfBoundIndex};
         int[] durations = {INDEX_FIRST_DURATION, INDEX_SECOND_DURATION};
 
         DoneCommand doneCommand = new DoneCommand(indexes, durations);
@@ -159,9 +159,9 @@ public class DoneCommandTest {
 
     @Test
     public void execute_mixValidInvalidIndexFilteredList_throwsCommandException() {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
-        Index outOfBoundIndex = INDEX_SECOND_TASK;
-        Index[] indexes = {INDEX_FIRST_TASK, outOfBoundIndex};
+        showTaskAtIndex(model, INDEX_FIRST_MODEL);
+        Index outOfBoundIndex = INDEX_SECOND_MODEL;
+        Index[] indexes = {INDEX_FIRST_MODEL, outOfBoundIndex};
         int[] durations = {INDEX_FIRST_DURATION, INDEX_SECOND_DURATION};
 
         DoneCommand doneCommand = new DoneCommand(indexes, durations);
@@ -171,8 +171,8 @@ public class DoneCommandTest {
 
     @Test
     public void equals() {
-        Index[] firstIndex = {INDEX_FIRST_TASK};
-        Index[] secondIndex = {INDEX_SECOND_TASK};
+        Index[] firstIndex = {INDEX_FIRST_MODEL};
+        Index[] secondIndex = {INDEX_SECOND_MODEL};
         int[] firstDurations = {INDEX_FIRST_DURATION};
         int[] secondDurations = {INDEX_SECOND_DURATION};
         DoneCommand doneFirstCommand = new DoneCommand(firstIndex, firstDurations);
