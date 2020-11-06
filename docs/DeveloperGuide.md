@@ -922,7 +922,7 @@ testers are expected to do more *exploratory* testing.
         Expected: No flashcard is unfavourited from the list of flashcards and input text will turn red to signal an error.
         Result display will output the invalid command error message.
 
-    1. Other incorrect favourite commands to try: `unfav` and `unfav x` (where x is larger than the list size or x is a negative integer) <br>
+    1. Other incorrect unfavourite commands to try: `unfav` and `unfav x` (where x is larger than the list size or x is a negative integer) <br>
         Expected: Similar to test case iii.
 
 ### Finding flashcards
@@ -985,13 +985,29 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case (view flashcard at invalid index): `view 0` <br>
         Expected: Flashcard view and flashcard answer panel will not update and input text will turn red to signal an error.
-            Result display will output the invalid command error message.
+        Result display will output the invalid command error message.
             
-    1. Other incorrect favourite commands to try: `view 0 -a` and `view x` (where x is larger than the list size or x is a negative integer) <br>
-               Expected: Similar to test case iv.
+    1. Other incorrect view commands to try: `view 0 -a` and `view x` (where x is larger than the list size or x is a negative integer) <br>
+        Expected: Similar to test case iv.
                
 ### Viewing the statistics of a flashcard
     
+1. Viewing the statistics of a flashcard
+    
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+       
+    1. Test case (view statistics of flashcard at valid index): `stats 1` <br>
+        Expected: Flashcard view panel updates to display a pie chart along with statistics of reviewed count and correct
+        count. Result display will output the status of the selected flashcard.
+    
+    1. Test case (view statistics of flashcard at invalid index): `stats 0` <br>
+        Expected: Flashcard view panel will not update and input text will turn red to signal an error.
+        Result display will output the invalid command error message.
+    
+    1. Other incorrect stats command to try: `stats x` (where x is larger than the list size or x is a negative integer) <br>
+        Expected: Similar to test case iii.
+        
 ### Saving data
 
 1. Dealing with missing/corrupted data files
