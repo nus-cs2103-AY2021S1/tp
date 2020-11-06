@@ -3,7 +3,31 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+    - [Setting up, getting started](#setting-up-getting-started)
+    - [Design](#design)
+        - [Architecture](#architecture)
+        - [UI component](#ui-component)
+        - [Logic component](#logic-component)
+        - [Model component](#model-component)
+        - [Storage component](#storage-component)
+        - [Common classes](#common-classes)
+    - [Implementation](#implementation)
+        - [[Implemented] Add feature](#implemented-add-feature)
+        - [[Implemented] Review feature](#implemented-review-feature)
+        - [[Implemented] Sort feature](#implemented-sort-feature)
+        - [[Implemented] Favourite/unfavourite feature](#implemented-favouriteunfavourite-feature)
+        - [[Implemented] Filter feature](#implemented-filter-feature)
+    - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+    - [Appendix: Requirements](#appendix-requirements)
+        - [Product Scope](#product-scope)
+        - [User stories](#user-stories)
+        - [Use cases](#use-cases)
+        - [Non-Functional Requirements](#non-functional-requirements)
+        - [Glossary](#glossary)
+    - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+        - [Launch and shutdown](#launch-and-shutdown)
+        - [Deleting a flashcard](#deleting-a-flashcard)
+        - [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -131,7 +155,7 @@ Classes used by multiple components are in the `seedu.flashcard.commons` package
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Implemented\] Add Feature 
+### \[Implemented\] Add feature 
 
 #### Current Implementation
 
