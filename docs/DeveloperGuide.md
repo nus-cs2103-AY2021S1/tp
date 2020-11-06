@@ -299,20 +299,20 @@ current inventory.
 
 #### Implementation
 
-There are three main view modes, display of all items, display of all recipes, and viewing of detailed item.
+There are three main view modes, which are: display of all items, display of all recipes, and viewing of detailed item.
 The list item and list recipe features facilitates the switch between viewing the item list and recipe list.
 
 In `InventoryMainWindow`, whenever a command is executed, the `InventoryListPanel` is refreshed,
 to be filled with the relevant inventory list.
 This list is retrieved by `getInventoryList` in `LogicManager`, based on the current view mode.
 
-For list item, list recipe and view details commands, the relevant display mode is stored in the `CommandResult`. 
+For the list item, list recipe and view details commands, the relevant display mode is stored in the `CommandResult`. 
 Upon execution, the display mode is passed on from the `CommandResult` to the  `InventoryMainWindow`, which will store
-the current display mode, and pass on to the `InventoryListPanel` and `LogicManager` to retrieve the relevant list.
+the current display mode, and pass on to the `InventoryListPanel` and `LogicManager` to refresh and retrieve the relevant list.
 
-For all other commands, they return a `CommandResult` with `UNCHANGED` as the inventory type. 
+For all other commands, they will return a `CommandResult` with `UNCHANGED` as the inventory type. 
 This indicates that the view mode should not be changed. The same type of inventory list (updated accordingly)
-will be retrieved and displayed.
+will be retrieved and displayed. If the user was previously on detailed item view, the item list will be displayed instead.
 
 The following sequence diagram shows how the list items operation works:
 ![ListItemSequenceDiagram](images/commandseqdiagrams/ListItemSequenceDiagram.png)
@@ -327,14 +327,14 @@ the information back to the `Ui` section to update the display.
 
 #### Alternative implementation
 A possible alternative implementation which might be more convenient for users would be to include two tabs, and allow 
-the user to switch between the two tabs with a mouse click. This will allow for easier, more visual navigation.
-This might be implemented by constructing additional scenes in JavaFX, and displaying the scene the user wishes to view.
+the user to switch between the two tabs by clicking the tabs. This will allow for easier, more visual navigation and
+might be implemented by constructing additional scenes in JavaFX, displaying the scene the user requests to view.
 
 This alternative was not chosen as our target group is defined to be fast typists, and in line with the rest of our commands, 
 which all require CLI input, switching to usage of the mouse would not be convenient. Furthermore, the current implementation 
 is also more extensible, as we can easily mix and match items and recipes to display by filtering the item and recipe
 lists in the command as required, rather than constructing a new scene from scratch. The implementation here was then
-adapted to implement the view detailed item command easily, and could also be useful for future developments.
+adapted to implement the view detailed item command easily, and could also be useful for future developments and extensions.
 
 ### Find items feature
 
