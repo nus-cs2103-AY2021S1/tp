@@ -215,7 +215,9 @@ Outcome: The projects with matching names will be shown to the user.
 
 Updates the details of a project.
 
-Format: `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] `
+Format: `edit (INDEX) [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] `
+  - Edits the project at the specified index.
+  - The index refers to the index number shown in the displayed task list.
   - Any combination of the fields above can be entered.
   - The information entered will replace all the data in each respective field.
   - Project Name can be any alphanumeric value (containing only alphabets and / or numbers).
