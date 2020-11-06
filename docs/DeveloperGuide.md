@@ -28,6 +28,7 @@ title: Developer Guide
         - [Launch and shutdown](#launch-and-shutdown)
         - [Deleting a flashcard](#deleting-a-flashcard)
         - [Saving data](#saving-data)
+    - [Appendix: Effort](#appendix-effort)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -855,3 +856,48 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+This section documents the effort in morphing AB3 to SWEe! .
+
+* General refactor of AB3 to SWEe!
+    * All instances of AddressBook and related words such as Person, Address, Email, Phone Number (and many more) had to be removed or refactored.
+    * This involved not only renaming the relevant methods and variables **throughout the project** but also entire classes, packages and documentation.
+    * Eg. The entire `Person` class in AB3 had to be morphed into `Flashcard` class with entirely new methods, parameters and variables.
+    * Eg. The `add` and `edit` commands (and their associated parsers) had to be rewritten as it was originally used to add/edit a `Person` but now they are used to add/edit a `Flashcard`.
+
+* `Quiz` and `Review` feature
+    * These 2 features are completely new in functionality relative to AB3 features.
+    * They involved much UI work as we had to design an entirely new screen. Our app now has 2 distinct screens as compared to the 1 screen of AB3.
+    * It was challenging to integrate these 2 features as they were not a conventional command to type into the commandbox:
+        * We had to handle keyboard input outside of the command box in these 2 features which is a functionality not present in AB3.
+        * We had to design a new pattern to activate these 2 commands and execute them (read [Review implementation](#implemented-review-feature)).
+        * Creation of an entirely new logic component `StudyManager` to handle the logic of these 2 features.
+    
+* `View` and `Stats` feature
+    * The main challenge in these 2 features was to create a new UI.
+    * We had to split the UI of the originally AB3 into 2 columns, one for the list and one for the output of `View` and `Stats`.
+
+* Diagrams in flashcards
+    * Our app allows adding images which AB3 did not.
+    * Implementing diagrams was challenging as we had to do many checks to make sure the file path provided was present and had a valid image.
+    * We also had to made sure the diagrams were sized appropriately on the UI.
+
+* `Filter` feature
+    * AB3 did not have a filter feature by fields of the entity. 
+    * We implemented a filter that will filter for flashcards that match all fields specified by you.
+    * We had to design and learn how to implement this feature by taking reference from the `find` feature in AB3.
+
+* `Sort` feature
+    * AB3 did not have a sort feature.
+    * We had to integrate the sort feature with the filter feature which was quite challenging as we had to ensure that the 2 features could be used together (ie. using one feature did not prevent the other from being used). This involved diving into `ModelManager` and making changes.
+ 
+* General UI enhancements
+    * Significant styling was done to make our app look better compared to AB3.
+    * We also ensured proper scaling of our app to different windows sizes, with the ability to scroll some panes.
+
+
+
