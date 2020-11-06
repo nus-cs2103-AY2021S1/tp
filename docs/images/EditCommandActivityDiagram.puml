@@ -28,7 +28,7 @@ if () then ([is valid index])
     endif
 
 else ([is invalid index])
-    :throw parser exception;
+    :throw parse exception;
 
 endif
 stop

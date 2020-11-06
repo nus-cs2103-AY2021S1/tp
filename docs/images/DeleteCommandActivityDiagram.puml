@@ -16,7 +16,7 @@ if () then ([index > 0 and index is integer])
         endif
 
 else ([index <= 0 or index not integer])
-    :throw parser exception;
+    :throw parse exception;
 
 endif
 stop
