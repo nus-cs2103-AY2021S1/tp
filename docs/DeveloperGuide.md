@@ -847,6 +847,10 @@ testers are expected to do more *exploratory* testing.
         flashcard in the deck to be edited.<br> 
         Expected: The `QUESTION` and `ANSWER` of flashcard at index `INDEX` will be modified to become `Is this edited?` 
         and `Yes` respectively.The remaining fields of this flashcard will remain the same. Result display will output the status of the edited flashcard.
+    
+    1. Test case (missing flashcard field input): `edit INDEX` where `INDEX` is the index of the particular flashcard in the deck to be edited.<br> 
+        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
+        Result display will output the message: `At least one field to edit must be provided.`
         
      :bulb: **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
 
@@ -863,6 +867,25 @@ testers are expected to do more *exploratory* testing.
      
 ### Filtering for flashcards
 
+1. Filtering for selected flashcards in flashcard deck
+
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+                how to add a flashcard if flashcard deck is empty.
+                
+    1. Test case (filtering by one flashcard field): `filter c/General` <br>
+        Expected: Flashcard list panel updates to show only flashcards belonging to `General` category. Result display will
+            output a success message indicating the number of flashcards filtered.
+            
+    1. Test case (filtering by multiple flashcard fields): `filter c/General r/3` <br> 
+        Expected: Flashcard list panel updates to show only flashcards belonging to `General` category and have a rating of `3`. 
+        Result display will output a success message indicating the number of flashcards filtered.
+        
+    1. Test case (missing flashcard field input): `filter` <br>
+        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
+        Result display will output the invalid command error message.
+        
+    :bulb: **Note:** Filtering of flashcards can also be tested on other fields such as `FAVOURITE` and `TAG`. 
+    
 ### Favouriting a flashcard
 
 ### Unfavouriting a flashcard
