@@ -207,7 +207,7 @@ Format: `find [KEYWORD...]`
 - Only the name of the projects are searched.
 - Can be multiple words.
 
-Example: `find scare` would return the **Scare House** and **Easily scare Night** projects.
+Example: `find scare` returns the **Scare House** and **Easily scare Night** projects.
 
 Outcome: The projects with matching names will be shown to the user.
 
