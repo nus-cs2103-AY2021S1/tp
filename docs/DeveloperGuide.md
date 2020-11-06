@@ -811,7 +811,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Flashcard Deck**: An object that encapsulates and handles a unique list of flashcards
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **CLI**: Command Line Input
+* **CLI**: Command Line Interface
 
 --------------------------------------------------------------------------------------------------------------------
 
