@@ -79,10 +79,7 @@ public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
             String instructionString = argMultimap.getValue(PREFIX_INSTRUCTION).get();
             ArrayList<Instruction> instructions = InstructionParser.parse(instructionString);
             editRecipeDescriptor.setInstruction(instructions);
-            if (instructions.size() == 0) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        EditRecipeCommand.MESSAGE_EMPTY_INSTRUCTIONS));
-            }
+            assert(instructions.size() != 0);
         }
         if (argMultimap.getValue(PREFIX_RECIPE_IMAGE).isPresent()) {
             String img = "";

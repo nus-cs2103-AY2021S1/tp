@@ -64,7 +64,7 @@ public class EditRecipeCommand extends Command {
     public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
     public static final String MESSAGE_NOT_EDITED = "No edit made. At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the Recipe collection.";
-    public static final String MESSAGE_EMPTY_INSTRUCTIONS = "This instructions for recipe cannot be empty.";
+    public static final String MESSAGE_EMPTY_INSTRUCTIONS = "This recipe must contain instruction";
     public static final String MESSAGE_DUPLICATE_INGREDIENTS = "This recipe contains duplicate ingredients";
 
     private static Logger logger = Logger.getLogger("EditRecipeLogger");

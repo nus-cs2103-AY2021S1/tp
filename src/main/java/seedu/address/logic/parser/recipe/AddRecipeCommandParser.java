@@ -69,10 +69,8 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         String instructionString = argMultimap.getValue(PREFIX_INSTRUCTION).get();
         ArrayList<Instruction> instructions = InstructionParser.parse(instructionString);
 
-        if (instructions.size() == 0) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddRecipeCommand.MESSAGE_EMPTY_INSTRUCTIONS));
-        }
+        assert(instructions.size() != 0);
+
         String img = "";
         try {
             img = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();

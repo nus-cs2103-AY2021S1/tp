@@ -44,7 +44,7 @@ public class AddRecipeCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the Wishful Shrinking.";
     public static final String MESSAGE_DUPLICATE_INGREDIENTS = "This recipe contains duplicate ingredients.";
-    public static final String MESSAGE_EMPTY_INSTRUCTIONS = "This recipe must contain instruction.";
+    public static final String MESSAGE_EMPTY_INSTRUCTIONS = "This recipe must contain instruction";
 
     private final Recipe toAdd;
 
