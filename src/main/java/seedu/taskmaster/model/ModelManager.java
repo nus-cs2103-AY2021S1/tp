@@ -128,7 +128,7 @@ public class ModelManager implements Model {
         updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
         filteredStudentRecords = null;
         taskmaster.addSession(session);
-        taskmaster.changeSession(session.getSessionName());
+        changeSession(session.getSessionName());
     }
 
     /**
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
             updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
             taskmaster.changeSession(null);
             return;
-        } else if (!(taskmaster.inSession()) && sessionName.equals(taskmaster.currentSessionName())) {
+        } else if (taskmaster.inSession() && sessionName.equals(taskmaster.currentSessionName())) {
             filteredStudentRecords.setPredicate(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
         } else {
             /*
