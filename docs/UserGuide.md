@@ -297,7 +297,7 @@ Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/EN
   - User may choose one predicate to filter tasks by
   - Assignee name is the name of the Teammate who is assigned to the task
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
-  - Names provided must be complete words and will only match complete words from the name of the task or assignee 
+  - Names provided must be complete words and will only match complete words from the names of the task or assignee 
   - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
   - Start date and end date in the time range follows the format *DD-MM-YYYY*
   - Task progress is a percentage value indicating how much of the task is done
