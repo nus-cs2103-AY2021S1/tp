@@ -30,7 +30,7 @@ Specifically, this document covers:
 ### 1.2&ensp;Document Conventions
 
 In this document, some elements are styled differently for emphasis. These include:
-- :bulb: — This a useful piece of information that can make using ChopChop easier
+- :bulb: — This indicates a useful piece of information that can make using ChopChop easier
 - :information_source: — This indicates something that you should pay attention to
 - `code` — Text styled in this font generally indicates commands that you will type into the <i>command box</i> (see below)
 - <kbd>enter</kbd> — Text styled in this font indicates keys that you press on your keyboard
@@ -158,7 +158,7 @@ ChopChop is able to display all of your ingredients as [Ingredient Tiles](#Ingre
 <a name="RecommendationButton"></a>
 ### 4.5&ensp;Recommendation Button
 {:.no_toc}
-ChopChop is able to recommend you recipes to cook if you want it to! The recipes that are recommended will be display as [Recipe Tiles](#RecipeTiles) in the `Main Display Area` when you press the `Recommendations` button.
+ChopChop is able to recommend you recipes to cook if you want it to! The recipes that are recommended will be displayed as [Recipe Tiles](#RecipeTiles) in the `Main Display Area` when you press the `Recommendations` button.
 
 
 
