@@ -1,5 +1,6 @@
 package com.eva;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -21,6 +22,7 @@ import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.UserPrefs;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.application.ResumeTextFileGenerator;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.util.SampleDataUtil;
 import com.eva.storage.EvaStorage;
@@ -86,6 +88,11 @@ public class MainApp extends Application {
         Optional<ReadOnlyEvaDatabase<Applicant>> applicantDatabaseOptional;
         ReadOnlyEvaDatabase<Applicant> initialApplicantData;
         try {
+            File dir = new File("data");
+            dir.mkdir();
+            ResumeTextFileGenerator resumeTextFileGenerator = new ResumeTextFileGenerator();
+            resumeTextFileGenerator.generateResumeTextFile(); // sample resume for application
+
             personDatabaseOptional = storage.readPersonDatabase();
             staffDatabaseOptional = storage.readStaffDatabase();
             applicantDatabaseOptional = storage.readApplicantDatabase();

@@ -22,7 +22,6 @@ Welcome to the User Guide for Eva!
     + [3.3.4. Record leave taken by staff: `addl`](#334-record-leave-taken-by-staff-addl)
     + [3.3.5. Delete leave taken by staff: `dell`](#335-delete-leave-taken-by-staff-dell)
     + [3.3.6. Edit leave taken by staff: `editl`](#336-edit-leave-taken-by-staff-editl)
-    + [3.3.7. Edit comment on a staff: `editc INDEX s-`](#337-edit-comment-on-a-staff-editc-index-s-)
   * [3.4. Applicant commands](#34-applicant-commands)
     + [3.4.1 Add an applicant: `adda`](#341-add-an-applicant-adda)
     + [3.4.2. Delete an applicant: `dela`](#342-delete-an-applicant-dela)
@@ -175,6 +174,10 @@ Format: `exit`
 
 ### 3.3. Staff commands
 
+- All commands under staff can only be done on either staff list or staff profile except `adds`, 
+ which can be done on anywhere
+ - While in profiles, only details of the profile that is being viewed can be changed.
+
 #### 3.3.1. Add a staff: `adds`
 
 Adds a staff to Eva.
@@ -248,10 +251,12 @@ Examples:
 #### 3.3.6. Edit leave taken by staff: `editl`
 [This feature is coming soon]
 
-#### 3.3.7. Edit comment on a staff: `editc INDEX s-`
-
 
 ### 3.4. Applicant commands
+
+- All commands under applicant can only be done on either applicant list or applicant profile except `adda`, 
+ which can be done on anywhere
+ - While in profiles, only details of the profile that is being viewed can be changed.
 
 #### 3.4.1 Add an applicant: `adda`
 
@@ -291,6 +296,7 @@ Format: `edita INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]
 :bulb: **Tip:**
 
 * Edit of comment needs to be in required format: `c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE DESC/NEW_DESCRIPTION`
+
 
 </div>
 
@@ -340,23 +346,45 @@ Example:
 ### 3.5. Comment Commands
 
 Commands to add, delete and edit comments on staff or applicants
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Important:**
+
+* Comment Commands take index reference from which type of person user is viewing. 
+    * If user is viewing staff list or profile, comment commands takes index reference from staff list.
+    * If user is viewing applicant list or profile, comment commands takes index reference from applicant list.
+
+</div>
  
-#### 3.5.1 Add comment to a staff/applicant: `addc INDEX c/ ti/TITLE d/Date desc/DESCRIPTION`
+#### 3.5.1 Add comment to a staff/applicant: `addc INDEX c/ `
 
 Adds a comment to a staff/applicant under eva depending on which panel you are in
 
-Format: `addc 1 ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
+Format: `addc INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
 
 Example:
-* `addc 1 ti/title d/10/10/2010 desc/description`
+* `addc 1 c/ ti/title d/10/10/2010 desc/description`
 
-#### 3.5.2 Delete comment from a staff/applicant: `delc INDEX c/ ti/TITLE_TO_DELETE`
+#### 3.5.2 Delete comment from a staff/applicant: `delc INDEX c/ `
 
 Deletes a comment from a staff/applicant under eva depending on which panel you are in
 
-#### 3.5.3 Edit comment on an applicant: `editc INDEX c/ ti/TITLE_TO_EDIT d/DATE_OF_TITLE_TO_EDIT desc/ NEW_DESC`
+Format: `delc INDEX c/ ti/TITLE_OF_COMMENT_TO_DELETE`
 
-Edits a comment from a staff/applicant under eva
+Examples:
+* Comment to delete has title: Example, Date: 10/10/2010, Description: Example of comment, Staff index is 1
+* Command: `delc 1 c/ ti/Example`
+
+#### 3.5.3. Edit comment on a staff: `editc INDEX c/`
+
+Edits the description of a comment on a staff. 
+
+Format: `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION`
+
+Examples:
+* Comment to change has title: Example, Date: 10/10/2010, Description: Example of comment, and staff index is 1
+* Command: `editc 1 c/ ti/Example d/10/10/2010 desc/New Example of comment`
 
 
 ### 3.6. Archive data files `[coming in v2.0]`
