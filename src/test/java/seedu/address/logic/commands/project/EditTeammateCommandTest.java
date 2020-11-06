@@ -27,10 +27,11 @@ public class EditTeammateCommandTest {
 
     @Test
     public void execute_noFieldsModified_success() throws ParseException {
+
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
-        Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
-        Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
+        Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
+        Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
@@ -46,25 +47,23 @@ public class EditTeammateCommandTest {
             project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
             new HashMap<>(), project.getTasks());
         project.addParticipation(originalTeammate);
-        model.addPerson(originalTeammate);
-
-        expectedModel.addPerson(editedTeammate);
+//        model.addPerson(originalTeammate);
+//
+//        expectedModel.addPerson(editedTeammate);
         projectCopy.addParticipation(editedTeammate);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
 
         assertCommandSuccess(editTeammateCommand, model, expectedMessage, expectedModel);
 
-//        Person.getAllPeople().clear();
-//        Project.getAllProjects().clear();
     }
 
     @Test
     public void execute_nameModified_success() throws ParseException {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
-        Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
-        Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A_S.get()).withPersonName("Changes name").build();
+        Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
+        Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A).withPersonName("Changes name").build();
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
@@ -94,8 +93,8 @@ public class EditTeammateCommandTest {
     public void execute_phoneModified_success() throws ParseException {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
-        Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
-        Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A_S.get()).withPhone("37189382").build();
+        Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
+        Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A).withPhone("37189382").build();
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
@@ -125,8 +124,8 @@ public class EditTeammateCommandTest {
     public void execute_emailModified_success() throws ParseException {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
-        Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
-        Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A_S.get()).withEmail("new@gmail.com").build();
+        Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
+        Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A).withEmail("new@gmail.com").build();
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
@@ -156,8 +155,8 @@ public class EditTeammateCommandTest {
     public void execute_addressModified_success() throws ParseException {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
-        Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
-        Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A_S.get()).withAddress("209 Yishun").build();
+        Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
+        Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A).withAddress("209 Yishun").build();
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
@@ -187,8 +186,8 @@ public class EditTeammateCommandTest {
     public void execute_multipleFieldsModified_success() throws ParseException {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
-        Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
-        Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A_S.get())
+        Person originalTeammate = new PersonBuilder(TypicalPersons.DESC_A).build();
+        Person editedTeammate = new PersonBuilder(TypicalPersons.DESC_A)
             .withPersonName("Yi Lin").withEmail("geniaaz@hotmail.com").withPhone("349938211").build();
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -219,7 +218,7 @@ public class EditTeammateCommandTest {
     public void equal() {
 
         //editTeammate A
-        Person editedTeammateA = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
+        Person editedTeammateA = new PersonBuilder(TypicalPersons.DESC_A).build();
         EditTeammateCommand.EditTeammateDescriptor descriptorA = new EditTeammateDescriptorBuilder(
             editedTeammateA).withPhone("4838883").build();
 
@@ -227,7 +226,7 @@ public class EditTeammateCommandTest {
             descriptorA);
 
         //editTeammate B
-        Person editedTeammateB = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
+        Person editedTeammateB = new PersonBuilder(TypicalPersons.DESC_A).build();
         EditTeammateCommand.EditTeammateDescriptor descriptorB = new EditTeammateDescriptorBuilder(
             editedTeammateB).withPhone("4838883").build();
 
@@ -243,7 +242,7 @@ public class EditTeammateCommandTest {
             descriptorC);
 
         //editTeammate Name
-        Person editedTeammateName = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
+        Person editedTeammateName = new PersonBuilder(TypicalPersons.DESC_A).build();
         EditTeammateCommand.EditTeammateDescriptor descriptorName = new EditTeammateDescriptorBuilder(
             editedTeammateA).withTeammatetName("New Name").build();
 
@@ -251,7 +250,7 @@ public class EditTeammateCommandTest {
             descriptorName);
 
         //editTeammate Phone
-        Person editedTeammatePhone = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
+        Person editedTeammatePhone = new PersonBuilder(TypicalPersons.DESC_A).build();
         EditTeammateCommand.EditTeammateDescriptor descriptorPhone = new EditTeammateDescriptorBuilder(
             editedTeammateA).withTeammatetName("New Name").build();
 
@@ -259,7 +258,7 @@ public class EditTeammateCommandTest {
             descriptorPhone);
 
         //editTeammate Email
-        Person editedTeammateEmail = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
+        Person editedTeammateEmail = new PersonBuilder(TypicalPersons.DESC_A).build();
         EditTeammateCommand.EditTeammateDescriptor descriptorEmail = new EditTeammateDescriptorBuilder(
             editedTeammateA).withTeammatetName("New Name").build();
 
@@ -267,7 +266,7 @@ public class EditTeammateCommandTest {
             descriptorEmail);
 
         //editTeammate Address
-        Person editedTeammateAddress = new PersonBuilder(TypicalPersons.DESC_A_S.get()).build();
+        Person editedTeammateAddress = new PersonBuilder(TypicalPersons.DESC_A).build();
         EditTeammateCommand.EditTeammateDescriptor descriptorAddress = new EditTeammateDescriptorBuilder(
             editedTeammateA).withTeammatetName("New Name").build();
 
