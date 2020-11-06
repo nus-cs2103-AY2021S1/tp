@@ -30,15 +30,11 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the assignment identified "
-            + "by the index number used in the displayed assignment list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD
+            + " INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_MODULE_CODE + "MODULE CODE] "
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "01-01-2020 1800 ";
+            + "[" + PREFIX_MODULE_CODE + "MODULE CODE] ";
 
     public static final String MESSAGE_EDIT_ASSIGNMENT_SUCCESS = "Edited Assignment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

@@ -40,9 +40,23 @@ Wondering what each icon is used for? You can refer to the table below to find o
 
 All commands and their examples are demarcated with `markups`. `Markups` appear as a grey box as shown.
 
-You can find out more about the command terminologies here:
+### Date and time format
 
-* Prefix: An indicator to identify your input.
+All commands with date and/or time parameters have a specific format you must follow, else your input will be deemed as invalid.
+
+#### Date
+
+Date parameters must be in the format `dd-MM-yyyy`, where `dd` is day of the month, `MM` is month and `yyyy` is year. The number of repeated letters indicate the number of digits required for day of the month, month and year. 
+
+For example, `dd` means that the day of the month has to be a 2-digit number. Hence, for dates you want to input from the 1st to the 9th of any month, you must key in `09-01-2020`. `9-01-2020` will be deemed as invalid.
+
+Likewise for month and year, `09-1-2020` and `09-01-20` will be deemed as invalid.
+
+#### Time
+
+Time parameters must be in the format `HHmm`, where `HH` is the hour of the day and `mm` is the minute of the hour. You must input the time according to the 24-hour clock system.
+
+For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -199,6 +213,12 @@ Here is an example with steps for you to follow:
 ![ListCommand2](images/ListCommandDiagram2.png)
 *Figure X: The displayed message and the updated list*
 
+<div markdown="span" class="alert alert-success">
+
+**:bulb: Tip:**
+You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
+</div>
+
 More examples: 
 - `list`
 - `list 7`
@@ -224,12 +244,11 @@ You can find assignments with multiple keywords of the same type to widen your s
 
 This is the table of prefixes used:
 
-| Prefix | Syntax | Examples |
+| Prefix | Syntax | Example |
 |-|-|-|
-| `n/` | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | - `n/Tutorial`<br>- `n/tutorial essay` |
-| `mod/` | mod/MODULE_CODE [MORE MODULE_CODE] | - `mod/ST2334`<br>- `mod/CS2100 cs2103t` |
-| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | - `d/24-10-2020` <br>- `d/1200`<br>- `d/1300 25-11-2020` |
-| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | - `p/high`<br>- `p/LOW` |
+| `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
+| `mod/` | mod/MODULE_CODE | - `mod/ST2334` |
+| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
 
 <div markdown="block" class="alert alert-primary">
 
@@ -257,7 +276,6 @@ Here is an example with steps to follow:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* `DATE_OR_TIME_OF_ASSIGNMENT` has date in the format **dd-MM-yyyy** and time in the format **HHmm** (24 hour).
 * You can only **find assignments with keywords of the same prefix**. For example, `find n/Assignment d/23-10-2020` will not work.
 </div>
 
@@ -310,31 +328,32 @@ Here is an example with steps to follow:
 
 Format: `remind INDEX [MORE_INDEXES]`
 
-You can set reminders for specific assignments which will be displayed in `Your Reminders` (Highlighted in red in the figure below) for your easy referral.
+You can set reminders for specific assignments which will be displayed in `Your reminders` (Highlighted in red in the figure below) for your easy referral.
 
    ![YourReminders](images/YourReminders.png)
-   *Figure X: `Your Reminders` highlighted in red*
+   *Figure X: `Your reminders` highlighted in red*
 
 You can use the `INDEX` of the assignment as shown in your assignment list to set reminders for that assignment. 
 
-For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the Figure X) and adds it to `Your Reminders` (Figure X).
+For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the Figure X) and adds it to `Your reminders` (Figure X).
 
    ![Remind1](images/Remind1.png)
-   *Figure X: Before "Statistics tutorial" is added into `Your Reminders`*
+   *Figure X: Before "Statistics tutorial" is added into `Your reminders`*
       
    ![Remind1InYourReminders](images/Remind1InYourReminders.png)
-   *Figure X: "Statistics tutorial" (highlighted in red) is added into `Your Reminders`*
+   *Figure X: "Statistics tutorial" (highlighted in red) is added into `Your reminders`*
 
-You can set reminders for **more than one** assignments at a time as well. 
+You can set reminders for **more than one** assignments at a time as well. Here is an example with steps for you to follow:
 
-For example, `remind 2 4` will set reminders for the second and fourth assignment in your assignment list ("Essay" and "Assignment 3" respectively as shown in Figure X) and adds both assignments to `Your Reminders` (Figure X).
-
+1) To set reminders assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your assignment list as shown in Figure X), you can simply enter `remind 2 4` into the Command Box.
 
    ![Remind24](images/Remind24.png)
-   *Figure X: Before "Essay" and "Assignment 3" are added into `Your Reminders`*
-      
+   *Figure X: Before "Essay" and "Assignment 3" are added into `Your reminders`*
+
+2) You have successfully set reminders for both assignments, and they can now be found under `Your reminders`.
+
    ![Remind24InYourReminders](images/Remind24InYourReminders.png)
-   *Figure X: "Essay" and "Assignment 3" (highlighted in red) are added into `Your Reminders`*
+   *Figure X: "Essay" and "Assignment 3" (highlighted in red) are added into `Your reminders`*
 
 
 <div markdown="block" class="alert alert-primary">
@@ -349,21 +368,21 @@ For example, `remind 2 4` will set reminders for the second and fourth assignmen
 
 Format: `unremind INDEX`
 
-You can remove your reminded assignments from `Your Reminders` by specifying the `INDEX` of the assignment as shown in your **reminded assignments list**. 
+You can remove your reminded assignments from `Your reminders` by specifying the `INDEX` of the assignment as shown in `Your reminders`. 
 
-For example, `unremind 1` will remove the first assignment in `Your Reminders` ("CS2106 Lab" as shown in the figure below).
+For example, `unremind 1` will remove the first assignment in `Your reminders` ("CS2106 Lab" as shown in the figure below).
 
    ![Unemind1](images/Unremind1.png)
-   *Figure X: Before "Statistics tutorial" (highlighted in red) is removed from `Your Reminders`*
+   *Figure X: Before "Statistics tutorial" (highlighted in red) is removed from `Your reminders`*
       
    ![Unremind1YourReminders](images/Unremind1YourReminders.png)
-   *Figure X: "Statistics tutorial" is removed from`Your Reminders`*
+   *Figure X: "Statistics tutorial" is removed from`Your reminders`*
 
 <div markdown="block" class="alert alert-primary">
   
 **:clipboard: Pointers to note:**<br>
 * At least one `INDEX` must be present. For example, `unremind` will not work.
-* The `INDEX` must be found in `Your Reminders`.
+* The `INDEX` must be found in `Your reminders`.
 
 </div>
 
