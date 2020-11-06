@@ -4,7 +4,10 @@ title: Developer Guide
 ---
 
 ## Table of Contents <a id="toc"></a>
-1. [Setting Up, Getting Started](#1-setting-up-getting-started)
+1. [Overview](#1-overview)
+    - [1.1. Introduction](#11-introduction)
+    - [1.2. Purpose](#12-Purpose)
+    - [1.3 Setting Up, Getting Started](#13-setting-up-getting-started)
 2. [Design](#2-design)
     - [2.1. Architectre](#21-architecture)
     - [2.2. UI Component](#22-ui-component)
@@ -97,7 +100,29 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. **Setting Up, Getting Started** <a id="1-setting-up-getting-started"></a>
+## 1. **Overview** <a id="1-overview"></a>
+Welcome to the Wishful Shrinking Developer Guide! In this section, you will be given an overview of what Wishful
+ Shrinking is about and what you can get out of reading this document.
+ 
+## 1.1 Introduction <a id="11-introduction"></a>
+Wishful Shrinking is a desktop diet manager. It is an app that helps users **manage their on-hand ingredients
+, organise personal recipes and track their diet**. Wishful Shrinking facilitates a **healthier diet** in three
+ main ways: 
+1. Provide a **source of healthy, customizable recipes** 
+2. **Recommend recipes** to improve ease of home cooking 
+3. **Track daily food and calorie** intake<br><br>
+
+Wishful Shrinking targets **office workers** who tend to discount healthy eating. Office workers are also more
+ familiar with desktop applications and typing and correspondingly, Wishful Shrinking is optimized for fast and efficient typers as it uses a Command Line Interface (CLI) with the added beauty of a Graphical User Interface (GUI).
+ Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.
+ 
+## 1.2 Purpose <a id="12-purpose"></a>
+This developer guide provides in-depth documentation on Wishful Shrinking is designed and implemented. This
+ document contains detailed specifications on **program source code**, **design decisions**, and **architecture
+  descriptions**. It will show how every part of the software work independently and as a whole to provide the
+   best experience for the user.
+
+## 1.3 **Setting Up, Getting Started** <a id="13-setting-up-getting-started"></a>
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -480,12 +505,34 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After the successful editing of the recipe, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### 3.5.2 Design Considerations(**Edit Recipe**) <a id="352-design-consideration-edit-recipe"></a>
-##### Aspect: Concern while adding a new feature <a id="3521-aspect"></a>
-* Workflow must be consistent with other commands.
+##### Aspect 1: Concern while adding a new feature <a id="3521-aspect"></a>
+* Workflow must be consistent with other edit commands e.g edit ingredient command.
+
+##### Aspect 2: How do we provide users with ease in editing an ingredient 
+* **Alternative 1 (current choice):** User can directly edit the command that added the existing recipe
+  * Pros: Easy for users to edit a recipe.
+  * Cons: Involves another command to set the command box to the command of the recipe to edit.
+
+* **Alternative 2:** User need to retype the existing recipe's field if they want to modify using the existing
+ recipe
+  * Pros: Easy to implement.
+  * Cons: Not user friendly.
 
 #### 3.5.3 Design Considerations（**Edit Ingredient**) <a id="353-design-consideration-edit-ingredient"></a>
 ##### Aspect: Concern while adding a new feature <a id="3531-aspect"></a>
 * Workflow must be consistent with edit recipe command.
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other edit commands e.g edit recipe command.
+
+##### Aspect 2: How do we provide users with ease in editing an ingredient 
+* **Alternative 1 (current choice):** User can directly edit the command that added the existing ingredient
+  * Pros: Easy for users to edit an ingredient.
+  * Cons: Involves another command to set the command box to the command of the ingredient to edit.
+
+* **Alternative 2:** User need to retype the existing ingredient's field if they want to modify from the
+ existing ingredient
+  * Pros: Easy to implement.
+  * Cons: Not user friendly.
 
 #### 3.5.4 Common Design Consideration <a id="354-common-design-consideration"></a>
 ##### Aspect: How do we provide users with ease in editing an ingredient  <a id="3541-aspect"></a>
@@ -514,7 +561,7 @@ The following sequence diagram shows how get edit operation works when `execute(
 
 :information_source: **Note** 
 
-Some term in the sequence diagram above has changed to a common substitutable term:
+Some terms in the sequence diagram above has changed to a common substitutable term:
 
 * delete: `editR` or `editF`
 
@@ -541,7 +588,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 #### 3.6.3 Design Considerations (**Get Edit Ingredient**) <a id="363-design-consideration-get-edit-ingredient"></a>
 ##### Aspect: Concern while adding a new feature <a id="3631-aspect"></a>
-* Workflow must be consistent with other get edit commands e.g get edit recipe command.
+* Workflow must be consistent with other get edit commands.
 
 ### 3.7 Select Recipe Feature <a id="37-select-recipe-features"></a>
 Select Recipe features allows users to get the existing recipe from the recipe list.
@@ -816,6 +863,55 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 
       Use case resumes at step 2.
       
+**Use case: Getting a recipe to edit**
+
+**MSS**
+
+  1. User requests to view the recipes in the recipe collection.
+  1. Wishful Shrinking shows a list of recipes that are in the recipe collection.
+  1. User requests to edit a specific recipe in the list.
+  1. Wishful Shrinking displays the recipe in the command box for the user to directly edit on.
+
+     Use case ends.
+     
+     
+**Extensions**
+
+* 2a. The list of recipes is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Wishful Shrinking shows an error message.
+
+      Use case resumes at step 2.
+      
+**Use case: Edit recipe**
+
+**MSS**
+
+  1. User edits a recipe in the recipe list.
+  1. Wishful Shrinking edits the specified recipe and saves it in the recipe list.
+
+     Use case ends.
+     
+**Extensions**
+
+* 1a. The new recipe is a duplicate recipe.
+    * 3a1. Wishful Shrinking shows an error message.
+    * 3a2. User enters new recipe data.
+    Steps 3a1-3a2 are repeated until the data enter is valid.
+    
+    Use case resumes from step 2.
+
+* 1a. The given index is invalid. 
+
+ * 3a1. Wishful Shrinking shows an error message.
+
+   Use case ends.
+  
+      
 **Use case: Search for recipe**
 
 **MSS**
@@ -890,6 +986,54 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
     * 3a1. Wishful Shrinking shows an error message.
 
       Use case resumes at step 2.
+	  
+**Use case: Getting an ingredient to edit**
+
+**MSS**
+
+  1. User requests to view the ingredients in the fridge.
+  1. Wishful Shrinking shows a list of ingredients that are in the fridge.
+  1. User requests to edit a specific ingredient in the fridge.
+  1. Wishful Shrinking displays the ingredient in the command box for the user to directly edit on.
+
+     Use case ends.
+     
+**Extensions**
+
+* 2a. The fridge is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Wishful Shrinking shows an error message.
+
+      Use case resumes at step 2.
+	  
+**Use case: Edit ingredient**
+
+**MSS**
+
+  1. User edits an ingredient in the fridge.
+  1. Wishful Shrinking edits the specified ingredient and saves it in the fridge.
+
+     Use case ends.
+     
+**Extensions**
+
+* 1a. The new ingredient is a duplicate ingredient.
+    * 3a1. Wishful Shrinking shows an error message.
+    * 3a2. User enters new data.
+    Steps 3a1-3a2 are repeated until the data enter is valid.
+    
+    Use case resumes from step 2.
+
+* 1a. The given index is invalid. 
+
+ * 1a1. Wishful Shrinking shows an error message.
+
+   Use case ends.
+  
 	  
 **Use case: Search for ingredient**
 
@@ -992,6 +1136,24 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
   1. Wishful Shrinking shows all valid commands.
 
      Use case ends.
+**Use case: Select a recipe in the recipe list**
+
+**MSS**
+
+  1. User requests to view a single recipe.
+  1. Wishful Shrinking opens a drawer that contains only the requested recipe.
+  1. User requests to close the drawer.
+  1. Wishful Shrinking closes the drawer.
+
+     Use case ends.
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. Wishful Shrinking shows an error message.
+
+      Use case ends.
+
 
 *{More to be added}*
 
@@ -1064,6 +1226,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Test case: deleting name field from a recipe in the WishfulShrinking.json data file.
+      Expected: When the app is re-run, the corrupt data file will be detected and all the data in the file will be
+       wiped out, causing the app to run with an empty data file.
+       
+   1. Test case: modify WishfulShrinking.json data file.
+      Expected: If data file is still in the correct format, the app will run with the new data file as normal
+      . But if the data file becomes unreadable by the program, then all the data in the file will be wiped out, causing
+       the app to run with an empty data file.
+       
+   1. Test case: delete WishfulShrinking.json data file.
+      Expected: If WishfulShrinking.json file cannot be found, the app will create the data file populated with
+       sample recipes.
+ 
