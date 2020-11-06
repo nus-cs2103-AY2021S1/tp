@@ -1,6 +1,9 @@
 package seedu.address.model.module.gradetracker;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_1;
