@@ -5,6 +5,7 @@ import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+
 import chopchop.commons.util.Pair;
 
 public abstract class Usage {
