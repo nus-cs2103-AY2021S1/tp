@@ -521,9 +521,9 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 You can reschedule by using the schedule command on that assignment again.<br>
 
 1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the diagram below.<br>
-
    ![UserGuideReschedule](images/UserGuideReschedule.PNG)
    *Figure 20a: Index of the assignment to reschedule labelled*
+   
 <div markdown="span" class="alert alert-success">
 **:bulb: Tip:**
 You can copy the entire command if you intend to reschedule the assignment more than once. 
@@ -536,7 +536,7 @@ You can paste the command into the command box after step 2 and repeat step 1-2 
    *Figure 20b: New suggested time for assignment labelled*
 <br>
 
-**Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?
+**Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?<br>
 **A**: <br>
 *For Windows Users:*
 1. Open the folder where you have downloaded and saved the productivenus.jar file.
