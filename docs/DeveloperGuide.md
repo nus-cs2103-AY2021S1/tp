@@ -412,12 +412,37 @@ _{Explain here how the data archiving feature will be implemented}
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                                   | So that I can…​                                                                 |
-| -------- | ------------------------------------------ | ------------------------------------------------- | -------------------------------------------------------------------- |
-| `* * *`  | user                                       | exit the app                                      |                                                                      |
-| `* * *`  | user                                       | add an expense/revenue entry                       |                                                                      |
-| `* * *`  | user                                       | delete an entry                                   | remove entries that I no longer need                                 |
-| `* *`    | user                                       | have multiple accounts for different businesses   | keep expense/earning entries for the respective businesses separate  |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *` | user | be able to exit the app |  |
+| `* * *` | user | be able to add my expense/revenues entries to the userboard |  |
+| `* * *` | user                              | be able to delete my expense/revenue entries from the userboard |  |
+| `* * *`  | user                                | view my expenditure by category |                  |
+| `* * *`  | user                                       | be able to view a help FAQ on the functionality of the program | navigate through the different aspects of it |
+| `* * *`  | user                                       | be able to save my tasks and load them when the app is re-opened |                                    |
+| `* * *`  | user with many side businesses    | keep my accounts and expenses separate                       | understand where my inflow and outflow of finances come from |
+| `* * *`  | user                              | have my expenses/revenues be calculated on demand            |                                                              |
+| `* * *` | clumsy user | be able to edit my expense/revenues | fix wrongly keyed-in information |
+| `* * *` | user | be able to view my net profits on the userboard |  |
+| `* * *` | clumsy user | be able to undo my commands | to reverse unwanted/wrong commands |
+| `* * *` | fast typist | be able to maximize my typing speed |  |
+| `* * *` | user | have commands that are short but as intuitive as possible |  |
+| `* * *` | user who as an eye for aesthetics | have an app that is elegant and visually appealing | be encouraged to use the app more |
+| `* * *` | user | have an app that is intuitive and easy to use | easily navigate through it |
+| `* * *` | user with limited time | have an app that is user friendly and efficient |  |
+|          |                                   |                                                              |                                                              |
+|          |                                   |                                                              |                                                              |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
 
 *{More to be added}*
 
