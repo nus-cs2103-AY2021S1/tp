@@ -521,6 +521,7 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 You can reschedule by using the schedule command on that assignment again.<br>
 
 1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the diagram below.<br>
+
    ![UserGuideReschedule](images/UserGuideReschedule.PNG)
    *Figure 20a: Index of the assignment to reschedule labelled*
 <div markdown="span" class="alert alert-success">
@@ -542,13 +543,16 @@ You can paste the command into the command box after step 2 and repeat step 1-2 
 2. Copy the file directory of the folder. You can refer to the labelled diagram below.<br>
    ![UserGuideLocateDirectory](images/UserGuideLocateDirectory.PNG)
    *Figure 21a: File directory labelled*
+   
 3. Open your command prompt. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
 4. Your command prompt will start, and it should look something similar to the diagram below.<br>
    ![UserGuideCommandPrompt](images/UserGuideCommandPrompt.PNG)
    *Figure 21b: Interface of Command Prompt*
+   
 4. In the command prompt, type `cd ` and paste the file directory that you have copied in step 2.
 <br>For example, `cd C:\Users\YourUserName\Desktop\ProductiveNUS`.
 5. Press ENTER and the file directory will be shown in the command prompt as shown in the diagram below.<br>
    ![UserGuideChangeDirectory](images/UserGuideChangeDirectory.PNG)
    *Figure 21c: After changing file directory in Command Prompt*
+   
 6. Finally, type `java -jar productivenus.jar` and press ENTER to start the app.
