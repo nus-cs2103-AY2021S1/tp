@@ -852,6 +852,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Clearing all flashcards
 
+1. Clearing all flashcards in flashcard deck
+
+     1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+                how to add a flashcard if flashcard deck is empty.
+                
+     1. Test case: `clear` <br>
+        Expected: Flashcard list panel updates to show no flashcard stored in the flashcard deck. Result display will output
+                a success message: `Flashcard Deck has been cleared!`
+     
 ### Filtering for flashcards
 
 ### Favouriting a flashcard
