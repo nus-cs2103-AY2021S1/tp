@@ -128,7 +128,7 @@ Format: `help`
 
 Closes the application for the user.
 
-Format: `exit
+Format: exit
 
 ### List all projects in the catalogue `listprojects`
 
