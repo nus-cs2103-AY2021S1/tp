@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalVendors.getTypicalVendorManager;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,8 +18,8 @@ import seedu.address.model.vendor.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalVendorManager(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalVendorManager(), new UserPrefs());
 
     @Test
     public void equals() {

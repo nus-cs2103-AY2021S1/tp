@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.preset.Preset;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.vendor.ReadOnlyVendorManager;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage, PresetManagerStorage, ProfileManagerStorage {
+public interface Storage extends VendorManagerStorage, UserPrefsStorage, PresetManagerStorage, ProfileManagerStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -24,13 +24,13 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, PresetMan
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getVendorManagerFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyVendorManager> readVendorManager() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveVendorManager(ReadOnlyVendorManager vendorManager) throws IOException;
 
     @Override
     Path getPresetManagerFilePath();

@@ -1,18 +1,16 @@
-package seedu.address.model;
+package seedu.address.model.vendor;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.vendor.UniqueVendorList;
-import seedu.address.model.vendor.Vendor;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class VendorManager implements ReadOnlyVendorManager {
 
     private final UniqueVendorList vendors;
     private int vendorIndex;
@@ -31,23 +29,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Default vendor index is -1. Assumes that there is no vendor chosen yet.
      */
-    public AddressBook() {
+    public VendorManager() {
         this.vendorIndex = -1;
     }
 
     /**
-     * Creates an AddressBook using the Vendors in the {@code toBeCopied}
+     * Creates an VendorManager using the Vendors in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public VendorManager(ReadOnlyVendorManager toBeCopied) {
         this();
         resetData(toBeCopied);
     }
 
     /**
-     * Sets the vendorIndex of the AddressBook to {@code vendorIndex}. This method is only called when
+     * Sets the vendorIndex of the VendorManager to {@code vendorIndex}. This method is only called when
      * the selectVendor method is called.
      */
-    private AddressBook(List<Vendor> vendors, int vendorIndex) {
+    private VendorManager(List<Vendor> vendors, int vendorIndex) {
         setVendors(vendors);
         this.vendorIndex = vendorIndex;
     }
@@ -64,9 +62,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code VendorManager} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyVendorManager newData) {
         requireNonNull(newData);
         setVendors(newData.getVendorList());
         selectVendor(newData.getVendorIndex());
@@ -115,7 +113,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code VendorManager}.
      * {@code key} must exist in the address book.
      */
     public void removeVendor(Vendor key) {
@@ -138,9 +136,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && vendors.equals(((AddressBook) other).vendors))
-                && this.getVendorIndex() == ((AddressBook) other).getVendorIndex();
+                || (other instanceof VendorManager // instanceof handles nulls
+                && vendors.equals(((VendorManager) other).vendors))
+                && this.getVendorIndex() == ((VendorManager) other).getVendorIndex();
     }
 
     @Override

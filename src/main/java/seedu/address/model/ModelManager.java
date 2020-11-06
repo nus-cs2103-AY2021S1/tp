@@ -23,7 +23,10 @@ import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.OrderManager;
 import seedu.address.model.order.ReadOnlyOrderManager;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.ReadOnlyVendorManager;
 import seedu.address.model.vendor.Vendor;
+import seedu.address.model.vendor.VendorManager;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -31,7 +34,7 @@ import seedu.address.model.vendor.Vendor;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VendorManager vendorManager;
     private final List<MenuManager> menuManagers;
     private final OrderManager orderManager;
 
@@ -41,15 +44,15 @@ public class ModelManager implements Model {
     private boolean isSortedAsc = false;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given vendorManager and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyVendorManager vendorManager, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(vendorManager, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + vendorManager + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.vendorManager = new VendorManager(vendorManager);
         this.menuManagers = new ArrayList<>();
         this.orderManager = new OrderManager();
 
@@ -57,27 +60,27 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Initializes a ModelManager with the given addressBook, userPrefs, menuManager and orderManager.
+     * Initializes a ModelManager with the given vendorManager, userPrefs, menuManager and orderManager.
      */
     public ModelManager(
-            ReadOnlyAddressBook addressBook,
+            ReadOnlyVendorManager vendorManager,
             ReadOnlyUserPrefs userPrefs,
             List<MenuManager> menuManagers,
             OrderManager orderManager
     ) {
         super();
-        requireAllNonNull(addressBook, userPrefs, menuManagers, orderManager);
+        requireAllNonNull(vendorManager, userPrefs, menuManagers, orderManager);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + vendorManager + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.vendorManager = new VendorManager(vendorManager);
         this.userPrefs = new UserPrefs(userPrefs);
         this.menuManagers = menuManagers;
         this.orderManager = orderManager;
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new ArrayList<>(), new OrderManager());
+        this(new VendorManager(), new UserPrefs(), new ArrayList<>(), new OrderManager());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -105,37 +108,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getVendorManagerFilePath() {
+        return userPrefs.getVendorManagerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setVendorManagerFilePath(Path vendorManagerFilePath) {
+        requireNonNull(vendorManagerFilePath);
+        userPrefs.setVendorManagerFilePath(vendorManagerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== VendorManager ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setVendorManager(ReadOnlyVendorManager vendorManager) {
+        this.vendorManager.resetData(vendorManager);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyVendorManager getVendorManager() {
+        return vendorManager;
     }
 
     @Override
     public boolean hasVendor(Vendor vendor) {
         requireNonNull(vendor);
-        return addressBook.hasVendor(vendor);
+        return vendorManager.hasVendor(vendor);
     }
 
     @Override
     public void selectVendor(int vendorIndex) {
-        this.addressBook.selectVendor(vendorIndex);
+        this.vendorManager.selectVendor(vendorIndex);
         if (vendorIndex != -1) {
             this.filteredMenuItems = new FilteredList<>(this.menuManagers.get(vendorIndex).getMenuItemList());
         }
@@ -143,17 +146,17 @@ public class ModelManager implements Model {
 
     @Override
     public int getVendorIndex() {
-        return this.addressBook.getVendorIndex();
+        return this.vendorManager.getVendorIndex();
     }
 
     @Override
     public boolean isSelected() {
-        return this.addressBook.getVendorIndex() != -1;
+        return this.vendorManager.getVendorIndex() != -1;
     }
 
     @Override
     public ObservableList<Vendor> getObservableVendorList() {
-        return addressBook.getVendorList();
+        return vendorManager.getVendorList();
     }
     //=========== MenuManager ================================================================================
 
@@ -325,7 +328,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return vendorManager.equals(other.vendorManager)
                 && userPrefs.equals(other.userPrefs);
     }
 
