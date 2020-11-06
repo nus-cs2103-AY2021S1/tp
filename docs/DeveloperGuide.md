@@ -788,6 +788,7 @@ testers are expected to do more *exploratory* testing.
 ### Adding a flashcard
 
 1. Adding a flashcard when in main window of application
+
    1. Prerequisites: Application must be in main window and not in review or quiz mode.
    
    1. Test case (specifying compulsory inputs only): `add q/Does software projects often involve workflows? a/Yes` <br>
@@ -798,26 +799,26 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case (missing a compulsory input (`a/ANSWER`)): `add q/What does SWE stand for?` <br>
        Expected: No flashcard added to the list of flashcards and input text will turn red to signal an error.
-       Result display will output the message:  `Invalid command format! 
-                                                add: Adds a flashcard to the list of flashcards.
-                                                Parameters: q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [t/TAG]... [d/DIAGRAM]
-                                                Example: add q/What does OOP stand for? a/Object-Oriented Programming c/Acronyms n/Important question to take note of! r/2 t/exam d/images/diagram_1.png`
+       Result display will output the invalid command error message.
+   
+   1. Test case (missing a compulsory input (`q/QUESTION`)): `add a/Software Engineering` <br>
+       Expected: No flashcard added to the list of flashcards and input text will turn red to signal an error.
+       Result display will output the invalid command error message.
+       
 ### Deleting a flashcard
 
 1. Deleting a flashcard while all flashcards are being shown
 
-   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
+   1. Prerequisites: List all flashcards using the `list` command. At least one flashcard in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message. Timestamp in the status bar is updated.
+      Expected: First flashcard is deleted from the list of flashcards. Details of the deleted flashcard shown in the result display. 
 
    1. Test case: `delete 0`<br>
-      Expected: No flashcard is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No flashcard is deleted from the list of flashcards. Invalid command error message shown in the result display.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size or x is a negative integer)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
