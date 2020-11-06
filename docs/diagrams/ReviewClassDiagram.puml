@@ -19,6 +19,6 @@ Package Logic {
 StudyPanel <|-- ReviewPanel
 StudyPanel *--> StudyManager
 StudyPanel ---> MainWindow
-MainWindow ---> ReviewPanel
+MainWindow <...> ReviewPanel
 
 @enduml
