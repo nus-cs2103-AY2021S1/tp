@@ -9,11 +9,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
-
 import java.util.HashMap;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
@@ -51,6 +48,7 @@ public class AssignCommandTest {
         AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, ALICE.getGitUserNameString());
 
         assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        Project.getAllProjects().clear();
     }
 
     @Test
@@ -66,6 +64,7 @@ public class AssignCommandTest {
 
         assertCommandFailure(assignCommand, model, String.format(
                 Messages.MESSAGE_REASSIGNMENT_OF_SAME_TASK_TO_SAME_PERSON, assignee.getAssigneeName()));
+        Project.getAllProjects().clear();
     }
 
     @Test
@@ -95,6 +94,7 @@ public class AssignCommandTest {
                 .getParticipation(ALICE.getGitUserNameString()).addTask(taskToAssign);
 
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
+        Project.getAllProjects().clear();
     }
 
     @Test
@@ -122,6 +122,7 @@ public class AssignCommandTest {
                 .getParticipation(ALICE.getGitUserNameString()).addTask(taskToAssign);
 
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
+        Project.getAllProjects().clear();
     }
 
     @Test
