@@ -13,7 +13,8 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
      */
     @Override
     public ProfileCommand parse(String args) throws ParseException {
-        String trimArgs = args.trim();
+        String cleanedArgs = args.replaceAll("( )+", " ");
+        String trimArgs = cleanedArgs.trim();
         int firstSpace = trimArgs.indexOf(' ');
         String[] argsArr = new String[2];
         argsArr[0] = trimArgs;
