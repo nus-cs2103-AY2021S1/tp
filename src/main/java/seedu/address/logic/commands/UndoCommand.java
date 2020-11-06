@@ -17,20 +17,28 @@ public class UndoCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_UNDO_SUCCESS = "Successfully undo the most recent command.";
+    public static final String MESSAGE_INCORRECT_FORMAT = "Invalid command format! \nFormat: undo";
     public static final String MESSAGE_UNDO_FAIL = "No recent command.";
+
+    private final String userInput;
 
     /**
      * Constructs a UndoCommand to undo the most recent command.
      */
-    public UndoCommand() {
-
+    public UndoCommand(String userInput) {
+        this.userInput = userInput;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
+        boolean hasNoArgument = userInput.trim().contentEquals("undo");
         Model previousModel = model.getPreviousModel();
+
+        if (!hasNoArgument) {
+            throw new CommandException(MESSAGE_INCORRECT_FORMAT);
+        }
+
         if (previousModel == null) {
             throw new CommandException(MESSAGE_UNDO_FAIL);
         }
