@@ -34,7 +34,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "- To edit the details of an assignment: edit 3 n/Lab 5\n"
             + "    *Tip: You can edit multiple fields, such as name, deadline and module code, "
             + "     of an assignment at the same using `n/`, `d/` and `mod/` prefixes respectively.\n"
-            + "- To schedule an assignment: schedule 3 hrs/2 by/10-11-2020 2359\n"
+            + "- To schedule an assignment: schedule 3 hrs/2 af/05-11-2020 1000 by/10-11-2020 2359\n"
             + "- To unschedule an assignment: unschedule 3\n"
             + "- To set reminders for an assignment shown in the list: remind 3\n"
             + "    *Tip: You can remind multiple assignments by including multiple indexes: remind 3 4 7\n"
