@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DO_AFTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DO_BEFORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPECTED_HOURS;
 
@@ -40,22 +41,24 @@ public class ScheduleCommand extends Command {
     public static final String MESSAGE_SCHEDULE_ASSIGNMENT_SUCCESS = "Schedule Assignment: %1$s";
     public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " INDEX (must be a positive integer) "
             + PREFIX_EXPECTED_HOURS + "EXPECTED HOURS (must be between " + MIN_HOURS + " and " + MAX_HOURS + " hours) "
-            + PREFIX_DO_BEFORE + "BEFORE ";
+            + PREFIX_DO_AFTER + "AFTER " + PREFIX_DO_BEFORE + "BEFORE";
 
     private static final LocalTime WORKING_START_TIME = LocalTime.parse(START_TIME, DateTimeFormatter.ISO_TIME);
     private static final LocalTime WORKING_END_TIME = LocalTime.parse(END_TIME, DateTimeFormatter.ISO_TIME);
 
     private final Index targetIndex;
     private final Deadline doBefore;
+    private final Deadline doAfter;
     private final int expectedHours;
 
     /**
      * Constructs a ScheduleCommand to set reminders to the specified assignment.
      * @param targetIndex index of the assignment in the filtered assignment list to edit
      */
-    public ScheduleCommand(Index targetIndex, int expectedHours, Deadline doBefore) {
+    public ScheduleCommand(Index targetIndex, int expectedHours, Deadline doAfter, Deadline doBefore) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
+        this.doAfter = doAfter;
         this.doBefore = doBefore;
         this.expectedHours = expectedHours;
     }
@@ -83,14 +86,18 @@ public class ScheduleCommand extends Command {
     }
 
     private Schedule createValidSchedule(Assignment assignmentToSchedule, List<Task> taskList) throws CommandException {
-        LocalDateTime newDeadline = doBefore.toLocalDateTime();
+        LocalDateTime after = doAfter.toLocalDateTime();
+        LocalDateTime before = doBefore.toLocalDateTime();
         if (assignmentToSchedule.getDeadline().isBefore(doBefore)) {
-            newDeadline = assignmentToSchedule.getDeadline().toLocalDateTime();
+            before = assignmentToSchedule.getDeadline().toLocalDateTime();
+        }
+        if (after.isBefore(LocalDateTime.now())) {
+            after = LocalDateTime.now();
         }
 
-        LocalDateTime nearestTime = roundToHour(LocalDateTime.now().plusHours(1));
+        after = roundToHour(after.plusMinutes(59));
 
-        List<LocalDateTime> possibleTime = generateAllPossibleTime(nearestTime, newDeadline, taskList);
+        List<LocalDateTime> possibleTime = generateAllPossibleTime(after, before, taskList);
 
         if (possibleTime.isEmpty()) {
             throw new CommandException("No possible schedule");
@@ -120,7 +127,7 @@ public class ScheduleCommand extends Command {
             // no overlap
             for (Task j: taskList) {
                 if (!haveNoOverlap(i, i.plusHours(expectedHours), j)) {
-                    if(canSchedule) {
+                    if (canSchedule) {
                         System.out.println(i + " " + j.getTime());
                     }
                     canSchedule = false;
@@ -134,7 +141,8 @@ public class ScheduleCommand extends Command {
     }
 
     private boolean isWorkingHour(LocalDateTime start, LocalDateTime end) {
-        return !start.toLocalTime().isBefore(WORKING_START_TIME) && !end.toLocalTime().isAfter(WORKING_END_TIME) && !end.toLocalTime().isBefore(WORKING_START_TIME);
+        return !start.toLocalTime().isBefore(WORKING_START_TIME) && !end.toLocalTime().isAfter(WORKING_END_TIME)
+                && !end.toLocalTime().isBefore(WORKING_START_TIME);
     }
 
     private boolean haveNoOverlap(LocalDateTime start, LocalDateTime end, Task task) {
