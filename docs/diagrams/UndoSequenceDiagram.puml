@@ -8,13 +8,13 @@ participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant ":ActiveAccount" as ActiveAccount MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
-participant ":CommonCents" as CommonCents MODEL_COLOR
 end box
-[-> LogicManager : execute(undo)
+[-> LogicManager : execute("undo")
 activate LogicManager
 
-LogicManager -> CommonCentsParser : parseCommand(undo)
+LogicManager -> CommonCentsParser : parseCommand("undo")
 activate CommonCentsParser
 
 create UndoCommand
@@ -30,15 +30,14 @@ deactivate CommonCentsParser
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoCommonCents()
+UndoCommand -> ActiveAccount : returnToPreviousState()
+activate ActiveAccount
+
+ActiveAccount -> UndoCommand
+deactivate ActiveAccount
+
+UndoCommand -> Model : setAccount()
 activate Model
-
-Model -> CommonCents : undo()
-activate CommonCents
-
-CommonCents -> CommonCents :resetData(ReadOnlyCommonCents)
-CommonCents --> Model :
-deactivate CommonCents
 
 Model --> UndoCommand
 deactivate Model

@@ -27,7 +27,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,7 +62,7 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AccountListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -78,32 +78,34 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/logic/Logic.java)
 
 1. `Logic` uses the `CommonCentsParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+1. The command execution can either affect the `ActiveAccount` which in turn affects the `Model` (e.g. adding an expense), 
+or affect the `Model` directly (e.g. adding an account).
+1. Based on the changes the command execution made, the `CommandResultFactory` generates a `CommandResult` object which encapsulates
+the result of the command execution and is passed back to the `Ui`,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteacc 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deleteacc 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteAccountCommandParser`, `DeleteAccountCommand` and `CommandResultFactory` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
 </div>
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the CommonCents data.
-* exposes an unmodifiable `ObservableList<Account>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores an unmodifiable list of Accounts.
 * does not depend on any of the other three components.
 
 
@@ -117,7 +119,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -125,13 +127,102 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.address.commons` package.
+Classes used by multiple components are in the `seedu.cc.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Undo feature
+
+#### Implementation
+
+The undo mechanism is facilitated by `ActiveAccountManager` which implements the interface `ActiveAccount`. The `ActiveAccountManager` 
+stores its previous state as an `ActiveAccount` attribute when a entry command is executed. On the other hand, the `ActiveAccount` sets the previous 
+state as its current state when the undo commands is executed. As such, it implements the following operations:
+
+* `ActiveAccountManager#setPreviousState()` — Saves a copy of the current `ActiveAccountManager` state as an attribute in `ActiveAccountManager`.
+* `ActiveAccountManager#returnToPreviousState()` — Restores the previous `ActiveAccountManager` state from its attribute.
+
+These operations are exposed in the `ActiveAccount` interface as `ActiveAccount#setPreviousState()` and `ActiveAccount#returnToPreviousState()` respectively.
+
+Given below is an example usage scenario and how the undo mechanism behaves at each step.
+
+Prelude. When the user first runs Common Cents, `ActiveAccountManager` does not store any previous states as shown in the diagram below.
+
+![UndoState0](images/UndoState0.png)
+
+Step 1. The user executes `delete 5 c/expense` command to delete the 5th expense in the expense list in the Account in `ActiveAccountManager`. The `delete` command calls `ActiveAccountManager#setPreviousState()` initially, 
+causing a copy of the `ActiveAccountManager` state before the `delete 5 c/expense` command executes to be saved as an attribute. After this, the `delete 5 c/expense` command executes and the
+model is updated according to the modified account in ActiveAccount.
+
+![UndoState1](images/UndoState1.png)
+
+Step 3. The user executes `add c/expense …​` to add a new expense. The `add` command calls `ActiveAccountManager#setPreviousState()` initially, 
+causing a copy of the `ActiveAccountManager` state before the command executes to be saved as an attribute. After this, the `add c/expense …​` command executes and the
+model is updated according to the modified account in ActiveAccount.
+
+![UndoState2](images/UndoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `ActiveAccountManager#setPreviousState()`, so the state will not be saved into its attribute.
+
+</div>
+
+Step 4. The user now decides that adding the expense was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ActiveAccountManager#returnToPreviousState()`, 
+which will set data of the previous state attribute to the current `ActiveAccountManager`. 
+
+![UndoState3](images/UndoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `ActiveAccountManager` does not have a previous state 
+(i.e The `previousState` attribute in `ActiveAccountManager` is empty) then there are no previous `ActiveAccountManager` states to restore. 
+The `undo` command uses `Model#hasNoPreviousState()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**:
+
+ * The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+ * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+   of the undo command. 
+   
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![CommitActivityDiagram](images/CommitActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `ActiveAccountManager#setPreviousState()` is only called in `add`, `delete`, `edit`, and `clear` commands. 
+Hence, the `undo` command only works on the previously stated commands which interacts with entries.
+
+</div>
+
+#### Design consideration:
+
+##### Aspect: How undo executes
+
+* **Alternative 1 (current choice):** Saves the entire ActiveAccount.
+  * Pros: Easy to implement.
+  * Cons: 
+    * May have performance issues in terms of memory usage. 
+    * Only allow undo command to work for commands dealing with entries.
+  
+* **Alternative 2:** Saves the entire Model and ActiveAccount 
+  * Pros: More commands can be undone, for instance commands dealing with accounts.
+  * Cons: 
+    * May have performance issues in terms of memory usage. 
+    * We must ensure that the implementation avoids unnecessary changes to Model or ActiveAccount that can result in errors.
+
+* **Alternative 3:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the entry being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
 
 ### Edit account feature
 
@@ -142,7 +233,7 @@ is managed by `ActiveAccount` as well as the `Model`. As such, it implements the
 
 * `Account#setName(Name editedName)` — Sets the name of the account
 
-The operation is exposed in the `ActiveAccount` interface as `ActiveAccount#setName()`.
+This operation is exposed in the `ActiveAccount` interface as `ActiveAccount#setName()`.
 
 Given below is an example usage scenario and how the edit account mechanism behaves at each step.
 
@@ -164,9 +255,12 @@ The following sequence diagram shows how an edit account operation works:
 
 ![EditAccountSequenceDiagram](images/EditAccountSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
-such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
-of the edit account command.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+
+* The lifeline for `EditAccountCommandParser` and `EditAccountCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
+* Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the edit account command. 
+
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
@@ -188,13 +282,13 @@ The following activity diagram summarizes what happens when a user executes a ne
   solution.
   
 ##### Aspect: Mutability of account
-* **Choice:** Allowing Name attribute of Account to be mutated by EditCommand.
-  * Rationale: Initially, we implemented the Name attribute of Account to be immutable. However, we realize that it
-  is difficult to replace the name of the account if it is immutable. Hence, to overcome this obstacle, we decided
-  to make the Name attribute mutable.
-  * Implications: Extra precaution needs to be implemented, for instance creating new copies of account to prevent unnecessary
-  changes to accounts in account list.
-
+* **Choice:** Allowing name attribute of Account to be mutated by EditCommand.
+  * Rationale: Initially, we implemented the name attribute of Account to be immutable. However, we realize that it
+  is difficult to edit the name of the account if it is immutable. Hence, to overcome this obstacle, we decided
+  to make the name attribute mutable.
+  * Implications: Extra precaution needs to be implemented, for instance creating copies of account in methods that interacts
+  with the accounts to prevent unnecessary changes to accounts in account list. Hence, it resulted in more defensive coding 
+  which resulted in more lines of code.
 
 ### Find entries feature 
 
@@ -282,87 +376,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 ##### Aspect: How get total expenses/revenues executes:
 * Alternative 1 (current choice): Calculates the total expenses/revenues in the by retrieving the expense/revenue list. 
     * Pros: Easy to implement.
-    * Cons:
- 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedCommonCents`. It extends `CommonCents` with an undo/redo history, stored internally as an `commonCentsStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedCommonCents#commit()` — Saves the current CommonCents state in its history.
-* `VersionedCommonCents#undo()` — Restores the previous CommonCents state from its history.
-* `VersionedCommonCents#redo()` — Restores a previously undone CommonCents state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitCommonCents()`, `Model#undoCommonCents()` and `Model#redoCommonCents()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedCommonCents` will be initialized with the initial Common Cents state, and the `currentStatePointer` pointing to that single Common Cents state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the Common Cents. The `delete` command calls `Model#commitCommonCents()`, causing the modified state of the Common Cents after the `delete 5` command executes to be saved in the `commonCentsStateList`, and the `currentStatePointer` is shifted to the newly inserted Common Cents state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitCommonCents()`, causing another modified Common Cents state to be saved into the `commonCentsStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCommonCents()`, so the Common Cents state will not be saved into the `commonCentsStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCommonCents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous Common Cents state, and restores the Common Cents to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial CommonCents state, then there are no previous CommonCents states to restore. The `undo` command uses `Model#canUndoCommonCents()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoCommonCents()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the Common Cents to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `commonCentsStateList.size() - 1`, pointing to the latest Common Cents state, then there are no undone CommonCents states to restore. The `redo` command uses `Model#canRedoCommonCents()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the Common Cents, such as `list`, will usually not call `Model#commitCommonCents()`, `Model#undoCommonCents()` or `Model#redoCommonCents()`. Thus, the `commonCentsStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitCommonCents()`. Since the `currentStatePointer` is not pointing at the end of the `commonCentsStateList`, all Common Cents states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire Common Cents.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}
 
 ### \[Proposed\] Data archiving
 
@@ -399,16 +412,42 @@ _{Explain here how the data archiving feature will be implemented}
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                                   | So that I can…​                                                                 |
-| -------- | ------------------------------------------ | ------------------------------------------------- | -------------------------------------------------------------------- |
-| `* * *`  | user                                       | exit the app                                      |                                                                      |
-| `* * *`  | user                                       | add an expense/revenue entry                       |                                                                      |
-| `* * *`  | user                                       | delete an entry                                   | remove entries that I no longer need                                 |
-| `* *`    | user                                       | have multiple accounts for different businesses   | keep expense/earning entries for the respective businesses separate  |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *` | user | be able to exit the app |  |
+| `* * *` | user | be able to add my expense/revenues entries to the userboard |  |
+| `* * *` | user                              | be able to delete my expense/revenue entries from the userboard |  |
+| `* * *`  | user                                | view my expenditure by category |                  |
+| `* * *`  | user                                       | be able to view a help FAQ on the functionality of the program | navigate through the different aspects of it |
+| `* * *`  | user                                       | be able to save my tasks and load them when the app is re-opened |                                    |
+| `* * *`  | user with many side businesses    | keep my accounts and expenses separate                       | understand where my inflow and outflow of finances come from |
+| `* * *`  | user                              | have my expenses/revenues be calculated on demand            |                                                              |
+| `* * *` | clumsy user | be able to edit my expense/revenues | fix wrongly keyed-in information |
+| `* * *` | user | be able to view my net profits on the userboard |  |
+| `* * *` | clumsy user | be able to undo my commands | to reverse unwanted/wrong commands |
+| `* * *` | fast typist | be able to maximize my typing speed |  |
+| `* * *` | user | have commands that are short but as intuitive as possible |  |
+| `* * *` | user who as an eye for aesthetics | have an app that is elegant and visually appealing | be encouraged to use the app more |
+| `* * *` | user | have an app that is intuitive and easy to use | easily navigate through it |
+| `* * *` | user with limited time | have an app that is user friendly and efficient |  |
+|          |                                   |                                                              |                                                              |
+|          |                                   |                                                              |                                                              |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
 
 *{More to be added}*
 
-### Use cases
+### Use cases 
+(Update the number once all the use cases are done) (Comment)
 
 (For all use cases below, the **System** is the `CommonCents` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -416,62 +455,221 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add an expense entry
-2.  Common Cents adds the expense entry
+1.  User requests to add an expense
+2.  Common Cents adds the expense to expense list and displays success message.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given input is in invalid format.
+* 1a. The given command input is in invalid format.
 
     * 1a1. Common Cents shows an error message.
 
       Use case resumes at step 1.
 
 
-**Use case: UC02 - Add a revenue entry**
+**Use case: UC02 - Add a revenue**
 
 **MSS**
 
-1.  User requests to add revenue entry
-2.  Common Cents adds revenue entry
+1.  User requests to add revenue.
+2.  Common Cents adds revenue to revenue list and displays success message.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given input is in invalid format.
+* 1a. The given command input is in invalid format.
 
     * 1a1. Common Cents shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC03 - Delete an entry**
+**Use case: UC03 - Delete an expense**
 
 **MSS**
 
-1.  User requests to delete a specific entry
-2.  Common cents deletes the entry.
+1.  User requests to delete an expense.
+2.  Common cents deletes the expense.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
+* 1a. The given command input is in invalid format.
 
     * 1a1. Common cents shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC04 - Exiting app**
+**Use case: UC04 - Delete a revenue**
 
 **MSS**
 
-1.  User requests to exit
-2.  Common cents responds with exit message and closes.
+1.  User requests to delete an revenue.
+2.  Common Cents removes the revenue from the revenue list and displays success message.
 
     Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common cents shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC - Undoing an add command**
+
+**MSS**
+
+1.  User requests <u> add an expense (UC01)</u>.
+2.  User requests to undo command.
+3.  Common Cents returns to the state prior to the add command and displays success message.
+
+**Use case: UC - Undoing a delete command**
+
+**MSS**
+
+1.  User requests <u> delete an expense (UC03)</u>.
+2.  User requests to undo command.
+3.  Common Cents returns to the state prior to the delete command and displays success message.
+
+**Use case: UC - Undoing a edit command**
+
+**MSS**
+
+1.  User requests <u> edit an expense (UC)</u>.
+2.  User requests to undo command.
+3.  Common Cents returns to the state prior to the edit command and displays success message.
+
+
+**Use case: UC - Add an account**
+
+**MSS**
+
+1. User request to add a new account.
+2. Common Cents adds account to account list and displays success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1b. The account to be added has the same name as an existing account in Common Cents.
+
+    * 1b1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC - Listing accounts**
+
+**MSS**
+
+1.  User requests to list all the accounts
+2.  Common Cents displays the name of the accounts and their indices.
+
+    Use case ends.
+
+**Use case: UC - Delete a account**
+
+**MSS**
+
+1.  User requests <u> list all the account (UC)</u>.
+2.  User requests to delete account.
+3.  Common Cents removes the account from the account list and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given command input is in invalid format.
+
+    * 2a1. Common cents shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. Common Cents only has an account.
+
+    * 2b1. Common Cents shows an error message.
+    
+      Use case resumes at step 2.
+    
+* 2c. User is currently managing the account to be deleted.
+    * 2c1. Common Cents shows an error message.
+          
+      Use case resumes at step 2.
+
+**Use case: UC - Editing the account's name**
+
+**MSS**
+
+1.  User requests <u> list all the account (UC)</u>.
+2.  User requests to edit the account's name.
+3.  Common Cents edits the account name displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given command input is in invalid format.
+
+    * 2a1. Common cents shows an error message.
+
+      Use case resumes at step 2.
+      
+* 2b. The new account name is the same as a name of an existing account.
+
+    * 2b1. Common cents shows an error message.
+    
+      Use case resumes at step 2.
+      
+* 2c. The new account name is the same as the current name of the account.
+
+    * 2c1. Common cents shows an error message.
+    
+      Use case resumes at step 2.
+
+**Use case: UC - Switching to an account**
+
+**MSS**
+
+1.  User requests <u> list all the account (UC)</u>.
+2.  User requests to switch to another account.
+3.  Common Cents switches to another account and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given command input is in invalid format.
+
+    * 2a1. Common cents shows an error message.
+
+      Use case resumes at step 2.
+      
+* 2b. The user is already on the account to be switched.
+
+    * 2b1. Common cents shows an error message.
+    
+      Use case resumes at step 2.
+      
+**Use case: UC - Exiting app**
+    
+**MSS**
+
+1.  User requests to exit
+2.  Common Cents responds with exit message and closes.
+
+    Use case ends.
+
+
 
 *{More to be added}*
 
@@ -516,29 +714,84 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
-### Deleting a person
+### Entry-level commands
+1. Adding an entry while all entries are being shown
+   1. Prerequisites: List all entries using the `list` command.
+   
+   1. Test case: `add c/expense d/buying paint a/6.45 t/arts`<br>
+      Expected: Expense is added to the end of the expense list. Details of the expense added shown in the status message. 
+      Pie chart and total expense value are updated.
+      
+   1. Test case: `add c/revenue d/selling paintings a/25 t/arts`<br>   
+      Expected: Revenue  is added to the end of the revenue list. Details of the revenue added shown in the status message. 
+      Pie chart and total revenue value are updated.
+      
+   1. Test case: `add c/wronginput d/buying paint a/6.45 t/arts`<br>
+      Expected: No entry is added, Error details shown in the status message
+      
+   1. Other incorrect add commands to try: `add `, `add c/expense d/ a/6.45`, `add c/revenue d/selling paintings a/x`(where x is not a valid monetary value).<br>
+      Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
-1. Deleting a person while all persons are being shown
+1. Deleting a entry while all entries are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all entries using the `list` command. Multiple entries in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete 1 c/expense`<br>
+      Expected: First expense is deleted from the expense list. Details of the deleted expense entry shown in the status message. 
+      Pie chart and total expense value are updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete 1 c/revenue`<br>
+      Expected: First revenue is deleted from the expense list. Details of the deleted revenue shown in the status message. 
+      Pie chart and total revenue value
+      
+   1. Test case: `delete 0 c/expense`<br>
+      Expected: No expense entry is deleted. Error details shown in the status message. 
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Other incorrect delete commands to try: `delete 0 c/revenue`, `delete x` (where x is larger than the account list size or smaller than 1), `...`.<br>
+      Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
-1. _{ more test cases …​ }_
+
+1. Undoing an entry-level command
+
+   1. Prerequisites: Use at least one add, edit or delete `command`.
+   
+   1. Test case: `undo`<br>
+   Expected: Previous add, edit or delete command is reverted. Success message of the undo command will be shown in the status message. 
+   Pie chart is reverted to the state prior to the previous command.
+   
+### Account-level commands
+1. Adding a new unique account
+   1. Prerequisite: Ensure no accounts in Common Cents has the name `New Account`.
+
+   1. Test case: `newacc n/New Account`<br>
+      Expected: New account is added to Common Cents. (use `listacc` command to check) First expense entry is deleted from the expense list. 
+      Details of the added account is shown in the status message.
+   
+   1. Test case: `newacc n/`<br>
+      Expected: No account is added. Error details shown in the status message.
+      
+   1. Other incorrect add account commands to try: `newacc`.<br>
+      Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
+         
+1. Deleting an account
+   1. Prerequisite: Have at least two account, and be on the first account. (use `listacc` command to check)
+   
+   1. Test case: `deleteacc 2`<br>
+      Expected: Second account is deleted from the account list. (use `listacc` command to check) 
+      Details of the deleted account is shown in the status message.
+      
+   1. Test case: `deleteacc 0`<br>
+      Expected: No account is deleted. Error details shown in the status message.
+      
+   1. Test case: `deleteacc`, `delete x` (where x is larger than the account list size or smaller than 1)
+      Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Prerequisite: Remove commonCents.json in data folder in the home folder.
+   1. Launch Common Cent via CLI
+       1. Expected: CLI displays log stating that data file is not found and a sample data is loaded. Common Cents
+       launches with two accounts, `Default Account 1` and `Default Account 2` and each account has sample expenses and revenues.

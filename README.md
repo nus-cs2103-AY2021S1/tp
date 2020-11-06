@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* Common Cents is a **money-tracking app** to help students to organise their expenses **operating small businesses**.<br>
+* Common Cents is a **money-tracking app** to help **small business owners** to organise their expenses.<br>
   Example usages:
   * as an expense and savings tracker
   * to categorise various types of expenses
