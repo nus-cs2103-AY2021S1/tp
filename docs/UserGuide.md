@@ -57,7 +57,7 @@ not be so obvious!
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/81234567 t/part time` : Adds an employee's contact
+   * **`c-add`**`n/John Doe p/98765432 e/81234567 t/part time` : Adds an employee's contact
     named `John Doe` to tCheck.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
