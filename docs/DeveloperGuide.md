@@ -968,6 +968,40 @@ testers are expected to do more *exploratory* testing.
 
 ### Sorting of flashcards
 
+1. Sort flashcards according to review frequency
+
+    1. Prerequisites: Flashcard deck contains more than one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+       
+    1. Test case (sort flashcards in an ascending order): `sort reviewed -a` <br>
+        Expected: Flashcard list panel updates to show a list of all flashcards sorted according to review frequency in ascending order.
+        Result display will output a success message indicating the number of flashcards sorted.
+    
+    1. Test case (sort flashcards in an descending order): `sort reviewed -d` <br>
+        Expected: Flashcard list panel updates to show a list of all flashcards sorted according to review frequency in descending order.
+        Result display will output a success message indicating the number of flashcards sorted.
+        
+    1. Test case (sort flashcards with missing inputs): `sort` <br>
+        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
+        Result display will output the invalid command error message.
+        
+1. Sort flashcards according to success rate
+
+    1. Prerequisites: Flashcard deck contains more than one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+       
+    1. Test case (sort flashcards in an ascending order): `sort success -a` <br>
+        Expected: Flashcard list panel updates to show a list of all flashcards sorted according to success rate in ascending order.
+        Result display will output a success message indicating the number of flashcards sorted.
+        
+    1. Test case (sort flashcards in an descending order): `sort success -d` <br>
+        Expected: Flashcard list panel updates to show a list of all flashcards sorted according to success rate in descending order.
+        Result display will output a success message indicating the number of flashcards sorted.
+
+    1. Test case (sort flashcards with missing inputs): `sort` <br>
+        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
+        Result display will output the invalid command error message.
+        
 ### Viewing a flashcard
 
 1. Viewing a flashcard
