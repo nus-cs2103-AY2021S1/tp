@@ -86,9 +86,9 @@ The sections below give more details of each component.
 
 
 **API** :
-[`Ui.java`](https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/flashcard/ui/Ui.java)
-
 ![Structure of the UI Component](images/UiClassDiagram.png)
+
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/flashcard/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `FlashcardViewCard` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
