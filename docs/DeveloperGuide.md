@@ -950,6 +950,14 @@ testers are expected to do more *exploratory* testing.
 
 ### Reviewing flashcards
 
+1. Entering review mode in the application to review flashcards
+    
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+    
+    1. Test case: `review` <br>
+        Expected: Main window of application switches to review mode and displays the first flashcard in the flashcard deck.
+        
 ### Quizzing flashcards
 
 ### Sorting of flashcards
