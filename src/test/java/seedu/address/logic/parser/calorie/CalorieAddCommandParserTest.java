@@ -1,12 +1,15 @@
 package seedu.address.logic.parser.calorie;
 
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CalorieAddCommand;
 import seedu.address.logic.parser.CalorieAddCommandParser;
 
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 
 public class CalorieAddCommandParserTest {
 
@@ -23,21 +26,21 @@ public class CalorieAddCommandParserTest {
 
     @Test
     public void parseInvalidInputMissingPrefix_failure() {
-        assertParseFailure(parser, " 100",  formatErrorMessage);
+        assertParseFailure(parser, " 100", formatErrorMessage);
     }
 
     @Test
     public void parseInvalidInputNegativeNumber_failure() {
-        assertParseFailure(parser, " -1",  formatErrorMessage);
+        assertParseFailure(parser, " -1", formatErrorMessage);
     }
 
     @Test
     public void parseInvalidInputTooLarge_failure() {
-        assertParseFailure(parser, " 2147483648",  formatErrorMessage);
+        assertParseFailure(parser, " 2147483648", formatErrorMessage);
     }
 
     @Test
     public void parseInvalidInputDoublePrefix_failure() {
-        assertParseFailure(parser, " c/1000 c/1",  formatErrorMessage);
+        assertParseFailure(parser, " c/1000 c/1", formatErrorMessage);
     }
 }

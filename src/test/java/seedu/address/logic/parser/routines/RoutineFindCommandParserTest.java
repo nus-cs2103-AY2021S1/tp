@@ -8,9 +8,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.lessons.LessonFindCommand;
 import seedu.address.logic.commands.routines.RoutineFindCommand;
-import seedu.address.model.lesson.LessonNameContainsKeywordsPredicate;
 import seedu.address.model.routine.RoutineNameContainsKeywordsPredicate;
 
 public class RoutineFindCommandParserTest {

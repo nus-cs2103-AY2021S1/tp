@@ -1,19 +1,20 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.FitNus;
-import seedu.address.model.ReadOnlyFitNus;
-import seedu.address.model.calorie.DailyCalorie;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.FitNus;
+import seedu.address.model.ReadOnlyFitNus;
+import seedu.address.model.calorie.DailyCalorie;
 
 public class CalorieAddCommandTest {
 
@@ -61,9 +62,9 @@ public class CalorieAddCommandTest {
         assertFalse(firstCommand.equals(secondCommand));
     }
 
-        /**
-         * Stub used to contain a single DailyCalorie.
-         */
+    /**
+     * Stub used to contain a single DailyCalorie.
+     */
     private class ModelStubWithDailyCalorie extends ModelStub {
         private final DailyCalorie dailyCalorie;
 
