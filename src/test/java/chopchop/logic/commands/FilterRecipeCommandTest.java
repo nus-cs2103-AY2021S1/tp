@@ -28,7 +28,7 @@ public class FilterRecipeCommandTest {
     @Test
     public void execute_multipleTags_noRecipeFound() {
         var tagPredicate = prepareTagPredicate("Salad", "Spicy");
-        var command = new FilterRecipeCommand(tagPredicate, null);
+        var command = new FilterRecipeCommand(tagPredicate, null, null);
         expectedModel.updateFilteredRecipeList(tagPredicate);
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(), model.getFilteredRecipeList());
@@ -37,7 +37,7 @@ public class FilterRecipeCommandTest {
     @Test
     public void execute_multipleTags_multipleRecipesFound() {
         var tagPredicate = prepareTagPredicate("Salad", "Cold Food");
-        var command = new FilterRecipeCommand(tagPredicate, null);
+        var command = new FilterRecipeCommand(tagPredicate, null, null);
         expectedModel.updateFilteredRecipeList(tagPredicate);
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(APRICOT_SALAD, BANANA_SALAD), model.getFilteredRecipeList());
@@ -46,7 +46,7 @@ public class FilterRecipeCommandTest {
     @Test
     public void execute_multipleIngredients_moreThanZeroRecipeFound() {
         var indPredicate = prepareIngredientPredicate("Apricot", "Custard");
-        var command = new FilterRecipeCommand(null, indPredicate);
+        var command = new FilterRecipeCommand(null, indPredicate, null);
         expectedModel.updateFilteredRecipeList(indPredicate);
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(APRICOT_SALAD), model.getFilteredRecipeList());
@@ -56,7 +56,7 @@ public class FilterRecipeCommandTest {
     public void execute_multipleTagsIngredients_multipleRecipesFound() {
         var tagPredicate = prepareTagPredicate("Salad", "Cold Food");
         var indPredicate = prepareIngredientPredicate("Custard");
-        var command = new FilterRecipeCommand(tagPredicate, indPredicate);
+        var command = new FilterRecipeCommand(tagPredicate, indPredicate, null);
         expectedModel.updateFilteredRecipeList(indPredicate.and(tagPredicate));
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(APRICOT_SALAD, BANANA_SALAD), model.getFilteredRecipeList());
@@ -66,7 +66,7 @@ public class FilterRecipeCommandTest {
     public void execute_multipleTagsIngredients_noRecipeFound() {
         var tagPredicate = prepareTagPredicate("Spicy", "Salad");
         var indPredicate = prepareIngredientPredicate("Custard");
-        var command = new FilterRecipeCommand(tagPredicate, indPredicate);
+        var command = new FilterRecipeCommand(tagPredicate, indPredicate, null);
         expectedModel.updateFilteredRecipeList(indPredicate.and(tagPredicate));
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(), model.getFilteredRecipeList());

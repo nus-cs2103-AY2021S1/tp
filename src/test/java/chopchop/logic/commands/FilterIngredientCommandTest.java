@@ -29,7 +29,7 @@ public class FilterIngredientCommandTest {
     @Test
     public void execute_multipleTags_noIngredientFound() {
         var tagPredicate = prepareTagPredicate("Sweet", "Vegetable");
-        var command = new FilterIngredientCommand(null, tagPredicate);
+        var command = new FilterIngredientCommand(null, tagPredicate, null);
         expectedModel.updateFilteredIngredientList(tagPredicate);
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(), model.getFilteredIngredientList());
@@ -38,7 +38,7 @@ public class FilterIngredientCommandTest {
     @Test
     public void execute_multipleTags_multipleRecipesFound() {
         var tagPredicate = prepareTagPredicate("Sweet", "Fruit");
-        var command = new FilterIngredientCommand(null, tagPredicate);
+        var command = new FilterIngredientCommand(null, tagPredicate, null);
         expectedModel.updateFilteredIngredientList(tagPredicate);
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(APRICOT, BANANA), model.getFilteredIngredientList());
@@ -47,7 +47,7 @@ public class FilterIngredientCommandTest {
     @Test
     public void execute_multipleIngredients_multipleIngredientsFound() {
         var expiryPredicate = prepareExpiryPredicate("2023-12-12");
-        var command = new FilterIngredientCommand(expiryPredicate, null);
+        var command = new FilterIngredientCommand(expiryPredicate, null, null);
         expectedModel.updateFilteredIngredientList(expiryPredicate);
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(APRICOT, BANANA), model.getFilteredIngredientList());
@@ -57,7 +57,7 @@ public class FilterIngredientCommandTest {
     public void execute_multipleTagsIngredients_multipleIngredientsFound() {
         var tagPredicate = prepareTagPredicate("Sweet", "Fruit");
         var expiryPredicate = prepareExpiryPredicate("2023-01-01");
-        var command = new FilterIngredientCommand(expiryPredicate, tagPredicate);
+        var command = new FilterIngredientCommand(expiryPredicate, tagPredicate, null);
         expectedModel.updateFilteredIngredientList(expiryPredicate.and(tagPredicate));
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(APRICOT, BANANA), model.getFilteredIngredientList());
@@ -67,7 +67,7 @@ public class FilterIngredientCommandTest {
     public void execute_multipleTagsIngredients_noIngredientFound() {
         var tagPredicate = prepareTagPredicate("Spicy", "Sweet");
         var expiryPredicate = prepareExpiryPredicate("2020-01-01");
-        var command = new FilterIngredientCommand(expiryPredicate, tagPredicate);
+        var command = new FilterIngredientCommand(expiryPredicate, tagPredicate, null);
         expectedModel.updateFilteredIngredientList(expiryPredicate.and(tagPredicate));
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(), model.getFilteredIngredientList());

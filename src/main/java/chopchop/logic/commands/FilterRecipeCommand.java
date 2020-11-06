@@ -2,11 +2,15 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
+import chopchop.model.attributes.NameContainsKeywordsFilterPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
 import chopchop.model.recipe.Recipe;
 
@@ -18,6 +22,7 @@ public class FilterRecipeCommand extends Command {
 
     private final IngredientsContainsKeywordsPredicate ingredientPredicates;
     private final TagContainsKeywordsPredicate tagPredicates;
+    private final NameContainsKeywordsFilterPredicate namePredicates;
 
     /**
      * Constructs a command that filters and finds the matching recipe items.
@@ -25,9 +30,11 @@ public class FilterRecipeCommand extends Command {
      * @param tagPredicates
      */
     public FilterRecipeCommand(TagContainsKeywordsPredicate tagPredicates,
-            IngredientsContainsKeywordsPredicate indPredicates) {
+            IngredientsContainsKeywordsPredicate indPredicates,
+            NameContainsKeywordsFilterPredicate namePredicates) {
         this.tagPredicates = tagPredicates;
         this.ingredientPredicates = indPredicates;
+        this.namePredicates = namePredicates;
     }
 
     @Override
@@ -42,6 +49,8 @@ public class FilterRecipeCommand extends Command {
         } else if (tagPredicates != null) {
             p = tagPredicates;
         }
+        List<Predicate> predicates = Arrays.asList(tagPredicates, ingredientPredicates, namePredicates);
+        p = predicates.stream().filter(x -> x != null).collect(Collectors.reducing(p, (x, y) -> x.and(y)));
         model.updateFilteredRecipeList(p);
 
         var sz = model.getFilteredRecipeList().size();
