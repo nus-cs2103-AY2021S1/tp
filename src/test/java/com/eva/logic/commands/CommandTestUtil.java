@@ -153,7 +153,7 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredApplicantList().size());
     }
 
-    /*
+    /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s eva database.
      */

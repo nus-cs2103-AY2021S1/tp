@@ -12,10 +12,10 @@ import static com.eva.testutil.staff.TypicalStaffs.getTypicalStaffDatabase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.eva.commons.core.PanelState;
 import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.Messages;
+import com.eva.commons.core.PanelState;
 import com.eva.commons.core.index.Index;
 import com.eva.model.Model;
 import com.eva.model.ModelManager;
