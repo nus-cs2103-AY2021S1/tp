@@ -146,17 +146,15 @@ The `Model`,
 
 ### Storage component
 
-![//]: (TODO Diagram @Stephen)
-
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the inventory data in json format and read it back.
-* can save recipes data in json format and read it back. 
-* can save location data in json format and read it back.
+* can save the `ItemList` data in json format and read it back.
+* can save `RecipeList` data in json format and read it back. 
+* can save `LocationList` data in json format and read it back.
 
 ### Common classes
 
