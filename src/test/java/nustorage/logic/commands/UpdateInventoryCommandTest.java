@@ -2,6 +2,8 @@ package nustorage.logic.commands;
 
 import static nustorage.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static nustorage.logic.commands.UpdateInventoryCommand.MESSAGE_UPDATE_INVENTORY_SUCCESS;
+import static nustorage.logic.commands.UpdateInventoryCommand.MESSAGE_INVALID_UPDATE_OPERATION;
+import static nustorage.testutil.Assert.assertThrows;
 import static nustorage.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
@@ -63,6 +65,13 @@ public class UpdateInventoryCommandTest {
 
     @Test
     public void execute_decreaseInQuantityBeyondZeroParsed_failure() {
-        
+        InventoryRecord oldInventoryRecord = model.getFilteredInventory().get(0);
+        int currentQuantity = oldInventoryRecord.getQuantity();
+        int newQuantity = -500;
+        int changeInQuantity = newQuantity + currentQuantity;
+        UpdateInventoryDescriptor descriptor = new UpdateInventoryDescriptorBuilder(changeInQuantity).build();
+        UpdateInventoryCommand command = new UpdateInventoryCommand(INDEX_FIRST, descriptor);
+        String expectedMessage = MESSAGE_INVALID_UPDATE_OPERATION;
+        Model expectedModel = model;
     }
 }
