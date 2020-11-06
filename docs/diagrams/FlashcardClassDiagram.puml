@@ -1,8 +1,10 @@
 @startuml
 !include style.puml
+scale 0.75
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+
 
 Package Flashcard {
 Class Flashcard
