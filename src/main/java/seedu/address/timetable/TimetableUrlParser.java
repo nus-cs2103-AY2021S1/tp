@@ -1,7 +1,7 @@
 package seedu.address.timetable;
 
 public class TimetableUrlParser {
-    private static final String nusModsProtocolAndHost = "https://nusmods.com/timetable/";
+    private static final String NUSMODS_HOST = "https://nusmods.com/timetable/";
 
     /**
      * Parses timetable url and returns timetable data.
@@ -18,7 +18,7 @@ public class TimetableUrlParser {
      * Returns true if url is a valid NUSMods timetable URL.
      */
     public static boolean isValidUrl(String url) {
-        return url.contains(nusModsProtocolAndHost);
+        return url.contains(NUSMODS_HOST);
     }
 
     private static int parseTimetableUrlForSem(String url) {
