@@ -48,7 +48,7 @@ public class AddCommandTest {
         } catch (CommandException e) {
             Assertions.assertTrue(false);
         }
-        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem);
+        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem.getName(), 1);
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
     }
@@ -71,7 +71,7 @@ public class AddCommandTest {
         } catch (CommandException e) {
             Assertions.assertTrue(false);
         }
-        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem);
+        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem.getName(), quantity);
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
     }

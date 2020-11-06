@@ -57,7 +57,7 @@ public class SampleDataUtil {
 
         // Add cold and hot
         menu1.add(new MenuItem("Milo Cold", 1.5, drinks, "al_amaan/milo.png"));
-        menu1.add(new MenuItem("Milo Hot", 1.3, drinks, "al_amaan/milo.png"));
+        menu1.add(new MenuItem("Milo Hot", 1.3, drinks, "invalid.png"));
 
         menu1.add(new MenuItem("Milo Dinosaur", 2.5, drinks, "al_amaan/milo_dino.png"));
         menu1.add(new MenuItem("Milo Godzilla", 3, drinks,
