@@ -244,12 +244,20 @@ score all cp/2.94
 ```
 
 ### View lowest scoring students: `lowest-score`
-Displays all students with the lowest score in the list.
+Displays all students with the lowest score in the current session.
 ```
 lowest-score
 ```
 - Lists the records of all students in the current session with the lowest score.
 - Will show no students if the student record list is empty.
+
+### Get random student: `random-student`
+Displays a random student from the current session
+```
+random-student
+```
+- Lists a random student from the current session.
+- Does not work if the session has no students.
 
 ### Clearing all entries: `clear`
 Clears all saved data in taskmaster (both students and sessions).
@@ -280,7 +288,8 @@ exit
 | Mark all          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
 | Score             | ```score INDEX cp/SCORE``` <br> e.g., `score 1 cp/5`                                             |
 | Score all         | ```score all cp/SCORE``` <br> e.g., `score all cp/10`
-| Lowest score      | `lowest-score`
+| Lowest score      | ```lowest-score```      |
+| Random student    | ```random-student```     |
 | Clear             | ```clear```                                                                                              |
 | Exit              | ```exit```                                                                                              |
 
