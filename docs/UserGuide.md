@@ -109,11 +109,11 @@ Input Field | Restrictions and how to specify
 `INDEX`         | `INDEX` refers to the index number shown in the displayed flashcard list.<br>Every visible flashcard on the display list has an `INDEX`.<br>`INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 `KEYWORD`      | `KEYWORD` has no character limit but must be one word (no spaces).
 
-<div markdown="span" class="alert alert-primary">:memo: Note:</div>
+<div markdown="span" class="alert alert-primary">:memo: Note:
 
 * **Can be empty** means you can specify the prefix but not pass a value.<br>eg. passing `r/` is valid. 
 * **Cannot be empty** means you have to specify a value when you specify the prefix.<br>eg. passing `c/` is invalid.
-
+</div>
 
 ## Features
 
@@ -218,11 +218,11 @@ Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
     - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
 * Although all fields are optional, a minimum of one field has to be given.
 <div markdown="span" class="alert alert-primary">:memo: Note:
-<code>filter r/</code> will filter for all unrated flashcards.
-</div><br>
-<div markdown="1" class="alert alert-primary">:bulb: **Tip:**</div> 
+<code>filter r/</code> will filter for all unrated flashcards.</div><br>
 
-Want to list all your flashcards after using `filter`? Use the [list](#list-all-flashcards--list) command.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
+Want to list all your flashcards after using `filter`? Use the [list](#list-all-flashcards--list) command.</div> 
 
 Examples:
 *  `filter c/SDLC` filters and lists all flashcards belonging to the SDLC category.
@@ -272,9 +272,10 @@ Format: `find KEYWORD [KEYWORD]...`
 * Refer to [common input fields](#Common-Input-fields) on how to specify the different fields.
 * The keywords are **case insensitive**.
 * Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
-<div markdown="1" class="alert alert-primary">:bulb: **Tip:**</div> 
 
-Want to list all your flashcards after using `find`? Use the [list](#list-all-flashcards--list) command.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
+Want to list all your flashcards after using `find`? Use the [list](#list-all-flashcards--list) command.</div> 
 
 Examples: 
 * `find general` 
