@@ -22,7 +22,7 @@ public class ViewTutorialGroupCommandTest {
     private Model model = new ModelManager(getTypicalTrackr(), new UserPrefs());
 
     @Test
-    public void execute_invalidModuleIndexViewTutorialGroup_failure() {
+    public void execute_invalidModuleIndex_failure() {
         Index invalidIndex = Index.fromOneBased(6);
         ViewTutorialGroupCommand command = new ViewTutorialGroupCommand(invalidIndex);
         String expectedMessage = Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
@@ -30,7 +30,7 @@ public class ViewTutorialGroupCommandTest {
     }
 
     @Test
-    public void execute_studentViewViewTutorialGroup_failure() {
+    public void execute_studentViewp_failure() {
         model.setCurrentViewToTutorialGroup();
         model.setCurrentViewToStudent();
         ViewTutorialGroupCommand command = new ViewTutorialGroupCommand(INDEX_FIRST_PERSON);

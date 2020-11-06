@@ -29,7 +29,7 @@ public class ViewAttendanceCommandTest {
     private TutorialGroup tgInView = V04;
 
     @Test
-    public void execute_tutorialGroupViewViewAttendance_failure() {
+    public void execute_tutorialGroupView_failure() {
         model.setCurrentViewToTutorialGroup();
         ViewAttendanceCommand command = new ViewAttendanceCommand(INDEX_FIRST_PERSON);
         String expectedMessage = ViewAttendanceCommand.MESSAGE_WRONG_VIEW;
@@ -37,7 +37,7 @@ public class ViewAttendanceCommandTest {
     }
 
     @Test
-    public void execute_moduleViewViewAttendance_failure() {
+    public void execute_moduleView_failure() {
         model.setCurrentViewToModule();
         ViewAttendanceCommand command = new ViewAttendanceCommand(INDEX_FIRST_PERSON);
         String expectedMessage = ViewAttendanceCommand.MESSAGE_WRONG_VIEW;
@@ -45,7 +45,7 @@ public class ViewAttendanceCommandTest {
     }
 
     @Test
-    public void execute_studentViewViewAttendance_success() {
+    public void execute_studentView_success() {
         model.setViewToTutorialGroup(moduleInView);
         model.setViewToStudent(tgInView);
         model.addStudent(TypicalStudents.ALEX);
@@ -61,7 +61,7 @@ public class ViewAttendanceCommandTest {
     }
 
     @Test
-    public void execute_studentInvalidIndexViewAttendance_failure() {
+    public void execute_studentInvalidIndex_failure() {
         model.setViewToTutorialGroup(moduleInView);
         model.setViewToStudent(tgInView);
         ViewAttendanceCommand command = new ViewAttendanceCommand(INDEX_THIRD_PERSON);

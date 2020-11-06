@@ -25,7 +25,7 @@ public class ViewStudentCommandTest {
     private Module moduleInView = CS2103T;
 
     @Test
-    public void execute_invalidTutorialGroupIndexViewStudent_failure() {
+    public void execute_invalidTutorialGroupIndex_failure() {
         model.setCurrentViewToTutorialGroup();
         ViewStudentCommand command = new ViewStudentCommand(INDEX_FIRST_PERSON);
         String expectedMessage = Messages.MESSAGE_INVALID_TUTORIAL_GROUP_DISPLAYED_INDEX;
@@ -33,7 +33,7 @@ public class ViewStudentCommandTest {
     }
 
     @Test
-    public void execute_moduleViewViewStudent_failure() {
+    public void execute_moduleView_failure() {
         model.setCurrentViewToModule();
         ViewStudentCommand command = new ViewStudentCommand(INDEX_FIRST_PERSON);
         String expectedMessage = ViewStudentCommand.MESSAGE_WRONG_VIEW;
@@ -41,7 +41,7 @@ public class ViewStudentCommandTest {
     }
 
     @Test
-    public void execute_tutorialGroupViewStudent_correctSuccessMessage() throws CommandException {
+    public void execute_tutorialGroup_correctSuccessMessage() throws CommandException {
         model.setViewToTutorialGroup(moduleInView);
         TutorialGroup tutorialGroup = model.getFilteredTutorialGroupList().get(INDEX_FIRST_PERSON.getZeroBased());
         ViewStudentCommand command = new ViewStudentCommand(INDEX_FIRST_PERSON);
@@ -51,7 +51,7 @@ public class ViewStudentCommandTest {
     }
 
     @Test
-    public void execute_tutorialGroupInvalidIndexViewStudent_failure() {
+    public void execute_tutorialGroupInvalidIndex_failure() {
         model.setViewToTutorialGroup(moduleInView);
         Index invalidIndex = Index.fromOneBased(6);
         ViewStudentCommand command = new ViewStudentCommand(invalidIndex);

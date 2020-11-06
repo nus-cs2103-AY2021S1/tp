@@ -39,7 +39,7 @@ public class DeleteAttendanceCommandTest {
     }
 
     @Test
-    public void execute_validIndexValidWeekDeleteAttendance_success() {
+    public void execute_validIndexValidWeek_success() {
         Model model = new ModelManager(getTypicalTrackr(), new UserPrefs());
         Module moduleInView = CS2103T;
         TutorialGroup tgInView = B06;
@@ -57,7 +57,7 @@ public class DeleteAttendanceCommandTest {
     }
 
     @Test
-    public void execute_validIndexInvalidNegativeWeekDeleteAttendance_failure() {
+    public void execute_validIndexInvalidNegativeWeek_failure() {
         Model model = new ModelManager(getTypicalTrackr(), new UserPrefs());
         Module moduleInView = CS2103T;
         TutorialGroup tgInView = S12;
@@ -70,7 +70,7 @@ public class DeleteAttendanceCommandTest {
     }
 
     @Test
-    public void execute_validIndexInvalidWeekDeleteAttendance_failure() {
+    public void execute_validIndexInvalidWeek_failure() {
         Model model = new ModelManager(getTypicalTrackr(), new UserPrefs());
         Module moduleInView = CS2103T;
         TutorialGroup tgInView = V04;
@@ -83,7 +83,7 @@ public class DeleteAttendanceCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexValidWeekDeleteAttendance_failure() {
+    public void execute_invalidIndexValidWeek_failure() {
         Model model = new ModelManager(getTypicalTrackr(), new UserPrefs());
         Module moduleInView = CS2103T;
         TutorialGroup tgInView = V04;
