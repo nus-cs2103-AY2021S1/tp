@@ -300,31 +300,47 @@ list lt/<list type>
 
 **list type** | **What the list shows**
 ------| --------
-**all** | All the stocks in the inventory.
 **bookmark** | All the stocks in the inventory that is bookmarked.
 **low** | All the stocks in the inventory that is low in quantity.
+**all** | All the stocks in the inventory.
 
 </div>
 
 <h4>Examples</h4>
 
 ```
-list lt/all
-```
-
-![list_all](images/list_all.png)
-
-```
 list lt/bookmark
 ```
+**Before input**:
 
-![list_bookmark](images/list_bookmark.png)
+![list_bookmark](images/list/list_bookmark_before.png)
+
+**After input**:
+
+![list_bookmark](images/list/list_bookmark.png)
 
 ```
 list lt/low
 ```
+**Before input**:
 
-![list_low](images/list_low.png)
+![list_bookmark](images/list/list_low_before.png)
+
+**After input**:
+
+![list_bookmark](images/list/list_low.png)
+
+```
+list lt/all
+```
+**Before input**:
+
+![list_bookmark](images/list/list_all_before.png)
+
+**After input**:
+
+![list_bookmark](images/list/list_all.png)
+
 
 ### Deleting of stock: `delete`
 Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
@@ -1101,10 +1117,16 @@ bookmark sn/<serial number> [sn/<serial number>]...
 <h4>Examples</h4>
 
 ```
-bookmark sn/China3
+bookmark sn/giant1
 ```
 
-![GUI_component](images/bookmark.png)
+**Before input**:
+
+![GUI_component](images/bookmark/bookmark_before.png)
+
+**After input**:
+
+![GUI_component](images/bookmark/bookmark.png)
 
 
 ### Unbookmarking stocks in the list: `unbookmark`
@@ -1119,10 +1141,17 @@ unbookmark sn/<serial number> [sn/<serial number>]...
 <h4>Examples</h4>
 
 ```
-unbookmark sn/China3
+unbookmark sn/giant1
 ```
 
-![GUI_component](images/unbookmark.png)
+**Before input**:
+
+![GUI_component](images/bookmark/unbookmark_before.png)
+
+
+**After input**:
+
+![GUI_component](images/bookmark/unbookmark.png)
 
 ### Sorting inventory: `sort`
 Sort the inventory by a specific field and order.
