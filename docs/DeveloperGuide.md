@@ -581,7 +581,6 @@ Use case ends.
 
 Use case ends.
 
-*{More to be added}*
 
 ### 9.4 Non-Functional Requirements
 
@@ -594,7 +593,6 @@ Use case ends.
 7. The size of the final compiled JAR file should be less than 100Mb.
 8. There should be CLI alternatives to every GUI input. (E.g. instead of clicking on a button I can type an equivalent command to achieve the same result.)
 
-*{More to be added}*
 
 ### 9.5 Glossary
 
