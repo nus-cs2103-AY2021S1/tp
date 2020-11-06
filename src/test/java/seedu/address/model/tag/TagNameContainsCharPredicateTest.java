@@ -65,27 +65,27 @@ class TagNameContainsCharPredicateTest {
         //Words contain same character whole character Keyword
         TagNameContainsCharPredicate firstPredicate = new TagNameContainsCharPredicate(
                 Arrays.asList("test"));
-        TagNameContainsCharPredicate multiPredicate = new TagNameContainsCharPredicate(Arrays.asList("test", "CS2103",
+        TagNameContainsCharPredicate multiPredicate = new TagNameContainsCharPredicate(Arrays.asList("hello", "CS2103",
                 "CS2101"));
-        assertTrue(firstPredicate.test(new TagBuilder().withLabels("test").build()));
+        assertTrue(firstPredicate.test(new TagBuilder().withLabels("hello").build()));
 
         //Keyword contains less character
-        assertTrue(firstPredicate.test(new TagBuilder().withLabels("test2").build()));
+        assertTrue(firstPredicate.test(new TagBuilder().withLabels("hello2").build()));
 
         //Words start with different prefix
-        assertTrue(firstPredicate.test(new TagBuilder().withLabels("abctest123").build()));
+        assertTrue(firstPredicate.test(new TagBuilder().withLabels("abchello123").build()));
 
         //Words end with different suffix
-        assertTrue(firstPredicate.test(new TagBuilder().withLabels("test123Hello").build()));
+        assertTrue(firstPredicate.test(new TagBuilder().withLabels("hello123World").build()));
 
         //Words contain keyword in the middle
-        assertTrue(firstPredicate.test(new TagBuilder().withLabels("HellotestWorld").build()));
+        assertTrue(firstPredicate.test(new TagBuilder().withLabels("GoodhelloWorld").build()));
 
         //Tag contains multiple label
-        assertTrue(multiPredicate.test(new TagBuilder().withLabels("test", "CS2103", "CS2101").build()));
+        assertTrue(multiPredicate.test(new TagBuilder().withLabels("hello", "CS2103", "CS2101").build()));
 
         //Tag contains multiple label, each label is longer
-        assertTrue(multiPredicate.test(new TagBuilder().withLabels("test123", "CS2103T", "CS2101s").build()));
+        assertTrue(multiPredicate.test(new TagBuilder().withLabels("hello123", "CS2103T", "CS2101s").build()));
     }
 
 
