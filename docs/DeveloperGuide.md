@@ -224,7 +224,9 @@ The following describes the flow of how `HelpCommand` is performed.
 3. A Help display window will be opened showing a link to the User Guide. 
 
 <div markdown="block" class="alert alert-info">
+
 :information_source: If there is already a Help window already opened, and `HelpCommand` is executed, `HelpWindow#focus()` will be called to focus on the already opened window.
+
 </div>
 
 #### 6.1.2 Toggle Command
@@ -236,7 +238,9 @@ The following describes the flow of how `ToggleStudentCardCommand` is performed.
 3. Student cards in `StudentListPanel` will be switched. 
 
 <div markdown="block" class="alert alert-info">
+
 :information_source: By default, `StudentListPanel` uses `StudentAcademicCard`.
+
 </div><br>
 
 The following sequence diagram shows how the `ToggleStudentCardCommand` execution works.
@@ -313,7 +317,9 @@ the specified `Index` is a valid index based on the `UniqueStudentList`, in the 
 3. The specified student is deleted from the `UniqueStudentList` and a success message is shown in the result display.
 
 <div markdown="block" class="alert alert-info">
+
 :information_source: A valid `Index` is one that is within the bounds of the `UniqueStudentList`.
+
 </div>
 
 ### 6.2.4 Find Student Command
@@ -480,7 +486,9 @@ The following describes the flow of how `DeleteExamCommand` is performed.
 7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 <div markdown="block" class="alert alert-info">
+
 :information_source: Exams are specified based on the indexes of the list of exams shown on the academic view of student details.
+
 </div><br>
 
 The sequence(insert image reference here) of how add exam operates is very similar to that of delete question. 

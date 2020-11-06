@@ -185,7 +185,9 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
     * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
 
 <div markdown="block" class="alert alert-info">
+
 :information_source: You **cannot** add duplicates of a student. Each student is uniquely identified by his/her `NAME`, `PHONE`, `SCHOOL` and `YEAR`.
+
 </div>
 
 
@@ -202,7 +204,9 @@ You can view the list of all students in **Reeve**.
 Format: `list`
 
 <div markdown="block" class="alert alert-info">
+
 :information_source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
+
 </div>
 
 #### 3.3.3 Editing a student: `edit` (By: Vaishak)
@@ -490,7 +494,9 @@ Examples:
 * `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
 
 <div markdown="block" class="alert alert-info">
+
 :information_source: If you are editing the exams of a student, you will have to enter the `exam stats` command again to get the updated statistics.
+
 </div>
 
 #### 3.4.3 Recording attendance of a student: `attendance` (By: Vaishak)
@@ -514,10 +520,12 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS [f/FEEDB
 * There can only be one attendance record for every `LESSON_DATE`.
 
 <div markdown="block" class="alert alert-info">
+
 :information_source: The format of `LESSON_DATE` is as follows:
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
 :information_source: `ATTENDANCE_STATUS` can only be either "present" or "absent".
+
 </div>
 
 Examples:
