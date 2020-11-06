@@ -29,6 +29,11 @@ public class CommandTestUtil {
     public static final String VALID_LESSON_TAG_EASY = "easy";
     public static final String VALID_LESSON_TAG_LECTURE = "lecture";
 
+    public static final String VALID_EXERCISE_NAME_BENCH = "Bench press";
+    public static final String VALID_EXERCISE_NAME_SQUATS = "Squats";
+    public static final String VALID_EXERCISE_TAG_CHEST = "chest";
+    public static final String VALID_EXERCISE_TAG_LEGS = "Legs";
+
     public static final String LESSON_NAME_DESC_CS2030 = " " + PREFIX_LESSON + VALID_LESSON_NAME_CS2030;
     public static final String LESSON_NAME_DESC_CS2106 = " " + PREFIX_LESSON + VALID_LESSON_NAME_CS2106;
     public static final String LESSON_TAG_DESC_EASY = " " + PREFIX_TAG + VALID_LESSON_TAG_EASY;
