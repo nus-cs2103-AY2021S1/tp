@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -36,7 +36,7 @@ public class JsonSerializablePolicyList {
      * @param source future changes to this will not affect the created {@code JsonAdaptedPolicyList}.
      */
     public JsonSerializablePolicyList(PolicyList source) {
-        Hashtable<String, Policy> policies = source.getHashtableCopy();
+        HashMap<String, Policy> policies = source.getHashMapCopy();
 
         for (Policy p : policies.values()) {
             policyList.add(new JsonAdaptedPolicy(p));
