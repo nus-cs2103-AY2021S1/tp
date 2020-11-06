@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import chopchop.commons.util.Pair;
 import chopchop.model.attributes.Quantity;
 
 public class IngredientUsage extends Usage {
@@ -28,6 +29,12 @@ public class IngredientUsage extends Usage {
         return String.format("%s [%s] Qty: %s", this.getName(),
             this.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
             this.getQty());
+    }
+
+    @Override
+    public Pair<String, String> getListViewPair() {
+        return new Pair<>(this.getName(),
+            String.format("%s Qty: %s", this.getPrintableDate(), this.getQty().toString()));
     }
 
     @Override

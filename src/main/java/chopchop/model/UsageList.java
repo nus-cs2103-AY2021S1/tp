@@ -109,18 +109,18 @@ public class UsageList<T extends Usage> {
             return new ArrayList<>();
         } else if (after != null && before == null) {
             return getUsagesAfter(after).stream()
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .map(Usage::getListViewPair)
                 .collect(Collectors.toList());
         } else if (after == null) {
             return getUsagesBefore(before).stream()
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .map(Usage::getListViewPair)
                 .collect(Collectors.toList());
         } else {
             return this.usages.stream()
                 .filter(x -> x.isAfter(after))
                 .filter(x -> x.isBefore(before))
                 .sorted(comparator)
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .map(Usage::getListViewPair)
                 .collect(Collectors.toList());
         }
 

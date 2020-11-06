@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import chopchop.commons.util.Pair;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
+import chopchop.model.usage.Usage;
 
 public class StatsIngredientRecentCommand extends Command {
     private static final int N_MOST_RECENT = 10;
@@ -24,7 +25,7 @@ public class StatsIngredientRecentCommand extends Command {
 
         var output = model.getRecentlyUsedIngredients(N_MOST_RECENT);
         var msgOutput = output.stream()
-            .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+            .map(Usage::getListViewPair)
             .collect(Collectors.toList());
         return CommandResult.statsMessage(msgOutput, msgOutput.isEmpty()
             ? "No ingredients were used recently"
