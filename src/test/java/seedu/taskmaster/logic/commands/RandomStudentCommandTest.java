@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.ModelManager;
-import seedu.taskmaster.model.Taskmaster;
 import seedu.taskmaster.model.UserPrefs;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionDateTime;
