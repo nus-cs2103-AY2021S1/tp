@@ -60,8 +60,8 @@ public class Trackr implements ReadOnlyTrackr<Module> {
     }
 
     /**
-     * Adds an object to Trackr.
-     * The object must not already exist in Trackr.
+     * Adds a Module to Trackr.
+     * The module must not already exist in Trackr.
      */
     public void addModule(Module object) {
         requireNonNull(object);
@@ -69,9 +69,9 @@ public class Trackr implements ReadOnlyTrackr<Module> {
     }
 
     /**
-     * Replaces the given object {@code target} in the list with {@code editedObject}.
+     * Replaces the given module {@code target} in the list with {@code editedModule}.
      * {@code target} must exist in Trackr.
-     * The identity of {@code editedObject} must not be the same as another existing object.
+     * The identity of {@code editedModule} must not be the same as another existing object.
      */
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
