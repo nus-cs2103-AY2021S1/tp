@@ -327,7 +327,6 @@ Finds all employees whose tags contain the one or more `KEYWORD(s)`.
 
 Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
 
-**:information_source: Notes:**<br>
 * The search is case-insensitive. e.g `Friday` will match `friday`.<br>
 * The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.<br>
 * Only the tag names are searched.<br>
@@ -357,13 +356,14 @@ Finds employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc
 
 Format: `c-today`
 
+* The search is case-insensitive (e.g `Friday` will match `friday`).<br>
+* The application will automatically get today's day based on the current computer's date.<br>
+* Only full words will be marched (e.g `Fri` will not match `Friday`).<br>
+
 **:information_source: Note:**<br>
 * In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
 . You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
 tag(s) by using editing employee's information feature (Refer to `c-edit` command).<br>
-* The search is case-insensitive (e.g `Friday` will match `friday`).<br>
-* The application will automatically get today's day based on the current computer's date.<br>
-* Only full words will be marched (e.g `Fri` will not match `Friday`).<br>
 
 Examples:
 * Let's say today is `Thursday`. You want to find out who are the available manpower for today. You can follow these
@@ -391,13 +391,14 @@ Finds employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Tuesday`, 
 
 Format: `c-tomorrow`
 
+* The search is case-insensitive. e.g `Friday` will match `friday`.<br>
+* The application will automatically get tomorrow's day based on the current computer's date.<br>
+* Only full words will be marched (e.g `Fri` will not match `Friday`).<br>
+
 **:information_source: Note:**<br>
 * In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
 . You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
 tag(s) by using editing employee's information feature (Refer to `c-edit` command).<br>
-* The search is case-insensitive. e.g `Friday` will match `friday`.<br>
-* The application will automatically get tomorrow's day based on the current computer's date.<br>
-* Only full words will be marched (e.g `Fri` will not match `Friday`).<br>
 
 Examples:
 * Let's say tomorrow is `Friday`. You want to find out who are the available manpower for tomorrow. You can follow these
@@ -445,14 +446,15 @@ Archives the specified employee from tCheck.
 
 Format: `c-archive INDEX`
 
-**:information_source: Notes:**<br>
-
 * Archives the employee at the specified `INDEX` in the _Employee Directory_ pane.<br>
 * The `INDEX` refers to the index number shown in the current _Employee Directory_ pane.<br>
 * The `INDEX` **must be a positive integer** (e.g. 1, 2, 3, ...​).<br>
 * The `INDEX` **should not be larger than** the total number of employees listed in the current 
 _Employee Directory_ pane. (e.g. There are 2 employees listed in the current _Employee Directory_ pane. The `INDEX`
 should be less or equal to 2.)<br>
+
+**:information_source: Notes:**<br>
+
 * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
  color label, named as `[Archived]`, in front of the name), command `c-active-list` needs to be used first to see a
   list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified
@@ -478,13 +480,12 @@ Outcome:
 
 #### 3.11 Archiving all employees : `c-archive-all`
 
-Archives all employees' contact details from tCheck.
+Archives all employees in the _Employee Directory_ pane.
 
 Format: `c-archive-all`
 
 **:information_source: Notes:**<br>
 
-* Archives all employees in the _Employee Directory_ pane.<br>
 * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
  color label, named as `[Archived]`, in front of their names), command `c-active-list` needs to be used first to see a
   list of all your employees. Then, `c-archive-all` can be used to archive all employees.<br>
@@ -536,14 +537,15 @@ Unarchives the specified employee from the archived employee list.
 
 Format: `c-unarchive INDEX`
 
-**:information_source: Notes:**<br>
-
 * Unarchives the employee at the specified `INDEX` in the _Employee Directory_ pane.<br>
 * The `INDEX` refers to the index number shown in the current _Employee Directory_ pane.<br>
 * The `INDEX` **must be a positive integer** (e.g. 1, 2, 3, ...​).<br>
 * The `INDEX` **should not be larger than** the total number of employees listed in the current
 _Employee Directory_ pane. (e.g. There are 2 employees listed in the current _Employee Directory_ pane. The `INDEX`
 should be less or equal to 2.)<br>
+
+**:information_source: Notes:**<br>
+
 * If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
  red color label, named as `[Archived]`, in front of their names. While employees in the active/unarchived employee list
   don't have this red label.), command `c-archive-list` needs to be used first to see a list of all your archived
