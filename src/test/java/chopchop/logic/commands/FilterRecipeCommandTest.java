@@ -10,6 +10,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
+import chopchop.model.attributes.NameContainsKeywordsFilterPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
 import chopchop.model.usage.IngredientUsage;
 import chopchop.model.usage.RecipeUsage;
@@ -24,6 +25,24 @@ public class FilterRecipeCommandTest {
         new UsageList<IngredientUsage>(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(),
         new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
+
+    @Test
+    public void execute_multipleNames_noRecipeFound() {
+        var namePredicate = prepareNamePredicate("Salad", "Spicy");
+        var command = new FilterRecipeCommand(null, null, namePredicate);
+        expectedModel.updateFilteredRecipeList(namePredicate);
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(), model.getFilteredRecipeList());
+    }
+
+    @Test
+    public void execute_multipleNames_multipleRecipesFound() {
+        var namePredicate = prepareNamePredicate("Salad", "sa", "lad");
+        var command = new FilterRecipeCommand(null, null, namePredicate);
+        expectedModel.updateFilteredRecipeList(namePredicate);
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(APRICOT_SALAD, BANANA_SALAD), model.getFilteredRecipeList());
+    }
 
     @Test
     public void execute_multipleTags_noRecipeFound() {
@@ -53,6 +72,26 @@ public class FilterRecipeCommandTest {
     }
 
     @Test
+    public void execute_multipleNamesIngredients_multipleRecipesFound() {
+        var namePredicate = prepareNamePredicate("Salad", "sa", "lad");
+        var indPredicate = prepareIngredientPredicate("Custard");
+        var command = new FilterRecipeCommand(null, indPredicate, namePredicate);
+        expectedModel.updateFilteredRecipeList(indPredicate.and(namePredicate));
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(APRICOT_SALAD, BANANA_SALAD), model.getFilteredRecipeList());
+    }
+
+    @Test
+    public void execute_multipleNamesIngredients_noRecipeFound() {
+        var namePredicate = prepareNamePredicate("Salad", "lady");
+        var indPredicate = prepareIngredientPredicate("Custard");
+        var command = new FilterRecipeCommand(null, indPredicate, namePredicate);
+        expectedModel.updateFilteredRecipeList(indPredicate.and(namePredicate));
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(), model.getFilteredRecipeList());
+    }
+
+    @Test
     public void execute_multipleTagsIngredients_multipleRecipesFound() {
         var tagPredicate = prepareTagPredicate("Salad", "Cold Food");
         var indPredicate = prepareIngredientPredicate("Custard");
@@ -70,6 +109,35 @@ public class FilterRecipeCommandTest {
         expectedModel.updateFilteredRecipeList(indPredicate.and(tagPredicate));
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(), model.getFilteredRecipeList());
+    }
+
+    @Test
+    public void execute_multipleNamesTagsIngredients_multipleRecipeFound() {
+        var namePredicate = prepareNamePredicate("Salad", "sa", "lad");
+        var tagPredicate = prepareTagPredicate("Cold Food", "Salad");
+        var indPredicate = prepareIngredientPredicate("Custard");
+        var command = new FilterRecipeCommand(tagPredicate, indPredicate, namePredicate);
+        expectedModel.updateFilteredRecipeList(indPredicate.and(tagPredicate).and(namePredicate));
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(APRICOT_SALAD, BANANA_SALAD), model.getFilteredRecipeList());
+    }
+
+    @Test
+    public void execute_multipleNamesTagsIngredients_noRecipeFound() {
+        var namePredicate = prepareNamePredicate("Salad", "lady");
+        var tagPredicate = prepareTagPredicate("Spicy", "Salad");
+        var indPredicate = prepareIngredientPredicate("Custard");
+        var command = new FilterRecipeCommand(tagPredicate, indPredicate, namePredicate);
+        expectedModel.updateFilteredRecipeList(indPredicate.and(tagPredicate).and(namePredicate));
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(), model.getFilteredRecipeList());
+    }
+
+    /**
+     * Parses {@code userInputs} into a {@code NameContainsKeywordsFilterPredicate}.
+     */
+    private NameContainsKeywordsFilterPredicate prepareNamePredicate(String... userInputs) {
+        return new NameContainsKeywordsFilterPredicate(Arrays.asList(userInputs));
     }
 
     /**
