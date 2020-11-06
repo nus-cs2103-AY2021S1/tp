@@ -2,9 +2,9 @@
   "recipes": [ {
       "name": "Sandwich",
       "instruction" : [ {
-        "instructions" : "1) Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon"
+        "instructions" : "Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon"
       }, {
-        "instructions" : "2) Halve the rolls and spread one half with Dijon, the other half with mayonnaise"
+        "instructions" : "Halve the rolls and spread one half with Dijon, the other half with mayonnaise"
       } ],
     "recipeImage" : {
       "imagePath" : "images/sandwich.jpeg"

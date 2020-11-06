@@ -35,10 +35,12 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <HBox>
+
         <Label fx:id="ingredients" styleClass="cell_small_label" text="\$ingredients" wrapText="true">
                <HBox.margin>
                   <Insets bottom="2.0" />
                </HBox.margin></Label>
+
       </HBox>
       <Label fx:id="calories" styleClass="cell_small_label" text="\$calories">
             <VBox.margin>

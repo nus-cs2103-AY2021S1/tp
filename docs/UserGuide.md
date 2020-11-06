@@ -228,6 +228,10 @@ Multiple ingredients are separated by `,`.
     * Local path e.g. images/healthy1.jpg 
     * URL (online image) e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
 
+<div markdown="span" class="alert alert-primary">:memo: **Note:**
+Image path provided should be given permission.
+</div> 
+
 * Here are the respective actions required by users depending on different usage of `IMAGE`:
 
   Usage | Action | Example | Outcome

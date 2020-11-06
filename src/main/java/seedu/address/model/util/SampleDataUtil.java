@@ -85,8 +85,10 @@ public class SampleDataUtil {
         ArrayList<Instruction> instructionList = new ArrayList<>();
         int index = 1;
         for (String instr : instructions) {
-            instructionList.add(new Instruction((index) + ") " + instr.trim()));
-            index = index + 1;
+            if (!instr.trim().equals("")) {
+                instructionList.add(new Instruction(instr.trim()));
+                index = index + 1;
+            }
         }
         return instructionList;
     }

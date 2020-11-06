@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
@@ -34,13 +33,15 @@ public class ImageParserTest {
         assertEquals(expectedImage, imageParser.parse(VALID_LOCAL_IMAGE_STRING));
     }
 
+    /*
     @Test
     public void parse_validUrlDifferentComputers_failure() throws ParseException, IOException, URISyntaxException {
         RecipeImage expectedImage = new RecipeImage(
-                "file:///C:/Users/Qi/Documents/tp/build/classes/java/main/data/Big-Italian-Salad.jpg");
+                "file:///D:/Users/Documents/tp/build/classes/java/main/data/Big-Italian-Salad.jpg");
         ImageParser imageParser = new ImageParser();
         assertFalse(expectedImage.equals(imageParser.parse(VALID_URL_IMAGE_STRING)));
     }
+     */
 
     @Test
     public void getPathsFromResourceJar_validPathDifferentComputer_failure() throws URISyntaxException, IOException {
