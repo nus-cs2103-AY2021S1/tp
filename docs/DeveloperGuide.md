@@ -349,14 +349,22 @@ _{more aspects and alternatives to be added}_
 #### Current Implementation
 The filtering mechanism is facilitated by `LogicManager` and `ModelManager`.
 It works when the `LogicManager` listens for a filter command input from the user and
-parses the command to filter out relevant flashcards based on the category or categories 
-chosen. The filter feature supports filtering of multiple categories by parsing the command
-using `ParserUtil.parseCategories(Collection<String> categories)`.
+parses the command to filter out relevant flashcards based on the category, rating, favourite status and/or tags.
+
+The filter feature supports filtering of multiple flashcard fields by parsing the command using `FilterCommandParser#parse(String args)`
+and creates a new `FilterCommand` object that contains a `MultipleFieldsEqualsKeywordsPredicate` predicate object.
+
+The `MultipleFieldsEqualsKeywordsPredicate` predicate object then encapsulates the following predicate objects:
+* `CategoryEqualsKeywordsPredicate`
+* `RatingEqualsKeywordsPredicate` 
+* `FavouriteEqualsKeywordsPredicate`
+* `TagsEqualKeywordsPredicate`
 
 It implements the following operations:
 * `FilterCommand#execute(Model model)` to update `Model` to show only the filtered flashcards
-* `CategoryEqualsKeywordsPredicate#test(Flashcard flashcard)` to check every flashcard in `Model` against the list of 
-categories parsed from `FilterCommandParser#parse(String args)`
+* `MultipleFieldsEqualsKeywordsPredicate#test(Flashcard flashcard)` to check every flashcard in `Model` against the 
+various encapsulated predicates for different fields in the flashcard (category, rating, favourite status and tags) and will only
+return true if all encapsulated predicates return true.
 * `ModelManager#updateFilteredFlashcardList(Predicate<Flashcard> predicate)` takes in a predicate to update 
 `filteredFlashcards` attribute within  `ModelManager`.
 
@@ -364,8 +372,8 @@ Given below is an example usage scenario and how the filter mechanism behaves at
 
 Step 1. The user launches the application.
 
-Step 2: The user executes `filter c/SDLC` command to filter and display all the flashcards in the flashcard deck
-belonging to SDLC category. `LogicManager` calls   `FlashcardDeckParser#parseCommand(String args))` and   
+Step 2: The user executes `filter c/SDLC r/3` command to filter and display all the flashcards in the flashcard deck
+belonging to SDLC category and have a rating of 3. `LogicManager` calls   `FlashcardDeckParser#parseCommand(String args))` and   
 `FilterCommandParser#parse(String args)` to ultimately return a `FilterCommand` object.
 
 Step 3: After parsing, `LogicManager` then calls `FilterCommand#execute(Model model)`.
@@ -832,7 +840,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file. <br>
        Expected: The most recent window size and location is retained.
 
 1. Exiting the application
