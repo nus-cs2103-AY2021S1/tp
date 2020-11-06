@@ -15,10 +15,12 @@ import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_NAME_
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_B;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_C;
-import java.util.List;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Supplier;
+
 import seedu.address.model.person.Person;
 
 /**
@@ -76,8 +78,8 @@ public class TypicalPersons {
         return new ArrayList<>(Arrays.asList(ALICE, DESC_A, DESC_B, DESC_C));
     }
 
-//    public static List<Person> getTypicalPersons() {
-//        return new ArrayList<>(Arrays.asList(DESC_A_S.get(), DESC_B_S.get(), DESC_C_S.get()));
-//    }
+    //public static List<Person> getTypicalPersons() {
+    //return new ArrayList<>(Arrays.asList(DESC_A_S.get(), DESC_B_S.get(), DESC_C_S.get()));
+    //}
 
 }

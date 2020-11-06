@@ -307,8 +307,8 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return  userPrefs.equals(other.userPrefs)
-                && filteredProjects.equals(other.filteredProjects);
+        return userPrefs.equals(other.userPrefs)
+               && filteredProjects.equals(other.filteredProjects);
                 //&& filteredTasks.equals(other.filteredTasks)
                 //&& filteredTeammates.equals(other.filteredTeammates);
     }

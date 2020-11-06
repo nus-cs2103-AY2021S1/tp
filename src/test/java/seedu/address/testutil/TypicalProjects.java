@@ -10,10 +10,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
+
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.project.Project;
 import seedu.address.model.util.SampleDataUtil;
@@ -163,10 +165,10 @@ public class TypicalProjects {
             DAYUM, ELFIE, FANS, GERRY)));
     }
 
-//    public static List<Project> getTypicalProjects() {
-//        return new ArrayList<>(Arrays.asList(APEAKAPP_S.get(), BRICK_S.get(), CARACTIVE_S.get(), DAYUM_S.get(),
-//            ELFIE_S.get(), FANS_S.get(), GERRY_S.get(), HOON_S.get(), IDA_S.get(), AI_S.get(), BOT_S.get() ));
-//    }
+    //public static List<Project> getTypicalProjects() {
+    //  return new ArrayList<>(Arrays.asList(APEAKAPP_S.get(), BRICK_S.get(), CARACTIVE_S.get(), DAYUM_S.get(),
+    //       ELFIE_S.get(), FANS_S.get(), GERRY_S.get(), HOON_S.get(), IDA_S.get(), AI_S.get(), BOT_S.get() ));
+    //}
 
 
 }

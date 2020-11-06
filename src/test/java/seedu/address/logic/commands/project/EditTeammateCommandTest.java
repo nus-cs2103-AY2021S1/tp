@@ -49,9 +49,9 @@ public class EditTeammateCommandTest {
             project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
             new HashMap<>(), project.getTasks());
         project.addParticipation(originalTeammate);
-//        model.addPerson(originalTeammate);
-//
-//        expectedModel.addPerson(editedTeammate);
+        //model.addPerson(originalTeammate);
+
+        //expectedModel.addPerson(editedTeammate);
         projectCopy.addParticipation(editedTeammate);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
@@ -83,9 +83,9 @@ public class EditTeammateCommandTest {
             project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
             new HashMap<>(), project.getTasks());
         project.addParticipation(originalTeammate);
-//        model.addPerson(originalTeammate);
+        //model.addPerson(originalTeammate);
 
-//        expectedModel.addPerson(editedTeammate);
+        //expectedModel.addPerson(editedTeammate);
         projectCopy.addParticipation(editedTeammate);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
@@ -116,9 +116,9 @@ public class EditTeammateCommandTest {
             project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
             new HashMap<>(), project.getTasks());
         project.addParticipation(originalTeammate);
-//        model.addPerson(originalTeammate);
-//
-//        expectedModel.addPerson(editedTeammate);
+        //model.addPerson(originalTeammate);
+
+        //expectedModel.addPerson(editedTeammate);
         projectCopy.addParticipation(editedTeammate);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
@@ -149,9 +149,9 @@ public class EditTeammateCommandTest {
             project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
             new HashMap<>(), project.getTasks());
         project.addParticipation(originalTeammate);
-//        model.addPerson(originalTeammate);
-//
-//        expectedModel.addPerson(editedTeammate);
+        //model.addPerson(originalTeammate);
+
+        //expectedModel.addPerson(editedTeammate);
         projectCopy.addParticipation(editedTeammate);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
@@ -182,9 +182,9 @@ public class EditTeammateCommandTest {
             project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
             new HashMap<>(), project.getTasks());
         project.addParticipation(originalTeammate);
-//        model.addPerson(originalTeammate);
-//
-//        expectedModel.addPerson(editedTeammate);
+        //model.addPerson(originalTeammate);
+
+        //expectedModel.addPerson(editedTeammate);
         projectCopy.addParticipation(editedTeammate);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
@@ -216,9 +216,9 @@ public class EditTeammateCommandTest {
             project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
             new HashMap<>(), project.getTasks());
         project.addParticipation(originalTeammate);
-//        model.addPerson(originalTeammate);
-//
-//        expectedModel.addPerson(editedTeammate);
+        // model.addPerson(originalTeammate);
+
+        //expectedModel.addPerson(editedTeammate);
         projectCopy.addParticipation(editedTeammate);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
