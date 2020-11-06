@@ -23,6 +23,7 @@ import chopchop.commons.util.Pair;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.UsageList;
+import chopchop.model.usage.Usage;
 import chopchop.testutil.StubbedUsageModel;
 import chopchop.testutil.TypicalUsages;
 
@@ -71,8 +72,7 @@ class StatsIngredientUsedCommandTest {
         var cmd = new StatsIngredientUsedCommand(after, before);
         var cmdRes = cmd.execute(model, new HistoryManager());
         var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(
-                Arrays.asList(new Pair<>(INGREDIENT_A_A.getName(), INGREDIENT_A_A.getPrintableDate()),
-                    new Pair<>(INGREDIENT_B_A.getName(), INGREDIENT_B_A.getPrintableDate()))),
+                Arrays.asList(INGREDIENT_A_A.getListViewPair(), INGREDIENT_B_A.getListViewPair())),
             String.format("Showing ingredients used between %s and %s", after.format(formatter),
                 before.format(formatter)));
         assertEquals(cmdRes, expectedRes);
@@ -93,7 +93,7 @@ class StatsIngredientUsedCommandTest {
         var cmdRes = cmd.execute(model, new HistoryManager());
         var expectedRes = CommandResult.statsMessage(new ArrayList<>(
                 TypicalUsages.getListViewIngredientList().stream()
-                    .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                    .map(Usage::getListViewPair)
                     .collect(Collectors.toList())
             ),
             String.format("Showing ingredients used after %s", after.format(formatter)));
@@ -107,7 +107,7 @@ class StatsIngredientUsedCommandTest {
         var cmdRes = cmd.execute(model, new HistoryManager());
         var expectedRes = CommandResult.statsMessage(new ArrayList<>(
                 TypicalUsages.getListViewIngredientList().stream()
-                    .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                    .map(Usage::getListViewPair)
                     .collect(Collectors.toList())
             ),
             String.format("Showing ingredients used before %s", before.format(formatter)));
@@ -137,8 +137,7 @@ class StatsIngredientUsedCommandTest {
         var cmd = new StatsIngredientUsedCommand(after, before);
         var cmdRes = cmd.execute(model, new HistoryManager());
         var expectedRes = CommandResult.statsMessage(new ArrayList<>(
-                Arrays.asList(new Pair<>(INGREDIENT_A_E.getName(), INGREDIENT_A_E.getPrintableDate()),
-                    new Pair<>(INGREDIENT_B_E.getName(), INGREDIENT_B_E.getPrintableDate()))
+                Arrays.asList(INGREDIENT_A_E.getListViewPair(), INGREDIENT_B_E.getListViewPair())
             ),
             String.format("Showing ingredients used between %s and %s", after.format(formatter),
                 before.format(formatter)));
@@ -153,8 +152,7 @@ class StatsIngredientUsedCommandTest {
         var cmd = new StatsIngredientUsedCommand(after, before);
         var cmdRes = cmd.execute(model, new HistoryManager());
         var expectedRes = CommandResult.statsMessage(new ArrayList<>(
-                Arrays.asList(new Pair<>(INGREDIENT_A_E.getName(), INGREDIENT_A_E.getPrintableDate()),
-                    new Pair<>(INGREDIENT_B_E.getName(), INGREDIENT_B_E.getPrintableDate()))
+                Arrays.asList(INGREDIENT_A_E.getListViewPair(), INGREDIENT_B_E.getListViewPair())
             ),
             String.format("Showing ingredients used between %s and %s", after.format(formatter),
                 before.format(formatter)));
