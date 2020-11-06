@@ -413,19 +413,47 @@ Figure \___. Activity diagram for `DeleteQuestionCommand` execution
 
 ### 6.4 Schedule Command
 
-This section describes the operations that `ScheduleCommand` performs.
+This section describes the operations that `ScheduleViewCommand` performs.
 
-1. Upon successful parsing of the user input date into `LocalDate` , the `ScheduleCommand#execute(Model model)` method is called.
-2. The method `LocalDate#getDayOfWeek()` is then called on the `LocalDate` that is parsed from the user input to get the `dayOfWeek`.
-3. The `dayOfWeek` is then used to create a `Predicate<Student>` to check if the student has the same day as the date.
-4. Then the method `Model#updateFilteredPersonList(Predicate<Student>)` is then called to filter students based on predicate created in **Step 3**.
-5. The StudentListPanel is then populated with the students that have lesson on the day.
+1. Upon successful parsing of the user input, the `ScheduleViewCommand#execute(Model)` method is called.
+2. The method `Model#setViewDate(LocalDate)` is then called to set the viewing date of the user in `SchedulePrefs`
+3. Similarly, the method `ModelsetViewMode(ScheduleViewMode)` is called next to set the viewing mode (weekly/daily) of the user in `SchedulePrefs`. 
+4. After which, the method `updateFilteredStudentList(Predicate)` is called to get all the students. 
+The `Predicate` argument will be `PREDICATE_SHOW_ALL_STUDENTS` which is a reusable final predicate variable.
+5. Thereafter, the method `Model#updateClassTimesToEvent()` will be called to translate all student's `ClassTime` to `LessonEvent`
+6. The `Scheduler` then calls the method `resetData(List<Event>)` with the updated `LessonEvent` objects.
+7. The `CommandResult` is then returned.
 
-The following activity diagram summarizes the flow of events when the `ScheduleCommand` is being executed:
+The following activity diagram summarizes the flow of events when the `ScheduleViewCommand` is being executed:
 
 ![ScheduleActivity](images/ScheduleActivityDiagram.png)
 
-Figure \___. Activity diagram for `ScheduleCommand` execution
+Figure 6.4.1 Activity diagram for `ScheduleCommand` execution
+
+The following sequence diagram illustrates to execution of the `ScheduleViewCommand`.
+
+![ScheduleSequence](images/ScheduleSequenceDiagram.png)
+
+Figure 6.4.2 Sequence diagram for `ScheduleCommand` execution
+
+:information_source: Figure 6.4.1 and 6.4.2 illustrates the `ScheduleCommand` execution within the `Logic` and `Model` Component.
+
+For the `Ui` component, a calendar using **jfxtras** library will be updated with the `LessonEvent` after the `CommandResult` is returned.
+The `'LessonEvent` is provided to the `Ui` by the `LogicManager` through the `Model` component.
+The `Model` in turns gets the `LessonEvent` from the `Scheduler` which keeps a list of updated events.
+The calendar with `LessonEvent` is then displayed to the user through the interface. This is assuming that no exception arises.
+
+### 6.4.1 Design Consideration
+
+The following are the various design choices made regarding the feature and alternatives that were considered prior to implementation.
+
+* Current Implementation:
+    * The current implementation creates `LessonEvent`s from the `studentList` update the to the `Ui` whenever the `ScheduleViewCommand` is called.
+    
+* Alternatives Considered:
+    * Creating a `Event` storage component that stores `LessonEvent` based on `Student`'s `ClassTime`. 
+    This would violate the data integrity of the `Student` we currently have and introduce additional complexity in 
+    maintaining both data structures.
 
 ### 6.5 Notes Command
 
