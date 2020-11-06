@@ -2,17 +2,17 @@ package seedu.address.testutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.model.FitNus;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.person.Name;
 
 public class TypicalExercises {
 
-    public static final Exercise BENCH_PRESS = new Exercise(new Name("Bench Press"), new HashSet<>());
-    public static final Exercise SQUATS = new Exercise(new Name("Squats"), new HashSet<>());
+    public static final Exercise BENCH_PRESS = new ExerciseBuilder().withName("Bench press")
+            .withTags("chest").build();
+    public static final Exercise SQUATS = new ExerciseBuilder().withName("Squats")
+            .withTags("Legs").build();
 
     private TypicalExercises() {} // prevents instantiation
 
