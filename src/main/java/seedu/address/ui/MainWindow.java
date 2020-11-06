@@ -198,9 +198,11 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void setAutoTab(EntityType entityType) {
-        TabBar personAndJobTabPane = new TabBar(this.logic);
-        personAndJobTabPane.setTab(entityType);
-        personAndBidTabPanePlaceholder.getChildren().add(personAndJobTabPane.getRoot());
+        if (entityType != null) {
+            TabBar personAndJobTabPane = new TabBar(this.logic);
+            personAndJobTabPane.setTab(entityType);
+            personAndBidTabPanePlaceholder.getChildren().add(personAndJobTabPane.getRoot());
+        }
     }
 
     @FXML
