@@ -102,8 +102,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the student list data.
+* stores the student list data as a `Taskmaster` object.
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* also exposes an unmodifiable `ObservableList<Session>` that is similarly used by the UI.
 * does not depend on any of the other three components.
 
 
@@ -122,6 +123,7 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the student list data in json format and read it back.
+* can save the SessionList data in json format and read it back.
 
 ### Common classes
 
@@ -333,6 +335,8 @@ Alternative implementations considered:
 * manage students faster than a typical mouse/GUI driven app
 * view student details at a glance
 * add and remove students easily
+* create student records for each individual class conducted
+* mark and view attendance and class participation in these classes quickly
 
 ### User stories
 
@@ -574,7 +578,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample students. The window size may not be optimal.
 
 1. Saving window preferences
 
