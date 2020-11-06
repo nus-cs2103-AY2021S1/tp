@@ -11,16 +11,16 @@ public abstract class DeleteCommand extends Command {
             + ": Deletes the item of a specified type identified by the index number"
             + " used in the displayed list.\n"
             + "Format: '" + COMMAND_WORD + " TYPE PARAMETERS'\n\n"
-            + "TYPE 'case'\n"
+            + "TYPE '" + TYPE_CASE + "'\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " case 1";
+            + "Example: " + COMMAND_WORD + " " + TYPE_CASE + " 1";
 
     public static final String MESSAGE_USAGE_CASE_PAGE = COMMAND_WORD
             + ": Deletes the specified type of item identified by the index number"
             + " used in the displayed list in current case.\n"
             + "Format: '" + COMMAND_WORD + " TYPE PARAMETERS'\n\n"
-            + "TYPE 'suspect','victim','witness', 'doc'\n"
+            + "TYPE '" + TYPE_SUSPECT + "','" + TYPE_VICTIM + "','" + TYPE_WITNESS + "','" + TYPE_DOC + "'\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " suspect 1";
+            + "Example: " + COMMAND_WORD + " " + TYPE_SUSPECT + " 1";
 
 }
