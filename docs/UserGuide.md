@@ -92,7 +92,7 @@ not be so obvious!
 
 ### 1. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 The Sales Tracking features allows you to keep a record of the sales of the bubble tea drinks inside the
-Sales Tracker.
+Sales Tracker. You are able to view data related to sales tracking in the _Sales Tracker Pane_.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -117,25 +117,25 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's Sales Tra
 
 
 #### 1.1 Updating the number of drinks sold : `s-update`
-Updates the number of drinks sold for each drink type as given in the user input. The previous record will
+Updates the number of drinks sold for each drink type as given in the user input. The previous records will
 be overwritten.
 
 Format: `s-update A/NUM [B/NUM] [C/NUM] ...`
 * `A`, `B`, `C` are abbreviations for the drink types.
 * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
 less than or equal to 99999999.
-* You must record the sales of at least one drink item when using this command.
+* The sales of at least one drink item should be recorded when using this command.
 
-Example: Let's say you want to update the sales of Brown Sugar Boba Milk `BSBM` to 100 
-and Brown Sugar Boba Black Tea `BSBBT` to 120 in the Sales Tracker. You can follow these instructions:
+Example: Let's say you want to update the sales of Brown Sugar Boba Milk, `BSBM`, to 100 
+and Brown Sugar Boba Black Tea, `BSBBT`, to 120 in the Sales Tracker. You can follow these instructions:
 
-1. Type `s-update BSBM/100 BSBBT/120` into the Command Box.
+1. Type `s-update BSBM/100 BSBBT/120` into the _Command Box_.
 2. Press `Enter` to execute the command.
 
 Outcome:
 
-1. The Result Display will show a success message.
-2. You can now see that the sales of the two drinks have been updated accordingly in the Sales Tracker. 
+1. The _Result Display_ will show a success message.
+2. You can now see that the sales of the two drinks have been updated accordingly in the _Sales Tracker Pane_. 
 
 {Example outcome screenshot to be added later}
 
@@ -148,13 +148,13 @@ Format: `s-list`
 Example: Let's say you want to see a list of the drink sales that have been recorded. You can follow these
 instructions:
 
-1. Type `s-list` into the Command Box.
+1. Type `s-list` into the _Command Box_.
 2. Press `Enter` to execute the command.
 
 Outcome:
 
-1. The Result Display will show a success message.
-2. The Sales Tracker will show a list of the drinks sales in descending order, where the drink with the
+1. The _Result Display_ will show a success message.
+2. The _Sales Tracker Pane_ will show a list of the drinks sales in descending order, where the drink with the
 most sales is on the top of the list.
 
 {Example outcome screenshot to be added later}
