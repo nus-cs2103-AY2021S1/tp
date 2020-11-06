@@ -49,7 +49,8 @@ public class LogCard extends UiPart<Region> {
         time.setText(log.getPrettyDateTime());
         reps.setText(log.getReps().toString());
         calories.setText(String.valueOf(log.getCalories()));
-        comments.setText(log.getComment().value);
+
+        comments.setText("Comments: " + log.getComment().value);
     }
 
     @Override
