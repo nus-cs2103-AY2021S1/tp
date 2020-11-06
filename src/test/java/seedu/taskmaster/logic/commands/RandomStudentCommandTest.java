@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.ModelManager;
+import seedu.taskmaster.model.Taskmaster;
 import seedu.taskmaster.model.UserPrefs;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionDateTime;
@@ -43,6 +44,22 @@ public class RandomStudentCommandTest {
         RandomStudentCommand randomStudentCommand = new RandomStudentCommand();
 
         String expectedMessage = "There are no sessions yet!";
+        assertCommandFailure(randomStudentCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_emptySession_exceptionThrown() {
+        Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
+        Session emptySession = new Session(
+                new SessionName("Empty Session"),
+                new SessionDateTime(LocalDateTime.of(2020, 11, 1, 12, 0)),
+                new ArrayList<>());
+        model.addSession(emptySession);
+
+        RandomStudentCommand randomStudentCommand = new RandomStudentCommand();
+
+        String expectedMessage = "The session list has no students!";
+
         assertCommandFailure(randomStudentCommand, model, expectedMessage);
     }
 
