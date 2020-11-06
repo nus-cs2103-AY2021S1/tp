@@ -38,13 +38,13 @@ public class StatsCommandTest {
         Flashcard flashcardToDisplayStatistics = model.getFilteredFlashcardList()
             .get(TypicalIndexes.INDEX_FIRST_FLASHCARD.getZeroBased());
         Question question = flashcardToDisplayStatistics.getQuestion();
+        Statistics statistics = flashcardToDisplayStatistics.getStatistics();
         StatsCommand statsCommand = new StatsCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD);
 
         String expectedMessage = String.format(StatsCommand.MESSAGE_DISPLAY_STATISTICS_FLASHCARD_SUCCESS,
             flashcardToDisplayStatistics);
 
-        assertCommandSuccess(statsCommand, model, expectedMessage,
-            model, question, null, true);
+        assertCommandSuccess(statsCommand, model, expectedMessage, model, question, statistics);
     }
 
     @Test
