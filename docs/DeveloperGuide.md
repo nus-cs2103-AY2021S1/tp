@@ -237,7 +237,7 @@ The following describes the flow of how `ToggleStudentCardCommand` is performed.
 
 <div markdown="block" class="alert alert-info">
 :information_source: By default, `StudentListPanel` uses `StudentAcademicCard`.
-</div>
+</div><br>
 
 The following sequence diagram shows how the `ToggleStudentCardCommand` execution works.
 
@@ -481,9 +481,9 @@ The following describes the flow of how `DeleteExamCommand` is performed.
 
 <div markdown="block" class="alert alert-info">
 :information_source: Exams are specified based on the indexes of the list of exams shown on the academic view of student details.
-</div>
+</div><br>
 
-The sequence(insert image reference here) of how add exam operates is very similar to that of add question. 
+The sequence(insert image reference here) of how add exam operates is very similar to that of delete question. 
 
 ##### 6.3.2.3 Exam Stats command
 
@@ -585,7 +585,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## **Appendix C: Use Cases**
 
 For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise. 
-The use cases also assumes that whenever an invalid command is entered by the user, Reeve displays an error message. 
+Use cases also assume that whenever an invalid command is entered by the user, Reeve displays an error message. 
 
 **UC01: Displaying help menu**
 
