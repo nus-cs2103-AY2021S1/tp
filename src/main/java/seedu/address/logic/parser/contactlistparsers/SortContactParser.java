@@ -1,8 +1,8 @@
 package seedu.address.logic.parser.contactlistparsers;
 
-import java.util.Comparator;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.Comparator;
 
 import seedu.address.logic.commands.contactlistcommands.SortContactCommand;
 import seedu.address.logic.parser.Parser;
