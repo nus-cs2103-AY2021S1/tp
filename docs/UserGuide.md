@@ -379,7 +379,7 @@ View all of a specific teammate's details
 
 Format: `viewteammate GIT_USER_NAME`
 
-Example: `viewteammate Lucas98` displays all the information about the teammate with the Git User Name Lucas 98 to the user.
+Example: `viewteammate Lucas98` displays all the information about the teammate with the Git User Name Lucas98 to the user.
 
 ### Delete a teammate `deleteteammate`
 
