@@ -48,23 +48,22 @@ public class ImageParser {
                     }
                 }
                 URL url = new URL(imagePath);
-                CompletableFuture<byte[]> completableFuture =
-                        CompletableFuture.supplyAsync(() -> {
-                            try {
-                                InputStream in = new BufferedInputStream(url.openStream());
-                                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                                byte[] buf = new byte[1024];
-                                int n = 0;
-                                while (-1 != (n = in.read(buf))) {
-                                    out.write(buf, 0, n);
-                                }
-                                out.close();
-                                in.close();
-                                return out.toByteArray();
-                            } catch (Exception e) {
-                                return null;
-                            }
-                        });
+                CompletableFuture<byte[]> completableFuture = CompletableFuture.supplyAsync(() -> {
+                    try {
+                        InputStream in = new BufferedInputStream(url.openStream());
+                        ByteArrayOutputStream out = new ByteArrayOutputStream();
+                        byte[] buf = new byte[1024];
+                        int n = 0;
+                        while (-1 != (n = in.read(buf))) {
+                            out.write(buf, 0, n);
+                        }
+                        out.close();
+                        in.close();
+                        return out.toByteArray();
+                    } catch (Exception e) {
+                        return null;
+                    }
+                });
                 while (!completableFuture.isDone()) {
                     this.isDoneLoading = false;
                 }
