@@ -53,4 +53,3 @@ Given below are my contributions to the project.
         
 - **Community:**
     - PRs reviewed and [approved](https://github.com/AY2021S1-CS2103-F09-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Ajflim98)
-    
