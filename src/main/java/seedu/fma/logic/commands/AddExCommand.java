@@ -3,6 +3,7 @@ package seedu.fma.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_C;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_E;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_R;
 
 import seedu.fma.logic.commands.exceptions.CommandException;
 import seedu.fma.model.Model;
@@ -20,10 +21,13 @@ public class AddExCommand extends Command {
             + PREFIX_C + "<calories per rep>";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exercise to the log book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exercise to the log book. \n"
             + "Parameters: "
             + PREFIX_E + "<exercise name> "
-            + PREFIX_C + "<calories per rep>";
+            + PREFIX_C + "<calories per rep>\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_E + "Sit ups "
+            + PREFIX_C + "20";
 
     public static final String MESSAGE_SUCCESS = "New exercise added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_LOG = "This exercise already exists in the log book";
