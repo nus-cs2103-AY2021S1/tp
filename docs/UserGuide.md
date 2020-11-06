@@ -590,7 +590,7 @@ Action       | Format, Examples
 **UnTag**    | `untag INDEX -t TAG_NAME` <br> e.g., `untag 1 -t Lunch`
 
 ## 8. Appendix A
-List of supported input date formats, sorted from highest parsing priority to lowest parsing priority
+List of supported input date formats, sorted from the highest parsing priority to the lowest parsing priority
 
 Format       | Example
 ------------ | --------
