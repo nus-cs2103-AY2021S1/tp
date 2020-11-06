@@ -399,13 +399,16 @@ _{Explain here how the data archiving feature will be implemented}
 
 **Target user profile**:
 
-* has a need to manage a significant number of business accounts, each with a significant number of financial entries
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has a need to manage a significant number of business accounts, each with a significant number of financial entries
+* Prefers desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage financial entries faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* Can manage financial entries faster than a typical mouse/GUI driven app
+* Provides a simple UI for business owners to see all the desired information easily
+* Provides an aesthetic UI which is pleasant to the eye
 
 
 ### User stories
@@ -435,6 +438,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | user | have incentive every time I use the app (maybe a little game or puzzle) | be motivated to use it to track my spending more |
 | `* *` | user | have an app that caters specifically to different types of accounts (business or personal) | efficiently manage my expenses and revenues | 
 | `*` | user | be given tips and tricks on how to use the app to plan my spending | save my money effectively |
+
 *{More to be added}*
 
 ### Use cases 
