@@ -27,7 +27,7 @@ public class DeleteContactCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Contact: %1$s";
+    public static final String MESSAGE_DELETE_CONTACT_SUCCESS = "Deleted Contact: %1$s";
 
     private final Logger logger = LogsCenter.getLogger(DeleteContactCommand.class);
 
@@ -41,7 +41,7 @@ public class DeleteContactCommand extends Command {
     public DeleteContactCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         assert targetIndex.getZeroBased() >= 0 : "zero based index must be non-negative";
-        logger.info("Deleting contact");
+        logger.info("Deleting contact at index " + targetIndex.getOneBased());
         this.targetIndex = targetIndex;
     }
 
@@ -58,7 +58,7 @@ public class DeleteContactCommand extends Command {
         model.deleteContact(contactToDelete);
         model.commitContactList();
         logger.info("Contact has been deleted");
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, contactToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete));
     }
 
     @Override

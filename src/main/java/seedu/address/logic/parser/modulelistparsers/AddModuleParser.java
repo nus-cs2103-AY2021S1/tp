@@ -52,7 +52,6 @@ public class AddModuleParser implements Parser<AddModuleCommand> {
         module = new Module(moduleName, tagList, modularCredits);
 
         return new AddModuleCommand(module);
-
     }
 
     /**

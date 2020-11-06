@@ -8,14 +8,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.modulelistcommands.AddZoomDescriptor;
 import seedu.address.logic.commands.modulelistcommands.AddZoomLinkCommand;
+import seedu.address.logic.commands.modulelistcommands.ZoomDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
 
 /**
@@ -39,20 +40,18 @@ public class AddZoomLinkParser implements Parser<AddZoomLinkCommand> {
         }
 
         Index moduleIndex;
-        ZoomLink zoomLink;
-        String moduleLessonType = argMultimap.getValue(PREFIX_NAME).get();
-
         try {
             moduleIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get());
         } catch (ParseException ex) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddZoomLinkCommand.MESSAGE_USAGE), ex);
         }
+        ZoomDescriptor descriptor = new ZoomDescriptor();
+        ZoomLink zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get());;
+        ModuleLesson lesson = ParserUtil.parseModuleLesson(argMultimap.getValue(PREFIX_NAME).get());;
 
-        AddZoomDescriptor descriptor = new AddZoomDescriptor();
-        descriptor.setLink(zoomLink);
-        descriptor.setModuleLessonType(moduleLessonType);
+        descriptor.setZoomLink(zoomLink);
+        descriptor.setModuleLesson(lesson);
 
         return new AddZoomLinkCommand(moduleIndex, descriptor);
     }

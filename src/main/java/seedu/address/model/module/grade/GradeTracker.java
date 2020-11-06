@@ -1,5 +1,7 @@
 package seedu.address.model.module.grade;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -88,7 +90,16 @@ public class GradeTracker implements ReadOnlyGradeTracker {
         return assignments.asUnmodifiableObservableList();
     }
 
-
+    /**
+     * Replaces the given assignment {@code targetAssignment} in the list with {@code editedAssignment}.
+     * {@code targetAssignment} must exist in the grade tracker.
+     * The name of the assignment {@code editedAssignment} must not be the same as another
+     * existing assignment in the grade tracker.
+     */
+    public void setAssignment(Assignment targetAssignment, Assignment editedAssignment) {
+        requireNonNull(editedAssignment);
+        assignments.setAssignment(targetAssignment, editedAssignment);
+    }
 
     /**
      * Checks if the Grade Tracker is valid.
@@ -99,9 +110,11 @@ public class GradeTracker implements ReadOnlyGradeTracker {
     public static boolean isValidGradeTracker(GradeTracker gradeTracker) {
         boolean areAssignmentsValid = true;
         for (Assignment eachAssignment: gradeTracker.assignments) {
-            if (!Assignment.isValidAssignmentResult(eachAssignment.assignmentResult)
-                    && Assignment.isValidAssignmentName(eachAssignment.assignmentName)
-                    && Assignment.isValidAssignmentPercentage(eachAssignment.assignmentPercentage)) {
+            if (!AssignmentName.isValidAssignmentName(eachAssignment.getAssignmentName().get().assignmentName)
+                    && AssignmentPercentage.isValidAssignmentPercentage(
+                            eachAssignment.getAssignmentPercentage().get().assignmentPercentage)
+                    && AssignmentResult.isValidAssignmentResult(
+                            eachAssignment.getAssignmentResult().get().assignmentResult)) {
                 areAssignmentsValid = false;
                 break;
             }
@@ -119,7 +132,7 @@ public class GradeTracker implements ReadOnlyGradeTracker {
      * @param otherAssignment the assignment being checked.
      * @return true if the assignment already exists
      */
-    public boolean isDuplicateAssignment(Assignment otherAssignment) {
+    public boolean containsDuplicateAssignment(Assignment otherAssignment) {
         for (Assignment eachAssignment : assignments) {
             if (eachAssignment.equals(otherAssignment)) {
                 return true;
