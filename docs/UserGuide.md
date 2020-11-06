@@ -109,11 +109,12 @@ Displays a link to this User Guide.
 
 | | Command Format (Meeting)  | Example |
 | :--- | :--- | :--- |
-| View | add-m q/v `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `t/<DATE>` | add-m q/v b/B12 p/P12 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00 |
-| Administrative | add-m q/a `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `t/<DATE>` | add-m q/a b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
-| Paperwork  |add-m q/p `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `t/<DATE>` | add-m q/p b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
-| |edit-m `<INDEX>` `b/BIDDER_ID` `p/PROPERTY_ID` `v/VENUE` `t/DATE` | edit-m 2 v/eunos |
+| View | add-m q/v `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `d/<DATE> s/<STARTTIME> e/<ENDTIME>` | add-m q/v b/B12 p/P12 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00 |
+| Administrative | add-m q/a `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `d/<DATE> s/<STARTTIME> e/<ENDTIME>` | add-m q/a b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
+| Paperwork  |add-m q/p `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `d/<DATE> s/<STARTTIME> e/<ENDTIME>` | add-m q/p b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
+| |edit-m `<INDEX>` `b/BIDDER_ID` `p/PROPERTY_ID` `v/VENUE` `d/DATE s/<STARTTIME> e/<ENDTIME>` | edit-m 2 v/eunos |
 | |delete-m `<INDEX_NUMBER>` | delete-m 3 |
+| | sort-m `o/<ORDER>` | sort-m o/asc |
 | | list-m | list-m |
 
 | Command Format (Calendar)  | Example |
@@ -755,11 +756,10 @@ Edits an existing meeting in the meeting list. The existing meeting to be editte
 
 - Command: `edit-m`
 - Format: `edit-m <INDEX_NUMBER> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME`
-
+> - At least one optional field must be provided.
 > - Edits the meeting at the specified `INDEX_NUMBER`, which refers to the index shown on the displayed meeting list. The index must be a positive integer 1, 2, 3...
-More than one parameter can be updated for the existing meeting to be editted.
 
-
+💡 Note that the meeting type cannot be modified.  
 Example:
 
 ```
@@ -808,7 +808,7 @@ Successfully sorted meeting
 Finds an existing meeting detail that is in the list.
 
 - Command: `find-m`
-- Format: `find-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME`
+- Format: `find-m <INDEX_NUMBER> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME`
 
 💡 Meetings can be found with by specifying at least one of the attributes. Not all attributes are compulsory.
 
@@ -923,12 +923,12 @@ Picture Example:
 | list-bid | list-bid |
 
 |  Command Format (Meeting)  | Example |
-| :---| :--- |
+| :--- | :--- |
 | add-m q/MEETING_TYPE b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME | add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00  |
-| delete-m <INDEX> | delete-m 1 |
-| find-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME | find-m b/B1 p/P1|
+| delete-m <INDEX_NUMBER> | delete-m 1 |
+| find-m <INDEX_NUMBER> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME | find-m b/B1 p/P1|
 | list-m | list-m |
-| edit-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME | edit-m  b/B1 p/P1 |
+| edit-m <INDEX_NUMBER> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME | edit-m  b/B1 p/P1 |
 | sort-m o/<ORDER> | sort-m o/asc |
 
 | Command Format (Calendar)  | Example |
