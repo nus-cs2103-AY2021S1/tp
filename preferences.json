@@ -1,0 +1,12 @@
+{
+  "guiSettings" : {
+    "windowWidth" : 1000.0,
+    "windowHeight" : 700.0,
+    "windowCoordinates" : {
+      "x" : 360,
+      "y" : 44
+    }
+  },
+  "financeAccountFilePath" : "data\\financeAccount.json",
+  "inventoryFilePath" : "data\\inventory.json"
+}
