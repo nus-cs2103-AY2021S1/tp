@@ -57,33 +57,33 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
 **:information_source: Notes about duplicates:**<br>
 
-* PIVOT does not allow the addition of Cases, Documents, Suspect, Witness or Victim that already exists.
+* PIVOT does not allow the addition of `Case`, `Document`, `Suspect`, `Witness` or `Victim` that already exists.
 * When editing details in PIVOT, if it results in duplicates, PIVOT will not allow it as well.
-* Cases are identified by their Title. Users cannot add a Case if there is an existing Case (from both Home/Archive section) with the same Title. 
-* Documents are identified by both their Name and Reference. 
-Users cannot add a Document to a Case if there is an existing Document with the same Name and Reference in that case.
-* Suspects, Witnesses, Victims are identified by their Name, Sex and Phone. 
-Users cannot add a Suspect/Witness/Victim to a Case if there is an existing Suspect/Witness/Victim with the same Name, Sex and Phone in that Case. 
-* However, note that there can be duplicates between Suspect, Witness and Victim in a Case, and between different Cases. 
-There can be a Suspect with the same Name, Sex and Phone as an existing Victim/Witness in that Case and vice versa.
-The same Suspect/Witness/Victim can also appear in two different cases.
+* `Cases` are identified by their `Title`. Users cannot add a `Case` if there is an existing `Case` (from both `Home`/`Archive` section) with the same `Title`. 
+* `Documents` are identified by both their `Name` and `Reference`. 
+Users cannot add a `Document` to a `Case` if there is an existing `Document` with the same `Name` and `Reference` in that case.
+* `Suspects`, `Witnesses`, `Victims` are identified by their `Name`, `Sex` and `Phone`. 
+Users cannot add a `Suspect`/`Witness`/`Victim` to a `Case` if there is an existing `Suspect`/`Witness`/`Victim` with the same `Name`, `Sex` and `Phone` in that `Case`. 
+* However, note that there can be duplicates between `Suspect`, `Witness` and `Victim` in a `Case`, and between different `Cases`. 
+There can be a `Suspect` with the same `Name`, `Sex` and `Phone` as an existing `Victim`/`Witness` in that `Case` and vice versa.
+The same `Suspect`/`Witness`/`Victim` can also appear in two different cases.
 </div>
 
 ### Main page
 The main page of the application when the user first enters the app.
 
 #### List all unarchived cases in Home section: `list case`
-Shows the Home section and lists all unarchived cases in PIVOT.
+Shows the `Home` section and lists all unarchived cases in PIVOT.
 
 Format: `list case`
 
 #### List all archived cases in Archive section: `list archive`
-Shows the Archive section and lists all archived cases in PIVOT.
+Shows the `Archive` section and lists all archived cases in PIVOT.
 
 Format: `list archive`
 
 #### Add case: `add case t:TITLE [s:STATUS]`
-Adds a new case with the specified TITLE. The STATUS is active by default, if not specified. The user can provide 3 status types:
+Adds a new case with the specified `TITLE`. The `STATUS` is active by default, if not specified. The user can provide 3 status types:
 
 1. `ACTIVE`
 
@@ -91,7 +91,7 @@ Adds a new case with the specified TITLE. The STATUS is active by default, if no
 
 3. `COLD`
 
-The case will be added to the Home/Archive section, depending on which section they are currently in. 
+The case will be added to the `Home`/`Archive` section, depending on which section they are currently in. 
 
 Format: `add case t:TITLE [s:STATUS]`
 * The title must be alphanumeric and cannot be blank.
@@ -104,6 +104,7 @@ Example:
 Deletes the case specified with `CASE_NO` from the currently shown list.
 
 Format: `delete case CASE_NO`
+* `CASE_NO` must be a valid index (starting from 1) of the currently shown case list.
 
 Example: 
 * `list case` followed by `delete case 2` deletes the 2nd case in the currently shown list.
@@ -113,35 +114,41 @@ Enters the case specified with `CASE_NO` (opened to the right panel), where user
 [(see Investigation Case Page)](#investigation-case-page).
 
 Format:  `open case CASE_NO`
+* `CASE_NO` must be a valid index (starting from 1) of the currently shown case list.
 
-Example: `list case` followed by `open case 1` opens the 1st case in the currently shown list.
+Example: 
+* `list case` followed by `open case 1` opens the 1st case in the currently shown list.
 
 #### Archive case in the Home section: `archive case CASE_NO`
-Archives the case specified with `CASE_NO` from the currently shown list of cases in the Home section of PIVOT.
+Archives the case specified with `CASE_NO` from the currently shown list of cases in the `Home` section of PIVOT.
 
-Note that this command can only be used in the Home section of PIVOT.
+Note that this command can only be used in the `Home` section of PIVOT.
 
 Format:  `archive case CASE_NO`
+* `CASE_NO` must be a valid index (starting from 1) of the currently shown case list.
 
-Example: `list case` followed by `archive case 1` archives the 1st case in the currently shown list.
+Example: 
+* `list case` followed by `archive case 1` archives the 1st case in the currently shown list.
 
 #### Unarchive case in the Archive section: `unarchive case CASE_NO`
-Unarchives the case specified with `CASE_NO` from the currently shown list in the Archive section of PIVOT.
+Unarchives the case specified with `CASE_NO` from the currently shown list in the `Archive` section of PIVOT.
 
-Note that this command can only be used in the Archive section of PIVOT.
+Note that this command can only be used in the `Archive` section of PIVOT.
 
 Format:  `unarchive case CASE_NO`
+* `CASE_NO` must be a valid index (starting from 1) of the currently shown case list.
 
-Example: `list archive` followed by `unarchive case 1` unarchives the 1st case in the currently shown list.
+Example: 
+* `list archive` followed by `unarchive case 1` unarchives the 1st case in the currently shown list.
 
 #### Find case: `find KEYWORD [MORE_KEYWORDS]`
 
-Find cases whose details contain any of the given keywords from the current section the user is in (Home/Archive).
+Find cases whose details contain any of the given keywords from the current section the user is in (`Home`/`Archive`).
 
 * The search is case-insensitive. e.g keyword `hans` will match case containing `Hans` in its details
 * The order of the keywords does not matter. e.g. keywords `Hans Bo` will match case containing `Bo Hans` in its details
-* All details of all cases in the current section (Home/Archive) are searched, specifically: Title, Status, Description, 
-Documents (name and reference that the users input on creation), Suspects/Witnesses/Victims (Name, Sex, Phone, Email, Address)
+* All details of all cases in the current section (`Home`/`Archive`) are searched, specifically: `Title`, `Status`, `Description`, 
+Documents (name and reference that the users input on creation), `Suspects`/`Witnesses`/`Victims` (`Name`, `Sex`, `Phone`, `Email`, `Address`)
 * Checks if the particular sequence of characters in the keyword matches e.g. keyword `Han` will match cases containing `Hans` in their details
 * Cases matching at least one keyword will be returned (i.e. `OR` search). e.g. keywords `Hans Bo` will return case 
 containing `Hans Gruber`, `Bo Yang` in their details.
