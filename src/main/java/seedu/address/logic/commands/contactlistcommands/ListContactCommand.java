@@ -26,8 +26,9 @@ public class ListContactCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateSortedContactList(null);
         model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
-        logger.info("Display all contacts in contact list");
+        logger.info("All contacts in the contact list have been displayed");
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

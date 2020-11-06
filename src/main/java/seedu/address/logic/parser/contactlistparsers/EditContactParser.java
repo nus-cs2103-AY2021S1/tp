@@ -20,22 +20,24 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
 
 
 /**
- * Parses input arguments and creates a new EditContactCommand object
+ * Parses input arguments and creates a new EditContactCommand object.
  */
 public class EditContactParser implements Parser<EditContactCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditContactCommand
      * and returns an EditContactCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public EditContactCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_TELEGRAM);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME,
+                PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_TAG);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
         Index index;
@@ -57,16 +59,34 @@ public class EditContactParser implements Parser<EditContactCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
-            editContactDescriptor.setTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
+            parseTelegramForEdit(argMultimap.getValue(PREFIX_TELEGRAM).get())
+                    .ifPresentOrElse(telegram -> editContactDescriptor.setTelegram(telegram), () ->
+                            editContactDescriptor.setTelegramDeleted());
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editContactDescriptor::setTags);
-
         if (!editContactDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditContactCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditContactCommand(index, editContactDescriptor);
+    }
+
+    /**
+     * Parses the String containing the edited telegram into a {@code Telegram} if the String is non-empty.
+     *
+     * @param telegram String containing the telegram argument.
+     * @return Optional describing a Telegram object.
+     * @throws ParseException If the telegram argument does not conform the expected format.
+     */
+    private Optional<Telegram> parseTelegramForEdit(String telegram) throws ParseException {
+        requireNonNull(telegram);
+
+        if (telegram.isBlank()) {
+            return Optional.empty();
+        }
+        Telegram editedTelegram = ParserUtil.parseTelegram(telegram);
+        return Optional.of(editedTelegram);
     }
 
     /**

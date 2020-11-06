@@ -6,8 +6,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
 
@@ -16,9 +16,10 @@ import seedu.address.model.tag.Tag;
  * corresponding field value of the contact.
  */
 public class EditContactDescriptor {
-    private Name name;
+    private ContactName name;
     private Email email;
     private Telegram telegram;
+    private boolean isTelegramDeleted = false;
     private Set<Tag> tags;
 
     public EditContactDescriptor() {}
@@ -32,20 +33,21 @@ public class EditContactDescriptor {
         setEmail(toCopy.email);
         setTelegram(toCopy.telegram);
         setTags(toCopy.tags);
+        this.isTelegramDeleted = toCopy.isTelegramDeleted;
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, email, telegram);
+        return CollectionUtil.isAnyNonNull(name, email, telegram, tags) || isTelegramDeleted;
     }
 
-    public void setName(Name name) {
+    public void setName(ContactName name) {
         this.name = name;
     }
 
-    public Optional<Name> getName() {
+    public Optional<ContactName> getName() {
         return Optional.ofNullable(name);
     }
 
@@ -63,6 +65,14 @@ public class EditContactDescriptor {
 
     public Optional<Telegram> getTelegram() {
         return Optional.ofNullable(telegram);
+    }
+
+    public void setTelegramDeleted() {
+        this.isTelegramDeleted = true;
+    }
+
+    public boolean isTelegramDeleted() {
+        return this.isTelegramDeleted;
     }
 
     /**
