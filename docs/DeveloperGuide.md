@@ -222,8 +222,8 @@ The user can find assignments by providing keywords of the following fields:
 The user can find assignments with single or multiple keywords of the same type of field.
 
 It implements the following operations:
-* `find n/Lab` - Finds assignments with a name that has "Lab".
-* `find mod/CS2100 CS2103T` - Finds assignments from the module CS2100 and CS2103T.
+* `find n/Lab` - Finds assignments with names that has "Lab".
+* `find mod/CS2100 CS2103T` - Finds assignments from the modules CS2100 and CS2103T.
 * `find d/1200 24-10-2020` - Finds assignments with due time 1200 (regardless of date), and with due date 24-10-2020 (regardless of time).
 * `find p/HIGH` - Finds assignments of high priority.
 
@@ -241,7 +241,7 @@ We thus concluded that finding by specific fields would be beneficial for users,
 #### Current Implementation
 
 ##### Prefixes used in identifying keywords
-The use of prefixes before keywords allows for validation of keywords in the user's input, with Regular Expressions.
+The use of prefixes before keywords allows for validation of keywords in the user's input.
 
 The following prefixes are used to identify the fields and its keywords:
 - `/n` for Name
