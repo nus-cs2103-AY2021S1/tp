@@ -57,7 +57,7 @@ public class DeleteApplicationCommand extends Command {
         }
         List<Applicant> lastShownList = model.getFilteredApplicantList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_APPLICANT_DISPLAYED_INDEX);
         }
 
         Applicant targetApplicant = lastShownList.get(targetIndex.getZeroBased());
@@ -74,4 +74,10 @@ public class DeleteApplicationCommand extends Command {
                 false, false, true);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteApplicationCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteApplicationCommand) other).targetIndex)); // state check
+    }
 }
