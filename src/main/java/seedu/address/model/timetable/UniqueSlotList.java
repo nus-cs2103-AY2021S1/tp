@@ -1,6 +1,7 @@
 package seedu.address.model.timetable;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
@@ -80,10 +81,12 @@ public class UniqueSlotList implements Iterable<Slot> {
      * @param toRemove The Activity to remove.
      */
     public void remove(Activity toRemove) {
+        requireNonNull(toRemove);
         internalList.removeIf(slot -> slot.getActivity().isSameActivity(toRemove));
     }
 
     public void setSlot(Activity target, Activity editedActivity) {
+        requireAllNonNull(target, editedActivity);
         for (Slot slot : internalList) {
             if (slot.getActivity().isSameActivity(target)) {
                 int index = internalList.indexOf(slot);

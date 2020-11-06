@@ -77,6 +77,6 @@ public class TimetableAddLessonCommand extends Command {
                 || (other instanceof TimetableAddLessonCommand // instanceof handles nulls
                 && lesson.equals(((TimetableAddLessonCommand) other).lesson)
                 && day.equals(((TimetableAddLessonCommand) other).day)
-                && duration.equals(((TimetableAddLessonCommand) other).duration));
+                && duration.isSameDuration(((TimetableAddLessonCommand) other).duration));
     }
 }

@@ -76,6 +76,6 @@ public class TimetableAddRoutineCommand extends Command {
                 || (other instanceof TimetableAddRoutineCommand // instanceof handles nulls
                 && routine.equals(((TimetableAddRoutineCommand) other).routine)
                 && day.equals(((TimetableAddRoutineCommand) other).day)
-                && duration.equals(((TimetableAddRoutineCommand) other).duration));
+                && duration.isSameDuration(((TimetableAddRoutineCommand) other).duration));
     }
 }
