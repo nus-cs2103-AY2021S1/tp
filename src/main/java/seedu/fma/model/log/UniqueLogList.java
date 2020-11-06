@@ -5,9 +5,11 @@ import static seedu.fma.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.exceptions.DuplicateLogException;
 import seedu.fma.model.log.exceptions.LogNotFoundException;
 
@@ -66,6 +68,17 @@ public class UniqueLogList implements Iterable<Log> {
         }
 
         internalList.set(index, editedLog);
+    }
+
+    public void setExercise(Exercise oldExercise, Exercise newExercise) {
+        requireAllNonNull(oldExercise, newExercise);
+
+        List<Log> logs = internalList.stream().filter(log -> log.getExercise()
+                .getName().equals(oldExercise.getName())).collect(Collectors.toList());
+
+        logs.forEach(log -> {
+            setLog(log, log.setExercise(newExercise));
+        });
     }
 
     /**
