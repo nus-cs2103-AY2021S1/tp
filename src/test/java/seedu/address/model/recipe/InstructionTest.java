@@ -12,7 +12,14 @@ public class InstructionTest {
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Instruction(null));
     }
-
+    
+    @Test
+    public void isSameInstruction() {
+        Instruction instr1 = new Instruction("Cook. Eat.");
+        Instruction instr2 = new Instruction("Cook. Eat.");
+        assertTrue(instr1.equals(instr2));
+    }
+    
     @Test
     public void isValidInstruction() {
         // null instruction
@@ -33,4 +40,6 @@ public class InstructionTest {
         assertTrue(Instruction.isValidInstruction(new Instruction("Add 1 glass of water, "
                 + "salt and cook for 10 minutes. Serve when ready."))); // long names
     }
+    
+    
 }

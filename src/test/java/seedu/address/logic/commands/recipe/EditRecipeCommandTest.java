@@ -2,34 +2,7 @@ package seedu.address.logic.commands.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.Field;
-import static seedu.address.logic.commands.CommandTestUtil.IDENTICAL_NAME_AND_INGREDIENT_SANDWICH_RECIPE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_PASTA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_SANDWICH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_MARGARITAS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_NOODLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_SIMILAR_SANDWICH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_SIMILAR_SANDWICH_INGREDIENT_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_SIMILAR_SANDWICH_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_SIMILAR_SANDWICH_NAME_AND_INGREDIENT_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARGARITAS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_PASTA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_SANDWICH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_SANDWICH_SIMILAR;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INSTRUCTION_PASTA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INSTRUCTION_SANDWICH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MARGARITAS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_MARGARITAS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_PASTA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SANDWICH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_PASTA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_SANDWICH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_PASTA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SANDWICH;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showRecipeAtIndex;
-import static seedu.address.logic.commands.CommandTestUtil.varyRecipeFieldsDescriptor;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_RECIPE;
 import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinking;
@@ -391,6 +364,13 @@ public class EditRecipeCommandTest {
                 new EditRecipeDescriptorBuilder().withName(VALID_NAME_MARGARITAS).build());
 
         assertCommandFailure(editRecipeCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
+    }
+    
+    @Test
+    public void execute_validRecipeWithDuplicateIngredients_throwsCommandException() {
+        EditRecipeDescriptor descriptor = VALID_DESCRIPTOR_SANDWICH_DUPLICATE_INGREDIENT;
+        EditRecipeCommand editRecipeCommand = new EditRecipeCommand(INDEX_FIRST_RECIPE, descriptor);
+        assertCommandFailure(editRecipeCommand, model, EditRecipeCommand.MESSAGE_DUPLICATE_INGREDIENTS);
     }
 
     @Test

@@ -79,9 +79,13 @@ public class Recipe {
     }
 
 
+    /**
+     * Set recipe image to default image.
+     */
     public void setDefaultImage() {
         this.recipeImage = new RecipeImage("images/default.jpg");
     }
+
     /**
      * Returns true if both recipes of the same name have the same ingredient names.
      * This defines a weaker notion of equality between two recipes.
@@ -133,7 +137,7 @@ public class Recipe {
                 && otherRecipe.getTags().equals(getTags());
     }
 
-    private boolean isSameIngredients(ArrayList<Ingredient> otherIngredients) {
+    public boolean isSameIngredients(ArrayList<Ingredient> otherIngredients) {
         ArrayList<Ingredient> ingredients = getIngredient();
         if (ingredients.size() != otherIngredients.size()) {
             return false;

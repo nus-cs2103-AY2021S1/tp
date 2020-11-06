@@ -10,9 +10,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SANDWI
 import static seedu.address.testutil.TypicalRecipes.MARGARITAS;
 import static seedu.address.testutil.TypicalRecipes.SANDWICH;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.testutil.RecipeBuilder;
+
+import java.util.ArrayList;
 
 public class RecipeTest {
 
@@ -62,6 +66,10 @@ public class RecipeTest {
                .build();
         assertTrue(SANDWICH.isSameRecipeNameAndIngredientName(editedSandwich));
 
+        editedSandwich.setDefaultImage();
+        assertTrue(SANDWICH.isSameRecipeNameAndIngredientName(editedSandwich));
+        
+        // 
         /*
         // same name, same ingredients, different attributes -> returns true
         editedSandwich = new RecipeBuilder(SANDWICH)
@@ -107,4 +115,12 @@ public class RecipeTest {
         assertFalse(SANDWICH.equals(editedSandwich));
 
     }
+
+    @Test
+    public void isSameIngredient() {
+        ArrayList<Ingredient> list = new ArrayList<>();
+        list.add(new Ingredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_SANDWICH));
+        assertFalse(SANDWICH.isSameIngredients(list));
+    }
+
 }
