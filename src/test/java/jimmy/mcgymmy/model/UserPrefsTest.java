@@ -28,6 +28,8 @@ public class UserPrefsTest {
         assertEquals(userPref, userPref);
         // not same type -> returns false
         assertFalse(userPref.equals("123"));
+        // same value -> return true
+        assertEquals(new UserPrefs(userPref), new UserPrefs(userPref));
     }
 
 }
