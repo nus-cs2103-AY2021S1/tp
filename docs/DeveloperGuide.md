@@ -159,7 +159,7 @@ Given below is the planned Sequence Diagram for interactions within the `Session
 
 <br>
 
-### StudentRecordList and StudentRecord
+### StudentRecordList
 
 Author: **Goh Siau Chiak**
 
@@ -186,6 +186,16 @@ When the user wants to update the attendance or class participation score, a new
 Given below is the Sequence Diagram for interactions within the `StudentRecordListManager` component when `StudentRecordListManager#markStudentAttendance(nusnetId, attendanceType)` is called.
 
 ![Interactions inside the StudentRecordListManager class for the `markStudentAttendance'` method call](images/StudentRecordListAttendanceSequenceDiagram.png)
+
+Considerations for `markStudentAttendance`:
+    
+On one hand, the mark command uses an index to identify the record, for ease of usage for the user, as compared to 
+having to type out the record's NUSNET ID. On the other hand, the mark attendance method within the `Model` identifies 
+the record to mark using its NUSNET ID, to ensure correctness. Furthermore, the student records have to be stored in a 
+JavaFX `ObservableList` to be easily displayable on the GUI. In the end, I decided to find the record to mark by 
+iterating through the record list and comparing NUSNET IDs, since each student's NUSNET ID must be unique. The `O(N)`
+time complexity of this method does not incur significant time cost because we expect there to be no more than 1000
+students recorded in any session created by TAs using TAskmaster.
 
 Design alternatives:
 - Make `StudentRecord` mutable.
