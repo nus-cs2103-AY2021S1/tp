@@ -46,12 +46,15 @@ This diagram shows our interface.
 5. The *Command Box* at the bottom of the app window is at the bottom. You can type your commands here.
 
 ### Basic workflow
-1. Tag important files with the `tag` command for ease of access.
+1. Tag important files with the `tag` command for ease of access.<br>
 ![Tag](images/screenshots/tag.PNG)
-2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.
+2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.<br>
 ![Open](images/screenshots/open.PNG)
-3. To find the location of tagged files, use the `show` command to get the file path of the file.
-4. If you have made a happy little accident, you can recover by using `undo` and `redo`.
+3. To find the location of tagged files, use the `show` command to get the file path of the file.<br>
+![Show](images/screenshots/show.PNG)
+4. If you have made a happy little accident, you can recover by using `undo` and `redo`.<br>
+![Undo](images/screenshots/undo.PNG) <br>
+![Redo](images/screenshots/open.PNG) <br>
 5. To exit the application, either close the application window, or use the `exit` command.
 
 --------------------------------------------------------------------------------------------------------------------
