@@ -839,17 +839,15 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
     
-    1. Test case (editing one field of flashcard): `edit INDEX q/Is this edited?` where `INDEX` is the index of the particular
-        flashcard in the deck to be edited. <br>
-        Expected: The `QUESTION` of flashcard at index `INDEX` will be modified to become `Is this edited?`. The remaining fields
+    1. Test case (editing one field of flashcard): `edit 1 q/Is this edited?` <br>
+        Expected: The `QUESTION` of flashcard at index 1 will be modified to become `Is this edited?`. The remaining fields
         of this flashcard will remain the same. Result display will output the status of the edited flashcard.
         
-    1. Test case (editing multiple fields of flashcard): `edit INDEX q/Is this edited? a/Yes` where `INDEX` is the index of the particular
-        flashcard in the deck to be edited. <br> 
-        Expected: The `QUESTION` and `ANSWER` of flashcard at index `INDEX` will be modified to become `Is this edited?` 
+    1. Test case (editing multiple fields of flashcard): `edit 1 q/Is this edited? a/Yes` <br> 
+        Expected: The `QUESTION` and `ANSWER` of flashcard at index 1 will be modified to become `Is this edited?` 
         and `Yes` respectively.The remaining fields of this flashcard will remain the same. Result display will output the status of the edited flashcard.
     
-    1. Test case (missing flashcard field input): `edit INDEX` where `INDEX` is the index of the particular flashcard in the deck to be edited. <br> 
+    1. Test case (missing flashcard field input): `edit 1` where `INDEX` <br> 
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the message: `At least one field to edit must be provided.`
         
@@ -861,7 +859,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Clearing all flashcards
 
-1. Clearing all flashcards in flashcard deck
+1. Clearing all flashcards in the flashcard deck
 
      1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
@@ -872,7 +870,7 @@ testers are expected to do more *exploratory* testing.
      
 ### Filtering for flashcards
 
-1. Filtering for selected flashcards in flashcard deck
+1. Filtering for selected flashcards in the flashcard deck
 
     1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
@@ -893,7 +891,7 @@ testers are expected to do more *exploratory* testing.
     
 ### Favouriting a flashcard
 
-1. Favouriting a flashcard in flashcard deck in flashcard deck
+1. Favouriting a flashcard in the flashcard deck
 
     1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
@@ -911,7 +909,7 @@ testers are expected to do more *exploratory* testing.
         
 ### Unfavouriting a flashcard
 
-1. Unfavouriting a flashcard in flashcard deck in flashcard deck
+1. Unfavouriting a flashcard in the flashcard deck
 
     1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
@@ -929,7 +927,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding flashcards
 
-1. Finding flashcards in flashcard deck
+1. Finding flashcards in the flashcard deck
     
    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
@@ -972,6 +970,26 @@ testers are expected to do more *exploratory* testing.
 
 ### Viewing a flashcard
 
+1. Viewing a flashcard
+
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+       how to add a flashcard if flashcard deck is empty.
+       
+    1. Test case (view flashcard without answer): `view 1` <br>
+        Expected: Flashcard view panel on the right updates with the details of the flashcard at index 1 in the flashcard
+        deck. Result display will output the status of the selected flashcard.
+        
+    1. Test case (view flashcard with answer): `view 1 -a` <br>
+        Expected: Flashcard view and flashcard answer panel on the right updates with the details and answer of the flashcard
+        respectively, at index 1 in the flashcard deck. Result display will output the status of the selected flashcard.
+
+    1. Test case (view flashcard at invalid index): `view 0` <br>
+        Expected: Flashcard view and flashcard answer panel will not update and input text will turn red to signal an error.
+            Result display will output the invalid command error message.
+            
+    1. Other incorrect favourite commands to try: `view 0 -a` and `view x` (where x is larger than the list size or x is a negative integer) <br>
+               Expected: Similar to test case iv.
+               
 ### Viewing the statistics of a flashcard
     
 ### Saving data
