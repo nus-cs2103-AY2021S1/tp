@@ -13,7 +13,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY = "The order item quantity "
             + "provided is invalid";
     public static final String MESSAGE_INVALID_PRICE = "%s is not a non-negative unsigned real number.";
-    public static final String MESSAGE_INVALID_INEQUALITY = "%s is not a valid inequality sign.";
+    public static final String MESSAGE_INVALID_INEQUALITY = "%s is not a valid inequality sign. It must be either "
+            + "\"<\", \"<=\", \">\", or \">=\" (without quotes). See User Guide for more info.";
 
     public static final String MESSAGE_VENDOR_NOT_SELECTED = "A vendor has not been selected yet,"
             + " please choose a vendor.";
