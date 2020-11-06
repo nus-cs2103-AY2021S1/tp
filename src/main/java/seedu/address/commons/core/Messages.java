@@ -19,6 +19,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_LESSON = String.format(MESSAGE_DUPLICATE_MODEL, "lesson");
     public static final String MESSAGE_DUPLICATE_EVENT = String.format(MESSAGE_DUPLICATE_MODEL, "event");
     public static final String MESSAGE_DUPLICATE_DEADLINE = String.format(MESSAGE_DUPLICATE_MODEL, "deadline");
+    public static final String MESSAGE_DUPLICATE_TASK = String.format(MESSAGE_DUPLICATE_MODEL, "task");
 
     // invalid user search phrases
     public static final String MESSAGE_EMPTY_SEARCH_PHRASE = "Search phrase cannot be empty!";

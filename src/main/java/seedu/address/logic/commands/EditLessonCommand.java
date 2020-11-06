@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.LESSON_OVERLAP_CONSTRAINTS;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
@@ -60,7 +61,6 @@ public class EditLessonCommand extends Command {
 
     public static final String MESSAGE_EDIT_LESSON_SUCCESS = "Edited Lesson: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_LESSON = "This lesson already exists in PlaNus.";
 
     private final Index index;
     private final EditLessonDescriptor editLessonDescriptor;
