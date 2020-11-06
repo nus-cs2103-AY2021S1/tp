@@ -9,4 +9,5 @@ public class ImportCommandTest {
     public void constructor_nullAssignment_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new ImportCommand(null));
     }
+
 }
