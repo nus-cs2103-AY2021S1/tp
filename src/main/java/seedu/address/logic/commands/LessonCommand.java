@@ -40,7 +40,7 @@ public class LessonCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New lesson added: %1$s";
     public static final String MESSAGE_DUPLICATE_LESSON = "This lesson already exists in PlaNus.";
-    public static final String OVERLAP_CONSTRAINTS = "This lesson overlaps with another event or lesson";
+    public static final String MESSAGE_OVERLAP = "This lesson overlaps with another existing event or lesson in PlaNus";
 
     private final Lesson lesson;
 
@@ -59,7 +59,7 @@ public class LessonCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_LESSON);
         }
         if (Overlap.overlapWithOtherTimeSlots(model, lesson)) {
-            throw new CommandException(OVERLAP_CONSTRAINTS);
+            throw new CommandException(MESSAGE_OVERLAP);
         }
         model.addLesson(lesson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, lesson));

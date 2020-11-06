@@ -2,9 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -34,35 +31,6 @@ import seedu.address.model.task.event.StartDateTime;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
-    public static final String VALID_TITLE_AMY = "Amy Bee";
-    public static final String VALID_TITLE_BOB = "Bob Choo";
-    public static final String VALID_DATE_TIME_AMY = "31-12-2020 17:00";
-    public static final String VALID_DATE_TIME_BOB = "01-01-2020 00:00";
-    public static final String VALID_DESCRIPTION_AMY = "amy,example.com";
-    public static final String VALID_DESCRIPTION_BOB = "bob,example.com";
-    public static final String VALID_TYPE_BOB = "deadline";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
-
-
-    public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
-    public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
-    public static final String DATE_TIME_DESC_AMY = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_AMY;
-    public static final String DATE_TIME_DESC_BOB = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_BOB;
-    public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
-    public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
-    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "Homework&"; // '&' not allowed in titles
-    public static final String INVALID_DATE_TIME_DESC = " " + PREFIX_DATE_TIME
-            + "32-11-2000 19:00"; // 32nd day not allowed
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "bob@yahoo"; // '@' not allowed
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     //valid lesson
     public static final String VALID_TITLE_CS2103T = "CS2103T Lecture";
     public static final String VALID_DESC_CS2103T = "Best lecture ever!";
@@ -80,7 +48,7 @@ public class CommandTestUtil {
             new Tag(VALID_TAG_CS2103T), Description.defaultDescription(), DayOfWeek.MONDAY,
             LocalTime.of(12, 0), LocalTime.of(14, 0),
             LocalDate.of(2020, 1, 1), LocalDate.of(2020, 11, 1));
-    //valid lesson
+    //valid lesson that overlaps with CS2103T
     public static final String VALID_TITLE_CS2000 = "CS2103T Lecture";
     public static final String VALID_DESC_CS2000 = "Best lecture ever!";
     public static final String VALID_DAY_CS2000 = "Monday";
@@ -128,13 +96,18 @@ public class CommandTestUtil {
     public static final Event VALID_EVENT_EXPERIMENT = Event.createUserEvent(new Title(VALID_TITLE_EXPERIMENT),
             new StartDateTime(VALID_START_DATETIME_EXPERIMENT), new EndDateTime(VALID_END_DATETIME_EXPERIMENT),
             new Description(VALID_DESC_EXPERIMENT), new Tag(VALID_TAG_EXPERIMENT));
-    //valid event
+    //valid event that clashes with CS2100 Lecture
     public static final String VALID_TITLE_MEETING = "Project meeting";
-    public static final String VALID_DESC_MEETING = "Important meeting";
-    public static final String VALID_DATE_MEETING = "01-01-2020";
-    public static final String VALID_START_TIME_MEETING = "20:00";
+    public static final String VALID_DESC_MEETING = "Important meeting that clashes with CS2100 Lecture";
+    public static final String VALID_DATE_MEETING = "03-11-2020";
+    public static final String VALID_START_TIME_MEETING = "14:00";
     public static final String VALID_END_TIME_MEETING = "22:00";
+    public static final String VALID_START_DATETIME_MEETING = "03-11-2020 14:00";
+    public static final String VALID_END_DATETIME_MEETING = "03-11-2020 22:00";
     public static final String VALID_TAG_MEETING = "CS2101";
+    public static final Event VALID_EVENT_MEETING = Event.createUserEvent(new Title(VALID_TITLE_MEETING),
+            new StartDateTime(VALID_START_DATETIME_MEETING), new EndDateTime(VALID_END_DATETIME_MEETING),
+            new Description(VALID_DESC_MEETING), new Tag(VALID_TAG_MEETING));
     //invalid event
     public static final String INVALID_DATE_MEETING = "32-01-2020";
     public static final String INVALID_START_TIME_MEETING = "20:60";
