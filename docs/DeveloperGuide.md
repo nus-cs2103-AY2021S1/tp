@@ -84,7 +84,7 @@ Here is a summary (Table 1) of the symbols that are used in this Developer Guide
 Table 1: Summary of symbols
 
 Symbol | Meaning
--------|--------
+:-----:|:-------
 `command` | A grey highlight indicates a command that can be executed by **Reeve**.
 :information_source: | Indicates important information. 
 :bulb: | Indicates tips.
@@ -223,9 +223,9 @@ The following describes the flow of how `HelpCommand` is performed.
 2. A `CommandResult` with the `showHelp` field set to true is returned and `MainWindow#handleHelp()` is called.
 3. A Help display window will be opened showing a link to the User Guide. 
 
-:information_source: | If there is already a Help window already opened, and `HelpCommand` is executed, `HelpWindow#focus()` will be called to focus on the already opened window.
-:------:|:-------
-
+<div markdown="block" class="alert alert-info">
+:information_source: If there is already a Help window already opened, and `HelpCommand` is executed, `HelpWindow#focus()` will be called to focus on the already opened window.
+</div>
 
 #### 6.1.2 Toggle Command
 
@@ -235,8 +235,9 @@ The following describes the flow of how `ToggleStudentCardCommand` is performed.
 2. A `CommandResult` with the `toggleStudentCard` field set to true is returned and `MainWindow#handleAcademicPanel()` is called.
 3. Student cards in `StudentListPanel` will be switched. 
 
-:information_source: | By default, `StudentListPanel` uses `StudentAcademicCard`.
-:------:|:-------
+<div markdown="block" class="alert alert-info">
+:information_source: By default, `StudentListPanel` uses `StudentAcademicCard`.
+</div>
 
 The following sequence diagram shows how the `ToggleStudentCardCommand` execution works.
 
@@ -311,9 +312,9 @@ the specified `Index` is a valid index based on the `UniqueStudentList`, in the 
 2. Otherwise, the `Student` at the specified valid `Index` is then removed from the UniqueStudentList#students observable list using the Model#deleteStudent(Student target) method.
 3. The specified student is deleted from the `UniqueStudentList` and a success message is shown in the result display.
 
-:information_source: | A valid `Index` is one that is within the bounds of the `UniqueStudentList`.
-:------:|:-------
-
+<div markdown="block" class="alert alert-info">
+:information_source: A valid `Index` is one that is within the bounds of the `UniqueStudentList`.
+</div>
 
 ### 6.2.4 Find Student Command
 
@@ -466,7 +467,6 @@ The following describes the flow of how `AddExamCommand` is performed.
 
 The sequence(insert image reference here) of how add exam operates is very similar to that of add question. 
 
-
 ##### 6.3.2.2 Delete exam command
 
 The following describes the flow of how `DeleteExamCommand` is performed.
@@ -479,8 +479,9 @@ The following describes the flow of how `DeleteExamCommand` is performed.
 6. `Model#setPerson(Student selectedStudent, Student updatedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the exam removed.
 7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
-:information_source: | Exams are specified based on the indexes of the list of exams shown on the academic view of student details.
-:------:|:-------
+<div markdown="block" class="alert alert-info">
+:information_source: Exams are specified based on the indexes of the list of exams shown on the academic view of student details.
+</div>
 
 The sequence(insert image reference here) of how add exam operates is very similar to that of add question. 
 
@@ -929,13 +930,16 @@ The use cases also assumes that whenever an invalid command is entered by the us
 2.  The response to any use action should become visible within 5 seconds.
 3.  The program should be able to handle at least 100 students.
 4.  The graphical user interface should be easy to use for non-IT savvy users.
-
-*{More to be added}*
+5.  The program should be able to run even without internet connection.
 
 ## **Appendix E: Glossary**
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+The following table provides the definitions of the various terms used in this Developer Guide.
+
+Term | Definition
+--------|------------------
+Mainstream OS | Refers to Windows, Linux, Unix, OS-X.
+Private contact detail | A contact detail that is not meant to be shared with others.
 
 ## **Appendix F: Instructions for Manual Testing**
 

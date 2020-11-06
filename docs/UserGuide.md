@@ -184,8 +184,9 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
     * `TYPE_OF_SCHOOL` can be primary(pri, p), secondary(sec, s) or jc. 
     * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
 
-:information_source: | You **cannot** add duplicates of a student. Each student is uniquely identified by his/her `NAME`, `PHONE`, `SCHOOL` and `YEAR`.
-:------:|:-------
+<div markdown="block" class="alert alert-info">
+:information_source: You **cannot** add duplicates of a student. Each student is uniquely identified by his/her `NAME`, `PHONE`, `SCHOOL` and `YEAR`.
+</div>
 
 
 Examples:
@@ -200,8 +201,9 @@ You can view the list of all students in **Reeve**.
 
 Format: `list`
 
-:information source: | You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
-:------:|:-------
+<div markdown="block" class="alert alert-info">
+:information_source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
+</div>
 
 #### 3.3.3 Editing a student: `edit` (By: Vaishak)
 
@@ -487,8 +489,9 @@ Examples:
 * `list` followed by `exam stats 2` views the exam statistics of the 2nd student in **Reeve**.
 * `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
 
-:information_source: | If you are editing the exams of a student, you will have to enter the `exam stats` command again to get the updated statistics.
-:------:|:-------
+<div markdown="block" class="alert alert-info">
+:information_source: If you are editing the exams of a student, you will have to enter the `exam stats` command again to get the updated statistics.
+</div>
 
 #### 3.4.3 Recording attendance of a student: `attendance` (By: Vaishak)
 
@@ -586,6 +589,7 @@ Action | Format, Examples
 **Delete Question** | `question delete STUDENT_INDEX i/QUESTION_INDEX`<br> e.g. `question delete 1 i/1`
 **Add Exam** | `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`<br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
 **Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX`<br> e.g. `exam delete 2 i/5`
+**Exam Stats** | `exam stats STUDENT_INDEX`<br> e.g. `exam stats 1`
 **Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
 **Schedule View** | `schedule m/VIEW_MODE d/DATE_TO_VIEW` <br> e.g. `schedule m/weekly d/2/11/2020`
