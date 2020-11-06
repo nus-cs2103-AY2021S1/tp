@@ -809,7 +809,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a flashcard while all flashcards are being shown
 
-   1. Prerequisites: List all flashcards using the `list` command. At least one flashcard in the list.
+   1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+      how to add a flashcard if flashcard deck is empty.
 
    1. Test case (valid index): `delete 1` <br>
       Expected: First flashcard is deleted from the list of flashcards. Result display will output the status of the deleted flashcard. 
@@ -853,7 +854,7 @@ testers are expected to do more *exploratory* testing.
         
     1. Test case (missing flashcard field input and index): `edit` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
-        Invalid command error message shown in the result display.
+        Result display will output the invalid command error message.
      
      :bulb: **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
 
@@ -877,7 +878,7 @@ testers are expected to do more *exploratory* testing.
                 
     1. Test case (filtering by one flashcard field): `filter c/General` <br>
         Expected: Flashcard list panel updates to show only flashcards belonging to `General` category. Result display will
-            output a success message indicating the number of flashcards filtered.
+        output a success message indicating the number of flashcards filtered.
             
     1. Test case (filtering by multiple flashcard fields): `filter c/General r/3` <br> 
         Expected: Flashcard list panel updates to show only flashcards belonging to `General` category and have a rating of `3`. 
