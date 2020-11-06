@@ -587,6 +587,18 @@ All tCheck data (i.e. ingredient data, sales data, employees' data) will be save
  
  **:information_source: Notes:**<br>
  * User should not attempt to make any change in all data files.
+
+#### 4.4 Calendar :
+
+tCheck also provides a calendar pane when you start the application. It will automatically jump to the current today's
+ date based on your computer's date. It is designed to help you, a store manager, to quick access 
+ to the current month's calendar, so that you can easily find out what day is a specific date during 
+ your work planning.
+
+ **:information_source: Notes:**<br>
+ * In the current version, tCheck only can show the calendar for the current month.
+ 
+ {Screenshot}
  
 ## Command summary <a name="command-summary"></a>
 
