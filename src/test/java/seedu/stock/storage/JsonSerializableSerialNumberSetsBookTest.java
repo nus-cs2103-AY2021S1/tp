@@ -22,7 +22,7 @@ public class JsonSerializableSerialNumberSetsBookTest {
     private static final Path DUPLICATE_STOCK_FILE = TEST_DATA_FOLDER.resolve("duplicateSerialNumberSets.json");
 
     @Test
-    public void toModelType_typicalSerialNumberSetssFile_success() throws Exception {
+    public void toModelType_typicalSerialNumberSetsFile_success() throws Exception {
         JsonSerializableSerialNumberSetsBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_STOCKS_FILE,
                 JsonSerializableSerialNumberSetsBook.class).get();
         SerialNumberSetsBook serialNumberSetsBookFromFile = dataFromFile.toModelType();
