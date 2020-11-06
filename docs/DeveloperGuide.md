@@ -525,9 +525,7 @@ Priorities: High (must have) - `☆ ☆ ☆`, Medium (nice to have) - `* *`, Low
 | \* \*    | advanced user | create aliases to other commands                         | perform my common actions while typing less.                                                              |
 | \*       | OHS admin                | find a room by searching for the room number             | get the details of a specific room, without getting cluttered by other information.                       |
 | \* \*    | OHS admin                | view a list of rooms filtered by a particular type       | select the rooms that needs to be upgraded, for example.                                                  |
-| \* \*    | advanced user       | have autocompletions for a command                       | quickly and efficiently complete an operation.                                                            |
 | \* \*    | advanced user       | redo the previous command using a keyboard shortcut      | do the same task without typing again, e.g. if two students wish to pay the same bill.                    |
-| \* \*    | busy OHS Admin           | find a student by partial searching for their first name | type quickly without worrying about typos.                                                                |
 | \* \*    | careless user      | undo my last command                                     | fix any change that I made erroneously.                                                                   |
 | \* \*    | advanced user       | view previous commands using a keyboard shortcut         | check if I made an error in adding or deleting records.                                                   |
 | \* \* \* | OHS admin                | view a list of vacant rooms                              | start assigning rooms to students before the semester starts.                                             |
@@ -535,7 +533,6 @@ Priorities: High (must have) - `☆ ☆ ☆`, Medium (nice to have) - `* *`, Low
 | \* \* \* | OHS admin                | view a room allocation for a student                     | check and inform a student of their room allocation during check in.                                      |
 | \* \* \* | OHS admin                | allocate a room to a student                             | allocate a student to a room before the semester starts.                                                  |
 | \* \* \* | OHS admin                | delete a room allocation for a student                   | update vacancies when a student applies to leave their room.                                              |
-| \* \*    | OHS admin                | add a remark to a bill                                   | record any exceptional details about the bill (e.g. cash-only payment).                                   |
 | \* \*    | OHS admin                | add a new semester                                       | make sure all new bills and allocations are made in the context of the semester.                          |
 | \* \* \* | OHS admin                | view a list of all allocated rooms                       | check which students stay in which rooms.                                                                 |
 | \* \* \* | OHS admin                | edit a room allocation for a student                     | change a student's room allocation and update the room vacancies.                                         |
@@ -558,6 +555,9 @@ Priorities: High (must have) - `☆ ☆ ☆`, Medium (nice to have) - `* *`, Low
 | \* \*    | OHS admin                | view all outstanding bills for a student                 | inform the student of his/her due bills.                                                                  |
 | \* \*    | OHS admin                | mark a bill as paid                                      | easily keep track of the remaining amount a student has to pay to OHS.                                    |
 | \* \*    | OHS admin                | view a list of all students with outstanding bills       | remind students of outstanding payments.                                                                  |
+| \* \*    | OHS admin                | add a remark to a bill                                   | record any exceptional details about the bill (e.g. cash-only payment).                                   |
+| \* \*    | advanced user       | have autocompletions for a command                       | quickly and efficiently complete an operation.                                                            |
+| \* \*    | busy OHS Admin           | find a student by partial searching for their first name | type quickly without worrying about typos.                                                                |
 
 
 ### Use cases
