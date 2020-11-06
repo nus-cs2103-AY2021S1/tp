@@ -257,10 +257,12 @@ Format: `i-set i/INGREDIENT_NAME m/AMOUNT`
 Example:
 * `i-set i/Milk m/90`
 
+<img src="images/IngredientSetCommand.png" width="1000" height="700" />
 Figure above shows tCheck's GUI during the command is being entered.
 
 * Expected Result:
 
+<img src="images/IngredientSetCommandResultDisplay.png" width="1000" height="700" />
 Figure above showing tCheck's GUI after pressing enter. Note that the amount for Milk is updated in Ingredient Tracker section of _Main View_.
 
 #### 2.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
@@ -273,7 +275,14 @@ Format: `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOU
 
 Example:
 * `i-set-all M/20 P/20 B/20 L/50 G/80 S/50`
-* The GUI during entering this command and after pressing enter is similar to that of `i-set`
+
+<img src="images/IngredientSetAllCommand.png" width="1000" height="700" />
+Figure above shows tCheck's GUI during the command is being entered.
+
+* Expected Result:
+
+<img src="images/IngredientSetAllCommandResultDisplay.png" width="1000" height="700" />
+Figure above showing tCheck's GUI after pressing enter. Note that all amounts for the ingredients are updated in Ingredient Tracker section of _Main View_.
 
 #### 2.3 Setting all ingredients to different levels : `i-set-default`
 
@@ -285,6 +294,14 @@ Format: `i-set-default`
 
 Example:
 * `i-set-default`
+
+<img src="images/IngredientSetDefaultCommand.png" width="1000" height="700" />
+Figure above shows tCheck's GUI during the command is being entered.
+
+* Expected Result:
+
+<img src="images/IngredientSetDefaultCommandResultDisplay.png" width="1000" height="700" />
+Figure above showing tCheck's GUI after pressing enter. Note that all amounts for the ingredients are updated in Ingredient Tracker section of _Main View_.
 
 #### 2.4 Listing all ingredients' levels : `i-list`
 Lists the ingredient's levels of all ingredient types.
