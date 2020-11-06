@@ -73,15 +73,7 @@ public class StatsCommandTest {
 
         List<Flashcard> flashcardList = expectedModel.getFilteredFlashcardList();
 
-        int timesTested = 0;
-        int timesTestedCorrect = 0;
-
-        for (Flashcard flashcard : flashcardList) {
-            Statistics statistics = flashcard.getStatistics();
-            timesTested += statistics.getTimesTested();
-            timesTestedCorrect += statistics.getTimesTestedCorrect();
-        }
-        Statistics expectedStatistics = new Statistics(timesTested, timesTestedCorrect);
+        Statistics expectedStatistics = getStatisticsFromFlashcardList(flashcardList);
 
         assertCommandSuccess(statsCommand, model, expectedMessage, expectedModel, expectedStatistics);
     }
@@ -102,10 +94,7 @@ public class StatsCommandTest {
 
         List<Flashcard> flashcardList = expectedModel.getFilteredFlashcardList();
 
-        int timesTested = 0;
-        int timesTestedCorrect = 0;
-
-        Statistics expectedStatistics = new Statistics(timesTested, timesTestedCorrect);
+        Statistics expectedStatistics = getStatisticsFromFlashcardList(flashcardList);
 
         assertCommandSuccess(statsCommand, model, expectedMessage, expectedModel, expectedStatistics);
     }
@@ -130,5 +119,18 @@ public class StatsCommandTest {
 
         // different stats command -> returns false
         assertFalse(statsFirstCommand.equals(statsSecondCommand));
+    }
+
+    private Statistics getStatisticsFromFlashcardList(List<Flashcard> flashcardList) {
+        int timesTested = 0;
+        int timesTestedCorrect = 0;
+
+        for (Flashcard flashcard : flashcardList) {
+            Statistics statistics = flashcard.getStatistics();
+            timesTested += statistics.getTimesTested();
+            timesTestedCorrect += statistics.getTimesTestedCorrect();
+        }
+
+        return new Statistics(timesTested, timesTestedCorrect);
     }
 }
