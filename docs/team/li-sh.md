@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the `retag` command
 (Pull request [\#96](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/96))
   * What it does: Allows user to retag existing tags in the HelloFile.
-  * Justification: This feature allows user to change the tag name of existing tags, in cases where the tag is 
+  * Justification: This feature allows user to change the tag name of existing tags, in cases where the tag is
   misspelled, or have changed name.
   * Highlights: This feature allows the user to retag the tag name as the same tag name.
   
@@ -71,3 +71,4 @@ Given below are my contributions to the project.
   (examples: [1](https://github.com/li-s/ped/issues/7),
   [2](https://github.com/li-s/ped/issues/10),
   [3](https://github.com/li-s/ped/issues/11))
+  
