@@ -88,11 +88,11 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
 * PIVOT does not allow the addition of Cases, Documents, Suspect, Witness or Victim that already exists.
 * When editing details in PIVOT, if it results in duplicates, PIVOT will not allow it as well.
-* Cases are identified by their Title. Users cannot add a Case if there is an existing Case (from both Home/Archive section) with the same Title. 
-* Documents are identified by both their Name and Reference. 
+* Cases are identified by their Title. Users cannot add a Case if there is an existing Case (from both Home/Archive section) with the same Title. Title is a case-sensitive field.
+* Documents are identified by both their Name and Reference. Name is not a case-sensitive field.
 Users cannot add a Document to a Case if there is an existing Document with the same Name and Reference in that case.
 * Suspects, Witnesses, Victims are identified by their Name, Sex and Phone. 
-Users cannot add a Suspect/Witness/Victim to a Case if there is an existing Suspect/Witness/Victim with the same Name, Sex and Phone in that Case. 
+Users cannot add a Suspect/Witness/Victim to a Case if there is an existing Suspect/Witness/Victim with the same Name, Sex and Phone in that Case. Name is not a case-sensitive field.
 * However, note that there can be duplicates between Suspect, Witness and Victim in a Case, and between different Cases. 
 There can be a Suspect with the same Name, Sex and Phone as an existing Victim/Witness in that Case and vice versa.
 The same Suspect/Witness/Victim can also appear in two different cases.
@@ -212,8 +212,7 @@ Format: `add desc d:DESC`
 - `DESC` cannot be blank.
 
 Example: 
-- `add desc d:Kovan double murders of twins xxx and yyy` updates the description of this case to “Kovan double murders of twins xxx and yyy”.
-
+- `add desc d:Kovan double murders of twins xxx and yyy` adds the description “Kovan double murders of twins xxx and yyy” to the current case.
 
 #### Add document to the current case: `add doc n:TITLE r:FILE_NAME`
 Adds a new document to the current case with the specified `TITLE` and `FILE_NAME`.
@@ -226,37 +225,35 @@ Example:
 - `add doc n:Case Details r:case_details.pdf` adds a new document with title “Case Details” with the file name case_details.pdf to the investigation case.
 
 
+#### Add suspect to the current case: `add suspect n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-#### Add suspect to the current case: `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Adds a new suspect to the current case with the specified `NAME` and `SEX`. The other fields are optional.
 
-Adds a new suspect to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
+Format: `add suspect n:NAME sex:SEX p:PHONE`
 
-Format: `add suspect n:NAME g:GENDER`
+Example: `add suspect n:John Doe sex:M`
 
-Example: `add suspect n:John Doe g:M`
+Sex must either be `M` or `F`, not case-sensitive.
 
-Gender must either be `M` or `F`, not case-sensitive.
+#### Add victim to the current case: `add victim n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-#### Add victim to the current case: `add victim n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Adds a new victim to the current case with the specified `NAME` and `SEX`. The other fields are optional.
 
-Adds a new victim to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
+Format: `add victim n:NAME sex:SEX p:PHONE`
 
-Format: `add victim n:NAME g:GENDER`
+Example: `add victim n:James Lee sex:M`
 
-Example: `add victim n:James Lee g:M`
+Sex must either be `M` or `F`, not case-sensitive.
 
-Gender must either be `M` or `F`, not case-sensitive.
+#### Add witness to the current case: `add witness n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-#### Add witness to the current case: `add witness n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Adds a new witness to the current case with the specified `NAME` and `SEX`. The other fields are optional.
 
-Adds a new witness to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
+Format: `add witness n:NAME sex:SEX p:PHONE`
 
-Format: `add witness n:NAME g:GENDER`
+Example: `add witness n:John Doe sex:M`
 
-Example: `add witness n:John Doe g:M`
-
-Gender must either be `M` or `F`, not case-sensitive.
-
+Sex must either be `M` or `F`, not case-sensitive.
 
 #### Edit title in the current case: `edit title t:TITLE`
 Edits the title of the case with the specified `TITLE`. Cannot be edited to another existing case title in the PIVOT program (Both Home and Archive).
@@ -266,6 +263,17 @@ Format: `edit title t:TITLE`
 
 Example: 
 - `edit title t:Murder case 29` updates the title of this case to “Murder case 29”.
+
+#### Edit description of the current case: `edit desc d:DESC`
+Edits the description of the current case if it has a description.
+You must add a description first.[(See Add Description)](#add-description-to-the-current-case-add-desc-ddesc)
+
+Format: `edit desc d:DESC`
+- `DESC` cannot be blank.
+
+Example: 
+- `edit desc d:Kovan double murders` edits the description of the current case to “Kovan double murders”.
+
 
 #### Edit status in the current case: `edit status s:STATUS`
 
@@ -294,42 +302,48 @@ name `Fire outbreak details` and reference `newFireDoc.pdf`.
 <br>
 This document `newFireDoc.pdf` must be manually added to the `references` folder provided and must be present before the document can be successfully updated.
 
-#### Edit an existing suspect in the current case: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Edit an existing suspect in the current case: `edit suspect INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Edits the fields of the suspect specified with the index in the case.
 At least one of the fields is to be specified to make edits.
 
-Format: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit suspect INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Example: `edit suspect 1 e:newEmail@mail.com a:New Road Crescent` edits the first suspect in the list with the email 
 `newEmail@mail.com` and the address `New Road Crescent`.
 
-Gender must either be `M` or `F`, not case-sensitive.
+Sex must either be `M` or `F`, not case-sensitive.
 
-#### Edit an existing victim in the current case: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Edit an existing victim in the current case: `edit victim INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Edits the fields of the victim specified with the index in the case.
 At least one of the fields is to be specified to make edits.
 
-Format: `edit victim VICTIM_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit victim VICTIM_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Example: `edit victim 1 e:newEmail@mail.com a:New Road Crescent` edits the first victim in the list with the email 
 `newEmail@mail.com` and the address `New Road Crescent`.
 
-Gender must either be `M` or `F`, not case-sensitive.
+Sex must either be `M` or `F`, not case-sensitive.
 
 
-#### Edit an existing witness in the current case: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Edit an existing witness in the current case: `edit witness INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Edits the fields of the witness specified with the index in the case. 
 At least one of the fields is to be specified to make edits.
 
-Format: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit witness INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Example: `edit witness 1 e:newEmail@mail.com a:New Road Crescent` edits the first witness in the list with the email 
 `newEmail@mail.com` and the address `New Road Crescent`.
 
-Gender must either be `M` or `F`, not case-sensitive.
+Sex must either be `M` or `F`, not case-sensitive.
+
+#### Delete description: `delete desc`
+Deletes the description of the current case.
+You must add a description first.[(See Add Description.)](#add-description-to-the-current-case-add-desc-ddesc)
+
+Format: `delete desc`
 
 #### Delete document: `delete doc DOC_NO `
 Deletes the document specified with `DOC_NO` from the list of documents.
@@ -405,6 +419,10 @@ and the application will now be at the case page. Using `undo` will undo the `ad
 a `main page command`. This will bring the application back to the main page.
 </div>
 
+#### Help: `help`
+
+Opens the Help Window. 
+
 #### Exit application: `exit`
 
 Exits the application.
@@ -437,39 +455,39 @@ User data automatically saves when there is a change in data.
 |**list case**      | `list case`                           |
 |**list archive**   | `list archive`                        |
 |**add case**       | `add case t:TITLE [s:STATUS]`         |
-|**open case**      | `open case CASE_NO`                   |
 |**delete case**    | `delete case CASE_NO`                 |
+|**open case**      | `open case CASE_NO`                   |
 |**archive**        | `archive case CASE_NO`                |
 |**unarchive**      | `unarchive case CASE_NO`              |
 |**find**           | `find KEYWORD [MORE KEYWORDS]`        |
-|**exit**           | `exit`                                |
 
 #### Investigation Page Commands
 
-| Command             | Format                                                                            |
-| ------------------- | ----------------------------------------------------------------------------------|
-|**list document**    | `list doc`                                                                        |
-|**list suspect**     | `list suspect`                                                                    |
-|**list victim**      | `list victim`                                                                     |
-|**list witness**     | `list witness`                                                                    |
-|**add description**  | `add desc d:DESC`                                                                 |
-|**add document**     | `add doc n:TITLE r:FILE_NAME`                                                     |
-|**add suspect**      | `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`                     |
-|**add victim**       | `add victim n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`                      |
-|**add witness**      | `add witness n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`                     |
-|**open doc**         | `open doc DOC_NO`                                                                 |
-|**edit title**       | `edit title t:TITLE`                                                              |
-|**edit status**      | `edit status s:STATUS`                                                            |
-|**edit document**    | `edit doc DOC_NO [n:TITLE] [r:FILE_NAME]`                                         |
-|**edit suspect**     | `edit suspect SUSPECT_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`     |
-|**edit victim**      | `edit victim VICTIM_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`       |
-|**edit witness**     | `edit witness WITNESS_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`     |
-|**delete doc**       | `delete doc DOC_NO`                                                               |
-|**delete suspect**   | `delete suspect SUSPECT_NO`                                                       |
-|**delete victim**    | `delete victim VICTIM_NO`                                                         |
-|**delete witness**   | `delete witness WITNESS_NO`                                                       |
-|**return**           | `return`                                                                          |
-|**exit**             | `exit`                                                                            |
+| Command               | Format                                                                            |
+| --------------------- | ----------------------------------------------------------------------------------|
+|**list document**      | `list doc`                                                                        |
+|**list suspect**       | `list suspect`                                                                    |
+|**list victim**        | `list victim`                                                                     |
+|**list witness**       | `list witness`                                                                    |
+|**add description**    | `add desc d:DESC`                                                                 |
+|**add document**       | `add doc n:TITLE r:FILE_NAME`                                                     |
+|**add suspect**        | `add suspect n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                      |
+|**add victim**         | `add victim n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                       |
+|**add witness**        | `add witness n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                      |
+|**open doc**           | `open doc DOC_NO`                                                                 |
+|**edit title**         | `edit title t:TITLE`                                                              |
+|**edit description**   | `edit desc d:DESC`                                                                |
+|**edit status**        | `edit status s:STATUS`                                                            |
+|**edit document**      | `edit doc DOC_NO [n:TITLE] [r:FILE_NAME]`                                         |
+|**edit suspect**       | `edit suspect SUSPECT_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`      |
+|**edit victim**        | `edit victim VICTIM_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`        |
+|**edit witness**       | `edit witness WITNESS_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`      |
+|**delete description** | `delete desc`                                                                     |
+|**delete doc**         | `delete doc DOC_NO`                                                               |
+|**delete suspect**     | `delete suspect SUSPECT_NO`                                                       |
+|**delete victim**      | `delete victim VICTIM_NO`                                                         |
+|**delete witness**     | `delete witness WITNESS_NO`                                                       |
+|**return**             | `return`                                                                          |
 
 #### Both Pages
 
@@ -477,4 +495,5 @@ User data automatically saves when there is a change in data.
 | -------------| ------------------------------|
 |**undo**      | `undo`                        |
 |**redo**      | `redo`                        |
+|**help**      | `help`                        |
 |**exit**      | `exit`                        |
