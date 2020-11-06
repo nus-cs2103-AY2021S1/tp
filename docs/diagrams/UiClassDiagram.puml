@@ -39,7 +39,8 @@ MainWindow *-down-> CommandBox
 FlashcardListPanel -down-> "*" FlashcardListCard
 MainWindow -down-> FlashcardViewCard
 MainWindow -down-> HelpWindow
-MainWindow <---> StudyPanel
+MainWindow .down> StudyPanel
+StudyPanel --> MainWindow
 
 HelpWindow --|> UiPart
 ResultDisplay --|> UiPart
