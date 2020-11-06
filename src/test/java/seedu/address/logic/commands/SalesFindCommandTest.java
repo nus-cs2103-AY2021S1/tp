@@ -54,7 +54,7 @@ public class SalesFindCommandTest {
         String expectedMessage = String.format(MESSAGE_DRINKS_LISTED_OVERVIEW, 0);
         InputContainsKeywordsPredicate predicate = preparePredicate(" ");
         SalesFindCommand command = new SalesFindCommand(predicate);
-        expectedModel.updateFilteredSalesList(predicate);
+        expectedModel.updateFilteredSalesRecordList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredSalesRecordList());
     }
