@@ -41,7 +41,7 @@ public class OverlapTest {
         assertFalse(overlapWithOtherTimeSlots(modelManager, VALID_EVENT_EXPERIMENT));
     }
     @Test
-    public void overlapWithOtherLessons_returnsTrue() {
+    public void overlapWithOtherTimeSlots_returnsTrue() {
         modelManager.addTask(VALID_EVENT_EXPERIMENT);
         modelManager.addLesson(VALID_LESSON_CS2100);
         modelManager.addLesson(VALID_LESSON_CS2103T);
