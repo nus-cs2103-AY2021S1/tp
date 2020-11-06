@@ -135,26 +135,26 @@ public class DeleteAttendanceCommandTest {
 
     @Test
     public void equals() {
-        DeleteAttendanceCommand deleteDetailCommand =
+        DeleteAttendanceCommand deleteAttendanceCommand =
                 new DeleteAttendanceCommand(INDEX_FIRST_PERSON, TEST_DATE);
 
         // same object -> return true;
-        assertTrue(deleteDetailCommand.equals(deleteDetailCommand));
+        assertTrue(deleteAttendanceCommand.equals(deleteAttendanceCommand));
 
         // different object -> return false;
-        assertFalse(deleteDetailCommand.equals("hello"));
+        assertFalse(deleteAttendanceCommand.equals("hello"));
 
         // same fields -> return true;
-        assertTrue(deleteDetailCommand.equals(new DeleteAttendanceCommand(INDEX_FIRST_PERSON,
+        assertTrue(deleteAttendanceCommand.equals(new DeleteAttendanceCommand(INDEX_FIRST_PERSON,
                 TEST_DATE)));
 
         // different student index -> return false;
-        assertFalse(deleteDetailCommand.equals(new DeleteAttendanceCommand(INDEX_SECOND_PERSON,
+        assertFalse(deleteAttendanceCommand.equals(new DeleteAttendanceCommand(INDEX_SECOND_PERSON,
                 TEST_DATE)));
 
         // different date -> return false;
         LocalDate altDate = TEST_DATE.plusDays(1);
-        assertFalse(deleteDetailCommand.equals(new DeleteAttendanceCommand(INDEX_FIRST_PERSON,
+        assertFalse(deleteAttendanceCommand.equals(new DeleteAttendanceCommand(INDEX_FIRST_PERSON,
                 altDate)));
     }
 }

@@ -134,7 +134,6 @@ public class DeleteDetailCommandTest {
 
     @Test
     public void equals() {
-        Detail testDetail = new Detail(TEST_DETAIL);
         DeleteDetailCommand deleteDetailCommand =
                 new DeleteDetailCommand(INDEX_FIRST_PERSON, TEST_INDEX_FIRST_DETAIL);
 
@@ -149,8 +148,8 @@ public class DeleteDetailCommandTest {
                 TEST_INDEX_FIRST_DETAIL)));
 
         // different student index -> return false;
-        assertFalse(deleteDetailCommand.equals(new AddDetailCommand(INDEX_SECOND_PERSON,
-                testDetail)));
+        assertFalse(deleteDetailCommand.equals(new DeleteDetailCommand(INDEX_SECOND_PERSON,
+                TEST_INDEX_FIRST_DETAIL)));
 
         // different detail index -> return false;
         Detail altDetail = new Detail("he watches birds");
