@@ -3,7 +3,32 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+    - [Setting up, getting started](#setting-up-getting-started)
+    - [Design](#design)
+        - [Architecture](#architecture)
+        - [UI component](#ui-component)
+        - [Logic component](#logic-component)
+        - [Model component](#model-component)
+        - [Storage component](#storage-component)
+        - [Common classes](#common-classes)
+    - [Implementation](#implementation)
+        - [[Implemented] Add feature](#implemented-add-feature)
+        - [[Implemented] Review feature](#implemented-review-feature)
+        - [[Implemented] Sort feature](#implemented-sort-feature)
+        - [[Implemented] Favourite/Unfavourite feature](#implemented-favouriteunfavourite-feature)
+        - [[Implemented] Filter feature](#implemented-filter-feature)
+    - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+    - [Appendix: Requirements](#appendix-requirements)
+        - [Product Scope](#product-scope)
+        - [User stories](#user-stories)
+        - [Use cases](#use-cases)
+        - [Non-Functional Requirements](#non-functional-requirements)
+        - [Glossary](#glossary)
+    - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+        - [Launch and shutdown](#launch-and-shutdown)
+        - [Deleting a flashcard](#deleting-a-flashcard)
+        - [Saving data](#saving-data)
+    - [Appendix: Effort](#appendix-effort)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -59,12 +84,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
+![Structure of the UI Component](images/UiClassDiagram.png)
+
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/flashcard/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `FlashcardViewCard` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/flashcard/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -106,6 +132,11 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The Model class diagram shown above omits details of the Flashcard class due to space constraint. Instead, the omitted details have been extracted and are shown here:<br>
+</div>
+
+![FlashcardClassDiagram](images/FlashcardClassDiagram.png)
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FlashcardDeck`, which `Flashcard` references. This allows `FlashcardDeck` to only require one `Tag` object per unique `Tag`, instead of each `Flashcard` needing their own `Tag` object.<br>
 </div>
 
@@ -131,7 +162,7 @@ Classes used by multiple components are in the `seedu.flashcard.commons` package
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Implemented\] Add Feature 
+### \[Implemented\] Add feature 
 
 #### Current Implementation
 
@@ -374,35 +405,58 @@ The following sequence diagram shows how the filter operation works:
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: CS2103 Students 
 
-* has a need to manage a significant number of flashcards
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has a need to organise all the quiz questions on Luminus 
+* Has a need to consolidate and summarize large amount of information from CS2103 textbook
+* Has a need to organise key learning points from textbook in website and quiz questions on Luminus in a single platform
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
+* Has technical background
 
 **Value proposition**:
-* Remind students on what is due soon
-* Help students keep track of their CS2103T progress (assignments, results)
-* Provide students with the ease of access to CS2103T content
-* Aid students in learning and revision of CS2103T topics (through flashcards and “self-quiz”)
-
+* Provide a centralised platform to organise textbook content on CS2103 website and quiz questions on Luminus
+* Store quiz's questions and their answers through a flashcard
+* Customize each flashcard through flashcard's category, tags
+* Allow users to rate/favourite flashcards
+* Allow users to add a note to a flashcard
+* Allow users to revise effectively by through quiz and review feature
+* Provide statistics of the each flashcard so that users can better identify flashcards to focus on
+* Search for flashcards easily by search keywords
+* Filter the list of flashcards by various fields
+* Sort the list of flashcards according to most/least reviewed
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | busy student                               | add a new flashcard            |                                                                        |
-| `* * *`  | student                                    | delete a flashcard             | remove entries that that are not relevant or helpful to my learning.   |
-| `* * *`  | student                                    | list the flashcards            |                                                                        |
-| `* * *`  | student                                    | review the flashcards          |                                                                        |
-
-*{More to be added}*
+| Priority | As a …​                                     | I want to …​                                                              | So that I can…​                                                                              |
+| -------- | ------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                                                   | refer to instructions when I forget how to use the App                                      |
+| `* * *`  | potential user exploring the app           | see sample data in the App                                               | easily see how the app will look like when it is in use                                     |
+| `* * *`  | user ready to start using the app          | purge all current data                                                   | get rid of sample/experimental data I used for exploring the app                            |
+| `* * *`  | busy student                               | add a flashcard easily via a single command                              |                                                                                             |
+| `* * *`  | student                                    | to know whether there are potential duplicates when adding new flashcard |  optimise my list of flashcards and ensure that there are no repeats to prevent cluttering  |
+| `* * *`  | student                                    | list all the flashcards                                                  |                                                                                             |
+| `* * *`  | student                                    | delete flashcard                                                         | remove flashcards that are not relevant or helpful for my learning                          |
+| `* * *`  | careful student                            | edit details of flashcard                                                | make sure that the content in the flashcard is accurate and relevant                        |
+| `* * *`  | organized student                          | create custom category for flashcards                                    | better organize the content to my liking so that it is easier to review                     |
+| `* * *`  | busy student                               | find flashcards easily                                                   | save time without having to look through the whole list of flashcards                       |
+| `* * `   | hardworking student                        | review flashcards 1 by 1                                                 | revise for exams by testing myself                                                          |
+| `* * `   | student                                    | skip particular flashcards while reviewing                               | save time by reviewing relevant flashcards only                                             |
+| `* * `   | hardworking student                        | add a note to the flashcard                                              | note down important learning points to prevent myself from making the same mistake          |
+| `* * `   |  student                                   | rate flashcards                                                          | know importance of each flashcard                                                           |
+| `* * `   | organised student                          | tag flashcards                                                           | further manage and organise the flashcards                                                  |
+| `* * `   | student                                    | add a diagram to flashcard                                               | create flashcards with question based on diagram                                            |
+| `* * `   | student                                    | view individual flashcard                                                | look at flashcard in more details                                                           |
+| `* * `   | student                                    | quiz myself                                                              | revise for exams by through mock quiz and keep track of scores                              |
+| `* * `   | student                                    | view statistics of flashcard                                             | keep track of how well I did and know whether I have grasped the content properly           |
+| `* * `   | busy student                               | filter flashcards by different fields                                    | refine list of flashcards and only display the relevant flashcards I am interested in       |
+| `* * `   | busy student                               | sort flashcards according to review frequency                            | focus on flashcards that are least reviewed                                                 |
+| `* * `   | busy student                               | sort flashcards according to success rate                                | focus on flashcards that are often incorrectly answered                                     |
 
 ### Use cases
 
@@ -670,6 +724,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User enters `down` key to show answer
 4.  User enters `y`/`n` key depending on whether user answers the flashcard correctly
 5.  SWEe! shows the next flashcard to quiz
+
     Steps 3-5 are repeated until the user finishes quizzing all flashcards or until the user enters `q` key to quit quiz mode
 
     Use case ends.
@@ -745,8 +800,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 flashcards without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be a single user product.
+5.  Should not depend on remote servers
+6.  Should be able to work without being connected to a network
+7.  Should be able to work without requiring an installer
+8.  Should not include _hard-to-test features_.
 
-*{More to be added}*
 
 ### Glossary
 
@@ -1044,3 +1103,44 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect stats command to try: `stats x` (where x is larger than the list size or x is a negative integer) <br>
         Expected: Similar to test case iii.
         
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+This section documents the effort in morphing AB3 to SWEe! .
+
+* General refactor of AB3 to SWEe!
+    * All instances of AddressBook and related words such as Person, Address, Email, Phone Number (and many more) had to be removed or refactored.
+    * This involved not only renaming the relevant methods and variables **throughout the project** but also entire classes, packages and documentation.
+    * Eg. The entire `Person` class in AB3 had to be morphed into `Flashcard` class with entirely new methods, parameters and variables.
+    * Eg. The `add` and `edit` commands (and their associated parsers) had to be rewritten as it was originally used to add/edit a `Person` but now they are used to add/edit a `Flashcard`.
+
+* `Quiz` and `Review` feature
+    * These 2 features are completely new in functionality relative to AB3 features.
+    * They involved much UI work as we had to design an entirely new screen. Our app now has 2 distinct screens as compared to the 1 screen of AB3.
+    * It was challenging to integrate these 2 features as they were not a conventional command to type into the commandbox:
+        * We had to handle keyboard input outside of the command box in these 2 features which is a functionality not present in AB3.
+        * We had to design a new pattern to activate these 2 commands and execute them (read [Review implementation](#implemented-review-feature)).
+        * Creation of an entirely new logic component `StudyManager` to handle the logic of these 2 features.
+    
+* `View` and `Stats` feature
+    * The main challenge in these 2 features was to create a new UI.
+    * We had to split the UI of the originally AB3 into 2 columns, one for the list and one for the output of `View` and `Stats`.
+
+* Diagrams in flashcards
+    * Our app allows adding images which AB3 did not.
+    * Implementing diagrams was challenging as we had to do many checks to make sure the file path provided was present and had a valid image.
+    * We also had to made sure the diagrams were sized appropriately on the UI.
+
+* `Filter` feature
+    * AB3 did not have a filter feature by fields of the entity. 
+    * We implemented a filter that will filter for flashcards that match all fields specified by you.
+    * We had to design and learn how to implement this feature by taking reference from the `find` feature in AB3.
+
+* `Sort` feature
+    * AB3 did not have a sort feature.
+    * We had to integrate the sort feature with the filter feature which was quite challenging as we had to ensure that the 2 features could be used together (ie. using one feature did not prevent the other from being used). This involved diving into `ModelManager` and making changes.
+ 
+* General UI enhancements
+    * Significant styling was done to make our app look better compared to AB3.
+    * We also ensured proper scaling of our app to different windows sizes, with the ability to scroll some panes.
