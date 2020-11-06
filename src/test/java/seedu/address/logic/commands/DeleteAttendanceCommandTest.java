@@ -121,10 +121,10 @@ public class DeleteAttendanceCommandTest {
         // null -> returns false
         assertFalse(deleteAttendanceCommandIndexOneWeekOne.equals(null));
 
-        // different person -> returns false
+        // different week -> returns false
         assertFalse(deleteAttendanceCommandIndexOneWeekOne.equals(deleteAttendanceCommandIndexOneWeekTwo));
 
-        // different person -> returns false
+        // different index -> returns false
         assertFalse(deleteAttendanceCommandIndexOneWeekOne.equals(deleteAttendanceCommandIndexTwoWeekOne));
     }
 }
