@@ -21,17 +21,15 @@ I was responsible for implementing the following features of NUStorage:
 
 - Inventory
     - Logic
-        - CreateInventoryCommand Class
-        - CreateInventoryCommandParser
-        - EditInventoryCommand
-        - EditInventoryCommandParser
-        - FindInventoryCommand
-        - FindInventoryCommandParser
+        - Create inventory record classes
+        - Edit inventory record classes
+        - Find inventory record classes
+        - Delete inventory record classes
     - Model
         - Inventory class
         - Inventory Record classes
         - Inventory Record exceptions
-        - Integration of Inventory into model
+        - Integration of Inventory into Model
 - Test cases for the above
 
 ### Contributions to User Guide
@@ -40,7 +38,7 @@ I contributed to the inventory commands for the user guide related to the operat
 
 ### Contributions to Developer Guide
 
-I contributed to the Model section of the developer guide, which documents how `Model` class works with `Inventory` and `FinanceAccount` to execute our programme. I also created the class diagram for the Model.
+I contributed to the Model section of the developer guide, which documents how `Model` class works with `Inventory` and `FinanceAccount` during the execution of our programme. I also created the class diagram for `Model` class.
 
 ### Contributions to Team Based Task
 
