@@ -128,7 +128,7 @@ public class ModelManager implements Model {
         updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
         filteredStudentRecords = null;
         taskmaster.addSession(session);
-        taskmaster.changeSession(session.getSessionName());
+        changeSession(session.getSessionName());
     }
 
     /**
@@ -139,8 +139,11 @@ public class ModelManager implements Model {
         if (sessionName == null) {
             filteredStudentRecords = null;
             studentRecordPredicate = PREDICATE_SHOW_ALL_STUDENT_RECORDS;
+            updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
             taskmaster.changeSession(null);
             return;
+        } else if (taskmaster.inSession() && sessionName.equals(taskmaster.currentSessionName())) {
+            filteredStudentRecords.setPredicate(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
         } else {
             /*
              * Note that the implementation of this method requires that the filteredStudentRecords field is updated
@@ -148,7 +151,6 @@ public class ModelManager implements Model {
              * it must be loaded first.
              */
             assert taskmaster.hasSession(sessionName);
-
             studentRecordPredicate = PREDICATE_SHOW_ALL_STUDENT_RECORDS;
             // Update filteredStudentRecords before Session is changed.
             filteredStudentRecords = new FilteredList<>(taskmaster.getSession(sessionName).getStudentRecords());

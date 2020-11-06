@@ -103,7 +103,6 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      */
     public void addSession(Session session) {
         sessions.add(session);
-        currentSession.setValue(session);
     }
 
     /**
@@ -404,6 +403,14 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         }
 
         currentSession.get().updateStudentRecords(studentRecords);
+    }
+
+    public boolean inSession() {
+        return !this.currentSession.isNull().get();
+    }
+
+    public SessionName currentSessionName() {
+        return this.currentSession.get().getSessionName();
     }
 
     @Override
