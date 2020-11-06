@@ -778,8 +778,30 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Exiting the application
+   
+   1. Prerequisites: The application must be launched.
+   
+   1. Test case: `exit` <br>
+       Expected: The application exits and the window closes itself automatically.
+   
+### Adding a flashcard
 
+1. Adding a flashcard when in main window of application
+   1. Prerequisites: Application must be in main window and not in review or quiz mode.
+   
+   1. Test case (specifying compulsory inputs only): `add q/Does software projects often involve workflows? a/Yes` <br>
+       Expected: A new flashcard is added to the end of the list of flashcards. The compulsory inputs will be set to 
+       what was specified in the command, whereas category will be set to `General` by default when not stated in the
+       input. Result display will output the message: 
+       `New flashcard added:  Question: Does software projects often involve workflows?`
+
+   1. Test case (missing a compulsory input (`a/ANSWER`)): `add q/What does SWE stand for?` <br>
+       Expected: No flashcard added to the list of flashcards and input text will turn red to signal an error.
+       Result display will output the message:  `Invalid command format! 
+                                                add: Adds a flashcard to the list of flashcards.
+                                                Parameters: q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [t/TAG]... [d/DIAGRAM]
+                                                Example: add q/What does OOP stand for? a/Object-Oriented Programming c/Acronyms n/Important question to take note of! r/2 t/exam d/images/diagram_1.png`
 ### Deleting a flashcard
 
 1. Deleting a flashcard while all flashcards are being shown
