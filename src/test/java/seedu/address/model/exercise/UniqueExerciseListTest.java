@@ -8,7 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalExercises.BENCH_PRESS;
 import static seedu.address.testutil.TypicalExercises.SQUATS;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -158,7 +157,8 @@ public class UniqueExerciseListTest {
     @Test
     public void setExercises_listWithDuplicateExercises_throwsDuplicateExerciseException() {
         List<Exercise> listWithDuplicateExercises = Arrays.asList(BENCH_PRESS, BENCH_PRESS);
-        assertThrows(DuplicateExerciseException.class, () -> uniqueExerciseList.setExercises(listWithDuplicateExercises));
+        assertThrows(DuplicateExerciseException.class, () -> uniqueExerciseList
+                .setExercises(listWithDuplicateExercises));
     }
 
     @Test

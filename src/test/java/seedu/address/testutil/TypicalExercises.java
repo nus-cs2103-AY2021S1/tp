@@ -2,10 +2,12 @@ package seedu.address.testutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.model.FitNus;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.person.Name;
 
 public class TypicalExercises {
 
@@ -13,6 +15,7 @@ public class TypicalExercises {
             .withTags("chest").build();
     public static final Exercise SQUATS = new ExerciseBuilder().withName("Squats")
             .withTags("Legs").build();
+    public static final Exercise SPRINTS = new Exercise(new Name("Sprints"), new HashSet<>());
 
     private TypicalExercises() {} // prevents instantiation
 

@@ -60,7 +60,8 @@ public class ExerciseNameContainsKeywordsPredicateTest {
     @Test
     public void test_exerciseNameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
-        ExerciseNameContainsKeywordsPredicate predicate = new ExerciseNameContainsKeywordsPredicate(Arrays.asList("Squats"));
+        ExerciseNameContainsKeywordsPredicate predicate = new ExerciseNameContainsKeywordsPredicate(Arrays
+                .asList("Squats"));
         assertFalse(predicate.test(new ExerciseBuilder().withName("Bench Shoulders").build()));
     }
 }
