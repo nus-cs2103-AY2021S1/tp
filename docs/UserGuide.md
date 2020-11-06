@@ -27,7 +27,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
   - Edit details of a project `edit `
 
 - **Features in project scope**
-  - Task related features
+  - Task-related features
     - Add a task to a project `addtask `
     - Assign a task to a teammate `assign `
     - Edit a task `edittask `
@@ -36,7 +36,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - List all tasks `alltasks`
     - Sort tasks by various attributes `sort`
     - View details of a task `viewtask `
-  - Teammate related features
+  - Teammate-related features
     - Create a new teammate in a project `newteammate `
     - Edit a teammate's details `editteammate `
     - View a teammate's details `viewteammate `
@@ -227,7 +227,7 @@ Example: `edit 1 n/Resident Evil project /d new horror` changes the name of the 
 
 # **Features** in project scope
 
-## **Task** related features
+## **Task**-related features
 
 ### Add task to a project `addtask `
 
@@ -332,7 +332,7 @@ Format: `viewtask INDEX `
 
 Example: `viewtask 4` displays all information from task number 4 in the list.
 
-## **Teammate** related features
+## **Teammate**-related features
 
 ### Create a new teammate in a project `newteammate`
 
