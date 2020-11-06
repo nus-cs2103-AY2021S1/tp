@@ -48,22 +48,19 @@ public class CdCommandParserTest {
 
     @Test
     public void parse_validArg_success() {
+        // Using child path
         String userInput1 = VALID_CHILD_PATH;
-
         CdCommand cdCommandChild = new CdCommand(AddressType.CHILD, VALID_CHILD_FOLDER);
-
         assertParseSuccess(parser, userInput1, cdCommandChild);
 
+        // Go to parent
         String userInput2 = VALID_PARENT_PATH;
-
         CdCommand cdCommandParent = new CdCommand(AddressType.PARENT, "");
-
         assertParseSuccess(parser, userInput2, cdCommandParent);
 
+        // Using absolute path
         String userInput3 = VALID_ABSOLUTE_PATH;
-
         CdCommand cdCommandAbsolute = new CdCommand(AddressType.ABSOLUTE, USER_DIRECTORY_ADDRESS);
-
         assertParseSuccess(parser, userInput3, cdCommandAbsolute);
     }
 }

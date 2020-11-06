@@ -34,7 +34,7 @@ public class CommandTestUtil {
     public static final String VALID_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.bat";
     public static final String VALID_MAC_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.sh";
     public static final String VALID_MAC_FILE_ADDRESS_TESTFILE = "./src/test/java/seedu/address/testutil/testFile.sh";
-    public static final String VALID_CHILD_FOLDER = "child";
+    public static final String VALID_CHILD_FOLDER = "src";
     public static final String VALID_LABEL = "testLabel";
     public static final String INVALID_LABEL = "@label";
 
