@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
@@ -34,6 +35,7 @@ public class AddTeammateCommand extends Command {
         + "Example: " + COMMAND_WORD + " mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road";
 
     public static final String MESSAGE_NEW_TEAMMATE_SUCCESS = "New Teammate added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the main catalogue";
 
     private static final Logger logger = Logger.getLogger("NewTeammateCommandLogger");
     private final Person toAdd;
@@ -53,9 +55,12 @@ public class AddTeammateCommand extends Command {
      * @return feedback message of the operation result for display
      */
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
+        if (model.hasPerson(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
         model.addPerson(toAdd);
         toAdd.addProject(project);
         project.addParticipation(toAdd);
