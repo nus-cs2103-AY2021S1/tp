@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ingredient.Ingredient;
-import seedu.address.model.ingredient.IngredientName;
 import seedu.address.model.ingredient.UniqueIngredientList;
 
 /**
