@@ -1,13 +1,14 @@
 package seedu.address.logic.parser.body;
 
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddWeightCommand;
 import seedu.address.logic.parser.AddWeightCommandParser;
 import seedu.address.model.person.Weight;
-
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class AddWeightCommandParserTest {
 

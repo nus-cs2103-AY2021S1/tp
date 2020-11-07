@@ -139,7 +139,7 @@ public class FitNusTest {
 
         fitNus.addWeight(new Weight(80));
 
-        assertEquals(fitNus.getWeight(),new Weight(80));
+        assertEquals(fitNus.getWeight(), new Weight(80));
     }
 
     //Calorie testing

@@ -1,20 +1,20 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.exercise.Exercise;
-import seedu.address.model.person.Name;
-import seedu.address.model.routine.Routine;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalExercises.getTypicalExercises;
 import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.person.Name;
+import seedu.address.model.routine.Routine;
 
 public class JsonAdaptedRoutineTest {
 

@@ -1,16 +1,16 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.calorie.DailyCalorie;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.calorie.DailyCalorie;
 
 public class JsonAdaptedDailyCalorieTest {
 
@@ -45,19 +45,19 @@ public class JsonAdaptedDailyCalorieTest {
     @Test
     public void toModelType_invalidCalorie_failure() {
 
-        JsonAdaptedDailyCalorie dailyCalorie = new JsonAdaptedDailyCalorie( "2020-07-05", "-1");
+        JsonAdaptedDailyCalorie dailyCalorie = new JsonAdaptedDailyCalorie("2020-07-05", "-1");
 
         //Negative Calorie value
         assertThrows(IllegalValueException.class,
                 JsonAdaptedDailyCalorie.INVALID_CALORIE_MESSAGE_FORMAT, dailyCalorie::toModelType);
 
         //String as Calorie value
-        JsonAdaptedDailyCalorie dailyCalorie1 = new JsonAdaptedDailyCalorie( "2020-07-05", "a");
+        JsonAdaptedDailyCalorie dailyCalorie1 = new JsonAdaptedDailyCalorie("2020-07-05", "a");
         assertThrows(IllegalValueException.class,
                 JsonAdaptedDailyCalorie.INVALID_CALORIE_MESSAGE_FORMAT, dailyCalorie1::toModelType);
 
         //Too large of a Calorie value
-        JsonAdaptedDailyCalorie dailyCalorie2 = new JsonAdaptedDailyCalorie( "2020-07-05",
+        JsonAdaptedDailyCalorie dailyCalorie2 = new JsonAdaptedDailyCalorie("2020-07-05",
                 "99999999999999999");
         assertThrows(IllegalValueException.class,
                 JsonAdaptedDailyCalorie.INVALID_CALORIE_MESSAGE_FORMAT, dailyCalorie2::toModelType);

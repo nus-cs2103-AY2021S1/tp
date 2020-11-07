@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddHeightCommand;
 import seedu.address.logic.commands.AddWeightCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Weight;

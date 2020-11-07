@@ -1,22 +1,25 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Body;
 import seedu.address.model.person.Height;
 import seedu.address.model.person.Weight;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-import static seedu.address.testutil.Assert.assertThrows;
+
 
 public class JsonAdaptedBodyTest {
 
     private static final Weight MODEL_WEIGHT = new Weight(70);
     private static final Height MODEL_HEIGHT = new Height(170);
     private static final JsonAdaptedBody VALID_BODY =
-            new JsonAdaptedBody(170,70);
+            new JsonAdaptedBody(170, 70);
 
     private static final Body MODEL_SOURCE = new Body();
 
