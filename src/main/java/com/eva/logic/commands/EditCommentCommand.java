@@ -40,7 +40,7 @@ public class EditCommentCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the eva database.";
     public static final String MESSAGE_EDIT_COMMENT_USAGE = "To edit comment, \n"
-            + COMMAND_WORD + " INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/NEW_DESCRITION";
+            + COMMAND_WORD + " INDEX c/ ti/TITLE_OF_COMMENT_TO_EDIT d/DATE_OF_COMMENT_TO_EDIT desc/NEW_DESCRITION";
 
     private final Index index;
     private final EditCommand.EditPersonDescriptor editPersonDescriptor;

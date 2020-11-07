@@ -4,6 +4,7 @@ import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -107,6 +108,19 @@ public class UniqueCommentsList implements Iterable<Comment> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Comment> asUnmodifiableObservableList() {
+        internalList.sort(new Comparator<Comment>() {
+            @Override
+            public int compare(Comment c1, Comment c2) {
+                if (c1.getDate().isBefore(c2.getDate())) {
+                    return -1;
+                } else if (c1.getDate().isAfter(c2.getDate())) {
+                    return 1;
+                } else {
+                    return c1.getTitle().getTitleDescription()
+                            .compareTo(c2.getTitle().getTitleDescription());
+                }
+            }
+        });
         return internalUnmodifiableList;
     }
 
