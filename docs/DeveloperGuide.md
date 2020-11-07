@@ -311,12 +311,6 @@ The following sequence diagram shows how the `fav` operation works:
 
 ![FavouriteSequenceDiagram](images/FavouriteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">
-
-:information_source: **Note:** The lifeline for `FavCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
 Step 3: The user executes `unfav 1` command to unfavourite the 1st flashcard in the displayed flashcard deck. `unfav` command calls 
 `Flashcard#isFavourite()` method to check whether the flashcard at index 1, `fav1`,  has been favourited. `fav1` is favourited in step 2, hence, 
 `unfav` command calls `UnfavCommand#createUnfavouriteFlashcard(fav1)` to create a new flashcard, `f1`,  by duplicating the existing data fields and set the `isFavourite` attribute to `false`.
