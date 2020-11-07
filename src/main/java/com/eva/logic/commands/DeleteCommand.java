@@ -17,11 +17,6 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": \nto delete comment, type 'delete <index> <'a-' or 's-'> c- t:<title_to_delete>'\n"
-            + "to delete leave, type 'delete <index_of_staff> l/ d:<date_in_dd/mm/yyyy>'\n"
-            + "to delete staff/applicant, type 'delete <index_of_staff/applicant> <'s-' or 'a-'>'";
-
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Index targetIndex;

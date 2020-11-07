@@ -46,7 +46,7 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws IndexParseException, ParseException {
-        if (oneBasedIndex.isEmpty() /*|| !checkIfNumber(oneBasedIndex)*/) {
+        if (oneBasedIndex.isEmpty() || !checkIfNumber(oneBasedIndex)) {
             throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         String trimmedIndex = oneBasedIndex.trim();

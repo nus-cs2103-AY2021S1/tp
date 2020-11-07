@@ -44,7 +44,7 @@ public class DeleteCommentCommand extends CommentCommand {
             + COMMAND_WORD + " INDEX c/ ti/TITLE";
 
     private static final String NO_TITLE_MESSAGE = "No such title. To delete comment, "
-            + "Format: " + DeleteCommand.COMMAND_WORD + " INDEX c/ t/TITLE";
+            + "Format: " + COMMAND_WORD + " INDEX c/ t/TITLE";
 
 
 
