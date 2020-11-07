@@ -2,12 +2,14 @@ package com.eva.logic.parser.comment;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static com.eva.logic.parser.ParserUtil.arePrefixesPresent;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
+import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.EditCommand;
 import com.eva.logic.commands.EditCommentCommand;
@@ -15,6 +17,7 @@ import com.eva.logic.parser.ArgumentMultimap;
 import com.eva.logic.parser.ArgumentTokenizer;
 import com.eva.logic.parser.Parser;
 import com.eva.logic.parser.ParserUtil;
+import com.eva.logic.parser.Prefix;
 import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
@@ -30,9 +33,16 @@ public class EditCommentCommandParser implements Parser<EditCommentCommand> {
     public EditCommentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_COMMENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_COMMENT, new Prefix("|"));
 
         Index index;
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_COMMENT)
+                || argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                            EditCommentCommand.MESSAGE_EDIT_COMMENT_USAGE));
+        }
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -41,6 +51,10 @@ public class EditCommentCommandParser implements Parser<EditCommentCommand> {
                     EditCommentCommand.MESSAGE_EDIT_COMMENT_USAGE), pe);
         } catch (IndexParseException pe) {
             throw new ParseException(pe.getMessage());
+        }
+
+        if (argMultimap.getValue(new Prefix("|")).isPresent()) {
+            throw new ParseException("Comments does not allow '|'");
         }
 
         EditCommand.EditPersonDescriptor editPersonDescriptor =

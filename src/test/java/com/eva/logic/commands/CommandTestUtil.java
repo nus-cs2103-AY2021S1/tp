@@ -1,6 +1,7 @@
 package com.eva.logic.commands;
 
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -19,6 +20,8 @@ import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
 import com.eva.model.person.NameContainsKeywordsPredicate;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.staff.Staff;
 import com.eva.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -36,6 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_COMMENT = "ti/Title d/10/10/2010 desc/Hello";
+    public static final String VALID_COMMENT_STORAGE = "Title|10/10/2010|Hello";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -47,12 +52,15 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String COMMENT_DESC = " " + PREFIX_COMMENT + " " + VALID_COMMENT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_COMMENT_DESC = " " + PREFIX_COMMENT + "ti/|Hello d/10/10/2010 desc/hello";
+    public static final String INVALID_COMMENT_MISSING_FIELDS = " " + PREFIX_COMMENT + "ti/|Hello desc/hello";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -95,6 +103,7 @@ public class CommandTestUtil {
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
+
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage} and assumes that the command changes panel in the model.
@@ -121,6 +130,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getPersonDatabase());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s eva database.
@@ -133,6 +143,34 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the staff at the given {@code targetIndex} in the
+     * {@code model}'s eva database.
+     */
+    public static void showStaffAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStaffList().size());
+
+        Staff staff = model.getFilteredStaffList().get(targetIndex.getZeroBased());
+        final String[] splitName = staff.getName().fullName.split("\\s+");
+        model.updateFilteredStaffList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredStaffList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the applicant at the given {@code targetIndex} in the
+     * {@code model}'s eva database.
+     */
+    public static void showApplicantAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredApplicantList().size());
+
+        Applicant applicant = model.getFilteredApplicantList().get(targetIndex.getZeroBased());
+        final String[] splitName = applicant.getName().fullName.split("\\s+");
+        model.updateFilteredApplicantList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredApplicantList().size());
     }
 
 }

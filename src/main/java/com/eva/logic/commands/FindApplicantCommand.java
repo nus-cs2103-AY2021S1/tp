@@ -22,6 +22,7 @@ public class FindApplicantCommand extends FindCommand {
             + "Parameters: -a|-s KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
+
     private final NameContainsKeywordsPredicate<Applicant> predicate;
 
     public FindApplicantCommand(NameContainsKeywordsPredicate<Applicant> predicate) {

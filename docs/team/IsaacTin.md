@@ -5,42 +5,53 @@ title: Isaac Tin's Project Portfolio Page
 
 ## Project: Eva
 
-AddressBook - Level 3 is a desktop eva database application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Eva is a desktop HR management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to delete.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+**New Features:**
+- Adding of a Comment to Staff/applicant
+  - What it does: allows user to add a Comment with compulsory fields title, date and description into a staff/applicant.
+  - Justification: This feature allows user to keep track of miscellaneous information of a staff/applicant that might be important in the future.
+  
+- Deleting a Comment from Staff/Applicant
+  - What it does: allows user to delete a Comment with a compulsory title field from a staff/applicant.
+  - Justification: This feature allows user delete outdated miscellaneous information of a staff/applicant that is not useful any longer.
+  
+- Editing a Comment from Staff/Applicant
+  - What it does: allows user to edit a Comment with compulsory fields title, date and new description of a staff/applicant.
+  - Justification: This feature allows user edit/update miscellaneous information of a staff/applicant according to changing circumstances.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+- Editing a staff
+  - What it does: allows user to edit a staff with optional fields name, address, email, phone number and comment
+  - Justification: This feature allows user to update information on a staff whenever the information changes to ensure it is not outdated.
+  
+- Editing an applicant
+  - What it does: allows user to edit an applicant with optional fields name, address, email, phone number, comment and interview date
+  - Justification: This feature allows user to update information on an applicant whenever the information changes to ensure it is not outdated.
 
-* **Code contributed**: [RepoSense link]()
+  
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+Code contributed:
+[RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=IsaacTin&tabRepo=AY2021S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+Project management:
+- Manage reviews on Pull Requesuts
 
-* **Documentation**:
-  * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-  * Developer Guide:
-    * Added implementation details of the `delete` feature.
+Enhancements to existing features:
+- Behaviour of program in different panels
+    - Created the behaviour of application while in different panels (Staff profile panel, Applicant list panel etc.)
+    - Adapted edit commands to edit staff and edit applicant commands.
 
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+Documentation:
+- User Guide
+    - Added documentation for commands: addcomments deletecomments editcomments editstaff editapplicant
+- Developer's Guide
+    - Write about Use Case 
+    
+Community:
+- Non trivial Code Reviews here: [#135](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/135) , [#63](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/63),
+[#129](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/129), [#213](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/213)
 
-* _{you can add/remove categories in the list above}_
+Tools:

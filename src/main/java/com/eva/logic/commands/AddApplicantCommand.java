@@ -59,4 +59,11 @@ public class AddApplicantCommand extends Command {
         model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, true);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddApplicantCommand // instanceof handles nulls
+                && toAdd.equals(((AddApplicantCommand) other).toAdd));
+    }
 }

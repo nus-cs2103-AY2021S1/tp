@@ -47,6 +47,10 @@ public class Application {
         return applicantName;
     }
 
+    public void setApplicantName(String name) {
+        this.applicantName = name;
+    }
+
     public String getExperienceSectionString() {
         StringBuilder output = new StringBuilder();
         for (Experience e : this.experienceSection) {
@@ -81,4 +85,21 @@ public class Application {
                 .append(educationString);
         return builder.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Application)) {
+            return false;
+        }
+
+        Application otherApplication = (Application) other;
+        return otherApplication.getEducationSection().equals(getEducationSection())
+                && otherApplication.getExperienceSection().equals(getExperienceSection())
+                && otherApplication.getApplicantName().equals(getApplicantName());
+    }
+
 }

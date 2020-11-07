@@ -21,9 +21,9 @@ public class StaffBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_SINGLE_LEAVE_START_DATE = "12/12/2020";
-    public static final String DEFAULT_LEAVE_END_DATE = "10/10/2020";
-    public static final String DEFAULT_LEAVE_START_DATE = "12/10/2020";
+    public static final String DEFAULT_SINGLE_LEAVE_START_DATE = "01/01/2016";
+    public static final String DEFAULT_LEAVE_END_DATE = "10/10/2016";
+    public static final String DEFAULT_LEAVE_START_DATE = "12/10/2016";
     public static final int DEFAULT_LEAVE_TAKEN = 4;
     public static final String DEFAULT_TAG = "Tech";
     public static final String DEFAULT_COMMENT_TITLE = "Hardworking";
