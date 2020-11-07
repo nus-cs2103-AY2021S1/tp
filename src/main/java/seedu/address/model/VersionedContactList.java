@@ -5,12 +5,22 @@ import java.util.List;
 
 import seedu.address.model.exceptions.VersionedListException;
 
+/**
+ * Class that stores versioned history and future of a contact list used for undo/redo functions
+ */
 public class VersionedContactList extends ContactList {
     private static final String MESSAGE_NO_REDO_HISTORY = "There are no Contact List commands to redo";
     private static final String MESSAGE_NO_UNDO_HISTORY = "There are no Contact List commands to undo";
     private List<ReadOnlyContactList> contactListStateList = new ArrayList<>();
     private int currentStatePointer;
-
+    /**
+     * Creates a versioned contact list with an empty initial contact list
+     */
+    public VersionedContactList() {
+        super();
+        contactListStateList.add(new ContactList());
+        this.currentStatePointer = 0;
+    }
     /**
      * Creates a versioned contact list using the contact list in the {@code toBeCopied}
      * @param toBeCopied
@@ -27,6 +37,7 @@ public class VersionedContactList extends ContactList {
         contactListStateList.subList(this.currentStatePointer + 1, contactListStateList.size()).clear();
         contactListStateList.add(new ContactList(contactList));
         this.currentStatePointer += 1;
+        super.resetData(contactList);
     }
 
     /**
@@ -37,6 +48,7 @@ public class VersionedContactList extends ContactList {
             throw new VersionedListException(MESSAGE_NO_UNDO_HISTORY);
         }
         this.currentStatePointer -= 1;
+        super.resetData(contactListStateList.get(currentStatePointer));
     }
 
     /**
@@ -48,21 +60,20 @@ public class VersionedContactList extends ContactList {
         }
         assert !isLastIndex() : "Assertion error, there are no instructions to redo";
         this.currentStatePointer += 1;
+        super.resetData(contactListStateList.get(currentStatePointer));
     }
 
+    /**
+     * Returns true if state pointer is at 0.
+     */
     public boolean isIndexZero() {
         return currentStatePointer == 0;
     }
 
+    /**
+     * Returns true if state pointer greater than the size of the eventList state list
+     */
     public boolean isLastIndex() {
         return currentStatePointer >= contactListStateList.size() - 1;
-    }
-
-    /**
-     * Returns the contact list the current state pointer is pointing to in the form
-     * of an observable list
-     */
-    public ReadOnlyContactList getCurrentContactList() {
-        return contactListStateList.get(currentStatePointer);
     }
 }
