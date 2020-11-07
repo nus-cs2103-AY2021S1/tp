@@ -11,6 +11,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.commons.SpecialName;
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -49,9 +50,9 @@ public class MeetingDetailsPanel extends UiPart<Region> {
     @FXML
     private Tab notesTab;
     @FXML
-    private ListView agendas;
+    private ListView<SpecialName> agendas;
     @FXML
-    private ListView notes;
+    private ListView<SpecialName> notes;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.

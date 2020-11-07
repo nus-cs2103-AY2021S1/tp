@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -20,6 +21,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.MeetingBookBuilder;
+import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.ModuleBookBuilder;
 
 public class ModelManagerTest {
@@ -97,6 +99,18 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getSelectedMeeting_nullMeeting_returnsNull() {
+        modelManager.setSelectedMeeting(null);
+        assertNull(modelManager.getSelectedMeeting());
+    }
+
+    @Test
+    public void getSelectedMeeting_validMeeting_returnsMeeting() {
+        modelManager.setSelectedMeeting(new MeetingBuilder().build());
+        assertEquals(new MeetingBuilder().build(), modelManager.getSelectedMeeting());
     }
 
     @Test

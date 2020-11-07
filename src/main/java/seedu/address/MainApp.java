@@ -76,9 +76,11 @@ public class MainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
+        //@@author royleochan
         HostServices hostServices = getHostServices();
 
         ui = new UiManager(logic, hostServices);
+        //@@author
     }
 
     /**
