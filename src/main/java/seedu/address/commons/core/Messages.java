@@ -12,5 +12,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_MEETING_DISPLAYED = "The meeting provided is not in your meeting list";
     public static final String MESSAGE_INVALID_MODULE_DISPLAYED = "The module provided is not in your module list";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_DUPLICATE_PREFIX = "You have entered a duplicate prefix : %s";
 
 }

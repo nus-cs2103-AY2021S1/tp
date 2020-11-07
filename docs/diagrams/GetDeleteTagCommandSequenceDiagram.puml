@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+mainframe sd get resultant command
+
+box Logic LOGIC_COLOR_T1
+participant ":DeleteTagCommandParser" as DeleteTagCommandParser LOGIC_COLOR
+participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "argMultimap:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "c:DeleteTagCommand" as DeleteTagCommand LOGIC_COLOR
+end box
+
+create DeleteTagCommandParser
+[-> DeleteTagCommandParser : DeleteTagCommandParser()
+activate DeleteTagCommandParser
+
+DeleteTagCommandParser -->[
+deactivate DeleteTagCommandParser
+
+[-> DeleteTagCommandParser : parse("Alex Yeoh t/friends")
+activate DeleteTagCommandParser
+
+DeleteTagCommandParser -> ArgumentTokenizer : tokenize(args, PREFIX_TAG)
+activate ArgumentTokenizer
+
+create ArgumentMultimap
+ArgumentTokenizer -> ArgumentMultimap : ArgumentMultimap()
+activate ArgumentMultimap
+
+ArgumentMultimap --> ArgumentTokenizer : argMultimap
+deactivate ArgumentMultimap
+
+ArgumentTokenizer --> DeleteTagCommandParser : argMultimap
+deactivate ArgumentTokenizer
+
+DeleteTagCommandParser -> ParserUtil : parseName("Alex Yeoh")
+activate ParserUtil
+
+ParserUtil --> DeleteTagCommandParser : name
+deactivate ParserUtil
+
+DeleteTagCommandParser -> ArgumentMultimap : getAllValues(PREFIX_TAG)
+activate ArgumentMultimap
+
+ArgumentMultimap --> DeleteTagCommandParser : tagList
+deactivate ArgumentMultimap
+
+create DeleteTagCommand
+DeleteTagCommandParser -> DeleteTagCommand : DeleteTagCommand(name, tagsToDelete);
+activate DeleteTagCommand
+
+DeleteTagCommand --> DeleteTagCommandParser : c
+deactivate DeleteTagCommand
+
+DeleteTagCommandParser -->[ : c
+destroy DeleteTagCommandParser
+@enduml

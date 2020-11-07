@@ -25,6 +25,7 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
+    //@@author royleochan
     private HostServices hostServices;
 
     /**
@@ -45,6 +46,7 @@ public class UiManager implements Ui {
 
         try {
             mainWindow = new MainWindow(primaryStage, logic, hostServices);
+            //@@author
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 

@@ -26,6 +26,8 @@ public class DeleteMeetingCommandParser implements Parser<DeleteMeetingCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.checkDuplicatePrefix(PREFIX_MODULE, PREFIX_NAME);
+
         ModuleName targetModuleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_MODULE).get());
         MeetingName targetMeetingName = ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_NAME).get());
 

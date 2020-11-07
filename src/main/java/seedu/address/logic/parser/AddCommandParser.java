@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.exceptions.PersonTagConstraintException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,15 +36,20 @@ public class AddCommandParser implements Parser<AddCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+        argMultimap.checkDuplicatePrefix(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL);
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, tagList);
+        try {
+            Person person = new Person(name, phone, email, tagList);
 
-        return new AddCommand(person);
+            return new AddCommand(person);
+        } catch (PersonTagConstraintException e) {
+            throw new ParseException(e.getMessage(), e);
+        }
     }
 
     /**

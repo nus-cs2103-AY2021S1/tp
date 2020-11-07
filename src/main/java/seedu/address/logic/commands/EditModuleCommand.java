@@ -71,6 +71,7 @@ public class EditModuleCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED);
         }
 
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         List<Module> filteredModuleList = model.getFilteredModuleList().stream()
                 .filter(module -> module.isSameName(targetModuleName)).collect(Collectors.toList());
         Module moduleToEdit = filteredModuleList.get(0);

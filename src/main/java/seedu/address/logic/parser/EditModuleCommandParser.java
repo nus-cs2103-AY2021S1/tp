@@ -33,6 +33,8 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditModuleCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.checkDuplicatePrefix(PREFIX_MODULE, PREFIX_NAME);
+
         ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_MODULE).get());
 
         EditModuleCommand.EditModuleDescriptor editModuleDescriptor = new EditModuleCommand.EditModuleDescriptor();

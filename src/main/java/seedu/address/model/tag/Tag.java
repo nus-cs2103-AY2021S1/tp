@@ -10,7 +10,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String UNIQUE_CONSTRAINT = "Contact can only have either prof tag or ta tag, but not both";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     /**
