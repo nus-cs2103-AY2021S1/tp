@@ -22,8 +22,8 @@ title: Developer Guide
             * [Aspect 1: Concern while adding a new feature](#3121-aspect-1)
             * [Aspect 2: Should we allow adding duplicate recipes](#3122-aspect-2)
         * [3.1.3 Design Consideration - **Add Ingredient**](#313-design-consideration-add-ingredient)
-            * [Aspect 1: Concern while adding a new feature](#3131-aspect-1)
-            * [Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity](#3132-aspect-2)
+            * [Aspect 1: Concern while adding a new feature](#3131-aspect-1)<br>
+            * [Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity](#3132-aspect-2)<br>
 	    	* [Aspect 3: Should we allow adding duplicate ingredients and stacking quantities](#3133-aspect-3)
 	    <br><br>
     - [3.2. Eat Recipe Feature](#32-eat-recipe-feature)
@@ -54,7 +54,7 @@ title: Developer Guide
     - [3.5. Edit Features](#35-edit-features)
         * [3.5.1 Implementation](#351-implementation)
         * [3.5.2 Design Consideration - **Edit Recipe**](#352-design-consideration-edit-recipe)
-            * [Aspect 1: Concern while adding a new feature](#3521-aspect-1)
+            * [Aspect 1: Concern while adding a new feature](#3521-aspect-1)<br>
 	    	* [Aspect 2: How to provide users with more ease while editing a recipe](#3522-aspect-2)
         * [3.5.3 Design Consideration - **Edit Ingredient**](#353-design-consideration-edit-ingredient)
             * [Aspect 1: Concern while adding a new feature](#3531-aspect-1)
@@ -75,7 +75,7 @@ title: Developer Guide
     - [3.8. Search Features](#38-search-features)
         * [3.8.1 Implementation](#381-implementation)
         * [3.8.2 Design Consideration - **Search Recipe**](#382-design-consideration-search-recipe)
-            * [Aspect 1: Concern while adding a new feature](#3821-aspect-1)<br>
+            * [Aspect 1: Concern while adding a new feature](#3821-aspect-1)
             * [Aspect 2: How do we successfully search and filter the recipes based on the user’s search](#3822-aspect-2)
         * [3.8.3 Design Consideration - **Search Ingredient**](#383-design-consideration-search-ingredient)
             * [Aspect: Concern while adding a new feature](#3831-aspect)
