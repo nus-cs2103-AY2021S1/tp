@@ -3,7 +3,7 @@
 }
 
 .background {
-    -fx-background-color: derive(#00A896, 20%);
+    -fx-background-color: derive(#002B60, 20%);
     background-color: #05668D; /* Used in the default.html file */
 }
 
