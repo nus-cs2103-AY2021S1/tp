@@ -246,6 +246,59 @@ Step 5: `Model#clearOrder()` is executed to clear all OrderItems from the order.
 
 
 
+#### Tag Command
+
+ - The TagCommand allows the user to add his preferences to an order item in the current order.
+ - If the index provided is greater or less than the size of the menu, a `CommandException will be thrown`.
+
+The following diagram summarizes the sequence when the TagCommand is executed. 
+![TagCommandActivityDiagram](images/TagCommandActivityDiagram.png)
+
+Given below is an example usage scenario and how the TagCommand behaves at each step.
+
+Step 1: The user has selected a vendor with `vendor i`.
+
+Step 2: The user has added items with `add i qty`.
+
+Step 3: The user enters the command `tag 1 1 no ice` which adds the tag of "1 no ice" to the item at the first index in the order.
+
+Step 4: `Model#getObservableOrderItemList()` is executed to retrieve the list of OrderItems from the current order.
+
+Step 5: TagCommand checks whether the index inputted is valid. Index is valid.
+
+Step 6: `Model#tagOrderItem()` is executed to tag the given OrderItem.
+
+Step 7: The tag "1 no ice" is added to the OrderItem at the given index.
+
+
+#### Untag Command
+
+- The UntagCommand allows users to remove tags from an order item in the current order.
+- If the index provided is greater or less than the size of the menu, a `CommandException will be thrown`.
+
+The following diagram summarizes the sequence when the TagCommand is executed. 
+![UntagCommandActivityDiagram](images/UntagCommandActivityDiagram.png)
+
+Given below is an example usage scenario and how the TagCommand behaves at each step.
+
+Step 1: The user has selected a vendor with `vendor i`.
+
+Step 2: The user has added items with `add i qty`.
+
+Step 3: The user tagged the item at index 1 with `tag 1 all no ice`.
+
+Step 4: The user enters the command `untag 1` to remove the tag of "all no ice" from the orderitem at index 1.
+
+Step 5: `Model#getObservableOrderItemList()` is executed to retrieve the list of OrderItems from the current order.
+
+Step 6: UntagCommand checks whether the index inputted is valid. Index is valid.
+
+Step 7: `Model#untagOrderItem()` is executed to remove all the tags that the given OrderItem has.
+
+Step 8: The tag "all no ice" is removed from the OrderItem at the first index.
+ 
+
+ 
 ### Undo feature
 
 Changes made to the Order can be undone by using the `undo` command.
@@ -403,6 +456,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | NUS resident | clear the current order | start a new order |
 | `* *` | NUS  resident | filter the menu | find the food item that I want to order easily |
 | `* *` | NUS resident | save my current order as a preset | load up the preset for fast supper ordering |
+| `* *` | NUS resident | tag an item in my supper order | mention my preferences for that item |
+| `* *` | NUS resident | remove tags from an item in my supper order| fix any mistakes made while tagging that item |
 *{More to be added}*
 
 ### Use cases
@@ -497,6 +552,7 @@ Precondition: <u>User has already selected a particular vendor</u>
 
     Use case resumes at step 1.
 
+
 **Use case: Remove an item**
 
 **MSS**
@@ -536,6 +592,57 @@ Precondition: <u>User has already selected a particular vendor</u>
 
       Use case ends.
 
+
+**Use case: Add a tag to an item**
+
+**MSS**
+
+1.  User requests to tag a specific item in the current order.
+2.  SupperStrikers adds tag to the item.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The order is empty.
+
+  Use case ends.
+
+* 1b. The given index is invalid.
+
+    * 1b1. SupperStrikers shows an error message.
+
+      Use case ends.
+    
+* 1c. The tag is not specified.
+
+     - 1c1. SupperStrikers shows an error message.
+
+      Use case ends.
+
+
+**Use case: Remove tags from an item**
+
+**MSS**
+
+1.  User requests to remove all tags from a specific item in the current order.
+2.  SupperStrikers removes all tags from the item.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The order is empty.
+
+  Use case ends.
+
+* 1b. The given index is invalid.
+
+    * 1b1. SupperStrikers shows an error message.
+
+      Use case ends.
+      
+      
 *{More to be added}*
 
 ### Non-Functional Requirements
