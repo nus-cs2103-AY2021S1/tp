@@ -52,9 +52,6 @@ public class AddContactParser implements Parser<AddContactCommand> {
                     AddContactCommand.MESSAGE_USAGE));
         }
 
-        assert argMultimap.getValue(PREFIX_NAME).isPresent() : "Argument for PREFIX_NAME must be present";
-        assert argMultimap.getValue(PREFIX_EMAIL).isPresent() : "Argument for PREFIX_EMAIL must be present";
-
         Contact contact;
         ContactName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());

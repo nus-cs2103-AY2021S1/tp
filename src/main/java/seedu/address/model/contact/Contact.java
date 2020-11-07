@@ -11,7 +11,8 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a contact in the contact list.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, except for Telegram which might be absent,
+ * field values are validated, immutable.
  */
 public class Contact {
 
@@ -19,11 +20,10 @@ public class Contact {
     private final ContactName name;
     private final Email email;
     private final Telegram telegram;
-    private final boolean isImportant;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
-
+    private final boolean isImportant;
 
     /**
      * Creates and initialises a Contact object with a Name, Email and Tag field,

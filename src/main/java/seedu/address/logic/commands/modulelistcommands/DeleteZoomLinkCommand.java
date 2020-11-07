@@ -48,8 +48,10 @@ public class DeleteZoomLinkCommand extends Command {
      */
     public DeleteZoomLinkCommand(Index targetIndex, ModuleLesson lesson) {
         requireAllNonNull(targetIndex, lesson);
+
         assert targetIndex.getZeroBased() >= 0 : "Zero-based index must be non-negative";
         logger.info("Deleting zoom link for module at index " + targetIndex.getOneBased());
+
         this.targetIndex = targetIndex;
         this.lesson = lesson;
     }

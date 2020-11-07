@@ -54,8 +54,10 @@ public class AddZoomLinkCommand extends Command {
      */
     public AddZoomLinkCommand(Index targetIndex, ZoomDescriptor descriptor) {
         requireAllNonNull(targetIndex, descriptor);
+
         assert targetIndex.getZeroBased() >= 0 : "Zero-based index must be non-negative";
         logger.info("Executing command to add a zoom link to a module");
+
         this.targetIndex = targetIndex;
         this.descriptor = new ZoomDescriptor(descriptor);
     }

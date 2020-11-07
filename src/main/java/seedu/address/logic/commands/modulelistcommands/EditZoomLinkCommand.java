@@ -55,10 +55,13 @@ public class EditZoomLinkCommand extends Command {
      */
     public EditZoomLinkCommand(Index index, ZoomDescriptor zoomDescriptor) {
         requireAllNonNull(index, zoomDescriptor);
+
         assert index.getZeroBased() >= 0 : "Zero-based index must be non-negative";
+        logger.info("Editing the zoom link of the module at index " + index.getOneBased());
+
         this.index = index;
         this.zoomDescriptor = new ZoomDescriptor(zoomDescriptor);
-        logger.info("Editing the zoom link of the module at index " + index.getOneBased());
+
     }
 
     @Override
