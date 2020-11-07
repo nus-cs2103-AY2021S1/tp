@@ -1,0 +1,36 @@
+@startuml
+start
+:User executes edit command: edit info;
+:Logic executes edit command;
+:EditCommandParser parses the command: edit info;
+
+if () then ([is valid index])
+
+
+    if () then ([fields to edit specified])
+    :execute EditCommand;
+
+        if () then ([is duplicate item])
+        :throw command exception;
+
+        else ([is not a duplicate])
+
+            if () then ([edited item is same as original])
+            :throw command exception;
+            else ([edited item different from original])
+            :item is updated;
+            endif
+
+        endif
+
+    else ([no fields to edit specified])
+    :throw parse exception;
+    endif
+
+else ([is invalid index])
+    :throw parse exception;
+
+endif
+stop
+
+@enduml

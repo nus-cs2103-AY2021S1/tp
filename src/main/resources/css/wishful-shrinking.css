@@ -11,19 +11,19 @@
     -fx-padding: 20.0, 10.0;
     -fx-font-size: 15.0;
     -fx-font-weight: NORMAL;
-    -fx-text-fill: green;
+    -fx-text-fill: #0088c7;
 }
 
 .title-label {
     -fx-font-size: 16.0px;
     -fx-padding: 14.0px;
-    -fx-text-fill: green;
+    -fx-text-fill: #0088c7;
 }
 
 .radio-button-title-label {
     -fx-font-size: 16.0px;
     -fx-padding: 14.0 0.0 -20.0 0.0;
-    -fx-text-fill: green;
+    -fx-text-fill: #0088c7;
 }
 
 /*******************************************************************************
@@ -123,10 +123,7 @@
     -fx-cursor: hand;
 }
 
-.animated-burgers .jfx-hamburger StackPane {
-    -fx-background-color: #5264AE;
-    -fx-background-radius: 4px;
-}
+
 
 .animated-burgers .jfx-rippler {
     -jfx-rippler-fill: #5264AE;
@@ -158,12 +155,7 @@
     -fx-cursor: hand;
 }
 
-.jfx-hamburger StackPane {
-    -fx-pref-width: 30px;
-    -fx-pref-height: 4px;
-    -fx-background-color: #FFF;
-    -fx-background-radius: 5px;
-}
+
 
 /*******************************************************************************
  *                                                                             *
@@ -193,9 +185,6 @@
     -fx-padding: 22px;
 }
 
-.jfx-tool-bar .jfx-options-burger StackPane {
-    -fx-pref-width: 4px;
-}
 
 .jfx-tool-bar .jfx-rippler {
     -jfx-rippler-fill: WHITE;
@@ -436,10 +425,7 @@
     -jfx-rippler-fill: #5264AE;
 }
 
-.jfx-list-cell:odd:selected > .jfx-rippler > StackPane,
-.jfx-list-cell:even:selected > .jfx-rippler > StackPane {
-    -fx-background-color: rgba(0.0, 0.0, 255.0, 0.2);
-}
+
 
 .jfx-list-view {
     -fx-background-insets: 0.0;
@@ -449,10 +435,7 @@
     -jfx-expanded: false;
 }
 
-.custom-jfx-list-view .jfx-list-cell:odd:selected > .jfx-rippler > StackPane,
-.custom-jfx-list-view .jfx-list-cell:even:selected > .jfx-rippler > StackPane {
-    -fx-background-color: rgba(255, 0, 0, 0.2);
-}
+
 
 .custom-jfx-list-view {
     -fx-background-insets: 0.0;
@@ -526,10 +509,7 @@
     -fx-background-color: TRANSPARENT;
 }
 
-.sublist .jfx-list-cell:odd:selected > .jfx-rippler > StackPane,
-.sublist .jfx-list-cell:even:selected > .jfx-rippler > StackPane {
-    -fx-background-color: rgba(255, 0, 0, 0.2);
-}
+
 
 .sublist .jfx-list-cell {
     -fx-background-insets: 0.0;
@@ -754,10 +734,6 @@
     -fx-fill: #5264AE;
 }
 
-.combo-box-popup .list-view .jfx-list-cell:odd:selected > .jfx-rippler > StackPane,
-.combo-box-popup .list-view .jfx-list-cell:even:selected > .jfx-rippler > StackPane {
-    -fx-background-color: rgba(0.0, 0.0, 255.0, 0.2);
-}
 
 .combo-box-popup .list-view .jfx-list-cell {
     -fx-background-insets: 0.0;
