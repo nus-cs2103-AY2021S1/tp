@@ -930,19 +930,19 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting an employee
 
-1. Deleting a person while all persons are being shown
+1. Deleting an employee while all active employees are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all active employees using the `c-active-list` command. Multiple employees in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `c-delete 1`<br>
+      Expected: First employee is deleted from the active employee directory. Details of the deleted employee shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `c-delete 0`<br>
+      Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `c-delete`, `c-delete x`, `...` (where x is larger than the employee directory's size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
