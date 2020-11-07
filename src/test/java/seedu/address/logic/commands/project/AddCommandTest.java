@@ -21,7 +21,7 @@ public class AddCommandTest {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
-        project.deleteParticipation(ALICE.getGitUserNameString());
+        project.removeParticipationWithName(ALICE.getGitUserNameString());
 
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString());
         assertCommandFailure(assignCommand, model,

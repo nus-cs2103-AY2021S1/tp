@@ -244,7 +244,7 @@ public class Project {
     /**
      * Deletes the Participation with the member Git UserName.
      */
-    public void deleteParticipation(String gitUserName) {
+    public void removeParticipationWithName(String gitUserName) {
         if (listOfParticipations.containsKey(new GitUserName(gitUserName))) {
             listOfParticipations.remove(new GitUserName(gitUserName));
         }

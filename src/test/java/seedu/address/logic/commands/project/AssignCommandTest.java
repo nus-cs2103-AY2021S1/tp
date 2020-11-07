@@ -122,7 +122,7 @@ public class AssignCommandTest {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
-        project.deleteParticipation(DESC_A.getGitUserNameString());
+        project.removeParticipationWithName(DESC_A.getGitUserNameString());
 
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, DESC_A.getGitUserNameString());
         assertCommandFailure(assignCommand, model,
