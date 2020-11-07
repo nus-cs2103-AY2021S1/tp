@@ -8,7 +8,7 @@ Package Model <<Rectangle>>{
 
 Class ModelManager
 Class IngredientBook
-Class ReadOnlyIngredientBook
+Interface ReadOnlyIngredientBook <<interface>>
 
 Package Ingredient {
 Class Ingredient
@@ -23,8 +23,8 @@ Ingredient *--> "1" IngredientName
 Ingredient *--> "1" Amount
 ModelManager o--> "1" IngredientBook
 IngredientBook ..|> ReadOnlyIngredientBook
-IngredientBook *--> UniqueIngredientList
+IngredientBook *--> "1" UniqueIngredientList
 
 
-ModelManager -->"1" Ingredient : filtered ingredient list
+ModelManager -->"*" Ingredient : filtered ingredient list
 @enduml

@@ -263,7 +263,7 @@ Figure above shows tCheck's GUI during the command is being entered.
 * Expected Result:
 
 <img src="images/IngredientSetCommandResultDisplay.png" width="1000" height="700" />
-Figure above showing tCheck's GUI after pressing "Enter". Note that the amount for Milk is updated in Ingredient Tracker section of _Main View_.
+Figure above showing tCheck's GUI after pressing "Enter". Note that the amount for Milk is updated in Ingredient Tracker section inside the _Main View_.
 
 #### 2.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
 
@@ -282,7 +282,7 @@ Figure above shows tCheck's GUI during the command is being entered.
 * Expected Result:
 
 <img src="images/IngredientSetAllCommandResultDisplay.png" width="1000" height="700" />
-Figure above showing tCheck's GUI after pressing "Enter". Note that all amounts for the ingredients are updated in Ingredient Tracker section of _Main View_.
+Figure above showing tCheck's GUI after pressing "Enter". Note that all amounts for the ingredients are updated in Ingredient Tracker inside the _Main View_.
 
 #### 2.3 Setting all ingredients to different levels : `i-set-default`
 
