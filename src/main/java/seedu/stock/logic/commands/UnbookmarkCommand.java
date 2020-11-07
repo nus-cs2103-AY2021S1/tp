@@ -195,5 +195,12 @@ public class UnbookmarkCommand extends Command {
         return serialNumbersAsString;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UnbookmarkCommand // instanceof handles nulls
+                && targetSerialNumbers.equals(((UnbookmarkCommand) other).targetSerialNumbers)); // state check
+    }
+
 
 }
