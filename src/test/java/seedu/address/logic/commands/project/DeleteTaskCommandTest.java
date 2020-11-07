@@ -2,6 +2,7 @@ package seedu.address.logic.commands.project;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
@@ -105,7 +106,7 @@ class DeleteTaskCommandTest {
     }
 
     /**
-     * Deletes a task is currently displayed.
+     * Deletes a task that is currently displayed.
      */
     @Test
     public void execute_deletingTaskToBeDisplayed_resetTaskDashboard() {
@@ -120,8 +121,8 @@ class DeleteTaskCommandTest {
 
         try {
             new DeleteTaskCommand(INDEX_FIRST_TASK).execute(newModel);
-        } catch (CommandException e) {
-            assertFalse(true);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of the command should not fail.", ce);
         }
 
         assertTrue(newModel.getTaskToBeDisplayedOnDashboard().isEmpty()
@@ -129,7 +130,7 @@ class DeleteTaskCommandTest {
     }
 
     /**
-     * Deletes a task is currently not displayed.
+     * Deletes a task that is currently not displayed.
      */
     @Test
     public void execute_deletingTaskNotToBeDisplayed_noChangesToTaskDashboard() {
@@ -144,8 +145,8 @@ class DeleteTaskCommandTest {
 
         try {
             new DeleteTaskCommand(INDEX_SECOND_TASK).execute(newModel);
-        } catch (CommandException e) {
-            assertFalse(true);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of the command should not fail.", ce);
         }
 
         assertTrue(newModel.getTaskToBeDisplayedOnDashboard().isPresent());
