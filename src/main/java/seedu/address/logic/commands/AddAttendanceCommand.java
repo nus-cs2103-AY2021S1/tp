@@ -29,17 +29,19 @@ public class AddAttendanceCommand extends AttendanceCommand {
             + "Example: " + AttendanceCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
             + PREFIX_ATTENDANCE_DATE + "14/02/2020 " + PREFIX_ATTENDANCE_STATUS + "present "
             + PREFIX_ATTENDANCE_FEEDBACK + "attentive";
+
     public static final String MESSAGE_SUCCESS = "Attendance added for %s: %s";
     public static final String MESSAGE_INVALID_ATTENDANCE_DATE =
             "There is already an existing attendance for the entered date! Please use another date, or delete the "
             + "existing attendance before adding a new one.";
+
     private static Logger logger = Logger.getLogger("Add Attendance Log");
 
     private final Index index;
     private final Attendance attendanceToAdd;
 
     /**
-     * Creates an AddAdditionalDetailCommand to add the specified {@code AdditionalDetail} to the student
+     * Creates an AddAttendanceCommand to add the specified {@code Attendance} to the student
      * at the specified {@code Index}.
      */
     public AddAttendanceCommand(Index index, Attendance attendanceToAdd) {
@@ -65,8 +67,10 @@ public class AddAttendanceCommand extends AttendanceCommand {
             logger.log(Level.WARNING, "Invalid student index input error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
+
         Student studentToAddAttendance = lastShownList.get(index.getZeroBased());
         if (studentToAddAttendance.containsAttendance(attendanceToAdd)) {
+            logger.log(Level.WARNING, "Invalid attendance date error");
             throw new CommandException(MESSAGE_INVALID_ATTENDANCE_DATE);
         }
 

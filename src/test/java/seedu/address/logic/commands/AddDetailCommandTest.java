@@ -51,7 +51,7 @@ public class AddDetailCommandTest {
         Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails().build();
         Detail detail = new Detail(TEST_DETAIL);
-        AddDetailCommand addAdditionalDetailCommand =
+        AddDetailCommand addDetailCommand =
                 new AddDetailCommand(INDEX_FIRST_PERSON, detail);
         Student expectedStudent = new StudentBuilder(ALICE).withDetails(TEST_DETAIL).build();
         model.setStudent(asker, clone);
@@ -62,7 +62,7 @@ public class AddDetailCommandTest {
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
         expectedModel.setStudent(clone, expectedStudent);
 
-        assertCommandSuccess(addAdditionalDetailCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addDetailCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -110,24 +110,24 @@ public class AddDetailCommandTest {
     @Test
     public void equals() {
         Detail testDetail = new Detail(TEST_DETAIL);
-        AddDetailCommand addAdditionalDetailCommand =
+        AddDetailCommand addDetailCommand =
                 new AddDetailCommand(INDEX_FIRST_PERSON, testDetail);
 
         // same object -> return true;
-        assertTrue(addAdditionalDetailCommand.equals(addAdditionalDetailCommand));
+        assertTrue(addDetailCommand.equals(addDetailCommand));
 
         // different object -> return false;
-        assertFalse(addAdditionalDetailCommand.equals("hello"));
+        assertFalse(addDetailCommand.equals("hello"));
 
         // same fields -> return true;
-        assertTrue(addAdditionalDetailCommand.equals(new AddDetailCommand(INDEX_FIRST_PERSON, testDetail)));
+        assertTrue(addDetailCommand.equals(new AddDetailCommand(INDEX_FIRST_PERSON, testDetail)));
 
         // different index -> return false;
-        assertFalse(addAdditionalDetailCommand.equals(new AddDetailCommand(INDEX_SECOND_PERSON, testDetail)));
+        assertFalse(addDetailCommand.equals(new AddDetailCommand(INDEX_SECOND_PERSON, testDetail)));
 
         // different detail -> return false;
         Detail altDetail = new Detail("he watches birds");
-        assertFalse(addAdditionalDetailCommand.equals(new AddDetailCommand(INDEX_FIRST_PERSON, altDetail)));
+        assertFalse(addDetailCommand.equals(new AddDetailCommand(INDEX_FIRST_PERSON, altDetail)));
     }
 
 }

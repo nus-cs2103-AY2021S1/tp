@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DESC_WITH_FEEDBACK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_FEEDBACK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_STATUS_AMY;
@@ -41,7 +42,7 @@ public class AttendanceCommandParserTest {
     @Test
     public void parse_addAttendanceCompulsoryFieldsPresent_success() {
         Index targetStudentIndex = INDEX_SECOND_PERSON;
-        String userInput = ADD_ATTENDANCE_DESC + targetStudentIndex.getOneBased() + ATTENDANCE_DESC_AMY;
+        String userInput = ADD_ATTENDANCE_DESC + targetStudentIndex.getOneBased() + ATTENDANCE_DESC_WITH_FEEDBACK_AMY;
         AddAttendanceCommand expectedCommand = new AddAttendanceCommand(targetStudentIndex, VALID_ATTENDANCE_AMY);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -62,7 +63,7 @@ public class AttendanceCommandParserTest {
                 AddAttendanceCommand.MESSAGE_USAGE);
         String attendanceDateDesc = " " + PREFIX_ATTENDANCE_DATE + VALID_ATTENDANCE_AMY;
         String isPresentDesc = " " + PREFIX_ATTENDANCE_STATUS + VALID_ATTENDANCE_STATUS_AMY;
-        Index targetStudentIndex = INDEX_SECOND_PERSON;
+        String targetStudentIndex = INDEX_SECOND_PERSON.toString();
 
         // missing index and prefix
         assertParseFailure(parser, ADD_ATTENDANCE_DESC, expectedMessage);
@@ -75,14 +76,16 @@ public class AttendanceCommandParserTest {
         assertParseFailure(parser, ADD_ATTENDANCE_DESC + targetStudentIndex + isPresentDesc, expectedMessage);
 
         // missing index, valid prefix
-        assertParseFailure(parser, ADD_ATTENDANCE_DESC + ATTENDANCE_DESC_AMY, expectedMessage);
+        assertParseFailure(parser, ADD_ATTENDANCE_DESC + ATTENDANCE_DESC_WITH_FEEDBACK_AMY, expectedMessage);
     }
 
     @Test
     public void parse_addAttendanceInvalidFeedback_throwsParseException() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAttendanceCommand.MESSAGE_USAGE);
-        String invalidFeedbackDesc = " " + PREFIX_ATTENDANCE_FEEDBACK + "#48as8@3"; // invalid special characters
-        assertParseFailure(parser, ADD_ATTENDANCE_DESC + ATTENDANCE_DESC_AMY + invalidFeedbackDesc, expectedMessage);
+        String targetStudentIndex = "1 ";
+        String invalidFeedbackDesc = ADD_ATTENDANCE_DESC + targetStudentIndex + ATTENDANCE_DESC_AMY + " "
+                + PREFIX_ATTENDANCE_FEEDBACK + "#48as8@3$$$!!!"; // invalid special characters
+        assertParseFailure(parser, invalidFeedbackDesc, expectedMessage);
     }
 
     @Test

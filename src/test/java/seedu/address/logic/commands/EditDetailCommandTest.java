@@ -6,7 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLA
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.logic.commands.DeleteDetailCommand.MESSAGE_BAD_DETAIL_INDEX;
+import static seedu.address.logic.commands.EditDetailCommand.MESSAGE_BAD_DETAIL_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -69,7 +69,7 @@ public class EditDetailCommandTest {
         Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails(TEST_WRONG_DETAIL).build();
         Detail detail = new Detail(TEST_CORRECT_DETAIL);
-        EditDetailCommand editAdditionalDetailCommand = new EditDetailCommand(
+        EditDetailCommand editDetailCommand = new EditDetailCommand(
                 TEST_INDEX_FIRST_STUDENT, TEST_INDEX_FIRST_DETAIL, detail);
         Student expectedStudent = new StudentBuilder(ALICE).withDetails(TEST_CORRECT_DETAIL).build();
         model.setStudent(asker, clone);
@@ -80,7 +80,7 @@ public class EditDetailCommandTest {
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
         expectedModel.setStudent(clone, expectedStudent);
 
-        assertCommandSuccess(editAdditionalDetailCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editDetailCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -111,7 +111,7 @@ public class EditDetailCommandTest {
         Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails(TEST_WRONG_DETAIL).build();
         Detail detail = new Detail(TEST_CORRECT_DETAIL);
-        EditDetailCommand editAdditionalDetailCommand = new EditDetailCommand(
+        EditDetailCommand editDetailCommand = new EditDetailCommand(
                 TEST_INDEX_FIRST_STUDENT, TEST_INDEX_FIRST_DETAIL, detail);
         Student expectedStudent = new StudentBuilder(BENSON).withDetails(TEST_CORRECT_DETAIL).build();
         model.setStudent(asker, clone);
@@ -123,7 +123,7 @@ public class EditDetailCommandTest {
         expectedModel.setStudent(clone, expectedStudent);
         showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
 
-        assertCommandSuccess(editAdditionalDetailCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editDetailCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -154,29 +154,29 @@ public class EditDetailCommandTest {
     @Test
     public void equals() {
         Detail testDetail = new Detail(TEST_CORRECT_DETAIL);
-        EditDetailCommand editAdditionalDetailCommand =
+        EditDetailCommand editDetailCommand =
                 new EditDetailCommand(TEST_INDEX_FIRST_STUDENT, TEST_INDEX_FIRST_DETAIL, testDetail);
 
         // same object -> return true;
-        assertTrue(editAdditionalDetailCommand.equals(editAdditionalDetailCommand));
+        assertTrue(editDetailCommand.equals(editDetailCommand));
 
         // different object -> return false;
-        assertFalse(editAdditionalDetailCommand.equals("hello"));
+        assertFalse(editDetailCommand.equals("hello"));
 
         // same fields -> return true;
-        assertTrue(editAdditionalDetailCommand.equals(new EditDetailCommand(TEST_INDEX_FIRST_STUDENT,
+        assertTrue(editDetailCommand.equals(new EditDetailCommand(TEST_INDEX_FIRST_STUDENT,
                 TEST_INDEX_FIRST_DETAIL, testDetail)));
 
         // different student index -> return false;
-        assertFalse(editAdditionalDetailCommand.equals(new EditDetailCommand(TEST_INDEX_SECOND_STUDENT,
+        assertFalse(editDetailCommand.equals(new EditDetailCommand(TEST_INDEX_SECOND_STUDENT,
                 TEST_INDEX_FIRST_DETAIL, testDetail)));
 
         // different detail index -> return false;
-        assertFalse(editAdditionalDetailCommand.equals(new EditDetailCommand(TEST_INDEX_FIRST_STUDENT,
+        assertFalse(editDetailCommand.equals(new EditDetailCommand(TEST_INDEX_FIRST_STUDENT,
                 TEST_INDEX_SECOND_DETAIL, testDetail)));
 
         // different detail -> return false;
-        assertFalse(editAdditionalDetailCommand.equals(new EditDetailCommand(TEST_INDEX_FIRST_STUDENT,
+        assertFalse(editDetailCommand.equals(new EditDetailCommand(TEST_INDEX_FIRST_STUDENT,
                 TEST_INDEX_FIRST_DETAIL, new Detail(TEST_WRONG_DETAIL))));
     }
 

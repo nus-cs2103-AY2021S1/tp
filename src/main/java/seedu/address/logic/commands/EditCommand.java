@@ -12,6 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -57,6 +59,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in Reeve.";
 
+    private static Logger logger = Logger.getLogger("Edit Student Log");
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -80,27 +83,51 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        logger.log(Level.INFO, "Beginning command execution");
         List<Student> lastShownList = model.getSortedStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.log(Level.WARNING, "Invalid student index input error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor, editAdminDescriptor);
 
-        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
-        ClassTime studentToEditClassTime = studentToEdit.getClassTime();
-        ClassTime editedStudentClassTime = editedStudent.getClassTime();
-        if (!(editedStudentClassTime.equals(studentToEditClassTime)) && model.hasClashingClassTimeWith(editedStudent)) {
-            throw new CommandException(Messages.MESSAGE_CLASHING_LESSON);
-        }
+        checkForDuplicateStudent(model, studentToEdit, editedStudent);
+        checkForClashingClassTime(model, studentToEdit, editedStudent);
 
         model.setStudent(studentToEdit, editedStudent);
+        logger.log(Level.INFO, "Execution complete");
+
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
+    }
+
+    private void checkForDuplicateStudent(Model model, Student studentToEdit, Student editedStudent)
+            throws CommandException {
+        boolean isChangesMadeToStudent = !studentToEdit.isSameStudent(editedStudent);
+        boolean isEditedStudentDuplicate = model.hasStudent(editedStudent);
+        boolean isDuplicateStudentAdded = isChangesMadeToStudent && isEditedStudentDuplicate;
+
+        if (isDuplicateStudentAdded) {
+            logger.log(Level.WARNING, "Duplicate student input error");
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+    }
+
+    private void checkForClashingClassTime(Model model, Student studentToEdit, Student editedStudent)
+            throws CommandException {
+        ClassTime studentToEditClassTime = studentToEdit.getAdmin().getClassTime();
+        ClassTime editedStudentClassTime = editedStudent.getAdmin().getClassTime();
+
+        boolean isClassTimeChanged = !(editedStudentClassTime.equals(studentToEditClassTime));
+        boolean isStudentTimeClashWithOthers = model.hasClashingClassTimeWith(editedStudent);
+        boolean isNewClassTimeClashing = isClassTimeChanged && isStudentTimeClashWithOthers;
+
+        if (isNewClassTimeClashing) {
+            logger.log(Level.WARNING, "Clashing class time input error");
+            throw new CommandException(Messages.MESSAGE_CLASHING_LESSON);
+        }
     }
 
     /**
@@ -129,7 +156,7 @@ public class EditCommand extends Command {
             PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
                     .orElse(studentToEdit.getPaymentDate());
 
-            // Additional Details cannot be edited through this channel
+            // Details cannot be edited through this channel
             return new Student(updatedName, updatedPhone, updatedSchool, updatedYear,
                     updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate, studentToEdit.getDetails(),
                     academic);
@@ -154,7 +181,8 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editStudentDescriptor.equals(e.editStudentDescriptor);
+                && editStudentDescriptor.equals(e.editStudentDescriptor)
+                && editAdminDescriptor.equals(e.editAdminDescriptor);
     }
 
     /**
@@ -252,7 +280,6 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code details} is used internally.
          */
         public EditAdminDescriptor(EditAdminDescriptor toCopy) {
             setTime(toCopy.time);

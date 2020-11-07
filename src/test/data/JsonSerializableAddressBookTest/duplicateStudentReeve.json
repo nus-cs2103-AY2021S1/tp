@@ -9,7 +9,7 @@
       "classTime": "5 1500-1700",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
-      "additionalDetails": ["owesMoney", "friends"]
+      "details": ["owesMoney", "friends"]
     },
     "academic" : {
       "questions": [ {
@@ -46,7 +46,7 @@
       "classTime": "5 1500-1700",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
-      "additionalDetails": ["owesMoney", "friends"]
+      "details": ["owesMoney", "friends"]
     },
     "academic" : {
       "questions": [ {
