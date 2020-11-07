@@ -299,6 +299,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredMenuItemList(Comparator<MenuItem> comparator, boolean isSortedAsc) {
+        requireNonNull(comparator);
+        int index = getVendorIndex();
+        if (index < 0 || index >= menuManagers.size()) {
+            return;
+        }
+        // not suppose to modify menumanager's menus
+        filteredMenuItems = filteredMenuItems.sorted(comparator);
+        this.isSortedAsc = isSortedAsc;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

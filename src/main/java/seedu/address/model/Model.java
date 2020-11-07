@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -145,6 +146,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMenuItemList(Predicate<MenuItem> predicate);
+
+    /**
+     * Updates the filter of the filtered menu item list at the corresponding index to filter by the given
+     * {@code comparator}.
+     * Only used for test cases.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateFilteredMenuItemList(Comparator<MenuItem> comparator, boolean isSortedAsc);
+
 
     /**
      * Returns an unmodifiable view of the filtered orderItem list at the corresponding index

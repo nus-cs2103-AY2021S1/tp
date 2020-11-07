@@ -6,11 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
+import java.util.Comparator;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.food.MenuItem;
 import seedu.address.testutil.TypicalModel;
 
 public class SortCommandTest {
@@ -48,16 +51,16 @@ public class SortCommandTest {
     public void execute_validSortCommand_success() {
         SortCommand sortCommand0 = new SortCommand("n", "a");
         String expectedMessage = Messages.MESSAGE_FOOD_SORTED;
-        expectedModel.sortMenuItemBy("n", true, false);
+        expectedModel.updateFilteredMenuItemList(Comparator.comparing(MenuItem::getName), true);
         assertCommandSuccess(sortCommand0, model, expectedMessage, expectedModel);
         SortCommand sortCommand1 = new SortCommand("n", "d");
-        expectedModel.sortMenuItemBy("n", false, false);
+        expectedModel.updateFilteredMenuItemList(Comparator.comparing(MenuItem::getName).reversed(), false);
         assertCommandSuccess(sortCommand1, model, expectedMessage, expectedModel);
         SortCommand sortCommand2 = new SortCommand("p", "a");
-        expectedModel.sortMenuItemBy("p", true, false);
+        expectedModel.updateFilteredMenuItemList(Comparator.comparing(MenuItem::getPrice), true);
         assertCommandSuccess(sortCommand2, model, expectedMessage, expectedModel);
         SortCommand sortCommand3 = new SortCommand("p", "d");
-        expectedModel.sortMenuItemBy("p", false, false);
+        expectedModel.updateFilteredMenuItemList(Comparator.comparing(MenuItem::getPrice).reversed(), false);
         assertCommandSuccess(sortCommand3, model, expectedMessage, expectedModel);
     }
 
