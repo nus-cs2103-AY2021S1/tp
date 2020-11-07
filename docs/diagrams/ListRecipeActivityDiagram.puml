@@ -1,10 +1,12 @@
 @startuml
 start
-:User inputs list command: recipes;
+:user inputs list command: recipes;
 :Logic executes ListRecipeCommand;
-:execute ListRecipeCommand;
+if () then ([no extra arguments])
 :recipe list is fetched;
-
+else ([extra arguments present])
+    :throw parse exception;
+endif
 stop
 
 @enduml
