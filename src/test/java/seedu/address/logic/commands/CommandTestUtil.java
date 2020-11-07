@@ -46,8 +46,8 @@ public class CommandTestUtil {
             new Tag(VALID_TAG_CS2103T), Description.defaultDescription(), DayOfWeek.MONDAY,
             LocalTime.of(12, 0), LocalTime.of(14, 0),
             LocalDate.of(2020, 1, 1), LocalDate.of(2020, 11, 1));
-    //valid lesson that overlaps with CS2103T
-    public static final String VALID_TITLE_CS2000 = "CS2103T Lecture";
+    //valid lesson
+    public static final String VALID_TITLE_CS2000 = "CS2000 Lecture";
     public static final String VALID_DESC_CS2000 = "Best lecture ever!";
     public static final String VALID_TAG_CS2000 = "CS2103T";
     public static final Lesson VALID_LESSON_CS2000 = new Lesson(new Title(VALID_TITLE_CS2000),
@@ -83,6 +83,8 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_EXPERIMENT = "Science experiment";
     public static final String VALID_DESC_EXPERIMENT = "Do grape experiment";
     public static final String VALID_DATE_EXPERIMENT = "01-01-2020";
+    public static final String VALID_START_TIME_EXPERIMENT = "10:00";
+    public static final String VALID_END_TIME_EXPERIMENT = "12:00";
     public static final String VALID_START_DATETIME_EXPERIMENT = "01-01-2020 10:00";
     public static final String VALID_END_DATETIME_EXPERIMENT = "01-01-2020 12:00";
     public static final String VALID_TAG_EXPERIMENT = "LSM1301";
