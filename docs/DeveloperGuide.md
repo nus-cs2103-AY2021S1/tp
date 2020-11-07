@@ -15,7 +15,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Class Diagram of the Logic Component](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -81,6 +81,10 @@ The UI consists of two components:
 ![Breakdown of Ui Component](images/uidiagram/Ui-Component-Breakdown.png)
 *Note that the font colour in the picture is only different for visibility purposes.*
 
+After deliberation, we chose to proceed with TabBar as TabBar allowed
+us to represent the details of our entities neatly. 
+Each entity in Property belongs to a designated `ListPanel` (as shown below).
+
 The `TabBar` component itself consists of the following parts:
 - [`PropertyListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/property/PropertyListPanel.java)
 - [`BidderListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/bidder/BidderListPanel.java)
@@ -88,6 +92,24 @@ The `TabBar` component itself consists of the following parts:
 - [`BidListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/bid/BidListPanel.java)
 
 Each panel will display the list of the entities corresponding to the name of the panel.
+
+1. Alternative 1 (current choice): Choosing `TabBar` to represent information of our entities.
+    - Pros: 
+        - Neater segmentation of entities visually
+        - Able to leverage on existing AB3 Ui implementation for representing `Person`
+            
+    - Cons:
+        - Requires user to click to switch tab, not CLI-centric (tackled below)
+        
+ 2. Alternative 2: Maintain a single list on GUI and list only relevant entities based on certain actions such
+ as commands.
+    - Pros: 
+        - Fewer changes to existing AB3 Ui implementation
+    - Cons: 
+        - Increases code complexity as a combined list has to be created and filter accordingly
+
+The thought process behind the `Ui` was ultimately a choice between usability of the application
+and complexity of implementation.
 
 ---
 #### [`HelpWindow.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/HelpWindow.java)
@@ -220,7 +242,7 @@ The follow class diagram depicts the design behind `Id` and the subclasses: `Sel
 
 ### Property 
 
-{ Start of Property Model section written by Dianne Loh }
+{ Start of Property Model section written by: Dianne Loh }
 
 The following class diagram depicts `Property` and its related classes.  
 
@@ -243,9 +265,42 @@ The implementations of `PropertyType` and `Address` are similar as they both are
         - Less extensible 
         - Modifying the behaviour of one type will affect the other 
         
-{ End of Property Model section written by Dianne Loh }
+{ End of Property Model section written by: Dianne Loh }
 
 ### Bid 
+
+{ start of Model Component section written by: Marcus Duigan Xing Yu }
+
+The following class diagram depicts how a `Bid` is created.
+
+![Bid Diagram](images/modelDiagram/BidModelDiagram.png)
+
+ ##### Design Considerations
+
+ 1. Alternative 1 (current choice): Do not give bids its own Bid Id.
+    - Pros: 
+        - A bid is already unique as it cannot have the same property id and bidder id for two separate
+          bids. Thus having a unique bid Id over complicates the bid for no reason
+    - Cons: 
+        - The user must know the bidder Id and property Id to find the exact bid instead of using a bid Id
+
+ 2. Alternative 2: Give a specific Id to the bids.
+    - Pros: 
+        - Can track how many bids have been made
+        - Easier for users to execute certain commands aka delete-bid
+    - Cons: 
+        - More complicated
+        - Having a bid Id does not help other entities 
+        
+ 3. Alternative 3: Create a bid specific to a property and have a list of bidders as a parameter.
+    - Pros: 
+        - Associates all bidder Id's to a specific property
+        - Easier to track if there is a duplicate bidder for a certain bid
+    - Cons: 
+        - Difficult to edit specific bids in terms of parameters
+        - Difficult to find all bids related to a specific bidder
+
+{ end of Model Component section written by: Marcus Duigan Xing Yu }
 
 ### Meeting 
 
@@ -282,8 +337,43 @@ Additional features apart from the above-mentioned feature includes:
 - Key-press for UI navigation
 
 #### 1. Add
+{ start of Add section written by: Marcus Duigan Xing Yu}
 
-##### 1.1 Add Property  
+The `Add` command applies to **all entities** in PropertyFree. Apart from `AddBidCommand`, `AddMeetingCommand` and `AddPropertyCommand` with slight differences in implementation (elaborated below), all other entities follow the same
+implementation.
+
+1. When the `Add` command is executed by the user, the input it passed into
+the `LogicManager` and thereafter parsed and identified in `AddressBookParser`. 
+
+2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
+, the corresponding `AddENTITYCommandParser` object is formed. The user input then goes
+through another level of parsing in `AddENTITYCommandParser`.
+
+3. The `AddENTITYCommandParser` identifies the parameters corresponding to the user's input, and a new `AddENTITYCommand`
+object is formed taking in the identified parameters. 
+The `AddENTITYCommand` is then encapsulated under `Command` and passed back into the `LogicManager`.
+
+4. The `AddENTITYCommand` calls `execute(model)`. The execution of the command then interacts
+with the `Model` component, and retrieves the unmodifiable view of `ObservableList<ENTITY>`.
+
+5. The `Model` accesses the relevant ENTITYBook and adds the object to the ENTITYBook. The `Ui` then "listens" to the 
+changes in the ENTITYBook and updates the GUI.
+
+6. Finally, `AddENTITYCommand` is then encapsulated as a `CommandResult` and passed into the `LogicManager`.
+
+![Add Command Sequence Diagram](images/AddCommandSequenceDiagram.png)
+
+##### 1.1 Add Bid Command
+
+7. For Add-bid Command they have an additional step of checking whether the user inputs for bidder Id and property Id are valid before 
+adding to the Bidbook as seen in the diagram above.  
+
+8. For add-bid command, it also contains an auto-sort feature where it will call a sort-bid method which ensures the list is always sorted
+by property Id followed by Bid Amount. For further clarification, refer to section 4. Sort for a more in depth description.
+
+{ end of Add section written by: Marcus Duigan Xing Yu}
+
+##### 1.2 Add Property  
 
 { start of Add Property section written by: Dianne Loh }
 
@@ -337,6 +427,15 @@ This implementation differs from the One-Predicate implementation only in steps 
 
 #### 4. Sort 
 
+##### 4.1 Auto-Sort Feature for add-bid and edit-bid
+{ start of Add/Edit auto-sort feature section written by: Marcus Duigan Xing Yu}
+
+During the execution of `add-bid` and `edit-bid` command in the model manager, it executes a sort function similar to the above diagram's execution stage. The method names that are 
+called instead are `updateSortedBidList(bidComparator)` which is called after the `addBid/updateFilteredBidList` method is called.
+
+![Auto-Sort Feature Sequence Diagram](images/AutoSortBidSequenceDiagram.png)
+
+{ end of Add/Edit auto-sort feature section written by: Marcus Duigan Xing Yu}
 #### 5. Delete
 { start of Delete section written by: Kor Ming Soon }
 
@@ -367,7 +466,6 @@ changes in the ENTITYBook and updates the GUI.
 7. Finally, `DeleteENTITYCommand` is then encapsulated as a `CommandResult` and passed into the `LogicManager`.
 
 ![Delete Command Sequence Diagram](images/deleteCommandDiagram/deleteCommandSequenceDiagram.png)
-
 
 ##### 5.1 Delete Bidder Command
 
@@ -402,7 +500,25 @@ containing the attribute of`sellerId`.
 
 ![Delete Seller Command Sequence Diagram](images/deleteCommandDiagram/deleteSellerCommandSequenceDiagram.png)
 
+##### Design Considerations
+ 
+  Due to time constraint we decided to forgo certain attributes and features which would have distinctly separated `Bidder`
+  and `Seller` better (such as winning `bidder`). The implementation was designed with future extensions in mind. 
+  This consideration applies to all `Commands` pertaining to `Bidder` and `Seller`, not just `Delete`.
+  
+ 1. Alternative 1 (current choice): Having `DeleteBidderCommand` and `DeleteSellerCommand` extends from `Command` rather than
+ a common command such as `DeleteClientCommand`. 
+ 
+    - Pros: 
+        - Less coupling if an extension is required in the future
+        - Less refactoring was required from original implementation of AB3
+        
+    - Cons: 
+        - Unable to exploit polymorphism even though both `Bidder` and `Seller` have a degree of similarity between both
+        - Increases code complexity in `AddressBookParser`
+        
 { end of Delete section written by: Kor Ming Soon }
+
 ##### 5.3 Delete Property Command  
 
 { Start of Delete Property section written by: Dianne Loh }  
@@ -419,12 +535,96 @@ Upon deleting the property, all `Bid`s and `Meeting`s with the same `PropertyId`
 
 #### 6. List
 
+{ start of List section written by: Marcus Duigan Xing Yu }
+
+The `List` command applies to **all entities** in PropertyFree. All entities follow the same
+implementation.
+
+1. When the `List` command is executed by the user, the input it passed into
+the `LogicManager` and thereafter parsed and identified in `AddressBookParser`. 
+
+2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
+, the corresponding `ListENTITYCommand` object is formed.
+
+4. The `ListENTITYCommand` calls `execute(model)`. The execution of the command then interacts
+with the `Model` component, and retrieves the unmodifiable view of `ObservableList<ENTITY>`.
+
+5. The `ListEntityCommand` then calls on the
+`updateFilteredENTITYLIST` method of the `Model` and applies the filter predicate of PREDICATE_SHOW_ALL_ENTITY.
+
+                                                
+6. The `Model` accesses the relevant ENTITYBook and displays the entire list in the ENTITYBook. The `Ui` then "listens" to the 
+changes in the display for the ENTITYBook and updates the GUI.
+
+7. Finally, `ListENTITYCommand` is then encapsulated as a `CommandResult` and passed into the `LogicManager`.
+
+![List Command Sequence Diagram](images/ListCommandSequenceDiagram.png)
+
+{ end of List section written by: Marcus Duigan Xing Yu }
+
 ### UI Navigation Implementation
-#### 1. Automated `TabBar` Switching
-#### 2. Calendar Navigation
-#### 3. Key-press UI Navigation
+{ start of Ui implementation section written by: Kor Ming Soon }
+
+This section explains the `Ui` implementation in PropertyFree. 
+
+The implementation of `Ui` was implemented keeping in mind the constraint that the 
+target user is more inclined towards command line interface. 
+
+#### 1. Automated `TabBar` Switching based on Command
+
+Given that PropertyFree deals with a variety of different entities. The challenge was identifying the corresponding
+action and representing the right entity on the GUI.
+
+The implemented is done as such:
+
+- Creation of an `EntityType` (Enumeration) containing the following:  `BIDDER`, `SELLER`, `BID`, `PROPERTY` and `MEETING`. 
+
+- `CommandResult` is given another attribute of `EntityType`, and a `setEntity(EntityType)` method is created. The method is
+then called during the creation of the `CommandResult` object at each command.
+
+- The `CommandResult` then passes the `EntityType` in `MainWindow` to set the `TabBar` accordingly to the entity relevant to 
+command executed by the user.
+
+The following activity diagram depicts the user journey and how the GUI responds accordingly in different scenarios.
+
+![Automated Tab Bar Activity Diagram](images/uidiagram/autoTabBarActivityDiagram.png)
+
+#### 2. Key-press UI Navigation
+
+> The term `focus` refers to the component of which the user is able to interact with at any given moment.
+
+Upon launch, the PropertyFree will set the focus in the `CommandBox`'s text field. 
+This section highlights three simple key-press `Ui` navigation feature.
+
+- Navigating to next month in CalendarView: `SHIFT`
+- Navigating to previous month in CalendarView: `CONTROL`
+- Navigating to `CommandBox`'s text field (when not in focus): `ENTER`
+
+The key-press navigation is implemented in `MainWindow` where the method `handleFocusRequestWhenKeyPressed(CommandBox)` 
+configures the `primaryStage` with an `addEventFilter()` to "listen" to the event when a key is pressed.
+
+This in turns calls the method `handle(KeyEvent)` that runs and determine which key is pressed.
+Thereafter executes one of the three possible navigation.
+
+
+#### 3. Calendar Navigation Command
+
+Calendar Navigation Command serves to provide an alternative for users to view the `CalendarView` if the user's keyboard
+layout does not provide convenience for `SHIFT` or `CONTROL`.
+
+Two commands are created to handle the user input:
+
+- `NextCalendarNavigationCommand`
+- `PrevCalendarNavigationCommand`
+
+The implementation of the two above-mentioned commands are largely similar to the `ListENTITYCommand`. 
+
+However, apart from passing the `MESSAGE_SUCCESS` to `ResultDisplay`, the `CommandResult` checks `isCalendarNavigation()`
+and calls the `handleToNext()` or `handleToPrev()` method in `CalendarView` depending on the user command input.
+
  
- 
+ { end of Ui implementation section written by: Kor Ming Soon }
+
  
  
  
