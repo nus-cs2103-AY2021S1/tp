@@ -241,22 +241,22 @@ public class ModelManager implements Model {
     @Override
     public void quit() {
         switch (mainCatalogue.getStatus()) {
-            case PROJECT:
-                resetProjectToBeDisplayedOnDashboard();
-                resetTaskToBeDisplayedOnDashboard();
-                resetTeammateToBeDisplayedOnDashboard();
-                break;
-            case TASK:
-                resetTaskToBeDisplayedOnDashboard();
-                break;
-            case TEAMMATE:
-                resetTeammateToBeDisplayedOnDashboard();
-                break;
-            case PERSON:
-                resetPersonToBeDisplayedOnDashboard();
-                break;
-            default:
-                break;
+        case PROJECT:
+            resetProjectToBeDisplayedOnDashboard();
+            resetTaskToBeDisplayedOnDashboard();
+            resetTeammateToBeDisplayedOnDashboard();
+            break;
+        case TASK:
+            resetTaskToBeDisplayedOnDashboard();
+            break;
+        case TEAMMATE:
+            resetTeammateToBeDisplayedOnDashboard();
+            break;
+        case PERSON:
+            resetPersonToBeDisplayedOnDashboard();
+            break;
+        default:
+            break;
         }
         mainCatalogue.quit();
     }
