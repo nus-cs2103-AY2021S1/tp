@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 
@@ -13,6 +14,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Recipe;
 
 /**
@@ -58,8 +60,14 @@ public class RecipeCard extends UiPart<Region> {
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
-        instruction.setText(recipe.getInstruction().stream()
-                    .map(item -> (recipe.getInstruction().indexOf(item) + 1) + ") " + item.toString() + ".\n")
+        ArrayList<Instruction> editedInstruction = new ArrayList<>();
+        for (int i = 0; i < recipe.getInstruction().size(); i++) {
+            Instruction instr = new Instruction((i + 1) + ") "
+                    + recipe.getInstruction().get(i).toString() + ".\n");
+            editedInstruction.add(instr);
+        }
+        instruction.setText(editedInstruction.stream()
+                    .map(item -> item.toString())
                 .reduce("", (a, b) -> a + b).trim());
 
         try {
