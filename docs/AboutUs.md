@@ -19,7 +19,7 @@ You can reach us at the following emails:
 <img src="images/jonasngs.png" width="200px">
 
 [[github](https://github.com/jonasngs)]
-[[portfolio](team/jonasng.md)]
+[[portfolio](team/jonasngs.md)]
 
 * Role: Team lead, Integration
 * Responsibilities:
@@ -59,7 +59,7 @@ You can reach us at the following emails:
 <img src="images/murtubak.png" width="200px">
 
 [[github](http://github.com/murtubak)]
-[[portfolio](team/joshuawong.md)]
+[[portfolio](team/murtubak.md)]
 
 * Role: Developer
 * Responsibilities: Code quality

@@ -42,7 +42,7 @@ public class AddZoomLinkCommand extends Command {
     private final Logger logger = LogsCenter.getLogger(AddZoomLinkCommand.class);
 
     private final Index targetIndex;
-    private final AddZoomDescriptor descriptor;
+    private final ZoomDescriptor descriptor;
 
     /**
      * Creates and initialises a new AddZoomLinkCommand object.
@@ -50,11 +50,11 @@ public class AddZoomLinkCommand extends Command {
      * @param targetIndex Index object representing the index of the module in the module list.
      * @param descriptor Encapsulates details of the zoom link to be added.
      */
-    public AddZoomLinkCommand(Index targetIndex, AddZoomDescriptor descriptor) {
+    public AddZoomLinkCommand(Index targetIndex, ZoomDescriptor descriptor) {
         requireAllNonNull(targetIndex, descriptor);
         logger.info("Executing command to add a zoom link to a module");
         this.targetIndex = targetIndex;
-        this.descriptor = new AddZoomDescriptor(descriptor);
+        this.descriptor = new ZoomDescriptor(descriptor);
     }
 
     @Override

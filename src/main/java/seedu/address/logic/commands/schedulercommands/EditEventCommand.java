@@ -59,19 +59,17 @@ public class EditEventCommand extends Command {
         List<Event> lastShownList = model.getFilteredEventList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());
         Event updatedEvent = createEditedEvent(eventToEdit, descriptor);
-        System.out.println(eventToEdit.equals(updatedEvent));
         if (model.hasEvent(updatedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
         model.setEvent(eventToEdit, updatedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
-        //TODO: Implement undo redo for scheduler
-        //model.commitEventList();
+        model.commitEventList();
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, updatedEvent));
     }
 
@@ -80,13 +78,31 @@ public class EditEventCommand extends Command {
         return false;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof EditEventCommand) {
+            EditEventCommand toTest = (EditEventCommand) other;
+            return this.index.equals(toTest.index) && this.descriptor.equals(toTest.descriptor);
+        } else {
+            return false;
+        }
+    }
+
     private static Event createEditedEvent(Event toEdit, EditEventDescriptor descriptor) {
         requireNonNull(toEdit);
         requireNonNull(descriptor);
         Set<Tag> updatedTags = descriptor.getTags().orElse(toEdit.getTags());
-        EventName updatedName = descriptor.getName().orElse(toEdit.getName());
+        EventName updatedName = toEdit.getName();
+        if (!descriptor.getName().get().equals(new EventName())) {
+            updatedName = descriptor.getName().get();
+        }
         //TODO: Implement Event to take in Tags
-        EventTime updatedTime = descriptor.getTime().orElse(toEdit.getTime());
+        EventTime updatedTime = toEdit.getTime();
+        if (!descriptor.getTime().get().equals(new EventTime())) {
+            updatedTime = descriptor.getTime().get();
+        }
         return new Event(updatedName, updatedTime);
     }
 
@@ -98,7 +114,13 @@ public class EditEventCommand extends Command {
         private EventTime eventTime;
         private Set<Tag> tags;
 
-        public EditEventDescriptor() {}
+        /**
+         * Represents the constructor that creates the container to hold the changes.
+         */
+        public EditEventDescriptor() {
+            this.eventName = new EventName();
+            this.eventTime = new EventTime();
+        }
 
         /**
          * Represents the constructor that creates the container to hold the changes.

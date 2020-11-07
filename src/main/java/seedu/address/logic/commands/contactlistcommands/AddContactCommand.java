@@ -34,7 +34,7 @@ public class AddContactCommand extends Command {
             + PREFIX_TELEGRAM + "@johndoe"
             + PREFIX_TAG + "friend";
 
-    public static final String MESSAGE_SUCCESS = "New contact added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New contact added: %1$s \n";
     public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists in the contact list";
 
     private final Logger logger = LogsCenter.getLogger(AddContactCommand.class);

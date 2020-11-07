@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="150.0" prefWidth="200.0" styleClass="pane-with-border" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox styleClass="pane-with-border" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" />
+      <StackPane fx:id="smallDetailsPlaceHolder" />
+      <StackPane fx:id="listPlaceholder">
+         <children>
+            <VBox fx:id="zoomLinkListView" />
+         </children>
+      </StackPane>
+      <StackPane fx:id="assignmentListPlaceHolder">
+         <children>
+            <VBox fx:id="assignmentListView" />
+         </children>
+      </StackPane>
    </children>
-</StackPane>
+</VBox>

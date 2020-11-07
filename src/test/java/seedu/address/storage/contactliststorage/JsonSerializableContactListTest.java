@@ -24,7 +24,6 @@ public class JsonSerializableContactListTest {
 
     @Test
     public void toModelType_typicalContactsFile_success() throws Exception {
-
         JsonSerializableContactList dataFromFile = JsonUtil.readJsonFile(TYPICAL_CONTACTS_FILE,
                 JsonSerializableContactList.class).get();
         ContactList contactListFromFile = dataFromFile.toModelType();

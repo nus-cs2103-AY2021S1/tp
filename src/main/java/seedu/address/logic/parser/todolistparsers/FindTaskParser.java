@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
@@ -21,11 +22,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.FindTaskCriteria;
-import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.TaskContainsTagsPredicate;
 import seedu.address.model.task.TaskMatchesDatePredicate;
 import seedu.address.model.task.TaskMatchesPriorityPredicate;
+import seedu.address.model.task.TaskMatchesStatusPredicate;
+import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindTaskCommand object.
@@ -41,11 +44,11 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
     public FindTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args,
-                PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY, PREFIX_TAG);
+                PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY, PREFIX_TAG, PREFIX_STATUS);
         ArgumentMultimap argMultiMap = tokenizer.tokenize();
 
-        if (!isAtLeastOnePrefixPresent(argMultiMap, PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY, PREFIX_TAG)
-                || !argMultiMap.getPreamble().isBlank()) {
+        if (!isAtLeastOnePrefixPresent(argMultiMap, PREFIX_NAME, PREFIX_DATE,
+                PREFIX_PRIORITY, PREFIX_TAG, PREFIX_STATUS) || !argMultiMap.getPreamble().isBlank()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
         }
@@ -54,7 +57,7 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
 
         if (argMultiMap.getValue(PREFIX_NAME).isPresent()) {
             List<String> nameKeywords = ParserUtil.parseSearchKeywords(argMultiMap.getValue(PREFIX_NAME).get());
-            NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
+            TaskNameContainsKeywordsPredicate namePredicate = new TaskNameContainsKeywordsPredicate(nameKeywords);
             findTaskCriteria.addPredicate(namePredicate);
         }
 
@@ -68,6 +71,12 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
             Priority searchPriority = ParserUtil.parseTaskPriority(argMultiMap.getValue(PREFIX_PRIORITY).get());
             TaskMatchesPriorityPredicate priorityPredicate = new TaskMatchesPriorityPredicate(searchPriority);
             findTaskCriteria.addPredicate(priorityPredicate);
+        }
+
+        if (argMultiMap.getValue(PREFIX_STATUS).isPresent()) {
+            Status searchStatus = ParserUtil.parseTaskStatus(argMultiMap.getValue(PREFIX_STATUS).get());
+            TaskMatchesStatusPredicate statusPredicate = new TaskMatchesStatusPredicate(searchStatus);
+            findTaskCriteria.addPredicate(statusPredicate);
         }
 
         if (argMultiMap.getValue(PREFIX_TAG).isPresent()) {

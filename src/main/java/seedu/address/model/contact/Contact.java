@@ -154,13 +154,13 @@ public class Contact {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getName() + "\n")
                 .append(" Email: ")
-                .append(getEmail())
+                .append(getEmail() + "\n")
                 .append(" Telegram: ")
-                .append(getTelegram().isPresent() ? getTelegram().get() : "")
+                .append(getTelegram().isPresent() ? getTelegram().get() + "\n" : "- \n")
                 .append(" Important: ")
-                .append(isImportant ? "Yes" : "No")
+                .append(isImportant ? "Yes\n" : "No\n")
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

@@ -31,11 +31,11 @@ public class ContactNameTest {
         assertFalse(ContactName.isValidName("john*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(ContactName.isValidName("a")); //single character
+        assertTrue(ContactName.isValidName("a")); // single alphabet character
         assertTrue(ContactName.isValidName("john doe")); // alphabets only
         assertTrue(ContactName.isValidName("1234567")); // numbers only
         assertTrue(ContactName.isValidName("john the 1st")); // alphanumeric characters
-        assertTrue(ContactName.isValidName("Capital John")); // with capital letters
+        assertTrue(ContactName.isValidName("Capital John")); // contains capital letters
         assertTrue(ContactName.isValidName("John Doe Jackson Ray Jr 3rd")); // long names
     }
 }

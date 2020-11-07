@@ -8,8 +8,8 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
 
-CAP5Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key 
-module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management 
+CAP5Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key
+module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management
 of module details. CAP5Buddy also functions as a scheduling system, todo list and contact list.
 
 ## **Setting up, getting started**
@@ -125,7 +125,7 @@ component will be converting data in json format into java objects.
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 ### Common classes
 
-**API** : 
+**API** :
 
 ## Module List
 ![Structure of the Module List Component](images/ModuleListDiagram.png)
@@ -139,7 +139,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * GradeTracker is a container class that stores:
   * Grade for a module
   * Assignments for a module
-  
+
 #### ModuleList class
 **ModuleList class** : [`ModuleList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ModuleList.java)
 
@@ -218,7 +218,7 @@ the respective data and help support the Event class.
 
 We also make sure in the Logic package, there are personal sub-parsers for each of the existing Event
 related commands, and an overall Parser known as SchedulerParser that is in charge of managing all of the
-sub-parsers of the Scheduler. 
+sub-parsers of the Scheduler.
 
 Each of the commands of the Scheduler will always return a CommandResult class, that is basically an information
 container that stores all the relevant data of the results. This CommandResult object is then passes back up to the
@@ -228,7 +228,7 @@ UiManager, where it is then passed to the GUI components for it to be displayed.
 
 ##### Aspect: Whether to create a new Parser for Scheduler.
 Option 1 **(Current implementation)**: A custom Parser in charge of all **Scheduler** related commands **only**.
-Pros: 
+Pros:
 - More OOP orientated.
 - More defensive programming.
 Cons:
@@ -346,11 +346,11 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 * Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
     * Pros : Easy to implement
     * Cons : User has to manually input every module taken
-    
+
 * Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
-    * Pros : 
+    * Pros :
      * User does not need to input unnecessary modules.
-     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user). 
+     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
     * Cons : Will require additional storage.
 
 ### TodoList feature
@@ -380,7 +380,7 @@ The Task class supports the following operations :
 
 * Setters for all the field
 * Getters for all the field
-* `Task#isSameTask()` - checks if two tasks are the same i.e. have the same name 
+* `Task#isSameTask()` - checks if two tasks are the same i.e. have the same name
 (weaker than Task#equals() which requires all the fields to be the same)
 * `Task#hasSameTag()` - checks if the task has the specified tag
 * `Task#hasSamePriority()` - checks if the task has the specified priority
@@ -389,7 +389,7 @@ The Task class supports the following operations :
 ##### Container Component
 
 The TodoList class is facilitated by UniqueTodoList. The UniqueTodoList is stored internally inside
-the TodoList class which act like a wrapper class. 
+the TodoList class which act like a wrapper class.
 
 The TodoList class supports the following operations :
 
@@ -418,37 +418,37 @@ TodoList implements ReadOnlyTodoList which require the following operation :
 * Alternative 1 (current): <br/>
   Use one concrete class i.e. Task without inheritance involved. The type of the task
   is represented by the Tag field instead.
-  
+
   Pros :
   * Easier to implement
   * Types are not pre-defined i.e. can simply add a different tag to represent different type of task
-  
+
   Cons :
   * All type of task have the same pre-defined field
 
 * Alternative 2 : <br/>
   Use one abstract class i.e. Task with inheritance. Each subclasses represent a type of a Task.
-  
+
   Pros :
   * Difference between type are clear and standardized
   * Can be considered more OOP
-  
+
   Cons :
   * Types must be pre-defined i.e. cannot add new type of classes without adding codes
-  
+
   Alternative 1 is chosen since we prioritize user freedom to create custom type for the task.
-  
-    
+
+
 ### \[Proposed\] GradeTracker feature
 
 #### Proposed Implementation
 
-The proposed grade tracker feature is an association class used to store additional information for the module. 
-The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`. 
+The proposed grade tracker feature is an association class used to store additional information for the module.
+The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`.
 
 ![Structure of the Module List Component](images/GradeTrackerDiagram.png)
 
-When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
+When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly
 to the rest of the project as the command is parsed and then executed.
 
 ![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
@@ -459,7 +459,7 @@ to the rest of the project as the command is parsed and then executed.
 * Alternative 1 : Grade stores CAP.
     * Pros : Easier to integrate with Cap Calculator
     * Cons : User has to manually input CAP and does not know the average from the assignments accumulated
-    
+
 * Alternative 2 (current choice): Grade stores the raw score calculated from assignment
     * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
     * Cons : Requires separate CAP to be stored for Cap Calculator to access
@@ -518,7 +518,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | sort tasks based on criteria   | easily manage the tasks by order                       |
 | `* *`    | user                                       | filter tasks based on criteria | easily manage the tasks by group                       |
 | `*`      | user                                       | reset the status of a task     | change a task from labeled as completed to not completed |
-| `*`      | user                                       | archive a task                 | hide irrelevant tasks that might still be useful for future purposes |               
+| `*`      | user                                       | archive a task                 | hide irrelevant tasks that might still be useful for future purposes |
 
 *{More to be added}*
 

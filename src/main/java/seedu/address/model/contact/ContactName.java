@@ -38,10 +38,6 @@ public class ContactName {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public String getName() {
-        return this.fullName;
-    }
-
     @Override
     public String toString() {
         return fullName;

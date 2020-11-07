@@ -13,7 +13,6 @@ import seedu.address.logic.commands.contactlistcommands.ClearContactCommand;
 import seedu.address.logic.commands.contactlistcommands.DeleteContactCommand;
 import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
 import seedu.address.logic.commands.contactlistcommands.FindContactCommand;
-import seedu.address.logic.commands.contactlistcommands.HelpContactCommand;
 import seedu.address.logic.commands.contactlistcommands.ImportantContactCommand;
 import seedu.address.logic.commands.contactlistcommands.ListContactCommand;
 import seedu.address.logic.commands.contactlistcommands.ResetContactCommand;
@@ -66,9 +65,6 @@ public class ContactListParser implements FeatureParser {
 
         //case ExitCommand.COMMAND_WORD:
             //return new ExitCommand();
-
-        case HelpContactCommand.COMMAND_WORD:
-            return new HelpContactCommand();
 
         case ImportantContactCommand.COMMAND_WORD:
             return new ImportantContactParser().parse(arguments);

@@ -1,7 +1,9 @@
 package seedu.address.logic.commands.modulelistcommands;
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TARGET_CAP;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.logic.commands.Command;
@@ -18,18 +20,16 @@ public class TargetCapCalculatorCommand extends Command {
     public static final String COMMAND_WORD = "targetcap";
     public static final String MESSAGE_CONSTRAINTS =
             "Unable to calculate CAP details because you do not have any completed mods";
+    public static final String MESSAGE_IMPOSSIBLE_TARGET =
+            "It is impossible to attain the targeted CAP with the amount of planned credits";
     public static final String MESSAGE_NO_PLANNED_MODULAR_CREDITS_CONSTRAINT =
             "Unable to calculate CAP details because you do not have any planned modular credits";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Determines CAP needed for ongoing modules for user to reach specified target CAP. "
-            + "Parameters: "
-            + PREFIX_TARGET_CAP + "Target CAP"
+            + "Parameters: Target CAP (must be a positive number smaller than 5)\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TARGET_CAP + "4.5";
+            + "4.5";
     private final double targetCap;
-    /*private final double plannedCredits;
-    private final double completedCredits;
-    private final double totalCredits;*/
 
     /**
      * Creates an AddCommand to add the specified {@code Module}
@@ -42,10 +42,16 @@ public class TargetCapCalculatorCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         double capNeeded;
+        List<Module> lastShownList = new ArrayList<>();
+        lastShownList.addAll(model.getModuleList().getModuleList());
+        lastShownList.addAll(model.getArchivedModuleList().getModuleList());
         try {
-            capNeeded = calculateCapNeeded(model.getFilteredModuleList());
+            capNeeded = calculateCapNeeded(lastShownList);
         } catch (CapCalculationException capCalculationException) {
             throw new CommandException(capCalculationException.getMessage());
+        }
+        if (capNeeded > 5) {
+            throw new CommandException(MESSAGE_IMPOSSIBLE_TARGET);
         }
         return new CommandResult(createSuccessMessage(capNeeded,
                 getPlannedCredits(model.getFilteredModuleList())));
@@ -101,22 +107,19 @@ public class TargetCapCalculatorCommand extends Command {
      * @return String containing the success message.
      */
     public String createSuccessMessage(double capNeeded, double plannedCredits) {
-        //String message = "Your CAP for completed mods has been successfully calculated : " + Double.toString(cap);
-        String message;
-        if (capNeeded > 5) {
-            message = "It is impossible to attain the targeted CAP with the amount of planned credits";
-        } else {
-            message = "To attain the target CAP of " + Double.toString(targetCap) + "\n"
-                    + "You will need to achieve a CAP of at least " + Double.toString(capNeeded)
-                    + " for your ongoing modules worth a total of " + Double.toString(plannedCredits) + " credits";
-        }
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        numberFormat.setRoundingMode(RoundingMode.HALF_UP);
+        String message = "To attain the target CAP of " + Double.toString(targetCap) + "\n"
+                    + "You will need to achieve a CAP of at least " + numberFormat.format(capNeeded)
+                    + " for your ongoing modules worth a total of "
+                    + numberFormat.format(plannedCredits) + " credits";
         return message;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddModuleCommand // instanceof handles nulls
+                || (other instanceof TargetCapCalculatorCommand // instanceof handles nulls
                 && targetCap == (((TargetCapCalculatorCommand) other).targetCap));
     }
 

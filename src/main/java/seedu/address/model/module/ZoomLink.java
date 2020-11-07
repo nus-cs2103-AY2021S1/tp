@@ -10,7 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ZoomLink {
 
     public static final String MESSAGE_CONSTRAINTS = "Zoom links should belong to the NUS domain"
-            + " and adhere to the format: https://nus-sg.zoom.us/[path]";
+            + " and adhere to the format: https://nus-sg.zoom.us/[path]\n"
+            + "The zoom link path should only contain alphanumeric characters and these "
+            + "special characters, excluding the parentheses, (?=/) and should not be blank";
     public static final String ZOOM_LINK_DOMAIN = "https://nus-sg.zoom.us/";
     public static final String ZOOM_LINK_PATH = "[a-zA-Z0-9?=/]+";
     public static final String VALIDATION_REGEX = ZOOM_LINK_DOMAIN + ZOOM_LINK_PATH;

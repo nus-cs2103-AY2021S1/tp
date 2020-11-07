@@ -16,7 +16,7 @@ import seedu.address.model.event.Event;
 public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "addevent";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the module list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the event list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DATE + "Date and Time "
@@ -45,13 +45,23 @@ public class AddEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
         model.addEvent(this.event);
-        // TODO: Yet to implement commit for scheduler
-        //model.commitEventList();
+        model.commitEventList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.event));
     }
 
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof AddEventCommand) {
+            return this.event.equals(((AddEventCommand) other).event);
+        } else {
+            return false;
+        }
     }
 }

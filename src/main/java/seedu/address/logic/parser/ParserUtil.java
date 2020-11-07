@@ -34,6 +34,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Criterion;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.TaskName;
 
 /**
@@ -297,8 +298,6 @@ public class ParserUtil {
         assert priority != null;
         String priorityAllUpperCase = priority.toUpperCase();
         switch(priorityAllUpperCase) {
-        case("HIGHEST"):
-            return Priority.HIGHEST;
         case("HIGH"):
             return Priority.HIGH;
         case("NORMAL"):
@@ -307,6 +306,25 @@ public class ParserUtil {
             return Priority.LOW;
         default:
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static Status parseTaskStatus(String status) throws ParseException {
+        assert status != null;
+        String priorityAllUpperCase = status.toUpperCase();
+        switch(priorityAllUpperCase) {
+        case("COMPLETED"):
+            return Status.COMPLETED;
+        case("INCOMPLETE"):
+            return Status.NOT_COMPLETED;
+        default:
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
     }
 
@@ -346,10 +364,21 @@ public class ParserUtil {
             throw new ParseException(Criterion.MESSAGE_CONSTRAINTS);
         }
     }
+
     ///////////////////// Scheduler /////////////////////////////
 
-    public static EventName parseEventName(String name) {
-        return new EventName(name);
+    /**
+     * Checks and parses the given input into an EventName.
+     * @param name name of event.
+     * @return EventName the container for the name.
+     * @throws ParseException invalid name.
+     */
+    public static EventName parseEventName(String name) throws ParseException {
+        if (EventName.isValidName(name)) {
+            return new EventName(name);
+        } else {
+            throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
@@ -362,6 +391,23 @@ public class ParserUtil {
         try {
             LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
             return new EventTime(localDateTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(EventTime.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Returns a LocalDateTime based on the given input.
+     *
+     * @param date date in string.
+     * @return LocalDateTime datetime object.
+     * @throws ParseException when the given string is in the wrong format.
+     */
+    public static LocalDateTime parseDate(String date) throws ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
+        try {
+            LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+            return localDateTime;
         } catch (DateTimeParseException e) {
             throw new ParseException("Invalid date and time entered. Please follow this format: "
                     + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)");

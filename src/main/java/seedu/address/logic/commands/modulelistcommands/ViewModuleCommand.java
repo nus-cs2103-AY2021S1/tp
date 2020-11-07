@@ -2,15 +2,21 @@ package seedu.address.logic.commands.modulelistcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ViewCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleLesson;
+import seedu.address.model.module.ZoomLink;
+import seedu.address.ui.DisplayZoomLink;
 
 /**
  * Lists all modules in the module list to the user.
@@ -47,11 +53,32 @@ public class ViewModuleCommand extends Command {
 
         Module moduleToView = lastShownList.get(index.getZeroBased());
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleToView));
+        ViewCommandResult viewCommandResult = new ViewCommandResult(String.format(MESSAGE_SUCCESS, moduleToView));
+        viewCommandResult.setTextArea(moduleToView.toViewTextArea());
+        List<DisplayZoomLink> displayZoomLinkList = new ArrayList<>();
+        for (Map.Entry<ModuleLesson, ZoomLink> entry : moduleToView.getAllLinks().entrySet()) {
+            DisplayZoomLink displayZoomLink = new DisplayZoomLink(entry.getKey(), entry.getValue());
+            displayZoomLinkList.add(displayZoomLink);
+        }
+        viewCommandResult.setDisplayZoomLinks(displayZoomLinkList);
+        viewCommandResult.setAssignments(moduleToView.getGradeTracker().getAssignments());
+        viewCommandResult.setModule(moduleToView);
+        return viewCommandResult;
     }
 
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof ViewModuleCommand) {
+            return this.index.equals(((ViewModuleCommand) other).index);
+        } else {
+            return false;
+        }
     }
 }

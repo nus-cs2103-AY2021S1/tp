@@ -28,7 +28,8 @@ public class TypicalContacts {
     public static final Contact CARL = new ContactBuilder().withName("Carl Kurz")
             .withEmail("heinz@example.com").build();
     public static final Contact DANIEL = new ContactBuilder().withName("Daniel Meier")
-            .withEmail("cornelia@example.com").withTags("friends").build();
+            .withEmail("cornelia@example.com").withTags("friends")
+            .withTags("family").build();
     public static final Contact ELLE = new ContactBuilder().withName("Elle Meyer")
             .withEmail("werner@example.com").withTelegram("@elleM").build();
     public static final Contact FIONA = new ContactBuilder().withName("Fiona Kunz")
@@ -57,11 +58,11 @@ public class TypicalContacts {
      * Returns an {@code ContactList} with all the typical contacts.
      */
     public static ContactList getTypicalContactList() {
-        ContactList cl = new ContactList();
+        ContactList list = new ContactList();
         for (Contact contact : getTypicalContacts()) {
-            cl.addContact(contact);
+            list.addContact(contact);
         }
-        return cl;
+        return list;
     }
 
     public static List<Contact> getTypicalContacts() {
