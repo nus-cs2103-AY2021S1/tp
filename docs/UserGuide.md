@@ -240,7 +240,7 @@ Format: `delete INDEX`<br>
 * The `INDEX` refers to the index number shown in the displayed patient list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `NRIC` refers to the `NRIC` of the patient to be deleted.
-* The `NRIC` entered is **case-sensitive**. e.g. `s1234567a` will **not** match `S1234567A`
+* The `NRIC` entered is **case-insensitive**. e.g. `s1234567a` will match `S1234567A`
 * Only full `NRIC`s will be matched e.g. `S12345` will **not** match `S1234567A`
 </div>
 
@@ -501,9 +501,17 @@ The example we have just discussed uses the `add` command. The usage of the `MED
 
 ### Clearing all entries: `clear`
 
-Clears all entries from **Hospify**.
+This command helps clear all patients' information from **Hospify**.
 
 Format: `clear`
+
+Example: 
+execute `clear`(shown in Figure 14.5 below) command will empty the patients' list (shown in Figure 14.5 below).
+![clear command](images/clear%20command.png)
+Figure 14.5 clear command
+
+![clear command result](images/clear%20command%20result.png)
+Figure 14.6 clear command result
 
 ### Exiting the program: `exit`
 
