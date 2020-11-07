@@ -510,7 +510,7 @@ Another method to access the online medical record of the patient directly (with
 
 ### Show medical record directly: `showMr` (by Peh Jun Siang)
 We understand that it might be quite a hassle to copy the URL and paste it in your browser manually. Therefore, we
-implemented a short cut so that you can open up your default browser and with the url directly from **Hospify** with the `showMr`
+implemented a short cut so that you can open up your default browser with the URL to the medical record directly from **Hospify** with the `showMr`
 command!
 
 Format: `showMr NRIC`\
@@ -616,8 +616,8 @@ After verifying that you have at least `java 11` installed, double click on the 
 If it still does not run, type the command `java -jar hospify.jar` in the **TERMINAL** in the **SAME directory** 
 containing your `hospify.jar` file. 
 
-![running jar from windows prompt](images/faq/mac_runJar.PNG)\
-Figure 4.2.6 Running jar from windows prompt
+![running jar from Mac prompt](images/faq/mac_runJar.PNG)
+Figure 4.2.6 Running jar from Mac terminal
 </div>
 
 <div markdown="block" class="alert alert-primary">
