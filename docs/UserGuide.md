@@ -103,8 +103,9 @@ This section will give you some useful information about the various command for
 
 <br>
 
-* Multiple instances of the same prefix will not throw an error. However, the app will only read the **last instance** in the input (except for tags).
+* Multiple instances of the same prefix/flag will not throw an error. However, the app will only read the **last instance** in the input (except for tags).
   * eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category
+  * eg. `sort reviewed -a -a -d` will sort flashcards according to review frequency in **descending** order
 
 <br>
   
