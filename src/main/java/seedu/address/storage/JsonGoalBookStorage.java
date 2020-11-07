@@ -4,20 +4,15 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import javafx.beans.Observable;
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.ReadOnlyGoalBook;
-import seedu.address.model.goal.Goal;
 
 public class JsonGoalBookStorage implements GoalBookStorage {
 

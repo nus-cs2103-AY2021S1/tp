@@ -11,12 +11,17 @@ import seedu.address.model.ReadOnlyGoalBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
-public class StorageManagerForGoal implements StorageForGoal{
+public class StorageManagerForGoal implements StorageForGoal {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManagerForGoal.class);
     private GoalBookStorage goalBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
+    /**
+     * Constructor for StorageManagerForGoal
+     * @param goalBookStorage
+     * @param userPrefsStorage
+     */
     public StorageManagerForGoal(GoalBookStorage goalBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.goalBookStorage = goalBookStorage;

@@ -16,7 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data", "addressbook.json");
     private Path exerciseBookFilePath = Paths.get("data", "testing.json");
-    private Path goalBookFilePath = Paths.get("data","goalbook.json");
+    private Path goalBookFilePath = Paths.get("data", "goalbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.

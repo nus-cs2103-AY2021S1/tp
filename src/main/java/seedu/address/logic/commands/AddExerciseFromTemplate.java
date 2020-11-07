@@ -24,12 +24,16 @@ public class AddExerciseFromTemplate extends CommandForExercise {
             + PREFIX_DATE + "31-12-2020 "
             + PREFIX_CALORIES + "100";
 
-    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s \n " +
-            "You have burnt %1$s kg";
+    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s \n " 
+            + "You have burnt %1$s kg";
 
     private final Exercise toAdd;
     private final Weight burntWeight;
 
+    /**
+     * Adds exercise from template
+     * @param toAdd
+     */
     public AddExerciseFromTemplate(Exercise toAdd) {
         this.toAdd = toAdd;
         this.burntWeight = new Weight(toAdd.getCalories());

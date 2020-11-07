@@ -12,11 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.goal.Goal;
 import seedu.address.model.exercise.Template;
 import seedu.address.model.exercise.TemplateList;
+import seedu.address.model.goal.Goal;
 
 /**
  * Represents the in-memory model of the exercise book data.
@@ -33,7 +32,8 @@ public class ExerciseModelManager implements ExerciseModel {
     /**
      * Initializes a ExerciseModelManager with the given exerciseBook and userPrefs.
      */
-    public ExerciseModelManager(ReadOnlyExerciseBook exerciseBook,ReadOnlyGoalBook goalBook, ReadOnlyUserPrefs userPrefs) {
+    public ExerciseModelManager(ReadOnlyExerciseBook exerciseBook, 
+                                ReadOnlyGoalBook goalBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(exerciseBook, userPrefs);
         logger.fine("Initializing with exercise book: " + exerciseBook + " and user prefs " + userPrefs);
@@ -46,7 +46,7 @@ public class ExerciseModelManager implements ExerciseModel {
     }
 
     public ExerciseModelManager() {
-        this(new ExerciseBook(), new GoalBook(),new UserPrefs());
+        this(new ExerciseBook(), new GoalBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================

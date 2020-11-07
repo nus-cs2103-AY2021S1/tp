@@ -37,7 +37,7 @@ public class JsonSerializableGoalBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableGoalBook}.
      */
     public JsonSerializableGoalBook(ReadOnlyGoalBook source) {
-        for(Map.Entry<Date,Goal> entry :source.getGoalMap().entrySet()) {
+        for (Map.Entry<Date, Goal> entry :source.getGoalMap().entrySet()) {
             goals.add(new JsonAdaptedGoal(entry.getValue()));
         }
     }

@@ -6,9 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
-import seedu.address.model.exercise.Description;
-import seedu.address.model.exercise.Exercise;
-import seedu.address.model.exercise.Name;
 import seedu.address.model.goal.Goal;
 
 /**

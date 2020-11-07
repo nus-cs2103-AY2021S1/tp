@@ -67,11 +67,11 @@ public class ExerciseMainApp extends Application {
         ExerciseBookStorage exerciseBookStorage = new JsonExerciseBookStorage(userPrefs.getExerciseBookFilePath());
         storage = new StorageManagerForExercise(exerciseBookStorage, userPrefsStorage);
         GoalBookStorage goalBookStorage = new JsonGoalBookStorage(userPrefs.getGoalBookFilePath());
-        goalStorage = new StorageManagerForGoal(goalBookStorage,userPrefsStorage);
+        goalStorage = new StorageManagerForGoal(goalBookStorage, userPrefsStorage);
 
         initLogging(config);
 
-        model = initModelManager(storage, goalStorage ,userPrefs);
+        model = initModelManager(storage, goalStorage, userPrefs);
 
         logic = new LogicManagerForExercise(model, storage, goalStorage);
 
@@ -85,7 +85,8 @@ public class ExerciseMainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private ExerciseModel initModelManager(StorageForExercise storage, StorageForGoal goalStorage, ReadOnlyUserPrefs userPrefs) {
+    private ExerciseModel initModelManager(StorageForExercise storage,
+                                           StorageForGoal goalStorage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyExerciseBook> exerciseBookOptional;
         ReadOnlyExerciseBook initialData;
         try {
@@ -116,9 +117,9 @@ public class ExerciseMainApp extends Application {
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty GoalBook");
             initialGoalData = new GoalBook();
-    }
+        }
 
-        return new ExerciseModelManager(initialData,initialGoalData ,userPrefs);
+        return new ExerciseModelManager(initialData, initialGoalData, userPrefs);
     }
 
     private void initLogging(Config config) {

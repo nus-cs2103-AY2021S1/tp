@@ -3,17 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExerciseModel;
-import seedu.address.model.exercise.Calories;
-import seedu.address.model.exercise.Exercise;
 import seedu.address.model.goal.Goal;
 
 
-public class GoalCommand extends CommandForExercise{
+public class GoalCommand extends CommandForExercise {
     public static final String COMMAND_WORD = "goal";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a goal to Calo. "
@@ -35,6 +31,12 @@ public class GoalCommand extends CommandForExercise{
         this.goal = goal;
     }
 
+    /**
+     * executes the model
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(ExerciseModel model) throws CommandException {
         requireNonNull(model);

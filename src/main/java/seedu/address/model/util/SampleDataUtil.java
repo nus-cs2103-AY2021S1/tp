@@ -9,15 +9,16 @@ import java.util.stream.Collectors;
 import seedu.address.model.ExerciseBook;
 import seedu.address.model.GoalBook;
 
+
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.ReadOnlyGoalBook;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.goal.Goal;
 import seedu.address.model.exercise.ExerciseTag;
 import seedu.address.model.exercise.Muscle;
+import seedu.address.model.goal.Goal;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

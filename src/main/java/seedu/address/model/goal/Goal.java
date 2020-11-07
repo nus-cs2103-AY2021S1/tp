@@ -2,7 +2,6 @@ package seedu.address.model.goal;
 
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
-import seedu.address.model.exercise.Exercise;
 
 /**
  * Creates a goal in the exercise Book
@@ -24,7 +23,7 @@ public class Goal {
     }
 
     public Goal updateGoal (Calories calorie) {
-        return new Goal(goal.subtract(calorie),this.date);
+        return new Goal(goal.subtract(calorie), this.date);
     }
 
     public Date getDate() {

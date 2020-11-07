@@ -9,7 +9,7 @@ import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.UniqueGoalMap;
 import seedu.address.model.goal.Goal;
 
-public class GoalBook implements ReadOnlyGoalBook{
+public class GoalBook implements ReadOnlyGoalBook {
 
     private final UniqueGoalMap goalMap;
 

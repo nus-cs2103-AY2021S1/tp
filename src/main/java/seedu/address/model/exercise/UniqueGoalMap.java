@@ -3,16 +3,12 @@ package seedu.address.model.exercise;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.model.exercise.exceptions.DuplicateExerciseException;
 import seedu.address.model.exercise.exceptions.DuplicateGoalException;
-import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.address.model.exercise.exceptions.GoalNotFoundException;
 import seedu.address.model.goal.Goal;
 
@@ -39,7 +35,7 @@ public class UniqueGoalMap {
         if (contains(toAdd)) {
             throw new DuplicateExerciseException();
         }
-        internalMap.put(toAdd.date,toAdd);
+        internalMap.put(toAdd.date, toAdd);
     }
 
     /**
@@ -77,7 +73,7 @@ public class UniqueGoalMap {
     public void setGoals(UniqueGoalMap replacement) {
         requireNonNull(replacement);
         internalMap.clear();
-        for (Map.Entry<Date,Goal> entry : replacement.internalMap.entrySet()) {
+        for (Map.Entry<Date, Goal> entry : replacement.internalMap.entrySet()) {
             internalMap.put(entry.getKey(), entry.getValue());
         }
     }
@@ -87,17 +83,17 @@ public class UniqueGoalMap {
      * {@code persons} must not contain duplicate persons.
      */
 
-    public void setGoals(Map<Date,Goal> goals) {
+    public void setGoals(Map<Date, Goal> goals) {
         requireAllNonNull(goals);
 
-        for (Map.Entry<Date,Goal> entry : goals.entrySet()) {
+        for (Map.Entry<Date, Goal> entry : goals.entrySet()) {
             internalMap.put(entry.getKey(), entry.getValue());
         }
     }
     /**
      * Returns the backing map as an unmodifiable {@code ObservableMap}.
      */
-    public ObservableMap<Date,Goal> asUnmodifiableObservableMap() {
+    public ObservableMap<Date, Goal> asUnmodifiableObservableMap() {
         return internalUnmodifiableMap;
     }
 

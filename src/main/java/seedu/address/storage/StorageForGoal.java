@@ -9,7 +9,7 @@ import seedu.address.model.ReadOnlyGoalBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
-public interface StorageForGoal extends GoalBookStorage, UserPrefsStorage{
+public interface StorageForGoal extends GoalBookStorage, UserPrefsStorage {
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
 
