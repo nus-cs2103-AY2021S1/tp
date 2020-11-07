@@ -505,9 +505,9 @@ The following activity diagram summarizes what happens when a user executes a te
 
 ### Display Statistics of Flashcard
 
-The display statistics of flashcard feature will allow the user to view a Pie Chart of the statistics of the Flashcard specified by the given index and display it in the GUI.
-
 #### Implementation
+
+The display statistics of flashcard feature will allow the user to view a Pie Chart of the statistics of the Flashcard specified by the given index and display it in the GUI.
 
 The display statistics of flashcard implementation requires the creation of a `StatsCommandParser` and a `StatsCommand`. The `StatsCommandParser#parse` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create a `StatsCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
 
@@ -515,9 +515,11 @@ The `StatsCommand` class will have to pass the `Statistics` to the GUI for it to
 
 The GUI will change the content of some of its placeholders to display the `Statistics` as a Pie Chart. The GUI will change the contents of its placeholders accordingly if other commands aside from another `StatsCommand` is called afterwards.
 
+##### Usage
+
 Given below is an example usage scenario and how the `StatsCommand` mechanism behaves at each step.
 
-Step 1. The user launches the application after a few times of playing around with the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
+Step 1. The user launches the application after a few times of using the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
 
 Step 2. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI.
 
@@ -532,6 +534,10 @@ Step 6. The GUI will then proceed to get the `Statistics` from `Feedback` and di
 The following sequence diagram shows how the stats operation works:
 
 ![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
+
+#### Design Considerations:
+
+{insert design consideration}
 
 ### Clear Statistics of Flashcard
 
