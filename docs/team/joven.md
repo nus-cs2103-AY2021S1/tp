@@ -3,7 +3,7 @@ layout: page
 title: Joven Heng's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: Insurance4Insurance
 
 Insurance4Insurance (I4I) is a desktop app for insurance agents to manage clients.  
 It is optimized for use via a CLI, while still having the benefits of a GUI. 
