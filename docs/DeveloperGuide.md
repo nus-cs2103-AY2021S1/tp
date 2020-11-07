@@ -274,6 +274,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
       
+* 1d. User forgets to indicate the priority of the client. 
+
+    * 1d1. System saves the client with an undefined priority. 
+    
+      Use case ends. 
+      
 **UC02 - User deletes client**
 
 **MSS**
@@ -408,6 +414,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. System gives corresponding error message.
 
       Use case ends.
+      
+**UC08 - User clears client list**
+
+**MSS**
+
+1. User chooses to clear all client list.
+2. System gives success message.
+
+    Use case ends.  
+    
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+  
+**UC09 - User quits app**
+
+**MSS**
+
+1. User chooses to quit app.
+2. System exits app and closes the interface.
+  
+  Use case ends.
+      
+
+
 
       
 ### Non-Functional Requirements
@@ -454,6 +487,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Re-launch the app by using the `java -jar` command.<br>
       Expected: The most recent window size and location is retained.
+
       
       
  ### Listing all active clients
