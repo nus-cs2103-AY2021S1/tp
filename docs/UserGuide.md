@@ -396,9 +396,10 @@ Example Scenario:
 
 **Q**: I can't run the app by double clicking! What do I do?<br>
 **A**: Open terminal and traverse to the directory the `eva.jar` file is in. Then type the command `java -jar eva.jar`.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Command summary                                                                                 |
+## 5. Command summary                                                                                 
 
 ### 5.1. System
 
