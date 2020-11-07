@@ -706,7 +706,7 @@ message will be shown. For instance, the example above has both `c/expense` and 
 Please follow the format of the commands closely in the [Features](#5-features) section above!
 --------------------------------------------------------------------------------------------------------------------
 
-# 7. Command summary
+# 7. Command Summary
 
 The table below summarises the above commands in the order of appearance in this User Guide for your reference. 
 

@@ -27,11 +27,8 @@ public class FindCommand extends Command {
         + "Example 1: " + COMMAND_WORD + " k/canvas cases\n"
         + "Example 2: " + COMMAND_WORD + " k/canvas c/expense\n"
         + "Example 3: " + COMMAND_WORD + " k/cases c/revenue\n";
-
     public static final String PREFIXES = PREFIX_KEYWORDS + "KEYWORDS\n" + "["
             + PREFIX_CATEGORY + "CATEGORY" + "]" + "\n";
-
-
     private final ExpenseDescriptionContainsKeywordsPredicate expensePredicate;
     private final RevenueDescriptionContainsKeywordsPredicate revenuePredicate;
 
@@ -63,7 +60,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
-        assert (activeAccount != null);
+        assert (expensePredicate != null || revenuePredicate != null);
 
         if (expensePredicate != null) {
             activeAccount.updateFilteredExpenseList(expensePredicate);
@@ -72,14 +69,14 @@ public class FindCommand extends Command {
             activeAccount.updateFilteredRevenueList(revenuePredicate);
         }
 
-        boolean noExpenseFoundWithOnlyExpensePredicate =
+        boolean isNoExpenseFoundWithOnlyExpensePredicate =
             activeAccount.getFilteredExpenseList().size() == 0 && expensePredicate != null && revenuePredicate == null;
-        boolean noRevenueFoundWithOnlyRevenuePredicate =
+        boolean isNoRevenueFoundWithOnlyRevenuePredicate =
             activeAccount.getFilteredRevenueList().size() == 0 && revenuePredicate != null && expensePredicate == null;
-        boolean noEntryFound = activeAccount.getFilteredExpenseList().size() == 0
+        boolean isNoEntryFound = activeAccount.getFilteredExpenseList().size() == 0
                             && activeAccount.getFilteredRevenueList().size() == 0;
 
-        if (noEntryFound || noExpenseFoundWithOnlyExpensePredicate || noRevenueFoundWithOnlyRevenuePredicate) {
+        if (isNoEntryFound || isNoExpenseFoundWithOnlyExpensePredicate || isNoRevenueFoundWithOnlyRevenuePredicate) {
             return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_EMPTY_FILTERED_LIST);
         } else {
             return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_ENTRIES_UPDATED);
