@@ -293,9 +293,13 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
 ![Interactions Inside the Logic Component for the `find n/Lab` Command](images/FindSequenceDiagram.png)
 
 
-### \[Implemented\] Remind assignments feature
+### Remind assignments feature
 The user can set reminders for a single assignment or multiple assignments at a time.
-Reminded assignments will be displayed in the `Your Reminders` section in ProductiveNUS for easy referral.
+Reminded assignments will be displayed in the `Your reminders` section in ProductiveNUS for easy referral.
+
+It implements the following operations:
+* `remind 3` - Sets reminders for the 3rd assignment in the displayed assignment list.
+* `remind 1 4` - Sets reminders for the 1st and 4th assignment in the displayed assignment list.
 
 #### Reasons for Implementation
 It is likely that the user will want to receive reminders for assignments with deadlines that are far away, so that he will not forget to complete those assignments. It is also likely that the user will want to receive reminders for assignments that require more attention, so that he will know which assignments to focus on and plan his time accordingly.
@@ -306,10 +310,6 @@ Displaying reminded assignments in a list separate from the main assignment list
 - The remind command extends abstract class `Command` and overrides the method `execute` in `CommandResult`.
 - `RemindCommandParser` implements `Parser<RemindCommand>` and it parses the user's input to return a `RemindCommand` object.
 - The constructor of `RemindCommand` takes in `List<Index>`, and each `Index` in `List<Index>` is parsed from the zero based index of the user's input.
-
-It implements the following operations:
-* `remind 3` - Sets reminders for the 3rd assignment in the displayed assignment list.
-* `remind 1 4` - Sets reminders for the 1st and 4th assignment in the displayed assignment list.
 
 #### Usage Scenario
 The following is a usage scenario of when the user wants to set reminders for the 2nd and 3rd assignment in their displayed assignment list.
@@ -419,12 +419,41 @@ The following is a usage scenario of when the user wants to delete the first and
  
  Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(delete 1 2)` API call.
  
- 
+### Unremind, Unprioritize and Undone
 
- 
- 
+The user can use the unremind, unprioritize and undone commands to do the following:
+- unremind removes specified assignments from 'Your reminders'. Assignments are specified using the index as shown in `Your reminders`.
+- unprioritize removes any priority tags for specified assignments. Assignments are specified using the index as shown in the displayed **assignment list**.
+- undone marks the specified done assignment as not done. Assignments are specified using the index as shwon in the displayed **assignment list**.
 
-### \[Coming up\] Help feature
+The following operations are implemented:
+* `unremind 1` - Removes the first assignment found in `Your reminders` from `Your reminders`.
+* `unprioritze 1` - Removes priority tags for the first assignment found in the displayed assignment list.
+* `undone 1` - Marks the first assignment found in the displayed assignment list as not done.
+
+#### Reasons for Implementation
+It is possible for the user to mistakenly set reminders, set priority tags or mark an assignment as done. 
+
+It is also likely that the user's schedule is constantly changing. For example, the user may set reminders for an assignment with a faraway deadline; however, as the deadline approaches, the user may not need to be reminded as the assignment is now more urgent. Hence, it is likely that the user may want to remove the assignment from `Your reminders` as he no longer needs to be reminded to finish the assignment.
+
+Hence, the unremind, unprioritize and undone commands help users to easily manage their continuously changing schedule.
+
+#### Current implementations
+As all three commands have a similar format (command word followed by an index) and all start with the prefix "un", all three commands extends the **abstract** `NegateCommand` class in order to enforce abstraction principles (Figure X).
+
+The following is a Class diagram illustrating the relationship between the classes of the three commands and `NegateCommand`:
+
+   ![Class diagram for NegateCommand, Unremind, Unprioritize and Undone](images/NegateCommandClassDiagram.png)
+   <br/>*Figure X: Class diagram for NegateCommand, Unremind, Unpriortize and Undone*
+
+
+The NegateCommand class contains the **final** class-level member `COMMAND_WORD` with String **"un"**, and private attribute `targetIndex` of type `Index`.
+
+The NegateCommand class also extends from the abstract `Command` class in order to inherit the `execute()` method found in `Command`. Hence, similarly for the other commands, unremind, unprioritize and undone will be able to inherit and override the `execute()` command.
+
+#### Design considerations
+By implementing the abstract `NegateCommand` class, any future implementation of commands with similar functionality as unremind, unprioritize and undone will simply extend from the `NegateCommand` class, thereby enforcing the **Open-Closed Principle**.
+
 
 ### \[Implemented\] Undo
 
@@ -452,7 +481,7 @@ A usage scenario would be when a user wants to undo the most recent command that
 5. The `execute` method of `UndoCommand` will call the `getPreviousModel` of the `Model` object and reassign `Model`.
 6. The `execute` method returns a `CommandResult` object.
 
-### \[Implemented\] Updating of Upcoming tasks in real time
+### Updating of Upcoming tasks in real time
 
 The displayed task list under `Upcoming tasks` updates in real time when the deadline of an assignment or the end time of a lesson has passed.
 
@@ -460,17 +489,19 @@ The displayed task list under `Upcoming tasks` updates in real time when the dea
 It is likely that the user will refer to the `Upcoming tasks` to quickly view what is up next on their academic schedule. It is hence important that the `Upcoming tasks` accurately reflect what is next on their academic schedule.
 
 #### Current Implementation
-- The updating of `Upcoming tasks` in real time is implemented with **multithreading**.
-- The GUI of ProductiveNUS is implemented using JavaFX. Hence, Thread safety using synchronised thread actions cannot be achieved as JavaFx is modelled to execute on a **single JavaFX-Launcher thread.**
-- Therefore, this feature makes use of `javafx.concurrent.Task<V>` for multithreading operations, which is designed to handle multithreading operations in JavaFX applications in a **thread-safe manner**.
-- A `Timer` object is used alongside `javafx.concurrent.Task` to periodically check `Upcoming tasks` every second. The `Timer` object has `isDaemon` set to true.
-- If the deadline of the upcoming assignment or the end time of the upcoming lesson has passed, the `updateTasks()` method in `AddressBook` is called.
+The updating of `Upcoming tasks` in real time is implemented with **multithreading**.
+
+As the GUI of ProductiveNUS is implemented using JavaFX, Thread safety using synchronised thread actions cannot be achieved as JavaFx is modelled to execute on a **single JavaFX-Launcher thread.** Therefore, this feature makes use of `javafx.concurrent.Task<V>` for multithreading operations, which is designed to handle multithreading operations for JavaFX applications in a **thread-safe manner**.
+
+A `Timer` object is used alongside `javafx.concurrent.Task` to periodically check `UniqueTaskList` in `ProductiveNus` every second. The `Timer` object has `isDaemon` set to true. If the deadline of the upcoming assignment or the end time of the upcoming lesson has passed, the `updateTasks()` method in `ProductiveNus class` is called. The `Timer` object can be found in the private method `autoUpdateTaskList()` method in `ProductiveNus`, which is called in the `ProductiveNus constructor` when the user runs ProductiveNus.
 
 Below is an Activity Diagram illustrating the flow of activities when the application starts up.
 
-                               ------------------------------Activity diagram illustrating multithreading (will add later)--------------------------------
+![Activity diagram for Auto updating of task list](images/AutoUpdateTaskListActivityDiagram.png)
+<br/>*Figure X: Activity diagram for automated updating of UniqueTaskList*
 
---------------------------------------------------------------------------------------------------------------------
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to limitations of PlantUML, arrows are not able to point towards the branch indicator (represented by a diamond) to represent loops.
+
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -670,15 +701,14 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+       Expected: The most recent window size and location is retained.    
 
-1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting assignments
 
-1. Deleting a person while all persons are being shown
+1. Deleting one assignment while all assignments are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all assingments using the `list` command. Multiple assignments in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
@@ -688,9 +718,111 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+1. Deleting one assignment while some assignments are being shown
+1. Deleting multiple assignments while all assignments are being shown
+1. Deleting multiple assignments while some assignments are being shown
 
 1. _{ more test cases …​ }_
 
+### Setting reminders for assignments
+
+1. Setting reminders for assignments while all assignment are being shown
+   1. Prerequisites: List all assignments using the `list` command. Multiple assignments in the list. `Your reminders` is empty.
+   
+   1. Test case: `remind 1` <br>
+      Expected: First assignment in assignment list is now displayed in `Your reminders` as well. Details of the assignment shown in the Message box.
+      
+   1. Test case: `remind 0` <br>
+      Expected: No assignment is added into `Your reminders`. Error details shown int the Message box.
+      
+   1. Other incorrect unremind commands to try: `remind`, `remnid 1`, `remind x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Setting reminders for one assignment while some assignments are being shown
+   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date such that only some assignments are shown). Multiple assignments in the list. `Your reminders` is empty.
+   
+   1. Test case: `remind 1` <br>
+      Expected: Similar to `remind 1` test case when all assignments are shown.
+      
+   1. Test case: `remind 0` <br>
+      Expected: Similar to `remind 0` test case when all assignments are shown.
+      
+   1. Other incorrect unremind commands to try: `remind`, `remnid 1`, `remind x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+      
+1. Setting reminders for multiple assignments while all assignments are being shown
+   1. Prerequisites: List all assignments using the `list` command. Multiple assignments in the list. `Your reminders` is not empty.
+   
+   1. Test case: `remind 1 2` <br>
+      Expected: First and second assignment in assignment list is now displayed in `Your reminders` as well. Details of the assignments are shown in the Message box.
+      
+   1. Test case: `remind 1 x` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
+      Expected: No assignment is added into `Your reminders`. Error details shown int the Message box.
+      
+   1. Other incorrect unremind commands to try: `remind`, `remnid 0`, `remind x x`, `...` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
+      Expected: Similar to previous.
+      
+1. Setting reminders for multiple assignments while some assignments are being shown
+   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date such that only some assignments are shown).. Multiple assignments in the list. `Your reminders` is not empty.
+   
+   1. Test case: `remind 1 2` <br>
+      Expected: Similar to `remind 1 2` test case when some assignments are shown.
+      
+   1. Test case: `remind 1 x` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
+      Expected: Similar to `remind 1 x` test case when some assignments are shown.
+      
+   1. Other incorrect unremind commands to try: `remind`, `remnid 0`, `remind x x`, `...` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
+      Expected: Similar to previous.
+
+### Removing reminded assignments
+
+1. Removing reminders for assignments found in `Your reminders` when `Your reminders` is non-empty
+   1. Prerequisites: `Your reminders` must contain at least 1 assignment.
+   
+   1. Test case: `unremind 1` <br>
+      Expected: First assignment in `Your reminders` is removed from `Your reminders`. Details of the assignment shown in the Message box.
+      
+   1. Test case: `unremind x` (where x is larger than reminded list size but less then the assignment list size) <br>
+      Expected: No assignment is removed from `Your reminders`. Error details shown int the Message box.
+      
+   1. Other incorrect unremind commands to try: `unremind`, `unremnid 1`, `...`
+      Expected: Similar to previous.
+      
+1. Removing reminders for assignments found in `Your reminders` when `Your reminders` is empty.
+   1. Prerequisites: `Your reminders` must not contain any assignments.
+   
+   1. Test case: `unremind 1` <br>
+      Expected: No assignment is removed from `Your reminders`. Error details shown int the Message box.
+      
+   1. Other incorrect unremind commands to try: `unremind`, `unremnid 1`, `...`
+      Expected: Similar to previous.
+      
+      
+### Automated updating of task list
+1. Assignments in task list
+
+   1. Prerequisites: `Upcoming tasks` must not be empty.
+
+   1. Test case: Add or edit an assignment with a deadline 1 minute after the current time (if your current time is 1229, set the deadline with the current date and time 1230).<br>
+      Expected: The first task in `Upcoming task` is now the assignment you just added/edited.
+
+   1. Wait till the current time passes the deadline (if deadline has time 1230, wait till the clock on your computer is 1230).<br>
+      Expected: The first task is removed from `Upcoming tasks`.
+
+   1. Test case: Add or edit an assignment with a deadline equal to the current time (if your current time is 1229, set the deadline with the current date and time 1229).<br>
+      Expected: The assignment you just added/edited is not found in `Upcoming tasks`.
+
+1. Lessons in task list
+   1. Prerequisites: `Upcoming tasks` must be empty.
+
+   1. Go to NUSMods and make a timetable with a lesson that has an end time before the current time. Import the timetable with the import command.
+      Expected: The first task in `Upcoming task` is now the lesson you just imported.
+
+   1. Wait till the current time passes the end time of the lesson (if end time is 1230, wait till the clock on your computer is 1230).<br>
+      Expected: The first task is removed from `Upcoming tasks`.
+      
+ 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -698,3 +830,28 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## Effort
+Difficulty level: Hard
+
+### Challengers faced
+#### Brown-field project
+Familiarising ourselves with the code base was definitely one of the challenges faced when implementing ProductiveNUS. As ProductiveNUS is a brown-field project and builts upon the AddressBook3 (AB3) code base, implementing our desired features was extremely time-consuming during the first stages of this project.
+
+Furthermore, as ProductiveNUS implements similar features to AB3, editing the AB3 code to match what we wanted was extremely painful as well as we had to manually edit go through the entire code base and change the name of classes, attritbutes, methods and test cases to suit ProductiveNUS.
+
+As such, much effort in the beginning was pooled into changing the code base of AB3 to suit our needs before we could start implementing any features.
+
+#### Multiple entities
+Another challenged faced was that while AB3 only deals with one entity (Person), ProductiveNUS deals with 3 separate but related entities (Task, Assignment and Lessons). As such, it was challenging morphing the code base of AB3 to handle three separate entities instead of one, all while ensuring that all three entities are updated, saved and stored appropriately whenever the user would make changes to the data.
+
+#### JavaFx
+As beginner users of JavaFX, reading and understanding the code base of the implementation of the AB3 GUI was especially difficult. Learning JavaFX alongside implementing the features of ProductiveNUS and changing the code base to suit our needs, implementing our desired GUI definitely posed a challenge.
+
+Furthermore, JavaFX has its own set of classes for multithreading implementations. As we were unfamiliar with JavaFX, we first tried to implement multithreading using the Java 11 API. It was only after debugging for a few hours did we realise that using the conventional Thread class in Java 11 would not be feasible as JavaFX does not support multithreading using with the normal Java 11 API.
+
+### Effort required
+
+### Achievements
+#### JavaFx
+We have successfully imeplented multithreading with JavaFX applications in order to enhance the functionalities of ProductiveNUS.
