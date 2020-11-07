@@ -107,6 +107,7 @@ public class AddAttendanceCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
         expectedModel.setStudent(clone, expectedStudent);
+        showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }

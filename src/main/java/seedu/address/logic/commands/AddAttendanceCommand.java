@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -79,7 +78,6 @@ public class AddAttendanceCommand extends AttendanceCommand {
         Student updatedStudent = updateStudentAttendance(studentToAddAttendance, updatedAttendance);
 
         model.setStudent(studentToAddAttendance, updatedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), attendanceToAdd));

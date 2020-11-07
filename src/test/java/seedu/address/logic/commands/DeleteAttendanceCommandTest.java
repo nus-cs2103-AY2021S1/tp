@@ -106,6 +106,7 @@ public class DeleteAttendanceCommandTest {
 
         ModelManager expectedModel = new ModelManager(newModel.getReeve(), new UserPrefs(), newModel.getNotebook());
         expectedModel.setStudent(clone, expectedStudent);
+        showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
 
         assertCommandSuccess(command, newModel, expectedMessage, expectedModel);
     }

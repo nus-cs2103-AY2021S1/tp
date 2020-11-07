@@ -121,6 +121,13 @@ public class Student {
     }
 
     /**
+     * Returns true if the given student has a lesson time that clashes with this student.
+     */
+    public boolean hasClashingClassTimeWith(Student otherStudent) {
+        return admin.hasClashingClassTime(otherStudent.admin);
+    }
+
+    /**
      * Returns true if both student have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */

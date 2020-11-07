@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -99,7 +98,6 @@ public class EditCommand extends Command {
         checkForClashingClassTime(model, studentToEdit, editedStudent);
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
 
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
@@ -123,7 +121,7 @@ public class EditCommand extends Command {
         ClassTime editedStudentClassTime = editedStudent.getAdmin().getClassTime();
 
         boolean isClassTimeChanged = !(editedStudentClassTime.equals(studentToEditClassTime));
-        boolean isStudentTimeClashWithOthers = model.isClashingClassTime(editedStudent);
+        boolean isStudentTimeClashWithOthers = model.hasClashingClassTimeWith(editedStudent);
         boolean isNewClassTimeClashing = isClassTimeChanged && isStudentTimeClashWithOthers;
 
         if (isNewClassTimeClashing) {

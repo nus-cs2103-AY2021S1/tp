@@ -159,12 +159,12 @@ public class ModelManager implements Model {
 
     @Override
     public LocalDateTime getScheduleViewDateTime() {
-        return schedulePrefs.getViewDateTime();
+        return schedulePrefs.getViewDate();
     }
 
     @Override
     public void setScheduleViewDate(LocalDate viewDate) {
-        schedulePrefs.setViewDateTime(viewDate);
+        schedulePrefs.setViewDate(viewDate);
     }
 
     @Override
@@ -266,8 +266,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isClashingClassTime(Student toCheck) {
-        return scheduler.isClashingClassTime(toCheck, reeve.getStudentList());
+    public boolean hasClashingClassTimeWith(Student toCheck) {
+        return reeve.hasClashingClassTimeWith(toCheck);
     }
 }
 
