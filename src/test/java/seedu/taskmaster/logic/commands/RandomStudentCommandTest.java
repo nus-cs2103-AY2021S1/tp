@@ -73,7 +73,7 @@ public class RandomStudentCommandTest {
 
         RandomStudentCommand randomStudentCommand = new RandomStudentCommand(new Random(seed));
 
-        String expectedMessage = "Listed student";
+        String expectedMessage = RandomStudentCommand.MESSAGE_SUCCESS;
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         expectedModel.addSession(existingSession);
         expectedModel.markAllStudentRecords(existingSession.getStudentRecords(), AttendanceType.PRESENT);
