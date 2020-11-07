@@ -23,16 +23,15 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SalesFindCommand;
 import seedu.address.logic.commands.SalesListCommand;
-import seedu.address.logic.commands.SalesRankCommand;
 import seedu.address.logic.commands.SalesUpdateCommand;
 import seedu.address.logic.commands.UnarchiveCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientFindCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientListCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientResetAllCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientRestockCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientSetAllCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientSetCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientSetDefaultCommand;
-import seedu.address.logic.commands.ingredientcommands.IngredientViewSingleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -105,12 +104,14 @@ public class AddressBookParser {
         case IngredientSetCommand.COMMAND_WORD:
             return new IngredientSetCommandParser().parse(arguments);
 
-        case IngredientViewSingleCommand.COMMAND_WORD:
-            return new IngredientViewSingleCommandParser().parse(arguments);
+        //@@author WM71811
+        case IngredientFindCommand.COMMAND_WORD:
+            return new IngredientFindCommandParser().parse(arguments);
 
         case IngredientListCommand.COMMAND_WORD:
             return new IngredientListCommand();
 
+        //@@author
         case IngredientSetAllCommand.COMMAND_WORD:
             return new IngredientSetAllCommandParser().parse(arguments);
 
@@ -123,21 +124,21 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        //@@author WM71811
         case IngredientResetAllCommand.COMMAND_WORD:
             return new IngredientResetAllCommand();
 
         case IngredientRestockCommand.COMMAND_WORD:
             return new IngredientRestockCommand();
 
+        // @@author ureshiiYing
         case SalesUpdateCommand.COMMAND_WORD:
             return new SalesUpdateCommandParser().parse(arguments);
-
-        case SalesRankCommand.COMMAND_WORD:
-            return new SalesRankCommand();
 
         case SalesListCommand.COMMAND_WORD:
             return new SalesListCommand();
 
+        // @@author
         case SalesFindCommand.COMMAND_WORD:
             return new SalesFindCommandParser().parse(arguments);
 

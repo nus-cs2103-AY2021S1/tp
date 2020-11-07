@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -20,13 +19,17 @@ public class UnarchiveCommand extends Command {
     public static final String COMMAND_WORD = "c-unarchive";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unarchives the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Unarchives the employee identified by the index number used in the displayed employee directory.\n"
+            + "Parameter: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNARCHIVE_PERSON_SUCCESS = "Unarchived Person: %1$s";
-    public static final String MESSAGE_PERSON_ALREADY_ACTIVE = "This person is already in the active list!";
-
+    public static final String MESSAGE_UNARCHIVE_PERSON_SUCCESS = "Unarchived employee: %1$s";
+    public static final String MESSAGE_PERSON_ALREADY_ACTIVE = "This employee is already in the active list!"
+            + "\nOnly employees in archived list can be unarchived."
+            + "\nTo view all archived employees, use command 'c-archive-list'.";
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX_UNARCHIVE = "The employee index provided is "
+            + "invalid."
+            + "\nThere are only %1$s employees displayed in the employee directory pane.";
     private final Index targetIndex;
 
     /**
@@ -44,7 +47,8 @@ public class UnarchiveCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX_UNARCHIVE,
+                    model.getFilteredPersonList().size()));
         }
 
         Person personToUnarchive = lastShownList.get(targetIndex.getZeroBased());
