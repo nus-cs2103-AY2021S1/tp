@@ -13,7 +13,6 @@ Package Person {
 Class Person
 Class Name
 Class Phone
-Class EmergencyContact
 Class Address
 Class ArchiveStatus
 Class UniquePersonList
@@ -28,9 +27,9 @@ AddressBook .left.|> ReadOnlyAddressBook
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
 ModelManager o-left-> "1" AddressBook
-Person *--> "1" Name
-Person *--> "1" Phone
-Person *--> "1" EmergencyContact
+Person *-left-> "1" Name
+Person *-left-> "1" Phone : Phone Number
+Person *-left-> "1" Phone : Emergency Contact
 Person *--> "1" Address
 Person *--> "1" ArchiveStatus
 Person *--> "*" Tag
