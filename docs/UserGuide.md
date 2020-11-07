@@ -136,8 +136,8 @@ and Brown Sugar Boba Black Tea, `BSBBT`, to 120 in the Sales Tracker. You can fo
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. You can now see that the sales of the two drinks have been updated accordingly in the Sales Tracker inside the
-_Main View_. 
+2. You can now see that tCheck has updated the sales of the two drinks in the Sales
+ Tracker inside the _Main View_. 
 
 {Example outcome screenshot to be added later}
 
@@ -157,7 +157,7 @@ Outcome:
 
 1. The _Result Display_ will show a success message.
 2. The Sales Tracker inside the _Main View_ will show a list of the drinks sales in descending order, where the drink
- with the most sales is listed on top.
+ with the most sales is on top.
 
 {Example outcome screenshot to be added later}
 
