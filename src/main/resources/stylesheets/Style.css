@@ -207,6 +207,10 @@
     -fx-line-spacing: 4px;
 }
 
+.recipe-steps-numbering {
+    -fx-font-family: "Source Sans Pro SemiBold";
+}
+
 .recipe-tags-container {
     -fx-padding: 12px 6px;
 }
