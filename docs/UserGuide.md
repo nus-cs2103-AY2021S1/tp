@@ -40,7 +40,10 @@
         + [3.4.3.2 Deleting an attendance record for a student: `attendance delete`](#3432-deleting-an-attendance-record-for-a-student-attendance-delete)
   * [3.5 Schedule Feature (By: Alex)](#35-schedule-feature-by-alex)
     + [3.5.1 Viewing lesson schedule: `schedule`](#351-viewing-lesson-schedule-schedule)
-  * [3.6 Notes Feature (By: Choon Siong)](#36-notes-feature-by-choon-siong)
+  * [3.6 Notebook feature `note` (By: Choon Siong)](#36-notebook-feature-by-choon-siong)
+    + [3.6.1 Adding a note: `note add`](#361-adding-a-note)
+    + [3.6.2 Editing a note: `note edit`](#362-editing-a-note)
+    + [3.6.3 Deleting a note: `note delete`](#363-deleting-a-note)
 - [4. Command summary](#4-command-summary)
 - [5. Glossary](#5-glossary)
 - [6. FAQ](#6-faq)
@@ -593,8 +596,50 @@ Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
 Example:
 * `schedule m/weekly d/2/11/2020` shows the schedule of classes in the week of 2nd November 2020.
 
-### 3.6 Notes Feature (By: Choon Siong)
+### 3.6 Notebook feature `note` (By: Choon Siong)
 
+You can store notes containing small amounts of information inside the notebook.
+This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve.
+
+#### 3.6.1 Adding a note`note add`
+
+You can add a note to the notebook for the information you want to store.
+
+Format: `note add t/TITLE d/DESCRIPTION`
+
+* `TITLE` is any string of up to 15 characters.
+* `DESCRIPTION` is any string of up to 80 characters.
+
+Example:
+* You have just collected a stack of practice papers from your students and want to do something else before marking them but are scared you might forget. 
+    * You can use `note add t/things to do d/mark practice papers` to add a new note with title `things to do` and description `mark practice papers` so that you can remind yourself later.
+
+#### 3.6.2 Editing a note `note edit`
+
+You can edit a note that is inside the notebook to update the information inside.
+
+Format: `note edit NOTE_INDEX [t/TITLE] [d/DESCRIPTION]`
+
+* Edits the note at the specified `NOTE_INDEX`
+
+Example:
+* You left a note to mark practice papers earlier and have just finished marking them. Now, before you take a break,
+ you want to remind yourself to review the marking before you can give it back to your students.
+    * Assuming the previous note was the first note, you can use `note edit 1 d/review marking`
+     to change the note to remind yourself to review the marking.
+    * You can also change the title if 
+     
+#### 3.6.3 Deleting a note `note delete`
+
+You can delete a note from the notebook when the information is no longer needed.
+
+Format: `note delete NOTE_INDEX`
+
+* Deletes the note at the specified `NOTE_INDEX`
+
+Example:
+* Your first note was to remind yourself to grab a cup of coffee. Now that you have bought your cup of coffee, the note is no longer needed.
+    * You can use `note delete 1` to delete the note.
 
 ## 4. Command summary
 
