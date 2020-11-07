@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -203,7 +204,14 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            String feedback = commandResult.getFeedbackToUser();
+            if (feedback.length() > 100) {
+                feedback = StringUtil.stringBreakerByKeywords(feedback, true,
+                        "Email:", "Appointments", "Medical Record URL: ");
+            }
+
+            resultDisplay.setFeedbackToUser(feedback);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
