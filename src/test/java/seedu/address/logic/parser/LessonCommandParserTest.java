@@ -75,8 +75,7 @@ public class LessonCommandParserTest {
                 expectedLessonCommand
         );
         // omit optional description
-        Lesson expectedLesson2 = VALID_LESSON_CS2103T_NO_DESC;
-        LessonCommand expectedLessonCommand2 = new LessonCommand(expectedLesson2);
+        LessonCommand expectedLessonCommand2 = new LessonCommand(VALID_LESSON_CS2103T_NO_DESC);
         assertParseSuccess(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
                         PREFIX_TITLE, VALID_TITLE_CS2103T,
