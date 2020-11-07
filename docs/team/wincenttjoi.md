@@ -40,6 +40,7 @@ Given below are my contributions to the project.
     [#109](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/109))
   * Added delivery model test cases ([#122](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/122))
 
+<div style="page-break-after: always;"></div>
 
 * **Documentation**:
   * General:
