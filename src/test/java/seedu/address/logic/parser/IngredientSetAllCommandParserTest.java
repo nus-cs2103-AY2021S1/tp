@@ -12,10 +12,10 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ingredientcommands.SetAllCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientSetAllCommand;
 import seedu.address.model.ingredient.Amount;
 
-class SetAllCommandParserTest {
+class IngredientSetAllCommandParserTest {
 
     private static final String MILK_AMOUNT = " " + PREFIX_MILK + "10 ";
     private static final String PEARL_AMOUNT = " " + PREFIX_PEARL + "10 ";
@@ -25,12 +25,12 @@ class SetAllCommandParserTest {
     private static final String BROWN_SUGAR_AMOUNT = " " + PREFIX_BROWN_SUGAR + "10 ";
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetAllCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, IngredientSetAllCommand.MESSAGE_USAGE);
 
-    private SetAllCommandParser parser = new SetAllCommandParser();
+    private IngredientSetAllCommandParser parser = new IngredientSetAllCommandParser();
 
     @Test
-    public void parse_missingParts_failure() {
+    public void parse_missingFields_failure() {
         // only field specified
         assertParseFailure(parser, MILK_AMOUNT, MESSAGE_INVALID_FORMAT);
 
@@ -67,7 +67,7 @@ class SetAllCommandParserTest {
         String userInput = MILK_AMOUNT + PEARL_AMOUNT
                 + BOBA_AMOUNT + BLACK_TEA_AMOUNT + GREEN_TEA_AMOUNT + BROWN_SUGAR_AMOUNT;
 
-        SetAllCommand expectedCommand = new SetAllCommand(new Amount("10"), new Amount("10"),
+        IngredientSetAllCommand expectedCommand = new IngredientSetAllCommand(new Amount("10"), new Amount("10"),
                 new Amount("10"), new Amount("10"), new Amount("10"), new Amount("10"));
 
         assertParseSuccess(parser, userInput, expectedCommand);

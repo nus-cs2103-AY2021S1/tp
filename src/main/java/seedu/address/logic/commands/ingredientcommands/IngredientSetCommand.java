@@ -12,6 +12,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.IngredientBook;
 import seedu.address.model.Model;
 import seedu.address.model.ingredient.Amount;
 import seedu.address.model.ingredient.Ingredient;
@@ -20,7 +21,7 @@ import seedu.address.model.ingredient.IngredientName;
 /**
  * Set the level of one specific ingredient to a specific level.
  */
-public class SetCommand extends Command {
+public class IngredientSetCommand extends Command {
 
     public static final String COMMAND_WORD = "i-set";
 
@@ -33,7 +34,7 @@ public class SetCommand extends Command {
             + PREFIX_AMOUNT + "90 ";
 
     public static final String MESSAGE_SUCCESS = "Ingredient set: %1$s";
-    public static final String MESSAGE_NO_CHANGE = "Ingredient level already set.";
+    public static final String MESSAGE_NO_CHANGE = "Ingredient level is already set to the specified amount.";
     public static final String MESSAGE_NOT_FOUND = "Ingredient not found in ingredient book.";
     private final IngredientName targetName;
     private final SetIngredientDescriptor setIngredientDescriptor;
@@ -41,7 +42,7 @@ public class SetCommand extends Command {
     /**
      * Constructs a set command with the given ingredient name and amount.
      */
-    public SetCommand(IngredientName targetName, SetIngredientDescriptor setIngredientDescriptor) {
+    public IngredientSetCommand(IngredientName targetName, SetIngredientDescriptor setIngredientDescriptor) {
         requireNonNull(targetName);
         requireNonNull(setIngredientDescriptor);
 
@@ -100,14 +101,26 @@ public class SetCommand extends Command {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof SetCommand)) {
+        if (!(other instanceof IngredientSetCommand)) {
             return false;
         }
 
-        SetCommand e = (SetCommand) other;
+        IngredientSetCommand e = (IngredientSetCommand) other;
 
         return targetName.equals(e.targetName)
-                && setIngredientDescriptor.equals(e.setIngredientDescriptor);
+                && setIngredientDescriptor.getAmount().equals(e.setIngredientDescriptor.getAmount());
+    }
+
+    protected static IngredientBook fillIngredientBookHelper(IngredientBook tempBook) {
+
+        tempBook.addIngredient(new Ingredient(new IngredientName("Milk")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Pearl")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Boba")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Black Tea")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Green Tea")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Brown Sugar")));
+
+        return tempBook;
     }
 
     public static class SetIngredientDescriptor {
@@ -134,6 +147,9 @@ public class SetCommand extends Command {
         public void setAmount(Amount amount) {
             this.amount = amount;
         }
+        public void setIngredientName(IngredientName name) {
+            this.ingredientName = name;
+        }
         public Optional<IngredientName> getIngredientName() {
             return Optional.ofNullable(ingredientName);
         }
@@ -149,12 +165,12 @@ public class SetCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof SetCommand.SetIngredientDescriptor)) {
+            if (!(other instanceof IngredientSetCommand.SetIngredientDescriptor)) {
                 return false;
             }
 
             // state check
-            SetCommand.SetIngredientDescriptor e = (SetCommand.SetIngredientDescriptor) other;
+            IngredientSetCommand.SetIngredientDescriptor e = (IngredientSetCommand.SetIngredientDescriptor) other;
 
             return getIngredientName().equals(e.getIngredientName())
                     && getAmount().equals(e.getAmount());

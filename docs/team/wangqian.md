@@ -5,10 +5,19 @@ title: Wang Qian's Project Portfolio Page
 
 ## Project: tcheck
 
+tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is optimized for CLI users to update and retrieve the information more efficiently.
 
 Given below are my contributions to the project.
 
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=persdre&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+
+* **Project management**:
+  * Managed releases `v1.2`
+  * Managed DDLs
+ 
+* **Added emergency contact placeholder in employees' contact details**: Allows users to add employees' emergency contact by using `c-add`. Emergency contact's information can be edited by `c-edit`.
 - Add information about myself
+
 
 <!-- * **New Feature**: Added the ability to undo/redo previous commands.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
