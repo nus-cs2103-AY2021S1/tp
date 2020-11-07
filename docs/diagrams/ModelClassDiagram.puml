@@ -55,7 +55,7 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 
-AddressBook *--> "1" UniqueModuleList
+AddressBook *--> "2" UniqueModuleList
 UniqueModuleList o--> "*" Module
 Module *--> ModuleCode
 Module *--> ModuleName
