@@ -132,6 +132,10 @@ Format: `leave`
 
 Initialises the project specified.
 
+![start_project](images/startProject.png)
+
+   *Figure 7: Project 2 is started and shown on the project dashboard*
+
 Format: `startproject (INDEX)`
 - Initialises the project at the specified INDEX
 - The index refers to the index number shown in the displayed project list
@@ -142,6 +146,10 @@ Examples: `startproject 2` Initialises the second project in the project list.
 ### Add a new project to the catalogue `add `
 
 Adds a project to the project list.
+
+![add_project](images/addProject.png)
+
+   *Figure 8: New project named `The Blair project` is added and shown on the project list*
 
 Format: `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS...] `
   - The fields can be entered in any order, as long as the prefixes are matched correctly
@@ -166,6 +174,10 @@ Adds a new project with the
 
 Deletes a project and all associated information from the project catalogue.
 
+![delete_project](images/deleteProject.png)
+
+   *Figure 9: The project named `The Blair project` is deleted and removed from the project list*
+
 Format: `delete (INDEX) `
 - Deletes the project at the specified INDEX
 - The index refers to the index number shown in the displayed project list
@@ -177,6 +189,10 @@ Examples: `delete 2` deletes the second project from the catalogue.
 
 Finds projects whose names contain the given keywords.
 
+![find_project](images/findProject.png)
+
+   *Figure 10: The project contains `Basket` is found and shown on the filtered project list*
+
 Format: `find [KEYWORD...]`
 - The search is case-insensitive. e.g run will match Run
 - Only the name of the projects are searched
@@ -185,11 +201,15 @@ Format: `find [KEYWORD...]`
 
 Example: `find scare` returns the **Scare House** and **Easily scare Night** projects.
 
-Outcome: The projects with matching names will be shown to the user.
+Note: Please use `listprojects` command to return to the complete project list.
 
 ### Edits details of a project `edit `
 
 Updates the details of a project.
+
+![edit_project](images/editProject.png)
+
+   *Figure 11: The first project on the project list is edited*
 
 Format: `edit (INDEX) [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] `
   - Edits the project at the specified index
@@ -204,7 +224,7 @@ Format: `edit (INDEX) [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DE
 Note: Please enter a valid repository URL. Taskmania is an offline application and can only check the validity of the
  URL, and not whether the repository exists.
 
-Example: `edit 1 n/Resident Evil project /d new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
+Example: `edit 1 n/ResidentEvil d/ new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
 
 # **Features** in project scope
 
@@ -213,6 +233,10 @@ Example: `edit 1 n/Resident Evil project /d new horror` changes the name of the 
 ### Add task to a project `addtask `
 
 Creates a new task and adds it to the current project.
+
+![add_task](images/addTask.png)
+
+   *Figure 13: The task named `Do User Guide` is added to the project `Aeroknotty`*
 
 Format: `addtask (tn/TASK NAME) (tp/TASK PROGRESS) (td/TASK DEADLINE) `
   - All fields above are required
@@ -226,17 +250,25 @@ Example: `addtask tn/Do User Guide tp/30 td/29-02-2020 00:00:00` creates a task 
 
 Assigns a task to a teammate within a project.
 
+![assign_task](images/assign.png)
+
+   *Figure 14: The task named `Do User Guide` is assigned to `LucasTai98`*
+
 Format: `assign TASKINDEX TEAMMATE_GIT_USERNAME  `
 
   - TEAMMATE_GIT_USERNAME is the unique name of each teammate
   - Assigns the teammate with the given git username to the task at the specified index
   - The index refers to the index number shown in the displayed task list
 
-Example: `assign 3 Lucas98` assigns task number 3 in the list to user *Lucas98*.
+Example: `assign 1 Lucas98` assigns task number 1 in the list to user *Lucas98*.
 
 ### Edit task to a project `edittask `
 
 Edits the indicated task in a project.
+
+![edit_task](images/editTask.png)
+
+   *Figure 15: The task 2 is edited*
 
 Format: `edittask (INDEX) [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] `
   - Edits the task at the specified index
@@ -247,11 +279,15 @@ Format: `edittask (INDEX) [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] `
   - Task progress is a percentage value indicating how much of the task is done
   - Task deadline is indicated by a date and time with the format *DD-MM-YYYY hh:mm:ss* 
 
-Example: `edittask 3 tn/Finish project` changes the name of task 3 in the list to Finish project.
+Example: `edittask 2 tn/Finish project` changes the name of task 2 in the list to Finish project.
 
 ### Delete a task from the project `deletetask `
 
 Deletes a task and all associated information from the project.
+
+![delete_task](images/deleteTask.png)
+
+   *Figure 16: The task named `Finish project` is deleted and removed from the task list*
 
 Format: `deletetask (INDEX) `
 
@@ -268,6 +304,10 @@ Filters tasks in the task list by various predicates:
   - by deadline (either a specific deadline or a time range for the deadline)
   - by progress
   - by task's name
+  
+![filter](images/filter.png)
+
+   *Figure 17: The task list is filtered by `ta/LucasTai98` and only the task assigned to `LucasTai98` is shown on filtered task list*
 
 Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tp/TASK PROGRESS)||(tn/TASK_NAME)` 
   - User may choose one predicate to filter tasks by
@@ -284,6 +324,10 @@ Example: `filter ta/Lucas` filters all the tasks who have Lucas assigned to them
 
 List all tasks in the task list of a project and enters the Task scope.
 
+![all_tasks](images/allTasks.png)
+
+   *Figure 18: The full task list is shown*
+
 Format: `alltasks `
 
 Example: `alltasks` displays all tasks in the task list.
@@ -291,11 +335,18 @@ Example: `alltasks` displays all tasks in the task list.
 ### Sort tasks `sort `
 
 Sorts tasks in the task list in ascending/descending order:
-
   - by deadline (either a specific deadline or a time range for the deadline)
   - by progress
   - by task's name
 
+![before_sort](images/beforeSort.png)
+
+   *Figure 19: Before `Sort`*
+   
+![after_sort](images/afterSort.png)
+
+   *Figure 20: After `Sort` by task name with ascending order*
+ 
 Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)` 
 
   - User may choose the sorting order (`sa/` for ascending order and `sd/` for descending order)
@@ -310,17 +361,25 @@ Example: `sort sa/ td/` sorts the task list by task deadline in ascending order.
 
 View all the details of a task, beyond the little information given in the project view.
 
+![view_task](images/viewTask.png)
+
+   *Figure 21: The task 1 is shown on the task dashboard*
+
 Format: `viewtask INDEX `
   - View all the information of the task specified by the INDEX
   - Index has to be a valid number that is in the range of tasks displayed on screen
 
-Example: `viewtask 4` displays all information from task number 4 in the list.
+Example: `viewtask 1` displays all information from task number 1 in the list.
 
 ## **Teammate-related features**
 
 ### Create a new teammate in a project `addteammate`
 
 Creates a new teammate in a project with all the relevant fields contained in it.
+
+![add_teammate](images/addTeammate.png)
+
+   *Figure 22: New teammate `Lucas` is added to the project and shown on the teammate list*
 
 Format: `addteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)`
   - All fields are necessary to fill in
@@ -341,21 +400,37 @@ Example: `addteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/1
 
 Add an existing teammate to the current project.
 
+![add_part](images/addPart.png)
+
+   *Figure 23: The existing person named `Holsey Mood` is added to the project and shown on the teammate list*
+
 Format: `addpart GIT_USER_NAME`
 
-Example: `addpart Lucas98` adds Lucas98 to the current project that the user is in.
+Example: `addpart Modi` adds Modi to the current project that the user is in.
 
 ### Remove a teammate from a project `deletepart`
 
 Removes an existing teammate from the current project.
 
+![delete_part](images/deletePart.png)
+
+   *Figure 24: The teammate named `Holsey Mood` is deleted from the project and removed from the teammate list*
+
+![person_list_after_delete_part](images/listPersonsAfterDeletePart.png)
+
+   *Figure 24: The teammate named `Holsey Mood` is deleted from the project but not deleted from the person list*
+
 Format: `deletepart GIT_USER_NAME`
 
-Example: `deletepart Lucas98` removes Lucas98 from the current project.
+Example: `deletepart Modi` removes Modi from the current project.
 
 ### Edit a teammate’s details `editteammate`
 
 Update the information of a teammate.
+
+![edit_teammate](images/editTeammate.png)
+
+   *Figure 25: The teammate with github user name `LucasTai98` is edited*
 
 Format: `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]`
   - Any combination or number of fields can be filled in
@@ -365,11 +440,15 @@ Format: `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/E
   - The email has to have a proper prefix and proper domain name consisting of at least 2 letters
   - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank
 
-Example: `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way` changes the name of the teammate to GeNiaaz and the address of said teammate to 5 Hacker Way.
+Example: `editteammate LucasTai98 mn/LucasTai ma/5 Hacker Way` changes the name of the teammate to LucasTai and the address of said teammate to 5 Hacker Way.
 
 ### View a teammate’s details `viewteammate`
 
 View all of a specific teammate's details.
+
+![view_teammate](images/viewTeammate.png)
+
+   *Figure 26: The teammate with github user name `LucasTai98` is shown on the teammate dashboard*
 
 Format: `viewteammate GIT_USER_NAME`
 
@@ -379,9 +458,17 @@ Example: `viewteammate Lucas98` displays all the information about the teammate 
 
 Delete all of a specific teammate's details, as well as remove teammate from all projects teammate was a part of.
 
+![delete_teammate](images/deleteTeammate.png)
+
+   *Figure 27: The teammate with github user name `Modi` is deleted from the teammate list*
+
+![person_list_after_delete_teammate](images/listPersonsAfterDeleteTeammate.png)
+
+   *Figure 28: The person with github user name `Modi` is also removed from the person list*
+
 Format: `deleteteammate GIT_USER_NAME`
 
-Example: `deleteteammate Lucas97` deletes the teammate with git username Lucas97, and removes him from any project he
+Example: `deleteteammate Modi` deletes the teammate with git username Modi, and removes him from any project he
  was in.
 
 # **Features** in person scope
@@ -389,12 +476,16 @@ Example: `deleteteammate Lucas97` deletes the teammate with git username Lucas97
 ### Start work on an existing person `startperson `
 Initialises the person specified.
 
+![start_persom](images/startPerson.png)
+
+   *Figure 29: The first person on the person list is shown on person dashboard*
+
 Format: `startperson (INDEX)`
 - Initialises the person at the specified INDEX
 - The index refers to the index number shown in the displayed person list
 - The index must be a positive integer 1, 2, 3, …​
 
-Examples: `startperson 2` Initialises the second person in the person list.
+Examples: `startperson 1` Initialises the first person in the person list.
 
 ## FAQ
 
