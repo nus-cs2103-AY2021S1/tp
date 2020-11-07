@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.TeammateTestUtil.INVALID_TEAMMATE_GIT_USERNAME;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_GIT_USERNAME_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_GIT_USERNAME_B;
 
@@ -13,4 +14,6 @@ public class TypicalGitIndexes {
         VALID_TEAMMATE_GIT_USERNAME_A);
     public static final GitUserIndex GIT_USERINDEX_SECOND_TEAMMATE = new GitUserIndex(
         VALID_TEAMMATE_GIT_USERNAME_B);
+    public static final GitUserIndex GIT_USERINDEX_INVALID_TEAMMATE = new GitUserIndex(
+        INVALID_TEAMMATE_GIT_USERNAME);
 }

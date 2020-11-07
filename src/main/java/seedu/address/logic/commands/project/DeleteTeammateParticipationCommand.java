@@ -58,4 +58,11 @@ public class DeleteTeammateParticipationCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_TEAMMATE_PARTICIPATION_SUCCESS,
             personToDeleteParticipation));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof DeleteTeammateParticipationCommand) // instanceof handles nulls
+            && gitUserIndex.equals(((DeleteTeammateParticipationCommand) other).gitUserIndex); // state check
+    }
 }

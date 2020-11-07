@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.project;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.logging.Level;
@@ -9,7 +8,6 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
@@ -21,25 +19,20 @@ public class AddTeammateParticipationCommand extends Command {
 
     public static final String COMMAND_WORD = "addpart";
     public static final String MESSAGE_ADD_TEAMMATE_PARTICIPATION_SUCCESS = "New Teammate added: %1$s";
-    public static final String MESSAGE_TEAMMATE_NOT_FOUND = "Teammate not found";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds teammate to this project"
         + "Parameters: Git UserName (must be a single word)\n "
         + "Example: " + COMMAND_WORD + " LucasTai98 ";
 
     private static final Logger logger = Logger.getLogger("AddTeammateParticipationCommandLogger");
-    private final Person toAdd;
+    private final GitUserIndex gitUserIndex;
 
     /**
-     * Creates an new teammate that is associated with the project
+     * Adds an existing teammate to a project,
      */
-    public AddTeammateParticipationCommand(GitUserIndex index) throws ParseException {
+    public AddTeammateParticipationCommand(GitUserIndex index) {
         requireNonNull(index);
-        toAdd = Person.getPersonFromList(index);
-        if (isNull(toAdd)) {
-            logger.log(Level.INFO, "Teammate gitusername incorrect");
-            throw new ParseException(MESSAGE_TEAMMATE_NOT_FOUND);
-        }
+        gitUserIndex = index;
     }
 
     /**
@@ -52,6 +45,7 @@ public class AddTeammateParticipationCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
+        Person toAdd = Person.getPersonFromList(gitUserIndex);
         toAdd.addProject(project);
         project.addParticipation(toAdd);
         model.addParticipation(project.getParticipation(toAdd.getGitUserNameString()));
@@ -60,4 +54,10 @@ public class AddTeammateParticipationCommand extends Command {
             toAdd.getGitUserNameString()));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof AddTeammateParticipationCommand) // instanceof handles nulls
+            && gitUserIndex.equals(((AddTeammateParticipationCommand) other).gitUserIndex); // state check
+    }
 }
