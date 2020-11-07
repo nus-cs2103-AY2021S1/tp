@@ -5,7 +5,10 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 ## **1. Introduction**
 Welcome to OneShelf. This developer guide aims to introduce potential developers to the structure and implementation of
 **OneShelf**. <br>
@@ -21,8 +24,6 @@ instructions for manual testing.
 ## **2. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
---------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always; visibility: hidden"> 
 \pagebreak
@@ -68,6 +69,10 @@ For example, the `Logic` component (see the class diagram given below) defines i
 <br>
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png) <br>
 Figure 2. Class Diagram of Logic Component
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 **How the architecture components interact with each other**
 
@@ -563,7 +568,9 @@ Refer to the guide [here](Testing.md)
 
 Refer to the guide [here](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ## **Appendix A: Product scope**
 
@@ -578,7 +585,9 @@ Refer to the guide [here](DevOps.md)
 
 **Value proposition**: manage inventory and pending delivery faster than a typical mouse/GUI driven app
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ## **Appendix B: User stories**
 
@@ -609,7 +618,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ## **Appendix C: Use Cases**
 
@@ -644,6 +655,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 **Use case: UC02 - Adding a new inventory item**
 
 **Actor**: User
@@ -672,6 +687,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1c1. InventoryBook adds on existing item name and supplier's with input quantity or new tags.
     
   Use case ends.
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 **Use case: UC03 - Editing an item**
 
@@ -712,6 +731,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 **Use case: UC04 - User opens help window**
 
 **Actor**: User
@@ -733,6 +756,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
    
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+   
 **Use case: UC05 - Undoing a command**
 
 **Actor**: User
@@ -752,6 +779,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. OneShelf gives an appropriate message informing the user that there are no more previous states to revert to.
   
   Use case ends.
+  
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
   
 **Use case: UC06 - Redoing an undone command**
 
@@ -773,7 +804,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   Use case ends.
   
-  
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 **Use case: UC07 - Finding a delivery**
 
 **Actor**: User
@@ -798,6 +832,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. OneShelf shows an error.
   
   Use Case ends.
+ 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
   
 **Use case: UC08 - Exits application**
 
@@ -810,7 +848,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use Case ends.
     
----------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 
 ## **Appendix D: Non-Functional Requirements**
@@ -830,6 +870,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 13. Storing 100 states of the models for the Undo and Redo Commands should not take more than 100 KB.
 14. Storing 100 states of history of commands the user has entered should not take more than 10 KB.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 ## **Appendix E: Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -840,7 +884,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 inventory items and pending deliveries respectively
 
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ## **Appendix F: Instructions for manual testing**
 
@@ -871,6 +917,9 @@ testers are expected to do more *exploratory* testing.
     1. Test Case: `add-i n/Chicken s/NTUC t/meat`
        Expected: User will receive an error message as `Quantity` is a compulsory field for `add-i`.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### F2. Adding to an existing item
 
@@ -888,6 +937,10 @@ testers are expected to do more *exploratory* testing.
        
     1. Test Case: `add-i n/Chicken s/NTUC q/10 t/meat`
        Expected: Meat tag should be added into the chicken supplied from NTUC, and quantity increased by 10.
+  
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
        
 ### F3. Adding a pending delivery
 
@@ -900,7 +953,9 @@ testers are expected to do more *exploratory* testing.
    1. Test Case: `add-d n/DAMITH p/91829722 a/Jln Bukit Batok o/Nasi lemak x2 by/15`
        Expected: Same delivery as the above test case is added with the exception of `deliver by` to be 15 minutes.
 
-
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### F4. Editing Command
 
@@ -922,6 +977,10 @@ testers are expected to do more *exploratory* testing.
 
     1. other incorrect edit commands to try: `edit`, edit x n/TUNA`, ... (where x is larger than the list size, x is a negative number or x is not an integer) <br>
        Expected: Similar to previous.
+  
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
        
 ### F5. Deleting an item
 
@@ -938,6 +997,9 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete-i`, `delete-i x`, `...` (where x is larger than the list size, 
    x is a negative number, or x is not an integer)<br>
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
       
 ### F6. Undoing a command
 
@@ -954,6 +1016,10 @@ testers are expected to do more *exploratory* testing.
     
     1. Test Case: `undo` <br>
         Expected: The inventory book is restored to the state where it had 5 items. Success message is displayed.
+      
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
       
 ### F7. Redoing an undone command
 
@@ -980,6 +1046,3 @@ testers are expected to do more *exploratory* testing.
     
     1. Test Case: `redo` <br>
         Expected: The inventory book is restored to the state where all its items were cleared. Success message is displayed. 
-
-
-
