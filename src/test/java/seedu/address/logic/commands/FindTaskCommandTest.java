@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.FindTaskCommand.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.testutil.TypicalTasks.DEADLINE1;
-import static seedu.address.testutil.TypicalTasks.DEADLINE2;
-import static seedu.address.testutil.TypicalTasks.EVENT1;
-import static seedu.address.testutil.TypicalTasks.EVENT2;
-import static seedu.address.testutil.TypicalTasks.EVENT3;
-import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
+import static seedu.address.testutil.TypicalPlanus.DEADLINE1;
+import static seedu.address.testutil.TypicalPlanus.DEADLINE2;
+import static seedu.address.testutil.TypicalPlanus.EVENT1;
+import static seedu.address.testutil.TypicalPlanus.EVENT2;
+import static seedu.address.testutil.TypicalPlanus.EVENT3;
+import static seedu.address.testutil.TypicalPlanus.getTypicalPlanus;
 
 import java.util.Arrays;
 import java.util.Collections;

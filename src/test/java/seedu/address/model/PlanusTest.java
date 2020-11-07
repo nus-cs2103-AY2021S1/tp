@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.DEADLINE1;
-import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
+import static seedu.address.testutil.TypicalPlanus.DEADLINE1;
+import static seedu.address.testutil.TypicalPlanus.getTypicalPlanus;
 
 import java.util.Arrays;
 import java.util.Collection;

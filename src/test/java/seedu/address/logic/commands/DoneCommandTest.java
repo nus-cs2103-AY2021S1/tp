@@ -13,7 +13,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DURATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODEL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_DURATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_MODEL;
-import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
+import static seedu.address.testutil.TypicalPlanus.getTypicalPlanus;
 
 import org.junit.jupiter.api.Test;
 

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_LAB;
-import static seedu.address.testutil.TypicalTasks.DEADLINE1;
-import static seedu.address.testutil.TypicalTasks.EVENT_TEST;
+import static seedu.address.testutil.TypicalPlanus.DEADLINE1;
+import static seedu.address.testutil.TypicalPlanus.EVENT_TEST;
 
 import org.junit.jupiter.api.Test;
 
