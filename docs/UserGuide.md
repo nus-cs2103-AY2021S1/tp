@@ -90,7 +90,7 @@ The following table explains technical terms used in this user guide.
 | Parameter | Values given for specific operations. |
 
 **Example:** <br>
-`c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
+`c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]`
 
 **Breakdown:** 
 * Command Word - `c-add` <br>
@@ -103,7 +103,7 @@ The following points explain the format of a command.
    e.g. In `c-delete INDEX`, `INDEX` is a parameter and the command can be used as `c-delete 1`.
 
 * Items in square brackets are optional.<br>
-   e.g. `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` can be used as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road t/Friday` 
+   e.g. `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]` can be used as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road t/Friday` 
     or as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road`.
 
 * Items with `…​` after them can be used multiple times, including zero times.<br>
@@ -163,7 +163,7 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's sales tra
 Updates the number of drinks sold for each drink type as given in the user input.
 
 
-Format: `s-update A/NUM B/NUM C/NUM ...`
+Format: `s-update A/NUM B/NUM C/NUM`
 * `A`, `B`, `C` are abbreviations for the drink types.
 * `NUM` refers to the number of drinks sold. It should be a non-negative integer.
 
@@ -188,7 +188,7 @@ Format: `s-list`
 
 Finds all drinks where their abbreviated names match the KEYWORD(s).
 
-Format: `s-find KEYWORD [MORE_KEYWORDS] ...`
+Format: `s-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.
 * Only the drink's abbreviated name is searched.
@@ -310,7 +310,7 @@ Format: `i-restock`
 
 Adds an employee to the employee directory.
 
-Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
+Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: 
 
@@ -358,7 +358,7 @@ tags contain `Thursday` will be listed out.
 
 Edits the corresponding employee's information in the employee directory.
 
-Format: `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG] ...`
+Format: `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG]`
 
 * Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, ...​
 * At least one of the optional fields must be provided.
@@ -377,7 +377,7 @@ Examples:
 
 Finds all active(unarchived) employees that contain the KEYWORD(s) in their names.
 
-Format: `c-find KEYWORD [MORE_KEYWORDS] ...`
+Format: `c-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
@@ -394,7 +394,7 @@ Examples:
 
 Finds all active(unarchived) employees that contain the KEYWORD(s) in their tags.
 
-Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
+Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `Friday` will match `friday`.
 * The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.
@@ -505,9 +505,9 @@ All tCheck data (i.e. contact details, ingredient data, sales data) are saved in
 
 Action | Format, Examples
 -------|------------------------------
-**Update**| `s-update A/NUM B/NUM C/NUM ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
+**Update**| `s-update A/NUM B/NUM C/NUM` <br> e.g., `s-update BSBM/100 BSBBT/120`
 **List**| `s-list`
-**Find**| `s-find KEYWORD [MORE_KEYWORDS] ...` <br> e.g., `s-find BSBM BSBBT`
+**Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 **Rank**| `s-rank`
 
 
@@ -527,12 +527,12 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
+**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
 **List** | `c-list`
 **List avalible manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
-**Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
-**Find by name** | `c-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-find James Jake`
-**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-tag-find Friday Monday PartTime`
+**Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG]`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
+**Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
+**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
 **Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive-all` <br>3. **List all archived data:**  `c-archive-list`</br>
