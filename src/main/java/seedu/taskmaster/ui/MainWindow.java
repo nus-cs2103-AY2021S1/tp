@@ -221,7 +221,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleStudent() {
-        changeSession(null);
+        logic.showStudentList();
     }
 
     /**
