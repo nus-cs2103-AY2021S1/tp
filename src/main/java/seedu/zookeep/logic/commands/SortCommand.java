@@ -27,12 +27,14 @@ public class SortCommand extends Command {
      */
     public SortCommand(AnimalComparator animalComparator) {
         requireNonNull(animalComparator);
+
         this.animalComparator = animalComparator;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
         String category = animalComparator.getCategory();
         model.sortAnimals(animalComparator);
         return new CommandResult(MESSAGE_SUCCESS + category);
