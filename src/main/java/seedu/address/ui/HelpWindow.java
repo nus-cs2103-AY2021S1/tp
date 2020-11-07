@@ -21,6 +21,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ShowMrCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.appointmentcommand.AddApptCommand;
 import seedu.address.logic.commands.appointmentcommand.DeleteApptCommand;
@@ -64,11 +65,13 @@ public class HelpWindow extends UiPart<Stage> {
             new CommandDescription(EditApptCommand.COMMAND_WORD, EditApptCommand.MESSAGE_USAGE);
     private final CommandDescription deleteApptDes =
             new CommandDescription(DeleteApptCommand.COMMAND_WORD, DeleteApptCommand.MESSAGE_USAGE);
+    private final CommandDescription showMrDes =
+            new CommandDescription(ShowMrCommand.COMMAND_WORD, ShowMrCommand.MESSAGE_USAGE);
 
     public final ObservableList<CommandDescription> commandDescriptions = FXCollections
             .observableArrayList(addCommandDes, clearCommandDes, deleteCommandDes, editCommandDes,
                     findCommandDes, listCommandDes, helpCommandDes, countCommandDes, sortCommandDes,
-                    showApptDes, addApptDes, editApptDes, deleteApptDes);
+                    showApptDes, addApptDes, editApptDes, deleteApptDes, showMrDes);
 
     @FXML
     private Button copyButton;
@@ -92,6 +95,7 @@ public class HelpWindow extends UiPart<Stage> {
         moreInfo.setText(MORE_INFO);
         commandDescriptions.sort(Comparator.comparing(CommandDescription::getCommand));
         helpTable.setItems(commandDescriptions);
+        helpTable.getColumns().forEach(col -> col.setSortable(false));
     }
 
     /**

@@ -5,23 +5,40 @@ title: Peh Jun Siang's Project Portfolio Page
 
 ## Project: Hospify
 
-Hospify is an application to help maintain medical records.
+**Hospify** is an application to help maintain medical records.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to add new medical records.
-  * What it does: allows the user to all new record.
+* **New Feature**: Add the ability to open medical records directly from the browser.
+  * What it does: Open medical record on browser directly from **Hospify**.
 
 * **Code contributed**: [RepoSense link]()
   * Added new test cases
+  * Add showAppt
+  * Add showMr
+  * UI of Hospify
+  * Help Window
+  * Appointment Window
 
 * **Project management**:
+    * Design the **Hospify** logo
+    
 
 * **Enhancements to existing features**:
+    * Add ability to view appointments by clicking on cards using the GUI
 
 * **Documentation**:
   * User Guide:
+    * `help` command
+    * `showAppt` command
+    * `edit` command
+    * General FAQ
   * Developer Guide:
+    * `showAppt` command
+    * `help` command
+    * Use cases
+    * UML Diagrams
+    
 
   * Readme
     * Add Readme for Hospify
@@ -29,5 +46,3 @@ Given below are my contributions to the project.
 * **Community**:
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
