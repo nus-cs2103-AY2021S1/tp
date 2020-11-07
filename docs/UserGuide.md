@@ -632,7 +632,6 @@ Example:
  you want to remind yourself to review the marking before you can give it back to your students.
     * Assuming the previous note was the first note, you can use `note edit 1 d/review marking`
      to change the note to remind yourself to review the marking.
-    * You can also change the title if 
      
 #### 3.6.3 Deleting a note `note delete`
 
