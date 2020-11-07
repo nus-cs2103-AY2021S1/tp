@@ -1,5 +1,6 @@
 package seedu.stock.logic.commands;
 
+import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.INDEX_FIRST_STOCK;
@@ -59,7 +60,7 @@ public class UnbookmarkCommandTest {
     }
 
     @Test
-    public void execute_unbookmarkNotBookmarked_success() {
+    public void execute_unbookmarkNotBookmarked_failure() {
         Set<SerialNumber> serialNumbersToBookmark = new LinkedHashSet<>();
         List<Stock> stocksToUnbookmark = new ArrayList<>();
 
@@ -73,16 +74,11 @@ public class UnbookmarkCommandTest {
         String expectedMessage = String.format(UnbookmarkCommand.MESSAGE_NOT_BOOKMARKED,
                 stocksAsString(stocksToUnbookmark));
 
-        Model expectedModel = new ModelManager(getTypicalStockBook(), new UserPrefs(),
-                getTypicalSerialNumberSetsBook());
-
-        expectedModel.sortFilteredStockList(SortUtil.generateGeneralComparator());
-
-        assertCommandSuccess(unbookmarkCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(unbookmarkCommand, model, expectedMessage);
     }
 
     @Test
-    public void execute_unbookmarkInvalidSerialNumber_success() {
+    public void execute_unbookmarkInvalidSerialNumber_failure() {
         Set<SerialNumber> serialNumbersToUnbookmark = new LinkedHashSet<>();
         List<Stock> stocksToUnbookmark = new ArrayList<>();
         SerialNumber invalidSerialNumber = new SerialNumber("ABC1");
@@ -99,12 +95,7 @@ public class UnbookmarkCommandTest {
         String expectedMessage = String.format(UnbookmarkCommand.MESSAGE_SERIAL_NUMBER_NOT_FOUND,
                 arrayAsString(stocksToUnbookmark));
 
-        Model expectedModel = new ModelManager(getTypicalStockBook(), new UserPrefs(),
-                getTypicalSerialNumberSetsBook());
-
-        expectedModel.sortFilteredStockList(SortUtil.generateGeneralComparator());
-
-        assertCommandSuccess(unbookmarkCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(unbookmarkCommand, model, expectedMessage);
     }
 
 
