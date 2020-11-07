@@ -121,6 +121,23 @@ Classes used by multiple components are in the `quickcache.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+The features mentioned are:
+
+- [Opening of flashcards](#open-flashcard)
+- [Displaying statistics of a flashcard](#display-statistics-of-flashcard)
+- [Clear statistics of a flashcard](#clear-statistics-of-flashcard)
+- [Find by tag and question keywords](#find-by-tag-and-question-keywords)
+- [Tagging system](#tags)
+- [Delete by tags](#delete-by-tag)
+- [Setting difficulty for flashcards](#difficulty)
+- [Adding flashcards with open ended questions](#add-flashcard-with-open-ended-question)
+- [Adding flashcards with multiple choice questions](#add-flashcard-with-multiple-choice-question)
+- [Deleting a flashcard by index](#delete-by-index)
+- [Editing a flashcard](#edit-flashcard)
+- [Testing a flashcard](#testing-a-flashcard)
+- [Export](#exporting-flashcards)
+- [Import](#importing-flashcards)
+
 ### Open Flashcard
 
 The open flashcard feature will allow the user to open a flashcard specified by the given index and display it in the GUI.
@@ -214,7 +231,7 @@ The following sequence diagram shows how the stats operation works:
 
 ![ClearStatsSequenceDiagram](images/ClearStatsSequenceDiagram.png)
 
-### Find by tag and question keywords feature
+### Find by tag and question keywords
 
 This find by tag and question keywords feature will allow the user to find flashcards specified by specifying tags and/or keywords that they possess.
 
@@ -248,7 +265,7 @@ Step 1. The user launches the application for the first time. The `QuickCache` w
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
-### Delete by tag feature
+### Delete by tag
 
 This delete by tag feature will allow the user to delete flashcards specified by a given set of tags.
 
@@ -335,7 +352,7 @@ Step 3. The user executes `edit 1 d/difficultyLevel` to edit the difficulty in t
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Add Flashcard with open-ended question feature
+### Add Flashcard with open-ended question
 
 The Add mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
 
@@ -361,7 +378,7 @@ The following sequence diagram shows how the Add operation works:
   * Pros: Easy to implement and CLI-optimized.
   * Cons: May be complicated as there will be too many fields in the `add` command.
 
-### Add Flashcard with Multiple Choice question feature
+### Add Flashcard with multiple choice question
 
 The Add Multiple Choice Question mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
 
@@ -386,7 +403,7 @@ The following sequence diagram shows how the Addmcq operation works:
   * Pros: Easy to implement and CLI-optimized.
   * Cons: May be complicated as there will be too many fields in the `add` command.
 
-### Delete Flashcard feature
+### Delete By Index
 
 The  Delete mechanism is facilitated by `QuickCache` . It will delete the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
 
@@ -411,7 +428,7 @@ The following sequence diagram shows how the delete operation works:
   * Pros: Easy to implement and CLI-optimized.
   * Cons: User have to know the index of the specified flashcard.
 
-### Edit Flashcard feature
+### Edit Flashcard
 
 The Delete mechanism is facilitated by `QuickCache` . It will edit the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
 
@@ -437,7 +454,7 @@ The following sequence diagram shows how the edit operation works:
   * Cons: User have to know the index of the specified flashcard.
 
 
-### Test feature
+### Testing a flashcard
 
 #### Implementation
 
@@ -487,7 +504,7 @@ The following activity diagram summarizes what happens when a user executes a te
 
 _{more aspects and alternatives to be added}_
 
-### Export Feature
+### Exporting Flashcards
 
 #### Implementation
 
@@ -526,7 +543,7 @@ The following activity diagram summarizes what happens when a user executes an `
 
 _{more aspects and alternatives to be added}_
 
-### Import Feature
+### Importing Flashcards
 
 #### Implementation
 
