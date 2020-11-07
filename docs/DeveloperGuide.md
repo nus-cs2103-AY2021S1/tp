@@ -298,9 +298,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files                 |
 | `* *`    | CS student with a lot of project                               | hide private contact details                          | minimize chance of someone else seeing them by accident       |
 | `* *`    | Command line user                                              | use commands similar to Linux                         | use the similar Linux command without having to relearn       |
-| `* *`    | Careless CS student                                            | be able to undo                                       | avoid making unnecessary mistake                              |
+| `* *`    | Careless CS student                                            | be able to undo my mistake                            | have a second chance to amend my mistake                      |
 | `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                        |
-| `*`      | Intermediate user                                              | delete tagged file                                    | not be distracted by it.                                      |
+| `*`      | Intermediate user                                              | delete tagged files                                   | not be distracted by it.                                      |
 
 
 
