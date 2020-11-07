@@ -65,7 +65,7 @@ public class EditLogDescriptorBuilder {
     /**
      * Sets the {@code Rep} of the {@code EditLogDescriptor} that we are building.
      */
-    public EditLogDescriptorBuilder withReps(String reps) {
+    public EditLogDescriptorBuilder withReps(int reps) {
         descriptor.setRep(new Rep(reps));
         return this;
     }

@@ -13,8 +13,8 @@ import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_A_STR;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_B_STR;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_A;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_B;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A_STR;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B_STR;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A_INT;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B_INT;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
@@ -83,7 +83,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_EXERCISE_DESC, Name.MESSAGE_CONSTRAINTS, logBook); // invalid exercise
-        assertParseFailure(parser, "1" + INVALID_REP_DESC, Rep.MESSAGE_CONSTRAINTS, logBook); // invalid rep
+        assertParseFailure(parser, "1" + INVALID_REP_DESC, Rep.NUMBER_CONSTRAINTS, logBook); // invalid rep
 
         // invalid exercise followed by valid rep
         assertParseFailure(parser, "1" + INVALID_EXERCISE_DESC + INVALID_REP_DESC, Name.MESSAGE_CONSTRAINTS, logBook);
@@ -104,7 +104,7 @@ public class EditCommandParserTest {
                 + COMMENT_DESC_A;
 
         EditLogDescriptor descriptor = new EditLogDescriptorBuilder().withExercise(VALID_EXERCISE_A)
-                .withReps(VALID_REP_A_STR).withComment(VALID_COMMENT_A_STR).build();
+                .withReps(VALID_REP_A_INT).withComment(VALID_COMMENT_A_STR).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand, logBook);
@@ -116,7 +116,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + EXERCISE_DESC_A + REP_DESC_A;
 
         EditLogDescriptor descriptor = new EditLogDescriptorBuilder().withExercise(VALID_EXERCISE_A)
-                .withReps(VALID_REP_A_STR).build();
+                .withReps(VALID_REP_A_INT).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand, logBook);
@@ -133,7 +133,7 @@ public class EditCommandParserTest {
 
         // reps
         userInput = targetIndex.getOneBased() + REP_DESC_A;
-        descriptor = new EditLogDescriptorBuilder().withReps(VALID_REP_A_STR).build();
+        descriptor = new EditLogDescriptorBuilder().withReps(VALID_REP_A_INT).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand, logBook);
 
@@ -151,7 +151,7 @@ public class EditCommandParserTest {
                 + EXERCISE_DESC_B + REP_DESC_B + COMMENT_DESC_B;
 
         EditLogDescriptor descriptor = new EditLogDescriptorBuilder().withExercise(VALID_EXERCISE_B)
-                .withReps(VALID_REP_B_STR).withComment(VALID_COMMENT_B_STR).build();
+                .withReps(VALID_REP_B_INT).withComment(VALID_COMMENT_B_STR).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand, logBook);
@@ -171,7 +171,7 @@ public class EditCommandParserTest {
         userInput = targetIndex.getOneBased() + COMMENT_DESC_A + INVALID_EXERCISE_DESC + EXERCISE_DESC_A
                 + REP_DESC_A;
         descriptor = new EditLogDescriptorBuilder().withExercise(VALID_EXERCISE_A).withComment(VALID_COMMENT_A_STR)
-                .withReps(VALID_REP_A_STR).build();
+                .withReps(VALID_REP_A_INT).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand, logBook);
     }

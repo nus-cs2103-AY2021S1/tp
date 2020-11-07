@@ -57,6 +57,10 @@ public class Log {
         return dateTime;
     }
 
+    public Log setExercise(Exercise newExercise) {
+        return new Log(newExercise, reps, comment, dateTime);
+    }
+
     /**
      * Gets date time in string format
      *
@@ -126,7 +130,7 @@ public class Log {
 
     @Override
     public String toString() {
-        return getExercise().getName() + "\n"
+        return "Exercise: " + getExercise().getName() + "\n"
             + "Time: " + getPrettyDateTime() + "\n"
             + "Rep: " + getReps() + "\n"
             + "Calories: " + getCalories() + "\n"

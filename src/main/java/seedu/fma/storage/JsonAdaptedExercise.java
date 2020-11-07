@@ -50,7 +50,7 @@ class JsonAdaptedExercise {
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        if (!Calories.isValidCalories(String.valueOf(caloriesPerRep))) {
+        if (!Calories.isValidCalories(caloriesPerRep)) {
             throw new IllegalValueException(Calories.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);

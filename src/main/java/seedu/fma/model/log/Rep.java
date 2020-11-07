@@ -1,56 +1,51 @@
 package seedu.fma.model.log;
 
-import static java.lang.Integer.parseInt;
-import static java.util.Objects.requireNonNull;
-import static seedu.fma.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents a Log's Rep number in the log book.
- * Guarantees: immutable; is valid as declared in {@link #isValidRep(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidRep(int)}
  */
 public class Rep {
+    public static final String NUMBER_CONSTRAINTS = "Don't try to break our app! "
+            + "Reps should be an integer within range 1-1000 inclusive.";
     public static final String MESSAGE_CONSTRAINTS =
-            "Reps should only contain numbers, and it should be at least 1 digit long";
-    public static final String VALIDATION_REGEX = "\\d{1,}";
-    public final String value;
+            "Don't try to cheat us! Reps should be within range 1-1000 inclusive.";
+    public final int value;
 
     /**
      * Constructs a {@code Rep}.
      *
      * @param reps The number of reps of exercise.
      */
-    public Rep(String reps) {
-        requireNonNull(reps);
-        checkArgument(isValidRep(reps), MESSAGE_CONSTRAINTS);
+    public Rep(int reps) {
         value = reps;
     }
 
     /**
-     * Returns true if a given string is a valid Rep number.
+     * Returns true if a given int is within range 1-1000 inclusive
      */
-    public static boolean isValidRep(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidRep(int rep) {
+        return 1 <= rep && rep <= 1000;
     }
 
     public int getReps() {
-        return parseInt(value);
+        return value;
     }
 
     @Override
     public String toString() {
-        return value;
+        return String.valueOf(value);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Rep // instanceof handles nulls
-                && value.equals(((Rep) other).value)); // state check
+                && value == (((Rep) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return Integer.hashCode(value);
     }
 
 }

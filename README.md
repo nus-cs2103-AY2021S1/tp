@@ -2,7 +2,7 @@
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-F10-3/tp/actions)
 
-![Ui](docs/images/Ui-v1.1.png)
+![Ui](docs/images/screenshots/v1.3homescreen.png)
 
 ## What?
 

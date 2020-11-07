@@ -45,7 +45,7 @@ class JsonAdaptedLog {
     public JsonAdaptedLog(Log source) {
         exercise = source.getExercise().getName().toString();
         dateTime = source.getDateTime().toString();
-        rep = source.getReps().value;
+        rep = source.getReps().toString();
         comment = source.getComment().value;
     }
 
@@ -80,10 +80,15 @@ class JsonAdaptedLog {
         if (rep == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rep.class.getSimpleName()));
         }
-        if (!Rep.isValidRep(rep)) {
+        try {
+            Integer.parseInt(rep);
+        } catch (NumberFormatException e) {
+            throw new IllegalValueException(Rep.NUMBER_CONSTRAINTS);
+        }
+        if (!Rep.isValidRep(Integer.parseInt(rep))) {
             throw new IllegalValueException(Rep.MESSAGE_CONSTRAINTS);
         }
-        final Rep modelRep = new Rep(rep);
+        final Rep modelRep = new Rep(Integer.parseInt(rep));
 
         if (comment == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Comment.class.getSimpleName()));

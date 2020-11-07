@@ -15,9 +15,9 @@ public class SampleDataUtil {
     public static Log[] getSampleLogs(LogBook logBook) {
         return new Log[] {
             new Log(logBook.getExercise(new Name("Sit ups")),
-                    new Rep("30"), new Comment("My abs hurt :(")),
+                    new Rep(30), new Comment("My abs hurt :(")),
             new Log(logBook.getExercise(new Name("Pull ups")),
-                    new Rep("10"), new Comment("-"))
+                    new Rep(10), new Comment("-"))
         };
     }
 

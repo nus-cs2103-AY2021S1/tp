@@ -20,8 +20,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
+import seedu.fma.model.log.Comment;
 import seedu.fma.model.log.Log;
+import seedu.fma.model.log.Rep;
 import seedu.fma.model.log.exceptions.DuplicateLogException;
+import seedu.fma.model.util.Calories;
 import seedu.fma.model.util.Name;
 import seedu.fma.testutil.LogBuilder;
 
@@ -85,6 +88,17 @@ public class LogBookTest {
     @Test
     public void getLogList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> fmaBook.getLogList().remove(0));
+    }
+
+    @Test
+    public void setExercise_modifyExercise_updateBothExerciseAndLogs() {
+        Exercise exerciseA = new Exercise(new Name("Jump"), new Calories(30));
+        Log logA = new Log(exerciseA, new Rep(50), new Comment("Hi"));
+        fmaBook.addExercise(exerciseA);
+        fmaBook.addLog(logA);
+        Exercise exerciseB = new Exercise(new Name("Skip"), new Calories(50));
+        fmaBook.setExercise(exerciseA, exerciseB);
+        assertEquals(fmaBook.getLogList().stream().filter(log -> log.getExercise().equals(exerciseB)).count(), 1);
     }
 
     @Test

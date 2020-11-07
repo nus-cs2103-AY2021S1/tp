@@ -6,7 +6,7 @@ import static seedu.fma.logic.commands.CommandTestUtil.EDIT_LOG_DESCRIPTOR_A;
 import static seedu.fma.logic.commands.CommandTestUtil.EDIT_LOG_DESCRIPTOR_B;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_B_STR;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_B;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B_STR;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B_INT;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +43,7 @@ public class EditLogDescriptorTest {
         assertNotEquals(EDIT_LOG_DESCRIPTOR_A, editedAmy);
 
         // different email -> returns false
-        editedAmy = new EditLogDescriptorBuilder(EDIT_LOG_DESCRIPTOR_A).withReps(VALID_REP_B_STR).build();
+        editedAmy = new EditLogDescriptorBuilder(EDIT_LOG_DESCRIPTOR_A).withReps(VALID_REP_B_INT).build();
         assertNotEquals(EDIT_LOG_DESCRIPTOR_A, editedAmy);
 
         // different address -> returns false

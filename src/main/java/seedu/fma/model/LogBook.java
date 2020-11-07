@@ -140,12 +140,13 @@ public class LogBook implements ReadOnlyLogBook {
     /**
      * Replaces the given Exercise {@code target} in the list with {@code editedExercise}.
      * {@code target} must exist in the log book.
-     * The log identity of {@code editedExercise} must not be the same as another existing Exercise in the log book.
+     * The identity of {@code editedExercise} must not be the same as another existing Exercise in the log book.
      */
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireNonNull(editedExercise);
 
         exercises.setExercise(target, editedExercise);
+        logs.setExercise(target, editedExercise);
     }
 
     /**

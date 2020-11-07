@@ -78,11 +78,18 @@ public class ParserUtil {
      */
     public static Rep parseRep(String rep) throws ParseException {
         requireNonNull(rep);
-        String trimmedRep = rep.trim();
-        if (!Rep.isValidRep(rep)) {
-            throw new ParseException(Rep.MESSAGE_CONSTRAINTS);
+
+        try {
+            int repInt = Integer.parseInt(rep);
+
+            if (!Rep.isValidRep(repInt)) {
+                throw new ParseException(Rep.MESSAGE_CONSTRAINTS);
+            }
+
+            return new Rep(repInt);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Rep.NUMBER_CONSTRAINTS);
         }
-        return new Rep(trimmedRep);
     }
 
     /**
@@ -113,11 +120,17 @@ public class ParserUtil {
     public static Calories parseCalories(String calories) throws ParseException {
         requireNonNull(calories);
 
-        if (!Calories.isValidCalories(calories)) {
-            throw new ParseException(Calories.MESSAGE_CONSTRAINTS);
-        }
+        try {
+            int caloriesInt = Integer.parseInt(calories);
 
-        return new Calories(Integer.parseInt(calories));
+            if (!Calories.isValidCalories(caloriesInt)) {
+                throw new ParseException(Calories.MESSAGE_CONSTRAINTS);
+            }
+
+            return new Calories(caloriesInt);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Calories.NUMBER_CONSTRAINTS);
+        }
     }
 
     /**

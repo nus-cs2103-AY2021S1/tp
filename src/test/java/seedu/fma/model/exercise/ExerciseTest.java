@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.fma.model.util.Calories;
-import seedu.fma.model.util.Name;
 import seedu.fma.testutil.ExerciseBuilder;
 
 public class ExerciseTest {
@@ -20,13 +19,6 @@ public class ExerciseTest {
     public void constructor_null_throwsNullPointerException() {
         // null name
         assertThrows(NullPointerException.class, () -> new Exercise(null, new Calories(123)));
-    }
-
-    @Test
-    public void constructor_invalidCaloriesPerRep_throwsIllegalArgumentException() {
-        // invalid caloriesPerRep
-        assertThrows(IllegalArgumentException.class, () ->
-                new Exercise(new Name("jumping jacks"), new Calories(-10)));
     }
 
     @Test
@@ -59,6 +51,6 @@ public class ExerciseTest {
 
     @Test
     void testToString() {
-        assertEquals("Flying kicks CaloriesPerRep: 15", EXERCISE_A.toString());
+        assertEquals("Exercise: Flying kicks\nCaloriesPerRep: 15", EXERCISE_A.toString());
     }
 }

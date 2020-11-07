@@ -17,21 +17,21 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String AC_SUGGESTION = COMMAND_WORD + " "
-            + PREFIX_E + "<exercise> "
+            + PREFIX_E + "<exercise name> "
             + PREFIX_R + "<reps> "
-            + PREFIX_C + "<comment> ";
+            + PREFIX_C + "[comment] ";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a log to the log book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a log to the log book. \n"
             + "Parameters: "
-            + PREFIX_E + "EXERCISE "
-            + PREFIX_R + "REPS "
-            + PREFIX_C + "COMMENT \n"
+            + PREFIX_E + "<exercise name> "
+            + PREFIX_R + "<reps> "
+            + PREFIX_C + "[comment] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_E + "Sit ups "
             + PREFIX_R + "30 "
-            + PREFIX_C + "my abs hurt:( \n";
+            + PREFIX_C + "my abs hurt:(";
 
-    public static final String MESSAGE_SUCCESS = "New log added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New log added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_LOG = "This log already exists in the log book";
 
     private final Log toAdd;

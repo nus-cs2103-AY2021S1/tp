@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-FixMyAbs is a desktop app for managing exercises, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are unmotivated for a workout, FixMyAbs will be your partner in helping you to change your life. 😎
+FixMyAbs is a desktop app for logging your exercises, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+Using FixMyAbs, you will be able to add your own custom exercises along with the calories burnt per rep. These exercises will be listed in the Exercise List. You will then be able to log your exercises, along with the number of reps you have done. FixMyAbs will automatically track the number of calories burnt, and provide you with a log of the exercises you have done. Tracking your progress has never been easier!
+
+If you are unmotivated for a workout, FixMyAbs will be your partner in helping you to change your life. 😎
 
 * Table of Contents
 {:toc}
@@ -40,18 +44,21 @@ FixMyAbs is a desktop app for managing exercises, optimized for use via a Comman
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" id="command-format">
 
 **:information_source: Notes about the command format:**<br>
 
 - Words in `<>` are the parameters to be supplied by the user.<br>
-  e.g. in `add e/<exercise>`, `exercise` is a parameter which can be used as `add e/Sit ups`.
+  e.g. in `add e/<exercise name>`, `exercise` is a parameter which can be used as `add e/Sit ups`.
 
 - Items in square brackets are optional.<br>
-  e.g `e/<exercise> c/[comments]` can be used as `e/Sit ups c/my abs hurt` or as `e/Sit ups c/`.
+  e.g `e/<exercise name> c/[comment]` can be used as `e/Sit ups c/my abs hurt` or as `e/Sit ups c/`.
 
 - Parameters can be in any order.<br>
-  e.g. if the command specifies `e/<exercise> r/<rep>`, `r/<rep> e/<exercise>` is also acceptable.
+  e.g. if the command specifies `e/<exercise name> r/<rep>`, `r/<rep> e/<exercise name>` is also acceptable.
+
+- Exercise names are case-insensitive and whitespace-insensitive.<br>
+  e.g. `Sit ups`, `SITUPS`, and `S i T u P   s` are all recognised as the same exercise.
 
 </div>
 
@@ -65,15 +72,23 @@ Format: `help`
 
 ### Adding a log: `add`
 
-Adds an exercise log.
+Adds a log.
 
-- Exercise must be found in the list of exercise and match the exercise name exactly (case-sensitive)
+- Exercise must already be present in the Exercise list. [Exercise names are case-insensitive and whitespace-insensitive.](#command-format)
+- The comment may be left blank. (`c/` is compulsory)
 
-Format: `add e/<exercise> r/<reps> c/<comment>`
+Format: `add e/<exercise name> r/<reps> c/[comment]`
+
+Constraints:
+- reps must be within range 1-1000 inclusive
 
 Examples:
+- `add e/Sit ups r/1 c/` Adds a log with an existing exercise `Sit ups`, 1 rep and no comment.
+- `add e/Sit ups r/1 c/my abs hurt :(` Adds a log with an existing exercise `Sit ups`, 1 rep and a comment of `no abs
+ were hurt`.
+- `add e/sit ups r/20 c/my abs hurt :(` Adds a log an existing exercise `sit ups`, 20 reps and a comment of `no
+ abs were hurt`.
 
-- `add e/Sit ups r/1 c/my abs hurt :(`
 
 ![Ui](images/screenshots/v1.3add.png)
 
@@ -86,21 +101,26 @@ Shows a list of all logs logged by the user in the application.
 
 Format: `list`
 
+Example: `list`
+
 ![Ui](images/screenshots/v1.3list_success.png)
 
 ### Editing a log : `edit`
 
 Edits an existing log in the application.
 
-Format: `edit <index> r/[reps] c/[comment]`
+Format: `edit <index> [r/reps] [c/comment]`
+
+Constraints:
+- reps must be within range 1-1000 inclusive
 
 - Edits the existing log at the specified `<index>`. The index refers to the index number shown in the displayed log list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 
 Examples:
-
-- `edit 1 c/no abs were hurt` Edits the log at index 1, with a comment of `no abs were hurt`.
+- `edit 1 r/20` Edits the log at index 1, with 20 reps.
+- `edit 2 c/no abs were hurt` Edits the log at index 2, with a comment of `no abs were hurt`.
 - `edit 1 r/20 c/no abs were hurt` Edits the log at index 1, with reps of `20` and a comment of `no abs were hurt`.
 
 ![Ui](images/screenshots/v1.3edit.png)
@@ -116,11 +136,10 @@ Format: `delete <index>`
 
 - Deletes the log at the specified `<index>`.
 - The index refers to the index number shown in the list of logs.
-- The index **must be a positive integer** 1, 2, 3, …​
+- The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-
-- `list` followed by `delete 2`deletes the 2nd log.
+- `delete 2` Deletes the 2nd log.
 
 ![Ui](images/screenshots/v1.3delete.png)
 
@@ -131,7 +150,11 @@ Success:
 
 Finds all logs that contain ALL keywords (case-insensitive) anywhere in the log.
 
-Format: `find <keywords>`
+Format: `find <keywords in logs>`
+
+Examples:
+- `find abs` Find log(s) which contain(s) the word `abs`.
+- `find Oct` Find log(s) which contain(s) the word `Oct`.
 
 ![Ui](images/screenshots/v1.3find.png)
 
@@ -142,9 +165,17 @@ Success:
 
 Adds an exercise.
 
-Format: `addex e/<exercise> c/<calories per rep>`
+Format: `addex e/<exercise name> c/calories per rep`
 
-- Calories per rep would be used to calculate the calories burnt for each log
+- The exercise must not already exist. [Exercise names are case-insensitive and whitespace-insensitive.](#command-format)
+- Calories per rep would be used to calculate the calories burnt for each log.
+
+Constraints:
+- calories must be within range 1-1000 inclusive
+
+Examples:
+- `addex e/Sit ups c/20` Adds an exercise with name`Sit ups` and 20 calories per rep.
+- `addex e/Jumping jacks c/50` Adds an exercise with name`Jumping jacks`and 50 calories per rep.
 
 ![Ui](images/screenshots/v1.3addex.png)
 
@@ -153,13 +184,23 @@ Success:
 
 ### Editing an exercise: `editex`
 
-Edits an existing exercise in the application, either with new name, or new calories per rep.
+Edits an existing exercise in the application, either with a new name, or new calories per rep.
 
-Format: `editex <index> [e/EXERCISE] [c/CALORIES]`
+Format: `editex <index> [e/exercise] [c/calories per rep]`
 
-* Edits the existing exercise at the specified `INDEX`. The index refers to the index number shown in the displayed exercise list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the existing exercise at the specified `index`. The index refers to the index number shown in the displayed exercise list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
+* The new exercise must not already exist. [Exercise names are case-insensitive and whitespace-insensitive.](#command-format)
 * Existing values will be updated to the input values.
+
+Constraints:
+- calories must be within range 1-1000 inclusive
+
+Examples:
+- `editex 2 e/Sit ups` Edits an exercise at index `2` with name `Sit ups`.
+- `editex 3 c/50` Edits an exercise at index `3` with 50 calories per rep.
+- `editex 3 e/Sit ups c/50` Edits an exercise at index `3` with name `Sit ups` and 50 calories per rep.
+
 
 ![Ui](images/screenshots/editex.png)
 
@@ -174,11 +215,10 @@ Format: `deleteex <index>`
 
 - Deletes the log at the specified `<index>`.
 - The index refers to the index number shown in the list of exercises.
-- The index **must be a positive integer** 1, 2, 3, …​
+- The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-
-- `list` followed by `deleteex 1`deletes the 1st exercise.
+- `deleteex 1` deletes the 1st exercise in the exercise list.
 
 ![Ui](images/screenshots/deleteex.png)
 
@@ -222,13 +262,14 @@ Exercise log data are saved in the hard disk automatically after any command tha
 
 | Action     | Format                                    | Examples                                  |
 | ---------- | ----------------------------------------- | ----------------------------------------- |
-| **Add**    | `add e/<exercise> r/<reps> c/<comments>`  | e.g. `add e/Sit ups r/30 c/Send help`       |
-| **Delete** | `delete <index>`                          | e.g. `delete 3`                      |
-| **Edit**   | `edit <index> r/[reps] c/[comment]`       | e.g.`edit 1 r/20 c/no abs were hurt` |
-| **List**   | `list`                                    |
+| **Add Log**    | `add e/<exercise name> r/<reps> c/[comment]`  | e.g. `add e/Sit ups r/30 c/Send help`, `add e/Sit ups r/30 c/`       |
+| **Delete Log** | `delete <index>`                          | e.g. `delete 3`                      |
+| **Edit Log**   | `edit <index> [r/reps] [c/comment]`       | e.g.`edit 1 r/20 c/no abs were hurt`, `edit 1 r/20`, `edit 1 c/no abs were hurt` |
+| **List Logs**   | `list`                                    |
 | **Add exercise**   | `addex e/<exercise name> c/<calories per rep>` | e.g. `addex e/Lunges c/5` |
-| **Edit exercise**   | `editex <index> e/[exercise name] c/[calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6` |
+| **Edit exercise**   | `editex <index> [e/exercise name] [c/calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6`, `editex 1 e/One-legged Lunges`, `editex 1 c/6` |
 | **Delete exercise**   | `deleteex <index>` | e.g. `deleteex 1` |
-| **Find**   | `find <keywords>`                         | e.g.`find pushups`                   |
 | **Clear**  | `clear`                                   |                   |
+| **Find**   | `find <keywords in logs>`                         | e.g.`find pushups`                   |
+| **Help**   | `help`                         | e.g.`help`                   |
 | **Exit**   | `exit`                                    |

@@ -21,37 +21,37 @@ public class TypicalLogs {
     public static final Log LOG_A = new LogBuilder()
             .withExercise(new ExerciseBuilder(SAMPLE_EXERCISES[0]).build())
             .withDateTime(LocalDateTime.of(2020, 1, 1, 1, 1))
-            .withReps("1")
+            .withReps(1)
             .withComment("This")
             .build();
     public static final Log LOG_B = new LogBuilder()
             .withExercise(new ExerciseBuilder(SAMPLE_EXERCISES[1]).build())
             .withDateTime(LocalDateTime.of(2020, 2, 2, 2, 2))
-            .withReps("2")
+            .withReps(2)
             .withComment("is")
             .build();
     public static final Log LOG_C = new LogBuilder()
             .withExercise(new ExerciseBuilder(SAMPLE_EXERCISES[2]).build())
             .withDateTime(LocalDateTime.of(2020, 3, 3, 3, 3))
-            .withReps("34")
+            .withReps(34)
             .withComment("a")
             .build();
     public static final Log LOG_D = new LogBuilder()
             .withExercise(new ExerciseBuilder(SAMPLE_EXERCISES[3]).build())
             .withDateTime(LocalDateTime.of(2020, 4, 4, 4, 4))
-            .withReps("56")
+            .withReps(56)
             .withComment("typical")
             .build();
     public static final Log LOG_E = new LogBuilder()
             .withExercise(new ExerciseBuilder(SAMPLE_EXERCISES[4]).build())
             .withDateTime(LocalDateTime.of(2020, 5, 5, 5, 5))
-            .withReps("67")
+            .withReps(67)
             .withComment("log")
             .build();
     public static final Log LOG_F = new LogBuilder()
             .withExercise(new ExerciseBuilder(SAMPLE_EXERCISES[5]).build())
             .withDateTime(LocalDateTime.of(2020, 6, 6, 6, 6))
-            .withReps("89")
+            .withReps(89)
             .withComment("book!")
             .build();
 
