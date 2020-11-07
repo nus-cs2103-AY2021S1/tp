@@ -22,9 +22,9 @@ public class DeleteTeammateCommand extends Command {
     public static final String COMMAND_WORD = "deleteteammate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the teammate identified by the Git Username in the current project.\n"
-        + "Parameters: Git UserName (must be a single word)\n"
-        + "Example: " + COMMAND_WORD + " LucasTai98";
+            + ": Deletes the teammate identified by the Git Username in the current project.\n"
+            + "Parameters: Git UserName (must be a single word)\n"
+            + "Example: " + COMMAND_WORD + " LucasTai98";
 
     public static final String MESSAGE_DELETE_TEAMMATE_SUCCESS = "Deleted Teammate: %1$s";
 
@@ -59,12 +59,12 @@ public class DeleteTeammateCommand extends Command {
 //        Project.deleteAllParticipationOf(personToDelete.getGitUserNameString());
         Project currentProject;
         Participation currentParticipation;
-        for(int i = 0 ; i<Project.getAllProjects().size();i++){
+        for (int i = 0; i < Project.getAllProjects().size(); i++) {
             currentProject = Project.getAllProjects().get(i);
-            if(currentProject.hasParticipation(personToDelete.getGitUserNameString())) {
+            if (currentProject.hasParticipation(personToDelete.getGitUserNameString())) {
                 currentParticipation = currentProject.getParticipation(personToDelete.getGitUserNameString());
                 currentProject.removeParticipationWithName(personToDelete.getGitUserNameString());
-                for(int j = 0 ; j<model.getFilteredParticipationList().size() ; j++){
+                for (int j = 0; j < model.getFilteredParticipationList().size(); j++) {
                     model.deleteParticipation(currentParticipation);
                 }
             }
@@ -77,7 +77,7 @@ public class DeleteTeammateCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DeleteTeammateCommand) // instanceof handles nulls
-            && gitUserIndex.equals(((DeleteTeammateCommand) other).gitUserIndex); // state check
+                || (other instanceof DeleteTeammateCommand) // instanceof handles nulls
+                && gitUserIndex.equals(((DeleteTeammateCommand) other).gitUserIndex); // state check
     }
 }
