@@ -283,6 +283,9 @@ Command and Parser makes use of Substitutability:
 * `AddRecipeCommandParser` implements `Parser<AddRecipeCommand>`
 * `AddIngredientCommandParser` implements `Parser<AddIngredientCommand>` <br><br>
 
+The following activity diagram shows how add operation generally works:
+![AddActivityDiagram](images/implementation/activityDiagrams/AddCommandActivityDiagram.png)
+
 The following sequence diagram shows how the add operation generally works when a recipe is added: <br> 
 `execute("addR n/Salad i/Veggies - 100g c/100 img/images/healthy3.jpg instr/Eat tag/healthy")` <br> 
 or when an ingredient is added: <br> 
@@ -395,6 +398,9 @@ The List Consumption feature will also calculate and show the total calories con
 #### 3.3.1 Implementation <a id="331-implementation"></a>
 Command and Parser make use of Substitutability:
 * `ListRecipeCommand`, `ListIngredientCommand` and `ListConsumptionCommand` extends `Command` <br><br>
+
+The following activity diagram shows how list operation generally works:
+![ListActivityDiagram](images/implementation/activityDiagrams/ListCommandActivityDiagram.png)
 
 The following sequence diagram shows how list operation works when `execute("recipes")`, `execute("fridge")` or
  `execute("calories")` is called:

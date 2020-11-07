@@ -1,0 +1,17 @@
+@startuml
+start
+:user inputs list command: list;
+:Logic executes list command;
+
+if () then ([no extra arguments])
+:execute ListCommand;
+
+:all item in the list is fetched;
+
+else ([include extra arguments])
+    :throw parse exception;
+
+endif
+stop
+
+@enduml
