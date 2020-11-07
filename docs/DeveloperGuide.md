@@ -1368,23 +1368,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | tech-savvy warehouse manager                                | to easily type shorter commands                                                      | I am able to execute functions quickly                                 |
 | `* * *`  | collaborative user                                          | my inventory to be able to be shared with my collaborators                           | my collaborators can only read and find data                           |
 | `* * *`  | tech savvy warehouse manager                                | to be able to change the information of my existing stock in the application         | I can keep my existing inventories updated                             |
-| `* *`    | major shareholder                                           | to easily understand how inventory count works                                       | I can determine if the investment is worthy                            |
-| `* *`    | manager                                                     | to be able to gather the statistics (eg. profit) of the items in inventory           | I can report the profitability of products                             |
-| `* *`    | forgetful stock                                            | to add optional notes at certain stocks                                              | I can be reminded of important information                             |
-| `* *`    | busy manager                                                | to be able to see or highlight low stocks at a glance                                | I can replenish them in time                                           |
-| `* *`    | busy manager                                                | to automate the calculation of how much stock to restock based on the current stocks | I do not need to spend time manually calculating                       |
-| `* *`    | tech savvy warehouse manager                                | to be able to bookmark certain items in the warehouse                                | I can access and augment their information easily                      |
+| `*`      | major shareholder                                           | to easily understand how inventory count works                                       | I can determine if the investment is worthy                            |
+| `* * *`  | manager                                                     | to be able to gather the statistics (eg. profit) of the items in inventory           | I can report the profitability of products                             |
+| `* * *`  | forgetful manager                                           | to add optional notes at certain stocks                                              | I can be reminded of important information                             |
+| `* * *`  | busy manager                                                | to be able to see or highlight low stocks at a glance                                | I can replenish them in time                                           |
+| `*`      | busy manager                                                | to automate the calculation of how much stock to restock based on the current stocks | I do not need to spend time manually calculating                       |
+| `* * *`  | tech savvy warehouse manager                                | to be able to bookmark certain items in the warehouse                                | I can access and augment their information easily                      |
 | `* * *`  | beginner user                                               | have an easy-to-understand interface                                                 |                                                                        |
 | `* * *`  | multi-OS user                                               | to run the application on popular operating systems in the market                    |                                                                        |
 | `* * *`  | tech savvy warehouse manager                                | to have a smooth flowing platform                                                    | I can track my inventories easily (Good UX)                            |
 | `* * *`  | new user                                                    | to read the documentation                                                            | I will be able to know how to use the program                          |
 | `* * *`  | offline user                                                | to run the application offline without the need to connect to the internet           |                                                                        |
 | `* * *`  | warehouse manager                                           | to store my data in a digitalised platform                                           | I do not have to fear for data loss                                    |
-| `* * *`  | impatient user                                              | to run the appli cation and execute commands without lag                             |                                                                        |
+| `* * *`  | impatient user                                              | to run the application and execute commands without lag                              |                                                                        |
 | `* * *`  | warehouse manager                                           | to have the capacity to store all my inventory data                                  | I am able to expand my range of inventory                              |
 | `* * *`  | tech savvy warehouse manager that can type fast             | to have a platform                                                                   | I can track my stocks through typing                                   |
 | `* * *`  | tech savvy warehouse manager                                | to digitalize my inventory                                                           | I do not have to find a physical space to store my inventory details   |
 | `* * *`  | warehouse manager                                           | to be able to easily teach my subordinates how to use the software                   | they can cover my role when I am not around                            |
+| `* * *`  | user                                                        | to sort my inventory by the fields I want                                            | I can view my stocks easier                                            |
+
 
 ### Use cases
 
@@ -2355,18 +2357,14 @@ testers are expected to do more *exploratory* testing.
        Expected: The stock with serial number Flower11 will have a new location Vase 3.
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/2103 s/Flower Distributor Association`
-       Expected: The stock with serial number Flower11 will have a new source Flower Distributor Association.
-       Details of the updated stock is shown in the status message.
-
-    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3 s/Flower Distributor Association`
+    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3`
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50, a new name Rose,
-       a new location Vase3, a new source Flower Distributor Association.
+       and a new location Vase3
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3 s/Flower Distributor Association`
+    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3`
        Expected: The stock with serial number Flower11 and Flower12 will have an increase of quantity by 50, a new name Rose,
-       a new location Vase3, a new source Flower Distributor Association.
+       and a new location Vase3.
        Details of the updated stock is shown in the status message.
 
 ### Generate statistics
