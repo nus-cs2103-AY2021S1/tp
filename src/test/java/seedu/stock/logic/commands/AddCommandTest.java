@@ -4,9 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.Assert.assertThrows;
+import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.APPLE;
 import static seedu.stock.testutil.TypicalStocks.BANANA;
+import static seedu.stock.testutil.TypicalStocks.PINEAPPLE;
+import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -14,22 +18,44 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.stock.commons.core.GuiSettings;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
+import seedu.stock.model.ModelManager;
 import seedu.stock.model.ReadOnlySerialNumberSetsBook;
 import seedu.stock.model.ReadOnlyStockBook;
 import seedu.stock.model.ReadOnlyUserPrefs;
 import seedu.stock.model.StockBook;
+import seedu.stock.model.UserPrefs;
 import seedu.stock.model.stock.SerialNumberSet;
 import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
 import seedu.stock.testutil.StockBuilder;
 
 public class AddCommandTest {
+    private Model model;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalStockBook(), new UserPrefs(), getTypicalSerialNumberSetsBook());
+    }
+
+    @Test
+    public void execute_newStock_success() {
+        Stock validStock = PINEAPPLE;
+
+        Model expectedModel = new ModelManager(model.getStockBook(), new UserPrefs(), getTypicalSerialNumberSetsBook());
+
+        expectedModel.addStock(validStock);
+        expectedModel.updateSerialNumberSet(PINEAPPLE.getSource());
+
+        assertCommandSuccess(new AddCommand(validStock), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validStock), expectedModel);
+    }
 
     @Test
     public void constructor_nullStock_throwsNullPointerException() {
