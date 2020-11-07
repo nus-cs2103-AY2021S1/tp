@@ -93,14 +93,18 @@ In this section, we will be looking at a series of commands that **Hospify** sup
 
 ### Displaying usage instructions: `help` (by Peh Jun Siang)
 
-The `help` command shows a list of all the commands and their usages with examples supported by **Hospify**.
-
-![tp_help_command](images/helpWindow.png)
+The `help` command shows the list of all the commands and their usages with examples supported by **Hospify**.
 
 Format: `help`
+
+After executing the `help`, the **sizable Help Window** pops up as shown below. The commands are sorted alphabetically.
+
+![tp_help_command](images/helpWindow.PNG)\
+Figure 1.1 Help window
+
 <div markdown="block" class="alert alert-primary">
 
-**:bulb: Tip:** You can click on the headers `COMMAND` and `USAGE` to sort the commands in a descending or ascending manner.
+**:bulb: Tip:** Whenever you feel lost when using **Hospify**, the `help` command can be very helpful.
 
 **:bulb: Tip:** You can copy the URL of the **Hospify User Guide** to your clipboard to view a more detailed description
 for the commands.
@@ -345,12 +349,13 @@ Unlike other commands, you can click on the patient's information to show the ap
 You can simply **double click** on the patient to display all the appointments of that patient.
 
 ![show appointments via gui](images/showAppt/showAppt_gui.PNG)
-
+Figure X Show appointments via GUI
 ###### 2. Using the `Command Line`
 If the number of patients is too large, it might be difficult to find the patient's information to click.
 In that case, you can use the command line to show the patient's appointments.
 
-![show appointments via gui](images/showAppt/showAppt_input.PNG)
+![show appointments via command line](images/showAppt/showAppt_input.PNG)\
+Figure X Show appointments via Command Line
 
 Format: `showAppt NRIC`
 
@@ -359,9 +364,10 @@ Example: `showAppt S1234567A`
 The **Appointment window should pop up** after successfully running the command either through the `GUI` or the `Command Line` shown below.
 
 ![Appointment Window](images/showAppt/showAppt_window.PNG)
+Figure X Appointments window with appointments of patient
 
 <div markdown="span" class="alert alert-primary">
-**:bulb: Tip:** You can **click on the headers** to sort the appointments from earliest to latest or latest to earliest.
+**:bulb: Tip:** You can **click on the **DATE** header** to sort the appointments from earliest to latest or latest to earliest.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -502,6 +508,32 @@ The example we have just discussed uses the `add` command. The usage of the `MED
 
 Another method to access the online medical record of the patient directly (without the copy-and-paste mechanism) is shown in the `showMr` command section below.
 
+### Show medical record directly: `showMr` (by Peh Jun Siang)
+We understand that it might be quite a hassle to copy the URL and paste it in your browser manually. Therefore, we
+implemented a short cut so that you can open up your default browser with the URL to the medical record directly from **Hospify** with the `showMr`
+command!
+
+Format: `showMr NRIC`\
+Example: `showMr s1234567A`
+
+Running the command as shown below will open your computer's **default browser** with the patient's medical record.
+![showMr command](images/showMrExample.PNG)
+Diagram X Using the `showMr` command to open patient's medical record.
+
+<div markdown="block" class="alert alert-warning">
+
+In the unlikely event that `showMr` command does not open up the medical record in your default browser,
+use the **manual method** described in [the above section](#using-the-medical-record-feature-mr-by-cedric-lim-jun-wei)
+on the medical record feature.
+
+**:warning: Important:** - Check that your URL is valid if the medical record does not open on your browser.
+
+Depending on the `Operating System` you are using, the `showMr` command may not work 
+sometimes because there might be some issues with your default browser. Do drop us an email
+at **hospify_enquiry@gmail.com** to notify the tech team if it does not open on your browser.
+
+</div>
+
 ### Clearing all entries: `clear`
 
 This command helps clear all patients' information from **Hospify**.
@@ -533,40 +565,73 @@ Format: `exit`
 In this section, we will be looking at some of the frequently asked questions from our users.
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Hospify** home folder.
+**A**: Install the app in the other computer and overwrite the **data file** with the `hospify.json` 
+that is in the **data file** of your other computer.
+* **Step 1.** Go into the **data file** in the previous home directory of the **Hospify** app.\
+![data file](images/faq/data_file.PNG)
+Figure 4.1.1 Go to the **Data File**
+* **Step 2.** Transfer the `hospify.json` file to your other computer through a flash drive or
+the web and paste the `hospify.json` file in the **data file** of your new **Hospify** app.
+![replace json file](images/faq/replace_json.PNG)
+Figure 4.1.2 Replace `hospify.json` file
 
 **Q**: I cannot run the `JAR` file! How do I get the program to run?<br/>
 **A**: Check if you have at least `Java 11` installed on your Computer.
 * On **Windows**\
-Step 1. Open up **Command Prompt** by searching for **cmd** in the task bar.\
-Step 2. Type the command `java -version` to check for the version.
-![windows java version](images/faq/windows_javaVersion.PNG)
+    **Step 1.** Open up **Command Prompt** by searching for **command prompt** in the task bar shown below.\
+![windows search command prompt](images/faq/search_commandPrompt.PNG)\
+Figure 4.2.1 Windows search for command prompt\
+    **Step 2.** Type the command `java -version` to check for the version.
+![windows java version](images/faq/windows_javaVersion.PNG)\
+Figure 4.2.2 Check windows java version
 
 <div markdown="block" class="alert alert-warning">
-**:warning: Important:** Ensure that the java version is at least **11**.
+**:warning: Important:** Ensure that the java version is at least `11`. If your version is less than `11`, 
+scroll down to the **:information_source: Notes** to the view the download link.
+
+After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
+
+If it still does not run, type the command `java -jar hospify.jar` in the command prompt in the **SAME directory** 
+containing your `hospify.jar` file shown below.
+
+![running jar from windows prompt](images/faq/windows_runJar.PNG)
+Figure 4.2.3 Running jar from windows prompt
+
 </div>
 
 * On **MAC**\
-Step 1. Open up **Terminal** by searching for **terminal** in the search bar.\
-![mac search bar](images/faq/mac_search.PNG)
-Step 2. Type the command `java -version` to check for the version.
-![windows java version](images/faq/mac_javaVersion.PNG)
+**Step 1.** Open up **Terminal** by searching for **terminal** in the search bar shown below.\
+![mac search bar](images/faq/mac_search.PNG)\
+Figure 4.2.4 mac search bar\
+**Step 2.** Type the command `java -version` to check for the version shown below.
+![mac java version](images/faq/mac_javaVersion.PNG)\
+Figure 4.2.5 Mac java version command
 
 <div markdown="block" class="alert alert-warning">
-**:warning: Important:** Ensure that the java version is at least **11**.
+**:warning: Important:** Ensure that the java version is at least `11`. If your version is less than `11`,
+scroll down to the **:information_source: Notes** to the view the download link.
+
+After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
+
+If it still does not run, type the command `java -jar hospify.jar` in the **TERMINAL** in the **SAME directory** 
+containing your `hospify.jar` file. 
+
+![running jar from Mac prompt](images/faq/mac_runJar.PNG)
+Figure 4.2.6 Running jar from Mac terminal
 </div>
 
 <div markdown="block" class="alert alert-primary">
-**:information_source: Notes:** If your java version is **less than 11**, visit
+**:information_source: Notes:** If your java version is **less than 11**, download from
  the official Java website [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 </div>
 
 **Q**: How do I get the latest version of **Hospify**?\
 **A**: As of the latest version, **Hospify** does not support updating within the application. In order to get the
  latest version, go to the **GitHub releases** [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.\
-![download jar](images/faq/download_jar.PNG)
+![download jar](images/faq/download_jar.PNG)\
+Figure 4.3.1 Download latest jar file
 
-**Q**: My question is not listed in the FAQ?\
+**Q**: My question is not listed in the FAQ. What should I do?\
 **A**: For inquires, please send email to our developer team at **hospify_enquiry@gmail.com**.
 
 
