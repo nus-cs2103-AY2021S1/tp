@@ -540,7 +540,11 @@ Extensions
         Use case resumes at step 1.
 
 
-*{More to be added}*
+**Use Case: View all students with the lowest participation score**
+
+**MSS**
+1. User requests to view all students with the lowest participation score.
+2. System shows all students with the lowest participation score.
 
 
 
