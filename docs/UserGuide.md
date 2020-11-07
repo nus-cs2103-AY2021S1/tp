@@ -221,12 +221,14 @@ Format: `add desc d:DESC`
 Example: 
 - `add desc d:Kovan double murders of twins xxx and yyy` adds the description “Kovan double murders of twins xxx and yyy” to the current case.
 
-#### Add document to the current case: `add doc n:TITLE r:FILE_NAME`
-Adds a new document to the current case with the specified `TITLE` and `FILE_NAME`.
+#### Add document to the current case: `add doc n:NAME r:REFERENCE`
+Adds a new document to the current case with the specified `NAME` and `REFERENCE`.
+- `NAME` is what you would like to call the Document in PIVOT.
+- `REFERENCE` of a Document is the actual filename and its extension. For example, `Evidence.pdf` 
 
-Format: `add doc n:TITLE r:FILE_NAME`
-- `TITLE` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
-- This document with file name `FILE_NAME` must be manually added to the `references` folder provided before it can be added to the PIVOT system.
+Format: `add doc n:NAME r:REFERENCE`
+- `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
+- This document with reference `REFERENCE` must be manually added to the `references` folder provided before it can be added to the PIVOT system.
 
 Example: 
 - `add doc n:Case Details r:case_details.pdf` adds a new document with title “Case Details” with the file name case_details.pdf to the investigation case.
@@ -315,11 +317,13 @@ Example:
 
 Edits the document of the current case at the specified `DOC_NO` of the list. There must be at least one field indicated.
 A document cannot be edited to contain duplicates in the document list.
+- `NAME` is what you would like to call the Document in PIVOT.
+- `REFERENCE` of a Document is the actual filename and its extension. For example, `Evidence.pdf` 
 
 Format: `edit doc DOC_NO [n:NAME] [r:REFERENCE]`
 - `DOC_NO` must be a valid index (starting from 1) of the document list.
-- `NAME` should only contain alphanumeric characters and spaces, and it should not be blank(no value, spaces only).
-- The specified `REFERENCE` must be a valid file name in the `references` folder provided before it can be added to the PIVOT system.
+- `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
+- This document with reference `REFERENCE` must be manually added to the `references` folder provided before it can be updated in the PIVOT system.
 
 Example: 
 - `edit doc 2 n:Fire outbreak details r:newFireDoc.pdf` updates the second document of the current opened case with 
@@ -521,7 +525,7 @@ User data automatically saves when there is a change in data.
 |**edit title**         | `edit title t:TITLE`                                                              |
 |**edit description**   | `edit desc d:DESC`                                                                |
 |**edit status**        | `edit status s:STATUS`                                                            |
-|**edit document**      | `edit doc DOC_NO [n:TITLE] [r:FILE_NAME]`                                         |
+|**edit document**      | `edit doc DOC_NO [n:NAME] [r:REFERENCE]`                                         |
 |**edit suspect**       | `edit suspect SUSPECT_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`      |
 |**edit victim**        | `edit victim VICTIM_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`        |
 |**edit witness**       | `edit witness WITNESS_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`      |
