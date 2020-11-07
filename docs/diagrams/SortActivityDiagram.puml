@@ -16,7 +16,7 @@ elseif () then ([sort by most to least reviewed])
 elseif () then ([sort by lowest to highest success rate])
     :Sorts sortedFlashcards by
     lowest to highest success rate;
-else
+else ([else])
     :Sorts sortedFlashcards by
     highest to lowest success rate;
 endif
