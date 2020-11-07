@@ -73,16 +73,10 @@ Table 1: Summary of symbols
 
 Symbol | Meaning
 :-----:|:-------
-<<<<<<< HEAD
 `command` | a command that can be executed by **Reeve**.
 :information_source: | Important information. 
 :bulb: | Tips.
 :warning: | Warnings
-=======
-`command` | A grey highlight indicates a command that can be executed by **Reeve**.
-:information_source: | Indicates important information.
-:bulb: | Indicates tips.
->>>>>>> a981938f6bcad9a99f8633caa964c0b4ec636b56
 
 ## 2. Quick start
 
@@ -207,11 +201,7 @@ Thereafter, you will be able to view, edit find or delete these students.
 
 #### 3.3.1 Adding a student: `add` (By: Hogan)
 
-<<<<<<< HEAD
 You can add a student together with his/her administrative details into **Reeve's** student list. 
-=======
-You can add a student together with his/her individual administrative details into **Reeve's** student list.
->>>>>>> a981938f6bcad9a99f8633caa964c0b4ec636b56
 
 Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [d/LAST_PAYMENT_DATE] [a/ADDITIONAL_DETAILS]…​`
 
