@@ -418,7 +418,7 @@ Removes an existing teammate from the current project.
 
 ![person_list_after_delete_part](images/listPersonsAfterDeletePart.png)
 
-   *Figure 24: The teammate named `Holsey Mood` is deleted from the project but not deleted from the person list*
+   *Figure 25: The teammate named `Holsey Mood` is deleted from the project but not deleted from the person list*
 
 Format: `deletepart GIT_USER_NAME`
 
@@ -430,7 +430,7 @@ Update the information of a teammate.
 
 ![edit_teammate](images/editTeammate.png)
 
-   *Figure 25: The teammate with github user name `LucasTai98` is edited*
+   *Figure 26: The teammate with github user name `LucasTai98` is edited*
 
 Format: `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]`
   - Any combination or number of fields can be filled in
@@ -448,7 +448,7 @@ View all of a specific teammate's details.
 
 ![view_teammate](images/viewTeammate.png)
 
-   *Figure 26: The teammate with github user name `LucasTai98` is shown on the teammate dashboard*
+   *Figure 27: The teammate with github user name `LucasTai98` is shown on the teammate dashboard*
 
 Format: `viewteammate GIT_USER_NAME`
 
@@ -460,11 +460,11 @@ Delete all of a specific teammate's details, as well as remove teammate from all
 
 ![delete_teammate](images/deleteTeammate.png)
 
-   *Figure 27: The teammate with github user name `Modi` is deleted from the teammate list*
+   *Figure 28: The teammate with github user name `Modi` is deleted from the teammate list*
 
 ![person_list_after_delete_teammate](images/listPersonsAfterDeleteTeammate.png)
 
-   *Figure 28: The person with github user name `Modi` is also removed from the person list*
+   *Figure 29: The person with github user name `Modi` is also removed from the person list*
 
 Format: `deleteteammate GIT_USER_NAME`
 
@@ -478,7 +478,7 @@ Initialises the person specified.
 
 ![start_persom](images/startPerson.png)
 
-   *Figure 29: The first person on the person list is shown on person dashboard*
+   *Figure 30: The first person on the person list is shown on person dashboard*
 
 Format: `startperson (INDEX)`
 - Initialises the person at the specified INDEX
