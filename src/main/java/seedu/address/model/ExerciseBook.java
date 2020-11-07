@@ -13,7 +13,7 @@ import seedu.address.model.exercise.UniqueExerciseList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameexercise comparison)
  */
 public class ExerciseBook implements ReadOnlyExerciseBook {
 
@@ -34,7 +34,7 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an ExerciseBook using the Exercises in the {@code toBeCopied}
      */
     public ExerciseBook(ReadOnlyExerciseBook toBeCopied) {
         this();
@@ -44,15 +44,15 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the exercise list with {@code exercise}.
+     * {@code exercise} must not contain duplicate exercise.
      */
     public void setExercises(List<Exercise> exercises) {
         this.exercises.setExercises(exercises);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ExerciseBook} with {@code newData}.
      */
     public void resetData(ReadOnlyExerciseBook newData) {
         requireNonNull(newData);
@@ -70,7 +70,7 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     //// exercise-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a exercise with the same identity as {@code exercise} exists in the exercise book.
      */
     public boolean hasExercise(Exercise exercise) {
         requireNonNull(exercise);
@@ -78,17 +78,18 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a exercise to the exercise book.
+     * The exercise must not already exist in the exercise book.
      */
     public void addExercise(Exercise p) {
         exercises.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given exercise {@code target} in the list with {@code editedExercise}.
+     * {@code target} must exist in the exercise book.
+     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise in the exercise
+     * book.
      */
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireNonNull(editedExercise);
@@ -96,8 +97,8 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ExerciseBook}.
+     * {@code key} must exist in the exercise book.
      */
     public void removeExercise(Exercise key) {
         exercises.remove(key);
