@@ -32,10 +32,10 @@ public class StatsCommand extends Command {
         + "2. " + COMMAND_WORD + " " + PREFIX_TAG + "MCQ";
 
     public static final String MESSAGE_DISPLAY_STATISTICS_FLASHCARD_SUCCESS =
-        "Displayed statistics of Flashcard:\n%1$s";
+        "Displayed statistics of Flashcard:\n\n%1$s";
 
     public static final String MESSAGE_DISPLAY_STATISTICS_FLASHCARDS_BY_TAG_SUCCESS =
-        "Displayed statistics of Flashcards:\n%1$s";
+        "Displayed statistics of Flashcards:\n\n%1$s";
 
     private final Index targetIndex;
     private final FlashcardPredicate predicate;

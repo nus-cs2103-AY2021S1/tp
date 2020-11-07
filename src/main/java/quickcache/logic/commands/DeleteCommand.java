@@ -34,7 +34,7 @@ public class DeleteCommand extends Command {
             + "1. " + COMMAND_WORD + " 1\n"
             + "2. " + COMMAND_WORD + " " + PREFIX_TAG + "MCQ";
 
-    public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS = "Deleted Flashcard:\n%1$s";
+    public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS = "Deleted Flashcard:\n\n%1$s";
 
     private final Index targetIndex;
     private final FlashcardPredicate predicate;
