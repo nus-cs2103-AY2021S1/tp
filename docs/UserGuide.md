@@ -215,6 +215,11 @@ Edits an existing student in **Reeve**.
 
 Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] `
 
+* Edits the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* Start time has to be before end time.
+
 <div markdown="block" class="alert alert-info">
 
 :information_source: The format of TIME is {int: Day_of_week} {int: Start_time}-{int: End_time}<br>
@@ -222,12 +227,12 @@ Day_of_week refers to an Integer value from 1 - 7, with 1, 3 and 7 representing 
 Start_time and End_time refer to time values in 24hr format (1200-1700)<br>
 E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.
 
-</div>
+:information_source: If using this command after `find`, the edited student may no longer satisfy the search criteria depending on the field changed.
+In that case the student will be hidden from view and can be viewed again using `list` or `find`.<br>
+E.g. `edit 1 n/Amy Choo` after `find n/Bob` will cause the student to be hidden since her name no longer contains "Bob".
+You can use `list` or `find` (e.g `find n/Amy`) to display her information again. 
 
-* Edits the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* Start time has to be before end time.
+</div>
 
 Examples:
 *  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st student to be `Alex`, `99999999` and `Meridian Junior College` respectively.
@@ -266,8 +271,6 @@ Format: `delete STUDENT_INDEX`
 <div markdown="block" class="alert alert-info">
 
 :information_source: `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
-
-:information_source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
 
 </div>
 
