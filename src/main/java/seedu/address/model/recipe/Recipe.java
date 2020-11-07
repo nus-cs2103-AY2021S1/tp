@@ -215,9 +215,9 @@ public class Recipe {
                 int firstBracket = instrStr.indexOf(")");
                 instrStr = instrStr.substring(firstBracket + 1);
                 if (i == len - 1) {
-                    sb.append(instrStr);
+                    sb.append((i + 1) + ") " + instrStr);
                 } else {
-                    sb.append(instrStr + ". ");
+                    sb.append((i + 1) + ") " + instrStr + ". ");
                 }
             }
             return sb.toString();

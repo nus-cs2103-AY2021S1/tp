@@ -396,6 +396,9 @@ The List Consumption feature will also calculate and show the total calories con
 Command and Parser make use of Substitutability:
 * `ListRecipeCommand`, `ListIngredientCommand` and `ListConsumptionCommand` extends `Command` <br><br>
 
+The following activity diagram shows how list operation generally works:
+![ListActivityDiagram](images/implementation/activityDiagrams/ListCommandActivityDiagram.png)
+
 The following sequence diagram shows how list operation works when `execute("recipes")`, `execute("fridge")` or
  `execute("calories")` is called:
 
