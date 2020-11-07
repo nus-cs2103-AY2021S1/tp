@@ -114,6 +114,8 @@ The `Model`,
 * stores an unmodifiable list of Accounts.
 * does not depend on any of the other three components.
 
+The `Account`,
+
 
 <div markdown="span" class="alert alert-info">
 
@@ -160,7 +162,7 @@ These operations are exposed in the `ActiveAccount` interface as `ActiveAccount#
 
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
-Prelude. When the user first runs Common Cents, `ActiveAccountManager` does not store any previous states as shown in the diagram below.
+Prelude. When the user first runs _Common Cents_, `ActiveAccountManager` does not store any previous states as shown in the diagram below.
 
 ![UndoState0](images/UndoState0.png)
 
@@ -1152,3 +1154,36 @@ Basic instructions to test saving and loading of user data of _Common Cents_.
    1. Launch Common Cent via CLI
        1. Expected: CLI displays log stating that data file is not found and a sample data is loaded. Common Cents
        launches with two accounts, `Default Account 1` and `Default Account 2` and each account has sample expenses and revenues.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+This section highlights the team effort to build _Common Cents_ from AB3. While it was not easy, it was a fufilling and valuable experience for all of us.
+
+### Effort
+* Total of 10kLoC written.
+* Total 245 hours of work: 7 hours spent per person (total 5 of us) per week.
+* ~30 pages of UG
+* ~40 pages of DG
+
+### Challenges
+
+#### Management
+* During v1.2 iterations, the deadlines were not set properly and we struggled to produce a working app in that iteration. From there, we learnt to set internal deadlines and longer buffer periods in v1.3 and v1.4.
+* Documentation was not updated regularly as the focus was on the code.
+
+#### Coding
+* We had to modify the OOP structure of AB3 to include another layer of logic, which is the Account and ActiveAccount layer. 
+* It was difficult to maintain relatively high code coverage for JUnit tests as many new classes were added through the iterations.
+* JavaFX was a foreign library to learn and apply in the application.
+* Much defensive coding had to be implemented to avoid unnecessary mutability of variables.
+
+### Milestones
+* Week 7: Started to modify AB3
+* Week 8: UI design is completed
+* Week 9: First successful run of _Common Cents_
+* Week 10: Release of v1.2.1
+* Week 11: Completion of v1.3 of _Common Cents_ and first draft of UG/DG
+* Week 11: Release of v1.3
+* Week 12: Completion of v1.4 of _Common Cents_
+* Week 13: Release of v1.4 and submission of final draft of UG/DG
