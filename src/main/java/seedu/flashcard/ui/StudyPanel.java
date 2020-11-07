@@ -49,13 +49,14 @@ public abstract class StudyPanel extends UiPart<Region> {
         this.studyManager = new StudyManager(logic);
         this.parent = parent;
         this.numberOfCards = studyManager.getNumberOfCards();
+        // Progress bar must start at 1st flashcard
         setProgress(1);
     }
 
     /**
      * Shows the current flashcard being studied.
      *
-     * @param flashcard the FlashCard being studied.
+     * @param flashcard the FlashCard question to show.
      */
     protected void showFlashcard(Flashcard flashcard) {
 
@@ -81,7 +82,7 @@ public abstract class StudyPanel extends UiPart<Region> {
     /**
      * Shows the answer to the flashcard.
      *
-     * @param flashcardAnswerCard
+     * @param flashcardAnswerCard the flashcard answer to show.
      */
     protected void showAnswer(FlashcardAnswerCard flashcardAnswerCard) {
         answerPlaceholder.getChildren().add(flashcardAnswerCard.getRoot());
