@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -19,21 +18,12 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 @ExtendWith(ApplicationExtension.class)
-class AutocompleteModuleTest {
+class AutocompleteModuleTestBase extends HeadlessTestBase {
 
     private String sampleCmdPrefix = "test/";
     private List<String> sampleNameList = Arrays.asList("Alice", "Bravo", "Charlie");
 
     private TextField textField;
-
-    @BeforeAll
-    private static void setHeadless() {
-        System.setProperty("testfx.robot", "glass");
-        System.setProperty("testfx.headless", "true");
-        System.setProperty("prism.order", "sw");
-        System.setProperty("prism.text", "t2k");
-        System.setProperty("java.awt.headless", "true");
-    }
 
     @Start
     private void start(Stage stage) {
