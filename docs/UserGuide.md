@@ -1158,11 +1158,25 @@ bookmark sn/giant1
 
 **Before input**:
 
-![GUI_component](images/bookmark/bookmark_before.png)
+![bookmark_before](images/bookmark/bookmark_before.png)
 
 **After input**:
 
-![GUI_component](images/bookmark/bookmark.png)
+![bookmark_after](images/bookmark/bookmark.png)
+
+**:warning: Nonexistent Stocks**
+
+Stocks that do not exist in Warenager cannot be bookmarked. Using the update input `bookmark sn/fairprice4`,
+you should expect the following error:
+
+![bookmark_invalid_serial_number](images/bookmark/bookmark_invalid.png)
+
+**:warning: Bookmarked Stocks**
+
+Bookmarking a bookmarked stock will also result in an error. Using the bookmark input `bookmark sn/cold storage1`,
+you should expect the following error:
+
+![bookmark_already_bookmarked](images/bookmark/bookmark_already.png)
 
 
 ### Unbookmarking stocks in the list: `unbookmark`
@@ -1188,6 +1202,20 @@ unbookmark sn/giant1
 **After input**:
 
 ![GUI_component](images/bookmark/unbookmark.png)
+
+**:warning: Nonexistent Stocks**
+
+Stocks that do not exist in Warenager cannot be unbookmarked. Using the update input `unbookmark sn/fairprice4`,
+you should expect the following error:
+
+![bookmark_invalid_serial_number](images/bookmark/unbookmark_invalid.png)
+
+**:warning: Not Bookmarked Stocks**
+
+Unbookmarking a stock that is not bookmarked will also result in an error.
+Using the bookmark input `bookmark sn/fairprice1`,you should expect the following error:
+
+![bookmark_already_bookmarked](images/bookmark/unbookmark_not.png)
 
 ### Sorting inventory: `sort`
 Sort the inventory by a specific field and order.
