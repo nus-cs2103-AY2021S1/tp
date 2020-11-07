@@ -58,6 +58,25 @@ public class ParserUtil {
         String trimmedQuantity = quantity.trim();
         try {
             int itemQuantity = Integer.parseInt(trimmedQuantity);
+            if (itemQuantity < 0) {
+                throw new ParseException(MESSAGE_INVALID_QUANTITY);
+            }
+            return Integer.parseInt(trimmedQuantity);
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_QUANTITY);
+        }
+    }
+
+    /**
+     * Parses {@code quantity} into an int and returns it. Leading and trailing whitespaces will be trimmed.
+     * @param quantity the change in quantity to be parsed
+     * @return the parsed change in quantity
+     * @throws ParseException if the quantity is invalid
+     */
+    public static int parseChangeInQuantity(String quantity) throws ParseException {
+        String trimmedQuantity = quantity.trim();
+        try {
+            int itemQuantity = Integer.parseInt(trimmedQuantity);
             return itemQuantity;
         } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_QUANTITY);

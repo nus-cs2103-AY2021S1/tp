@@ -1,24 +1,27 @@
 package nustorage.logic.commands;
 
 import static nustorage.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static nustorage.logic.commands.UpdateInventoryCommand.MESSAGE_UPDATE_INVENTORY_SUCCESS;
 import static nustorage.logic.commands.UpdateInventoryCommand.MESSAGE_INVALID_UPDATE_OPERATION;
+import static nustorage.logic.commands.UpdateInventoryCommand.MESSAGE_UPDATE_INVENTORY_SUCCESS;
 import static nustorage.testutil.Assert.assertThrows;
 import static nustorage.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-
-import nustorage.testutil.*;
 import org.junit.jupiter.api.Test;
 
-import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.logic.commands.UpdateInventoryCommand.UpdateInventoryDescriptor;
+import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
 import nustorage.model.ModelManager;
 import nustorage.model.UserPrefs;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
+import nustorage.testutil.FinanceRecordBuilder;
+import nustorage.testutil.InventoryRecordBuilder;
+import nustorage.testutil.TypicalFinanceRecords;
+import nustorage.testutil.TypicalInventoryRecords;
+import nustorage.testutil.UpdateInventoryDescriptorBuilder;
 
 public class UpdateInventoryCommandTest {
     private Model model = new ModelManager(TypicalFinanceRecords
@@ -107,7 +110,8 @@ public class UpdateInventoryCommandTest {
         int firstChangeInQuantity = 100;
         int secondChangeInQuantity = -5;
         UpdateInventoryDescriptor firstDescriptor = new UpdateInventoryDescriptorBuilder(firstChangeInQuantity).build();
-        UpdateInventoryDescriptor secondDescriptor = new UpdateInventoryDescriptorBuilder(secondChangeInQuantity).build();
+        UpdateInventoryDescriptor secondDescriptor =
+                new UpdateInventoryDescriptorBuilder(secondChangeInQuantity).build();
         UpdateInventoryCommand firstCommand = new UpdateInventoryCommand(INDEX_FIRST, firstDescriptor);
         UpdateInventoryCommand secondCommand = new UpdateInventoryCommand(INDEX_FIRST, secondDescriptor);
 

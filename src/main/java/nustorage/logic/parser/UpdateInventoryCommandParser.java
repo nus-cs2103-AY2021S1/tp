@@ -36,7 +36,7 @@ public class UpdateInventoryCommandParser implements Parser<UpdateInventoryComma
         UpdateInventoryCommand.UpdateInventoryDescriptor updateInventoryDescriptor = new UpdateInventoryDescriptor();
         if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
             updateInventoryDescriptor
-                    .setChangeInQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
+                    .setChangeInQuantity(ParserUtil.parseChangeInQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
         } else {
             throw new ParseException(UpdateInventoryCommand.MESSAGE_MISSING_QUANTITY);
         }
