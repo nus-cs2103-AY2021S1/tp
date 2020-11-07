@@ -63,4 +63,4 @@ Given below are my contributions to the project.
     * Added implementation details of the `deleteF`, `addF`, `get editR`, `editR`, `get editF` and `editF` feature: [\#122](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/122) [\#127](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/127)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#178](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/178)
+  * PRs reviewed (with non-trivial review comments): [\#251](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/251)
