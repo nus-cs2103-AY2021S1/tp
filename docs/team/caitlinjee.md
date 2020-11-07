@@ -38,7 +38,7 @@ Given below are my contributions to the project.
   * Managed release `v1.2` (1 release) on GitHub
   * Refactored code to add and support the Ingredient class when work began on the fridge related features
   * Updated the links and architecture sequence diagram, Logic, Model and Storage class diagrams in the Developer Guide to match Wishful Shrinking
-  * Edited and labelled Wishful Shrinking's UI image in the User guide
+  * Labelled and explained Wishful Shrinking's UI components in the User guide
   * Reminded team members to review and approve pull requests in a timely manner
 
 * **Enhancements to existing features**:
