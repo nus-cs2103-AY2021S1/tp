@@ -115,6 +115,10 @@ The following class diagram illustrated the structure of `Logic` component:
 <br> ![Structure of the Logic Component](images/LogicClassDiagram.png) <br>
 Figure 5: Structure of the `Logic` Component
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -124,6 +128,7 @@ The `Logic` component does the following:
 3. The command execution can affect the `Model` (e.g. adding an item).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-i 1")` API call.
 <br>
@@ -145,6 +150,10 @@ The following class diagram illustrates the structure of the `Model` component:
 <br>
 ![Structure of the Model Component](images/ModelClassDiagram.png) <br>
 Figure 7: Structure of the `Model` Component
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -205,6 +214,8 @@ Figure 10: Class Diagram of `Storage` Component
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the inventoryBook/deliveryBook data in json format and read it back.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### 3.6 Common classes
 
@@ -281,10 +292,6 @@ Below is a sequence diagram of the above usage.
 ![ItemEditCommandSequenceDiagram](images/ItemEditCommandSequenceDiagram.png)
 Figure 14: ItemEditCommand Sequence Diagram
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak
-</div>
-
 ### 4.3 Command History Traversal
 
 Much like Window's Command Prompt, OneShelf supports traversal of command history with the arrow up and down key.
@@ -329,6 +336,10 @@ The following activity diagram summarizes what happens when a user executes a `f
 By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create a Predicate that matches the specified field object which implements `Predicate<Item>`.
 The predicate is then combined and passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 Below is a usage example:
 
 Step 1: User executes `find-i s/NTUC` command to search the list of items by Supplier <br>
@@ -364,16 +375,28 @@ These operations are exposed in the `Models` interface as `Models#commit()`, `Mo
 
 The `ModelsManager` class calls `Model#commit()`, `Model#undo()`, and `Model#redo` on each of the models it contains, which then handle the respective tasks.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. Each `Model` will be initialized with its initial state, and the pointer pointing to their respective book's state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 Step 2. The user executes `delete-i 5` command to delete the 5th item in the inventory book. The `delete-i` command calls `Models#commit()`, causing the modified state of the inventory and delivery books after the `delete-i 5` command executes to be saved in the `inventoryBookStateList`, `deliveryBookStateList`,
 and the `inventoryBookStatePointer`, `deliveryBookStatePointer` are shifted to the newly inserted books state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 Step 3. The user executes `add-d n/David p/12345678 …​` to add a new Delivery. The `add-d` command also calls `Models#commit()`, causing another set of modified book states to be saved into the `inventoryBookStateList` and `deliveryBookStateList`.
 
@@ -383,6 +406,10 @@ Step 3. The user executes `add-d n/David p/12345678 …​` to add a new Deliver
 
 </div>
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 Step 4. The user now decides that adding the delivery was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Models#undo()`, which will shift the `deliveryBookStatePointer` and `inventoryBookStatePointer` once to the left, pointing it to the previous states, and restores the inventoryBook/deliveryBook to those states.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
@@ -390,6 +417,10 @@ Step 4. The user now decides that adding the delivery was a mistake, and decides
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the current state pointers are at index 0, pointing to the initial state, then there are no previous books states to restore. The `undo` command uses `InventoryModel#canUndo()` and `DeliveryModel#canUndo()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
+</div>
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
 </div>
 
 The following sequence diagram shows how the undo operation works:
@@ -406,13 +437,25 @@ The `redo` command does the opposite — it calls `Models#redo()`, which shi
 
 </div>
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 Step 5. The user then decides to execute the command `list-i`. Commands that do not modify the inventoryBook and deliveryBook, such as `list-d` and `find-i`, will usually not call `Models#commit()`, `Models#undo()` or `Models#redo()`. Thus, the `inventoryBookStateList` and `deliveryBookStateList` remain unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 Step 6. The user executes `clear-d`, which calls `Models#commit()`. Since the state pointers are not pointing at the end of the respective state lists, all states after the current state will be purged. Reason: It no longer makes sense to redo the `add-d n/David p/12345678 …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
