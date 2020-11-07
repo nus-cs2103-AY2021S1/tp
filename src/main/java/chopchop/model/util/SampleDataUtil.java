@@ -137,7 +137,7 @@ public class SampleDataUtil {
                     new Step("Serve generously with syrup")),
                 Set.of(new Tag("breakfast"), new Tag("simple"))),
 
-            new Recipe("Banana Milkshake",
+            new Recipe("Banana Smoothie",
                 List.of(
                     new IngredientReference("Banana", Count.of(1)),
                     new IngredientReference("Milk", Volume.millilitres(250)),
