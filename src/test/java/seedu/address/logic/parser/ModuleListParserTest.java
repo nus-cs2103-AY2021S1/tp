@@ -25,9 +25,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.module.NameContainsKeywordsPredicate;
 // import seedu.address.model.module.Module;
-import seedu.address.testutil.ContactBuilder;
-// import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
+import seedu.address.testutil.contact.ContactBuilder;
+// import seedu.address.testutil.ModuleBuilder;
 
 
 public class ModuleListParserTest {

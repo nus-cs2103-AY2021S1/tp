@@ -10,9 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showContactAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
+import static seedu.address.testutil.contact.TypicalContacts.getTypicalContactList;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,8 +28,8 @@ import seedu.address.model.ModuleList;
 import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
-import seedu.address.testutil.ContactBuilder;
-import seedu.address.testutil.EditContactDescriptorBuilder;
+import seedu.address.testutil.contact.ContactBuilder;
+import seedu.address.testutil.contact.EditContactDescriptorBuilder;
 
 public class EditContactCommandTest {
 

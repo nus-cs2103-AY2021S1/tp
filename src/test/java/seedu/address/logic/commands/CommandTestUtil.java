@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -24,10 +25,8 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.module.ZoomLink;
-import seedu.address.testutil.EditContactDescriptorBuilder;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
-
-
+import seedu.address.testutil.contact.EditContactDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -47,6 +46,8 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String TELEGRAM_DESC_AMY = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_AMY;
+    public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -54,6 +55,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "bobtele"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String VALID_MODULENAME_CS2030 = "CS2030";
@@ -108,6 +110,16 @@ public class CommandTestUtil {
     public static final EditContactDescriptor DESC_BOB;
     public static final EditModuleDescriptor DESC_CS2030;
     public static final EditModuleDescriptor DESC_CS2103T;
+
+    // ================================== GradeTrackerTest ===================================== //
+    public static final String VALID_ASSIGNMENT_NAME_1 = "Quiz 1";
+    public static final String VALID_ASSIGNMENT_NAME_2 = "Oral Presentation 2";
+    public static final double VALID_ASSIGNMENT_PERCENTAGE_1 = 10;
+    public static final double VALID_ASSIGNMENT_PERCENTAGE_2 = 20;
+    public static final double VALID_ASSIGNMENT_RESULT_1 = 0.8;
+    public static final double VALID_ASSIGNMENT_RESULT_2 = 0.9;
+    public static final double VALID_GRADE_1 = 0.9;
+    public static final double VALID_GRADE_2 = 0.9;
 
     static {
         VALID_ZOOMLINKS_CS2030.put(new ModuleLesson(VALID_MODULE_LESSON_LECTURE), new ZoomLink(VALID_ZOOM_LINK_CS2030));

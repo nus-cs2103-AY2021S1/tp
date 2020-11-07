@@ -131,6 +131,13 @@ public class JsonAdaptedTask {
 
         final LocalDate modelDateCreated = LocalDate.parse(dateCreated);
 
-        return new Task(modelTaskName, modelTags, modelPriority, modelDate, modelStatus, modelDateCreated);
+        Task task = new Task(modelTaskName);
+        task = task.setTags(modelTags);
+        task = task.setPriority(modelPriority);
+        task = task.setDate(modelDate);
+        task = task.setStatus(modelStatus);
+        task = task.setDateCreated(modelDateCreated);
+
+        return task;
     }
 }

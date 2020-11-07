@@ -25,7 +25,7 @@ public class TaskBuilder {
     public static final List<String> DEFAULT_TAGS = new ArrayList<>(Arrays.asList(ARRAY_OF_TAGS));
     public static final String DEFAULT_PRIORITY = "HIGH";
     public static final String DEFAULT_DATE = "2020-10-10";
-    public static final String DEFAULT_STATUS = "Not Completed";
+    public static final String DEFAULT_STATUS = "NOT_COMPLETED";
 
     private TaskName name;
     private Set<Tag> tags;
@@ -42,7 +42,7 @@ public class TaskBuilder {
         tags.addAll(DEFAULT_TAGS.stream().map(Tag::new).collect(Collectors.toList()));
         priority = Priority.valueOf(DEFAULT_PRIORITY);
         date = new Date(DEFAULT_DATE);
-        status = Status.valueOf(DEFAULT_STATUS);
+        //status = Status.valueOf(DEFAULT_STATUS);
     }
 
     /**
@@ -107,7 +107,7 @@ public class TaskBuilder {
         temp = temp.setTags(tags);
         temp = temp.setPriority(priority);
         temp = temp.setDate(date);
-        temp = temp.setStatus(status);
+        //temp = temp.setStatus(status);
         return temp;
     }
 }
