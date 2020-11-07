@@ -107,6 +107,7 @@ Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Locati
 
 * Upon start up of the Warenager application, stocks are by default displayed
 in order of decreasing priority: low quantity stocks, bookmarked stocks, other stocks.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
