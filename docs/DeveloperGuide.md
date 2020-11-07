@@ -102,8 +102,6 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-![Structure of the Person Model Component](images/PersonModelClassDiagram.png)
-
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
@@ -113,6 +111,11 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+The `Person` sub-component,
+* stores the address book data.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+![Structure of the Person Model Component](images/PersonModelClassDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP
 ) model is given below. It has a `Tag` list in the `tCheck` application, which `Person` references. This allows
