@@ -496,7 +496,7 @@ Examples:
 
 </div>
 
-### 5.14 List all macros : `listmacro`
+### 5.14 Listing all macros : `listmacro`
 
 The `listmacro` command displays information on the available macros in the terminal, which allows you to keep track of
 all macros currently in the McGymmy system.
@@ -587,7 +587,6 @@ For those who prefer clicking:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 7. Command summary
-
 Action                                                           | Format, Examples
 -----------------------------------------------------------------|------------------
 [**Add**](#52-adding-a-food-item-add)                            | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE] [-t TAG]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23 -d 02/09/2020 -t Lunch`
@@ -602,9 +601,10 @@ Action                                                           | Format, Examp
 [**List**](#57-listing-all-food-items--list)                     | `list`
 [**Macro**](#513-creating-a-macro-command--macro)                | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `macro lunch; add Chicken`
 [**RemMacro**](#515-deleting-a-macro-remmacro)                   | `remmacro MACRONAME` <br> e.g., `remmacro lunch`
-[**ListMacro**](#514-list-all-macros--listmacro)                 | `listmacro [macro]` <br> e.g., `listmacro kfc`
+[**ListMacro**](#514-listing-all-macros--listmacro)                 | `listmacro [macro]` <br> e.g., `listmacro kfc`
 [**Tag**](#53-tagging-food-items--tag)                           | `tag INDEX -t TAG_NAME` <br> e.g., `tag 1 -t Lunch`
 [**UnTag**](#54-untagging-food-items--untag)                     | `untag INDEX -t TAG_NAME` <br> e.g., `untag 1 -t Lunch`
+[**Undo**](#512-undoing-the-previous-command--undo)              | `undo`
 
 ## 8. Appendix A
 List of supported input date formats, sorted from the highest parsing priority to the lowest parsing priority
