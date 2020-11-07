@@ -27,7 +27,7 @@ public class AddApplicationCommand extends Command {
             + "INDEX FILEPATH \n"
             + "Example: " + COMMAND_WORD + " "
             + "src\\main\\java\\com\\eva\\logic\\parser\\resume.txt \n"
-            + "or if you would like to scan a sample resume: addapplication 1 sample";
+            + "or if you would like to scan a sample resume: " + COMMAND_WORD + " 1 sample";
     public static final String MESSAGE_WRONG_PANEL = "Please switch to applicant list panel "
             + "via 'list a-' to add application of applicant";
 
@@ -80,5 +80,12 @@ public class AddApplicationCommand extends Command {
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, applicantToUpdate.getName()),
                 false, false, true);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddApplicationCommand // instanceof handles nulls
+                && applicationToAdd.equals(((AddApplicationCommand) other).applicationToAdd));
     }
 }

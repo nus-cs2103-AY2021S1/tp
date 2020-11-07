@@ -94,4 +94,12 @@ public class AddLeaveCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, staffToTakeLeave.getName(), sb),
                 false, false, true);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddLeaveCommand // instanceof handles nulls
+                && toAdd.equals(((AddLeaveCommand) other).toAdd)
+                && targetIndex.equals(((AddLeaveCommand) other).targetIndex));
+    }
 }

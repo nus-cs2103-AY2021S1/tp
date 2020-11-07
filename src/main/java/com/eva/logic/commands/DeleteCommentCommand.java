@@ -27,6 +27,7 @@ import com.eva.model.person.Phone;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
@@ -34,12 +35,17 @@ import com.eva.model.tag.Tag;
 public class DeleteCommentCommand extends CommentCommand {
 
     public static final String COMMAND_WORD = "delc";
+    public static final String MESSAGE_DELETE_COMMENT_SUCCESS_STAFF = "Deleted comment with "
+            + "title '%1$s' from Staff: %2$s";
+    public static final String MESSAGE_DELETE_COMMENT_SUCCESS_APPLICANT = "Deleted comment with "
+            + "title '%1$s' from Applicant: %2$s";
 
     public static final String MESSAGE_DELETECOMMENT_USAGE = "Format for this command: \n"
             + COMMAND_WORD + " INDEX c/ ti/TITLE";
 
     private static final String NO_TITLE_MESSAGE = "No such title. To delete comment, "
             + "Format: " + DeleteCommand.COMMAND_WORD + " INDEX c/ t/TITLE";
+
 
 
     /**
@@ -91,28 +97,34 @@ public class DeleteCommentCommand extends CommentCommand {
             case STAFF_LIST:
                 model.setStaff((Staff) personToEdit, (Staff) editedPerson);
                 model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
-                break;
+                return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS_STAFF,
+                        commentPersonDescriptor.getCommentTitle() , editedPerson),
+                        false, false, true);
             case APPLICANT_LIST:
                 model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
                 model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
-                break;
+                return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS_APPLICANT,
+                        commentPersonDescriptor.getCommentTitle() , editedPerson),
+                        false, false, true);
             case STAFF_PROFILE:
                 model.setStaff((Staff) personToEdit, (Staff) editedPerson);
                 model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
                 Staff staffToView = (Staff) lastShownList.get(index.getZeroBased());
                 model.setCurrentViewStaff(new CurrentViewStaff(staffToView, index));
-                break;
+                return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS_STAFF,
+                        commentPersonDescriptor.getCommentTitle(), editedPerson),
+                        false, false, true);
             case APPLICANT_PROFILE:
                 model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
                 model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
                 Applicant applicantToView = (Applicant) lastShownList.get(index.getZeroBased());
                 model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView, index));
-                break;
+                return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS_APPLICANT,
+                        commentPersonDescriptor.getCommentTitle(), editedPerson),
+                        false, false, true);
             default:
                 throw new CommandException("Unknown Panel");
             }
-            return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS, editedPerson),
-                    false, false, true);
         } catch (CommandException e) {
             throw new CommandException(NO_TITLE_MESSAGE);
         }
@@ -123,7 +135,7 @@ public class DeleteCommentCommand extends CommentCommand {
      * the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createDeleteEditedPerson(Person personToEdit,
+    public static Person createDeleteEditedPerson(Person personToEdit,
                                                    CommentCommand.CommentPersonDescriptor commentPersonDescriptor)
             throws CommandException {
         assert personToEdit != null;
@@ -155,10 +167,11 @@ public class DeleteCommentCommand extends CommentCommand {
         } else if (personToEdit instanceof Applicant) {
             ApplicationStatus applicationStatus = ((Applicant) personToEdit).getApplicationStatus();
             Optional<InterviewDate> interviewDate = ((Applicant) personToEdit).getInterviewDate();
+            Application application = ((Applicant) personToEdit).getApplication();
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                    updatedTags, updatedComments, interviewDate, applicationStatus);
+                    updatedTags, updatedComments, interviewDate, applicationStatus, application);
         } else {
-            throw new CommandException("Specify staff or applicant with 's-' or 'a-'.");
+            throw new CommandException("Invalid.");
         }
     }
 }

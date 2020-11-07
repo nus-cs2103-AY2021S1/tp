@@ -47,6 +47,10 @@ public class Application {
         return applicantName;
     }
 
+    public void setApplicantName(String name) {
+        this.applicantName = name;
+    }
+
     public String getExperienceSectionString() {
         StringBuilder output = new StringBuilder();
         for (Experience e : this.experienceSection) {

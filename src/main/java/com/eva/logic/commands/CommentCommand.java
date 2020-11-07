@@ -29,9 +29,9 @@ public class CommentCommand extends Command {
 
     public static final String COMMAND_WORD = "comment";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or delete comment to person"
-            + "To add comment: key in 'addComment INDEX <s-/a-> ti/TITLE d/DATE desc/DESCRIPTION'\n"
-            + "To delete, key in 'deleteComment INDEX <s-/a-> ti/TITLE_TO_DELETE' \n"
-            + "To edit, key in editComment INDEX <s-/a-> ti/TITLE d/DATE desc/NEW_DESCRIPTION";
+            + "To add comment: key in 'addc INDEX c/ ti/TITLE d/DATE desc/DESCRIPTION'\n"
+            + "To delete, key in 'delc INDEX c/ ti/TITLE_TO_DELETE' \n"
+            + "To edit, key in 'editc INDEX c/ ti/TITLE d/DATE desc/NEW_DESCRIPTION'";
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Commented on Person: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the eva database.";
     public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Deleted comment on Person: %1$s";
@@ -104,6 +104,7 @@ public class CommentCommand extends Command {
         private Set<Tag> tags;
         private Set<Comment> comments;
         private Set<Leave> leaves;
+        private String title;
 
 
         public CommentPersonDescriptor() {}
@@ -210,6 +211,14 @@ public class CommentCommand extends Command {
 
         public Set<Leave> getLeaves() {
             return (leaves != null) ? leaves : new HashSet<>();
+        }
+
+        public String getCommentTitle() {
+            this.comments.forEach(comment -> {
+                this.title = comment.getTitle().getTitleDescription();
+                }
+            );
+            return this.title;
         }
 
         @Override
