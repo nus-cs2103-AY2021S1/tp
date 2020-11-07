@@ -53,7 +53,6 @@ public class DeleteTeammateCommand extends Command {
 
         Participation participation = project.getParticipation(gitUserIndex.getGitUserNameString());
         Person personToDelete = Person.getPersonFromList(gitUserIndex);
-        Person.getAllPeople().remove(personToDelete);
 
         assert personToDelete != null;
         Project currentProject;
@@ -69,6 +68,7 @@ public class DeleteTeammateCommand extends Command {
                 }
             }
         }
+        Person.getAllPeople().remove(personToDelete);
         model.deletePerson(personToDelete);
 
         if (model.getTeammateToBeDisplayedOnDashboard().isPresent()

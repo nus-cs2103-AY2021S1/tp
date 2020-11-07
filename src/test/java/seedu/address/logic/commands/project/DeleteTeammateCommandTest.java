@@ -32,6 +32,7 @@ public class DeleteTeammateCommandTest {
         Model expectedModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
+        expectedModel.enter(project);
 
         Person person = DESC_A;
         Participation participation =
