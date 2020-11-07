@@ -9,6 +9,7 @@ import java.util.Set;
 
 import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
+import quickcache.logic.commands.AddMultipleChoiceQuestionCommand;
 import quickcache.logic.commands.EditCommand;
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Choice;
@@ -94,8 +95,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (choices.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = choices.size() == 1 && choices.contains("") ? Collections.emptySet() : choices;
-        return Optional.of(ParserUtil.parseChoices(tagSet));
+
+        if (choices.size() == 1 && choices.contains("")) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE));
+        }
+
+        return Optional.of(ParserUtil.parseChoices(choices));
     }
 
 }
