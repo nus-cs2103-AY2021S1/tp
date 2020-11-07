@@ -163,7 +163,7 @@ tCheck allows users to record and update the sales information on the drink sold
     * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
 less than or equal to 99999999.
 
-The user may use this command for a single `Drink`, or multiple `Drink`s types, as indicated by the
+The user may use this command for a single `Drink`, or multiple `Drink`s.
 
 Currently, tCheck supports the tracking of 6 types of `Drink`s.
 * `BSBM`  : Brown Sugar Boba Milk
