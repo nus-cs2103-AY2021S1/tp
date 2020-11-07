@@ -49,7 +49,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new ClientList(model.getClientList()),
                 new UserPrefs(),
-                new PolicyList(model.getPolicyList().getHashtableCopy()));
+                new PolicyList(model.getPolicyList().getHashMapCopy()));
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -77,7 +77,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new ClientList(model.getClientList()),
                 new UserPrefs(),
-                new PolicyList(model.getPolicyList().getHashtableCopy()));
+                new PolicyList(model.getPolicyList().getHashMapCopy()));
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -93,7 +93,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new ClientList(model.getClientList()),
                 new UserPrefs(),
-                new PolicyList(model.getPolicyList().getHashtableCopy()));
+                new PolicyList(model.getPolicyList().getHashMapCopy()));
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -112,7 +112,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new ClientList(model.getClientList()),
                 new UserPrefs(),
-                new PolicyList(model.getPolicyList().getHashtableCopy()));
+                new PolicyList(model.getPolicyList().getHashMapCopy()));
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
