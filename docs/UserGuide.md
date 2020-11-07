@@ -78,6 +78,8 @@ Symbol | Meaning
 :bulb: | Tips.
 :warning: | Warnings
 
+
+
 ## 2. Quick start
 
 This section serves to explain how to set up **Reeve** on your computer and how to make sense of the visual layout of the application.
@@ -113,11 +115,11 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
 1. **Menu**
 
-    These tabs allows you to simply click on them and get what is needed. 
+    These tabs allows you to simply click on them and get what is needed.
 
 2. **Main Panel**
 
-    The main panel shows your list of students for easy reference. It also displays your schedule when the schedule command is called. 
+    The main panel shows your list of students for easy reference. It also displays your schedule when the schedule command is called.
 
 3. **Result Display**
 
@@ -157,7 +159,7 @@ This section serves to provide you a detailed explanation of the general feature
 
 #### 3.2.1 Viewing help: `help`
 
-If you are unsure of any of the commands, this command will direct you to the help page. 
+If you are unsure of any of the commands, this command will direct you to the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -165,7 +167,7 @@ Format: `help`
 
 #### 3.2.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
-Since each student contains some administrative and academic details, this command allows you to 
+Since each student contains some administrative and academic details, this command allows you to
 toggle between viewing these details to allow you to focus on the type of details that you are currently interested in.
 By default, the administrative details of students are shown upon starting the application.
 
@@ -218,7 +220,7 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 
 * The format of `YEAR` is as follows:
     * `TYPE_OF_SCHOOL LEVEL` (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
-    * `TYPE_OF_SCHOOL` can be primary(pri, p), secondary(sec, s) or jc. 
+    * `TYPE_OF_SCHOOL` can be primary(pri, p), secondary(sec, s) or jc.
     * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
 
 <div markdown="block" class="alert alert-info">
@@ -247,7 +249,7 @@ Figure __. After entering command `add n/Brendan Tan p/93211234 s/Commonwealth S
 
 #### 3.3.2 Listing all students: `list`
 
-You can view the list of all students in **Reeve**.
+You can view the list of all students in **Reeve** sorted by name.
 
 Format: `list`
 
@@ -278,7 +280,7 @@ E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.
 :information_source: If using this command after `find`, the edited student may no longer satisfy the search criteria depending on the field changed.
 In that case the student will be hidden from view and can be viewed again using `list` or `find`.<br>
 E.g. `edit 1 n/Amy Choo` after `find n/Bob` will cause the student to be hidden since her name no longer contains "Bob".
-You can use `list` or `find` (e.g `find n/Amy`) to display her information again. 
+You can use `list` or `find` (e.g `find n/Amy`) to display her information again.
 
 </div>
 
@@ -292,19 +294,23 @@ Finds students who satisfy the given search criteria.
 
 Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
 * At least one of the optional fields must be provided.
-* The order of the optional fields do not matter. e.g `n/Hans s/River Valley` will match `s/River Valley n/Hans`
-* Only full words will be matched. e.g `han` will not match `hans`.
-* For the name, students with a name that matches any whole keyword specified for the name will be considered to match for the name.
-* For the school, students with a school that contains any keyword specified for the school will be considered to match for the school.
+* The order of the optional fields do not matter. e.g `n/Hans s/River Valley` is the same as `s/River Valley n/Hans`
+* For the name criteria, only students with a name that contains **any full keyword** specified will be matched.
+* For the school criteria, only students with a school that contains **all keywords** specified will be matched.
+* For the year criteria, only students with the **same year** will be matched. (See below for more elaboration for format of year)
 * Only students matching all criteria specified will be returned (i.e `AND` search).
+
+* The format of `YEAR` is as follows:
+    * `TYPE_OF_SCHOOL LEVEL` (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
+    * `TYPE_OF_SCHOOL` can be primary(pri, p), secondary(sec, s) or jc. 
+    * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
 
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
 * `find n/Alex david` does not match `Alexis Davinder`.
-* `find s/yishun sec` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
-* `find s/yishun secondary` does not match `Yishun Sec`
+* `find s/yishun sec` matches `Yishun Secondary School`, `Yishun Town Secondary School` and `Yishun Sec`.
+* `find s/yishun secondary` matches `Yishun Secondary School` and `Yishun Town Secondary School` but not `Yishun Sec`.
 * `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
 
 #### 3.3.5 Deleting a student: `delete`
@@ -352,7 +358,7 @@ Format: `overdue`
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
 
-#### 3.3.8 Managing details for a student: `detail` (By: Vaishak) 
+#### 3.3.8 Managing details for a student: `detail` (By: Vaishak)
 
 You can add, edit or delete a detail for a specified student.
 
@@ -414,7 +420,7 @@ Format: `clear`
 Reeve's student academics features allows you to keep track of key academic details of each of your students such as questions, exams and etc.
 Thereafter, you will be able to view, edit or delete these details of each student.
 
-#### 3.4.1 Recording questions from a student: `question` (By: Ying Gao) 
+#### 3.4.1 Recording questions from a student: `question` (By: Ying Gao)
 
 You can add, resolve or remove questions to/from a specified student in **Reeve**.
 
@@ -511,7 +517,7 @@ Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
     * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020 or 2/3/2020).
 
 * The format of EXAM_SCORE is as follows:
-    * x/y where x and y are non-negative integers. 
+    * x/y where x and y are non-negative integers.
     * x has to be less than or equal to y (e.g. 30/50).
     
 <div markdown="block" class="alert alert-info">
@@ -654,7 +660,7 @@ Example:
 
 ### 3.5 Schedule Feature (By: Alex)
 
-#### 3.5.1 Viewing lesson schedule: `schedule` 
+#### 3.5.1 Viewing lesson schedule: `schedule`
 
 You can view your upcoming classes on a timetable in either a daily or weekly format.
 
@@ -688,7 +694,7 @@ Action | Format, Examples
 --------|------------------
 **Add Student** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]...​` <br> e.g., `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 **Edit Student** | `edit STUDENT_INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
-**Find Student** | `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`<br> e.g., `find n/alex s/yishun`
+**Find Student** | `find [n/NAME] [s/SCHOOL] [y/YEAR]`<br> e.g., `find n/alex s/yishun`
 **List Students** | `list`
 **Delete Student** | `delete STUDENT_INDEX`<br> e.g. `delete 3`
 **Sort Students** | `sort COMPARISON_MEANS`<br> e.g. `sort year`

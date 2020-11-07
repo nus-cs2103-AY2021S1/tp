@@ -105,7 +105,7 @@ public class JsonAdaptedAdminTest {
     }
 
     @Test
-    public void toModelType_invalidAdditionalDetails_throwsIllegalValueException() {
+    public void toModelType_invalidDetails_throwsIllegalValueException() {
 
         List<JsonAdaptedDetail> invalidDetails = new ArrayList<>(VALID_ADDITIONAL_DETAILS);
         invalidDetails.add(new JsonAdaptedDetail(INVALID_ADDITIONAL_DETAIL));
