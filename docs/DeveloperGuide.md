@@ -374,6 +374,12 @@ Given below is an example usage scenario and how the Delete By Tag mechanism beh
 
  Step 6. It will then iterate through the list and call `QuickCache#deleteFlashcard` on each `Flashcard` in the list.
 
+The following sequence diagram shows how the Delete By Tag mechanism works:
+
+![DeleteByTagSequenceDiagram](images/DeleteByTagSequenceDiagram.png)
+
+![DeleteByTagParserSequenceDiagram](images/DeleteByTagParserSequenceDiagram.png)
+
 #### Design considerations:
 
 * **Current choice:** Delete command works for both index and tags
