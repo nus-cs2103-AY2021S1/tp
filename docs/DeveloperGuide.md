@@ -12,13 +12,13 @@ CAP5Buddy helps NUS SoC students to keep track of their module details efficient
 module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management
 of module details. CAP5Buddy also functions as a scheduling system, todo list and contact list.
 
-## **Setting up, getting started**
+## **1. Setting up**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **2. Design**
 
 ### Architecture
 
@@ -44,7 +44,6 @@ The role of the **Model** component is to represent all the items and their beha
 The role of the **Ui** component is to handle all the User interface related instructions, which includes the loading of GUI components, the updating
 of these components and displaying the changes.
 
-## Module Tracker
 
 ### UI component
 ![Structure of the UserInterface Component](images/UiClassDiagram.png)
@@ -80,8 +79,8 @@ of the **XYZListPanel**.
 
 **API** : `Logic.java`
 
-1. Logic uses the `ParserManager` class to create the respective Parser classes: `ModuleListParser`, `ContactListParser`
- and `TodoListParser`. Depending on the user command, the user command will be parsed by the relevant Parser class.
+1. `Logic` uses the `ParserManager` class to create the respective classes: `ModuleListParser`, `ContactListParser`, `TodoListParser`,
+   `GradeTrackerParser` and `SchedulerParser` which will parse the user command.
 2. This results in a `Command` object which is executed by `LogicManager`.
 3. The command execution can affect the Model (e.g. adding a module).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -201,125 +200,53 @@ TodoList will be explained more comprehensively in the [TodoList feature](#todol
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **3. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Add Event feature
-![Structure of the Add Event command](images/AddEventSequenceDiagram.png)
+
+## 3.1 Module list management feature
+
+
+
+
+### Module list features
+
+
+
+
+### Module Assignment 
+
+### \[Proposed\] GradeTracker feature
+
 #### Proposed Implementation
-The idea of this feature is to be able to allow the user to keep track of his/her current events that
-will be happening. Events can be either a one time event like an exam for a particular module, or a recurring
-event like a weekly tutorial class.
 
-How we are currently implementing this feature is by following the same implementation as the AB3. We have an event
-object under the Model package. Two classes called EventName and EventTime act as information containers to store
-the respective data and help support the Event class.
+The proposed grade tracker feature is an association class used to store additional information for the module. 
+The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`. 
 
-We also make sure in the Logic package, there are personal sub-parsers for each of the existing Event
-related commands, and an overall Parser known as SchedulerParser that is in charge of managing all of the
-sub-parsers of the Scheduler.
 
-Each of the commands of the Scheduler will always return a CommandResult class, that is basically an information
-container that stores all the relevant data of the results. This CommandResult object is then passes back up to the
-UiManager, where it is then passed to the GUI components for it to be displayed.
+![Structure of the Module List Component](images/GradeTrackerDiagram.png)
+
+
+When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
+to the rest of the project as the command is parsed and then executed.
+
+![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Whether to create a new Parser for Scheduler.
-Option 1 **(Current implementation)**: A custom Parser in charge of all **Scheduler** related commands **only**.
-Pros:
-- More OOP orientated.
-- More defensive programming.
-Cons:
-- More Parsers to handle by the ParserManager
-
-Option 2: Place the Scheduler related parser together with the rest of the other parsers for other features, like module list, etc.
-Pros:
-- Faster to implement.
-- Less effort needed, simply add on to the existing Parser.
-Cons:
-- Mess and less readible, hard to distinguish between differnt commands.
-- Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
-- LONG methods.
+##### Aspect: Format to store the grade for a module
+* Alternative 1 : Grade stores CAP.
+    * Pros : Easier to integrate with Cap Calculator
+    * Cons : User has to manually input CAP and does not know the average from the assignments accumulated
+    
+* Alternative 2 (current choice): Grade stores the raw score calculated from assignment
+    * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
+    * Cons : Requires separate CAP to be stored for Cap Calculator to access
 
 
-### \[Proposed\] Data archiving
 
-### 1.1 Contact List Management
-
-As a module tracking system, Cap 5 Buddy allows users to manage a list of module-related contacts with ease.
-
-The section below provides details of the implementation of each Contact List function and design considerations
-of the contact list feature.
-
-#### 1.1.1 Contact List Commands
-
-Below is a list of all `Contact` related features:
-
-1. Add a contact: Adds a new contact into the contact list
-2. Delete a contact: Deletes a pre-existing contact from the contact list
-3. Edit a contact: Edits a pre-existing contact in the contact list
-4. View all contacts: Lists out all contacts in the contact list
-
-Given below is the class diagram of the `Contact` class:
-
-![ContactClassDiagram](images/Contact/ContactClassDiagram.png)
-
-Figure ?.? Class Diagram for Contact class
-
-#### 1.1.2 Details of implementation
-
-Given below is an example usage scenario and how the mechanism for adding contact behaves at each step:
-1. `LogicManager` receives the user input `addcontact n/John e/john@gmail.com te/@johndoe` from `Ui`
-2. `LogicManager` calls `ContactListParser#parseCommand()` to create `AddContactParser`
-3. `ContactListParser` will call the respective `AddContactParser#parse()` method to parse the command arguments
-4. This creates a `AddContactCommand` and `AddContactCommand#execute` will be invoked by `LogicManager`
-5. The `Model#addContact()` operation exposed in the `Model` interface is used to add the new contact
-6. A `CommandResult` from the command execution is returned to `LogicManager`
-
-Given below is the sequence diagram of how the operation to add a contact works:
-![AddContactSequenceDiagram](images/Contact/AddContactSequenceDiagram.png)
-Figure ?.? Sequence diagram for the execution of `AddContactCommand`
-
-The section below describes the implementation details of each Contact List feature.
-
-####Add Contact Feature
-* This feature creates and adds a new `Contact` using the contact details provided by users
-* `ContactListParser` invokes `AddContactParser#parse()` to parse and validate the command arguments
-* `AddContactCommand#execute()` will be called to add the new `Contact` if the contact does not already exist
-* The mechanism to add a contact is facilitated by `Contactlist` which implements `ContactList#addContact()`
-* This operation is exposed in the `Model` interface as `Model#addContact()`
-
-The following activity diagram summarizes what happens when a user executes the `AddContactCommand`:
-![AddContactCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
-Figure ?.? Activity diagram representing the execution of `AddContactCommand`
-
-#### Delete Contact Feature
-* This feature deletes a pre-existing `Contact` using the contact ID provided by users
-* `ContactListParser` invokes `DeleteContactParser#parse()` to parse and validate the contact ID
-* `DeleteContactCommand#execute()` will be called to delete the `Contact`
-* The mechanism to delete a contact is facilitated by `ContactList` which implements `ContactList#removeContact()`
-* This operation is exposed in the `Model` interface as `Model#deleteContact()`
-
-#### Edit Contact Feature
-* This feature edits a pre-existing `Contact` using the contact details provided by users.
-* `ContactListParser` invokes `EditContactParser#parse()` to parse and validate the contact ID and command arguments
-* `EditContactCommand#execute()` will be called to create the edited `Contact` and replace the old contact with the edited contact,
-   if the edited contact does not already exist
-* The mechanism to edit a contact is facilitated by `ContactList` which implements `ContactList#setContact()`
-* This operation is exposed in the `Model` interface as `Model#setContact()`
-
-#### View Contact Feature
-
-
-#### 1.1.2 Design Considerations <br>
-##### Aspect: Data structure to support Contact related functions
-* Alternative 1: Use a `HashMap` to store contacts
-  * Pros: Will be more efficient to retrieve contacts from a HashMap.
-  * Cons: Requires additional memory to support the HashMap. This would worsen as the number of contacts stored increases.
-* Alternative 2: Use an `ArrayList` to store contacts
-
+### Cap Calculator
 
 ### \[Proposed\] Calculate CAP feature
 
@@ -346,14 +273,464 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 * Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
     * Pros : Easy to implement
     * Cons : User has to manually input every module taken
-
+    
 * Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
-    * Pros :
+    * Pros : 
      * User does not need to input unnecessary modules.
-     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
+     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user). 
     * Cons : Will require additional storage.
 
-### TodoList feature
+
+
+
+## Zoom Link Management
+
+As Cap 5 Buddy is designed to suit the needs of SoC students during the transition to online learning,
+it is crucial to design features which allows efficient management of zoom links which are widely used during
+online learning. However, it is worth noting that these features can be easily modified to manage any website links,
+showcasing the usefulness of these features beyond online learning.
+
+The section below provides details of the implementation of each zoom link related function and design considerations
+of these features.
+
+#### Details of implementation
+
+##### Add zoom link feature
+
+This feature creates and adds a new `ZoomLink` for a `ModuleLesson` into a specific `Module`, if the 
+zoom link does not already exist in the module. Each `ModuleLesson` in a `Module` is only allowed to have one `ZoomLink`.
+
+This feature is facilitated by the following classes:
+  * `AddZoomLinkParser`:
+    * It implements `AddZoomLinkParser#parse()` to validate and the parse the module index and zoom link details, and creates
+      a `ZoomDescriptor` object.
+  * `ZoomDescriptor`:
+    * It stores and encapsulates the `ZoomLink` and `ModuleLesson` objects which will be added to the specified `Module`
+  * `AddZoomLinkCommand`:
+    * It implements `AddZoomLinkCommand#execute()` which executes the addition of the `ZoomLink` and its corresponding
+      `ModuleLesson` into the `Module` encapsulated in `Model`
+      
+Given below is an example usage scenario and how the mechanism for adding zoom links behaves at each step:
+Step 1. `LogicManager` receives the user input `addzoom 1 n/Lecture z/https://nus-sg.zoom.us/link` from `Ui`
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `AddZoomLinkParser`
+Step 3. Additionally, `ModuleListParser` will call the `AddZoomLinkParser#parse()` method to parse the command arguments
+Step 4. This creates an `AddZoomLinkCommand` using a `ZoomDescriptor` object that encapsulates the `ZoomLink` and `ModuleLesson` to be added
+Step 5. `AddZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
+        the updated `Module` with the added `ZoomLink` and `ModuleLesson` by calling the `Module#addZoomLink()` method
+Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the newly added zoom link
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to add a zoom link works:
+![AddZoomLinkSequenceDiagram](images/AddZoomLinkCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddZoomLinkCommand` and `AddZoomLinkParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes the `AddZoomLinkCommand`:
+![AddZoomLinkActivityDiagram](images/AddZoomLinkCommandActivityDiagram.png)
+
+##### Design consideration:
+
+##### Aspect: How to encapsulate zoom links and module lesson fields
+
+* **Alternative 1:** Store zoom link and module lesson as strings 
+
+  * Pros: Easier to implement as we do not need to create extra classes to encapsulate these objects.
+  * Cons: Does not adhere to OOP principles as higher level classes such as `Parser` need to be aware of lower level details, such 
+          as the regular expression of a zoom link.
+
+* **Alternative 2 (current choice):** Create classes to represent `ZoomLink` and `ModuleLesson` objects
+
+  * Pros: Adheres strongly to OOP principles as we are able to abstract out the lower level details of `ZoomLink` and `ModuleLesson` into their respective classes.
+          We will be able to better demonstrate the behaviour of the respective `ZoomLink` and `ModuleLesson` objects.
+          It facilitates future development of the project if zoom link or module lesson were to have certain states or behaviour that have to be implemented. 
+  * Cons: Additional classes have to be implemented to encapsulate zoom link and module lesson. These classes may appear to be
+          unnecessary since zoom link and module lesson do not currently have significant states or behaviour.
+
+Alternative 1 was chosen since it followed OOP principles which is a good practice in a SE project. Also, it provides
+greater flexibility for expansion of the project.
+
+##### Delete zoom link feature
+
+This feature deletes an existing zoom link from a module using the module lesson that is mapped to the
+target zoom link.
+
+This feature is facilitated by the following classes:
+  
+  * `DeleteZoomLinkParser`:
+    * It implements `DeleteZoomLinkParser#parse()` to validate and parse the module index and module lesson provided by the user.
+  * `DeleteZoomLinkCommand`:
+    * It implements `DeleteZoomLinkCommand#execute()` to delete the zoom link from the module 
+      using the unique module lesson that is mapped to the target zoom link.  
+      
+Given below is an example usage scenario and how the mechanism for deleting zoom links behaves at each step:
+Step 1. `LogicManager` receives the user input `deletezoom 1 n/Lecture` from `Ui`
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `DeleteZoomLinkParser`
+Step 3. Additionally, `ModuleListParser` will call the `DeleteZoomLinkParser#parse()` method to parse the command arguments
+Step 4. This creates a `DeleteZoomLinkCommand` and `DeleteZoomLinkCommand#execute()` will be invoked by `LogicManager` 
+Step 5. This deletes the target zoom link identified by its unique module lesson using the `Module#deleteZoomLink()` method.
+Step 6. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+
+##### Design consideration:
+
+##### Aspect: Limit on the number of zoom links that can be mapped to each module lesson
+
+* **Alternative 1 (current choice):** Each module lesson can only be mapped to a single zoom link
+  * Pros: The execution of a zoom link command is less complicated as each zoom link is uniquely identified by its module lesson. 
+          The implementation of the command is easier as we only need to identify the correct module lesson and
+          remove the key value pair from the hashmap.
+  * Cons: Creates a restriction for users as they are only allowed to add one zoom link for each module lesson.
+
+* **Alternative 2:** Each module lesson can be mapped to multiple zoom links
+  * Pros: This creates more freedom and flexibility for users to add multiple zoom links for the same lesson.
+  * Cons: Locating the specific zoom link to remove is tedious as we have to iterate through the list of zoom links that are mapped to the module lesson. 
+          Additionally, we need to implement a mechanism to allow users to specify the exact zoom link to be deleted since using the module
+          name is not sufficient.
+
+Alternative 1 was chosen as it was significantly simpler to implement and did not violate any key design principles.
+We also took into consideration the fact that it is unlikely for a single lesson to have multiple zoom links.
+
+
+##### Edit zoom link feature
+
+This feature edits an existing zoom link in a module using the module lesson that is mapped to the
+target zoom link.
+
+This feature is facilitated by the following classes:
+
+  * `EditZoomLinkParser`:
+    * It implements `EditZoomLinkParser#parse()` to validate and parse the module index, module lesson and edited zoom link provided by the user.
+      This creates a `ZoomDescriptor` object that stores the zoom link details needed for the edit zoom link command.
+    
+  * `ZoomDescriptor`  
+    * It stores and encapsulates the `ZoomLink` and `ModuleLesson` objects which will be used to execute the command to edit the zoom link 
+    
+  * `EditZoomLinkCommand`:  
+    * It implements `EditZoomLinkCommand#execute()` which edits the target zoom link in the specified module encapsulated in `Model`
+   
+
+Given below is an example usage scenario and how the mechanism for editing zoom links behaves at each step:
+Step 1. `LogicManager` receives the user input `editzoom 1 n/Lecture z/https://nus-sg.zoom.us/newLink` from `Ui`
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `EditZoomLinkParser`
+Step 3. Additionally, `ModuleListParser` will call the `EditZoomLinkParser#parse()` method to parse the command arguments
+Step 4. This creates an `EditZoomLinkCommand` using a `ZoomDescriptor` object that encapsulates the edited zoom link
+Step 5. `EditZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
+        the updated `Module` with the edited `ZoomLink` by calling the `Module#editZoomLink()` method
+Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the edited zoom link
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`   
+
+The sequence diagram of how the operation to edit a zoom link works is similar to the one in figure ?.?, 
+except that the respective parser and command classes are `EditZoomLinkParser` and `EditZoomLinkCommand`
+
+##### Design consideration:
+
+##### Aspect: How to implement the command to edit zoom link
+
+* **Alternative 1:** Reuse the same `Parser` and `Command` classes used by the `AddZoomLink` command to implement the `EditZoomLink` command at the same time 
+                     since the two commands have very similar implementations.
+
+  * Pros: Reduces the amount of code that has to be written, as well as the number of classes that have to be implemented. 
+  * Cons: Violates the **Single Responsibility Principle** since the same parser and command classes have 2 separate responsibilities and have to perform 2 different operations.
+
+* **Alternative 2 (current choice):** Implement the `EditZoomLink` command separately.
+
+  * Pros: Adheres to the Single Responsibility Principle and it is easier to implement the function since we do not need to handle 
+          2 separate commands at the same time.
+  * Cons: Repetition of code may occur.
+  
+Alternative 2 was chosen since it was a good practice to follow key designing principles. Using alternative 1 would complicate
+the implementation of the command since we had to handle 2 different cases and this can increase the occurrences of bugs.
+
+
+##### Aspect: Data structure to support zoom link commands
+
+* **Alternative 1 (current choice):** Use a `HashMap` to store module lesson and zoom links in a module. Each module lesson
+                                      will be used as a key which is mapped to a zoom link.
+  * Pros: Checking for duplicate zoom links will be simpler.
+  * Cons: Zoom links can only be uniquely identified by their module lesson. Any operation involving zoom link objects would
+          require the module lesson that the zoom link is mapped to.
+  
+* **Alternative 2:** Encapsulate a zoom link object as a field of module lesson and use a `HashSet` to store module lesson objects.
+  * Pros: It is easy to check for duplicate module lessons.
+  * Cons: It is tedious to check for duplicate zoom links as we have to access the zoom link field of each module lesson in the hashset.
+  
+* **Alternative 3:** Encapsulate a zoom link object as a field of module lesson and use an `ArrayList` to store module lesson objects.
+  * Pros: It is easy to identify module lessons by index. Users can provide the index of the module lesson for zoom link commands, 
+          which is simpler compared to providing the module lesson name.  
+  * Cons: The process of checking for duplicate module lessons and zoom links in the module is more tedious.
+
+Alternative 1 was chosen since checking for duplicate zoom links occurs frequently during the execution of 
+zoom link related commands.
+
+
+
+
+### 3.2 Contact List Management
+
+As a module tracking system, Cap 5 Buddy allows users to manage a list of module-related contacts with ease.
+This is especially important since being enrolled in numerous modules results in the need to keep track of
+numerous contacts, each with different contact details.
+
+The section below provides details of the implementation of each Contact List function and design considerations
+of these features.
+
+#### Contact List Commands
+
+Below is a list of all `Contact` related features:
+
+1. Add a contact: Adds a new contact into the contact list
+2. Delete a contact: Deletes a pre-existing contact from the contact list
+3. Edit a contact: Edits a pre-existing contact in the contact list
+4. Find a contact: Search for contacts using different search parameters
+
+Given below is the class diagram of the `Contact` class:
+
+![ContactClassDiagram](images/Contact/ContactClassDiagram.png)
+
+Figure ?.? Class Diagram for Contact class
+
+#### Details of implementation
+
+##### Add contact feature
+
+This feature creates and adds a new `Contact` into the contact list if the contact does not already exist. 
+
+This feature is facilitated by the following classes:
+
+ * `AddContactParser`:
+   * It implements `AddContactParser#parse()` to parse and validate the user arguments to create a new `Contact`.
+
+ * `AddContactCommand`:
+   * It implements `AddContactCommand#execute()` which executes the addition of the new contact into `Model`.
+
+Given below is an example usage scenario and how the mechanism for adding contact behaves at each step:
+Step 1. `LogicManager` receives the user input `addcontact n/John e/john@gmail.com te/@johndoe` from `Ui`
+Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create an `AddContactParser`
+Step 3. Additionally, `ContactListParser` will call the `AddContactParser#parse()` method to parse the command arguments
+Step 4. This creates an `AddContactCommand` and `AddContactCommand#execute()` will be invoked by `LogicManager` to excecute the command to add the contact
+Step 5. The `Model#addContact()` operation exposed in the `Model` interface is invoked to add the new contact
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to add a contact works:
+![AddContactSequenceDiagram](images/Contact/AddContactSequenceDiagram.png)
+Figure ?.? Sequence diagram for the execution of `AddContactCommand`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddContactCommand` and `AddContactParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+
+The following activity diagram summarizes what happens when a user executes the `AddContactCommand`:
+![AddContactCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
+Figure ?.? Activity diagram representing the execution of `AddContactCommand`
+
+##### Design consideration:
+
+##### Aspect: Require users to provide all contact fields when adding a new contact
+
+* **Alternative 1 (current choice):** Require `ContactName` and `Email` to be mandatory fields that must be provided, while leaving `Telegram` as an optional field
+  * Pros: This caters to certain contacts who do not have a `Telegram` field, providing more flexibility for users when creating contacts.
+  * Cons: This can complicate the process of checking if 2 contacts are the same since we need to consider if the `Telegram` field of a contact 
+          is present before the comparison is performed. 
+
+* **Alternative 2:** Require `ContactName`, `Email` and `Telegram` to be mandatory fields
+  * Pros: The process of checking if 2 contacts are the same by comparing all 3 contact fields will be simpler.
+  * Cons: This can create problems for users who want to add a contact that does not have a suitable `Telegram` field
+
+Alternative 1 was chosen since it provides users with greater freedom when creating contacts. Enforcing all contact fields to be 
+mandatory can restrict users when adding contacts, hindering user experience.
+
+
+#### Delete Contact Feature
+
+The delete contact feature deletes a pre-existing `Contact` using the index of the contact on the displayed contact list.
+This feature is facilitated by the following classes: 
+
+  * `DeleteContactParser`:
+    * It implements `DeleteContactParser#parse()` to parse and validate the contact ID
+
+  * `DeleteContactCommand`:
+    * It implements `DeleteContactCommand#execute()` to delete the `Contact` from `Model`
+
+After the user input has been parsed by `DeleteContactParser`, `LogicManager` will execute the delete operation by invoking
+`DeleteContactCommand#execute()`. This deletes the target contact by invoking the `Model#deleteContact()` method exposed in the `Model` interface.
+
+Given below is the sequence diagram of how the operation to delete a contact works:
+![DeleteContactSequenceDiagram](images/Contact/DeleteContactCommandSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Method to delete contact
+
+* **Alternative 1 (current choice):** Delete a contact based on its index in the displayed contact list
+  * Pros: Using the contact index allows us to uniquely identify the target contact to delete, reducing the room for possible error
+  * Cons: The target contact to be deleted might not be displayed on the contact list and hence the contact index might not be
+          readily available. This can inconvenience users who have to search for the contact to retrieve the contact index.
+
+* **Alternative 2:** Delete a contact based on the contact name
+  * Pros: It can make the deletion process simpler for **users** who can provide the name of the contact without having to execute more commands.
+  * Cons: This can complicate the deletion process since contacts with the same name is a possibility. If there are multiple
+          contacts with the same provided name, more information of the target contact has to be provided by the user,
+          creating more inconvenience for the user as well.
+
+Alternative 1 was chosen since it guarantees a unique contact would be provided in every case. This ensures the
+contact deletion process is safe and the correct contact is deleted, minimising the room for potential errors.  
+
+
+#### Edit Contact Feature
+
+The edit contact feature edits a pre-existing contact in the contact list using contact details provided by the users.
+This feature is facilitated by the following classes:
+
+  * `EditContactParser`: 
+    * It implements `EditContactParser#parse()` to parse and validate the provided contact details and contact index
+
+  * `EditContactDescriptor`:
+    * It stores the contact details which will be used to edit the target contact
+
+  * `EditContactCommand`:
+    * It implements `EditContactCommand#execute()` to edit the contact in `Model`
+
+Given below is an example usage scenario and how the mechanism for editing contact behaves at each step:
+Step 1. `LogicManager` receives the user input `editcontact 1 n/John te/@johndoe` from `Ui`
+Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create an `EditContactParser`
+Step 3. Additionally, `ContactListParser` will call the `EditContactParser#parse()` method to parse the command arguments
+Step 4. This creates an `EditContactCommand` and `EditContactCommand#execute()` will be invoked by `LogicManager` to edit the target contact
+Step 5. The `Model#setContact()` operation exposed in the `Model` interface is invoked to replace the target contact with the edited contact
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to edit a contact works:
+![EditContactSequenceDiagram](images/Contact/EditContactCommandSequenceDiagram.png)
+
+
+#### Design consideration:
+
+##### Aspect: How to encapsulate the edited contact details and relay this information to EditContactCommand
+
+* **Alternative 1 (current choice):** Encapsulate all edited contact details in a class `EditContactDescriptor`
+  * Pros: Reduces the complexity of the `EditContactCommand` class constructor as the number of parameters for the constructor
+          is constant. It also reduces the level of coupling between `EditContactCommand` and `EditContactParser`
+  * Cons: Additional method calls are require to store the edited contact details in `EditContactDescriptor` class.
+
+* **Alternative 2:** Provide the edited contact details as arguments for the `EditContactCommand` constructor
+  * Pros: Fewer method calls are required since `EditContactParser` can directly pass the edited contact arguments to the `EditContactCommand` constructor
+  * Cons: This can increase data coupling between `EditContactParser` and `EditContactCommand` which can cause unnecessary changes in
+          either class if the other class were to change.
+
+Alternative 1 was chosen as it would make future changes to any class easier and less error-prone, 
+hence increasing the ease of maintenance, since there was less coupling between the 2 classes.
+
+##### Aspect: Implementation of `EditContactCommand`
+
+* **Alternative 1 (current choice):** 
+  * Pros: Reduces coupling between the command classes and `EditContactCommand` can be implemented without restrictions,
+          or a need to consider how it might affect the other command classes
+  * Cons: Additional methods have to be implemented to replace the target contact with the edited contact
+
+* **Alternative 2:** Reuse `DeleteContactCommand` to delete the target contact and `AddContactCommand` to add the edited contact
+  * Pros: Reusing other commands would make the implementation of `EditContactCommand` simpler and easier
+  * Cons: It increases coupling between the 3 commands and this can cause issues in `EditContactCommand` if either 
+          `DeleteContactCommand` or `AddContactCommand` developed bugs or errors. Also, it might affect performance since 
+          executing `EditContactCommand` will execute 2 other commands.
+
+Alternative 1 was chosen since it gave more freedom with regard to the implementation of `EditContactCommand` since
+we were not restricted to reusing other commands. Less coupling between the classes meant that changes in one class would 
+less likely require changes to other classes.
+
+
+#### Find Contact Feature
+
+The find contact feature is important since sieving through all contacts to search for a specific contact can be 
+tedious and not user-friendly. Finding contacts using one search parameter is not meaningful 
+as the search results might not be refined and accurate.
+
+The find contact feature searches for contacts using 2 parameters: contact name and/or tag. 
+For each search parameter, contacts have to match at least one keyword to fulfil that search criteria.
+If multiple parameters are provided, e.g both name and tag keywords, only contacts that fulfil both the name and tag criteria are returned. 
+
+This feature is facilitated by the following classes:
+
+  * `FindContactParser`:
+    * It implements `FindContactParser#parse()` to parse and validate the user input
+    * It creates predicate objects using the command arguments and adds them to the list of predicates in
+      `FindContactCriteria`
+    * It implements `FindContactParser#isAtLeastOnePrefixPresent()` to validate that at least one search parameter was provided by the user
+
+  * `FindContactCriteria`:
+    * It encapsulates all the predicates which will be used to test for matching contacts
+    * It implements the following operations:
+      * `FindContactCriteria#addPredicate():` Adds a new predicate into the list of predicates 
+         to test for matching contacts
+      * `FindContactCriteria#getFindContactPredicate():` To compose all the predicates into a single predicate
+
+    * Predicate objects that can be stored in `FindContactCriteria`:
+      * `ContactNameContainsKeywordsPredicate`:
+        * Tests if the name of a given contact matches at least one of the name keywords provided (case-insensitive)
+      * `ContactContainsTagsPredicate`:
+        * Tests if a given contact contains at least one of the search tags provided (case-insensitive)
+
+  * `FindContactCommand`:
+    * It implements `FindContactCommand#execute()` to find all matching contacts by updating the 
+      filtered contact list in `Model` using the predicate from `FindContactCriteria`
+
+Given below is an example usage scenario and how the mechanism for finding contact behaves at each step:
+Step 1. `LogicManager` receives the user input `findcontact n/John t/friend` from `Ui`
+Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create a `FindContactParser`
+Step 3. Additionally, `ContactListParser` will call the `FindContactParser#parse()` method to parse the command arguments
+Step 4. This creates a `FindContactCriteria` that encapsulates the created `Predicate` objects to test for matching contacts
+Step 4. Additionally, a `FindContactCommand` is created and `FindContactCommand#execute()` will be invoked by `LogicManager` to find matching contacts
+Step 5. The `Model#updateFilteredContactList()` operation exposed in the `Model` interface is invoked to update the displayed contact list 
+        using the predicate from `FindContactCriteria`
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to find contact works:
+![FindContactCommandSequenceDiagram](images/Contact/FindContactCommandSequenceDiagram.png)
+Fig ??
+
+Given below is the sequence diagram showing the interaction between `FindContactParser` and `FindContactCriteria`:
+![FindContactCriteriaSequenceDiagram](images/Contact/FindContactCriteriaSequenceDiagram.png)
+
+
+#### Design consideration:
+
+##### Aspect: Storing of predicates in `FindContactCriteria`
+
+* **Alternative 1 (current choice):** Store the predicates as a list of predicates
+  * Pros: Composing the predicates into a single predicate is easier as we can simply iterate through the list
+          and compose all the predicates.
+  * Cons: Using a list means that the exact predicate objects in the list are not known. This can make testing and
+          debugging more complicated. Moreover, we need to enforce checks on the predicate ensure that
+          null objects, which can cause `NullPointerException` to be thrown, are not added.
+
+* **Alternative 2:** Store each predicate object as an individual field of `FindContactCriteria`
+  * Pros: Facilitates easier testing as we can accurately determine which predicate objects are present.
+  * Cons: It is tedious to compose the predicates into a single predicate as we have to check each individual field and 
+          determine if it is null of if the predicate exists. 
+
+##### Aspect: Implementation of `FindContactCommand` 
+
+* **Alternative 1 :** Implement separate find contact commands for each possible search parameter. In this case, to find contacts, 
+                      we can create a command to find contacts by name, and another to find by tags.
+  * Pros: Implementation of the commands would be more straightforward, as only one predicate has to be created for each
+          find contact command. The `FindContactCriteria` class to store all the predicates would not be necessary in this case.
+  * Cons: This can increase the number of different find contact commands which can cause confusion for users.
+          Additionally, this can lead to repetitive code since the implementation of each find contact command would be similar.      
+
+* **Alternative 2 (current choice):** Implement a single `FindContactCommand` which can search for contacts using all the possible search parameters.
+                                      All the predicates needed to test for matching contacts would be encapsulated in `FindContactCriteria` 
+  * Pros: Reduces the need for multiple find contact commands with similar implementations. Users can make more refined and
+          accurate searches by combining multiple search parameters.
+  * Cons: Increases the complexity of implementing `FindContactParser` which has to validate and parse multiple search 
+          parameters provided.
+
+
+
+
+
+### 3.3 TodoList feature
 
 #### Implementation
 
@@ -438,31 +815,138 @@ TodoList implements ReadOnlyTodoList which require the following operation :
 
   Alternative 1 is chosen since we prioritize user freedom to create custom type for the task.
 
+  
 
-### \[Proposed\] GradeTracker feature
 
-#### Proposed Implementation
+#### Find Task Feature
 
-The proposed grade tracker feature is an association class used to store additional information for the module.
-The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`.
+The find task feature is crucial as it enables users to retrieve tasks efficiently rather than having to scan through their
+entire todo list to find the desired task. This can also contribute to a better management of user tasks which is important since Cap 5 Buddy
+is an application to track module related details and information. To ensure that searching for tasks is refined and accurate, this feature enables users to search using multiple parameters.
 
-![Structure of the Module List Component](images/GradeTrackerDiagram.png)
+The search parameters that can be used to find tasks include: `Name`, `Date`, `Tag`, `Priority` and `Status`. If multiple search
+parameters are provided by users, only tasks that fulfil all the search criteria will be returned.
 
-When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly
-to the rest of the project as the command is parsed and then executed.
+This feature is facilitated by the following classes:
 
-![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
+  * `FindTaskParser`:
+    * It implements `FindTaskParser#parse()` to parse and validate the user input
+    * It creates predicate objects using the command arguments and adds them to the list of predicates in
+      `FindTaskCriteria`
+    * It implements `FindTaskParser#isAtLeastOnePrefixPresent()` to validate that at least one search parameter was provided by the user
+    
+  * `FindTaskCriteria`:
+    * It encapsulates all the predicates which will be used to test for matching tasks
+    * It implements the following operations:
+      * `FindTaskCriteria#addPredicate():` Adds a new predicate into the list of predicates 
+        to test for matching contacts
+      * `FindTaskCriteria#getFindTaskPredicate():` To compose all the predicates into a single predicate
+        
+  * Predicate objects that can be stored in `FindTaskCriteria`:
+    * `TaskNameContainsKeywordsPredicate`:
+      * Tests if the name of a given task matches at least one of the name keywords provided (case-insensitive)
+    * `ContactContainsTagsPredicate`:
+      * Tests if a given task contains at least one of the search tags provided (case-insensitive)
+    * `TaskMatchesDatePredicate`:
+      * Tests if the date of a given task matches the search date exactly.
+    * `TaskMatchesPriorityPredicate`:
+      * Tests if the priority of a given task matches the search priority exactly.
+    * `TaskMatchesStatusPredicate`:
+      * Tests if the status of a given task matches the search status exactly.
+  
+Given below is the class diagram describing the `FindTaskCriteria` class:
+![FindTaskCriteriaClassDiagram](images/FindTaskCriteriaClassDiagram.png)
+
+   * `FindTaskCommand`:
+     * It implements `FindTaskCommand#execute()` to find all matching tasks by updating the 
+       filtered todo list in `Model` using the predicate from `FindTaskCriteria`
+       
+Given below is an example usage scenario and how the mechanism for finding tasks behaves at each step:
+
+Step 1. `LogicManager` receives the user input `findtask n/lab d/2020-01-01` from `Ui`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create a `FindTaskParser`
+
+Step 3. Additionally, `TodoListParser` will call the `FindTaskParser#parse()` method to parse the command arguments
+
+Step 4. This creates a `FindTaskCriteria` that encapsulates the created `Predicate` objects to test for matching tasks
+
+Step 4. Additionally, a `FindTaskCommand` is created and `FindTaskCommand#execute()` will be invoked by `LogicManager` to find matching tasks
+
+Step 5. The `Model#updateFilteredTodoList()` operation exposed in the `Model` interface is invoked to update the displayed todo list 
+        using the predicate from `FindTaskCriteria`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+![FindTaskCommandActivityDiagram](images/FindTaskCommandActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Format to store the grade for a module
-* Alternative 1 : Grade stores CAP.
-    * Pros : Easier to integrate with Cap Calculator
-    * Cons : User has to manually input CAP and does not know the average from the assignments accumulated
+##### Aspect: How to handle instances when the user does not provide any search parameter
 
-* Alternative 2 (current choice): Grade stores the raw score calculated from assignment
-    * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
-    * Cons : Requires separate CAP to be stored for Cap Calculator to access
+* **Alternative 1 :** Allow users to provide 0 search parameters, in which case the find task command does not perform any operation.
+  
+  * Pros: Implementation of the command is simpler as we do not need to check if at least one search parameter was provided.
+  * Cons: The command does not perform any meaningful operation.
+  
+* **Alternative 2 (current choice):** Handle instances when no search parameter was provided using exceptions and inform users that at least one parameter is required.
+
+  * Pros: Ensures that users are aware of any constraints related to the command.
+  * Cons: The implementation of the command is slighly more complex since exception handling is required and 
+          we need to check if at least one search parameter was provided.
+
+Alternative 2 was chosen as it conformed with the standard practice of handling errors using exception. Moreover, it removes any room for 
+ambiguity by ensuring all constraints related to the command are made known to the users.
+
+
+
+
+    
+### 3.4 Event list management feature
+
+
+
+### \[Proposed\] Add Event feature
+![Structure of the Add Event command](images/AddEventSequenceDiagram.png)
+#### Proposed Implementation
+The idea of this feature is to be able to allow the user to keep track of his/her current events that
+will be happening. Events can be either a one time event like an exam for a particular module, or a recurring
+event like a weekly tutorial class.
+
+How we are currently implementing this feature is by following the same implementation as the AB3. We have an event
+object under the Model package. Two classes called EventName and EventTime act as information containers to store
+the respective data and help support the Event class.
+
+We also make sure in the Logic package, there are personal sub-parsers for each of the existing Event
+related commands, and an overall Parser known as SchedulerParser that is in charge of managing all of the
+sub-parsers of the Scheduler. 
+
+Each of the commands of the Scheduler will always return a CommandResult class, that is basically an information
+container that stores all the relevant data of the results. This CommandResult object is then passes back up to the
+UiManager, where it is then passed to the GUI components for it to be displayed.
+
+#### Design consideration:
+
+##### Aspect: Whether to create a new Parser for Scheduler.
+Option 1 **(Current implementation)**: A custom Parser in charge of all **Scheduler** related commands **only**.
+Pros: 
+- More OOP orientated.
+- More defensive programming.
+Cons:
+- More Parsers to handle by the ParserManager
+
+Option 2: Place the Scheduler related parser together with the rest of the other parsers for other features, like module list, etc.
+Pros:
+- Faster to implement.
+- Less effort needed, simply add on to the existing Parser.
+Cons:
+- Mess and less readible, hard to distinguish between differnt commands.
+- Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
+- LONG methods.
+  
+    
+    
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -500,6 +984,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ------------------------------------------------------ |
+|                 | module list | |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App |
 | `* * *`  | user                                       | add a new module               | keep track of the module information easily            |
 | `* * *`  | user                                       | delete a module                | remove modules that are completed                      |
@@ -507,6 +992,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
 | `* *`    | user                                       | calculate my cumulative average point   | plan my academic progress for the future      |
 | `* *`    | user                                       | add graded assignments       | add the information of the assignments that contributed to my grade      |
+|          | contact list                               |                                | |
 | `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
 | `* *`    | user                                       | delete graded assignments      | remove the assignments that are do not contribute to my grade anymore|
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
@@ -519,12 +1005,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | filter tasks based on criteria | easily manage the tasks by group                       |
 | `*`      | user                                       | reset the status of a task     | change a task from labeled as completed to not completed |
 | `*`      | user                                       | archive a task                 | hide irrelevant tasks that might still be useful for future purposes |
+| | todo list | |
+| | event list | |
 
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `CAP5BUDDY` and the **Actor** is the `user`, unless specified otherwise)
+
+## Module list use cases
+
+
+
+## Contact list use cases
+
+
+## Todo list use cases
 
 **Use case: Add a new Module**
 
@@ -1060,6 +1557,17 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+### Module List
+
+
+### Contact List
+
+
+### Todo List
+
+
+### Event List
 
 ### Saving data
 

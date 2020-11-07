@@ -31,4 +31,11 @@ public class TaskMatchesPriorityPredicate implements Predicate<Task> {
         return false;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TaskMatchesPriorityPredicate // instanceof handles nulls
+                && searchPriority.equals(((TaskMatchesPriorityPredicate) other).searchPriority)); // state check
+    }
+
 }

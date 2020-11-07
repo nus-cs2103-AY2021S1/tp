@@ -2,10 +2,12 @@ package seedu.address.testutil.event;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
+import seedu.address.model.tag.Tag;
 
 public class EventUtil {
 
@@ -14,7 +16,7 @@ public class EventUtil {
     public static final EventTime VALID_DATE = EventUtil.makeEventTime("1-2-2020 1200");
     public static final String VALID_DATE_STRING = "1-2-2020 1200";
     public static final Event VALID_EVENT = EventUtil.makeEvent(VALID_NAME, VALID_DATE);
-    public static final Event DEFAULT_EVENT = new Event(new EventName("Homework"), new EventTime());
+    public static final Event DEFAULT_EVENT = new Event(new EventName("Homework"), new EventTime(), new HashSet<Tag>());
 
     /**
      * Creates an EventName based on the given String input.
@@ -63,6 +65,6 @@ public class EventUtil {
      * @return Event with the name and time.
      */
     public static Event makeEvent(EventName name, EventTime time) {
-        return new Event(name, time);
+        return new Event(name, time, new HashSet<Tag>());
     }
 }
