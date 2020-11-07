@@ -72,16 +72,18 @@ public class FlashcardUtil {
                 .append(question).append(" "));
         descriptor.getChoices().ifPresent(choice -> {
             for (int i = 0; i < choice.length; i++) {
-                sb.append(PREFIX_CHOICE).append(choice[i].getValue());
+                sb.append(PREFIX_CHOICE).append(choice[i].getValue()).append(" ");
             }
         });
         descriptor.getTags().ifPresent(tags -> {
             Tag[] empty = new Tag[0];
             Tag[] temp = tags.toArray(empty);
             for (int i = 0; i < temp.length; i++) {
-                sb.append(PREFIX_TAG).append(temp[i].getName());
+                sb.append(PREFIX_TAG).append(temp[i].getName()).append(" ");
             }
         });
+        descriptor.getDifficulty().ifPresent(difficulty -> sb.append(PREFIX_DIFFICULTY)
+                .append(difficulty.getValue()).append(" "));
         return sb.toString();
     }
 }

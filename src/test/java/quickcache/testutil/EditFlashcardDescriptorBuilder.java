@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import quickcache.logic.commands.EditCommand;
 import quickcache.model.flashcard.Answer;
 import quickcache.model.flashcard.Choice;
+import quickcache.model.flashcard.Difficulty;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.MultipleChoiceQuestion;
 import quickcache.model.flashcard.Tag;
@@ -38,6 +39,7 @@ public class EditFlashcardDescriptorBuilder {
         if (flashcard.getQuestion() instanceof MultipleChoiceQuestion) {
             descriptor.setChoices(flashcard.getQuestion().getChoices().get());
         }
+        descriptor.setDifficulty(flashcard.getDifficulty());
     }
 
     /**
@@ -53,6 +55,14 @@ public class EditFlashcardDescriptorBuilder {
      */
     public EditFlashcardDescriptorBuilder withAnswer(String answer) {
         descriptor.setAnswer(new Answer(answer));
+        return this;
+    }
+
+    /**
+     * Sets the {@code difficutly} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditFlashcardDescriptorBuilder withDifficulty(String difficulty) {
+        descriptor.setDifficulty(new Difficulty(difficulty));
         return this;
     }
 

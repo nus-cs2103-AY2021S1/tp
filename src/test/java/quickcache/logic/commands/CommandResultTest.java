@@ -44,6 +44,7 @@ public class CommandResultTest {
 
         Answer answer = new Answer("answer");
         Question question = new OpenEndedQuestion("question", answer);
+
         commandResult = new CommandResult("feedback", question, true, false);
 
         // same values -> returns true
@@ -57,7 +58,7 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(null));
 
         // different types -> returns false
-        assertFalse(commandResult.equals(0.5f));
+        assertFalse(commandResult.equals(0.5));
 
         // different feedbackToUser value -> returns false
         assertFalse(commandResult.equals(new CommandResult("different", question,
@@ -70,6 +71,28 @@ public class CommandResultTest {
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true,
                  false, question, true)));
+
+        commandResult = new CommandResult("feedback", question, true, false);
+    }
+
+    @Test
+    public void getters() {
+        CommandResult allTrueCommandResult =
+                new CommandResult("feedback", true, true, true);
+        CommandResult allFalseCommandResult =
+                new CommandResult("feedback", false, false, false);
+
+
+        assertTrue(allTrueCommandResult.isChangeWindow());
+        assertTrue(allTrueCommandResult.isExit());
+        assertTrue(allTrueCommandResult.isShowHelp());
+
+        assertFalse(allFalseCommandResult.isChangeWindow());
+        assertFalse(allFalseCommandResult.isExit());
+        assertFalse(allFalseCommandResult.isShowHelp());
+
+        assertEquals(allTrueCommandResult.getFeedback(), allFalseCommandResult.getFeedback());
+        assertEquals(allTrueCommandResult.getFeedbackToUser(), allFalseCommandResult.getFeedbackToUser());
     }
 
     @Test

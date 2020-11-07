@@ -5,16 +5,16 @@ title: User Guide
 
 # Welcome to QuickCache User Guide
 
-**QuickCache** is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+This User Guide is co-written by Josiah, Joshua, Gilbert, Francis and Xingjian. We are computer science students from National University of Singapore, and members of AY2021S1-CS2103T-T13-2.
 
-If you are a student who can type fast and loves organizing your study materials, **QuickCache** can get your flashcard management tasks done faster than any traditional GUI appplication.
+--------------------------------------------------------------------------------------------------------------------
 
-The **QuickCache User Guide** helps you get started with using **QuickCache**. This user guide aims to walk you through the robust features that **QuickCache** has to offer and take you from zero to hero. Don't like reading? A summary is available at the end for your reference.
+##Table of Contents
 
-**Table of Contents**
-
-1. [Quick start](#quickstart)
-2. [Features](#features)
+1. [Introduction](#intro)
+2. [Using this guide](#using-this-guide)
+3. [Quick start](#quickstart)
+4. [Features](#features)
     1. [Viewing help](#help)
     2. [Creating a new flashcard](#creating-a-new-flashcard)
         1. [Open ended question](#oeq)
@@ -41,8 +41,32 @@ The **QuickCache User Guide** helps you get started with using **QuickCache**. T
         2. [Importing a set of flashcards](#import)
     12. [Exiting the program](#exit)
     13. [Saving the data](#save)
-3. [FAQ](#faq)
-4. [Command summary](#command-summary)
+5. [FAQ](#faq)
+6. [Command summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Introduction to QuickCache <a name="intro"></a>
+
+**QuickCache** is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+
+If you are a student who can type fast and loves organizing your study materials, **QuickCache** can get your flashcard management tasks done faster than any traditional GUI appplication.
+
+The **QuickCache User Guide** helps you get started with using **QuickCache**. This user guide aims to walk you through the robust features that **QuickCache** has to offer and take you from zero to hero. Don't like reading? A summary is available at the end for your reference.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Using this guide <a name="using-this-guide"></a>
+
+Before diving into **QuickCache** and getting to know its features, lets get familiar with the symbols used in this user guide.
+
+:information_source: This symbol represents important information
+
+:exclamation: This symbol represents warnings
+
+:bulb: This symbol represents additional information
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -100,10 +124,16 @@ Here is a quick start on how you can start using our app in your own computer.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/ANSWER`, `ANSWER` is a parameter which can be used as `add n/Oxygen`.
+  e.g. in `add ans/ANSWER`, `ANSWER` is a parameter which can be used as `add ans/Oxygen`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/QUESTION p/ANSWER`, `p/ANSWER n/QUESTION` is also acceptable.
+  e.g. if the command specifies `q/QUESTION ans/ANSWER`, `q/ANSWER ans/QUESTION` is also acceptable.
+  
+* Items in square brackets are optional.
+  e.g. q/QUESTION [t/TAG] can be used as q/What is my name? t/personal or as q/What is my name? .
+
+* Items with ... after them can be used multiple times.
+  e.g. [c/CHOICE]... can be used as c/Choice1, c/Choice1 c/Choice2 etc.
 
 </div>
 
@@ -117,7 +147,7 @@ Format: `help`
 
 ### Creating a new flashcard <a name="creating-a-new-flashcard"></a>
 You can add a new flashcard to the list.
-#### Creating a flashcard with open ended question: `add q/QUESTION ans/ANSWER` <a name="oeq"></a>
+#### Creating a flashcard with open ended question: `add q/QUESTION ans/ANSWER [t/TAG]... [d/DIFFICULTY]` <a name="oeq"></a>
 You can create a flashcard that contains an open ended question which will be added to the list.
 
 1. You can use the add command to add a flashcard with an open ended question which will be added to the list.
@@ -130,10 +160,15 @@ For example, you can enter`add q/Sample Question ans/Sample Answer`
     ![addOpenEnded2](images/addOpenEnded2.png)
 
 <div class="alert alert-danger">
-:exclamation: You cannot add a flashcard with empty question and empty answer.
+:exclamation:<br>
+
+* You cannot add a flashcard with empty question and empty answer.
+
+* `DIFFICULTY` can only be set to `LOW`, `MEDIUM`, `HIGH` or `UNSPECIFIED`.
+
 </div>
 
-#### Creating a flashcard with multiple choice question: `addmcq q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..` <a name="mcq"></a>
+#### Creating a flashcard with multiple choice question: `addmcq q/QUESTION ans/ANSWER c/CHOICE... [t/TAG]... [d/DIFFICULTY]` <a name="mcq"></a>
 You can create a flashcard that contains a multiple choice question which will be added to the list.
 
 1. You can use the addmcq command to add a flashcard with a multiple choice question which will be added to the list.
@@ -146,9 +181,14 @@ For example, you can enter `addmcq q/Sample Question ans/1  c/Sample Choice c/Sa
     ![addMCQ2](images/addMCQ2.png)
 
 <div class="alert alert-danger">
-:exclamation: You cannot add flashcard with missing question or missing answer or missing choice.
-<br>
-You should have at least two choices.
+:exclamation:<br>
+
+* You cannot add flashcard with missing question or missing answer or missing choice.
+
+* You should have at least two choices.
+
+* `DIFFICULTY` can only be set to `LOW`, `MEDIUM`, `HIGH` or `UNSPECIFIED`.
+
 </div>
 
 ### Opening a flashcard: `open INDEX` <a name="opening-a-flashcard"></a>
@@ -176,7 +216,7 @@ To view a flashcard you can open it by its index.
 
 You have successfully opened a flashcard!
 
-### Editing a flashcard: `edit INDEX q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..` <a name="editing-a-flashcard"></a>
+### Editing a flashcard: `edit INDEX [q/QUESTION] [ans/ANSWER] [c/CHOICE]... [t/TAG]... [d/DIFFICULTY]` <a name="editing-a-flashcard"></a>
 
 You can edit a flashcard that you have created previously.
 
@@ -196,7 +236,15 @@ For example, if you want to edit the 3rd flashcard in the displayed list, you ca
 You have successfully edited a flashcard.
 
 <div class="alert alert-danger">
+:information_source:<br>
 :exclamation: You must have at least one edited field which is different from the previous flashcard.
+
+* When editing tags, the existing tags of the flashcard will be removed i.e adding of tags is not cumulative.
+
+* You can remove all the flashcard’s tags by typing t/ without specifying any tags after it.
+
+* You can remove the flashcard’s difficulty by typing d/ without specifying any difficulty after it. Or you can manually set it to `d/UNSPECIFIED`.
+
 </div>
 
 ### Listing all flashcards : `list` <a name="listing-all-flashcards"></a>
@@ -211,11 +259,11 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: The .. refers to any number of tags and/or keywords
+:exclamation: You must have at least one find field provided.
 
 </div>
 
-#### Finding by question: `find q/KEYWORD1 q/KEYWORD2 ..` <a name="finding-by-question"></a>
+#### Finding by question: `find q/KEYWORD...` <a name="finding-by-question"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -237,7 +285,7 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindQuestionStep3](./images/FindQuestionStep3.png)
 
-#### Finding by tags: `find t/TAG1 t/TAG2 ..` <a name="finding-by-tags"></a>
+#### Finding by tags: `find t/TAG1...` <a name="finding-by-tags"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -257,7 +305,7 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindTagsStep3](./images/FindTagsStep3.png)
 	
-#### Finding by tags and keywords: `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..`
+#### Finding by tags and keywords: `find t/TAG... q/KEYWORD...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -316,7 +364,7 @@ You can delete a flashcard based on the index shown in the last displayed list.
 
 You have successfully deleted a flashcard!
 
-#### Deleting by tags : `delete t/TAG1` <a name="deleting-by-tags"></a>
+#### Deleting by tags : `delete t/TAG...` <a name="deleting-by-tags"></a>
 
 You can delete a group of flashcards based on a specified tag. All flashcards that have this specified tag will be deleted.
 
@@ -427,7 +475,7 @@ You can display the statistics of a specified flashcard in a Pie Chart based on 
 	
 You have successfully displayed the statistics of a flashcard!
 
-#### Statistics by tags: `stats t/TAG1 TAG2` <a name="stats-by-tags"></a>
+#### Statistics by tags: `stats t/TAG...` <a name="stats-by-tags"></a>
 
 You can also display the statistics of multiple flashcards in a Pie Chart by specifying tags. 
 
@@ -544,6 +592,10 @@ You can import external flashcards into your local QuickCache as well.
     
 4. Press enter and the flashcards within the file will be imported in your local QuickCache.
 
+    <div markdown="block" class="alert alert-danger">
+    :exclamation: Flashcards that has previously been imported and has not been modified will be ignored. Flashcards that already exists will not be imported as well.
+    </div>
+    
     ![ImportStep4](./images/ImportStep4.png)
 
 Good job! You have successfully imported flashcards from an external file.
@@ -585,7 +637,7 @@ If you need to quickly look up a command, we have added a table below to summari
             </td>
             <td rowspan=1>add</td>
             <td rowspan=1>
-            	<code>add q/QUESTION ans/ANSWER</code>
+            	<code>add q/QUESTION ans/ANSWER [t/TAG]... [d/DIFFICULTY]</code>
             </td>
             <td rowspan=1>
             	<code>add q/Sample Question? ans/A</code>
@@ -595,7 +647,7 @@ If you need to quickly look up a command, we have added a table below to summari
             <td rowspan=1>addmcq</td>
             <td rowspan=1>
             	<code>addmcq q/QUESTION ans/ANSWER <br>
-            	c/FIRST_CHOICE c/SECOND_CHOICE ..</code>
+            	c/CHOICE... [t/TAG]... [d/DIFFICULTY]</code>
             </td>
             <td rowspan=1>
             	<code>addmcq q/Sample Question? ans/1 c/A c/B c/C</code>
@@ -614,7 +666,7 @@ If you need to quickly look up a command, we have added a table below to summari
         </tr>
         <tr>
         	<td rowspan=1>
-        		<code>delete t/TAG1</code>
+        		<code>delete t/TAG...</code>
         	</td>
           <td rowspan=1>
             	<code>delete t/Assembly</code>
@@ -634,8 +686,7 @@ If you need to quickly look up a command, we have added a table below to summari
             	<Strong>Editing a flashcard</Strong></td>
             <td>edit</td>
             <td rowspan=1>
-            	<code>edit INDEX q/QUESTION ans/ANSWER <br>
-            	c/FIRST_CHOICE c/SECOND_CHOICE ..</code>
+            	<code>edit INDEX [q/QUESTION] [ans/ANSWER] [c/CHOICE]... [t/TAG]... [d/DIFFICULTY]</code>
             </td>
             <td rowspan=1>
             	<code>edit 1 q/Sample Question? ans/2 c/A c/C c/B</code>
@@ -658,7 +709,7 @@ If you need to quickly look up a command, we have added a table below to summari
             	<Strong>Finding flashcards</Strong></td>
             <td rowspan=3>find</td>
             <td rowspan=1>
-            	<code>find q/KEYWORD1 q/KEYWORD2 ..</code>
+            	<code>find q/KEYWORD...</code>
             </td>
             <td rowspan=1>
             	<code>find q/CS2103T q/What q/is</code>
@@ -666,7 +717,7 @@ If you need to quickly look up a command, we have added a table below to summari
         </tr>
         <tr>
         	<td rowspan=1>
-        		<code>find t/TAG1 t/TAG2 ..</code>
+        		<code>find t/TAG...</code>
         	</td>
           <td rowspan=1>
             	<code>find t/Assembly t/MCQ</code>
@@ -674,8 +725,7 @@ If you need to quickly look up a command, we have added a table below to summari
         </tr>
         <tr>
         	<td rowspan=1>
-        		<code>find t/TAG1 t/TAG2 .. <br>
-        		q/KEYWORD1 q/KEYWORD2 ..</code>
+        		<code>find [t/TAG]... [q/KEYWORD1]...</code>
         	</td>
           <td rowspan=1>
             	<code>find t/Assembly t/MCQ q/CS2100 q/What</code>

@@ -7,11 +7,9 @@ import static quickcache.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static quickcache.logic.commands.CommandTestUtil.showFlashcardAtIndex;
 import static quickcache.testutil.TypicalFlashcards.getTypicalQuickCache;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +19,6 @@ import quickcache.model.Model;
 import quickcache.model.ModelManager;
 import quickcache.model.UserPrefs;
 import quickcache.model.flashcard.Flashcard;
-import quickcache.model.flashcard.FlashcardContainsTagPredicate;
 import quickcache.model.flashcard.FlashcardPredicate;
 import quickcache.model.flashcard.Question;
 import quickcache.model.flashcard.Statistics;
@@ -38,13 +35,13 @@ public class StatsCommandTest {
         Flashcard flashcardToDisplayStatistics = model.getFilteredFlashcardList()
             .get(TypicalIndexes.INDEX_FIRST_FLASHCARD.getZeroBased());
         Question question = flashcardToDisplayStatistics.getQuestion();
+        Statistics statistics = flashcardToDisplayStatistics.getStatistics();
         StatsCommand statsCommand = new StatsCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD);
 
         String expectedMessage = String.format(StatsCommand.MESSAGE_DISPLAY_STATISTICS_FLASHCARD_SUCCESS,
             flashcardToDisplayStatistics);
 
-        assertCommandSuccess(statsCommand, model, expectedMessage,
-            model, question, null, true);
+        assertCommandSuccess(statsCommand, model, expectedMessage, model, question, statistics);
     }
 
     @Test
@@ -64,7 +61,7 @@ public class StatsCommandTest {
     public void execute_validTag_success() {
         Set<Tag> tagsToMatch = new HashSet<>();
         tagsToMatch.add(TypicalTags.TEST_TAG);
-        FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
+        FlashcardPredicate flashcardPredicate = FlashcardPredicate.prepareOnlyTagsFlashcardPredicate(tagsToMatch);
 
         StatsCommand statsCommand = new StatsCommand(flashcardPredicate, tagsToMatch);
 
@@ -76,15 +73,7 @@ public class StatsCommandTest {
 
         List<Flashcard> flashcardList = expectedModel.getFilteredFlashcardList();
 
-        int timesTested = 0;
-        int timesTestedCorrect = 0;
-
-        for (Flashcard flashcard : flashcardList) {
-            Statistics statistics = flashcard.getStatistics();
-            timesTested += statistics.getTimesTested();
-            timesTestedCorrect += statistics.getTimesTestedCorrect();
-        }
-        Statistics expectedStatistics = new Statistics(timesTested, timesTestedCorrect);
+        Statistics expectedStatistics = getStatisticsFromFlashcardList(flashcardList);
 
         assertCommandSuccess(statsCommand, model, expectedMessage, expectedModel, expectedStatistics);
     }
@@ -93,7 +82,7 @@ public class StatsCommandTest {
     public void execute_invalidTag_success() {
         Set<Tag> tagsToMatch = new HashSet<>();
         tagsToMatch.add(TypicalTags.INVALID_TAG);
-        FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
+        FlashcardPredicate flashcardPredicate = FlashcardPredicate.prepareOnlyTagsFlashcardPredicate(tagsToMatch);
 
         StatsCommand statsCommand = new StatsCommand(flashcardPredicate, tagsToMatch);
 
@@ -105,18 +94,9 @@ public class StatsCommandTest {
 
         List<Flashcard> flashcardList = expectedModel.getFilteredFlashcardList();
 
-        int timesTested = 0;
-        int timesTestedCorrect = 0;
-
-        Statistics expectedStatistics = new Statistics(timesTested, timesTestedCorrect);
+        Statistics expectedStatistics = getStatisticsFromFlashcardList(flashcardList);
 
         assertCommandSuccess(statsCommand, model, expectedMessage, expectedModel, expectedStatistics);
-    }
-
-    private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
-        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
-        predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
-        return new FlashcardPredicate(predicates);
     }
 
     @Test
@@ -139,5 +119,18 @@ public class StatsCommandTest {
 
         // different stats command -> returns false
         assertFalse(statsFirstCommand.equals(statsSecondCommand));
+    }
+
+    private Statistics getStatisticsFromFlashcardList(List<Flashcard> flashcardList) {
+        int timesTested = 0;
+        int timesTestedCorrect = 0;
+
+        for (Flashcard flashcard : flashcardList) {
+            Statistics statistics = flashcard.getStatistics();
+            timesTested += statistics.getTimesTested();
+            timesTestedCorrect += statistics.getTimesTestedCorrect();
+        }
+
+        return new Statistics(timesTested, timesTestedCorrect);
     }
 }
