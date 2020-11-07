@@ -304,20 +304,21 @@ Examples:
 
 #### 3.3.6 Sorting the list of students: `sort` (By: Choon Siong)
 
-Sorts the list of students by a specified comparison means. The comparison means must be their name, class time or year.
+You can sort your student list by a specified comparison means. The comparison means must be the student's name, class time or year.
+This is useful in situations where you want to look at your student list differently for various reasons. 
 
 Format: `sort COMPARISON_MEANS`
 
-* The valid options for the sorting method `COMPARISON_MEANS` are `name`, `classTime` or `year`.
-* Only one option for the sorting method can be specified.
-* The sorting method is case sensitive when being specified
-* Sorting methods:
-	* `name`: Sorts students by their name in alphabetical order. This is case insensitive.
-	* `classTime`: Sorts students by the the time of their class first by the day than the time.
-	* `year` Sorts students by the school year they are in with `Primary` type years coming before `Secondary` type coming before `JC` type.
+* The valid options for `COMPARISON_MEANS` are `name`, `classTime` or `year`.
+* Only one option for the comparison means can be specified.
+* The comparison means is case-sensitive when being specified
+* Comparison means:
+	* `name`: Sorts students by their name in case-insensitive alphabetical order. This is useful when you want to search through your student list easily.
+	* `classTime`: Sorts students by the day of their class followed by its time. This is useful when you want to look at your student list in order of upcoming classes.
+	* `year` Sorts students by their year with `Primary 1` coming first and `JC 2` last. This is useful when you want to group students by their year.
 
 Examples:
-* `sort year` to sort students by their year
+* `sort name` to sort students by their name in alphabetical order
 
 #### 3.3.7 Finding students with overdue fees: `overdue` (By: Ying Gao)
 
