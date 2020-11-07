@@ -5,13 +5,13 @@ start
 :User executes solve question command;
 :Parses the command;
 if () then ([command is valid])
-    :SolveQuestionCommand is executed;
-        if () then ([student exists])
-            :Solve question from student <$rake>;
-        else ([else])
-            :Display invalid student error message;
-        endif
-else ([command is invalid - missing or invalid arguments])
+    :Execute SolveQuestionCommand;
+    if () then ([student exists])
+        :Solve question from student <$rake>;
+    else ([else])
+        :Display invalid student error message;
+    endif
+else ([command is invalid])
     :Display parse error message;
 endif
 stop

@@ -4,15 +4,15 @@
 start
 :User executes add question command;
 :Parses the command;
-if () then ([command is invalid])
-    :Display parse error message;
+if () then ([command is valid])
+    :Execute AddQuestionCommand;
+    if () then ([student exists])
+        :Add question to student <$rake>;
+    else ([else])
+        :Display invalid student error message;
+    endif
 else ([else])
-    :AddQuestionCommand is executed;
-        if () then ([student does not exists])
-            :Display invalid student error message;
-        else ([else])
-            :Add question to student <$rake>;
-        endif
+    :Display parse error message;
 endif
 stop
 

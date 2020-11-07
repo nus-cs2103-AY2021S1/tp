@@ -5,13 +5,13 @@ start
 :User executes delete question command;
 :Parses the command;
 if () then ([command is valid])
-    :DeleteQuestionCommand is executed;
-        if () then ([student exists])
-            :Delete question from student <$rake>;
+    :Execute DeleteQuestionCommand;
+    if () then ([student exists])
+        :Delete question from student <$rake>;
 
-        else ([else])
-            :Display invalid student error message;
-        endif
+    else ([else])
+        :Display invalid student error message;
+    endif
 else ([command is invalid])
     :Display parse error message;
 endif
