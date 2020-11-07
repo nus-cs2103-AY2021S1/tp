@@ -21,7 +21,7 @@ activate OpenCommandParser
 OpenCommandParser -> QuickCacheParser
 deactivate OpenCommandParser
 
-QuickCacheParser -> OpenCommandParser : parse(" 1")
+QuickCacheParser -> OpenCommandParser : parse("1")
 activate OpenCommandParser
 
 create OpenCommand
