@@ -4,7 +4,7 @@
 ![Ui](docs/images/Ui.png)
 
 This is a desktop application called **QuickCache**. <br>
-**QuickCache** is a flashcard knowledge bank where students can add their content by questions and test themselves afterwards. 
+**QuickCache** is a flashcard knowledge bank where students can add their content by questions and test themselves afterwards.
 Students can monitor their performance and progress over time using **QuickCache** as well. <br>
 **QuickCache** contains a Graphical User Interface (GUI) but has been optimized to enable user interaction mostly via the Command Line Interface (CLI).
 
