@@ -79,6 +79,8 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
+        userPrefs.setInventoryFilePath(Paths.get("inventory.json"));
+        userPrefs.setFinanceAccountFilePath(Paths.get("financeAccount.json"));
         return userPrefs;
     }
 

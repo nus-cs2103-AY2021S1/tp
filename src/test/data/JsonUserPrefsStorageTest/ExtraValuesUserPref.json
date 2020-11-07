@@ -9,6 +9,6 @@
       "z" : 99
     }
   },
-  "financeAccountFilePath" : "data\\financeAccount.json",
-  "inventoryFilePath" : "data\\inventory.json"
+  "financeAccountFilePath" : "financeAccount.json",
+  "inventoryFilePath" : "inventory.json"
 }

@@ -51,8 +51,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return inventoryFilePath;
     }
 
+    public void setInventoryFilePath(Path inventoryFilePath) {
+        this.inventoryFilePath = inventoryFilePath;
+    }
+
     public Path getFinanceAccountFilePath() {
         return financeAccountFilePath;
+    }
+
+    public void setFinanceAccountFilePath(Path financeAccountFilePath) {
+        this.financeAccountFilePath = financeAccountFilePath;
     }
 
     @Override
