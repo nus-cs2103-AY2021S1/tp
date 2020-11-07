@@ -384,7 +384,20 @@ Example Scenario:
 * Command: `editc 1 c/ ti/Working Ethics d/10/10/2010 desc/Quite Bad`
 
 
-### 3.5. Script Engine `[coming in v2.0]`
+### 3.5. Script Engine
+
+Eva has a built-in script to execute JavaScript that can be used to extend the features of Eva.
+
+Please refer to [Nashorn official website](https://www.oracle.com/technical-resources/articles/java/jf14-nashorn.html)
+for supported JavaScript features, and how to import Java classes to extend Eva features.
+
+#### 3.5.1. Load a JavaScript script: `load`
+
+Format: `load SCRIPT_FILE_PATH`
+
+Example Scenario:
+* Load a script located at `C:\Documents\script.js`
+* Command: `load C:\Documents\script.js`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -404,6 +417,7 @@ Example Scenario:
 
 | Action    | Format, Examples   |
 |-----------|--------------------|
+| **Load**  | `load`             |
 | **Help**  | `help`             |
 | **Exit**  | `exit`             |
 

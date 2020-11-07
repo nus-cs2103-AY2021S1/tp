@@ -45,7 +45,6 @@ public class EditApplicantCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
     public static final String MESSAGE_EDIT_APPLICANT_SUCCESS = "Edited Applicant: %1$s";
 
-
     public static final String MESSAGE_WRONG_PANEL = "Please switch to applicant list panel "
             + "via 'list a-' to edit applicant";
 
@@ -102,5 +101,13 @@ public class EditApplicantCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICANT_SUCCESS, editedPerson),
                 false, false, true);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same obj
+                || (other instanceof EditApplicantCommand // instanceof handles nulls
+                && index.equals(((EditApplicantCommand) other).index))
+                && editPersonDescriptor.equals(((EditApplicantCommand) other).editPersonDescriptor);
     }
 }
