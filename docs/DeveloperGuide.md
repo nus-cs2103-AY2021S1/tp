@@ -887,7 +887,9 @@ testers are expected to do more *exploratory* testing.
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
      
-     :bulb: **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
+     <div markdown="span" class="alert alert-info">:information_source:
+     
+     **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
 
 ### Clearing all flashcards
 
