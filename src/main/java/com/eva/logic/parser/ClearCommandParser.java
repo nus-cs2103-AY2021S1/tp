@@ -5,7 +5,6 @@ import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 
 import com.eva.commons.core.Messages;
 import com.eva.logic.commands.ClearCommand;
-import com.eva.logic.commands.FindCommand;
 import com.eva.logic.parser.exceptions.ParseException;
 
 /**
