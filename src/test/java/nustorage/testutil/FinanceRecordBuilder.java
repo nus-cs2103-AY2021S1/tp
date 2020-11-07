@@ -9,7 +9,7 @@ import nustorage.logic.parser.exceptions.ParseException;
 import nustorage.model.record.FinanceRecord;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building finance record objects.
  */
 public class FinanceRecordBuilder {
 
@@ -35,7 +35,7 @@ public class FinanceRecordBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the FinanceRecordBuilder with the data of {@code recordToCopy}.
      */
     public FinanceRecordBuilder(FinanceRecord recordToCopy) {
         id = recordToCopy.getID();
@@ -44,7 +44,7 @@ public class FinanceRecordBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code ID} of the {@code Finance Record} that we are building.
      */
     public FinanceRecordBuilder withId(int id) {
         this.id = id;
@@ -52,7 +52,7 @@ public class FinanceRecordBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code amount} of the {@code Finance Record} that we are building.
      */
     public FinanceRecordBuilder withAmount(double amount) {
         this.amount = amount;
@@ -60,7 +60,7 @@ public class FinanceRecordBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Sets the {@code datetime} of the {@code Finance Record} that we are building.
      */
     public FinanceRecordBuilder withDateTime(String datetimeString) {
         try {
@@ -72,7 +72,7 @@ public class FinanceRecordBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Sets the {@code datetime} of the {@code Finance Record} that we are building.
      */
     public FinanceRecordBuilder withDateTime(LocalDateTime datetime) {
         this.datetime = datetime;
