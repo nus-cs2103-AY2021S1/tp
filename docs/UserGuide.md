@@ -192,6 +192,9 @@ Format: `archive`
 
 ![UI after archiving](./images/AfterArchive.png)
 
+<div markdown="span" class="alert alert-info">:information_source: Performing <code>undo</code> on an <code>archive</code> command will reset and restore the state of the previous semester, but the created archival folder will not be deleted. Any changes followed by another <code>archive</code> command will overwrite the contents of that folder.
+</div>
+
 
 ### Student Management
 
@@ -202,11 +205,18 @@ Format: `archive`
 Shows a list of all students in ResiReg, optionally filtered by some parameters.
 
 Format: `students [n/<name>] [p/<phone>] [e/<email>] [f/<faculty] [i/<student_id>]`
+- If no parameters are given, all students are shown.
+- Students can be filtered by multiple criteria. See the section below for some examples.
 
 Examples:
 
 - `students` switches to the Students tab if it is not already selected, and shows the list of students on the right pane.
-- `students n/dameeth` switches to the Students tab if it is not already selected, and shows the list of students matching the name "dameeth" on the right pane.
+- `students n/Alex` switches to the Students tab if it is not already selected, and shows the list of students with names containing "Alex" on the right pane.
+- `students n/Alex` switches to the Students tab if it is not already selected, and shows the list of students with names containing "Alex" on the right pane.
+- `students n/char f/LAW` switches to the Students tab if it is not already selected, and shows the list of students with names containing "char" and belonging to the "LAW" faculty on the right pane.
+
+<div markdown="span" class="alert alert-info">:information_source: The <code>n/</code> parameter is case-insensitive.
+</div>
 
 #### Adding a student : `add-student`
 
