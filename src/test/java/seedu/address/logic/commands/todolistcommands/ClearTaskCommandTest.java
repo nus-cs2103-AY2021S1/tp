@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.todolistcommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.contact.TypicalContacts.getTypicalContactList;
 import static seedu.address.testutil.todolist.TypicalTasks.getTypicalTodoList;
 
 import org.junit.jupiter.api.Test;
