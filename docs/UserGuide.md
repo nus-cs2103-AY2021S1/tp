@@ -40,7 +40,7 @@
         + [3.4.3.2 Deleting an attendance record for a student: `attendance delete`](#3432-deleting-an-attendance-record-for-a-student-attendance-delete)
   * [3.5 Schedule Feature (By: Alex)](#35-schedule-feature-by-alex)
     + [3.5.1 Viewing lesson schedule: `schedule`](#351-viewing-lesson-schedule-schedule)
-  * [3.6 Notebook feature `note` (By: Choon Siong)](#36-notebook-feature-by-choon-siong)
+  * [3.6 Notebook feature (By: Choon Siong)](#36-notebook-feature-by-choon-siong)
     + [3.6.1 Adding a note: `note add`](#361-adding-a-note)
     + [3.6.2 Editing a note: `note edit`](#362-editing-a-note)
     + [3.6.3 Deleting a note: `note delete`](#363-deleting-a-note)
@@ -601,7 +601,7 @@ Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
 Example:
 * `schedule m/weekly d/2/11/2020` shows the schedule of classes in the week of 2nd November 2020.
 
-### 3.6 Notebook feature `note` (By: Choon Siong)
+### 3.6 Notebook feature (By: Choon Siong)
 
 You can store notes containing small amounts of information inside the notebook.
 This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve.
