@@ -605,16 +605,35 @@ The following activity diagram summarises what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a ...                              | I want to ...                                                                     | So that I can ...                                      |
-| -------- | ------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| `* * *`  | person learning how to cook           | view my recipes                                                                   | not get the instructions wrong                         |
-| `* * *`  | forgetful home cook                   | record recipes that I learnt from my friends and television shows                 | try to cook them in the future                         |                                                                        |
-| `* * *`  | person that cannot decide             | select recipes to cook automatically based on the ingredients that i have         | eat a wider variety of meals                           |
-| `* *`    | home cook who buys a lot of groceries | Enter the long list of products that I have bought while referring to the receipt | I can easily enter a large number of groceries at once |
-| `* *`    | person on a diet                      | sort recipes based on calorie count                                               | choose to cook lower-calorie meals                     |
-| `*`      | busy mother                           | enter the list of recipes I want to cook for the week                             | find out which groceries I need to buy                 |
+| Priority | As a ...                              | I want to ...                                                                     | So that I can ...                                         |
+| -------- | ------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| `* * *`  | Person learning how to cook           | View my recipes                                                                   | Not get the instructions wrong.                           |
+| `* * *`  | Picky eater                           | Delete my recipes                                                                 | Remove recipes that I do not like.                        |
+| `* * *`  | Forgetful home cook                   | Record recipes that I learnt from my friends and television shows                 | Try to cook them in the future.                           |                                                                         |
+| `* * *`  | Person that cannot decide             | Select recipes to cook automatically based on the ingredients that i have         | Eat a wider variety of meals.                             | 
+| `* * *`  | Home cook                             | Delete the ingredients                                                            | Remove ingredients that have expired.                     |
+| `* * *`  | Home cook                             | Edit the ingredients                                                              | Edit ingredients quantities when some parts are spoilt.   |
+| `* * *`  | Home cook                             | View a list of all my recipes                                                     | Decide which recipe to cook.                              |
+| `* * *`  | Home cook                             | Interact with the Recipe Manager interactively                                    | Easily view my recipes when cooking in the kitchen.       |
+| `* *`    | Home cook who buys a lot of groceries | Enter the long list of products that I have bought while referring to the receipt | Easily enter a large number of groceries at once.         |
+| `* *`    | Adventurous cook                      | Change the steps and ingredients of my recipes                                    | Keep track of my latest recipe changes.                   |
+| `* *`    | Home cook                             | Record the recipes I make                                                         | Know how much ingredients do I have left.                 |
+| `* *`    | Home cook                             | Know what ingredients I am lacking when I want to make a recipe                   | Know what groceries to get.                               |
+| `* *`    | Home cook                             | Be able to view the recipes I made the most frequently and most recently          | Avoid cooking those recipes to try something new.         |
+| `* *`    | Home cook                             | Be able to have my keyboard inputs completed automatically                        | Save time when trying to input large amounts of data.     |
+| `* *`    | Student cooking in hall               | Add tags to my recipes                                                            | Know what recipes I can cook for my Muslim friends.       |
+| `* *`    | Student cooking in hall               | Add tags to my ingredients                                                        | Find my ingredients more easily.                          |
+| `* *`    | Home cook                             | Filter my ingredients                                                             | Quickly see what ingredients I have left.                 |
+| `* *`    | Picky eater                           | Filter the recipes by a criteria of my choice                                     | Save time finding recipes.                                |
+| `* *`    | Person on a diet                      | Sort recipes based on calorie count                                               | Choose to cook lower-calorie meals.                       |
+| `*`      | Busy mother                           | Enter the list of recipes I want to cook for the week                             | Find out which groceries I need to buy.                   |
 
 ### A.3&ensp;Use cases
+
+| Use Case ID | Description                            |
+| ----------- | -------------------------------------- |
+| UC01        | Add a recipe                           |
+| UC02        | Delete a recipe                        |
 
 (For all use cases below, the **System** is the `Food Recipe Management System (FRMS)` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -664,11 +683,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	      User case resumes from step 3.
 
 
-**Use case: U3 - View recipe**
+**Use case: U3 - List recipes**
 
 **MSS:**
 
-1. User chooses to view all recipes.
+1. User chooses to list all recipes.
 2. User requests for the recipes.
 3. FRMS display all the recipes.
 
@@ -808,6 +827,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a2. User enters new data.
       Steps a-b are repeated until the data entered are correct.
 	      User case resumes from step 3.
+	      
+
 
 
 
