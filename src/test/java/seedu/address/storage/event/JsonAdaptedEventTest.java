@@ -6,6 +6,8 @@ import static seedu.address.storage.JsonAdaptedEvent.MISSING_FIELD_MESSAGE_FORMA
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.event.EventUtil.VALID_EVENT;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -13,9 +15,6 @@ import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
 import seedu.address.storage.JsonAdaptedEvent;
 import seedu.address.storage.JsonAdaptedTag;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class JsonAdaptedEventTest {
 

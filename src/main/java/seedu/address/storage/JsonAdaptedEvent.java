@@ -24,7 +24,7 @@ public class JsonAdaptedEvent {
 
     private final String name;
     private final String dateTime;
-     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedEvent} with the given Event details.
@@ -35,9 +35,9 @@ public class JsonAdaptedEvent {
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.dateTime = dateTime;
-         if (tagged != null) {
-             this.tagged.addAll(tagged);
-         }
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -58,9 +58,9 @@ public class JsonAdaptedEvent {
      */
     public Event toModelType() throws IllegalValueException {
         final List<Tag> eventTags = new ArrayList<>();
-         for (JsonAdaptedTag tag : tagged) {
-             eventTags.add(tag.toModelType());
-         }
+        for (JsonAdaptedTag tag : tagged) {
+            eventTags.add(tag.toModelType());
+        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
