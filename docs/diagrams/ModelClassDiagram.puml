@@ -11,35 +11,24 @@ Interface ReadOnlyIngredientBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class AddressBook
-Class ReadOnlyAddressBook
+Class SalesBook
+Class SalesRecordEntry
 Class IngredientBook
 Class Model
 Class ModelManager
-Class ReadOnlyUserPrefs
-Class SalesBook
-Class SalesRecordEntry
-Class Drink
-Class UniqueSalesRecordList
 Class UserPrefs
+Class ReadOnlyUserPrefs
 
 Package Person {
-Class Person
-Class Address
-Class Name
-Class Phone
-Class EmergencyContact
-Class UniquePersonList
+Class HiddenModel #FFFFFF
+}
+
+Package SalesRecordEntry {
+Class HiddenModel #FFFFFF
 }
 
 Package Ingredient {
-Class UniqueIngredientList
-Class Ingredient
-Class IngredientName
-Class Amount
-}
-
-Package Tag {
-Class Tag
+Class HiddenModel #FFFFFF
 }
 }
 
@@ -49,7 +38,6 @@ HiddenOutside ..> Model
 AddressBook .up.|> ReadOnlyAddressBook
 SalesBook .up.|> ReadOnlySalesBook
 IngredientBook .up.|> ReadOnlyIngredientBook
-
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" AddressBook
@@ -58,28 +46,10 @@ ModelManager o--> "1" IngredientBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-SalesBook *--> "1" UniqueSalesRecordList
-IngredientBook *--> "1" UniqueIngredientList
-UniquePersonList o--> "*" Person
-UniqueSalesRecordList o--> "*" SalesRecordEntry
-UniqueIngredientList o--> "*"Ingredient
-
-Person *--> "1" Name
-Person *--> "1" Phone
-Person *--> "1" EmergencyContact
-Person *--> "1" Address
-Person *--> "*" Tag
-
-SalesRecordEntry *--> "1" Drink
-
-Ingredient *--> "1" IngredientName
-Ingredient *--> "1" Amount
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-
-
-ModelManager -->"*" Person : filtered list
-ModelManager -->"*" Ingredient : filtered list
-ModelManager -->"*" SalesRecordEntry : filtered list
+AddressBook --> Person
+SalesBook --> SalesRecordEntry
+IngredientBook --> Ingredient
+ModelManager --> SalesRecordEntry
+ModelManager --> Ingredient
+ModelManager --> Person
 @enduml
