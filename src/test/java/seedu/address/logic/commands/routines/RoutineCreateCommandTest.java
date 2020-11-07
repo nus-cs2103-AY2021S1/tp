@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ModelStub;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.routines.RoutineCreateCommand;
 import seedu.address.model.FitNus;
 import seedu.address.model.ReadOnlyFitNus;
 import seedu.address.model.routine.Routine;
