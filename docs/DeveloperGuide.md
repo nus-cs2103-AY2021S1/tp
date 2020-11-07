@@ -139,7 +139,7 @@ The mechanism is facilitated by an `Exercise` class. An `Exercise` class has `Na
 A user can add an `Exercise`to the `LogBook` by executing the `addex` command.
 
 #### Example usage scenario
-Given below is an example usage scenario and how the `add log` mechanism behaves at each step after launching the application.
+Given below is an example usage scenario and how the `add exercise` mechanism behaves at each step after launching the application.
 
 Step 1. The user executes the command `addex e/Jumping kicks c/2`. `FixMyAbsParser` creates a new `AddExCommandParser` and calls the `AddExCommandParser#parse()` method.
 
