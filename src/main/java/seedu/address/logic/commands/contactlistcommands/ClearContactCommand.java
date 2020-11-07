@@ -11,7 +11,7 @@ import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 
 /**
- * Clears the contact list.
+ * Encapsulates methods and information to clear all contacts in the contact list.
  */
 public class ClearContactCommand extends Command {
 
@@ -24,6 +24,7 @@ public class ClearContactCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setContactList(new ContactList());
+        logger.info("Clear contact command has been executed");
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
