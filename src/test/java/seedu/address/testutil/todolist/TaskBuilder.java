@@ -81,7 +81,11 @@ public class TaskBuilder {
      * Sets the {@code Priority} of the {@code Task} that we are building.
      */
     public TaskBuilder withPriority(String priority) {
-        this.priority = Priority.valueOf(priority);
+        if (priority != null) {
+            this.priority = Priority.valueOf(priority);
+        } else {
+            this.priority = null;
+        }
         return this;
     }
 
@@ -89,7 +93,11 @@ public class TaskBuilder {
      * Sets the {@code Date} of the {@code Task} that we are building.
      */
     public TaskBuilder withDate(String date) {
-        this.date = new Date(date);
+        if (date != null) {
+            this.date = new Date(date);
+        } else {
+            this.date = null;
+        }
         return this;
     }
 
