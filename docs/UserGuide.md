@@ -204,7 +204,7 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
  
 Examples:
 * `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Developer`
+* `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
 
 #### 3.3.2. Delete a staff: `dels`
 
@@ -230,7 +230,7 @@ Format: `edits INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]
 </div>
 
 Example:
-* `edits 1 n/NEW_NAME p/99999999 a/NEW_ADDRESS e/NEW@example.com`
+* `edits 1 n/John Doe p/99999999 a/John Street e/NEW@example.com`
 
 
 #### 3.3.4. Record leave taken by staff: `addl`
@@ -383,7 +383,7 @@ Deletes a comment from a staff/applicant under eva
 
 Format: `delc INDEX c/ ti/TITLE_OF_COMMENT_TO_DELETE`
 
-Examples:
+Example Scenario:
 * Comment to delete has title: Example, Date: 10/10/2010, Description: Example of comment, Staff index is 1
 * Command: `delc 1 c/ ti/Example`
 
@@ -393,7 +393,7 @@ Edits the description of a comment on a staff.
 
 Format: `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION`
 
-Examples:
+Example Scenario:
 * Comment to change has title: Example, Date: 10/10/2010, Description: Example of comment, and staff index is 1
 * Command: `editc 1 c/ ti/Example d/10/10/2010 desc/New Example of comment`
 
