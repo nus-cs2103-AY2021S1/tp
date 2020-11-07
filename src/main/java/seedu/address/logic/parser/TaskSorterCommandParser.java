@@ -22,16 +22,19 @@ import seedu.address.model.task.TaskComparators;
 public class TaskSorterCommandParser implements Parser<TaskSorterCommand> {
 
     /**
-     * Parses the given input {@code String}.
-     * @param args  the user input
-     * @return      the filter command whose predicate corresponds to the user input
-     * @throws ParseException   if the user input does not follow the format
+     * Parses the given input {@code String} in the context of the TaskSorterCommand,
+     * and returns a TaskSorterCommand object for execution.
+     *
+     * @param args the user input.
+     * @return a TaskSorterCommand whose comparator corresponds to the user input.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     @Override
     public TaskSorterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_ASCENDING_SORT, PREFIX_DESCENDING_SORT,
-                PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE);
+                    PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE);
+
         if (!isValidSorterArgs(argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskSorterCommand.MESSAGE_USAGE));
         }
@@ -40,9 +43,10 @@ public class TaskSorterCommandParser implements Parser<TaskSorterCommand> {
         if (argMultimap.getValue(PREFIX_DESCENDING_SORT).isPresent()) {
             isDescendingOrder = true;
         }
-        Comparator<Task> comparator = TaskComparators.SORT_BY_TASK_NAME;
-        if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
-            comparator = TaskComparators.SORT_BY_DEADLINE;
+
+        Comparator<Task> comparator = TaskComparators.SORT_BY_DEADLINE;
+        if (argMultimap.getValue(PREFIX_TASK_NAME).isPresent()) {
+            comparator = TaskComparators.SORT_BY_TASK_NAME;
         }
         if (argMultimap.getValue(PREFIX_TASK_PROGRESS).isPresent()) {
             comparator = TaskComparators.SORT_BY_PROGRESS;
@@ -50,9 +54,11 @@ public class TaskSorterCommandParser implements Parser<TaskSorterCommand> {
         if (argMultimap.getValue(PREFIX_TASK_IS_DONE).isPresent()) {
             comparator = TaskComparators.SORT_BY_IS_DONE;
         }
+
         if (isDescendingOrder) {
             comparator = comparator.reversed();
         }
+
         return new TaskSorterCommand(comparator);
     }
 
@@ -61,7 +67,7 @@ public class TaskSorterCommandParser implements Parser<TaskSorterCommand> {
             return false;
         }
         return isOnlyOneGivenPrefixPresent(argumentMultimap, PREFIX_ASCENDING_SORT, PREFIX_DESCENDING_SORT)
-            && isOnlyOneGivenPrefixPresent(argumentMultimap, PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME,
-            PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE);
+                && isOnlyOneGivenPrefixPresent(argumentMultimap, PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME,
+                        PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE);
     }
 }

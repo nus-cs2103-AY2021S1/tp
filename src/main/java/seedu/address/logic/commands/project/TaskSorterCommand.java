@@ -55,9 +55,11 @@ public class TaskSorterCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         assert model.getProjectToBeDisplayedOnDashboard().isPresent();
+
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
         project.updateTaskComparator(comparator);
         logger.log(Level.INFO, "Task list sorted using new comparator");
+
         return new CommandResult(String.format(MESSAGE_SORT_TASK_SUCCESS));
     }
 

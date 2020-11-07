@@ -56,9 +56,11 @@ public class TaskFilterCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         assert model.getProjectToBeDisplayedOnDashboard().isPresent();
+
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
         project.updateTaskFilter(predicate);
         logger.log(Level.INFO, "Task list filtered using new predicate");
+
         return new CommandResult(MESSAGE_FILTER_TASK_SUCCESS);
     }
 

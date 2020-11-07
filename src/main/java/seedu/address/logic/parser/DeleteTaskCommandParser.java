@@ -7,17 +7,17 @@ import seedu.address.logic.commands.project.DeleteTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteTaskCommand object
+ * Parses input arguments and creates a new DeleteTaskCommand object.
  */
 public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteTaskCommand
+     * Parses the given {@code String} of arguments in the context of the DeleteTaskCommand,
      * and returns a DeleteTaskCommand object for execution.
      *
-     * @param args input after "delete" command from user
-     * @return instance of DeleteTaskCommand
-     * @throws ParseException if the user input does not conform the expected format
+     * @param args input after "deletetask" command from user.
+     * @return an instance of DeleteTaskCommand.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public DeleteTaskCommand parse(String args) throws ParseException {
         try {

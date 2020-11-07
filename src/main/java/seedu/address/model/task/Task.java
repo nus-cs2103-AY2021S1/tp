@@ -177,9 +177,8 @@ public class Task implements Comparable<Task> {
     /**
      * Checks if the task has an assignee whose name matches the given name.
      *
-     * @param assigneeGitUserName the assignee's name to look for
-     * @return true if this task has an assignee whose name matches the given name,
-     * and false otherwise
+     * @param assigneeGitUserName the assignee's name to look for.
+     * @return true if this task has an assignee whose name matches the given name, and false otherwise.
      */
     public boolean hasAssigneeWhoseGitNameIs(GitUserName assigneeGitUserName) {
         return assignees.stream()
@@ -189,8 +188,8 @@ public class Task implements Comparable<Task> {
     /**
      * Checks if the task is due on the given deadline.
      *
-     * @param deadline the given deadline to check
-     * @return true if the task is due on the given deadline, and false otherwise
+     * @param deadline the given deadline to check.
+     * @return true if the task is due on the given deadline, and false otherwise.
      */
     public boolean isDueOn(Deadline deadline) {
         assert (deadline != null);

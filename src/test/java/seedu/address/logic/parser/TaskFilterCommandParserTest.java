@@ -48,13 +48,17 @@ class TaskFilterCommandParserTest {
     public void parse_invalidPrefix_failure() {
         // wrong prefix used
         assertParseFailure(parser, " " + PREFIX_TASK, MESSAGE_INVALID_FORMAT);
+
         // missing one of the time range prefixes
         assertParseFailure(parser, " " + PREFIX_START_DATE + VALID_START_DATE, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, " " + PREFIX_END_DATE + VALID_END_DATE, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, " " + PREFIX_END_DATE + VALID_END_DATE + TASK_IS_DONE_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " " + PREFIX_END_DATE
+                + VALID_END_DATE + TASK_IS_DONE_DESC, MESSAGE_INVALID_FORMAT);
+
         // too many prefixes provided
         assertParseFailure(parser, TASK_TIME_RANGE_DESC + TASK_NAME_DESC, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, TASK_DEADLINE_DESC + TASK_PROGRESS_DESC, MESSAGE_INVALID_FORMAT);
+
         // no space between start date prefix and end date prefix
         assertParseFailure(parser, " " + PREFIX_START_DATE + VALID_START_DATE
             + PREFIX_END_DATE + VALID_END_DATE, MESSAGE_INVALID_FORMAT);

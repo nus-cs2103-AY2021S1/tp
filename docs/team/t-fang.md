@@ -37,6 +37,7 @@ Given below are my contributions to the project.
     (Pull Request [\#188](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/188))
   * What changes made: 
     * Created TaskSorterCommand and the relevant parser
+    * Created several comparators in TaskComparators class
     * Created ArgumentMultimapUtil class to faciliate checking prefixes inside a Argument Multimap.
     * Updated MainCatalogueParser
     * Allowed user to sort the task list by task name, deadline, progress, and done status

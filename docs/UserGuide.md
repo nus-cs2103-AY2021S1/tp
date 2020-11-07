@@ -208,7 +208,7 @@ Format: `find [KEYWORD...]`
 - The search is case-insensitive. e.g run will match Run
 - Only the name of the projects are searched
 - Can be multiple words
-- Keywords provided must be complete words and will only match complete words from the name of the project 
+- Keywords provided must be complete words and will only match complete words from the name of the project. e.g. `find Task` will not return the **Taskmania** project.
 
 Example: `find scare` returns the **Scare House** and **Easily scare Night** projects.
 
@@ -300,9 +300,10 @@ Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/EN
   - Both task and assignee names must be complete words and will only match complete words from the names of the task or assignee 
   - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
   - Start date and end date in the time range follows the format *DD-MM-YYYY*
+  - There should be a space between `START_DATE` and `end/` (`filter start/01-11-2020end/02-11-2020` is invalid)
   - Task progress is a percentage value indicating how much of the task is done
 
-Example: `filter ta/Lucas` filters all the tasks who have Lucas assigned to them, and displays those tasks.
+Example: `filter tn/CS2103T` filters all the tasks whose task names contain `CS2103T`, and displays those tasks.
 
 ### List all tasks `alltasks `
 
