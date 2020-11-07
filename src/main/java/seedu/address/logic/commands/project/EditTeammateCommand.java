@@ -91,7 +91,7 @@ public class EditTeammateCommand extends Command {
         if (model.getTeammateToBeDisplayedOnDashboard().isPresent()
                 && model.getTeammateToBeDisplayedOnDashboard().get().equals(participation)) {
             participation.setPerson(editedTeammate);
-            model.enterTeammate(participation);
+            model.enter(participation);
         }
 
         return new CommandResult(String.format(MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate));

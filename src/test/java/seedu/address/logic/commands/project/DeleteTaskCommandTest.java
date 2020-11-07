@@ -116,7 +116,7 @@ class DeleteTaskCommandTest {
         Task taskToDelete = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
 
         newModel.enter(project);
-        newModel.enterTask(taskToDelete);
+        newModel.enter(taskToDelete);
 
         try {
             new DeleteTaskCommand(INDEX_FIRST_TASK).execute(newModel);
@@ -140,7 +140,7 @@ class DeleteTaskCommandTest {
         Task task = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
 
         newModel.enter(project);
-        newModel.enterTask(task);
+        newModel.enter(task);
 
         try {
             new DeleteTaskCommand(INDEX_SECOND_TASK).execute(newModel);

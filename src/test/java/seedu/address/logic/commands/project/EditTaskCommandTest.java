@@ -169,7 +169,7 @@ public class EditTaskCommandTest {
         Task taskToEdit = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
 
         newModel.enter(project);
-        newModel.enterTask(taskToEdit);
+        newModel.enter(taskToEdit);
 
         try {
             new EditTaskCommand(INDEX_FIRST_TASK, descriptor).execute(newModel);
@@ -197,7 +197,7 @@ public class EditTaskCommandTest {
         Task task = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
 
         newModel.enter(project);
-        newModel.enterTask(task);
+        newModel.enter(task);
 
         try {
             new EditTaskCommand(INDEX_SECOND_TASK, descriptor).execute(newModel);

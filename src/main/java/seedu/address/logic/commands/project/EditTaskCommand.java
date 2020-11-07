@@ -86,7 +86,7 @@ public class EditTaskCommand extends Command {
 
         if (model.getTaskToBeDisplayedOnDashboard().isPresent()
                 && model.getTaskToBeDisplayedOnDashboard().get().equals(taskToEdit)) {
-            model.enterTask(editedTask);
+            model.enter(editedTask);
         }
 
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
