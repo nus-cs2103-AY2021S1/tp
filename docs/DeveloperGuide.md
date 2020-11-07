@@ -254,7 +254,7 @@ Step 3. The user executes `find Yeoh` command to find a patient with name "Yeoh"
 
 Step 4. The user executes `find S0000001A` command to find a patient with Nric number "S0000001A".
 
-Step 5. The user executes `find Alex A0000002S` command to find 2 patients: one with name “Alex” and one with Nric number “A0000002S”.
+Step 5. The user executes `find Alex S0000002A` command to find 2 patients: one with name “Alex” and one with Nric number “A0000002S”.
 
 Step 6. The user executes `list` command to view the full list of patients.
 
