@@ -55,7 +55,7 @@ public class FavCommand extends Command {
         assert flashcardToFavourite != null : "Index is invalid";
 
         if (flashcardToFavourite.isFavourite()) {
-            return new CommandResult(MESSAGE_FLASHCARD_IS_ALREADY_FAVOURITED);
+            throw new CommandException(MESSAGE_FLASHCARD_IS_ALREADY_FAVOURITED);
         }
 
         Flashcard favouritedFlashcard = createFavouriteFlashcard(flashcardToFavourite);

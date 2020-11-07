@@ -55,7 +55,7 @@ public class UnfavCommand extends Command {
 
 
         if (!flashcardToUnfavourite.isFavourite()) {
-            return new CommandResult(MESSAGE_FLASHCARD_NOT_FAVOURITED);
+            throw new CommandException(MESSAGE_FLASHCARD_NOT_FAVOURITED);
         }
 
         Flashcard unfavouredFlashcard = createUnfavouriteFlashcard(flashcardToUnfavourite);

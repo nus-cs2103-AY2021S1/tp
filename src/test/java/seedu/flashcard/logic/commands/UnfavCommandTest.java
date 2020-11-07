@@ -87,7 +87,7 @@ public class UnfavCommandTest {
     }
 
     @Test
-    public void execute_unfavouriteUnfavouritedFlashcard_success() {
+    public void execute_unfavouriteUnfavouritedFlashcard_throwsCommandException() {
         Flashcard flashcardToUnfavourite = model.getFilteredFlashcardList()
                 .get(INDEX_FIRST_FLASHCARD.getZeroBased());
 
@@ -98,10 +98,7 @@ public class UnfavCommandTest {
 
         String expectedMessage = UnfavCommand.MESSAGE_FLASHCARD_NOT_FAVOURITED;
 
-        Model expectedModel = new ModelManager(new FlashcardDeck(model.getFlashcardDeck()), new UserPrefs());
-        expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), flashcardNotFavourited);
-
-        assertCommandSuccess(unfavCommand, model, expectedMessage, model);
+        assertCommandFailure(unfavCommand, model, expectedMessage);
     }
 
     @Test
