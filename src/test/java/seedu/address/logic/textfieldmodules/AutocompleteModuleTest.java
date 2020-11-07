@@ -1,13 +1,11 @@
 package seedu.address.logic.textfieldmodules;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.SimulatedKeyPress.ENTER_EVENT;
-import static seedu.address.testutil.SimulatedKeyPress.SHIFT_TAB_EVENT;
-import static seedu.address.testutil.SimulatedKeyPress.TAB_EVENT;
 
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.scene.input.KeyCode;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,6 +32,7 @@ class AutocompleteModuleTest {
         System.setProperty("testfx.headless", "true");
         System.setProperty("prism.order", "sw");
         System.setProperty("prism.text", "t2k");
+        System.setProperty("java.awt.headless", "true");
     }
 
     @Start
@@ -41,18 +40,19 @@ class AutocompleteModuleTest {
         textField = new TextField();
         stage.setScene(new Scene(new StackPane(textField)));
         stage.show();
+
+        // Setup Module
+        AutocompleteModule ac = AutocompleteModule.attachTo(textField);
+        ac.addSuggestions(sampleCmdPrefix, () -> sampleNameList);
     }
 
     @Test
     public void textFieldWithAutocompleteModule_getFirstSuggestionWithEmptyPrefix_success(FxRobot robot) {
-        // Setup
-        AutocompleteModule ac = AutocompleteModule.attachTo(textField);
-        ac.addSuggestions(sampleCmdPrefix, () -> sampleNameList);
-
         // Simulate user trigger ac
-        textField.setText(sampleCmdPrefix);
-        textField.end();
-        textField.fireEvent(TAB_EVENT);
+        robot.clickOn(textField)
+                .write(sampleCmdPrefix)
+                .press(KeyCode.TAB)
+                .release(KeyCode.TAB);
 
         String expected = sampleCmdPrefix + sampleNameList.get(0);
         String actual = textField.getText();
@@ -61,10 +61,6 @@ class AutocompleteModuleTest {
     }
     @Test
     public void textFieldWithAutocompleteModule_getFirstSuggestionWithNonEmptyPrefix_success(FxRobot robot) {
-        // Setup
-        AutocompleteModule ac = AutocompleteModule.attachTo(textField);
-        ac.addSuggestions(sampleCmdPrefix, () -> sampleNameList);
-
         String prefix = "br";
         String firstResultMatchingPrefix = sampleNameList.stream()
                 .filter(x -> x.toLowerCase().startsWith(prefix.toLowerCase()))
@@ -72,11 +68,10 @@ class AutocompleteModuleTest {
                 .orElse("");
 
         // Simulate user trigger ac
-        textField.setText(sampleCmdPrefix);
-        textField.end();
-        robot.sleep(500);
-        robot.write(prefix);
-        textField.fireEvent(TAB_EVENT);
+        robot.clickOn(textField)
+                .write(sampleCmdPrefix + prefix)
+                .press(KeyCode.TAB)
+                .release(KeyCode.TAB);
 
         String expected = sampleCmdPrefix + firstResultMatchingPrefix;
         String actual = textField.getText();
@@ -85,10 +80,6 @@ class AutocompleteModuleTest {
     }
     @Test
     public void textFieldWithAutocompleteModule_lockInFirstSuggestions_success(FxRobot robot) {
-        // Setup
-        AutocompleteModule ac = AutocompleteModule.attachTo(textField);
-        ac.addSuggestions(sampleCmdPrefix, () -> sampleNameList);
-
         String prefix = "br";
         String firstResultMatchingPrefix = sampleNameList.stream()
                 .filter(x -> x.toLowerCase().startsWith(prefix.toLowerCase()))
@@ -96,12 +87,12 @@ class AutocompleteModuleTest {
                 .orElse("");
 
         // Simulate user trigger ac
-        textField.setText(sampleCmdPrefix);
-        textField.end();
-        robot.sleep(500);
-        robot.write(prefix);
-        textField.fireEvent(TAB_EVENT);
-        textField.fireEvent(ENTER_EVENT);
+        robot.clickOn(textField)
+                .write(sampleCmdPrefix + prefix)
+                .press(KeyCode.TAB)
+                .release(KeyCode.TAB)
+                .press(KeyCode.ENTER)
+                .release(KeyCode.ENTER);
 
         String expected = firstResultMatchingPrefix;
         String actual = textField.getText();
@@ -110,10 +101,6 @@ class AutocompleteModuleTest {
     }
     @Test
     public void textFieldWithAutocompleteModule_getFirstSuggestionWithPrefixWithNoMatch_prefixReturned(FxRobot robot) {
-        // Setup
-        AutocompleteModule ac = AutocompleteModule.attachTo(textField);
-        ac.addSuggestions(sampleCmdPrefix, () -> sampleNameList);
-
         String prefix = "Ergot";
         String firstResultMatchingPrefix = sampleNameList.stream()
                 .filter(x -> x.toLowerCase().startsWith(prefix.toLowerCase()))
@@ -121,11 +108,10 @@ class AutocompleteModuleTest {
                 .orElse("");
 
         // Simulate user trigger ac
-        textField.setText(sampleCmdPrefix);
-        textField.end();
-        robot.sleep(500);
-        robot.write(prefix);
-        textField.fireEvent(TAB_EVENT);
+        robot.clickOn(textField)
+                .write(sampleCmdPrefix + prefix)
+                .press(KeyCode.TAB)
+                .release(KeyCode.TAB);
 
         String expected = sampleCmdPrefix + prefix;
         String actual = textField.getText();
@@ -134,20 +120,14 @@ class AutocompleteModuleTest {
     }
     @Test
     public void textFieldWithAutocompleteModule_iterateThroughAllSuggestionsForward_success(FxRobot robot) {
-        // Setup
-        AutocompleteModule ac = AutocompleteModule.attachTo(textField);
-        ac.addSuggestions(sampleCmdPrefix, () -> sampleNameList);
-
         String prefix = "br";
 
         // Simulate user trigger ac
-        textField.setText(sampleCmdPrefix);
-        textField.end();
-        robot.sleep(500);
-        robot.write(prefix);
+        robot.clickOn(textField).write(sampleCmdPrefix + prefix);
 
         for (int i = 0; i < sampleNameList.size() + 1; i++) {
-            textField.fireEvent(TAB_EVENT);
+            robot.press(KeyCode.TAB);
+            robot.release(KeyCode.TAB);
         }
 
         String expected = sampleCmdPrefix + prefix;
@@ -157,10 +137,6 @@ class AutocompleteModuleTest {
     }
     @Test
     public void textFieldWithAutocompleteModule_iterateThroughAllSuggestionsBackward_success(FxRobot robot) {
-        // Setup
-        AutocompleteModule ac = AutocompleteModule.attachTo(textField);
-        ac.addSuggestions(sampleCmdPrefix, () -> sampleNameList);
-
         String prefix = "br";
         String firstResultMatchingPrefix = sampleNameList.stream()
                 .filter(x -> x.toLowerCase().startsWith(prefix.toLowerCase()))
@@ -168,13 +144,11 @@ class AutocompleteModuleTest {
                 .orElse("");
 
         // Simulate user trigger ac
-        textField.setText(sampleCmdPrefix);
-        textField.end();
-        robot.sleep(500);
-        robot.write(prefix);
+        robot.clickOn(textField).write(sampleCmdPrefix + prefix);
 
         for (int i = 0; i < sampleNameList.size() + 1; i++) {
-            textField.fireEvent(SHIFT_TAB_EVENT);
+            robot.press(KeyCode.SHIFT, KeyCode.TAB);
+            robot.release(KeyCode.SHIFT, KeyCode.TAB);
         }
 
         String expected = sampleCmdPrefix + prefix;

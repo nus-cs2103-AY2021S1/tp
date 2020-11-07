@@ -7,6 +7,7 @@ import static seedu.address.testutil.SimulatedKeyPress.DOWN_ARROW_EVENT;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.scene.input.KeyCode;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -48,10 +49,9 @@ class FzfModuleTest {
     @Test
     public void textFieldWithFzfModule_lockInFirstSuggestion_success(FxRobot robot) {
 
-        textField.fireEvent(CTRL_SPACE_EVENT);
-        textField.fireEvent(DOWN_ARROW_EVENT);
-        robot.sleep(500);
-        robot.write('\n');
+        robot.press(KeyCode.CONTROL, KeyCode.SPACE)
+                .press(KeyCode.ENTER);
+        robot.release(new KeyCode[]{});
 
         String expected = sampleNameList.get(0);
         String actual = textField.getText();
@@ -64,9 +64,9 @@ class FzfModuleTest {
 
         String query = "br";
 
-        textField.fireEvent(CTRL_SPACE_EVENT);
-        robot.sleep(1000);
-        robot.write(query);
+        robot.press(KeyCode.CONTROL, KeyCode.SPACE)
+                .write(query);
+        robot.release(new KeyCode[]{});
 
         long expected = sampleNameList.stream().filter(x -> x.toLowerCase().contains(query)).count();
         long actual = fzfModule.getMenu().getItems().stream().count();
