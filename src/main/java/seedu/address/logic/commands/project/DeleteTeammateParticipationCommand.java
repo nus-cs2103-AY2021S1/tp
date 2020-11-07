@@ -16,7 +16,7 @@ import seedu.address.model.project.Project;
 
 public class DeleteTeammateParticipationCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletepart";
+    public static final String COMMAND_WORD = "deletefromproject";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the teammate from the current project.\n"
