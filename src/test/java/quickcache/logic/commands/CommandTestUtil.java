@@ -36,7 +36,7 @@ public class CommandTestUtil {
     public static final String VALID_OPTION_TWO = "2";
     public static final String VALID_OPTION_THREE = "3";
     public static final String VALID_TAG_LSM1301 = "LSM1301";
-    public static final String VALID_TAG_TAG1 = "Tag 1";
+    public static final String VALID_TAG_TAG1 = "Tag1";
     public static final String VALID_CHOICE_CHOICE1 = "choice 1";
     public static final String VALID_CHOICE_CHOICE2 = "choice 2";
     public static final String VALID_CHOICE_CHOICE3 = "choice 3";
