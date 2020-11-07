@@ -314,28 +314,28 @@ _{More to be added}_
 
 (For all use cases below, the **System** is `FixMyAbs` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Delete a log**
+**Use case: UC01 - Create a log**
 
 **MSS**
 
-1. User requests to list all logs
-2. FixMyAbs shows a list of all recorded logs
-3. User requests to delete a specific log in the list
-4. FixMyAbs deletes the log
+1. User requests to create a specific log
+2. FixMyAbs creates the log
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The list of logs is empty.
+- 1a. The given exercise does not exist.
 
-  Use case ends.
+  - 1a1. FixMyAbs shows an error message.
 
-- 3a. The given index is invalid.
+    Use case resumes at step 1.
+    
+- 1b. The given reps is invalid.
 
-  - 3a1. FixMyAbs shows an error message.
+  - 1b1. FixMyAbs shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
 **Use case: UC-02 - Edit a log**
 
@@ -360,6 +360,69 @@ _{More to be added}_
 
     Use case resumes at step 2.
 
+**Use case: UC03 - Delete a log**
+
+**MSS**
+
+1. User requests to list all logs
+2. FixMyAbs shows a list of all recorded logs
+3. User requests to delete a specific log in the list
+4. FixMyAbs deletes the log
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list of logs is empty.
+
+  Use case ends.
+
+- 3a. The given index is invalid.
+
+  - 3a1. FixMyAbs shows an error message.
+
+    Use case resumes at step 2.
+    
+**Use case: UC04 - Find logs**
+
+**MSS**
+
+1. User requests to find all logs that contain specific keywords
+2. FixMyAbs shows a list of all recorded logs that contain all the specified keywords
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. No keywords are given.
+
+  - 1a1. FixMyAbs shows an error message.
+
+    Use case resumes at step 1.
+    
+**Use case: UC05 - Create an exercise**
+
+**MSS**
+
+1. User requests to create a specific exercise
+2. FixMyAbs creates the exercise
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The given exercise already exists.
+
+  - 1a1. FixMyAbs shows an error message.
+
+    Use case resumes at step 1.
+    
+- 1b. The given calories per rep is invalid.
+
+  - 1b1. FixMyAbs shows an error message.
+
+    Use case resumes at step 1.
+    
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
