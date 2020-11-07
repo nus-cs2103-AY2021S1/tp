@@ -4,8 +4,11 @@ import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_FILE_NAME;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
@@ -19,13 +22,15 @@ public class PrintCommandParser implements Parser<PrintCommand> {
     public static final String INVALID_PRINT_ARGUMENT = "File name is invalid. File name should only contain"
             + " alphanumeric characters and should not be empty.";
 
+    private static final Logger logger = LogsCenter.getLogger(PrintCommandParser.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the PrintCommand
      * and returns an PrintCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public PrintCommand parse(String args) throws ParseException {
-
+        logger.log(Level.INFO, "Starting to parse print command");
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_FILE_NAME);
 
@@ -46,6 +51,7 @@ public class PrintCommandParser implements Parser<PrintCommand> {
             throw new ParseException(String.format(INVALID_PRINT_ARGUMENT, PrintCommand.MESSAGE_USAGE));
         }
 
+        logger.log(Level.INFO, "Finished parsing print command successfully");
         return new PrintCommand(fileName);
     }
 

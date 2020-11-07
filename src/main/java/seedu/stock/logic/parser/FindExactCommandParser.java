@@ -10,9 +10,12 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.predicates.FieldContainsKeywordsPredicate;
@@ -29,6 +32,7 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
     private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
     private static final Prefix[]
             validPrefixesForFindExact = { PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER };
+    private static final Logger logger = LogsCenter.getLogger(FindExactCommandParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -36,6 +40,7 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindExactCommand parse(String args) throws ParseException {
+        logger.log(Level.INFO, "Starting to parse find exact command");
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
@@ -55,6 +60,7 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
         List<FieldContainsKeywordsPredicate> predicatesToTest =
                 parsePrefixAndKeywords(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER);
 
+        logger.log(Level.INFO, "Finished parsing find exact command successfully");
         return new FindExactCommand(predicatesToTest);
     }
 
