@@ -89,7 +89,7 @@ public class EditTeammateCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         GitUserIndex targetIndex = GIT_USERINDEX_FIRST_TEAMMATE;
-        String userInput = targetIndex.getGitUserName()
+        String userInput = targetIndex.getGitUserNameString()
             + TEAMMATE_NAME_DESC_B + TEAMMATE_PHONE_DESC_B + TEAMMATE_ADDRESS_DESC_B + TEAMMATE_EMAIL_DESC_B;
 
         EditTeammateCommand.EditTeammateDescriptor descriptor =
@@ -107,7 +107,7 @@ public class EditTeammateCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         GitUserIndex targetIndex = GIT_USERINDEX_FIRST_TEAMMATE;
-        String userInput = targetIndex.getGitUserName()
+        String userInput = targetIndex.getGitUserNameString()
             + TEAMMATE_ADDRESS_DESC_B + TEAMMATE_EMAIL_DESC_B;
 
         EditTeammateCommand.EditTeammateDescriptor descriptor =
@@ -130,7 +130,7 @@ public class EditTeammateCommandParserTest {
 
         // teammateName
         gitUserIndex = GIT_USERINDEX_FIRST_TEAMMATE;
-        userInput = gitUserIndex.getGitUserName() + TEAMMATE_NAME_DESC_B;
+        userInput = gitUserIndex.getGitUserNameString() + TEAMMATE_NAME_DESC_B;
         descriptor =
             new EditTeammateDescriptorBuilder()
                 .withTeammatetName(VALID_TEAMMATE_NAME_B).build();
@@ -139,7 +139,7 @@ public class EditTeammateCommandParserTest {
 
         // phone
         gitUserIndex = GIT_USERINDEX_FIRST_TEAMMATE;
-        userInput = gitUserIndex.getGitUserName() + TEAMMATE_PHONE_DESC_B;
+        userInput = gitUserIndex.getGitUserNameString() + TEAMMATE_PHONE_DESC_B;
         descriptor =
             new EditTeammateDescriptorBuilder()
                 .withPhone(VALID_TEAMMATE_PHONE_B).build();
@@ -148,7 +148,7 @@ public class EditTeammateCommandParserTest {
 
         // email
         gitUserIndex = GIT_USERINDEX_FIRST_TEAMMATE;
-        userInput = gitUserIndex.getGitUserName() + TEAMMATE_EMAIL_DESC_B;
+        userInput = gitUserIndex.getGitUserNameString() + TEAMMATE_EMAIL_DESC_B;
         descriptor =
             new EditTeammateDescriptorBuilder()
                 .withEmail(VALID_TEAMMATE_EMAIL_B).build();
@@ -157,7 +157,7 @@ public class EditTeammateCommandParserTest {
 
         // address
         gitUserIndex = GIT_USERINDEX_FIRST_TEAMMATE;
-        userInput = gitUserIndex.getGitUserName() + TEAMMATE_ADDRESS_DESC_B;
+        userInput = gitUserIndex.getGitUserNameString() + TEAMMATE_ADDRESS_DESC_B;
         descriptor =
             new EditTeammateDescriptorBuilder()
                 .withAddress(VALID_TEAMMATE_ADDRESS_B).build();
@@ -168,7 +168,7 @@ public class EditTeammateCommandParserTest {
     @Test
     public void parse_multipleRepeatedFieldsAcceptsLast_success() {
         GitUserIndex targetIndex = GIT_USERINDEX_FIRST_TEAMMATE;
-        String userInput = targetIndex.getGitUserName()
+        String userInput = targetIndex.getGitUserNameString()
             + TEAMMATE_ADDRESS_DESC_A + TEAMMATE_EMAIL_DESC_A + TEAMMATE_PHONE_DESC_A
             + TEAMMATE_ADDRESS_DESC_B + TEAMMATE_EMAIL_DESC_B + TEAMMATE_PHONE_DESC_B;
 
@@ -193,7 +193,7 @@ public class EditTeammateCommandParserTest {
 
         // other valid values specified
         gitUserIndex = GIT_USERINDEX_FIRST_TEAMMATE;
-        userInput = gitUserIndex.getGitUserName() + INVALID_TEAMMATE_NAME_DESC_A + TEAMMATE_NAME_DESC_A;
+        userInput = gitUserIndex.getGitUserNameString() + INVALID_TEAMMATE_NAME_DESC_A + TEAMMATE_NAME_DESC_A;
         descriptor =
             new EditTeammateDescriptorBuilder()
                 .withTeammatetName(VALID_TEAMMATE_NAME_A).build();
@@ -202,7 +202,7 @@ public class EditTeammateCommandParserTest {
 
         // other valid values specified
         gitUserIndex = GIT_USERINDEX_FIRST_TEAMMATE;
-        userInput = gitUserIndex.getGitUserName() + INVALID_TEAMMATE_NAME_DESC_A + TEAMMATE_NAME_DESC_A
+        userInput = gitUserIndex.getGitUserNameString() + INVALID_TEAMMATE_NAME_DESC_A + TEAMMATE_NAME_DESC_A
             + TEAMMATE_PHONE_DESC_A;
         descriptor =
             new EditTeammateDescriptorBuilder()
