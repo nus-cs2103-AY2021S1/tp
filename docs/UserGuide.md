@@ -307,7 +307,7 @@ Example: `filter tn/CS2103T` finds all the tasks whose task names contain the ke
 
 ### List all tasks `alltasks `
 
-List all tasks in the task list of the project.
+Lists all tasks in the task list of the project.
 
 Format: `alltasks `
 
@@ -446,7 +446,7 @@ Action | Format, Examples | Scope
 **Delete a task** | `deletetask INDEX` <br>e.g. `deletetask 1` | project scope 
 **Filter tasks** | <code>filter (ta/ASSIGNEE_GITHUB_USERNAME)&#124;&#124;(tn/KEYWORD [MORE_KEYWORDS]...)&#124;&#124;(td/DEADLINE)&#124;&#124;(start/START_DATE end/END_DATE)&#124;&#124;(tp/TASK_PROGRESS)&#124;&#124;(done/DONE_STATUS)</code> <br>e.g. `filter tn/CS2103T` | project scope
 **Show all the tasks** | `alltasks` | project scope 
-**Sort tasks** | <code>sort (sa/)&#124;&#124;(sd/)&#124;&#124;(td/)&#124;&#124;(tp/)&#124;&#124;(tn/)&#124;&#124;(done/)</code> <br>e.g. `sort sa/ td/` | project scope 
+**Sort tasks** | <code>sort (sa/)&#124;&#124;(sd/) (td/)&#124;&#124;(tp/)&#124;&#124;(tn/)&#124;&#124;(done/)</code> <br>e.g. `sort sa/ td/` | project scope 
 **View Details of A Task** | `viewtask INDEX` <br> e.g. `viewtask 1` | project scope
 **Create a new teammate** | `newteammate mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS` e.g. `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` | project scope
 **Add a teammate to a project** | `addpart GITHUB_USERNAME` e.g. `addpart LucasTai98` | project scope
