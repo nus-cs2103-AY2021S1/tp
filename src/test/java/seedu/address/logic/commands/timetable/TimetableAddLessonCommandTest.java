@@ -6,8 +6,8 @@ import static seedu.address.model.timetable.DurationTest.DURATION_1600_1800;
 import static seedu.address.model.timetable.DurationTest.DURATION_1630_1730;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalLessons.CS2030;
-import static seedu.address.testutil.TypicalSlots.getTypicalFitNus;
 import static seedu.address.testutil.TypicalLessons.MA1521;
+import static seedu.address.testutil.TypicalSlots.getTypicalFitNus;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,20 +28,20 @@ public class TimetableAddLessonCommandTest {
 
     @Test
     public void constructor_nullLesson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new TimetableAddLessonCommand(null, Day.MONDAY, DURATION_1600_1800));
+        assertThrows(NullPointerException.class, () ->
+                new TimetableAddLessonCommand(null, Day.MONDAY, DURATION_1600_1800));
     }
 
     @Test
     public void constructor_nullDay_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new TimetableAddLessonCommand(MA1521, null, DURATION_1600_1800));
+        assertThrows(NullPointerException.class, () ->
+                new TimetableAddLessonCommand(MA1521, null, DURATION_1600_1800));
     }
 
     @Test
     public void constructor_nullDuration_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new TimetableAddLessonCommand(MA1521, Day.MONDAY, null));
+        assertThrows(NullPointerException.class, () ->
+                new TimetableAddLessonCommand(MA1521, Day.MONDAY, null));
     }
 
     @Test

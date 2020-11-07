@@ -28,20 +28,20 @@ public class TimetableAddRoutineCommandTest {
 
     @Test
     public void constructor_nullRoutine_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new TimetableAddRoutineCommand(null, Day.MONDAY, DURATION_1600_1800));
+        assertThrows(NullPointerException.class, () ->
+                new TimetableAddRoutineCommand(null, Day.MONDAY, DURATION_1600_1800));
     }
 
     @Test
     public void constructor_nullDay_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new TimetableAddRoutineCommand(LEG_DAY, null, DURATION_1600_1800));
+        assertThrows(NullPointerException.class, () ->
+                new TimetableAddRoutineCommand(LEG_DAY, null, DURATION_1600_1800));
     }
 
     @Test
     public void constructor_nullDuration_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new TimetableAddRoutineCommand(LEG_DAY, Day.MONDAY, null));
+        assertThrows(NullPointerException.class, () ->
+                new TimetableAddRoutineCommand(LEG_DAY, Day.MONDAY, null));
     }
 
     @Test

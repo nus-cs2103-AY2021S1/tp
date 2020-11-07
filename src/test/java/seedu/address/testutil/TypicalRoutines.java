@@ -8,9 +8,9 @@ import java.util.Set;
 
 import seedu.address.model.FitNus;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.util.Name;
 import seedu.address.model.routine.Routine;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.Name;
 
 /**
  * A utility class containing a list of {@code Routine} objects to be used in tests.

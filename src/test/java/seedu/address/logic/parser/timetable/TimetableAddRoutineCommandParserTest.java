@@ -77,8 +77,8 @@ public class TimetableAddRoutineCommandParserTest {
         String userInputFormat = " r/Leg Day & D/monday T/1600-1800";
         assertParseFailure(parser, userInputFormat, Name.MESSAGE_CONSTRAINTS_FORMAT);
 
-        String userInputLimit = " r/This is just a very long name of a routine that will exceed 50 characters " +
-                "D/monday T/1600-1800";
+        String userInputLimit = " r/This is just a very long name of a routine that will exceed 50 characters "
+                + "D/monday T/1600-1800";
         assertParseFailure(parser, userInputLimit, Name.MESSAGE_CONSTRAINTS_LIMIT);
     }
 

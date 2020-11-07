@@ -8,13 +8,13 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyFitNus;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
 import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.body.Body;
-import seedu.address.model.body.Height;
-import seedu.address.model.body.Weight;
 import seedu.address.model.routine.Routine;
 import seedu.address.model.timetable.Slot;
 

@@ -20,7 +20,7 @@ public class SlotDayPredicateTest {
     }
 
     @Test
-    public void test_SlotDayDoesNotMatchGivenDay_returnsFalse() {
+    public void test_slotDayDoesNotMatchGivenDay_returnsFalse() {
 
         SlotDayPredicate predicate = new SlotDayPredicate(Collections.singletonList("wednesday"));
         assertFalse(predicate.test(MA1101R_THURSDAY_1600_1800));

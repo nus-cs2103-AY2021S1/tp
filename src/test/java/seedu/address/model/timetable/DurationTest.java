@@ -11,21 +11,21 @@ import org.junit.jupiter.api.Test;
 public class DurationTest {
 
     public static final Duration DURATION_1600_1800 =
-            new Duration(LocalTime.of(16,0), LocalTime.of(18, 0));
+            new Duration(LocalTime.of(16, 0), LocalTime.of(18, 0));
     public static final Duration DURATION_1600_1800_COPY =
-            new Duration(LocalTime.of(16,0), LocalTime.of(18, 0));
+            new Duration(LocalTime.of(16, 0), LocalTime.of(18, 0));
     public static final Duration DURATION_1600_1700 =
-            new Duration(LocalTime.of(16,0), LocalTime.of(17, 0));
+            new Duration(LocalTime.of(16, 0), LocalTime.of(17, 0));
     public static final Duration DURATION_1700_1800 =
-            new Duration(LocalTime.of(17,0), LocalTime.of(18, 0));
+            new Duration(LocalTime.of(17, 0), LocalTime.of(18, 0));
     public static final Duration DURATION_1630_1730 =
-            new Duration(LocalTime.of(16,30), LocalTime.of(17, 30));
+            new Duration(LocalTime.of(16, 30), LocalTime.of(17, 30));
     public static final Duration DURATION_1600_1759 =
-            new Duration(LocalTime.of(16,0), LocalTime.of(17, 59));
+            new Duration(LocalTime.of(16, 0), LocalTime.of(17, 59));
     public static final Duration DURATION_1600_1801 =
-            new Duration(LocalTime.of(16,0), LocalTime.of(18, 1));
+            new Duration(LocalTime.of(16, 0), LocalTime.of(18, 1));
     public static final Duration DURATION_1800_2000 =
-            new Duration(LocalTime.of(18,0), LocalTime.of(20, 0));
+            new Duration(LocalTime.of(18, 0), LocalTime.of(20, 0));
 
     @Test
     public void isValidDuration() {

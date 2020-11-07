@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
 import static seedu.address.model.timetable.Day.MONDAY;
+import static seedu.address.model.timetable.Day.FRIDAY;
+import static seedu.address.model.timetable.Day.THURSDAY;
 import static seedu.address.model.timetable.Day.TUESDAY;
 import static seedu.address.model.timetable.Day.WEDNESDAY;
-import static seedu.address.model.timetable.Day.THURSDAY;
-import static seedu.address.model.timetable.Day.FRIDAY;
 import static seedu.address.model.timetable.DurationTest.DURATION_1600_1700;
 import static seedu.address.model.timetable.DurationTest.DURATION_1600_1800;
 import static seedu.address.model.timetable.DurationTest.DURATION_1630_1730;
@@ -14,7 +14,6 @@ import static seedu.address.testutil.TypicalLessons.MA1101R;
 import static seedu.address.testutil.TypicalLessons.MA1521;
 import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 import static seedu.address.testutil.TypicalRoutines.UPPER_BODY;
-
 
 import java.util.ArrayList;
 import java.util.Arrays;

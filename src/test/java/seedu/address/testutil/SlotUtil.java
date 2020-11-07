@@ -3,13 +3,11 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROUTINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.logic.commands.timetable.TimetableAddLessonCommand;
 import seedu.address.logic.commands.timetable.TimetableAddRoutineCommand;
 import seedu.address.logic.commands.timetable.TimetableDeleteSlotCommand;
-import seedu.address.model.lesson.Lesson;
 import seedu.address.model.timetable.Slot;
 
 /**
@@ -29,9 +27,9 @@ public class SlotUtil {
      */
     public static String getLessonDetails(Slot slot) {
 
-        return PREFIX_LESSON + slot.getActivity().getName().fullName + " " +
-                PREFIX_DAY + slot.getDay().getDay() + " " +
-                PREFIX_TIME + slot.getDuration().toString();
+        return PREFIX_LESSON + slot.getActivity().getName().fullName + " "
+                + PREFIX_DAY + slot.getDay().getDay() + " "
+                + PREFIX_TIME + slot.getDuration().toString();
     }
 
     /**
@@ -46,9 +44,9 @@ public class SlotUtil {
      */
     public static String getRoutineDetails(Slot slot) {
 
-        return PREFIX_ROUTINE + slot.getActivity().getName().fullName + " " +
-                PREFIX_DAY + slot.getDay().getDay() + " " +
-                PREFIX_TIME + slot.getDuration().toString();
+        return PREFIX_ROUTINE + slot.getActivity().getName().fullName + " "
+                + PREFIX_DAY + slot.getDay().getDay() + " "
+                + PREFIX_TIME + slot.getDuration().toString();
     }
 
     /**
@@ -63,7 +61,7 @@ public class SlotUtil {
      */
     public static String getSlotDetails(Slot slot) {
 
-        return PREFIX_DAY + slot.getDay().getDay() + " " +
-                PREFIX_TIME + slot.getDuration().toString();
+        return PREFIX_DAY + slot.getDay().getDay() + " "
+                + PREFIX_TIME + slot.getDuration().toString();
     }
 }

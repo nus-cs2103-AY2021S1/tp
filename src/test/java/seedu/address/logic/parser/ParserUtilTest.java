@@ -18,10 +18,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.body.Height;
 import seedu.address.model.body.Weight;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.timetable.Day;
 import seedu.address.model.timetable.Duration;
 import seedu.address.model.util.Name;
-import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_LESSON_NAME = "GER@1000";
@@ -151,7 +151,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseDuration_validDuration_success() throws Exception {
-        Duration expectedDuration = new Duration(LocalTime.of(16,0), LocalTime.of(18,0));
+        Duration expectedDuration = new Duration(LocalTime.of(16, 0), LocalTime.of(18, 0));
         assertEquals(expectedDuration, ParserUtil.parseDuration(VALID_DURATION));
     }
 

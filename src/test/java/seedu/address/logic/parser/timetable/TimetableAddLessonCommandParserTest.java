@@ -4,8 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalLessons.MA1521;
 import static seedu.address.model.timetable.DurationTest.DURATION_1600_1800;
+import static seedu.address.testutil.TypicalLessons.MA1521;
 
 import org.junit.jupiter.api.Test;
 
@@ -76,8 +76,8 @@ public class TimetableAddLessonCommandParserTest {
         String userInputFormat = " n/MA1521& D/monday T/1600-1800";
         assertParseFailure(parser, userInputFormat, Name.MESSAGE_CONSTRAINTS_FORMAT);
 
-        String userInputLimit = " n/This is just a very long name of a lesson that will exceed 50 characters " +
-                "D/monday T/1600-1800";
+        String userInputLimit = " n/This is just a very long name of a lesson that will exceed 50 characters "
+                + "D/monday T/1600-1800";
         assertParseFailure(parser, userInputLimit, Name.MESSAGE_CONSTRAINTS_LIMIT);
     }
 

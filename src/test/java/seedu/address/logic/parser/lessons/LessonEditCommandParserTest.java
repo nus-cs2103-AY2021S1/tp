@@ -24,8 +24,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.lessons.LessonEditCommand;
 import seedu.address.logic.commands.lessons.LessonEditCommand.EditLessonDescriptor;
-import seedu.address.model.util.Name;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.Name;
 import seedu.address.testutil.EditLessonDescriptorBuilder;
 
 public class LessonEditCommandParserTest {
