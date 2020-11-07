@@ -162,7 +162,6 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Current Implementation
 
-The Add feature 
 The add feature is facilitated by `LogicManager` and `ModelManager`. The add command supports the following inputs from the user
 
 * `q/QUESTION`
@@ -288,23 +287,23 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Current Implementation
 
 The favourite/unfavourite mechanism is faciliated by `LogicManager` and `ModelManager`.
-A `isFavourite` attribute is stored internally in `Flashcard`, to keep track of whether the flashcard is favourited. When the user favourites a flashcard, `isFavourite` is set to true, and set to false otherwise. 
+A `isFavourite` boolean attribute is stored internally in `Flashcard`, to keep track of whether the flashcard is favourited. When the user favourites a flashcard, `isFavourite` is set to true, and set to false otherwise. 
  
 It implements the following operations:
-* `Flashcard#isFavourite()` - Checks whether the current flashcard is favourited
-* `FavCommand#createFavouriteFlashcard(Flashcard flashcardToFavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `true`
+* `Flashcard#isFavourite()` - Checks whether the current flashcard is favourited.
+* `FavCommand#createFavouriteFlashcard(Flashcard flashcardToFavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `true`.
 * `UnfavCommand#createUnfavouriteFlashcard(Flashcard flashcardToUnfavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `false`.
 
-Given below is an example usage scenario and how the favourite/unfavourite mechanism behaves at each step.
+Given below is an example usage scenario and how the favourite and unfavourite mechanism behaves at each step.
 
 Step 1: The user launches the application 
 
 ![FavUnfavState0](images/FavUnfavState0.png)
 
-Step 2: The user executes `fav 1` command to favourite the 1st flashcard in the displayed flashcard deck. `fav` Command calls 
+Step 2: The user executes `fav 1` command to favourite the 1st flashcard in the displayed flashcard deck. `fav` command calls 
 `Flashcard#isFavourite()` method to check whether the flashcard at index 1, `f1`,  has been favourited. If the flashcard is not favourited, 
-`fav` Command calls `FavCommand#createFavouriteFlashcard(f1)` to create a new flashcard, `fav1`,  by duplicating the existing data fields and set the `isFavourite` attribute to `true`.
-`fav` Command then calls `ModelManager#setFlashcard(f1, fav1)` to replace the current flashcard, `f1`,  with the favourited flashcard, `fav1`.
+`fav` command calls `FavCommand#createFavouriteFlashcard(f1)` to create a new flashcard, `fav1`,  by duplicating the existing data fields and set the `isFavourite` attribute to `true`.
+`fav` command then calls `ModelManager#setFlashcard(f1, fav1)` to replace the current flashcard, `f1`,  with the favourited flashcard, `fav1`.
 
 ![FavUnfavState1](images/FavUnfavState1.png)
 
@@ -312,17 +311,12 @@ The following sequence diagram shows how the `fav` operation works:
 
 ![FavouriteSequenceDiagram](images/FavouriteSequenceDiagram.png)
 
-Step 3: The user executes `unfav 1` command to unfavourite the 1st flashcard in the displayed flashcard deck. `unfav` Command calls 
+Step 3: The user executes `unfav 1` command to unfavourite the 1st flashcard in the displayed flashcard deck. `unfav` command calls 
 `Flashcard#isFavourite()` method to check whether the flashcard at index 1, `fav1`,  has been favourited. `fav1` is favourited in step 2, hence, 
-`unfav` Command calls `UnfavCommand#createUnfavouriteFlashcard(fav1)` to create a new flashcard, `f1`,  by duplicating the existing data fields and set the `isFavourite` attribute to `false`.
-`unfav` Command then calls `ModelManager#setFlashcard(fav1, f1)` to replace the current flashcard, `fav1`,  with the unfavourited flashcard, `f1`.
+`unfav` command calls `UnfavCommand#createUnfavouriteFlashcard(fav1)` to create a new flashcard, `f1`,  by duplicating the existing data fields and set the `isFavourite` attribute to `false`.
+`unfav` command then calls `ModelManager#setFlashcard(fav1, f1)` to replace the current flashcard, `fav1`,  with the unfavourited flashcard, `f1`.
 
 ![FavUnfavState2](images/FavUnfavState2.png)
-
-The following sequence diagram shows how the `unfav` operation works:
-
-![UnfavouriteSequenceDiagram](images/UnfavouriteSequenceDiagram.png)
-
 
 The following activity diagram summarizes what happens when a user executes a favourite/unfavourite command:
 
@@ -333,7 +327,7 @@ The following activity diagram summarizes what happens when a user executes a fa
 
 ##### Aspect: How fav & unfav executes
 
-* **Alternative 1 (current choice):** Creates a new flashcard everytime `isFavourite` changes
+* **Alternative 1 (current choice):** Creates a new flashcard everytime `isFavourite` value changes
   * Pros: Flashcard remains immutable.
   * Cons: Execution time is longer compared to Alternative 2 since a new flashcard is created if flashcard's state changes.
 
@@ -341,8 +335,6 @@ The following activity diagram summarizes what happens when a user executes a fa
   * Pros: Easy to implement as there is no need to create a new flashcard every time the state is changed.
   * Cons: Flashcard would not be immutable
 
-
-_{more aspects and alternatives to be added}_
 
 ### \[Implemented\] Filter feature
 
@@ -457,7 +449,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | student                                    | add a diagram to flashcard                                               | create flashcards with question based on diagram                                            |
 | `* * `   | student                                    | view individual flashcard                                                | look at flashcard in more details                                                           |
 | `* * `   | student                                    | quiz myself                                                              | revise for exams by through mock quiz and keep track of scores                              |
-| `* * `   | student                                    | view statistics of flashcard                                             | keep track of how well I did and know whether I have grasped the content properly           |
+| `* * `   | student                                    | view statistics of flashcard                                             | keep track of how well I did and know whether I have mastered the content properly           |
 | `* * `   | busy student                               | filter flashcards by different fields                                    | refine list of flashcards and only display the relevant flashcards I am interested in       |
 | `* * `   | busy student                               | sort flashcards according to review frequency                            | focus on flashcards that are least reviewed                                                 |
 | `* * `   | busy student                               | sort flashcards according to success rate                                | focus on flashcards that are often incorrectly answered                                     |
