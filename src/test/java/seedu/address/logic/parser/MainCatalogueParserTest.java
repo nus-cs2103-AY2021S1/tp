@@ -121,8 +121,6 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD, Status.PROJECT_LIST) instanceof ClearCommand);
-        assertTrue(parser
-            .parseCommand(ClearCommand.COMMAND_WORD + " 3", Status.PROJECT_LIST) instanceof ClearCommand);
     }
 
     @Test
