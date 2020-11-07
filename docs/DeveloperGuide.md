@@ -273,7 +273,7 @@ The following sequence diagram shows how the add operation generally works when 
 or an ingredient is added: <br> 
 `execute("addF i/tomato")`
 
-![AddSequenceDiagram](images/implementation/AddSequence.png)
+![AddSequenceDiagram](images/implementation/sequenceDiagram/AddSequence.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -337,21 +337,12 @@ Command and Parser makes use of Substitutability:
 * `EatRecipeCommand` extends `Command`
 * `EatRecipeCommandParser` implements `Parser<EatRecipeCommand>`
 
-Given bellow is the simplified step on how eat recipe is done:
-
-Step 1: User input is changed into command object.
-![EatRecipeStep1](images/implementation/EatRecipeStep1.png)
-
-Step 2: Execute the command (make a copy of recipe from recipeList).
-![EatRecipeStep2](images/implementation/EatRecipeStep2.png)
-
-Step 3: Add the copy recipe into consumptionList.
-![EatRecipeStep3](images/implementation/EatRecipeStep3.png)
-
+The following activity diagram shows how eat recipe operation works:
+![EatRecipeActivityDiagram](images/implementation/activityDiagram/EatRecipeCommandActivityDiagram.png)
 
 The following sequence diagram shows how eat recipe operation works when `execute(eatR 1)` is called:
 
-![EatRecipeSequenceDiagram](images/implementation/EatRecipeSequence.png)
+![EatRecipeSequenceDiagram](images/implementation/sequenceDiagram/EatRecipeSequence.png)
 
 Given below is an example usage scenario and how the mechanism behaves:
 
@@ -384,7 +375,7 @@ Command and Parser make use of Substitutability:
 The following sequence diagram shows how list operation works when `execute(recipes)`, `execute(fridge)` or
  `execute(calories)` is called:
 
-![ListSequenceDiagram](images/implementation/ListSequence.png)
+![ListSequenceDiagram](images/implementation/sequenceDiagram/ListSequence.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -444,12 +435,12 @@ Command and Parser makes use of Substitutability:
 * `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>`
 
 The following sequence diagram shows how delete operation works when `execute(deleteR 1)`, `execute(deleteF 1)` or `execute(deleteC 1)` is called:
-![DeleteActivity](images/implementation/ActivityDiagram/DeleteActivityDiagram.png)
+![DeleteActivity](images/implementation/activityDiagram/DeleteActivityDiagram.png)
 
 The following sequence diagram shows how delete operation works when `execute(deleteR 1)`, `execute(deleteF 1
 )` or `execute(deleteC 1)` is called:
 
-![DeleteSequence](images/implementation/DeleteSequence.png)
+![DeleteSequence](images/implementation/sequenceDiagram/DeleteSequence.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -506,14 +497,14 @@ The following activity diagram shows how edit operation generally works when a r
  `execute("editR 1 n/Pea soup")` <br>
  or an ingredient is edited <br>
  `execute("editF 1 i/tomato")`
-![EditActivity](images/implementation/ActivityDiagram/EditActivityDiagram.png)
+![EditActivity](images/implementation/activityDiagram/EditActivityDiagram.png)
 
 The following sequence diagram shows how edit operation generally works when a recipe is edited: <br>
  `execute("editR 1 n/Pea soup")` <br>
  or an ingredient is edited <br>
  `execute("editF 1 i/tomato")`
 
-![EditSequence](images/implementation/EditSequence.png)
+![EditSequence](images/implementation/sequenceDiagram/EditSequence.png)
 
 <div markdown="block" class="alert alert-info">
 :bell: **Note**                                                                                               
@@ -582,7 +573,7 @@ Command and Parser make use of Substitutability:
 
 The following sequence diagram shows how get edit operation works when `execute(editR 1)` or `execute(editF 1)` API call:
 
-![GetEditSequence](images/implementation/GetEditSequence.png)
+![GetEditSequence](images/implementation/sequenceDiagram/GetEditSequence.png)
 <div markdown="block" class="alert alert-info">
 
 :bell: **Note**                                                                                               
@@ -627,7 +618,7 @@ Command and Parser make use of Substitutability:
 
 The following sequence diagram shows how select recipe operation works when `execute(selectR 1)` is called:
 
-![SelectRecipeSequence](images/implementation/SelectRecipeSequence.png)
+![SelectRecipeSequence](images/implementation/sequenceDiagram/SelectRecipeSequence.png)
 
 Given below is an example usage scenario and how the mechanism behaves:
 1. User inputs the select recipe command followed by an index specifying the recipe.
@@ -660,7 +651,7 @@ The following sequence diagram shows how the search operation generally works wh
  or an ingredient is searched: <br> 
  `execute("searchF avocado")`
 
-![SearchSequence](images/implementation/SearchSequence.png)
+![SearchSequence](images/implementation/sequenceDiagram/SearchSequence.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -716,7 +707,7 @@ Substitutability is used in Command:
 
 The following sequence diagram shows how recommend operation works when `execute("recommend")` is called:
 
-![RecommendSequence](images/implementation/RecommendSequence.png)
+![RecommendSequence](images/implementation/sequenceDiagram/RecommendSequence.png)
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
@@ -744,10 +735,13 @@ Clear features - `Clear Recipes`, `Clear Ingredients` and `Clear Consumption` al
 Command and Parser make use of Substitutability:
 * `ClearRecipeCommand`, `ClearIngredientCommand` and `ClearConsumptionCommand` extends `Command`
 
+The following activity diagram shows how clear operation generally works:
+![ClearActivityDiagram](images/implementation/activityDiagram/ClearCommandActivityDiagram.png)
+
 The following sequence diagram shows how clear operation works when `execute(clearR)`, `execute(clearF)` or
  `execute(clearC)` is called:
 
-![ClearSequenceDiagram](images/implementation/ClearSequence.png)
+![ClearSequenceDiagram](images/implementation/sequenceDiagram/ClearSequence.png)
 
 <div markdown="block" class="alert alert-info">
 

@@ -14,10 +14,10 @@ UniqueRecipeList o-right-> Recipe
 
 Recipe -up-> "*" Tag
 
-Recipe *--> Name
-Recipe *--> Ingredient
-Recipe *--> Calories
-Recipe *--> Instruction
-Recipe *--> Image
+Recipe *--> "1" Name
+Recipe *--> "1.." Ingredient
+Recipe *--> "1" Calories
+Recipe *--> "1" Instruction
+Recipe *--> "0..1" Image
 Recipe --> "*" Tag
 @enduml
