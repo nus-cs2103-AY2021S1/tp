@@ -133,6 +133,11 @@ public class Person {
         return tasks;
     }
 
+    /**
+     * Checks whether Teammate is present in allPeople list.
+     * @param gitUserIndex of teammate
+     * @return boolean to indicate presence.
+     */
     public static boolean isPresent(GitUserIndex gitUserIndex) {
         GitUserName toCompare = gitUserIndex.getGitUserName();
         for (Person p : allPeople) {
