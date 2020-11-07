@@ -15,16 +15,44 @@ Coming soon.
 
 ### UI component
 
-Coming soon.
+![Structure of the UI Component](images/UiClassDiagram.png)
+
+**API** :
+[`Ui.java`](https://github.com/AY2021S1-CS2103-T16-2/tp/tree/master/src/main/java/seedu/address/ui)
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `ArchiveModeBox`, `HelpWindow`, `PersonCard`
+ etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+
+The `UI` component uses JavaFx UI framework.
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+Several UI parts makes use of a [`DarkTheme.css`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/resources/view/DarkTheme.css) file to set the design theme. This file is found in the `src/main/resources/view` folder. 
 
 ### Logic component
 
-Coming soon.
+![Structure of the Logic Component](images/LogicClassDiagram.png)
+
+**API** :
+[`Logic.java`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+
+1. `Logic` uses the `ClientListParser` class to parse the user command.
+1. This results in a `Command` object which is executed by the `LogicManager`.
+1. The command execution can affect the `Model` (e.g. adding a person).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Model component
 
 Coming soon.
-
 
 ### Storage component
 
