@@ -124,11 +124,11 @@ Welcome to the Wishful Shrinking Developer Guide! In this section, you will be g
 Wishful Shrinking is a desktop diet manager. It is an app that helps users **manage their on-hand ingredients
 , organise personal recipes and track their diet**. Wishful Shrinking facilitates a **healthier diet** in three
  main ways: 
-1. Provide a **source of healthy, customizable recipes** 
+1. Provide a **source of healthy**, **customizable recipes** 
 2. **Recommend recipes** to improve ease of home cooking 
 3. **Track daily food and calorie** intake<br><br>
 
-Wishful Shrinking targets **office workers** who tend to discount healthy eating. Office workers are also more
+Wishful Shrinking targets **office workers** who tend to neglect healthy eating. Office workers are also more
  familiar with desktop applications and typing and correspondingly, Wishful Shrinking is optimized for fast and efficient typers as it uses a Command Line Interface (CLI) with the added beauty of a Graphical User Interface (GUI).
  Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.<br><br>
  
@@ -168,7 +168,7 @@ The rest of the App consists of four components:
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its API in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
  API `interface` mentioned in the previous point. <br><br>
 
@@ -341,7 +341,11 @@ Given below is an example usage scenario and how the mechanism behaves:
  IngredientParser class that parses the user input ingredients into an arraylist of Ingredient objects
   * Pros: Easy to implement.
   * Cons: The parser may confuse ingredients that have prefixes that Wishful Shrinking uses to identify fields in the names, eg "-" or ",". <br><br>
-  
+
+* **Alternative 2:** Make ingredient's quantity field compulsory
+  * Pros: Easy to implement as command format is consistent.
+  * Cons: Quantity may be irrelevant and outdated if it is compulsory for all. <br><br>
+
 ##### Aspect 3: Should we allow adding duplicate ingredients and stacking quantities <a id="3133-aspect-3"></a>
 * **Alternative 1 (*current choice*):** Restricted to unique ingredients.
   * Pros: Storage will contain unique ingredients.
@@ -500,8 +504,12 @@ Given below is an example usage scenario and how the mechanism behaves:
 ##### Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present) <a id="3422-aspect-2"></a>
 * **Alternative 1 (*current choice*):** Store a copy of the recipe in the consumption list so that it is not deleted if the recipe is deleted from the recipe list.
     * Pros: Recipes consumed will be accurate.                                       
-    * Cons: Use additonal memory space.  <br><br>
-  
+    * Cons: Use additional memory space.  <br><br>
+
+* **Alternative 2:** Remove recipe in consumption list when deleting the recipe in recipe list.
+    * Pros: No unknown recipe being saved in Wishful Shrinking.                                      
+    * Cons: User could not accurately track their calories intake.  <br><br>
+
 #### 3.4.3 Design Consideration - **Delete Ingredient**: <a id="343-design-consideration-delete-ingredient"></a>
 ##### Aspect: Concern while adding a new feature <a id="3431-aspect"></a>
 * Workflow must be consistent with other commands. <br><br>
@@ -756,12 +764,16 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 #### 3.9.2 Design Considerations <a id="392-design-consideration"></a>
 ##### Aspect 1: How do we quickly and accurately compare ingredients between each recipe and the user's fridge <a id="3921-aspect-1"></a>
-* **Alternative 1 (*current choice*):** Compare the exact ingredients in each recipe to the users ingredients in the fridge
+* **Alternative 1 (*current choice*):** Compare the exact ingredients in each recipe to the user's ingredients in the fridge
   * Pros: Easy to implement
   * Cons: Ingredients might not match if the spellings are different, or if the ingredient have similar names e.g.
    mozarella and cheese. Additionally, if users do not add basic ingredients into their fridge, e.g. salt
     and pepper, many recipes will not be recommended to them. <br><br>
-    
+
+* **Alternative 2:** Using tries to compare ingredients in the fridge
+    * Pros: Faster and accurate.
+    * Cons: Hard to implement. <br><br>
+ 
 ##### Aspect 2: Should we take an ingredient's quantity into account when recommending recipes  <a id="3922-aspect-2"></a>
 * **Alternative 1 (*current choice*):** Recommending recipes will not take ingredients' quantites into account
   * Pros: Easy to implement.
