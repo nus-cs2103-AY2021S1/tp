@@ -6,7 +6,6 @@ skinparam classBackgroundColor MODEL_COLOR
 
 
 Package Model <<Rectangle>>{
-scale 2000*2000
 Interface ReadOnlyProductivenus <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
