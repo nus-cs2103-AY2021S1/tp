@@ -25,8 +25,11 @@ public class GoalBook implements ReadOnlyGoalBook {
      */
     public GoalBook(ReadOnlyGoalBook toBeCopied) {
         this();
-        resetData(toBeCopied);
+        if (toBeCopied != null) {
+            resetData(toBeCopied);
+        }
     }
+    
 
     //// map overwrite operations
 

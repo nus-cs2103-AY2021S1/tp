@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ExerciseModelManager(getTypicalExerciseBook(), new UserPrefs());
-        expectedModel = new ExerciseModelManager(model.getExerciseBook(), new UserPrefs());
+        model = new ExerciseModelManager(getTypicalExerciseBook(), null, new UserPrefs());
+        expectedModel = new ExerciseModelManager(model.getExerciseBook(), null, new UserPrefs());
     }
 
     @Test
