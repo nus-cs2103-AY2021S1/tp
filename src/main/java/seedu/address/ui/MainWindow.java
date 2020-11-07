@@ -42,6 +42,7 @@ import seedu.address.model.recipe.Recipe;
  */
 public class MainWindow extends UiPart<Stage> {
 
+    private static int wordLimit = 1000;
     private static final String FXML = "MainWindow.fxml";
     private static String themeColor = "#0088c7;";
 
@@ -301,13 +302,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException,
             ParseException, IOException, URISyntaxException {
+        if (commandText.length() > wordLimit) {
+            throw new CommandException("Command too long!");
+        }
         try {
             CommandResult commandResult = logic.execute(commandText);
-            //handle showing single recipe
-            Recipe selected = commandResult.getRecipe();
-            if (selected != null) {
-                showDrawer(selected);
-            }
             //handle closing drawer
             if (commandResult.isClose()) {
                 if (leftDrawer.isClosed()) {
@@ -320,6 +319,12 @@ public class MainWindow extends UiPart<Stage> {
             } else if (leftDrawer.isOpened()) {
                 CommandException commandException = new CommandException("Close drawer first!");
                 throw commandException;
+            }
+
+            //handle showing single recipe
+            Recipe selected = commandResult.getRecipe();
+            if (selected != null) {
+                showDrawer(selected);
             }
 
             if (commandResult.isShowHelp()) {
