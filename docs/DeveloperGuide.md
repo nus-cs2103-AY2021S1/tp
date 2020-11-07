@@ -98,7 +98,7 @@ Coming soon.
 
 ### Common classes
 
-Coming soon.
+Classes used by multiple components are in the seedu.address.commons package.
 
 --------------------------------------------------------------------------------------------------------------------
 
