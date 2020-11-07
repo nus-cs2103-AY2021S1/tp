@@ -66,21 +66,19 @@ public class EditTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (roomNumber < 0) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_NUMBER);
-        }
 
         // Get the room from which the user wants to delete the task
         Optional<Room> optionalRoom = model.getRoomWithRoomNumber(roomNumber);
+        assert optionalRoom != null : "The return value from Model#getRoomWithRoomNumber(...) should never be null.";
         Room room = optionalRoom.orElseThrow(() ->
                 new CommandException(Messages.MESSAGE_INVALID_ROOM_NUMBER));
-        assert room != null : "Target room should never be null.";
 
         // Get the task which the user wants to edit
         Optional<Task> optionalTask = model.getTaskFromRoomWithTaskIndex(taskIndex, room);
+        assert optionalTask != null : "The return value from Model#getTaskFromRoomWithTaskIndex(...)"
+                + " should not be null.";
         Task taskToEdit = optionalTask.orElseThrow(() ->
                 new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX));
-        assert taskToEdit != null : "The task to edit should never be null.";
 
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
         if (taskToEdit.equals(editedTask)) {

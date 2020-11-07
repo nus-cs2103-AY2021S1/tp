@@ -29,11 +29,11 @@ import seedu.address.model.ReadOnlyList;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
-import seedu.address.storage.JsonPatientRecordsStorage;
-import seedu.address.storage.JsonRoomOccupancyStorage;
 import seedu.address.storage.JsonTaskStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.patient.JsonPatientRecordsStorage;
+import seedu.address.storage.rooms.JsonRoomOccupancyStorage;
 import seedu.address.testutil.PatientBuilder;
 
 public class LogicManagerTest {

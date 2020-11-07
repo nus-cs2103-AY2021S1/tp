@@ -9,10 +9,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.storage.patient.PatientRecordsStorage;
+import seedu.address.storage.rooms.RoomRecordsStorage;
 
 /**
  * Manages storage of CovigentApp data in local storage.
@@ -21,18 +22,18 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private PatientRecordsStorage patientRecordsStorage;
+    private RoomRecordsStorage roomRecordsStorage;
     private UserPrefsStorage userPrefsStorage;
-    private JsonRoomOccupancyStorage roomOccupancyStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code PatientRecordsStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(PatientRecordsStorage patientRecordsStorage,
-                        JsonRoomOccupancyStorage roomOccupancyStorage, UserPrefsStorage userPrefsStorage) {
+                        RoomRecordsStorage roomOccupancyStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.patientRecordsStorage = patientRecordsStorage;
         this.userPrefsStorage = userPrefsStorage;
-        this.roomOccupancyStorage = roomOccupancyStorage;
+        this.roomRecordsStorage = roomOccupancyStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -84,13 +85,27 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveRoomList(RoomList roomList) throws IOException {
-        roomOccupancyStorage.saveOccupiedRooms(roomList);
+    public Optional<ReadOnlyList<Room>> readOnlyRoomOccupancy() throws DataConversionException {
+        return readOnlyRoomOccupancy(roomRecordsStorage.getRoomsRecordsFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyList<Room>> readRoomOccupancyStorage() throws DataConversionException, IOException {
-        return roomOccupancyStorage.readOnlyRoomOccupancy();
+    public Optional<ReadOnlyList<Room>> readOnlyRoomOccupancy(Path filePath) throws DataConversionException {
+        return roomRecordsStorage.readOnlyRoomOccupancy(filePath);
     }
 
+    @Override
+    public Path getRoomsRecordsFilePath() {
+        return roomRecordsStorage.getRoomsRecordsFilePath();
+    }
+
+    @Override
+    public void saveRoomsInformation(ReadOnlyList<Room> roomList) throws IOException {
+        saveRoomsInformation(roomList, roomRecordsStorage.getRoomsRecordsFilePath());
+    }
+
+    @Override
+    public void saveRoomsInformation(ReadOnlyList<Room> roomList, Path fileRoomsOccupied) throws IOException {
+        roomRecordsStorage.saveRoomsInformation(roomList, fileRoomsOccupied);
+    }
 }

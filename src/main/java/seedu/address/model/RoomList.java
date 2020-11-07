@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Name;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.UniqueRoomList;
-import seedu.address.storage.JsonPatientRecordsStorage;
+import seedu.address.storage.patient.JsonPatientRecordsStorage;
 
 /**
  * Contains information regarding the Room information

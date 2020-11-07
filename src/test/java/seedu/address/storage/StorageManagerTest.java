@@ -20,6 +20,8 @@ import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.storage.patient.JsonPatientRecordsStorage;
+import seedu.address.storage.rooms.JsonRoomOccupancyStorage;
 
 public class StorageManagerTest {
 
@@ -76,8 +78,8 @@ public class StorageManagerTest {
     @Test
     public void saveRoomOccupancyStorage() throws IOException, DataConversionException {
         RoomList original = getTypicalRoomList();
-        storageManager.saveRoomList(original);
-        ReadOnlyList<Room> readOnlyRoomList = storageManager.readRoomOccupancyStorage().get();
+        storageManager.saveRoomsInformation(original);
+        ReadOnlyList<Room> readOnlyRoomList = storageManager.readOnlyRoomOccupancy().get();
         assertEquals(original, readOnlyRoomList);
     }
 }
