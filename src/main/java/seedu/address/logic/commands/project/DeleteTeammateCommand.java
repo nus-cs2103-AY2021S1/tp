@@ -61,11 +61,10 @@ public class DeleteTeammateCommand extends Command {
             if (currentProject.hasParticipation(personToDelete.getGitUserNameString())) {
                 participation = currentProject.getParticipation(personToDelete.getGitUserNameString());
                 currentProject.removeParticipation(participation);
-                for (int j = 0; j < model.getFilteredParticipationList().size(); j++) {
-                    if (model.hasParticipation(participation)) {
-                        //                        model.deleteParticipation(participation);
-                    }
+                if (model.hasParticipation(participation)) {
+                    model.deleteParticipation(participation);
                 }
+
             }
         }
         Person.getAllPeople().remove(personToDelete);

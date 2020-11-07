@@ -134,7 +134,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     //// participation-level operations
 
     /**
-     * Returns true if a project with the same identity as {@code project} exists in the main catalogue.
+     * Returns true if a Participation with the same identity as {@code participation} exists in the main catalogue.
      */
     public boolean hasParticipation(Participation participation) {
         requireNonNull(participation);
