@@ -52,6 +52,9 @@ public class Quantity {
 
     /**
      * Returns true if a given string is a number and is more than zero or more.
+     *
+     * @param test The quantity to be tested.
+     * @return A boolean value indicating if the quantity is valid.
      */
     public static boolean isValidQuantity(String test) {
         requireNonNull(test);

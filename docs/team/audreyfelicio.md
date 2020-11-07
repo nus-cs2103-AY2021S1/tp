@@ -5,9 +5,11 @@ title: Audrey's Project Portfolio Page
 
 ## Project: Warenager
 
-Warenager is an **inventory application** to help tech-savvy warehouse managers to keep track of items in their warehouse.
-It **optimizes management tasks** for warehouse managers including but not exhaustive of updating,
-searching and ordering supplies, via Command Line Interface (CLI).
+Warenager is an **inventory management application** to help warehouse managers
+of small scale companies keep track of stocks in their warehouse.
+It **optimizes inventory management tasks** for warehouse managers including but not
+exhaustive of **updating, searching and sorting stocks** via Command Line Interface (CLI),
+while still having the benefits of a Graphical User Interface (GUI).
 
 Given below are my contributions to the project.
 
@@ -57,14 +59,15 @@ Given below are my contributions to the project.
   * Tests other team member's code and determine functional flaws if any.
 
 * **Testing**:
-  * Created unit tests for `update` feature (update command parser).
+  * Created unit tests for `update` feature (update command parser, update command).
   * Created integration tests for `update` feature (update command).
-  * Created unit tests for `suggestion` feature (suggestion command parser, suggestion util).
+  * Created unit tests for `suggestion` feature (suggestion command parser, suggestion util, suggestion command).
   * Created integration tests for `suggestion` feature (suggestion command).
-  * Created unit tests for `sort` feature (sort command parser, sort util).
+  * Created unit tests for `sort` feature (sort command parser, sort util, sort command).
   * Created integration tests for `sort` feature (sort command).
   * Improved coverage by creating tests for `QuantityAdder` and `ModelManager`.
   * Reviewed other team members' tests and ensure the tests are adequate and working.
+  * Help other team members debug testing when the tests failed and they don't know what causes the tests to fail.
 
 * **Documentation**:
   * User Guide:
@@ -75,13 +78,14 @@ Given below are my contributions to the project.
     * Added documentation for the feature `sort`.
     * Added documentation for the feature `suggestion`.
     * Fix markdown formatting errors.
+
   * Developer Guide:
     * Added implementation details of the `update` feature.
     * Added implementation details of the `sort` feature.
     * Added implementation details of the `suggestion` feature.
     * Added sequence and class diagrams for `Logic` API.
-    * Added architecture and sequence diagrams for `update`, `sort`, and `suggestion` feature.
-    * Added user stories.
+    * Added UML diagrams for `update`, `sort`, and `suggestion` feature.
+    * Added user stories in the form of a table.
     * Added use cases for `update` feature.
     * Added use cases for `sort` feature.
     * Added use cases for `suggestion` feature.
@@ -93,3 +97,4 @@ Given below are my contributions to the project.
 
 * **UI**:
   * Updated the table in help window and adjusted font.
+  * Gave feedback during the initial design of UI and helped with picking color scheme.

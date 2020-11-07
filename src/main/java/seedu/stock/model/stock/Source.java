@@ -39,6 +39,9 @@ public class Source {
 
     /**
      * Returns true if a given string is a valid source.
+     *
+     * @param test The source to be tested.
+     * @return A boolean value indicating if the source is valid.
      */
     public static boolean isValidSource(String test) {
         return test.matches(VALIDATION_REGEX);

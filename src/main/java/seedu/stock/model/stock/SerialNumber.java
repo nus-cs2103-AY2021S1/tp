@@ -32,6 +32,9 @@ public class SerialNumber {
 
     /**
      * Returns true if a given string is a valid serial number.
+     *
+     * @param test THe serial number to be tested.
+     * @return A boolean value indicating if the serial number is valid.
      */
     public static boolean isValidSerialNumber(String test) {
         return test.matches(VALIDATION_REGEX) && test.length() > 1;
