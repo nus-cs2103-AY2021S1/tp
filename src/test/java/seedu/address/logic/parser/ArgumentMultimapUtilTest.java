@@ -16,6 +16,7 @@ class ArgumentMultimapUtilTest {
     private Prefix prefix1 = new Prefix("prefix1");
     private Prefix prefix2 = new Prefix("prefix2");
     private Prefix prefix3 = new Prefix("prefix3");
+
     @Test
     void arePrefixesPresent_allPrefixesPresent_true() {
         args = new ArgumentMultimap();

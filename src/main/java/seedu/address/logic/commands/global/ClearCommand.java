@@ -13,6 +13,8 @@ import seedu.address.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
+    public static final String MESSAGE_EXTRA_ARGS = "Please do not provide extra arguments after \""
+            + COMMAND_WORD + "\"";
     public static final String MESSAGE_SUCCESS = "ProjectDescription book has been cleared!";
 
 
