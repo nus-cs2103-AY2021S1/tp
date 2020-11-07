@@ -2,7 +2,6 @@ package quickcache.logic.parser;
 
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_ONE;
-import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.CHOICE_DESC;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
@@ -10,7 +9,6 @@ import static quickcache.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static quickcache.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_ONE;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_THREE;
-import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_ONE;
 import static quickcache.logic.commands.CommandTestUtil.VALID_CHOICE_CHOICE1;
 import static quickcache.logic.commands.CommandTestUtil.VALID_CHOICE_CHOICE2;
