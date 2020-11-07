@@ -29,7 +29,7 @@ public class ListCommandTest {
         expectedModel = new ModelManager(getTypicalStockBookSortedSerialNumber(), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
     }
-
+Loggi
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListAllCommand(), model, ListAllCommand.MESSAGE_SUCCESS, expectedModel);
