@@ -343,8 +343,7 @@ The appointment feature will enable clinics to manage patient's appointments wit
 Users have the ability to show, add, delete, edit appointments within the app. 
 
 #### 4.5.1 Implementation
-
-#### Overview:
+##### Overview:
 
 * An `Appointment` class is created in the `patient` package.
 * A new prefix `appt/` to be used with the new `Appointment` field.

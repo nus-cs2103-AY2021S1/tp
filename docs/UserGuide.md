@@ -46,7 +46,7 @@ There are many versions of Java `11` listed. Select the correct version based on
 
 1. Double-click the file to start the app. A Graphical User Interface (GUI) similar to the one as shown in figure 1.2 below should appear in a few seconds. Notice that **Hospify** came listed with some sample patients.<br>
    
-   ![Ui](images/Ui.png)
+   ![Ui](images/SamplePatients.PNG)
    Figure 1.2 Start up UI showing list of sample patients
 
 1. You can now try typing your very first command in the command box and press `Enter` to execute it! Not sure what to type? Try typing **`help`** and pressing `Enter`. A help window as shown in figure 1.3 below should appear.<br>
@@ -149,8 +149,7 @@ Format: `add n/NAME ic/NRIC p/PHONE_NUMBER [e/EMAIL] a/ADDRESS mr/MEDICAL_RECORD
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
-A patient can have any number of allergies (including 0)
+**:information_source: Note:** A patient can have any number of allergies (including 0)
 </div>
 
 Let us use some examples (as shown below) to see how this command can actually be used.
@@ -161,7 +160,7 @@ Examples:
 
 When a patient is successfully added to **Hospify**, a success message will appear in the message box, and the patient is shown at the bottom of the list as shown in figure 3.1 below. <br>
 
-![Add patient](images/Add%20patient.PNG)
+![Add patient](images/AddPatient.PNG)
 Figure 3.1 Adding a patient (success scenario)
 
 ### Listing all patients: `list` (by Cedric Lim Jun Wei)
@@ -172,17 +171,17 @@ To use the command, simply type in `list` on the command line with no additional
 
 Format: `list`
 
-In the example below, we first use the `find` command to search for patient `Bernice Yu`. This results in a partial list containing only one patient as shown in figure 4.1 below.
+In the example below, we first use the `find` command to search for patient `Bernice Yu`. To do so, we type `find Bernice Yu` on the command line. This results in a partial list containing only one patient as shown in figure 4.1 below.
 
-![Find patient](images/list1.png)
+![Find patient](images/ListPatient1.PNG)
 Figure 4.1 Finding patient `Bernice Yu`
 
 With the help of the `list` command, we can revert back to the complete list of patients as shown in figure 4.2 below.
 
-![List patients](images/list2.png)
+![List patients](images/ListPatient2.PNG)
 Figure 4.2 Listing all patients
 
-### Editing a patient: `edit` (by Peh Jun Siang)
+### Editing a patient: `edit` (by Cao Qin)
 
 Edits an existing patient in **Hospify**.
 
@@ -460,7 +459,7 @@ When an `Appointment` is successfully deleted, a success message will appear in 
 
 ### Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 
-By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit-by-peh-jun-siang) patients by including the `mr/MEDICAL_RECORD_URL` field. Recall that this is a compulsory field for the `add` command while it is an optional field for the `edit` command and we can summarise the command formats as shown below.
+By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit-by-cao-qin) patients by including the `mr/MEDICAL_RECORD_URL` field. Recall that this is a compulsory field for the `add` command while it is an optional field for the `edit` command and we can summarise the command formats as shown below.
 
 Format: `add n/NAME …​ mr/MEDICAL_RECORD_URL …​` or `edit INDEX …​ [mr/MEDICAL_RECORD_URL] …​`
 
@@ -479,24 +478,24 @@ With this field, you can store the url to the online medical record of the patie
 
 In the following example, we will be using [Google Docs](https://docs.google.com) to store the medical record of patient `John Doe`.
 
-1. First, we add patient `John Doe` using the `add` command. Upon successful addition, you should be able to see a success message including the `MEDICAL_RECORD_URL` you have just added when you scroll the message box to the right as shown in figure 14.1 below.<br>
+1. First, we add patient `John Doe` using the `add` command. For this step, we will be using the url `https://docs.google.com/document/d/1cWm83218iwKEzNHP41vHFWLukaDn6eYompjyCcJxBiA/edit`. Upon successful addition, you should be able to see a success message including the `MEDICAL_RECORD_URL` you have just added when you scroll the message box to the bottom as shown in figure 14.1 below.<br>
     
-    ![medical record example 1](images/Medical%20record%20example%20(1).png)
+    ![medical record example 1](images/MrUrl1.PNG)
     Figure 14.1 Adding patient John Doe
     
 1. Next, to copy the medical record url of patient `John Doe` that we have just added, locate the patient in the list and click on the `MR URL` button located on the bottom right corner as shown in figure 14.2 below. A `Link Copied!` success message should appear once clicked, indicating that the link has been copied to the system clipboard.<br>
     
-    ![medical record example 2](images/Medical%20record%20example%20(2).png)
+    ![medical record example 2](images/MrUrl2.PNG)
     Figure 14.2 Copying medical record url of John Doe
     
 1. Then, open the web browser of your choice and paste the medical record url onto the search bar as shown in figure 14.3 below.<br>
     
-    ![medical record example 3](images/Medical%20record%20example%20(3).png)
+    ![medical record example 3](images/MrUrl3.PNG)
     Figure 14.3 Pasting medical record url of John Doe onto search bar
     
 1. Finally, you can access the medical record of the patient and make edits if applicable. A sample medical record is shown in figure 14.4 below for your reference.<br>
     
-    ![medical record example 4](images/Medical%20record%20example%20(4).png)
+    ![medical record example 4](images/MrUrl4.png)
     Figure 14.4 Sample medical record of John Doe on Google Docs
 
 The example we have just discussed uses the `add` command. The usage of the `MEDICAL_RECORD_URL` field in `edit` works in the same way as described in the `add` example as well.
