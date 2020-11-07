@@ -266,22 +266,79 @@ Alternative implementations:
 ### ClassParticipation
 
 Author: **Theodore Leebrant**
-* Implementing the class in charge of representing the class participation of each student in a session.
+* Implement the class in charge of representing the class participation of each student in a session.
+* Implement the commands in which class participation would be scored.
 
-![Class Participation](images/ClassParticipation.png)
+The `ClassParticipation` is made such that it:
+* Stores a `score`
+    * of the `double` type.
+    * between 0 and 10 inclusive.
+    * with detail up to 2 decimal places.
+* Supports equality whenever scores are the same
+* Has a method to return the `String` representation of itself.
+* Will be used by `StudentRecord`.
 
-The `ClassParticipation` is planned to
-* store a `score` and the maximum score (`maxScore`) attainable
-* have mutators for both the score and the maximum score.
-* be used by the StudentRecord
+To support the `ClassParticipation` class, Taskmaster needs to be able to set a student's score in a session.  
+In setting the student's score, TAskmaster needs to comply with the following specifications:
+* Supports checking of session (i.e. throws an error in case of no sessions made, or no sessions selected)
+* Able to identify the NUSNET ID from the index of student in the session.
+* Has input validation for the score (between 0 and 10 inclusive)
+* Able to truncate score to 2 decimal places (to follow with the `ClassParticipation` class)
+* (Extra goal) Able to score all students who are present.
 
-**To do**
-* make a corresponding command in Taskmaster to set score
-* implement a default scoring system at launch
-
-Given below is the planned Sequence Diagram for interaction to set the class participation mark via `Taskmaster#markStudentParticipation(nusnetId, score)`.
-
+Based on the specification above, the following is the activity diagram when someone were to score a student's participation score:
 ![Activity Diagram for Class Participation](images/ClassPartActivity.png)
+
+**Design Considerations**
+
+The specifications above has undergone several revisions, with the following considerations taken into account:
+* Session checking needs to be done, as the scoring depends on the session the user is currently on.
+* Support of scoring from the index is for ease of use for the user. 
+Internally, it uses NUSNET ID to see which student needs to be scored as the NUSNET ID is unique for each student.
+Therefore, there needs to be some lookup needed to bridge between these two.
+* Input validation is needed to ensure that the score inputed is valid.
+* The choice of 0-10 `double` score is to support the granularity of score detail 
+(most TA would use at most 1 decimal place, therefore we added support for 2 decimal places for meticulous TAs), while
+still maintaining good display for the sake of UX. Negative scores are not supported as negative score
+does not make sense in this case.
+* Marking all students will be a feature that supports the user experience of TAs using TAskmaster. Oftentimes there
+is a baseline on what TAs consider basic participation marks - and many students barring the exceptional ones will get
+similar, if not the same sccore. The `mark all` command comes from our observation of this fact.
+
+**Design Alternatives**
+
+* Make `ClassParticipation` a field in `StudentRecord`.  
+This was the initial plan for `StudentRecord`. However, there are advantages to having ClassParticipation as its own class.
+This would support data abstraction as we abstract away lower level data items. The implementer of `StudentRecord` does 
+not need to know the internal details of the implementation of `ClassParticipation`, whether is it an enum (of, let's say
+`GREAT, GOOD, AVERAGE, BAD`) or a `double` score as we have chosen to implement. Having a `ClassParticipation` class would
+also support future expansion in the scoring of class participation without going through the internal details of `StudentRecord`.
+
+* Make `ClassParticipation` an enum or use `int` values for the score.  
+This was initially considered but ultimately scrapped to increase the flexibility, as well as attention to detail. 
+Having an enum as the scoring system would work, but in effect, it would reduce the detail of score given to a student.
+This may cause some TAs to not be satisfied with the scoring system. While having integer is a better solution, we
+decided on using `double` due to the fact that 0-10 is easily scalable (e.g. to get percentage, the TA can just glance
+at the score) and provides more detail. An alternative that may also be considered for future iteration is to use
+`float` instead of `double` as we do not necessarily need double-precision decimal representation with only two decimal
+places.
+
+
+**Future expansion**
+
+Beyond 1.4, there are several improvements that can be done:
+* Set a maximum score for the session.  
+This would include one extra command to change the maximum value of the score. In this case, we need to implement
+a field in `ClassParticipation` for the maximum score, and see from this value for input validation. A problem that we
+forsee in implementing this is the default choice of maximum score, validation of current score (what happens if
+there is a student with score 5.5 but we set the maximum score to 5), as well as possible coupling due to the command
+needing to see the maximum value of the class participation score.
+* Have alternatives for scoring class participation.  
+We have thought about the possiblity that the TA does not need the granularity of a `double` value to 2 decimal places.
+In the future, it would be good to support a command that changes the type of the score, e.g. to discrete values given
+by enum. Some considerations would be about existing scores, implementation of classes beyond `ClassParticipation`,
+as well as command handling.
+
 
 <br>
 
@@ -690,6 +747,28 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect add commands to try: `goto First Session`, `...`<br>
       Expected: Similar to previous.
 
+### Scoring a student
+The below testcases assume that you are in a session and have 7 students inside it.
+
+* Scoring a student
+    1. Test case: `score 1 cp/5.3`  
+    Expected: The student with index 1 in the session will be scored 5.3.
+    2. Test case: `score 8 cp/3.23`  
+    Expected: No student's score will be changed. An error shows that the student index provided is invalid.
+    3. Test case: `score 1 cp/-1`  
+    Expected: No student's score will be changed. An error shows that the input is invalid as it is negative.
+    4. Test case: `score 1 cp/11.4`  
+    Expected: No student's score will be changed. An error shows that the input is invalid as it greater than 10.
+
+* Scoring multiple students
+    1. Test case: `score all cp/8.2`  
+    Expected:  
+        * All students who are present are scored 8.2.
+        * All students who are not present have their scores unchanged.
+    2. Test case: `score all cp/-0.52`  
+    Expected: No scores changed, an error shows that the input is invalid as it is negative.
+    3. Test case: `score all cp/10.52`  
+    Expected: No scores changed, an error shows that the input is invalid as it is greater than 10.
 
 ### Clearing contents of student and session list
 
