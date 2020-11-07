@@ -64,7 +64,6 @@ public class DeleteTeammateCommand extends Command {
                 if (model.hasParticipation(participation)) {
                     model.deleteParticipation(participation);
                 }
-
             }
         }
         Person.getAllPeople().remove(personToDelete);

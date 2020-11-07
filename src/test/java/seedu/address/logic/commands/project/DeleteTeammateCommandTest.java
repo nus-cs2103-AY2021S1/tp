@@ -43,8 +43,7 @@ public class DeleteTeammateCommandTest {
 
         DeleteTeammateCommand deleteTeammateCommand = new DeleteTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE);
 
-        String expectedMessage = String.format(DeleteTeammateCommand.MESSAGE_DELETE_TEAMMATE_SUCCESS,
-                person);
+        String expectedMessage = String.format(DeleteTeammateCommand.MESSAGE_DELETE_TEAMMATE_SUCCESS, person);
 
         assertCommandSuccess(deleteTeammateCommand, model, expectedMessage, expectedModel);
     }
