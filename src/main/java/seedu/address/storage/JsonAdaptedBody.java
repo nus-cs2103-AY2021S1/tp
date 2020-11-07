@@ -42,10 +42,10 @@ class JsonAdaptedBody {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Body.
      */
     public Body toModelType() throws IllegalValueException {
-        if (height <= 0) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
-        } else if (weight <= 0) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
+        if (!Height.isValidHeight(height)) {
+            throw new IllegalValueException(Height.MESSAGE_CONSTRAINTS_LIMIT);
+        } else if (!Weight.isValidWeight(weight)) {
+            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS_LIMIT);
         }
         Body newBody = new Body();
         newBody.setHeight(new Height(height));

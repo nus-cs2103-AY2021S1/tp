@@ -11,8 +11,11 @@ import seedu.address.model.util.Name;
 
 public class TypicalExercises {
 
-    public static final Exercise BENCH_PRESS = new Exercise(new Name("Bench Press"), new HashSet<>());
-    public static final Exercise SQUATS = new Exercise(new Name("Squats"), new HashSet<>());
+    public static final Exercise BENCH_PRESS = new ExerciseBuilder().withName("Bench press")
+            .withTags("chest").build();
+    public static final Exercise SQUATS = new ExerciseBuilder().withName("Squats")
+            .withTags("Legs").build();
+    public static final Exercise SPRINTS = new Exercise(new Name("Sprints"), new HashSet<>());
 
     private TypicalExercises() {} // prevents instantiation
 

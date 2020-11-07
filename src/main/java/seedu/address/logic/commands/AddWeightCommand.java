@@ -40,6 +40,6 @@ public class AddWeightCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddWeightCommand // instanceof handles nulls
-                && this.weight == ((AddWeightCommand) other).weight);
+                && this.weight.equals(((AddWeightCommand) other).weight));
     }
 }

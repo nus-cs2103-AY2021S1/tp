@@ -40,6 +40,6 @@ public class AddHeightCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddHeightCommand // instanceof handles nulls
-                && this.height == ((AddHeightCommand) other).height);
+                && this.height.equals(((AddHeightCommand) other).height));
     }
 }
