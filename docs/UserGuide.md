@@ -434,8 +434,8 @@ Format: `searchR [i/INGREDIENT [ MORE INGREDIENTS]] [n/NAME] [t/TAG [ MORE TAGS]
 * The search is case-insensitive. e.g. `salad` will match `Salad`.
 * The search will match partial keywords. e.g. `sandw` will match `sandwich`.
 * The order of the keywords does not matter. e.g. Ham Salad will match Salad with Ham.
-* If multiple keywords are specified for name and tags, all recipes containing **any** of the keywords will match the search.
-* If multiple ingredients are searched, only recipes that contain **all** of the ingredients specified will match the search.
+* If multiple keywords are specified for **name** and **tags**, all recipes containing **any** of the keywords will match the search.
+* If multiple **ingredients** are searched, only recipes that contain **all** of the ingredients specified will match the search.
 * All fields are optional, but **only one** of the fields must be present to search by recipe ingredient(s), recipe name or recipe tag(s).
 * If more than one field is specified, Wishful Shrinking will only search by the **first** field stated.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
