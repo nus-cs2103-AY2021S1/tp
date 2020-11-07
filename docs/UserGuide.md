@@ -252,9 +252,9 @@ Removes record of leave taken by staff. <br>
 Format: `dell INDEX d/DATE`
 
 Examples:
-* `list s-` followed by `dell 2 d/09/09/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
-* `find s- Betsy` followed by `dell 1 d/09/09/2020` deletes the leave from the 1st person in the results of the `find s-` command.
-* `dell 2 d/09/09/2020`
+* `list s-` followed by `dell 2 d/09/10/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
+* `find s- Betsy` followed by `dell 1 d/09/10/2020` deletes the leave from the 1st person in the results of the `find s-` command.
+* `dell 2 d/09/10/2020`
 
 ### 3.4. Applicant commands
 
