@@ -85,7 +85,6 @@ public class EditCommand extends Command {
         boolean isMcq = flashcardToEdit.getQuestion() instanceof MultipleChoiceQuestion;
 
         Statistics statistics = flashcardToEdit.getStatistics();
-        Question previousQuestion = flashcardToEdit.getQuestion();
         Answer updatedAnswer = editFlashcardDescriptor.getAnswer()
                 .orElse(flashcardToEdit.getAnswerOrIndex());
         String updatedQuestion = editFlashcardDescriptor.getQuestion()
