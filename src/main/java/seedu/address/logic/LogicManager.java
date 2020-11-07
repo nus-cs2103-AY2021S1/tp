@@ -52,11 +52,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyVendorManager getVendorManager() {
-        return model.getVendorManager();
-    }
-
-    @Override
     public ObservableList<Vendor> getObservableVendorList() {
         return model.getVendorManager().getVendorList();
     }

@@ -52,4 +52,24 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
                 false, true, false).hashCode());
     }
+
+    @Test
+    void isVendor_vendorCommand() {
+        assertTrue(new CommandResult("feedback", false, false, false, true).isVendor());
+    }
+
+    @Test
+    void isShowHelp_helpCommand() {
+        assertTrue(new CommandResult("feedback", true, false, false, false).isShowHelp());
+    }
+
+    @Test
+    void isExit_exitCommand() {
+        assertTrue(new CommandResult("feedback", false, true, false, false).isExit());
+    }
+
+    @Test
+    void isPreset() {
+        assertTrue(new CommandResult("feedback", false, false, true, false).isPreset());
+    }
 }

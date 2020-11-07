@@ -26,13 +26,6 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    /**
-     * Returns the VendorManager.
-     *
-     * @see seedu.address.model.Model#getVendorManager()
-     */
-    ReadOnlyVendorManager getVendorManager();
-
     /** Returns an unmodifiable view of the filtered list of vendors */
     ObservableList<Vendor> getObservableVendorList();
 

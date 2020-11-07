@@ -61,4 +61,16 @@ public class DeletePresetCommand extends PresetCommand {
         return new CommandResult(String.format(Messages.MESSAGE_PRESET_DELETE_SUCCESS, presetName),
                 false, false, true, false);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof DeletePresetCommand)) {
+            return false;
+        }
+        DeletePresetCommand other = (DeletePresetCommand) obj;
+        return presetName.equals(other.presetName);
+    }
 }

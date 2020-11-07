@@ -78,4 +78,9 @@ public class SubmitCommand extends Command {
 
         return new CommandResult(feedback.toString());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj == this || obj instanceof SubmitCommand;
+    }
 }

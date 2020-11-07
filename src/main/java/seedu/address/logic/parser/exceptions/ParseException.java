@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.exceptions;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Represents a parse error encountered by a parser.
@@ -11,4 +12,16 @@ public class ParseException extends IllegalValueException {
         super(message);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof ParseException)) {
+            return false;
+        }
+
+        return ((ParseException) obj).getMessage().equals(getMessage());
+    }
 }
