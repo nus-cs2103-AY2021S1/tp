@@ -37,12 +37,12 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' QuickCache file path.
      */
     Path getQuickCacheFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' QuickCache file path.
      *
      * @param quickCacheFilePath
      */
@@ -54,26 +54,26 @@ public interface Model {
     ReadOnlyQuickCache getQuickCache();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces QuickCache data with the data in {@code quickCache}.
      *
      * @param quickCache
      */
     void setQuickCache(ReadOnlyQuickCache quickCache);
 
     /**
-     * Returns true if a flashcard with the same identity as {@code person} exists in the address book.
+     * Returns true if a flashcard with the same identity as {@code flashcard} exists in the QuickCache.
      */
     boolean hasFlashcard(Flashcard flashcard);
 
     /**
      * Deletes the given flashcard.
-     * The flashcard must exist in the address book.
+     * The flashcard must exist in the QuickCache.
      */
     void deleteFlashcard(Flashcard target);
 
     /**
      * Adds the given flashcard.
-     * {@code flashcard} must not already exist in the address book.
+     * {@code flashcard} must not already exist in the QuickCache.
      */
     void addFlashcard(Flashcard flashcard);
 
@@ -86,13 +86,13 @@ public interface Model {
 
     /**
      * Replaces the given flashcard {@code target} with {@code editedFlashcard}.
-     * {@code target} must exist in the address book.
-     * The Flashcard of {@code editedFlashcard} must not be the same as another existing Flashcard in the address book.
+     * {@code target} must exist in the QuickCache.
+     * The Flashcard of {@code editedFlashcard} must not be the same as another existing Flashcard in the QuickCache.
      */
     void setFlashcard(Flashcard target, Flashcard editedFlashcard);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered flashcard list
      */
     ObservableList<Flashcard> getFilteredFlashcardList();
 

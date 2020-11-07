@@ -6,7 +6,7 @@ import quickcache.model.Model;
 import quickcache.model.QuickCache;
 
 /**
- * Clears the address book.
+ * Clears the QuickCache.
  */
 public class ClearCommand extends Command {
 

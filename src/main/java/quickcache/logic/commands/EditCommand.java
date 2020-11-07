@@ -32,7 +32,7 @@ import quickcache.model.flashcard.Tag;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing flashcard in the QuickCache.
  */
 public class EditCommand extends Command {
 

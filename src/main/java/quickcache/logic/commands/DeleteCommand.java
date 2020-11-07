@@ -15,7 +15,7 @@ import quickcache.model.flashcard.FlashcardPredicate;
 import quickcache.model.flashcard.Tag;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a flashcard identified using it's displayed index from the QuickCache.
  */
 public class DeleteCommand extends Command {
 

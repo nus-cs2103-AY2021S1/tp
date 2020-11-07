@@ -48,7 +48,7 @@ This User Guide is co-written by Josiah, Joshua, Gilbert, Francis and Xingjian. 
 
 ## Introduction to QuickCache <a name="intro"></a>
 
-**QuickCache** is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+**QuickCache** is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 If you are a student who can type fast and loves organizing your study materials, **QuickCache** can get your flashcard management tasks done faster than any traditional GUI appplication.
 
@@ -71,7 +71,7 @@ Before diving into **QuickCache** and getting to know its features, lets get fam
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start <a name="quickstart"></a>
-Here is a quick start on how you can start using our app in your own computer. 
+Here is a quick start on how you can start using our app in your own computer.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -84,31 +84,31 @@ Here is a quick start on how you can start using our app in your own computer.
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-   
-   * **`add`**`q/Plants give out ___ when they photosynthesise? ans/Oxygen t/Biology` :  Adds an open ended question `Plants give out ___ when they photosynthesise?` with answer `Oxygen` and tagged to `Biology`. 
-     
+
+   * **`add`**`q/Plants give out ___ when they photosynthesise? ans/Oxygen t/Biology` :  Adds an open ended question `Plants give out ___ when they photosynthesise?` with answer `Oxygen` and tagged to `Biology`.
+
    * **`addmcq`**`q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide` :  Adds a multiple choice question `Plants give out ___ when they photosynthesise?` with 3 options `Oxygen`, `Carbon`, `Carbon dioxide` and with answer `Oxygen`.
 
    * **`open`**`1` : Opens the 1st question shown in the current list.
-   
+
    * **`edit`**`1 ans/Edited answer` : Edit the answer of the first flashcard on the list to become `Edited answer`.
-   
+
    * **`list`** : Lists all FlashCards.
-   
+
    * **`find`** `find t/MCQ q/What CS2103T q/is t/GoodQuestion` : Finds all Flashcards tagged to the tag `MCQ` and `GoodQuestion` and has keywords `What`, `CS2103T` and `is` in question.
-   
+
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
-   
+
    * **`clear`** : Deletes all FlashCards.
-   
+
    * **`test`**`1 ans/Example answer` : Tests the 1st question shown in the current list with `Example answer` as the answer.
-   
+
    * **`stats`**`1` : Show stats of the 1st question shown in the current list.
-   
+
    * **`clearstats`**`1` : Clears the statistics of the 1st flashcard shown in the current list.
-   
+
    * **`export`**`science-questions.json` : Exports current list of flashcard to a file named `science-questions.json` in the `export` folder.
-   
+
    * **`import`**`science-questions.json` : Import all flashcards from a file named `science-questions.json` in the `import` folder.
 
    * **`exit`** : Exits the app.
@@ -128,7 +128,7 @@ Here is a quick start on how you can start using our app in your own computer.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `q/QUESTION ans/ANSWER`, `q/ANSWER ans/QUESTION` is also acceptable.
-  
+
 * Items in square brackets are optional.
   e.g. q/QUESTION [t/TAG] can be used as q/What is my name? t/personal or as q/What is my name? .
 
@@ -147,6 +147,14 @@ Format: `help`
 
 ### Creating a new flashcard <a name="creating-a-new-flashcard"></a>
 You can add a new flashcard to the list.
+
+<div class="alert alert-danger">
+:exclamation:<br>
+
+You cannot have multiple question and answer prefixes.
+
+</div>
+
 #### Creating a flashcard with open ended question: `add q/QUESTION ans/ANSWER [t/TAG]... [d/DIFFICULTY]` <a name="oeq"></a>
 You can create a flashcard that contains an open ended question which will be added to the list.
 
@@ -154,7 +162,7 @@ You can create a flashcard that contains an open ended question which will be ad
 For example, you can enter`add q/Sample Question ans/Sample Answer`
 
     ![addOpenEnded](images/addOpenEnded.png)
-    
+
 2. You have successfully created a flashcard with an open ended question and it will be saved immediately in the list.
 
     ![addOpenEnded2](images/addOpenEnded2.png)
@@ -175,7 +183,7 @@ You can create a flashcard that contains a multiple choice question which will b
 For example, you can enter `addmcq q/Sample Question ans/1  c/Sample Choice c/Sample Choice 2`
 
     ![addMCQ](images/addMCQ.png)
-    
+
 2. You have successfully created a flashcard with a multiple choice question and it will be saved immediately in the list.
 
     ![addMCQ2](images/addMCQ2.png)
@@ -204,15 +212,15 @@ To view a flashcard you can open it by its index.
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
 	![OpenIndexStep1](./images/OpenIndexStep1.png)
-	
+
 2. Using the indices of the displayed list, enter the open command followed by the index of the flashcard you want to open. For example, if you want to open the 1st flashcard in the displayed list, you can enter `open 1`.
 
 	![OpenIndexStep2](./images/OpenIndexStep2.png)
-	
+
 3. Press enter and QuickCache will open the flashcard specified by the index.
 
 	![OpenIndexStep3](./images/OpenIndexStep3.png)
-	
+
 
 You have successfully opened a flashcard!
 
@@ -223,12 +231,12 @@ You can edit a flashcard that you have created previously.
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
     ![edit](images/Edit.png)
-    
-2. Using the indices of the displayed list, enter the edit command followed by the index of the flashcard you want to edit. 
+
+2. Using the indices of the displayed list, enter the edit command followed by the index of the flashcard you want to edit.
 For example, if you want to edit the 3rd flashcard in the displayed list, you can enter `edit 3 q/Updated Question`.
 
     ![edit2](images/Edit2.png)
-    
+
 3. Press enter and QuickCache will edit the flashcard specified by the index.
 
     ![edit3](images/Edit3.png)
@@ -304,7 +312,7 @@ To find flashcards, you can find them by specifying keywords within their questi
 3. Press enter and QuickCache will display all the flashcards with the tag `Biology`.
 
 	![FindTagsStep3](./images/FindTagsStep3.png)
-	
+
 #### Finding by tags and keywords: `find t/TAG... q/KEYWORD...`
 
 <div markdown="block" class="alert alert-info">
@@ -356,11 +364,11 @@ You can delete a flashcard based on the index shown in the last displayed list.
 2. Using the indices of the displayed list, enter the delete command followed by the index of the flashcard you want to delete. For example, if you want to delete the 3rd flashcard in the displayed list, you can enter `delete 3`.
 
 	![DeleteIndexStep2](./images/DeleteIndexStep2.png)
-	
-3. Press enter and QuickCache will delete the flashcard specified by the index. 
+
+3. Press enter and QuickCache will delete the flashcard specified by the index.
 
 	![DeleteIndexStep3](./images/DeleteIndexStep3.png)
-	
+
 
 You have successfully deleted a flashcard!
 
@@ -413,7 +421,7 @@ You can test yourself with a flashcard containing open-ended question by specify
     </div>
 
     ![TestOpenStep2](./images/TestOpenStep2.png)
-    
+
 3. Press enter and QuickCache will tell you whether you got the question right.
 
     ![TestOpenStep3](./images/TestOpenStep3.png)
@@ -439,11 +447,11 @@ You can also test yourself a flashcard containing a multiple choice question by 
     </div>
 
     ![TestMCQStep3](./images/TestMCQStep3.png)
-    
+
 4. Press enter and QuickCache will tell you whether you got the question right.
 
     ![TestMCQStep4](./images/TestMCQStep4.png)
-    
+
 You have successfully tested yourself on a multiple choice question!
 
 ### Displaying statistics <a name="displaying-statistics"></a>
@@ -464,7 +472,7 @@ You can display the statistics of a specified flashcard in a Pie Chart based on 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
 	![StatsIndexStep1](./images/StatsIndexStep1.png)
-	
+
 2. Using the indices of the displayed list, enter the stats command followed by the index of the flashcard you want to view the statistics of. For example, if you want to view the statistics of the first flashcard in the displayed list, you can enter `stats 1`.
 
     <div markdown="block" class="alert alert-info">
@@ -472,16 +480,16 @@ You can display the statistics of a specified flashcard in a Pie Chart based on 
     </div>
 
 	![StatsIndexStep2](./images/StatsIndexStep2.png)
-	
+
 3. Press enter and QuickCache will display the statistics of the flashcard specified by the index.
 
 	![StatsIndexStep3](./images/StatsIndexStep3.png)
-	
+
 You have successfully displayed the statistics of a flashcard!
 
 #### Statistics by tags: `stats t/TAG...` <a name="stats-by-tags"></a>
 
-You can also display the statistics of multiple flashcards in a Pie Chart by specifying tags. 
+You can also display the statistics of multiple flashcards in a Pie Chart by specifying tags.
 
 1. In the user input box, enter the stats command together with the tags that you want to use as the criteria. For example, if you want to display statistics for all flashcards with the tag `MCQ`, type `stats t/MCQ`.
 
@@ -510,31 +518,31 @@ To clear the statistics of a flashcard you can use the clearstats command.
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
 	![ClearstatsIndexStep1](./images/ClearstatsIndexStep1.png)
-	
+
 	<div markdown="block" class="alert alert-info">
 	<Strong>Optional Step:</Strong>
 	You can first check the statistics of the flashcard you want to clear the statistics of.
-	
+
 	<img src="./images/ClearstatsIndexStepOptional1.png">
-		
+
 	</div>
-	
+
 2. Using the indices of the displayed list, enter the clearstats command followed by the index of the flashcard you want to clear the statistics of. For example, if you want to clear the statistics of the first flashcard in the displayed list, you can enter `clearstats 1`.
 
 	![ClearstatsIndexStep2](./images/ClearstatsIndexStep2.png)
-	
+
 3. Press enter and QuickCache will clear the statistics of the flashcard specified by the index.
 
 	![ClearstatsIndexStep3](./images/ClearstatsIndexStep3.png)
-	
+
 	<div markdown="block" class="alert alert-info">
 	<Strong>Optional Step:</Strong>
 	You can check that the statistics of the flashcard has been cleared.
-	
+
 	<img src="./images/ClearstatsIndexStepOptional2.png">
-	
+
 	</div>
-	
+
 You have successfully cleared the statistics of a flashcard!
 
 ### Sharing flashcards <a name="sharing-flashcards"></a>
@@ -546,46 +554,46 @@ You can export all flashcards from the last displayed list into a file named `FI
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
     ![ExportStep1](./images/ExportStep1.png)
-    
+
 2. In the user input box, enter the `export` command together with the `FILE_NAME` you would like to save the flashcards into. For example, if you would like the file to be named as `josiah-flashcard.json`, you can enter `export josiah-flashcard.json`.
 
     <div markdown="block" class="alert alert-info">
     :bulb: The filename specified includes the file format extension e.g. file.json
     </div>
-    
+
     ![ExportStep2](./images/ExportStep2.png)
-    
+
 3. Press enter and the file containing the flashcards will be exported into the `export` folder, located in the same directory as `QuickCache.jar`
 
     ![ExportStep3a](./images/ExportStep3a.png)
-    
+
     ![ExportStep3b](./images/ExportStep3b.png)
-    
+
     ![ExportStep3bW](./images/ExportStep3bW.png)
 
     ![ExportStep3c](./images/ExportStep3c.png)
-    
+
     ![ExportStep3cW](./images/ExportStep3cW.png)
-    
+
 
 Voila! You have successfully exported your flashcards into a file.
 
 #### Importing a set of flashcards : `import FILE_NAME` <a name="import"></a>
 
-You can import external flashcards into your local QuickCache as well. 
+You can import external flashcards into your local QuickCache as well.
 
 1. Create an `import` folder in the same directory as where `QuickCache.jar` is located.
 
     ![ImportStep1](./images/ImportStep1.png)
 
     ![ImportStep1W](./images/ImportStep1W.png)
-    
+
 2. Place the file that you want to import in the `import` folder.
 
     ![ImportStep2](./images/ImportStep2.png)
 
     ![ImportStep2W](./images/ImportStep2W.png)
-    
+
 3. In the user input box, enter the `import` command together with the name of the file you would like to import the flashcards from. For example, if the file to import from is named `joshua-flashcard.json`, you can enter `import joshua-flashcard.json`.
 
     <div markdown="block" class="alert alert-info">
@@ -593,13 +601,13 @@ You can import external flashcards into your local QuickCache as well.
     </div>
 
     ![ImportStep3](./images/ImportStep3.png)
-    
+
 4. Press enter and the flashcards within the file will be imported in your local QuickCache.
 
     <div markdown="block" class="alert alert-danger">
     :exclamation: Flashcards that has previously been imported and has not been modified will be ignored. Flashcards that already exists will not be imported as well.
     </div>
-    
+
     ![ImportStep4](./images/ImportStep4.png)
 
 Good job! You have successfully imported flashcards from an external file.

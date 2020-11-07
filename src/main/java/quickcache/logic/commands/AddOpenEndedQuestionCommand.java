@@ -12,7 +12,7 @@ import quickcache.model.flashcard.Flashcard;
 
 
 /**
- * Adds a person to the address book.
+ * Adds a OEQ to the QuickCache.
  */
 public class AddOpenEndedQuestionCommand extends Command {
 
