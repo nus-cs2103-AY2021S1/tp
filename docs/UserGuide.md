@@ -246,8 +246,8 @@ Displays a random present student from the current session
 ```
 random-student
 ```
-- Lists a random student from the current session.
-- Does not work if the session has no students.
+- Lists a random student that is present from the current session.
+- Does not work if the session has no present students.
 
 ### Clearing all entries: `clear`
 Clears all saved data in taskmaster (both students and sessions).
