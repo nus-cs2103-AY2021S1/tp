@@ -3,6 +3,13 @@ layout: page
 title: User Guide
 ---
 
+<div id="cover-page">
+  <div id="cover-page-title"><h1>ChopChop</h1></div>
+  <img id="cover-page-logo" src="images/logo.png"/>
+</div>
+
+
+
 * Table of Contents
 {:toc}
 
@@ -822,10 +829,10 @@ Constraints:
 Examples:
 - `filter recipe /name ginger`<br />
   This matches **Gingerbread Man** and **Ginger Chicken Soup**, the only recipes which names include **ginger**.
-  
+
 - `filter recipe /name sweet /name cake`<br />
   This matches **Sweet Choco Cake** and **Sweet Caramel Cake**, the only recipes which names include both **sweet** and **cake**.
-  
+
 - `filter recipe /tag family reunion`<br />
   This matches **Spring Rolls** and **Hot Pot**, the only recipes with 'tag' **family reunion**.
 
@@ -1113,7 +1120,7 @@ Constraints:
 Examples:
 - `filter ingredient /name dark chocolate` <br />
   This matches **dark chocolate** and **dark chocolate syrup**, assuming they are the only ingredients whose names contain **dark chocolate**.
-  
+
 - `filter ingredient /name dark chocolate /syrup` <br />
   This matches **dark chocolate syrup**, assuming it is the only ingredient whose name contains both **dark chocolate** and **syrup**.
 
