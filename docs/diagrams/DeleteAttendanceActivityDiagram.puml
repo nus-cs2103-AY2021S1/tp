@@ -25,6 +25,5 @@ partition "Activity: Delete Attendance from Student" {
         :Display invalid attendance date error;
     endif
     stop
-   
 }
 @enduml

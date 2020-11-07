@@ -10,53 +10,65 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant "editedStudent:Student" as Student MODEL_COLOR
+participant "studentToEdit:Student" as OldStudent MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit")
+[-> LogicManager : execute(...)
 activate LogicManager
 
-LogicManager -> ReeveParser : parseCommand("edit")
+LogicManager -> ReeveParser : parseCommand(...)
 activate ReeveParser
 
 create EditCommandParser
-ReeveParser -> EditCommandParser
+ReeveParser -> EditCommandParser : EditCommandParser()
 activate EditCommandParser
 
-
-EditCommandParser -> ReeveParser
+EditCommandParser --> ReeveParser
 deactivate EditCommandParser
 
-
-ReeveParser -> EditCommandParser : parse()
+ReeveParser -> EditCommandParser : parse(...)
 activate EditCommandParser
 
 create Command
-EditCommandParser -> Command
+EditCommandParser -> Command : EditCommand(...)
 activate Command
 
 Command --> EditCommandParser : command
 deactivate Command
 
 EditCommandParser --> ReeveParser : command
+deactivate EditCommandParser
+
+EditCommandParser -[hidden]> ReeveParser
 destroy EditCommandParser
 
 ReeveParser --> LogicManager : command
 deactivate ReeveParser
 
-LogicManager -> Command : execute()
+LogicManager -> Command : execute(...)
 activate Command
 
-Command -> Model : setStudent()
+Command -> Command : createEditedStudent(...)
+activate Command
+
+create Student
+Command -> Student : Student(...)
+activate Student
+
+Student --> Command : editedStudent
+deactivate Student
+
+Command --> Command : editedStudent
+deactivate Command
+
+Command -> Model : setStudent(studentToEdit, editedStudent)
 activate Model
 
 Model --> Command
 deactivate Model
 
-Command -> Model : updateFilteredStudentList()
-activate Model
-
-Model --> Command
-deactivate Model
+destroy OldStudent
 
 Command --> LogicManager : result
 deactivate Command
@@ -64,6 +76,6 @@ deactivate Command
 Command -[hidden]-> LogicManager
 destroy Command
 
-[<-- LogicManager
+[<-- LogicManager : result
 deactivate LogicManager
 @enduml
