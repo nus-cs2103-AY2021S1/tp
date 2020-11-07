@@ -7,7 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.CS2101;
 import static seedu.address.testutil.TypicalTags.CS2103;
 import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalTags.getTypicalTags;
 
 import java.io.File;
 import java.util.Arrays;
@@ -131,7 +130,7 @@ public class AddressBookTest {
         assertTrue(addressBook.hashCode() == addressBook.hashCode());
 
         //different object --> returns true
-        assertTrue(addressBook.hashCode() ==  newAddressBook.hashCode());
+        assertTrue(addressBook.hashCode() == newAddressBook.hashCode());
     }
 
     /**
