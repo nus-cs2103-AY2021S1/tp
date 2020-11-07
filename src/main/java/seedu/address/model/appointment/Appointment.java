@@ -22,13 +22,12 @@ public class Appointment {
     private AppointmentDateTime endTime;
 
     /**
-     * Patient name, appointment time must be present and not null.
+     * Patient details and appointment time must be present and not null.
      */
     public Appointment(Name patientName, IcNumber patientIc, AppointmentDateTime startTime,
                        AppointmentDateTime endTime) {
         requireAllNonNull(patientName, startTime, endTime);
         checkArgument(isValidStartEnd(startTime, endTime), MESSAGE_INVALID_APPOINTMENT_START_END);
-        // should also check whether a patient is inside the patient database
         this.patientName = patientName;
         this.patientIc = patientIc;
         this.startTime = startTime;
@@ -36,7 +35,7 @@ public class Appointment {
     }
 
     /**
-     * Validates that starting time of appointment provided is earlier than ending time provided
+     * Validates that starting time provided is earlier than ending time provided
      *
      * @param startTime starting time of the appointment
      * @param endTime   ending time of the appointment
@@ -71,7 +70,7 @@ public class Appointment {
     }
 
     /**
-     * Returns true if both appointments have the same patient name and appointment time.
+     * Returns true if both appointments have the same patient details and appointment time.
      * This defines a stronger notion of equality between two appointments.
      */
     @Override
