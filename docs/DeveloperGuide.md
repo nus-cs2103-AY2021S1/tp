@@ -158,8 +158,9 @@ The following sequence diagram shows how the Add Open Ended Question mechanism w
 
 ![AddOpenEndedSequenceDiagram](images/AddOpenEndedSequenceDiagram.png)
 
-#### Design decisions
-* **Current choice:** Flashcard is saved upon creation inside the QuickCache.
+#### Design considerations
+
+* **Current implementation:** Flashcard is saved upon creation inside the QuickCache.
   * Pros: Easy to implement and CLI-optimized.
   * Cons: May be complicated in the future as there will be too many prefixes along with the `add` command.
 
