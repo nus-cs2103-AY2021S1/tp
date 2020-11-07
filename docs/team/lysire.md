@@ -29,9 +29,8 @@ Given below are my contributions to the project.
     but also the process of making invalid commands valid as the user can simply navigate to the command and make minor modifications
     instead of having to type the entire command.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it 
-    required changes to existing commands.
-  * Credits: Code for the history command is adapted from addressbook-level4, which can be found at 
-    https://github.com/se-edu/addressbook-level4. 
+    required changes to existing commands and set up keyboard shortcuts for the command. 
+  * Credits: Code for the history command is adapted from addressbook-level4, which can be found at https://github.com/se-edu/addressbook-level4. 
       
 * **New Feature**: Added the ability to undo/redo previous commands that change the state of ResiReg, either through
     typing the commands themselves or using their associated keyboard shortcuts.
@@ -59,5 +58,5 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments): [\#178](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/178), 
   [\#179](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/179), 
   [\#185](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/185)
-  * Reported bugs and suggestions for other teams in the class (examples: [1]())
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/Lysire/ped/issues)
 
