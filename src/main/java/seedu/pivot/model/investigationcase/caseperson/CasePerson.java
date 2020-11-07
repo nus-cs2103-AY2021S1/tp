@@ -13,9 +13,9 @@ public abstract class CasePerson {
     // Identity fields
     private final Name name;
     private final Sex sex;
+    private final Phone phone;
 
     // Data fields
-    private final Phone phone;
     private final Email email;
     private final Address address;
 
