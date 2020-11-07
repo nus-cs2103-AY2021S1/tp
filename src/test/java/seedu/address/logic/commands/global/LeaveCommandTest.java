@@ -56,7 +56,7 @@ public class LeaveCommandTest {
         Project projectToStart = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(projectToStart);
         Task taskToStart = projectToStart.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        model.enterTask(taskToStart);
+        model.enter(taskToStart);
         LeaveCommand leaveCommand = new LeaveCommand();
 
         String expectedMessage = LeaveCommand.MESSAGE_LEAVE_SUCCESS;
