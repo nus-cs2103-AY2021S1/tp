@@ -19,8 +19,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.FitNus;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Name;
 import seedu.address.model.routine.Routine;
+import seedu.address.model.util.Name;
 
 public class RoutineAddExerciseCommandParserTest {
     private final RoutineAddExerciseCommandParser parser = new RoutineAddExerciseCommandParser();

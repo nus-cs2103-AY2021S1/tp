@@ -43,7 +43,6 @@ public class DailyCalorie implements Comparable<DailyCalorie> {
      * Adds the calories to the calorie sum.
      */
     public void addCalories(int calorieAddition) {
-        assert (calorieAddition > 0);
         calorieSum += calorieAddition;
     }
 

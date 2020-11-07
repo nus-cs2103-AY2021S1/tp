@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.Name;
 import seedu.address.model.util.SampleDataUtil;
 
 /**

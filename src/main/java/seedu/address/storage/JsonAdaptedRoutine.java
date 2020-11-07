@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.person.Name;
 import seedu.address.model.routine.Routine;
+import seedu.address.model.util.Name;
 
 /**
  * Jackson-friendly version of {@link Routine}.

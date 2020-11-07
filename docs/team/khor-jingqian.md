@@ -73,7 +73,7 @@ wholesome user experience.
 
 ## Contribution to the User Guide:
 
-* Writeup for Exercise, Routine and BMI, excluding pictures. [#76](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/76) [#85](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/85) [#90](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/90) [#92](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/92) 
+* Writeup for Exercise, Routine and BMI, excluding pictures. [#76](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/76) [#85](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/85) [#90](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/90) [#92](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/92)
 
 * Contributed some pictures for UG (refer to above links to UG edits).
 
@@ -93,6 +93,6 @@ wholesome user experience.
 
 ##Community
   * Reported feature flaws and suggestions for other teams in the class during PE Dry Run. [#1](https://github.com/khor-jingqian/ped/issues/1) [#2](https://github.com/khor-jingqian/ped/issues/1) [#3](https://github.com/khor-jingqian/ped/issues/3)
-  
+
   * Left non-trivial comments on team mate's PR. [#196](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/196)
 

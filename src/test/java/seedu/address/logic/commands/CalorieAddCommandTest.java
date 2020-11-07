@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FitNus;
 import seedu.address.model.ReadOnlyFitNus;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.DailyCalorie;
 
 public class CalorieAddCommandTest {
@@ -22,34 +23,35 @@ public class CalorieAddCommandTest {
     public void execute_dailyCalorieAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingDailyCalorie modelStub = new ModelStubAcceptingDailyCalorie();
 
-        CommandResult commandResult = new CalorieAddCommand(1000).execute(modelStub);
+        Calorie calorie = new Calorie(1000);
+        CommandResult commandResult = new CalorieAddCommand(calorie).execute(modelStub);
 
-        assertEquals(String.format(CalorieAddCommand.MESSAGE_SUCCESS, 1000) + modelStub.getCalories(),
+        assertEquals(String.format(CalorieAddCommand.MESSAGE_SUCCESS, calorie) + modelStub.getCalories(),
                 commandResult.getFeedbackToUser());
     }
 
     @Test
     public void execute_invalidCalorieInput_throwsCommandException() {
-        CalorieAddCommand command = new CalorieAddCommand(2147483647);
+        CalorieAddCommand command = new CalorieAddCommand(new Calorie(2147483647));
         ModelStub modelStub = new ModelStubWithDailyCalorie(
                 new DailyCalorie(LocalDate.of(2020, 11, 3)));
 
         //To tip the integer value to be too large
-        modelStub.addCalories(1);
+        modelStub.addCalories(new Calorie(1));
 
         assertThrows(CommandException.class,
                 CalorieAddCommand.MESSAGE_FAILURE, () -> command.execute(modelStub));
     }
     @Test
     public void equals() {
-        CalorieAddCommand firstCommand = new CalorieAddCommand(10);
-        CalorieAddCommand secondCommand = new CalorieAddCommand(20);
+        CalorieAddCommand firstCommand = new CalorieAddCommand(new Calorie(10));
+        CalorieAddCommand secondCommand = new CalorieAddCommand(new Calorie(20));
 
         // same object -> returns true
         assertTrue(firstCommand.equals(firstCommand));
 
         // same values -> returns true
-        CalorieAddCommand firstCommandCopy = new CalorieAddCommand(10);
+        CalorieAddCommand firstCommandCopy = new CalorieAddCommand(new Calorie(10));
         assertTrue(firstCommand.equals(firstCommandCopy));
 
         // different types -> returns false
@@ -79,8 +81,8 @@ public class CalorieAddCommandTest {
         }
 
         @Override
-        public void addCalories(int calorie) {
-            dailyCalorie.addCalories(calorie);
+        public void addCalories(Calorie calorie) {
+            dailyCalorie.addCalories(calorie.getCalorie());
         }
     }
 
@@ -102,8 +104,8 @@ public class CalorieAddCommandTest {
         }
 
         @Override
-        public void addCalories(int calorie) {
-            calories += calorie;
+        public void addCalories(Calorie calorie) {
+            calories += calorie.getCalorie();
         }
     }
 }

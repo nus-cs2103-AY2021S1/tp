@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.CalorieAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.calorie.Calorie;
 
 /**
  * Parses input arguments and creates a new CalorieAddCommand object
@@ -31,9 +32,9 @@ public class CalorieAddCommandParser implements Parser<CalorieAddCommand> {
             );
         }
 
-        int calories = ParserUtil.parseCalorie(argMultimap.getValue(PREFIX_CALORIE).get());
+        Calorie calorie = ParserUtil.parseCalorie(argMultimap.getValue(PREFIX_CALORIE).get());
 
-        return new CalorieAddCommand(calories);
+        return new CalorieAddCommand(calorie);
     }
 
     /**

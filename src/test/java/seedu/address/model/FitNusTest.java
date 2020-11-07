@@ -24,17 +24,18 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.exceptions.DuplicateLessonException;
-import seedu.address.model.person.Body;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Weight;
 import seedu.address.model.routine.Routine;
 import seedu.address.model.routine.exceptions.DuplicateRoutineException;
-import seedu.address.model.slot.Slot;
+import seedu.address.model.timetable.Slot;
+import seedu.address.model.util.Name;
 import seedu.address.testutil.LessonBuilder;
 
 public class FitNusTest {
@@ -153,12 +154,12 @@ public class FitNusTest {
         assertEquals(modelFitNus.getDailyCalorieList().size(), 0);
 
         //After adding calorie
-        modelFitNus.addCalories(1000);
+        modelFitNus.addCalories(new Calorie(1000));
         assertEquals(modelFitNus.getCalories(), 1000);
         assertEquals(modelFitNus.getDailyCalorieList().size(), 1);
 
         //After deducting calories, calorie count should change but entry must remain
-        modelFitNus.minusCalories(1000);
+        modelFitNus.minusCalories(new Calorie(1000));
         assertEquals(modelFitNus.getCalories(), 0);
         assertEquals(modelFitNus.getDailyCalorieList().size(), 1);
     }
@@ -190,7 +191,7 @@ public class FitNusTest {
 
         //Adding a new calorie entry will delete oldest one and maintain a 7 day long log.
         assertTrue(modelFitNus.hasDailyCalorie(modelDailyCalorie));
-        modelFitNus.addCalories(1000);
+        modelFitNus.addCalories(new Calorie(1000));
         assertEquals(modelFitNus.getCalories(), 1000);
         assertEquals(modelFitNus.getDailyCalorieList().size(), 7);
         assertFalse(modelFitNus.hasDailyCalorie(modelDailyCalorie));

@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.Activity;
-import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.timetable.Activity;
+import seedu.address.model.util.Name;
 
 /**
  * Represents a Lesson in user's timetable.
@@ -66,6 +66,11 @@ public class Lesson extends Activity {
 
         Lesson otherLesson = (Lesson) otherActivity;
         return otherLesson.getName().equals(getName());
+    }
+
+    @Override
+    public boolean isRoutine() {
+        return false;
     }
 
     /**

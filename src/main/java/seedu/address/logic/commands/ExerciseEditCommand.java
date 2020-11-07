@@ -18,8 +18,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.Name;
 
 /**
  * Edits the details of an existing exercise in fitNUS.

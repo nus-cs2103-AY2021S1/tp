@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Weight;
+import seedu.address.model.body.Weight;
 
 public class AddWeightCommand extends Command {
     public static final String COMMAND_WORD = "weight";

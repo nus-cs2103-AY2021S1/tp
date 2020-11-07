@@ -8,10 +8,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CalorieMinusCommand;
 import seedu.address.logic.parser.CalorieMinusCommandParser;
+import seedu.address.model.calorie.Calorie;
 
 public class CalorieMinusCommandParserTest {
     private final CalorieMinusCommandParser parser = new CalorieMinusCommandParser();
-    private final CalorieMinusCommand command = new CalorieMinusCommand(100);
+    private final CalorieMinusCommand command = new CalorieMinusCommand(new Calorie(100));
     private final String formatErrorMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
             CalorieMinusCommand.MESSAGE_USAGE);
 

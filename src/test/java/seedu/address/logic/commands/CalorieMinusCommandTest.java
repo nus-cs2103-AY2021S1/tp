@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FitNus;
 import seedu.address.model.ReadOnlyFitNus;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.DailyCalorie;
 
 public class CalorieMinusCommandTest {
@@ -22,19 +23,20 @@ public class CalorieMinusCommandTest {
     public void execute_dailyCalorieAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingDailyCalorie modelStub = new ModelStubAcceptingDailyCalorie();
 
-        CommandResult commandResult = new CalorieMinusCommand(1000).execute(modelStub);
+        Calorie calorie = new Calorie(1000);
+        CommandResult commandResult = new CalorieMinusCommand(calorie).execute(modelStub);
 
-        assertEquals(String.format(CalorieMinusCommand.MESSAGE_SUCCESS, 1000) + modelStub.getCalories(),
+        assertEquals(String.format(CalorieMinusCommand.MESSAGE_SUCCESS, calorie) + modelStub.getCalories(),
                 commandResult.getFeedbackToUser());
     }
 
     @Test
     public void execute_twoDailyCalorieWithSameDate_throwsCommandException() {
-        CalorieMinusCommand command = new CalorieMinusCommand(1000);
+        CalorieMinusCommand command = new CalorieMinusCommand(new Calorie(1000));
         ModelStub modelStub = new ModelStubWithDailyCalorie(
                 new DailyCalorie(LocalDate.now()));
 
-        modelStub.addCalories(1001);
+        modelStub.addCalories(new Calorie(1001));
 
         //Assertion Error is thrown because there are 2 conflicting DailyCalorie entries with the same LocalDate.
         //Under normal circumstances, this will never occur.
@@ -43,7 +45,7 @@ public class CalorieMinusCommandTest {
 
     @Test
     public void execute_invalidCalorieInput_throwsCommandException() {
-        CalorieMinusCommand command = new CalorieMinusCommand(1);
+        CalorieMinusCommand command = new CalorieMinusCommand(new Calorie(1));
         ModelStub modelStub = new ModelStubWithDailyCalorie(
                 new DailyCalorie(LocalDate.of(2020, 11, 3)));
 
@@ -52,14 +54,14 @@ public class CalorieMinusCommandTest {
     }
     @Test
     public void equals() {
-        CalorieMinusCommand firstCommand = new CalorieMinusCommand(10);
-        CalorieMinusCommand secondCommand = new CalorieMinusCommand(20);
+        CalorieMinusCommand firstCommand = new CalorieMinusCommand(new Calorie(10));
+        CalorieMinusCommand secondCommand = new CalorieMinusCommand(new Calorie(20));
 
         // same object -> returns true
         assertTrue(firstCommand.equals(firstCommand));
 
         // same values -> returns true
-        CalorieMinusCommand firstCommandCopy = new CalorieMinusCommand(10);
+        CalorieMinusCommand firstCommandCopy = new CalorieMinusCommand(new Calorie(10));
         assertTrue(firstCommand.equals(firstCommandCopy));
 
         // different types -> returns false
@@ -89,8 +91,8 @@ public class CalorieMinusCommandTest {
         }
 
         @Override
-        public void addCalories(int calorie) {
-            dailyCalorie.addCalories(calorie);
+        public void addCalories(Calorie calorie) {
+            dailyCalorie.addCalories(calorie.getCalorie());
         }
     }
 
@@ -112,8 +114,8 @@ public class CalorieMinusCommandTest {
         }
 
         @Override
-        public void minusCalories(int calorie) {
-            calories -= calorie;
+        public void minusCalories(Calorie calorie) {
+            calories -= calorie.getCalorie();
         }
     }
 }

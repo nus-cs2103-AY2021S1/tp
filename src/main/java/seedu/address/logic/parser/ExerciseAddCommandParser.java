@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.ExerciseAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.Name;
 
 /**
  * Parses input arguments and creates a new ExerciseAddCommand object

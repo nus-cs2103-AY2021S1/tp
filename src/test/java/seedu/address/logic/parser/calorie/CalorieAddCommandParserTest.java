@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CalorieAddCommand;
 import seedu.address.logic.parser.CalorieAddCommandParser;
-
+import seedu.address.model.calorie.Calorie;
 
 
 public class CalorieAddCommandParserTest {
 
     private final CalorieAddCommandParser parser = new CalorieAddCommandParser();
-    private final CalorieAddCommand command = new CalorieAddCommand(100);
+    private final CalorieAddCommand command = new CalorieAddCommand(new Calorie(100));
     private final String formatErrorMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
             CalorieAddCommand.MESSAGE_USAGE);
 
