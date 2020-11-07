@@ -314,20 +314,20 @@ _{More to be added}_
 
 (For all use cases below, the **System** is `FixMyAbs` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Delete an exercise**
+**Use case: UC01 - Delete a log**
 
 **MSS**
 
-1. User requests to list exercises
-2. FixMyAbs shows a list of completed exercises
-3. User requests to delete a specific exercise in the list
-4. FixMyAbs deletes the exercise
+1. User requests to list all logs
+2. FixMyAbs shows a list of all recorded logs
+3. User requests to delete a specific log in the list
+4. FixMyAbs deletes the log
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 2a. The list of logs is empty.
 
   Use case ends.
 
@@ -337,20 +337,20 @@ _{More to be added}_
 
     Use case resumes at step 2.
 
-**Use case: UC-02 - Edit an exercise**
+**Use case: UC-02 - Edit a log**
 
 **MSS**
 
-1. User requests to list exercises
-2. FixMyAbs shows a list of completed exercises
-3. User requests to edit a specific exercise in the list
-4. FixMyAbs edits the exercise according to user specifications
+1. User requests to list all logs
+2. FixMyAbs shows a list of all recorded logs
+3. User requests to edit a specific log in the list
+4. FixMyAbs edits the log according to user specifications
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 2a. The list of logs is empty.
 
   Use case ends.
 
@@ -359,16 +359,12 @@ _{More to be added}_
   - 3a1. FixMyAbs shows an error message.
 
     Use case resumes at step 2.
-
-_{More to be added}_
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 exercises without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-_{More to be added}_
 
 ### Glossary
 
