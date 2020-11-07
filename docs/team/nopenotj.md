@@ -39,6 +39,7 @@ Given below are my contributions to the project.
   * Updated the GUI to show Meeting and Module Panels (Pull requests [\#109](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/109), [\#93](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/93))
   * Made Datetime in Meetings to be more user-friendly for readers and sort it by date and time (Pull requests [\#109](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/114), [\#120](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/120))
   * Wrote tests for meetings to increase coverage from 51% to 52% (Pull requests [\#121](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/121))
+  * Add shortcuts for CommandBox 
 
 * **Documentation**:
   * User Guide:

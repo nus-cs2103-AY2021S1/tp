@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/nopenotj.png" width="200px">
 
 [[github](http://github.com/nopenotj)]
-[[portfolio](team/jaychua.md)]
+[[portfolio](team/nopenotj.md)]
 
 * Role: Testing + Developer
 * Responsibilities: Ensures the testing of the project is done properly and on time.

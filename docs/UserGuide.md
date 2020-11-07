@@ -102,15 +102,15 @@ Note(s):
 * If the help window or timeline window was opened and a change of theme was done, they must be closed and reopened for the change of theme to take effect.
 
 
-### Fuzzy Finding Completion (Fzf)
+### Fuzzy Find Completion (Fzf)
 
-Currently Modduke supports Fuzzy Finding Completion from v1.4 onward. You can trigger the `fzf` mode
+Currently Modduke supports Fuzzy Find Completion from v1.4 onward. You can trigger the fzf mode
 using `ctrl + space`. Currently our fzf will search through all contact names, module names and meeting names and will
 match entries that contain the prefix entered.
 
 ![Fzf Example](images/FzfCompletionExample.gif)
 
-You can exit `fzf` mode by manually pressing `esc`. You will also be taken automatically out of `fzf` mode once you select one
+You can exit fzf mode by manually pressing `esc`. You will also be taken automatically out of fzf mode once you select one
 of the fzf options by navigating to desired option using arrow keys and making the selection by pressing `enter`. Alternatively,
 you can make the selection using your mouse.
 
@@ -130,7 +130,7 @@ Use `Tab` to scroll forward and `Shift-Tab` to iterate backwards through suggest
 
 Note that this autocompletion can only be triggered at the end of input string e.g.
 - `contact edit cn/` will trigger the autocomplete but
-- `contact edit cn/ p/98830181` this would not as there is text after the prefix.
+- `contact edit cn/ p/98830181` this would not as there is text after the trigger phrase.
 
 ![Autocomplete Example](images/AutocompleteExample.gif)
 
@@ -438,8 +438,10 @@ Modduke's data is saved in the hard disk automatically after any command that ch
 
 ### Command Line Shortcuts
 
-`Ctrl-U` --- Clears CommandBox
-`Ctrl-W` --- Deletes text from the cursor position to previous word
+Shortcut | Action
+--------|------------------
+`Ctrl-U` | Clears CommandBox
+`Ctrl-W` | Deletes text from the cursor position to previous word
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -57,7 +57,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Modduke ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -76,9 +76,11 @@ public class MainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
+        //@@author royleochan
         HostServices hostServices = getHostServices();
 
         ui = new UiManager(logic, hostServices);
+        //@@author
     }
 
     /**

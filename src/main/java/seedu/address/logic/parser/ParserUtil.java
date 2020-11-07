@@ -129,9 +129,7 @@ public class ParserUtil {
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        if (tags.contains(Tag.PROF_TAG_NAME) && tags.contains(Tag.TA_TAG_NAME)) {
-            throw new ParseException(Tag.UNIQUE_CONSTRAINT);
-        }
+
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));

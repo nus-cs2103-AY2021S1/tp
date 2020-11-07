@@ -2,25 +2,34 @@
 !include style.puml
 
 Actor User
-participant ":AutocompleteCommandBox" as AutocompleteCommandBox LOGIC_COLOR
+box Ui UI_COLOR_T1
+participant "commandTextField:TextField" as TextField UI_COLOR
+end box
+box Logic LOGIC_COLOR_T1
+participant "acMod:AutocompleteModule" as AutocompleteModule LOGIC_COLOR
+end box
 
-User -> AutocompleteCommandBox : Press "Enter"
-activate AutocompleteCommandBox
+User -> TextField : Press "Enter"
+activate TextField
 
 alt isAutocompleteMode
-    AutocompleteCommandBox -> AutocompleteCommandBox : unsetPrefix()
-    activate AutocompleteCommandBox
-    deactivate AutocompleteCommandBox
+    TextField -> AutocompleteModule : unsetPrefix()
+    activate AutocompleteModule
+    AutocompleteModule --> TextField
+    deactivate AutocompleteModule
 
-    AutocompleteCommandBox -> AutocompleteCommandBox : toggleAutocompleteModeOff()
-    activate AutocompleteCommandBox
-    deactivate AutocompleteCommandBox
+    TextField -> AutocompleteModule : toggleAutocompleteModeOff()
+    activate AutocompleteModule
+    AutocompleteModule --> TextField
+    deactivate AutocompleteModule
 
-    AutocompleteCommandBox -> AutocompleteCommandBox : removeCommandPrefix()
-    activate AutocompleteCommandBox
-    deactivate AutocompleteCommandBox
+    TextField -> AutocompleteModule : removeCommandPrefixFromCompletion()
+    activate AutocompleteModule
+    AutocompleteModule -> TextField : setText(textWithoutCmdPrefix)
+    AutocompleteModule --> TextField
+    deactivate AutocompleteModule
 end
-deactivate AutocompleteCommandBox
+deactivate TextField
 ||||
 
 

@@ -15,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonTagConstraintException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,7 +35,6 @@ public class AddTagCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Tagged Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-    public static final String MESSAGE_INVALID_TAG = "Person can only have either prof or ta tag.";
 
     private final Name targetName;
     private final TagPersonDescriptor tagPersonDescriptor;
@@ -64,25 +64,25 @@ public class AddTagCommand extends Command {
                 .filter(person -> person.isSameName(targetName)).collect(Collectors.toList());
         Person personToTag = filteredList.get(0);
 
-        if (!checkTag(personToTag, tagPersonDescriptor)) {
-            throw new CommandException(MESSAGE_INVALID_TAG);
+        try {
+            Person taggedPerson = createTaggedPerson(personToTag, tagPersonDescriptor);
+
+            if (!personToTag.isSamePerson(taggedPerson) && model.hasPerson(taggedPerson)) {
+                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            }
+
+            model.setPerson(personToTag, taggedPerson);
+
+            // update meeting book
+            model.updatePersonInMeetingBook(personToTag, taggedPerson);
+
+            // update module book
+            model.updatePersonInModuleBook(personToTag, taggedPerson);
+
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, taggedPerson));
+        } catch (PersonTagConstraintException e) {
+            throw new CommandException(e.getMessage(), e);
         }
-
-        Person taggedPerson = createTaggedPerson(personToTag, tagPersonDescriptor);
-
-        if (!personToTag.isSamePerson(taggedPerson) && model.hasPerson(taggedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
-        model.setPerson(personToTag, taggedPerson);
-
-        // update meeting book
-        model.updatePersonInMeetingBook(personToTag, taggedPerson);
-
-        // update module book
-        model.updatePersonInModuleBook(personToTag, taggedPerson);
-
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, taggedPerson));
     }
 
     /**
@@ -99,26 +99,6 @@ public class AddTagCommand extends Command {
         }
 
         return new Person(personToTag.getName(), personToTag.getPhone(), personToTag.getEmail(), updatedTags);
-    }
-
-    /**
-     * Checks tags to ensure the person to tag will not have both prof and ta tag.r
-     */
-    private static boolean checkTag(Person personToTag, TagPersonDescriptor tagPersonDescriptor) {
-        assert personToTag != null;
-
-        Tag prof = new Tag(Tag.PROF_TAG_NAME);
-        Tag ta = new Tag(Tag.TA_TAG_NAME);
-        if (tagPersonDescriptor.tags.contains(prof) && tagPersonDescriptor.tags.contains(ta)) {
-            return false;
-        }
-        if (personToTag.getTags().contains(prof) && tagPersonDescriptor.tags.contains(ta)) {
-            return false;
-        }
-        if (personToTag.getTags().contains(ta) && tagPersonDescriptor.tags.contains(prof)) {
-            return false;
-        }
-        return true;
     }
 
     @Override

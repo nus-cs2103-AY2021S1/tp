@@ -1,47 +1,53 @@
 @startuml
 !include style.puml
 
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant "commandTextField:TextField" as TextField UI_COLOR
+end box
+
 box Logic LOGIC_COLOR_T1
-participant ":MainWindow" as MainWindow LOGIC_COLOR
-participant ":AutocompleteCommandBox" as AutocompleteCommandBox LOGIC_COLOR
-participant ":Suggestion" as Suggestion LOGIC_COLOR
+participant "<<class>>\n:AutocompleteModule" as AutocompleteModule LOGIC_COLOR
+participant "acMod:AutocompleteModule" as AcModuleInstance LOGIC_COLOR
+participant "cname:Suggestion" as Suggestion LOGIC_COLOR
 end box
 
 
-
-create AutocompleteCommandBox
-MainWindow -> AutocompleteCommandBox
-activate AutocompleteCommandBox
-
-AutocompleteCommandBox -> AutocompleteCommandBox : disableFocusTraversal()
-activate AutocompleteCommandBox
-deactivate AutocompleteCommandBox
-
-AutocompleteCommandBox -> AutocompleteCommandBox : setupBlockOtherKeystrokesInAcMode()
-activate AutocompleteCommandBox
-deactivate AutocompleteCommandBox
-
-AutocompleteCommandBox -> AutocompleteCommandBox : setupExitKeys()
-activate AutocompleteCommandBox
-deactivate AutocompleteCommandBox
-
-AutocompleteCommandBox --> MainWindow
-deactivate AutocompleteCommandBox
+MainWindow -> AutocompleteModule : attachTo(commandTextField)
+activate AutocompleteModule
 
 
+create AcModuleInstance
+AutocompleteModule -> AcModuleInstance : new AutocompleteModule(commandTextField)
+activate AcModuleInstance
+AcModuleInstance -> AcModuleInstance : setupAutocompleteActionKeys();
+activate AcModuleInstance
+AcModuleInstance -> TextField : addEventFilter(event, actionKeysHandler)
+AcModuleInstance --> AcModuleInstance
+deactivate AcModuleInstance
+||||
+AcModuleInstance -> AcModuleInstance : disableFocusTraversal()
+activate AcModuleInstance
+AcModuleInstance --> AcModuleInstance
+deactivate AcModuleInstance
+AcModuleInstance --> AutocompleteModule
+deactivate AcModuleInstance
 
 
-MainWindow -> AutocompleteCommandBox : setupAutocompletionListeners("cname/",\n ( ) -> List.of("Jay","Roy"))
-activate AutocompleteCommandBox
+AutocompleteModule --> MainWindow
+deactivate AutocompleteModule
+
+
+
+
+MainWindow -> AcModuleInstance : addSuggestions("cname/",\n () -> List.of("Alice","Bob", "Charlie"))
+activate AcModuleInstance
 
 create Suggestion
-AutocompleteCommandBox -> Suggestion
+AcModuleInstance -> Suggestion
 activate Suggestion
-Suggestion --> AutocompleteCommandBox
+Suggestion --> AcModuleInstance
 deactivate Suggestion
-Suggestion -[hidden]-> AutocompleteCommandBox
-||||
-deactivate AutocompleteCommandBox
-||50||
+deactivate AcModuleInstance
 
 @enduml

@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+mainframe sd execute command
+
+box Logic LOGIC_COLOR_T1
+participant "c:ClearTagCommand" as ClearTagCommand LOGIC_COLOR
+participant "clearedPerson:Person" as Person LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> ClearTagCommand : execute()
+activate ClearTagCommand
+
+create Person
+ClearTagCommand -> Person
+activate Person
+
+Person --> ClearTagCommand : clearedPerson
+deactivate Person
+
+ClearTagCommand -> Model : setPerson(p, clearedPerson)
+activate Model
+
+Model --> ClearTagCommand
+deactivate Model
+
+ClearTagCommand -> Model : updatePersonInMeetingBook(p, clearedPerson)
+activate Model
+
+Model --> ClearTagCommand
+deactivate Model
+
+ClearTagCommand -> Model : updatePersonInModuleBook(p, clearedPerson)
+activate Model
+
+Model --> ClearTagCommand
+deactivate Model
+
+create CommandResult
+ClearTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClearTagCommand
+deactivate CommandResult
+
+ClearTagCommand -->[ : result
+destroy ClearTagCommand
+@enduml

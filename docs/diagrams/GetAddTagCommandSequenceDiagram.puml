@@ -1,37 +1,24 @@
 @startuml
 !include style.puml
+mainframe sd get resultant command
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddTagCommandParser" as AddTagCommandParser LOGIC_COLOR
 participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
 participant "argMultimap:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
 participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant "tagPersonDescriptor: TagPersonDescriptor" as TagPersonDescriptor LOGIC_COLOR
 participant "c:AddTagCommand" as AddTagCommand LOGIC_COLOR
-participant "taggedPerson:Person" as Person LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
-
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-end box
-
-[-> LogicManager : execute("tag add Alex Yeoh t/friends")
-activate LogicManager
-
-LogicManager -> AddressBookParser : parseCommand("tag add Alex Yeoh t/friends")
-activate AddressBookParser
 
 create AddTagCommandParser
-AddressBookParser -> AddTagCommandParser : AddTagCommandParser()
+[-> AddTagCommandParser : AddTagCommandParser()
 activate AddTagCommandParser
 
-AddTagCommandParser --> AddressBookParser
+AddTagCommandParser -->[
 deactivate AddTagCommandParser
 
-AddressBookParser -> AddTagCommandParser : parse("Alex Yeoh t/friends")
+[-> AddTagCommandParser : parse("Alex Yeoh t/friends")
 activate AddTagCommandParser
 
 AddTagCommandParser -> ArgumentTokenizer : tokenize(args, PREFIX_TAG)
@@ -81,50 +68,6 @@ activate AddTagCommand
 AddTagCommand --> AddTagCommandParser : c
 deactivate AddTagCommand
 
-AddTagCommandParser --> AddressBookParser : c
+AddTagCommandParser -->[ : c
 destroy AddTagCommandParser
-
-AddressBookParser --> LogicManager : c
-deactivate AddressBookParser
-
-LogicManager -> AddTagCommand : execute()
-activate AddTagCommand
-
-create Person
-AddTagCommand -> Person : Person(p.getName(), p.getPhone(), p.getEmail(), updatedTags)
-activate Person
-
-Person --> AddTagCommand : taggedPerson
-deactivate Person
-
-AddTagCommand -> Model : setPerson(p, taggedPerson)
-activate Model
-
-Model --> AddTagCommand
-deactivate Model
-
-AddTagCommand -> Model : updatePersonInMeetingBook(p, taggedPerson)
-activate Model
-
-Model --> AddTagCommand
-deactivate Model
-
-AddTagCommand -> Model : updatePersonInModuleBook(p, taggedPerson)
-activate Model
-
-Model --> AddTagCommand
-deactivate Model
-
-create CommandResult
-AddTagCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> AddTagCommand
-deactivate CommandResult
-
-AddTagCommand --> LogicManager : result
-destroy AddTagCommand
-
-[<--LogicManager
-deactivate LogicManager
 @enduml

@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -17,8 +17,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import seedu.address.commons.core.LogsCenter;
 
 public class FzfModule {
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Supplier<List<String>> optionSupplier;
     private boolean isFzfMode = false;
@@ -31,7 +33,7 @@ public class FzfModule {
             setSkin(createDefaultSkin());
         }
     };
-    private TextField attachedTextField;
+    private final TextField attachedTextField;
     private ContextMenu menu;
 
     private FzfModule(TextField tf, Supplier<List<String>> supplier) {
@@ -44,13 +46,13 @@ public class FzfModule {
 
     /**
      * Attaches FZF module to a TextField component which generates suggestions from the supplied list
-     * @param tf  TextField to be attached.
+     * @param textField  TextField to be attached.
      * @param supplier  Supplies the list from which suggestions will be generated
      */
-    public static FzfModule attachTo(TextField tf, Supplier<List<String>> supplier) {
-        requireNonNull(tf);
+    public static FzfModule attachTo(TextField textField, Supplier<List<String>> supplier) {
+        requireNonNull(textField);
         requireNonNull(supplier);
-        return new FzfModule(tf, supplier);
+        return new FzfModule(textField, supplier);
     }
 
     private void setupFzf() {
@@ -76,11 +78,7 @@ public class FzfModule {
                     menu.hide();
                 }
                 if (!menu.isShowing()) {
-                    if (Thread.currentThread().getName() == "Test worker") {
-                        Platform.runLater(() -> menu.show(attachedTextField, menuX, menuY));
-                    } else {
-                        menu.show(attachedTextField, menuX, menuY);
-                    }
+                    menu.show(attachedTextField, menuX, menuY);
                 }
             }
         });
@@ -152,6 +150,7 @@ public class FzfModule {
     }
     private void toggleFzfOn(int caretPos, double x, double y) {
         if (!isFzfMode) {
+            logger.info("Fzf mode toggled ON");
             fzfStartPos = caretPos;
             isFzfMode = true;
             menuX = x;
@@ -160,6 +159,7 @@ public class FzfModule {
     }
     private void toggleFzfOff() {
         if (isFzfMode) {
+            logger.info("Fzf mode toggled OFF");
             isFzfMode = false;
             query.setText("");
         }

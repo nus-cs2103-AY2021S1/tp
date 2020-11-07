@@ -3,12 +3,14 @@ package seedu.address.ui;
 import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javafx.application.HostServices;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
@@ -22,12 +24,14 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.textfieldmodules.AutocompleteModule;
+import seedu.address.logic.textfieldmodules.FzfModule;
 
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
-public class MainWindow extends UiPart<Stage> implements Observer {
+public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
     private static final String LIGHT_THEME = "light";
@@ -175,33 +179,6 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         if (triggerResultDisplay) {
             resultDisplay.setFeedbackToUser(feedbackToUser);
         }
-        AutocompleteCommandBox commandBox = new AutocompleteCommandBox(this::executeCommand);
-        commandBox.setupAutocompletionListeners("cn/", () -> logic.getFilteredPersonList().stream()
-                .map(p -> p.getName().fullName).collect(Collectors.toList()));
-        commandBox.setupAutocompletionListeners("mdn/", () -> logic.getFilteredModuleList().stream()
-                .map(m -> m.getModuleName().getModuleName()).collect(Collectors.toList()));
-        commandBox.setupAutocompletionListeners("mtn/", () -> logic.getFilteredMeetingList().stream()
-                .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-
-        commandBox.getCommandTextField().addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
-            if (event.getCode() == KeyCode.UP) {
-                Optional<String> historyText = commandHistory.up();
-                if (historyText.isPresent()) {
-                    commandBox.setCommandTextField(historyText.get());
-                }
-            }
-        });
-
-        commandBox.getCommandTextField().addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
-            if (event.getCode() == KeyCode.DOWN) {
-                Optional<String> historyText = commandHistory.down();
-                if (historyText.isPresent()) {
-                    commandBox.setCommandTextField(historyText.get());
-                }
-            }
-        });
     }
 
     /**
@@ -211,10 +188,6 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     private String getTheme() {
         String[] stylesheet = mainContainer.getStylesheets().get(0).split("/");
         return stylesheet[stylesheet.length - 1];
-    }
-
-    private void commandHistoryListener(){
-
     }
 
     /**
@@ -236,14 +209,10 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        AutocompleteCommandBox commandBox = new AutocompleteCommandBox(this::executeCommand);
-        commandBox.setupAutocompletionListeners("cn/", () -> logic.getFilteredPersonList().stream()
-                .map(p -> p.getName().fullName).collect(Collectors.toList()));
-        commandBox.setupAutocompletionListeners("mdn/", () -> logic.getFilteredModuleList().stream()
-                .map(m -> m.getModuleName().getModuleName()).collect(Collectors.toList()));
-        commandBox.setupAutocompletionListeners("mtn/", () -> logic.getFilteredMeetingList().stream()
-                .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        setupTextFieldModules(commandBox.getCommandTextField());
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
 
         commandBox.getCommandTextField().addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
             if (event.getCode() == KeyCode.UP) {
@@ -267,6 +236,24 @@ public class MainWindow extends UiPart<Stage> implements Observer {
             MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(), 1);
             selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
         }
+    }
+
+    private void setupTextFieldModules(TextField commandTextField) {
+        AutocompleteModule autocompleteModule = AutocompleteModule.attachTo(commandTextField);
+        autocompleteModule.addSuggestions("cn/", () -> logic.getFilteredPersonList().stream()
+                .map(p -> p.getName().fullName).collect(Collectors.toList()));
+        autocompleteModule.addSuggestions("mdn/", () -> logic.getFilteredModuleList().stream()
+                .map(m -> m.getModuleName().getModuleName()).collect(Collectors.toList()));
+        autocompleteModule.addSuggestions("mtn/", () -> logic.getFilteredMeetingList().stream()
+                .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
+
+        FzfModule.attachTo(commandTextField, () ->
+                Stream.of(
+                        logic.getFilteredPersonList().stream().map(p -> p.getName().fullName),
+                        logic.getFilteredModuleList().stream().map(m -> m.getModuleName().getModuleName()),
+                        logic.getFilteredMeetingList().stream().map(m -> m.getMeetingName().meetingName)
+                ).flatMap(x -> x).collect(Collectors.toList())
+        );
     }
 
     /**
@@ -309,12 +296,16 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         setStylesheet(DARK_THEME, true);
     }
 
-    @Override
-    public void update() {
-        logger.info("UI update triggered");
-        if (logic.getSelectedMeeting() == null) {
+    /**
+     * Updates the selected meeting when the meeting view command is executed or any details of the selected meeting
+     * is changed.
+     */
+    public void updateSelectedMeeting() {
+        logger.info("UI update selected meeting triggered");
+        if (logic.getSelectedMeeting() == null && selectedMeetingPlaceholder.getChildren().size() > 0) {
             selectedMeetingPlaceholder.getChildren().remove(0);
-        } else {
+        }
+        if (logic.getFilteredMeetingList().size() != 0 && logic.getSelectedMeeting() != null) {
             MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(),
                     logic.getFilteredMeetingList().indexOf(logic.getSelectedMeeting()) + 1);
             if (selectedMeetingPlaceholder.getChildren().size() == 1) {
@@ -328,7 +319,6 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     /**
      * Updates the timeline window whenever a change is made in meetings
      */
-    @Override
     public void updateTimeline() {
         timelineWindow.hide();
         timelineWindow = timelineWindow.updateLogic(logic);
@@ -389,7 +379,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
             }
 
             if (commandResult.isTriggerUpdate()) {
-                update();
+                updateSelectedMeeting();
             }
 
             if (commandResult.isShowTimeline()) {
