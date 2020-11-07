@@ -24,13 +24,33 @@ public class InitRoomCommandTest {
     }
 
     @Test
-    void execute_numberOfRooms_success() {
+    void execute_numberOfRooms_success1() {
         Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
         Model expectedModel =
                 new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
-        String expectedMessage = String.format(InitRoomCommand.MESSAGE_SUCCESS, 100);
-        expectedModel.initRooms(100);
-        assertCommandSuccess(new InitRoomCommand(100), model, expectedMessage, expectedModel);
+        String expectedMessage = String.format(InitRoomCommand.MESSAGE_SUCCESS, 250);
+        expectedModel.initRooms(250);
+        assertCommandSuccess(new InitRoomCommand(250), model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    void execute_numberOfRooms_success2() {
+        Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
+        Model expectedModel =
+                new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
+        String expectedMessage = String.format(InitRoomCommand.MESSAGE_SUCCESS, 1);
+        expectedModel.initRooms(1);
+        assertCommandSuccess(new InitRoomCommand(1), model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    void execute_numberOfRooms_success3() {
+        Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
+        Model expectedModel =
+                new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
+        String expectedMessage = String.format(InitRoomCommand.MESSAGE_SUCCESS, 500);
+        expectedModel.initRooms(500);
+        assertCommandSuccess(new InitRoomCommand(500), model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -109,12 +129,30 @@ public class InitRoomCommandTest {
     }
 
     @Test
-    void execute_largeNumberOfRooms_failure() {
+    void execute_largeNumberOfRooms_failure1() {
         Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
 
         //initRoom to 5001 rooms -> too many rooms initialised
         String expectedMessage = InitRoomCommand.MESSAGE_LARGE_NUMBER_OF_ROOMS_INPUT;
         assertCommandFailure(new InitRoomCommand(5001), model, expectedMessage);
+    }
+
+    @Test
+    void execute_largeNumberOfRooms_failure2() {
+        Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
+
+        //initRoom to 5001 rooms -> too many rooms initialised
+        String expectedMessage = InitRoomCommand.MESSAGE_ZERO_CANNOT_BE_AN_INPUT;
+        assertCommandFailure(new InitRoomCommand(0), model, expectedMessage);
+    }
+
+    @Test
+    void execute_largeNumberOfRooms_failure3() {
+        Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
+
+        //initRoom to 5001 rooms -> too many rooms initialised
+        String expectedMessage = InitRoomCommand.MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT;
+        assertCommandFailure(new InitRoomCommand(-1), model, expectedMessage);
     }
 }
 //@@author itssodium
