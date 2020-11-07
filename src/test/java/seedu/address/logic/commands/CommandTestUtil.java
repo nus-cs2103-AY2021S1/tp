@@ -119,11 +119,11 @@ public class CommandTestUtil {
     public static final double VALID_ASSIGNMENT_PERCENTAGE_1 = 10;
     public static final double VALID_ASSIGNMENT_PERCENTAGE_2 = 20;
     public static final double INVALID_ASSIGNMENT_PERCENTAGE = -1;
-    public static final double VALID_ASSIGNMENT_RESULT_1 = 0.8;
-    public static final double VALID_ASSIGNMENT_RESULT_2 = 0.9;
+    public static final double VALID_ASSIGNMENT_RESULT_1 = 70;
+    public static final double VALID_ASSIGNMENT_RESULT_2 = 90;
     public static final double INVALID_ASSIGNMENT_RESULT = -1;
-    public static final double VALID_GRADE_1 = 0.9;
-    public static final double VALID_GRADE_2 = 0.9;
+    public static final double VALID_GRADE_1 = 90;
+    public static final double VALID_GRADE_2 = 85;
     public static final double INVALID_GRADE = -1;
 
     static {

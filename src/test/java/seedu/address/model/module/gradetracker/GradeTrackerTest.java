@@ -8,8 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADEPOINT_4;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_1;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAssignments.LAB_1;
-import static seedu.address.testutil.TypicalAssignments.QUIZ_2;
+import static seedu.address.testutil.gradetracker.TypicalAssignments.LAB_1;
+import static seedu.address.testutil.gradetracker.TypicalAssignments.QUIZ_2;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +21,7 @@ import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.Grade;
 import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.module.grade.GradeTracker;
-import seedu.address.testutil.AssignmentBuilder;
+import seedu.address.testutil.gradetracker.AssignmentBuilder;
 
 public class GradeTrackerTest {
 

@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.gradetrackerparsers.DeleteAssignmentParser;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
@@ -43,7 +44,7 @@ public class DeleteAssignmentCommand extends Command {
      * @param targetModule the module to remove the assignment from.
      */
     public DeleteAssignmentCommand(Index targetIndex, ModuleName targetModule) {
-        logger.info("Deleting assignment " + targetIndex.toString() + " from:" + targetModule.toString() + "");
+        logger.info("Deleting assignment " + targetIndex.getOneBased() + " from:" + targetModule.toString() + "");
         this.targetIndex = targetIndex;
         this.targetModule = targetModule;
     }
@@ -75,8 +76,11 @@ public class DeleteAssignmentCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DeleteAssignmentCommand // instanceof handles nulls
-            && targetIndex.equals(((DeleteAssignmentCommand) other).targetIndex)); // state check
+
+                || (other instanceof DeleteAssignmentCommand // instanceof handles nulls
+
+                && targetIndex.equals(((DeleteAssignmentCommand) other).targetIndex)
+                && targetModule.equals(((DeleteAssignmentCommand) other).targetModule)); // state check
     }
 
 }

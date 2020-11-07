@@ -1,100 +1,96 @@
 package seedu.address.logic.parser.gradetrackerparsers;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.schedulercommands.AddEventCommand;
-import seedu.address.logic.parser.schedulerparsers.AddEventParser;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventName;
-import seedu.address.model.event.EventTime;
-import seedu.address.testutil.event.EventBuilder;
+import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.gradetrackercommands.AddGradeCommand;
+import seedu.address.model.module.ModuleName;
+import seedu.address.model.module.grade.Grade;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATE_2;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class AddGradeParserTest {
-    private static final String multipleNames = " " + PREFIX_NAME + VALID_EVENT_NAME_1
-            + " " + PREFIX_NAME + VALID_EVENT_NAME_2
-            + " " + PREFIX_DATE + VALID_EVENT_DATE_1;
+    private static final String VALID_INPUT = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+            + " " + PREFIX_GRADE + VALID_GRADE_1;
 
-    private static final String multipleDates = " " + PREFIX_NAME + VALID_EVENT_NAME_1
-            + " " + PREFIX_DATE + VALID_EVENT_DATE_1
-            + " " + PREFIX_DATE + VALID_EVENT_DATE_2;
+    private static final String MULTIPLE_MODULE_NAMES =  " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+            + " " + PREFIX_NAME + VALID_MODULENAME_CS2030
+            + " " + PREFIX_GRADE + VALID_GRADE_1;
 
-    private static final String validInput = " " + PREFIX_NAME + VALID_EVENT_NAME_1
-            + " " + PREFIX_DATE + VALID_EVENT_DATE_1;
+    private static final String MULTIPLE_GRADES =  " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+            + " " + PREFIX_GRADE + VALID_GRADE_1
+            + " " + PREFIX_GRADE + VALID_GRADE_2;
 
-    private static final String InvalidNameInput = " " + PREFIX_NAME + INVALID_EVENT_NAME
-            + " " + PREFIX_DATE + VALID_EVENT_DATE_1;
+    private static final String INVALID_MODULE_NAME =  " " + PREFIX_NAME + INVALID_MODULENAME_CSA200
+            + " " + PREFIX_GRADE + VALID_GRADE_1;
 
-    private static final String InvalidDateInput = " " + PREFIX_NAME + VALID_EVENT_NAME_1
-            + " " + PREFIX_DATE + INVALID_EVENT_DATE;
+    private static final String INVALID_GRADE_FIELD =  " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+            + " " + PREFIX_GRADE + INVALID_GRADE;
 
-    private static final String MissingNameInput = " " + PREFIX_DATE + VALID_EVENT_DATE_1;
+    private static final String MISSING_MODULE_NAME = " " + PREFIX_GRADE + VALID_GRADE_1;
 
-    private static final String MissingDateInput = " " + PREFIX_NAME + VALID_EVENT_NAME_1;
+    private static final String MISSING_GRADE = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T;
 
-    private AddEventParser parser = new AddEventParser();
+    private AddGradeParser parser = new AddGradeParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Event expectedModule = new EventBuilder().withName(VALID_EVENT_NAME_1)
-                .withDate(VALID_EVENT_DATE_1).build();
-        assertParseSuccess(parser, validInput, new AddEventCommand(expectedModule));
+        ModuleName expectedModuleName = new ModuleName(VALID_MODULENAME_CS2103T);
+        Grade expectedGrade = new Grade(VALID_GRADE_1);
+        assertParseSuccess(parser, VALID_INPUT, new AddGradeCommand(expectedModuleName, expectedGrade));
     }
 
     @Test
     public void parse_preambleWhiteSpace_success() {
-        Event expectedModule = new EventBuilder().withName(VALID_EVENT_NAME_1)
-                .withDate(VALID_EVENT_DATE_1).build();
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + validInput,
-                new AddEventCommand(expectedModule));
+        ModuleName expectedModuleName = new ModuleName(VALID_MODULENAME_CS2103T);
+        Grade expectedGrade = new Grade(VALID_GRADE_1);
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_INPUT,
+                new AddGradeCommand(expectedModuleName, expectedGrade));
     }
 
     @Test
-    public void parse_multipleNames_success() {
-        Event expectedModule = new EventBuilder().withName(VALID_EVENT_NAME_2)
-                .withDate(VALID_EVENT_DATE_1).build();
-        assertParseSuccess(parser, multipleNames, new AddEventCommand(expectedModule));
+    public void parse_multipleModuleNames_success() {
+        ModuleName expectedModuleName = new ModuleName(VALID_MODULENAME_CS2030);
+        Grade expectedGrade = new Grade(VALID_GRADE_1);
+        assertParseSuccess(parser, MULTIPLE_MODULE_NAMES, new AddGradeCommand(expectedModuleName, expectedGrade));
     }
 
     @Test
-    public void parse_multipleDate_success() {
-        Event expectedModule = new EventBuilder().withName(VALID_EVENT_NAME_1)
-                .withDate(VALID_EVENT_DATE_2).build();
-        assertParseSuccess(parser, multipleDates, new AddEventCommand(expectedModule));
+    public void parse_multipleGrades_success() {
+        ModuleName expectedModuleName = new ModuleName(VALID_MODULENAME_CS2103T);
+        Grade expectedGrade = new Grade(VALID_GRADE_2);
+        assertParseSuccess(parser, MULTIPLE_GRADES, new AddGradeCommand(expectedModuleName, expectedGrade));
     }
 
     @Test
-    public void parse_compulsoryNameFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, MissingNameInput, expectedMessage);
+    public void parse_compulsoryModuleNameFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGradeCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, MISSING_MODULE_NAME, expectedMessage);
     }
 
     @Test
-    public void parse_compulsoryDateFieldsMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, MissingDateInput, expectedMessage);
+    public void parse_compulsoryGradeFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGradeCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, MISSING_GRADE, expectedMessage);
     }
 
     @Test
-    public void parse_invalidName_failure() {
-        assertParseFailure(parser, InvalidNameInput, EventName.MESSAGE_CONSTRAINTS);
+    public void parse_invalidModuleName_failure() {
+        assertParseFailure(parser, INVALID_MODULE_NAME, ModuleName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
-    public void parse_invalidDate_failure() {
-        assertParseFailure(parser, InvalidDateInput, EventTime.MESSAGE_CONSTRAINTS);
+    public void parse_invalidGrade_failure() {
+        assertParseFailure(parser, INVALID_GRADE_FIELD, Grade.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE);
-        String nonEmptyPreamble = "add " + validInput;
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGradeCommand.MESSAGE_USAGE);
+        String nonEmptyPreamble = "add " + VALID_INPUT;
         assertParseFailure(parser, nonEmptyPreamble, expectedMessage);
     }
 }

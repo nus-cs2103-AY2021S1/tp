@@ -66,4 +66,21 @@ public class AddGradeCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, gradeToAdd));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddGradeCommand)) {
+            return false;
+        }
+
+        // state check
+        AddGradeCommand command = (AddGradeCommand) other;
+        return moduleToAdd.equals(command.moduleToAdd)
+                && gradeToAdd.equals(command.gradeToAdd);
+    }
 }

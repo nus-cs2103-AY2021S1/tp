@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.gradetracker;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_2;
@@ -13,6 +13,7 @@ import java.util.List;
 
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.GradeTracker;
+import seedu.address.testutil.gradetracker.AssignmentBuilder;
 
 /**
  * A utility class containing a list of {@code Assignment} objects to be used in tests.

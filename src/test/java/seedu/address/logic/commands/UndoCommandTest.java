@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINKS_CS210
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOM_LINK_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
+import static seedu.address.testutil.contact.TypicalContacts.getTypicalContactList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ZOOM_LINK;
 import static seedu.address.testutil.TypicalModules.CS2030;

@@ -1,88 +1,85 @@
 package seedu.address.logic.parser.gradetrackerparsers;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.gradetrackercommands.AddAssignmentCommand;
-import seedu.address.logic.commands.schedulercommands.AddEventCommand;
-import seedu.address.logic.parser.schedulerparsers.AddEventParser;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventName;
-import seedu.address.model.event.EventTime;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Assignment;
-import seedu.address.testutil.AssignmentBuilder;
-import seedu.address.testutil.event.EventBuilder;
+import seedu.address.model.module.grade.AssignmentName;
+import seedu.address.model.module.grade.AssignmentPercentage;
+import seedu.address.model.module.grade.AssignmentResult;
+import seedu.address.testutil.gradetracker.AssignmentBuilder;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATE_2;
 import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class AddAssignmentParserTest {
 
-    private static final String validInput = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String VALID_INPUT = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1;
 
-    private static final String multipleModuleNames = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String MULTIPLE_MODULE_NAMES = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_NAME + VALID_MODULENAME_CS2030
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1;
 
-    private static final String multipleAssignmentNames = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String MULTIPLE_ASSIGNMENT_NAMES = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_2
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1;
 
-    private static final String multipleAssignmentPercentages = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String MULTIPLE_ASSIGNMENT_PERCENTAGES = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_2
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1;
 
-    private static final String multipleAssignmentResults = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String MULTIPLE_ASSIGNMENT_RESULTS = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_2;
 
-    private static final String invalidModuleName = " " + PREFIX_NAME + INVALID_MODULENAME_CSA200
+    private static final String INVALID_MODULE_NAME = " " + PREFIX_NAME + INVALID_MODULENAME_CSA200
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1;
 
-    private static final String invalidAssignmentName = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String INVALID_ASSIGNMENT_NAME_FIELD = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ASSIGNMENT_NAME + INVALID_ASSIGNMENT_NAME
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1;
 
-    private static final String invalidAssignmentPercentage = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String INVALID_ASSIGNMENT_PERCENTAGE_FIELD = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + INVALID_ASSIGNMENT_PERCENTAGE
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1;
 
-    private static final String invalidAssignmentResult = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String INVALID_ASSIGNMENT_RESULT_FIELD = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1
             + " " + PREFIX_ASSIGNMENT_RESULT + INVALID_ASSIGNMENT_RESULT;
 
-    private static final String missingModuleName = " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
+    private static final String MISSING_MODULE_NAME = " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1;
 
-    private static final String missingAssignmentName = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String MISSING_ASSIGNMENT_NAME = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1;
 
-    private static final String missingAssignmentPercentage =  " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String MISSING_ASSIGNMENT_PERCENTAGE =  " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1;
 
-    private static final String missingAssignmentResult =  " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String MISSING_ASSIGNMENT_RESULT =  " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1;
 
@@ -94,7 +91,7 @@ public class AddAssignmentParserTest {
         Assignment expectedAssignment = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
                 .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1)
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
-        assertParseSuccess(parser, validInput, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
+        assertParseSuccess(parser, VALID_INPUT, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
     }
 
     @Test
@@ -103,7 +100,7 @@ public class AddAssignmentParserTest {
         Assignment expectedAssignment = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
                 .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1)
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + validInput,
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_INPUT,
                 new AddAssignmentCommand(expectedModuleName, expectedAssignment));
     }
 
@@ -115,7 +112,7 @@ public class AddAssignmentParserTest {
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
 
         //takes in second module name
-        assertParseSuccess(parser, multipleModuleNames, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
+        assertParseSuccess(parser, MULTIPLE_MODULE_NAMES, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
     }
 
     @Test
@@ -126,7 +123,7 @@ public class AddAssignmentParserTest {
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
 
         //takes in second assignment name
-        assertParseSuccess(parser, multipleAssignmentNames, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
+        assertParseSuccess(parser, MULTIPLE_ASSIGNMENT_NAMES, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
     }
 
     @Test
@@ -137,7 +134,7 @@ public class AddAssignmentParserTest {
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
 
         //takes in second assignment percentage
-        assertParseSuccess(parser, multipleAssignmentPercentages, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
+        assertParseSuccess(parser, MULTIPLE_ASSIGNMENT_PERCENTAGES, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
     }
 
     @Test
@@ -148,35 +145,60 @@ public class AddAssignmentParserTest {
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_2).build();
 
         //takes in second assignment percentage
-        assertParseSuccess(parser, multipleAssignmentResults, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
+        assertParseSuccess(parser, MULTIPLE_ASSIGNMENT_RESULTS, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
     }
 
     @Test
     public void parse_compulsoryModuleNameFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, missingAssignmentName, expectedMessage);
+        assertParseFailure(parser, MISSING_MODULE_NAME, expectedMessage);
     }
-/*
+
     @Test
     public void parse_compulsoryAssignmentNameMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, missingAssignmentPercentage, expectedMessage);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, MISSING_ASSIGNMENT_NAME, expectedMessage);
     }
 
     @Test
-    public void parse_invalidName_failure() {
-        assertParseFailure(parser, InvalidNameInput, EventName.MESSAGE_CONSTRAINTS);
+    public void parse_compulsoryAssignmentPercentageMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, MISSING_ASSIGNMENT_PERCENTAGE, expectedMessage);
     }
 
     @Test
-    public void parse_invalidDate_failure() {
-        assertParseFailure(parser, InvalidDateInput, EventTime.MESSAGE_CONSTRAINTS);
+    public void parse_compulsoryAssignmentResultMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, MISSING_ASSIGNMENT_RESULT, expectedMessage);
+    }
+
+    @Test
+    public void parse_invalidModuleName_failure() {
+        assertParseFailure(parser, INVALID_MODULE_NAME, ModuleName.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidAssignmentName_failure() {
+        assertParseFailure(parser, INVALID_ASSIGNMENT_NAME_FIELD, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AssignmentName.MESSAGE_CONSTRAINTS));
+    }
+
+    @Test
+    public void parse_invalidModulePercentage_failure() {
+        assertParseFailure(parser, INVALID_ASSIGNMENT_PERCENTAGE_FIELD, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AssignmentPercentage.MESSAGE_CONSTRAINTS));
+    }
+
+    @Test
+    public void parse_invalidModuleResult_failure() {
+        assertParseFailure(parser, INVALID_ASSIGNMENT_RESULT_FIELD, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AssignmentResult.MESSAGE_CONSTRAINTS));
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE);
-        String nonEmptyPreamble = "add " + validInput;
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE);
+        String nonEmptyPreamble = "add " + VALID_INPUT;
         assertParseFailure(parser, nonEmptyPreamble, expectedMessage);
-    }*/
+    }
 }

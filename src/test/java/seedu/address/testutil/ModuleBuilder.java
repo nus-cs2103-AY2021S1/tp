@@ -15,6 +15,7 @@ import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.testutil.gradetracker.AssignmentBuilder;
 
 /**
  * A utility class to help with building Module objects.

@@ -63,7 +63,7 @@ public class EditAssignmentCommand extends Command {
         requireNonNull(moduleName);
         requireNonNull(editAssignmentDescriptor);
 
-        logger.info("Editing assignment at position " + index.toString() + " from:" + moduleName.toString() + "");
+        logger.info("Editing assignment at position " + index.getOneBased() + " from:" + moduleName.toString() + "");
         this.index = index;
         this.moduleName = moduleName;
         this.editAssignmentDescriptor = new EditAssignmentDescriptor(editAssignmentDescriptor);
@@ -158,6 +158,7 @@ public class EditAssignmentCommand extends Command {
         // state check
         EditAssignmentCommand e = (EditAssignmentCommand) other;
         return index.equals(e.index)
+                && moduleName.equals(e.moduleName)
                 && editAssignmentDescriptor.equals(e.editAssignmentDescriptor);
     }
 
