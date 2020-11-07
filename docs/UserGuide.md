@@ -150,6 +150,13 @@ Examples:
 * `help` - this will display all available commands.
 * `help add` - this will display a help message specific to the `add` command.
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: Notes about the `help` Command.
+ * `help help` will flag as an invalid command.
+ * `help` will not work with created macros, the `listmacro` command should be used instead.
+</div>
+
 ![help message](images/CommandImagesForUG/Help.png)
 
 ### 5.2 Adding a food item: `add`
