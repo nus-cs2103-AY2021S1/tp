@@ -3,7 +3,10 @@ package seedu.address.storage.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.todolist.TypicalTasks.*;
+import static seedu.address.testutil.todolist.TypicalTasks.LAB_01;
+import static seedu.address.testutil.todolist.TypicalTasks.TUTORIAL_01;
+import static seedu.address.testutil.todolist.TypicalTasks.TUTORIAL_02;
+import static seedu.address.testutil.todolist.TypicalTasks.getTypicalTodoList;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -11,6 +14,7 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.TodoList;
