@@ -109,6 +109,16 @@ public class CommandTestUtil {
     public static final EditModuleDescriptor DESC_CS2030;
     public static final EditModuleDescriptor DESC_CS2103T;
 
+    // ================================== GradeTrackerTest ===================================== //
+    public static final String VALID_ASSIGNMENT_NAME_1 = "Quiz 1";
+    public static final String VALID_ASSIGNMENT_NAME_2 = "Oral Presentation 2";
+    public static final double VALID_ASSIGNMENT_PERCENTAGE_1 = 10;
+    public static final double VALID_ASSIGNMENT_PERCENTAGE_2 = 20;
+    public static final double VALID_ASSIGNMENT_RESULT_1 = 0.8;
+    public static final double VALID_ASSIGNMENT_RESULT_2 = 0.9;
+    public static final double VALID_GRADE_1 = 0.9;
+    public static final double VALID_GRADE_2 = 0.9;
+
     static {
         VALID_ZOOMLINKS_CS2030.put(new ModuleLesson(VALID_MODULE_LESSON_LECTURE), new ZoomLink(VALID_ZOOM_LINK_CS2030));
         VALID_ZOOMLINKS_CS2103T.put(new ModuleLesson(VALID_MODULE_LESSON_LECTURE),
