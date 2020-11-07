@@ -37,7 +37,7 @@ public class DeleteTeammateCommandTest {
         project.addParticipation(person);
 
         Participation participation = project.getParticipation(GIT_USERINDEX_FIRST_TEAMMATE
-            .getGitUserName());
+            .getGitUserNameString());
         model.addPerson(person);
         model.addParticipation(participation);
 
@@ -66,7 +66,7 @@ public class DeleteTeammateCommandTest {
         Person person = DESC_A;
         project.addParticipation(person);
 
-        Participation participation = project.getParticipation(GIT_USERINDEX_SECOND_TEAMMATE.getGitUserName());
+        Participation participation = project.getParticipation(GIT_USERINDEX_SECOND_TEAMMATE.getGitUserNameString());
         model.addPerson(person);
         assertThrows(NullPointerException.class, () -> model.addParticipation(participation));
     }

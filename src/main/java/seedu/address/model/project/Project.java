@@ -275,7 +275,7 @@ public class Project {
         boolean teammatePresent = false;
         List<Participation> listOfTeammates = this.getTeammates();
         for (Participation teammate : listOfTeammates) {
-            if (teammate.getPerson().getGitUserNameString().equals(gitUserIndex.getGitUserName())) {
+            if (teammate.getPerson().getGitUserNameString().equals(gitUserIndex.getGitUserNameString())) {
                 teammatePresent = true;
                 break;
             }
@@ -289,7 +289,7 @@ public class Project {
     public int getTeammateIndex(GitUserIndex gitUserIndex) {
         List<Participation> listOfTeammates = this.getTeammates();
         for (int i = 0; i < listOfTeammates.size(); i++) {
-            if (listOfTeammates.get(i).getPerson().getGitUserNameString().equals(gitUserIndex.getGitUserName())) {
+            if (listOfTeammates.get(i).getPerson().getGitUserNameString().equals(gitUserIndex.getGitUserNameString())) {
                 return i;
             }
         }

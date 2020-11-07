@@ -116,7 +116,7 @@ public class Person {
     public static Person getPersonFromList(GitUserIndex gitUserIndex) {
         for (Person p : allPeople) {
             String indexToCompare = p.getGitUserNameString();
-            String gitUserName = gitUserIndex.getGitUserName();
+            String gitUserName = gitUserIndex.getGitUserNameString();
             if (indexToCompare.equals(gitUserName)) {
                 return p;
             }
@@ -131,6 +131,21 @@ public class Person {
         List<Task> tasks = new ArrayList<>();
         listOfParticipations.values().forEach(p -> tasks.addAll(p.getTasks()));
         return tasks;
+    }
+
+    /**
+     * Checks whether Teammate is present in allPeople list.
+     * @param gitUserIndex of teammate
+     * @return boolean to indicate presence.
+     */
+    public static boolean isPresent(GitUserIndex gitUserIndex) {
+        GitUserName toCompare = gitUserIndex.getGitUserName();
+        for (Person p : allPeople) {
+            if (toCompare.equals(p.getGitUserName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void updatePersonName(String newPersonNameStr) {

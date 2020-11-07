@@ -43,11 +43,11 @@ public class ViewTeammateCommand extends Command {
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
         List<Participation> lastShownList = project.getTeammates();
 
-        if (!project.hasParticipation(gitUserIndex.getGitUserName())) {
+        if (!project.hasParticipation(gitUserIndex.getGitUserNameString())) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
         }
 
-        Participation teammate = project.getParticipation(gitUserIndex.getGitUserName());
+        Participation teammate = project.getParticipation(gitUserIndex.getGitUserNameString());
         model.enter(teammate);
 
         return new CommandResult(String.format(MESSAGE_VIEW_TEAMMATE_SUCCESS, teammate));
