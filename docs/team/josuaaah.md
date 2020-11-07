@@ -66,11 +66,14 @@ session-related commands.
         - Added documentation for the features `add-session`, `goto` and `delete-session`.
     - Developer Guide:
         - Added implementation details for the `Session` and `SessionList` feature. [#79](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/79)
+        - Added instructions for manual testing for features adapted from AB3, like `add-student`, `find-student`, `edit-student` and `delete-student`.
+        [#212](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/212)
 
 - **Community:**
     - PRs reviewed and [approved](https://github.com/AY2021S1-CS2103-F09-1/tp/pulls?q=is%3Apr+is%3Aclosed+review%3Aapproved)
     - Contributed to forum discussions (Examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/266), 
     [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/139))
+    - Did manual testing on another group's product [ConciergeBook](https://github.com/AY2021S1-CS2103-W14-2/tp) and reported bugs to them
 
 
 
