@@ -30,7 +30,9 @@ This Developer Guide specifies the architecture, design, implementation and use 
 
 It is intended for developers, software testers, open-source contributors and any like-minded students who wish to contribute this project or gain deeper insights about **ResiReg**.
 
-**Note about sequence diagrams**: For all sequence diagrams, the lifeline should end at the end of the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note about sequence diagrams**: For all sequence diagrams, the lifeline should end at the end of the destroy marker (X), if there are any, but due to a limitation of PlantUML, the lifeline will reach the end of the diagram instead.
+</div>
 
 ## Setting Up
 
