@@ -9,7 +9,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.food.MenuItem;
 import seedu.address.model.order.OrderItem;
-import seedu.address.model.vendor.ReadOnlyVendorManager;
 import seedu.address.model.vendor.Vendor;
 
 
@@ -25,13 +24,6 @@ public interface Logic {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
-
-    /**
-     * Returns the VendorManager.
-     *
-     * @see seedu.address.model.Model#getVendorManager()
-     */
-    ReadOnlyVendorManager getVendorManager();
 
     /** Returns an unmodifiable view of the filtered list of vendors */
     ObservableList<Vendor> getObservableVendorList();

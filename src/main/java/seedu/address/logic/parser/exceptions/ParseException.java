@@ -11,4 +11,16 @@ public class ParseException extends IllegalValueException {
         super(message);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof ParseException)) {
+            return false;
+        }
+
+        return ((ParseException) obj).getMessage().equals(getMessage());
+    }
 }

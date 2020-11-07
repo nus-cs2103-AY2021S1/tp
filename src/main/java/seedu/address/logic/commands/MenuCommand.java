@@ -18,4 +18,9 @@ public class MenuCommand extends Command {
         return new CommandResult(
                 Messages.MESSAGE_MENU_LIST, false, false, false, true);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj == this || obj instanceof MenuCommand;
+    }
 }
