@@ -38,7 +38,8 @@ public class AddCommentCommand extends CommentCommand {
     public static final String COMMAND_WORD = "addc";
 
     public static final String MESSAGE_ADDCOMMENT_USAGE = "Format for this command: \n"
-            + COMMAND_WORD + " INDEX c/ ti/TITLE d/DATE desc/DESCRIPTION";
+            + COMMAND_WORD + " INDEX c/ ti/TITLE d/DATE desc/DESCRIPTION\n"
+            + "Please note that comment cannot have the character '|'.";
     public static final String MESSAGE_DUPLICATE_COMMENT = "Duplicate comment titles not allowed";
     public static final String MESSAGE_ADD_COMMENT_SUCCESS_STAFF = "Commented comment with title '%1$s'"
             + " on Staff: %2$s";
@@ -131,7 +132,7 @@ public class AddCommentCommand extends CommentCommand {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createAddEditedPerson(Person personToEdit,
+    public static Person createAddEditedPerson(Person personToEdit,
                                                 CommentCommand.CommentPersonDescriptor commentPersonDescriptor)
             throws CommandException {
         assert personToEdit != null;
@@ -163,8 +164,9 @@ public class AddCommentCommand extends CommentCommand {
             Application application = ((Applicant) personToEdit).getApplication();
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
                     updatedTags, updatedComments, interviewDate, applicationStatus, application);
+        } else {
+            throw new CommandException("Invalid Persontype");
         }
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedComments);
     }
 
     private static void checkDuplicateComment(Comment comment, Set<Comment> updatedComments) throws CommandException {

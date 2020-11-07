@@ -16,6 +16,7 @@ import com.eva.model.person.Phone;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.tag.Tag;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -137,7 +138,8 @@ class JsonAdaptedApplicant {
         }
         final Address modelAddress = new Address(address);
         if (status == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ApplicationStatus.class.getSimpleName()));
         }
         if (!ApplicationStatus.isValidApplicationStatus(status)) {
             throw new IllegalValueException(ApplicationStatus.MESSAGE_CONSTRAINTS);
@@ -149,6 +151,10 @@ class JsonAdaptedApplicant {
         }
         if (!interviewDate.isEmpty() && !InterviewDate.isValidInterviewDate(interviewDate)) {
             throw new IllegalValueException((InterviewDate.MESSAGE_CONSTRAINTS));
+        }
+        if (application == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Application.class.getSimpleName()));
         }
         final InterviewDate modelInterviewDate =
                 interviewDate.isEmpty() ? null : new InterviewDate(interviewDate);

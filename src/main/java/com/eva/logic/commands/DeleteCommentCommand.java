@@ -35,16 +35,16 @@ import com.eva.model.tag.Tag;
 public class DeleteCommentCommand extends CommentCommand {
 
     public static final String COMMAND_WORD = "delc";
+    public static final String MESSAGE_DELETE_COMMENT_SUCCESS_STAFF = "Deleted comment with "
+            + "title '%1$s' from Staff: %2$s";
+    public static final String MESSAGE_DELETE_COMMENT_SUCCESS_APPLICANT = "Deleted comment with "
+            + "title '%1$s' from Applicant: %2$s";
 
     public static final String MESSAGE_DELETECOMMENT_USAGE = "Format for this command: \n"
             + COMMAND_WORD + " INDEX c/ ti/TITLE";
 
     private static final String NO_TITLE_MESSAGE = "No such title. To delete comment, "
             + "Format: " + DeleteCommand.COMMAND_WORD + " INDEX c/ t/TITLE";
-    private static final String MESSAGE_DELETE_COMMENT_SUCCESS_STAFF = "Deleted comment with "
-            + "title '%1$s' from Staff: %2$s";
-    private static final String MESSAGE_DELETE_COMMENT_SUCCESS_APPLICANT = "Deleted comment with "
-            + "title '%1$s' from Applicant: %2$s";
 
 
 
@@ -135,7 +135,7 @@ public class DeleteCommentCommand extends CommentCommand {
      * the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createDeleteEditedPerson(Person personToEdit,
+    public static Person createDeleteEditedPerson(Person personToEdit,
                                                    CommentCommand.CommentPersonDescriptor commentPersonDescriptor)
             throws CommandException {
         assert personToEdit != null;
