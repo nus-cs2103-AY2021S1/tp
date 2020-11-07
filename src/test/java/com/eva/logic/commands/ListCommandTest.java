@@ -65,6 +65,7 @@ public class ListCommandTest {
     @Test
     public void execute_staffListIsFilteredOnApplicantList_showsEverything() {
         showApplicantAtIndex(model, INDEX_FIRST_PERSON);
+        showApplicantAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setPanelState(PanelState.STAFF_LIST);
         model.setPanelState(PanelState.APPLICANT_LIST);
         CommandResult expectedResult = new CommandResult(
@@ -75,6 +76,7 @@ public class ListCommandTest {
     @Test
     public void execute_staffListIsFilteredOnApplicantProfile_showsEverything() {
         showApplicantAtIndex(model, INDEX_FIRST_PERSON);
+        showApplicantAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setPanelState(PanelState.STAFF_LIST);
         model.setPanelState(PanelState.APPLICANT_PROFILE);
         CommandResult expectedResult = new CommandResult(
@@ -114,6 +116,7 @@ public class ListCommandTest {
     @Test
     public void execute_applicantListIsFilteredOnStaffList_showsEverything() {
         showStaffAtIndex(model, INDEX_FIRST_PERSON);
+        showStaffAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setPanelState(PanelState.APPLICANT_LIST);
         model.setPanelState(PanelState.STAFF_LIST);
         CommandResult expectedResult = new CommandResult(
@@ -124,6 +127,7 @@ public class ListCommandTest {
     @Test
     public void execute_applicantListIsFilteredOnStaffProfile_showsEverything() {
         showStaffAtIndex(model, INDEX_FIRST_PERSON);
+        showStaffAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setPanelState(PanelState.APPLICANT_LIST);
         model.setPanelState(PanelState.STAFF_PROFILE);
         CommandResult expectedResult = new CommandResult(
