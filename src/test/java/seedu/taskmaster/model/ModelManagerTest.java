@@ -360,18 +360,15 @@ public class ModelManagerTest {
     void scoreAllStudents() {
         Session s = initSessionWithAliceAndBenson();
         SessionName sName = new SessionName("Test Session");
-        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
-        studentRecords.add(ALICE_STUDENT_RECORD);
-        studentRecords.add(BENSON_STUDENT_RECORD);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
-        modelManager.scoreAllStudents(studentRecords, VALID_SCORE_DOUBLE);
-
-        assertEquals("[e0123456|NO_RECORD|Class Participation Score: 0.00,"
-                + " e0456789|NO_RECORD|Class Participation Score: 0.00]", s.getStudentRecords().toString());
-        modelManager.scoreAllStudents(studentRecords, (VALID_SCORE_DOUBLE + 2));
-        assertEquals("[e0123456|NO_RECORD|Class Participation Score: 2.00,"
-                + " e0456789|NO_RECORD|Class Participation Score: 2.00]", s.getStudentRecords().toString());
+        List<StudentRecord> studentRecords = modelManager.getFilteredStudentRecordList();
+        modelManager.markAllStudentRecords(studentRecords, AttendanceType.PRESENT);
+        assertEquals("[e0123456|PRESENT|Class Participation Score: 0.00,"
+                + " e0456789|PRESENT|Class Participation Score: 0.00]", s.getStudentRecords().toString());
+        modelManager.scoreAllStudents(studentRecords, 2);
+        assertEquals("[e0123456|PRESENT|Class Participation Score: 2.00,"
+                + " e0456789|PRESENT|Class Participation Score: 2.00]", s.getStudentRecords().toString());
     }
 
     @Test
@@ -384,11 +381,9 @@ public class ModelManagerTest {
 
     @Test
     void scoreAllStudents_sessionNotSelected_failure() {
-        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
-        studentRecords.add(ALICE_STUDENT_RECORD);
-        studentRecords.add(BENSON_STUDENT_RECORD);
         Session s = initSessionWithAliceAndBenson();
         modelManager.addSession(s);
+        List<StudentRecord> studentRecords = modelManager.getFilteredStudentRecordList();
         modelManager.changeSession(null);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .scoreAllStudents(studentRecords, VALID_SCORE_DOUBLE));
@@ -398,11 +393,9 @@ public class ModelManagerTest {
     void markAllStudents() {
         Session s = initSessionWithAliceAndBenson();
         SessionName sName = new SessionName("Test Session");
-        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
-        studentRecords.add(ALICE_STUDENT_RECORD);
-        studentRecords.add(BENSON_STUDENT_RECORD);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
+        List<StudentRecord> studentRecords = modelManager.getFilteredStudentRecordList();
         modelManager.markAllStudentRecords(studentRecords, AttendanceType.PRESENT);
 
         assertEquals("[e0123456|PRESENT|Class Participation Score: 0.00,"
