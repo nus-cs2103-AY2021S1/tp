@@ -11,7 +11,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -49,7 +48,7 @@ public class UnremindCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getRemindedAssignmentsList().size() + 1);
         UnremindCommand unremindCommand = new UnremindCommand(outOfBoundIndex);
 
-        assertCommandFailure(unremindCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+        assertCommandFailure(unremindCommand, model, UnremindCommand.MESSAGE_INVALID_DISPLAYED_REMINDERS_INDEX);
     }
 
     @Test

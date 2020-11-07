@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -14,22 +13,21 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsListCommand() {
-        assertParseSuccess(parser, "5", new ListCommand(Index.fromZeroBased(5)));
-        assertParseSuccess(parser, "2", new ListCommand(Index.fromZeroBased(2)));
+        assertParseSuccess(parser, "1", new ListCommand(Index.fromZeroBased(1)));
+        assertParseSuccess(parser, "25", new ListCommand(Index.fromZeroBased(25)));
+        assertParseSuccess(parser, "50", new ListCommand(Index.fromZeroBased(50)));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "-1", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "-1", ListCommand.MESSAGE_INDEX_NOT_IN_RANGE);
 
-        assertParseFailure(parser, "0", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "0", ListCommand.MESSAGE_INDEX_NOT_IN_RANGE);
 
-        assertParseFailure(parser, "a", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "51", ListCommand.MESSAGE_INDEX_NOT_IN_RANGE);
 
-        assertParseFailure(parser, "%", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", ListCommand.MESSAGE_INDEX_NOT_IN_RANGE);
+
+        assertParseFailure(parser, "%", ListCommand.MESSAGE_INDEX_NOT_IN_RANGE);
     }
 }

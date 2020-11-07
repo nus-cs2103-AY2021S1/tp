@@ -14,9 +14,9 @@ import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 /**
  * Removes priority for an assignment identified using it's displayed index from ProductiveNus.
@@ -26,11 +26,7 @@ public class UnprioritizeCommand extends NegateCommand {
     public static final String COMMAND_WORD_SUFFIX = "prioritize";
     public static final String COMMAND_WORD = NegateCommand.COMMAND_WORD + COMMAND_WORD_SUFFIX;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the priority from the assignment identified by the index number "
-            + "used in the displayed assignment list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " INDEX (must be a positive integer)";
 
     public static final String MESSAGE_UNPRIORITIZE_ASSIGNMENT_SUCCESS = "Removed priority for Assignment: %1$s";
     public static final String MESSAGE_UNPRIORITIZE_ASSIGNMENT = "This assignment does not have priority set.";
@@ -73,7 +69,7 @@ public class UnprioritizeCommand extends NegateCommand {
         assert assignmentToUnprioritize != null;
 
         Name updatedName = assignmentToUnprioritize.getName();
-        Deadline updatedDeadline = assignmentToUnprioritize.getDeadline();
+        Time updatedDeadline = assignmentToUnprioritize.getDeadline();
         ModuleCode updatedModuleCode = assignmentToUnprioritize.getModuleCode();
         Remind updatedRemind = assignmentToUnprioritize.getRemind();
         Schedule updatedSchedule = assignmentToUnprioritize.getSchedule();

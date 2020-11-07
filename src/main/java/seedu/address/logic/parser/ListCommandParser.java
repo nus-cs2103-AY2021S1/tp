@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -16,12 +14,14 @@ public class ListCommandParser implements Parser<ListCommand> {
         boolean hasArgumentIndex = args.matches("(.+|[$&+,:;=?@#|'<>.^*()%!-])$"); //Has argument
         if (!hasArgumentIndex) {
             return new ListCommand(Index.fromZeroBased(0));
-        }
-        try {
-            Index index = ParserUtil.parseListIndex(args);
-            return new ListCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE), pe);
+        } else {
+            boolean isWithinArgumentRange = args.trim().matches("^([1-9]|[1-4][0-9]|50)$"); //Argument range is 1 to 50
+            if (isWithinArgumentRange) {
+                Index index = ParserUtil.parseListIndex(args);
+                return new ListCommand(index);
+            } else {
+                throw new ParseException(ListCommand.MESSAGE_INDEX_NOT_IN_RANGE);
+            }
         }
     }
 }

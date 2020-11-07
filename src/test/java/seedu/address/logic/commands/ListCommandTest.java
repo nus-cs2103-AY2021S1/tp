@@ -1,13 +1,11 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
-import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,8 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.task.Deadline;
-
+import seedu.address.model.task.Time;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -33,7 +30,7 @@ public class ListCommandTest {
 
     private Predicate<Assignment> showLimitedAssignments() {
         return assignment -> {
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Deadline.DEADLINE_DATE_TIME_FORMAT)
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Time.TIME_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);
             String dateAndTimeToParse = assignment.getDeadline().value;
             LocalDateTime currentDateAndTime = LocalDateTime.now();
@@ -55,8 +52,8 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(
-                Index.fromZeroBased(0)), model, String.format(
+        index = Index.fromZeroBased(0);
+        assertCommandSuccess(new ListCommand(index), model, String.format(
                 Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, model.getFilteredAssignmentList().size()), expectedModel);
     }
 
@@ -66,21 +63,30 @@ public class ListCommandTest {
         model.updateFilteredAssignmentList(showLimitedAssignments());
         String expectedMessage = String.format(
                 Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, model.getFilteredAssignmentList().size());
-        ListCommand listForOneDay = new ListCommand(Index.fromZeroBased(1));
+        ListCommand listForOneDay = new ListCommand(index);
         expectedModel.updateFilteredAssignmentList(showLimitedAssignments());
         assertCommandSuccess(listForOneDay, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredAssignmentList());
     }
 
     @Test
-    public void execute_fourDaysFromCurrentDate_showAssignments() {
-        index = Index.fromZeroBased(4);
+    public void execute_tenDaysFromCurrentDate_showAssignments() {
+        index = Index.fromZeroBased(10);
         model.updateFilteredAssignmentList(showLimitedAssignments());
         String expectedMessage = String.format(
                 Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, model.getFilteredAssignmentList().size());
-        ListCommand listForFourDays = new ListCommand(Index.fromZeroBased(4));
+        ListCommand listForTenDays = new ListCommand(index);
         expectedModel.updateFilteredAssignmentList(showLimitedAssignments());
-        assertCommandSuccess(listForFourDays, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredAssignmentList());
+        assertCommandSuccess(listForTenDays, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_fiftyDaysFromCurrentDate_showAssignments() {
+        index = Index.fromZeroBased(50);
+        model.updateFilteredAssignmentList(showLimitedAssignments());
+        String expectedMessage = String.format(
+                Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, model.getFilteredAssignmentList().size());
+        ListCommand listForFiftyDays = new ListCommand(index);
+        expectedModel.updateFilteredAssignmentList(showLimitedAssignments());
+        assertCommandSuccess(listForFiftyDays, model, expectedMessage, expectedModel);
     }
 }

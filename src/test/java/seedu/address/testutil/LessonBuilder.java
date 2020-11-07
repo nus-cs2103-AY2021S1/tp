@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 /**
  * A utility class to help with building Lesson objects.
@@ -16,8 +16,8 @@ public class LessonBuilder {
     public static final String DEFAULT_MODULE_CODE = "CS2103T";
 
     private Name name;
-    private Deadline time;
-    private Deadline endTime;
+    private Time time;
+    private Time endTime;
     private ModuleCode moduleCode;
 
     /**
@@ -25,8 +25,8 @@ public class LessonBuilder {
      */
     public LessonBuilder() {
         name = new Name(DEFAULT_NAME);
-        time = new Deadline(DEFAULT_TIME);
-        endTime = new Deadline(DEFAULT_END_TIME);
+        time = new Time(DEFAULT_TIME);
+        endTime = new Time(DEFAULT_END_TIME);
         moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
     }
 
@@ -52,7 +52,7 @@ public class LessonBuilder {
      * Sets the {@code Time} of the {@code Lesson} that we are building.
      */
     public LessonBuilder withTime(String time) {
-        this.time = new Deadline(time);
+        this.time = new Time(time);
         return this;
     }
 
@@ -60,7 +60,7 @@ public class LessonBuilder {
      * Sets the {@code endTime} of the {@code Lesson} that we are building.
      */
     public LessonBuilder withEndTime(String endTime) {
-        this.endTime = new Deadline(endTime);
+        this.endTime = new Time(endTime);
         return this;
     }
 

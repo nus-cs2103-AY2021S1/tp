@@ -14,10 +14,9 @@ import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
-
+import seedu.address.model.task.Time;
 
 /**
  * Removes done status for an assignment identified using it's displayed index from ProductiveNus.
@@ -27,11 +26,7 @@ public class UndoneCommand extends NegateCommand {
     public static final String COMMAND_WORD_SUFFIX = "done";
     public static final String COMMAND_WORD = NegateCommand.COMMAND_WORD + COMMAND_WORD_SUFFIX;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the assignment identified by the index number "
-            + "used in the displayed assignment list as undone.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " INDEX (must be a positive integer)";
 
     public static final String MESSAGE_MARK_ASSIGNMENT_AS_UNDONE_SUCCESS = "Marks assignment as undone: %1$s";
     public static final String MESSAGE_ALREADY_UNDONE_ASSIGNMENT = "This assignment is not marked as done.";
@@ -74,7 +69,7 @@ public class UndoneCommand extends NegateCommand {
         assert assignmentToMarkUndone != null;
 
         Name updatedName = assignmentToMarkUndone.getName();
-        Deadline updatedDeadline = assignmentToMarkUndone.getDeadline();
+        Time updatedDeadline = assignmentToMarkUndone.getDeadline();
         ModuleCode updatedModuleCode = assignmentToMarkUndone.getModuleCode();
         Remind updatedRemind = assignmentToMarkUndone.getRemind();
         Schedule updatedSchedule = assignmentToMarkUndone.getSchedule();

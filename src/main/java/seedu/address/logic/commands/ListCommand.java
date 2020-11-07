@@ -12,7 +12,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Time;
 
 /**
  * Lists all tasks in ProductiveNUS to the user.
@@ -21,26 +21,25 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists the assignments that are due within the next [INDEX] days,"
-            + " starting from the current date and time.\n"
-            + "If no index is keyed in, all your assignments will be displayed.\n"
-            + "Parameters: [INDEX] (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 3\n"
-            + "If the current date and time is 24-10-2020 1200,"
-            + " it will list your assignments that are due between this date and time and 27-10-2020 1200.";
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD
+            + " [INDEX] (must be a positive integer from 1 to 50)";
 
-    public static final String MESSAGE_SUCCESS = "Listed your assignments";
+    public static final String MESSAGE_INDEX_NOT_IN_RANGE = "Index should only be from 1 to 50.";
 
     private final Index numberOfDays;
 
+    /**
+     * Constructor of List Command which takes in an Index.
+     * @param numberOfDays Number of days as Index.
+     */
     public ListCommand(Index numberOfDays) {
+        assert numberOfDays != null;
         this.numberOfDays = numberOfDays;
     }
 
     private Predicate<Assignment> showLimitedAssignments() {
         return assignment -> {
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Deadline.DEADLINE_DATE_TIME_FORMAT)
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Time.TIME_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);
             String dateAndTimeToParse = assignment.getDeadline().value;
             LocalDateTime currentDateAndTime = LocalDateTime.now();

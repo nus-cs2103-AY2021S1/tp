@@ -14,9 +14,9 @@ import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 /**
  * Sets reminders for an assignment identified using it's displayed index from ProductiveNus.
@@ -25,14 +25,8 @@ public class RemindCommand extends Command {
 
     public static final String COMMAND_WORD = "remind";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sets reminders for assignment(s) identified by the index numbers "
-            + "used in the displayed assignment list."
-            + " Assignments with reminders set are permanently shown in the displayed reminders list.\n"
-            + "Parameters: INDEX [MORE_INDEXES] (must be a positive integer)\n"
-            + "Examples: \n"
-            + COMMAND_WORD + " 1 \n"
-            + COMMAND_WORD + " 1 2";
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD
+            + " INDEX [MORE_INDEXES] (must be positive integers)";
 
     public static final String MESSAGE_REMIND_ASSIGNMENT_SUCCESS = "Set reminder for Assignment: %1$s";
     public static final String MESSAGE_REMINDED_ASSIGNMENT = "This assignment already has reminders set: %1$s";
@@ -84,7 +78,7 @@ public class RemindCommand extends Command {
         assert assignmentToRemind != null;
 
         Name updatedName = assignmentToRemind.getName();
-        Deadline updatedDeadline = assignmentToRemind.getDeadline();
+        Time updatedDeadline = assignmentToRemind.getDeadline();
         ModuleCode updatedModuleCode = assignmentToRemind.getModuleCode();
         Remind updatedRemind = assignmentToRemind.getRemind().setReminder();
         Schedule updatedSchedule = assignmentToRemind.getSchedule();
