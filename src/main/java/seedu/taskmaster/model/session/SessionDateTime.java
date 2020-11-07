@@ -7,7 +7,7 @@ import java.time.format.ResolverStyle;
 public class SessionDateTime {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER =
-            DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm").withResolverStyle(ResolverStyle.STRICT);
+            DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm").withResolverStyle(ResolverStyle.STRICT);
     public static final DateTimeFormatter DISPLAY_FORMATTER =
             DateTimeFormatter.ofPattern("HH:mm (EEE) \nd LLL yyyy");
     public static final String MESSAGE_CONSTRAINTS =
