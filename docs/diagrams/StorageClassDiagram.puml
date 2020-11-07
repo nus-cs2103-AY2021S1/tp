@@ -22,7 +22,4 @@ JsonPlanusStorage .down.> JsonSerializablePlanus
 JsonSerializablePlanus .right.> JsonSerializableEvent
 JsonSerializablePlanus .down.> JsonSerializableDeadline
 JsonSerializablePlanus .down.> JsonSerializableLesson
-JsonSerializableEvent .right.> JsonAdaptedTag
-JsonSerializableDeadline .left.> JsonAdaptedTag
-JsonSerializableLesson .right.> JsonAdaptedTag
 @enduml
