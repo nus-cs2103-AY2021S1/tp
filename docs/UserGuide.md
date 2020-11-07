@@ -233,9 +233,10 @@ Format: `addl INDEX l/d/DATE [d/DATE] [l/d/DATE [d/DATE]]…​`
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
+:bulb: **Tip:**<br>
 
 * Addition of multiple leaves using the same command is supported. A leave can have either one (single day) or two dates (start and end inclusive).
+
 * Dates can be input in any order. Eva will sort the leaves and dates according to which date comes first.
 
 </div>
@@ -250,6 +251,14 @@ Examples:
 
 Removes record of leave taken by staff. <br>
 Format: `dell INDEX d/DATE`
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**<br>
+
+If the specified date falls within the range of a leave, the whole leave is deleted
+
+</div>
 
 Examples:
 * `list s-` followed by `dell 2 d/09/10/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
