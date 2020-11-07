@@ -92,7 +92,7 @@ public class UnfavCommandTest {
                 .get(INDEX_FIRST_FLASHCARD.getZeroBased());
 
         Flashcard flashcardNotFavourited = new FlashcardBuilder(flashcardToUnfavourite)
-                .withFavouriteStatus(true).build();
+                .withFavouriteStatus(false).build();
 
         UnfavCommand unfavCommand = new UnfavCommand(INDEX_FIRST_FLASHCARD);
 
