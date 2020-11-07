@@ -59,13 +59,13 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         // Check if keyword prefix are only used once or none
-        boolean isNumberOfKeywordPrefixCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(multimap, PREFIX_KEYWORDS);
+        boolean isNumberOfKeywordPrefixesCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(multimap, PREFIX_KEYWORDS);
 
         // Check if optional prefixes are only used once or none
-        boolean isNumberOfOtherPrefixCorrect =
+        boolean isNumberOfOtherPrefixesCorrect =
             ParserUtil.areNumberOfPrefixesOneOrNone(multimap, PREFIX_CATEGORY);
 
-        if (!isNumberOfKeywordPrefixCorrect || !isNumberOfOtherPrefixCorrect) {
+        if (!isNumberOfKeywordPrefixesCorrect || !isNumberOfOtherPrefixesCorrect) {
             throw new ParseException(String.format(MESSAGE_MULTIPLE_PREFIXES, FindCommand.PREFIXES));
         }
     }
