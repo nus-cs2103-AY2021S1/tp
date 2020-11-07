@@ -4,6 +4,8 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 skinparam classAttributeIconSize 0
+skinparam defaultFontSize 11
+scale 0.75
 
 Package Ui <<Rectangle>>{
 Class MainWindow

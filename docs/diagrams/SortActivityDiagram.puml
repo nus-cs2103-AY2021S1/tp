@@ -7,13 +7,21 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([sort by least to most reviewed])
-    :Updates filteredFlashcardList sorted by least to most reviewed;
-elseif () then ([sort by most to least reviewed])
-       :Updates filteredFlashcardList sorted by most to least reviewed;
-elseif () then ([sort by lowest to highest success rate])
-    :Updates filteredFlashcardList sorted by lowest to highest success rate;
-else
-    :Updates filteredFlashcardList sorted by highest to lowest success rate;
+    :Sorts sortedFlashcards
+    by least to most reviewed;
+else ([else])
+    if () then ([sort by most to least reviewed])
+        :Sorts sortedFlashcards
+        by most to least reviewed;
+    else ([else])
+        if () then ([sort by lowest to highest success rate])
+            :Sorts sortedFlashcards by
+            lowest to highest success rate;
+        else ([else])
+            :Sorts sortedFlashcards by
+            highest to lowest success rate;
+         endif
+    endif
 endif
 stop
 @enduml

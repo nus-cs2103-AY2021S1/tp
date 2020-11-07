@@ -8,6 +8,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 * Table of Contents
     - [Quick start](#quick-start)
+    - [Application layout](#application-layout)
     - [Notes about the command format](#notes-about-the-command-format)
     - [Common Input Fields](#common-input-fields)
     - [Features](#features)
@@ -28,7 +29,6 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - [View the statistics of a flashcard](#view-the-statistics-of-flashcard-stats): `stats`
         - [Exit the program](#exit-the-program--exit): `exit`
         - [Saving the data](#saving-the-data)
-    - FAQ
     - [Command summary](#command-summary)
         
 
@@ -60,6 +60,14 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 1. Refer to the [Features](#features) below for details of each command.
 
+## Application layout
+
+The figures below show the annotated version of the graphic user interface. This will help you better identify the various sections and elements in the application, as well as understand the technical terms stated in this documentation.
+
+![filedirectory](images/ug/label1.png)
+
+![filedirectory](images/ug/label2.png)
+
 --------------------------------------------------------------------------------------------------------------------
 ## Notes about the command format
 
@@ -67,35 +75,58 @@ This section will give you some useful information about the various command for
 <div markdown="block" class="alert alert-info">
 
 * Words in UPPER_CASE are the parameters to be supplied by the user.<br>
-  eg. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is my name?`
+  * eg. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is my name?`
 
-* Words in lower_case are to be specified exactly. e.g. in `sort <success|reviewed>`, `success` and `reviewed` 
-must be specified exactly.
+<br>
+  
+* Items in angle brackets `<>` are either/or options. Each option is delineated by a `|` . 
+  * eg. `<success|reviewed>` can be used as either `success` or `reviewed` but not both.
+
+<br>
+
+* Words in lower_case are to be specified exactly. 
+  * eg. in `sort <success|reviewed>`, `success` and `reviewed` must be specified exactly.
+
+<br>
 
 * Items in square brackets are optional (zero or one instance).<br>
   * eg. `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name?` or as `q/What is my name? c/topic 1`
-  * eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category 
+
+<br>
 
 * Items in square brackets with trailing ellipsis are optional (zero, one or multiple instances).<br>
-  eg. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
+  * eg. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
   `q/What is my name? t/topic1 t/fun` 
   * Multiple instances of the tag prefix is accepted, and the app will read every instance
   in the input.
+
+<br>
+
+* Multiple instances of the same prefix will not throw an error. However, the app will only read the **last instance** in the input (except for tags).
+  * eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category
+
+<br>
   
-* Items in angle brackets `<>` are either/or options. Each option is delineated by a `|` . 
-  eg. `<success|reviewed>` can be used as `success` or `reviewed` but not both.
+* Parameters can be in any order.
+  * eg. Specifying `q/QUESTION a/ANSWER` or `a/ANSWER q/QUESTION` are both acceptable.
 
-* Multiple instances of the same prefix will not throw an error. 
-    However, the app will only read the **last instance** in the input (except for tags).
-
-* Parameters can be in any order.<br>
-  eg. if the command specifies `q/QUESTION a/ANSWER, a/ANSWER q/QUESTION` is also acceptable.
+<br>
+  
+* All additional input after commands which do not have input fields such as `list`, `exit`, `clear`, `help`, `review`, `quiz` will be ignored.
+  * eg. `list` and `list 123` will have the same effect.
 
 </div>
 
 ## Common Input Fields
 
 This section will help you understand the different fields you will see in [Features](#features). It gives an overview of what they are, how to specify them and any restrictions.
+
+#### General Notes about Input Fields:
+* **Can be empty**  means you can specify the prefix but not pass a value.<br>eg. passing `r/` is valid.
+* **Cannot be empty** means you have to specify a value when you specify the prefix.<br>eg. passing `c/` is invalid.
+* All input fields should not contain other input prefixes. eg. passing in `What is c/?` as a `QUESTION` to `q/QUESTION` is not supported.
+
+<br>
 
 Input Field | Restrictions and how to specify
 -----------|-----------------------
@@ -109,8 +140,6 @@ Input Field | Restrictions and how to specify
 `INDEX`         | `INDEX` refers to the index number shown in the displayed flashcard list.<br>Every visible flashcard on the display list has an `INDEX`.<br>`INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 `KEYWORD`      | `KEYWORD` has no character limit but must be one word (no spaces).
 
-* **Can be empty**  means you can specify the prefix but not pass a value.<br>eg. passing `r/` is valid.
-* **Cannot be empty** means you have to specify a value when you specify the prefix.<br>eg. passing `c/` is invalid.
 
 ## Features
 
@@ -123,8 +152,10 @@ Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM] [t
 * Refer to [common input fields](#common-input-fields) on what the different fields are and how to specify them.
 * After a new flashcard is added, all flashcards will be listed. 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If the category is not specified, the flashcard will have the <b>General</b> category.
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** If the category is not specified, the flashcard will have the <b>General</b> category.
+
 </div>
 
 Examples:
@@ -217,9 +248,11 @@ Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 <div markdown="span" class="alert alert-primary">:memo: Note:
 <code>filter r/</code> will filter for all unrated flashcards.</div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
 
-Want to list all your flashcards after using `filter`? Use the [list](#list-all-flashcards--list) command.</div> 
+:bulb: **Tip:** Want to list all your flashcards after using `filter`? Use the [list](#list-all-flashcards--list) command.
+
+</div> 
 
 Examples:
 *  `filter c/SDLC` filters and lists all flashcards belonging to the SDLC category.
@@ -270,9 +303,11 @@ Format: `find KEYWORD [KEYWORD]...`
 * The keywords are **case insensitive**.
 * Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
 
-Want to list all your flashcards after using `find`? Use the [list](#list-all-flashcards--list) command.</div> 
+:bulb: **Tip:** Want to list all your flashcards after using `find`? Use the [list](#list-all-flashcards--list) command.
+
+</div> 
 
 Examples: 
 * `find general` 
@@ -290,8 +325,6 @@ Format: `help`
 Shows a list of all flashcards. This is useful for removing any `filter` or `find` you have done on the flashcard list.
 
 Format: `list`
-
-* All additional input after the command word `list` will be ignored. E.g. `list` and `list 123` will have the same effect.
 
 ### Review flashcards: `review`
 
@@ -374,6 +407,9 @@ Sorts all flashcards according to the criteria given.
 
 Format: `sort <success|reviewed> <-a|-d>`
 
+* Specifying `-a` means sorting by the criteria in ascending order.
+* Specifying `-d` means sorting by the criteria in descending order.
+
 Examples: 
 * `sort reviewed -a` shows a list of all flashcards sorted according to review frequency in ascending order
 * `sort reviewed -d` shows a list of all flashcards sorted according to review frequency in descending order
@@ -422,7 +458,7 @@ flashcard was not modified/deleted.
 
 ![filedirectory](images/ug/ug_view_step4.PNG)
 
-### View the statistics of flashcard `stats`
+### View the statistics of flashcard : `stats`
 
 View the statistics of a flashcard.
 
@@ -473,19 +509,19 @@ Flashcards data are saved in the hard disk automatically after any command that 
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM] [t/TAG]...` <br> e.g, `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
+**Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM] [t/TAG]...` <br> eg. `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
 **Clear** | `clear`
-**Delete** | `delete INDEX` <br> e.g. `delete 3`
-**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM] [t/TAG]...` <br> e.g. `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
-**Filter** | <code>filter [c/CATEGORY] [r/RATING] [f/<yes&#124;no>] [t/TAG]...</code> <br> e.g. `filter t/examinable r/3`
-**Fav** | `fav INDEX` <br> e.g. `fav 1`
-**Unfav** | `unfav INDEX` <br> e.g. `unfav 1`
-**Find** | `find KEYWORD [KEYWORD]...` <br>  e.g. `find general important`
+**Delete** | `delete INDEX` <br> eg. `delete 3`
+**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM] [t/TAG]...` <br> eg. `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
+**Filter** | <code>filter [c/CATEGORY] [r/RATING] [f/<yes&#124;no>] [t/TAG]...</code> <br> eg. `filter t/examinable r/3`
+**Fav** | `fav INDEX` <br> eg. `fav 1`
+**Unfav** | `unfav INDEX` <br> eg. `unfav 1`
+**Find** | `find KEYWORD [KEYWORD]...` <br>  eg. `find general important`
 **Help** | `help`
 **List** | `list`
 **Review** | `review`
 **Quiz** | `quiz`
-**Sort** | <code>sort <success&#124;reviewed> <-a&#124;-d></code> <br> e.g. `sort success -a`
-**View** | `view INDEX [-a]` <br> e.g. `view 1`
-**Stats** | `stats INDEX` <br> e.g. `stats 3`
+**Sort** | <code>sort <success&#124;reviewed> <-a&#124;-d></code> <br> eg. `sort success -a`
+**View** | `view INDEX [-a]` <br> eg. `view 1`
+**Stats** | `stats INDEX` <br> eg. `stats 3`
 **Exit** | `exit`

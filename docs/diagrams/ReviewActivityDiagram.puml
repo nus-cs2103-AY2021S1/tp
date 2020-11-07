@@ -1,5 +1,7 @@
 @startuml
 scale 0.5
+skinparam defaultFontSize 20
+
 start
 :User enters review mode;
 

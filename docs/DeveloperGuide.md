@@ -162,7 +162,6 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Current Implementation
 
-The Add feature 
 The add feature is facilitated by `LogicManager` and `ModelManager`. The add command supports the following inputs from the user
 
 * `q/QUESTION`
@@ -288,23 +287,23 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Current Implementation
 
 The favourite/unfavourite mechanism is faciliated by `LogicManager` and `ModelManager`.
-A `isFavourite` attribute is stored internally in `Flashcard`, to keep track of whether the flashcard is favourited. When the user favourites a flashcard, `isFavourite` is set to true, and set to false otherwise. 
+A `isFavourite` boolean attribute is stored internally in `Flashcard`, to keep track of whether the flashcard is favourited. When the user favourites a flashcard, `isFavourite` is set to true, and set to false otherwise. 
  
 It implements the following operations:
-* `Flashcard#isFavourite()` - Checks whether the current flashcard is favourited
-* `FavCommand#createFavouriteFlashcard(Flashcard flashcardToFavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `true`
+* `Flashcard#isFavourite()` - Checks whether the current flashcard is favourited.
+* `FavCommand#createFavouriteFlashcard(Flashcard flashcardToFavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `true`.
 * `UnfavCommand#createUnfavouriteFlashcard(Flashcard flashcardToUnfavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `false`.
 
-Given below is an example usage scenario and how the favourite/unfavourite mechanism behaves at each step.
+Given below is an example usage scenario and how the favourite and unfavourite mechanism behaves at each step.
 
 Step 1: The user launches the application 
 
 ![FavUnfavState0](images/FavUnfavState0.png)
 
-Step 2: The user executes `fav 1` command to favourite the 1st flashcard in the displayed flashcard deck. `fav` Command calls 
+Step 2: The user executes `fav 1` command to favourite the 1st flashcard in the displayed flashcard deck. `fav` command calls 
 `Flashcard#isFavourite()` method to check whether the flashcard at index 1, `f1`,  has been favourited. If the flashcard is not favourited, 
-`fav` Command calls `FavCommand#createFavouriteFlashcard(f1)` to create a new flashcard, `fav1`,  by duplicating the existing data fields and set the `isFavourite` attribute to `true`.
-`fav` Command then calls `ModelManager#setFlashcard(f1, fav1)` to replace the current flashcard, `f1`,  with the favourited flashcard, `fav1`.
+`fav` command calls `FavCommand#createFavouriteFlashcard(f1)` to create a new flashcard, `fav1`,  by duplicating the existing data fields and set the `isFavourite` attribute to `true`.
+`fav` command then calls `ModelManager#setFlashcard(f1, fav1)` to replace the current flashcard, `f1`,  with the favourited flashcard, `fav1`.
 
 ![FavUnfavState1](images/FavUnfavState1.png)
 
@@ -312,17 +311,12 @@ The following sequence diagram shows how the `fav` operation works:
 
 ![FavouriteSequenceDiagram](images/FavouriteSequenceDiagram.png)
 
-Step 3: The user executes `unfav 1` command to unfavourite the 1st flashcard in the displayed flashcard deck. `unfav` Command calls 
+Step 3: The user executes `unfav 1` command to unfavourite the 1st flashcard in the displayed flashcard deck. `unfav` command calls 
 `Flashcard#isFavourite()` method to check whether the flashcard at index 1, `fav1`,  has been favourited. `fav1` is favourited in step 2, hence, 
-`unfav` Command calls `UnfavCommand#createUnfavouriteFlashcard(fav1)` to create a new flashcard, `f1`,  by duplicating the existing data fields and set the `isFavourite` attribute to `false`.
-`unfav` Command then calls `ModelManager#setFlashcard(fav1, f1)` to replace the current flashcard, `fav1`,  with the unfavourited flashcard, `f1`.
+`unfav` command calls `UnfavCommand#createUnfavouriteFlashcard(fav1)` to create a new flashcard, `f1`,  by duplicating the existing data fields and set the `isFavourite` attribute to `false`.
+`unfav` command then calls `ModelManager#setFlashcard(fav1, f1)` to replace the current flashcard, `fav1`,  with the unfavourited flashcard, `f1`.
 
 ![FavUnfavState2](images/FavUnfavState2.png)
-
-The following sequence diagram shows how the `unfav` operation works:
-
-![UnfavouriteSequenceDiagram](images/UnfavouriteSequenceDiagram.png)
-
 
 The following activity diagram summarizes what happens when a user executes a favourite/unfavourite command:
 
@@ -333,7 +327,7 @@ The following activity diagram summarizes what happens when a user executes a fa
 
 ##### Aspect: How fav & unfav executes
 
-* **Alternative 1 (current choice):** Creates a new flashcard everytime `isFavourite` changes
+* **Alternative 1 (current choice):** Creates a new flashcard everytime `isFavourite` value changes
   * Pros: Flashcard remains immutable.
   * Cons: Execution time is longer compared to Alternative 2 since a new flashcard is created if flashcard's state changes.
 
@@ -342,21 +336,27 @@ The following activity diagram summarizes what happens when a user executes a fa
   * Cons: Flashcard would not be immutable
 
 
-_{more aspects and alternatives to be added}_
-
 ### \[Implemented\] Filter feature
 
 #### Current Implementation
 The filtering mechanism is facilitated by `LogicManager` and `ModelManager`.
 It works when the `LogicManager` listens for a filter command input from the user and
-parses the command to filter out relevant flashcards based on the category or categories 
-chosen. The filter feature supports filtering of multiple categories by parsing the command
-using `ParserUtil.parseCategories(Collection<String> categories)`.
+parses the command to filter out relevant flashcards based on the category, rating, favourite status and/or tags.
+
+The filter feature supports filtering of multiple flashcard fields by parsing the command using `FilterCommandParser#parse(String args)`
+and creates a new `FilterCommand` object that contains a `MultipleFieldsEqualsKeywordsPredicate` predicate object.
+
+The `MultipleFieldsEqualsKeywordsPredicate` predicate object then encapsulates the following predicate objects:
+* `CategoryEqualsKeywordsPredicate`
+* `RatingEqualsKeywordsPredicate` 
+* `FavouriteEqualsKeywordsPredicate`
+* `TagsEqualKeywordsPredicate`
 
 It implements the following operations:
 * `FilterCommand#execute(Model model)` to update `Model` to show only the filtered flashcards
-* `CategoryEqualsKeywordsPredicate#test(Flashcard flashcard)` to check every flashcard in `Model` against the list of 
-categories parsed from `FilterCommandParser#parse(String args)`
+* `MultipleFieldsEqualsKeywordsPredicate#test(Flashcard flashcard)` to check every flashcard in `Model` against the 
+various encapsulated predicates for different fields in the flashcard (category, rating, favourite status and tags) and will only
+return true if all encapsulated predicates return true.
 * `ModelManager#updateFilteredFlashcardList(Predicate<Flashcard> predicate)` takes in a predicate to update 
 `filteredFlashcards` attribute within  `ModelManager`.
 
@@ -364,8 +364,8 @@ Given below is an example usage scenario and how the filter mechanism behaves at
 
 Step 1. The user launches the application.
 
-Step 2: The user executes `filter c/SDLC` command to filter and display all the flashcards in the flashcard deck
-belonging to SDLC category. `LogicManager` calls   `FlashcardDeckParser#parseCommand(String args))` and   
+Step 2: The user executes `filter c/SDLC r/3` command to filter and display all the flashcards in the flashcard deck
+belonging to SDLC category and have a rating of 3. `LogicManager` calls   `FlashcardDeckParser#parseCommand(String args))` and   
 `FilterCommandParser#parse(String args)` to ultimately return a `FilterCommand` object.
 
 Step 3: After parsing, `LogicManager` then calls `FilterCommand#execute(Model model)`.
@@ -449,7 +449,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | student                                    | add a diagram to flashcard                                               | create flashcards with question based on diagram                                            |
 | `* * `   | student                                    | view individual flashcard                                                | look at flashcard in more details                                                           |
 | `* * `   | student                                    | quiz myself                                                              | revise for exams by through mock quiz and keep track of scores                              |
-| `* * `   | student                                    | view statistics of flashcard                                             | keep track of how well I did and know whether I have grasped the content properly           |
+| `* * `   | student                                    | view statistics of flashcard                                             | keep track of how well I did and know whether I have mastered the content properly           |
 | `* * `   | busy student                               | filter flashcards by different fields                                    | refine list of flashcards and only display the relevant flashcards I am interested in       |
 | `* * `   | busy student                               | sort flashcards according to review frequency                            | focus on flashcards that are least reviewed                                                 |
 | `* * `   | busy student                               | sort flashcards according to success rate                                | focus on flashcards that are often incorrectly answered                                     |
@@ -462,8 +462,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User adds a flashcard
-2.  SWEe! shows a list of flashcards, containing the newly added flashcard
+1.  User adds a flashcard.
+2.  SWEe! shows a list of flashcards, containing the newly added flashcard.
 
     Use case ends.
 
@@ -486,8 +486,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list flashcards
-2.  SWEe! shows a list of flashcards
+1.  User requests to list flashcards.
+2.  SWEe! shows a list of flashcards.
 
     Use case ends.
 
@@ -504,21 +504,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
-2.  User requests to delete a specific flashcard based on the index in the list
-3.  SWEe! deletes the flashcard
+1.  User requests to delete a specific flashcard based on the index in the list.
+2.  SWEe! deletes the flashcard.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-
-* 2a. The given index is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -527,27 +522,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
-2.  User requests to edit the details of a specific flashcard based on the index in the list
-3.  SWEe! edits the flashcard
+1.  User requests to edit the details of a specific flashcard based on the index in the list.
+2.  SWEe! edits the flashcard.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-  
-* 2a. The given index is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
-* 2b. The format of the given details are invalid.
+* 1b. Input format is invalid.
 
-    * 2b1. SWEe! shows an error message.
+    * 1b1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -556,21 +546,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
-2.  User requests to favourite a specific flashcard based on the index in the list
-3.  SWEe! favourites the flashcard
+1.  User requests to favourite a specific flashcard based on the index in the list.
+2.  SWEe! favourites the flashcard.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-
-* 2a. The given index is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -579,21 +564,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
-2.  User requests to unfavourite a specific flashcard based on the index in the list
-3.  SWEe! unfavourites the flashcard
+1.  User requests to unfavourite a specific flashcard based on the index in the list.
+2.  SWEe! unfavourites the flashcard.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-
-* 2a. The given index is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -602,25 +582,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
-2.  User requests to clear all flashcards in the list
-3.  SWEe! clears the list
+1.  User requests to clear all flashcards in the list.
+2.  SWEe! clears the list.
 
     Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-
-  Use case ends.
 
 
 #### Use case: UC08 - Find flashcards
 
 **MSS**
 
-1.  User requests to find flashcards with keywords
-2.  SWEe! shows a list of flashcards matching keywords
+1.  User requests to find flashcards with keywords.
+2.  SWEe! shows a list of flashcards matching keywords.
 
     Use case ends.
 
@@ -637,8 +610,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to filter flashcards according to attributes
-2.  SWEe! shows a list of flashcards matching attributes
+1.  User requests to filter flashcards according to attributes.
+2.  SWEe! shows a list of flashcards matching attributes.
 
     Use case ends.
 
@@ -655,27 +628,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list flashcards (UC02)_
-2.  User requests to sort the list in an order based on a sort criteria
-3.  SWEe! displays the list of flashcards in the specified order
+1.  User requests to sort the list of flashcards based on a sort criteria.
+3.  SWEe! displays the list of flashcards in the specified order.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. Input format is invalid.
 
-  Use case ends.
-  
-* 2a. The given sort criteria is invalid.
-
-    * 2a1. SWEe! shows an error message.
-
-      Use case ends.
-
-* 2b. The given order is invalid.
-
-    * 2b1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -684,8 +646,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests for help
-2.  SWEe! displays help window with link to User Guide
+1.  User requests for help.
+2.  SWEe! displays help window.
 
     Use case ends.
     
@@ -694,11 +656,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to review flashcards
-2.  SWEe! enters review mode
-3.  User enters `down` key to show answer
-4.  User enters `right` key to show the next flashcard in the list
-    Steps 3-4 are repeated until the user finishes reviewing all flashcards or until the user enters `q` key to quit review mode
+1.  User requests to review flashcards.
+2.  SWEe! enters review mode.
+3.  User requests to show answer.
+4.  User requests to show the next flashcard.
+
+    Steps 3-4 are repeated until the user finishes reviewing all flashcards.
 
     Use case ends.
 
@@ -710,18 +673,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
   
+* 3a. User requests to hide the answer.
+
+    Use case resumes from step 4.
     
+* 3b. User requests to show the previous flashcard (if there is a previous flashcard).
+
+    Use case resumes from step 3.
+    
+* *a. At any time, User requests to quit review mode.
+
+    *a1. SWEe! quits review mode.
+    
+    Use case ends.
+
+
 #### Use case: UC13 - Quiz flashcards
 
 **MSS**
 
-1.  User requests to quiz flashcards
-2.  SWEe! enters quiz mode
-3.  User enters `down` key to show answer
-4.  User enters `y`/`n` key depending on whether user answers the flashcard correctly
-5.  SWEe! shows the next flashcard to quiz
+1.  User requests to quiz flashcards.
+2.  SWEe! enters quiz mode.
+3.  User requests to show answer.
+4.  User indicates if the flashcard was answered correctly.
+5.  SWEe! shows the next flashcard to quiz.
 
-    Steps 3-5 are repeated until the user finishes quizzing all flashcards or until the user enters `q` key to quit quiz mode
+    Steps 3-5 are repeated until the user finishes quizzing all flashcards.
 
     Use case ends.
 
@@ -733,26 +710,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+* *a. At any time, User requests to quit quiz mode.
+
+    *a1. SWEe! quits quiz mode.
+    
+    Use case ends.
+
 
 #### Use case: UC14 - View a flashcard
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
-2.  User requests to view a specific flashcard based on the index in the list
-3.  SWEe! shows the flashcard in detail
+1.  User requests to view a specific flashcard based on the index in the list.
+2.  SWEe! shows the flashcard in detail.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-
-* 2a. The given index is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -761,21 +739,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to _list flashcards (UC02)_
-2.  User requests to view the statistics of a specific flashcard based on the index in the list
-3.  SWEe! shows the flashcard's statistics
+1.  User requests to view the statistics of a specific flashcard based on the index in the list.
+2.  SWEe! shows the flashcard's statistics.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-
-* 2a. The given index is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -832,7 +805,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file. <br>
        Expected: The most recent window size and location is retained.
 
 1. Exiting the application

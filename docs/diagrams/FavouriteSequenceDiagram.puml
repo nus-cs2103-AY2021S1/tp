@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+skinparam defaultFontSize 20
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -7,10 +8,6 @@ participant ":FlashcardDeckParser" as FlashcardDeckParser LOGIC_COLOR
 participant ":FavCommandParser" as FavCommandParser LOGIC_COLOR
 participant "f:FavCommand" as FavCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-end box
-
-box Flashcard MODEL_COLOR_T2
-participant "flashcardToFavourite:Flashcard" as Flashcard MODEL_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -52,11 +49,11 @@ deactivate FlashcardDeckParser
 LogicManager -> FavCommand : execute()
 activate FavCommand
 
-FavCommand -> Flashcard : isFavourite()
-activate Flashcard
+FavCommand -> Model : isFavourite()
+activate Model
 
-Flashcard -> FavCommand : isFavourite
-deactivate Flashcard
+Model -> FavCommand : isFavourite
+deactivate Model
 
 opt flashcard is not favourited
 
@@ -67,12 +64,6 @@ opt flashcard is not favourited
     deactivate FavCommand
 
     FavCommand -> Model : setFlashcard(flashcardToFavourite, favouritedFlashcard)
-    activate Model
-
-    Model --> FavCommand
-    deactivate Model
-
-    FavCommand -> Model : updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
     activate Model
 
     Model --> FavCommand

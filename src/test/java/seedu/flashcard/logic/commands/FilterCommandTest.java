@@ -21,7 +21,7 @@ import seedu.flashcard.model.UserPrefs;
 import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.CategoryEqualsKeywordsPredicate;
 import seedu.flashcard.model.flashcard.FavouriteEqualsKeywordsPredicate;
-import seedu.flashcard.model.flashcard.MultipleFieldsEqualsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.MultipleFieldsEqualKeywordsPredicate;
 import seedu.flashcard.model.flashcard.Rating;
 import seedu.flashcard.model.flashcard.RatingEqualsKeywordsPredicate;
 import seedu.flashcard.model.flashcard.TagsEqualKeywordsPredicate;
@@ -91,8 +91,8 @@ public class FilterCommandTest {
     public void execute_oneKeyword_noFlashcardFound() {
         CategoryEqualsKeywordsPredicate categoryPredicate =
                 new CategoryEqualsKeywordsPredicate(new Category("nonexistent"));
-        MultipleFieldsEqualsKeywordsPredicate combinedPredicate =
-                new MultipleFieldsEqualsKeywordsPredicate(categoryPredicate, nullRatingPredicate,
+        MultipleFieldsEqualKeywordsPredicate combinedPredicate =
+                new MultipleFieldsEqualKeywordsPredicate(categoryPredicate, nullRatingPredicate,
                         nullFavouritePredicate, nullTagsPredicate);
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
         FilterCommand command = new FilterCommand(categoryPredicate, nullRatingPredicate, nullFavouritePredicate,
@@ -107,8 +107,8 @@ public class FilterCommandTest {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 1);
         CategoryEqualsKeywordsPredicate categoryPredicate = new CategoryEqualsKeywordsPredicate(new Category("SDLC"));
         RatingEqualsKeywordsPredicate ratingPredicate = new RatingEqualsKeywordsPredicate(new Rating("2"));
-        MultipleFieldsEqualsKeywordsPredicate combinedPredicate =
-                new MultipleFieldsEqualsKeywordsPredicate(categoryPredicate, nullRatingPredicate,
+        MultipleFieldsEqualKeywordsPredicate combinedPredicate =
+                new MultipleFieldsEqualKeywordsPredicate(categoryPredicate, nullRatingPredicate,
                         nullFavouritePredicate, nullTagsPredicate);
         FilterCommand command = new FilterCommand(categoryPredicate, ratingPredicate,
                 nullFavouritePredicate, nullTagsPredicate);
@@ -122,8 +122,8 @@ public class FilterCommandTest {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
         CategoryEqualsKeywordsPredicate categoryPredicate =
                 new CategoryEqualsKeywordsPredicate(new Category("general"));
-        MultipleFieldsEqualsKeywordsPredicate combinedPredicate =
-                new MultipleFieldsEqualsKeywordsPredicate(categoryPredicate, nullRatingPredicate,
+        MultipleFieldsEqualKeywordsPredicate combinedPredicate =
+                new MultipleFieldsEqualKeywordsPredicate(categoryPredicate, nullRatingPredicate,
                         nullFavouritePredicate, nullTagsPredicate);
         FilterCommand command = new FilterCommand(categoryPredicate, nullRatingPredicate,
                 nullFavouritePredicate, nullTagsPredicate);
@@ -138,8 +138,8 @@ public class FilterCommandTest {
         CategoryEqualsKeywordsPredicate categoryPredicate = new CategoryEqualsKeywordsPredicate(new Category("sdlc"));
         FilterCommand command = new FilterCommand(categoryPredicate, nullRatingPredicate,
                 nullFavouritePredicate, nullTagsPredicate);
-        MultipleFieldsEqualsKeywordsPredicate combinedPredicate =
-                new MultipleFieldsEqualsKeywordsPredicate(categoryPredicate, nullRatingPredicate,
+        MultipleFieldsEqualKeywordsPredicate combinedPredicate =
+                new MultipleFieldsEqualKeywordsPredicate(categoryPredicate, nullRatingPredicate,
                         nullFavouritePredicate, nullTagsPredicate);
         expectedModel.updateFilteredFlashcardList(combinedPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -155,8 +155,8 @@ public class FilterCommandTest {
                 new FavouriteEqualsKeywordsPredicate(true);
         FilterCommand command = new FilterCommand(categoryPredicate, nullRatingPredicate,
                 favouritePredicate, nullTagsPredicate);
-        MultipleFieldsEqualsKeywordsPredicate combinedPredicate =
-                new MultipleFieldsEqualsKeywordsPredicate(categoryPredicate, nullRatingPredicate,
+        MultipleFieldsEqualKeywordsPredicate combinedPredicate =
+                new MultipleFieldsEqualKeywordsPredicate(categoryPredicate, nullRatingPredicate,
                         favouritePredicate, nullTagsPredicate);
         expectedModel.updateFilteredFlashcardList(combinedPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
