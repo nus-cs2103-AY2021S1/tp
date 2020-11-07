@@ -83,13 +83,15 @@ Given below are my contributions to the project.
     [\#105](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/149)
   * Developer Guide:
     * Updated the class diagrams of Model, Storage, and UI:
-    [\#130](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/130)
+    [\#130](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/130),
+    [\#239](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/239)
     * Added implementation details of the `find` feature:
     [\#130](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/130),
     [\#229](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/229)
     * Added the use cases for all features:
     [\#31](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/31),
-    [\#96](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/96)
+    [\#96](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/96),
+    [\#240](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/240)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
