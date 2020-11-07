@@ -19,19 +19,19 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
 1. Copy the file to the folder you want to use as the _home folder_ for PIVOT.
 
-1. Run the command `java -jar pivot.jar` using the Command Line to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Run the command `java -jar pivot.jar` using the Command Line at the _home folder_ to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    
     ![Home Page at Main](images/home_main.png)
    
 ## Navigating PIVOT
 
-1. When you first start the app, you will be at the `Home` section, `Main` Page. In the image below, the `navigation bar` is highlighted. It shows where you are in the app at any point in time. The `Command Line` allows you to enter the commands, and the feedback is displayed in the `Result Display`.
+1. When you first start the app, you will be at the `Home` section's `Main Page` (You can navigate between the `Home` or `Archive` sections). In the image below, the `navigation bar` is highlighted. It shows where you are in the app at any point in time. The `Command Line` allows you to enter the commands, and the feedback is displayed in the `Result Display`.
 
     ![Home Page at Main, highlighted navigation](images/home_main_nav.png)
 
-1. The left panel highlighted in the image below is the `Main Page` of the app. It lists all of the `Cases` stored in PIVOT. By using a `Main Page Command`,  you can interact with the `Cases` in this page. (Refer to [Features](#features) below for the commands)
+1. The left panel highlighted in the image below is the `Main Page` of the app. It lists all of the `Cases` stored in PIVOT according to the `Section` you are in. By using a `Main Page Command`,  you can interact with the `Cases` in this page. (Refer to [Features](#features) below for the commands)
 
-1. By typing `open case 1`, the right panel is updated. This is `Case Page` of the app (highlighted below). It displays the `Case` information. By using a `Case Page Command`,  you can interact with the `Case` details in this page. (Refer to [Features](#features) below for the commands)
+1. By typing `open case 1` in the Command Line, the right panel is updated. This is `Case Page` of the app (highlighted below). It displays the `Case` information. By using a `Case Page Command`,  you can interact with the `Case` details in this page. (Refer to [Features](#features) below for the commands)
 
     ![Home Page at Case, highlighted main and case page](images/home_case_nav.png)
     
@@ -88,14 +88,14 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
 * PIVOT does not allow the addition of `Case`, `Document`, `Suspect`, `Witness` or `Victim` that already exists.
 * When editing details in PIVOT, if it results in duplicates, PIVOT will not allow it as well.
-* `Cases` are identified by their `Title`. Users cannot add a `Case` if there is an existing `Case` (from both `Home`/`Archive` section) with the same `Title`. `Title` is a case-sensitive field.
+* `Cases` are identified by their `Title`. Users cannot add a `Case` if there is an existing `Case` (in either `Home`/`Archive` section) with the same `Title`. `Title` is a case-sensitive field.
 * `Documents` are identified by both their `Name` and `Reference`. 
-Users cannot add a `Document` to a `Case` if there is an existing `Document` with the same `Name` and `Reference` in that case. `Name` is not a case-sensitive field.
+Users cannot add a `Document` to a `Case` if there is an existing `Document` with the same `Name` and `Reference` in that `Case`. `Name` is not a case-sensitive field.
 * `Suspects`, `Witnesses`, `Victims` are identified by their `Name`, `Sex` and `Phone`. 
 Users cannot add a `Suspect`/`Witness`/`Victim` to a `Case` if there is an existing `Suspect`/`Witness`/`Victim` with the same `Name`, `Sex` and `Phone` in that `Case`. `Name` is not a case-sensitive field.
 * However, note that there can be duplicates between `Suspect`, `Witness` and `Victim` in a `Case`, and between different `Cases`. 
 There can be a `Suspect` with the same `Name`, `Sex` and `Phone` as an existing `Victim`/`Witness` in that `Case` and vice versa.
-The same `Suspect`/`Witness`/`Victim` can also appear in two different cases.
+The same `Suspect`/`Witness`/`Victim` can also appear in different cases.
 </div>
 
 ### Main page
@@ -399,6 +399,7 @@ Example:
 Deletes the suspect specified with `SUSPECT_NO` from the list of suspects.
 
 Format: `delete suspect SUSPECT_NO`
+- `SUSPECT_NO` must be a valid index (starting from 1) of the suspect list.
 
 Example: `delete suspect 1`
 
@@ -407,6 +408,7 @@ Example: `delete suspect 1`
 Deletes the victim specified with `VICTIM_NO` from the list of victims.
 
 Format: `delete victim VICTIM_NO`
+- `VICTIM_NO` must be a valid index (starting from 1) of the victim list.
 
 Example: `delete victim 1`
 
@@ -416,6 +418,7 @@ Example: `delete victim 1`
 Deletes the witness specified with `WITNESS_NO` from the list of witnesses.
 
 Format: `delete witness WITNESS_NO`
+- `WITNESS_NO` must be a valid index (starting from 1) of the witness list.
 
 Example: `delete witness 1`
 
@@ -482,7 +485,7 @@ User data automatically saves when there is a change in data.
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PIVOT home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
