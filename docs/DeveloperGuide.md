@@ -9,17 +9,18 @@ title: Developer Guide
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide to set up the project in your computer using an Integrated Development Environment (IntelliJ is highly recommended)
+ [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+The different components and sub-components of _Common Cents_ and how they interact with each other.
 
 ### Architecture
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <img src="images/ArchitectureDiagram.png" width="450" />
-
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -62,11 +63,12 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/Ui.java)
-
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AccountListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/Ui.java)
+
 
 The `UI` component,
 
@@ -74,19 +76,20 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 ### Logic component
+The Logic component parses and executes the commands. <br>
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/logic/Logic.java)
 
-1. `Logic` uses the `CommonCentsParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can either affect the `ActiveAccount` which in turn affects the `Model` (e.g. adding an expense), 
+* `Logic` uses the `CommonCentsParser` class to parse the user command.
+* This results in a `Command` object which is executed by the `LogicManager`.
+* The command execution can either affect the `ActiveAccount` which in turn affects the `Model` (e.g. adding an expense), 
 or affect the `Model` directly (e.g. adding an account).
-1. Based on the changes the command execution made, the `CommandResultFactory` generates a `CommandResult` object which encapsulates
+* Based on the changes the command execution made, the `CommandResultFactory` generates a `CommandResult` object which encapsulates
 the result of the command execution and is passed back to the `Ui`,
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+* In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteacc 1")` API call.
 
@@ -96,6 +99,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 </div>
 
 ### Model component
+The model component stores the relevant data for _Common Cents_.<br>
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -116,6 +120,7 @@ The `Model`,
 
 
 ### Storage component
+The Storage component deals with save and load user data.
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -136,6 +141,7 @@ Classes used by multiple components are in the `seedu.cc.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Undo feature
+This feature allows the user to undo their previous entry-level commands.
 
 #### Implementation
 
@@ -203,7 +209,8 @@ Hence, the `undo` command only works on the previously stated commands which int
 
 </div>
 
-#### Design consideration:
+#### Design consideration
+Explanation why a certain design is chosen.
 
 ##### Aspect: How undo executes
 
@@ -225,6 +232,7 @@ Hence, the `undo` command only works on the previously stated commands which int
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 ### Edit account feature
+This feature allows the user to edit the information of a specific existing entry.
 
 #### Implementation
 The proposed edit account mechanism is facilitated by `EditAccountCommand`. It extends `Command` and is identified by
@@ -267,9 +275,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![EditAccountActivityDiagram](images/EditAccountActivityDiagram.png)
 
-#### Design consideration:
+#### Design consideration
+Explanation why a certain design is chosen.
 
-##### Aspect: How edit account executes:
+##### Aspect: How edit account executes
 
 * **Alternative 1 (current choice):** Accounts can only be edited if they are active.
   * Pros: Easy to implement.
@@ -291,10 +300,11 @@ The following activity diagram summarizes what happens when a user executes a ne
   which resulted in more lines of code.
 
 ### Find entries feature 
-
+This feature allows the user to find specific existing entries using a given keyword.
+  
 #### Implementation
 
-The proposed Find entries feature is facilitated by `FindCommand`. It extends `Command` and 
+The Find entries feature is facilitated by `FindCommand`. It extends `Command` and 
 is identified by `CommonCentsParser` and `FindCommandParser`. The FindCommand interacts 
 with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
 operations: 
@@ -330,11 +340,8 @@ such as `CommandResult` and `Storage` are left out of the sequence diagram as th
 of the find entries command.
 </div>
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![FindActivityDiagram](images/FindActivityDiagram.png)
-
-#### Design consideration:
+#### Design consideration
+Explanation why a certain design is chosen.
 
 ##### Aspect: How find entries command is parsed
 * **Choice:** User needs to use prefix "k/" to before the keywords.
@@ -342,7 +349,7 @@ The following activity diagram summarizes what happens when a user executes a ne
         * Easy to implement as the arguments can be tokenized in the event of inputs with multiple arguments.
         * Able to handle multiple arguments as input for Category (with prefix "c/") is optional.
     * Cons: Less convenience for the user. 
-     
+
 ### Get total revenue/expenses feature
 
 #### Implementation
@@ -372,6 +379,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 ![GetTotalActivityDiagram](images/GetTotalActivityDiagram.png)
 
 #### Design consideration
+Explanation why a certain design is chosen.
 
 ##### Aspect: How get total expenses/revenues executes:
 * Alternative 1 (current choice): Calculates the total expenses/revenues in the by retrieving the expense/revenue list. 
@@ -384,7 +392,7 @@ _{Explain here how the data archiving feature will be implemented}
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
-
+This section includes the guides for developers to reference.
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
@@ -394,10 +402,11 @@ _{Explain here how the data archiving feature will be implemented}
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
-
+This includes the different functional as well as non-functional requirements of _Common Cents_. 
 ### Product scope
+The problems _Common Cents_ aims to tackle.
 
-**Target user profile**:
+**Target user profile:**
 
 * Has a need to manage a significant number of business accounts, each with a significant number of financial entries
 * Prefers desktop apps over other types
@@ -410,21 +419,30 @@ _{Explain here how the data archiving feature will be implemented}
 * Provides a simple UI for business owners to see all the desired information easily
 * Provides an aesthetic UI which is pleasant to the eye
 
-
 ### User stories
+This section describes the features of _Common Cents_ from an end-user perspective. 
+<div markdown="block" class="alert alert-info"> 
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+:information_source: **Note:** 
+
+Priorities are represented by the number of `*` 
+* High (must have) - `* * *` 
+* Medium (nice to have) - `* *` 
+* Low (unlikely to have) - `*`
+ 
+</div>
+
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *` | user | be able to exit the app |  |
 | `* * *` | user | be able to add my expense/revenues entries to the userboard |  |
 | `* * *` | user | be able to delete my expense/revenue entries from the userboard |  |
-| `* * *` | user | view my expenditure by category |                  |
+| `* * *` | user | view my expenditure by category |  |
 | `* * *` | new user | be able to view a help FAQ on the functionality of the program | navigate through the different aspects of it |
 | `* * *` | user | be able to save my tasks and load them when the app is re-opened |                                    |
 | `* * *` | user with many side businesses | keep my accounts and expenses separate | understand where my inflow and outflow of finances come from |
-| `* * *` | user | have my expenses/revenues be calculated on demand |                                                              |
+| `* * *` | user | have my expenses/revenues be calculated on demand |  |
 | `* * *` | clumsy user | be able to edit my expenses/revenues | fix wrongly keyed-in information |
 | `* * *` | user | be able to find specific expenses/revenues| check for its specific information |
 | `* * *` | user | be able to view my net profits on the userboard |  |
@@ -442,12 +460,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Use cases 
+This captures different scenarios of how a user will perform tasks while using _Common Cents_. 
 (Update the number once all the use cases are done) (Comment)
 
 (For all use cases below, the **System** is the `CommonCents` and the **Actor** is the `user`, unless specified otherwise)
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC01 - Add an expense entry**
+**Use case: UC01 - Adding an expense**
 
 **MSS**
 
@@ -551,7 +570,125 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Add an account**
+**Use case: UC - Finding specific expenses**
+
+**MSS**
+
+1. User requests to find some specific expenses by giving keywords.
+2. Common Cents filters the expense list to show the required expenses and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1b. User does not input a keyword or a list of keywords.
+
+    * 1b1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1c. User inputs a keyword or a list of keywords that do not exist in any of the expenses' description.
+
+    * 1c1. Common Cents shows an empty expense list and displays a message to inform user that no expense is found.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+**Use case: UC - Finding specific revenues**
+
+**MSS**
+
+1. User requests to find some specific revenues by giving keywords.
+2. Common Cents filters the revenue list to show the required revenues and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1b. User does not input a keyword or a list of keywords.
+
+    * 1b1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1c. User inputs a keyword or a list of keywords that do not exist in any of the revenues' description.
+
+    * 1c1. Common Cents shows an empty revenue list and displays a message to inform user that no revenue is found.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+**Use case: UC - Finding specific entries (either expenses or revenues)**
+
+**MSS**
+
+1. User requests to find some specific entries by giving keywords.
+2. Common Cents filters both expense and revenue lists to show the required entries and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1b. User does not input a keyword or a list of keywords.
+
+    * 1b1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1c. User inputs a keyword or a list of keywords that do not exist in any of the entries' description.
+
+    * 1c1. Common Cents shows an empty expense and revenue lists and displays a message to inform user that no expense is found.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+**Use case: UC - Adding an account**
+
+**MSS**
+
+1. User request to add a new account.
+2. Common Cents adds account to account list and displays success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1b. The account to be added has the same name as an existing account in Common Cents.
+
+    * 1b1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+**Use case: UC - Adding an account**
 
 **MSS**
 
@@ -686,12 +823,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </div>
       
-
-
-
 *{More to be added}*
 
 ### Non-Functional Requirements
+This specifies criteria that can be used to judge the operation of _Common Cents_.
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 entries per account without a noticeable sluggishness in performance for typical
@@ -702,6 +837,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Glossary
+Definitions of certain terms used in this Developer Guide.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
@@ -718,6 +854,7 @@ testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
+Basic instructions to test the launch and shutdown of _Common Cents_.
 
 1. Initial launch
 
@@ -727,13 +864,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+       Expected: The most recent window location is retained.
 
 
 ### Entry-level commands
+Basic instructions to test entry-level commands of _Common Cents_.
+
 1. Adding an entry while all entries are being shown
    1. Prerequisites: List all entries using the `list` command.
    
@@ -746,12 +885,12 @@ testers are expected to do more *exploratory* testing.
       Pie chart and total revenue value are updated.
       
    1. Test case: `add c/wronginput d/buying paint a/6.45 t/arts`<br>
-      Expected: No entry is added, Error details shown in the status message
+      Expected: No entry is added, Error details shown in the status message.
       
    1. Other incorrect add commands to try: `add `, `add c/expense d/ a/6.45`, `add c/revenue d/selling paintings a/x`(where x is not a valid monetary value).<br>
       Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
-1. Deleting a entry while all entries are being shown
+1. Deleting an entry while all entries are being shown
 
    1. Prerequisites: List all entries using the `list` command. Multiple entries in the list.
 
@@ -769,6 +908,51 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete 0 c/revenue`, `delete x` (where x is larger than the account list size or smaller than 1), `...`.<br>
       Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
+1. Finding all entries that have specific keywords
+
+   1. Prerequisites: Delete the existing `CommonCents.json` file in the `data` folder. Use the default data. 
+   
+   1. Test case: `find c/expense k/canvas`<br>
+        Expected: 
+        * Expense list is updated with only 1 expense that has the description `canvas` inside. 
+        * Revenue list remains the same. 
+        * Result display shows "Entries updated". 
+        * Pie chart and total expense value remain.
+    
+   1. Test case: `find c/revenue k/cases`<br>
+        Expected: 
+        * Expense list remains the same.
+        * Revenue list is updated with only 1 revenue that has the description containing `cases`.
+        * Result display shows "Entries updated". 
+        * Pie chart and total expense value remain. 
+
+   1. Test case: `find k/cases canvas`<br>
+        Expected: 
+        * Both lists are updated with 1 expense that has the description containing `canvas` and 
+        1 revenue that has the description containing `cases`.
+        * Result display shows "Entries updated". 
+        * Pie chart and total expense value remain. 
+         
+   1. Test case: `find c/expense k/nonexistent`<br>
+        Expected: 
+        * Expense list is updated with no entries inside.
+        * Revenue list remains the same. 
+        * Result display shows "No entries found". 
+        * Pie chart and total expense value remain. 
+   
+   1. Test case: `find c/revenue k/nonexistent`<br>
+       Expected: 
+       * Expense list remains the same.
+       * Revenue list is updated with no entries inside. 
+       * Result display shows "No entries found". 
+       * Pie chart and total expense value remain.
+
+   1. Test case: `find c/expense`<br>
+       Expected: Neither list is updated. Error details shown in the status message.
+   
+   1. Other incorrect delete commands to try: `find c/revenue`, `find k/`, `find`,... .<br>
+        Expected: Similar behaviour with previous testcase. Note that error details may differ based on 
+        which parameters of the input that is in an incorrect format. 
 
 1. Undoing an entry-level command
 
@@ -779,6 +963,7 @@ testers are expected to do more *exploratory* testing.
    Pie chart is reverted to the state prior to the previous command.
    
 ### Account-level commands
+Basic instructions to test account-level commands of _Common Cents_.
 1. Adding a new unique account
    1. Prerequisite: Ensure no accounts in Common Cents has the name `New Account`.
 
@@ -806,6 +991,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
 ### Saving data
+Basic instructions to test saving and loading of user data of _Common Cents_.
 
 1. Dealing with missing/corrupted data files
 
