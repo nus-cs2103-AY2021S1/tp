@@ -59,15 +59,15 @@ public class PieChartDisplay extends UiPart<Region> {
         pieChartDisplay.getData().clear();
         pieChartDisplay.setData(data);
 
-        correctPie.getNode().setStyle("-fx-pie-color: #b9c628;");
-        wrongPie.getNode().setStyle("-fx-pie-color: #c65528;");
+        correctPie.getNode().setStyle("-fx-pie-color: #86d948;");
+        wrongPie.getNode().setStyle("-fx-pie-color: #e84520;");
 
 
         //Solution below adapted from https://gist.github.com/jewelsea/1422628
         Set<Node> items = pieChartDisplay.lookupAll("Label.chart-legend-item");
         int i = 0;
         // these colors came from caspian.css .default-color0..4.chart-pie
-        Color[] colors = { Color.web("#b9c628"), Color.web("#c65528")};
+        Color[] colors = { Color.web("#86d948"), Color.web("#e84520")};
         for (Node item : items) {
             Label label = (Label) item;
             final Rectangle rectangle = new Rectangle(10, 10, colors[i]);
