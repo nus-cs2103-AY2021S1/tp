@@ -237,14 +237,14 @@ Steps:
 
 Outcome:
 1. The _Result Display_ will show a success message.
-2. The _Ingredient Tracker_ will show the list of ingredients.
+2. The Ingredient Tracker inside the _Main View_ will show the list of ingredients.
 
 {Example outcome screenshot to be added later}
 
 #### 2.5 Finding ingredients by keywords : `i-find`
 Finds all ingredients that contain the KEYWORD(s) in their names.
 
-Format: `i-find KEYWORD [MORE_KEYWORDS] ...`
+Format: `i-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `milk` will match `Milk`.
 * The order of the keywords does not matter. e.g. `Milk Boba` will match `Boba Milk`.
@@ -263,7 +263,7 @@ Steps:
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. The _Ingredient Tracker_ will show the ingredient `Black Tea`, the ingredient `Green Tea` and 
+2. The Ingredient Tracker inside the _Main View_ will show the ingredient `Black Tea`, the ingredient `Green Tea` and 
 the ingredient `Brown Sugar`.
 
 {Example outcome screenshot to be added later}
@@ -283,7 +283,7 @@ Steps:
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. You can now see that tCheck has updated all the ingredients' levels to zero in the _Ingredient Tracker_.
+2. You can now see that tCheck has updated all the ingredients' levels to zero in the Ingredient Tracker inside the _Main View_.
 
 {Example outcome screenshot to be added later}
 
@@ -296,7 +296,7 @@ Format: `i-restock`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
-Refer to [Commands - Ingredients Tracking: Notes about ingredients] (#commands-ingredients-tracking)
+Refer to the "Notes about ingredients" below the [Commands - Ingredients Tracking](#commands-ingredients-tracking)
 for details on the pre-determined default levels of different types of ingredients.
 </div>
 
@@ -309,8 +309,8 @@ Steps:
 
 Outcome:
 
-1. The _Result Display_ will show the list of ingredients including each ingredient's name, its ingredient's level and
-the amount needed for the ingredient to reach its pre-determined default level.
+1. The _Result Display_ will show a list of ingredients that the user should restock, including each ingredient's name, 
+its ingredient's level and the amount needed for the ingredient to reach its pre-determined default level.
 
 {Example outcome screenshot to be added later}
 
@@ -536,7 +536,7 @@ Action | Format, Examples
 **Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
 **List**| `i-list`
-**Find**| `i-find KEYWORD [MORE_KEYWORDS] ...`  <br> e.g., `i-find milk sugar`
+**Find**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
 **Reset all ingredients to zero**| `i-reset-all`
 **View all ingredients that the user should restock**| `i-restock`
 
