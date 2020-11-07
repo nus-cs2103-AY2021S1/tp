@@ -234,6 +234,17 @@ Format: `exit`
 
 ![Ui](images/screenshots/v1.3exit.png)
 
+### Clear FixMyAbs
+
+Clear all the data including all logs and all exercises stored by FixMyAbs
+
+Format: `clear`
+
+![Ui](images/screenshots/clear.png)
+
+Success:
+![Ui](images/screenshots/clear_success.png) 
+
 ### Saving the data
 
 Exercise log data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -258,6 +269,7 @@ Exercise log data are saved in the hard disk automatically after any command tha
 | **Add exercise**   | `addex e/<exercise name> c/<calories per rep>` | e.g. `addex e/Lunges c/5` |
 | **Edit exercise**   | `editex <index> [e/exercise name] [c/calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6`, `editex 1 e/One-legged Lunges`, `editex 1 c/6` |
 | **Delete exercise**   | `deleteex <index>` | e.g. `deleteex 1` |
+| **Clear**  | `clear`                                   |                   |
 | **Find**   | `find <keywords in logs>`                         | e.g.`find pushups`                   |
 | **Help**   | `help`                         | e.g.`help`                   |
 | **Exit**   | `exit`                                    |
