@@ -1068,8 +1068,8 @@ MSS:
 
 1.  User requests to list flashcards
 2.  QuickCache shows a list of flashcards
-3.  User request to edit a specific flashcard of the list
-4.  QuickCache edit the flashcard
+3.  User request to edits a specific flashcard of the list
+4.  QuickCache edits the flashcard
 5.  QuickCache updates flashcard save file (UC08)
 
     Use case ends.
@@ -1086,7 +1086,7 @@ MSS:
 
     Use case resumes at step 2.
     
-* 3b. There is no change in the flashcard or the flashcard already exists.
+* 3b. There is no change in the flashcard or the newly edited flashcard is the same as another flashcard.
 
   * 3b1. QuickCache shows an error message.
 
