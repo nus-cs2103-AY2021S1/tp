@@ -8,11 +8,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.TaskCommandTestUtil.PLAN_MEETING;
 import static seedu.address.logic.commands.TaskCommandTestUtil.TASK_TIME_RANGE_DESC;
 import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_TASK_PROGRESS_HALF;
+import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_GIT_USERNAME_A;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASCENDING_SORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_ASSIGNEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_FIRST_TEAMMATE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
@@ -202,9 +204,8 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_viewTeammate() throws Exception {
         ViewTeammateCommand command = (ViewTeammateCommand) parser.parseCommand(
-            ViewTeammateCommand.COMMAND_WORD + " " + INDEX_FIRST_TEAMMATE.getOneBased(), Status.PROJECT
-        );
-        assertEquals(new ViewTeammateCommand(INDEX_FIRST_TEAMMATE), command);
+            ViewTeammateCommand.COMMAND_WORD + " " + VALID_TEAMMATE_GIT_USERNAME_A, Status.PROJECT);
+        assertEquals(new ViewTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE), command);
     }
 
     @Test
@@ -291,7 +292,7 @@ public class MainCatalogueParserTest {
         }
 
         try {
-            parser.parseCommand(ViewTeammateCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased(),
+            parser.parseCommand(ViewTeammateCommand.COMMAND_WORD + " " + VALID_TEAMMATE_GIT_USERNAME_A,
                 Status.PROJECT_LIST);
             fail();
         } catch (Exception e) {
