@@ -540,7 +540,14 @@ Step 2. Type the command `java -version` to check for the version.
 ![windows java version](images/faq/windows_javaVersion.PNG)
 
 <div markdown="block" class="alert alert-warning">
-**:warning: Important:** Ensure that the java version is at least **11**.
+**:warning: Important:** Ensure that the java version is at least **11**. If your version is less than **11**, 
+scroll down to the **Notes** to the view the download link.
+
+After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
+
+If it still does not run, type the command `java -jar hospify.jar` in the command prompt in the **SAME directory** 
+containing your `hospify.jar` file. 
+![running jar from windows prompt](images/faq/windows_javaVersion.PNG)
 </div>
 
 * On **MAC**\
@@ -550,11 +557,18 @@ Step 2. Type the command `java -version` to check for the version.
 ![windows java version](images/faq/mac_javaVersion.PNG)
 
 <div markdown="block" class="alert alert-warning">
-**:warning: Important:** Ensure that the java version is at least **11**.
+**:warning: Important:** Ensure that the java version is at least **11**. If your version is less than **11**,
+scroll down to the **Notes** to the view the download link.
+
+After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
+
+If it still does not run, type the command `java -jar hospify.jar` in the **TERMINAL** in the **SAME directory** 
+containing your `hospify.jar` file. 
+![running jar from windows prompt](images/faq/mac_javaVersion.PNG)
 </div>
 
 <div markdown="block" class="alert alert-primary">
-**:information_source: Notes:** If your java version is **less than 11**, visit
+**:information_source: Notes:** If your java version is **less than 11**, download from
  the official Java website [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 </div>
 
