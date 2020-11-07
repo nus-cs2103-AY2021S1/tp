@@ -20,7 +20,6 @@
 - JavaFX - Used for creating the GUI
 - Jackson - Used for processing JSON files
 - JUnit5 - Used for unit testing
-- Telegram API - Used for sending text messages to the supper vendor
 
 
 
