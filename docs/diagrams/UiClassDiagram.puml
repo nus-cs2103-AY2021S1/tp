@@ -16,6 +16,7 @@ Class PersonCard
 Class StatusBarFooter
 Class CommandBox
 Class ArchiveModeBox
+Class ColorPicker
 }
 
 package Model <<Rectangle>> {
@@ -39,6 +40,8 @@ MainWindow *-down-> StatusBarFooter
 MainWindow *-down-> ArchiveModeBox
 
 PersonListPanel -down-> PersonCard
+
+PersonCard -down-> ColorPicker
 
 MainWindow -left-|> UiPart
 
