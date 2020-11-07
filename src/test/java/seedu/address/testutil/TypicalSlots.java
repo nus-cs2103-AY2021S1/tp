@@ -16,9 +16,14 @@ import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 import static seedu.address.testutil.TypicalRoutines.UPPER_BODY;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.model.FitNus;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.routine.Routine;
 import seedu.address.model.timetable.Activity;
-import seedu.address.model.timetable.Day;
-import seedu.address.model.timetable.DurationTest;
 import seedu.address.model.timetable.Slot;
 
 /**
@@ -57,5 +62,26 @@ public class TypicalSlots {
     public static final Slot MA1521_FRIDAY_1800_2000 = new SlotBuilder().withActivity(MA1521)
             .withDay(FRIDAY).withDuration(DURATION_1800_2000).build();
 
-    private TypicalSlots() {}
+    private TypicalSlots() {} // prevents instantiation
+
+    /**
+     * Returns an {@code FitNus} with all the typical slots.
+     */
+    public static FitNus getTypicalFitNus() {
+        FitNus fn = new FitNus();
+        for (Slot slot : getTypicalSlots()) {
+            if (slot.getActivity().isRoutine()) {
+                fn.addRoutine((Routine) slot.getActivity());
+            } else {
+                fn.addLesson((Lesson) slot.getActivity());
+            }
+            fn.addSlotToTimetable(slot);
+        }
+        return fn;
+    }
+
+    public static List<Slot> getTypicalSlots() {
+        return new ArrayList<>(Arrays.asList(
+                LEG_DAY_WEDNESDAY_1600_1800, MA1101R_THURSDAY_1600_1800, MA1521_FRIDAY_1600_1800));
+    }
 }

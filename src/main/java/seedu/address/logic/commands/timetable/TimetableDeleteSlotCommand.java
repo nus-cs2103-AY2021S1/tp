@@ -34,6 +34,7 @@ public class TimetableDeleteSlotCommand extends Command {
     private final Slot slotToFind;
 
     public TimetableDeleteSlotCommand(Slot slot) {
+        requireNonNull(slot);
         slotToFind = slot;
     }
 

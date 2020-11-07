@@ -26,10 +26,11 @@ import seedu.address.model.timetable.Slot;
 class JsonSerializableFitNus {
 
     public static final String MESSAGE_DUPLICATE_LESSON = "Lesson list contains duplicate lesson(s).";
-    private static final String MESSAGE_DUPLICATE_EXERCISE = "Exercise list contains duplicate exercise(s).";
-    private static final String MESSAGE_DUPLICATE_ROUTINE = "Routine list contains duplicate routine(s).";
-    private static final String MESSAGE_DUPLICATE_SLOT = "Slot list contains duplicate slot(s).";
-    private static final String MESSAGE_DUPLICATE_DAILYCALORIE = "Calorie log contains duplicate calorie log(s).";
+    public static final String MESSAGE_DUPLICATE_EXERCISE = "Exercise list contains duplicate exercise(s).";
+    public static final String MESSAGE_DUPLICATE_ROUTINE = "Routine list contains duplicate routine(s).";
+    public static final String MESSAGE_DUPLICATE_SLOT = "Slot list contains duplicate slot(s).";
+    public static final String MESSAGE_OVERLAP_SLOT = "Slot list contains overlapping slot(s).";
+    public static final String MESSAGE_DUPLICATE_DAILYCALORIE = "Calorie log contains duplicate calorie log(s).";
 
     private final List<JsonAdaptedExercise> exercises = new ArrayList<>();
     private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
@@ -103,6 +104,9 @@ class JsonSerializableFitNus {
             Slot slot = jsonAdaptedSlot.toModelType();
             if (fitNus.hasSlot(slot)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_SLOT);
+            }
+            if (fitNus.hasOverlappingDurationInSlot(slot)) {
+                throw new IllegalValueException(MESSAGE_OVERLAP_SLOT);
             }
             fitNus.addSlotToTimetable(slot);
         }

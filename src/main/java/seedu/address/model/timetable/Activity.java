@@ -11,6 +11,11 @@ public abstract class Activity {
         public boolean isSameActivity(Activity otherActivity) {
             return false;
         }
+
+        @Override
+        public boolean isRoutine() {
+            return false;
+        }
     };
 
     protected final Name name;
@@ -37,4 +42,6 @@ public abstract class Activity {
      * This defines a weaker notion of equality between two activities.
      */
     public abstract boolean isSameActivity(Activity otherActivity);
+
+    public abstract boolean isRoutine();
 }

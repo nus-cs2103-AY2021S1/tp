@@ -68,6 +68,11 @@ public class Lesson extends Activity {
         return otherLesson.getName().equals(getName());
     }
 
+    @Override
+    public boolean isRoutine() {
+        return false;
+    }
+
     /**
      * Returns true if both lessons have the same identity and data fields.
      * This defines a stronger notion of equality between two exercises.
