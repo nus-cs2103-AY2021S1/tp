@@ -51,12 +51,10 @@ public class DeleteTeammateCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
         }
 
-//        Participation participation = project.getParticipation(gitUserIndex.getGitUserNameString());
         Person personToDelete = Person.getPersonFromList(gitUserIndex);
         Person.getAllPeople().remove(personToDelete);
 
         assert personToDelete != null;
-//        Project.deleteAllParticipationOf(personToDelete.getGitUserNameString());
         Project currentProject;
         Participation currentParticipation;
         for (int i = 0; i < Project.getAllProjects().size(); i++) {

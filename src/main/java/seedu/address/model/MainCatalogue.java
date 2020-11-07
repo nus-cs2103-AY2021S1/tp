@@ -34,7 +34,8 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         projects = new UniqueProjectList();
         persons = new UniquePersonList();
         participations = new UniqueParticipationList();
