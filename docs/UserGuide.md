@@ -19,19 +19,19 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
 1. Copy the file to the folder you want to use as the _home folder_ for PIVOT.
 
-1. Run the command `java -jar pivot.jar` using the Command Line to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Run the command `java -jar pivot.jar` using the Command Line at the _home folder_ to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    
     ![Home Page at Main](images/home_main.png)
    
 ## Navigating PIVOT
 
-1. When you first start the app, you will be at the `Home` section, `Main` Page. In the image below, the `navigation bar` is highlighted. It shows where you are in the app at any point in time. The `Command Line` allows you to enter the commands, and the feedback is displayed in the `Result Display`.
+1. When you first start the app, you will be at the `Home` section's `Main Page` (You can navigate between the `Home` or `Archive` sections). In the image below, the `navigation bar` is highlighted. It shows where you are in the app at any point in time. The `Command Line` allows you to enter the commands, and the feedback is displayed in the `Result Display`.
 
     ![Home Page at Main, highlighted navigation](images/home_main_nav.png)
 
-1. The left panel highlighted in the image below is the `Main Page` of the app. It lists all of the `Cases` stored in PIVOT. By using a `Main Page Command`,  you can interact with the `Cases` in this page. (Refer to [Features](#features) below for the commands)
+1. The left panel highlighted in the image below is the `Main Page` of the app. It lists all of the `Cases` stored in PIVOT according to the `Section` you are in. By using a `Main Page Command`,  you can interact with the `Cases` in this page. (Refer to [Main page](#main-page) below for the commands)
 
-1. By typing `open case 1`, the right panel is updated. This is `Case Page` of the app (highlighted below). It displays the `Case` information. By using a `Case Page Command`,  you can interact with the `Case` details in this page. (Refer to [Features](#features) below for the commands)
+1. By typing `open case 1` in the Command Line, the right panel is updated. This is `Case Page` of the app (highlighted below). It displays the `Case` information. By using a `Case Page Command`,  you can interact with the `Case` details in this page. (Refer to [Investigation Case page](#investigation-case-page) below for the commands)
 
     ![Home Page at Case, highlighted main and case page](images/home_case_nav.png)
     
@@ -88,18 +88,18 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
 * PIVOT does not allow the addition of `Case`, `Document`, `Suspect`, `Witness` or `Victim` that already exists.
 * When editing details in PIVOT, if it results in duplicates, PIVOT will not allow it as well.
-* `Cases` are identified by their `Title`. Users cannot add a `Case` if there is an existing `Case` (from both `Home`/`Archive` section) with the same `Title`. `Title` is a case-sensitive field.
+* `Cases` are identified by their `Title`. Users cannot add a `Case` if there is an existing `Case` (in either `Home`/`Archive` section) with the same `Title`. `Title` is a case-sensitive field.
 * `Documents` are identified by both their `Name` and `Reference`. 
-Users cannot add a `Document` to a `Case` if there is an existing `Document` with the same `Name` and `Reference` in that case. `Name` is not a case-sensitive field.
+Users cannot add a `Document` to a `Case` if there is an existing `Document` with the same `Name` and `Reference` in that `Case`. `Name` is not a case-sensitive field.
 * `Suspects`, `Witnesses`, `Victims` are identified by their `Name`, `Sex` and `Phone`. 
 Users cannot add a `Suspect`/`Witness`/`Victim` to a `Case` if there is an existing `Suspect`/`Witness`/`Victim` with the same `Name`, `Sex` and `Phone` in that `Case`. `Name` is not a case-sensitive field.
 * However, note that there can be duplicates between `Suspect`, `Witness` and `Victim` in a `Case`, and between different `Cases`. 
 There can be a `Suspect` with the same `Name`, `Sex` and `Phone` as an existing `Victim`/`Witness` in that `Case` and vice versa.
-The same `Suspect`/`Witness`/`Victim` can also appear in two different cases.
+The same `Suspect`/`Witness`/`Victim` can also appear in different cases.
 </div>
 
 ### Main page
-The main page of the application when the user first enters the app.
+The commands listed below can only be used in the `Main Page` of the app.
 
 #### List all unarchived cases in Home section: `list case`
 Shows the `Home` section and lists all unarchived cases in PIVOT.
@@ -190,7 +190,7 @@ Example:
 * `find 91234567 bishan` could return a case with the Victim having Phone number `91234567`, and cases containing `bishan` in their details
 
 ### Investigation Case page
-The page of the application when the user opens a specified case.
+The commands listed below can only be used in the `Case Page` of the app.
 
 #### List all documents in the current case: `list doc`
 Switches to the `Document` tab and lists all suspects for the current case.
@@ -221,12 +221,14 @@ Format: `add desc d:DESC`
 Example: 
 - `add desc d:Kovan double murders of twins xxx and yyy` adds the description “Kovan double murders of twins xxx and yyy” to the current case.
 
-#### Add document to the current case: `add doc n:TITLE r:FILE_NAME`
-Adds a new document to the current case with the specified `TITLE` and `FILE_NAME`.
+#### Add document to the current case: `add doc n:NAME r:REFERENCE`
+Adds a new document to the current case with the specified `NAME` and `REFERENCE`.
+- `NAME` is what you would like to call the Document in PIVOT.
+- `REFERENCE` of a Document is the actual filename and its extension. For example, `Evidence.pdf` 
 
-Format: `add doc n:TITLE r:FILE_NAME`
-- `TITLE` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
-- This document with file name `FILE_NAME` must be manually added to the `references` folder provided before it can be added to the PIVOT system.
+Format: `add doc n:NAME r:REFERENCE`
+- `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
+- This document with reference `REFERENCE` must be manually added to the `references` folder provided before it can be added to the PIVOT system.
 
 Example: 
 - `add doc n:Case Details r:case_details.pdf` adds a new document with title “Case Details” with the file name case_details.pdf to the investigation case.
@@ -236,7 +238,7 @@ Example:
 
 **:information_source: Notes about the restrictions for the fields of a person (suspect/victim/witness):**<br>
 
-* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
+* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only). The first letter of each word will be auto-capitalised.
 * `SEX` should only be either M or F, and is case-insensitive.
 * `PHONE` should only contain numbers, and it should be at least 3 digits long.
 * `EMAIL` should be of the format local-part@domain.top-level-domain and adhere to the following constraints:
@@ -315,11 +317,13 @@ Example:
 
 Edits the document of the current case at the specified `DOC_NO` of the list. There must be at least one field indicated.
 A document cannot be edited to contain duplicates in the document list.
+- `NAME` is what you would like to call the Document in PIVOT.
+- `REFERENCE` of a Document is the actual filename and its extension. For example, `Evidence.pdf` 
 
 Format: `edit doc DOC_NO [n:NAME] [r:REFERENCE]`
 - `DOC_NO` must be a valid index (starting from 1) of the document list.
-- `NAME` should only contain alphanumeric characters and spaces, and it should not be blank(no value, spaces only).
-- The specified `REFERENCE` must be a valid file name in the `references` folder provided before it can be added to the PIVOT system.
+- `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
+- This document with reference `REFERENCE` must be manually added to the `references` folder provided before it can be updated in the PIVOT system.
 
 Example: 
 - `edit doc 2 n:Fire outbreak details r:newFireDoc.pdf` updates the second document of the current opened case with 
@@ -332,7 +336,7 @@ This document `newFireDoc.pdf` must be manually added to the `references` folder
 
 **:information_source: Notes about the restrictions for the fields of a person (suspect/victim/witness):**<br>
 
-* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
+* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).  The first letter of each word will be auto-capitalised.
 * `SEX` should only be either M or F, and is case-insensitive.
 * `PHONE` should only contain numbers, and it should be at least 3 digits long.
 * `EMAIL` should be of the format local-part@domain.top-level-domain and adhere to the following constraints:
@@ -399,6 +403,7 @@ Example:
 Deletes the suspect specified with `SUSPECT_NO` from the list of suspects.
 
 Format: `delete suspect SUSPECT_NO`
+- `SUSPECT_NO` must be a valid index (starting from 1) of the suspect list.
 
 Example: `delete suspect 1`
 
@@ -407,6 +412,7 @@ Example: `delete suspect 1`
 Deletes the victim specified with `VICTIM_NO` from the list of victims.
 
 Format: `delete victim VICTIM_NO`
+- `VICTIM_NO` must be a valid index (starting from 1) of the victim list.
 
 Example: `delete victim 1`
 
@@ -416,6 +422,7 @@ Example: `delete victim 1`
 Deletes the witness specified with `WITNESS_NO` from the list of witnesses.
 
 Format: `delete witness WITNESS_NO`
+- `WITNESS_NO` must be a valid index (starting from 1) of the witness list.
 
 Example: `delete witness 1`
 
@@ -434,17 +441,20 @@ Example:
 Returns to the application main page.
 
 ### Both pages
+The commands listed below can be used in the both pages of the app.
 
 #### Undo: `undo`
 
 Undoes the previous command. Open, list, find and return commands are unable to be undone.
 
 Format: `undo`
+- Undoing a `Case Command` will not show in the `Result Display` which unique `Case` the command was executed in.
 
 #### Redo: `redo`
 
 Redoes the command that was just undone. Open, list, find and return commands are unable to be redone. If another command that changes the data of PIVOT is used after an undo 
 command, redo will not be able to be called.
+- Redoing a `Case Command` will not show in the `Result Display` which unique `Case` the command was executed in.
 
 Format: `redo`
 
@@ -457,6 +467,8 @@ using undo/redo will make the application return to the main page.<br>
 e.g. `add case t:Lost Wallet` will add a new case to PIVOT. `open case 1` will open the first case in the list of cases,
 and the application will now be at the case page. Using `undo` will undo the `add case t:Lost Wallet command`, which is
 a `main page command`. This will bring the application back to the main page.
+
+`Undo` has to be called before any `Redo` can be called. An `Undo` command itself cannot be undone. In order to restore the previous command that was undone, `redo` will have to be called. Likewise, a `redo` command itself cannot be undone as well. Calling `undo` after a `redo` will just restore PIVOT to the state where `undo` was initially called.
 </div>
 
 #### Help: `help`
@@ -482,7 +494,7 @@ User data automatically saves when there is a change in data.
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PIVOT home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -518,7 +530,7 @@ User data automatically saves when there is a change in data.
 |**edit title**         | `edit title t:TITLE`                                                              |
 |**edit description**   | `edit desc d:DESC`                                                                |
 |**edit status**        | `edit status s:STATUS`                                                            |
-|**edit document**      | `edit doc DOC_NO [n:TITLE] [r:FILE_NAME]`                                         |
+|**edit document**      | `edit doc DOC_NO [n:NAME] [r:REFERENCE]`                                         |
 |**edit suspect**       | `edit suspect SUSPECT_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`      |
 |**edit victim**        | `edit victim VICTIM_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`        |
 |**edit witness**       | `edit witness WITNESS_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`      |

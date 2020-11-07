@@ -4,6 +4,8 @@ import static seedu.pivot.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.pivot.model.investigationcase.Name;
+
 /**
  * Encapsulates a Person related to an Investigation Case.
  */
