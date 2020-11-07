@@ -230,4 +230,5 @@ Exercise log data are saved in the hard disk automatically after any command tha
 | **Edit exercise**   | `editex <index> e/[exercise name] c/[calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6` |
 | **Delete exercise**   | `deleteex <index>` | e.g. `deleteex 1` |
 | **Find**   | `find <keywords>`                         | e.g.`find pushups`                   |
+| **Clear**  | `clear`                                   |                   |
 | **Exit**   | `exit`                                    |
