@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.ObservableList;
 import seedu.cc.model.account.entry.Amount;
 import seedu.cc.model.account.entry.Entry;
@@ -123,14 +124,6 @@ public class Account implements ReadOnlyAccount {
     public boolean hasRevenue(Revenue revenue) {
         requireNonNull(revenue);
         return revenues.contains(revenue);
-    }
-
-    /**
-     * Returns true if an entry with the same identity as {@code entry} exists in the Account.
-     */
-    public boolean hasEntry(Entry entry) {
-        requireNonNull(entry);
-        return expenses.contains(entry) || revenues.contains(entry);
     }
 
     /**

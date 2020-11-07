@@ -122,16 +122,6 @@ public class ActiveAccountManagerTest {
     }
 
     @Test
-    public void hasEntry_expenseNotInAccount_returnsFalse() {
-        assertFalse(activeAccountManager.hasEntry(BUY_ROSE_SEEDS));
-    }
-
-    @Test
-    public void hasEntry_revenueNotInAccount_returnsFalse() {
-        assertFalse(activeAccountManager.hasEntry(BUY_ROSE_SEEDS));
-    }
-
-    @Test
     public void hasExpense_expenseNotInAccount_returnsFalse() {
         assertFalse(activeAccountManager.hasExpense(BUY_ROSE_SEEDS));
     }
@@ -139,18 +129,6 @@ public class ActiveAccountManagerTest {
     @Test
     public void hasRevenue_revenueNotInAccount_returnsFalse() {
         assertFalse(activeAccountManager.hasRevenue(SELL_SUNFLOWER));
-    }
-
-    @Test
-    public void hasEntry_expenseInAccount_returnTrue() {
-        activeAccountManager.addExpense(BUY_ROSE_SEEDS);
-        assertTrue(activeAccountManager.hasEntry(BUY_ROSE_SEEDS));
-    }
-
-    @Test
-    public void hasEntry_revenueInAccount_returnTrue() {
-        activeAccountManager.addRevenue(SELL_SUNFLOWER);
-        assertTrue(activeAccountManager.hasEntry(SELL_SUNFLOWER));
     }
 
     @Test
