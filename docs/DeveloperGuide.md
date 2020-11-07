@@ -327,7 +327,7 @@ The following activity diagram summarizes what happens when a user executes a fa
 
 ##### Aspect: How fav & unfav executes
 
-* **Alternative 1 (current choice):** Creates a new flashcard everytime `isFavourite` changes
+* **Alternative 1 (current choice):** Creates a new flashcard everytime `isFavourite` value changes
   * Pros: Flashcard remains immutable.
   * Cons: Execution time is longer compared to Alternative 2 since a new flashcard is created if flashcard's state changes.
 
