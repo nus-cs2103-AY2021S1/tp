@@ -70,22 +70,23 @@ not be so obvious!
 --------------------------------------------------------------------------------------------------------------------
 #### 3.2.2. General Symbols and Syntax 
 
-The following table gives you general symbols and syntax used in this user guide.
+The following table gives you general symbols and syntax used in this User Guide.
 
 | Syntax |  What it means |
 |----------|-------------|
-| `command` |  The grey block specifies the execuable command which can be entered in the command box |
+| `command` |  The grey block specifies an execuable command which can be entered in the command box |
+| _italics_ | Italicised text specifies the terms related to tCheck's GUI |
 |<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a note |
 |<div markdown="span" class="alert alert-primary">:bulb:  | An bulb indicates that the following text is a tip |
 
 #### 3.2.3. Command Syntax and Usage
 
-The following table gives you technical terms used in this user guide.
+The following table explains technical terms used in this user guide.
 
 | Technical Term | What it means |
 | ---------------| --------------|
-| Command Word | The first word of a command. tCheck uses this command word to decide what king of actions it should perform. |
-| Prefix | It is used to distinguish different kinds of parameters. |
+| Command Word | The first word of a command. tCheck uses this command word to decide what king of actions it should perform |
+| Prefix |It is the input that follows behind a prefix, used to distinguish different kinds of parameters |
 | Parameter | Values given for specific operations. |
 
 **Example:** <br>
@@ -98,7 +99,7 @@ The following table gives you technical terms used in this user guide.
 
 The following points explain the format of a command. 
 
-* Words in `UPPER_CASE` are the parameters to be supplied<br>
+* Words in `UPPER_CASE` are the parameters to be supplied.<br>
    e.g. In `c-delete INDEX`, `INDEX` is a parameter and the command can be used as `c-delete 1`.
 
 * Items in square brackets are optional.<br>
