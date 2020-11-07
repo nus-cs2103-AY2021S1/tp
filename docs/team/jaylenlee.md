@@ -47,7 +47,8 @@ Given below are my contributions to the project.
     * Added example screenshots to features in Usage 
   * Developer Guide:
     * Added implementation details of the `switch` feature. [\#66](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/66)
+    * Updated `switch` feature, user stories, spacing and use case 13 [\#159](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/159)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): 
+  * PRs reviewed (with non-trivial review comments): [\#9](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/9), [\#150](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/150), [\#151](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/151)
   * Posted in forum discussions (examples: [\#77](https://github.com/nus-cs2103-AY2021S1/forum/issues/77))
