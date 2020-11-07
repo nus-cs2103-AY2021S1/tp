@@ -656,7 +656,7 @@ Given below is an example usage scenario for `AddVisitCommand` and how the mecha
 <p align="center">
     <img src="images/AddVisitSequenceDiagram.png"/>
     <br>
-    <em style="color:#CC5500">Figure 28. UI and Logic Component Interactions for AddVisit Command </em>
+    <em style="color:#CC5500">Figure 29. UI and Logic Component Interactions for AddVisit Command </em>
 </p>
 
 Step 1: User inputs `addvisit 1 ` command to add to the first patient's profile.
@@ -678,7 +678,7 @@ The following diagram shows a summary of the steps taken when an `addvisit` comm
 <p align="center">
     <img src="images/AddVisitActivityDiagram.png"/>
     <br>
-    <em style="color:#CC5500">Figure 29. Activity Diagram for User Execution of Command</em>
+    <em style="color:#CC5500">Figure 30. Activity Diagram for User Execution of Command</em>
 </p>
 
 #### 3.8.2 Design Considerations
