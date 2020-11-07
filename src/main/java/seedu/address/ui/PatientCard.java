@@ -23,6 +23,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.ProfilePicture;
+import seedu.address.model.tag.ColorTag;
 
 /**
  * An UI component that displays information of a {@code Patient}.
@@ -103,7 +104,16 @@ public class PatientCard extends UiPart<Region> {
         patient.getAllergies().stream()
                 .sorted(Comparator.comparing(tag -> tag.allergyName))
                 .forEach(tag -> allergies.getChildren().add(new Label(tag.allergyName)));
-        colorPane.setStyle("-fx-background-color: " + patient.getColorTag().cssColor + ";");
+
+        ColorTag colorTag = patient.getColorTag();
+        if (colorTag.isPlaceholder()) {
+            colorPane.setPrefWidth(1);
+            colorPane.setMaxWidth(1);
+        } else {
+            colorPane.setPrefWidth(105);
+            colorPane.setMaxWidth(105);
+            colorPane.setStyle("-fx-background-color: " + colorTag.cssColor + ";");
+        }
     }
 
     private static void setupImageView(Image img, ImageView imgView) {

@@ -40,5 +40,5 @@
       <Label fx:id="visitHistory" styleClass="cell_small_label" text="\$visitHistory" />
     </VBox>
   </GridPane>
-  <StackPane fx:id="colorPane" maxWidth="105.0" prefHeight="105.0" prefWidth="105.0" GridPane.vgrow="ALWAYS" />
+  <StackPane fx:id="colorPane" prefHeight="105.0" GridPane.vgrow="ALWAYS" />
 </HBox>
