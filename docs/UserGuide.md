@@ -256,7 +256,7 @@ Format: `i-find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. For example, `Milk Boba` will match `Boba Milk`.<br>
 * Only the ingredient names are searched.<br>
 * Only full words will be matched. For example, `Mil` will not match `Milk`.<br>
-* Ingredients matching at least one keyword will be be listed in the Ingredient Tracker inside the _Main View_ 
+* Ingredients with names matching at least one keyword will be listed in the Ingredient Tracker inside the _Main View_ 
 (i.e. `OR` search). For example, `i-find Milk Boba` will find the ingredient `Milk` and the ingredient `Boba`.<br>
 
 Example: Let's say you want to find the ingredients that have names containing the keyword `Tea`.
