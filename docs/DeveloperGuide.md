@@ -112,7 +112,10 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
 </div>
 
 ### Model component
@@ -128,12 +131,18 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The Model class diagram shown above omits details of the Flashcard class due to space constraint. Instead, the omitted details have been extracted and are shown here:<br>
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The Model class diagram shown above omits details of the Flashcard class due to space constraint. Instead, the omitted details have been extracted and are shown here:<br>
+
 </div>
 
 ![FlashcardClassDiagram](images/FlashcardClassDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FlashcardDeck`, which `Flashcard` references. This allows `FlashcardDeck` to only require one `Tag` object per unique `Tag`, instead of each `Flashcard` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FlashcardDeck`, which `Flashcard` references. This allows `FlashcardDeck` to only require one `Tag` object per unique `Tag`, instead of each `Flashcard` needing their own `Tag` object.<br>
+
 </div>
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
@@ -262,7 +271,9 @@ The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -788,7 +799,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -887,9 +900,9 @@ testers are expected to do more *exploratory* testing.
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
      
-     <div markdown="span" class="alert alert-info">:information_source:
-          
-     **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
+     <div markdown="span" class="alert alert-info">
+     
+     :information_source: **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
 
     </div>
     
@@ -923,7 +936,11 @@ testers are expected to do more *exploratory* testing.
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
         
-    :bulb: **Note:** Filtering of flashcards can also be tested on other fields such as `FAVOURITE` and `TAG`. 
+    <div markdown="span" class="alert alert-info">
+         
+    :information_source: **Note:** Filtering of flashcards can also be tested on other fields such as `FAVOURITE` and `TAG`. 
+    
+    </div>
     
 ### Favouriting a flashcard
 
