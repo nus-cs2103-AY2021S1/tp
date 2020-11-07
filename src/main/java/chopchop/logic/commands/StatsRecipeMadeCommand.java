@@ -32,7 +32,7 @@ public class StatsRecipeMadeCommand extends Command {
     public CommandResult execute(Model model, HistoryManager historyManager) {
         enforceNonNull(model);
 
-        var output = model.getRecipeUsageList().getUsagesBetween(after, before);
+        var output = model.getRecipesMadeBetween(after, before);
 
         if (!checkValidDateRange(this.after, this.before)) {
             return CommandResult.error("'after' date cannot be later than 'before' date");

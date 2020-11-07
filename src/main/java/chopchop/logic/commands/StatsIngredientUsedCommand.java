@@ -33,7 +33,7 @@ public class StatsIngredientUsedCommand extends Command {
     public CommandResult execute(Model model, HistoryManager historyManager) {
         enforceNonNull(model);
 
-        var output = model.getIngredientUsageList().getUsagesBetween(after, before);
+        var output = model.getIngredientsUsedBetween(after, before);
 
         if (!checkValidDateRange(this.after, this.before)) {
             return CommandResult.error("'after' date cannot be later than 'before' date");

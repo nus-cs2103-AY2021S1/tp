@@ -1,5 +1,6 @@
 package chopchop.testutil;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import chopchop.commons.util.Pair;
 import chopchop.model.EntryBook;
@@ -120,6 +121,16 @@ public class StubbedUsageModel extends ModelStub {
     @Override
     public List<Pair<String, String>> getRecentlyUsedIngredients(int n) {
         return this.ingredientUsageList.getRecentlyUsed(n);
+    }
+
+    @Override
+    public List<Pair<String, String>> getRecipesMadeBetween(LocalDateTime after, LocalDateTime before) {
+        return this.recipeUsageList.getUsagesBetween(after, before);
+    }
+
+    @Override
+    public List<Pair<String, String>> getIngredientsUsedBetween(LocalDateTime after, LocalDateTime before) {
+        return this.ingredientUsageList.getUsagesBetween(after, before);
     }
 
     @Override
