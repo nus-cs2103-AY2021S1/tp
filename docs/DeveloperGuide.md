@@ -346,7 +346,6 @@ containing the attribute of`sellerId`.
         - Less refactoring was required from original implementation of AB3
         
     - Cons: 
-        - Arguably less of an OOP design
         - Unable to exploit polymorphism even though both `Bidder` and `Seller` have a degree of similarity between both
         - Increases code complexity in `AddressBookParser`
         
@@ -358,14 +357,16 @@ containing the attribute of`sellerId`.
 #### 6. List
 
 ### UI Navigation Implementation
+{ start of Ui implementation section written by: Kor Ming Soon }
 
-This section explains the Ui 
+This section explains the `Ui` implementation in PropertyFree. 
 
 #### 1. Automated `TabBar` Switching
 #### 2. Calendar Navigation
 #### 3. Key-press UI Navigation
  
- 
+ { end of Ui implementation section written by: Kor Ming Soon }
+
  
  
  
