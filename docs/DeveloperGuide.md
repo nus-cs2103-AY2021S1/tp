@@ -261,7 +261,7 @@ The following activity diagram shows how the find drink's sales data operation w
   * **Current Choice**: Obtain the drink's name entered by the user, and use the
   drink's name to find the sales data by looping through the salesbook.
     * Pros: Code is more readable and consistent with the logic of finding employees.
-    * Cons: Every execution of the command will require one to access the sales record list loop through 
+    * Cons: Every execution of the command will require to access the sales record list loop through 
     the list once, which may increase the time required for the operation. 
          
 ## \[Completed\] View a single ingredient's level feature
