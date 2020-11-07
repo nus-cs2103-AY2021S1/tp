@@ -303,11 +303,13 @@ Step 8: The tag "all no ice" is removed from the OrderItem at the first index.
 
 - There are two types of preset commands, `preset save` and `preset load`.
 - Preset save stores the current order in a file, with the given preset name under the specific vendor.
+- If the name already exists for preset save, the previous file will be overwritten with the current one.
 - Preset load retrieves the preset with the name provided from the file, and loads it into the current order.
 - If the name given is invalid for preset commands, an error will be thrown.
 
+The following sequence diagram summarises the sequence when the LoadPresetCommand is executed.
 
-The following diagram summarises the sequence when the LoadPresetCommand is executed.
+ 
 
 ![LoadPresetSequenceDiagram](images/LoadPresetCommandSequenceDiagram.png)
 
@@ -329,7 +331,13 @@ Step 7: The current order is set to `orderItems` by executing `setOrder(orderIte
 
 
 
-The following diagram summarises the sequence when the SavePresetCommand is executed.
+Given below is the activity diagram for the LoadPresetCommand.
+
+![LoadPresetCommandActivityDiagram](images/LoadPresetCommandActivityDiagram.png)
+
+
+
+The following diagram sequence summarises the sequence when the SavePresetCommand is executed.
 
 ![SavePresetSequenceDiagram](images/SavePresetCommandSequenceDiagram.png)
 
@@ -349,9 +357,17 @@ Step 6:  The current order item list, `orderItemList`, is retrieved by executing
 
 Step 7: `orderItemList` is converted to a preset `newPreset`.
 
-Step 7: `newPreset` is added to the vendor index `i` position of `allLists`.
+Step 8: `newPreset` is added to the vendor index `i` position of `allLists`.
 
-Step 8: The modified allLists is saved into a json file by executing `Storage#savePresetManager(allLists)`.
+Step 9: The modified allLists is saved into a json file by executing `Storage#savePresetManager(allLists)`.
+
+
+
+Given below is the activity diagram for SavePresetCommand.
+
+![SavePresetCommandActivityDiagram](images/SavePresetCommandActivityDiagram.png)
+
+
 
 
 
@@ -699,6 +715,78 @@ Precondition: <u>User has already selected a particular vendor</u>
       Use case ends.
       
       
+
+**Use case: Load Preset**
+
+**MSS**
+
+1. User requests to load preset of a specific name.
+
+2. SupperStrikers loads the saved presets from storage.
+
+3. SupperStrikers finds the preset with the same name under the current vendor.
+
+4. SupperStrikers loads the preset into the current order.
+
+   Use case ends.
+
+
+
+**Extensions**
+
+- 1a. The name given is invalid.
+  Use case ends.
+
+- 2a. Error in loading presets.
+
+​	   Use case ends.
+
+- 3a. There is no preset with the same name.
+
+  Use case ends.
+
+- 4a. The current order already contains order items.
+
+  The current order is replaced by the preset.
+
+  Use case ends.
+
+  
+
+**Use case: Save Preset**
+
+**MSS**
+
+1. User requests to save preset with a specific name.
+
+2. SupperStrikers loads the current presets from storage.
+
+3. SupperStrikers creates a new preset with the current order items.
+
+4. SupperStrikers adds the new preset into the current presets.
+
+5. SupperStrikers saves the modified presets into storage.
+
+   Use case ends.
+
+
+
+**Extensions**
+
+- 1a. The name given is invalid.
+  	  Use case ends.
+
+- 2a. Error in loading presets.
+
+​             Use case ends.
+
+- 4a. The current presets already has a preset with the same name
+
+  ​       The current preset is replaced by the new preset.
+
+  ​       Use case resumes at step 5.
+
+
 
 *{More to be added}*
 
