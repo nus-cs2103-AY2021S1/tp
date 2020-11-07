@@ -1620,3 +1620,44 @@ However, you cannot, for example, add `300g` of blueberries to `4` blueberries, 
 
 
 
+
+
+--------------------------
+<a name="FAQ"></a>
+## 7&ensp;Frequently Asked Questions
+
+Here are some frequently asked questions about ChopChop:
+
+<b>Q:</b> How do I save my changes? <br/>
+<b>A:</b> ChopChop saves your changes automatically whenever a change is made, so you do not need to worry about doing it manually.
+
+<b>Q:</b> How do I transfer my data to another computer? <br/>
+<b>A:</b> Simply copy the folder named `data` that you will find next to `chopchop.jar` to the new computer, and all your recipes and ingredients will be copied over as well.
+
+<b>Q:</b> How can I rename an ingredient? <br/>
+<b>A:</b> Currently, ingredients cannot be renamed.
+
+<b>Q:</b> Why is ChopChop telling me that there are incompatible ingredients? <br/>
+<b>A:</b> Due to the way quantities are handled, recipes need to use the same <i>kind</i> of unit as the ingredient you have in storage. For example, if <b>Butter</b> was recorded as <i>mass</i> (in grams), you can only refer to it in recipes using grams/milligrams/kilograms, but not <i>volumes</i> (tablespoons/cups, etc.).
+
+<b>Q:</b> How can I use a unit like `oz`? <br/>
+<b>A:</b> Currently custom units are not supported in ChopChop, though they are coming in a future version! We only support metric units for now.
+
+
+
+
+
+--------------------------
+<a name="Glossary"></a>
+## 8&ensp;Glossary
+
+Here are some terms you might be unfamiliar with in this document, and their associated meanings:
+
+| Word/Phrase | Meaning                                                                                                               |
+|-------------|-----------------------------------------------------------------------------------------------------------------------|
+| Command     | A series of text you type into the [Command Box](#CommandBox) in order to perform an action in ChopChop               |
+| Index       | A number that you can use to refer to an ingredient or recipe in a command; it appears in the top left corner of items|
+| Ingredient  | A food item (eg. salt, butter) that you keep in stock; needed to make recipes                                         |
+| Recipe      | A dish that can be made using some ingredients; has a list steps to make it, and a list of ingredients used           |
+| Tag         | A word or short phrase (eg. `sweet`, `simple recipe`) that you can attach to ingredients and recipes to identify them |
+
