@@ -52,7 +52,7 @@ not be so obvious!
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press `Enter` on your keyboard to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
+1. Type the command in the command box and press "Enter" on your keyboard to execute it. e.g. typing **`help`** and pressing "Enter" will open the help window.<br>
    Some example commands you can try:
 
    * **`c-add`**`n/John Doe p/98765432 e/81234567 a/Blk 123 Brooklin Street t/parttime` : Adds an employee
@@ -233,7 +233,7 @@ You can follow these instructions.
 
 Steps:
 1. Type `i-list` into the _Command Box_.
-1. Press `Enter` on your keyboard to execute the command.
+1. Press "Enter" on your keyboard to execute the command.
 
 Outcome:
 1. The _Result Display_ will show a success message.
@@ -258,7 +258,7 @@ You can follow these instructions:
 
 Steps:
 1. Type `i-find Tea Sugar` into the _Command Box_.
-2. Press `Enter` to execute the command.
+2. Press "Enter" to execute the command.
 
 Outcome:
 
@@ -278,7 +278,7 @@ You can follow these instructions:
 
 Steps:
 1. Type ` i-reset-all` into the _Command Box_.
-2. Press `Enter` to execute the command.
+2. Press "Enter" to execute the command.
 
 Outcome:
 
@@ -288,33 +288,29 @@ Outcome:
 {Example outcome screenshot to be added later}
 
 #### 2.7 Listing all ingredients that user should restock : `i-restock`
-Lists the ingredient's levels of all ingredient types that fall below their minimum stock levels and require the user to 
-restock. The list also includes the amount needed for each ingredient to reach the minimum stock level.
-
-The table below shows the minimum stock levels of different types of ingredients:
-
-Ingredient Type | Minimum Stock Level
--------|------------------------------
-**Milk** | 50 L
-**Pearl** | 20 KG
-**Boba** | 20 KG
-**Black Tea** | 50 L
-**Green Tea** | 50 L
-**Brown Sugar** | 20 KG
+Lists the ingredient's levels of all ingredient types that fall below their pre-determined default levels and require the user to 
+restock. The list also includes the amount needed for each ingredient to reach its pre-determined default level.
 
 Format: `i-restock`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+Refer to [Commands - Ingredients Tracking: Notes about ingredients] (#commands-ingredients-tracking)
+for details on the pre-determined default levels of different types of ingredients.
+</div>
 
 Example: Let's say you want to find out which ingredients you need to restock.
 You can follow these instructions:
 
 Steps:
 1. Type ` i-restock` into the _Command Box_.
-2. Press `Enter` to execute the command.
+2. Press `"Enter" to execute the command.
 
 Outcome:
 
-1. The _Result Display_ will show the list of ingredients including their ingredient names, their ingredients' levels and
-the amount needed for each ingredient to reach the minimum restock level.
+1. The _Result Display_ will show the list of ingredients including each ingredient's name, its ingredient's level and
+the amount needed for the ingredient to reach its pre-determined default level.
 
 {Example outcome screenshot to be added later}
 
