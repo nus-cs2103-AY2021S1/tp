@@ -230,6 +230,17 @@ public class ModelManager implements Model {
         this.filteredIngredients.setPredicate(predicate);
     }
 
+    @Override
+    public void startEditingIngredients() {
+        this.ingredientBook.startEditing();
+    }
+
+    @Override
+    public void finishEditingIngredients() {
+        this.ingredientBook.finishEditing();
+    }
+
+
     /**
      * Returns a copy of RecipeUsage list.
      */

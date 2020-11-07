@@ -62,6 +62,8 @@ public class MakeRecipeCommand extends Command implements Undoable {
             }
         }
 
+        model.startEditingIngredients();
+
         for (var ingredient : this.ingredients) {
             if (ingredient.snd().getIngredientSets().isEmpty()) {
                 model.deleteIngredient(ingredient.fst());
@@ -71,7 +73,10 @@ public class MakeRecipeCommand extends Command implements Undoable {
 
         }
 
+        model.finishEditingIngredients();
+
         model.addRecipeUsage(this.recipe);
+
         return CommandResult.message("Made recipe '%s'", this.recipe.getName())
             .showingRecipe(this.recipe);
     }

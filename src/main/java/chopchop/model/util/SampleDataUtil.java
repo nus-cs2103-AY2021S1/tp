@@ -150,7 +150,7 @@ public class SampleDataUtil {
 
             new Recipe("Salted Water",
                 List.of(
-                    new IngredientReference("Salt", Mass.grams(150))),
+                    new IngredientReference("Salt", Mass.grams(90))),
                 List.of(
                     new Step("Add the salt into 250ml of water"),
                     new Step("Stir the mixture well")),
