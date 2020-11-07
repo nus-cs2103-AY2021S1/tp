@@ -29,6 +29,7 @@ import seedu.address.storage.JsonProfileManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.JsonVendorManagerStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.TypicalModel;
 import seedu.address.testutil.TypicalVendors;
 
 public class LogicManagerTest {
@@ -179,7 +180,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getVendorManager(), new UserPrefs());
+        Model expectedModel = TypicalModel.getModelManagerWithMenu();
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

@@ -45,4 +45,12 @@ public class TagCommandTest {
         TagCommand tagCommand = new TagCommand(outOfBoundsIndex, new Tag("1 teh peng"));
         assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_vendorNotSelected_throwsException() {
+        Model model = TypicalModel.getModelManagerWithMenu();
+        model.selectVendor(-1);
+        Tag tag = new Tag("1 no ice");
+        assertCommandFailure(new TagCommand(Index.fromZeroBased(0), tag), model, Messages.MESSAGE_VENDOR_NOT_SELECTED);
+    }
 }

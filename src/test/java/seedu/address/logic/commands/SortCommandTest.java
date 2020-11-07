@@ -48,12 +48,16 @@ public class SortCommandTest {
     public void execute_validSortCommand_success() {
         SortCommand sortCommand0 = new SortCommand("n", "a");
         String expectedMessage = Messages.MESSAGE_FOOD_SORTED;
+        expectedModel.sortMenuItemBy("n", true, false);
         assertCommandSuccess(sortCommand0, model, expectedMessage, expectedModel);
         SortCommand sortCommand1 = new SortCommand("n", "d");
+        expectedModel.sortMenuItemBy("n", false, false);
         assertCommandSuccess(sortCommand1, model, expectedMessage, expectedModel);
         SortCommand sortCommand2 = new SortCommand("p", "a");
+        expectedModel.sortMenuItemBy("p", true, false);
         assertCommandSuccess(sortCommand2, model, expectedMessage, expectedModel);
         SortCommand sortCommand3 = new SortCommand("p", "d");
+        expectedModel.sortMenuItemBy("p", false, false);
         assertCommandSuccess(sortCommand3, model, expectedMessage, expectedModel);
     }
 

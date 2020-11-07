@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalVendors.getTypicalVendorManager;
 
@@ -7,6 +8,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -30,5 +32,12 @@ public class MenuCommandTest {
         model.updateFilteredMenuItemList(predicate);
         Model expectedModel = initialiseModel();
         assertCommandSuccess(new MenuCommand(), model, "All food listed!", expectedModel);
+    }
+
+    @Test
+    public void execute_vendorNotSelected_throwsException() {
+        Model model = initialiseModel();
+        model.selectVendor(-1);
+        assertCommandFailure(new MenuCommand(), model, Messages.MESSAGE_VENDOR_NOT_SELECTED);
     }
 }

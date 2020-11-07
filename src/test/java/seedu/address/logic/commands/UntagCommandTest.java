@@ -42,4 +42,11 @@ public class UntagCommandTest {
         UntagCommand untagCommand = new UntagCommand(Index.fromZeroBased(3));
         assertCommandFailure(untagCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_vendorNotSelected_throwsException() {
+        Model model = TypicalModel.getModelManagerWithMenu();
+        model.selectVendor(-1);
+        assertCommandFailure(new UntagCommand(Index.fromZeroBased(0)), model, Messages.MESSAGE_VENDOR_NOT_SELECTED);
+    }
 }

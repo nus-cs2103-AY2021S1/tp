@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.food.Food;
 import seedu.address.model.food.MenuItem;
 import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
@@ -21,10 +20,6 @@ import seedu.address.model.vendor.Vendor;
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
-    Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
