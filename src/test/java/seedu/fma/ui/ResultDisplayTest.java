@@ -37,7 +37,7 @@ class ResultDisplayTest {
     void returnAutoCompleteResult_singleWordInput_returnsAllMatchingCommands() {
         assertEquals(ResultDisplay
                 .getAutoCompleteResult("add", logic.getCommandSuggestionList()),
-                "add e/<exercise name> r/<reps> c/<comment> \n"
+                "add e/<exercise name> r/<reps> c/[comment] \n"
                         + "addex e/<exercise name> c/<calories per rep>");
     }
 
@@ -45,7 +45,7 @@ class ResultDisplayTest {
     void returnAutoCompleteResult_multiWordInput_returnsOnlyOneCommandThatMatches() {
         assertEquals(ResultDisplay
                 .getAutoCompleteResult("add e/", logic.getCommandSuggestionList()),
-                "add e/<exercise name> r/<reps> c/<comment>");
+                "add e/<exercise name> r/<reps> c/[comment]");
     }
 
 }
