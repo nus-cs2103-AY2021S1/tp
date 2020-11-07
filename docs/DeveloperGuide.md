@@ -18,7 +18,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
-   
+
    *Figure 1: Architecture Diagram of the application*
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
@@ -63,8 +63,6 @@ The sections below give more details of each component:
 
    *Figure 2: Sequence Diagram of an example of a user input*
 
-<!--The lifelines should not stop at the end of the activation bars-->
-
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -104,7 +102,7 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-   
+
    *Figure 5: Sequence Diagram for "delete" input*
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -337,7 +335,7 @@ The new task command has to be prefixed with 'addtask' and include **all** of th
  - `tp/` prefix followed by the percentage of the task that has been finished
  - `done/` prefix followed by the status of the task, whether it is finished
  - `td/` prefix followed by the deadline of the task
- 
+
 The task can also be edited with the command 'edittask' and include **any** of the following fields:
   - `tn/` prefix followed by the name of the Task
   - `tp/` prefix followed by the percentage of the task that has been finished
@@ -368,51 +366,54 @@ The diagram below summarises the events above with the help of a sequence diagra
 
 #### Implementation
 
-We will use an example of task filter to explain how the filtering mechanism works. The task filtering mechanism is facilitated by the predicte `taskFilter` kept in the Project class. When `UI` component requested for the filtered and sorted task list, the task list filtered by the `taskFilter` will be returned. 
+The task filtering mechanism is facilitated by the predicte `taskFilter` kept in the Project class. When `UI` component requested for the filtered and sorted task list, the task list filtered by the `taskFilter` will be returned. 
 
-Tasks can be filtered by following attributes of a Task (using command `filtert PREFIX/ATTRIBUTE`):
+Tasks can be filtered by following attributes of a task (using command `filter PREFIX/ATTRIBUTE`):
 
-- the Github user name `GitUserName` of one of the task's assignees (prefix: `ta/`)
+- the Github user name `gitUserName` of one of the task's assignees (prefix: `ta/`)
 - the task's name: `taskName` (prefix: `tn/`)
 - the task's deadline: `deadline` (prefix: `td/`)
 - the task's progress: `progress` (prefix: `tp/`)
 - whether the task is done: `isDone` (prefix: `done/`)
 
-The predicate is generated in the `TaskFilterCommandParser` and encapsulated by the `TaskFilterCommand` that the paser returns. When the `TaskFilterCommand` is executed, the `taskFilter` of the current project will be updated and  `UI` will be refreshed automatically.
+Additionally, one can also use `filter start/START_DATE end/END_DATE` to find tasks whose deadlines are within the time range between the `START_DATE` and the `END_DATE`.
 
-When the user want to clear the filter using `allt` , the `taskFilter` of the current project will be changed to a predicate that always returns true. Then, the `UI` will correspondingly show all the tasks in the current project.
+The predicate used to filter tasks is generated in the `TaskFilterCommandParser` and encapsulated by the `TaskFilterCommand` that the paser returns. When the `TaskFilterCommand` is executed, the `taskFilter` of the current project will be updated and  `UI` will be refreshed automatically.
+
+When the user want to clear the filter using `alltasks` , the `taskFilter` of the current project will be changed to a predicate that always returns true. Then, the `UI` will correspondingly show all the tasks in the current project.
 
 Given below is an example usage scenario and how the task filtering mechanism behaves at each step:
 
-Step 1. The user uses `start` to open a project called "Taskmania". Suppose there are currently three tasks in this project: `task1`, `task2`, and `task3`. There are three persons involved: a person named "Tan Chia Qian" whose Github username is "TCQian", a person named "Tian Fang" whose Github username is "T-Fang" and a person named "Li Jiayu" whose Github username is "lll-jy".  `task1` is assigned to "Tan Chia Qian" and "Tian Fang", `task2` is assigned to "Tian Fang", and `task3` is assigned to "Li Jiayu".
+Step 1. The user uses `startproject` to open a project called "Taskmania". Suppose there are currently three tasks in this project: `task1`, `task2`, and `task3`. There are three persons involved: a person named "Tan Chia Qian" whose Github username is "TCQian", a person named "Tian Fang" whose Github username is "T-Fang" and a person named "Li Jiayu" whose Github username is "lll-jy".  `task1` is assigned to "Tan Chia Qian" and "Tian Fang", `task2` is assigned to "Tian Fang", and `task3` is assigned to "Li Jiayu".
 
 ![FilterStep1](images/FilterStep1.png)
 
    *Figure 19: Object Diagram of the project 'Taskmania'*
 
+Step 2. The user executes `filter ta/T-Fang` command to find all tasks that assigned to a "Tian Fang" whose Github username is "T-Fang". the command is eventually passed to `TaskFilterCommandParser` and the parser will identify the type of the filtering condition using the prefix entered and create the corresponding task predicate. In this case, `ta/` indicates that a predicate that filter tasks by their assignees' Github usernames should be created. 
 
-Step 2. The user executes `filtert ta/T-Fang` command to find all tasks that have assignee whose Github username is "T-Fang". the command is eventually passed to `TaskFilterCommandParser` and the parser will identify the type of the filtering condition using the prefix entered and create the corresponding task predicate. In this case, `ta/` indicates that a predicate that filter tasks by their assignees' Github usernames should be created. Then when the `TaskFilterCommand` return by the parser is executed by the `LogicManager`, the `TaskFilterCommand` will get the current project ("Taskmania") from the `Model` and update the `taskFilter` predicate inside the "Taskmania" project. Therefore, the filtered task list of "Taskmania" will only contain `task1` and `task2`.
+Step 3. The `LogicManager` executes the `TaskFilterCommand` returned by the parser. The `TaskFilterCommand` will get the current project ("Taskmania") from the `Model` and update the `taskFilter` predicate inside the "Taskmania" project. Therefore, the filtered task list of "Taskmania" will only contain `task1` and `task2`.
 
 ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
 
-   *Figure 20: Sequence Diagram of the 'filter ta/T-Fang' command*
+   *Figure 20: Sequence Diagram of the 'filter' command*
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TaskFilterCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+Step 4. After seeing tasks that have been assign to "Tian Fang", the user wants to take a look at other tasks in "Taskmania". The user executes `alltasks` to see all the tasks in "Taskmania". the `MainCatalogueParser` parses the command and creates a `AllTasksCommand`. 
 
-Step 3. After seeing tasks that has been assign to "Tian Fang", the user wants to take a look at other tasks in "Taskmania". The user executes `allt` to see all the tasks in the "Taskmania". the `MainCataloguePaser` parses the command and creates a `AllTasksCommand`. When the `AllTasksCommand` is executed, it will get the current project ("Taskmania") from the `Model` and call the `showAllTasks()` method inside the "Taskmania" project. Then the `taskFilter` inside "Taskmania" will be replaced by a predicate that always returns true and all the tasks will be shown.
+Step 5.  The `LogicManager` executes the`AllTasksCommand` returned. The `AllTasksCommand` will get the current project ("Taskmania") from the `Model` and call the `showAllTasks()` method inside the "Taskmania" project. Then the `taskFilter` inside "Taskmania" will be replaced by a predicate that always returns true and all the tasks will be shown.
 
 ![AllTasksSequenceDiagram](images/AllTasksSequenceDiagram.png)
 
-   *Figure 21: Sequence Diagram of the 'allt' command*
+   *Figure 21: Sequence Diagram of the 'alltasks' command*
 
 
 In the example above, the users can also filter the task list in different ways and the `taskFilter` predicate in "Taskmania" will be updated correspondingly:
 
-- `filtert tn/Filter` : `task2` and `task3` will be displayed
-- `filtert tp/50`: `task3` will be displayed
-- `filtert done/false`:`task1` and `task3` will be displayed
-- `filtert td/19-10-2020 13:30:00 `:`task1` will be displayed
+- `filter tn/Filter`: `task2` and `task3` will be displayed
+- `filter tp/50`: `task3` will be displayed
+- `filter done/false`: `task1` and `task3` will be displayed
+- `filter td/19-10-2020 13:30:00 `: `task1` will be displayed
+- `filter start/16-10-2020 end/19-10-2020`: `task1` and `task2` will be displayed
 
 The following activity diagram summarizes what happens when a user executes a task filter command:
 
@@ -434,23 +435,13 @@ The following activity diagram summarizes what happens when a user executes a ta
 
 ##### Aspect: Whether to clear filter when user re-enters the project
 
-* **Alternative 1 (current choice):** Keep filters and display filtered tasks when the user re-enters the project
+* **Alternative 1 (current choice):** Keep the filter and display filtered tasks when the user re-enters the project
   * Pros: Task list remains unchanged (e.g. the user don't have to filter everytime (s)he re-enters the same project if (s)he only wants to see tasks assigned to him/her ) .
-  * Cons: Users might forget there are other tasks if they don't use `allt` to check.
-* **Alternative 2:** Clear filter when the user re-enters the project
+  * Cons: The user might not be able to see all the tasks when (s)he enters the project.
+* **Alternative 2:** Clear the filter when the user re-enters the project
   * Pros: The user always gets to see all the tasks every time (s)he enters the project.
   * Cons: The user have to filter everytime (s)he re-enters the same project if (s)he only wants to see tasks assigned to him/her.
 
-##### Aspect: Which data structure is better for filtering tasks in a project
-
-* **Alternative 1 (current choice):** Use `Set<Task>` to store the tasks
-  * Pros: There will be no duplicated tasks in the `set`.
-  * Cons: Need extra steps to convert the set into a `Stream`, and convert the `Stream` into a  `List`.
-
-* **Alternative 2:** Use `List<Task>`to
-  * Pros: Has built-in method to filter the task list.
-  * Cons: The same task might be duplicated in the `List`.
-  
 ### New Teammate feature
 
 #### Implementation
@@ -477,7 +468,7 @@ Step 1: The user enters `startproject 2` for example to start project 1 from the
  projects list on the left, and the description of the project in the centre.
 
 ![MainscreenUi](images/MainscreenUi.png)
-   
+
    *Figure 23: What the app looks like after 'start 1' command*
 
 Step 2: The user enters a New Teammate command such as `addteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon
@@ -496,15 +487,15 @@ LogicManager then calls the method `execute` of the NewTeammateCommand which sto
 
 The diagram below summarises what is happening above with the help of a sequence diagram:
 ![AddTeammateSequenceDiagramImagae](images/AddTeammateSequenceDiagram.png)
-   
+
    *Figure 24: Sequence Diagram of the 'addteammate' command*
 
 The diagram below gives a short overview on what happens when a user's input is received:
 
 ![AddTeammateActivityDiagramImagae](images/AddTeammateActivityDiagram.png)
-   
+
    *Figure 25: Activity Diagram of the 'addteammate' command*
-   
+
 #### Design consideration:
 
 ##### Aspect: Whether Teammate can be instantiated without filling up all attributes
@@ -703,7 +694,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-   
+
  * 3a. The given details are not valid.
    * 3a1. TMTS shows an error message.
    
@@ -755,9 +746,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 3a1. PMS shows an error message.
    
    Use case resumes at 3.
- 
+
  * 3b. The project has already been shown on the dashboard.
- 
+
    Use case ends.
 
 **Use case: UC6 - Find A Task**
@@ -781,6 +772,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
    Use case resumes at 3.
    
+
 **Use case: UC7 - Add A New Task**
 
 **Precondition:** The application has already started a project.
@@ -802,18 +794,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-   
+
  * 3a. The given details are not valid.
    * 3b1. PMS shows an error message. 
 
    Use case resumes at 3.
- 
+
  * 5a. The task is intended for no assignees.
- 
+
    Use case ends.
- 
+
  * 5b. The task can be easily found in the current list.
- 
+
    Use case resumes at 7.
 
  * 7a. The input task index is invalid or the team member is not found in the project.
@@ -867,7 +859,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-   
+
  * 5a. The given task number is not found.
    * 5a1. PMS shows an error message.
    
