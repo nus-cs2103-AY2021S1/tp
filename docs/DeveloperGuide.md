@@ -420,7 +420,7 @@ The following is a usage scenario of when the user wants to delete the first and
  Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(delete 1 2)` API call.
  
  
- DIAGRAM
+
  
  
 
