@@ -61,7 +61,6 @@ public class AddContactCommand extends Command {
         }
         model.addContact(toAdd);
         model.commitContactList();
-        model.updateFilteredContactList(Model.PREDICATE_SHOW_ALL_CONTACTS);
         logger.info("Contact has been added: \n" + toAdd.toString());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
