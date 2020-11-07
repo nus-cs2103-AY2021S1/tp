@@ -52,6 +52,13 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns the count of prefixes.
+     */
+    public int getPrefixCount() {
+        return argMultimap.size();
+    }
+
+    /**
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */
     public String getPreamble() {
