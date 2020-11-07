@@ -248,6 +248,10 @@ Step 1. The user launches the application for the first time. The `QuickCache` w
  Step 6. The GUI will then proceed to get the filtered list based on the newly set predicate to display to the user.
 
  Step 7. After execution, `CommandResult` will contain a message indicating that it has listed all `Flashcards` based on the specified restrictions.
+ 
+ The following sequence diagram shows how the parser operation works:
+
+![FindParserSequenceDiagram](images/FindParserSequenceDiagram.png)
 
  The following sequence diagram shows how the find operation works:
 
