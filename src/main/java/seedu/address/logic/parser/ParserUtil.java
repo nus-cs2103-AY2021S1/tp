@@ -206,7 +206,7 @@ public class ParserUtil {
         requireNonNull(keywords);
         String trimmedKeywords = keywords.trim();
         if (trimmedKeywords.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskFilterCommand.MESSAGE_USAGE));
+            throw new ParseException(TaskFilterCommand.MESSAGE_BLANK_KEYWORDS);
         }
         String[] taskNameKeywords = trimmedKeywords.split("\\s+");
         return taskNameKeywords;

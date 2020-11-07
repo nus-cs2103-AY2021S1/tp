@@ -29,7 +29,7 @@ public class TaskSorterCommand extends Command {
         + ": Sorts the task list by one of task's attributes in ascending/descending order\n"
         + "Parameters: ("
         + PREFIX_ASCENDING_SORT + ")||("
-        + PREFIX_DESCENDING_SORT + ")  ("
+        + PREFIX_DESCENDING_SORT + ") ("
         + PREFIX_TASK_DEADLINE + ")||("
         + PREFIX_TASK_NAME + ")||("
         + PREFIX_TASK_PROGRESS + ")||("

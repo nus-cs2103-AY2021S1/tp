@@ -22,15 +22,15 @@ public class Task implements Comparable<Task> {
     public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
 
     public static final String NAME_MESSAGE_CONSTRAINTS =
-            "Task name should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Task name should only contain alphanumeric characters and spaces, and it should not be blank.";
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS =
-            "Task description can be any values, and it should not be blank";
+            "Task description can be any values, and it should not be blank.";
     public static final String PUBLISH_DATE_MESSAGE_CONSTRAINTS =
-            "Publish date should only be in the format of dd-MM-yyyy";
+            "Publish date should only be in the format of dd-MM-yyyy.";
     public static final String PROGRESS_MESSAGE_CONSTRAINTS =
-            "Progress values should only contain integers between 0 and 100 inclusive, and it should not be blank";
+            "Progress values should only contain integers between 0 and 100 inclusive, and it should not be blank.";
     public static final String IS_DONE_MESSAGE_CONSTRAINTS =
-            "Is done values should only contain booleans, and it should not be blank";
+            "Done status should only be \"true\" or \"false\".";
 
     private final String taskName;
     private final String description;
