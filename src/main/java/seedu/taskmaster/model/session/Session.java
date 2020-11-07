@@ -1,6 +1,7 @@
 package seedu.taskmaster.model.session;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
@@ -116,6 +117,14 @@ public class Session {
                     studentRecord.getNusnetId(),
                     studentRecord.getAttendanceType());
         }
+    }
+    /**
+     * Returns a random Student Record from the Session.
+     * @param random A Random object
+     * @return A random Student Record
+     */
+    public StudentRecord getRandomStudentRecord(Random random) {
+        return studentRecords.getRandomStudentRecord(random);
     }
 
     @Override

@@ -102,8 +102,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the student list data.
+* stores the student list data as a `Taskmaster` object.
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* also exposes an unmodifiable `ObservableList<Session>` that is similarly used by the UI.
 * does not depend on any of the other three components.
 
 
@@ -122,6 +123,7 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the student list data in json format and read it back.
+* can save the SessionList data in json format and read it back.
 
 ### Common classes
 
@@ -159,7 +161,7 @@ Given below is the planned Sequence Diagram for interactions within the `Session
 
 <br>
 
-### StudentRecordList and StudentRecord
+### StudentRecordList
 
 Author: **Goh Siau Chiak**
 
@@ -186,6 +188,16 @@ When the user wants to update the attendance or class participation score, a new
 Given below is the Sequence Diagram for interactions within the `StudentRecordListManager` component when `StudentRecordListManager#markStudentAttendance(nusnetId, attendanceType)` is called.
 
 ![Interactions inside the StudentRecordListManager class for the `markStudentAttendance'` method call](images/StudentRecordListAttendanceSequenceDiagram.png)
+
+Considerations for `markStudentAttendance`:
+    
+On one hand, the mark command uses an index to identify the record, for ease of usage for the user, as compared to 
+having to type out the record's NUSNET ID. On the other hand, the mark attendance method within the `Model` identifies 
+the record to mark using its NUSNET ID, to ensure correctness. Furthermore, the student records have to be stored in a 
+JavaFX `ObservableList` to be easily displayable on the GUI. In the end, I decided to find the record to mark by 
+iterating through the record list and comparing NUSNET IDs, since each student's NUSNET ID must be unique. The `O(N)`
+time complexity of this method does not incur significant time cost because we expect there to be no more than 1000
+students recorded in any session created by TAs using TAskmaster.
 
 Design alternatives:
 - Make `StudentRecord` mutable.
@@ -323,6 +335,8 @@ Alternative implementations considered:
 * manage students faster than a typical mouse/GUI driven app
 * view student details at a glance
 * add and remove students easily
+* create student records for each individual class conducted
+* mark and view attendance and class participation in these classes quickly
 
 ### User stories
 
@@ -564,7 +578,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample students. The window size may not be optimal.
 
 1. Saving window preferences
 

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -103,7 +104,6 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      */
     public void addSession(Session session) {
         sessions.add(session);
-        currentSession.setValue(session);
     }
 
     /**
@@ -306,6 +306,22 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
+     *
+     * Returns a Student Record from the current Session given a random object.
+     * @param random
+     * @return A random Student Record
+     * @throws NoSessionException
+     * @throws NoSessionSelectedException
+     */
+    public StudentRecord getRandomStudentRecord(Random random) throws NoSessionException, NoSessionSelectedException {
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        } else if (currentSession.isNull().get()) {
+            throw new NoSessionSelectedException();
+        }
+        return currentSession.get().getRandomStudentRecord(random);
+    }
+    /**
      * Returns the lowest score amongst all students in the student list.
      */
     public double getLowestScore() throws NoSessionException, NoSessionSelectedException {
@@ -390,6 +406,14 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         }
 
         currentSession.get().updateStudentRecords(studentRecords);
+    }
+
+    public boolean inSession() {
+        return !this.currentSession.isNull().get();
+    }
+
+    public SessionName currentSessionName() {
+        return this.currentSession.get().getSessionName();
     }
 
     @Override

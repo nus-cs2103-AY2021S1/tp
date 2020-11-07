@@ -2,6 +2,7 @@ package seedu.taskmaster.model;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 
 import javafx.beans.property.SimpleObjectProperty;
@@ -177,6 +178,11 @@ public interface Model {
      * Updates the corresponding attendance statuses with the Attendances in the given list.
      */
     void updateStudentRecords(List<StudentRecord> studentRecords);
+
+    /**
+     * Updates the filter of the filtered student list to show a random student.
+     */
+    void showRandomStudent(Random random);
 
     /**
      * Clears the attendance statuses of all students in the student list.

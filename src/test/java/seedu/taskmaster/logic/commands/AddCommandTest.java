@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -242,7 +243,12 @@ public class AddCommandTest {
 
         @Override
         public void updateStudentRecords(List<StudentRecord> studentRecords) {
-            throw new AssertionError("This method should not be called");
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void showRandomStudent(Random random) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
