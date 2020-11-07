@@ -1164,6 +1164,9 @@ bookmark sn/giant1
 
 ![bookmark_after](images/bookmark/bookmark.png)
 
+
+<div markdown="block" class="alert alert-warning" markdown="1">
+
 **:warning: Nonexistent Stocks**
 
 Stocks that do not exist in Warenager cannot be bookmarked. Using the update input `bookmark sn/fairprice4`,
@@ -1177,7 +1180,7 @@ Bookmarking a bookmarked stock will also result in an error. Using the bookmark 
 you should expect the following error:
 
 ![bookmark_already_bookmarked](images/bookmark/bookmark_already.png)
-
+</div>
 
 ### Unbookmarking stocks in the list: `unbookmark`
 Removes bookmark from the desired stock(s).
@@ -1203,6 +1206,8 @@ unbookmark sn/giant1
 
 ![GUI_component](images/bookmark/unbookmark.png)
 
+<div markdown="block" class="alert alert-warning" markdown="1">
+
 **:warning: Nonexistent Stocks**
 
 Stocks that do not exist in Warenager cannot be unbookmarked. Using the update input `unbookmark sn/fairprice4`,
@@ -1216,6 +1221,7 @@ Unbookmarking a stock that is not bookmarked will also result in an error.
 Using the bookmark input `bookmark sn/fairprice1`,you should expect the following error:
 
 ![bookmark_already_bookmarked](images/bookmark/unbookmark_not.png)
+</div>
 
 ### Sorting inventory: `sort`
 Sort the inventory by a specific field and order.
