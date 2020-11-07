@@ -85,7 +85,7 @@ public class EditModuleCommand extends Command {
 
         ModuleId updatedModuleId = editModuleDescriptor.getModuleId().orElse(moduleToEdit.getModuleId());
 
-        return new Module(updatedModuleId);
+        return new Module(updatedModuleId, moduleToEdit.getUniqueTutorialGroupList());
     }
 
     @Override
