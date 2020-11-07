@@ -399,8 +399,9 @@ The List Consumption feature will also calculate and show the total calories con
 Command and Parser make use of Substitutability:
 * `ListRecipeCommand`, `ListIngredientCommand` and `ListConsumptionCommand` extends `Command` <br><br>
 
-The following activity diagram shows how list operation generally works:
+The following activity diagram shows how list operation generally works: <br>
 ![ListActivityDiagram](images/implementation/activityDiagrams/ListCommandActivityDiagram.png)
+
 
 The following sequence diagram shows how list operation works when `execute("recipes")`, `execute("fridge")` or
  `execute("calories")` is called:
@@ -465,7 +466,7 @@ Command and Parser makes use of Substitutability:
 * `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>` <br><br>
 
 The following activity diagram shows how delete operation works when `execute("deleteR 1")`, `execute("deleteF 1")` or `execute("deleteC 1")` is called:
-![DeleteActivity](images/implementation/ActivityDiagram/DeleteActivityDiagram.png)
+![DeleteActivity](images/implementation/activityDiagrams/DeleteCommandActivityDiagram.png)
 
 The following sequence diagram shows how delete operation works when `execute("deleteR 1")`, `execute("deleteF 1"
 )` or `execute("deleteC 1")` is called:
@@ -530,7 +531,7 @@ The following activity diagram shows how edit operation generally works when a r
  `execute("editR 1 n/Pea soup")` <br>
  or an ingredient is edited <br>
  `execute("editF 1 i/tomato")`
-![EditActivity](images/implementation/activityDiagrams/EditActivityDiagram.png)
+![EditActivity](images/implementation/activityDiagrams/EditCommandActivityDiagram.png)
 
 The following sequence diagram shows how edit operation generally works when a recipe is edited: <br>
  `execute("editR 1 n/Pea soup")` <br>
@@ -607,7 +608,7 @@ Command and Parser make use of Substitutability:
 
 The following activity diagram shows how get edit operation works when `execute("editR 1")` or `execute("editF 1")` is called:
 
-![GetEditActivity](images/implementation/activityDiagrams/GetEditActivityDiagram.png)
+![GetEditActivity](images/implementation/activityDiagrams/GetEditCommandActivityDiagram.png)
 
 The following sequence diagram shows how get edit operation works when `execute("editR 1")` or `execute("editF 1")` is called:
 
@@ -688,7 +689,7 @@ Command and Parser make use of Substitutability:
 * `SearchIngredientCommandParser` implements `Parser<SearchIngredientCommand>` <br><br>
 
 The following activity diagram shows how search operation generally works:
-![SearchActivityDiagram](images/implementation/activityDiagrams/SearchCommandActivityDiagram.png)
+![SearchActivityDiagram](images/implementation/activityDiagram/SearchCommandActivityDiagram.png)
 
 
 The following sequence diagram shows how the search operation generally works when searching for recipes: <br>
