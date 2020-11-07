@@ -13,7 +13,7 @@ import quickcache.model.flashcard.Flashcard;
 
 
 /**
- * Adds a person to the address book.
+ * Adds a MCQ to the QuickCache.
  */
 public class AddMultipleChoiceQuestionCommand extends Command {
 
