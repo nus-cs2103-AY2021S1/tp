@@ -145,7 +145,7 @@ The `Up` key brings users to previous command wheras the `Down` key brings users
 queue.
 
 * Note that the commands must be successful to be logged into command history and that command history only tracks commands
-in the current session. This means if restart Modduke, commands in the previous sessions won't be available.
+in the current session. This means if Moduke is restarted, commands in the previous sessions won't be available.
 
 ### Adding a contact : `contact add`
 
