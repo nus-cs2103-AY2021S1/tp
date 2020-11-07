@@ -2,7 +2,9 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.*;
+import static seedu.address.testutil.TypicalContacts.AMY;
+import static seedu.address.testutil.TypicalContacts.BOB;
+import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 
 import org.junit.jupiter.api.Test;
 
