@@ -11,7 +11,7 @@ public class Instruction {
 
     public static final String MESSAGE_CONSTRAINTS =
             "1. Instruction should not be empty \n"
-                    + "2. Each instructions can consist of alphanumeric characters, punctuations and spaces. "
+                    + "2. Each instructions can consist of alphanumeric characters, punctuations and spaces. \n"
                     + "3. Instructions are separated by one full stop, no consecutive full stops are allowed.";
 
     /*
