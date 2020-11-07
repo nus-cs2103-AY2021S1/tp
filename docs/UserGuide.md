@@ -236,7 +236,7 @@ Example:
 #### 3.3.4. Record leave taken by staff: `addl`
 
 Records leave taken by a staff that is in Eva. <br>
-Format: `addleave INDEX l/d/DATE [d/DATE] [l/d/DATE [d/DATE]]…​`
+Format: `addl INDEX l/d/DATE [d/DATE] [l/d/DATE [d/DATE]]…​`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -259,9 +259,9 @@ Removes record of leave taken by staff. <br>
 Format: `deleteleave INDEX d/DATE`
 
 Examples:
-* `list s-` followed by `deleteleave 2 d/09/09/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
+* `list s-` followed by `dell 2 d/09/09/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
 * `find s- Betsy` followed by `dell 1 d/09/09/2020` deletes the leave from the 1st person in the results of the `find s-` command.
-* `deleteleave 2 d/09/09/2020`
+* `delleave 2 d/09/09/2020`
 
 ### 3.4. Applicant commands
 

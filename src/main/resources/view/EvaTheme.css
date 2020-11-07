@@ -91,7 +91,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: #e8e7e4;
+    -fx-background-color: white;
 }
 
 .list-cell {
@@ -100,6 +100,8 @@
     -fx-padding: 0 0 0 0;
     -fx-control-inner-background: white;
     -fx-control-inner-background-alt: derive(-fx-control-inner-background, 50%);
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
 }
 
 .list-cell:filled:even {
