@@ -39,16 +39,16 @@ Pivot ..|> ReadOnlyPivot
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" Pivot
-ModelManager o--> "1" VersionedPivot
+ModelManager o-> "1" VersionedPivot
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-VersionedPivot *--> PivotState
-PivotState o--> ReadOnlyPivot
-PivotState *--> Undoable
+VersionedPivot *--> "1..*" PivotState
+PivotState o--> "1" ReadOnlyPivot
+PivotState *--> "1" Undoable
 
 Pivot *--> "1" UniqueCaseList
 UniqueCaseList o--> "*" Case
 
-ModelManager -->"1" Case : filtered list
+ModelManager --> "1" Case : filtered list
 @enduml
