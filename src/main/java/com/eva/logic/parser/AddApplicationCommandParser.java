@@ -15,6 +15,7 @@ import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.applicant.application.Education;
 import com.eva.model.person.applicant.application.Experience;
+import com.eva.model.person.applicant.application.SampleResume;
 
 public class AddApplicationCommandParser implements Parser<AddApplicationCommand> {
 
