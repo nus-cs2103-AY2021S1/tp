@@ -324,10 +324,9 @@ Example:
 * `delapp 1`
 
 #### 3.3.9. Set application status: `setas`
-[This feature is coming soon] <br>
 Sets the application status of an applicant with the specified index on the displayed list in Eva.
 
-Format: `setas INDEX NEW_APPLICATION_STATUS`
+Format: `setas INDEX as/NEW_APPLICATION_STATUS`
 
 - Application status can only be any one from the following: 
   - received
@@ -336,7 +335,7 @@ Format: `setas INDEX NEW_APPLICATION_STATUS`
   - rejected
   
 Example:
-* `setas 1 received`
+* `setas 1 as/received`
 
 ### 3.4. Comment Commands
 
