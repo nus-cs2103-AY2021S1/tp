@@ -83,7 +83,7 @@ public class Exam {
 
     @Override
     public String toString() {
-        return "- " + examName + "\n\t-> Date: " + print(examDate) + "\n\t-> Score: "
-                + score + " (" + score.getScorePercentage() + "%)\n";
+        return " " + examName + "\n\t- Date: " + print(examDate) + "\n\t- Score: "
+                + score + " (" + score.getScorePercentage() + "%)";
     }
 }

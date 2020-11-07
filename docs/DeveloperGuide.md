@@ -261,6 +261,19 @@ The following sequence diagram shows how the `ToggleStudentCardCommand` executio
 
 Figure \___. Sequence diagram for `ToggleStudentCardCommand` execution
 
+Design Considerations
+
+Aspect: How GUI respond when toggle is executed
+
+* Alternative 1 (current choice): Switch between two types of student cards, `StudentAcademicCard` and `StudentAdminCard` for the cards used in `StudentListPanel`.
+    * Pros: Easy to implement, reduces cluttering of information, allows for better focus on different information,.
+    * Cons: Can take a long time to execute finish or introduce unfinished toggling if `UniqueStudentList` is very large as `StudentListPanel#toggleState()` refreshes the entire list. 
+    
+* Alternative 2: Introduce two tabs, one for admin details and the other for academic details and toggling switches between these two tabs.
+    * Pros: No worry when `UniqueStudentList` is large.
+    * Cons: Double the work when executing commands such as `find` because there are now two lists to update, repeat of basic information such as student's name, phone, school and academic level, harder to implement.
+    
+    
 #### 6.1.3 Exit Command
 
 ### 6.2 Student administrative details features
@@ -536,6 +549,15 @@ The following activity diagram summarises the flow of events when `ExamStatsComm
 
 Figure \___. Activity diagram for `ExamStatsCommand` execution
 
+**Aspect: How GUI responds when exam stats is executed**
+
+* **Alternative 1 (current choice)**: Open new window that displays exam statistics.
+    * Pros: Easy to implement, allows for comparison and reference with student data, allows for multiple students' exam statistics to be opened, easy for users to understand.
+    * Cons: Can be more taxing on processor if many windows are opened simultaneously 
+    
+* **Alternative 2**: Switch from the displayed student list panel to an exam statistics panel (no need for multiple windows, all in one Reeve window).
+    * Pros: No worry of opening multiple windows which could introduce lag. 
+    * Cons: Unable to compare and reference with student data, harder to implement, can introduce confusion when trying to switch back to the student list panel.
 
 #### 6.3.3 Student attendance features
 

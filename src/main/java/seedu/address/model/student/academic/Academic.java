@@ -125,17 +125,20 @@ public class Academic {
             builder.append(questionList);
         }
 
+        if (!exams.isEmpty()) {
+            builder.append("\nExams:\n");
+            String examList = exams.stream()
+                    .map(detail -> String.format("- %s", detail))
+                    .collect(Collectors.joining("\n"));
+            builder.append(examList);
+        }
+
         if (!attendance.isEmpty()) {
             builder.append("\nAttendance:\n");
             String detailList = attendance.stream()
                     .map(detail -> String.format("- %s", detail))
                     .collect(Collectors.joining("\n"));
             builder.append(detailList);
-        }
-
-        if (!exams.isEmpty()) {
-            builder.append("\nExams:\n");
-            exams.forEach(builder::append);
         }
 
         return builder.toString();

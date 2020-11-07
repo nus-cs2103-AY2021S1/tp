@@ -73,9 +73,10 @@ Table 1: Summary of symbols
 
 Symbol | Meaning
 :-----:|:-------
-`command` | A grey highlight indicates a command that can be executed by **Reeve**.
-:information_source: | Indicates important information. 
-:bulb: | Indicates tips.
+`command` | a command that can be executed by **Reeve**.
+:information_source: | Important information. 
+:bulb: | Tips.
+:warning: | Warnings
 
 ## 2. Quick start
 
@@ -108,7 +109,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 1. Refer to the [Features](#3-features) section below for details of each command.
 
 ### 2.2 Making sense of **Reeve**'s layout
-![Reeve's Layou](images/ReeveLayout.png)
+![Reeve's Layout](images/ReeveLayout.png)
 
 1. **Menu**
 
@@ -170,6 +171,22 @@ By default, the administrative details of students are shown upon starting the a
 
 Format: `toggle`
 
+Expected Outcome:
+
+The following figures shows the before and after of entering the command `toggle`.
+
+Before:
+
+![ToggleCommandExpectedOutcomeBeforeUG](images/ToggleCommandExpectedOutcomeBeforeUG.png)
+
+Figure __. Before entering command `toggle`.
+
+
+After:
+
+![ToggleCommandExpectedOutcomeBeforeUG](images/ToggleCommandExpectedOutcomeAfterUG.png)
+
+Figure __. After entering command `toggle`.
 
 #### 3.2.3 Exiting the program: `exit`
 
@@ -184,7 +201,7 @@ Thereafter, you will be able to view, edit find or delete these students.
 
 #### 3.3.1 Adding a student: `add` (By: Hogan)
 
-You can add a student together with his/her individual administrative details into **Reeve's** student list. 
+You can add a student together with his/her administrative details into **Reeve's** student list. 
 
 Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [d/LAST_PAYMENT_DATE] [a/ADDITIONAL_DETAILS]…​`
 
@@ -210,12 +227,23 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+:warning: `LAST_PAYMENT_DATE` cannot be a future date (e.g. cannot be later than the current date)
+
+</div>
 
 Examples:
-* `add n/Alex p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214
-t/1 1430-1630 f/25 d/12/12/2020`
-* `add n/John Doe p/98765432 s/Woodlands Secondary School y/s 2 v/347 Woodlands Ave 3, Singapore 730347
-t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
+* `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`
+* `add n/John Doe p/98765432 s/Woodlands Secondary School y/s 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
+
+Expected Outcome:
+
+The following figure shows the expected outcome after entering the command `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`.
+
+![AddCommandExpectedOutcomeUG](images/AddCommandExpectedOutcomeUG.png)
+
+Figure __. After entering command `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`.
 
 #### 3.3.2 Listing all students: `list`
 
@@ -281,12 +309,12 @@ Examples:
 
 #### 3.3.5 Deleting a student: `delete`
 
-You can delete a specified student from **Reeve**.
+You can delete a specified student from **Reeve** to allow you to get rid of any unwanted student data.
 
 Format: `delete STUDENT_INDEX`
 
 * Deletes the student at the specified `STUDENT_INDEX`.
-* The index refers to the index number shown in the displayed students list.
+* `STUDENT_INDEX` refers to the index number shown in the displayed students list.
 
 <div markdown="block" class="alert alert-info">
 
@@ -462,23 +490,35 @@ General Format: `exam COMMAND_WORD_EXAM STUDENT_INDEX PARAMETERS`
 
 * The `COMMAND_WORD_EXAM` field accepts either `add` or `delete`.
 * The command affects the student at the specified `STUDENT_INDEX`.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The format of `PARAMETERS` varies with each command word as explained below.
+* `STUDENT_INDEX` refers to the index number shown in the displayed students list.
+* The format of `PARAMETERS` varies with each command word as explained in the following subsections.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+</div>
 
 ##### 3.4.2.1 Adding an exam record to a student: `exam add`
 
-You can add an exam record to a specified student in **Reeve**.
+You can add an exam record to a specified student in **Reeve** to keep track of your students' academic progress.
 
 Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 
-* Adds the given exam to the student at the specified `STUDENT_INDEX`.
+* Adds the given exam record to the student at the specified `STUDENT_INDEX`.
 
 * The format of EXAM_DATE is as follows:
-    * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
+    * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020 or 2/3/2020).
 
 * The format of EXAM_SCORE is as follows:
     * x/y where x and y are non-negative integers. 
     * x has to be less than or equal to y (e.g. 30/50).
+    
+<div markdown="block" class="alert alert-info">
+
+:information_source: You **cannot** add duplicates of an exam record to a student. Each exam record is uniquely identified the `EXAM_NAME`.
+
+</div>
 
 Examples:
 * `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam with date 8 Dec 2020 and
@@ -487,34 +527,76 @@ score 40/60 to the first student in **Reeve**.
 * `exam add 5 n/End of Year 2020 d/12/05/2020 s/67/100` adds the "End of Year 2020" exam with date 12 May 2020 and
 score 67/100 to the fifth student in **Reeve**.
 
+Expected Outcome:
+
+The following figure shows the expected outcome after entering the command `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`.
+
+![AddExamCommandExpectedOutcomeUG](images/AddExamCommandExpectedOutcomeUG.png)
+
+Figure __. After entering command `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`.
+
 ##### 3.4.2.2 Deleting an exam record for a student: `exam delete`
 
-You can delete a specific exam record from a specified student in **Reeve**.
+You can delete a specific exam record from a specified student in **Reeve** to remove any unwanted exam record data.
 
 Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
 
-* Deletes the exam at `EXAM_INDEX` in the specified student's exam list.
-* The specified student is chosen based on `STUDENT_INDEX` of **Reeve**.
-* The `STUDENT_INDEX` refers to the index number shown in the displayed students list.
+* Deletes the exam at `EXAM_INDEX` in the specified student's exam records list.
+* The specified exam record is chosen based on `EXAM_INDEX`. 
+* The `EXAM_INDEX` refers to the index number shown in the displayed student's exam records list.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `EXAM_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+</div>
 
 Examples:
 * `exam delete 1 i/1` deletes the first exam from the first student in the displayed students list.
 * `exam delete 2 i/5` deletes the fifth exam from the second student in the displayed students list.
 
+Expected Outcome:
+
+The following figures shows the before and after of entering the command `exam delete 1 i/1`.
+
+Before:
+![DeleteExamExpectedOutcomeBefore](images/DeleteExamExpectedOutcomeBefore.png)
+
+Figure __. Before entering command `exam delete 1 i/1`.
+
+After:
+![DeleteExamExpectedOutcomeAfter](images/DeleteExamExpectedOutcomeAfter.png)
+
+Figure __. After entering command `exam delete 1 i/1`.
+
+
 ##### 3.4.2.3 Viewing exam statistics of a student: `exam stats`
 
-To gauge how one of your students are doing with their examinations, this command allows you to view a graphical
-representation of all recorded examinations.
+To gauge how any of your students are doing with their examinations, this command allows you to view a graphical
+representation of all recorded exams. The graph is a score-date line graph where score is based on the score percentage. 
 
 Format: `exam stats STUDENT_INDEX`
 
 * Views exam statistics of the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed students list.
-* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Exam records are arranged in order of increasing date.
+
+</div>
 
 Examples:
 * `list` followed by `exam stats 2` views the exam statistics of the 2nd student in **Reeve**.
 * `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
+
+
+Expected Outcome:
+
+The following figure shows the expected outcome after entering the command `exam stats 1`. 
+
+![ExamStatsCommandExpectedOutcomeUG](images/ExamStatsCommandExpectedOutcomeUG.png)
+
+Figure __. After entering command `exam stats 1`.
 
 <div markdown="block" class="alert alert-info">
 
