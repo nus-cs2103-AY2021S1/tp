@@ -333,7 +333,7 @@ Step 7: The current order is set to `orderItems` by executing `setOrder(orderIte
 
 Given below is the activity diagram for the LoadPresetCommand.
 
-<img src="/Users/ernestlim/Desktop/Screenshots/Screenshot 2020-11-07 at 6.30.29 PM.png" alt="Screenshot 2020-11-07 at 6.30.29 PM" style="zoom:50%;" />
+![LoadPresetCommandActivityDiagram](images/LoadPresetCommandActivityDiagram.png)
 
 
 
@@ -365,7 +365,7 @@ Step 9: The modified allLists is saved into a json file by executing `Storage#sa
 
 Given below is the activity diagram for SavePresetCommand.
 
-<img src="/Users/ernestlim/Desktop/Screenshots/Screenshot 2020-11-07 at 6.22.12 PM.png" alt="Screenshot 2020-11-07 at 6.22.12 PM" style="zoom:50%;" />
+![SavePresetCommandActivityDiagram](images/SavePresetCommandActivityDiagram.png)
 
 
 
@@ -715,6 +715,78 @@ Precondition: <u>User has already selected a particular vendor</u>
       Use case ends.
       
       
+
+**Use case: Load Preset**
+
+**MSS**
+
+1. User requests to load preset of a specific name.
+
+2. SupperStrikers loads the saved presets from storage.
+
+3. SupperStrikers finds the preset with the same name under the current vendor.
+
+4. SupperStrikers loads the preset into the current order.
+
+   Use case ends.
+
+
+
+**Extensions**
+
+- 1a. The name given is invalid.
+  Use case ends.
+
+- 2a. Error in loading presets.
+
+​	   Use case ends.
+
+- 3a. There is no preset with the same name.
+
+  Use case ends.
+
+- 4a. The current order already contains order items.
+
+  The current order is replaced by the preset.
+
+  Use case ends.
+
+  
+
+**Use case: Save Preset**
+
+**MSS**
+
+1. User requests to save preset with a specific name.
+
+2. SupperStrikers loads the current presets from storage.
+
+3. SupperStrikers creates a new preset with the current order items.
+
+4. SupperStrikers adds the new preset into the current presets.
+
+5. SupperStrikers saves the modified presets into storage.
+
+   Use case ends.
+
+
+
+**Extensions**
+
+- 1a. The name given is invalid.
+  	  Use case ends.
+
+- 2a. Error in loading presets.
+
+​             Use case ends.
+
+- 4a. The current presets already has a preset with the same name
+
+  ​       The current preset is replaced by the new preset.
+
+  ​       Use case resumes at step 5.
+
+
 
 *{More to be added}*
 
