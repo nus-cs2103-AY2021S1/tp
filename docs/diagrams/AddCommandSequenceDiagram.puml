@@ -17,7 +17,7 @@ end box
 [-> LogicManager : execute()
 activate LogicManager
 
-LogicManager -> StockBookParser : parseCommand()
+LogicManager -> StockBookParser : parseCommand(...)
 activate StockBookParser
 
 create AddCommandParser
@@ -27,22 +27,22 @@ activate AddCommandParser
 AddCommandParser --> StockBookParser
 deactivate AddCommandParser
 
-StockBookParser -> AddCommandParser : parse(args)
+StockBookParser -> AddCommandParser : parse(...)
 activate AddCommandParser
 
-AddCommandParser -> AddCommandParser : arePrefixesPresent()
-activate AddCommandParser
-
-AddCommandParser --> AddCommandParser
-deactivate AddCommandParser
-
-AddCommandParser -> AddCommandParser : doesPrefixesAppearOnce()
+AddCommandParser -> AddCommandParser : arePrefixesPresent(...)
 activate AddCommandParser
 
 AddCommandParser --> AddCommandParser
 deactivate AddCommandParser
 
-AddCommandParser -> AddCommandParser : doesLowQuantityPrefixAppearOnce()
+AddCommandParser -> AddCommandParser : doesPrefixesAppearOnce(...)
+activate AddCommandParser
+
+AddCommandParser --> AddCommandParser
+deactivate AddCommandParser
+
+AddCommandParser -> AddCommandParser : doesLowQuantityPrefixAppearOnce(...)
 activate AddCommandParser
 
 AddCommandParser --> AddCommandParser
@@ -61,12 +61,12 @@ deactivate AddCommandParser
 StockBookParser -> AddCommand : execute()
 activate AddCommand
 
-AddCommand -> Model : hasStock()
-    activate Model
+AddCommand -> Model : hasStock(...)
+activate Model
+Model --> AddCommand
+deactivate Model
 
 alt stock present in Stockbook
-    Model --> AddCommand
-    deactivate Model
     create CommandException
     AddCommand -> CommandException
     activate CommandException
@@ -74,15 +74,15 @@ alt stock present in Stockbook
     deactivate CommandException
     AddCommand --> StockBookParser : exception
 else stock not present in Stockbook
-    AddCommand -> Model :generateNextSerialNumber()
+    AddCommand -> Model :generateNextSerialNumber(...)
     activate Model
-    Model -> SerialNumberSetsBook :generateNextSerialNumber()
+    Model -> SerialNumberSetsBook :generateNextSerialNumber(...)
     activate SerialNumberSetsBook
     SerialNumberSetsBook --> Model
     deactivate SerialNumberSetsBook
     Model --> AddCommand
     deactivate Model
-    AddCommand -> Model :addStock()
+    AddCommand -> Model :addStock(...)
     activate Model
     Model --> AddCommand
     deactivate Model

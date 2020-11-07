@@ -1,0 +1,12 @@
+{
+  "serialNumberSets" : [ {
+    "source" : "ntuc",
+    "accumulatedQuantity" : "1"
+  }, {
+    "source" : "fairprice",
+    "accumulatedQuantity" : "1"
+  }, {
+    "source" : "giant",
+    "accumulatedQuantity" : "1"
+  }]
+}
