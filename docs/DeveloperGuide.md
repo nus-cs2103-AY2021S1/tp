@@ -17,7 +17,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams. <br>
+Some diagrams were made using microsoft powerpoint. The .pptx files can also be found in the [powerpoint](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/docs/powerpoint) folder.
 
 </div>
 
@@ -61,11 +62,18 @@ The sections below give more details of each component.
 ### 2.1.1 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component Further Elaborated](images/UiClassDiagramProfile.png)
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/com/eva/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CurrentPanelHeader`, `ResultDisplay`, `CommandBox`, `HelpWindow`, and the various `Panels`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+
+There are four different possible `Panels` and/or `PanelStates` :
+* `StaffListPanel` : this is where the user can view the list of staffs in the database
+* `ApplicantListPanel` : this is where the user can view the list of applicants in the database
+* `StaffProfilePanel` : this is where the user can view the profile of a staff in the database
+* `ApplicantProfilePanel` : this is where the user can view the profile of an applicant in the database
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/com/eva/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -73,6 +81,7 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Updates `GUISettings` so that lst viewed List Panel can be stored in `preferences.json`, an auto generated and updated file.
 
 ### 2.1.2 Logic component
 
@@ -105,7 +114,8 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the staff and applicant data.
 * exposes an unmodifiable `ObservableList<Staff>` and an `ObservableList<Applicant>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* exposes an unmodifiable `CurrentViewStaff` and `CurrentViewApplicant` that can be 'observed' e.g the UI can be bound to object so that the UI automatically updates when the staff/applicant or it's attributes changes.
+* does not depend on any of the other five components.
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `EvaStorage`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
