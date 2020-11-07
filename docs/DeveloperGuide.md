@@ -264,13 +264,32 @@ Step 4. The `Flashcard` will then be constructed containing the `tagList`.
 
 ### Edit Flashcard
 
-The Delete mechanism is facilitated by `QuickCache` . It will edit the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
+#### Implementation
+
+The Edit mechanism operates by editing the flashcard at a specified index of the last displayed list. 
+The new information is encapsulated inside a `EditFlashcardDescriptor` and is passed together with the `Index` object
+to the `EditCommand`. 
+
+During `EditComamnd#execute`, a new `Flashcard` object will be created. For each of its individual content (i.e `Answer`),
+if the `EditFlashcardDescriptor` does not have the new information, the old content will be from the original `Flashcard`.
+
+##### Usage
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+Step 1. The user executes `edit 1 ans/answer` command to edit the answer field of the first flashcard. 
 
-Step 2. The user executes `edit 1 ...` command to edit some of the fields given in the command on the first flashcard. The `edit` command will cause the creation of a flashcard with updated field and set it to be the flashcard on the index in `UniqueFlashcardList`.
+Step 2. `EditCommandParser#parse` will then parse the arguments provided. In this example, a new `Answer` object will be
+created after parsing.
+
+Step 3. The `Answer` object will then be passed to the `EditFlashcardDescriptor` object. The `EditFlashcardDescriptor` 
+object together with the original `Flashcard` will be passed to the `EditCommand` object.
+
+Step 4. The `EditCommand` will then create a new `Flashcard` using information from `EditFlashcardDescriptor`. 
+In the example, only a new answer is present. All other information will be taken from the original `Flashcard`.
+
+Step 5. `EditCommand#execute` will then replace the old `Flashcard` in the `model` with the new `Flashcard`.
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
 </div>
@@ -279,14 +298,16 @@ The following sequence diagram shows how the edit operation works:
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
-#### Design consideration:
+#### Design considerations:
 
-##### Aspect: How edit executes
+* **Current choice:** Create a new flashcard with all the new information to replace the old flashcard.
+  * Pros: Maintains immutability.
+  * Cons: Difficult to implement as a seperate `EditFlashcardDescriptor` class must be implemented as well.
 
-* **Alternative 1 (current choice):** Provide the index of the flashcard to be edited.
-  * Pros: Easy to implement and CLI-optimized.
-  * Cons: User have to know the index of the specified flashcard.
-
+* **Alternative:** Edit the old flashcard directly.
+  * Pros: Much easier to implement.
+  * Cons: If the execution is stopped halfway, then the newly updated flashcard will contain wrong information. It will
+  be difficult to debug as well.
 
 ### Delete By Index
 
