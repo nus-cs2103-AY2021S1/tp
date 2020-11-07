@@ -633,9 +633,9 @@ Step 6. As a result of the successful deletion of the appointment object, a `Com
         * Requires an extreme increase in complexity of code, as the modification would be different for addition/deletion/edit of appointments.
         * Increases coupling between `CalendarDisplay`, a UI element, and `Model`.
         
-### 3.7 Visitation Log Feature
+### 3.8 Visitation Log Feature
 
-#### 3.7.1 Implementation
+#### 3.8.1 Implementation
 
 This feature allows the user to save the details of each visitation of a patient. Each `Patient` has a `VisitHistory` object which contains a list of `Visit` objects,
 each containing the visitation details stored as the attributes of the `Visit` object. These attributes include the Diagnosis, Prescription and Comments of the visitation. 
@@ -681,8 +681,8 @@ The following diagram shows a summary of the steps taken when an `addvisit` comm
     <em style="color:#CC5500">Figure 29. Activity Diagram for User Execution of Command</em>
 </p>
 
-#### 3.7.2 Design Considerations
-##### 3.7.2.1 Aspect: Dates to be accepted in `addvisit` and `editvisit` commands
+#### 3.8.2 Design Considerations
+##### 3.8.2.1 Aspect: Dates to be accepted in `addvisit` and `editvisit` commands
 
 * **Current Implementation:** Only dates in the past up till and including today.
     * Pros:
