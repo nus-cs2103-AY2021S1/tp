@@ -19,7 +19,7 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an FinanceAccount using the Finance Records in the {@code toBeCopied}
      */
     public FinanceAccount(ReadOnlyFinanceAccount toBeCopied) {
         this();
@@ -29,8 +29,8 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the finance record list with {@code financeRecords}.
+     * {@code financeRecords} must not contain duplicate records.
      */
     public void setFinanceRecords(List<FinanceRecord> financeRecords) {
         this.financeRecords.setFinanceRecords(financeRecords);
@@ -38,7 +38,7 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
 
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data with {@code newData}.
      */
     public void resetData(ReadOnlyFinanceAccount newData) {
         requireNonNull(newData);
@@ -46,7 +46,7 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
     }
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a finance record with the same ID as {@code financeRecord} exists.
      */
     public boolean hasFinanceRecord(FinanceRecord financeRecord) {
         requireNonNull(financeRecord);
@@ -54,17 +54,17 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a finance record to NUStorage.
+     * The finance record must not already exist in NUStorage.
      */
     public void addFinanceRecord(FinanceRecord financeRecord) {
         financeRecords.add(financeRecord);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given finance record {@code target} in the list with {@code editedRecord}.
+     * {@code target} must exist in NUStorage.
+     * The unique ID of {@code editedRecord} must not match any existing record in NUStorage.
      */
     public void setFinanceRecord(FinanceRecord target, FinanceRecord editedRecord) {
         requireNonNull(editedRecord);
@@ -101,10 +101,5 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
         return other == this // short circuit if same object
                 || (other instanceof FinanceAccount // instanceof handles nulls
                 && financeRecords.equals(((FinanceAccount) other).financeRecords));
-    }
-
-    @Override
-    public int hashCode() {
-        return financeRecords.hashCode();
     }
 }

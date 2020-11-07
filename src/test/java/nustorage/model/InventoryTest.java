@@ -56,12 +56,12 @@ public class InventoryTest {
     }
 
     @Test
-    public void hasInventoryRecord_inventoryRecordNotInAddressBook_returnsFalse() {
+    public void hasInventoryRecord_inventoryRecordNotPresent_returnsFalse() {
         assertFalse(inventory.hasInventoryRecord(INVENTORY_RECORD_A));
     }
 
     @Test
-    public void hasInventoryRecord_inventoryRecordInInventory_returnsTrue() {
+    public void hasInventoryRecord_inventoryRecordPresent_returnsTrue() {
         inventory.addInventoryRecord(INVENTORY_RECORD_A);
         assertTrue(inventory.hasInventoryRecord(INVENTORY_RECORD_A));
     }

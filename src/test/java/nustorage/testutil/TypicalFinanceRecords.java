@@ -35,7 +35,7 @@ public class TypicalFinanceRecords {
     private TypicalFinanceRecords() {} // prevents instantiation
 
     /**
-     * Returns an {@code FinanceAccount} with all the typical persons.
+     * Returns an {@code FinanceAccount} with all the typical finance records.
      */
     public static FinanceAccount getTypicalFinanceAccount() {
         FinanceAccount fa = new FinanceAccount();

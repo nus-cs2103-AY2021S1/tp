@@ -62,6 +62,8 @@ public interface Model {
 
     FinanceRecord getFinanceRecord(InventoryRecord inventoryRecord);
 
+    boolean hasFinanceRecord(FinanceRecord financeRecord);
+
     void deleteInventoryRecord(InventoryRecord target);
 
     void setFinanceRecord(FinanceRecord financeRecordToEdit, FinanceRecord editedFinanceRecord);

@@ -11,8 +11,8 @@ import nustorage.model.record.FinanceRecord;
 public interface ReadOnlyFinanceAccount {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the finance record list.
+     * This list will not contain any duplicate finance records.
      */
     ObservableList<FinanceRecord> getFinanceList();
 

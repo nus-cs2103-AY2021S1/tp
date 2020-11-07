@@ -36,8 +36,8 @@ public class EditFinanceCommand extends Command {
     private final EditFinanceDescriptor editFinanceDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editFinanceDescriptor details to edit the person with
+     * @param index of the finance record in the filtered finance list to edit
+     * @param editFinanceDescriptor details to edit the finance record with
      */
     public EditFinanceCommand(Index index, EditFinanceDescriptor editFinanceDescriptor) {
         requireNonNull(index);
@@ -76,8 +76,8 @@ public class EditFinanceCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code InventoryRecord} with the details of {@code inventoryRecord}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code FinanceRecord} with the details of {@code financeRecord}
+     * edited with {@code editFinanceDescriptor}.
      */
     private static FinanceRecord createEditedFinanceRecord(
             FinanceRecord financeRecord, EditFinanceDescriptor editFinanceDescriptor) {
@@ -109,8 +109,8 @@ public class EditFinanceCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the finance record with. Each non-empty field value will replace the
+     * corresponding field value of the finance record.
      */
     public static class EditFinanceDescriptor {
 

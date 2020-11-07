@@ -15,8 +15,7 @@ import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all finance records by ID, dates, or links to inventory records
  */
 public class FindFinanceCommand extends Command {
 

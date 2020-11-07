@@ -41,8 +41,8 @@ public class EditInventoryCommand extends Command {
     private final EditInventoryDescriptor editInventoryDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editInventoryDescriptor details to edit the person with
+     * @param index of the inventory record in the filtered inventory list to edit
+     * @param editInventoryDescriptor details to edit the inventory record with
      */
     public EditInventoryCommand(Index index, EditInventoryDescriptor editInventoryDescriptor) {
         requireNonNull(index);
@@ -66,7 +66,7 @@ public class EditInventoryCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_INVENTORY_RECORD);
         }
         FinanceRecord financeRecordToEdit = model.getFinanceRecord(inventoryRecordToEdit);
-        FinanceRecord editedFinanceRecord = new FinanceRecord(
+        FinanceRecord editedFinanceRecord = new FinanceRecord(inventoryRecordToEdit.getFinanceId(),
                 editedInventoryRecord.getUnitCost() * editedInventoryRecord.getQuantity(),
                 editedInventoryRecord.getDateTime(), true);
         editedInventoryRecord.setFinanceRecord(editedFinanceRecord);
@@ -80,7 +80,7 @@ public class EditInventoryCommand extends Command {
 
     /**
      * Creates and returns a {@code InventoryRecord} with the details of {@code inventoryRecord}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editInventoryDescriptor}.
      */
     private static InventoryRecord createEditedInventoryRecord(
             InventoryRecord inventoryRecord, EditInventoryDescriptor editInventoryDescriptor) {
@@ -111,8 +111,8 @@ public class EditInventoryCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the inventory record with. Each non-empty field value will replace the
+     * corresponding field value of the inventory record.
      */
     public static class EditInventoryDescriptor {
         private Integer quantity;

@@ -35,7 +35,7 @@ public class InventoryRecordBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the InventoryRecordBuilder with the data of {@code recordToCopy}.
      */
     public InventoryRecordBuilder(InventoryRecord recordToCopy) {
         itemName = recordToCopy.getItemName();
@@ -46,7 +46,7 @@ public class InventoryRecordBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code name} of the {@code Inventory Record} that we are building.
      */
     public InventoryRecordBuilder withName(String itemName) {
         this.itemName = itemName;
@@ -64,7 +64,7 @@ public class InventoryRecordBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Sets the {@code datetime} of the {@code Inventory Record} that we are building.
      */
     public InventoryRecordBuilder withDatetime(String dateTime) {
         try {

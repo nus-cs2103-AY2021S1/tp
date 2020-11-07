@@ -356,7 +356,7 @@ https://stackoverflow.com/questions/36779642/javafx-css-styling-change-highlight
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
