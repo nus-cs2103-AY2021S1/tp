@@ -154,7 +154,7 @@ public class MainWindow extends UiPart<Stage> {
         // StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         // statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        calender = new Calender();
+        calender = new Calender(logic.getEventList());
         calenderPlaceHolder.getChildren().add(calender.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -236,6 +236,8 @@ public class MainWindow extends UiPart<Stage> {
             // Update charts for TodoList
             todoListPanel.updateCompletionChart(logic.getFilteredTodoList());
             todoListPanel.updateFutureBar(logic.getFilteredTodoList());
+            // update the calendar
+            calender.loadNow();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
