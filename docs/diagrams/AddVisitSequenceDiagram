@@ -70,6 +70,4 @@ LogicManager --> VisitFormWindow : result
 deactivate LogicManager
 VisitFormWindow --> MainWindow : result
 deactivate VisitFormWindow
-
-
 @enduml
