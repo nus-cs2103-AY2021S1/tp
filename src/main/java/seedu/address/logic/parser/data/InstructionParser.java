@@ -1,5 +1,7 @@
 package seedu.address.logic.parser.data;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.ArrayList;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,7 +28,7 @@ public class InstructionParser {
             }
         }
         if (instructions.size() == 0) {
-            throw new ParseException(Instruction.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Instruction.MESSAGE_CONSTRAINTS));
         }
         return instructions;
     }
