@@ -28,9 +28,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
 import seedu.address.model.contact.FindContactCriteria;
-import seedu.address.testutil.ContactBuilder;
-import seedu.address.testutil.EditContactDescriptorBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.contact.ContactBuilder;
+import seedu.address.testutil.contact.ContactUtil;
+import seedu.address.testutil.contact.EditContactDescriptorBuilder;
 
 public class ContactListParserTest {
 
@@ -39,7 +39,7 @@ public class ContactListParserTest {
     @Test
     public void parseCommand_addContactInput_commandCreated() throws ParseException {
         Contact contact = new ContactBuilder().build();
-        AddContactCommand command = (AddContactCommand) parser.parseCommand(PersonUtil.getAddCommand(contact));
+        AddContactCommand command = (AddContactCommand) parser.parseCommand(ContactUtil.getAddCommand(contact));
         assertEquals(new AddContactCommand(contact), command);
     }
 
@@ -49,7 +49,7 @@ public class ContactListParserTest {
         EditContactDescriptor descriptor = new EditContactDescriptorBuilder(contact).build();
         EditContactCommand command = (EditContactCommand) parser
                 .parseCommand(EditContactCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTACT.getOneBased()
-                + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + " " + ContactUtil.getEditContactDescriptorDetails(descriptor));
         assertEquals(new EditContactCommand(INDEX_FIRST_CONTACT, descriptor), command);
     }
 

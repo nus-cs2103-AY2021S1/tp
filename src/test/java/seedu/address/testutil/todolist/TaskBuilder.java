@@ -25,7 +25,7 @@ public class TaskBuilder {
     public static final List<String> DEFAULT_TAGS = new ArrayList<>(Arrays.asList(ARRAY_OF_TAGS));
     public static final String DEFAULT_PRIORITY = "HIGH";
     public static final String DEFAULT_DATE = "2020-10-10";
-    public static final String DEFAULT_STATUS = "Not Completed";
+    public static final String DEFAULT_STATUS = "NOT_COMPLETED";
 
     private TaskName name;
     private Set<Tag> tags;

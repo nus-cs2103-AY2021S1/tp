@@ -57,7 +57,7 @@ public class JsonModuleListStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonModuleModuleList_throwDataConversionException() {
+    public void readModuleList_invalidAndValidModuleModuleList_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readModuleList("invalidAndValidModuleModuleList.json"));
     }
 
@@ -92,7 +92,7 @@ public class JsonModuleListStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code ModuleList} at the specified {@code filePath}.
      */
     private void saveModuleList(ReadOnlyModuleList moduleList, String filePath) {
         try {

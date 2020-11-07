@@ -1,12 +1,9 @@
-package seedu.address.testutil;
+package seedu.address.testutil.contact;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-//import seedu.address.logic.commands.EditCommand.EditModuleDescriptor;
-//import seedu.address.model.person.Email;
-//import seedu.address.model.person.Name;
 import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactName;

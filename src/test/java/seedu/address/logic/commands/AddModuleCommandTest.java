@@ -30,7 +30,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
 // import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.contact.ContactBuilder;
 
 public class AddModuleCommandTest {
 

@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.contact;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -13,21 +13,22 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Contact.
  */
-public class PersonUtil {
+public class ContactUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code contact}.
      */
-    public static String getAddCommand(Contact person) {
-        return AddContactCommand.COMMAND_WORD + " " + getPersonDetails(person);
+
+    public static String getAddCommand(Contact contact) {
+        return AddContactCommand.COMMAND_WORD + " " + getContactDetails(contact);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code contact}'s details.
      */
-    public static String getPersonDetails(Contact contact) {
+    public static String getContactDetails(Contact contact) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + contact.getName().toString() + " ");
         sb.append(PREFIX_EMAIL + contact.getEmail().toString() + " ");
@@ -41,7 +42,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditContactDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditContactDescriptor descriptor) {
+    public static String getEditContactDescriptorDetails(EditContactDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.toString()).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.toString()).append(" "));
@@ -56,7 +57,6 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        // descriptor.getZoomLink().ifPresent(zoomLink -> sb.append(PREFIX_EMAIL).append(zoomLink.value).append(" "));
         return sb.toString();
     }
 }
