@@ -2,6 +2,8 @@ package seedu.address.model.exercise;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 public class Calories {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -28,6 +30,10 @@ public class Calories {
      * Returns true if a given string is a valid input.
      */
     public static boolean isValidCalories(String test) {
+        if (Objects.isNull(test)) {
+            throw new NullPointerException();
+        }
+
         int x;
         try {
             x = Integer.parseInt(test);
@@ -35,6 +41,7 @@ public class Calories {
             //Exception rises when test can't be parsed into Integer.
             return false;
         }
+
         //A valid calories burnt must be 0 or 1000.
         //It is very difficult to burn 1000 calories from just one exercise.
         return x >= 0 && x <= 1000;

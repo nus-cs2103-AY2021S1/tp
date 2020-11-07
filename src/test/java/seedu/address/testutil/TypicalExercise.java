@@ -37,19 +37,19 @@ public class TypicalExercise {
             .withCalories(VALID_CALORIES_SIT_UP).withMuscleTags(VALID_MUSCLE_ARM).build();
 
     public static final Exercise RUN = new ExerciseBuilder().withName("Run")
-            .withDescription("Test 3").withDate("17-10-2020").withCalories("12348")
+            .withDescription("Test 3").withDate("17-10-2020").withCalories("123")
             .withMuscleTags("leg").build();
 
     public static final Exercise WALK = new ExerciseBuilder().withName("Walk")
-            .withDescription("Test 4").withDate("24-10-2020").withCalories("12349")
+            .withDescription("Test 4").withDate("24-10-2020").withCalories("125")
             .withMuscleTags("leg").build();
 
     public static final Exercise PULL_UP = new ExerciseBuilder().withName("Pull up")
-            .withDescription("Test 5").withDate("31-10-2020").withCalories("123400")
+            .withDescription("Test 5").withDate("31-10-2020").withCalories("124")
             .withMuscleTags("arm").build();
 
     public static final Exercise SQUAT = new ExerciseBuilder().withName("Squat")
-            .withDescription("Test 6").withDate("07-11-2020").withCalories("255491")
+            .withDescription("Test 6").withDate("07-11-2020").withCalories("254")
             .withMuscleTags("leg").build();;
 
     private TypicalExercise() {
