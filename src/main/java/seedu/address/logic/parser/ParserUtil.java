@@ -208,7 +208,7 @@ public class ParserUtil {
     public static Detail parseDetail(String detail) throws ParseException {
         requireNonNull(detail);
         String trimmedDetail = detail.trim();
-        if (!Detail.isValidAdditionalDetail(trimmedDetail)) {
+        if (!Detail.isValidDetail(trimmedDetail)) {
             throw new ParseException(Detail.MESSAGE_CONSTRAINTS);
         }
         return new Detail(trimmedDetail);
@@ -217,11 +217,11 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> details} into a {@code List<Detail>}.
      */
-    public static List<Detail> parseDetails(Collection<String> additionalDetails)
+    public static List<Detail> parseDetails(Collection<String> details)
             throws ParseException {
-        requireNonNull(additionalDetails);
+        requireNonNull(details);
         final List<Detail> detailSet = new ArrayList<>();
-        for (String detail : additionalDetails) {
+        for (String detail : details) {
             detailSet.add(parseDetail(detail));
         }
         return detailSet;

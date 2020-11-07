@@ -34,7 +34,7 @@ public class AddDetailCommand extends DetailCommand {
     private final Detail detailToAdd;
 
     /**
-     * Creates an AddAdditionalDetailCommand to add the specified {@code AdditionalDetail} to the student
+     * Creates an AddDetailCommand to add the specified {@code Detail} to the student
      * at the specified {@code Index}.
      */
     public AddDetailCommand(Index index, Detail detailToAdd) {

@@ -76,6 +76,22 @@ public class StudentUtil {
     }
 
     /**
+     * Returns the part of command string for the given {@code EditAdminDescriptor}'s details.
+     */
+    public static String getEditAdminDescriptorDetails(EditCommand.EditAdminDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        descriptor.getClassTime().ifPresent(classTime -> sb.append(PREFIX_TIME)
+                .append(classTime.convertClassTimeToUserInputString()).append(" "));
+        descriptor.getClassVenue().ifPresent(classVenue -> sb.append(PREFIX_VENUE)
+                .append(classVenue.venue).append(" "));
+        descriptor.getFee().ifPresent(fee -> sb.append(PREFIX_FEE)
+                .append(fee.convertFeeToUserInputString()).append(" "));
+        descriptor.getPaymentDate().ifPresent(paymentDate -> sb.append(PREFIX_PAYMENT)
+                .append(paymentDate.getUserInputDate()).append(" "));
+        return sb.toString();
+    }
+
+    /**
      * Returns the part of command string for the given {@code FindStudentDescriptor}'s details.
      */
     public static String getFindStudentDescriptorDetails(FindCommand.FindStudentDescriptor descriptor) {

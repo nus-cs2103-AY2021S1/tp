@@ -234,17 +234,16 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            if (commandResult.isShouldShowHelp()) {
                 handleHelp();
             }
 
-            if (commandResult.isExit()) {
+            if (commandResult.isShouldExit()) {
                 handleExit();
             }
 
-
             // this is to open schedule when schedule command is called
-            if (commandResult.isSchedule()) {
+            if (commandResult.isShouldShowSchedule()) {
                 handleSchedule();
                 return commandResult;
             }

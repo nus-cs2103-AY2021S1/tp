@@ -70,19 +70,20 @@ public class EditDetailCommand extends DetailCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Student studentToAddDetail = lastShownList.get(studentIndex.getZeroBased());
+        Student studentToEditDetail = lastShownList.get(studentIndex.getZeroBased());
 
-        if (detailIndex.getZeroBased() >= studentToAddDetail.getDetails().size()) {
+        if (detailIndex.getZeroBased() >= studentToEditDetail.getDetails().size()) {
             logger.log(Level.WARNING, "Invalid detail index input error");
             throw new CommandException(MESSAGE_BAD_DETAIL_INDEX);
         }
 
-        List<Detail> details = studentToAddDetail.getDetails();
+        List<Detail> details = studentToEditDetail.getDetails();
         details.set(detailIndex.getZeroBased(), detailToAdd);
 
-        Student updatedStudent = super.updateStudentDetail(studentToAddDetail, details);
+        Student updatedStudent = super.updateStudentDetail(studentToEditDetail, details);
 
-        model.setStudent(studentToAddDetail, updatedStudent);
+        model.setStudent(studentToEditDetail, updatedStudent);
+
         logger.log(Level.INFO, "Execution complete");
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), detailToAdd));
     }

@@ -15,13 +15,13 @@ public class CommandResult {
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private final boolean shouldShowHelp;
 
     /** The application should exit. */
-    private final boolean exit;
+    private final boolean shouldExit;
 
     /** Schedule should be shown to user. */
-    private final boolean schedule;
+    private final boolean shouldShowSchedule;
 
     /** The application should toggle between admin and academic student cards. */
     private final boolean toggleStudentCard;
@@ -32,12 +32,12 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean schedule, boolean toggleStudentCard) {
+    public CommandResult(String feedbackToUser, boolean shouldShowHelp, boolean shouldExit,
+                         boolean shouldShowSchedule, boolean toggleStudentCard) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.schedule = schedule;
+        this.shouldShowHelp = shouldShowHelp;
+        this.shouldExit = shouldExit;
+        this.shouldShowSchedule = shouldShowSchedule;
         this.toggleStudentCard = toggleStudentCard;
         this.selectedStudent = null;
     }
@@ -45,14 +45,14 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+    public CommandResult(String feedbackToUser, boolean shouldShowHelp, boolean shouldExit,
                          boolean toggleStudentCard, Student student) {
 
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
+        this.shouldShowHelp = shouldShowHelp;
+        this.shouldExit = shouldExit;
         this.toggleStudentCard = toggleStudentCard;
-        this.schedule = false;
+        this.shouldShowSchedule = false;
         this.selectedStudent = student;
     }
 
@@ -80,16 +80,16 @@ public class CommandResult {
         return selectedStudent;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
+    public boolean isShouldShowHelp() {
+        return shouldShowHelp;
     }
 
-    public boolean isExit() {
-        return exit;
+    public boolean isShouldExit() {
+        return shouldExit;
     }
 
-    public boolean isSchedule() {
-        return schedule;
+    public boolean isShouldShowSchedule() {
+        return shouldShowSchedule;
     }
 
     public boolean isToggleStudentCard() {
@@ -113,8 +113,8 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         boolean result = feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
+                && shouldShowHelp == otherCommandResult.shouldShowHelp
+                && shouldExit == otherCommandResult.shouldExit
                 && toggleStudentCard == otherCommandResult.toggleStudentCard;
         if (selectedStudent != null) {
             result = result && selectedStudent.equals(otherCommandResult.selectedStudent);
@@ -124,7 +124,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, toggleStudentCard, selectedStudent);
+        return Objects.hash(feedbackToUser, shouldShowHelp, shouldExit, toggleStudentCard, selectedStudent);
     }
 
     @Override
