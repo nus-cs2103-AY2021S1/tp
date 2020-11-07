@@ -38,6 +38,7 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
+    //@@author jerrylchong
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One matching letter

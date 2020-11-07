@@ -1,3 +1,4 @@
+//@@author jerrylchong
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.ClearTagCommand;
