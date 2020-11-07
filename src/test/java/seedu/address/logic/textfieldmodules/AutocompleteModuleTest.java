@@ -1,6 +1,7 @@
 package seedu.address.logic.textfieldmodules;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,6 +37,22 @@ class AutocompleteModuleTest extends HeadlessTestBase {
         ac.addSuggestions(sampleCmdPrefix, () -> sampleNameList);
     }
 
+    @Test
+    public void attachTo_nullTextField_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> AutocompleteModule.attachTo(null));
+    }
+    @Test
+    public void addSuggestions_nullCommandPrefix_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> AutocompleteModule
+                .attachTo(textField)
+                .addSuggestions(null, () -> sampleNameList));
+    }
+    @Test
+    public void addSuggestions_nullListSupplier_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> AutocompleteModule
+                .attachTo(textField)
+                .addSuggestions(sampleCmdPrefix, null));
+    }
     @Test
     public void textFieldWithAutocompleteModule_getFirstSuggestionWithEmptyPrefix_success(FxRobot robot) {
         // Simulate user trigger ac
