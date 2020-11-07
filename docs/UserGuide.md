@@ -518,6 +518,9 @@ Flashcards data are saved in the hard disk automatically after any command that 
 **Q**: Why doesn't review mode affect review frequency/count of a flashcard?<br>
 **A**: We know the naming may be a little bit confusing but just keep in mind that review mode does **not** affect the statistics (success, review frequency) of a flashcard. Only quiz mode does!
 
+**Q**: What is the success rate of a flashcard?<br>
+**A**: Success rate of a flashcard is measured by `(success frequency) / (review frequency) x 100%`. If a flashcard has a review frequency of 0, then its success rate will be 0%.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
