@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -29,6 +31,8 @@ public class DeleteAssignmentCommand extends Command {
     public static final String MESSAGE_ASSIGNMENT_NOT_DELETED =
             "Assignment to be deleted or module specified is invalid.";
 
+    private final Logger logger = LogsCenter.getLogger(DeleteAssignmentCommand.class);
+
     private final Index targetIndex;
     private final ModuleName targetModule;
 
@@ -39,6 +43,7 @@ public class DeleteAssignmentCommand extends Command {
      * @param targetModule the module to remove the assignment from.
      */
     public DeleteAssignmentCommand(Index targetIndex, ModuleName targetModule) {
+        logger.info("Deleting assignment " + targetIndex.toString() + " from:" + targetModule.toString() + "");
         this.targetIndex = targetIndex;
         this.targetModule = targetModule;
     }
@@ -61,6 +66,7 @@ public class DeleteAssignmentCommand extends Command {
         Assignment assignmentToDelete = gradeTracker.getSortedAssignments().get(targetIndex.getZeroBased());
         gradeTracker.removeAssignment(assignmentToDelete);
         module.setGradeTracker(gradeTracker);
+        logger.info("Assignment has been deleted: " + assignmentToDelete.toString());
         model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, assignmentToDelete, module));
     }
