@@ -42,13 +42,12 @@ Given below are my contributions to the project.
     * Added manual testing details for the `add`, `exit` and `clear` commands.
     * Tweaked the logic and UI design diagram to match our current project.
     * Did cosmetic tweaks on the sections of Documentation, logging, testing, configuration, dev-ops to ensure they fit our project.
-    * **Coming Soon**
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [#96](https://github.com/AY2021S1-CS2103-T16-2/tp/pull/96), [#160](https://github.com/AY2021S1-CS2103-T16-2/tp/pull/160)
+  * PRs reviewed (with non-trivial review comments): [#96](https://github.com/AY2021S1-CS2103-T16-2/tp/pull/96), [#160](https://github.com/AY2021S1-CS2103-T16-2/tp/pull/160) [#194](https://github.com/AY2021S1-CS2103-T16-2/tp/pull/194)
   * Contributed to forum discussions [Automated Text UI testing issues](https://github.com/nus-cs2103-AY2021S1/forum/issues/7), [Helped to fix error regarding Smoke testing](https://github.com/nus-cs2103-AY2021S1/forum/issues/265)
-  * Reported bugs and suggestions for other teams in the class (examples: **Coming Soon**)
-  * Reported bugs and suggestions in AB3 (examples: **Coming Soon**)
+  * Reported bugs and suggestions for other teams in the class (Done in the Mock Practical Exam for F09-1): [#136](https://github.com/AY2021S1-CS2103-F09-1/tp/issues/136) [#135](https://github.com/AY2021S1-CS2103-F09-1/tp/issues/135)
+  [#141](https://github.com/AY2021S1-CS2103-F09-1/tp/issues/141)
 
 
 * _{you can add/remove categories in the list above}_
