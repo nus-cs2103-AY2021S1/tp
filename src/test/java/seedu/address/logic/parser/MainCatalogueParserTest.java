@@ -64,7 +64,6 @@ import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
