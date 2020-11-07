@@ -573,8 +573,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to find a tag/label from the given keyword
-2. HelloFile recognize the keyword is associated with existing tag/label.
-3. HelloFile show the result to the user 
+2. HelloFile recognizes the keyword is associated with existing tag/label.
+3. HelloFile shows the result to the user 
     
     Use case ends
     
@@ -582,7 +582,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * *2a. HelloFile cannot associate keyword with any tag/label.
 
-    * *2a1. HelloFile will show nothing on the list.
+    * *2a1. HelloFile show nothing on the list.
     
         Use case resumes from step 1
     
