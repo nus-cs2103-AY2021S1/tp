@@ -344,9 +344,9 @@ It works when the `LogicManager` listens for a filter command input from the use
 parses the command to filter out relevant flashcards based on the category, rating, favourite status and/or tags.
 
 The filter feature supports filtering of multiple flashcard fields by parsing the command using `FilterCommandParser#parse(String args)`
-and creates a new `FilterCommand` object that contains a `MultipleFieldsEqualsKeywordsPredicate` predicate object.
+and creates a new `FilterCommand` object that contains a `MultipleFieldsEqualKeywordsPredicate` predicate object.
 
-The `MultipleFieldsEqualsKeywordsPredicate` predicate object then encapsulates the following predicate objects:
+The `MultipleFieldsEqualKeywordsPredicate` predicate object then encapsulates the following predicate objects:
 * `CategoryEqualsKeywordsPredicate`
 * `RatingEqualsKeywordsPredicate` 
 * `FavouriteEqualsKeywordsPredicate`
@@ -354,7 +354,7 @@ The `MultipleFieldsEqualsKeywordsPredicate` predicate object then encapsulates t
 
 It implements the following operations:
 * `FilterCommand#execute(Model model)` to update `Model` to show only the filtered flashcards
-* `MultipleFieldsEqualsKeywordsPredicate#test(Flashcard flashcard)` to check every flashcard in `Model` against the 
+* `MultipleFieldsEqualKeywordsPredicate#test(Flashcard flashcard)` to check every flashcard in `Model` against the 
 various encapsulated predicates for different fields in the flashcard (category, rating, favourite status and tags) and will only
 return true if all encapsulated predicates return true.
 * `ModelManager#updateFilteredFlashcardList(Predicate<Flashcard> predicate)` takes in a predicate to update 
