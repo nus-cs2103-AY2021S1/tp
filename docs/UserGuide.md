@@ -175,7 +175,7 @@ Root folder containing the jar file        |  Image directory
 :-------------------------:|:-------------------------:
 ![filedirectory](images/ug/ug_add_step1.png) |  ![filedirectory](images/ug/ug_add_step1.1.PNG)
 
-**Step 2**: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png`. Remember to include the file extension in `DIAGRAM`
+**Step 2**: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png` and press Enter. Remember to include the file extension in `DIAGRAM`
 
 ![filedirectory](images/ug/ug_add_step2.png)
 
@@ -226,7 +226,7 @@ Examples:
 
 ![filedirectory](images/ug/ug_edit_step1.PNG)
 
-**Step 2**: We want to edit the category of the flashcard to Trivial and rating to 1. Type the command `edit 2 c/Trivial r/1`
+**Step 2**: We want to edit the category of the flashcard to Trivial and rating to 1. Type the command `edit 2 c/Trivial r/1` and press Enter.
 
 ![filedirectory](images/ug/ug_edit_step2.PNG)
 
@@ -263,7 +263,7 @@ Examples:
 
 **Steps for filtering for a flashcard based on category and tag**:
 
-**Step 1**: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded`
+**Step 1**: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded` and press Enter.
 
 ![filedirectory](images/ug/ug_filter_step1.PNG)
 
@@ -349,7 +349,7 @@ The review and success frequency of a flashcard is <b>not affected</b> by review
 
 **Steps for entering review mode**:
 
-**Step 1**: We want to enter review mode to review our flashcards. Type the command `review`
+**Step 1**: We want to enter review mode to review our flashcards. Type the command `review` and press Enter.
 
 ![filedirectory](images/ug/ug_review_step1.PNG)
 
@@ -386,7 +386,7 @@ The quiz mode works in conjunction with the [statistics](#view-the-statistics-of
 
 **Steps for entering quiz mode**:
 
-**Step 1**: We want to enter quiz mode to test ourselves on the current list of flashcards. Type the command `quiz`
+**Step 1**: We want to enter quiz mode to test ourselves on the current list of flashcards. Type the command `quiz` and press Enter.
 
 ![filedirectory](images/ug/ug_quiz_step1.PNG)
 
@@ -444,7 +444,7 @@ flashcard was not modified/deleted.
 
 **Steps for viewing a specific flashcard**:
 
-**Step 1**: Locate the flashcard you wish to view. In this example, we want to view the flashcard at index 3. Type the command `view 3`
+**Step 1**: Locate the flashcard you wish to view. In this example, we want to view the flashcard at index 3. Type the command `view 3` and press Enter.
 
 ![filedirectory](images/ug/ug_view_step1.PNG)
 
@@ -452,7 +452,8 @@ flashcard was not modified/deleted.
 
 ![filedirectory](images/ug/ug_view_step2.PNG)
 
-**Step 3**: To view the answer and notes (if applicable) of the flashcard on the view pane. Type the command `view 3 -a`
+**Step 3**: To view the answer and notes (if applicable) of the flashcard on the view pane. Type the command `view 3 -a` and press Enter.
+
 
 ![filedirectory](images/ug/ug_view_step3.PNG)
 
@@ -487,7 +488,7 @@ flashcard was not modified/deleted.
 
 **Steps for viewing the statistics of a specific flashcard**:
 
-**Step 1**: Locate the flashcard you wish to view the statistics of. In this example, we want to view the statistics of the flashcard at index 1. Type the command `stats 1`
+**Step 1**: Locate the flashcard you wish to view the statistics of. In this example, we want to view the statistics of the flashcard at index 1. Type the command `stats 1` and press Enter.
 
 ![filedirectory](images/ug/ug_stats_step1.PNG)
 
