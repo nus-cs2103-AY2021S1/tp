@@ -170,17 +170,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void enter(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void enter(Participation teammate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void quit() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void enterTask(Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void enterTeammate(Participation teammate) {
             throw new AssertionError("This method should not be called.");
         }
 

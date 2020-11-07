@@ -3,6 +3,7 @@ package seedu.address.logic.commands.project;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.testutil.TypicalPersons.DESC_A;
 import static seedu.address.testutil.TypicalPersons.DESC_B;
 import static seedu.address.testutil.TypicalPersons.DESC_C;
@@ -44,9 +45,12 @@ public class AddTeammateCommandTest {
         String expectedResult = String.format(AddTeammateCommand.MESSAGE_NEW_TEAMMATE_SUCCESS,
             DESC_A.getGitUserNameString());
 
-        CommandResult commandResult = addTeammateCommand.execute(model);
-
-        assertEquals(expectedResult, commandResult.getFeedbackToUser());
+        try {
+            CommandResult commandResult = addTeammateCommand.execute(model);
+            assertEquals(expectedResult, commandResult.getFeedbackToUser());
+        } catch (Exception e) {
+            fail();
+        }
 
     }
 
