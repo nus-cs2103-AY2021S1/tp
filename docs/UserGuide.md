@@ -246,6 +246,8 @@ Displays all records in the inventory list.
 
 __Format:__ `update_inventory INDEX q/CHANGE_QUANTITY`
 
+<!-- Note that `QUANTITY` is currently limited to a maximum value of `2147483647`. -->
+
 __Example:__ `update_inventory 1 q/-5` changes the quantity of the inventory by `-5` and updates corresponding finance record. `CHANGE_QUANTITY` can be of negative value.
 
 ![List inventory command example](images/commands/update_inventory_command.png)
