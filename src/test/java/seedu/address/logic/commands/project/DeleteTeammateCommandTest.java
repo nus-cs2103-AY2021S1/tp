@@ -3,11 +3,6 @@ package seedu.address.logic.commands.project;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_ADDRESS_A;
-import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_EMAIL_A;
-import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_GIT_USERNAME_A;
-import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_NAME_A;
-import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_A;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_FIRST_TEAMMATE;
 import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_SECOND_TEAMMATE;
@@ -24,7 +19,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.participation.Participation;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
-import seedu.address.testutil.PersonBuilder;
 
 /**
  * The tests do not cover invalid Person valid index because invalid person is covered by other test,
