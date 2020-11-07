@@ -83,9 +83,10 @@ Here is a quick start on how you can start using our app in your own computer.
 
 1. Download the latest `quickcache.jar` from [here](https://github.com/AY2021S1-CS2103T-T13-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your QuickCache.
+1. Copy the file to the folder you want to use as the _home folder_ for QuickCache.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -101,7 +102,7 @@ Here is a quick start on how you can start using our app in your own computer.
 
    * **`list`** : Lists all FlashCards.
 
-   * **`find`** `find t/MCQ q/What CS2103T q/is t/GoodQuestion` : Finds all Flashcards tagged to the tag `MCQ` and `GoodQuestion` and has keywords `What`, `CS2103T` and `is` in question.
+   * **`find`** `find t/MCQ q/All mammals q/survive t/Biology` : Finds all Flashcards tagged to the tag `MCQ` and `Biology` and has keywords `All`, `mammals` and `survive` in question.
 
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
 
