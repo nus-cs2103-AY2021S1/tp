@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINKS_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOM_LINK_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ZOOM_LINK;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.modulelistcommands.AddCompletedModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.AddZoomLinkCommand;
@@ -52,6 +54,12 @@ public class UndoCommandTest {
     private static Model contactModel = new ModelManager(new ModuleList() , new ModuleList(), getTypicalContactList(),
             new TodoList(), new EventList(), new UserPrefs());
     private static String expectedMessage = UndoCommand.MESSAGE_UNDO_COMMAND_SUCCESS;
+
+    @Test
+    public void execute_noHistoryUndo_throwsCommandException() {
+        assertThrows(CommandException.class, ModelManager.MESSAGE_NO_UNDO_HISTORY, () ->
+                new UndoCommand().execute(moduleModel));
+    }
 
     @Test
     public void execute_addModuleUndo_success() {
@@ -196,9 +204,9 @@ public class UndoCommandTest {
     }
     @Test
     public void execute_unarchiveModuleUndo_success() {
-        Model archiveModel = new ModelManager( new ModuleList(), new ModuleList(moduleModel.getModuleList()),
+        Model archiveModel = new ModelManager(new ModuleList(), new ModuleList(moduleModel.getModuleList()),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
-        Model expectedModel = new ModelManager( new ModuleList(), new ModuleList(moduleModel.getModuleList()),
+        Model expectedModel = new ModelManager(new ModuleList(), new ModuleList(moduleModel.getModuleList()),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
         Model commitCommandModel = new ModelManager(new ModuleList(), new ModuleList(moduleModel.getModuleList()),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());

@@ -6,8 +6,8 @@ import java.util.List;
 import seedu.address.model.exceptions.VersionedListException;
 
 public class VersionedModuleList extends ModuleList {
-    private static final String MESSAGE_NO_REDO_HISTORY = "There are no Module List commands to redo";
-    private static final String MESSAGE_NO_UNDO_HISTORY = "There are no Module List commands to undo";
+    public static final String MESSAGE_NO_REDO_HISTORY = "There are no Module List commands to redo";
+    public static final String MESSAGE_NO_UNDO_HISTORY = "There are no Module List commands to undo";
     private List<ReadOnlyModuleList> moduleListStateList = new ArrayList<>();
     private int currentStatePointer;
     /**
