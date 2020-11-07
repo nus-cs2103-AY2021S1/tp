@@ -21,11 +21,6 @@ Class Flashcard
 Class UniqueFlashcardList
 }
 
-Package Tag {
-Class Tag
-}
-}
-
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
@@ -39,9 +34,8 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 FlashcardDeck *--> "1" UniqueFlashcardList
 UniqueFlashcardList o-left-> "*" Flashcard
-Flashcard *-right-> "*" Tag
 
-ModelManager -->"1" Flashcard : filtered list
-ModelManager -->"1" Flashcard : sorted list
+ModelManager --> Flashcard : filtered list
+ModelManager --> Flashcard : sorted list
 
 @enduml
