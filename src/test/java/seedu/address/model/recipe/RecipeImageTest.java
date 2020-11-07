@@ -2,9 +2,12 @@ package seedu.address.model.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_SANDWICH;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.TypicalRecipes;
 
 public class RecipeImageTest {
     @Test
@@ -35,5 +38,11 @@ public class RecipeImageTest {
                 "file:///C:/Users/Hi/data/effect-of-coronavirus-on-food.jpg")); //local file path
         assertTrue(RecipeImage.isValidImage(
                 "https://cdn.cdnparenting.com/articles/2017/11/502828327-H-300x205.jpg")); //url
+    }
+
+    @Test
+    public void getImagePath() {
+        String imagePath = VALID_RECIPE_IMAGE_SANDWICH;
+        assertTrue(TypicalRecipes.SANDWICH.getRecipeImage().getImagePath().equals(imagePath));
     }
 }
