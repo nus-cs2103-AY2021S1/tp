@@ -205,12 +205,12 @@ public class CommandParserTest {
         cases.put("find /asdf:owo",                                                     false);
 
         cases.put("filter recipe",                                                      false);
-        cases.put("filter recipe /name x",                                              false);
+        cases.put("filter recipe /name",                                                false);
         cases.put("filter recipe /tag",                                                 false);
         cases.put("filter recipe /ingredient",                                          false);
 
         cases.put("filter ingredient",                                                  false);
-        cases.put("filter ingredient /name x",                                          false);
+        cases.put("filter ingredient /name",                                            false);
         cases.put("filter ingredient /tag",                                             false);
         cases.put("filter ingredient /expiry a a a ",                                   false);
 
@@ -230,12 +230,20 @@ public class CommandParserTest {
         cases.put("list recommendation",                                                true);
         cases.put("list recommendations",                                               true);
 
+        cases.put("filter recipe /name x",                                              true);
         cases.put("filter recipe /tag x",                                               true);
+        cases.put("filter recipe /tag x /name x",                                       true);
         cases.put("filter recipe /tag x /ingredient x",                                 true);
+        cases.put("filter recipe /name x /ingredient x",                                true);
+        cases.put("filter recipe /name x /ingredient x /tag x",                         true);
         cases.put("filter recipe /ingredient x",                                        true);
 
+        cases.put("filter ingredient /name x",                                          true);
         cases.put("filter ingredient /tag x",                                           true);
         cases.put("filter ingredient /expiry 2020-01-01",                               true);
+        cases.put("filter ingredient /name x /tag x",                                   true);
+        cases.put("filter ingredient /tag x /expiry 2020-01-01",                        true);
+        cases.put("filter ingredient /name x /tag x /expiry 2020-01-01",                true);
 
         cases.forEach((k, v) -> {
             assertEquals(v, parser.parse(k).hasValue());

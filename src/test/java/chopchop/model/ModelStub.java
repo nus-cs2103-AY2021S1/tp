@@ -211,12 +211,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public List<RecipeUsage> getRecentlyUsedRecipes(int n) {
+    public List<Pair<String, String>> getRecentlyUsedRecipes(int n) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public List<IngredientUsage> getRecentlyUsedIngredients(int n) {
+    public List<Pair<String, String>> getRecentlyUsedIngredients(int n) {
         throw new AssertionError("This method should not be called.");
     }
 }

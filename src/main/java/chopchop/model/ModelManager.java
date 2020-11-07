@@ -304,12 +304,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<RecipeUsage> getRecentlyUsedRecipes(int n) {
+    public List<Pair<String, String>> getRecentlyUsedRecipes(int n) {
         return this.recipeUsageList.getRecentlyUsed(n);
     }
 
     @Override
-    public List<IngredientUsage> getRecentlyUsedIngredients(int n) {
+    public List<Pair<String, String>> getRecentlyUsedIngredients(int n) {
         return this.ingredientUsageList.getRecentlyUsed(n);
     }
 
