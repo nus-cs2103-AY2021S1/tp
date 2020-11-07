@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Contact's name in the contact list.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}.
  */
 public class ContactName {
 
@@ -13,17 +13,18 @@ public class ContactName {
             "Contact Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the contact name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
+    /** String describing the contact name. */
     private final String fullName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code ContactName}.
      *
-     * @param name A valid name.
+     * @param name A valid contact name.
      */
     public ContactName(String name) {
         requireNonNull(name);
@@ -32,7 +33,10 @@ public class ContactName {
     }
 
     /**
-     * Returns true if a given string is a valid contact name.
+     * Determines if a given string is a valid contact name.
+     *
+     * @param test A given String to test.
+     * @return True if the given string is a valid contact name.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);

@@ -26,12 +26,12 @@ public class Contact {
     private final boolean isImportant;
 
     /**
-     * Creates and initialises a Contact object with a Name, Email and Tag field,
-     * isImportant field, but without a Telegram field.
+     * Creates and initialises a Contact object without a Telegram field.
      *
-     * @param name Name field of the Contact object.
+     * @param name ContactName field of the Contact object.
      * @param email Email field of the Contact object.
      * @param tags Set of tags of the Contact object.
+     * @param isImportant boolean describing the isImportant field of the Contact object.
      */
     public Contact(ContactName name, Email email, Set<Tag> tags, boolean isImportant) {
         requireAllNonNull(name, email, tags, isImportant);
@@ -43,12 +43,14 @@ public class Contact {
     }
 
     /**
-     * Every field must be present and not null, except for the {@code telegram} field.
+     * Creates and initialises a new Contact object.
+     * Every field must be present and not null.
      *
-     * @param name Name field of the Contact object.
+     * @param name ContactName field of the Contact object.
      * @param email Email field of the Contact object.
      * @param telegram Telegram field of the Contact object.
      * @param tags Set of tags of the Contact object.
+     * @param isImportant boolean describing the isImportant field of the Contact object.
      */
     public Contact(ContactName name, Email email, Telegram telegram, Set<Tag> tags, boolean isImportant) {
         requireAllNonNull(name, email, telegram, tags, isImportant);
@@ -80,8 +82,11 @@ public class Contact {
     }
 
     /**
-     * Returns true if both contacts have the same name and email.
+     * Determines if both contacts have the same name and email.
      * This defines a weaker notion of equality between two contacts.
+     *
+     * @param otherContact Contact to be compared.
+     * @return True if both contacts have the same name and email, false otherwise.
      */
     public boolean isSameContact(Contact otherContact) {
         if (otherContact == this) {
@@ -94,40 +99,30 @@ public class Contact {
     }
 
     /**
-     * Marks the contact as important
+     * Marks the contact as important.
      *
-     * @return a new contact.
+     * @return Contact object with the updated field.
      */
     public Contact markAsImportant() {
         return new Contact(this.name, this.email, this.telegram, this.tags, true);
     }
 
     /**
-     * Marks the contact as not important
+     * Marks the contact as unimportant.
      *
-     * @return a new contact.
+     * @return Contact object with the updated field.
      */
     public Contact markAsNotImportant() {
         return new Contact(this.name, this.email, this.telegram, this.tags, false);
     }
 
     /**
-     * Checks if this contact is important.
+     * Determines if this contact is important.
      *
-     * @return true if this contact is important.
+     * @return True if this contact is important, false otherwise.
      */
     public boolean isImportant() {
         return this.isImportant;
-    }
-
-    /**
-     * Returns String to represent the improtance of this contact.
-     * This method is created to avoid having some logic in the UI.
-     *
-     * @return a String that will be displayed in the Ui.
-     */
-    public String getIsImportantForUi() {
-        return isImportant ? "Important" : "Not important";
     }
 
     /**
@@ -144,11 +139,12 @@ public class Contact {
             return false;
         }
 
-        Contact otherPerson = (Contact) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTelegram().equals(getTelegram())
-                && otherPerson.getTags().equals(getTags());
+        Contact otherContact = (Contact) other;
+        return otherContact.getName().equals(getName())
+                && otherContact.getEmail().equals(getEmail())
+                && otherContact.getTelegram().equals(getTelegram())
+                && otherContact.getTags().equals(getTags())
+                && ((Boolean) otherContact.isImportant()).equals(isImportant());
     }
 
     @Override
