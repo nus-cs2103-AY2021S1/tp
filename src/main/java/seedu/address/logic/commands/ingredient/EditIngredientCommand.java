@@ -38,6 +38,7 @@ public class EditIngredientCommand extends Command {
     public static final String MESSAGE_EDIT_INGREDIENT_SUCCESS = "Edited Ingredient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "No edit made. At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in the fridge";
+    public static final String MESSAGE_ONE_INGREDIENT = "Please specify one ingredient to edit";
 
     private static Logger logger = Logger.getLogger("EditIngredientLogger");
 

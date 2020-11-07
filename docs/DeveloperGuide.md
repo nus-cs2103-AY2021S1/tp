@@ -19,7 +19,7 @@ title: Developer Guide
     - [3.1. Add Features](#31-add-features)
         * [3.1.1 Implementation](#311-implementation)
         * [3.1.2 Design Consideration - **Add Recipe**](#312-design-consideration-add-recipe)
-            * [Aspect 1: Concern while adding a new feature](#3121-aspect-1)
+            * [Aspect 1: Concern while adding a new feature](#3121-aspect-1)<br>
             * [Aspect 2: Should we allow adding duplicate recipes](#3122-aspect-2)
         * [3.1.3 Design Consideration - **Add Ingredient**](#313-design-consideration-add-ingredient)
             * [Aspect 1: Concern while adding a new feature](#3131-aspect-1)
@@ -38,7 +38,7 @@ title: Developer Guide
         * [3.3.3 Design Consideration - **List Ingredients**](#333-design-consideration-list-ingredient)
              * [Aspect: Concern while adding a new feature](#3331-aspect)
         * [3.3.4 Design Consideration - **List Consumptions**](#334-design-consideration-list-consumption)
-             * [Aspect 1: Concern while adding a new feature](#3341-aspect-1)
+             * [Aspect 1: Concern while adding a new feature](#3341-aspect-1)<br>
              * [Aspect 2: What information in the recipe is useful to display in the consumption list](#3342-aspect-2)
 	     <br><br>
     - [3.4. Delete Features](#34-delete-features)
@@ -49,7 +49,7 @@ title: Developer Guide
             * [Aspect: Concern while adding a new feature](#3431-aspect)
         * [3.4.4 Design Consideration - **Delete Consumption**](#344-design-consideration-delete-consumption)
             * [Aspect 1: Concern while adding a new feature](#3441-aspect-1)
-	    	* [Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present)](#3442-aspect-2)
+	    	    * [Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present)](#3442-aspect-2)
 	    <br><br>
     - [3.5. Edit Features](#35-edit-features)
         * [3.5.1 Implementation](#351-implementation)
@@ -75,7 +75,7 @@ title: Developer Guide
     - [3.8. Search Features](#38-search-features)
         * [3.8.1 Implementation](#381-implementation)
         * [3.8.2 Design Consideration - **Search Recipe**](#382-design-consideration-search-recipe)
-            * [Aspect 1: Concern while adding a new feature](#3821-aspect-1)
+            * [Aspect 1: Concern while adding a new feature](#3821-aspect-1)<br>
             * [Aspect 2: How do we successfully search and filter the recipes based on the user’s search](#3822-aspect-2)
         * [3.8.3 Design Consideration - **Search Ingredient**](#383-design-consideration-search-ingredient)
             * [Aspect: Concern while adding a new feature](#3831-aspect)
@@ -283,6 +283,9 @@ Command and Parser makes use of Substitutability:
 * `AddRecipeCommandParser` implements `Parser<AddRecipeCommand>`
 * `AddIngredientCommandParser` implements `Parser<AddIngredientCommand>` <br><br>
 
+The following activity diagram shows how add operation generally works:
+![AddActivityDiagram](images/implementation/activityDiagrams/AddCommandActivityDiagram.png)
+
 The following sequence diagram shows how the add operation generally works when a recipe is added: <br> 
 `execute("addR n/Salad i/Veggies - 100g c/100 img/images/healthy3.jpg instr/Eat tag/healthy")` <br> 
 or when an ingredient is added: <br> 
@@ -396,12 +399,16 @@ The List Consumption feature will also calculate and show the total calories con
 Command and Parser make use of Substitutability:
 * `ListRecipeCommand`, `ListIngredientCommand` and `ListConsumptionCommand` extends `Command` <br><br>
 
+The following activity diagram shows how list operation generally works: <br>
+![ListActivityDiagram](images/implementation/activityDiagrams/ListCommandActivityDiagram.png)
+
+
 The following sequence diagram shows how list operation works when `execute("recipes")`, `execute("fridge")` or
  `execute("calories")` is called:
 
 ![ListSequenceDiagram](images/implementation/sequenceDiagrams/ListSequence.png)
 
-<div markdown="block" class="alert alert-info" style="overflow:auto">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
 
 :bell: **Note**                                                                                                
                                                                                                                
@@ -459,19 +466,19 @@ Command and Parser makes use of Substitutability:
 * `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>` <br><br>
 
 The following activity diagram shows how delete operation works when `execute("deleteR 1")`, `execute("deleteF 1")` or `execute("deleteC 1")` is called:
-![DeleteActivity](images/implementation/ActivityDiagram/DeleteActivityDiagram.png)
+![DeleteActivity](images/implementation/activityDiagrams/DeleteCommandActivityDiagram.png)
 
 The following sequence diagram shows how delete operation works when `execute("deleteR 1")`, `execute("deleteF 1"
 )` or `execute("deleteC 1")` is called:
 
 ![DeleteSequence](images/implementation/sequenceDiagrams/DeleteSequence.png)
 
-<div markdown="block" class="alert alert-info" style="overflow:auto">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
 
 :bell: **Note**                                                                                                 
                                                                                                                 
 These are condensed diagrams. Several terms in the sequence and activity diagram above have been substituted by a
- common term 
+ common term
 :<br>                                                                                                           
                                                                                                                 
 Common Term | Recipe-specific term  | Ingredient-specific term | Consumption-specific term                          
@@ -524,7 +531,7 @@ The following activity diagram shows how edit operation generally works when a r
  `execute("editR 1 n/Pea soup")` <br>
  or an ingredient is edited <br>
  `execute("editF 1 i/tomato")`
-![EditActivity](images/implementation/activityDiagrams/EditActivityDiagram.png)
+![EditActivity](images/implementation/activityDiagrams/EditCommandActivityDiagram.png)
 
 The following sequence diagram shows how edit operation generally works when a recipe is edited: <br>
  `execute("editR 1 n/Pea soup")` <br>
@@ -601,7 +608,7 @@ Command and Parser make use of Substitutability:
 
 The following activity diagram shows how get edit operation works when `execute("editR 1")` or `execute("editF 1")` is called:
 
-![GetEditActivity](images/implementation/activityDiagrams/GetEditActivityDiagram.png)
+![GetEditActivity](images/implementation/activityDiagrams/GetEditCommandActivityDiagram.png)
 
 The following sequence diagram shows how get edit operation works when `execute("editR 1")` or `execute("editF 1")` is called:
 
@@ -650,6 +657,9 @@ Command and Parser make use of Substitutability:
 * `SelectRecipeCommand` extends `Command`
 * `SelectRecipeCommandParser` implements `Parser<SelectRecipeCommand>` <br><br>
 
+The following acitivity diagram shows how select recipe works with `selectR 1`
+![SelectRecipeActivity](images/SelectRecipeActivityDiagram.png)
+
 The following sequence diagram shows how select recipe operation works when `execute("selectR 1")` is called:
 
 ![SelectRecipeSequence](images/implementation/sequenceDiagrams/SelectRecipeSequence.png)
@@ -680,6 +690,10 @@ Command and Parser make use of Substitutability:
 * `SearchRecipeCommand` and `SearchIngredientCommand` extends `Command`
 * `SearchRecipeCommandParser` implements `Parser<SearchRecipeCommand>`
 * `SearchIngredientCommandParser` implements `Parser<SearchIngredientCommand>` <br><br>
+
+The following activity diagram shows how search operation generally works:
+![SearchActivityDiagram](images/implementation/activityDiagrams/SearchCommandActivityDiagram.png)
+
 
 The following sequence diagram shows how the search operation generally works when searching for recipes: <br>
  `execute("searchR n/burger")` <br> 
@@ -739,6 +753,10 @@ Recommend feature allows users to get the list of recipes whose ingredients matc
 
 Substitutability is used in Command:
 * `RecommendCommand` extends `Command` <br><br>
+
+The following activity diagram shows how recommend operation generally works:
+![RecommendActivityDiagram](images/implementation/activityDiagrams/RecommendCommandActivityDiagram.png)
+
 
 The following sequence diagram shows how recommend operation works when `execute("recommend")` is called:
 
@@ -962,7 +980,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
   Use case ends.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
       :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
 </div>
 
@@ -986,7 +1004,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
   Use case ends.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
       :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
 </div>
 
@@ -1010,7 +1028,7 @@ These are common extensions that can apply to some commands. Let x be the step t
     
     Use case resumes from step 2.
    
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
       :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
 </div> 
 
@@ -1055,7 +1073,7 @@ These are common extensions that can apply to some commands. Let x be the step t
      
 **Extensions**
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
   :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
 </div>
 <br><br>
@@ -1128,7 +1146,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
   Use case ends.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
      :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
 </div>
  <br><br>
@@ -1150,7 +1168,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
   Use case ends.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
       :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
 </div>
  <br><br>
@@ -1173,7 +1191,7 @@ These are common extensions that can apply to some commands. Let x be the step t
     
     Use case resumes from step 2.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
       :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
 </div>
  <br><br>
@@ -1223,7 +1241,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
   Use case ends.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
   :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
 </div>
  <br><br>
@@ -1262,7 +1280,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="block" class="alert alert-info">
-  :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
+  :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
 </div>
  <br><br>
 

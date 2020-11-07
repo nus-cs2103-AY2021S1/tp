@@ -72,12 +72,12 @@ Wishful Shrinking is your desktop diet manager. It is an app that helps you **ma
 2. **Recommend recipes** to improve ease of home cooking 
 3. **Track daily food and calorie** intake<br><br>
 
-Wishful Shrinking targets **office workers** who tend to discount healthy eating. Office workers are also more
+Wishful Shrinking targets **office workers** who tend to neglect healthy eating. Office workers are also more
  familiar with desktop applications and typing and correspondingly, Wishful Shrinking is optimized for fast and efficient typers as it uses a Command Line Interface (CLI) with the added beauty of a Graphical User Interface (GUI).
  Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems. <br><br>
 
 ## 1.2 Purpose <a id="12-purpose"></a>
-This user guide provides in-depth documentation on the **installation process, step-by-step instructions** for
+This user guide provides in-depth documentation on the **installation process**, **step-by-step instructions** for
  each feature and **troubleshooting recommendations**. <br><br>
 
 # 2. About the User Guide <a id="2-about-the-user-guide"></a>
@@ -109,7 +109,7 @@ t/ | TAG | Recipe tag
 **:information_source: Notes about the command format:**<br>
 
 * All prefixes must be preceded by a space.<br>
-   e.g ` t/`, ` i/`
+   e.g <code> t/</code>, <code> i/</code>
 
 * All commands are **case-sensitive**.<br>
   e.g. in `addR`, `add` is in small letters while `R` is in capital letters.
@@ -186,12 +186,17 @@ Component | Explanation
    
    * **`help`** : Opens the help window.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [next section](#5-command) for details of each command.
 <br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Commands <a id="5-commands"></a>
+
+<div markdown="span" class="alert alert-primary">:memo: **Note:**
+If multiple prefixes and values are specified when the format only specifies one, then the only last value is
+ accepted. e.g. `addF i/apple i/banana` only banana is accepted
+</div> 
 
 ## 5.1 Recipe-related Commands <a id="51-recipe-related-commands"></a>
 
@@ -212,10 +217,12 @@ Adds a recipe to Recipe List.
 Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES [img/IMAGE] inst
 /INSTRUCTION[. MORE INSTRUCTIONS] [t/TAG]...`
 
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+* `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-` and after the dash, only accepts alphanumeric characters
-, forward slashes and full stops.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should be
+   greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
@@ -312,10 +319,12 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 
 * Edits the recipe at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Recipe List.
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+* `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-` and after the dash, only accepts alphanumeric characters
-, forward slashes and full stops.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+   be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
@@ -336,10 +345,6 @@ Multiple ingredients are separated by `,`.
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
   No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
   
-
-<div markdown="span" class="alert alert-primary">:memo: **Note:**
-Multiple ingredients are separated by `,`.
-</div>
  
 * All fields are optional, but **at least** the recipe index and one of the fields must be present to edit
      a recipe.    
@@ -418,7 +423,7 @@ Format: `close`
 
 ### 5.1.8 Searching for a recipe: `searchR` <a id="search-recipe"></a>
 
-Finds recipes in the Recipe List that contain all the specified ingredient(s), name or tag(s).
+Finds recipes in the Recipe List that contains all the specified ingredient(s), or whose name or tag(s) contain any of the specified keywords.
 
 <br>  The image below is what Wishful Shrinking looks like after you have searched for a recipe. In this case, the recipe is being searched by ingredients. <br><br>
 <img src="images/feature/recipe/SearchRecipeImage.png" width="550" height="300">
@@ -429,9 +434,12 @@ Format: `searchR [i/INGREDIENT [ MORE INGREDIENTS]] [n/NAME] [t/TAG [ MORE TAGS]
 * The search is case-insensitive. e.g. `salad` will match `Salad`.
 * The search will match partial keywords. e.g. `sandw` will match `sandwich`.
 * The order of the keywords does not matter. e.g. Ham Salad will match Salad with Ham.
-* All fields are optional, but **at least one** of the fields must be present to search by recipe ingredient(s), recipe name or recipe tag(s).
+* If multiple keywords are specified for **name** and **tags**, all recipes containing **any** of the keywords will match the search.
+* If multiple **ingredients** are searched, only recipes that contain **all** of the ingredients specified will match the search.
+* All fields are optional, but **only one** of the fields must be present to search by recipe ingredient(s), recipe name or recipe tag(s).
+* If more than one field is specified, Wishful Shrinking will only search by the **first** field stated.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-    Multiple ingredients and tags are separated by a space and not a comma.
+    Multiple ingredients and tags are separated by a **space** and not a comma.
 </div>
 
 Examples:
@@ -476,7 +484,7 @@ Format: `clearR`
 
 ## 5.2 Fridge-related Commands <a id="52-fridge-related-commands"></a>
 
-The Fridge-related commands include [`addF`](#add-ingredient), [`Fridge`](#list-ingredient), [`deleteF`](#delete-ingredient), 
+The Fridge-related commands include [`addF`](#add-ingredient), [`fridge`](#list-ingredient), [`deleteF`](#delete-ingredient), 
 [`editF`](#edit-ingredient), [get `editF`](#get-edit-ingredient), [`searchF`](#search-ingredient) and [`clearF
 `](#clear-ingredient). These are the
  commands in Wishful Shrinking that are relevant only to the Fridge.
@@ -492,10 +500,12 @@ Adds an ingredient to the Fridge.
 
 Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+* `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-` and after the dash, only accepts alphanumeric
- characters, a single forward slash to represent fractions or a single full stop to represent decimal numbers.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+   be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.
@@ -554,10 +564,12 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 
 * Edits the ingredient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Ingredient List.
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+* `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before the dash and after, only accepts alphanumeric characters
-, forward slashes and full stops.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+   be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.
@@ -609,6 +621,7 @@ Format: `searchF KEYWORD [ MORE KEYWORDS]`
 
 * Input keywords are only compared against the ingredient name.
 * The search is case-insensitive. e.g `peanut` will match `Peanut`.
+* The search will match partial keywords. e.g. `tomat` will match `tomato`.
 * The order of the keywords does not matter. e.g. Peanut Butter will match Butter with Peanut.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
     Ingredient quantity is not taken into account when determining whether two ingredients matches.
@@ -718,6 +731,11 @@ Shows a message explaining how to access the help page.
 <br><br><br>
 
 Format: `help`
+
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
+   To go back to the app, simply click on the Wishful Shrinking tab at the top of the window.
+</div>
+
 <br><br><br>
 
 ### 5.4.2 Exiting the program : `exit` <a id="exit"></a>

@@ -79,9 +79,13 @@ public class Recipe {
     }
 
 
+    /**
+     * Set recipe image to default image.
+     */
     public void setDefaultImage() {
         this.recipeImage = new RecipeImage("images/default.jpg");
     }
+
     /**
      * Returns true if both recipes of the same name have the same ingredient names.
      * This defines a weaker notion of equality between two recipes.
@@ -133,7 +137,13 @@ public class Recipe {
                 && otherRecipe.getTags().equals(getTags());
     }
 
-    private boolean isSameIngredients(ArrayList<Ingredient> otherIngredients) {
+    /**
+     * Returns true if both ingredient lists are the same.
+     * This defines a weaker notion of equality between two ingredient lists.
+     * This method is used to check for adding duplicate ingredients.
+     * @return boolean
+     */
+    public boolean isSameIngredients(ArrayList<Ingredient> otherIngredients) {
         ArrayList<Ingredient> ingredients = getIngredient();
         if (ingredients.size() != otherIngredients.size()) {
             return false;
@@ -212,13 +222,7 @@ public class Recipe {
             for (int i = 0; i < len; i++) {
                 Instruction instruction = instructions.get(i);
                 String instrStr = instruction.toString();
-                int firstBracket = instrStr.indexOf(")");
-                instrStr = instrStr.substring(firstBracket + 1);
-                if (i == len - 1) {
-                    sb.append(instrStr);
-                } else {
-                    sb.append(instrStr + ". ");
-                }
+                sb.append(instrStr + ". ");
             }
             return sb.toString();
         }

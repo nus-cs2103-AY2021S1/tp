@@ -34,7 +34,7 @@ public class AddIngredientCommandParser implements Parser<AddIngredientCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIngredientCommand.MESSAGE_USAGE));
         }
 
-        String ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
+        String ingredientString = ParserUtil.parseIngredients(argMultimap.getValue(PREFIX_INGREDIENT).get());
         if (ingredientString.length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIngredientCommand.MESSAGE_USAGE));
         }
