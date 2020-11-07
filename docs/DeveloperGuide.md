@@ -501,10 +501,6 @@ The following sequence diagram shows how the stats operation works:
 
 ![ClearStatsSequenceDiagram](images/ClearStatsSequenceDiagram.png)
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Exporting Flashcards
 
 #### Implementation
