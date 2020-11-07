@@ -349,7 +349,7 @@ keywords are `Monday` and `Friday`. You can follow these steps.
 
 Steps to find employees who are available to work on `Monday` or `Friday`:
 1. Type `c-tag-find monday friday` into the _Command Box_.
-2. Press `Enter` to execute.
+2. Press "Enter" to execute.
 
 Outcome:
 1. The _Result Display_ will show the total number of employees who are can work on `Monday` or `Friday`.
@@ -383,7 +383,7 @@ Example:
 
 Steps to find today's available manpower:
 1. Type `c-today` into the _Command Box_.
-2. Press `Enter` to execute.
+2. Press "Enter" to execute.
 
 Outcome:
 1. The _Result Display_ will show 3 information:
@@ -422,7 +422,7 @@ Example:
 
 Steps to find tomorrow's available manpower:
 1. Type `c-tomorrow` into the _Command Box_.
-2. Press `Enter` to execute.
+2. Press "Enter" to execute.
 
 Outcome:
 1. The _Result Display_ will show 3 information:
@@ -488,7 +488,7 @@ employee directory when he comes back to work again. In this case, you can follo
 
 Steps to archive the first employee, Alex Yeoh, in the sample data:
 1. Type `c-archive 1` into the _Command Box_.
-2. Press `Enter` to execute.
+2. Press "Enter" to execute.
 
 
 Outcome:
@@ -520,7 +520,7 @@ Example:
 
 Steps to archive all employees in the sample data:
 1. Type `c-archive-all` into the _Command Box_.
-2. Press `Enter` to execute.
+2. Press "Enter" to execute.
 
 
 Outcome:
@@ -549,7 +549,7 @@ Example:
 
 Steps to see archived employees:
 1. Type `c-archive-list` into the _Command Box_.
-2. Press `Enter` to execute.
+2. Press "Enter" to execute.
 
 
 Outcome:
@@ -590,7 +590,7 @@ Example:
 
 Steps to unarchive the first employee, Alex Yeoh, in the archived employee list:
 1. Type `c-unarchive 1` into the _Command Box_.
-2. Press `Enter` to execute.
+2. Press "Enter" to execute.
 
 
 Outcome:
