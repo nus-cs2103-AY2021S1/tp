@@ -103,6 +103,24 @@ public class SampleDataUtil {
         menu3.add(new MenuItem("Cheese Steak Sliders (3pcs)", 16.90, burgers,
                 "de_frank/cheese_steak_slider.png"));
 
+        Menu menu4 = new Menu();
+        menu4.add(new MenuItem("Ayam Taliwang Dada/Taliwang Chicken Breast", 9.20, spicyTags,
+                "ayam_tali_wang/ayam_taliwang_dada.png"));
+        menu4.add(new MenuItem("Ayam Taliwang Peha/ Taliwang Chicken Thigh", 9.80, spicyTags,
+                "ayam_tali_wang/ayam_taliwang_peha.png"));
+        menu4.add(new MenuItem("Taliwang Dory/ Taliwang Pan Fried Fillet Dory", 9.50, spicyTags,
+                "ayam_tali_wang/taliwang_dory.png"));
+        menu4.add(new MenuItem("Tahu & Tempeh Goreng/ Fried Tofu & Tempeh", 4.70, starters,
+                "ayam_tali_wang/tahu_tempeh.png"));
+        menu4.add(new MenuItem("Keropok", 1.50, starters,
+                "ayam_tali_wang/keropok.png"));
+        menu4.add(new MenuItem("Jus Jeruk Nipis / Lime Juice", 2.50, drinks,
+                "ayam_tali_wang/lime_juice.png"));
+        menu4.add(new MenuItem("Teh Botol Sosro / Indonesian Bottled Tea Original", 2.50, drinks,
+                "ayam_tali_wang/teh_botol.png"));
+        menu4.add(new MenuItem("Minuman Kaleng / Canned Drink Coke", 2.30, drinks,
+                "ayam_tali_wang/coke.png"));
+
         return new Vendor[]{
             new Vendor(new Name("Al Amaan Restaurant"), new Phone("67740637"),
                         new Email("alamaanrestaurant@gmail.com"),
@@ -111,10 +129,13 @@ public class SampleDataUtil {
             new Vendor(new Name("Xpress Makan Avenue"), new Phone("91076367"), new Email("xpressmakanavenue@gmail.com"),
                         new Address("14 Clementi Road, Singapore 129743"),
                         getTagSet("halal"), menu2),
-            new Vendor(new Name("BeFrank"), new Phone("97652509"), new Email("charlotte@example.com"),
+            new Vendor(new Name("BeFrank"), new Phone("97652509"), new Email("beFrank99@gmail.com"),
                         new Address("28 Clementi Road, Singapore 129754"),
-                        getTagSet("western"), menu3)
-
+                        getTagSet("western"), menu3),
+            new Vendor(new Name("Ayam Taliwang"), new Phone("69048773"),
+                    new Email("taliwangIndonesianrestaurant@gmail.com"),
+                    new Address("440 Pasir Panjang Road 118782 Singapore"),
+                    getTagSet("indonesian"), menu4)
         };
     }
 
