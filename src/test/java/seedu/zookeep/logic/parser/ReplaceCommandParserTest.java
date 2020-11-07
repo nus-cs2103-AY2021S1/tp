@@ -84,7 +84,7 @@ public class ReplaceCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "123" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "123" + INVALID_ID_DESC, Id.MESSAGE_CONSTRAINTS); // invalid id
-        assertParseFailure(parser, "123" + INVALID_SPECIES_DESC, Species.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "123" + INVALID_SPECIES_DESC, Species.MESSAGE_CONSTRAINTS); // invalid species
         assertParseFailure(parser, "123" + INVALID_MEDICAL_CONDITION_DESC,
                 MedicalCondition.MESSAGE_CONSTRAINTS); // invalid medicalCondition
         assertParseFailure(parser, "123" + INVALID_FEED_TIME_DESC,
