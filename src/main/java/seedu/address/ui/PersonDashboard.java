@@ -72,7 +72,7 @@ public class PersonDashboard extends UiPart<Region> {
                 .reduce("", (a, b) -> a + index.getAndIncrement() + ". " + b + "\n"));
         header2.setText("Tasks: ");
         AtomicInteger index2 = new AtomicInteger();
-        index.getAndIncrement();
+        index2.getAndIncrement();
         tasks.setText(this.person.getTasks().stream()
                 .sorted(Comparator.comparing(Task::getTaskName))
                 .map(Task::getTaskName).reduce("", (a, b) -> a + index2.getAndIncrement() + ". " + b + "\n"));
