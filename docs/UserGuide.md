@@ -91,7 +91,7 @@ You can follow the steps below to get CliniCal up and running:
 
 CliniCal contains a Graphical User Interface (GUI) which serves to allow you to easily view upcoming appointments and also patient records.
 
-[**INSERT PICTURE ON FIRST STARTUP OF CLINICAL WITH ANNOTATIONS OF THE MAIN PARTS OF THE GUI (indicated below)**]
+![Main GUI Layout](images/mainLayout.png)
 
 The layout of the GUI is as follows:
 * Top Menu Bar
