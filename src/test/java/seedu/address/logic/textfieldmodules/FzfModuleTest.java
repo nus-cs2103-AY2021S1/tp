@@ -6,10 +6,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.framework.junit5.Init;
 import org.testfx.framework.junit5.Start;
 
 import javafx.scene.Scene;
@@ -32,17 +34,28 @@ class FzfModuleTest {
         System.setProperty("testfx.headless", "true");
         System.setProperty("prism.order", "sw");
         System.setProperty("prism.text", "t2k");
+        System.setProperty("java.awt.headless", "true");
+    }
+
+    @BeforeEach
+    private void setup() {
+
+    }
+
+    @Init
+    private void init() {
+        textField = new TextField();
+        fzfModule = FzfModule.attachTo(textField, () -> sampleNameList);
+        stackPane = new StackPane(textField);
     }
 
     @Start
     private void start(Stage stage) {
-        textField = new TextField();
-        fzfModule = FzfModule.attachTo(textField, () -> sampleNameList);
-        stackPane = new StackPane(textField);
         stage.setScene(new Scene(stackPane));
         stage.show();
-
     }
+
+
 
     @Test
     public void textFieldWithFzfModule_lockInFirstSuggestion_success(FxRobot robot) {
