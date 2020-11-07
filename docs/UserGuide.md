@@ -277,11 +277,11 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindQuestionStep1](./images/FindQuestionStep1.png)
 	
-2. Enter the find command followed by `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the keyword `CS2103T` in their question in the displayed list, you can enter `find q/CS2103T`.
+2. Enter the find command followed by `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the keyword `CS2103` in their question in the displayed list, you can enter `find q/CS2103`.
 
 	![FindQuestionStep2](./images/FindQuestionStep2.png)
 	
-3. Press enter and QuickCache will display all the flashcards with the keyword `CS2103T` in their question.
+3. Press enter and QuickCache will display all the flashcards with the keyword `CS2103` in their question.
 
 	![FindQuestionStep3](./images/FindQuestionStep3.png)
 
@@ -297,11 +297,11 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindTagsStep1](./images/FindTagsStep1.png)
 	
-2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. For example, if you want to find flashcards with the tag `Assembly` in the displayed list, you can enter `find t/Assembly`.
+2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. For example, if you want to find flashcards with the tag `Biology` in the displayed list, you can enter `find t/Biology`.
 
 	![FindTagsStep2](./images/FindTagsStep2.png)
 	
-3. Press enter and QuickCache will display all the flashcards with the tag `Assembly`.
+3. Press enter and QuickCache will display all the flashcards with the tag `Biology`.
 
 	![FindTagsStep3](./images/FindTagsStep3.png)
 	
@@ -320,11 +320,11 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindQuestionAndTagsStep1](./images/FindQuestionAndTagsStep1.png)
 	
-2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. Proceed to include `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the tag `TCPforLife` and the keyword `What` in the question, you can enter `find t/TCPforLife q/What`.
+2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. Proceed to include `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the tag `General` and the keyword `University` in the question, you can enter `find t/General q/University`.
 
 	![FindQuestionAndTagsStep2](./images/FindQuestionAndTagsStep2.png)
 	
-3. Press enter and QuickCache will display all the flashcards with the tag `TCPforLife ` and the keyword `What` in their question.
+3. Press enter and QuickCache will display all the flashcards with the tag `General ` and the keyword `University` in their question.
 
 	![FindQuestionAndTagsStep3](./images/FindQuestionAndTagsStep3.png)
 
@@ -353,7 +353,7 @@ You can delete a flashcard based on the index shown in the last displayed list.
 
 	![DeleteIndexStep1](./images/DeleteIndexStep1.png)
 	
-2. Using the indices of the displayed list, enter the delete command followed by the index of the flashcard you want to delete. For example, if you want to delete the 4th flashcard in the displayed list, you can enter `delete 4`.
+2. Using the indices of the displayed list, enter the delete command followed by the index of the flashcard you want to delete. For example, if you want to delete the 3rd flashcard in the displayed list, you can enter `delete 3`.
 
 	![DeleteIndexStep2](./images/DeleteIndexStep2.png)
 	
@@ -374,15 +374,19 @@ You can delete a group of flashcards based on a specified tag. All flashcards th
 
 </div>
 
-1. In the user input box, enter in the delete command together with the tags that you want to use as the criteria. For example, if you want to delete all flashcards with the tag `SolarSystem`, type `delete t/SolarSystem`.
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
-	![DeleteTagStep1](./images/DeleteTagStep1.png)
+	![DeleteIndexStep1](./images/DeleteTagStep1.png)
 
-2. Press enter and QuickCache will delete the flashcards accordingly.
+2. In the user input box, enter in the delete command together with the tags that you want to use as the criteria. For example, if you want to delete all flashcards with the tag `MCQ`, type `delete t/MCQ`.
 
 	![DeleteTagStep2](./images/DeleteTagStep2.png)
 
-All flashcards with your specified tag(s) are now deleted!
+3. Press enter and QuickCache will delete the flashcards accordingly.
+
+	![DeleteTagStep3](./images/DeleteTagStep3.png)
+
+You have successfully deleted all the flashcards with the specified tag(s)!
 
 #### Clearing all entries : `clear` <a name="clear"></a>
 Suppose you are in a situation where you want to get rid of all the flashcards in QuickCache. You might find it troublesome to delete each flashcard one-by-one. Instead, you can utilize the clear command to clear all flashcards on QuickCache directly.
@@ -395,11 +399,11 @@ Format: `clear`
 
 You can test yourself with a flashcard containing open-ended question by specifying an answer.
 
-1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.s
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
     ![TestStep1](./images/TestStep1.png)
     
-2. Using the indices of the displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the answer `a computer organization module`, you can enter `test 2 ans/a computer organization module`.
+2. Using the indices of the displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the first flashcard in the displayed list with the answer `Singapore`, you can enter `test 1 ans/Singapore`.
 
     <div markdown="block" class="alert alert-info">
     :bulb: Answer is <b>case insensitive</b>.
@@ -424,11 +428,11 @@ You can also test yourself a flashcard containing a multiple choice question by 
 
     ![TestStep1](./images/TestStep1.png)
     
-2. Using the indices of the displayed list, enter the `open` command followed by the index of the flashcard you want to see the options of. For example, if you want to see the options from the second flashcard in the displayed list, you can enter `open 1`.
+2. Using the indices of the displayed list, enter the `open` command followed by the index of the flashcard you want to see the options of. For example, if you want to see the options from the second flashcard in the displayed list, you can enter `open 2`.
 
     ![TestMCQStep2](./images/TestMCQStep2.png)
     
-3. Using the indices of the previous displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the 2nd option, you can enter `test 1 o/2`.
+3. Using the indices of the previous displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the 1st option, you can enter `test 2 o/1`.
 
     <div markdown="block" class="alert alert-danger">
     :exclamation: The index and option <b>must both be a positive integer</b> 1, 2, 3, ...
@@ -482,7 +486,7 @@ You can also display the statistics of multiple flashcards in a Pie Chart by spe
 1. In the user input box, enter the stats command together with the tags that you want to use as the criteria. For example, if you want to display statistics for all flashcards with the tag `MCQ`, type `stats t/MCQ`.
 
     <div markdown="block" class="alert alert-info">
-    :bulb: You can specify more than one tag to be used when displaying statistics of multiple flashcards. Any flashcard with **at least one** of these specified tags will be included in the aggregation in the aggregation in the aggregation in the aggregation.
+    :bulb: You can specify more than one tag to be used when displaying statistics of multiple flashcards. Any flashcard with **at least one** of these specified tags will be included in the aggregation.
     </div>
 
     ![StatsTagsStep1](./images/StatsTagsStep1.png)

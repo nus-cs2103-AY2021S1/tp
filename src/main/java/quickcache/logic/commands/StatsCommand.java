@@ -84,6 +84,10 @@ public class StatsCommand extends Command {
             List<Flashcard> filteredList = model.getFilteredFlashcardList();
             Statistics aggregatedStatistics = getAggregatedStatistics(filteredList);
             String statsWithTagsMessage = createStatsWithTagsMessage();
+
+            // necessary to display all the remaining flashcards in the list
+            model.updateFilteredFlashcardList(flashcard -> true);
+
             return new CommandResult(
                 String.format(MESSAGE_DISPLAY_STATISTICS_FLASHCARDS_BY_TAG_SUCCESS,
                     statsWithTagsMessage), aggregatedStatistics);

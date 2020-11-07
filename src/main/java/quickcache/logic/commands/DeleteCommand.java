@@ -5,6 +5,7 @@ import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
@@ -86,6 +87,9 @@ public class DeleteCommand extends Command {
                 Flashcard flashcardToDelete = filteredList.get(0);
                 model.deleteFlashcard(flashcardToDelete);
             }
+
+            // necessary to display all the remaining flashcards in the list
+            model.updateFilteredFlashcardList(flashcard -> true);
 
             String deleteWithTagsMessage = createDeleteWithTagsMessage();
             return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, deleteWithTagsMessage));
