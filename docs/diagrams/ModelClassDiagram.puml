@@ -87,6 +87,6 @@ Appointment *--> AppointmentDateTime
 Appointment *--> Name
 Appointment *--> IcNumber
 
-ModelManager -->"1" Patient : filtered list
-ModelManager -->"1" Appointment : filtered list
+ModelManager -->"   *\n\nfiltered list" Patient : filtered list
+ModelManager -->"*\nfiltered list" Appointment
 @enduml

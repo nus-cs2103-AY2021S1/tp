@@ -2,6 +2,7 @@
 layout: page
 title: CliniCal User Guide
 ---
+![logo](images/logo.png)
 
 * Table of Contents
 {:toc}
