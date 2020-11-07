@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ingredient.Ingredient;
-import seedu.address.model.ingredient.IngredientName;
 import seedu.address.model.ingredient.UniqueIngredientList;
 
 /**
@@ -75,19 +74,6 @@ public class IngredientBook implements ReadOnlyIngredientBook {
      */
     public void addIngredient(Ingredient p) {
         ingredients.add(p);
-    }
-
-    /**
-     * Returns the ingredient with the input ingredient name, if
-     * not found, return null.
-     *
-     * @param ingredientName ingredient name
-     * @return ingredient with the input ingredient name
-     */
-    public Ingredient findIngredientByName(IngredientName ingredientName) {
-        requireNonNull(ingredientName);
-
-        return ingredients.findIngredientByName(ingredientName);
     }
 
     /**

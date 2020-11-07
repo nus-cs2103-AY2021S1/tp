@@ -144,12 +144,14 @@ Thus, tCheck will ignore all words come after the command word `help` and the co
 </div>
 
 ### 1. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
+The Sales Tracking features allows you to keep a record of the sales of the bubble tea drinks inside the
+Sales Tracker. You are able to view data related to sales tracking in the Sales Tracker inside the _Main View_.
 
 <div markdown="span" class="alert alert-primary">
 
 **:information_source: Notes about available drinks:**<br>
 
-Currently, there are 6 types of drinks that can be tracked by tCheck's sales tracker. The drinks and their respective
+Currently, there are 6 types of drinks that can be tracked by tCheck's Sales Tracker. The drinks and their respective
  abbreviations are shown as below:<br>
 
 * `BSBM`  : Brown Sugar Boba Milk<br>
@@ -168,29 +170,49 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's sales tra
 
 
 #### 1.1 Updating the number of drinks sold : `s-update`
-Updates the number of drinks sold for each drink type as given in the user input.
+Updates the number of drinks sold for each drink type as given in the user input. The previous records will
+be overwritten.
 
+Format: `s-update DRINK [MORE_DRINKS]`
+* where `DRINK` is formatted as `A/NUM`
+    * `A` refers to the drink's abbreviation.
+    * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
+less than or equal to 99999999.
+* The sales of at least one drink item should be recorded when using this command.
 
-Format: `s-update A/NUM B/NUM C/NUM ...`
-* `A`, `B`, `C` are abbreviations for the drink types.
-* `NUM` refers to the number of drinks sold. It should be a non-negative integer.
+Example: Let's say you want to update the sales of Brown Sugar Boba Milk, `BSBM`, to 100 
+and Brown Sugar Boba Black Tea, `BSBBT`, to 120 in the Sales Tracker. You can follow these instructions:
 
-Example:
-* `s-update BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
- Brown Sugar Boba Black Tea `BSBBT` to 120.
+1. Type `s-update BSBM/100 BSBBT/120` into the _Command Box_.
+2. Press "Enter" to execute the command.
 
- <div markdown="span" class="alert alert-primary">
+Outcome:
 
-:information_source: Note about the update: <br>
+1. The _Result Display_ will show a success message.
+2. You can now see that tCheck has updated the sales of the two drinks in the Sales
+ Tracker inside the _Main View_. 
 
-The record in tCheck will be overwritten by the input that you provide. <br>
-
- </div>
+{Example outcome screenshot to be added later}
 
 #### 1.2 Listing the number of drinks sold : `s-list`
-Shows a list of all types of drinks sold in the Sales Tracker.
+Shows a list of all types of drinks sold in the Sales Tracker. The list of drinks shown is 
+ordered in descending order (i.e. ranked from the most to least sales).
 
 Format: `s-list`
+
+Example: Let's say you want to see a list of the drink sales that have been recorded. You can follow these
+instructions:
+
+1. Type `s-list` into the _Command Box_.
+2. Press "Enter" to execute the command.
+
+Outcome:
+
+1. The _Result Display_ will show a success message.
+2. The Sales Tracker inside the _Main View_ will show a list of the drinks sales in descending order, where the drink
+ with the most sales is on top.
+
+{Example outcome screenshot to be added later}
 
 #### 1.3 Finds the number of drinks by keywords : `s-find`
 
@@ -533,10 +555,9 @@ All tCheck data (i.e. contact details, ingredient data, sales data) are saved in
 
 Action | Format, Examples
 -------|------------------------------
-**Update**| `s-update A/NUM B/NUM C/NUM ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
+**Update**| `s-update DRINK [MORE_DRINKS] ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
 **List**| `s-list`
 **Find**| `s-find KEYWORD [MORE_KEYWORDS] ...` <br> e.g., `s-find BSBM BSBBT`
-**Rank**| `s-rank`
 
 ### Ingredients  Tracking
 
