@@ -408,7 +408,7 @@ The following sequence diagram shows how list operation works when `execute("rec
 
 ![ListSequenceDiagram](images/implementation/sequenceDiagrams/ListSequence.png)
 
-<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
 
 :bell: **Note**                                                                                                
                                                                                                                
@@ -473,12 +473,12 @@ The following sequence diagram shows how delete operation works when `execute("d
 
 ![DeleteSequence](images/implementation/sequenceDiagrams/DeleteSequence.png)
 
-<div markdown="block" class="alert alert-info" style="overflow:auto">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
 
 :bell: **Note**                                                                                                 
                                                                                                                 
 These are condensed diagrams. Several terms in the sequence and activity diagram above have been substituted by a
- common term 
+ common term
 :<br>                                                                                                           
                                                                                                                 
 Common Term | Recipe-specific term  | Ingredient-specific term | Consumption-specific term                          
