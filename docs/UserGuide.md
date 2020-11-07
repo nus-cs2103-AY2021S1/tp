@@ -329,7 +329,7 @@ Showing one specific command:
 
 Examples : 
 * `help` (Shows all command and its format)
-* `help tag` (shows cd command description, format and examples usage)
+* `help cd` (shows cd command description, format and examples usage)
 
 --------------------------------------------------------------------------------------------------------------------
 
