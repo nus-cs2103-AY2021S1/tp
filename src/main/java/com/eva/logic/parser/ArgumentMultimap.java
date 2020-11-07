@@ -52,10 +52,12 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns the count of prefixes.
+     * Returns the count of non-empty prefixes.
      */
-    public int getPrefixCount() {
-        return argMultimap.size();
+    public long getNonEmptyPrefixCount() {
+        return argMultimap.keySet().stream()
+                .filter(prefix -> !prefix.toString().isBlank())
+                .count();
     }
 
     /**
