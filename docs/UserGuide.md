@@ -217,10 +217,10 @@ If the keyword matches its name and/or label partially, it will also be found an
 
 Format: `find KEYWORD`
 
-Tagging file:
+Before executing command:
 ![before](images/screenshots/pre_find_command.png)
 
-Executing find command:
+After executing command:
 ![after](images/screenshots/find_command.png)
         
 Examples:
@@ -321,11 +321,15 @@ Displays help for all/certain commands.
 
 Format: (All command) `help` or (Certain command) `help COMMAND`
 
+Showing all commands:
 ![help](images/screenshots/help.png)
+
+Showing one specific command:
+![help](images/screenshots/help2.png)
 
 Examples : 
 * `help` (Shows all command and its format)
-* `help tag` (shows tag command description, format and examples usage)
+* `help tag` (shows cd command description, format and examples usage)
 
 --------------------------------------------------------------------------------------------------------------------
 
