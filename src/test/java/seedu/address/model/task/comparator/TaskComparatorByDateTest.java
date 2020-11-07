@@ -6,6 +6,7 @@ import static seedu.address.testutil.todolist.TypicalTasks.LAB_01;
 import static seedu.address.testutil.todolist.TypicalTasks.LAB_02;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.task.Task;
 import seedu.address.testutil.todolist.TaskBuilder;
 
