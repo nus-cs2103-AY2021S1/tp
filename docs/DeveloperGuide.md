@@ -688,7 +688,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to quiz flashcards
 2.  SWEe! enters quiz mode
-3.  User enters `↓ key` key to show answer
+3.  User enters `↓ key` to show answer
 4.  User enters `y`/`n` key depending on whether user answers the flashcard correctly
 5.  SWEe! shows the next flashcard to quiz
 
