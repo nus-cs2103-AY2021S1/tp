@@ -5,20 +5,20 @@ import static nustorage.logic.commands.UpdateInventoryCommand.MESSAGE_UPDATE_INV
 import static nustorage.logic.commands.UpdateInventoryCommand.MESSAGE_INVALID_UPDATE_OPERATION;
 import static nustorage.testutil.Assert.assertThrows;
 import static nustorage.testutil.TypicalIndexes.INDEX_FIRST;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import nustorage.logic.commands.exceptions.CommandException;
+
+import nustorage.testutil.*;
 import org.junit.jupiter.api.Test;
 
+import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.logic.commands.UpdateInventoryCommand.UpdateInventoryDescriptor;
 import nustorage.model.Model;
 import nustorage.model.ModelManager;
 import nustorage.model.UserPrefs;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
-import nustorage.testutil.InventoryRecordBuilder;
-import nustorage.testutil.TypicalFinanceRecords;
-import nustorage.testutil.TypicalInventoryRecords;
-import nustorage.testutil.UpdateInventoryDescriptorBuilder;
 
 public class UpdateInventoryCommandTest {
     private Model model = new ModelManager(TypicalFinanceRecords
@@ -98,6 +98,36 @@ public class UpdateInventoryCommandTest {
                 TypicalInventoryRecords.getTypicalInventory(),
                 new UserPrefs());
         assertThrows(CommandException.class, () -> command.execute(modelCopy));
+    }
+
+    @Test
+    public void equalsTest() {
+        InventoryRecord inventoryRecordOne = new InventoryRecordBuilder().withName("Bernice").build();
+        FinanceRecord financeRecordOne = new FinanceRecordBuilder().withAmount(200).build();
+        int firstChangeInQuantity = 100;
+        int secondChangeInQuantity = -5;
+        UpdateInventoryDescriptor firstDescriptor = new UpdateInventoryDescriptorBuilder(firstChangeInQuantity).build();
+        UpdateInventoryDescriptor secondDescriptor = new UpdateInventoryDescriptorBuilder(secondChangeInQuantity).build();
+        UpdateInventoryCommand firstCommand = new UpdateInventoryCommand(INDEX_FIRST, firstDescriptor);
+        UpdateInventoryCommand secondCommand = new UpdateInventoryCommand(INDEX_FIRST, secondDescriptor);
+
+        // The same command should be equal to each other
+        assertEquals(firstCommand, firstCommand);
+
+        // Copies of the same command should be equal to each other
+        UpdateInventoryCommand firstCommandCopy = new UpdateInventoryCommand(INDEX_FIRST, firstDescriptor);
+        assertEquals(firstCommand, firstCommandCopy);
+
+        //Commands that are not UpdateInventoryCommands should not be equal to each other
+        CreateInventoryRecordCommand notUpdateInventoryCommand =
+                new CreateInventoryRecordCommand(inventoryRecordOne, financeRecordOne);
+        assertNotEquals(firstCommand, notUpdateInventoryCommand);
+
+        //Objects that are not UpdateInventoryCommands should not be equal to each other
+        assertNotEquals(firstCommand, 100);
+
+        //UpdateInventoryCommands that do not have the same properties should not be equal to each other
+        assertNotEquals(firstCommand, secondCommand);
     }
 
 }

@@ -96,6 +96,29 @@ public class UpdateInventoryCommand extends Command {
         return new InventoryRecord(itemDescription, newQuantity, unitCost, newDateTime);
     }
 
+    private Index getIndex() {
+        return this.index;
+    }
+
+    private UpdateInventoryDescriptor getUpdateInventoryDescriptor() {
+        return this.updateInventoryDescriptor;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof UpdateInventoryCommand)) {
+            return false;
+        }
+
+        UpdateInventoryCommand otherCommand = (UpdateInventoryCommand) other;
+        return index.equals(otherCommand.getIndex())
+                && updateInventoryDescriptor.equals(otherCommand.getUpdateInventoryDescriptor());
+    }
+
     /**
      * Stores the details to edit the inventory with.
      */
@@ -136,14 +159,14 @@ public class UpdateInventoryCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditInventoryCommand.EditInventoryDescriptor)) {
+            if (!(other instanceof UpdateInventoryDescriptor)) {
                 return false;
             }
 
             // state check
-            EditInventoryCommand.EditInventoryDescriptor e = (EditInventoryCommand.EditInventoryDescriptor) other;
+            UpdateInventoryDescriptor descriptor = (UpdateInventoryDescriptor) other;
 
-            return getChangeInQuantity().equals(e.getQuantity());
+            return getChangeInQuantity().equals(descriptor.getChangeInQuantity());
         }
     }
 }
