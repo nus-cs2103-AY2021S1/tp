@@ -82,21 +82,37 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
   e.g. in `add case t:TITLE`, `TITLE` is a parameter which can be used as `add case t:Kovan double murders`.
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about duplicates:**<br>
+
+* PIVOT does not allow the addition of `Case`, `Document`, `Suspect`, `Witness` or `Victim` that already exists.
+* When editing details in PIVOT, if it results in duplicates, PIVOT will not allow it as well.
+* `Cases` are identified by their `Title`. Users cannot add a `Case` if there is an existing `Case` (from both `Home`/`Archive` section) with the same `Title`. `Title` is a case-sensitive field.
+* `Documents` are identified by both their `Name` and `Reference`. 
+Users cannot add a `Document` to a `Case` if there is an existing `Document` with the same `Name` and `Reference` in that case. `Name` is not a case-sensitive field.
+* `Suspects`, `Witnesses`, `Victims` are identified by their `Name`, `Sex` and `Phone`. 
+Users cannot add a `Suspect`/`Witness`/`Victim` to a `Case` if there is an existing `Suspect`/`Witness`/`Victim` with the same `Name`, `Sex` and `Phone` in that `Case`. `Name` is not a case-sensitive field.
+* However, note that there can be duplicates between `Suspect`, `Witness` and `Victim` in a `Case`, and between different `Cases`. 
+There can be a `Suspect` with the same `Name`, `Sex` and `Phone` as an existing `Victim`/`Witness` in that `Case` and vice versa.
+The same `Suspect`/`Witness`/`Victim` can also appear in two different cases.
+</div>
+
 ### Main page
 The main page of the application when the user first enters the app.
 
-#### List all default cases: `list case`
-Lists all default cases in PIVOT (unarchived cases).
+#### List all unarchived cases in Home section: `list case`
+Shows the `Home` section and lists all unarchived cases in PIVOT.
 
 Format: `list case`
 
-#### List all archived cases: `list archive`
-Lists all archived cases in PIVOT.
+#### List all archived cases in Archive section: `list archive`
+Shows the `Archive` section and lists all archived cases in PIVOT.
 
 Format: `list archive`
 
 #### Add case: `add case t:TITLE [s:STATUS]`
-Adds a new case with the specified TITLE. The STATUS is active by default, if not specified. The user can provide 3 status types:
+Adds a new case with the specified `TITLE`. The `STATUS` is active by default, if not specified. The user can provide 3 status types:
 
 1. `ACTIVE`
 
@@ -104,7 +120,7 @@ Adds a new case with the specified TITLE. The STATUS is active by default, if no
 
 3. `COLD`
 
-The case will be added to the DEFAULT/ARCHIVED section, depending on which section they are currently in. 
+The case will be added to the `Home`/`Archive` section, depending on which section they are currently in. 
 
 Format: `add case t:TITLE [s:STATUS]`
 * The title must be alphanumeric and cannot be blank.
@@ -114,55 +130,64 @@ Example:
 * `add case t:Kovan double murders s:Closed` creates a new case with the title “Kovan double murders”, the status initialized as a closed case.
 
 #### Delete case: `delete case CASE_NO`
-Deletes the specified case.
+Deletes the case specified with `CASE_NO` from the currently shown list.
 
 Format: `delete case CASE_NO`
+* `CASE_NO` must be a valid index (starting from 1) of the currently shown case list.
 
-Example: `list case` followed by `delete case 2` deletes the 2nd case in the list.
+Example: 
+* `list case` followed by `delete case 2` deletes the 2nd case in the currently shown list.
 
 #### Open case: `open case CASE_NO`
-Enters the specified case (opened to the right panel), where users can view and edit information for that particular case.
+Enters the case specified with `CASE_NO` (opened to the right panel), where users can view and edit information for that particular case
 [(see Investigation Case Page)](#investigation-case-page).
 
 Format:  `open case CASE_NO`
+* `CASE_NO` must be a valid index (starting from 1) of the currently shown case list.
 
-Example: `list case` followed by `open case 1` opens the 1st case in the list.
+Example: 
+* `list case` followed by `open case 1` opens the 1st case in the currently shown list.
 
-#### Archive case in the DEFAULT section: `archive case CASE_NO`
-Archives the specified case in the DEFAULT section of PIVOT.
+#### Archive case in the Home section: `archive case CASE_NO`
+Archives the case specified with `CASE_NO` from the currently shown list of cases in the `Home` section of PIVOT.
+
+Note that this command can only be used in the `Home` section of PIVOT.
 
 Format:  `archive case CASE_NO`
+* `CASE_NO` must be a valid index (starting from 1) of the currently shown case list.
 
-Example: `list case` followed by `archive case 1` archives the 1st case in the list.
+Example: 
+* `list case` followed by `archive case 1` archives the 1st case in the currently shown list.
 
-#### Unarchive case in the ARCHIVED section: `unarchive case CASE_NO`
-Unarchives the specified case in the ARCHIVED section of Pivot.
+#### Unarchive case in the Archive section: `unarchive case CASE_NO`
+Unarchives the case specified with `CASE_NO` from the currently shown list in the `Archive` section of PIVOT.
+
+Note that this command can only be used in the `Archive` section of PIVOT.
 
 Format:  `unarchive case CASE_NO`
+* `CASE_NO` must be a valid index (starting from 1) of the currently shown case list.
 
-Example: `list archive` followed by `unarchive case 1` unarchives the 1st case in the list.
+Example: 
+* `list archive` followed by `unarchive case 1` unarchives the 1st case in the currently shown list.
 
 #### Find case: `find KEYWORD [MORE_KEYWORDS]`
 
-Find cases whose details contain any of the given keywords.
+Find cases whose details contain any of the given keywords from the current section the user is in (`Home`/`Archive`).
 
 * The search is case-insensitive. e.g keyword `hans` will match case containing `Hans` in its details
 * The order of the keywords does not matter. e.g. keywords `Hans Bo` will match case containing `Bo Hans` in its details
-* The search finds cases depending on which section they are in. If they are in the DEFAULT section, cases found are in DEFAULT section only.
- If they are in the ARCHIVED section, cases found are in the ARCHIVED section only. Note that on start-up, they are in the DEFAULT section,
- and can alternate between sections using [`list case`](#list-all-default-cases-list-case) or [`list archive`](#list-all-archived-cases-list-archive)
-* All details of all cases in the relevant section (ARCHIVED/DEFAULT) are searched, specifically: Title, Status, Description, 
-Documents (file name and file reference that the users input on creation), Suspects/Witnesses/Victims (Name, Gender, Phone, Email, Address)
-* Only full words will be matched e.g. keyword `Han` will not match cases containing `Hans` in their details
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. keywords `Hans Bo` will return case 
+* All details of all cases in the current section (`Home`/`Archive`) are searched, specifically: `Title`, `Status`, `Description`, 
+Documents (name and reference that the users input on creation), `Suspects`/`Witnesses`/`Victims` (`Name`, `Sex`, `Phone`, `Email`, `Address`)
+* Checks if the particular sequence of characters in the keyword matches e.g. keyword `Han` will match cases containing `Hans` in their details
+* Cases matching at least one keyword will be returned (i.e. `OR` search). e.g. keywords `Hans Bo` will return case 
 containing `Hans Gruber`, `Bo Yang` in their details.
 
 Format:  `find KEYWORD [MORE_KEYWORDS]`
 
 Example:
-* `find Ang` return cases `ang` and `Ang Mo Kio Car Theft`, and cases containing `Ang` in their details
-* `find dhoby bishan` return cases `Dhoby Ghaut Murder Case` and `Bishan Shopping Theft`, and cases containing `dhoby` or `bishan` in their details
-* `find 91234567 bishan` return cases with suspect, victim or witness containing Phone number `91234567`, and cases containing `bishan` in their details
+* `find Ang` could return cases titled `ang` and `Ang Mo Kio Car Theft`, and cases with a suspect named `Ang`
+* `find dhoby bishan` could return cases `Dhoby Ghaut Murder Case` and `Bishan Shopping Theft`, and cases containing `dhoby` or `bishan` in their description
+* `find 91234567 bishan` could return a case with the Victim having Phone number `91234567`, and cases containing `bishan` in their details
 
 ### Investigation Case page
 The page of the application when the user opens a specified case.
@@ -194,60 +219,86 @@ Format: `add desc d:DESC`
 - `DESC` cannot be blank.
 
 Example: 
-- `add desc d:Kovan double murders of twins xxx and yyy` updates the description of this case to “Kovan double murders of twins xxx and yyy”.
-
+- `add desc d:Kovan double murders of twins xxx and yyy` adds the description “Kovan double murders of twins xxx and yyy” to the current case.
 
 #### Add document to the current case: `add doc n:TITLE r:FILE_NAME`
 Adds a new document to the current case with the specified `TITLE` and `FILE_NAME`.
 
 Format: `add doc n:TITLE r:FILE_NAME`
-- `TITLE` should only contain alphanumeric and spaces, and it should not be blank(no value, spaces only).
+- `TITLE` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
 - This document with file name `FILE_NAME` must be manually added to the `references` folder provided before it can be added to the PIVOT system.
 
 Example: 
 - `add doc n:Case Details r:case_details.pdf` adds a new document with title “Case Details” with the file name case_details.pdf to the investigation case.
 
 
+<div markdown="block" class="alert alert-info">
 
-#### Add suspect to the current case: `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+**:information_source: Notes about the restrictions for the fields of a person (suspect/victim/witness):**<br>
 
-Adds a new suspect to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
+* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
+* `SEX` should only be either M or F, and is case-insensitive.
+* `PHONE` should only contain numbers, and it should be at least 3 digits long.
+* `EMAIL` should be of the format local-part@domain.top-level-domain and adhere to the following constraints:
+    1. The local-part should only contain alphanumeric characters and these special characters,
+    excluding the parentheses, (_!#$%&'*+/=?`{|}~^.-). The local part should not start with a '.'.
+    2. This is followed by a '@' and then a domain name and then followed by a top-level domain (e.g. '.com').
+    The domain name must:
+        - start and end with alphanumeric characters.
+        - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
+        - not contain consecutive periods, but consecutive hyphens are allowed.
+* There are no restrictions on `ADDRESS`.
+</div>
 
-Format: `add suspect n:NAME g:GENDER`
+#### Add suspect to the current case: `add suspect n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-Example: `add suspect n:John Doe g:M`
+Adds a new suspect to the current case with the specified `NAME`, `SEX` and `PHONE`. The other fields are optional.
 
-Gender must either be `M` or `F`, not case-sensitive.
+Format: `add suspect n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-#### Add victim to the current case: `add victim n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Example:
+- `add suspect n:John Doe sex:M p:91234567` adds a `male` suspect named `John Doe` with the phone number `91234567`.
+The other fields will be left blank as it was not specified.
 
-Adds a new victim to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
+#### Add victim to the current case: `add victim n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-Format: `add victim n:NAME g:GENDER`
+Adds a new victim to the current case with the specified `NAME`, `SEX` and `PHONE`. The other fields are optional.
 
-Example: `add victim n:James Lee g:M`
+Format: `add victim n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-Gender must either be `M` or `F`, not case-sensitive.
+Example:
+- `add victim n:James Lee sex:M p:91234567` adds a `male` victim named `James Lee` with the phone number `91234567`.
+The other fields will be left blank as it was not specified.
 
-#### Add witness to the current case: `add witness n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Add witness to the current case: `add witness n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-Adds a new witness to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
+Adds a new witness to the current case with the specified `NAME`, `SEX` and `PHONE`. The other fields are optional.
 
-Format: `add witness n:NAME g:GENDER`
+Format: `add witness n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`
 
-Example: `add witness n:John Doe g:M`
-
-Gender must either be `M` or `F`, not case-sensitive.
-
+Example:
+- `add witness n:Joseph Tan sex:M p:91234567` adds a `male` witness named `Joseph Tan` with the phone number `91234567`.
+The other fields will be left blank as it was not specified.
 
 #### Edit title in the current case: `edit title t:TITLE`
 Edits the title of the case with the specified `TITLE`. Cannot be edited to another existing case title in the PIVOT program (Both Home and Archive).
 
 Format: `edit title t:TITLE`
-- `TITLE` should only contain alphanumeric and spaces, and it should not be blank(no value, spaces only).
+- `TITLE` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
 
 Example: 
 - `edit title t:Murder case 29` updates the title of this case to “Murder case 29”.
+
+#### Edit description of the current case: `edit desc d:DESC`
+Edits the description of the current case if it has a description.
+You must add a description first.[(See Add Description)](#add-description-to-the-current-case-add-desc-ddesc)
+
+Format: `edit desc d:DESC`
+- `DESC` cannot be blank.
+
+Example: 
+- `edit desc d:Kovan double murders` edits the description of the current case to “Kovan double murders”.
+
 
 #### Edit status in the current case: `edit status s:STATUS`
 
@@ -267,7 +318,7 @@ A document cannot be edited to contain duplicates in the document list.
 
 Format: `edit doc DOC_NO [n:NAME] [r:REFERENCE]`
 - `DOC_NO` must be a valid index (starting from 1) of the document list.
-- `NAME` should only contain alphanumeric and spaces, and it should not be blank(no value, spaces only).
+- `NAME` should only contain alphanumeric characters and spaces, and it should not be blank(no value, spaces only).
 - The specified `REFERENCE` must be a valid file name in the `references` folder provided before it can be added to the PIVOT system.
 
 Example: 
@@ -276,42 +327,63 @@ name `Fire outbreak details` and reference `newFireDoc.pdf`.
 <br>
 This document `newFireDoc.pdf` must be manually added to the `references` folder provided and must be present before the document can be successfully updated.
 
-#### Edit an existing suspect in the current case: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Edits the fields of the suspect specified with the index in the case.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the restrictions for the fields of a person (suspect/victim/witness):**<br>
+
+* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
+* `SEX` should only be either M or F, and is case-insensitive.
+* `PHONE` should only contain numbers, and it should be at least 3 digits long.
+* `EMAIL` should be of the format local-part@domain.top-level-domain and adhere to the following constraints:
+    1. The local-part should only contain alphanumeric characters and these special characters,
+    excluding the parentheses, (_!#$%&'*+/=?`{|}~^.-). The local part should not start with a '.'.
+    2. This is followed by a '@' and then a domain name and then followed by a top-level domain (e.g. '.com').
+    The domain name must:
+        - start and end with alphanumeric characters.
+        - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
+        - not contain consecutive periods, but consecutive hyphens are allowed.
+* There are no restrictions on `ADDRESS`.
+</div>
+
+#### Edit an existing suspect in the current case: `edit suspect INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Edits the fields of the suspect specified with the index in the case that is currently open.
 At least one of the fields is to be specified to make edits.
 
-Format: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit suspect INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Example: `edit suspect 1 e:newEmail@mail.com a:New Road Crescent` edits the first suspect in the list with the email 
+Example:
+- `edit suspect 1 e:newEmail@mail.com a:New Road Crescent` edits the first suspect in the list with the email 
 `newEmail@mail.com` and the address `New Road Crescent`.
 
-Gender must either be `M` or `F`, not case-sensitive.
+#### Edit an existing victim in the current case: `edit victim INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-#### Edit an existing victim in the current case: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
-
-Edits the fields of the victim specified with the index in the case.
+Edits the fields of the victim specified with the index in the case that is currently open.
 At least one of the fields is to be specified to make edits.
 
-Format: `edit victim VICTIM_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit victim VICTIM_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Example: `edit victim 1 e:newEmail@mail.com a:New Road Crescent` edits the first victim in the list with the email 
+Example:
+- `edit victim 1 e:newEmail@mail.com a:New Road Crescent` edits the first victim in the list with the email 
 `newEmail@mail.com` and the address `New Road Crescent`.
 
-Gender must either be `M` or `F`, not case-sensitive.
+#### Edit an existing witness in the current case: `edit witness INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-
-#### Edit an existing witness in the current case: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
-
-Edits the fields of the witness specified with the index in the case. 
+Edits the fields of the witness specified with the index in the case that is currently open. 
 At least one of the fields is to be specified to make edits.
 
-Format: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit witness INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Example: `edit witness 1 e:newEmail@mail.com a:New Road Crescent` edits the first witness in the list with the email 
+Example:
+- `edit witness 1 e:newEmail@mail.com a:New Road Crescent` edits the first witness in the list with the email 
 `newEmail@mail.com` and the address `New Road Crescent`.
 
-Gender must either be `M` or `F`, not case-sensitive.
+#### Delete description: `delete desc`
+Deletes the description of the current case.
+You must add a description first.[(See Add Description.)](#add-description-to-the-current-case-add-desc-ddesc)
+
+Format: `delete desc`
 
 #### Delete document: `delete doc DOC_NO `
 Deletes the document specified with `DOC_NO` from the list of documents.
@@ -387,6 +459,10 @@ and the application will now be at the case page. Using `undo` will undo the `ad
 a `main page command`. This will bring the application back to the main page.
 </div>
 
+#### Help: `help`
+
+Opens the Help Window. 
+
 #### Exit application: `exit`
 
 Exits the application.
@@ -419,39 +495,39 @@ User data automatically saves when there is a change in data.
 |**list case**      | `list case`                           |
 |**list archive**   | `list archive`                        |
 |**add case**       | `add case t:TITLE [s:STATUS]`         |
-|**open case**      | `open case CASE_NO`                   |
 |**delete case**    | `delete case CASE_NO`                 |
+|**open case**      | `open case CASE_NO`                   |
 |**archive**        | `archive case CASE_NO`                |
 |**unarchive**      | `unarchive case CASE_NO`              |
 |**find**           | `find KEYWORD [MORE KEYWORDS]`        |
-|**exit**           | `exit`                                |
 
 #### Investigation Page Commands
 
-| Command             | Format                                                                            |
-| ------------------- | ----------------------------------------------------------------------------------|
-|**list document**    | `list doc`                                                                        |
-|**list suspect**     | `list suspect`                                                                    |
-|**list victim**      | `list victim`                                                                     |
-|**list witness**     | `list witness`                                                                    |
-|**add description**  | `add desc d:DESC`                                                                 |
-|**add document**     | `add doc n:TITLE r:FILE_NAME`                                                     |
-|**add suspect**      | `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`                     |
-|**add victim**       | `add victim n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`                      |
-|**add witness**      | `add witness n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`                     |
-|**open doc**         | `open doc DOC_NO`                                                                 |
-|**edit title**       | `edit title t:TITLE`                                                              |
-|**edit status**      | `edit status s:STATUS`                                                            |
-|**edit document**    | `edit doc DOC_NO [n:TITLE] [r:FILE_NAME]`                                         |
-|**edit suspect**     | `edit suspect SUSPECT_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`     |
-|**edit victim**      | `edit victim VICTIM_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`       |
-|**edit witness**     | `edit witness WITNESS_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`     |
-|**delete doc**       | `delete doc DOC_NO`                                                               |
-|**delete suspect**   | `delete suspect SUSPECT_NO`                                                       |
-|**delete victim**    | `delete victim VICTIM_NO`                                                         |
-|**delete witness**   | `delete witness WITNESS_NO`                                                       |
-|**return**           | `return`                                                                          |
-|**exit**             | `exit`                                                                            |
+| Command               | Format                                                                            |
+| --------------------- | ----------------------------------------------------------------------------------|
+|**list document**      | `list doc`                                                                        |
+|**list suspect**       | `list suspect`                                                                    |
+|**list victim**        | `list victim`                                                                     |
+|**list witness**       | `list witness`                                                                    |
+|**add description**    | `add desc d:DESC`                                                                 |
+|**add document**       | `add doc n:TITLE r:FILE_NAME`                                                     |
+|**add suspect**        | `add suspect n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                        |
+|**add victim**         | `add victim n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                         |
+|**add witness**        | `add witness n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                        |
+|**open doc**           | `open doc DOC_NO`                                                                 |
+|**edit title**         | `edit title t:TITLE`                                                              |
+|**edit description**   | `edit desc d:DESC`                                                                |
+|**edit status**        | `edit status s:STATUS`                                                            |
+|**edit document**      | `edit doc DOC_NO [n:TITLE] [r:FILE_NAME]`                                         |
+|**edit suspect**       | `edit suspect SUSPECT_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`      |
+|**edit victim**        | `edit victim VICTIM_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`        |
+|**edit witness**       | `edit witness WITNESS_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`      |
+|**delete description** | `delete desc`                                                                     |
+|**delete doc**         | `delete doc DOC_NO`                                                               |
+|**delete suspect**     | `delete suspect SUSPECT_NO`                                                       |
+|**delete victim**      | `delete victim VICTIM_NO`                                                         |
+|**delete witness**     | `delete witness WITNESS_NO`                                                       |
+|**return**             | `return`                                                                          |
 
 #### Both Pages
 
@@ -459,4 +535,5 @@ User data automatically saves when there is a change in data.
 | -------------| ------------------------------|
 |**undo**      | `undo`                        |
 |**redo**      | `redo`                        |
+|**help**      | `help`                        |
 |**exit**      | `exit`                        |

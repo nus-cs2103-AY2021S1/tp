@@ -17,10 +17,12 @@ public class Email {
             + "2. This is followed by a '@' and then a domain name and then followed by a top-level domain "
             + "(e.g. '.com'). "
             + "The domain name must:\n"
-            + "    - start and end with alphanumeric characters\n"
+            + "    - start and end with alphanumeric characters.\n"
             + "    - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.\n"
             + "    - not contain consecutive periods, but consecutive hyphens are allowed.";
 
+
+    // Regex below reused from https://emailregex.com/
     private static final String VALIDATION_REGEX_CHECK = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
             + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f"
             + "]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9]"
