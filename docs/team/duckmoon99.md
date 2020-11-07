@@ -28,9 +28,11 @@ Given below are my contributions to the project.
   * What it does: Add ability for user to tag specific order item with remarks.
   * Justification: Allows users to specify special request for their food if needed, ie. "Less sugar", "No nuts"
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=duckmoon99)
-* Enhancements made:
+* **Enhancements made**:
   * Wrote additional tests to increase code coverage [#228](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/228)
 * **Documentation**:
     * User Guide: Update and finalised User Guide [#213](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/213)
     * Developer Guide: Explained how the Undo feature is implemented [#111](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/111)
-* **Team contribution**: Hosted meetings and suggested directions for the project.
+* **Team contribution**: 
+  * Hosted meetings and suggested directions for the project.
+  * Reorganise bug reports into more coherent problems to be fixed.
