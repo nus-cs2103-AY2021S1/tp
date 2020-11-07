@@ -46,7 +46,7 @@ The following describes the enhancements and new features that I added to the pr
   * What it does: changes the colour of the application's GUI.
   * Justification: Sets a suitable theme for our application that reflects our vision for the project.
 
-### 2.2 Code contributed
+#### 2.2 Code contributed
 
 Click on the following links to view the code that I have contributed:
 
@@ -54,7 +54,7 @@ Click on the following links to view the code that I have contributed:
  * [Functional Code](https://github.com/AY2021S1-CS2103T-T13-2/tp/tree/master/src/main/java/quickcache)
  * [Test Code](https://github.com/AY2021S1-CS2103T-T13-2/tp/tree/master/src/test/java/quickcache)
 
-### 2.3. Other contributions
+#### 2.3. Other contributions
 
  The following describes the various other contributions that I have made to the project.
 
