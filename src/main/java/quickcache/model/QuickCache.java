@@ -78,7 +78,8 @@ public class QuickCache implements ReadOnlyQuickCache {
     /**
      * Replaces the given flashcard {@code target} in the list with {@code editedFlashcard}.
      * {@code target} must exist in the QuickCache.
-     * The flashcard identity of {@code editedFlashcard} must not be the same as another existing flashcard in QuickCache.
+     * The flashcard identity of {@code editedFlashcard} must not be the same as another existing flashcard
+     * in QuickCache.
      */
     public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
         requireNonNull(editedFlashcard);
