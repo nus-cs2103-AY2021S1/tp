@@ -610,6 +610,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. If there is no Taskmaster file at the default location `./data/taskmaster.json`, sample data will be loaded into the `Taskmaster` upon startup. 
+      This sample data can be found in [`model/util/SampleDataUtil.java`](https://github.com/AY2021S1-CS2103-F09-1/tp/blob/master/src/main/java/seedu/taskmaster/model/util/SampleDataUtil.java)
+   1. If either the `Taskmaster` or `SessionList` storage files have invalid formatting/values, the application loads with an empty Taskmaster.
+   For testing, corrupted data can easily be created by starting a new Taskmaster and then editing the fields/formatting in the created JSON file.
