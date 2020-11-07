@@ -666,8 +666,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to review flashcards.
 2.  SWEe! enters review mode.
-3.  User enters `↓ key` to show answer.
-4.  User enters `→ key` to show the next flashcard.
+3.  User requests to show answer.
+4.  User requests to show the next flashcard.
 
     Steps 3-4 are repeated until the user finishes reviewing all flashcards.
 
@@ -681,15 +681,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
   
-* 3a. User enters `↑ key` to hide the answer.
+* 3a. User requests to hide the answer.
 
     Use case ends.
     
-* 3b. User enters `← key` to show the previous flashcard (if there is a previous flashcard).
+* 3b. User requests to show the previous flashcard (if there is a previous flashcard).
 
     Use case ends.
     
-* a. At any time, User enters `q` key to quit review mode.
+* a. At any time, User requests to quit review mode.
 
     *a1. SWEe! quits review mode.
     
@@ -702,11 +702,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to quiz flashcards.
 2.  SWEe! enters quiz mode.
-3.  User enters `↓ key` to show answer.
-4.  User enters `y`/`n` key depending on whether user answers the flashcard correctly.
+3.  User requests to show answer.
+4.  User indicates if the flashcard was answered correctly.
 5.  SWEe! shows the next flashcard to quiz.
 
-    Steps 3-5 are repeated until the user finishes quizzing all flashcards or until the user enters `q` key to quit quiz mode.
+    Steps 3-5 are repeated until the user finishes quizzing all flashcards or until the user requests to quit quiz mode.
 
     Use case ends.
 
