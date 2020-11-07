@@ -368,6 +368,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
 **Use case: Add a module**
 
+**MSS**
+
 1.  User requests to add a module to the module list
 2.  FaculType adds the module
 
@@ -383,11 +385,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Delete a module**
 
+**MSS**
+
 1.  FaculType shows a list of modules
 2.  User requests to delete a module
 3.  FaculType deletes the module
 
     Use case ends.
+    
+**Extensions**
     
 *   1a. The module list is empty.
     
@@ -398,7 +404,120 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. FaculType shows an error message.
     
     Use case resumes at step 1.
+    
+**Use case: Find contact(s)**
 
+**MSS**
+
+1. FaculType shows a list of contacts
+2. User requests to find contact(s) by their attributes
+3. FaculType shows a list of contacts that fulfills all constraints specified
+
+   Use case ends.
+
+**Extensions**
+
+*   2a. The user's keywords are invalid.
+    
+    * 2a1. FaculType shows an error message.
+    
+    Use case resumes at step 1.
+    
+**Use case: Find module(s)**
+
+**MSS**
+
+1. FaculType shows a list of modules
+2. User requests to find module(s) by their attributes
+3. FaculType shows a list of modules that fulfills all constraints specified
+
+   Use case ends.
+
+**Extensions**
+
+*   2a. The user's keywords are invalid.
+    
+    * 2a1. FaculType shows an error message.
+    
+    Use case resumes at step 1.
+    
+**Use case: Assign a contact to module(s)**
+
+**MSS**
+
+1. FaculType shows a list of contacts and modules
+2. User requests to assign a contact to some modules
+3. FaculType updates the instructor list of the specified modules
+
+   Use case ends.
+
+**Extensions**
+
+*   2a. Any of the modules specified does not exist.
+    
+    * 2a1. FaculType shows an error message.
+    
+    Use case resumes at step 1.
+    
+*   2b. The contact is already an instructor for any of the modules.
+    
+    * 2b1. FaculType shows an error message.
+    
+    Use case resumes at step 1.
+    
+**Use case: Unassign a contact from module(s)**
+
+**MSS**
+
+1. FaculType shows a list of contacts and modules
+2. User requests to unassign a contact to some modules
+3. FaculType updates the instructor list of the specified modules
+
+   Use case ends.
+
+**Extensions**
+
+*   2a. Any of the modules specified does not exist.
+    
+    * 2a1. FaculType shows an error message.
+    
+    Use case resumes at step 1.
+    
+*   2b. The contact is not an instructor for any of the modules.
+    
+    * 2b1. FaculType shows an error message.
+    
+    Use case resumes at step 1.
+    
+**Use case: Unassign a contact from all module(s)**
+
+**MSS**
+
+1. FaculType shows a list of contacts and modules
+2. User requests to unassign a contact
+3. FaculType updates the instructor list of the modules.
+
+   Use case ends.
+   
+**Use case: Unassign all contacts from all modules**
+
+**MSS**
+
+1. FaculType shows a list of contacts and modules
+2. User requests to unassign all contacts from all modules
+3. FaculType updates the instructor list of modules
+
+   Use case ends.
+
+**Use case: Switch active semester**
+
+**MSS**
+
+1. FaculType shows a list of contacts and modules
+2. User requests to switch the active semester
+3. FaculType updates the module list to show modules active in the other semester
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
