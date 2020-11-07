@@ -8,8 +8,8 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. **Purpose of this guide**
-This guide is made to help developers understand how McGymmy (MG) works.
-One of the major goals is to centralise all the jimmy.mcgymmy documentation within McGymmy itself.
+This guide aims to help developers understand how McGymmy (MG) works.
+One of the major goals is to centralise all the McGymmy documentation within McGymmy itself.
 Another major goal is to better help developers extend McGymmy to improve on its features.
 
 ##  2. Icon Legend
@@ -109,8 +109,8 @@ For more information on macros and the full parsing process please read the sect
 1. `Logic` uses the `McGymmyParser` class to parse the user command.
 1. This results in a `CommandExecutable` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a food item).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `UI`.
+1. In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions, such as displaying help to the user.
 
 Note that our implementation of this component is different from the one in the parent project, [AddressBook3](https://se-education.org/addressbook-level3/).
 One notable difference is the use of several `Parameter` classes in the various `Commands`.
@@ -308,7 +308,7 @@ The following sequence diagram shows how the import operation works:
 #### 7.4.1 Implementation
 
 The proposed undo mechanism is facilitated by `ModelManager` and `History`.
-`History` pairs `ReadOnlyMcGymmy` and `Predicate<Food>` gotten from `ModelManager` into a pair, then store multiple pairs of different versions in a stack, with the most recent version on top.
+`History` combines `ReadOnlyMcGymmy`, `Predicate<Food>` and `MacroList` gotten from `ModelManager` together, then store multiple groups of different versions in a stack, with the most recent version on top.
 Whenever there is a change to either `ModelManager`'s data, filter predicate, or macro list, `ModelManager` will pass itself into `History` to be saved into the stack.
 Additionally, `ModelManager` implements the following operations:
 
@@ -383,8 +383,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the food item being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### 7.5 Macro Command
 
@@ -583,7 +581,6 @@ Use case ends.
 
 Use case ends.
 
-*{More to be added}*
 
 ### 9.4 Non-Functional Requirements
 
@@ -596,7 +593,6 @@ Use case ends.
 7. The size of the final compiled JAR file should be less than 100Mb.
 8. There should be CLI alternatives to every GUI input. (E.g. instead of clicking on a button I can type an equivalent command to achieve the same result.)
 
-*{More to be added}*
 
 ### 9.5 Glossary
 
@@ -662,7 +658,7 @@ testers are expected to do more *exploratory* testing.
    <br>
    Expected: A new data file is generated
 
-   1. Open the data file inside the `data` folder using any text editor and edit the file.
+   1. Open the data file inside the `data` folder using any text editor and edit the file to invalid values.
    <br>
    Expected: A new empty data file is generated which overwrites the old one.
 
