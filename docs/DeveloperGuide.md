@@ -661,40 +661,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-* 3b. User quits QuickCache while trying out quiz feature.
 
-  * 3b1. When opening QuickCache again, quiz resumes from where the User left off.
-
-    Use case resumes at step 3.
-
-* *a. User dislikes the GUI.
-
-  * *a1. User quits and deletes QuickCache.
-
-    Use case ends.
-
-
-
-**Use case: UC02 - View Statistics**
+**Use case: UC02 - View statistics of a flashcard**
 
 **Preconditions: User has QuickCache open.**
 
 **MSS**
 
-1.  User requests for statistics
-2.  QuickCache displays statistics
-3.  User completes a quiz and requests for statistics
-4.  QuickCache displays updated statistics
+1.  User requests for statistics of a flashcard
+2.  QuickCache displays statistics of the flashcard
+3.  User <u>tests himself with the same flashcard (UC05)</u>
+4.  User requests for statistics of the flashcard
+5.  QuickCache displays updated statistics of the flashcard
 
     Use case ends.
-
+    
 **Extensions**
 
-* 1a. User has not done any quiz on QuickCache.
+* 1a. The given index is invalid.
 
   * 1a1. QuickCache shows an error message.
 
-    Use case resumes at step 3.
+    Use case resumes at step 1.
 
 
 **Use case: UC03 - Delete a flashcard**
@@ -992,14 +980,17 @@ MSS:
     Use case ends.
 
 
-**Use case: UC12 - Search for Flashcards based on Tags**
+**Use case: UC12 - Search for Flashcards based on Tags and/or Question**
 
 **Actor: User**
 
-MSS:
+**Preconditions: User has QuickCache open.**
 
-1. User enters the name of the tag he wants to search
-2. QuickCache filters through all existing Flashcards based on the tag and returns a list of Flashcards.
+**MSS**
+
+1. User enters the tags and/or keywords associated with the flashcard he wants to search for
+2. QuickCache filters all existing flashcards based on the tag and/or keywords.
+3. Quickcache displays all the requested flashcards to the user.
 
     Use case ends.
 
@@ -1010,24 +1001,41 @@ MSS:
 
 1. User double clicks on QuickCache.jar
 2. QuickCache opens and shows a list of flashcards
-3. User forgets the options of a question
+3. User forgets the choices of a flashcard's question
 4. User requests to open a specific flashcard in the list
-5. QuickCache opens the flashcard and displays the options
+5. QuickCache opens the flashcard and displays the choices
 
 	Use case ends.
 
-
 **Extensions**
-
-* 2a. The list is empty.
-
-  	Use case ends.
 
 * 4a. The given index is invalid.
 
   * 4a1. QuickCache shows an error message.
 
     Use case resumes at step 3.
+    
+**Use case: UC14 - Clear statistics of a flashcard**
+
+**Preconditions: User has QuickCache open.**
+
+**MSS**
+
+1.  User requests for statistics of a flashcard
+2.  QuickCache displays statistics of the flashcard
+3.  User clears the statistics of the flashcard
+4.  User requests for statistics of the flashcard
+5.  QuickCache displays reset statistics of the flashcard
+
+    Use case ends.
+    
+**Extensions**
+
+* 1a. The given index is invalid.
+
+  * 1a1. QuickCache shows an error message.
+
+    Use case resumes at step 1.
 
 ****
 ### Non-Functional Requirements
