@@ -32,7 +32,10 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
 
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.commons.util.SortUtil.Field;
 import seedu.stock.commons.util.SortUtil.Order;
 import seedu.stock.commons.util.SuggestionUtil;
@@ -66,8 +69,8 @@ import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 
 public class SuggestionCommandParser implements Parser<SuggestionCommand> {
-
     public static final String MESSAGE_SUGGESTION = "Do you mean: \n";
+    private static final Logger logger = LogsCenter.getLogger(SuggestionCommandParser.class);
     private String faultyCommandWord;
     private String commandWord;
     private String headerErrorMessage;
@@ -108,6 +111,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      */
     @Override
     public SuggestionCommand parse(String args) throws ParseException {
+        logger.log(Level.INFO, "Starting to generate suggestion");
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefixes(args);
         List<String> allCommandWords = CommandWords.getAllCommandWords();
         StringBuilder toBeDisplayed = new StringBuilder();
@@ -213,11 +217,13 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
+        logger.log(Level.INFO, "Finished generating suggestion successfully");
         return new SuggestionCommand(toBeDisplayed.toString());
     }
 
     /**
      * Generates suggestion for faulty clear command.
+     *
      * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
      */
     private void generateClearSuggestion(StringBuilder toBeDisplayed) {
@@ -228,6 +234,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
     /**
      * Generates suggestion for faulty tab command.
+     *
      * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
      */
     private void generateTabSuggestion(StringBuilder toBeDisplayed) {
@@ -741,6 +748,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      * @param messageUsage The body message.
      */
     private void generateBodyMessage(StringBuilder toBeDisplayed, String messageUsage) {
+        logger.log(Level.INFO, "Generating suggestion body message");
         if (!bodyErrorMessage.equals("")) {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
@@ -756,6 +764,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      * @return A boolean which indicates if the user input is valid.
      */
     private boolean checkIfParameterValid(Prefix prefix, String parameter) {
+        logger.log(Level.INFO, "Checking parameter for prefix " + prefix.toString());
         if (prefix.equals(PREFIX_NAME)) {
             return Name.isValidName(parameter);
         } else if (prefix.equals(PREFIX_SOURCE)) {
