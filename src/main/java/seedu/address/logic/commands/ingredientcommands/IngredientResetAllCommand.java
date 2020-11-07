@@ -41,11 +41,11 @@ public class IngredientResetAllCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
-        List<Ingredient> lastShownList = model.getFilteredIngredientList();
+        List<Ingredient> listOfIngredients = model.getFilteredIngredientList();
 
         boolean isNotAlreadyReset = false;
         Amount resetAmount = new Amount(RESET_AMOUNT);
-        for (Ingredient i : lastShownList) {
+        for (Ingredient i : listOfIngredients) {
             if (!i.getAmount().equals(resetAmount)) {
                 isNotAlreadyReset = true;
                 break;
@@ -56,7 +56,7 @@ public class IngredientResetAllCommand extends Command {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
-        for (Ingredient i : lastShownList) {
+        for (Ingredient i : listOfIngredients) {
             if (!i.getAmount().equals(resetAmount)) {
                 Ingredient updatedIngredient = createResetIngredient(i);
                 model.setIngredient(i, updatedIngredient);
