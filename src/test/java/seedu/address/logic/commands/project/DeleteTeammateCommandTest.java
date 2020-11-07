@@ -34,29 +34,49 @@ public class DeleteTeammateCommandTest {
 
     @Test
     public void execute_validGitUserIndex_throwsCommandException() {
+        //        Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        //        Model expectedModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        //        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        //        model.enter(project);
+        //        expectedModel.enter(project);
+        //
+        //        Person person = new PersonBuilder()
+        //                .withPersonName(VALID_TEAMMATE_NAME_A)
+        //                .withGitUserName(VALID_TEAMMATE_GIT_USERNAME_A)
+        //                .withPhone(VALID_TEAMMATE_PHONE_A)
+        //                .withEmail(VALID_TEAMMATE_EMAIL_A)
+        //                .withAddress(VALID_TEAMMATE_ADDRESS_A).build();
+        //        Participation participation =
+        //                new Participation(person.getGitUserNameString(), project.getProjectName().toString());
+        //        project.addParticipation(participation);
+        //        model.addPerson(person);
+        //        model.addParticipation(participation);
+        //
+        //        DeleteTeammateCommand deleteTeammateCommand = new DeleteTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE);
+        //
+        //        String expectedMessage = String.format(DeleteTeammateCommand.MESSAGE_DELETE_TEAMMATE_SUCCESS, person);
+        //
+        //        assertCommandSuccess(deleteTeammateCommand, model, expectedMessage, expectedModel);
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
-        expectedModel.enter(project);
 
-        Person person = new PersonBuilder()
-                .withPersonName(VALID_TEAMMATE_NAME_A)
-                .withGitUserName(VALID_TEAMMATE_GIT_USERNAME_A)
-                .withPhone(VALID_TEAMMATE_PHONE_A)
-                .withEmail(VALID_TEAMMATE_EMAIL_A)
-                .withAddress(VALID_TEAMMATE_ADDRESS_A).build();
-        Participation participation =
-                new Participation(person.getGitUserNameString(), project.getProjectName().toString());
-        project.addParticipation(participation);
+        Person person = DESC_A;
+        Model expectedModel = model;
+        project.addParticipation(person);
+
+        Participation participation = project.getParticipation(GIT_USERINDEX_FIRST_TEAMMATE
+                .getGitUserNameString());
         model.addPerson(person);
         model.addParticipation(participation);
 
         DeleteTeammateCommand deleteTeammateCommand = new DeleteTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE);
 
-        String expectedMessage = String.format(DeleteTeammateCommand.MESSAGE_DELETE_TEAMMATE_SUCCESS, person);
+        String expectedMessage = String.format(DeleteTeammateCommand.MESSAGE_DELETE_TEAMMATE_SUCCESS,
+                person);
 
         assertCommandSuccess(deleteTeammateCommand, model, expectedMessage, expectedModel);
+
     }
 
     @Test
