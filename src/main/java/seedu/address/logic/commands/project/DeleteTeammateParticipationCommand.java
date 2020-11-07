@@ -55,6 +55,12 @@ public class DeleteTeammateParticipationCommand extends Command {
         project.removeParticipation(participation);
         model.deleteParticipation(participation);
 
+        if (model.getTeammateToBeDisplayedOnDashboard().isPresent()
+                && model.getTeammateToBeDisplayedOnDashboard().get().equals(participation)) {
+            model.resetTeammateToBeDisplayedOnDashboard();
+            project.updateTeammateOnView(null);
+        }
+
         return new CommandResult(String.format(MESSAGE_DELETE_TEAMMATE_PARTICIPATION_SUCCESS,
             personToDeleteParticipation));
     }
