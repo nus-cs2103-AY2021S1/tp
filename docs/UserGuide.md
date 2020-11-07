@@ -10,8 +10,19 @@
     3.2 [Using Trackr](#32-using-trackr)<br>
     3.3 [Switching Views](#33-switching-views)<br>
 4. [Features](#4-features)<br>
-   4.1 [View help: `help`](#41-view-help-help)<br>
-   4.2 [Module features](#42-module-features)<br>
+   4.1 [General Features](#41-general-features)<br>
+   --- 4.1.1 [View help: `help`](#411-view-help-help)<br>
+   --- 4.1.2 [Clear Trackr: 'clear'](#412-clear-trackr-clear)<br>
+   --- 4.1.3 [Exit Trackr: 'exit'](#413-exit-trackr-exit)<br>
+   4.2 [Navigation Features](#42-navigation-features)<br>
+   --- 4.2.1 [List all Modules in Trackr: `listMod`](#421-list-all-modules-in-__trackr__-listmod)<br>
+   --- 4.2.2 [View all Tutorial Groups in a Module: `viewtTG`](#422-view-all-tutorial-groups-in-a-module-viewtg)<br>
+   --- 4.2.3 [List all Tutorial Groups in the current Module: `listTG`](#423-list-all-tutorial-groups-in-the-current-module-listtg)<br>
+   --- 4.2.4 [View all Students in a Tutorial Group: `viewStudent`](#424-view-all-students-in-a-tutorial-group-viewstudent)<br>
+   --- 4.2.5 [List all Students in a Tutorial Group: `listStudent`](#425-list-all-students-in-a-tutorial-group-liststudent)<br>
+   --- 4.2.6 [Show the Attendance of target Student: `viewAttendance`](#426-show-the-attendance-of-target-student-viewattendance)<br>
+   --- 4.2.7 [Return to previous view: `prevView`](#427-return-to-previous-view-prevview)<br>
+   4.3 [Module features](#43-module-features)<br>
    --- 4.2.1 [Add a module: `addMod`](#421-add-a-module-addmod)<br>
    --- 4.2.2 [Delete a module: `deleteMod`](#422-delete-a-module-deletemod)<br>
    --- 4.2.3 [Edit a module: `editMod`](#423-edit-a-module-editmod)<br>
@@ -143,7 +154,6 @@ Figure 3.3.3 Student view
 ### 4.1 General Features
 
 #### 4.1.1 View help: `help`
-
 Shows a message explaining how to access the user guide.
 
 Format: `help`
@@ -155,7 +165,6 @@ Expected Outcome:
 ![HelpCommand](images/HelpCommand.png)
 
 #### 4.1.2 Clear Trackr: `clear`
-
 Clears all data inside Trackr.
 
 Format: `clear`
@@ -173,7 +182,6 @@ Expected Outcome:
 ![ClearCommand](images/ClearCommand.png)
 
 #### 4.1.3 Exit Trackr: `exit`
-
 Exits Trackr and automatically saves the data.
 
 Format: `exit`
@@ -186,72 +194,96 @@ Example: `exit`
 
 ### 4.2 Navigation Features
 
-#### 4.2.1 List all modules: `listMod`
+#### 4.2.1 List all modules in __Trackr__: `listMod`
 
 Shows all the modules you have added in the Module view.
 
 Format: `listMod`
 
-> Note
-> - Method can be called in ANY view.
+> Note: You can perform this command in ANY view.
 
-Example:
-- Lists all modules in Trackr.
-    - `listMod`
+Example: `listMod`
     
 Expected Outcome:
 
 ![ListModuleCommand](images/ListModuleCommand.png)
 
 #### 4.2.2 View all Tutorial Groups in a Module: `viewTG`
-You can display all Tutorial Groups in a Module with this command. You can indicate which Module's Tutorial Groups to view by entering its index in the current list.
+Change view to Tutorial Groups of target Module.
 
 Format: `viewTG MODULE_INDEX`
-Where MODULE_INDEX is the target Module's index in the currently displayed Module List.
+- MODULE_INDEX is the target Module's index in the currently displayed Module List.
+
+> Note: You should perform this command in the MODULE view.
 
 Example: `viewTG 1`
 
-#### 4.2.3 Return to Tutorial Group List: `listTG`
-After using the findTG command, you can use listTG to quickly return to the list of all Tutorial Groups in the Module.
+Expected Outcome:
+![ViewTgCommand]()
 
-> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
-> - Refer to 4.2.1 - View all Tutorial Groups in a Module
+#### 4.2.3 List all Tutorial Groups in the current Module: `listTG`
+Lists all Tutorial Groups in the current Module.
 
 Format: `listTG`
 
+> Note: You should perform this command in the TUTORIAL GROUP view.
+
+Example: `listTG`
+- Can be used to show all Tutorial Groups after [findTG]() command.
+
+Expected Outcome:
+![ListTgCommand]()
+
 #### 4.2.4 View all students in a tutorial group: `viewStudent`
+Change view to Students of target Tutorial Group.
 
-Shows all students within the given tutorial group.
+Format: `viewStudent TG_INDEX`
+- `TG_INDEX` refers to the index number shown in the Tutorial Group view.
+- `TG_INDEX` must be a positive integer starting from 1.
 
-Format: `viewStudent INDEX`
+> Note: You should perform this command in the TUTORIAL GROUP view.
 
-Note:
-
-- `INDEX` refers to the index number shown in the Tutorial Group view.
-- `INDEX` must be a positive integer starting from 1.
-- You should perform this command in the Tutorial Group view.
-
-Example:
-
-- Views all students of tutorial group at _index 1_.
-    - `viewStudent 1`
+Example: `viewStudent 1`
+- Views all students of tutorial group at _index 1_ of Tutorial Group List.
 
 Expected Outcome:
 ![ViewStudentCommand](images/ViewStudentCommand.png)
 
 #### 4.2.5 List all students in a tutorial group: `listStudent`
-
-Shows a list of all students in the current Student view.
+Lists all Students in the current Tutorial Group.
 
 Format: `listStudent`
 
-Note:
+> Note: You should perform this command in the STUDENT view.
 
-- This is a quick way to view all of your students in the current Student view again after using the `findStudent`
-command.
-- `listStudent` command only works in Student view.
+Example: `listStudent`
+- Can be used to show all Students after [findStudent]() command.
 
+Expected Outcome:
+![ListStudentCommand](images/ListStudentCommand.png)
 
+#### 4.2.6 Show the attendance of Target Student: 'viewAttendance'
+Shows the attendance of Target student: `viewAttendance`
+
+Format: `viewAttendance STUDENT_INDEX`
+
+> Note: You should perform this command in STUDENT view.
+
+Example: `viewAttendance 1`
+
+Expected Outcome:
+![ViewAttendanceCommand](images/ViewAttendanceCommand.png)
+
+#### 4.2.7 Return to previous view: `prevView`
+Returns to the previous view: `prevView`
+
+Format: `prevView`
+
+> Note: You can perform this command in ANY view but MODULE is the last View.
+
+Example: `prevView`
+
+![PrevViewCommand](images/PrevViewCommand.png)
 
 ### 4.3 Module features
 
@@ -521,10 +553,12 @@ Command | Description | Compatible View
 Command | Description | Compatible View
 --------|-------------|------------
 `listMod` | Views all modules in __Trackr__ | ANY
-`viewTG MODULE_INDEX` | Change view to Tutorial Groups of specified Module | MODULE
+`viewTG MODULE_INDEX` | Changes view to Tutorial Groups of target Module | MODULE
 `listTG` | Lists all Tutorial Groups in current Module | TUTORIAL GROUP
-`viewStudent INDEX` | Change view to Students of specified Tutorial Group | TUTORIAL GROUP
+`viewStudent TG_INDEX` | Change view to Students of target Tutorial Group | TUTORIAL GROUP
 `listStudent` | Lists all Students in current Tutorial Group | STUDENT
+`viewAttendance STUDENT_INDEX` | Shows the attendance for Target student | STUDENT
+`prevView` | Returns to the previous view | ANY
 
 
 ### 6.3 Module Commands
