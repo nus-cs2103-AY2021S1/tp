@@ -25,7 +25,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-    private static final String EMPTY_PROJECT_DASHBOARD_MSG = "No project to be shown here.";
+    private static final String EMPTY_PROJECT_DASHBOARD_MSG = "No project/person to be shown here.";
     private static final String EMPTY_ATTRIBUTES_DASHBOARD_MSG = "No detail to be shown here.";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -130,6 +130,19 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        fillPanels();
+
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMainCatalogueFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    private void fillPanels() {
         if (logic.isProjectsView()) {
             projectListPanelPlaceholder.setVisible(true);
             projectListPanelPlaceholder.setManaged(true);
@@ -173,15 +186,6 @@ public class MainWindow extends UiPart<Stage> {
             emptyAttributesDashboard = new EmptyDashboard(EMPTY_ATTRIBUTES_DASHBOARD_MSG);
             rightAttributesDashboardPlaceHolder.setContent(emptyAttributesDashboard.getRoot());
         }
-
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMainCatalogueFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -237,7 +241,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            fillInnerParts();
+            fillPanels();
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {

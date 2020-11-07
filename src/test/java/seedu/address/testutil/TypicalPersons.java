@@ -77,9 +77,4 @@ public class TypicalPersons {
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, DESC_A, DESC_B, DESC_C));
     }
-
-    //public static List<Person> getTypicalPersons() {
-    //return new ArrayList<>(Arrays.asList(DESC_A_S.get(), DESC_B_S.get(), DESC_C_S.get()));
-    //}
-
 }
