@@ -141,7 +141,7 @@ The features mentioned are:
 ### Add Flashcard with open-ended question
 
 #### Implementation
-The Add Open Ended Question mechanism is facilitated by `QuickCache` . 
+The Add Open Ended Question mechanism is facilitated by `QuickCache`.
 The flashcard created is stored internally inside a `UniqueFlashcardList` within the `QuickCache` object.
 
 ##### Usage
@@ -168,7 +168,7 @@ The following sequence diagram shows how the Add Open Ended Question mechanism w
 
 #### Implementation
 
-The Add Multiple Choice Question mechanism is facilitated by `QuickCache` . 
+The Add Multiple Choice Question mechanism is facilitated by `QuickCache`.
 The flashcard created is stored internally inside a `UniqueFlashcardList` within the `QuickCache` object.
 
 ##### Usage
@@ -197,13 +197,13 @@ The following sequence diagram shows how the Add Multiple Choice Question mechan
 #### Implementation
 
 The Open flashcard feature will allow the user to open a flashcard specified by the given index and display it in the GUI.
-The `OpenCommandParser#parse` takes in a single `String` argument called `index`. It then parses the argument and creates an `Index` object to be passed on to 
+The `OpenCommandParser#parse` takes in a single `String` argument called `index`. It then parses the argument and creates an `Index` object to be passed on to
 the `OpenCommand` class instance. If no argument is given, then a `CommandException` will be thrown.
 
 During execution, the `OpenCommand` class will pass the `Question` to the GUI for it to display the`Question` of the `Flashcard` to the user.
 This is be done by passing the `Question` into a `Feedback` object which is an attribute of the `CommandResult` given to the GUI.
 
-The GUI will change the content of some of its placeholders to display the question and if available, its choices to the user. 
+The GUI will change the content of some of its placeholders to display the question and if available, its choices to the user.
 The GUI will change the contents of its placeholders accordingly if other commands aside from another `OpenCommand` is called afterwards.
 
 ##### Usage
@@ -266,9 +266,9 @@ Step 4. The `Flashcard` will then be constructed containing the `tagList`.
 
 #### Implementation
 
-The Edit mechanism operates by editing the flashcard at a specified index of the last displayed list. 
+The Edit mechanism operates by editing the flashcard at a specified index of the last displayed list.
 The new information is encapsulated inside a `EditFlashcardDescriptor` and is passed together with the `Index` object
-to the `EditCommand`. 
+to the `EditCommand`.
 
 During `EditComamnd#execute`, a new `Flashcard` object will be created. For each of its individual content (i.e `Answer`),
 if the `EditFlashcardDescriptor` does not have the new information, the old content will be from the original `Flashcard`.
@@ -277,15 +277,15 @@ if the `EditFlashcardDescriptor` does not have the new information, the old cont
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
-Step 1. The user executes `edit 1 ans/answer` command to edit the answer field of the first flashcard. 
+Step 1. The user executes `edit 1 ans/answer` command to edit the answer field of the first flashcard.
 
 Step 2. `EditCommandParser#parse` will then parse the arguments provided. In this example, a new `Answer` object will be
 created after parsing.
 
-Step 3. The `Answer` object will then be passed to the `EditFlashcardDescriptor` object. The `EditFlashcardDescriptor` 
+Step 3. The `Answer` object will then be passed to the `EditFlashcardDescriptor` object. The `EditFlashcardDescriptor`
 object together with the original `Flashcard` will be passed to the `EditCommand` object.
 
-Step 4. The `EditCommand` will then create a new `Flashcard` using information from `EditFlashcardDescriptor`. 
+Step 4. The `EditCommand` will then create a new `Flashcard` using information from `EditFlashcardDescriptor`.
 In the example, only a new answer is present. All other information will be taken from the original `Flashcard`.
 
 Step 5. `EditCommand#execute` will then replace the old `Flashcard` in the `model` with the new `Flashcard`.
@@ -360,13 +360,13 @@ It works by filtering for the flashcards in the `model` and deleting them one by
 
 Given below is an example usage scenario and how the Delete By Tag mechanism behaves at each step.
 
- Step 1. The user launches the application. 
+ Step 1. The user launches the application.
 
  Step 2. The user executes `delete t/MCQ` command to delete all flashcards with the tag `MCQ`.
 
- Step 3. This will call `DeleteCommandParser#parse` which will then parse the arguments provided. 
+ Step 3. This will call `DeleteCommandParser#parse` which will then parse the arguments provided.
  Within `DeleteCommandParser#parse`, `ParserUtil#parseTags` will be called to create a `FlashcardPredicate` using the tags.
- 
+
  Step 4. A new `DeleteCommand` object will be created with its `isDeleteByTag` field set to `true`. The `FlashcardPredicate`
  will also be passed to the `DeleteCommand` object.
 
@@ -395,8 +395,8 @@ The following sequence diagram shows how the Delete By Tag mechanism works:
 #### Implementation
 
 The Find mechanism searches for flashcards based on the specified tag or question keyword or both.
-Each filter will result in the creation of a `Predicate<Flashcard>`. 
-A class called `FlashcardPredicate` will be introduced that collects all `Predicate<Flashcard>` into one class. 
+Each filter will result in the creation of a `Predicate<Flashcard>`.
+A class called `FlashcardPredicate` will be introduced that collects all `Predicate<Flashcard>` into one class.
 
 ##### Usage
 
