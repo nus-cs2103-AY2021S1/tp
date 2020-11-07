@@ -980,7 +980,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
   Use case ends.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
       :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
 </div>
 
@@ -1004,7 +1004,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
   Use case ends.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
       :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
 </div>
 
@@ -1028,7 +1028,7 @@ These are common extensions that can apply to some commands. Let x be the step t
     
     Use case resumes from step 2.
    
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
       :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
 </div> 
 
@@ -1073,7 +1073,7 @@ These are common extensions that can apply to some commands. Let x be the step t
      
 **Extensions**
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
   :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
 </div>
 <br><br>
@@ -1146,7 +1146,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
   Use case ends.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
      :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
 </div>
  <br><br>
@@ -1168,7 +1168,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
   Use case ends.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
       :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
 </div>
  <br><br>
@@ -1191,7 +1191,7 @@ These are common extensions that can apply to some commands. Let x be the step t
     
     Use case resumes from step 2.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
       :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
 </div>
  <br><br>
@@ -1241,7 +1241,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
   Use case ends.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
   :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
 </div>
  <br><br>
@@ -1279,7 +1279,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
   Use case ends.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
   :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
 </div>
  <br><br>
