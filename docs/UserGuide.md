@@ -318,11 +318,9 @@ list lt/<list type>
 
 </div>
 
-<h4>Examples</h4>
+<h4>Below is a guided example for deleting stocks:</h4>
+**Step 1.** Let's list out all the bookmarked stocks using the command `list lt/bookmark`.
 
-```
-list lt/bookmark
-```
 **Before input**:
 
 ![list_bookmark](images/list/list_bookmark_before.png)
@@ -331,9 +329,8 @@ list lt/bookmark
 
 ![list_bookmark](images/list/list_bookmark.png)
 
-```
-list lt/low
-```
+**Step 2.** We can then list out all the stocks that are low in quantity using the command `list lt/low`.
+
 **Before input**:
 
 ![list_bookmark](images/list/list_low_before.png)
@@ -342,9 +339,8 @@ list lt/low
 
 ![list_bookmark](images/list/list_low.png)
 
-```
-list lt/all
-```
+**Step 3.** Lastly, listing out all the stocks using the command `list lt/all`.
+
 **Before input**:
 
 ![list_bookmark](images/list/list_all_before.png)
@@ -1150,11 +1146,10 @@ Bookmarking a stock pushes the stock to the top of the stock list.
 bookmark sn/<serial number> [sn/<serial number>]...
 ```
 
-<h4>Examples</h4>
+<h4>Below is a guided example for viewing a stock:</h4>
 
-```
-bookmark sn/giant1
-```
+**Step 1.** You want to bookmark the stock with serial number `giant1`. You can bookmark the stock by
+using the command `bookmark sn/giant1`. Below shows the desired outcome.
 
 **Before input:**
 
@@ -1164,7 +1159,7 @@ bookmark sn/giant1
 
 ![bookmark_after](images/bookmark/bookmark.png)
 
-<div markdown="block" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning" markdown="1">
 
 **:warning: Nonexistent Stocks**
 
@@ -1182,7 +1177,6 @@ you should expect the following error:
 
 </div>
 
-
 ### Unbookmarking stocks in the list: `unbookmark`
 Removes bookmark from the desired stock(s).
 
@@ -1192,11 +1186,10 @@ Removes bookmark from the desired stock(s).
 unbookmark sn/<serial number> [sn/<serial number>]...
 ```
 
-<h4>Examples</h4>
+<h4>Below is a guided example for viewing a stock:</h4>
 
-```
-unbookmark sn/giant1
-```
+**Step 1.** You want to unbookmark the stock with serial number `giant1`. You can unbookmark the stock by
+using the command `bookmark sn/giant1`. Below shows the desired outcome.
 
 **Before input:**
 
@@ -1207,7 +1200,7 @@ unbookmark sn/giant1
 
 ![GUI_component](images/bookmark/unbookmark.png)
 
-<div markdown="block" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning" markdown="1">
 
 **:warning: Nonexistent Stocks**
 
@@ -1222,6 +1215,7 @@ Unbookmarking a stock that is not bookmarked will also result in an error.
 Using the bookmark input `bookmark sn/fairprice1`,you should expect the following error:
 
 ![bookmark_already_bookmarked](images/bookmark/unbookmark_not.png)
+</div>
 
 </div>
 
