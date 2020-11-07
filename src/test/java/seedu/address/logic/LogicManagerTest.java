@@ -25,7 +25,7 @@ import seedu.address.model.ReadOnlyModuleList;
 // import seedu.address.model.contact.Contact;
 import seedu.address.storage.JsonModuleListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-// import seedu.address.testutil.ContactBuilder;
+// import seedu.address.testutil.contact.ContactBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

@@ -35,7 +35,7 @@ import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditContactDescriptorBuilder;
+import seedu.address.testutil.contact.EditContactDescriptorBuilder;
 
 public class EditContactParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;

@@ -25,10 +25,8 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.module.ZoomLink;
-import seedu.address.testutil.EditContactDescriptorBuilder;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
-
-
+import seedu.address.testutil.contact.EditContactDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.

@@ -2,7 +2,7 @@ package seedu.address.logic.commands.contactlistcommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
+import static seedu.address.testutil.contact.TypicalContacts.getTypicalContactList;
 
 import org.junit.jupiter.api.Test;
 

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Stores the list of criteria to be used when finding matching {@code Task}.
+ * Stores the list of predicate to be used when finding matching {@code Task}.
  */
 public class FindTaskCriteria {
 
