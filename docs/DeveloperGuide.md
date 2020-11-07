@@ -620,6 +620,8 @@ The following activity diagram summarizes what happens when a user executes an `
 
 The import mechanism is similarly facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be imported is read by `Storage` from local data.
 
+##### Usage
+
 Given below is an example usage scenario and how the export mechanism behaves at each step.
 
 Step 1. The user places the file `in.json` that he wants to import in his `/import/`folder.
@@ -638,20 +640,16 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ![ImportActivityDiagram](images/ImportActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations:
 
-##### Aspect: How to import the input file
-
-* **Alternative 1 (current choice):** Predefined directory of `/import/`
+* **Current choice:** Predefined directory of `/import/`
   * Pros: Easy to implement.
   * Cons: The user will have to navigate to his `/import/` folder to a place the input file in it.
 
-* **Alternative 2:** User specifies which directory to save the export file to.
+* **Alternative:** User specifies which directory to save the export file to.
   * Pros: More control over where the import file can be from e.g. user's download folder.
   * Cons: Difficult to implement.
   * Cons: Command becomes more complicated as the entire path needs to be typed out.
-
-_{more aspects and alternatives to be added}_
 
 
 --------------------------------------------------------------------------------------------------------------------
