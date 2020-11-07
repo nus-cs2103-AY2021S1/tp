@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.model.timetable.Day.MONDAY;
 import static seedu.address.model.timetable.Day.FRIDAY;
+import static seedu.address.model.timetable.Day.MONDAY;
 import static seedu.address.model.timetable.Day.THURSDAY;
 import static seedu.address.model.timetable.Day.TUESDAY;
 import static seedu.address.model.timetable.Day.WEDNESDAY;
