@@ -18,7 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 @ExtendWith(ApplicationExtension.class)
-class AutocompleteModuleTestBase extends HeadlessTestBase {
+class AutocompleteModuleTest extends HeadlessTestBase {
 
     private String sampleCmdPrefix = "test/";
     private List<String> sampleNameList = Arrays.asList("Alice", "Bravo", "Charlie");

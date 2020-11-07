@@ -18,7 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 @ExtendWith(ApplicationExtension.class)
-class FzfModuleTestBase extends HeadlessTestBase {
+class FzfModuleTest extends HeadlessTestBase {
     private List<String> sampleNameList = Arrays.asList("Alice", "Bravo", "Charlie");
 
     private TextField textField;
