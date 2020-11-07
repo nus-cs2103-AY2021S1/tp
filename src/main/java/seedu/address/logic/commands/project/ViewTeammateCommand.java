@@ -22,7 +22,7 @@ public class ViewTeammateCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the details of the teammate identified "
             + "by the index number used in the displayed teammate list.\n"
-            + "Note that the index must be a positive integer. example: viewteammate 2 ";
+            + "Note that the index must be a positive integer. Example: viewteammate 2 ";
 
     public static final String MESSAGE_VIEW_TEAMMATE_SUCCESS = "Started TEAMMATE: %1$s";
 
