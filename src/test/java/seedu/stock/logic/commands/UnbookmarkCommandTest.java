@@ -4,9 +4,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.INDEX_FIRST_STOCK;
-import static seedu.stock.testutil.TypicalStocks.INDEX_FOURTH_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
-import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FOURTH_STOCK;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
 import java.util.ArrayList;
@@ -59,23 +57,6 @@ public class UnbookmarkCommandTest {
         assertCommandSuccess(unbookmarkCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test
-    public void execute_unbookmarkNotBookmarked_failure() {
-        Set<SerialNumber> serialNumbersToBookmark = new LinkedHashSet<>();
-        List<Stock> stocksToUnbookmark = new ArrayList<>();
-
-        Stock secondStock = model.getFilteredStockList().get(INDEX_FOURTH_STOCK.getZeroBased());
-
-        serialNumbersToBookmark.add(SERIAL_NUMBER_FOURTH_STOCK);
-        stocksToUnbookmark.add(secondStock);
-
-        UnbookmarkCommand unbookmarkCommand = new UnbookmarkCommand(serialNumbersToBookmark);
-
-        String expectedMessage = String.format(UnbookmarkCommand.MESSAGE_NOT_BOOKMARKED,
-                stocksAsString(stocksToUnbookmark));
-
-        assertCommandFailure(unbookmarkCommand, model, expectedMessage);
-    }
 
     @Test
     public void execute_unbookmarkInvalidSerialNumber_failure() {
