@@ -934,7 +934,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a new employee to the active employee directory
 
-   1. Test case: `c-add n/John Doe p/98765432 e/87654321 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`<br>
+   1. Test case: `c-add n/John Doe p/98765432 e/87654321 a/311, Clementi Ave 2, #02-25 t/Friday t/monday`<br>
       Expected: An employee named John Doe should be added into the active employee directory with his phone number, emergency contact, address,
       and tags.
 
