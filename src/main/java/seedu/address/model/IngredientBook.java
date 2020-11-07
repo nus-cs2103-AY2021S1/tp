@@ -79,19 +79,6 @@ public class IngredientBook implements ReadOnlyIngredientBook {
     }
 
     /**
-     * Returns the ingredient with the input ingredient name, if
-     * not found, return null.
-     *
-     * @param ingredientName ingredient name
-     * @return ingredient with the input ingredient name
-     */
-    public Ingredient findIngredientByName(IngredientName ingredientName) {
-        requireNonNull(ingredientName);
-
-        return ingredients.findIngredientByName(ingredientName);
-    }
-
-    /**
      * Returns an arraylist of ingredients that are in shortage. If
      * no ingredient is in shortage, return an empty arraylist.
      *
