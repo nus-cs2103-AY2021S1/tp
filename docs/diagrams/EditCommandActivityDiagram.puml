@@ -10,16 +10,15 @@ if () then ([is valid index])
     if () then ([fields to edit specified])
     :execute EditCommand;
 
-        if () then ([is duplicate item])
-        :throw command exception;
-
-        else ([is not a duplicate])
-
-            if () then ([edited item is same as original])
-            :throw command exception;
-            else ([edited item different from original])
+        if () then ([is not duplicate item])
+            if () then ([edited item is different from original])
             :item is updated;
+            else ([edited item same as original])
+            :throw command exception;
             endif
+
+        else ([is a duplicate])
+        :throw command exception;
 
         endif
 
