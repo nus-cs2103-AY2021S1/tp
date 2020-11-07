@@ -25,7 +25,7 @@
             </stylesheets>
             <HBox>
                 <children>
-                    <VBox minWidth="-Infinity" prefWidth="300.0" HBox.hgrow="ALWAYS">
+                    <VBox minWidth="260.0" prefWidth="260.0" HBox.hgrow="ALWAYS">
                         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                             <Menu mnemonicParsing="false" text="File">
                                 <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -53,12 +53,12 @@
                         </VBox>
                         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
                     </VBox>
-                    <VBox minWidth="300.0" prefHeight="167.0" prefWidth="182.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                    <VBox minWidth="320.0" prefHeight="167.0" prefWidth="182.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                         <children>
                      <ScrollPane fx:id="middleDashboardPlaceHolder" hbarPolicy="ALWAYS" prefWidth="200.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS" />
                         </children>
                     </VBox>
-                    <VBox minWidth="300.0" prefHeight="167.0" prefWidth="182.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                    <VBox minWidth="320.0" prefHeight="167.0" prefWidth="182.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                         <children>
                      <ScrollPane fx:id="rightAttributesDashboardPlaceHolder" hbarPolicy="ALWAYS" prefWidth="200.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS" />
                         </children>
