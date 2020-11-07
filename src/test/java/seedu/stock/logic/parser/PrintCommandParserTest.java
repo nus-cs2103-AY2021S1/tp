@@ -53,4 +53,12 @@ public class PrintCommandParserTest {
         // whitespace only preamble, field header present
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + FILE_NAME_DESC, new PrintCommand(VALID_FILE_NAME));
     }
+
+    @Test
+    public void parse_invalidPrefixes_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrintCommand.MESSAGE_USAGE);
+
+        // valid prefix with invalid prefix
+        assertParseFailure(parser, NAME_DESC_BANANA + FILE_NAME_DESC, expectedMessage);
+    }
 }

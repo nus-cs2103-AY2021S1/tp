@@ -128,7 +128,7 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
         if (serialNumberSetOptional.isPresent()) {
             SerialNumberSet current = serialNumberSetOptional.get();
             String numberSection = current.getAccumulatedQuantity().getIncrementedAccumulatedQuantity()
-                                        .getAccumulatedQuantity();
+                                        .getValue();
             return source.value + numberSection;
         } else {
             return source.value + "1";

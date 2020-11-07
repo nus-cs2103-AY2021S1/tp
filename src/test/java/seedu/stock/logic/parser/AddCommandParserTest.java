@@ -20,6 +20,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.stock.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.stock.logic.commands.CommandTestUtil.QUANTITY_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.QUANTITY_DESC_BANANA;
+import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.SOURCE_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.SOURCE_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
@@ -64,7 +65,7 @@ public class AddCommandParserTest {
                 .withSerialNumber(DEFAULT_SERIAL_NUMBER).build();
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + SOURCE_DESC_BANANA
                 + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA + NAME_DESC_BANANA + LOW_QUANTITY_DESC_BANANA,
-                new AddCommand(expectedStock));
+                new AddCommand(newExpectedStock));
 
     }
 
@@ -160,5 +161,24 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BANANA + SOURCE_DESC_BANANA
                 + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidPrefixes_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+
+        // whitespace only preamble, optional field header low quantity not included, invalid serial number field
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + NAME_DESC_BANANA + SOURCE_DESC_BANANA
+                + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA + SERIAL_NUMBER_DESC_BANANA, expectedMessage);
+
+        // field header in different order, optional field header low quantity not included, invalid serial number field
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + SOURCE_DESC_BANANA
+                + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA + NAME_DESC_BANANA + SERIAL_NUMBER_DESC_BANANA,
+                expectedMessage);
+
+        // whitespace only preamble, optional field header low quantity included, invalid serial number field
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + SOURCE_DESC_BANANA + VALID_LOW_QUANTITY_BANANA
+                        + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA + NAME_DESC_BANANA + SERIAL_NUMBER_DESC_BANANA,
+                expectedMessage);
     }
 }

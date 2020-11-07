@@ -24,15 +24,23 @@ import seedu.stock.model.stock.Stock;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
+    private final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+
+    private final Prefix[] validPrefixesForAdd = { PREFIX_NAME, PREFIX_SOURCE, PREFIX_QUANTITY, PREFIX_LOCATION,
+        PREFIX_LOW_QUANTITY};
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SOURCE, PREFIX_QUANTITY, PREFIX_LOCATION,
-                        PREFIX_LOW_QUANTITY);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
+
+        // Invalid prefixes used in Add command
+        if (ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForAdd)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_QUANTITY)
                 || !argMultimap.getPreamble().isEmpty()) {
