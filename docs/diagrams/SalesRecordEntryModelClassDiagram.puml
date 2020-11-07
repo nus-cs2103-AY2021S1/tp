@@ -17,16 +17,13 @@ Class Integer
 }
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside .down.> SalesBook
+ModelManager o--> "1" SalesBook
+SalesBook .down.|> ReadOnlySalesBook
 
-ModelManager o-right-> "1" SalesBook
-SalesBook .right.|> ReadOnlySalesBook
-
-SalesBook *--> "1" UniqueSaleRecordList : record
+SalesBook *--> "1" UniqueSaleRecordList
 UniqueSaleRecordList o--> "*" SalesRecordEntry
 SalesRecordEntry *--> "1" Drink : drink
 SalesRecordEntry *--> "1" Integer : numberSold
 
-ModelManager -->"1" SalesRecordEntry : filteredSalesRecordList
+ModelManager --> "*" SalesRecordEntry : filteredSalesRecordList
 @enduml

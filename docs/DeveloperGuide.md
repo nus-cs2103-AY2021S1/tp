@@ -121,6 +121,10 @@ The `SalesRecordEntry` sub-component,
 * stores the sales book data
 * exposes an unmodifiable `ObservableList<SalesRecordEntry>` that can be 'observed'. The UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The text in the middle of the
+ association arrows represents the role of the class at the arrow head. However, due to a limitation of
+ PlantUML, where there cannot be two textboxes at the arrow head, the role has been placed in the middle of the arrow.
+</div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
@@ -211,6 +215,9 @@ The following sequence diagram shows how the sales update operation works:
 
 ![SalesUpdateSequenceDiagram](images/SalesUpdateSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 The following activity diagram summarises what happens when a user executes the `s-update` command.
 
 ![SalesUpdateActivityDiagram](images/SalesUpdateActivityDiagram.png)
@@ -242,52 +249,6 @@ user in the `s-update` command
     * Pros: It can can be extended more easily if there is a greater variety of drinks to store in the future.
     * Cons: There are not many operations to do with `Drink`s. It is only used to represent a constant set of
      drink types.
-     
-### \[Completed\] Listing Sales Data of the Drinks
-
-tCheck allows users to view a list of the recorded sales data of drinks. 
-The list of drinks shown is ordered in descending order (i.e. ranked from the most to least sales).
-The command to use this feature is: `s-list`.
-
-#### Implementation
-
-The completed mechanism to list the sales data in descending order is facilitated by the `UniqueSalesRecordList`.
-This is a list of `SalesRecordEntry`, containing the `numberSold` for a type of `Drink`. It implements the following
-operations:
-
-* `UniqueSalesRecordList#sort()`  —  Sorts the `SalesRecordEntry` in the list in descending order based on its
- `numberSold`.
-* `UniqueSalesRecordList#asUnmodifiableObservableList()`  —  Returns the list as an unmodifiable form.
- 
-These operations are exposed in the `SalesBook` as `SalesBook#sortRecord()` and `SalesBook#getSalesRecord()` 
-respectively. They are further exposed in the `Model` interface as `Model#sortSalesBook()` and 
-`Model#updateFilteredSalesRecordList(Predicate<SalesRecordEntry>)` respectively.
- 
-Given below is an example usage scenario and how the listing of sales data mechanism behave at each step.
-
-Step 1. The user has updated the sales data by using the updating sales data feature described in the above section. 
-The `SalesBook` now contains an unsorted `UniqueSalesRecordList` with the updated sales data.
-
-Step 2. The user executes the `s-list` command to view the list of sales data. The `s-list` command calls 
-`Model#sortSalesBook()`, which will sort the `UniqueSalesRecordList` in the `SalesBook`. Subsequently, the command
-calls `Model#updateFilteredSalesRecordList(Predicate<SalesRecordEntry>)` to show the updated and sorted
- `UniqueSalesRecordList` in the user interface.
- 
-The following sequence diagram shows how the sales list operation works:
-
-![SalesListSequenceDiagram](images/SalesListSequenceDiagram.png)
-
-#### Design Consideration
-
-##### Aspect: How to order the items in the list
-* **Alternative 1 (current choice)**: Order the items in descending order
-    * Pros: It may be more valuable to the user. The user can use the sorted list to assist business operations.
-    For example, the user may wish to stock more ingredients for the drink type that has the most sales.
-    * Cons: Less easy to implement.
-
-* **Alternative 2**: Order the items in no particular order
-    * Pros: Simple to implement.
-    * Cons: It may prove useless as recording sales data will refresh the graphical user interface.
      
 ## \[Completed\] Finding sales data of some drinks
   
@@ -1035,7 +996,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Updating sales of drinks
 
-1. Update the sales of a drink item while all sales are being shown.
+1. Update the sales of one and several drink item while all sales are being shown.
 
     1. Prerequisites: List all sales using the `s-list` command. The full list of drinks sales will be shown.
     
