@@ -252,6 +252,7 @@ The following prefixes are used to identify the type of keywords:
 ##### Predicate classes 
 
 ![Class diagram for Predicate classes](images/PredicateClassDiagram.png)
+*Figure X: Class diagram for Predicate classes*
 
 The following Predicate classes implements `Predicate<Assignment>` and are passed into the constructor of `FindCommand` when the user inputs keywords of its assigned field:
 
