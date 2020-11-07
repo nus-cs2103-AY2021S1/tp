@@ -37,12 +37,14 @@ public class EditCommentCommand extends Command {
 
     public static final String COMMAND_WORD = "editc";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the eva database.";
     public static final String MESSAGE_EDIT_COMMENT_USAGE = "To edit comment, \n"
             + COMMAND_WORD + " INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/NEW_DESCRITION";
-
+    public static final String MESSAGE_EDIT_COMMENT_SUCCESS_STAFF = "Edited comment with "
+            + "title '%1$s' on Staff: %2$s";
+    public static final String MESSAGE_EDIT_COMMENT_SUCCESS_APPLICANT = "Edited comment with "
+            + "title '%1$s' on Applicant: %2$s";
     private final Index index;
     private final EditCommand.EditPersonDescriptor editPersonDescriptor;
 
@@ -96,28 +98,34 @@ public class EditCommentCommand extends Command {
         case STAFF_LIST:
             model.setStaff((Staff) personToEdit, (Staff) editedPerson);
             model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
-            break;
+            return new CommandResult(String.format(MESSAGE_EDIT_COMMENT_SUCCESS_STAFF,
+                    editPersonDescriptor.getCommentTitle(),
+                    editedPerson), false, false, true);
         case APPLICANT_LIST:
             model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
             model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
-            break;
+            return new CommandResult(String.format(MESSAGE_EDIT_COMMENT_SUCCESS_APPLICANT,
+                    editPersonDescriptor.getCommentTitle(),
+                    editedPerson), false, false, true);
         case STAFF_PROFILE:
             model.setStaff((Staff) personToEdit, (Staff) editedPerson);
             model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
             Staff staffToView = (Staff) lastShownList.get(index.getZeroBased());
             model.setCurrentViewStaff(new CurrentViewStaff(staffToView, index));
-            break;
+            return new CommandResult(String.format(MESSAGE_EDIT_COMMENT_SUCCESS_STAFF,
+                    editPersonDescriptor.getCommentTitle(),
+                    editedPerson), false, false, true);
         case APPLICANT_PROFILE:
             model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
             model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
             Applicant applicantToView = (Applicant) lastShownList.get(index.getZeroBased());
             model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView, index));
-            break;
+            return new CommandResult(String.format(MESSAGE_EDIT_COMMENT_SUCCESS_APPLICANT,
+                    editPersonDescriptor.getCommentTitle(),
+                    editedPerson), false, false, true);
         default:
             throw new CommandException("Unknown Panel");
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson),
-                false, false, true);
     }
 
     /**
