@@ -4,11 +4,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ExerciseAddCommand;
-import seedu.address.logic.commands.ExerciseDeleteCommand;
-import seedu.address.logic.commands.ExerciseEditCommand;
-import seedu.address.logic.commands.ExerciseEditCommand.EditExerciseDescriptor;
-import seedu.address.logic.commands.ExerciseFindCommand;
+import seedu.address.logic.commands.exercise.ExerciseAddCommand;
+import seedu.address.logic.commands.exercise.ExerciseDeleteCommand;
+import seedu.address.logic.commands.exercise.ExerciseEditCommand;
+import seedu.address.logic.commands.exercise.ExerciseEditCommand.EditExerciseDescriptor;
+import seedu.address.logic.commands.exercise.ExerciseFindCommand;
 import seedu.address.model.exercise.Exercise;
 
 /**

@@ -13,7 +13,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_LESSON;
 import static seedu.address.testutil.TypicalLessons.MA1521;
-import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 
 import java.util.Collections;
 
@@ -24,12 +23,12 @@ import seedu.address.logic.commands.AddWeightCommand;
 import seedu.address.logic.commands.CalorieAddCommand;
 import seedu.address.logic.commands.CalorieMinusCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.ExerciseAddCommand;
-import seedu.address.logic.commands.ExerciseDeleteCommand;
-import seedu.address.logic.commands.ExerciseEditCommand;
-import seedu.address.logic.commands.ExerciseEditCommand.EditExerciseDescriptor;
-import seedu.address.logic.commands.ExerciseFindCommand;
-import seedu.address.logic.commands.ExerciseListCommand;
+import seedu.address.logic.commands.exercise.ExerciseAddCommand;
+import seedu.address.logic.commands.exercise.ExerciseDeleteCommand;
+import seedu.address.logic.commands.exercise.ExerciseEditCommand;
+import seedu.address.logic.commands.exercise.ExerciseEditCommand.EditExerciseDescriptor;
+import seedu.address.logic.commands.exercise.ExerciseFindCommand;
+import seedu.address.logic.commands.exercise.ExerciseListCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.lessons.LessonAddCommand;

@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.ExerciseEditCommand.EditExerciseDescriptor;
+import seedu.address.logic.commands.exercise.ExerciseEditCommand.EditExerciseDescriptor;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.Name;
@@ -12,7 +12,6 @@ import seedu.address.model.util.Name;
 /**
  * A utility class to help with building EditExerciseDescriptor objects.
  */
-
 public class EditExerciseDescriptorBuilder {
 
     private EditExerciseDescriptor descriptor;
