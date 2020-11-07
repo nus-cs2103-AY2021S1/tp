@@ -211,7 +211,7 @@ public class EditCommandParserTest {
         // payment date
         userInput = targetIndex.getOneBased() + PAYMENT_DATE_DESC_AMY;
         editStudentDescriptor = new EditStudentDescriptorBuilder().build();
-        editAdminDescriptor = new EditAdminDescriptorBuilder().withVenue(VALID_PAYMENT_DATE_AMY).build();
+        editAdminDescriptor = new EditAdminDescriptorBuilder().withPaymentDate(VALID_PAYMENT_DATE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, editStudentDescriptor, editAdminDescriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -248,6 +248,7 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB;
         editStudentDescriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withYear(VALID_YEAR_BOB).withSchool(VALID_SCHOOL_BOB).build();
+        editAdminDescriptor = new EditAdminDescriptorBuilder().build();
         expectedCommand = new EditCommand(targetIndex, editStudentDescriptor, editAdminDescriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

@@ -105,6 +105,7 @@ public class SolveQuestionCommandTest {
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question, DEFAULT_SOLUTION);
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
         expectedModel.setStudent(clone, expectedStudent);
+        showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
 
         assertCommandSuccess(solveCommand, model, expectedMessage, expectedModel);
 

@@ -165,4 +165,18 @@ public class StudentTest {
         assertFalse(aliceAcademic.containsAttendance(test));
     }
 
+    @Test
+    public void hasClashingClassTimeWith() {
+        // same class time
+        assertTrue(ALICE.hasClashingClassTimeWith(ALICE));
+
+        // clashes
+        Student test = new StudentBuilder(ALICE).withClassTime("5 1530-1800").build();
+        assertTrue(ALICE.hasClashingClassTimeWith(test));
+
+        // does not clash
+        test = new StudentBuilder(ALICE).withClassTime("3 1400-1500").build();
+        assertFalse(ALICE.hasClashingClassTimeWith(test));
+    }
+
 }

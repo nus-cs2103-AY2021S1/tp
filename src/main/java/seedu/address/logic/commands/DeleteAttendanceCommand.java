@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_DATE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -29,6 +28,7 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
             + PREFIX_ATTENDANCE_DATE + "LESSON_DATE\n"
             + "Example: " + AttendanceCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
             + PREFIX_ATTENDANCE_DATE + "14/02/2020";
+
     public static final String MESSAGE_SUCCESS = "Attendance deleted for %s for the date of %s";
     public static final String MESSAGE_INVALID_ATTENDANCE_DATE = "There is no existing attendance for the entered date";
 
@@ -38,7 +38,7 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
     private final LocalDate attendanceDate;
 
     /**
-     * Creates an EditAdditionalDetailCommand to add the specified {@code AdditionalDetail} to the student
+     * Creates a DeleteAttendanceCommand to delete the specified {@code Attendance} to the student
      * at the specified {@code Index}.
      */
     public DeleteAttendanceCommand(Index index, LocalDate attendanceDate) {
@@ -70,7 +70,6 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
         Student updatedStudent = updateStudentAttendance(studentToDeleteAttendance, updatedAttendance);
 
         model.setStudent(studentToDeleteAttendance, updatedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), getUserInputDateString()));
@@ -81,6 +80,7 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
                 .anyMatch(attendance -> attendance.getLessonDate().equals(attendanceDate));
 
         if (!containsAttendanceAtDate) {
+            logger.log(Level.WARNING, "Invalid attendance date error");
             throw new CommandException(MESSAGE_INVALID_ATTENDANCE_DATE);
         }
 
