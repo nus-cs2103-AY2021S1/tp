@@ -932,10 +932,10 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding an employee
 
-1. Adding a new employee to the active employee directory
+1. Adding a new employee to the active Employee Directory
 
    1. Test case: `c-add n/John Doe p/98765432 e/87654321 a/311, Clementi Ave 2, #02-25 t/Friday t/monday`<br>
-      Expected: An employee named John Doe should be added into the active employee directory with his phone number, emergency contact, address,
+      Expected: An employee named John Doe should be added into the active Employee Directory with his phone number, emergency contact, address,
       and tags.
 
    1. Test case: `c-add`<br>
@@ -948,12 +948,12 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all active employees using the `c-active-list` command. Multiple employees in the list.
 
    1. Test case: `c-delete 1`<br>
-      Expected: First employee is deleted from the active employee directory. Details of the deleted employee shown in the status message. Timestamp in the status bar is updated.
+      Expected: First employee is deleted from the active Employee Directory. Details of the deleted employee shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `c-delete 0`<br>
       Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `c-delete`, `c-delete x`, `...` (where x is larger than the employee directory's size)<br>
+   1. Other incorrect delete commands to try: `c-delete`, `c-delete x`, `...` (where x is larger than the Employee Directory's size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
