@@ -521,6 +521,10 @@ Flashcards data are saved in the hard disk automatically after any command that 
 
 ## FAQ
 
+**Q**: What does it mean if some action is **not supported**?<br>
+**A**: It means that our app is not intended to allow said action to work although it may work under certain circumstances.
+If you still want to perform the action, do take note that you may face unintended or unexplained behaviour.
+
 **Q**: What is the difference between review mode and quiz mode?<br>
 **A**: Review mode is like a sandbox mode where you can move back and forth between flashcards. In quiz mode, you can only go forward. Also, quiz mode asks you for feedback and keeps track of statistics but review mode doesn't.
 
