@@ -26,12 +26,12 @@ public class SuggestionUtilTest {
         assertEquals(0, SuggestionUtil.minimumEditDistance("", ""));
 
         // EP: empty string and nonempty string
-        assertEquals(6, SuggestionUtil.minimumEditDistance("", "string"));
+        assertEquals(12, SuggestionUtil.minimumEditDistance("", "string"));
 
         // EP: equal nonempty strings
         assertEquals(0, SuggestionUtil.minimumEditDistance("string", "string"));
 
         // EP: different nonempty strings
-        assertEquals(10, SuggestionUtil.minimumEditDistance("damith", "string"));
+        assertEquals(15, SuggestionUtil.minimumEditDistance("damith", "string"));
     }
 }

@@ -566,15 +566,19 @@ The minimum edit distance between two strings is defined as the minimum cost nee
 The transformation cost comes from the types of editing operations performed and how many of those operations performed.
 
 There are three types of editing operations:
+
 * **Insertion**: <br>
-  Inserts a new character in the string. Insertion has a cost of 1. <br>
+  Inserts a new character in the string. Insertion has a cost of 2. <br>
   Example: `apple -> apples` and `sly -> slay`.
+
 * **Deletion**: <br>
-  Deletes a character from the string. Deletion has a cost of 1. <br>
+  Deletes a character from the string. Deletion has a cost of 2. <br>
   Example: `oranges -> orange` and `bandana -> banana`.
+
 * **Substitution**: <br>
   Change a character in the string into another different character. Substitution has a cost of 3. It is more expensive
-  to substitute than inserting or deleting a character. <br>
+  to substitute than inserting or deleting a character. However, the cost is less than two times the cost of
+  either insertion or deletion, so that it is cheaper to substitute rather than deleting and then inserting.
   Example: `prey -> pray` and `like -> lime`.
 
 The smaller the minimum edit distance between two strings, the more similar they are.
@@ -588,45 +592,50 @@ Suppose there are two strings:
 
 Define `D(i, j)` to be the minimum edit distance between the first `i` characters of `X` and the first `j` characters of `Y`.
 
-Consider doing all possible editing operations:
+Now if the character at position `i` in `X` equals the character at position `j` in `Y`, then simply <br>
+`D(i, j) = D(i - 1, j - 1)` <br>
+
+Else, if they are not the same, consider doing all possible editing operations:
 * **Insertion**: <br>
   If `i > j`, then we can insert the character at position `j + 1` in `X` to position `j + 1` at `Y`.
-  Hence, `D(i, j) + 1 = D(i, j + 1)` in this case. <br>
+  Hence, `D(i, j) + 2 = D(i, j + 1)` in this case. <br>
   If `i < j`, then we can insert the character at position `i + 1` in `Y` to position `i + 1` at `X`.
-  Hence, `D(i, j) + 1 = D(i + 1, j)` in this case. <br>
+  Hence, `D(i, j) + 2 = D(i + 1, j)` in this case. <br>
+
 * **Deletion**: <br>
   If `i > j`, then we can delete the character at position `i` in `X`.
-  Hence, `D(i, j) = D(i - 1, j) + 1` in this case. <br>
+  Hence, `D(i, j) = D(i - 1, j) + 2` in this case. <br>
   If `i < j`, then we can delete the character at position `j` in `Y`.
-  Hence, `D(i, j) = D(i, j - 1) + 1` in this case. <br>
+  Hence, `D(i, j) = D(i, j - 1) + 2` in this case. <br>
+
 * **Substitution**: <br>
   We can change the character at position `i` in X to match the character at position `j` in `Y`, or
   we can change the character at position `j` in `Y` to match the character at position `i` in `X`. <br>
   Hence, `D(i, j) = D(i - 1, j - 1) + 3` in this case. <br>
 
 The base cases for the recursion are:
-* `D(i, 0) = i` since the best way is to delete everything from `X` or inserting every character in `X` to `Y`.
-* `D(0, j) = j` since the best way is to delete everything from `Y` or inserting every character in `Y` to `X`.
+* `D(i, 0) = 2 * i` since the best way is to delete everything from `X` or inserting every character in `X` to `Y`.
+* `D(0, j) = 2 * j` since the best way is to delete everything from `Y` or inserting every character in `Y` to `X`.
 
 In all possible editing operations, the value `D(i, j)` can only change to:
-* `D(i - 1, j) + 1`
-* `D(i, j - 1) + 1`
+* `D(i - 1, j) + 2`
+* `D(i, j - 1) + 2`
 * `D(i - 1, j - 1) + 3`
 
-Since we want to find the minimum edit distance,
+Since we want to find the minimum edit distance, <br>
 `D(i, j) = min(D(i - 1, j) + 1, D(i, j - 1) + 1, D(i - 1, j - 1) + 3)`.
 
-Since it is a recursion, the algorithm is implemented using dynamic programming to improve speed by remembering already
-computed states. The current implementation do the following steps:
+Since it is a recursion, the algorithm is implemented using bottom-up dynamic programming to improve speed 
+by remembering already computed states. The current implementation do the following steps:
 
 1. Creates a table to store computed states (2D `dp` array).
 2. Fill up the base cases in the table.
-3. Using a double for loop, fill up the table according to the recursion formula above.
+3. Fill up the table according to the recursion formula above.
 4. Returns the minimum edit distance between the two strings compared.
 
-**Time complexity**: `O(n * n)` due to the double for loop.
+**Time complexity**: `O(n * n)` due to having to fill up the table with size `n * n`.
 
-**Space complexity**: `O(n * n)` due to the table.
+**Space complexity**: `O(n * n)` due to the table size.
 
 #### Activity Diagram
 
