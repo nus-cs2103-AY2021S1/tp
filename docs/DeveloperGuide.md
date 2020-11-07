@@ -133,15 +133,16 @@ The `OpenCommand` class will have to pass the `Question` to the GUI for it to di
 
 The GUI will change the content of some of its placeholders to display the question and if available, its choices to the user. The GUI will change the contents of its placeholders accordingly if other commands aside from another `OpenCommand` is called afterwards.
 
+##### Usage
 Given below is an example usage scenario and how the `OpenCommand` mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
 
 Step 2. The user executes `open 1` command to display the first flashcard in the list on the GUI.
 
-Step 3. This will call `OpenCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the first `Flashcard`.
+Step 3. This will call `OpenCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input to index (represented by an `Index` object) of the first `Flashcard`.
 
-Step 4. The `index` is then passed to the `OpenCommand`
+Step 4. The `Index` is then passed to the `OpenCommand`
 
 Step 5. `OpenCommand#execute` will get the `Flashcard` at the specified `Index` and get its `Question` to be passed to the GUI as part of the `Feedback` attribute within the `CommandResult`.
 
