@@ -64,7 +64,7 @@ I enhanced the delete command to support multiple deletions of assignments in a 
 
 Tests were also added for `DeleteCommand` and `DeleteCommandParser`.
 
-### My Contributions to User Guide
+### My Contributions to User Guide 
 [\#127](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/127/files)
 [\#148](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/148/files)
 [\#161](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/161/files)
