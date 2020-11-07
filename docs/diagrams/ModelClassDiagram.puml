@@ -6,14 +6,17 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Interface ReadOnlyStockBook <<Interface>>
+Interface ReadOnlySerialNumberSetsBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class StockBook
 Class ReadOnlyStockBook
+Class ReadOnlySerialNumberSetsBook
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class SerialNumberSetsBook
 
 Package Stock {
 Class Stock
@@ -24,9 +27,8 @@ Class Location
 Class Note
 Class AccumulatedQuantity
 Class Quantity
-Class QuantityAdder
 Class SerialNumberSet
-Class UniqueSerialNumberSet
+Class UniqueSerialNumberSetList
 Class UniqueStockList
 }
 
@@ -38,11 +40,13 @@ StockBook .up.|> ReadOnlyStockBook
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" StockBook
+ModelManager o--> "1" SerialNumberSetsBook
+SerialNumberSetsBook .up.|> ReadOnlySerialNumberSetsBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 StockBook *--> "1" UniqueStockList
-StockBook *--> "1" UniqueSerialNumberSet
+SerialNumberSetsBook *--> "1" UniqueSerialNumberSetList
 UniqueStockList o--> "*" Stock
 Stock *--> Name
 Stock *--> Source
@@ -50,14 +54,15 @@ Stock *--> SerialNumber
 Stock *--> Quantity
 Stock *--> Location
 Stock *--> "*" Note
-UniqueSerialNumberSet o--> SerialNumberSet
-SerialNumberSet *--> "*" SerialNumber
-SerialNumberSet *--> "*" AccumulatedQuantity
+UniqueSerialNumberSetList o--> "*" SerialNumberSet
+SerialNumberSet *--> Source
+SerialNumberSet *--> AccumulatedQuantity
 
 Name -[hidden]right-> Source
 Source -[hidden]right-> SerialNumber
 SerialNumber -[hidden]right-> Quantity
 Quantity -[hidden]right-> Location
 
-ModelManager -->"1" Stock : filtered list
+ModelManager -->"1" Stock : filtered Stock list
+ModelManager -->"1" SerialNumberSet : filtered SerialNumberSet list
 @enduml
