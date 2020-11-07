@@ -44,12 +44,12 @@ title: Developer Guide
     - [3.4. Delete Features](#34-delete-features)
         * [3.4.1 Implementation](#341-implementation)
         * [3.4.2 Design Consideration - **Delete Recipe**](#342-design-consideration-delete-recipe)
-            * [Aspect: Concern while adding a new feature](#3421-aspect)
+            * [Aspect 1: Concern while adding a new feature](#3421-aspect-1)
+            * [Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present)](#3422-aspect-2)
         * [3.4.3 Design Consideration - **Delete Ingredient**](#343-design-consideration-delete-ingredient)
             * [Aspect: Concern while adding a new feature](#3431-aspect)
         * [3.4.4 Design Consideration - **Delete Consumption**](#344-design-consideration-delete-consumption)
-            * [Aspect 1: Concern while adding a new feature](#3441-aspect-1)
-	    	* [Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present)](#3442-aspect-2)
+            * [Aspect: Concern while adding a new feature](#3441-aspect)
 	    <br><br>
     - [3.5. Edit Features](#35-edit-features)
         * [3.5.1 Implementation](#351-implementation)
@@ -94,7 +94,9 @@ title: Developer Guide
             * [Aspect: Concern while adding a new feature](#31031-aspect)
         * [3.10.4 Design Consideration - **Clear Consumptions**](#3104-design-consideration-clear-consumption)
             * [Aspect: Concern while adding a new feature](#31041-aspect)
+        <br><br>
 4. [Documentation, Logging, Testing, Configuration, Dev-ops](#4-documentation-logging-testing-configuration-dev-ops)
+<br><br>
 5. [Appendix A: Requirements](#5-appendix-requirements)
     - [5.1 Product Scope](#51-product-scope)
     - [5.2 User Stories](#52-user-stories)
@@ -105,6 +107,7 @@ title: Developer Guide
         * [5.3.4 Other Use Cases](#534-other-use-cases) 
     - [5.4 Non-Functional Requirements](#54-non-function-requirements)
     - [5.5 Glossary](#55-glossary)
+    <br><br>
 6. [Appendix B: Instructions for Manual Testing](#6-appendix-instructions-for-manual-testing)
     - [6.1 Launch and Shutdown](#61-launch-and-shutdown)
     - [6.2 Adding a recipe](#62-adding-a-recipe)
@@ -128,10 +131,12 @@ title: Developer Guide
     - [6.20 Clearing ingredients](#620-clearing-ingredients)
     - [6.21 Clearing eaten recipes](#621-clearing-eaten-recipes)
     - [6.22 Saving data](#622-saving-data)
+    <br><br>
 7. [Appendix C: Model Components](#7-model-component)
     - [7.1 Recipe](#71-recipe)
     - [7.2 Ingredient](#72-ingredient)
     - [7.3 Consumption](#73-consumption)
+    <br><br>
 8. [Appendix E: Effort](#8-effort)
 --------------------------------------------------------------------------------------------------------------------
 
