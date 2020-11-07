@@ -219,7 +219,7 @@ The `Logic` component defines its API in the `Logic.java` interface and exposes 
 The **Model Component** class diagram is given below.
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/model/Model.java) <br><br>
 
 <div markdown="span" class="alert alert-info">
 
@@ -270,8 +270,7 @@ All lifeline with the destroy marker (X) should end with the mark (X) but due to
 **Note:** :bell: can indicate either: <br>
 - Source code with similar implementations have had their sequence or/and activity diagrams condensed into a
  single general diagram <br>
-- Similar use case extensions are grouped <br>
-to avoid repetitiveness  
+- Similar use case extensions are grouped to avoid repetitiveness  
 </div>                 
                                                    
 ### 3.1 Add Features <a id="31-add-features"></a>
@@ -285,9 +284,9 @@ Command and Parser makes use of Substitutability:
 * `AddIngredientCommandParser` implements `Parser<AddIngredientCommand>` <br><br>
 
 The following sequence diagram shows how the add operation generally works when a recipe is added: <br> 
-e.g. `execute("addR n/Salad i/Veggies - 100g c/100 img/images/healthy3.jpg instr/Eat tag/healthy")` <br> 
+`execute("addR n/Salad i/Veggies - 100g c/100 img/images/healthy3.jpg instr/Eat tag/healthy")` <br> 
 or when an ingredient is added: <br> 
-e.g. `execute("addF i/tomato")`
+`execute("addF i/tomato")`
 
 ![AddSequenceDiagram](images/implementation/AddSequence.png)
 
@@ -520,16 +519,16 @@ Command and Parser make use of Substitutability:
 * `EditIngredientCommandParser` implements `Parser<EditIngredientCommand>` <br><br>
 
 The following activity diagram shows how edit operation generally works when a recipe is edited: <br>
- e.g. `execute("editR 1 n/Pea soup")` <br>
+ `execute("editR 1 n/Pea soup")` <br>
  or an ingredient is edited <br>
- e.g. `execute("editF 1 i/tomato")`
+ `execute("editF 1 i/tomato")`
  
 ![EditActivity](images/implementation/ActivityDiagram/EditActivityDiagram.png)
 
 The following sequence diagram shows how edit operation generally works when a recipe is edited: <br>
- e.g. `execute("editR 1 n/Pea soup")` <br>
+ `execute("editR 1 n/Pea soup")` <br>
  or an ingredient is edited <br>
- e.g. `execute("editF 1 i/tomato")`
+ `execute("editF 1 i/tomato")`
 
 ![EditSequence](images/implementation/EditSequence.png)
 
@@ -682,9 +681,9 @@ Command and Parser make use of Substitutability:
 * `SearchIngredientCommandParser` implements `Parser<SearchIngredientCommand>` <br><br>
 
 The following sequence diagram shows how the search operation generally works when searching for recipes: <br>
- e.g. `execute("searchR n/burger")` <br> 
+ `execute("searchR n/burger")` <br> 
  or searching for ingredients: <br> 
- e.g. `execute("searchF avocado")`
+ `execute("searchF avocado")`
 
 ![SearchSequence](images/implementation/SearchSequence.png)
 
