@@ -497,6 +497,14 @@ Examples:
 
 ![List Macro command example](images/CommandImagesForUG/Listmacro.png)
 
+When using `listmacro` with a name of a `macro` it will show the details of the macro
+Details include:
+* Parameters
+* Declaration details
+<br>
+
+![List_Macro_command_with_optional_parameters_example](images/CommandImagesForUG/ListmacroCommand.png)
+
 ### 5.15 Deleting a macro: `remmacro`
 
 The `remmacro` command allows you to remove an existing macro from your McGymmy system.
