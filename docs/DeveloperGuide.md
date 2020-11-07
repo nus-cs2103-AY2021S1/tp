@@ -1167,7 +1167,7 @@ Step 2. The command word `stats` is extracted out in `StockBookParser`, in this 
 Step 3. The remaining user input is the given to the `StatisticsCommandParser` to determine which type of statistics
         the user wants.
 
-Step 4. Inside `StatisticsCommandParser#parse()` method, the header will be dropped, resulting in the remaining user
+Step 4. Inside `StatisticsCommandParser#parse()` method, the header `st/` will be dropped, resulting in the remaining user
         input to be `source`. This matches to the criteria for `SourceStatisticsCommand`, and returning a
         `SourceStatisticsCommand` object.
 
@@ -1192,13 +1192,9 @@ Step 9. Warenager jumps to the **Statistics** tab and the updated piechart is di
 
 Step 1. The user enters `stats st/source-qt-ntuc`. `ntuc` is a valid source that exists in Warenager.
 
-Step 2. The command word `stats` is extracted out in `StockBookParser`, in this case, it matches the `COMMAND_WORD`,
-        which is `stats` in the `StatisticsCommand` class.
+Step 2-3.Same as **Example 1**
 
-Step 3. The remaining user input is the given to the `StatisticsCommandParser` to determine which type of statistics
-        the user wants.
-
-Step 4. Inside `StatisticsCommandParser#parse()` method, the header will be dropped, resulting in the remaining user
+Step 4. Inside `StatisticsCommandParser#parse()` method, the header `st/` will be dropped, resulting in the remaining user
         input to be `source-qt-ntuc`. This matches to the criteria for `SourceQuantityDistributionStatisticsCommand`,
         and returning a `SourceQuantityDistributionStatisticsCommand` object.
 
@@ -1269,6 +1265,134 @@ are more useful when working out the compositions of the data.
 #### Future statistical features
 With the expansion of more data fields for each stock, there will be more varieties of statistics that can be
 shown based on these new fields.
+
+### Delete Feature
+
+The mechanism for delete feature is mainly facilitated by `ParserUtil`, `DeleteCommandParser`, `DeleteCommand` and `Model`
+
+#### ParserUtil
+`ParserUtil` is a class that contains utility methods used for parsing strings in the various Parser classes.
+
+Some important operations implemented here are (for `DeleteCommandParser`):
+
+* `ParserUtil#parseSerialNumbers()`
+  Parses the user input as a string of serialNumbers with `/sn` headers. The parser ensures that the input starts with
+  `/sn` and all the serial numbers are valid, after trimming trailing whitespaces. If the user input is parsed successfully,
+  a `set` of serial numbers will be returned, and throw a `ParseException` otherwise.
+
+#### DeleteCommandParser
+`DeleteCommandParser` class extends `Parser` interface. `DeleteCommandParser` class is tasked with parsing the
+user inputs (without the command word) and generating a new `DeleteCommand`. The main logic of the delete feature is encapsulated here.
+
+`DeleteCommandParser` utilises `ParserUtil#parseSerialNumbers()` to check if all the given serial numbers are
+in valid format. `ParserUtil#parseSerialNumbers()` receives the user input, parses and return a `set` of serial numbers
+if the format is valid, and throw a `ParseException` otherwise. The `DeleteCommandParser` then returns a `DeleteCommand`
+object that stores this `set` of serial numbers and throw a `ParseException` otherwise.
+
+Some important operations implemented here are:
+
+* `DeleteCommandParser#parse()` <br>
+  Parses the user input and returns a new `DeleteCommand` object that stores a `set` of serial numbers.
+  
+#### DeleteCommand
+
+`DeleteCommand` class extends `Command` interface. `DeleteCommand` class is tasked to delete the stock(s) from the stock book
+and creating a new `CommandResult` to be displayed to the user in the user interface.
+
+Some important operations implemented here are:
+
+* `DeleteCommand#execute()`
+  Deletes the stock(s) from the stock book if it is present and returns a new `CommandResult`
+  to be displayed to the user in the user interface. Stocks that are deleted are shown in the status window 
+  and serial numbers that do not map to any stock in Warenager will be shown as well.
+
+#### Example Usage Scenario
+
+Given below is one example usage scenario and explains how the delete feature behaves at each step.
+
+**Example 1: Deleting a stock from the stock book (serial number given is valid and exists)**
+
+Step 1. The user enters `delete sn/ntuc1`.
+
+Step 2. The command word `delete` is extracted out in `StockBookParser`, in this case, it matches the `COMMAND_WORD`,
+        which is `delete` in the `DeleteCommand` class.
+
+Step 3. The remaining user input is the given to the DeleteCommandParser to determine if the user input contains the required fields.
+
+Step 4. Inside `DeleteCommandParser#parse()` method, the remaining user input `sn/ntuc1`, will be parsed by
+        `ParserUtil#parseSerialNumbers()`.
+        
+Step 5.  Inside the `ParserUtil#parseSerialNumbers()` method, the user input will check using the methods
+         `ParserUtil#arePrefixesPresent()` and `ParserUtil#isInvalidPrefixPresent()`methods. In this case,
+         all prefixes are present and there are no invalid prefix. All the prefix `sn/` will be dropped, and the
+         resulting the argument multimap contain only the value `ntuc1`.
+
+Step 6. From the argument multimap, a `set` of serial numbers will be generated. In this case, the set only contains `ntuc1`.
+
+Step 7. The `DeleteCommandParser#parse()` method then proceeds to create a `DeleteCommand` object containing this set of serial
+        numbers.
+
+Step 8. The `DeleteCommand#execute()` is then called by the `Logic Manager`. In this method, there are mainly 2 lists of data
+        to track.<br>
+        1. `unknownSerialNumbers` a list that tracks all the serial numbers that are do not exist in Warenager.<br>
+        2. `stocksDeleted` a list that stores all the stocks that are successfully deleted.
+
+Step 9. The `DeleteCommand#execute()` checks for each **serial number** in the `set`, if the serial number exists in Warenager,
+        and if it does, deletes it and stores in the list of `stocksDeleted`. Else, the serial number will be added in
+        the list of `unknownSerialNumbers`. 
+
+Step 10. `DeleteCommand#execute()` then prints out the respective message, depending on the number of successful deletions of stocks.
+         If **all** of the serial numbers are **found**, it will inform the user which stocks that are deleted, which in this case, all.
+         If **some** of the serial numbers are **found**, it will inform the user that which stocks are deleted and which 
+         serial numbers are not found.
+         If **all** of the serial numbers **not found**, it will inform the user which of the serial numbers are not found, which
+         in this case, all.
+
+**Example 2: Deleting multiple stocks from the stock book (serial number given are valid and exists)**
+Step 1. The user enters `delete sn/ntuc1 sn/ntuc2 sn/ntuc3`.
+
+Step 2-3. Same as **Example 1**
+
+Step 4. Inside `DeleteCommandParser#parse()` method, the remaining user input `sn/ntuc1 sn/ntuc2 sn/ntuc3`,
+        will be parsed by `ParserUtil#parseSerialNumbers()`.
+        
+Step 5.  Inside the `ParserUtil#parseSerialNumbers()` method, the user input will check using the methods
+         `ParserUtil#arePrefixesPresent()` and `ParserUtil#isInvalidPrefixPresent()`methods. In this case,
+         all prefixes are present and there are no invalid prefix. All the prefix `sn/` will be dropped, and the
+         resulting the argument multimap containing the values `ntuc1, ntuc2, ntuc3`.
+
+Step 6. From the argument multimap, a `set` of serial numbers will be generated. In this case, the set
+        contains `ntuc1, ntuc2, ntuc3`.
+        
+Step 7-10. Same as **Example 1**
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the delete feature works for **both examples**:
+
+![Delete Examples](images/DeleteCommandSequenceDiagram.png)
+
+#### Activity Diagram
+
+The following activity diagram summarizes what happens when the delete feature is triggered:
+
+![Delete Activity Diagram](images/DeleteCommandActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: Input format for delete command.
+
+* **Alternative 1 (current implementation):** Stock(s) are deleted by inputting their serial numbers.
+  * Pros: Shorter to type and easier to delete multiple stocks, and each stock has unique serial number. Less prone to 
+          deletion failure and wrong deletion.
+  * Cons: Users may be confused with similar serial numbers since the source part of serial number is the same for stocks
+          that come from the same company.
+
+* **Alternative 2:** Stock(s) are deleted by inputting all their relevant fields.
+  * Pros: Input is similar to `add` (differ only in the command word), may be easier to remember for users.
+  * Cons: Users have to input many details just to delete one single stock, and it is difficult to delete multiple stocks at one go.
+          It is also more prone to deletion failure since one mistake in the stock field entered will lead to invalid deletion.
+          It is also more prone to wrong deletion as some stocks may have similar fields.
 
 ### Sort Feature
 The mechanism for sort feature is facilitated by `SortCommandParser, SortCommand, SortUtil`.
