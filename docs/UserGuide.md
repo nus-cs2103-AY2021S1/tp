@@ -571,7 +571,7 @@ Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 
 Example: You want to add an appointment with the first patient on the list.
 
-**Step 1**: Input `addappt 6 st/29/12/2020 16:00 d/120` into the command box and press Enter.
+**Step 1**: Input `addappt 6 st/11/11/2020 15:00 d/120` into the command box and press Enter.
 
 **Step 2**: On the **Overview** tab, you can find your newly added appointment saved inside the appointment list.
 
@@ -607,7 +607,7 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_
 
 Example: You want to reschedule the first appointment in the appointment list.
 
-**Step 1**: Input `editappt 1 st/29/12/2020 17:00 d/120` into the command box and press Enter.
+**Step 1**: Input `editappt 6 st/13/11/2020 18:00 d/240` into the command box and press Enter.
 
 **Step 2**: On the **Overview** tab, you can find the newly updated appointment inside the appointment list. 
 
