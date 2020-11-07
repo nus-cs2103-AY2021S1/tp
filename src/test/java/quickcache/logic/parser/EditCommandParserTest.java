@@ -3,16 +3,21 @@ package quickcache.logic.parser;
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_THREE;
 import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_TWO;
+import static quickcache.logic.commands.CommandTestUtil.CHOICE_DESC_CHOICE1;
 import static quickcache.logic.commands.CommandTestUtil.DIFFICULTY_DESC_LOW;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
+import static quickcache.logic.commands.CommandTestUtil.INVALID_CHOICE_DESC;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_THREE;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_TWO;
+import static quickcache.logic.commands.CommandTestUtil.TAG_DESC_TAG1;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_THREE;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_TWO;
+import static quickcache.logic.commands.CommandTestUtil.VALID_CHOICE_CHOICE1;
 import static quickcache.logic.commands.CommandTestUtil.VALID_DIFFICULTY_LOW;
 import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_THREE;
 import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_TWO;
+import static quickcache.logic.commands.CommandTestUtil.VALID_TAG_TAG1;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 import static quickcache.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static quickcache.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -25,6 +30,7 @@ import org.junit.jupiter.api.Test;
 import quickcache.commons.core.index.Index;
 import quickcache.logic.commands.EditCommand;
 import quickcache.model.flashcard.Answer;
+import quickcache.model.flashcard.Choice;
 import quickcache.model.flashcard.Question;
 import quickcache.testutil.EditFlashcardDescriptorBuilder;
 
@@ -67,9 +73,12 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_QUESTION_DESC, Question.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS); // invalid phone
 
+        // invalid question
+        assertParseFailure(parser, "1" + INVALID_QUESTION_DESC, Question.MESSAGE_CONSTRAINTS);
+
+        // invalid answer
+        assertParseFailure(parser, "1" + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS);
 
         // invalid question followed by valid answer
         assertParseFailure(parser, "1" + INVALID_QUESTION_DESC + ANSWER_DESC_TWO,
@@ -83,16 +92,29 @@ public class EditCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_QUESTION_DESC + INVALID_ANSWER_DESC,
             Question.MESSAGE_CONSTRAINTS);
+
+        // empty choice option
+        assertParseFailure(parser, "1" + INVALID_CHOICE_DESC, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_FLASHCARD;
-        String userInput = targetIndex.getOneBased() + QUESTION_DESC_THREE + ANSWER_DESC_THREE + DIFFICULTY_DESC_LOW;
+        String userInput = targetIndex.getOneBased()
+                + QUESTION_DESC_THREE
+                + ANSWER_DESC_THREE
+                + TAG_DESC_TAG1
+                + CHOICE_DESC_CHOICE1
+                + DIFFICULTY_DESC_LOW;
+
+        Choice[] choices = new Choice[] {new Choice(VALID_CHOICE_CHOICE1)};
 
         EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
             .withQuestion(VALID_QUESTION_THREE)
-            .withAnswer(VALID_ANSWER_THREE).withDifficulty(VALID_DIFFICULTY_LOW).build();
+            .withAnswer(VALID_ANSWER_THREE)
+            .withTags(VALID_TAG_TAG1)
+            .withChoices(choices)
+            .withDifficulty(VALID_DIFFICULTY_LOW).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -161,6 +183,5 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-
 
 }

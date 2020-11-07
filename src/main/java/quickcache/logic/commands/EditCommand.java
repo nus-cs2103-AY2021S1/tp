@@ -7,6 +7,7 @@ import static quickcache.logic.parser.CliSyntax.PREFIX_DIFFICULTY;
 import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +33,7 @@ import quickcache.model.flashcard.Tag;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing flashcard in the QuickCache.
  */
 public class EditCommand extends Command {
 
@@ -53,7 +54,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_FLASHCARD_SUCCESS = "Edited Flashcard: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This Flashcard already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This Flashcard already exists in QuickCache.";
     public static final String MESSAGE_DIFFERENT_TYPE = "The question do not have choices";
     private static final Logger logger = LogsCenter.getLogger(EditCommand.class);
 
@@ -217,6 +218,13 @@ public class EditCommand extends Command {
             this.difficulty = difficulty;
         }
 
+        private boolean checkChoiceEquality(Optional<Choice[]> c1, Optional<Choice[]> c2) {
+            if (c1.isEmpty() || c2.isEmpty()) {
+                return true;
+            } else {
+                return Arrays.equals(c1.get(), c2.get());
+            }
+        }
 
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
@@ -267,7 +275,7 @@ public class EditCommand extends Command {
 
             return getAnswer().equals(e.getAnswer())
                     && getQuestion().equals(e.getQuestion())
-                    && getChoices().equals(e.getChoices())
+                    && checkChoiceEquality(getChoices(), e.getChoices())
                     && getTags().equals(e.getTags())
                     && getDifficulty().equals(e.getDifficulty());
         }
