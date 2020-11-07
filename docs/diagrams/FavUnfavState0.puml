@@ -2,7 +2,8 @@
 !include style.puml
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
-scale 0.75
+skinparam defaultFontSize 11
+scale 0.5
 
 title Initial state
 
