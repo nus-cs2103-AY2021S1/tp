@@ -32,7 +32,7 @@ public class BookmarkCommand extends Command {
             + PREFIX_SERIAL_NUMBER + "China3 ";
 
 
-    public static final String MESSAGE_BOOKMARK_STOCK_SUCCESS = "Bookmarked Stock: %1$s";
+    public static final String MESSAGE_BOOKMARK_STOCK_SUCCESS = "Bookmarked Stock:%1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists:"
             + ": %1$s";
     public static final String MESSAGE_ALREADY_BOOKMARKED = "Stock with given serial number is already bookmarked"
@@ -105,26 +105,42 @@ public class BookmarkCommand extends Command {
 
         }
 
-        model.sortFilteredStockList(SortUtil.generateGeneralComparator());
+
 
         if (stocksNotFound.size() == serialNumbers.size()) {
-            return new CommandResult(String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound)));
+            throw new CommandException(String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound)));
         } else if (notUpdatedStocks.size() == serialNumbers.size()) {
-            return new CommandResult(String.format(MESSAGE_ALREADY_BOOKMARKED, stocksAsString(notUpdatedStocks)));
+            throw new CommandException(String.format(MESSAGE_ALREADY_BOOKMARKED, stocksAsString(notUpdatedStocks)));
         } else if (updatedStocks.size() == serialNumbers.size()) {
+
+            model.sortFilteredStockList(SortUtil.generateGeneralComparator());
+
             return new CommandResult(String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks)));
+        } else if (notUpdatedStocks.size() > 0 && stocksNotFound.size() > 0) {
+            String result = String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
+                    + "\n" + String.format(MESSAGE_ALREADY_BOOKMARKED, stocksAsString(notUpdatedStocks));
+            throw new CommandException(result);
         } else if (notUpdatedStocks.size() == 0 && stocksNotFound.size() > 0) {
             String result = String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
                     + "\n" + String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
+
+            model.sortFilteredStockList(SortUtil.generateGeneralComparator());
+
             return new CommandResult(result);
         } else if (stocksNotFound.size() == 0 && notUpdatedStocks.size() > 0) {
             String result = String.format(MESSAGE_ALREADY_BOOKMARKED , stocksAsString(notUpdatedStocks))
                     + "\n" + String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
+
+            model.sortFilteredStockList(SortUtil.generateGeneralComparator());
+
             return new CommandResult(result);
         } else {
             String result = String.format(MESSAGE_ALREADY_BOOKMARKED , stocksAsString(notUpdatedStocks))
                     + "\n" + String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
                     + "\n" + String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
+
+            model.sortFilteredStockList(SortUtil.generateGeneralComparator());
+
             return new CommandResult(result);
         }
 
@@ -171,6 +187,8 @@ public class BookmarkCommand extends Command {
         for (int i = 0; i < stringList.size(); i++) {
             serialNumbersAsString += "\n" + stringList.get(i);
         }
+        serialNumbersAsString += "\n";
+
         return serialNumbersAsString;
     }
 

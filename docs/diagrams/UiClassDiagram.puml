@@ -9,14 +9,14 @@ Interface Ui <<Interface>>
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
-Class HelpWindow
+Class Tabs
 Class ResultDisplay
-Class StockListPanel
+Class StockListTab
 Class StockCard
 Class StatusBarFooter
 Class CommandBox
-Class StatisticsWindow
-Class StockViewWindow
+Class StatisticsTab
+Class StockViewTab
 }
 
 package Model <<Rectangle>> {
@@ -32,33 +32,30 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
-MainWindow --> HelpWindow
+MainWindow *-down-> Tabs
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> StockListPanel
 MainWindow *-down-> StatusBarFooter
-MainWindow -> StatisticsWindow
-MainWindow -> StockViewWindow
 
-StockListPanel -down-> StockCard
+Tabs -down-> StatisticsTab
+Tabs -down-> StockListTab
+Tabs -down-> StockViewTab
+
+StockListTab -down-> StockCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-StockListPanel --|> UiPart
+StockListTab --|> UiPart
 StockCard --|> UiPart
 StatusBarFooter --|> UiPart
-HelpWindow -down-|> UiPart
-StatisticsWindow -down|> UiPart
-StockViewWindow -down|> UiPart
+StatisticsTab -down|> UiPart
+StockViewTab -down|> UiPart
 
 StockCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
-
-StockListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 

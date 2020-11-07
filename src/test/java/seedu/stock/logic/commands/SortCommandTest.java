@@ -21,6 +21,9 @@ import seedu.stock.model.StockBook;
 import seedu.stock.model.UserPrefs;
 import seedu.stock.model.stock.Stock;
 
+/**
+ * Contains unit tests and integration tests (interaction with the Model) for SortCommand.
+ */
 public class SortCommandTest {
 
     private SerialNumberSetsBook serialNumbers = getTypicalSerialNumberSetsBook();

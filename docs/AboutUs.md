@@ -37,7 +37,7 @@ project documents, Coding standards, format of deliverables
 
 * Role: Developer
 * Responsibilities: Project repository manager and maintainer, main PR reviewer and merger, Update feature,
-  Git & GitHub expert.
+  Suggestion feature, Sort feature, and Git & GitHub expert.
 
 
 ### Lau Jun Hao Ashley
@@ -45,7 +45,7 @@ project documents, Coding standards, format of deliverables
 <img src="images/ashley-lau.png" width="200px">
 
 [[github](https://github.com/ashley-lau)]
-[[portfolio](team/ashley.md)]
+[[portfolio](team/ashley-lau.md)]
 
 * Role: Developer
 * Responsibilities: Scheduling and tracking manager - In charge of defining, assigning, and tracking project tasks.

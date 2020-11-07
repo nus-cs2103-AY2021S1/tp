@@ -14,6 +14,9 @@ import org.junit.jupiter.api.Test;
 import seedu.stock.commons.util.SortUtil;
 import seedu.stock.logic.commands.SortCommand;
 
+/**
+ * Contains unit tests for SortCommandParser.
+ */
 public class SortCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);

@@ -11,13 +11,13 @@ public class Quantity {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Invalid quantity entered! \n"
-            + "Quantity numbers should be a number between 0 to 2,147,483,647.";
+            + "Quantity numbers should be a number from 0 to 2,147,483,647.";
     public static final String LOW_QUANTITY_MESSAGE_CONSTRAINTS =
             "Invalid low quantity entered! \n"
             + "Low quantity numbers should be a number from 0 to 2,147,483,647.";
     public static final String MESSAGE_CONSTRAINTS_INCREMENT =
             "Invalid quantity result after increment! \n"
-            + "Quantity numbers should be a number between 0 to 2,147,483,647.";
+            + "Quantity numbers should be a number from 0 to 2,147,483,647.";
     public static final String VALIDATION_REGEX = "\\d+";
     public static final String DEFAULT_LOW_QUANTITY = "0";
     public final String quantity;
@@ -52,6 +52,9 @@ public class Quantity {
 
     /**
      * Returns true if a given string is a number and is more than zero or more.
+     *
+     * @param test The quantity to be tested.
+     * @return A boolean value indicating if the quantity is valid.
      */
     public static boolean isValidQuantity(String test) {
         requireNonNull(test);

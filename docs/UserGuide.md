@@ -31,19 +31,21 @@ To get started using Warenager,
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-<div markdown="block" class="alert alert-info">
+    <div markdown="block" class="alert alert-info">
+    
+    **:information_source: Installing Java 11**
+    
+    If you have not done Java programming before or have not used CLI-based applications
+    programmed with Java like Warenager, then you probably do not have Java `11` installed in your computer. <br>
+    You can install Java `11` [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+    
+    </div>
 
-**:information_source:** If you have not done Java programming before or have not used CLI-based applications
-programmed with Java like Warenager, then you probably do not have Java `11` installed in your computer. <br>
-You can install Java `11` [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+2. Download the latest `[CS2103T-T15-3][Warenager].jar` from [here](https://github.com/AY2021S1-CS2103T-T15-3/tp/releases).
 
-</div>
+3. Copy the jar file you have just downloaded to the folder you want to use as the _home folder_ for your Warenager.
 
-1. Download the latest `warenager.jar` from [here](https://github.com/AY2021S1-CS2103T-T15-3/tp/releases).
-
-1. Copy the jar file you have just downloaded to the folder you want to use as the _home folder_ for your Warenager.
-
-1. Double-click the jar file to start the application.<br>
+4. Double-click the jar file to start the application.<br>
 
 The commands available in the current version of
 Warenager are: add, delete, update, find, findexact, note, notedelete,
@@ -54,13 +56,14 @@ Refer to the [Commands](#commands) section to for details of each command.
 ## Definitions
 
 Terms used in Warenager are defined here.
-If you term is not stated here, google the term to understand more.
+If your term is not stated here, google the term to understand more.
 
 Term | Definition
 --------|------------------
 **Command Line Interface (CLI)** | A command-line interface processes commands to a computer program in the form of lines of text. 
 **Graphical User Interface (GUI)** | The graphical user interface is a form of user interface that allows users to interact with electronic devices through graphical icons.
-**Parameters** | Parameters are additional fields to key in during user input. e.g. `q/<source of stock>`, `n/<name>`
+**Prefixes** | The field code that are entered during user input, so that Warenager will know what to do. e.g. `q/`, `n/`, `s/`, `sn/`.
+**Parameters** | Parameters are additional fields to key in during user input and provided after a prefix. e.g. `<name>` in `n/<name>`.
 **CSV File** | Comma-Separated Values File. It contains data separated by commas.
 **JSON File** | JavaScript Object Notation File. Data interchange format file that uses human-readable text to store and transmit data objects consisting of attribute–value pairs.
 
@@ -94,14 +97,17 @@ Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Locati
 * Adding / Deleting **optional notes** to stocks
 * **Viewing** all details of a stock
 * **Bookmarking** stocks: e.g. often used stocks, search bookmark<item>.
-* **Print** to generate file for printing of stock list.
+* **Print** to generate CSV file for printing of stock list.
 * **Clear** to clear **all** existing data in Warenager.
 * **Tab** to toggle between tabs in Warenager.
 * **Listing** all stocks in Warenager.
+* **Suggesting** valid command formats when an invalid command is entered.
+* **Sorting** all stocks according to the field and order specified by the user.
 * **Storage** into CSV and JSON files.
 
 * Upon start up of the Warenager application, stocks are by default displayed
 in order of decreasing priority: low quantity stocks, bookmarked stocks, other stocks.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -138,12 +144,12 @@ This section provides support for the commands required to perform desired actio
   in the command.<br>
   For example, in `find { [n/<name>] [s/<source>] [l/<location>] [q/<quantity>] }`, at least one of `n/<name>`,
   `s/<source>`, `l/<location>` and `q/<quantity>` must be provided in the command. <br>
-  `find sn/fairprice n/banana` is a valid command, but `find` and `find sn/fairprice sn/ntuc` are invalid commands.
+  `find sn/Fairprice1 n/banana` is a valid command, but `find` and `find sn/Fairprice1 sn/ntuc` are invalid commands.
   
 * Prefixes given can be in any order. <br>
   For example, `update sn/Fairprice1 n/Apple` and `update n/Apple sn/Fairprice1` are both valid and behave exactly the same.
 
-* All 15 valid prefixes that are used in Warenager are <br>
+* All 15 valid prefixes along with their default parameter description that are used in Warenager are <br>
   `n/<name>, s/<source>, q/<quantity>, lq/<low quantity>, l/<location>, lt/<list type>, sn/<serial number>, nq/<new quantity>,
   iq/<increment value>, nt/<note>, ni/<note index>, st/<statistics type>, by/<field>, o/<order>, fn/<file name>`.
 
@@ -225,6 +231,7 @@ Prefix | Parameter | Parameter Description
 
 ![GUI_component](images/GUIComponents.png)
 
+**Tabs:** Displays the different tabs of the application.<br>
 **Stock Table:** Displays all stocks in your inventory.<br>
 **Result Display:** Displays the result of your command.<br>
 **Command Box:** Place to input your commands.<br>
@@ -245,9 +252,14 @@ help
 
 ### Adding new stock: `add`
 Adds a new stock into the inventory. A unique serial number for the new stock will be generated by the program.
+
+<div markdown="block" class="alert alert-info">
+
 The low quantity field is the amount where you deem the stock to be low in quantity. Stocks that are highlighted 
 in red are stocks that have quantities less than or equal to the low quantity field.
 The optional field low quantity will be set to 0 if not present in the input.
+
+</div>
 
 <h4>Format</h4>
 
@@ -258,9 +270,26 @@ add n/<name> s/<source> q/<quantity> l/<location> [lq/<low quantity>]
 <h4>Examples</h4>
 
 ```
-add n/Banana cake s/Fairprice q/100 l/Food section
+add n/Orange s/shengshiong q/1300 l/fruits section
 add n/Sprite s/Ntuc q/1000 l/Drinks section lq/5000
 ```
+
+<h4>Below is a guided example for adding stocks:</h4>
+
+**Step 1.** Let's add stock with the name `orange`, source of stock `shengshiong`,
+ quantity of `1300` and location `fruits section`. The fields are **not** case-sensitive.
+ Start by entering the command `add n/orange s/shengshiong q/1300 l/fruits section` in the command box.
+
+**Before input**:
+
+![addStockExample1](images/addStockExample1.png)
+
+**After input**:
+
+![addStockExample2](images/addStockExample2.png)
+
+You have now added the stock successfully into the stock book. The stock will be added to the bottom
+ of the stock table as shown above.
 
 ### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
@@ -277,31 +306,47 @@ list lt/<list type>
 
 **list type** | **What the list shows**
 ------| --------
-**all** | All the stocks in the inventory.
 **bookmark** | All the stocks in the inventory that is bookmarked.
 **low** | All the stocks in the inventory that is low in quantity.
+**all** | All the stocks in the inventory.
 
 </div>
 
 <h4>Examples</h4>
 
 ```
-list lt/all
-```
-
-![list_all](images/list_all.png)
-
-```
 list lt/bookmark
 ```
+**Before input**:
 
-![list_bookmark](images/list_bookmark.png)
+![list_bookmark](images/list/list_bookmark_before.png)
+
+**After input**:
+
+![list_bookmark](images/list/list_bookmark.png)
 
 ```
 list lt/low
 ```
+**Before input**:
 
-![list_low](images/list_low.png)
+![list_bookmark](images/list/list_low_before.png)
+
+**After input**:
+
+![list_bookmark](images/list/list_low.png)
+
+```
+list lt/all
+```
+**Before input**:
+
+![list_bookmark](images/list/list_all_before.png)
+
+**After input**:
+
+![list_bookmark](images/list/list_all.png)
+
 
 ### Deleting of stock: `delete`
 Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
@@ -632,10 +677,14 @@ Values to be updated are case-insensitive.
 
 <h4>Below is a guided example for updating stocks:</h4>
 
+**Step 1.**
+
 Before you start any updating activity, make sure to use the command `list lt/all` to list all
 the stocks you have in Warenager. The list shown below will be the basis reference for this guided example. <br>
 
 ![update_step1](images/update/update_step1.png)
+
+**Step 2.**
 
 Let's update the stock with serial number `NTUC1`. Let's update the name to `Apple` and the low quantity to `100`. Remember that the fields are **case-insensitive**. <br>
 A valid update input would be `update sn/ntuc1 n/apple lq/100`. <br>
@@ -648,6 +697,8 @@ A valid update input would be `update sn/ntuc1 n/apple lq/100`. <br>
 **After input**:
 
 ![update_step3](images/update/update_step3.png)
+
+**Step 3.**
 
 Multiple stocks can also be updated at the same time. Let's update 2 stocks with serial numbers `FAIRPRICE1`
 and `FAIRPRICE3`. It can be done by chaining the serial numbers when updating.<br>
@@ -666,9 +717,33 @@ A valid update input would be `update sn/fairprice1 sn/fairprice3 lq/200 l/disco
 <div markdown="block" class="alert alert-warning" markdown="1">
 
 **:warning: Nonexistent stocks**
-Stocks that do not exist in Warenager cannot be updated. Using the update input `update sn/fairprice4 n/peach`, you should expect the following:
+
+Stocks that do not exist in Warenager cannot be updated. Using the update input `update sn/fairprice4 n/peach`,
+you should expect the following error:
 
 ![update_step6](images/update/update_step6.png)
+
+**:warning: Invalid command format**
+
+Invalid update command format will also result in an error. Using the update input `updat sn/fairprice3 n/peach`,
+you should expect the following error because the keyword `update` is misspelt:
+
+![update_step7](images/update/update_step7.png)
+
+**:warning: Missing compulsory prefixes**
+
+Missing the compulsory prefix `sn/<serial number>` will result in an error. Using the update input `update n/KitKat`,
+you should expect the following error:
+
+![update_step8](images/update/update_step8.png)
+
+**:warning: Invalid prefixes**
+
+Providing invalid prefixes for update, even though it is a valid prefix in other commands, will result in
+an error. Using the update input `update sn/fairprice1 fn/StockBook`, you should expect the following
+error since `fn/<file name>` is invalid in update:
+
+![update_step9](images/update/update_step9.png)
 
 </div>
 
@@ -1078,10 +1153,30 @@ bookmark sn/<serial number> [sn/<serial number>]...
 <h4>Examples</h4>
 
 ```
-bookmark sn/China3
+bookmark sn/giant1
 ```
 
-![GUI_component](images/bookmark.png)
+**Before input**:
+
+![bookmark_before](images/bookmark/bookmark_before.png)
+
+**After input**:
+
+![bookmark_after](images/bookmark/bookmark.png)
+
+**:warning: Nonexistent Stocks**
+
+Stocks that do not exist in Warenager cannot be bookmarked. Using the update input `bookmark sn/fairprice4`,
+you should expect the following error:
+
+![bookmark_invalid_serial_number](images/bookmark/bookmark_invalid.png)
+
+**:warning: Bookmarked Stocks**
+
+Bookmarking a bookmarked stock will also result in an error. Using the bookmark input `bookmark sn/cold storage1`,
+you should expect the following error:
+
+![bookmark_already_bookmarked](images/bookmark/bookmark_already.png)
 
 
 ### Unbookmarking stocks in the list: `unbookmark`
@@ -1096,10 +1191,31 @@ unbookmark sn/<serial number> [sn/<serial number>]...
 <h4>Examples</h4>
 
 ```
-unbookmark sn/China3
+unbookmark sn/giant1
 ```
 
-![GUI_component](images/unbookmark.png)
+**Before input**:
+
+![GUI_component](images/bookmark/unbookmark_before.png)
+
+
+**After input**:
+
+![GUI_component](images/bookmark/unbookmark.png)
+
+**:warning: Nonexistent Stocks**
+
+Stocks that do not exist in Warenager cannot be unbookmarked. Using the update input `unbookmark sn/fairprice4`,
+you should expect the following error:
+
+![bookmark_invalid_serial_number](images/bookmark/unbookmark_invalid.png)
+
+**:warning: Not Bookmarked Stocks**
+
+Unbookmarking a stock that is not bookmarked will also result in an error.
+Using the bookmark input `bookmark sn/fairprice1`,you should expect the following error:
+
+![bookmark_already_bookmarked](images/bookmark/unbookmark_not.png)
 
 ### Sorting inventory: `sort`
 Sort the inventory by a specific field and order.
@@ -1143,9 +1259,13 @@ the stock with quantity `2`, since `100` is greater than `2`.
 
 <h4>Below is a guided example for sorting stocks:</h4>
 
+**Step 1.**
+
 The list shown below will be the basis reference for this guided example. <br>
 
 ![sort_step1](images/sort/sort_step1.png)
+
+**Step 2.**
 
 In the picture above, the stock is sorted by serial number in ascending order.
 Suppose that we now want to view the stocks by name in ascending order instead. <br>
@@ -1160,6 +1280,8 @@ A valid sort input would be `sort o/ascending by/name`. <br>
 
 ![sort_step3](images/sort/sort_step3.png)
 
+**Step 3.**
+
 It is also possible to sort in descending order.
 Suppose that we now want to view the stocks by quantity in descending order. <br>
 A valid sort input would be `sort o/descending by/quantity`. <br>
@@ -1172,6 +1294,32 @@ A valid sort input would be `sort o/descending by/quantity`. <br>
 **After input**:
 
 ![sort_step5](images/sort/sort_step5.png)
+
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+**:warning: Invalid command format**
+
+Invalid sort command format will result in an error. Using the sort input `sor o/ascending by/source`,
+you should expect the following error because the keyword `sort` is misspelt:
+
+![sort_step6](images/sort/sort_step6.png)
+
+**:warning: Missing compulsory prefixes**
+
+Missing any of the compulsory prefixes `o/<order>` and `by/<field>` will result in an error.
+Using the sort input `sort o/ascending`, you should expect the following error:
+
+![sort_step7](images/sort/sort_step7.png)
+
+**:warning: Invalid prefixes**
+
+Providing invalid prefixes for sort, even though it is a valid prefix in other commands, will result in
+an error. Using the sort input `sort o/descending by/serialnumber iq/+50`, you should expect the following
+error since `iq/<increment value>` is invalid in sort:
+
+![sort_step8](images/sort/sort_step8.png)
+
+</div>
 
 ### Command Suggestion
 
@@ -1245,15 +1393,19 @@ is a heuristic, and therefore a method to predict, it may not be 100% accurate a
 some mistakes.
 
 More information about the heuristic used and thus how Warenager will predict the intended command
-can be found at Warenager's Developer Guide.
+can be found at Warenager's [Developer Guide](https://ay2021s1-cs2103t-t15-3.github.io/tp/DeveloperGuide.html#suggestion-feature).
 
 </div>
 
 <h4>Below is a guided example for command suggestion:</h4>
 
+**Step 1.**
+
 The list shown below will be the basis reference for this guided example. <br>
 
 ![suggestion_step1](images/suggestion/suggestion_step1.png)
+
+**Step 2.**
 
 Suppose now we want to add a new stock with the following description:
 * name: eggplant
@@ -1274,6 +1426,8 @@ But we make a mistake and instead entered `ad n/eggplant sn/fairprice q/500 l/ve
 
 ![suggestion_step3](images/suggestion/suggestion_step3.png)
 
+**Step 3.**
+
 As shown above, the suggestion `add n/eggplant s/<source> q/500 l/vegetable section lq/100` is generated.
 Now we can amend our input according to the suggested format.
 We now enter a valid input `add n/eggplant s/fairprice q/500 l/vegetable section lq/100`.
@@ -1289,10 +1443,16 @@ We now enter a valid input `add n/eggplant s/fairprice q/500 l/vegetable section
 As shown above, the stock has been successfully added.
 
 ### Generates a CSV file that contains all stocks: `print`
-Generates a CSV file that contains all stocks. Csv file will be named according to the user input, and the file name
-can only contain alphanumeric characters. Users may want to sort the stocks using `sort` command
-to sort the stock in their preferred order before converting it into the CSV file. The CSV file is saved
+Generates a CSV file that contains all stocks.
+
+<div markdown="block" class="alert alert-info">
+
+Csv file will be named according to the input, and the file name
+can only contain alphanumeric characters. You may want to sort the stocks using `sort` command
+to sort the stock in their preferred order as mentioned [earlier](#sorting-inventory-sort) before converting it into the CSV file. The CSV file is saved
 to `[root directory]/data/userInput.csv` after successfully executing the command.
+
+</div>
 
 <h4>Format</h4>
 
@@ -1302,23 +1462,42 @@ print fn/<file name>
 
 <h4>Examples</h4>
 
-
 ```
 print fn/stocks
 ```
-After executing the command, proceed to the folder which contains Warenager. Click on the `data`
-folder circled in red.
+
+<h4>Below is a guided example for deleting stocks:</h4>
+
+**Step 1.** Let's create a CSV file named `stocks`. Start by typing print fn/stocks in the command box. 
+
+![stockCsvExample](images/stockCsvExample.png)
+
+**Step 2.**  After successfully executing the command, proceed to the folder which
+ contains Warenager. Click on the `data` folder circled in red.
 
 ![stockCsvExample1](images/stockCsvExample1.png)
  
-Open `stocks.csv` folder circled in red with excel.
+**Step 3.** Open `stocks.csv` folder circled in red with excel.
 
 ![stockCsvExample2](images/stockCsvExample2.png)
 
-The stocks in your inventory will be listed according the to format shown below. The file also includes
+**Step 4.** The stocks in your inventory will be listed according the to format shown below. The file also includes
 the latest update time for the `stocks.csv`.
 
 ![stockCsvExample3](images/stockCsvExample3.png)
+
+**Step 5.** The columns and rows in the csv file will not be formatted to show the full text in a cell.
+You will need to resize the columns and row of the excel sheet to see the full text of a cell as shown below.
+
+![stockCsvExample4](images/stockCsvExample4.png)
+
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+**:warning: Warning before executing print command**<br>
+`print` writes over a CSV file of the same file name and is an irreversible process.
+ Do backup the data it if might be needed again.
+
+</div>
 
 ### Clearing all data in Warenager: `clear`
 Clears all the existing data in Warenager.
