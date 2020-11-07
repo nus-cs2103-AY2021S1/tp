@@ -107,7 +107,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
 1. Refer to the [Features](#3-features) section below for details of each command.
 
-### 2.2 Making sense of **Reeve**'s layout
+### 2.2 Making sense of **Reeve**'s layout (By: Alex)
 ![Reeve's Layou](images/ReeveLayout.png)
 
 1. **Menu**
@@ -116,7 +116,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
 2. **Main Panel**
 
-    The main panel shows your list of students for easy reference. It also displays your schedule when the schedule command is called. 
+    The main panel shows your list of students for easy reference. you could also view your schedule in thie panel.
 
 3. **Result Display**
 
@@ -375,26 +375,62 @@ Examples:
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
 * `detail delete 4 i/1` deletes the 1st detail for the 4th student in **Reeve**.
 
-#### 3.3.9 Viewing lesson schedule: `schedule` 
+#### 3.3.9 Viewing lesson schedule: `schedule` (By: Alex)
 
-You can view your upcoming classes on a timetable in either a daily or weekly format.
+You can view your classes on a timetable in either a daily or weekly format.
 
 Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
 
-* Displays a timetable view of your classes.
+*  Displays a timetable view of your classes.
 * `DATE_TO_VIEW` refers to the date you wish to view the lesson schedule of.
-* A weekly view gives you an overview of all classes on the week of the given `DATE_TO_VIEW`. You could thus plan your time for the week ahead.
+* `VIEW_MODE` refers to the mode where you would like the schedule to be rendered on screen. It could either be weekly or daily.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: `VIEW_MODE` can only be either **weekly** or **daily**. The case of the letters does not matter.
+:information_source: `VIEW_MODE` can only be either **weekly** or **daily**.
+ 
+:bulb: The case letters of the input for `VIEW_MODE` does not matter. 
 
-:information_source: `DATE_TO_VIEW` must be in the format **dd/mm/yyyy**. For instance, 2/11/2020 refers to the date 2nd November 2020
+:information_source: `DATE_TO_VIEW` must be in the format **dd/mm/yyyy**. For instance, `02/11/2020` refers to the date 2nd November 2020
 
 </div>
 
 Example:
-* `schedule m/weekly d/2/11/2020` shows the schedule of classes in the week of 2nd November 2020.
+
+Suppose you have multiple classes in the coming week of 2nd November 2020 and you want to plan for them ahead.
+
+Instead of scrolling through your student details to find out who you have classes with,
+you can simply type `schedule m/weekly d/02/11/2020` to view them in a visual interface.
+
+To view schedule:
+
+1.  Type `schedule m/weekly d/02/11/2020` into the command box as shown in the figure below. Press `Enter` to execute the command.
+
+    <div markdown="block" class="alert alert-info">
+    :exclamation: Do not input command word as "Schedule" with a capital "S". Reeve will not recognise the command word.
+    </div>
+
+    ![Schedule Step 1](images/ScheduleStep1.png)
+    Figure __ Shows the schedule command input keyed into the command box.
+
+2.  The schedule panel, as labelled in the figure below, will appear with all your classes for the week of 2nd November 2020 populated.
+
+    ![Schedule Step 2](images/ScheduleStep2.png)
+    Figure __ Shows the schedule panel in the weekly format.
+
+3.  You can easily view you classes for the week. The Date bar labelled in the figure below shows the day of the week as well as the date for your reference.
+    The Time bar in the figure shows the time in 24-hour format with 1-hour intervals. 
+    The Classes labelled in the figure below are colored brown to match the color of Reeve for a better visual experience.
+    Furthermore, the name of the student that you are tutoring during that slot will also be shown.
+    With the date, time and name of student shown in one view, you could plan your classes without a hassle.
+
+    ![Schedule Step 3](images/ScheduleStep3.png)
+
+<div markdown="block" class="alert alert-info">
+:bulb: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
+This will automatically open up your schedule of the current week in the weekly format.
+You could use this as quick way to open up schedule for the current week. 
+</div>
 
 #### 3.3.10 Clearing all entries: `clear`
 
