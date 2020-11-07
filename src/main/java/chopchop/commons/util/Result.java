@@ -290,7 +290,7 @@ public class Result<T> extends Either<String, T> {
      * {@code
      *      Result(valid: Optional(10))     = transpose(Optional.of(Result.of(10)))
      *      Result(error: "owo")            = transpose(Optional.of(Result.error("owo")))
-     *      Result(valid: Optiona(empty))   = transpose(Optional.empty())
+     *      Result(valid: Optional.empty()) = transpose(Optional.empty())
      * }
      *
      * @param opt the optional to transpose.
