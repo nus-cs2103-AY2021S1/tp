@@ -17,14 +17,18 @@ public class TotalCommand extends Command {
         if (!model.isSelected()) {
             throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
+        if (model.getObservableOrderItemList().isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_ORDER);
+        }
         Order order = new Order();
         order.setOrderItems(model.getObservableOrderItemList());
         double total = order.getTotal();
 
-        if (total == 0.0) {
-            throw new CommandException(Messages.MESSAGE_EMPTY_ORDER);
-        }
-
         return new CommandResult(String.format(MESSAGE_RESULT, total));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj == this || obj instanceof TotalCommand;
     }
 }

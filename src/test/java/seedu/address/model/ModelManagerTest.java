@@ -9,10 +9,14 @@ import static seedu.address.testutil.TypicalVendors.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.menu.MenuManager;
+import seedu.address.model.order.OrderManager;
 import seedu.address.model.vendor.VendorManager;
 import seedu.address.testutil.VendorManagerBuilder;
 
@@ -96,10 +100,15 @@ public class ModelManagerTest {
         VendorManager vendorManager = new VendorManagerBuilder().withVendor(ALICE).withVendor(BENSON).build();
         VendorManager differentVendorManager = new VendorManager();
         UserPrefs userPrefs = new UserPrefs();
+        List<MenuManager> menus = new ArrayList<>();
+        menus.add(new MenuManager(ALICE.getMenu()));
+        menus.add(new MenuManager(BENSON.getMenu()));
 
         // same values -> returns true
-        modelManager = new ModelManager(vendorManager, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(vendorManager, userPrefs);
+        modelManager = new ModelManager(vendorManager, userPrefs, menus, new OrderManager());
+        ModelManager modelManagerCopy = new ModelManager(vendorManager, userPrefs, menus, new OrderManager());
+        modelManager.selectVendor(0);
+        modelManagerCopy.selectVendor(0);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -112,7 +121,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different vendorManager -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentVendorManager, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentVendorManager, userPrefs,
+                new ArrayList<>(), new OrderManager())));
 
         // different filteredList -> returns false
         //        String[] keywords = ALICE.getName().fullName.split("\\s+");
@@ -122,6 +132,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setVendorManagerFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(vendorManager, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(vendorManager, differentUserPrefs,
+                menus, new OrderManager())));
     }
 }

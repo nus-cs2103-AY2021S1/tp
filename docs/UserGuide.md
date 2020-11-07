@@ -42,9 +42,10 @@ title: User Guide
   E.g. in `find KEYWORD`, `KEYWORD` is a parameter which can be used as `find spicy`.
 * Items in square brackets are optional.<br>
   E.g `add INDEX [QUANTITY]` can be used as `add 3 2` or as `add 3`.
-* Friendly syntax is supported! For any command, typing the prefix of the command will already be recognized, unless there is any ambiguity. 
-* E.g. `help` only requires the user to type `h` to be recognized, while `sort` will require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The commands
-will be explained below. To minimize confusion, the whole command will be shown instead of the prefix.)
+* **Friendly syntax** is supported! For any command, typing the short-form of the command will already be recognized, unless there is any ambiguity. 
+
+  * E.g. `help` only requires the user to type `h` to be recognized, while `sort` will require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The commands
+  will be explained below. To minimize confusion, the whole command will be shown instead of the prefix.)
 
 </div>
 
@@ -84,8 +85,8 @@ Format: `vendor [INDEX]`
 * `INDEX` must be a positive integer and must not exceed the size of the vendor list.
 
 Examples:
-* `vendor` Change back to vendor mode.
-* `vendor 2` Selects the 2<sup>nd</sup> vendor in the list.
+* `vendor`: Change back to vendor mode.
+* `vendor 2`: Selects the 2<sup>nd</sup> vendor in the list.
 
 ## Menu related commands
 
@@ -118,8 +119,8 @@ Format: `sort MODE [DIRECTION]`
 * If `DIRECTION` is not specified, it will be treated as a toggle, and ascending direction will be sorted as descending order and vice versa
 
 Examples:
-* `sort n a` sorts the menu by name in ascending direction.
-* `sort p` sorts the menu by price in opposite direction as last sorted.
+* `sort n a`: sorts the menu by name in ascending direction.
+* `sort p`: sorts the menu by price in opposite direction as last sorted.
 
 
 ### Find food item: `find`
@@ -148,10 +149,13 @@ Format: `price INEQUALITY PRICE`
   * `>`: Strictly greater than
   * `>=`: Greater than or Equal to
 * `PRICE` must be a non-negative real number.
+* Note that decimal places of `PRICE` are taken into account when filtering. However, the message shown will only be to 2 decimal places.
 
 Examples:
-* `price < 3`: lists all food item with price less than $3.
-* `price >= 2`: lists all food item with price from $2.
+* `price < 3`: lists all food items with price less than $3.
+* `price <= 2`: lists all food items with price less than or equals to $2.
+* `price > 4`: lists all food items with price greater than $4
+* `price >= 13.90001`: lists all food items with price greater than or equal $13.90001
 
 ## Order related commands
 
@@ -192,22 +196,27 @@ Tags an order item with remark.
 
 Format: `tag INDEX REMARK`
 
-- The INDEX refers to the index number of the order item.
-- INDEX must be positive number and must not exceed the size of the order list.
-- REMARK is any non-empty string
+- The `INDEX` refers to the index number of the order item.
+- `INDEX` must be positive number and must not exceed the size of the order list.
+- `REMARK` is any non-empty string.
+- Unlimited tags can be added, and is left up to the user's discretion.
 
 Examples:
-* `tag 5 2 no egg`: tags order item number 5 with remark "2 no egg"
+* `tag 5 2 no egg`: tags the order item at INDEX 5 with the REMARK 'no egg'.
 
 
 ### Untag an order item: `untag`
 
-Clears the tag of the specified order item.
+Clears all tags of the specified order item.
 
 Format: `untag INDEX`
 
-- The INDEX refers to the index number of the order item.
-- INDEX must be positive number and must not exceed the size of the order list.
+- The `INDEX` refers to the index number of the order item.
+- `INDEX` must be positive number and must not exceed the size of the order list.
+
+Examples:
+
+- `untag 1`: clears all tags for the order item at INDEX 1.
 
 
 ### Clearing the order: `clear`
@@ -225,7 +234,7 @@ Example:
 
 ### Undo changes to order: `undo`
 
-Undoes last change to the order.
+Undoes last change to the order. Note that it does not affect commands unrelated to order.
 
 Format: `undo`
 
@@ -261,7 +270,7 @@ Format: `profile PHONE ADDRESS`
 
 Examples:
 
-- `profile 92030888 25 Lower Kent Ridge Rd, Singapore 119081`: Saves your address as '25 Lower Kent Ridge Rd, Singapore 119081' and phone number as '92030888'
+- `profile 92030888 25 Lower Kent Ridge Rd, Singapore 119081`: Saves your PHONE number as '92030888' and your ADDRESS as '25 Lower Kent Ridge Rd, Singapore 119081'.
 
 
 ### Generate order text: `submit`
@@ -296,9 +305,9 @@ another. Similar for `preset load`.
 Examples:
 * `preset save`: saves the user's supper order with the default preset name.
 * `preset load MyPreset`: loads the current default preset if it exists.
-* `preset save vegan`: save the user's supper order with a preset name of 'vegan'.
-* `preset load vegan`: loads the preset supper order with the preset name 'vegan'.
-* `preset delete vegan` deletes the preset supper order with the preset name "vegan".
+* `preset save vegan`: save the user's supper order with a preset NAME of 'vegan'.
+* `preset load vegan`: loads the preset supper order with the preset NAME 'vegan'.
+* `preset delete vegan`: deletes the preset supper order with the preset NAME "vegan".
 
 
 
@@ -306,8 +315,11 @@ Examples:
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another Computer?
 **A**: Overwrite your current data file with your old data file.
+
+**Q**: Why are some pictures missing on the menu?
+**A**: These are intended, as an example of what is shown if vendors lack a picture for a food item.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -330,4 +342,5 @@ Action | Format
 **Undo** | `undo`
 **Total** | `total`
 **Submit** | `submit`
-**preset** | `preset MODE [NAME]`
+**Preset** | `preset MODE [NAME]`
+

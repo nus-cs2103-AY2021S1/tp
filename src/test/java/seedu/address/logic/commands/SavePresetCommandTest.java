@@ -96,6 +96,7 @@ public class SavePresetCommandTest {
         JsonUtil.saveJsonFile(new JsonSerializablePresetManager(allPresets, true), presetPath);
 
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
+        expectedModel.addOrderItem(firstItemToAdd);
         String expectedMessage = String.format(Messages.MESSAGE_PRESET_OVERWRITE_SUCCESS, "MyPreset");
 
         assertCommandSuccess(savePresetCommand, model,

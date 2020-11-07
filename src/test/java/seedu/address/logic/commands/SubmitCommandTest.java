@@ -120,7 +120,7 @@ public class SubmitCommandTest {
         expectedMessage.append("---------------------------------\n");
 
         double calculatedTotal = 0;
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             OrderItem orderItem = new OrderItem(menu.get(i), i + 6);
             expectedMessage.append(String.format("%s x %d\n", orderItem.getName(), i + 6));
             calculatedTotal += orderItem.getPrice() * (i + 6);

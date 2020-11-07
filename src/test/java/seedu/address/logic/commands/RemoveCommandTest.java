@@ -21,6 +21,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.OrderManager;
 import seedu.address.testutil.OrderItemBuilder;
+import seedu.address.testutil.TypicalModel;
 import seedu.address.testutil.TypicalVendors;
 
 /**
@@ -40,6 +41,13 @@ public class RemoveCommandTest {
             Assertions.assertTrue(false);
         }
         return model;
+    }
+
+    @Test
+    public void execute_vendorNotSelected_throwsException() {
+        Model model = TypicalModel.getModelManagerWithMenu();
+        model.selectVendor(-1);
+        assertCommandFailure(new RemoveCommand(Index.fromOneBased(1)), model, Messages.MESSAGE_VENDOR_NOT_SELECTED);
     }
 
     @Test

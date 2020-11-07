@@ -44,22 +44,6 @@ public class ModelManager implements Model {
     private boolean isSortedAsc = false;
 
     /**
-     * Initializes a ModelManager with the given vendorManager and userPrefs.
-     */
-    public ModelManager(ReadOnlyVendorManager vendorManager, ReadOnlyUserPrefs userPrefs) {
-        super();
-        requireAllNonNull(vendorManager, userPrefs);
-
-        logger.fine("Initializing with address book: " + vendorManager + " and user prefs " + userPrefs);
-
-        this.vendorManager = new VendorManager(vendorManager);
-        this.menuManagers = new ArrayList<>();
-        this.orderManager = new OrderManager();
-
-        this.userPrefs = new UserPrefs(userPrefs);
-    }
-
-    /**
      * Initializes a ModelManager with the given vendorManager, userPrefs, menuManager and orderManager.
      */
     public ModelManager(
@@ -315,6 +299,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredMenuItemList(Comparator<MenuItem> comparator, boolean isSortedAsc) {
+        requireNonNull(comparator);
+        int index = getVendorIndex();
+        if (index < 0 || index >= menuManagers.size()) {
+            return;
+        }
+        // not suppose to modify menumanager's menus
+        filteredMenuItems = filteredMenuItems.sorted(comparator);
+        this.isSortedAsc = isSortedAsc;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -329,7 +325,11 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return vendorManager.equals(other.vendorManager)
-                && userPrefs.equals(other.userPrefs);
+                && userPrefs.equals(other.userPrefs)
+                && menuManagers.equals(other.menuManagers)
+                && orderManager.equals(other.orderManager)
+                && filteredMenuItems.equals(other.filteredMenuItems)
+                && isSortedAsc == other.isSortedAsc;
     }
 
 }

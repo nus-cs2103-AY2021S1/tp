@@ -1,13 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.food.Food;
 import seedu.address.model.food.MenuItem;
 import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
@@ -21,10 +21,6 @@ import seedu.address.model.vendor.Vendor;
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
-    Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -150,6 +146,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMenuItemList(Predicate<MenuItem> predicate);
+
+    /**
+     * Updates the filter of the filtered menu item list at the corresponding index to filter by the given
+     * {@code comparator}.
+     * Only used for test cases.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateFilteredMenuItemList(Comparator<MenuItem> comparator, boolean isSortedAsc);
+
 
     /**
      * Returns an unmodifiable view of the filtered orderItem list at the corresponding index

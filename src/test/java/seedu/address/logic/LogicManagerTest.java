@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalVendors.getManagers;
+import static seedu.address.testutil.TypicalVendors.getTypicalVendorManager;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -29,6 +31,7 @@ import seedu.address.storage.JsonProfileManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.JsonVendorManagerStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.TypicalModel;
 import seedu.address.testutil.TypicalVendors;
 
 public class LogicManagerTest {
@@ -67,6 +70,21 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void execute_helpCommand_success() {
+        String helpCommand = "help";
+        try {
+            assertCommandSuccess(helpCommand, HelpCommand.SHOWING_HELP_MESSAGE, model);
+        } catch (Exception e) {
+            assertTrue(false);
+        }
+    }
+
+    @Test
+    public void getObservableVendorList_success() {
+        assertEquals(logic.getObservableVendorList(), getTypicalVendorManager().getVendorList());
+    }
+
+    @Test
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
@@ -98,11 +116,6 @@ public class LogicManagerTest {
     //        expectedModel.addVendor(expectedVendor);
     //        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
     //        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    //    }
-
-    //    @Test
-    //    public void getVendorManager_success() {
-    //        assertEquals(this.book, logic.getVendorManager());
     //    }
 
     @Test
@@ -179,7 +192,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getVendorManager(), new UserPrefs());
+        Model expectedModel = TypicalModel.getModelManagerWithMenu();
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
