@@ -114,7 +114,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-Given below is a class diagram showing details of the ingredient model:
+Given below is the class diagram showing details of the ingredient model:
 
 ![Structure of the Ingredient Model Component](images/IngredientModelClassDiagram.png)
 
@@ -331,10 +331,10 @@ The completed set ingredients' levels feature consists of three commands with sl
 * `i-set-default` — Sets the levels of all ingredients defined in the ingredient book to pre-determined amounts.
 * `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` — Sets the levels of all ingredients defined in the ingredient book to different specified amounts for each ingredient.
 
-Please note that because tCheck is designed for an imaginary bubble tea branch, T-Sugar, which produces all its drinks using six ingredients,
-namely Milk, Pearl, Boba, Black Tea, Green Tea and Brown Sugar, all the six ingredients are pre-defined in tCheck's ingredient book. Only these six available ingredients' levels can be set using tCheck.
+Note that because tCheck is designed for an imaginary bubble tea brand, T-Sugar, which produces all its drinks using six ingredients,
+namely Milk, Pearl, Boba, Black Tea, Green Tea and Brown Sugar. All the six ingredients are pre-defined in tCheck's ingredient book. Only these six available ingredients' levels can be set using tCheck.
 
-#### Completed Implementation
+#### Implementation
 
 The completed set ingredients' levels mechanism is facilitated by `IngredientBook`. It implements `ReadOnlyIngredientBook` interface and offers methods to set tCheck's `ingredientBook`. Particularly, it implements the following three operations:
 
@@ -845,7 +845,7 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 1. User chooses to set the ingredient level for an ingredient.
 2. User enters the name of the ingredient and the amount he/she wants to set to.
-3. tCheck will set the ingredient level of this ingredient and displays a success message.
+3. tCheck will set the ingredient level of this ingredient and display a success message.
 
         Use case ends.
 

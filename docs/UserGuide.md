@@ -94,7 +94,7 @@ You may want to familarize yourself with them before moving on to the next secti
 
 Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all components of the GUI.
 
-<img src="images/tCheckInfographic.png" />
+<img src="images/tCheckInfographic.png" width="1428" height="1000" />
 Figure 2 - Annotated GUI of tCheck
 
 #### 3.2.4 Prefix process and usage
@@ -294,14 +294,7 @@ Format: `i-set-default`
 
 Example:
 * `i-set-default`
-
-<img src="images/IngredientSetDefaultCommand.png" width="1000" height="700" />
-Figure above shows tCheck's GUI during the command is being entered.
-
-* Expected Result:
-
-<img src="images/IngredientSetDefaultCommandResultDisplay.png" width="1000" height="700" />
-Figure above showing tCheck's GUI after pressing enter. Note that all amounts for the ingredients are updated in Ingredient Tracker section of _Main View_.
+* tCheck GUI behaves similarly to examples given in the previous command, except no parameters are taken in.
 
 #### 2.4 Listing all ingredients' levels : `i-list`
 Lists the ingredient's levels of all ingredient types.
