@@ -1,12 +1,14 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.goal.Goal;
+import seedu.address.model.exercise.Template;
 
 /**
  * The API of the Model component.
@@ -41,11 +43,11 @@ public interface ExerciseModel {
      * Returns the user prefs' address book file path.
      */
     Path getExerciseBookFilePath();
-
-    /**
-     * Returns the user prefs' address book file path.
-     */
+    
     Path getGoalBookFilePath();
+    
+    HashMap<String, Integer> getCaloriesByDay();
+
 
     /**
      * Sets the user prefs' address book file path.
@@ -105,6 +107,9 @@ public interface ExerciseModel {
      */
     void addExercise(Exercise exercise);
 
+
+    void addTemplate(Template template);
+
     /**
      * Adds the given goal.
      * {@code exercise} must not already exist in the address book.
@@ -140,6 +145,11 @@ public interface ExerciseModel {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredExerciseList(Predicate<Exercise> predicate);
+
+    /**
+     * Returns the filtered Template list
+     */
+    ObservableList<Template> getFilteredTemplateList();
 
     /**
      * Save to the specified File
