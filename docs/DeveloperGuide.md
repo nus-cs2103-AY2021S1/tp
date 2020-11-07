@@ -656,6 +656,9 @@ Command and Parser make use of Substitutability:
 * `SelectRecipeCommand` extends `Command`
 * `SelectRecipeCommandParser` implements `Parser<SelectRecipeCommand>` <br><br>
 
+The following acitivity diagram shows how select recipe works with `selectR 1`
+![SelectRecipeActivity](images/SelectRecipeActivityDiagram.png)
+
 The following sequence diagram shows how select recipe operation works when `execute("selectR 1")` is called:
 
 ![SelectRecipeSequence](images/implementation/sequenceDiagrams/SelectRecipeSequence.png)

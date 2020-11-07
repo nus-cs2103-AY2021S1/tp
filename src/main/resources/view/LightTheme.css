@@ -98,7 +98,9 @@
 .list-cell:filled:odd {
     -fx-background-color: white;
 }
-
+.list-cell:empty {
+    -fx-background-color: white;
+}
 .list-cell .label {
     -fx-text-fill: #0088c7;
 }
