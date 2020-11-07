@@ -39,6 +39,9 @@ public class Schedule {
         this.suggestedEndTime = suggestedEndTime;
     }
 
+    /**
+     * Returns true if a given schedule is a valid schedule
+     */
     public static boolean isValidSchedule(boolean schedule, Time suggestedStartTime, Time suggestedEndTime) {
         if (!schedule) {
             return (suggestedStartTime == null && suggestedEndTime == null);
