@@ -530,40 +530,57 @@ Format: `exit`
 In this section, we will be looking at some of the frequently asked questions from our users.
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Hospify** home folder.
+**A**: Install the app in the other computer and overwrite the empty **data file** with the `hospify.json` 
+that is in the **data file** of your other computer.
+* **Step 1.** Go into the **data file** in the previous home directory of the **Hospify** app.\
+![data file](images/faq/data_file.PNG)
+(Diagram 4.1.1)
+* **Step 2.** Transfer the `hospify.json` file to your other computer through a flash drive or
+the web and paste the `hospify.json` file in the **data file** of your new **Hospify** app.
+![replace json file](images/faq/replace_json.PNG)
+(Diagram 4.1.2)
 
 **Q**: I cannot run the `JAR` file! How do I get the program to run?<br/>
 **A**: Check if you have at least `Java 11` installed on your Computer.
 * On **Windows**\
-Step 1. Open up **Command Prompt** by searching for **cmd** in the task bar.\
-Step 2. Type the command `java -version` to check for the version.
-![windows java version](images/faq/windows_javaVersion.PNG)
+    **Step 1.** Open up **Command Prompt** by searching for **command prompt** in the task bar shown below.\
+![windows search command prompt](images/faq/search_commandPrompt.PNG)\
+(Diagram 4.2.1)\
+    **Step 2.** Type the command `java -version` to check for the version.
+![windows java version](images/faq/windows_javaVersion.PNG)\
+(Diagram 4.2.2)
 
 <div markdown="block" class="alert alert-warning">
 **:warning: Important:** Ensure that the java version is at least **11**. If your version is less than **11**, 
-scroll down to the **Notes** to the view the download link.
+scroll down to the **:information_source: Notes** to the view the download link.
 
 After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
 
 If it still does not run, type the command `java -jar hospify.jar` in the command prompt in the **SAME directory** 
-containing your `hospify.jar` file. 
-![running jar from windows prompt](images/faq/windows_javaVersion.PNG)
+containing your `hospify.jar` file shown below.
+
+![running jar from windows prompt](images/faq/windows_runJar.PNG)\
+(Diagram 4.2.3)
+
 </div>
 
 * On **MAC**\
-Step 1. Open up **Terminal** by searching for **terminal** in the search bar.\
-![mac search bar](images/faq/mac_search.PNG)
-Step 2. Type the command `java -version` to check for the version.
-![windows java version](images/faq/mac_javaVersion.PNG)
+**Step 1.** Open up **Terminal** by searching for **terminal** in the search bar shown below.\
+![mac search bar](images/faq/mac_search.PNG)\
+(Diagram 4.2.4)\
+**Step 2.** Type the command `java -version` to check for the version shown below.
+![windows java version](images/faq/mac_javaVersion.PNG)\
+(Diagram 4.2.5)
 
 <div markdown="block" class="alert alert-warning">
 **:warning: Important:** Ensure that the java version is at least **11**. If your version is less than **11**,
-scroll down to the **Notes** to the view the download link.
+scroll down to the **:information_source: Notes** to the view the download link.
 
 After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
 
 If it still does not run, type the command `java -jar hospify.jar` in the **TERMINAL** in the **SAME directory** 
 containing your `hospify.jar` file. 
+
 ![running jar from windows prompt](images/faq/mac_javaVersion.PNG)
 </div>
 
@@ -575,7 +592,8 @@ containing your `hospify.jar` file.
 **Q**: How do I get the latest version of **Hospify**?\
 **A**: As of the latest version, **Hospify** does not support updating within the application. In order to get the
  latest version, go to the **GitHub releases** [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.\
-![download jar](images/faq/download_jar.PNG)
+![download jar](images/faq/download_jar.PNG)\
+(Diagram 4.3.1)
 
 **Q**: My question is not listed in the FAQ?\
 **A**: For inquires, please send email to our developer team at **hospify_enquiry@gmail.com**.
