@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Grade should be given as a decimal from 0.00 to 1.00.";
+            "Grade should be given as a decimal from 0.00 to 100.00.";
     public final double gradeResult;
 
     /**
@@ -28,11 +28,7 @@ public class Grade {
      * @return true if the grade is valid.
      */
     public static boolean isValidGrade(double test) {
-        if (test >= 0 && test <= 100) {
-            return true;
-        } else {
-            return false;
-        }
+        return test >= 0 && test <= 100;
     }
 
     @Override

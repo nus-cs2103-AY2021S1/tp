@@ -1,12 +1,11 @@
 package seedu.address.model.module.grade;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class AssignmentResult {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Assignment result should be a value between 0.00 to 1.00 and it should not be blank.";
+            "Assignment result should be a value between 0.00 to 100.00 and it should not be blank.";
 
     public final double assignmentResult;
 
@@ -16,7 +15,6 @@ public class AssignmentResult {
      * @param assignmentResult A valid assignment result.
      */
     public AssignmentResult(double assignmentResult) {
-        requireNonNull(assignmentResult);
         checkArgument(isValidAssignmentResult(assignmentResult), MESSAGE_CONSTRAINTS);
         this.assignmentResult = assignmentResult;
     }
@@ -25,11 +23,7 @@ public class AssignmentResult {
      * Returns true if a given double is a valid assignment result.
      */
     public static boolean isValidAssignmentResult(double test) {
-        if (test <= 100 && test >= 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return test <= 100 && test >= 0;
     }
 
 

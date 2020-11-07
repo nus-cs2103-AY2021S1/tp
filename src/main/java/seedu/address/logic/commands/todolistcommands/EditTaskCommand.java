@@ -101,13 +101,17 @@ public class EditTaskCommand extends Command {
             editedTask = editedTask.setTags(updatedTag);
         }
 
-        if (taskToEdit.getPriority().isPresent() || editTaskDescriptor.getPriority().isPresent()) {
+        if (editTaskDescriptor.getIsPriorityDeleted()) {
+            editedTask = editedTask.setPriority(null);
+        } else if (taskToEdit.getPriority().isPresent() || editTaskDescriptor.getPriority().isPresent()) {
             Priority updatedPriority = editTaskDescriptor.getPriority()
                     .orElseGet(() -> taskToEdit.getPriority().get());
             editedTask = editedTask.setPriority(updatedPriority);
         }
 
-        if (taskToEdit.getDate().isPresent() || editTaskDescriptor.getDate().isPresent()) {
+        if (editTaskDescriptor.getIsDateDeleted()) {
+            editedTask = editedTask.setDate(null);
+        } else if (taskToEdit.getDate().isPresent() || editTaskDescriptor.getDate().isPresent()) {
             Date updatedDate = editTaskDescriptor.getDate()
                     .orElseGet(() -> taskToEdit.getDate().get());
             editedTask = editedTask.setDate(updatedDate);
@@ -116,6 +120,9 @@ public class EditTaskCommand extends Command {
         if (taskToEdit.getStatus().isPresent()) {
             editedTask = editedTask.setStatus(taskToEdit.getStatus().get());
         }
+
+        assert taskToEdit.getDateCreated().isPresent();
+        editedTask = editedTask.setDateCreated(taskToEdit.getDateCreated().get());
 
         return editedTask;
     }
