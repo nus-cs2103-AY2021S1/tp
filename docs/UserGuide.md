@@ -30,7 +30,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 4. Double-click the file to start the app. The window that appears will be similar to the below should appear in a few seconds. Note how
  the app contains some sample information.<br>
    ![Ui](images/Ui.png)
-   *Figure 1: A preview of Taskmania in action*
+   *Figure 1: A view of Taskmania at startup*
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
  open the help window.<br>
