@@ -42,9 +42,9 @@ import seedu.address.model.recipe.Recipe;
  */
 public class MainWindow extends UiPart<Stage> {
 
+    private static int wordLimit = 1000;
     private static final String FXML = "MainWindow.fxml";
     private static String themeColor = "#0088c7;";
-    public static int wordLimit = 1000;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 

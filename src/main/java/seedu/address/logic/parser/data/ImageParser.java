@@ -65,7 +65,8 @@ public class ImageParser {
         return new RecipeImage(imageLocalPath);
     }
 
-    private String getImageFromUrl(URL url, String fileName, FileOutputStream fos) throws ExecutionException, InterruptedException {
+    private String getImageFromUrl(URL url, String fileName, FileOutputStream fos)
+            throws ExecutionException, InterruptedException {
         String imagePathDefault = "images/default.jpg";
         CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
             try {
