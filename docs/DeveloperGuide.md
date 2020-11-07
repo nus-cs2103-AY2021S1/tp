@@ -293,7 +293,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Student who prefers to type                                    | use typing to interact with my file system            | use keyboard as much as possible                              |
 | `* * *`  | Student who is familiar with command line applications         | name my files                                         | access the file easily next time                              |
 | `* * *`  | CS student with many categories of files                       | categorise my files and folders                       | easily manage my files and search files based on categories   |
-| `* * *`  | First time user                                                | use help command                                      | start to remember how to use the command                      |
+| `* * *`  | Software engineer                                              | group my files together                               | open all files in the same group at once                      |
 | `* * *`  | Student with lots of files                                     | see a list of my tags                                 | find the tag that I created easily                            |
 | `* * *`  | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files                 |
 | `* *`    | CS student with a lot of project                               | hide private contact details                          | minimize chance of someone else seeing them by accident       |
