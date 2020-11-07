@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.schedulerparsers;
+package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -7,15 +7,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.schedulercommands.AddEventCommand;
 import seedu.address.logic.commands.schedulercommands.DeleteEventCommand;
 import seedu.address.logic.commands.schedulercommands.EditEventCommand;
 import seedu.address.logic.commands.schedulercommands.FindEventCommand;
 import seedu.address.logic.commands.schedulercommands.ViewEventCommand;
-import seedu.address.logic.parser.FeatureParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.schedulerparsers.AddEventParser;
+import seedu.address.logic.parser.schedulerparsers.DeleteEventParser;
+import seedu.address.logic.parser.schedulerparsers.EditEventParser;
+import seedu.address.logic.parser.schedulerparsers.FindEventParser;
+import seedu.address.logic.parser.schedulerparsers.ViewEventParser;
 
 /**
  * Represents the parser in charge for Scheduler related commands.
@@ -55,17 +58,8 @@ public class SchedulerParser implements FeatureParser {
         case ViewEventCommand.COMMAND_WORD:
             return new ViewEventParser().parse(arguments);
 
-        // case ClearCommand.COMMAND_WORD:
-        //    return new ClearCommand();
-
         case FindEventCommand.COMMAND_WORD:
             return new FindEventParser().parse(arguments);
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
