@@ -1,10 +1,11 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.exercise;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.ExerciseFindCommand;
+import seedu.address.logic.commands.exercise.ExerciseFindCommand;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.ExerciseNameContainsKeywordsPredicate;
 

@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.exercise;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -11,8 +11,12 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ExerciseEditCommand;
-import seedu.address.logic.commands.ExerciseEditCommand.EditExerciseDescriptor;
+import seedu.address.logic.commands.exercise.ExerciseEditCommand;
+import seedu.address.logic.commands.exercise.ExerciseEditCommand.EditExerciseDescriptor;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -41,10 +45,6 @@ public class ExerciseEditCommandParser implements Parser<ExerciseEditCommand> {
         EditExerciseDescriptor editExerciseDescriptor = new EditExerciseDescriptor();
         if (argMultimap.getValue(PREFIX_EXERCISE).isPresent()) {
             editExerciseDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_EXERCISE).get()));
-        } else if (argMultimap.getAllValues(PREFIX_EXERCISE).size() != 1) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExerciseEditCommand.MESSAGE_USAGE)
-            );
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editExerciseDescriptor::setTags);
 
