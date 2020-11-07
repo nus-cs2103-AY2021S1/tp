@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/michaeliaaa.png" width="200px">
 
 [[github](https://github.com/michaeliaaa)]
-[[portfolio](team/Michaeliaaa.md)]
+[[portfolio](team/michaeliaaa.md)]
 
 * Role: Team Lead
 * Responsibilities: Scheduling and tracking
@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/eugene3231.png" width="200px">
 
 [[github](https://github.com/eugene3231)]
-[[portfolio](team/eugene3231.png.md)]
+[[portfolio](team/eugene3231.md)]
 
 * Role: Developer
 * Responsibilities: UI
