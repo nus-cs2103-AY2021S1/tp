@@ -14,36 +14,36 @@
 
 <fx:root minHeight="600" minWidth="1000.0" onCloseRequest="#handleExit" title="QuickCache" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/QuickCache.png" />
+        <Image url="@/images/QuickCache.png"/>
     </icons>
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@DarkTheme.css" />
-                <URL value="@Extensions.css" />
+                <URL value="@DarkTheme.css"/>
+                <URL value="@Extensions.css"/>
             </stylesheets>
 
             <VBox fx:id="mainPlaceholder">
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="File">
-                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
                     </Menu>
                     <Menu mnemonicParsing="false" text="Help">
-                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
                     </Menu>
                 </MenuBar>
 
                             <VBox fx:id="personList" prefHeight="500.0" prefWidth="400.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                     <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
+                        <Insets bottom="10" left="10" right="10" top="10"/>
                     </padding>
                <HBox VBox.vgrow="ALWAYS">
                   <children>
-                          <StackPane fx:id="listPanelPlaceholder" minWidth="500.0" />
+                          <StackPane fx:id="listPanelPlaceholder" minWidth="500.0"/>
          
                                      <StackPane fx:id="displayPlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                              <padding>
-                                 <Insets bottom="5" left="10" right="10" top="5" />
+                                 <Insets bottom="5" left="10" right="10" top="5"/>
                              </padding>
                          </StackPane>
                   </children>
@@ -52,11 +52,11 @@
 
                 <StackPane fx:id="commandBoxPlaceholder" minWidth="50.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
                     <padding>
-                        <Insets bottom="5" left="10" right="10" top="5" />
+                        <Insets bottom="5" left="10" right="10" top="5"/>
                     </padding>
                 </StackPane>
 
-                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
             </VBox>
         </Scene>
     </scene>

@@ -11,22 +11,22 @@
             <children>
                 <TextArea fx:id="questionDisplay" editable="false" maxHeight="500.0" minHeight="100.0" prefHeight="300.0" styleClass="result-display" wrapText="true">
                     <padding>
-                        <Insets top="3.0" />
+                        <Insets top="3.0"/>
                     </padding>
                 </TextArea>
                 <TextArea fx:id="answerDisplay" editable="false" maxHeight="500.0" minHeight="50.0" prefHeight="300.0" styleClass="result-display" wrapText="true">
                     <padding>
-                        <Insets top="3.0" />
+                        <Insets top="3.0"/>
                     </padding>
                 </TextArea>
                 <TextArea fx:id="outcomeDisplay" editable="false" maxHeight="-Infinity" prefHeight="20.0" styleClass="result-display" wrapText="true">
                     <padding>
-                        <Insets top="3.0" />
+                        <Insets top="3.0"/>
                     </padding>
                 </TextArea>
             </children>
             <StackPane.margin>
-                <Insets />
+                <Insets/>
             </StackPane.margin>
         </VBox>
     </children>
