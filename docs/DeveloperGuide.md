@@ -213,6 +213,7 @@ Note that the `CLIENTId` (BidderId / SellerId) design is elaborated in [Id] in t
        
 #### ID
 The follow class diagram depicts the design behind `Id` and the subclasses: `SellerId`, `BidderId` and `PropertyId`.
+
 ![Id Diagram](images/modelDiagram/IdModelDiagram.png)
 
 --- 
@@ -251,12 +252,34 @@ categorized accordingly to the features:
 6. `List`
 
 Additional features apart from the above-mentioned feature includes:
-- Automated change of `TabBar` and `ENTITYListPanel` with corresponding ENTITY command.
-- `next` and `prev` command for UI 
+- Automated change of `TabBar` and `ENTITYListPanel` with corresponding ENTITY command
+- `next` and `prev` command for Calendar UI Navigation
+- Key-press for UI navigation
+
+#### 1. Add
+#### 2. Edit
+#### 3. Find
+#### 4. Sort 
+#### 5. Delete
+The `Delete` command applies to **all entities** in PropertyFree. 
+![Delete Command Sequence Diagram](images/deleteCommandDiagram/deleteCommandSequenceDiagram.png)
+
+##### 5.1 Delete Bidder Command
+![Delete Bidder Command Sequence Diagram](images/deleteCommandDiagram/deleteBidderCommandSequenceDiagram.png)
+
+##### 5.2 Delete Seller Command
+![Delete Seller Command Sequence Diagram](images/deleteCommandDiagram/deleteSellerCommandSequenceDiagram.png)
+
+##### 5.3 Delete Property Command
+![Delete Property Command Sequence Diagram](images/deleteCommandDiagram/deletePropertyCommandSequenceDiagram.png)
 
 
-  
- 
+#### 6. List
+
+### UI Navigation Implementation
+#### 1. Automated `TabBar` Switching
+#### 2. Calendar Navigation
+#### 3. Key-press UI Navigation
  
  
  
