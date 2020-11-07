@@ -1,6 +1,8 @@
 package seedu.zookeep.model.animal;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.zookeep.testutil.Assert.assertThrows;
 
@@ -41,5 +43,16 @@ public class IdTest {
         assertTrue(Id.isValidId("911")); // exactly 3 numbers
         assertTrue(Id.isValidId("654321")); // long id numbers (6 numbers)
         assertTrue(Id.isValidId("999999")); // upper boundary exactly
+    }
+
+    @Test
+    public void hashcode() {
+        Id testId = new Id("123");
+
+        // same values -> returns same hashcode
+        assertEquals(testId.hashCode(), new Id("123").hashCode());
+
+        // different values -> returns different hashcode
+        assertNotEquals(testId.hashCode(), new Id("456").hashCode());
     }
 }

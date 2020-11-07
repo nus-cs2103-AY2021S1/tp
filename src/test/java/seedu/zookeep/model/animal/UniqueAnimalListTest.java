@@ -2,6 +2,7 @@ package seedu.zookeep.model.animal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_FEED_TIME_MORNING;
 import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
@@ -171,5 +172,34 @@ public class UniqueAnimalListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueAnimalList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void hashcode() {
+        UniqueAnimalList expectedUniqueAnimalList = new UniqueAnimalList();
+
+        // two empty lists -> returns same hashcode
+        assertEquals(uniqueAnimalList.hashCode(), expectedUniqueAnimalList.hashCode());
+
+        // two lists with same single animal -> returns same hashcode
+        uniqueAnimalList.add(AHMENG);
+        expectedUniqueAnimalList.add(AHMENG);
+        assertEquals(uniqueAnimalList.hashCode(), expectedUniqueAnimalList.hashCode());
+
+        // two lists with different single animal -> returns different hashcode
+        expectedUniqueAnimalList.remove(AHMENG);
+        expectedUniqueAnimalList.add(BAILEY);
+        assertNotEquals(uniqueAnimalList.hashCode(), expectedUniqueAnimalList.hashCode());
+
+        // two lists with same animals in different order -> returns different hashcode
+        uniqueAnimalList.add(BAILEY);
+        expectedUniqueAnimalList.add(AHMENG);
+        assertNotEquals(uniqueAnimalList.hashCode(), expectedUniqueAnimalList.hashCode());
+
+        // two lists with same animals in correct order -> returns same hashcode
+        expectedUniqueAnimalList = new UniqueAnimalList();
+        expectedUniqueAnimalList.add(AHMENG);
+        expectedUniqueAnimalList.add(BAILEY);
+        assertEquals(uniqueAnimalList.hashCode(), expectedUniqueAnimalList.hashCode());
     }
 }

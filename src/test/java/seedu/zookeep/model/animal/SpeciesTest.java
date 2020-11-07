@@ -1,6 +1,8 @@
 package seedu.zookeep.model.animal;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.zookeep.testutil.Assert.assertThrows;
 
@@ -32,5 +34,16 @@ public class SpeciesTest {
         assertTrue(Species.isValidSpecies("Ailuropoda melanoleuca"));
         assertTrue(Species.isValidSpecies("-")); // one character
         assertTrue(Species.isValidSpecies("Parastratiosphecomyia stratiosphecomyioides")); // long species
+    }
+
+    @Test
+    public void hashcode() {
+        Species testSpecies = new Species("Python");
+
+        // same values -> returns same hashcode
+        assertEquals(testSpecies.hashCode(), new Species("Python").hashCode());
+
+        // different values -> returns different hashcode
+        assertNotEquals(testSpecies.hashCode(), new Species("Chihuahua").hashCode());
     }
 }

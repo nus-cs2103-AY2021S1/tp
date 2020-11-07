@@ -1,6 +1,8 @@
 package seedu.zookeep.model.animal;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_FEED_TIME_EVENING;
 import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_ID_BAILEY;
@@ -88,5 +90,34 @@ public class AnimalTest {
         // different feedTimes -> returns false
         editedArchie = new AnimalBuilder(ARCHIE).withFeedTimes(VALID_FEED_TIME_EVENING).build();
         assertFalse(ARCHIE.equals(editedArchie));
+    }
+
+    @Test
+    public void hashcode() {
+        int archieHashCode = ARCHIE.hashCode();
+
+        // same values -> returns same hashcode
+        Animal archieCopy = new AnimalBuilder(ARCHIE).build();
+        assertEquals(archieHashCode, archieCopy.hashCode());
+
+        // different name -> returns different hashcode
+        Animal editedArchie = new AnimalBuilder(ARCHIE).withName(VALID_NAME_BAILEY).build();
+        assertNotEquals(archieHashCode, editedArchie.hashCode());
+
+        // different id -> returns different hashcode
+        editedArchie = new AnimalBuilder(ARCHIE).withId(VALID_ID_BAILEY).build();
+        assertNotEquals(archieHashCode, editedArchie.hashCode());
+
+        // different species -> returns different hashcode
+        editedArchie = new AnimalBuilder(ARCHIE).withSpecies(VALID_SPECIES_BAILEY).build();
+        assertNotEquals(archieHashCode, editedArchie.hashCode());
+
+        // different medicalConditions -> returns different hashcode
+        editedArchie = new AnimalBuilder(ARCHIE).withMedicalConditions(VALID_MEDICAL_CONDITION_OBESE).build();
+        assertNotEquals(archieHashCode, editedArchie.hashCode());
+
+        // different feedTimes -> returns different hashcode
+        editedArchie = new AnimalBuilder(ARCHIE).withFeedTimes(VALID_FEED_TIME_EVENING).build();
+        assertNotEquals(archieHashCode, editedArchie.hashCode());
     }
 }
