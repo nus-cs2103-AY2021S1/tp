@@ -78,7 +78,9 @@ public class AddCommentCommandTest {
         AddCommentCommand addCommentCommand = new AddCommentCommand(INDEX_FIRST_PERSON, STAFF_DESCRIPTOR);
 
         expectedModel.setStaff((Staff) staffToAddComment, (Staff) staff);
-        String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, staff);
+        String expectedMessage = String.format(AddCommentCommand.MESSAGE_ADD_COMMENT_SUCCESS_STAFF,
+                STAFF_DESCRIPTOR.getCommentTitle(),
+                staff);
         CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
@@ -98,7 +100,9 @@ public class AddCommentCommandTest {
         expectedModel.setStaff((Staff) staffToAddComment, (Staff) staff);
         expectedModel.setCurrentViewStaff(new CurrentViewStaff((Staff) staff, INDEX_FIRST_PERSON));
 
-        String expectedMessage = String.format(AddCommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, staff);
+        String expectedMessage = String.format(AddCommentCommand.MESSAGE_ADD_COMMENT_SUCCESS_STAFF,
+                STAFF_DESCRIPTOR.getCommentTitle(),
+                staff);
         CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
@@ -117,7 +121,9 @@ public class AddCommentCommandTest {
         AddCommentCommand addCommentCommand = new AddCommentCommand(INDEX_FIRST_PERSON, APPLICANT_DESCRIPTOR);
 
         expectedModel.setApplicant((Applicant) applicantToAddComment, (Applicant) applicant);
-        String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, applicant);
+        String expectedMessage = String.format(AddCommentCommand.MESSAGE_ADD_COMMENT_SUCCESS_APPLICANT,
+                APPLICANT_DESCRIPTOR.getCommentTitle(),
+                applicant);
         CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
@@ -138,7 +144,9 @@ public class AddCommentCommandTest {
         expectedModel.setApplicant((Applicant) applicantToAddComment, (Applicant) applicant);
         expectedModel.setCurrentViewApplicant(new CurrentViewApplicant((Applicant) applicant, INDEX_FIRST_PERSON));
 
-        String expectedMessage = String.format(AddCommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, applicant);
+        String expectedMessage = String.format(AddCommentCommand.MESSAGE_ADD_COMMENT_SUCCESS_APPLICANT,
+                APPLICANT_DESCRIPTOR.getCommentTitle(),
+                applicant);
         CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());

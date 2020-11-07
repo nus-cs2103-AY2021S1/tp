@@ -73,7 +73,8 @@ public class DeleteCommentCommandTest {
         DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(INDEX_FIRST_PERSON, editedperson);
 
         expectedModel.setStaff((Staff) staffToDeleteComment, (Staff) staff);
-        String expectedMessage = String.format(CommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS, staff);
+        String expectedMessage = String.format(DeleteCommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS_STAFF,
+                editedperson.getCommentTitle(), staff);
         CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
@@ -100,7 +101,8 @@ public class DeleteCommentCommandTest {
         expectedModel.setStaff((Staff) staffToDeleteComment, (Staff) staff);
         expectedModel.setCurrentViewStaff(new CurrentViewStaff((Staff) staff, INDEX_FIRST_PERSON));
 
-        String expectedMessage = String.format(AddCommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS, staff);
+        String expectedMessage = String.format(DeleteCommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS_STAFF,
+                editedperson.getCommentTitle(), staff);
         CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
@@ -128,7 +130,8 @@ public class DeleteCommentCommandTest {
         DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(INDEX_FIRST_PERSON, editedperson);
 
         expectedModel.setApplicant((Applicant) applicantToDeleteComment, (Applicant) applicant);
-        String expectedMessage = String.format(CommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS, applicant);
+        String expectedMessage = String.format(DeleteCommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS_APPLICANT,
+                editedperson.getCommentTitle(), applicant);
         CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
@@ -158,7 +161,8 @@ public class DeleteCommentCommandTest {
         expectedModel.setApplicant((Applicant) applicantToDeleteComment, (Applicant) applicant);
         expectedModel.setCurrentViewApplicant(new CurrentViewApplicant((Applicant) applicant, INDEX_FIRST_PERSON));
 
-        String expectedMessage = String.format(AddCommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS, applicant);
+        String expectedMessage = String.format(DeleteCommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS_APPLICANT,
+                editedperson.getCommentTitle(), applicant);
         CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
