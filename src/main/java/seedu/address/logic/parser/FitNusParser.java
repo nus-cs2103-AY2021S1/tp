@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddHeightCommand;
 import seedu.address.logic.commands.AddWeightCommand;
-import seedu.address.logic.commands.BmiCommand;
 import seedu.address.logic.commands.CalorieAddCommand;
 import seedu.address.logic.commands.CalorieMinusCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -88,9 +87,6 @@ public class FitNusParser {
 
         case AddWeightCommand.COMMAND_WORD:
             return new AddWeightCommandParser().parse(arguments);
-
-        case BmiCommand.COMMAND_WORD:
-            return new BmiCommand();
 
         case CalorieAddCommand.COMMAND_WORD:
             return new CalorieAddCommandParser().parse(arguments);

@@ -15,6 +15,7 @@ import seedu.address.model.calorie.DailyCalorie;
 class JsonAdaptedDailyCalorie {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "DailyCalorie's %s field is missing!";
+    public static final String INVALID_CALORIE_MESSAGE_FORMAT = "DailyCalorie's calorie field is incorrect!";
 
     private final String date;
     private final String calories;
@@ -52,7 +53,16 @@ class JsonAdaptedDailyCalorie {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate modelLocalDate = LocalDate.parse(date, formatter);
         DailyCalorie modelDailyCalorie = new DailyCalorie(modelLocalDate);
-        int modelCalories = Integer.parseInt(calories);
+        int modelCalories;
+        try {
+            modelCalories = Integer.parseInt(calories);
+        } catch (NumberFormatException e) {
+            throw new IllegalValueException(INVALID_CALORIE_MESSAGE_FORMAT);
+        }
+
+        if (modelCalories < 0) {
+            throw new IllegalValueException(INVALID_CALORIE_MESSAGE_FORMAT);
+        }
         modelDailyCalorie.addCalories(modelCalories);
         return modelDailyCalorie;
     }
