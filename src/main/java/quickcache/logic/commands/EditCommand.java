@@ -7,6 +7,7 @@ import static quickcache.logic.parser.CliSyntax.PREFIX_DIFFICULTY;
 import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -217,6 +218,13 @@ public class EditCommand extends Command {
             this.difficulty = difficulty;
         }
 
+        private boolean checkChoiceEquality(Optional<Choice[]> c1, Optional<Choice[]> c2) {
+            if (c1.isEmpty() || c2.isEmpty()) {
+                return true;
+            } else {
+                return Arrays.equals(c1.get(), c2.get());
+            }
+        }
 
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
@@ -267,7 +275,7 @@ public class EditCommand extends Command {
 
             return getAnswer().equals(e.getAnswer())
                     && getQuestion().equals(e.getQuestion())
-                    && getChoices().equals(e.getChoices())
+                    && checkChoiceEquality(getChoices(), e.getChoices())
                     && getTags().equals(e.getTags())
                     && getDifficulty().equals(e.getDifficulty());
         }
