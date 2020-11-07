@@ -226,6 +226,7 @@ public class ModelManager implements Model {
     public void scoreAllStudents(List<StudentRecord> students, double score) {
         List<NusnetId> nusnetIds = students
                 .stream()
+                .filter(s -> s.getAttendanceType() == AttendanceType.PRESENT)
                 .map(StudentRecord::getNusnetId)
                 .collect(Collectors.toList());
 
