@@ -238,11 +238,11 @@ Displays all students with the lowest score in the current session.
 ```
 lowest-score
 ```
-- Lists the records of all students in the current session with the lowest score.
-- Will show no students if the student record list is empty.
+- Lists the records of all present students in the current session with the lowest score.
+- Will show no students if the student record list has no present students.
 
 ### Get random student: `random-student`
-Displays a random student from the current session
+Displays a random present student from the current session
 ```
 random-student
 ```
