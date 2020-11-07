@@ -175,6 +175,8 @@ Adds a project to the project list.
 Format: `add n/PROJECT_NAME dl/DEADLINE ru/REPO_URL d/PROJECT_DESCRIPTION [tg/TAGS]... `
   - The fields can be entered in any order, as long as the prefixes are matched correctly
   - Project Name can be any alphanumeric value (containing only alphabets and / or numbers)
+  - Deadline follows the format *DD-MM-YYYY hh:mm:ss*
+  - Deadline can be set to be in the past (in case the user wants to log finished projects for the completeness of project management)
   - Repo URL must be a valid link
   - Description can be anything, as long as it is not blank
   - Any number of tags can be added, where each new tag would require the prefix tg/ before the tag
@@ -225,6 +227,8 @@ Format: `edit INDEX [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESC
   - Any combination of the fields above can be entered
   - The information entered will replace all the data in each respective field
   - Project Name can be any alphanumeric value (containing only alphabets and / or numbers)
+  - Deadline follows the format *DD-MM-YYYY hh:mm:ss*
+  - Deadline can be set to be in the past (in case the user wants to log finished projects for the completeness of project management)
   - Repo URL must be a valid link
   - Description can be anything, as long as it is not blank
   - Any number of tags can be added, separated by space " "
@@ -244,6 +248,7 @@ Format: `addtask tn/TASK NAME tp/TASK PROGRESS td/TASK DEADLINE `
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
   - Task progress is a percentage value indicating how much of the task is done
   - Task deadline is indicated by a date and time with format *DD-MM-YYYY hh:mm:ss* 
+  - Deadline can be set to be in the past (in case the user wants to log finished tasks for the completeness of project management)
 
 Example: `addtask tn/Do User Guide tp/30 td/29-02-2020 00:00:00` creates a task named Do User Guide, 30% completed, and has a deadline of 29th Feb 2020, midnight.
 
@@ -271,6 +276,7 @@ Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] `
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
   - Task progress is a percentage value indicating how much of the task is done
   - Task deadline is indicated by a date and time with the format *DD-MM-YYYY hh:mm:ss* 
+  - Deadline can be set to be in the past (in case the user wants to log finished tasks for the completeness of project management)
 
 Example: `edittask 3 tn/Finish project` changes the name of task 3 in the list to Finish project.
 
@@ -289,11 +295,11 @@ Examples: `deletetask 2` deletes the second task shown in the displayed task lis
 ### Filter tasks `filter `
 
 Filters tasks in the task list by various task attributes:
-  - by assignee's GitHub username
-  - by task's name
-  - by deadline (either a specific deadline or a time range for the deadline)
-  - by progress
-  - by done status (when a task's progress is 100, it is "done")
+  - by assignee's GitHub username - `ta/ASSIGNEE_GITHUB_USERNAME`
+  - by task's name - `tn/KEYWORD [MORE_KEYWORDS]...`
+  - by deadline (either specifying a deadline - `td/DEADLINE` or a time range for the deadline - `start/START_DATE end/END_DATE` )
+  - by progress - `tp/TASK_PROGRESS`
+  - by done status - `done/DONE_STATUS` (when a task's progress is 100, it is "done")
 
 Format: `filter (ta/ASSIGNEE_GITHUB_USERNAME)||(tn/KEYWORD [MORE_KEYWORDS]...)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tp/TASK_PROGRESS)||(done/DONE_STATUS)` 
 
@@ -321,7 +327,7 @@ Specifically:
 
 
 
-Example: `filter tn/CS2103T` filters all the tasks whose task names contain the keyword `CS2103T`, and displays those tasks.
+Example: `filter tn/CS2103T` finds all the tasks whose task names contain the keyword `CS2103T`, and displays those tasks.
 
 ### List all tasks `alltasks `
 
