@@ -1,4 +1,4 @@
-package seedu.address.model.routine;
+package seedu.address.model.routines;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -14,6 +14,7 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.routine.Routine;
 import seedu.address.model.util.Name;
 
 public class RoutineTest {

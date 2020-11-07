@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.routines;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,9 +10,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.routines.RoutineDeleteCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -22,9 +20,9 @@ import seedu.address.model.routine.RoutineNameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code RoutineDeleteCommand}.
+ * {@code RoutineViewCommand}.
  */
-public class RoutineDeleteCommandTest {
+public class RoutineViewCommandTest {
 
     private static final Index INDEX_FIRST_ROUTINE = Index.fromOneBased(1);
     private static final Index INDEX_SECOND_ROUTINE = Index.fromOneBased(2);
@@ -32,23 +30,23 @@ public class RoutineDeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredRoutineList_success() {
-        Routine routineToDelete = model.getFilteredRoutineList().get(INDEX_FIRST_ROUTINE.getZeroBased());
-        RoutineDeleteCommand routineDeleteCommand = new RoutineDeleteCommand(INDEX_FIRST_ROUTINE);
+        Routine routineToView = model.getFilteredRoutineList().get(INDEX_FIRST_ROUTINE.getZeroBased());
+        RoutineViewCommand routineViewCommand = new RoutineViewCommand(INDEX_FIRST_ROUTINE);
 
-        String expectedMessage = String.format(RoutineDeleteCommand.MESSAGE_DELETE_ROUTINE_SUCCESS, routineToDelete);
+        String expectedMessage = String.format(RoutineViewCommand.MESSAGE_SUCCESS, routineToView);
 
         ModelManager expectedModel = new ModelManager(model.getFitNus(), new UserPrefs());
-        expectedModel.deleteRoutine(routineToDelete);
+        expectedModel.viewRoutine(routineToView);
 
-        assertCommandSuccess(routineDeleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(routineViewCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredRoutineList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredRoutineList().size() + 1);
-        RoutineDeleteCommand routineDeleteCommand = new RoutineDeleteCommand(outOfBoundIndex);
+        RoutineViewCommand routineViewCommand = new RoutineViewCommand(outOfBoundIndex);
 
-        assertCommandFailure(routineDeleteCommand, model, Messages.MESSAGE_INVALID_ROUTINE_DISPLAYED_INDEX);
+        assertCommandFailure(routineViewCommand, model, RoutineViewCommand.MESSAGE_OUT_OF_BOUNDS_ROUTINE);
     }
 
     @Test
@@ -56,17 +54,17 @@ public class RoutineDeleteCommandTest {
 
         showRoutineAtIndex(model);
 
-        //Delete this only Routine from model
-        Routine routineToDelete = model.getFilteredRoutineList().get(INDEX_FIRST_ROUTINE.getZeroBased());
-        RoutineDeleteCommand routineDeleteCommand = new RoutineDeleteCommand(INDEX_FIRST_ROUTINE);
+        //View this only Routine from model
+        Routine routineToView = model.getFilteredRoutineList().get(INDEX_FIRST_ROUTINE.getZeroBased());
+        RoutineViewCommand routineViewCommand = new RoutineViewCommand(INDEX_FIRST_ROUTINE);
 
-        String expectedMessage = String.format(RoutineDeleteCommand.MESSAGE_DELETE_ROUTINE_SUCCESS, routineToDelete);
+        String expectedMessage = String.format(RoutineViewCommand.MESSAGE_SUCCESS, routineToView);
 
         Model expectedModel = new ModelManager(model.getFitNus(), new UserPrefs());
-        expectedModel.deleteRoutine(routineToDelete);
+        expectedModel.viewRoutine(routineToView);
         showNoRoutine(expectedModel);
 
-        assertCommandSuccess(routineDeleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(routineViewCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -78,31 +76,31 @@ public class RoutineDeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of fitNUS list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFitNus().getRoutineList().size());
 
-        RoutineDeleteCommand routineDeleteCommand = new RoutineDeleteCommand(outOfBoundIndex);
+        RoutineViewCommand routineViewCommand = new RoutineViewCommand(outOfBoundIndex);
 
-        assertCommandFailure(routineDeleteCommand, model, Messages.MESSAGE_INVALID_ROUTINE_DISPLAYED_INDEX);
+        assertCommandFailure(routineViewCommand, model, RoutineViewCommand.MESSAGE_OUT_OF_BOUNDS_ROUTINE);
     }
 
     @Test
     public void equals() {
-        RoutineDeleteCommand routineDeleteFirstCommand = new RoutineDeleteCommand(INDEX_FIRST_ROUTINE);
-        RoutineDeleteCommand routineDeleteSecondCommand = new RoutineDeleteCommand(INDEX_SECOND_ROUTINE);
+        RoutineViewCommand routineViewFirstCommand = new RoutineViewCommand(INDEX_FIRST_ROUTINE);
+        RoutineViewCommand routineViewSecondCommand = new RoutineViewCommand(INDEX_SECOND_ROUTINE);
 
         // same object -> returns true
-        assertTrue(routineDeleteFirstCommand.equals(routineDeleteFirstCommand));
+        assertTrue(routineViewFirstCommand.equals(routineViewFirstCommand));
 
         // same values -> returns true
-        RoutineDeleteCommand routineDeleteFirstCommandCopy = new RoutineDeleteCommand(INDEX_FIRST_ROUTINE);
-        assertTrue(routineDeleteFirstCommand.equals(routineDeleteFirstCommandCopy));
+        RoutineViewCommand routineViewFirstCommandCopy = new RoutineViewCommand(INDEX_FIRST_ROUTINE);
+        assertTrue(routineViewFirstCommand.equals(routineViewFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(routineDeleteFirstCommand.equals(1));
+        assertFalse(routineViewFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(routineDeleteFirstCommand.equals(null));
+        assertFalse(routineViewFirstCommand.equals(null));
 
         // different Routine -> returns false
-        assertFalse(routineDeleteFirstCommand.equals(routineDeleteSecondCommand));
+        assertFalse(routineViewFirstCommand.equals(routineViewSecondCommand));
     }
 
     private void showRoutineAtIndex(Model model) {
