@@ -17,8 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.task.Deadline;
-
+import seedu.address.model.task.Time;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -31,7 +30,7 @@ public class ListCommandTest {
 
     private Predicate<Assignment> showLimitedAssignments() {
         return assignment -> {
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Deadline.DEADLINE_DATE_TIME_FORMAT)
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Time.TIME_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);
             String dateAndTimeToParse = assignment.getDeadline().value;
             LocalDateTime currentDateAndTime = LocalDateTime.now();

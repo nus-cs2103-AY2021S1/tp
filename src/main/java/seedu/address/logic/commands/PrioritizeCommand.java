@@ -15,9 +15,9 @@ import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 /**
  * Sets priority for an assignment identified using it's displayed index from ProductiveNus.
@@ -70,7 +70,7 @@ public class PrioritizeCommand extends Command {
         assert assignmentToPrioritize != null;
 
         Name updatedName = assignmentToPrioritize.getName();
-        Deadline updatedDeadline = assignmentToPrioritize.getDeadline();
+        Time updatedDeadline = assignmentToPrioritize.getDeadline();
         ModuleCode updatedModuleCode = assignmentToPrioritize.getModuleCode();
         Remind updatedRemind = assignmentToPrioritize.getRemind();
         Schedule updatedSchedule = assignmentToPrioritize.getSchedule();

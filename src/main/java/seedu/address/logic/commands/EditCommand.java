@@ -19,9 +19,9 @@ import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 /**
  * Edits the details of an existing assignment in ProductiveNus.
@@ -84,7 +84,7 @@ public class EditCommand extends Command {
                                                      EditAssignmentDescriptor editAssignmentDescriptor) {
         assert assignmentToEdit != null;
         Name updatedName = editAssignmentDescriptor.getName().orElse(assignmentToEdit.getName());
-        Deadline updatedDeadline = editAssignmentDescriptor.getDeadline().orElse(assignmentToEdit.getDeadline());
+        Time updatedDeadline = editAssignmentDescriptor.getDeadline().orElse(assignmentToEdit.getDeadline());
         ModuleCode updatedModuleCode = editAssignmentDescriptor.getModuleCode()
                 .orElse(assignmentToEdit.getModuleCode());
         Remind updatedRemind = assignmentToEdit.getRemind();
@@ -120,7 +120,7 @@ public class EditCommand extends Command {
      */
     public static class EditAssignmentDescriptor {
         private Name name;
-        private Deadline deadline;
+        private Time deadline;
         private ModuleCode moduleCode;
 
         public EditAssignmentDescriptor() {}
@@ -149,11 +149,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setDeadline(Deadline deadline) {
+        public void setDeadline(Time deadline) {
             this.deadline = deadline;
         }
 
-        public Optional<Deadline> getDeadline() {
+        public Optional<Time> getDeadline() {
             return Optional.ofNullable(deadline);
         }
 

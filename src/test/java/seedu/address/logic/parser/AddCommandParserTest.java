@@ -33,9 +33,9 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Priority;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 import seedu.address.testutil.AssignmentBuilder;
 
 public class AddCommandParserTest {
@@ -104,7 +104,7 @@ public class AddCommandParserTest {
 
         // invalid deadline
         assertParseFailure(parser, NAME_DESC_LAB + INVALID_DEADLINE_DESC + MODULE_CODE_DESC_LAB,
-                Deadline.MESSAGE_CONSTRAINTS);
+                Time.MESSAGE_CONSTRAINTS);
 
         // invalid module code
         assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + INVALID_MODULE_CODE_DESC,

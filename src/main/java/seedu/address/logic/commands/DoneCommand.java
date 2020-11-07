@@ -14,9 +14,9 @@ import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 /**
  * Sets assignment(s) identified using it's displayed index(es) from ProductiveNus as done.
@@ -107,7 +107,7 @@ public class DoneCommand extends Command {
         assert assignmentToMarkAsDone != null;
 
         Name updatedName = assignmentToMarkAsDone.getName();
-        Deadline updatedDeadline = assignmentToMarkAsDone.getDeadline();
+        Time updatedDeadline = assignmentToMarkAsDone.getDeadline();
         ModuleCode updatedModuleCode = assignmentToMarkAsDone.getModuleCode();
         Remind updatedRemind = assignmentToMarkAsDone.getRemind();
         Schedule updatedSchedule = assignmentToMarkAsDone.getSchedule();

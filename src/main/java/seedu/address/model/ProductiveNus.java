@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.task.Deadline.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.address.model.task.Time.TIME_DATE_TIME_FORMAT;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -189,7 +189,7 @@ public class ProductiveNus implements ReadOnlyProductiveNus {
      * @return true if the assignment's deadline or lesson is over
      */
     private boolean isOver(Task upcomingTask) {
-        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(TIME_DATE_TIME_FORMAT)
                 .withResolverStyle(ResolverStyle.STRICT);
 
         // If upcoming task is a lesson, check if end time of lesson has passed
@@ -220,7 +220,7 @@ public class ProductiveNus implements ReadOnlyProductiveNus {
      */
     private void sortTasks() {
         tasks.getInternalList().sort((firstTask, secondTask) -> {
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(TIME_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);
             LocalDateTime firstTaskDateTime = LocalDateTime.parse(firstTask.getTime().value, inputFormat);
             LocalDateTime secondTaskDateTime = LocalDateTime.parse(secondTask.getTime().value, inputFormat);

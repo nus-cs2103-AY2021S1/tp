@@ -25,9 +25,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditAssignmentDescriptor;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 import seedu.address.testutil.EditAssignmentDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -67,7 +67,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
+        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Time.MESSAGE_CONSTRAINTS); // invalid deadline
         assertParseFailure(parser, "1" + INVALID_MODULE_CODE_DESC,
                 ModuleCode.MESSAGE_CONSTRAINTS); // invalid module code
 
@@ -76,8 +76,7 @@ public class EditCommandParserTest {
                 + INVALID_MODULE_CODE_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // valid deadline followed by invalid deadline.
-        assertParseFailure(
-                parser, "1" + DEADLINE_DESC_LAB + INVALID_DEADLINE_DESC, MESSAGE_MULTIPLE_PREFIXES_FOUND);
+        assertParseFailure(parser, "1" + DEADLINE_DESC_LAB + INVALID_DEADLINE_DESC, MESSAGE_MULTIPLE_PREFIXES_FOUND);
 
         // invalid deadline followed by valid deadline
         Index targetIndex = INDEX_FIRST_ASSIGNMENT;

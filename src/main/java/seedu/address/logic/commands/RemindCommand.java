@@ -14,9 +14,9 @@ import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 /**
  * Sets reminders for an assignment identified using it's displayed index from ProductiveNus.
@@ -78,7 +78,7 @@ public class RemindCommand extends Command {
         assert assignmentToRemind != null;
 
         Name updatedName = assignmentToRemind.getName();
-        Deadline updatedDeadline = assignmentToRemind.getDeadline();
+        Time updatedDeadline = assignmentToRemind.getDeadline();
         ModuleCode updatedModuleCode = assignmentToRemind.getModuleCode();
         Remind updatedRemind = assignmentToRemind.getRemind().setReminder();
         Schedule updatedSchedule = assignmentToRemind.getSchedule();

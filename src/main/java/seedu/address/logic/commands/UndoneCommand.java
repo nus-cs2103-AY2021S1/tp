@@ -14,10 +14,9 @@ import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
-
+import seedu.address.model.task.Time;
 
 /**
  * Removes done status for an assignment identified using it's displayed index from ProductiveNus.
@@ -70,7 +69,7 @@ public class UndoneCommand extends NegateCommand {
         assert assignmentToMarkUndone != null;
 
         Name updatedName = assignmentToMarkUndone.getName();
-        Deadline updatedDeadline = assignmentToMarkUndone.getDeadline();
+        Time updatedDeadline = assignmentToMarkUndone.getDeadline();
         ModuleCode updatedModuleCode = assignmentToMarkUndone.getModuleCode();
         Remind updatedRemind = assignmentToMarkUndone.getRemind();
         Schedule updatedSchedule = assignmentToMarkUndone.getSchedule();
