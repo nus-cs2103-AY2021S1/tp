@@ -1,14 +1,11 @@
 package seedu.address.ui.util;
 
+import java.time.LocalDateTime;
+import java.util.function.BiPredicate;
+
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import seedu.address.model.task.Task;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
 
 public class ScheduleUiUtil {
 
@@ -18,12 +15,12 @@ public class ScheduleUiUtil {
     public static final double MARGIN_PER_MINUTE = MARGIN_PER_HOUR / 60.0;
     public static final double CURRENT_TIME_POINTER_PADDING = 5.0;
 
-    public static final BiPredicate<Task, LocalDateTime> IN_THE_DAY = (task, startDate) ->
-            (task.getStartTime().isEqual(startDate)
+    public static final BiPredicate<Task, LocalDateTime> IN_THE_DAY = (task, startDate) -> (
+            task.getStartTime().isEqual(startDate)
             || task.getStartTime().isAfter(startDate))
             && task.getStartTime().isBefore(startDate.plusDays(1));
-    public static final BiPredicate<Task, LocalDateTime> IN_THE_CALENDAR = (task, startDate) ->
-            (task.getStartTime().isEqual(startDate)
+    public static final BiPredicate<Task, LocalDateTime> IN_THE_CALENDAR = (task, startDate) -> (
+            task.getStartTime().isEqual(startDate)
                     || task.getStartTime().isAfter(startDate))
                     && task.getStartTime().isBefore(startDate.plusDays(35));
 

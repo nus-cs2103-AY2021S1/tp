@@ -25,7 +25,7 @@ public class CalendarDayPanel extends UiPart<Region> {
     private UpcomingSchedule upcomingSchedule;
 
     @FXML
-    private VBox Placeholder;
+    private VBox placeholder;
     @FXML
     private Label infoLesson;
     @FXML
@@ -46,7 +46,7 @@ public class CalendarDayPanel extends UiPart<Region> {
         this.upcomingSchedule = upcomingSchedule;
         displayDate(dateTime);
         displayInfo(schedule);
-        Placeholder.addEventHandler(MouseEvent.MOUSE_CLICKED, upcomingSchedule);
+        placeholder.addEventHandler(MouseEvent.MOUSE_CLICKED, upcomingSchedule);
     }
 
     private void displayDate(LocalDateTime dateTime) {

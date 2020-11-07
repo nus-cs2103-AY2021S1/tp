@@ -1,5 +1,7 @@
 package seedu.address.ui.panel;
 
+import java.util.HashMap;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,8 +16,6 @@ import seedu.address.model.StatisticsData;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.schedule.UpcomingSchedule;
-
-import java.util.HashMap;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -58,11 +58,15 @@ public class DisplayPanel extends UiPart<Region> {
     private Pane statsSummaryPanelPlaceholder;
 
     @FXML
-    private Tab Lists;
+    private Tab lists;
 
     @FXML
-    private Tab Calendar;
+    private Tab calendar;
 
+    /**
+     * Creates a display panel to hold all feature related contents
+     * @param logic the logic object that manages the ui and the data
+     */
     public DisplayPanel(Logic logic) {
         super(FXML);
         this.logic = logic;
@@ -76,8 +80,7 @@ public class DisplayPanel extends UiPart<Region> {
     }
 
     private void addTabPaneListener() {
-        tabPane.widthProperty().addListener((observable, oldValue, newValue) ->
-        {
+        tabPane.widthProperty().addListener((observable, oldValue, newValue) -> {
             tabPane.setTabMinWidth((tabPane.getWidth() - 40) / tabPane.getTabs().size());
             tabPane.setTabMaxWidth((tabPane.getWidth() - 40) / tabPane.getTabs().size());
         });
@@ -101,11 +104,11 @@ public class DisplayPanel extends UiPart<Region> {
     }
 
     public void showLists() {
-        tabPane.getSelectionModel().select(Lists);
+        tabPane.getSelectionModel().select(lists);
     }
 
     public void showCalendar() {
-        tabPane.getSelectionModel().select(Calendar);
+        tabPane.getSelectionModel().select(calendar);
     }
 
     /**
@@ -171,11 +174,11 @@ public class DisplayPanel extends UiPart<Region> {
         String color = "#00";
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
-                color += letters.charAt((int)Math.floor(Math.random() * 4) * 2);
+                color += letters.charAt((int) Math.floor(Math.random() * 4) * 2);
                 continue;
             }
 
-            color += letters.charAt((int)Math.floor(Math.random() * 16));
+            color += letters.charAt((int) Math.floor(Math.random() * 16));
         }
         return color;
     }

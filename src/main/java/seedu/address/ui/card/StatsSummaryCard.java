@@ -14,7 +14,7 @@ public class StatsSummaryCard extends UiPart<Region> {
     public final Tag tag;
 
     @FXML
-    private VBox StatsSummaryCardPlaceholder;
+    private VBox statsSummaryCardPlaceholder;
     @FXML
     private Label moduleCode;
     @FXML
@@ -32,10 +32,10 @@ public class StatsSummaryCard extends UiPart<Region> {
     public StatsSummaryCard(Tag tag, StatisticsData dataSet, String tagColor) {
         super(FXML);
         this.tag = tag;
-        StatsSummaryCardPlaceholder.setStyle(
-                "-fx-background-color: linear-gradient(" +
-                        "to bottom right, " + tagColor + ", derive(" + tagColor + ", 60%), " +
-                        tagColor + ");"
+        statsSummaryCardPlaceholder.setStyle(
+                "-fx-background-color: linear-gradient("
+                        + "to bottom right, " + tagColor + ", derive(" + tagColor + ", 60%), "
+                        + tagColor + ");"
         );
         moduleCode.setText(tag.tagName.equals("") ? "Untagged" : tag.tagName);
         lessonTime.setText("" + dataSet.getTotalLessonTime(tag) + " mins");

@@ -1,6 +1,7 @@
 package seedu.address.ui.schedule;
 
 import static seedu.address.ui.util.ScheduleUiUtil.CURRENT_TIME_POINTER_PADDING;
+import static seedu.address.ui.util.ScheduleUiUtil.IN_THE_DAY;
 import static seedu.address.ui.util.ScheduleUiUtil.getMarginFromTime;
 import static seedu.address.ui.util.ScheduleUiUtil.toAmPmTime;
 
@@ -19,7 +20,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.task.Task;
 import seedu.address.ui.UiPart;
-import static seedu.address.ui.util.ScheduleUiUtil.IN_THE_DAY;
 
 public class UpcomingSchedule extends UiPart<Region> implements EventHandler<MouseEvent> {
     private static final String FXML = "schedule/UpcomingSchedule.fxml";
@@ -151,7 +151,7 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        String content = ((Label)((VBox)mouseEvent.getSource()).getChildren().get(0)).getText();
+        String content = ((Label) ((VBox) mouseEvent.getSource()).getChildren().get(0)).getText();
         int date = Integer.parseInt(content.substring(content.lastIndexOf(" ") + 1));
         if (date == currentCell) {
             return;
@@ -161,7 +161,7 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
             endThread();
             fillInnerToday();
         }
-        if (date != today.getDayOfMonth()){
+        if (date != today.getDayOfMonth()) {
             currentCell = date;
             endThread();
             fillOtherDay(date);

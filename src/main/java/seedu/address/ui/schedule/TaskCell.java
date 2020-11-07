@@ -39,7 +39,6 @@ public class TaskCell extends UiPart<Region> {
     public TaskCell(Task task) {
         super(FXML);
         requireNonNull(task);
-//        assert checkTaskValidation(task) : "task must happen today and has duration and a startTime.";
         this.task = task;
 
         // Set title and startTime
@@ -83,10 +82,6 @@ public class TaskCell extends UiPart<Region> {
     private void setTitle(String titleStr) {
         this.title.setText(titleStr);
     }
-
-//    private boolean checkTaskValidation(Task task) {
-//        return task.getDateTime().isPresent() && task.getDuration().isPresent() && task.happensToday();
-//    }
 
     private String getTimeFromTask(Task task) {
         LocalDateTime dateTime = task.getStartTime();

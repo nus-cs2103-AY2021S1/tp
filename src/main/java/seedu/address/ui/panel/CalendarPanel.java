@@ -1,5 +1,7 @@
 package seedu.address.ui.panel;
 
+import static seedu.address.ui.util.ScheduleUiUtil.IN_THE_DAY;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,8 +19,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.schedule.UpcomingSchedule;
-
-import static seedu.address.ui.util.ScheduleUiUtil.IN_THE_DAY;
 
 public class CalendarPanel extends UiPart<Region> {
     private static final String FXML = "panel/CalendarPanel.fxml";
