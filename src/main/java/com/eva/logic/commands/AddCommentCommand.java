@@ -28,6 +28,7 @@ import com.eva.model.person.Phone;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
@@ -39,6 +40,11 @@ public class AddCommentCommand extends CommentCommand {
     public static final String MESSAGE_ADDCOMMENT_USAGE = "Format for this command: \n"
             + COMMAND_WORD + " INDEX c/ ti/TITLE d/DATE desc/DESCRIPTION";
     public static final String MESSAGE_DUPLICATE_COMMENT = "Duplicate comment titles not allowed";
+    public static final String MESSAGE_ADD_COMMENT_SUCCESS_STAFF = "Commented comment with title '%1$s'"
+            + " on Staff: %2$s";
+    public static final String MESSAGE_ADD_COMMENT_SUCCESS_APPLICANT = "Commented comment with title '%1$s'"
+            + " on Applicant: %2$s";
+
 
 
     /**
@@ -88,28 +94,34 @@ public class AddCommentCommand extends CommentCommand {
             case STAFF_LIST:
                 model.setStaff((Staff) personToEdit, (Staff) editedPerson);
                 model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
-                break;
+                return new CommandResult(String.format(MESSAGE_ADD_COMMENT_SUCCESS_STAFF,
+                        commentPersonDescriptor.getCommentTitle(),
+                        editedPerson), false, false, true);
             case APPLICANT_LIST:
                 model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
                 model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
-                break;
+                return new CommandResult(String.format(MESSAGE_ADD_COMMENT_SUCCESS_APPLICANT,
+                        commentPersonDescriptor.getCommentTitle(),
+                        editedPerson), false, false, true);
             case STAFF_PROFILE:
                 model.setStaff((Staff) personToEdit, (Staff) editedPerson);
                 model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
                 Staff staffToView = (Staff) lastShownList.get(index.getZeroBased());
                 model.setCurrentViewStaff(new CurrentViewStaff(staffToView, index));
-                break;
+                return new CommandResult(String.format(MESSAGE_ADD_COMMENT_SUCCESS_STAFF,
+                        commentPersonDescriptor.getCommentTitle(),
+                        editedPerson), false, false, true);
             case APPLICANT_PROFILE:
                 model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
                 model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
                 Applicant applicantToView = (Applicant) lastShownList.get(index.getZeroBased());
                 model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView, index));
-                break;
+                return new CommandResult(String.format(MESSAGE_ADD_COMMENT_SUCCESS_APPLICANT,
+                        commentPersonDescriptor.getCommentTitle(),
+                        editedPerson), false, false, true);
             default:
                 throw new CommandException("Unknown Panel");
             }
-            return new CommandResult(String.format(MESSAGE_ADD_COMMENT_SUCCESS, editedPerson),
-                    false, false, true);
         } catch (CommandException e) {
             throw new CommandException(e.getMessage());
         }
@@ -148,8 +160,9 @@ public class AddCommentCommand extends CommentCommand {
         } else if (personToEdit instanceof Applicant) {
             ApplicationStatus applicationStatus = ((Applicant) personToEdit).getApplicationStatus();
             Optional<InterviewDate> interviewDate = ((Applicant) personToEdit).getInterviewDate();
+            Application application = ((Applicant) personToEdit).getApplication();
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                    updatedTags, updatedComments, interviewDate, applicationStatus);
+                    updatedTags, updatedComments, interviewDate, applicationStatus, application);
         }
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedComments);
     }
