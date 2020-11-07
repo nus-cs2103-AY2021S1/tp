@@ -56,6 +56,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.log(Level.INFO, "Starting to execute delete command");
         requireNonNull(model);
         if (targetSerialNumbers.size() == 0) {
             throw new CommandException(Messages.MESSAGE_NO_SERIAL_NUMBERS_GIVEN);

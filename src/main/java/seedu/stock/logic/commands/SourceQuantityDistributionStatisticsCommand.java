@@ -35,6 +35,7 @@ public class SourceQuantityDistributionStatisticsCommand extends StatisticsComma
 
     @Override
     public CommandResult execute(Model model) throws SourceCompanyNotFoundException {
+        logger.log(Level.INFO, "Starting to generate statistics");
         Map<String, Integer> nameQuantityTable = generateSourceQuantityDistributionStatisticsData(model, targetSource);
 
         if (nameQuantityTable.size() == 0) {

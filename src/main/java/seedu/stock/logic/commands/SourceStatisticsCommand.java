@@ -19,7 +19,7 @@ public class SourceStatisticsCommand extends StatisticsCommand {
 
     @Override
     public CommandResult execute(Model model) {
-
+        logger.log(Level.INFO, "Starting to generate statistics");
         Map<String, Integer> sourceData = generateSourceStatisticsData(model);
 
         //array of size 1, index 0 is statistics type

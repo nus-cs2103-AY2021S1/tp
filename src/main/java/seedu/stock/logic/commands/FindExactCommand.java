@@ -12,7 +12,10 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE_DESCRIPTION;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.commons.core.Messages;
 import seedu.stock.commons.util.FindUtil;
 import seedu.stock.model.Model;
@@ -39,6 +42,7 @@ public class FindExactCommand extends Command {
             + COMMAND_WORD + " "
             + PREFIX_NAME + "banana "
             + PREFIX_SOURCE + "SHENGSIONG";
+    private static final Logger logger = LogsCenter.getLogger(FindExactCommand.class);
 
     private final List<FieldContainsKeywordsPredicate> predicates; // list of predicates to filter stocks by
     private final Predicate<Stock> combinedPredicates; // combined predicates to filter stocks by
@@ -56,6 +60,7 @@ public class FindExactCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        logger.log(Level.INFO, "Starting to execute find exact command");
         requireNonNull(model);
 
         // status message to show what user has searched for
@@ -67,6 +72,7 @@ public class FindExactCommand extends Command {
         // based on all of user's search fields
         model.updateFilteredStockList(combinedPredicates);
 
+        logger.log(Level.INFO, "Finished finding stocks successfully");
         return new CommandResult(statusMessage + "\n"
                 + String.format(Messages.MESSAGE_STOCKS_LISTED_OVERVIEW, model.getFilteredStockList().size()));
     }

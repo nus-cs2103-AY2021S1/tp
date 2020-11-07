@@ -7,8 +7,11 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTIO
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.commons.util.SortUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
@@ -39,6 +42,7 @@ public class UnbookmarkCommand extends Command {
 
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number"
             + " are not found:%1$s";
+    private static final Logger logger = LogsCenter.getLogger(UnbookmarkCommand.class);
 
     private final Set<SerialNumber> targetSerialNumbers;
 
@@ -55,6 +59,7 @@ public class UnbookmarkCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.log(Level.INFO, "Starting to execute unbookmark command");
         requireNonNull(model);
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownStocks = model.getFilteredStockList();
@@ -120,6 +125,7 @@ public class UnbookmarkCommand extends Command {
         } else if (updatedStocks.size() == serialNumbers.size()) {
             model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
+            logger.log(Level.INFO, "Finished unbookmark stocks successfully");
             return new CommandResult(String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks)));
         } else if (notUpdatedStocks.size() > 0 && stocksNotFound.size() > 0) {
             String result = String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
@@ -131,6 +137,7 @@ public class UnbookmarkCommand extends Command {
 
             model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
+            logger.log(Level.INFO, "Finished unbookmark stocks successfully");
             return new CommandResult(result);
         } else if (stocksNotFound.size() == 0 && notUpdatedStocks.size() > 0) {
             String result = String.format(MESSAGE_NOT_BOOKMARKED , stocksAsString(notUpdatedStocks))
@@ -138,6 +145,7 @@ public class UnbookmarkCommand extends Command {
 
             model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
+            logger.log(Level.INFO, "Finished unbookmark stocks successfully");
             return new CommandResult(result);
         } else {
             String result = String.format(MESSAGE_NOT_BOOKMARKED , stocksAsString(notUpdatedStocks))
@@ -146,6 +154,7 @@ public class UnbookmarkCommand extends Command {
 
             model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
+            logger.log(Level.INFO, "Finished unbookmark stocks successfully");
             return new CommandResult(result);
         }
 
