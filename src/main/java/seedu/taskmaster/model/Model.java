@@ -28,6 +28,10 @@ public interface Model {
     /** {@code Predicate} that always evaluates to true */
     Predicate<StudentRecord> PREDICATE_SHOW_ALL_STUDENT_RECORDS = unused -> true;
 
+    /** {@code Predicate} that shows present students */
+    Predicate<StudentRecord> PREDICATE_SHOW_ALL_PRESENT_STUDENT_RECORDS = studentRecord ->
+            studentRecord.getAttendanceType().equals(AttendanceType.PRESENT);
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -88,6 +92,11 @@ public interface Model {
      * Changes the currentSession to a Session with that name.
      */
     void changeSession(SessionName sessionName);
+
+    /**
+     * Switches TAskmaster to student list view.
+     */
+    void showStudentList();
 
     /**
      * Returns true if {@code session} exists in the session list.

@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-TAskmaster is a **desktop app for managing students, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a CS Teaching Assistant who can type fast, TAskmaster can help you track your students' attendance and class participation faster than traditional GUI apps.
+TAskmaster is a **desktop app for managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a CS Teaching Assistant who can type fast, TAskmaster can help you track your students' attendance and class participation faster than traditional GUI apps.
 
 ## Contents:
 - [Quick Start](#quick-start "Go to Quick Start")
@@ -21,9 +21,9 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
     - [Changing the current session: `goto`](#changing-the-current-session-goto "Go to Changing the current session")
     - [Marking a student's attendance: `mark`](#marking-a-students-attendance-mark "Go to Marking a student's attendance")
     - [Marking all students' attendance: `mark all`](#marking-all-students-attendance-mark-all "Go to Marking all students' attendance")
-    - [Scoring a student's participation: `score`](#scoring-a-students-participation-score "Go to Scoring a student's participation mark")
-    - [Scoring all students' participation: `score all`](#scoring-all-students-participation-score-all "Go to Scoring all students' participation marks")
-    - [View lowest scoring students: `lowest-score`](#View-lowest-scoring-students-lowest-score "Go to View lowest scoring students")
+    - [Scoring students' participation: `score`](#scoring-students-participation-score "Go to Scoring students' participation mark")
+    - [View lowest-scoring students: `lowest-score`](#view-lowest-scoring-students-lowest-score "Go to View lowest scoring students")
+    - [Get a random student: `random-student`](#get-a-random-student-random-student "Go to Get a Random Student")
     - [Clear all students: `clear`](#clearing-all-entries-clear "Go to Clearing all entries")
     - [Exit the program: `exit`](#exiting-the-program-exit "Go to Exiting the program")
 - [Command Summary](#command-summary "Go to Command Summary")
@@ -36,7 +36,10 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 1. Ensure you have Java 11 or later installed.
 2. Download the jar file from the project website.
 3. Copy the file to the folder you want to use as the home folder for the application.
-4. Double-click the file to start the app. A GUI should appear, with the field bar to input commands. The list of commands are available below.
+4. Start the app, by doing one of the following:  
+    1. Double-click on the file.
+    2. Open the terminal or command prompt, navigate to the folder in which the jar file is at, and run the command `java -jar taskmaster.jar` (assuming that the file is called `taskmaster.jar`). 
+5. A GUI should appear, with the field bar to input commands. The list of commands is available below.
 
 ### Usage
 1. Add the students that you are currently teaching into TAskmaster using the `add-student` command.
@@ -75,10 +78,10 @@ When you are done with TAskmaster, use the `exit` command to close the applicati
 
 ## Commands
 > Command format:
-> - Words in `UPPER_CASE` are parameters supplied by the user
-> - Items in square brackets are optional
-> - Items with ellipses (`...`) after them can be used multiple times including zero times
-> - Parameters can be in any order
+> - Words in `UPPER_CASE` are parameters supplied by the user.
+> - Items in square brackets are optional.
+> - Items with ellipses (`...`) after them can be used multiple times including zero times.
+> - Parameters can be in any order.
 
 ### Adding a student: `add-student`
 Adds a student into the student list.
@@ -86,7 +89,8 @@ Adds a student into the student list.
 add-student n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]...
 ```
 - The `NAME` must be non-empty.
-- The `TELEGRAM` handle must be a valid handle (comprising only alphanumeric characters and underscores with length between 5 and 32 characters inclusive).
+- The `TELEGRAM` handle must be valid (comprising only alphanumeric 
+ characters and underscore with a length between 5 and 32 characters inclusive).
 - The `EMAIL` and `NUSNETID` must be in a valid format.
 
 Example usage:
@@ -95,7 +99,7 @@ add-student n/John Tan u/johntan98 e/johntan98@gmail.com i/e0012345 t/tardy
 ```
 
 ### Listing all students: `list-students`
-Shows a list of all students in the student list.
+Shows a list of all students on the student list.
 ```
 list-students
 ```
@@ -109,7 +113,7 @@ find-students KEYWORD [MORE_KEYWORDS]
 - The order of the keywords does not matter (e.g. `Hans Bo` will match `Bo Hans`).
 - Only the name is searched.
 - Only full names will be matched (e.g. `han` will NOT match `Hans`).
-- Students matching at least one keyword will be returned (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
+- Students matching at least one keyword will be returned (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`).
 
 Example usages:
 ```
@@ -208,7 +212,7 @@ mark all a/present
 mark 1 a/absent
 ```
 
-### Scoring student participation: `score`
+### Scoring students' participation: `score`
 Scores the participation of the specified student in the session.
 ```
 score INDEX cp/SCORE
@@ -216,50 +220,41 @@ score INDEX cp/SCORE
 - Scores the participation of the student associated with the specified `INDEX` number shown in the displayed student record list.
 - The `INDEX` **must be a positive integer** that exists in said list.
 - The `SCORE` **must be a non-negative number** between 0 and 10, inclusive. 
-Taskmaster supports detailed score up to 2 decimal places.
-For scores with more than 2 decimal places, the score will be rounded to the nearest 2 decimal places.
+Taskmaster supports a detailed score of up to 2 decimal places.
+For scores with more than 2 decimal places, the score will be rounded to the nearest 2 decimal places.  
+Taskmaster supports scoring students' participation score even though the student is absent, to allow for
+module-specific instructions (e.g. a module coordinator instructs the TA to give
+a participation mark of 6 if a valid MC is given).
+
+To mark all students **who are present**, you can replace the `INDEX` with the keyword `all`.
 
 Example Usage:
 ```
 score 1 cp/5
 score 3 cp/6.9
 score 4 cp/4.21
-```
-
-### Scoring all students' participation: `score all`
-Scores the participation of all students in the session.
-```
-score all cp/SCORE
-```
-- Scores the participation of all students shown in the displayed student record list.
-- The `SCORE` **must be a non-negative number** between 0 and 10, inclusive. 
-Taskmaster supports detailed score up to 2 decimal places.
-For scores with more than 2 decimal places, the score will be rounded to the nearest 2 decimal places.
-
-Example Usage:
-```
 score all cp/10
 score all cp/2.94
 ```
 
-### View lowest scoring students: `lowest-score`
+### View lowest-scoring students: `lowest-score`
 Displays all students with the lowest score in the current session.
 ```
 lowest-score
 ```
-- Lists the records of all students in the current session with the lowest score.
-- Will show no students if the student record list is empty.
+- Lists the records of all present students in the current session with the lowest score.
+- Will show no students if the student record list has no present students.
 
 ### Get random student: `random-student`
-Displays a random student from the current session
+Displays a random present student from the current session
 ```
 random-student
 ```
-- Lists a random student from the current session.
-- Does not work if the session has no students.
+- Lists a random student that is present from the current session.
+- Does not work if the session has no present students.
 
 ### Clearing all entries: `clear`
-Clears all saved data in taskmaster (both students and sessions).
+Clears all saved data in Taskmaster (both students and sessions).
 ```
 clear
 ```
@@ -283,6 +278,7 @@ exit
 | Delete student    | ```delete-student INDEX``` <br> e.g., ```delete-student 3```                                                             |
 | Add session       | ```add-session s/SESSION_NAME dt/SESSION_DATE_TIME``` <br> e.g., ```add-session s/CS2103 Tutorial 9 dt/23-10-2020 0900```|
 | Change session    | ```goto s/SESSION_NAME``` <br> e.g., ```goto s/CS2103 Tutorial 9```
+| Delete session    | ```delete-session s/SESSION_NAME``` <br> e.g., ```delete-session s/CS2103 Tutorial 9```
 | Mark              | ```mark INDEX a/ATTENDANCE_TYPE``` <br> e.g., `mark 1 a/absent`                                             |
 | Mark all          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
 | Score             | ```score INDEX cp/SCORE``` <br> e.g., `score 1 cp/5`                                             |
