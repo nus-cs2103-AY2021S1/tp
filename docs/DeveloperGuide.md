@@ -463,6 +463,8 @@ The test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` sto
 * `Flashcard#getFlashcardAfterTestSuccess()` — Returns a new `Flashcard` object with `Statistics:timesTested` and `Statistics:timesTestedCorrect` incremented by one.
 * `Flashcard#getFlashcardAfterTestFailure()` — Returns a new `Flashcard` object with `Statistics:timesTested` incremented by one.
 
+##### Usage
+
 Given below is an example usage scenario and how the test mechanism behaves at each step.
 
 Step 1. The user launches the application. The `Flashcard` to be tested will be initialized with the initial flashcard state.
@@ -491,19 +493,15 @@ The following activity diagram summarizes what happens when a user executes a te
 
 ![TestActivityDiagram](images/TestActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations:
 
-##### Aspect: How tests manipulate statistics
-
-* **Alternative 1 (current choice):** Increments a counter of `timesTestedCorrect` and `timesTested` in `Statistics`.
+* **Current choice:** Increments a counter of `timesTestedCorrect` and `timesTested` in `Statistics`.
   * Pros: Easy to implement.
   * Cons: Unable to keep track of useful information such as performance over time.
 
-* **Alternative 2:** `Statistics` is made up of an `Array` of `test`, including information such as `timestamp`
+* **Alternative:** `Statistics` is made up of an `Array` of `test`, including information such as `timestamp`
   * Pros: Retrieval of useful statistics will be possible.
   * Cons: Save file will expand very quickly because each `test` record needs to be logged.
-
-_{more aspects and alternatives to be added}_
 
 ### Display Statistics of Flashcard
 
