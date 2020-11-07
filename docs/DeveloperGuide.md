@@ -291,15 +291,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Student with lots of file                                      | tag my files with a easy to remember tag              | get file path                                                 |
 | `* * *`  | First time user                                                | use a help command                                    | start to remember how to use the command                      |
 | `* * *`  | Student who prefers to type                                    | use typing to interact with my file system            | use keyboard as much as possible                              |
-| `* * *`  | Student who is familiar with command line applications         | name my files                                         | access the file easily next time                              |
+| `* * *`  | Student who is familiar with command line applications         | tag my files                                          | access the file easily next time                              |
 | `* * *`  | CS student with many categories of files                       | categorise my files and folders                       | easily manage my files and search files based on categories   |
-| `* * *`  | First time user                                                | use help command                                      | start to remember how to use the command                      |
+| `* * *`  | Software engineer                                              | group my files together                               | open all files in the same group at once                      |
 | `* * *`  | Student with lots of files                                     | see a list of my tags                                 | find the tag that I created easily                            |
 | `* * *`  | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files                 |
 | `* *`    | CS student with a lot of project                               | hide private contact details                          | minimize chance of someone else seeing them by accident       |
 | `* *`    | Command line user                                              | use commands similar to Linux                         | use the similar Linux command without having to relearn       |
+| `* *`    | Careless CS student                                            | be able to undo my mistake                            | fix my mistake                                                |
 | `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                        |
-| `*`      | Intermediate user                                              | delete file                                           | not be distracted by it.                                      |
+| `*`      | Intermediate user                                              | delete tagged files                                   | not be distracted by it.                                      |
 
 
 
@@ -559,13 +560,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-
 * *a. User input the wrong command.
 
 	* *a1. HelloFile shows the error message and direct the user to enter the user help command.
 
 	    Use case ends.
 <br />
+
+**UseCase ID: UC08**
+
+**Use Case: Find a tag/label**
+
+**MSS**
+
+1. User request to find a tag/label from the given keyword
+2. HelloFile recognizes the keyword is associated with existing tag/label.
+3. HelloFile shows the result to the user 
+    
+    Use case ends
+    
+**Extensions**
+
+* *2a. HelloFile cannot associate keyword with any tag/label.
+
+    * *2a1. HelloFile show nothing on the list.
+    
+        Use case resumes from step 1
+    
+* *a. User input the wrong command.
+
+	* *a1. HelloFile shows the error message and direct the user to enter the user help command.
+	
+	    Use case ends.
 
 *{More to be added}*
 
