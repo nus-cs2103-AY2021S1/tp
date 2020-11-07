@@ -94,8 +94,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (choices.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = choices.size() == 1 && choices.contains("") ? Collections.emptySet() : choices;
-        return Optional.of(ParserUtil.parseChoices(tagSet));
+
+        if (choices.size() == 1 && choices.contains("")) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE));
+        }
+
+        return Optional.of(ParserUtil.parseChoices(choices));
     }
 
 }

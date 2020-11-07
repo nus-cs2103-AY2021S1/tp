@@ -265,9 +265,9 @@ Changes to the `DeleteCommand` class will also have to be made as it must be abl
 
 Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
 
- Step 2. The user executes `delete t/MCQ` command to delete all flashcards with the tag `MCQ`. 
+ Step 2. The user executes `delete t/MCQ` command to delete all flashcards with the tag `MCQ`.
 
- Step 3. This will call `DeleteCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags` will be called to create tags for the arguments. 
+ Step 3. This will call `DeleteCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags` will be called to create tags for the arguments.
 
  Step 4. A new `FlashcardPredicate` will then be created from the given tags. It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `DeleteCommand`
 
@@ -285,7 +285,7 @@ Given below is an example usage scenario and how the tag mechanism behaves at ea
 
 Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
 
-Step 2. The user executes `add q/ question... t/tag` command to add a flashcard with tag. The `add` command will cause the addition of a flashcard with a tag inside the QuickCache. 
+Step 2. The user executes `add q/ question... t/tag` command to add a flashcard with tag. The `add` command will cause the addition of a flashcard with a tag inside the QuickCache.
 
 Step 3. The user executes `edit 1 t/tag` to edit the tag in the first flashcard of the list. The edit command will change the internal structure of flashcard such that the `Set<Tag>` is updated.
 
@@ -309,7 +309,7 @@ Step 3. The user executes `edit 1 t/tag` to edit the tag in the first flashcard 
 
 The difficulty mechanism is facilitated by `Flashcard` upon creation. It is stored internally as a `Difficulty` inside the `flashcard` object.
 
-The `Difficulty` class takes difficulty levels from `Difficulties` enums which contains four difficulty levels `LOW`, `MEDIUM`, `HIGH` and `UNSPECIFIED`. 
+The `Difficulty` class takes difficulty levels from `Difficulties` enums which contains four difficulty levels `LOW`, `MEDIUM`, `HIGH` and `UNSPECIFIED`.
 
 Given below is an example usage scenario and how the difficulty mechanism behaves at each step.
 
@@ -348,7 +348,7 @@ Given below is an example usage scenario and how the add mechanism behaves at ea
 
 Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
 
-Step 2. The user executes `add q/ question... t/tag` command to add a flashcard with tag. The `add` command will cause the addition of a flashcard with open-ended question inside the QuickCache. 
+Step 2. The user executes `add q/ question... t/tag` command to add a flashcard with tag. The `add` command will cause the addition of a flashcard with open-ended question inside the QuickCache.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
 </div>
@@ -374,7 +374,7 @@ Given below is an example usage scenario and how the addmcq mechanism behaves at
 
 Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
 
-Step 2. The user executes `addmcd q/ question ans/1 c/first choice c/second choice c/third choice... t/tag` command to add a flashcard with tag. The `addmcq` command will cause the addition of a flashcard with multiple choice question inside the QuickCache. 
+Step 2. The user executes `addmcd q/ question ans/1 c/first choice c/second choice c/third choice... t/tag` command to add a flashcard with tag. The `addmcq` command will cause the addition of a flashcard with multiple choice question inside the QuickCache.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
 </div>
@@ -399,7 +399,7 @@ Given below is an example usage scenario and how the delete mechanism behaves at
 
 Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
 
-Step 2. The user executes `delete 1` command to delete the first flashcard. The `delete` command will cause the deletion of a flashcard inside the QuickCache. 
+Step 2. The user executes `delete 1` command to delete the first flashcard. The `delete` command will cause the deletion of a flashcard inside the QuickCache.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
 </div>
@@ -415,7 +415,7 @@ The following sequence diagram shows how the delete operation works:
 * **Alternative 1 (current choice):** Provide the index of the flashcard to be deleted.
   * Pros: Easy to implement and CLI-optimized.
   * Cons: User have to know the index of the specified flashcard.
-  
+
 ### Edit Flashcard feature
 
 The Delete mechanism is facilitated by `QuickCache` . It will edit the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
@@ -424,7 +424,7 @@ Given below is an example usage scenario and how the edit mechanism behaves at e
 
 Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
 
-Step 2. The user executes `edit 1 ...` command to edit some of the fields given in the command on the first flashcard. The `edit` command will cause the creation of a flashcard with updated field and set it to be the flashcard on the index in `UniqueFlashcardList`. 
+Step 2. The user executes `edit 1 ...` command to edit some of the fields given in the command on the first flashcard. The `edit` command will cause the creation of a flashcard with updated field and set it to be the flashcard on the index in `UniqueFlashcardList`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
 </div>
@@ -447,7 +447,7 @@ The following sequence diagram shows how the edit operation works:
 #### Implementation
 
 The test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` stored within the flashcard. `Flashcard` implements the following methods.
-* `Flashcard#getFlashcardAfterTestSuccess()` — Returns a new `Flashcard` object with `Statistics:timesTested` and `Statistics:timesTestedCorrect` incremented by one. 
+* `Flashcard#getFlashcardAfterTestSuccess()` — Returns a new `Flashcard` object with `Statistics:timesTested` and `Statistics:timesTestedCorrect` incremented by one.
 * `Flashcard#getFlashcardAfterTestFailure()` — Returns a new `Flashcard` object with `Statistics:timesTested` incremented by one.
 
 Given below is an example usage scenario and how the test mechanism behaves at each step.
@@ -484,7 +484,7 @@ The following activity diagram summarizes what happens when a user executes a te
 
 * **Alternative 1 (current choice):** Increments a counter of `timesTestedCorrect` and `timesTested` in `Statistics`.
   * Pros: Easy to implement.
-  * Cons: Unable to keep track of useful information such as performance over time. 
+  * Cons: Unable to keep track of useful information such as performance over time.
 
 * **Alternative 2:** `Statistics` is made up of an `Array` of `test`, including information such as `timestamp`
   * Pros: Retrieval of useful statistics will be possible.
@@ -496,7 +496,7 @@ _{more aspects and alternatives to be added}_
 
 #### Implementation
 
-The export mechanism is facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be exported is passed to `Storage` to save to local data. 
+The export mechanism is facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be exported is passed to `Storage` to save to local data.
 
 Given below is an example usage scenario and how the export mechanism behaves at each step.
 
@@ -520,7 +520,7 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ##### Aspect: How to output the export file
 
-* **Alternative 1 (current choice):** Predefined directory of `/export/` 
+* **Alternative 1 (current choice):** Predefined directory of `/export/`
   * Pros: Easy to implement.
   * Cons: The user will have to navigate to his `/export/` folder to retrieve output file.
 
@@ -559,7 +559,7 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ##### Aspect: How to import the input file
 
-* **Alternative 1 (current choice):** Predefined directory of `/import/` 
+* **Alternative 1 (current choice):** Predefined directory of `/import/`
   * Pros: Easy to implement.
   * Cons: The user will have to navigate to his `/import/` folder to a place the input file in it.
 
@@ -595,7 +595,7 @@ _{more aspects and alternatives to be added}_
 * is reasonably comfortable using CLI apps
 * wants to monitor his/her progress
 
-**Value proposition**: manage flashcards faster than a typical mouse/GUI driven app with 
+**Value proposition**: manage flashcards faster than a typical mouse/GUI driven app with
 a test feature and track the progress later.
 
 
@@ -644,32 +644,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Error message indicating that QuickCache.jar cannot be opened pops up.
-  
+
   * 1a1. User opens up CLI in the directory containing QuickCache and runs `java -jar QuickCache.jar`.
-    
+
     Use case resumes at step 2.
 
 * 3a. User wants to know all the available commands present in QuickCache.
 
   * 3a1. User requests for all the instructions available in QuickCache.
-    
+
   * 3a2. QuickCache displays all available commands.
-    
+
     Use case resumes at step 3.
-  
+
 * 3b. User quits QuickCache while trying out quiz feature.
 
   * 3b1. When opening QuickCache again, quiz resumes from where the User left off.
-    
+
     Use case resumes at step 3.
 
 * *a. User dislikes the GUI.
 
   * *a1. User quits and deletes QuickCache.
-    
+
     Use case ends.
-    
-    
+
+
 
 **Use case: UC02 - View Statistics**
 
@@ -687,11 +687,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User has not done any quiz on QuickCache.
-  
+
   * 1a1. QuickCache shows an error message.
-    
+
     Use case resumes at step 3.
-    
+
 
 **Use case: UC03 - Delete a flashcard**
 
@@ -718,7 +718,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. QuickCache shows an error message.
 
     Use case resumes at step 2.
-    
+
 
 **Use case: UC04 - Create a flashcard**
 
@@ -739,15 +739,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The question is empty.
 
   * 1a1. QuickCache shows an error message.
-    
+
     Use case ends.
-  
+
 * 1b. The answer is empty.
 
   * 1b1. QuickCache shows an error message.
-    
+
     Use case ends.
-    
+
 
 **System: QuickCache**
 
@@ -775,7 +775,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. AddressBook shows an error message.
 
     Use case resumes at step 2.
-    
+
 
 **System: QuickCache**
 
@@ -836,8 +836,8 @@ MSS:
 * 4d. The user closes QuickCache
 
   Use case ends.
-  
-  
+
+
 
 **Use case: UC07 - Update flashcard save file**
 
@@ -847,7 +847,7 @@ MSS:
 
 1. QuickCache accepts update request
 2. QuickCache updates save file
-  
+
     Use case ends.
 
 **Extensions:**
@@ -855,17 +855,17 @@ MSS:
 * 2a. No save file.
 
   * 3a1. QuickCache creates new save file.
-  
+
     Use case resumes from step 2.
 
 * 2b. Save file corrupted.
 
   * 2b1. QuickCache shows an error message.
-  
+
   * 2b2. QuickCache creates new save file.
 
     Use case resumes from step 2.
-    
+
 
 **Use case: UC08 - Import flashcard data file**
 
@@ -877,7 +877,7 @@ MSS:
 2. QuickCache requests for the file location
 3. User specifies the file location
 4. QuickCache imports the file
-  
+
     Use case ends.
 
 **Extensions:**
@@ -885,7 +885,7 @@ MSS:
 * 3a. File not found.
 
   * 3a1. QuickCache shows an error message.
-  
+
     Use case ends.
 
 * 3b. Data file corrupted
@@ -893,7 +893,7 @@ MSS:
   * 3b1. QuickCache shows an error message.
 
     Use case ends.
-    
+
 
 **Use case: UC09 - Add tags during creation of a Flashcard**
 
@@ -923,7 +923,7 @@ MSS:
   * 5a1. QuickCache stores and remembers the tags.
 
     Use case ends.
-    
+
 
 **Use case: UC10 - Deleting a tag category**
 
@@ -946,7 +946,7 @@ MSS:
   * 4a1. QuickCache does not delete anything.
 
     Use case ends.
-    
+
 
 **Use case: UC11 - Edit tags on an existing Flashcard**
 
@@ -966,11 +966,11 @@ MSS:
 * 1a. User wants to remove a tag
 
 	* 1a1. User asks QuickCache to list out all the tags
-  
+
 	* 1a2. QuickCache lists out all the tags
-  
+
 	* 1a3. User enters the name of the tag to be removed
-  
+
 	* 1a4. QuickCache removes the tag from the Flashcard
 
     Use case ends.
@@ -978,15 +978,15 @@ MSS:
 * 1b. User wants to edit a tag
 
 	* 1b1. User asks QuickCache to rename a tag
-  
+
 	* 1b2. QuickCache asks for the new name of the tag
-  
+
 	* 1b3. User enters the new name
-  
-	* 1b4. QuickCache updates the tag with it's new name.  
+
+	* 1b4. QuickCache updates the tag with it's new name.
 
     Use case ends.
-    
+
 
 **Use case: UC12 - Search for Flashcards based on Tags**
 
@@ -998,7 +998,7 @@ MSS:
 2. QuickCache filters through all existing Flashcards based on the tag and returns a list of Flashcards.
 
     Use case ends.
-    
+
 
 **Use case: UC13 - Open a single flashcard**
 
@@ -1011,7 +1011,7 @@ MSS:
 5. QuickCache opens the flashcard and displays the options
 
 	Use case ends.
-	
+
 
 **Extensions**
 
@@ -1076,11 +1076,11 @@ There are 2 ways to delete flashcards – by index or by tags.
    1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message. 
+      Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message.
 
    1. Test case: `delete 0`<br>
       Expected: No flashcard is deleted. Error details shown in the status message. Status bar remains the same.
-      
+
    1. Test case: `delete t/MCQ`<br>
       Expected: All flashcards with the tag `MCQ` is deleted
 
