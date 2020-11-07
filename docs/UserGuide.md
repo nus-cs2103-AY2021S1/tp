@@ -375,7 +375,7 @@ Sorts tasks in the task list by various task's attributes in ascending/descendin
    
 ![after_sort](images/afterSort.png)
 
-   *Figure 20: After `Sort` by task name with ascending order*
+   *Figure 20: After `Sort` by task name in ascending order*
 
 Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)||(done/)` 
 
