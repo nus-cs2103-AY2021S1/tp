@@ -139,6 +139,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasParticipation(Participation participation) {
+        requireNonNull(participation);
+        return mainCatalogue.hasParticipation(participation);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         mainCatalogue.removePerson(target);
     }
