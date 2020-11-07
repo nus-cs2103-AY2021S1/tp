@@ -22,6 +22,8 @@ import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.exceptions.DuplicateLessonException;
 import seedu.address.model.person.Body;
+import seedu.address.model.person.Height;
+import seedu.address.model.person.Weight;
 import seedu.address.model.routine.Routine;
 import seedu.address.model.slot.Slot;
 import seedu.address.testutil.LessonBuilder;
@@ -81,9 +83,37 @@ public class FitNusTest {
         assertTrue(fitNus.hasLesson(editedGes1028));
     }
 
+
+
     @Test
     public void getLessonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> fitNus.getLessonList().remove(0));
+    }
+
+    @Test
+    public void bmiTesting() {
+
+        //This is using fitNUS values when it first starts up
+        Double bmi = (45 / Math.pow((160 / 100.0), 2));
+        assertEquals(fitNus.getBmi(), bmi);
+    }
+
+    @Test
+    public void heightTesting() {
+        assertEquals(fitNus.getHeight(), new Height(160));
+
+        fitNus.addHeight(new Height(170));
+
+        assertEquals(fitNus.getHeight(), new Height(170));
+    }
+
+    @Test
+    public void weightTesting() {
+        assertEquals(fitNus.getWeight(), new Weight(45.0));
+
+        fitNus.addWeight(new Weight(80));
+
+        assertEquals(fitNus.getWeight(),new Weight(80));
     }
 
     /**
