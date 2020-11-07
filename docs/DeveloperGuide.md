@@ -311,28 +311,41 @@ The following sequence diagram shows how the edit operation works:
 
 ### Delete By Index
 
-The  Delete mechanism is facilitated by `QuickCache` . It will delete the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
+#### Implementation
 
-Given below is an example usage scenario and how the delete mechanism behaves at each step.
+The Delete By Index mechanism deletes the flashcard at the specified index of the last displayed list.
 
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+##### Usage
 
-Step 2. The user executes `delete 1` command to delete the first flashcard. The `delete` command will cause the deletion of a flashcard inside the QuickCache.
+Given below is an example usage scenario and how the Delete By Index mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2. The user executes `delete 1` command to delete the first flashcard. This command will be parsed by `DeleteCommandParser`.
+
+Step 3. `DeleteCommandParser#parse` will then create a `DeleteCommand` which has its `isDeleteByTag` field set to `false`.
+`DeleteCommandParser#parse` will also create an `Index` object to be passed to the `DeleteCommand` object.
+
+Step 4. `DeleteCommand#execute` will then get a copy of the to-be `Flashcard` from the `model` using the `Index` provided.
+
+Step 5. The `model#deleteFlashcard` will then delete the `Flashcard` by finding for it based on its copy.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
 </div>
 
-The following sequence diagram shows how the delete operation works:
+The following sequence diagram shows how the Delete By Index mechanism works:
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
-#### Design consideration:
+#### Design considerations:
 
-##### Aspect: How delete executes
+* **Current choice:** Delete command works for both index and tags
+  * Pros: Convenient for the user as there is only one command.
+  * Cons: Extra checks have to be implemented to make sure that the correct deletion mechanism is executed.
 
-* **Alternative 1 (current choice):** Provide the index of the flashcard to be deleted.
-  * Pros: Easy to implement and CLI-optimized.
-  * Cons: User have to know the index of the specified flashcard.
+* **Alternative:** Create a seperate delete command for deleting by tags
+  * Pros: Less overlapping and easier to debug.
+  * Cons: Extra work needed to implement the delete command.
 
 ### Delete by tag
 
