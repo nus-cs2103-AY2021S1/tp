@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ExerciseBook;
 import seedu.address.model.GoalBook;
-
-
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.ReadOnlyGoalBook;
 import seedu.address.model.exercise.Calories;

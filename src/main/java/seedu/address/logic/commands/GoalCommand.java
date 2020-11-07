@@ -26,6 +26,10 @@ public class GoalCommand extends CommandForExercise {
 
     private final Goal goal;
 
+    /**
+     * Creates goal command
+     * @param goal
+     */
     public GoalCommand(Goal goal) {
         requireNonNull(goal);
         this.goal = goal;

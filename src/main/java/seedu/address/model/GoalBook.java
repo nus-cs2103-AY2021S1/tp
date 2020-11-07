@@ -92,7 +92,7 @@ public class GoalBook implements ReadOnlyGoalBook {
     }
 
     @Override
-    public ObservableMap<Date,Goal> getGoalMap() {
+    public ObservableMap<Date, Goal> getGoalMap() {
         return goalMap.asUnmodifiableObservableMap();
     }
 
