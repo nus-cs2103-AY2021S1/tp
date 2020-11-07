@@ -15,7 +15,7 @@ import seedu.address.ui.UiPart;
  */
 public class LessonCard extends UiPart<Region> {
 
-    private static final String FXML = "LessonCard.fxml";
+    private static final String FXML = "card/LessonCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,7 +42,7 @@ public class LessonCard extends UiPart<Region> {
     @FXML
     private Label recurrence;
     @FXML
-    private HBox descriptionHolder;
+    private VBox descriptionHolder;
     @FXML
     private Label description;
 
@@ -75,6 +75,16 @@ public class LessonCard extends UiPart<Region> {
             description.setText(lesson.getDescription().value.toString());
             return true;
         }
+    }
+
+    @FXML
+    private void handleMouseIn() {
+        description.setWrapText(true);
+    }
+
+    @FXML
+    private void handleMouseOut() {
+        description.setWrapText(false);
     }
 
     @Override

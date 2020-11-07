@@ -3,15 +3,18 @@ package seedu.address.ui.card;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.StatisticsData;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.UiPart;
 
 public class StatsSummaryCard extends UiPart<Region> {
-    private static final String FXML = "StatsSummaryCard.fxml";
+    private static final String FXML = "card/StatsSummaryCard.fxml";
 
     public final Tag tag;
 
+    @FXML
+    private VBox statsSummaryCardPlaceholder;
     @FXML
     private Label moduleCode;
     @FXML
@@ -26,9 +29,14 @@ public class StatsSummaryCard extends UiPart<Region> {
      * @param tag the tag
      * @param dataSet the statistic data
      */
-    public StatsSummaryCard(Tag tag, StatisticsData dataSet) {
+    public StatsSummaryCard(Tag tag, StatisticsData dataSet, String tagColor) {
         super(FXML);
         this.tag = tag;
+        statsSummaryCardPlaceholder.setStyle(
+                "-fx-background-color: linear-gradient("
+                        + "to bottom right, " + tagColor + ", derive(" + tagColor + ", 60%), "
+                        + tagColor + ");"
+        );
         moduleCode.setText(tag.tagName.equals("") ? "Untagged" : tag.tagName);
         lessonTime.setText("" + dataSet.getTotalLessonTime(tag) + " mins");
         taskTime.setText("" + dataSet.getTotalTaskTime(tag) + " mins");

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="placeholder" alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="date" styleClass="label-bright" text="Label" VBox.vgrow="NEVER" />
+      <Label fx:id="infoLesson" text="Label" />
+      <Label fx:id="infoEvent" text="Label" />
+    </children>
+</VBox>

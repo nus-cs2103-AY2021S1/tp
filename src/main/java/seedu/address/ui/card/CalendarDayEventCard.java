@@ -8,7 +8,7 @@ import seedu.address.model.task.event.Event;
 import seedu.address.ui.UiPart;
 
 public class CalendarDayEventCard extends UiPart<Region> {
-    private static final String FXML = "CalendarDayEventCard.fxml";
+    private static final String FXML = "card/CalendarDayEventCard.fxml";
 
     public final Task event;
 

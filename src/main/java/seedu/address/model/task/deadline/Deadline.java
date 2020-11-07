@@ -68,6 +68,10 @@ public class Deadline extends Task {
         return this.doneDateTime.getValue().toLocalDate();
     }
     @Override
+    public LocalDateTime getStartTime() {
+        return deadlineDateTime.getValue();
+    }
+    @Override
     public boolean isLesson() {
         return false;
     }

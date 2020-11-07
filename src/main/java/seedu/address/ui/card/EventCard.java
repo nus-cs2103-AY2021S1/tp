@@ -16,7 +16,7 @@ import seedu.address.ui.UiPart;
  */
 public class EventCard extends UiPart<Region> {
 
-    private static final String FXML = "EventCard.fxml";
+    private static final String FXML = "card/EventCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -41,7 +41,7 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label to;
     @FXML
-    private HBox descriptionHolder;
+    private VBox descriptionHolder;
     @FXML
     private Label description;
 
@@ -73,6 +73,16 @@ public class EventCard extends UiPart<Region> {
             description.setText(task.getDescription().value);
             return true;
         }
+    }
+
+    @FXML
+    private void handleMouseIn() {
+        description.setWrapText(true);
+    }
+
+    @FXML
+    private void handleMouseOut() {
+        description.setWrapText(false);
     }
 
     @Override

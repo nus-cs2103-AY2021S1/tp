@@ -18,7 +18,7 @@ import seedu.address.ui.UiPart;
  */
 public class DeadlineCard extends UiPart<Region> {
 
-    private static final String FXML = "DeadlineCard.fxml";
+    private static final String FXML = "card/DeadlineCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -47,11 +47,11 @@ public class DeadlineCard extends UiPart<Region> {
     @FXML
     private Label duration;
     @FXML
-    private HBox dateTimeHolder;
+    private VBox dateTimeHolder;
     @FXML
     private Label dateTime;
     @FXML
-    private HBox descriptionHolder;
+    private VBox descriptionHolder;
     @FXML
     private Label description;
 
@@ -105,6 +105,16 @@ public class DeadlineCard extends UiPart<Region> {
             duration.setText(deadline.getTimeTaken() + " mins");
             return true;
         }
+    }
+
+    @FXML
+    private void handleMouseIn() {
+        description.setWrapText(true);
+    }
+
+    @FXML
+    private void handleMouseOut() {
+        description.setWrapText(false);
     }
 
     @Override
