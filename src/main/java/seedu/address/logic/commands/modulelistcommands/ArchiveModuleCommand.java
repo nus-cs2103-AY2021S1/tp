@@ -47,7 +47,7 @@ public class ArchiveModuleCommand extends Command {
         Module moduleToArchive = lastShownList.get(targetIndex.getZeroBased());
         model.archiveModule(moduleToArchive);
         model.commitModuleList();
-        return new CommandResult(String.format(MESSAGE_ARCHIVE_MODULE_SUCCESS, moduleToArchive.getName()));
+        return new CommandResult(String.format(MESSAGE_ARCHIVE_MODULE_SUCCESS, moduleToArchive));
     }
 
     @Override
@@ -57,8 +57,4 @@ public class ArchiveModuleCommand extends Command {
                 && targetIndex.equals(((ArchiveModuleCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }
