@@ -241,7 +241,7 @@ Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG
 
 Examples:
 * `adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
-* `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Role: Developer`
+* `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Developer`
 
 #### 3.3.3. Find an applicant : `find a-`
 
@@ -286,7 +286,7 @@ Format: `edita INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]
 </div>
 
 Example:
-* `edita 1 n/NEW_NAME p/99999999 a/NEW_ADDRESS e/NEW@example.com`
+* `edita 1 n/NEWNAME p/99999999 a/NEWADDRESS e/NEW@example.com`
 * `edita 1 id/ 10/10/2010`
 
 
