@@ -7,6 +7,6 @@
       "y" : 44
     }
   },
-  "financeAccountFilePath" : "data\\financeAccount.json",
-  "inventoryFilePath" : "data\\inventory.json"
+  "financeAccountFilePath" : "data/financeAccount.json",
+  "inventoryFilePath" : "data/inventory.json"
 }
