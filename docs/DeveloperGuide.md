@@ -102,7 +102,9 @@ Figure 4: Structure of the `UI` Component
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### 3.3 Logic component
 
@@ -130,6 +132,10 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 Figure 6: Sequence Diagram of `delete-i 1`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ItemDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
 </div>
 
 ### 3.4 Model component
@@ -182,6 +188,10 @@ You may also refer to Figure 9 as shown below:
 <br> ![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
 Figure 9: Structure of the `Delivery`
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 ### 3.5 Storage component
 
 Storage component is responsible to save the data of inventory and delivery book into the hard disk.
@@ -201,6 +211,10 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ## **4. Implementation**
 
@@ -228,6 +242,9 @@ Note: Deliveries are all considered unique. Reason being the same person can mak
 <div markdown="span" class="alert alert-info">:information_source: **For example:**`John` with the address `Choa Chu Kang Block 259` is able to make multiple orders before his previous deliveries are fulfilled.
 </div>
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### 4.2 Editing Items and Delivery
 
@@ -264,6 +281,10 @@ Below is a sequence diagram of the above usage.
 ![ItemEditCommandSequenceDiagram](images/ItemEditCommandSequenceDiagram.png)
 Figure 14: ItemEditCommand Sequence Diagram
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 ### 4.3 Command History Traversal
 
 Much like Window's Command Prompt, OneShelf supports traversal of command history with the arrow up and down key.
@@ -283,6 +304,10 @@ Below is the sequence diagram when user pressing the arrow up button with `Comma
 When the user, while having the `CommandBox` selected, pressing the arrow up key, it'll prompt the GUI to call `CommandBox`'s `handleHistoryNavigation(Event)` which will call `HistoryManager`'s `previousCommand()` method.
 `previousCommand()` will attempt to return the previous command entered by user, if any. Then `CommandBox` will call `TextField`'s `setText(String)` on the return value of `previousCommand()` which will set the text for the User
 in the GUI.
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### 4.4 Finding Items and Delivery
 
@@ -321,6 +346,10 @@ Hence, we have modified it to allow the predicate to match the substrings of the
 
 You can refer to the sequence diagram as shown below:
 ![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram2.png)
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### 4.5 Undo/Redo Command
 
@@ -389,6 +418,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 #### Design consideration:
 
 ##### Aspect: How undo & redo executes
@@ -401,6 +434,10 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the item being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### 4.6 Help Window
 
@@ -439,6 +476,10 @@ If there is a need for any changes in the help message, `HELP_SUMMARY` can be fo
 You may refer to the Help Activity Diagram shown below:
 ![HelpActivityDiagram](images/HelpActivityDiagram.png)
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 ### 4.7 Logging
 
 * We are using `java.util.logging` package for logging.
@@ -452,6 +493,9 @@ You may refer to the Help Activity Diagram shown below:
     * `INFO`: Information showing the noteworthy actions by the App.
     * `FINE`: Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 <a name="configuration"></a>
 ### 4.8 Configuration
