@@ -313,7 +313,8 @@ public class MainWindow extends UiPart<Stage> {
                 }
                 hideDrawer();
             } else if (leftDrawer.isOpened()) {
-                CommandException commandException = new CommandException("Close drawer first!");
+                CommandException commandException =
+                        new CommandException("Close drawer first! \n Hint: type \"close\"");
                 throw commandException;
             }
 
