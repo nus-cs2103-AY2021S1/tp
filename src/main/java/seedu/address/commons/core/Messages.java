@@ -24,7 +24,6 @@ public class Messages {
     public static final String MESSAGE_PATIENT_ALREADY_ASSIGNED = "Patient has already been assigned a room.\nPlease"
             + " clear patient from the room first.";
     public static final String MESSAGE_PATIENT_NO_ROOM = "Patient is not assigned to any room yet.";
-    public static final String MESSAGE_DUPLICATE_ROOM_NUMBER = "Operation would result in duplicate rooms";
 
     // tasks
 

@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import seedu.address.logic.commands.room.AllocateRoomCommand;
 import seedu.address.logic.commands.room.AllocateRoomCommand.AllocateRoomDescriptor;
 import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 
 /**
@@ -27,7 +28,7 @@ public class AllocateRoomDescriptorBuilder {
         descriptor = new AllocateRoomDescriptor();
         descriptor.setRoomNumber(room.getRoomNumber());
         descriptor.setOccupied(room.isOccupied());
-        descriptor.setPatientName(room.getPatient().isPresent() ? room.getPatient().get().getName() : null);
+        descriptor.setPatientName(room.getPatient().map(Patient::getName).orElse(null));
     }
 
     /**
