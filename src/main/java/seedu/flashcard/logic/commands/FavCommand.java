@@ -34,6 +34,8 @@ public class FavCommand extends Command {
 
     public static final String MESSAGE_FAVOURITE_FLASHCARD_SUCCESS = "Favourited Flashcard: %1$s";
 
+    public static final String MESSAGE_FLASHCARD_IS_ALREADY_FAVOURITED = "This flashcard is already favourited.";
+
     private final Index targetIndex;
 
     public FavCommand(Index targetIndex) {
@@ -53,7 +55,7 @@ public class FavCommand extends Command {
         assert flashcardToFavourite != null : "Index is invalid";
 
         if (flashcardToFavourite.isFavourite()) {
-            return new CommandResult(String.format(MESSAGE_FAVOURITE_FLASHCARD_SUCCESS, flashcardToFavourite));
+            throw new CommandException(MESSAGE_FLASHCARD_IS_ALREADY_FAVOURITED);
         }
 
         Flashcard favouritedFlashcard = createFavouriteFlashcard(flashcardToFavourite);
