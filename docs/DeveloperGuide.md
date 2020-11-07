@@ -5,10 +5,6 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak
-</div>
-
 ## **1. Introduction**
 Welcome to OneShelf. This developer guide aims to introduce potential developers to the structure and implementation of
 **OneShelf**. <br>
