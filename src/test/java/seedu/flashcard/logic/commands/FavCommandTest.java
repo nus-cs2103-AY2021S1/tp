@@ -91,7 +91,7 @@ public class FavCommandTest {
 
         FavCommand favCommand = new FavCommand(INDEX_SECOND_FLASHCARD);
 
-        String expectedMessage = FavCommand.MESSAGE_FLASHCARD_IS_ALREADY_FAVOURITED;
+        String expectedMessage = FavCommand.MESSAGE_FLASHCARD_IS_ALREADY_FAVOURITED_ERROR;
 
         assertCommandFailure(favCommand, model, expectedMessage);
     }
