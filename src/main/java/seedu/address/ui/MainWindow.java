@@ -302,17 +302,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void updateSelectedMeeting() {
         logger.info("UI update selected meeting triggered");
-        if (logic.getFilteredMeetingList().size() != 0) {
-            if (logic.getSelectedMeeting() == null && selectedMeetingPlaceholder.getChildren().size() > 0) {
-                selectedMeetingPlaceholder.getChildren().remove(0);
+        if (logic.getSelectedMeeting() == null && selectedMeetingPlaceholder.getChildren().size() > 0) {
+            selectedMeetingPlaceholder.getChildren().remove(0);
+        }
+        if (logic.getFilteredMeetingList().size() != 0 && logic.getSelectedMeeting() != null) {
+            MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(),
+                    logic.getFilteredMeetingList().indexOf(logic.getSelectedMeeting()) + 1);
+            if (selectedMeetingPlaceholder.getChildren().size() == 1) {
+                selectedMeetingPlaceholder.getChildren().set(0, selectedMeeting.getRoot());
             } else {
-                MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(),
-                        logic.getFilteredMeetingList().indexOf(logic.getSelectedMeeting()) + 1);
-                if (selectedMeetingPlaceholder.getChildren().size() == 1) {
-                    selectedMeetingPlaceholder.getChildren().set(0, selectedMeeting.getRoot());
-                } else {
-                    selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
-                }
+                selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
             }
         }
     }

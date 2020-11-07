@@ -198,8 +198,10 @@ public class ModelManager implements Model {
     public void deleteMeeting(Meeting targetMeeting) {
         meetingBook.removeMeeting(targetMeeting);
         // set selected meeting to be null if it is deleted
-        if (targetMeeting.equals(selectedMeeting)) {
-            setSelectedMeeting(null);
+        if (selectedMeeting != null) {
+            if (targetMeeting.equals(selectedMeeting)) {
+                setSelectedMeeting(null);
+            }
         }
     }
 
