@@ -147,6 +147,14 @@ Format: `help`
 
 ### Creating a new flashcard <a name="creating-a-new-flashcard"></a>
 You can add a new flashcard to the list.
+
+<div class="alert alert-danger">
+:exclamation:<br>
+
+You cannot have multiple question and answer prefixes.
+
+</div>
+
 #### Creating a flashcard with open ended question: `add q/QUESTION ans/ANSWER [t/TAG]... [d/DIFFICULTY]` <a name="oeq"></a>
 You can create a flashcard that contains an open ended question which will be added to the list.
 
