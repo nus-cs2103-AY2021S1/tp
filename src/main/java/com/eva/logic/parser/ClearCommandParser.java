@@ -5,7 +5,6 @@ import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 
 import com.eva.commons.core.Messages;
 import com.eva.logic.commands.ClearCommand;
-import com.eva.logic.commands.FindCommand;
 import com.eva.logic.parser.exceptions.ParseException;
 
 /**
@@ -26,13 +25,17 @@ public class ClearCommandParser implements Parser<ClearCommand> {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
         }
+        if (argMultimap.getValue(PREFIX_STAFF).isPresent() && argMultimap.getValue(PREFIX_APPLICANT).isPresent()) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    ClearCommand.MESSAGE_USAGE));
+        }
         if (argMultimap.getValue(PREFIX_STAFF).isPresent()) {
             return new ClearCommand(PREFIX_STAFF);
         } else if (argMultimap.getValue(PREFIX_APPLICANT).isPresent()) {
             return new ClearCommand(PREFIX_APPLICANT);
         } else {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
         }
     }
 }
