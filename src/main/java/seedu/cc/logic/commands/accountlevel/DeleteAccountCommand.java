@@ -52,8 +52,8 @@ public class DeleteAccountCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
 
-        boolean leftWithOneAccount = accounts.size() == SIZE_OF_ACCOUNT_LIST_WITH_ONE_ACCOUNT;
-        if (leftWithOneAccount) {
+        boolean isOneAccountLeft = accounts.size() == SIZE_OF_ACCOUNT_LIST_WITH_ONE_ACCOUNT;
+        if (isOneAccountLeft) {
             throw new CommandException(MESSAGE_ONE_ACCOUNT_LEFT);
         }
 
