@@ -52,7 +52,7 @@ If you are unmotivated for a workout, FixMyAbs will be your partner in helping y
   e.g. in `add e/<exercise name>`, `exercise` is a parameter which can be used as `add e/Sit ups`.
 
 - Items in square brackets are optional.<br>
-  e.g `e/<exercise name> c/[comments]` can be used as `e/Sit ups c/my abs hurt` or as `e/Sit ups c/`.
+  e.g `e/<exercise name> c/[comment]` can be used as `e/Sit ups c/my abs hurt` or as `e/Sit ups c/`.
 
 - Parameters can be in any order.<br>
   e.g. if the command specifies `e/<exercise name> r/<rep>`, `r/<rep> e/<exercise name>` is also acceptable.
@@ -83,8 +83,12 @@ Constraints:
 - reps must be within range 1-1000 inclusive
 
 Examples:
+- `add e/Sit ups r/1 c/` Adds a log with an existing exercise `Sit ups`, 1 rep and no comment.
+- `add e/Sit ups r/1 c/my abs hurt :(` Adds a log with an existing exercise `Sit ups`, 1 rep and a comment of `no abs
+ were hurt`.
+- `add e/sit ups r/20 c/my abs hurt :(` Adds a log an existing exercise `sit ups`, 20 reps and a comment of `no
+ abs were hurt`.
 
-- `add e/Sit ups r/1 c/my abs hurt :(`
 
 ![Ui](images/screenshots/v1.3add.png)
 
@@ -96,6 +100,8 @@ Success:
 Shows a list of all logs logged by the user in the application.
 
 Format: `list`
+
+Example: `list`
 
 ![Ui](images/screenshots/v1.3list_success.png)
 
@@ -113,8 +119,8 @@ Constraints:
 - Existing values will be updated to the input values.
 
 Examples:
-
-- `edit 1 c/no abs were hurt` Edits the log at index 1, with a comment of `no abs were hurt`.
+- `edit 1 r/20` Edits the log at index 1, with 20 reps.
+- `edit 2 c/no abs were hurt` Edits the log at index 2, with a comment of `no abs were hurt`.
 - `edit 1 r/20 c/no abs were hurt` Edits the log at index 1, with reps of `20` and a comment of `no abs were hurt`.
 
 ![Ui](images/screenshots/v1.3edit.png)
@@ -133,8 +139,7 @@ Format: `delete <index>`
 - The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-
-- `list` followed by `delete 2`deletes the 2nd log.
+- `delete 2` Deletes the 2nd log.
 
 ![Ui](images/screenshots/v1.3delete.png)
 
@@ -147,6 +152,10 @@ Finds all logs that contain ALL keywords (case-insensitive) anywhere in the log.
 
 Format: `find <keywords in logs>`
 
+Examples:
+- `find abs` Find log(s) which contain(s) the word `abs`.
+- `find Oct` Find log(s) which contain(s) the word `Oct`.
+
 ![Ui](images/screenshots/v1.3find.png)
 
 Success:
@@ -156,13 +165,17 @@ Success:
 
 Adds an exercise.
 
-Format: `addex e/<exercise name> c/<calories per rep>`
+Format: `addex e/<exercise name> c/calories per rep`
 
 - The exercise must not already exist. [Exercise names are case-insensitive and whitespace-insensitive.](#command-format)
 - Calories per rep would be used to calculate the calories burnt for each log.
 
 Constraints:
 - calories must be within range 1-1000 inclusive
+
+Examples:
+- `addex e/Sit ups c/20` Adds an exercise with name`Sit ups` and 20 calories per rep.
+- `addex e/Jumping jacks c/50` Adds an exercise with name`Jumping jacks`and 50 calories per rep.
 
 ![Ui](images/screenshots/v1.3addex.png)
 
@@ -173,7 +186,7 @@ Success:
 
 Edits an existing exercise in the application, either with a new name, or new calories per rep.
 
-Format: `editex <index> [e/exercise] [c/calories]`
+Format: `editex <index> [e/exercise] [c/calories per rep]`
 
 * Edits the existing exercise at the specified `index`. The index refers to the index number shown in the displayed exercise list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
@@ -182,6 +195,12 @@ Format: `editex <index> [e/exercise] [c/calories]`
 
 Constraints:
 - calories must be within range 1-1000 inclusive
+
+Examples:
+- `editex 2 e/Sit ups` Edits an exercise at index `2` with name `Sit ups`.
+- `editex 3 c/50` Edits an exercise at index `3` with 50 calories per rep.
+- `editex 3 e/Sit ups c/50` Edits an exercise at index `3` with name `Sit ups` and 50 calories per rep.
+
 
 ![Ui](images/screenshots/editex.png)
 
@@ -199,8 +218,7 @@ Format: `deleteex <index>`
 - The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-
-- `list` followed by `deleteex 1`deletes the 1st exercise.
+- `deleteex 1` deletes the 1st exercise in the exercise list.
 
 ![Ui](images/screenshots/deleteex.png)
 
@@ -233,12 +251,13 @@ Exercise log data are saved in the hard disk automatically after any command tha
 
 | Action     | Format                                    | Examples                                  |
 | ---------- | ----------------------------------------- | ----------------------------------------- |
-| **Add**    | `add e/<exercise name> r/<reps> c/[comments]`  | e.g. `add e/Sit ups r/30 c/Send help`       |
-| **Delete** | `delete <index>`                          | e.g. `delete 3`                      |
-| **Edit**   | `edit <index> [r/reps] [c/comment]`       | e.g.`edit 1 r/20 c/no abs were hurt` |
-| **List**   | `list`                                    |
+| **Add Log**    | `add e/<exercise name> r/<reps> c/[comment]`  | e.g. `add e/Sit ups r/30 c/Send help`, `add e/Sit ups r/30 c/`       |
+| **Delete Log** | `delete <index>`                          | e.g. `delete 3`                      |
+| **Edit Log**   | `edit <index> [r/reps] [c/comment]`       | e.g.`edit 1 r/20 c/no abs were hurt`, `edit 1 r/20`, `edit 1 c/no abs were hurt` |
+| **List Logs**   | `list`                                    |
 | **Add exercise**   | `addex e/<exercise name> c/<calories per rep>` | e.g. `addex e/Lunges c/5` |
-| **Edit exercise**   | `editex <index> [e/exercise name] [c/calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6` |
+| **Edit exercise**   | `editex <index> [e/exercise name] [c/calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6`, `editex 1 e/One-legged Lunges`, `editex 1 c/6` |
 | **Delete exercise**   | `deleteex <index>` | e.g. `deleteex 1` |
 | **Find**   | `find <keywords in logs>`                         | e.g.`find pushups`                   |
+| **Help**   | `help`                         | e.g.`help`                   |
 | **Exit**   | `exit`                                    |

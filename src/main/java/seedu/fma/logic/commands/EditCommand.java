@@ -2,7 +2,6 @@ package seedu.fma.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_C;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_E;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_R;
 import static seedu.fma.model.Model.PREDICATE_SHOW_ALL_LOGS;
 
@@ -28,21 +27,20 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String AC_SUGGESTION = COMMAND_WORD + " <index> "
-            + "[" + PREFIX_R + "/reps] "
-            + "[" + PREFIX_C + "/comment]";
+            + "[" + PREFIX_R + "reps] "
+            + "[" + PREFIX_C + "comment]";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the log identified "
             + "by the index number used in the displayed log list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_E + "EXERCISE] "
-            + "[" + PREFIX_R + "REPS] "
-            + "[" + PREFIX_C + "COMMENT] "
+            + "[" + PREFIX_R + "reps] "
+            + "[" + PREFIX_C + "comment]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_R + "3000 "
             + PREFIX_C + "I love my abs 3000";
 
-    public static final String MESSAGE_EDIT_LOG_SUCCESS = "Edited Log: %1$s";
+    public static final String MESSAGE_EDIT_LOG_SUCCESS = "Edited Log: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LOG = "This log already exists in the log book.";
 
