@@ -596,7 +596,7 @@ The following activity diagram summarises what happens when a user executes a ne
 
 ### A.1&ensp;Product scope
 
-**Target user profile**: People that cook daily, who need a way to manage recipes and their fridge contents.
+**Target user profile**: People that cook daily, especially students living on campus who need a way to manage recipes and their fridge contents.
 
 **Value proposition**: Manages recipes and fridge inventory/expiry, and automatically suggests recipes to cook.
 
@@ -1091,7 +1091,9 @@ With 10 being the baseline of AB3, we estimate the effort required to deliver th
 These are the components which have involved significant effort on our part to (re)implement, including significant new features as well as improvements and extensions to existing AB3 features.
 
 #### C.1.1&ensp;GUI
-asdf
+The GUI of ChopChop was designed to provide a seamless User Experience(UX) for our users; besides adding data to ChopChop, our users are likely to be operating ChopChop while cooking. As such, our User Interface(UI) is designed to handle both mouse and cli inputs to enable users to navigate the application with ease regardless the setting.
+
+In addition, ChopChop's "tab" switching and resizable display ensures that our users have no issues viewing the information they need. This implementation of the GUI, as well as making the colors, fonts and shapes to mesh well together into a welcoming cooking application required significant hours of trial-and-error.
 
 #### C.1.2&ensp;Command Parser
 In order to fit the required behaviour of ChopChop (strictly ordered parameters, unnamed parameters) and to reduce pointless enterprise-style OOP, AB3's command parser was rewritten using a different paradigm. This involved a non-trivial amount of effort, and the new implementation was designed to interface with the (then-existing) AB3 code in the rest of the application.
@@ -1103,7 +1105,11 @@ In addition, a comprehensive set of tests were written for each command parser t
 csdf
 
 #### C.1.4&ensp;Automated GUI Testing
-dsdf
+To ensure that our ChopChop GUI conform to its expected behaviour, we implemented Unit tests that test the individual components components comprehensively. 
+
+Thanks to the TestFX library we use, our GUI tests can be run in the headless mode. In the headless mode, GUI tests do not show up on the screen. That means the developer can do other things on the Computer while the tests are running.
+
+
 
 #### C.1.5&ensp;Tab Completion
 To ensure ease of use and reduce typing tedium for potential users, PE testers, and ourselves during manual testing, tab completion was deemed to be an imoprtant aspect of the CLI-nature of ChopChop from the beginning, although it was only implemented in version 1.3.
