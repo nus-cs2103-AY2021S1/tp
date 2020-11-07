@@ -166,6 +166,14 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    private void handleShowLists() {
+        displayPanel.showLists();
+    }
+
+    private void handleShowCalendar() {
+        displayPanel.showCalendar();
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -185,6 +193,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowLists()) {
+                handleShowLists();
+            }
+
+            if (commandResult.isShowCalendar()) {
+                handleShowCalendar();
             }
 
             return commandResult;

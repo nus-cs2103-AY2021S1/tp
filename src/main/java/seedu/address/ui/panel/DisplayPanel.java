@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
@@ -11,16 +12,10 @@ import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
 import seedu.address.model.StatisticsData;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Task;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.schedule.UpcomingSchedule;
-import static seedu.address.ui.util.ScheduleUiUtil.IN_THE_DAY;
-import static seedu.address.ui.util.ScheduleUiUtil.IN_THE_CALENDAR;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.function.Predicate;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -62,6 +57,12 @@ public class DisplayPanel extends UiPart<Region> {
     @FXML
     private Pane statsSummaryPanelPlaceholder;
 
+    @FXML
+    private Tab Lists;
+
+    @FXML
+    private Tab Calendar;
+
     public DisplayPanel(Logic logic) {
         super(FXML);
         this.logic = logic;
@@ -97,6 +98,14 @@ public class DisplayPanel extends UiPart<Region> {
 
         loadPieChart(logic.getStatisticsData());
         loadSummary(logic.getStatisticsData());
+    }
+
+    public void showLists() {
+        tabPane.getSelectionModel().select(Lists);
+    }
+
+    public void showCalendar() {
+        tabPane.getSelectionModel().select(Calendar);
     }
 
     /**

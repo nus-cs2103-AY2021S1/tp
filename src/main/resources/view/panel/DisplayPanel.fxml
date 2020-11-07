@@ -11,7 +11,7 @@
 
 <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <tabs>
-      <Tab closable="false" text="Tasks &amp; Lessons">
+      <Tab fx:id="Lists" closable="false" text="Tasks &amp; Lessons">
          <content>
             <StackPane>
                <children>
@@ -73,7 +73,7 @@
             </StackPane>
          </content>
       </Tab>
-      <Tab text="Calendar">
+      <Tab fx:id="Calendar" text="Calendar">
          <content>
             <StackPane>
                <children>

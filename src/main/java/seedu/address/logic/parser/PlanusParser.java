@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.CalendarCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeadlineCommand;
@@ -58,6 +59,8 @@ public class PlanusParser {
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case CalendarCommand.COMMAND_WORD:
+            return new CalendarCommand();
 
         // commands related to tasks
         case EventCommand.COMMAND_WORD:
