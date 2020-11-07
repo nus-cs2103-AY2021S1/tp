@@ -23,7 +23,10 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
+the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder.
+Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
+to learn how to create and edit diagrams.
 
 </div>
 
@@ -45,7 +48,8 @@ Each of the four components,
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `Logic` component (see the class diagram given below) defines its API in the
+`Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
@@ -65,11 +69,13 @@ The sections below give more details of each component.
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts i.e. 
-`CommandBox`, `ResultDisplay`, `StockCardPanel`, `StatusBarFooter`, `Tabs`
+`CommandBox`, `ResultDisplay`, `StockListPanel`, `StatusBarFooter`, `Tabs`
 etc. 
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 1. The user enters a command into  the CommandBox.
 1. The `UI` component then executes the user commands using the `Logic` component.
@@ -1564,10 +1570,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | warehouse manager                                           | to be able to easily teach my subordinates how to use the software                   | they can cover my role when I am not around                            |
 | `* * *`  | user                                                        | to sort my inventory by the fields I want                                            | I can view my stocks easier                                            |
 
-
 ### Use cases
 
-(For all use cases below, the **System** is the `Warenager` and the **Actor** is the `user`, unless specified otherwise)
+<div markdown="span" class="alert alert-info">:information_source: 
+
+**Note:**
+For all use cases below, the **System** is the `Warenager` and the **Actor** is the `user`,
+unless specified otherwise.
+
+</div>
 
 #### Use case 1: Adding a stock
 
@@ -2486,9 +2497,9 @@ testers are expected to do more *exploratory* testing.
       Status message shows success of command.
 
    1. Test case: `findexact n/umbrella l/section 3`<br>
-         Expected: All stocks with field name containing "umbrella" AND field location containing "section" and "3"
-         are displayed from the inventory.
-         Status message shows success of command.
+      Expected: All stocks with field name containing "umbrella" AND field location containing "section" and "3"
+      are displayed from the inventory.
+      Status message shows success of command.
    
    1. Test case: `findexact 1111111`<br>
       Expected: No stock found due to invalid format from missing field header
@@ -2583,8 +2594,8 @@ testers are expected to do more *exploratory* testing.
 1. Adding a note to a stock.
 
     1. Test case: `note sn/ntuc1 nt/first note`
-    Expected: Note is added to the stock with serial number ntuc1 and displayed in the notes column for the stock.
-    Details of the stock with successful note added is shown in status message.
+       Expected: Note is added to the stock with serial number ntuc1 and displayed in the notes column for the stock.
+       Details of the stock with successful note added is shown in status message.
    
    1. Test case: `note 1111111`<br>
       Expected: No note added due to invalid format from missing field headers sn/ and nt/.
@@ -2592,7 +2603,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `note sn/umbrella1 sn/company1 nt/first note`<br>
       Expected: No note added due to invalid format from duplicate field header of sn/.
-      Error details shown in the status message. Status bar remains the same.
+      Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `note`<br>
       Expected: No note added due to missing field headers.
@@ -2604,6 +2615,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `note sn/ntuc1 nt/`<br>
       Expected: No note added due to empty input for field note.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Other incorrect stock view commands to try: `not`.
+      Expected: No note added due to unknown command.
       Error details shown in the status message. Suggestion message will be shown too.
 
 ### Deleting a note from stock
@@ -2644,7 +2659,11 @@ testers are expected to do more *exploratory* testing.
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `notedelete sn/ntuc1 ni/`<br>
-      Expected: No note delete due to empty input for field note index.
+      Expected: No note deleted due to empty input for field note index.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Other incorrect note delete commands to try: `notedel`.
+      Expected: No note deleted due to unknown command.
       Error details shown in the status message. Suggestion message will be shown too.
 
 ### Toggling between tabs in Warenager
@@ -2663,7 +2682,7 @@ testers are expected to do more *exploratory* testing.
        already at the tab.
        Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect statistics commands to try: `ta`, `tab sn/ntuc1`
+   1. Other incorrect statistics commands to try: `ta`, `tab sn/ntuc1`.
       Expected: Similar to previous.
 
 ### Viewing details of a stock.
@@ -2683,15 +2702,19 @@ testers are expected to do more *exploratory* testing.
         Error details shown in the status message. Suggestion message will be shown too.
 
     1. Test case: `stockview sn/`.
-             Expected: No note delete due to invalid command format of empty input for field note index.
-             Error details shown in the status message. Suggestion message will be shown too.
+        Expected: No stock viewed due to invalid command format of empty input for field note index.
+        Error details shown in the status message. Suggestion message will be shown too.
 
     1. Test case: `stockview`.
-             Expected: No note delete due to invalid command format of missing header in input.
-             Error details shown in the status message. Suggestion message will be shown too.
+        Expected: No stock viewed due to invalid command format of missing header in input.
+        Error details shown in the status message. Suggestion message will be shown too.
 
     1. Test case: `stockview q/1111`<br>
-          Expected: No note deleted due to invalid field header q/.
+        Expected: No stock viewed due to invalid field header q/.
+        Error details shown in the status message. Suggestion message will be shown too.
+          
+    1. Other incorrect stock view commands to try: `stock`, `stockview 1111`.
+          Expected: No stock viewed due to unknown / invalid command format.
           Error details shown in the status message. Suggestion message will be shown too.
 
 ### Clearing data in Warenager
@@ -2703,7 +2726,7 @@ testers are expected to do more *exploratory* testing.
         Details of the successful clearing is shown.
       
     1. Test case: `clear all`<br>
-       Expected: Warenager do not clear any data.
+       Expected: Warenager does not clear any data.
        Error details shown in the status message. Suggestion message will be shown too.
 
    1. Other incorrect statistics commands to try: `cle`, `clear sn/ntuc1`
@@ -2725,7 +2748,4 @@ testers are expected to do more *exploratory* testing.
               
     1. While not in a Warenager session, corrupt the json files under `/data` directory. Then start Warenager.
        Expected: Warenager senses the corrupted files, replaces them with empty content and functions as per normal.
-        
-                
-        
 
