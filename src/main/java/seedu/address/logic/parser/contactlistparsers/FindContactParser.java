@@ -21,13 +21,14 @@ import seedu.address.model.contact.FindContactCriteria;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new FindContactCommand object
+ * Parses input arguments and creates a new FindContactCommand object.
  */
 public class FindContactParser implements Parser<FindContactCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindContactCommand
      * and returns a FindContactCommand object for execution.
+     *
      * @throws ParseException If the user input does not conform the expected format.
      */
     public FindContactCommand parse(String args) throws ParseException {

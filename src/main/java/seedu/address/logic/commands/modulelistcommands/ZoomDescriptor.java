@@ -4,19 +4,25 @@ import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
 
 /**
- * Stores the details of the zoom link to be added to a module and the lesson the link belongs to.
+ * Stores the details of a {@code ZoomLink} and the {@code ModuleLesson} the link is mapped to.
  */
 public class ZoomDescriptor {
 
-    /** ZoomLink object that contains the zoom link to be added. */
+    /** ZoomLink object that encapsulates a zoom link. */
     private ZoomLink zoomLink;
-    /** ModuleLesson object containing the details of the module lesson which the zoom link belongs to. */
+    /** ModuleLesson object encapsulating the details of the module lesson which the zoom link is mapped to. */
     private ModuleLesson moduleLesson;
 
+    /**
+     * Creates and initialises a new ZoomDescriptor with none of the fields initialised.
+     */
     public ZoomDescriptor() {}
 
     /**
-     * Copy constructor.
+     * Creates and initialises a new ZoomDescriptor encapsulating the zoom link and module lesson
+     * specified in {@code toCopy}.
+     *
+     * @param toCopy ZoomDescriptor object that contains the zoom link and module lesson to be copied.
      */
     public ZoomDescriptor(ZoomDescriptor toCopy) {
         setZoomLink(toCopy.getZoomLink());

@@ -20,7 +20,7 @@ import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
 
 /**
- * Edits an existing zoom link of a module in the module list.
+ * Encapsulates methods and information to edit an existing zoom link of a module in the module list.
  */
 public class EditZoomLinkCommand extends Command {
 
@@ -34,7 +34,7 @@ public class EditZoomLinkCommand extends Command {
             + PREFIX_ZOOM_LINK + "EDITED_ZOOM_LINK\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "lecture "
-            + PREFIX_ZOOM_LINK + "https://nus-sg.zoom.us/j/bascu637gdy";
+            + PREFIX_ZOOM_LINK + "https://nus-sg.zoom.us/editedLink";
 
     public static final String MESSAGE_EDIT_ZOOM_SUCCESS = "Edited Zoom: %1$s for lesson %2$s";
     public static final String MESSAGE_INVALID_LESSON = "This lesson does not exist in the module";
@@ -42,21 +42,22 @@ public class EditZoomLinkCommand extends Command {
 
     private final Logger logger = LogsCenter.getLogger(EditZoomLinkCommand.class);
 
+    /** Index object representing the index of the module which contains the zoom link to be edited. */
     private final Index index;
+    /** ZoomDescriptor object that encapsulates details of the zoom link to be edited. */
     private final ZoomDescriptor zoomDescriptor;
 
     /**
-     * Creates and initialises a new EditZoomLinkCommand object.
+     * Creates and initialises a new EditZoomLinkCommand object to edit the zoom link of a module.
      *
-     * @param index Index of the module containing the zoom link to be edited.
-     * @param zoomDescriptor EditZoomDescriptor object that stores details of the edited zoom link
-     *                           and the module lesson that the zoom link to be edited belongs to.
+     * @param index Index object representing the index of the target module in the filtered module list.
+     * @param zoomDescriptor ZoomDescriptor object that stores details of the edited zoom link.
      */
     public EditZoomLinkCommand(Index index, ZoomDescriptor zoomDescriptor) {
         requireAllNonNull(index, zoomDescriptor);
-        assert index.getZeroBased() >= 0 : "zero based index must be non-negative";
+        assert index.getZeroBased() >= 0 : "Zero-based index must be non-negative";
         this.index = index;
-        this.zoomDescriptor = zoomDescriptor;
+        this.zoomDescriptor = new ZoomDescriptor(zoomDescriptor);
         logger.info("Editing the zoom link of the module at index " + index.getOneBased());
     }
 

@@ -63,7 +63,7 @@ public class EditContactCommand extends Command {
     /**
      * Creates and initialises a new EditContactCommand object to edit a contact in the contact list.
      *
-     * @param index Index object encapsulating the index of the target contact in the filtered contact list to edit.
+     * @param index Index object encapsulating the index of the target contact in the filtered contact list.
      * @param editContactDescriptor EditContactDescriptor object that encapsulates details to edit the contact with.
      */
     public EditContactCommand(Index index, EditContactDescriptor editContactDescriptor) {
@@ -146,17 +146,24 @@ public class EditContactCommand extends Command {
      * corresponding field value of the contact.
      */
     public static class EditContactDescriptor {
+
         private ContactName name;
         private Email email;
         private Telegram telegram;
         private boolean isTelegramDeleted = false;
         private Set<Tag> tags;
 
+        /**
+         * Creates and initialises a new EditContactDescriptor with none of the contact fields initialised.
+         */
         public EditContactDescriptor() {}
 
         /**
-         * Copy constructor.
+         * Creates and initialises a new EditContactDescriptor encapsulating the contact fields specified
+         * in {@code toCopy}.
          * A defensive copy of {@code tags} is used internally.
+         *
+         * @param toCopy EditContactDescriptor object which contains edited contact fields to be copied.
          */
         public EditContactDescriptor(EditContactDescriptor toCopy) {
             setName(toCopy.name);
@@ -167,10 +174,13 @@ public class EditContactCommand extends Command {
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Determines if at least one contact field is edited.
+         *
+         * @return True if at least one contact field is edited, false otherwise.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, email, telegram, tags) || isTelegramDeleted;
+            boolean isAtLeastOneFieldEdited = CollectionUtil.isAnyNonNull(name, email, telegram, tags);
+            return isAtLeastOneFieldEdited || isTelegramDeleted;
         }
 
         public void setName(ContactName name) {
@@ -208,6 +218,8 @@ public class EditContactCommand extends Command {
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
+         *
+         * @param tags Set of edited tags.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
@@ -217,6 +229,8 @@ public class EditContactCommand extends Command {
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
+         *
+         * @return Optional object describing the set of edited tags.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();

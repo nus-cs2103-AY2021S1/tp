@@ -20,6 +20,9 @@ import seedu.address.logic.commands.contactlistcommands.SortContactCommand;
 import seedu.address.logic.parser.FeatureParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Encapsulates method and information to parse the user input.
+ */
 public class ContactListParser implements FeatureParser {
 
     /**
@@ -28,14 +31,16 @@ public class ContactListParser implements FeatureParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
-     * Parses user input into command for execution.
+     * Parses the user input into a command for execution.
      *
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @param userInput Full user input string.
+     * @return Command object based on the user input.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public Command parseCommand(String userInput) throws ParseException {
+
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
@@ -62,9 +67,6 @@ public class ContactListParser implements FeatureParser {
 
         case ListContactCommand.COMMAND_WORD:
             return new ListContactCommand();
-
-        //case ExitCommand.COMMAND_WORD:
-            //return new ExitCommand();
 
         case ImportantContactCommand.COMMAND_WORD:
             return new ImportantContactParser().parse(arguments);

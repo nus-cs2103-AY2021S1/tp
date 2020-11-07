@@ -39,7 +39,7 @@ public class DeleteContactCommand extends Command {
      * Creates and initialises a DeleteContactCommand object for the deletion of a contact from the contact list.
      *
      * @param targetIndex Index object encapsulating the index of the target contact in the
-     *                    filtered contact list to delete.
+     *                    filtered contact list.
      */
     public DeleteContactCommand(Index targetIndex) {
         requireNonNull(targetIndex);

@@ -29,26 +29,26 @@ public class DeleteZoomLinkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "lecture";
 
-    public static final String MESSAGE_DELETE_ZOOM_SUCCESS = "Deleted Zoom from lesson %1$s in module %2$s";
+    public static final String MESSAGE_DELETE_ZOOM_SUCCESS = "Deleted zoom link from lesson %1$s in module %2$s";
     public static final String MESSAGE_INVALID_ZOOM_LINK = "The zoom link for the specified lesson does not exist";
 
     private final Logger logger = LogsCenter.getLogger(DeleteZoomLinkCommand.class);
 
-    /** Index of the module in the module list which contains the zoom link to be deleted. */
+    /** Index object representing the index of the module which contains the zoom link to be deleted. */
     private final Index targetIndex;
-    /** Module Lesson object which the zoom link to be deleted belongs to. */
+    /** Module Lesson object which the zoom link to be deleted is mapped to. */
     private final ModuleLesson lesson;
 
     /**
-     * Creates and initialises a DeleteZoomLinkCommand object.
+     * Creates and initialises a DeleteZoomLinkCommand object to delete a zoom link from a module.
      *
-     * @param targetIndex Index object encapsulating the index of the module in the
-     *                    module list which contains the zoom link to be deleted.
-     * @param lesson Module Lesson object which the zoom link to be deleted belongs to.
+     * @param targetIndex Index object encapsulating the index of the target module in the
+     *                    filtered module list.
+     * @param lesson Module Lesson object which the zoom link to be deleted is mapped to.
      */
     public DeleteZoomLinkCommand(Index targetIndex, ModuleLesson lesson) {
         requireAllNonNull(targetIndex, lesson);
-        assert targetIndex.getZeroBased() >= 0 : "zero based index must be non-negative";
+        assert targetIndex.getZeroBased() >= 0 : "Zero-based index must be non-negative";
         logger.info("Deleting zoom link for module at index " + targetIndex.getOneBased());
         this.targetIndex = targetIndex;
         this.lesson = lesson;
@@ -72,7 +72,7 @@ public class DeleteZoomLinkCommand extends Command {
         Module updatedModule = moduleToUpdate.deleteZoomLink(lesson);
         model.setModule(moduleToUpdate, updatedModule);
         model.commitContactList();
-        logger.info("Zoom Link has been deleted");
+        logger.info("Zoom Link has been deleted from the module");
         return new CommandResult(String.format(MESSAGE_DELETE_ZOOM_SUCCESS,
                 lesson, moduleToUpdate.getName()));
     }

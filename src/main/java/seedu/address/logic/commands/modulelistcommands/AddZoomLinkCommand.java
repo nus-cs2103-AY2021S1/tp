@@ -20,7 +20,7 @@ import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
 
 /**
- * Adds a zoom link to a module.
+ * Encapsulates methods and information to add a zoom link to a module.
  */
 public class AddZoomLinkCommand extends Command {
 
@@ -30,7 +30,7 @@ public class AddZoomLinkCommand extends Command {
             + ": Adds a zoom link for a specific lesson to the module. "
             + "Parameters: " + "INDEX (must be a positive integer) "
             + PREFIX_NAME + "MODULE_LESSON "
-            + PREFIX_ZOOM_LINK + "ZOOM_LINK "
+            + PREFIX_ZOOM_LINK + "ZOOM_LINK \n"
             + "Example: " + COMMAND_WORD + " "
             + "1 " + PREFIX_NAME + "lecture "
             + PREFIX_ZOOM_LINK + "https://nus-sg.zoom.us/j/uasoihd637bf";
@@ -41,17 +41,20 @@ public class AddZoomLinkCommand extends Command {
 
     private final Logger logger = LogsCenter.getLogger(AddZoomLinkCommand.class);
 
+    /** Index object representing the index of the module which the zoom link will be added to. */
     private final Index targetIndex;
+    /** ZoomDescriptor object that encapsulates details of the zoom link to be added. */
     private final ZoomDescriptor descriptor;
 
     /**
-     * Creates and initialises a new AddZoomLinkCommand object.
+     * Creates and initialises a new AddZoomLinkCommand object to add a zoom link to a module.
      *
-     * @param targetIndex Index object representing the index of the module in the module list.
-     * @param descriptor Encapsulates details of the zoom link to be added.
+     * @param targetIndex Index object representing the index of the target module in the filtered module list.
+     * @param descriptor ZoomDescriptor object that encapsulates details of the zoom link to be added.
      */
     public AddZoomLinkCommand(Index targetIndex, ZoomDescriptor descriptor) {
         requireAllNonNull(targetIndex, descriptor);
+        assert targetIndex.getZeroBased() >= 0 : "Zero-based index must be non-negative";
         logger.info("Executing command to add a zoom link to a module");
         this.targetIndex = targetIndex;
         this.descriptor = new ZoomDescriptor(descriptor);
@@ -80,7 +83,7 @@ public class AddZoomLinkCommand extends Command {
 
         Module updatedModule = moduleToAddLink.addZoomLink(moduleLesson, zoomLink);
         model.setModule(moduleToAddLink, updatedModule);
-        logger.info("Zoom link added to the module");
+        logger.info("Zoom link has been added to the module");
         model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_ADD_ZOOM_SUCCESS, zoomLink));
     }
