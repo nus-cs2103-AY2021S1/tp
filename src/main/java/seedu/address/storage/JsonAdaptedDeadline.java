@@ -11,7 +11,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.deadline.DeadlineDateTime;
@@ -21,7 +20,7 @@ import seedu.address.model.task.deadline.Status;
 
 
 /**
- * Jackson-friendly version of {@link Task}.
+ * Jackson-friendly version of {@link Deadline}.
  */
 class JsonAdaptedDeadline {
 

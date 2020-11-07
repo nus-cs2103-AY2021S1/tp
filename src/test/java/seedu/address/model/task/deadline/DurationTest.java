@@ -24,7 +24,8 @@ public class DurationTest {
         assertFalse(Duration.isValidDuration(Duration.NULL_VALUE)); // default value
 
         // valid duration
-        assertTrue(Duration.isValidDuration(1)); // 1
+        assertTrue(Duration.isValidDuration(1)); // smallest positive number
         assertTrue(Duration.isValidDuration(120)); // positive numbers only
+        assertTrue(Duration.isValidDuration(Integer.MAX_VALUE)); // maximum boundary value
     }
 }
