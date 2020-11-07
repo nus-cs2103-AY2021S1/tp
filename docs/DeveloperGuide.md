@@ -417,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User chooses to clear the entire client list and archive list.
+1. User chooses to clear the active client list and archived client list.
 2. System gives success message.
 
     Use case ends.  
