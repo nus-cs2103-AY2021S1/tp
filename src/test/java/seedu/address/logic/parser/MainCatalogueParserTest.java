@@ -56,7 +56,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Status;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
@@ -96,8 +95,8 @@ public class MainCatalogueParserTest {
         Project project = new ProjectBuilder().build();
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                        + INDEX_FIRST_PROJECT.getOneBased() + " " + ProjectUtil.getEditProjectDescriptorDetails(descriptor),
-                Status.PROJECT_LIST);
+                + INDEX_FIRST_PROJECT.getOneBased() + " "
+                + ProjectUtil.getEditProjectDescriptorDetails(descriptor), Status.PROJECT_LIST);
         assertEquals(new EditCommand(INDEX_FIRST_PROJECT, descriptor), command);
     }
 
@@ -182,7 +181,7 @@ public class MainCatalogueParserTest {
         EditTaskCommand.EditTaskDescriptor descriptor =
                 new EditTaskDescriptorBuilder().withTaskName(SampleDataUtil.getTask1().get(0)).build();
         EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
-                EditTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased()+TASK_B_NAME, Status.PROJECT);
+                EditTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + TASK_B_NAME, Status.PROJECT);
         assertEquals(new EditTaskCommand(INDEX_FIRST_TASK, descriptor), command);
     }
 
@@ -235,8 +234,8 @@ public class MainCatalogueParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand("", Status.PROJECT_LIST));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand("", Status.PROJECT_LIST));
     }
 
     @Test
