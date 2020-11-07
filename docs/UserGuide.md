@@ -86,7 +86,7 @@ You may want to familarize yourself with them before moving on to the next secti
 
 Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all components of the GUI.
 
-<img src="images/tCheckInfographic.png" width="1000" height="1428" />
+<img src="images/tCheckInfographic.png" width="1000" height="700" />
 Figure 2 - Annotated GUI of tCheck
 
 #### 3.2.4 Prefix process and usage
