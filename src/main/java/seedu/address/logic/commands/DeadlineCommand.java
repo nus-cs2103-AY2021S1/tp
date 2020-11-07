@@ -27,7 +27,7 @@ public class DeadlineCommand extends Command {
             + "[" + PREFIX_TAG + "TAG] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Do experiment "
-            + PREFIX_DATE_TIME + "28-10-2020 12:00 "
+            + PREFIX_DATE_TIME + "18-11-2020 12:00 "
             + PREFIX_DESCRIPTION + "Ferment grapes "
             + PREFIX_TAG + "LSM1301";
 
