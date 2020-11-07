@@ -231,7 +231,6 @@ Example:
 Let's say you want to list all the ingredients. 
 You can follow these instructions.
 
-Steps:
 1. Type `i-list` into the _Command Box_.
 1. Press "Enter" on your keyboard to execute the command.
 
@@ -256,7 +255,6 @@ Format: `i-find KEYWORD [MORE_KEYWORDS]`
 Example: Let's say you want to find the ingredients that have names containing the keyword `Tea`.
 You can follow these instructions:
 
-Steps:
 1. Type `i-find Tea Sugar` into the _Command Box_.
 2. Press "Enter" to execute the command.
 
@@ -276,7 +274,6 @@ Format: `i-reset-all`
 Example: Let's say you want to reset all ingredients' levels to zero, and the ingredient's levels are not currently all at zero.
 You can follow these instructions:
 
-Steps:
 1. Type ` i-reset-all` into the _Command Box_.
 2. Press "Enter" to execute the command.
 
@@ -303,7 +300,6 @@ for details on the pre-determined default levels of different types of ingredien
 Example: Let's say you want to find out which ingredients you need to restock.
 You can follow these instructions:
 
-Steps:
 1. Type ` i-restock` into the _Command Box_.
 2. Press `"Enter" to execute the command.
 
@@ -493,9 +489,19 @@ Examples:
 ### 4. Commands - General <a name="commands-general"></a>
 #### 4.1 Viewing help : `help`
 
-Displays a brief explanation of the list of commands, and a link to the help page, which is the user guide.
+Show a message explaining how to access the help page, which is the tCheck User Guide.
 
 Format: `help`
+
+Example: Let's say you want to find out how tCheck can help you manage the employees.
+You can follow these instructions:
+
+1. Type `help` into the _Command Box_.
+2. Press "Enter" to execute the command.
+
+Outcome:
+
+1. tCheck will open the Help window, which shows a message explaining how to access the help page.
 
 #### 4.2 Exiting the program : `exit`
 
