@@ -195,9 +195,9 @@ Given below is the activity diagram a user will go through when creating a routi
 
 ![Routine create activity](./images/RoutineCreateActivityDiagram.png)
 
-####Design Considerations
+#### Design Considerations
 
-#####Aspect: Whether to create a Routine and add exercises simultaneously in the same command
+##### Aspect: Whether to create a Routine and add exercises simultaneously in the same command
 
 * **Alternative 1 (Current implementation)**: No, there should be a seperate command to add Exercise into Routine
 
@@ -213,7 +213,7 @@ Alternative 1 was chosen for the command to add an Exercise to a Routine to be s
  we wanted to adhere to the Seperation of Concerns Principle. Even though, it comes at the cost of user's time, we
   believe that the trade-off to gain lower coupling and prevent ripple effects across fitNUS.
 
-#####Aspect: Whether to implement Tag for Routine
+##### Aspect: Whether to implement Tag for Routine
 
 * **Alternative 1 (Current implementation)**: No, there is no Tag function for Routine.
 
