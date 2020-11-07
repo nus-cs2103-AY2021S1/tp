@@ -287,7 +287,7 @@ Examples:
 - `students` followed by `delete-student 2` deletes the 2nd student in ResiReg.
 - `students n/Roy` followed by `delete-student 1` deletes the 1st student (if any) in the results of the `students` command.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 If you delete a student erroneously, you should undo the command immediately. However, if you deleted the student a while ago, and wish to restore it, then you should use the restore command (see below).
 </div>
 
@@ -321,8 +321,8 @@ Examples:
 
 Sets the amount of time (in days) that bin items stay in the bin before they are permanently removed.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The default time for which a bin item stays in the bin is **30 days**. Use this command if this does not suit your needs.
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+The default time for which a bin item stays in the bin is <b>30 days</b>. Use this command if this does not suit your needs.
 </div>
 
 Format: `set-bin-expiry <number_of_days>​`
@@ -430,8 +430,8 @@ Reverses the most recent undo command.
 in the command box will execute the command as well.
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-`undo` and `redo` support the undoing and redoing respectively of commands
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+<code>undo</code> and <code>redo</code> support the undoing and redoing respectively of commands
 that change the state of ResiReg, which comprises of: students, rooms, allocations, semesters and bin items.
 </div>
 
@@ -440,7 +440,8 @@ Lists all nonempty commands that were previously entered in chronological order.
 n is also listed for each command, in front of it and separated by a tab. 
 This integer specifies that the command is the n<sup>th</sup> command to be entered.
 
-<div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>up</kbd> and <kbd>down</kbd> arrows will 
+<div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>ctrl-h</kbd> keyboard combination
+in the command box will execute the command as well. Additionally, pressing the <kbd>up</kbd> and <kbd>down</kbd> arrows will 
 display the previous and next command respectively in the command box.
 
 </div>
