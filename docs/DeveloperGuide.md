@@ -667,7 +667,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to review flashcards
 2.  SWEe! enters review mode
 3.  User enters `↓ key` to show answer
-4.  User enters `→ key` key to show the next flashcard or `← key` to show the previous flashcard in the list
+4.  User enters `→ key` to show the next flashcard or `← key` to show the previous flashcard in the list
+
     Steps 3-4 are repeated until the user finishes reviewing all flashcards or until the user enters `q` key to quit review mode
 
     Use case ends.
