@@ -18,7 +18,7 @@ import seedu.address.model.contact.Contact;
 
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Contact} objects to be used in tests.
  */
 public class TypicalContacts {
 
