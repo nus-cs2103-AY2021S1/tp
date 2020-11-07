@@ -26,4 +26,9 @@ public class TotalCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_RESULT, total));
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj == this || obj instanceof TotalCommand;
+    }
 }
