@@ -37,8 +37,7 @@ public class ParserUtilTest {
     private static final String VALID_NAME = "Ratatouille";
     private static final String VALID_INGREDIENT_NAME = "Potato";
     private static final String VALID_INGREDIENT_QUANTITY = "250.0 g";
-    //45 decimal places supported by float
-    private static final String VALID_INGREDIENT_QUANTITY_1 = "0.000000000000000000000000000000000000000000005 g";
+    private static final String VALID_INGREDIENT_QUANTITY_1 = "0.00000005 g";
     private static final String VALID_INGREDIENT = VALID_INGREDIENT_NAME + " -" + VALID_INGREDIENT_QUANTITY;
     private static final String VALID_INGREDIENT_1 = VALID_INGREDIENT_NAME + " -" + VALID_INGREDIENT_QUANTITY_1;
     private static final String VALID_TAG_1 = "healthy";
@@ -99,37 +98,37 @@ public class ParserUtilTest {
 
     @Test
     public void parseIngredient_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseIngredient((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIngredients((String) null));
     }
 
     @Test
     public void parseIngredient_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIngredient(INVALID_INGREDIENT));
-        assertThrows(ParseException.class, () -> ParserUtil.parseIngredient(INVALID_INGREDIENT_0));
-        assertThrows(ParseException.class, () -> ParserUtil.parseIngredient(INVALID_INGREDIENT_1));
-        assertThrows(ParseException.class, () -> ParserUtil.parseIngredient(INVALID_INGREDIENT_2));
-        assertThrows(ParseException.class, () -> ParserUtil.parseIngredient(INVALID_INGREDIENT_3));
-        assertThrows(ParseException.class, () -> ParserUtil.parseIngredient(INVALID_INGREDIENT_4));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIngredients(INVALID_INGREDIENT));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIngredients(INVALID_INGREDIENT_0));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIngredients(INVALID_INGREDIENT_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIngredients(INVALID_INGREDIENT_2));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIngredients(INVALID_INGREDIENT_3));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIngredients(INVALID_INGREDIENT_4));
     }
 
     @Test
     public void parseIngredient_validValueWithoutWhitespace_returnsIngredient() throws Exception {
         Ingredient expectedIngredient = new Ingredient(VALID_INGREDIENT);
-        assertEquals(expectedIngredient.toString(), ParserUtil.parseIngredient(VALID_INGREDIENT));
+        assertEquals(expectedIngredient.toString(), ParserUtil.parseIngredients(VALID_INGREDIENT));
         Ingredient expectedIngredient1 = new Ingredient(VALID_INGREDIENT_1);
-        assertEquals(expectedIngredient1.toString(), ParserUtil.parseIngredient(VALID_INGREDIENT_1));
+        assertEquals(expectedIngredient1.toString(), ParserUtil.parseIngredients(VALID_INGREDIENT_1));
     }
 
     @Test
     public void parseIngredient_validValueWithWhitespace_returnsTrimmedIngredient() throws Exception {
         String ingredientsWithWhitespace = WHITESPACE + VALID_INGREDIENT + WHITESPACE;
         Ingredient expectedIngredient = new Ingredient(VALID_INGREDIENT);
-        assertEquals(expectedIngredient.toString(), ParserUtil.parseIngredient(ingredientsWithWhitespace));
+        assertEquals(expectedIngredient.toString(), ParserUtil.parseIngredients(ingredientsWithWhitespace));
     }
 
     @Test
     public void parseQuantity_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseIngredient((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIngredients((String) null));
     }
 
     @Test

@@ -73,19 +73,19 @@ public class EditIngredientCommandParserTest {
         //empty ingredient names
         String ingredientWithInvalidName1 =
                 CommandTestUtil.missingIngredientField(CommandTestUtil.Field.EMPTY_IG_NAME_1);
-        assertParseFailure(parser, ingredientWithInvalidName1, Ingredient.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ingredientWithInvalidName1, EditIngredientCommand.MESSAGE_ONE_INGREDIENT);
 
         String ingredientWithInvalidName2 =
                 CommandTestUtil.missingIngredientField(CommandTestUtil.Field.EMPTY_IG_NAME_2);
-        assertParseFailure(parser, ingredientWithInvalidName2, Ingredient.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ingredientWithInvalidName2, EditIngredientCommand.MESSAGE_ONE_INGREDIENT);
 
         String ingredientWithInvalidName3 =
                 CommandTestUtil.missingIngredientField(CommandTestUtil.Field.EMPTY_IG_NAME_3);
-        assertParseFailure(parser, ingredientWithInvalidName3, Ingredient.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ingredientWithInvalidName3, EditIngredientCommand.MESSAGE_ONE_INGREDIENT);
 
         String ingredientWithInvalidName4 =
                 CommandTestUtil.missingIngredientField(CommandTestUtil.Field.EMPTY_IG_NAME_4);
-        assertParseFailure(parser, ingredientWithInvalidName4, Ingredient.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ingredientWithInvalidName4, EditIngredientCommand.MESSAGE_ONE_INGREDIENT);
 
         // invalid ingredient quantity specified
         String ingredientWithInvalidQuantity =

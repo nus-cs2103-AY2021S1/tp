@@ -1,0 +1,23 @@
+@startuml
+start
+:user inputs add command: add;
+:Logic executes add command;
+:AddCommandParser parses the command: add;
+
+if () then ([non-optional fields are specified completely])
+:execute AddCommand;
+
+    if () then ([is not duplicate item])
+    :item is added;
+
+    else ([is a duplicate])
+    :throw command exception;
+    endif
+
+else ([non-optional fields are specified incompletely])
+    :throw parse exception;
+
+endif
+stop
+
+@enduml

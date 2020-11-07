@@ -1,0 +1,25 @@
+@startuml
+start
+:user executes select recipe command: selectR 1;
+:Logic executes select recipe command;
+:SelectRecipeCommandParser parses the command: selectR 1;
+
+if () then ([index > 0 and index is integer])
+:execute SelectRecipeCommand;
+
+        if () then ([is valid index])
+        :return the recipe to be shown;
+        :open left drawer;
+
+        else ([is invalid index])
+        :throw command exception;
+
+        endif
+
+else ([index <= 0 or index not integer])
+    :throw parse exception;
+
+endif
+stop
+
+@enduml
