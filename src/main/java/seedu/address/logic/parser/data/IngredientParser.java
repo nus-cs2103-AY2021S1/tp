@@ -19,7 +19,7 @@ import seedu.address.model.ingredient.Ingredient;
  * Parse user inputted ingredients.
  */
 public class IngredientParser {
-    private static int quantityLimit = 1000000;
+    private static int quantityLimit = 10;
     /**
      * Parses a String made of 1 or more ingredient name and optional quantity then
      * adds them to an ArrayList of Ingredient objects to be returned
