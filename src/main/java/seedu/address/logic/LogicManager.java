@@ -14,7 +14,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.food.MenuItem;
 import seedu.address.model.order.OrderItem;
-import seedu.address.model.vendor.ReadOnlyVendorManager;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.storage.Storage;
 

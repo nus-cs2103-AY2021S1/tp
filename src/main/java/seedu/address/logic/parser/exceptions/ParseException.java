@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.exceptions;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Represents a parse error encountered by a parser.

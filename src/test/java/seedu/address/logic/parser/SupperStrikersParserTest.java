@@ -1,9 +1,16 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_AMBIGUOUS_COMMAND;
+
+import java.util.ArrayList;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeletePresetCommand;
 import seedu.address.logic.commands.MenuCommand;
 import seedu.address.logic.commands.PriceCommand;
@@ -16,7 +23,6 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.commands.VendorCommand;
 import seedu.address.logic.commands.enums.Inequality;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.food.PriceWithinRangePredicate;
 import seedu.address.model.tag.Tag;
@@ -24,17 +30,8 @@ import seedu.address.model.vendor.Address;
 import seedu.address.model.vendor.Name;
 import seedu.address.model.vendor.Phone;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.commons.core.Messages.MESSAGE_AMBIGUOUS_COMMAND;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
 class SupperStrikersParserTest {
-    SupperStrikersParser supperStrikersParser = new SupperStrikersParser();
+    private SupperStrikersParser supperStrikersParser = new SupperStrikersParser();
 
     @Test
     void parseCommand_addCommand_success() {
