@@ -432,4 +432,4 @@ Example Scenario:
 | **DeleteApplicant**   | `dela` <br> e.g., `dela 1`                                                                       |
 | **AddApplication**    | `addapp INDEX [filepath]` <br> e.g., `addapp 1 C:\Users\Public\Downloads\resume.txt`             |
 | **DeleteApplication** | `delapp INDEX` <br> e.g., `delapp 1`                                                       |
-| **SetAppStatus**      | `setas INDEX NEW_APPLICATION_STATUS` <br> e.g., `setas 1 processing`                               |
+| **SetAppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g., `setas 1 as/processing`                               |
