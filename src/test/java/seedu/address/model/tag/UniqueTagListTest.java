@@ -164,4 +164,13 @@ public class UniqueTagListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueTagList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void iterator_tagInObservableList_success() {
+        Tag tag = new TagBuilder().withTagName("CS2103T").build();
+        uniqueTagList.add(tag);
+        UniqueTagList expectedUniqueTagList = new UniqueTagList();
+        expectedUniqueTagList.add(tag);
+        assertFalse(uniqueTagList.iterator().equals(expectedUniqueTagList.iterator()));
+    }
 }
