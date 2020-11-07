@@ -1,4 +1,5 @@
 package seedu.address.logic.parser;
+
 import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DAY_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_DATE_CS2100;
@@ -39,7 +40,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODEL;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -62,7 +63,7 @@ public class EditLessonCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsEditLessonCommand() {
-        Index index = INDEX_FIRST_TASK;
+        Index index = INDEX_FIRST_MODEL;
         //edit title
         EditLessonCommand.EditLessonDescriptor editLessonDescriptor = new EditLessonCommand.EditLessonDescriptor();
         editLessonDescriptor.setTitle(new Title(VALID_TITLE_CS2000));

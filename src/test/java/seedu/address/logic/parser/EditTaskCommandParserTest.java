@@ -29,7 +29,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODEL;
 
 import java.time.LocalTime;
 
@@ -52,7 +52,7 @@ public class EditTaskCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsEditTaskCommand() {
-        Index index = INDEX_FIRST_TASK;
+        Index index = INDEX_FIRST_MODEL;
         //edit title
         EditTaskCommand.EditTaskDescriptor editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor();
         editTaskDescriptor.setTitle(new Title(VALID_TITLE_MEETING));
