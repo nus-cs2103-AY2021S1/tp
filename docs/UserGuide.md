@@ -585,6 +585,7 @@ Action       | Format, Examples
 **ListMacro**| `listmacro [macro]` <br> e.g., `listmacro kfc`
 **Tag**      | `tag INDEX -t TAG_NAME` <br> e.g., `tag 1 -t Lunch`
 **UnTag**    | `untag INDEX -t TAG_NAME` <br> e.g., `untag 1 -t Lunch`
+**Undo**     | `undo`
 
 ## 8. Appendix A
 List of supported input date formats, sorted from highest parsing priority to lowest parsing priority
