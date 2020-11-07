@@ -31,6 +31,7 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     @Override
     public SortCommand parse(String args) throws ParseException {
+        logger.log(Level.INFO, "Starting to parse sort command");
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
@@ -65,9 +66,9 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         try {
             Field field = Field.valueOf(argMultimap.getValue(PREFIX_SORT_FIELD).get().toUpperCase());
+            logger.log(Level.INFO, "Finished parsing sort command successfully");
             return new SortCommand(field, isReversed);
         } catch (IllegalArgumentException ex) {
-            logger.log(Level.WARNING, "Field not valid");
             throw new ParseException(MESSAGE_INVALID_FIELD);
         }
     }
