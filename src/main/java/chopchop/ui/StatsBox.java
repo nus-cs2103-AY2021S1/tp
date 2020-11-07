@@ -6,7 +6,6 @@ package chopchop.ui;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
 import chopchop.logic.commands.CommandResult;
@@ -63,10 +62,7 @@ public class StatsBox extends UiPart<Region> {
      * Clears the message and goes back to the recent recipes view
      */
     public void clearMessage() {
-        var list = this.model.getRecentlyUsedRecipes(10)
-            .stream()
-            .map(u -> Pair.of(u.getName(), u.getPrintableDate()))
-            .collect(Collectors.toList());
+        var list = this.model.getRecentlyUsedRecipes(10);
 
         this.showRecentRecipes(list.isEmpty() ? SUBTITLE_NO_RECIPES : SUBTITLE_DEFAULT, list);
     }

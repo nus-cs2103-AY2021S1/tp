@@ -22,7 +22,7 @@
         <VBox styleClass="recipe-tags-container">
             <FlowPane fx:id="tagList" hgap="8" vgap="6"/>
         </VBox>
-        <ScrollPane styleClass="recipe-ingredients-container" VBox.vgrow="ALWAYS" hbarPolicy="NEVER">
+        <ScrollPane styleClass="recipe-ingredients-container" VBox.vgrow="ALWAYS" hbarPolicy="NEVER" fitToWidth="true">
             <VBox>
                 <Label styleClass="recipe-ingredients-header" fx:id="ingredientHeader" underline="true"/>
                 <TextFlow styleClass="recipe-ingredients" fx:id="ingredientList"/>

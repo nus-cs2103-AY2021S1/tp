@@ -13,9 +13,9 @@
         <TextFlow styleClass="stats-subtitle"><children>
         	<Text fx:id="subtitle"/>
 		</children></TextFlow>
-
-        <ScrollPane fitToWidth="true"><content>
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"><content>
             <VBox fx:id="recipeList" spacing="7"></VBox>
         </content></ScrollPane>
+
     </VBox>
 </StackPane>

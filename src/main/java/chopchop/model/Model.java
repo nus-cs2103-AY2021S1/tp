@@ -183,7 +183,7 @@ public interface Model {
     /** Sets the IngredientUsageList */
     void setIngredientUsageList(UsageList<IngredientUsage> rl);
 
-    List<RecipeUsage> getRecentlyUsedRecipes(int n);
+    List<Pair<String, String>> getRecentlyUsedRecipes(int n);
 
-    List<IngredientUsage> getRecentlyUsedIngredients(int n);
+    List<Pair<String, String>> getRecentlyUsedIngredients(int n);
 }

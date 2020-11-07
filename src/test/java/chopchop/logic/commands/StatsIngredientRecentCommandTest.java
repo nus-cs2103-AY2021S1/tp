@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import chopchop.commons.util.Pair;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.UsageList;
+import chopchop.model.usage.Usage;
 import chopchop.testutil.StubbedUsageModel;
 
 class StatsIngredientRecentCommandTest {
@@ -56,7 +56,7 @@ class StatsIngredientRecentCommandTest {
     @Test
     public void execute_oneRecent() {
         var expectedRes = CommandResult.statsMessage(new ArrayList<>(
-                List.of(new Pair<>(INGREDIENT_A_A.getName(), INGREDIENT_A_A.getPrintableDate()))),
+                List.of(INGREDIENT_A_A.getListViewPair())),
             "Here are your recently used ingredients");
         model.setIngredientUsageList(new UsageList<>(List.of(INGREDIENT_A_A)));
         var cmd = new StatsIngredientRecentCommand();
@@ -67,7 +67,7 @@ class StatsIngredientRecentCommandTest {
     @Test
     public void execute_sortedUsages() {
         var expectedRes = CommandResult.statsMessage(getListViewIngredientList().stream()
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
+                .map(Usage::getListViewPair).collect(Collectors.toList()),
             "Here are your recently used ingredients");
         model.setIngredientUsageList(getIngredientUsageList());
         var cmd = new StatsIngredientRecentCommand();
@@ -78,7 +78,7 @@ class StatsIngredientRecentCommandTest {
     @Test
     public void execute_unsortedUsages() {
         var expectedRes = CommandResult.statsMessage(getListViewIngredientList().stream()
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
+                .map(Usage::getListViewPair).collect(Collectors.toList()),
             "Here are your recently used ingredients");
         model.setIngredientUsageList(new UsageList<>(getUnsortedIngredientList()));
         var cmd = new StatsIngredientRecentCommand();
@@ -91,7 +91,7 @@ class StatsIngredientRecentCommandTest {
     @Test
     public void execute_numerousUsages() {
         var expectedRes = CommandResult.statsMessage(getListViewIngredientList().stream()
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
+                .map(Usage::getListViewPair).collect(Collectors.toList()),
             "Here are your recently used ingredients");
         var newList = getIngredientList();
         newList.add(INGREDIENT_B_A);
