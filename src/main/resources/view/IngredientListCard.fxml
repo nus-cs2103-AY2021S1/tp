@@ -19,9 +19,9 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER">
-                <Label fx:id="id" styleClass="cell_big_label"/>
-                <Label fx:id="name" text="\$name" styleClass="cell_big_label" />
-                <Label fx:id="quantity" text="\$quantity"/>
+                <Label fx:id="id" styleClass="cell_big_label" wrapText="true"/>
+                <Label fx:id="name" text="\$name" styleClass="cell_big_label" wrapText="true" />
+                <Label fx:id="quantity" text="\$quantity" wrapText="true"/>
             </HBox>
 
         </VBox>
