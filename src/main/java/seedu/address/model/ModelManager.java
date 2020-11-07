@@ -206,6 +206,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void enter(Task task) {
+        mainCatalogue.enterTask(task);
+        this.teammateToBeDisplayedOnDashboard = Optional.empty();
+        this.projectToBeDisplayedOnDashboard.get().updateTaskOnView(task);
+        updateTaskToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTaskOnView().get());
+    }
+
+    @Override
+    public void enter(Participation teammate) {
+        mainCatalogue.enterTeammate(teammate);
+        this.taskToBeDisplayedOnDashboard = Optional.empty();
+        this.projectToBeDisplayedOnDashboard.get().updateTeammateOnView(teammate);
+        updateTeammateToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTeammateOnView().get());
+    }
+
+    @Override
     public void quit() {
         switch (mainCatalogue.getStatus()) {
         case PROJECT:
@@ -226,22 +242,6 @@ public class ModelManager implements Model {
             break;
         }
         mainCatalogue.quit();
-    }
-
-    @Override
-    public void enterTask(Task task) {
-        mainCatalogue.enterTask(task);
-        this.teammateToBeDisplayedOnDashboard = Optional.empty();
-        this.projectToBeDisplayedOnDashboard.get().updateTaskOnView(task);
-        updateTaskToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTaskOnView().get());
-    }
-
-    @Override
-    public void enterTeammate(Participation teammate) {
-        mainCatalogue.enterTeammate(teammate);
-        this.taskToBeDisplayedOnDashboard = Optional.empty();
-        this.projectToBeDisplayedOnDashboard.get().updateTeammateOnView(teammate);
-        updateTeammateToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTeammateOnView().get());
     }
 
     //=========== Filtered Project List Accessors =============================================================

@@ -49,7 +49,7 @@ public class ViewTeammateCommand extends Command {
         }
 
         Participation teammate = project.getParticipation(gitUserIndex.getGitUserName());
-        model.enterTeammate(teammate);
+        model.enter(teammate);
 
         return new CommandResult(String.format(MESSAGE_VIEW_TEAMMATE_SUCCESS, teammate));
     }
