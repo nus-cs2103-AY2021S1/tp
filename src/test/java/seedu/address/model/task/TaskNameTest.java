@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB05;
@@ -55,5 +56,13 @@ public class TaskNameTest {
 
         // different task name -> false
         assertFalse(first.equals(second));
+    }
+
+    @Test
+    public void test_toString() {
+        TaskName name = new TaskName(VALID_NAME_LAB05);
+        String expectedString = VALID_NAME_LAB05;
+
+        assertEquals(expectedString, name.toString());
     }
 }
