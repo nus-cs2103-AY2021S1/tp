@@ -12,6 +12,10 @@ import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_ONE;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_THREE;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_ONE;
+import static quickcache.logic.commands.CommandTestUtil.VALID_CHOICE_CHOICE1;
+import static quickcache.logic.commands.CommandTestUtil.VALID_CHOICE_CHOICE2;
+import static quickcache.logic.commands.CommandTestUtil.VALID_CHOICE_CHOICE3;
+import static quickcache.logic.commands.CommandTestUtil.VALID_CHOICE_CHOICE4;
 import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_ONE;
 
 import org.junit.jupiter.api.Test;
@@ -27,26 +31,14 @@ public class AddMultipleChoiceQuestionCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        String[] choices = {"First", "Second", "Third", "Fourth"};
+        String[] choices = {VALID_CHOICE_CHOICE1, VALID_CHOICE_CHOICE2, VALID_CHOICE_CHOICE3, VALID_CHOICE_CHOICE4};
         Flashcard expectedFlashcard = new FlashcardBuilder().withMultipleChoiceQuestion("Question One", choices)
-            .withAnswer("First").withTags().build();
+            .withAnswer(VALID_CHOICE_CHOICE1).withTags().build();
 
         // whitespace only preamble
         CommandParserTestUtil.assertParseSuccess(parser,
             PREAMBLE_WHITESPACE + QUESTION_DESC_ONE + ANSWER_DESC_ONE + CHOICE_DESC,
             new AddMultipleChoiceQuestionCommand(expectedFlashcard));
-
-        // multiple questions - last question accepted
-        CommandParserTestUtil.assertParseSuccess(parser,
-            QUESTION_DESC_TWO + QUESTION_DESC_ONE + ANSWER_DESC_ONE + CHOICE_DESC,
-            new AddMultipleChoiceQuestionCommand(expectedFlashcard));
-
-        // multiple answers - last answer accepted
-        CommandParserTestUtil.assertParseSuccess(parser,
-            QUESTION_DESC_ONE + ANSWER_DESC_TWO + ANSWER_DESC_ONE + CHOICE_DESC,
-            new AddMultipleChoiceQuestionCommand(expectedFlashcard));
-
-
     }
 
     @Test
