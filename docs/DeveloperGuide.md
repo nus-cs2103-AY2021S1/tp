@@ -547,7 +547,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use case
+### Use cases
 
 (For all use cases below, the **System** is the `FaculType` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -709,7 +709,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. FaculType shows an error message.
     
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
 **Use case: Find module(s)**
 
@@ -732,7 +732,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. FaculType shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
 **Use case: Assign a contact to module(s)**
 
@@ -759,15 +759,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *   5a. The given contact does not exist.
 
-    *   5a1. FaculType shows an error message.
+    * 5a1. FaculType shows an error message.
 
-    Use case resumes at step 4.
+      Use case resumes at step 4.
 
 *   5b. The given module does not exist.
 
-    * 5b2. FaculType shows an error message.
+    * 5b1. FaculType shows an error message.
 
-    Use case resumes at step 4.
+      Use case resumes at step 4.
 
 **Use case: Unassign a contact from module(s)**
 
@@ -794,21 +794,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *   5a. The given contact does not exist.
 
-    *   5a1. FaculType shows an error message.
-
-    Use case resumes at step 4.
-
-*   5a. Any of the modules specified does not exist.
-
     * 5a1. FaculType shows an error message.
 
-    Use case resumes at step 4.
+      Use case resumes at step 4.
 
-*   5b. The contact is not an instructor for any of the modules.
+*   5b. Any of the modules specified does not exist.
 
     * 5b1. FaculType shows an error message.
 
-    Use case resumes at step 4.
+      Use case resumes at step 4.
+
+*   5c. The contact is not an instructor for any of the modules.
+
+    * 5c1. FaculType shows an error message.
+
+      Use case resumes at step 4.
 
 **Use case: Unassign a contact from all module(s)**
 
@@ -870,12 +870,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should be usable by a novice who has never used a contact management system/command line application before.
-5. Should adhere to the schedule specified in the CS2103 website.
-6. Not required to support contacting the faculty members.
-7. Not required to handle printing of faculty member/module data.
-8. Not required to connect to any backend system/DBMS.
-9. Not required to support multiple users on a single device.
+4.  Should be usable by a novice who has never used a contact management system/command line application before.
+5.  Should adhere to the schedule specified in the CS2103 website.
+6.  Not required to support contacting the faculty members.
+7.  Not required to handle printing of faculty member/module data.
+8.  Not required to connect to any backend system/DBMS.
+9.  Not required to support multiple users on a single device.
 10. Not required to support any language other than English.
 11. Should be able to work without users having Gradle/JavaFX installed beforehand.
 12. Each time a user opens the application, the user should be able to view the latest version of the data (new/updated data should be there and deleted data should no longer exist).
