@@ -44,7 +44,6 @@ The role of the **Model** component is to represent all the items and their beha
 The role of the **Ui** component is to handle all the User interface related instructions, which includes the loading of GUI components, the updating
 of these components and displaying the changes.
 
-## Module Tracker
 
 ### UI component
 ![Structure of the UserInterface Component](images/UiClassDiagram.png)
@@ -205,50 +204,86 @@ TodoList will be explained more comprehensively in the [TodoList feature](#todol
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Add Event feature
-![Structure of the Add Event command](images/AddEventSequenceDiagram.png)
+
+## Module list management feature
+
+
+
+
+### Module list features
+
+
+
+
+### Module Assignment 
+
+### \[Proposed\] GradeTracker feature
+
 #### Proposed Implementation
-The idea of this feature is to be able to allow the user to keep track of his/her current events that
-will be happening. Events can be either a one time event like an exam for a particular module, or a recurring
-event like a weekly tutorial class.
 
-How we are currently implementing this feature is by following the same implementation as the AB3. We have an event
-object under the Model package. Two classes called EventName and EventTime act as information containers to store
-the respective data and help support the Event class.
+The proposed grade tracker feature is an association class used to store additional information for the module. 
+The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`. 
 
-We also make sure in the Logic package, there are personal sub-parsers for each of the existing Event
-related commands, and an overall Parser known as SchedulerParser that is in charge of managing all of the
-sub-parsers of the Scheduler. 
+![Structure of the Module List Component](images/GradeTrackerDiagram.png)
 
-Each of the commands of the Scheduler will always return a CommandResult class, that is basically an information
-container that stores all the relevant data of the results. This CommandResult object is then passes back up to the
-UiManager, where it is then passed to the GUI components for it to be displayed.
+When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
+to the rest of the project as the command is parsed and then executed.
+
+![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Whether to create a new Parser for Scheduler.
-Option 1 **(Current implementation)**: A custom Parser in charge of all **Scheduler** related commands **only**.
-Pros: 
-- More OOP orientated.
-- More defensive programming.
-Cons:
-- More Parsers to handle by the ParserManager
-
-Option 2: Place the Scheduler related parser together with the rest of the other parsers for other features, like module list, etc.
-Pros:
-- Faster to implement.
-- Less effort needed, simply add on to the existing Parser.
-Cons:
-- Mess and less readible, hard to distinguish between differnt commands.
-- Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
-- LONG methods.
-
-
-### \[Proposed\] Data archiving
+##### Aspect: Format to store the grade for a module
+* Alternative 1 : Grade stores CAP.
+    * Pros : Easier to integrate with Cap Calculator
+    * Cons : User has to manually input CAP and does not know the average from the assignments accumulated
+    
+* Alternative 2 (current choice): Grade stores the raw score calculated from assignment
+    * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
+    * Cons : Requires separate CAP to be stored for Cap Calculator to access
 
 
 
-### Zoom Link Management
+### Cap Calculator
+
+### \[Proposed\] Calculate CAP feature
+
+#### Proposed Implementation
+
+The proposed calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total
+grade points and modular credits, both stored internally `gradePoints` and `modularCredits` respectively. Additionally, it implements the following operations:
+
+* `CalculateCapCommand#accumulate(ModuleList)` - Loops through a given `ModuleList` and updates the grade points and
+modular credits count accordingly.
+
+* `CalculateCapCommand#calculateCap()` - Calculates CAP based the grade points and modular credits counter.
+
+The following sequence diagram shows how the calculate cap operation works:
+![CalculateCapSequenceDiagram](images/CalculateCapSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Design consideration:
+
+##### Aspect: Information used to calculate cap
+* Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
+    * Pros : Easy to implement
+    * Cons : User has to manually input every module taken
+    
+* Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
+    * Pros : 
+     * User does not need to input unnecessary modules.
+     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user). 
+    * Cons : Will require additional storage.
+
+
+
+
+
+
+## Zoom Link Management
 
 As Cap 5 Buddy is designed to suit the needs of SoC students during the transition to online learning,
 it is crucial to design features which allows efficient management of zoom links which are widely used during
@@ -429,6 +464,8 @@ the implementation of the command since we had to handle 2 different cases and t
 
 Alternative 1 was chosen since checking for duplicate zoom links occurs frequently during the execution of 
 zoom link related commands.
+
+
 
 
 ### Contact List Management
@@ -690,118 +727,8 @@ Given below is the sequence diagram showing the interaction between `FindContact
           parameters provided.
 
 
-#### Find Task Feature
-
-The find task feature is crucial as it enables users to retrieve tasks efficiently rather than having to scan through their
-entire todo list to find the desired task. This can also contribute to a better management of user tasks which is important since Cap 5 Buddy
-is an application to track module related details and information. To ensure that searching for tasks is refined and accurate, this feature enables users to search using multiple parameters.
-
-The search parameters that can be used to find tasks include: `Name`, `Date`, `Tag`, `Priority` and `Status`. If multiple search
-parameters are provided by users, only tasks that fulfil all the search criteria will be returned.
-
-This feature is facilitated by the following classes:
-
-  * `FindTaskParser`:
-    * It implements `FindTaskParser#parse()` to parse and validate the user input
-    * It creates predicate objects using the command arguments and adds them to the list of predicates in
-      `FindTaskCriteria`
-    * It implements `FindTaskParser#isAtLeastOnePrefixPresent()` to validate that at least one search parameter was provided by the user
-    
-  * `FindTaskCriteria`:
-    * It encapsulates all the predicates which will be used to test for matching tasks
-    * It implements the following operations:
-      * `FindTaskCriteria#addPredicate():` Adds a new predicate into the list of predicates 
-        to test for matching contacts
-      * `FindTaskCriteria#getFindTaskPredicate():` To compose all the predicates into a single predicate
-        
-  * Predicate objects that can be stored in `FindTaskCriteria`:
-    * `TaskNameContainsKeywordsPredicate`:
-      * Tests if the name of a given task matches at least one of the name keywords provided (case-insensitive)
-    * `ContactContainsTagsPredicate`:
-      * Tests if a given task contains at least one of the search tags provided (case-insensitive)
-    * `TaskMatchesDatePredicate`:
-      * Tests if the date of a given task matches the search date exactly.
-    * `TaskMatchesPriorityPredicate`:
-      * Tests if the priority of a given task matches the search priority exactly.
-    * `TaskMatchesStatusPredicate`:
-      * Tests if the status of a given task matches the search status exactly.
-  
-Given below is the class diagram describing the `FindTaskCriteria` class:
-![FindTaskCriteriaClassDiagram](images/FindTaskCriteriaClassDiagram.png)
-
-   * `FindTaskCommand`:
-     * It implements `FindTaskCommand#execute()` to find all matching tasks by updating the 
-       filtered todo list in `Model` using the predicate from `FindTaskCriteria`
-       
-Given below is an example usage scenario and how the mechanism for finding tasks behaves at each step:
-
-Step 1. `LogicManager` receives the user input `findtask n/lab d/2020-01-01` from `Ui`
-
-Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create a `FindTaskParser`
-
-Step 3. Additionally, `TodoListParser` will call the `FindTaskParser#parse()` method to parse the command arguments
-
-Step 4. This creates a `FindTaskCriteria` that encapsulates the created `Predicate` objects to test for matching tasks
-
-Step 4. Additionally, a `FindTaskCommand` is created and `FindTaskCommand#execute()` will be invoked by `LogicManager` to find matching tasks
-
-Step 5. The `Model#updateFilteredTodoList()` operation exposed in the `Model` interface is invoked to update the displayed todo list 
-        using the predicate from `FindTaskCriteria`
-
-Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
-
-![FindTaskCommandActivityDiagram](images/FindTaskCommandActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How to handle instances when the user does not provide any search parameter
-
-* **Alternative 1 :** Allow users to provide 0 search parameters, in which case the find task command does not perform any operation.
-  
-  * Pros: Implementation of the command is simpler as we do not need to check if at least one search parameter was provided.
-  * Cons: The command does not perform any meaningful operation.
-  
-* **Alternative 2 (current choice):** Handle instances when no search parameter was provided using exceptions and inform users that at least one parameter is required.
-
-  * Pros: Ensures that users are aware of any constraints related to the command.
-  * Cons: The implementation of the command is slighly more complex since exception handling is required and 
-          we need to check if at least one search parameter was provided.
-
-Alternative 2 was chosen as it conformed with the standard practice of handling errors using exception. Moreover, it removes any room for 
-ambiguity by ensuring all constraints related to the command are made known to the users.
 
 
-### \[Proposed\] Calculate CAP feature
-
-#### Proposed Implementation
-
-The proposed calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total
-grade points and modular credits, both stored internally `gradePoints` and `modularCredits` respectively. Additionally, it implements the following operations:
-
-* `CalculateCapCommand#accumulate(ModuleList)` - Loops through a given `ModuleList` and updates the grade points and
-modular credits count accordingly.
-
-* `CalculateCapCommand#calculateCap()` - Calculates CAP based the grade points and modular credits counter.
-
-The following sequence diagram shows how the calculate cap operation works:
-![CalculateCapSequenceDiagram](images/CalculateCapSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-#### Design consideration:
-
-##### Aspect: Information used to calculate cap
-* Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
-    * Pros : Easy to implement
-    * Cons : User has to manually input every module taken
-    
-* Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
-    * Pros : 
-     * User does not need to input unnecessary modules.
-     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user). 
-    * Cons : Will require additional storage.
 
 ### TodoList feature
 
@@ -888,31 +815,138 @@ TodoList implements ReadOnlyTodoList which require the following operation :
   
   Alternative 1 is chosen since we prioritize user freedom to create custom type for the task.
   
+
+
+#### Find Task Feature
+
+The find task feature is crucial as it enables users to retrieve tasks efficiently rather than having to scan through their
+entire todo list to find the desired task. This can also contribute to a better management of user tasks which is important since Cap 5 Buddy
+is an application to track module related details and information. To ensure that searching for tasks is refined and accurate, this feature enables users to search using multiple parameters.
+
+The search parameters that can be used to find tasks include: `Name`, `Date`, `Tag`, `Priority` and `Status`. If multiple search
+parameters are provided by users, only tasks that fulfil all the search criteria will be returned.
+
+This feature is facilitated by the following classes:
+
+  * `FindTaskParser`:
+    * It implements `FindTaskParser#parse()` to parse and validate the user input
+    * It creates predicate objects using the command arguments and adds them to the list of predicates in
+      `FindTaskCriteria`
+    * It implements `FindTaskParser#isAtLeastOnePrefixPresent()` to validate that at least one search parameter was provided by the user
     
-### \[Proposed\] GradeTracker feature
+  * `FindTaskCriteria`:
+    * It encapsulates all the predicates which will be used to test for matching tasks
+    * It implements the following operations:
+      * `FindTaskCriteria#addPredicate():` Adds a new predicate into the list of predicates 
+        to test for matching contacts
+      * `FindTaskCriteria#getFindTaskPredicate():` To compose all the predicates into a single predicate
+        
+  * Predicate objects that can be stored in `FindTaskCriteria`:
+    * `TaskNameContainsKeywordsPredicate`:
+      * Tests if the name of a given task matches at least one of the name keywords provided (case-insensitive)
+    * `ContactContainsTagsPredicate`:
+      * Tests if a given task contains at least one of the search tags provided (case-insensitive)
+    * `TaskMatchesDatePredicate`:
+      * Tests if the date of a given task matches the search date exactly.
+    * `TaskMatchesPriorityPredicate`:
+      * Tests if the priority of a given task matches the search priority exactly.
+    * `TaskMatchesStatusPredicate`:
+      * Tests if the status of a given task matches the search status exactly.
+  
+Given below is the class diagram describing the `FindTaskCriteria` class:
+![FindTaskCriteriaClassDiagram](images/FindTaskCriteriaClassDiagram.png)
 
-#### Proposed Implementation
+   * `FindTaskCommand`:
+     * It implements `FindTaskCommand#execute()` to find all matching tasks by updating the 
+       filtered todo list in `Model` using the predicate from `FindTaskCriteria`
+       
+Given below is an example usage scenario and how the mechanism for finding tasks behaves at each step:
 
-The proposed grade tracker feature is an association class used to store additional information for the module. 
-The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`. 
+Step 1. `LogicManager` receives the user input `findtask n/lab d/2020-01-01` from `Ui`
 
-![Structure of the Module List Component](images/GradeTrackerDiagram.png)
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create a `FindTaskParser`
 
-When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
-to the rest of the project as the command is parsed and then executed.
+Step 3. Additionally, `TodoListParser` will call the `FindTaskParser#parse()` method to parse the command arguments
 
-![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
+Step 4. This creates a `FindTaskCriteria` that encapsulates the created `Predicate` objects to test for matching tasks
+
+Step 4. Additionally, a `FindTaskCommand` is created and `FindTaskCommand#execute()` will be invoked by `LogicManager` to find matching tasks
+
+Step 5. The `Model#updateFilteredTodoList()` operation exposed in the `Model` interface is invoked to update the displayed todo list 
+        using the predicate from `FindTaskCriteria`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+![FindTaskCommandActivityDiagram](images/FindTaskCommandActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Format to store the grade for a module
-* Alternative 1 : Grade stores CAP.
-    * Pros : Easier to integrate with Cap Calculator
-    * Cons : User has to manually input CAP and does not know the average from the assignments accumulated
+##### Aspect: How to handle instances when the user does not provide any search parameter
+
+* **Alternative 1 :** Allow users to provide 0 search parameters, in which case the find task command does not perform any operation.
+  
+  * Pros: Implementation of the command is simpler as we do not need to check if at least one search parameter was provided.
+  * Cons: The command does not perform any meaningful operation.
+  
+* **Alternative 2 (current choice):** Handle instances when no search parameter was provided using exceptions and inform users that at least one parameter is required.
+
+  * Pros: Ensures that users are aware of any constraints related to the command.
+  * Cons: The implementation of the command is slighly more complex since exception handling is required and 
+          we need to check if at least one search parameter was provided.
+
+Alternative 2 was chosen as it conformed with the standard practice of handling errors using exception. Moreover, it removes any room for 
+ambiguity by ensuring all constraints related to the command are made known to the users.
+
+
+
+
     
-* Alternative 2 (current choice): Grade stores the raw score calculated from assignment
-    * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
-    * Cons : Requires separate CAP to be stored for Cap Calculator to access
+### Event list management feature
+
+### \[Proposed\] Add Event feature
+![Structure of the Add Event command](images/AddEventSequenceDiagram.png)
+#### Proposed Implementation
+The idea of this feature is to be able to allow the user to keep track of his/her current events that
+will be happening. Events can be either a one time event like an exam for a particular module, or a recurring
+event like a weekly tutorial class.
+
+How we are currently implementing this feature is by following the same implementation as the AB3. We have an event
+object under the Model package. Two classes called EventName and EventTime act as information containers to store
+the respective data and help support the Event class.
+
+We also make sure in the Logic package, there are personal sub-parsers for each of the existing Event
+related commands, and an overall Parser known as SchedulerParser that is in charge of managing all of the
+sub-parsers of the Scheduler. 
+
+Each of the commands of the Scheduler will always return a CommandResult class, that is basically an information
+container that stores all the relevant data of the results. This CommandResult object is then passes back up to the
+UiManager, where it is then passed to the GUI components for it to be displayed.
+
+#### Design consideration:
+
+##### Aspect: Whether to create a new Parser for Scheduler.
+Option 1 **(Current implementation)**: A custom Parser in charge of all **Scheduler** related commands **only**.
+Pros: 
+- More OOP orientated.
+- More defensive programming.
+Cons:
+- More Parsers to handle by the ParserManager
+
+Option 2: Place the Scheduler related parser together with the rest of the other parsers for other features, like module list, etc.
+Pros:
+- Faster to implement.
+- Less effort needed, simply add on to the existing Parser.
+Cons:
+- Mess and less readible, hard to distinguish between differnt commands.
+- Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
+- LONG methods.
+  
+    
+    
+    
+    
+    
+
 
 --------------------------------------------------------------------------------------------------------------------
 
