@@ -683,13 +683,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
 * 3a. User requests to hide the answer.
 
-    Use case ends.
+    Use case resumes from step 4.
     
 * 3b. User requests to show the previous flashcard (if there is a previous flashcard).
 
-    Use case ends.
+    Use case resumes from step 3.
     
-* a. At any time, User requests to quit review mode.
+* *a. At any time, User requests to quit review mode.
 
     *a1. SWEe! quits review mode.
     
@@ -706,7 +706,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  User indicates if the flashcard was answered correctly.
 5.  SWEe! shows the next flashcard to quiz.
 
-    Steps 3-5 are repeated until the user finishes quizzing all flashcards or until the user requests to quit quiz mode.
+    Steps 3-5 are repeated until the user finishes quizzing all flashcards.
 
     Use case ends.
 
@@ -716,6 +716,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. SWEe! shows an error message.
 
+    Use case ends.
+
+* *a. At any time, User requests to quit quiz mode.
+
+    *a1. SWEe! quits quiz mode.
+    
     Use case ends.
 
 
