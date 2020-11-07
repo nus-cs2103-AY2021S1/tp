@@ -1375,6 +1375,151 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained. <br><br>
 
+### 6.2 Adding a recipe
+
+1. Adding a recipe with all required fields into Wishful Shrinking’s recipe list.
+
+    1. Prerequisites: The recipe being added is not already in Wishful Shrinking.
+    
+    1. Test case: `addR n/salad i/tomato, lettuce c/100 instr/Cook. Eat.`<br>
+       Expected: The recipe salad, with all its information, will be added to the recipe list on the left of Wishful Shrinking. The result box will show the information of that recipe.
+
+    1. Test case: `addR n/burger i/bread, meat c/200 instr/Cook. Eat. img/images/healthy1.jpg t/tasty`<br>
+       Expected: The recipe burger, with all its information, will be added to the recipe list on the left of Wishful Shrinking. This test case differs with the previous test case in that it has the optional fields image and tags.
+    
+    1. Test case: `addR n/salad i/tomato c/100` <br>
+       Expected: An error message will be shown, as the non-optional field instruction is omitted. The message will show the correct input format of the `addR` command, and your command in the command box will turn red. <br><br>
+       
+
+### 6.3 Adding an ingredient
+
+1. Adding an ingredient into Wishful Shrinking’s ingredient list.
+
+    1. Prerequisites: The ingredient being added is not already in Wishful Shrinking.
+    
+    1. Test case: `addF i/banana` <br>
+      Expected: The ingredient banana will be added to the ingredient list on the left of Wishful Shrinking. The result box will show the information of that ingredient.
+
+    1. Test case: `addF i/tomato -1kg` <br>
+       Expected: The ingredient tomato, along with its quantity, will be added to the ingredient list on the left of Wishful Shrinking. This test case differs with the previous test case in that it has the optional quantity.
+       
+    1. Test case: `addF i/milk -0` <br>
+       Expected: An error message will be shown, as the quantity is invalid. The message will show the correct input format of the `addF` command, and your command in the command box will turn red. <br><br>
+       
+       
+### 6.4 Eating a recipe
+
+1. Eating a recipe at a specific index in the recipe list and adding it into Wishful Shrinking’s consumption list.
+
+    1. Prerequisites: Wishful Shrinking’s recipe list is not empty.
+    
+    1. Test case: `eatR 1` <br>
+       Expected: First recipe in the displayed recipe list will be added into Wishful Shrinking’s consumption list. The result box will show the name and calories of that recipe.
+
+    1. Test case: `eatR 0` <br>
+       Expected:  No recipe is eaten. An error message will be shown, as the recipe index is invalid. The message will show the correct input format of the `eatR` command, and your command in the command box will turn red.
+
+    1. Other incorrect `eatR` commands to try: `eatR`, `eatR x`, … (where x is larger than the recipe list size)<br>
+       Expected: Similar to previous test case. <br><br>
+
+
+### 6.5 Listing Recipes
+
+1. Listing out all the recipes in Wishful Shrinking’s recipe list.
+
+    1. Prerequisites: Wishful Shrinking’s recipe list is not empty.
+     
+    1. Test case: `recipes` <br>
+       Expected: The full recipe list will be displayed on the left of Wishful Shrinking. The result box will show the names of all the recipes.
+
+    1. Test case: `recipes x` (where x is any additional arguments) <br>
+       Expected: An error message will be shown, as `recipes` does not have any arguments. The message will show the correct input format of the `recipes` command, and your command in the command box will turn red. <br><br>
+
+
+### 6.6 Listing Ingredients
+
+1. Listing out all the ingredients in Wishful Shrinking’s ingredient list.
+
+    1. Prerequisites: Wishful Shrinking’s ingredient list is not empty.
+    
+    1. Test case: `fridge` <br>
+       Expected: The full ingredient list will be displayed on the left of Wishful Shrinking. The result box will show the information of all the ingredients.
+
+    1. Test case: `fridge x` (where x is any additional arguments) <br>
+       Expected: An error message will be shown, as `fridge` does not have any arguments. The message will show the correct input format of the `fridge` command, and your command in the command box will turn red. <br><br>
+
+
+### 6.7 Listing Consumption
+
+1. Listing out all the recipes eaten in Wishful Shrinking’s consumption list.
+
+    1. Prerequisites: Wishful Shrinking’s consumption list is not empty.
+    
+    1. Test case: `calories` <br>
+       Expected: The full consumption list will be displayed on the left of Wishful Shrinking. The result box will show the names and calories of recipes eaten, as well as the total calories consumed.
+
+    1. Test case: `calories x` (where x is any additional arguments) <br>
+       Expected: An error message will be shown, as `calories` does not have any arguments. The message will show the correct input format of the `calories` command, and your command in the command box will turn red. <br><br>
+       
+
+### 6.15 Selecting a recipe
+
+1. Selecting a recipe at a specific index in the recipe list to view its full information.
+
+    1. Prerequisites: Wishful Shrinking’s recipe list is not empty.
+    
+    1. Test case: `selectR 1` <br>
+       Expected: The full information of the first recipe in the recipe list will be shown in a drawer that will open on the left. The result box will show the information of the recipe.
+
+    1. Test case: `selectR 0` <br>
+       Expected:  No recipe is selected. An error message will be shown, as the recipe index is invalid. The message will show the correct input format of the `selectR` command, and your command in the command box will turn red.
+
+    1. Other incorrect `selectR` commands to try: `selectR `, `selectR x`, … (where x is larger than the recipe list size) <br>
+       Expected: Similar to previous test case. <br><br>
+
+
+### 6.16 Searching for Recipes
+
+1. Searching for recipes in Wishful Shrinking’s recipe list by their ingredients, name or tags.
+
+    1. Prerequisites: Wishful Shrinking’s recipe list is not empty, and there is the recipe salad with the ingredient tomato in the recipe list.
+    
+    1. Test case: `searchR n/salad` <br>
+       Expected: All recipes whose name contains the keyword salad will be shown on the left of Wishful Shrinking.
+
+    1. Test case: `searchR i/tomato` <br>
+       Expected: All recipes whose ingredients contain tomato will be shown on the left of Wishful Shrinking. This test case differs with the previous test case in that it searches by ingredient instead of name.
+
+    1. Test case: `searchR c/100` <br>
+       Expected: An error message will be shown, as `searchR` does not search by the calorie field. The message will show the correct input format of the `searchR` command, and your command in the command box will turn red. <br><br>
+       
+       
+### 6.17 Searching for Ingredients
+
+1. Searching for ingredients in Wishful Shrinking’s ingredient list by names.
+
+    1. Prerequisites: Wishful Shrinking’s ingredient list is not empty, and there is the ingredient tomato in the ingredient list.
+    
+    1. Test case: `searchF tomato` <br>
+       Expected: All ingredients whose name contains the keyword tomato will be shown on the left of Wishful Shrinking.
+
+    1. Test case: `searchF` <br>
+       Expected: An error message will be shown, as `searchF` takes in keywords to search for. The message will show the correct input format of the `searchF` command, and your command in the command box will turn red. <br><br>
+      
+      
+### 6.18 Recommend
+
+1. Listing out all the recipes in Wishful Shrinking’s recipe list whose ingredients are all in the fridge.
+
+    1. Prerequisites: Wishful Shrinking’s recipe list has a recipe whose ingredients have all been added to the fridge.
+    
+    1. Test case: `recommend` <br>
+       Expected: The list of recommended recipes will be displayed on the left of Wishful Shrinking. The result box will show the name of all the recommended recipes.
+
+    1. Test case: `recommend x` (where x is any additional arguments) <br>
+       Expected: An error message will be shown, as `recommend` does not have any arguments. The message will show the correct input format of the `recommend` command, and your command in the command box will turn red. <br><br>
+
+
 
 ### 6.2 Deleting a Recipe <a id="62-deleting-a-recipe"></a>
 
