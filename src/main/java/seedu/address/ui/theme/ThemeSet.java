@@ -23,6 +23,8 @@ public class ThemeSet {
             new Theme(SKY_THEME_NAME, "view/SkyTheme.css", "/images/sky_theme.png");
 
     public static final Theme getTheme(String themeName) {
+        assert themeName != null;
+
         switch (themeName) {
         case DARK_THEME_NAME:
             return DARK_THEME;
