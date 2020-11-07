@@ -23,17 +23,26 @@ public class Event {
      * @param name
      * @param time
      */
-    public Event(EventName name, EventTime time) {
+    public Event(EventName name, EventTime time, Set<Tag> tags) {
         assert(name != null);
         requireNonNull(time);
         this.name = name;
         this.time = time;
+        this.tags.addAll(tags);
     }
 
+    /**
+     * Returns the EventName of the Event.
+     * @return EventName that holds the name of the Event.
+     */
     public EventName getName() {
         return this.name;
     }
 
+    /**
+     * Returns the EventTime of the Event.
+     * @return EventTime that hold the LocalDateTime.
+     */
     public EventTime getTime() {
         return this.time;
     }

@@ -7,11 +7,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.event.Event;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+
 /**
  * An UI component that displays information of a {@code Event}.
  */
 public class EventCard extends UiPart<Region> {
     private static final String FXML = "EventListCard.fxml";
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu HH:mm");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,10 +46,10 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().getName());
-        dateTime.setText(event.getTime().getStart().toString());
-        //event.getTags().stream()
-        //        .sorted(Comparator.comparing(tag -> tag.tagName))
-        //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        dateTime.setText(event.getTime().getStart().format(formatter));
+        event.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
