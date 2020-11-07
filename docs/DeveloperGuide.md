@@ -1042,3 +1042,4 @@ testers are expected to do more *exploratory* testing.
     
     1. Test Case: `redo` <br>
         Expected: The inventory book is restored to the state where all its items were cleared. Success message is displayed. 
+      
