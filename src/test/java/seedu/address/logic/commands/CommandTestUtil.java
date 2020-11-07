@@ -25,6 +25,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.module.ZoomLink;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.contact.EditContactDescriptorBuilder;
 
@@ -218,6 +219,19 @@ public class CommandTestUtil {
         final String[] splitName = contact.getName().toString().split("\\s+");
         model.updateFilteredContactList(new ContactNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredContactList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s todo list.
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTodoList().size());
+        Task task = model.getFilteredTodoList().get(targetIndex.getZeroBased());
+        final String[] splitName = task.getName().get().getValue().split("\\s+");
+        // name of the task has to match exactly
+        model.updateFilteredTodoList(t -> t.getName().get().equals(task.getName().get()));
+        assertEquals(1, model.getFilteredTodoList().size());
     }
 
     /**
