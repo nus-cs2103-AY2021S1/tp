@@ -153,6 +153,10 @@ Step 5. `OpenCommand#execute` will get the `Flashcard` at the specified `Index` 
 
 Step 6. The GUI will then proceed to get the `Question` from `Feedback` and display its choices and question to the user.
 
+The following sequence diagram shows how the parser operation works:
+
+![OpenParserSequenceDiagram](images/OpenParserSequenceDiagram.png)
+
 The following sequence diagram shows how the open operation works:
 
 ![OpenSequenceDiagram](images/OpenSequenceDiagram.png)
@@ -182,6 +186,10 @@ Step 4. The `index` is then passed to the `StatsCommand`
 Step 5. `StatsCommand#execute` will get the `Flashcard` at the specified `Index` and get its `Statistics` to be passed to the GUI as part of the `Feedback` attribute within the `CommandResult`.
 
 Step 6. The GUI will then proceed to get the `Statistics` from `Feedback` and display its data in the form of a Pie Chart to the user.
+
+The following sequence diagram shows how the parser operation works:
+
+![StatsParserSequenceDiagram](images/StatsParserSequenceDiagram.png)
 
 The following sequence diagram shows how the stats operation works:
 
@@ -215,7 +223,11 @@ Step 7. After execution, `CommandResult` will contain a message indicating that 
 
 Step 7. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` is reset.
 
-The following sequence diagram shows how the stats operation works:
+The following sequence diagram shows how the parser operation works:
+
+![ClearStatsSequenceDiagram](images/ClearStatsParserSequenceDiagram.png)
+
+The following sequence diagram shows how the Clearstats operation works:
 
 ![ClearStatsSequenceDiagram](images/ClearStatsSequenceDiagram.png)
 
@@ -336,10 +348,6 @@ Step 3. The user executes `edit 1 d/difficultyLevel` to edit the difficulty in t
   * Pros: Will be less complicated.
   * Cons: There may be too many commands which can be combined to one.
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Add Flashcard with open-ended question feature
 
 The Add mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
@@ -353,6 +361,9 @@ Step 2. The user executes `add q/ question... t/tag` command to add a flashcard 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
 </div>
 
+The following sequence diagram shows how the Parser operation works:
+
+![AddOpenEndedSequenceDiagram](images/AddOpenEndedParserSequenceDiagram.png)
 
 The following sequence diagram shows how the Add operation works:
 
@@ -378,6 +389,10 @@ Step 2. The user executes `addmcd q/ question ans/1 c/first choice c/second choi
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
 </div>
+
+The following sequence diagram shows how the parser operation works:
+
+![AddMcqSequenceDiagram](images/AddMcqParserSequenceDiagram.png)
 
 The following sequence diagram shows how the Addmcq operation works:
 
@@ -428,6 +443,10 @@ Step 2. The user executes `edit 1 ...` command to edit some of the fields given 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
 </div>
+
+The following sequence diagram shows how the parser operation works:
+
+![EditSequenceDiagram](images/EditParserSequenceDiagram.png)
 
 The following sequence diagram shows how the edit operation works:
 
