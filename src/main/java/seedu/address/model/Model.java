@@ -168,20 +168,20 @@ public interface Model {
     void enter(Person person);
 
     /**
-     * Quits the current project view.
-     */
-    void quit();
-
-    /**
      * Enters the designated task of the current project.
      */
-    void enterTask(Task task);
+    void enter(Task task);
 
     /**
      * Enters the designated teammate of the current project.
      * @param teammate
      */
-    void enterTeammate(Participation teammate);
+    void enter(Participation teammate);
+
+    /**
+     * Quits the current project view.
+     */
+    void quit();
 
     /**
      * Updates the project to be displayed on dashboard.
