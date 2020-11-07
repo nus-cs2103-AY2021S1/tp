@@ -25,7 +25,8 @@
         + [3.3.8.1 Adding a detail: `detail add`](#3381-adding-a-detail-detail-add)
         + [3.3.8.2 Editing a detail: `detail edit`](#3382-editing-a-detail-detail-edit)
         + [3.3.8.3 Deleting a detail: `detail delete`](#3383-deleting-a-detail-detail-delete)
-    + [3.3.9 Clearing all entries: `clear`](#339-clearing-all-entries-clear)
+    + [3.3.9 Viewing lesson schedule: `schedule` (By: Alex Chua)](#339-viewing-lesson-schedule-schedule)
+    + [3.3.10 Clearing all entries: `clear`](#3310-clearing-all-entries-clear)
   * [3.4 Features for managing student academic details](#34-features-for-managing-student-academic-details)
     + [3.4.1 Recording questions from a student: `question` (By: Ying Gao)](#341-recording-questions-from-a-student-question-by-ying-gao)
         + [3.4.1.1 Adding a question: `question add`](#3411-adding-a-question-question-add)
@@ -38,8 +39,6 @@
     + [3.4.3 Recording attendance of a student: `attendance` (By: Vaishak)](#343-recording-attendance-of-a-student-attendance-by-vaishak)
         + [3.4.3.1 Adding an attendance record to a student: `attendance add`](#3431-adding-an-attendance-record-to-a-student-attendance-add)
         + [3.4.3.2 Deleting an attendance record for a student: `attendance delete`](#3432-deleting-an-attendance-record-for-a-student-attendance-delete)
-  * [3.5 Schedule Feature (By: Alex)](#35-schedule-feature-by-alex)
-    + [3.5.1 Viewing lesson schedule: `schedule`](#351-viewing-lesson-schedule-schedule)
   * [3.6 Notes Feature (By: Choon Siong)](#36-notes-feature-by-choon-siong)
 - [4. Command summary](#4-command-summary)
 - [5. Glossary](#5-glossary)
@@ -76,6 +75,7 @@ Symbol | Meaning
 `command` | A grey highlight indicates a command that can be executed by **Reeve**.
 :information_source: | Indicates important information. 
 :bulb: | Indicates tips.
+:exclamation: | Indicates a warning
 
 ## 2. Quick start
 
@@ -375,7 +375,28 @@ Examples:
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
 * `detail delete 4 i/1` deletes the 1st detail for the 4th student in **Reeve**.
 
-#### 3.3.9 Clearing all entries: `clear`
+#### 3.3.9 Viewing lesson schedule: `schedule` 
+
+You can view your upcoming classes on a timetable in either a daily or weekly format.
+
+Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
+
+* Displays a timetable view of your classes.
+* `DATE_TO_VIEW` refers to the date you wish to view the lesson schedule of.
+* A weekly view gives you an overview of all classes on the week of the given `DATE_TO_VIEW`. You could thus plan your time for the week ahead.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `VIEW_MODE` can only be either **weekly** or **daily**. The case of the letters does not matter.
+
+:information_source: `DATE_TO_VIEW` must be in the format **dd/mm/yyyy**. For instance, 2/11/2020 refers to the date 2nd November 2020
+
+</div>
+
+Example:
+* `schedule m/weekly d/2/11/2020` shows the schedule of classes in the week of 2nd November 2020.
+
+#### 3.3.10 Clearing all entries: `clear`
 
 You can clear all student data from **Reeve**.
 
@@ -569,29 +590,6 @@ Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 
 Example:
 * `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
-
-### 3.5 Schedule Feature (By: Alex)
-
-#### 3.5.1 Viewing lesson schedule: `schedule` 
-
-You can view your upcoming classes on a timetable in either a daily or weekly format.
-
-Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
-
-* Displays a timetable view of your classes.
-* `DATE_TO_VIEW` refers to the date you wish to view the lesson schedule of.
-* A weekly view gives you an overview of all classes on the week of the given `DATE_TO_VIEW`. You could thus plan your time for the week ahead.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: `VIEW_MODE` can only be either **weekly** or **daily**. The case of the letters does not matter.
-
-:information_source: `DATE_TO_VIEW` must be in the format **dd/mm/yyyy**. For instance, 2/11/2020 refers to the date 2nd November 2020
-
-</div>
-
-Example:
-* `schedule m/weekly d/2/11/2020` shows the schedule of classes in the week of 2nd November 2020.
 
 ### 3.6 Notes Feature (By: Choon Siong)
 
