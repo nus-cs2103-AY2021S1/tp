@@ -49,7 +49,7 @@ deactivate ReeveParser
 LogicManager -> EditDetailCommand : execute(...)
 activate EditDetailCommand
 
-EditDetailCommand -> EditDetailCommand : super.updateStudentDetail(...)
+EditDetailCommand -> EditDetailCommand : updateStudentDetail(...)
 activate EditDetailCommand
 
 create Student
