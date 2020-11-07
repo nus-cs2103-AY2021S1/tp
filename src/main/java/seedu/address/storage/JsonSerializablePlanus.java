@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Planus;
 import seedu.address.model.ReadOnlyPlanus;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.event.Event;
 
@@ -27,7 +26,6 @@ class JsonSerializablePlanus {
     private final List<JsonAdaptedDeadline> deadlines = new ArrayList<>();
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
     private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
-    private final List<JsonAdaptedEvent> calendar = new ArrayList<>();
 
 
     /**
@@ -53,8 +51,6 @@ class JsonSerializablePlanus {
         events.addAll(source.getTaskList().stream().filter(task -> task instanceof Event).map(task -> (Event) task)
                 .filter(event -> !event.isLesson()).map(JsonAdaptedEvent::new).collect(Collectors.toList()));
         lessons.addAll(source.getLessonList().stream().map(JsonAdaptedLesson::new).collect(Collectors.toList()));
-        calendar.addAll(source.getCalendarList().stream().map(task -> (Event) task)
-                .map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -83,15 +79,6 @@ class JsonSerializablePlanus {
 
         for (JsonAdaptedLesson jsonAdaptedLesson : lessons) {
             Lesson lesson = jsonAdaptedLesson.toModelType();
-            ArrayList<Task> tasks = lesson.createRecurringTasks();
-
-            for (Task task : tasks) {
-                if (planus.hasTask(task)) {
-                    throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
-                }
-                planus.addTask(task);
-                planus.addTaskToCalendar(task);
-            }
             planus.addLesson(lesson);
         }
         return planus;

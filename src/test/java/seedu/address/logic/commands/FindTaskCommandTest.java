@@ -10,7 +10,7 @@ import static seedu.address.testutil.TypicalPlanus.DEADLINE2;
 import static seedu.address.testutil.TypicalPlanus.EVENT1;
 import static seedu.address.testutil.TypicalPlanus.EVENT2;
 import static seedu.address.testutil.TypicalPlanus.EVENT3;
-import static seedu.address.testutil.TypicalPlanus.getTypicalPlanus;
+import static seedu.address.testutil.TypicalPlanus.getTypicalTaskOnlyPlanus;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,8 +26,8 @@ import seedu.address.model.task.TaskContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindTaskCommand}.
  */
 public class FindTaskCommandTest {
-    private Model model = new ModelManager(getTypicalPlanus(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalPlanus(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskOnlyPlanus(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTaskOnlyPlanus(), new UserPrefs());
 
     @Test
     public void equals() {

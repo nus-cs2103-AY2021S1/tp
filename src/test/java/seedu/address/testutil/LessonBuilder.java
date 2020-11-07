@@ -1,16 +1,17 @@
 package seedu.address.testutil;
 
-import seedu.address.model.lesson.Lesson;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Title;
+import static seedu.address.commons.util.DateTimeUtil.DATE_FORMATTER;
+import static seedu.address.commons.util.DateTimeUtil.TIME_FORMATTER;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import static seedu.address.commons.util.DateTimeUtil.DATE_FORMATTER;
-import static seedu.address.commons.util.DateTimeUtil.TIME_FORMATTER;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Title;
+
 
 /**
  * A utility class to help with building Task objects.

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPlanus.DEADLINE1;
-import static seedu.address.testutil.TypicalPlanus.DEADLINE5;
 import static seedu.address.testutil.TypicalPlanus.EVENT4;
 import static seedu.address.testutil.TypicalPlanus.getTypicalPlanus;
 
@@ -72,7 +71,6 @@ public class JsonPlanusStorageTest {
         assertEquals(original, new Planus(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addTask(DEADLINE5);
         original.removeTask(DEADLINE1);
         jsonPlanusStorage.savePlanus(original, filePath);
         readBack = jsonPlanusStorage.readPlanus(filePath).get();

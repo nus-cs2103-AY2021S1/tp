@@ -25,7 +25,7 @@ public class JsonSerializablePlanusTest {
         JsonSerializablePlanus dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
                 JsonSerializablePlanus.class).get();
         Planus planusFromFile = dataFromFile.toModelType();
-        Planus typicalTasksPlanus = TypicalPlanus.getTypicalPlanus();
+        Planus typicalTasksPlanus = TypicalPlanus.getTypicalTaskOnlyPlanus();
         assertEquals(planusFromFile, typicalTasksPlanus);
     }
 

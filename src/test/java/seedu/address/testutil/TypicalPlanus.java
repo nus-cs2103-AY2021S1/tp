@@ -86,6 +86,17 @@ public class TypicalPlanus {
         return planus;
     }
 
+    /**
+     * Returns an {@code Planus} with all the typical tasks only.
+     */
+    public static Planus getTypicalTaskOnlyPlanus() {
+        Planus planus = new Planus();
+        for (Task task : getTypicalTasks()) {
+            planus.addTask(task);
+        }
+        return planus;
+    }
+
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(DEADLINE1, DEADLINE2, DEADLINE3, DEADLINE4, EVENT1, EVENT2, EVENT3));
     }
