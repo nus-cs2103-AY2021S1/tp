@@ -22,7 +22,7 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD
-            + " [INDEX] (must be a positive integer)";
+            + " [INDEX] (must be a positive integer from 1 to 50)";
 
     public static final String MESSAGE_INDEX_NOT_IN_RANGE = "Index should only be from 1 to 50.";
 
