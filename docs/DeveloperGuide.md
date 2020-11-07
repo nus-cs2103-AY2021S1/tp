@@ -257,7 +257,7 @@ The following Predicate classes implements `Predicate<Assignment>` and are passe
 - DeadlineContainsKeywordsPredicate for date or time keywords
 - PriorityContainsKeywordsPredicate for priority keywords
 
-The keywords are stored in a `List<String>` that is passed into the constructor of the predicate so that the overriden `test` method from `Predicate<Assignment>` class can evaluate the keywords with the specific attribute of an assignment, being name, module code, deadline or priority, to return a boolean value.
+The keywords are stored in a `List<String>` that is passed into the constructor of the predicate so that the overridden `test` method from `Predicate<Assignment>` class can evaluate the keywords with the specific attribute of an assignment, being name, module code, deadline or priority, to return a boolean value.
 
 Given below is the class diagram of these Predicate classes:
 
