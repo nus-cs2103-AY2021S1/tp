@@ -1,6 +1,6 @@
 @startuml
 start
-:User executes get edit command: edit 1;
+:user executes get edit command: edit 1;
 :Logic executes get edit command;
 :GetEditCommandParser parses the command: edit 1;
 

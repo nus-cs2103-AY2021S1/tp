@@ -1,6 +1,6 @@
 @startuml
 start
-:User executes delete command: delete 1;
+:user executes delete command: delete 1;
 :Logic executes delete command;
 :DeleteCommandParser parses the command: delete 1;
 
