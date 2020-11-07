@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalExercises.SPRINTS;
 import static seedu.address.testutil.TypicalExercises.SQUATS;
 
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ public class RoutineAddExerciseCommandParserTest {
     public void parse_allRoutineFieldsPresent_success() {
 
         // whitespace only preamble
-        assertParseSuccess(parser, " r/Leg Day e/Squats", new RoutineAddExerciseCommand(legDay, SQUATS));
+        assertParseSuccess(parser, " r/Leg Day e/Sprints", new RoutineAddExerciseCommand(legDay, SPRINTS));
     }
 
     @Test

@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalExercises.BENCH_PRESS;
-import static seedu.address.testutil.TypicalExercises.SQUATS;
+import static seedu.address.testutil.TypicalExercises.SPRINTS;
 import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ public class RoutineDeleteExerciseCommandParserTest {
         Routine legDay = new Routine(new Name("Leg Day"));
 
         // whitespace only preamble
-        assertParseSuccess(parser, " r/Leg Day e/Squats", new RoutineDeleteExerciseCommand(legDay, SQUATS));
+        assertParseSuccess(parser, " r/Leg Day e/Sprints", new RoutineDeleteExerciseCommand(legDay, SPRINTS));
     }
 
     @Test
