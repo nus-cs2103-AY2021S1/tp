@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import quickcache.model.Model;
 
 /**
- * Lists all flashcards in the address book to the user.
+ * Lists all flashcards in QuickCache to the user.
  */
 public class ListCommand extends Command {
 

@@ -43,7 +43,7 @@ public class QuestionDisplay extends UiPart<Region> {
 
     public void setQuestion(String question) {
         requireNonNull(question);
-        questionDisplay.setText("Question: " + question);
+        questionDisplay.setText("Question:\n" + question);
     }
 
     /**
