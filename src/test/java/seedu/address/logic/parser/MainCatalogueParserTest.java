@@ -113,8 +113,6 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD, Status.PROJECT_LIST) instanceof ClearCommand);
-        assertTrue(parser
-            .parseCommand(ClearCommand.COMMAND_WORD + " 3", Status.PROJECT_LIST) instanceof ClearCommand);
     }
 
     @Test
@@ -137,11 +135,7 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD, Status.PROJECT_LIST) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3",
-            Status.PROJECT_LIST) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD, Status.PROJECT) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3",
-            Status.PROJECT) instanceof ExitCommand);
     }
 
     @Test
@@ -156,27 +150,19 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD, Status.PROJECT_LIST) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3",
-            Status.PROJECT_LIST) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD, Status.PROJECT) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3",
-            Status.PROJECT) instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_listProjects() throws Exception {
         assertTrue(parser.parseCommand(ListProjectsCommand.COMMAND_WORD, Status.PROJECT_LIST)
             instanceof ListProjectsCommand);
-        assertTrue(parser.parseCommand(ListProjectsCommand.COMMAND_WORD + " 3",
-            Status.PROJECT_LIST) instanceof ListProjectsCommand);
     }
 
     @Test
     public void parseCommand_listPersons() throws Exception {
         assertTrue(parser.parseCommand(ListPersonsCommand.COMMAND_WORD, Status.PERSON_LIST)
             instanceof ListPersonsCommand);
-        assertTrue(parser.parseCommand(ListPersonsCommand.COMMAND_WORD + " 1",
-            Status.PERSON_LIST) instanceof ListPersonsCommand);
     }
 
     @Test
@@ -190,8 +176,6 @@ public class MainCatalogueParserTest {
     public void parseCommand_leave() throws Exception {
         assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD,
             Status.PROJECT) instanceof LeaveCommand);
-        assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD + " 3",
-            Status.TEAMMATE) instanceof LeaveCommand);
     }
 
     @Test
