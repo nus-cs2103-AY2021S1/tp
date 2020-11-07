@@ -112,12 +112,13 @@ Format: `exit`
 
 ### 3.2. Staff commands
 
-<div>
+<div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
-- All commands under staff can only be done on either staff list or staff profile panel except `adds`, 
- which can be done on any panel
-- While in profiles, only details of the profile that is being viewed can be changed.
+:bulb: **Tip:**<br>
+
+* All commands under staff can only be done on either staff list or staff profile panel except `adds`, which can be done on any panel
+ 
+* While in staff profile, only details of the profile that is being viewed can be changed.
 
 </div>
 
@@ -136,7 +137,7 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
  
 Examples:
 * `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Developer`
+* `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
 
 #### 3.2.3. Find a staff : `find s-`
 
@@ -171,16 +172,8 @@ Edits general details of a staff from eva (excluding leave taken)
 
 Format: `edits INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]`
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:**
-
-* Edit of comment needs to be in required format: `c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE DESC/NEW_DESCRIPTION`
-
-</div>
-
 Example:
-* `edits 1 n/NEW_NAME p/99999999 a/NEW_ADDRESS e/NEW@example.com`
+* `edits 1 n/John Doe p/99999999 a/John Street e/NEW@example.com`
 
 
 #### 3.2.7. Record leave taken by staff: `addl`
@@ -209,9 +202,9 @@ Removes record of leave taken by staff. <br>
 Format: `dell INDEX d/DATE`
 
 Examples:
-* `list s-` followed by `dell 2 d/09/09/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
-* `find s- Betsy` followed by `dell 1 d/09/09/2020` deletes the leave from the 1st person in the results of the `find s-` command.
-* `dell 2 d/09/09/2020`
+* `list s-` followed by `dell 2 d/09/10/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
+* `find s- Betsy` followed by `dell 1 d/09/10/2020` deletes the leave from the 1st person in the results of the `find s-` command.
+* `dell 2 d/09/10/2020`
 
 #### 3.2.9. Clear staff database : `clear s-`
 
@@ -219,9 +212,14 @@ Clears all staff entries from Eva.
 
 ### 3.3. Applicant commands
 
+<div>
+
+:bulb: **Tip:**
 - All commands under applicant can only be done on either applicant list or applicant profile except `adda`, 
  which can be done on anywhere
- - While in profiles, only details of the profile that is being viewed can be changed.
+- While in profiles, only details of the profile that is being viewed can be changed.
+
+</div>
 
 #### 3.3.1. List all applicants : `list a-`
 
@@ -351,6 +349,9 @@ Commands to add, delete and edit comments on staff or applicants
 * Comment Commands take index reference from which type of person user is viewing. 
     * If user is viewing staff list or profile, comment commands takes index reference from staff list.
     * If user is viewing applicant list or profile, comment commands takes index reference from applicant list.
+    * Comments are arranged according to date, then alphabetically if same date.
+    * Comments do not support the input `|`.
+    * Comment description can only be seen in profiles.
 
 </div>
  
@@ -361,7 +362,7 @@ Adds a comment to a staff/applicant under eva
 Format: `addc INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
 
 Example:
-* `addc 1 c/ ti/title d/10/10/2010 desc/description`
+* `addc 1 c/ ti/Working Ethics d/10/10/2010 desc/Good`
 
 #### 3.4.2 Delete comment from a staff/applicant: `delc`
 
@@ -369,19 +370,19 @@ Deletes a comment from a staff/applicant under eva
 
 Format: `delc INDEX c/ ti/TITLE_OF_COMMENT_TO_DELETE`
 
-Examples:
-* Comment to delete has title: Example, Date: 10/10/2010, Description: Example of comment, Staff index is 1
-* Command: `delc 1 c/ ti/Example`
+Example Scenario:
+* Comment to delete has Title: Working Ethics, Date: 10/10/2010, Description:Good, Staff index is 1
+* Command: `delc 1 c/ ti/Working Ethics`
 
 #### 3.4.3. Edit comment on a staff: `editc`
 
-Edits the description of a comment on a staff. 
+Edits only the description of a comment on a staff. 
 
 Format: `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION`
 
-Examples:
-* Comment to change has title: Example, Date: 10/10/2010, Description: Example of comment, and staff index is 1
-* Command: `editc 1 c/ ti/Example d/10/10/2010 desc/New Example of comment`
+Example Scenario:
+* Comment to change has Title: Working Ethics, Date: 10/10/2010, Description: Good, and staff index is 1
+* Command: `editc 1 c/ ti/Working Ethics d/10/10/2010 desc/Quite Bad`
 
 
 ### 3.5. Script Engine `[coming in v2.0]`
