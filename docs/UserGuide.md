@@ -105,7 +105,7 @@ If you wish to start afresh, enter the `clear` command to clear all entries from
 
 ### 4.1 Overview Tab
 
-[**INSERT PICTURE ON FIRST STARTUP ON OVERVIEW TAB WITH ANNOTATIONS OF APPOINTMENT LIST, CALENDAR AND APPOINTMENT INDEX**]
+![Overview Tab Layout](images/overviewLayout.png)
 
 This would be the home page of CliniCal, where the appointment list would be on the left, and the calendar view on the right.
 
