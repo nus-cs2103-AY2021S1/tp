@@ -874,7 +874,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `list -staff`
+1. User types in `list s-`
 2. Eva shows all staff records with indexes beside.
     Use case ends.
 
@@ -889,7 +889,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `list -applicant`
+1. User types in `list a-`
 2. Eva shows all applicant records with indexes beside.
     Use case ends.
 
@@ -904,8 +904,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `find s- Joe`
-2. Eva shows all staff records whose name contains "Joe" with indexes beside.
+1. User types in `find s- Alex`
+2. Eva shows all staff records whose name contains "Alex" with indexes beside.
     Use case ends.
     
 **Extensions**
@@ -919,8 +919,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `find a- Joe`
-2. Eva shows all applicant records whose name contains "Joe" with indexes beside.
+1. User types in `find a- Alex`
+2. Eva shows all applicant records whose name contains "Alex" with indexes beside.
     Use case ends.
 
 **Extensions**

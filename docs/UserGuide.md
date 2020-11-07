@@ -43,11 +43,11 @@ Note how the app contains some sample data.<br>
 
    * **`list a-`** : Lists all applicants, changes the panel to display the applicant list.
    
-   * **`adda`**` n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
+   * **`adda`**`  n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
    
    * **`list s-`** : Lists all staffs, changes the panel to display the staff list.
 
-   * **`adds`**` n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
+   * **`adds`**`  n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
 
    * **`dels`**` 3` : Deletes the 3rd staff shown in the staff list.
    
@@ -241,7 +241,7 @@ Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG
 
 Examples:
 * `adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
-* `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Role: Developer`
+* `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Developer`
 
 #### 3.3.3. Find an applicant : `find a-`
 
@@ -286,7 +286,7 @@ Format: `edita INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]
 </div>
 
 Example:
-* `edita 1 n/NEW_NAME p/99999999 a/NEW_ADDRESS e/NEW@example.com`
+* `edita 1 n/NEWNAME p/99999999 a/NEWADDRESS e/NEW@example.com`
 * `edita 1 id/ 10/10/2010`
 
 
@@ -324,10 +324,9 @@ Example:
 * `delapp 1`
 
 #### 3.3.9. Set application status: `setas`
-[This feature is coming soon] <br>
 Sets the application status of an applicant with the specified index on the displayed list in Eva.
 
-Format: `setas INDEX NEW_APPLICATION_STATUS`
+Format: `setas INDEX as/NEW_APPLICATION_STATUS`
 
 - Application status can only be any one from the following: 
   - received
@@ -336,7 +335,7 @@ Format: `setas INDEX NEW_APPLICATION_STATUS`
   - rejected
   
 Example:
-* `setas 1 received`
+* `setas 1 as/received`
 
 ### 3.4. Comment Commands
 
@@ -385,7 +384,20 @@ Example Scenario:
 * Command: `editc 1 c/ ti/Working Ethics d/10/10/2010 desc/Quite Bad`
 
 
-### 3.5. Script Engine `[coming in v2.0]`
+### 3.5. Script Engine
+
+Eva has a built-in script to execute JavaScript that can be used to extend the features of Eva.
+
+Please refer to [Nashorn official website](https://www.oracle.com/technical-resources/articles/java/jf14-nashorn.html)
+for supported JavaScript features, and how to import Java classes to extend Eva features.
+
+#### 3.5.1. Load a JavaScript script: `load`
+
+Format: `load SCRIPT_FILE_PATH`
+
+Example Scenario:
+* Load a script located at `C:\Documents\script.js`
+* Command: `load C:\Documents\script.js`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -396,14 +408,16 @@ Example Scenario:
 
 **Q**: I can't run the app by double clicking! What do I do?<br>
 **A**: Open terminal and traverse to the directory the `eva.jar` file is in. Then type the command `java -jar eva.jar`.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Command summary                                                                                 |
+## 5. Command summary                                                                                 
 
 ### 5.1. System
 
 | Action    | Format, Examples   |
 |-----------|--------------------|
+| **Load**  | `load`             |
 | **Help**  | `help`             |
 | **Exit**  | `exit`             |
 
@@ -432,4 +446,4 @@ Example Scenario:
 | **DeleteApplicant**   | `dela` <br> e.g., `dela 1`                                                                       |
 | **AddApplication**    | `addapp INDEX [filepath]` <br> e.g., `addapp 1 C:\Users\Public\Downloads\resume.txt`             |
 | **DeleteApplication** | `delapp INDEX` <br> e.g., `delapp 1`                                                       |
-| **SetAppStatus**      | `setas INDEX NEW_APPLICATION_STATUS` <br> e.g., `setas 1 processing`                               |
+| **SetAppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g., `setas 1 as/processing`                               |

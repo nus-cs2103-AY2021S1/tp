@@ -288,15 +288,24 @@ public class ParserUtil {
 
     /**
      * Checks for invalid input
-     * @param index
-     * @return
      */
     public static boolean checkIfNumber(String index) {
         try {
-            Integer.parseInt(index);
+            Integer.parseInt(index.trim());
         } catch (NumberFormatException e) {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if the prefix does not have any arguments.
+     */
+    public static boolean isEmptyPrefix(ArgumentMultimap argMultimap, Prefix prefix) {
+        if (argMultimap.getAllValues(prefix).size() == 1) {
+            return argMultimap.getAllValues(prefix).get(0).isEmpty();
+        } else {
+            return false;
+        }
     }
 }

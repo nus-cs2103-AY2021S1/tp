@@ -2,8 +2,10 @@ package com.eva.logic.parser;
 
 import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
+import static com.eva.logic.parser.ParserUtil.isEmptyPrefix;
 
 import com.eva.commons.core.Messages;
+import com.eva.logic.commands.FindCommand;
 import com.eva.logic.commands.ListCommand;
 import com.eva.logic.parser.exceptions.ParseException;
 
@@ -28,9 +30,14 @@ public class ListCommandParser implements Parser<ListCommand> {
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        if (argMultimap.getValue(PREFIX_STAFF).isPresent()) {
+        if (argMultimap.getNonEmptyPrefixCount() > 1) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        if (argMultimap.getValue(PREFIX_STAFF).isPresent() && isEmptyPrefix(argMultimap, PREFIX_STAFF)) {
             return new ListCommand(true);
-        } else if (argMultimap.getValue(PREFIX_APPLICANT).isPresent()) {
+        } else if (argMultimap.getValue(PREFIX_APPLICANT).isPresent() && isEmptyPrefix(argMultimap, PREFIX_STAFF)) {
             return new ListCommand(false);
         } else {
             throw new ParseException(
