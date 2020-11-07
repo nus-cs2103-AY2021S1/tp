@@ -30,6 +30,14 @@ public class TimetableDeleteSlotCommandParser implements Parser<TimetableDeleteS
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     TimetableDeleteSlotCommand.MESSAGE_USAGE));
+        } else if (argMultimap.getAllValues(PREFIX_DAY).size() != 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimetableDeleteSlotCommand.MESSAGE_USAGE)
+            );
+        } else if (argMultimap.getAllValues(PREFIX_TIME).size() != 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimetableDeleteSlotCommand.MESSAGE_USAGE)
+            );
         }
 
         Day day = ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get());

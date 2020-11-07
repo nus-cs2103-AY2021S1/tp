@@ -53,6 +53,6 @@ public class RoutineViewCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RoutineViewCommand
-                && this.toView == ((RoutineViewCommand) other).toView); // instanceof handles nulls
+                && this.toView.equals(((RoutineViewCommand) other).toView)); // instanceof handles nulls
     }
 }

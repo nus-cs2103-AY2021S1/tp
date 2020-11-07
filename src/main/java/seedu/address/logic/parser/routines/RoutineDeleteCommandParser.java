@@ -23,9 +23,13 @@ public class RoutineDeleteCommandParser implements Parser<RoutineDeleteCommand> 
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, RoutineDeleteCommand.MESSAGE_USAGE));
         }
-
-        Index index = ParserUtil.parseIndex(args);
-        return new RoutineDeleteCommand(index);
+        try {
+            Index index = ParserUtil.parseIndex(args);
+            return new RoutineDeleteCommand(index);
+        } catch (ParseException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RoutineDeleteCommand.MESSAGE_USAGE));
+        }
     }
 
 }

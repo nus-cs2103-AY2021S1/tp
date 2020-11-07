@@ -41,6 +41,10 @@ public class ExerciseEditCommandParser implements Parser<ExerciseEditCommand> {
         EditExerciseDescriptor editExerciseDescriptor = new EditExerciseDescriptor();
         if (argMultimap.getValue(PREFIX_EXERCISE).isPresent()) {
             editExerciseDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_EXERCISE).get()));
+        } else if (argMultimap.getAllValues(PREFIX_EXERCISE).size() != 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExerciseEditCommand.MESSAGE_USAGE)
+            );
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editExerciseDescriptor::setTags);
 

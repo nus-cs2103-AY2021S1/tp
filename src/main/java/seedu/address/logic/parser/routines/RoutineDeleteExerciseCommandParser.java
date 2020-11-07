@@ -38,6 +38,14 @@ public class RoutineDeleteExerciseCommandParser implements Parser<RoutineDeleteE
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     RoutineDeleteExerciseCommand.MESSAGE_USAGE));
+        } else if (argMultimap.getAllValues(PREFIX_ROUTINE).size() != 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RoutineDeleteExerciseCommand.MESSAGE_USAGE)
+            );
+        } else if (argMultimap.getAllValues(PREFIX_EXERCISE).size() != 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RoutineDeleteExerciseCommand.MESSAGE_USAGE)
+            );
         }
 
         Name routineName = ParserUtil.parseName(argMultimap.getValue(PREFIX_ROUTINE).get());

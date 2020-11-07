@@ -25,6 +25,10 @@ public class CalorieAddCommandParser implements Parser<CalorieAddCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_CALORIE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieAddCommand.MESSAGE_USAGE));
+        } else if (argMultimap.getAllValues(PREFIX_CALORIE).size() != 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalorieAddCommand.MESSAGE_USAGE)
+            );
         }
 
         int calories = ParserUtil.parseCalorie(argMultimap.getValue(PREFIX_CALORIE).get());

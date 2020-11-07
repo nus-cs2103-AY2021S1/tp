@@ -32,6 +32,18 @@ public class TimetableAddLessonCommandParser implements Parser<TimetableAddLesso
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     TimetableAddLessonCommand.MESSAGE_USAGE));
+        } else if (argMultimap.getAllValues(PREFIX_LESSON).size() != 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimetableAddLessonCommand.MESSAGE_USAGE)
+            );
+        } else if (argMultimap.getAllValues(PREFIX_DAY).size() != 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimetableAddLessonCommand.MESSAGE_USAGE)
+            );
+        } else if (argMultimap.getAllValues(PREFIX_TIME).size() != 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimetableAddLessonCommand.MESSAGE_USAGE)
+            );
         }
 
         Name lessonName = ParserUtil.parseName(argMultimap.getValue(PREFIX_LESSON).get());
