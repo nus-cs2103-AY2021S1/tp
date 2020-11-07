@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Allergy {
 
     public static final String MESSAGE_CONSTRAINTS = "Allergy names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "^\\s*[\\da-zA-Z][\\da-zA-Z\\s]*$";
+    public static final String VALIDATION_REGEX = "^\\s*[\\da-zA-Z][\\da-zA-Z\\s]*$"; // allow whitespaces in between
 
     public final String allergyName;
 

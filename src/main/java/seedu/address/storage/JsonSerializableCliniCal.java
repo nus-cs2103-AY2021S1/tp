@@ -20,8 +20,8 @@ import seedu.address.model.patient.Patient;
 @JsonRootName(value = "clinical")
 class JsonSerializableCliniCal {
 
-    public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointment(s).";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patients.";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointments.";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
