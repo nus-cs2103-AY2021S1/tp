@@ -234,26 +234,28 @@ The following class diagram depicts how a `Bid` is created.
 
  ##### Design Considerations
 
- 1. Alternative 1 (current choice): Do not give bids its own BidId.
+ 1. Alternative 1 (current choice): Do not give bids its own Bid Id.
     - Pros: 
-        - Less complicated
+        - A bid is already unique as it cannot have the same property id and bidder id for two separate
+          bids. Thus having a unique bid Id over complicates the bid for no reason
     - Cons: 
-        - Bids are not unique
+        - The user must know the bidder Id and property Id to find the exact bid instead of using a bid Id
 
  2. Alternative 2: Give a specific Id to the bids.
     - Pros: 
-        - Makes any Bid unique to an id
+        - Can track how many bids have been made
         - Easier for users to execute certain commands aka delete-bid
     - Cons: 
         - More complicated
-        - Having a bid id does not help other entities 
+        - Having a bid Id does not help other entities 
         
  3. Alternative 3: Create a bid specific to a property and have a list of bidders as a parameter.
     - Pros: 
-        - Associates all bidder Id to a specific property
+        - Associates all bidder Id's to a specific property
         - Easier to track if there is a duplicate bidder for a certain bid
     - Cons: 
         - Difficult to edit specific bids in terms of parameters
+        - Difficult to find all bids related to a specific bidder
 
 { end of Model Component section written by: Marcus Duigan Xing Yu }
 
