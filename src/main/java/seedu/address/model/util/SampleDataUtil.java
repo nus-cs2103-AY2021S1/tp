@@ -58,17 +58,17 @@ public class SampleDataUtil {
         return new Delivery[]{
             new Delivery(new DeliveryName("Damith"),
                 new Phone("91231231"),
-                new Address("Blk 999 Bukit Batam Jln Pondok Indah No 55"),
+                new Address("Blk 999 Bukit Batam Jln Pondok Indah No. 55"),
                 new Order("1x Laksa, 1x Ice Kopi"),
                 Time.timeFromMinutes("0")),
             new Delivery(new DeliveryName("Aileen"),
                 new Phone("81111111"),
-                new Address("The View Orchard Apartment No 12"),
+                new Address("The View Orchard Apartment No. 12"),
                 new Order("5x Mee Goreng, 5x Prata plain"),
                 Time.timeFromMinutes("8")),
             new Delivery(new DeliveryName("Alex Yeoh"),
                 new Phone("87438807"),
-                new Address("Blk 30 Geylang Street 29, $06-40"),
+                new Address("Blk 30 Geylang Street 29, #06-40"),
                 new Order("1x Prata"),
                 Time.timeFromMinutes("30"))
         };
