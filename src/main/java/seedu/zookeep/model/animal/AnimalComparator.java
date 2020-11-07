@@ -2,7 +2,9 @@ package seedu.zookeep.model.animal;
 
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.logging.Logger;
 
+import seedu.zookeep.commons.core.LogsCenter;
 import seedu.zookeep.model.feedtime.FeedTime;
 
 
@@ -11,6 +13,7 @@ import seedu.zookeep.model.feedtime.FeedTime;
  */
 public class AnimalComparator {
 
+    private static final Logger logger = LogsCenter.getLogger(AnimalComparator.class);
     private static final Comparator<Animal> ANIMAL_FEEDTIME_COMPARATOR = new Comparator<Animal>() {
         @Override
         public int compare(Animal o1, Animal o2) {
@@ -60,8 +63,8 @@ public class AnimalComparator {
     private static final String MEDICAL_CATEGORY = "medical";
     private static final String NAME_CATEGORY = "name";
 
-    private String category;
-    private Comparator<Animal> animalComparator;
+    private final String category;
+    private final Comparator<Animal> animalComparator;
 
     private AnimalComparator(Comparator<Animal> animalComparator, String category) {
         this.animalComparator = animalComparator;
@@ -100,11 +103,20 @@ public class AnimalComparator {
         return new AnimalComparator(ANIMAL_NAME_COMPARATOR, NAME_CATEGORY);
     }
 
+    /**
+     * Returns the category for sorting the animals.
+     * @return Category for sorting in string representation.
+     */
     public String getCategory() {
         return this.category;
     }
 
+    /**
+     * Returns the static animal comparator for sorting the animals.
+     * @return Static Animal Comparator for sorting.
+     */
     public Comparator<Animal> getAnimalComparator() {
+        logger.info("Sorting with the " + this);
         return this.animalComparator;
     }
 
@@ -113,5 +125,10 @@ public class AnimalComparator {
         return other == this // short circuit if same object
                 || (other instanceof AnimalComparator // instanceof handles nulls
                 && category.equals(((AnimalComparator) other).category)); // state check
+    }
+
+    @Override
+    public String toString() {
+        return "animal " + this.category + " comparator";
     }
 }
