@@ -5,7 +5,6 @@ import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
