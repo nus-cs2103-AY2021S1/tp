@@ -1010,7 +1010,7 @@ testers are expected to do more *exploratory* testing.
        order in this updated list of drink sales.
        
     1. Test case: `s-update BSBM/999999999999999` <br>
-       Expected: No sales update is performed. Error details shown in the Result Display. User is able to edit the
+       Expected: No sales update is performed. An error message will be shown. User is able to edit the
        input.
        
     1. Other incorrect `s-update` commands to try: `s-update`, `s-update AAAA/32` <br>
