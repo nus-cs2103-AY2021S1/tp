@@ -1,14 +1,15 @@
 @startuml
 start
-:user executes get edit command: edit 1;
-:Logic executes get edit command;
-:GetEditCommandParser parses the command: edit 1;
+:user executes select recipe command: selectR 1;
+:Logic executes select recipe command;
+:SelectRecipeCommandParser parses the command: selectR 1;
 
 if () then ([index > 0 and index is integer])
-:execute GetEditCommand;
+:execute SelectRecipeCommand;
 
         if () then ([is valid index])
-        :item is fetched;
+        :return the recipe to be shown;
+        :open left drawer;
 
         else ([is invalid index])
         :throw command exception;
