@@ -18,7 +18,7 @@ import seedu.address.model.ingredient.Amount;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientName;
 
-class SetCommandTest {
+class IngredientSetCommandTest {
 
     private static Ingredient target = new Ingredient(new IngredientName("Milk"));
     private static final IngredientBook stubBook = new IngredientBook();
@@ -40,18 +40,18 @@ class SetCommandTest {
         model.setIngredientBook(stubBook);
 
         Ingredient editedIngredient = new Ingredient(new IngredientName("Milk"), new Amount("20"));
-        SetCommand.SetIngredientDescriptor descriptor = new SetCommand.SetIngredientDescriptor();
+        IngredientSetCommand.SetIngredientDescriptor descriptor = new IngredientSetCommand.SetIngredientDescriptor();
         descriptor.setAmount(new Amount("20"));
-        SetCommand setCommand = new SetCommand(target.getIngredientName(), descriptor);
+        IngredientSetCommand ingredientSetCommand = new IngredientSetCommand(target.getIngredientName(), descriptor);
 
-        String expectedMessage = String.format(SetCommand.MESSAGE_SUCCESS, editedIngredient);
+        String expectedMessage = String.format(IngredientSetCommand.MESSAGE_SUCCESS, editedIngredient);
 
         Model expectedModel =
                 new ModelManager(new AddressBook(model.getAddressBook()), model.getSalesBook(),
                         stubBook, new UserPrefs());
         expectedModel.setIngredient(target, editedIngredient);
 
-        assertCommandSuccess(setCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(ingredientSetCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -65,26 +65,29 @@ class SetCommandTest {
 
         model.setIngredientBook(stubBook2);
 
-        SetCommand.SetIngredientDescriptor descriptor = new SetCommand.SetIngredientDescriptor();
+        IngredientSetCommand.SetIngredientDescriptor descriptor = new IngredientSetCommand.SetIngredientDescriptor();
         descriptor.setAmount(new Amount("0"));
-        SetCommand setCommand = new SetCommand(new IngredientName("Pearl"), descriptor);
+        IngredientSetCommand ingredientSetCommand = new IngredientSetCommand(new IngredientName("Pearl"), descriptor);
 
-        String expectedMessage = SetCommand.MESSAGE_NO_CHANGE;
+        String expectedMessage = IngredientSetCommand.MESSAGE_NO_CHANGE;
 
-        assertCommandFailure(setCommand, model, expectedMessage);
+        assertCommandFailure(ingredientSetCommand, model, expectedMessage);
     }
 
 
     @Test
     void testEquals() {
-        final SetCommand.SetIngredientDescriptor descriptor = new SetCommand.SetIngredientDescriptor();
+        final IngredientSetCommand.SetIngredientDescriptor descriptor =
+                new IngredientSetCommand.SetIngredientDescriptor();
         descriptor.setAmount(new Amount("20"));
-        final SetCommand standardCommand = new SetCommand(new IngredientName("Milk"), descriptor);
+        final IngredientSetCommand standardCommand = new IngredientSetCommand(new IngredientName("Milk"), descriptor);
 
         // same values -> returns true
-        SetCommand.SetIngredientDescriptor copyDescriptor = new SetCommand.SetIngredientDescriptor();
+        IngredientSetCommand.SetIngredientDescriptor copyDescriptor =
+                new IngredientSetCommand.SetIngredientDescriptor();
         copyDescriptor.setAmount(new Amount("20"));
-        SetCommand commandWithSameValues = new SetCommand(new IngredientName("Milk"), copyDescriptor);
+        IngredientSetCommand commandWithSameValues =
+                new IngredientSetCommand(new IngredientName("Milk"), copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -97,10 +100,10 @@ class SetCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different ingredient name -> returns false
-        assertFalse(standardCommand.equals(new SetCommand(new IngredientName("Boba"), copyDescriptor)));
+        assertFalse(standardCommand.equals(new IngredientSetCommand(new IngredientName("Boba"), copyDescriptor)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new SetCommand(new IngredientName("Milk"),
-                new SetCommand.SetIngredientDescriptor())));
+        assertFalse(standardCommand.equals(new IngredientSetCommand(new IngredientName("Milk"),
+                new IngredientSetCommand.SetIngredientDescriptor())));
     }
 }

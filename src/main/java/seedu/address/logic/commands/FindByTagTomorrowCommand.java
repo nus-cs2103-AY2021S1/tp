@@ -19,9 +19,9 @@ public class FindByTagTomorrowCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Tomorrow is %2$s."
             + "\nThere are total %1$s employees working tomorrow."
-            + "\nThey are listed below.";
+            + "\nThey are listed below in the employee directory pane.";
     public static final String MESSAGE_NO_EMPLOYEE = "Tomorrow is %1$s."
-            + "\nBased on the contact list, no employee is working tomorrow.";
+            + "\nBased on the tCheck's employee directory, no employee is available tomorrow.";
 
     @Override
     public CommandResult execute(Model model) {

@@ -94,7 +94,7 @@ public class IngredientViewSingleCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof SetCommand.SetIngredientDescriptor)) {
+            if (!(other instanceof IngredientSetCommand.SetIngredientDescriptor)) {
                 return false;
             }
 
