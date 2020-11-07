@@ -80,7 +80,7 @@ public class GradeTracker implements ReadOnlyGradeTracker {
     }
 
     public List<Assignment> getSortedAssignments() {
-        List<Assignment> sortedAssignments = new SortedList<Assignment>(assignments
+        List<Assignment> sortedAssignments = new SortedList<>(assignments
                 .asUnmodifiableObservableList(), comparator);
         return sortedAssignments;
     }
@@ -119,11 +119,7 @@ public class GradeTracker implements ReadOnlyGradeTracker {
                 break;
             }
         }
-        if (Grade.isValidGrade(gradeTracker.grade.gradeResult) && areAssignmentsValid) {
-            return true;
-        } else {
-            return false;
-        }
+        return Grade.isValidGrade(gradeTracker.grade.gradeResult) && areAssignmentsValid;
     }
 
     /**
@@ -133,6 +129,7 @@ public class GradeTracker implements ReadOnlyGradeTracker {
      * @return true if the assignment already exists
      */
     public boolean containsDuplicateAssignment(Assignment otherAssignment) {
+        requireNonNull(otherAssignment);
         for (Assignment eachAssignment : assignments) {
             if (eachAssignment.equals(otherAssignment)) {
                 return true;
