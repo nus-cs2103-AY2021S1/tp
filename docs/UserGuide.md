@@ -2,20 +2,10 @@
 layout: page
 title: User Guide
 ---
-
-<img src="images/tCheckLogo.png" width="200" height="200" />
-
-Welcome to the tCheck User Guide! Thank you for choosing tCheck, the most popular command-line milk tea shop management desktop application in the T-Sugar chain!
-
-tCheck offers an integrated system to efficiently manage a T-Sugar shop, by providing sales tracking, ingredient tracking and employees' contact management in one platform.
-
-This guide will help you to get started with tCheck, and provide useful tips along the way.
-
-
-
 * Table of Contents
-    * [About this document](#about-this-document)
+    * [Introduction](#introduction)
     * [Quick start](#quick-start)
+    * [About this document](#about-this-document)
     * [Features](#features)
         * [Commands - Sales Tracking](#commands-sales-tracking) 
         * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
@@ -24,23 +14,25 @@ This guide will help you to get started with tCheck, and provide useful tips alo
     * [FAQ](#FAQ)
     * [Command summary](#command-summary)
 
+## Introduction <a name="introduction"></a>
+<img src="images/tCheckLogo.png" width="200" height="200" />
+
+Welcome to the User Guide of **tCheck**!
+ 
+Are you a bubble tea store manager (from T-Sugar) looking to reduce your time spent on administrative work in store
+management? Look no further, as tCheck can assist you with these tasks.
+
+tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of 
+the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is an
+application optimized for the Command Line Interface (CLI); this means that you use this application by typing
+commands into a _Command Box_. If you are a fast typist, then you will be able to update and retrieve the
+information in tCheck more efficiently, as opposed to using other applications that requires a mouse.
+
+This User Guide will help you get started with tCheck and learn how to use the features that tCheck provides.
+You can start from the [Quick Start](#quick-start) section to learn how to obtain tCheck to begin managing
+ your store more efficiently.
+
 --------------------------------------------------------------------------------------------------------------------
-## About this document  <a name="about-this-document"></a>
-This document introduces the features of tCheck. 
-
-The following are symbols and formatting used in this document:
-
-:bulb: 
-Tips are used to describe small features or techniques
-that may come in handy when using tCheck!
-
-
-:information_source: 
-Notes describe certain features or behaviour that may
-not be so obvious!
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Quick start <a name="quick-start"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -65,6 +57,21 @@ not be so obvious!
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+## About this document  <a name="about-this-document"></a>
+This document introduces the features of tCheck. 
+
+The following are symbols and formatting used in this document:
+
+:bulb: 
+Tips are used to describe small features or techniques
+that may come in handy when using tCheck!
+
+
+:information_source: 
+Notes describe certain features or behaviour that may
+not be so obvious!
 
 --------------------------------------------------------------------------------------------------------------------
 

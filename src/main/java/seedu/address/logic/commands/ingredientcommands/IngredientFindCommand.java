@@ -17,7 +17,7 @@ public class IngredientFindCommand extends Command {
     public static final String COMMAND_WORD = "i-find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " : Finds all ingredients that have names containing "
-            + "any of the specified keywords (case-insensitive) and displays them in the ingredient tracker panel.\n"
+            + "any of the specified keywords (case-insensitive) and displays them in the ingredient tracker.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " milk boba";
 

@@ -34,11 +34,6 @@ class IngredientTest {
     }
 
     @Test
-    public void testGetIngredientNameAsString() {
-        assertEquals(BLACK_TEA.getIngredientNameAsString(), "Black Tea");
-    }
-
-    @Test
     public void testGetAmount() {
         assertEquals(BLACK_TEA_VALID_AMOUNT.getAmount(), new Amount("90"));
     }
