@@ -41,7 +41,7 @@ public class FindTaskCommandParserTest {
         predicate.setKeyword(PREFIX_TAG, "CS2103T");
         FindTaskCommand expectedFindTaskCommand = new FindTaskCommand(predicate);
         assertParseSuccess(parser,
-                " title:Meet Alice desc:project date:01-01-2020 status: incomplete tag:CS2103T",
+                " title:Meet Alice desc:project date:01-01-2020 status:incomplete tag:CS2103T",
                 expectedFindTaskCommand);
 
         // multiple whitespaces between keywords
@@ -74,6 +74,7 @@ public class FindTaskCommandParserTest {
         assertParseFailure(parser, " desc:@@", Description.SEARCH_CONSTRAINTS);
         assertParseFailure(parser, " status:comple", Status.SEARCH_CONSTRAINTS);
         assertParseFailure(parser, " date:01-01-202", DateTimeUtil.SEARCH_DATE_CONSTRAINTS);
+        assertParseFailure(parser, " date:29-02-2019", DateTimeUtil.SEARCH_DATE_CONSTRAINTS);
         assertParseFailure(parser, " date:13", DateTimeUtil.SEARCH_DATE_CONSTRAINTS);
         assertParseFailure(parser, " tag:##", Tag.SEARCH_CONSTRAINTS);
 
