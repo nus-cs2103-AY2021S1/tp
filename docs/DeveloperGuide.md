@@ -130,7 +130,7 @@ The features mentioned are:
 - [Editing a flashcard](#edit-flashcard)
 - [Deleting a flashcard by index](#delete-by-index)
 - [Delete by tags](#delete-by-tag)
-- [Find by tag and question keywords](#find-by-tag-and-question-keywords)
+- [Finding flashcards](#finding-flashcards)
 - [Setting difficulty for flashcards](#difficulty)
 - [Displaying statistics of a flashcard](#display-statistics-of-flashcard)
 - [Clear statistics of a flashcard](#clear-statistics-of-flashcard)
@@ -384,29 +384,27 @@ Given below is an example usage scenario and how the Delete By Tag mechanism beh
   * Pros: Less overlapping and easier to debug.
   * Cons: Extra work needed to implement the delete command.
 
-### Find by tag and question keywords
-
-This find by tag and question keywords feature will allow the user to find flashcards specified by specifying tags and/or keywords that they possess.
+### Finding flashcards
 
 #### Implementation
 
-The find by tag and question keywords implementation requires changes to be made to the `FindCommandParser`. Currently, `FindCommandParser#parse` takes in the keyword arguments as a single `String` which is then split into individual keywords. The proposed implementation will require the `ArgumentTokenizer` and `ParseUtil` to parse for any `PREFIX_TAG` and/or `PREFIX_QUESTION`. `ParserUtil` will parse them accordingly and insert them into the necessary `Predicate<Flashcard>` which will be used for filtering the `Flashcard` list. If neither of them are provided or the `Tag` provided is non-aplhanumeric, then a `CommandException` will be thrown.
+The Find mechanism searches for flashcards based on the specified tag or question keyword or both.
+Each filter will result in the creation of a `Predicate<Flashcard>`. 
+A class called `FlashcardPredicate` will be introduced that collects all `Predicate<Flashcard>` into one class. 
 
-Since more than one `Predicate<Flashcard>` will be used, a class called `FlashcardPredicate` will be introduced that collects all `Predicate<Flashcard>` into one class.
-
-`NameContainsKeywordsPredicate` will have to be refactored into `QuestionContainsKeywordsPredicate`. A new `Predicate<Flashcard>` for filtering the `Flashcard` based on `Tags` called `FlashcardContainsTagPredicate` also has to be made.
-
-Changes to the `FindCommand` class will also have to be made as it currently works for `NameContainsKeywordsPredicate`. The new implementation will involve the `FindCommand` storing one `FlashcardPredicate`.
+##### Usage
 
 Given below is an example usage scenario and how the `FindCommand` mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+ Step 1. The user launches the application.
 
  Step 2. The user executes `find t/Assembly q/What` command to find a `Flashcard` with the tag `Assembly` and the keyword `What` in its `Question`.
 
- Step 3. This will call `FindCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags`and `Parserutil#parseKeywords` will be called to create tags and keywords for the arguments.
+ Step 3. This will call `FindCommandParser#parse` which will then parse the arguments provided.
+ Within the method, `ParserUtil#parseTags`and `Parserutil#parseKeywords` will be called to create tags and keywords for the arguments.
 
- Step 4. A new `FlashcardPredicate` will then be created from the `QuestionContainsKeywordsPredicate` and `FlashcardContainsTagPredicate` generated from the given tags and keywords. It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `FindCommand`
+ Step 4. A new `FlashcardPredicate` will then be created from the `QuestionContainsKeywordsPredicate` and `FlashcardContainsTagPredicate` generated from the given tags and keywords.
+ It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `FindCommand`
 
  Step 5. `FindCommand#execute` will set the `QuickCache` model's filter with the provided predicate.
 
@@ -417,6 +415,12 @@ Step 1. The user launches the application for the first time. The `QuickCache` w
  The following sequence diagram shows how the find operation works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+#### Design considerations
+
+* **Current choice:** Use a `FlashcardPredicate` to filter for the `Flashcard`s.
+  * Pros: `FlashcardPredicate` can be extended to be used for other operations.
+  * Cons: *nil*
 
 ### Setting difficulty of flashcards
 
