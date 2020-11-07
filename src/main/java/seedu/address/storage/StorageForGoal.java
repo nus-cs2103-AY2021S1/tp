@@ -18,7 +18,7 @@ public interface StorageForGoal extends GoalBookStorage, UserPrefsStorage{
 
     @Override
     Path getGoalBookFilePath();
-    
+
     @Override
     Optional<ReadOnlyGoalBook> readGoalBook() throws DataConversionException, IOException;
 

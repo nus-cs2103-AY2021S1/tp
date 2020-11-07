@@ -75,9 +75,9 @@ public class ExerciseBookParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-            
+
         case GoalCommand.COMMAND_WORD:
-                return new GoalCommandParser().parse(arguments);    
+            return new GoalCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

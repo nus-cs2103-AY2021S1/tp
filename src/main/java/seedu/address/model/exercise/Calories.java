@@ -62,7 +62,6 @@ public class Calories {
     public Calories subtract(Calories calories) {
         Integer currentCalories = Integer.parseInt(value);
         Integer removedCalories = Integer.parseInt(calories.value);
-        
         return new Calories(String.valueOf(currentCalories - removedCalories));
     }
 

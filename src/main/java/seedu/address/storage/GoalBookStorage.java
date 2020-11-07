@@ -31,7 +31,7 @@ public interface GoalBookStorage {
      * @see #getGoalBookFilePath()
      */
     Optional<ReadOnlyGoalBook> readGoalBook(Path filePath) throws DataConversionException, IOException;
-    
+
     /**
      * Saves the given {@link ReadOnlyGoalBook} to the storage.
      *

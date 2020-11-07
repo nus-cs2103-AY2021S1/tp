@@ -101,7 +101,7 @@ public class ExerciseMainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new ExerciseBook();
         }
-        
+
         Optional<ReadOnlyGoalBook> goalBookOptional;
         ReadOnlyGoalBook initialGoalData;
         try {
@@ -109,11 +109,11 @@ public class ExerciseMainApp extends Application {
             if (!goalBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample GoalBook");
             }
-            initialGoalData = goalBookOptional.orElseGet(SampleDataUtil::getSampleGoalBook); 
+            initialGoalData = goalBookOptional.orElseGet(SampleDataUtil::getSampleGoalBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty GoalBook");
             initialGoalData = new GoalBook();
-        } catch (IOException e) { 
+        } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty GoalBook");
             initialGoalData = new GoalBook();
     }
@@ -208,7 +208,7 @@ public class ExerciseMainApp extends Application {
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
-        
+
         logger.info("============================ [ Stopping Goal Book ] =============================");
         try {
             goalStorage.saveUserPrefs(model.getUserPrefs());
@@ -216,5 +216,5 @@ public class ExerciseMainApp extends Application {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
     }
-    
+
 }

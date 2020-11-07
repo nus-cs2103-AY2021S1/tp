@@ -55,7 +55,7 @@ public class LogicManagerForExercise implements LogicForExercise {
             ArchiveCommand cmd = (ArchiveCommand) command;
             cmd.setStorage(storage);
         }
-        
+
         commandResult = command.execute(model);
 
         try {

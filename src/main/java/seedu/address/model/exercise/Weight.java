@@ -5,9 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Weight {
     public static final Double CaloriePerKg = 7000.0;
-    
     public final Double weight;
-    
+
     /**
      * Constructs a {@code Weight}.
      *
@@ -17,12 +16,12 @@ public class Weight {
         requireNonNull(calories);
         weight = convertCalorieToWeight(calories);
     }
-    
+
     @Override
     public String toString() {
         return String.valueOf(weight);
     }
-    
+
     private Double convertCalorieToWeight (Calories calories) {
         return Double.valueOf(calories.toString())/CaloriePerKg;
     }

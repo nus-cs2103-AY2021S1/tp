@@ -29,7 +29,7 @@ public class AddExerciseFromTemplate extends CommandForExercise {
 
     private final Exercise toAdd;
     private final Weight burntWeight;
-    
+
     public AddExerciseFromTemplate(Exercise toAdd) {
         this.toAdd = toAdd;
         this.burntWeight = new Weight(toAdd.getCalories());

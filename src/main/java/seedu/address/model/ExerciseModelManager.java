@@ -118,7 +118,7 @@ public class ExerciseModelManager implements ExerciseModel {
     public void deleteExercise(Exercise target) {
         this.exerciseBook.removeExercise(target);
     }
-    
+
 
     @Override
     public void addExercise(Exercise exercise) {
@@ -177,7 +177,7 @@ public class ExerciseModelManager implements ExerciseModel {
 
         goalBook.setGoal(target, editedGoal);
     }
-    
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -189,7 +189,7 @@ public class ExerciseModelManager implements ExerciseModel {
 
         return filteredExercises;
     }
-    
+
 
     @Override
     public ObservableList<Template> getFilteredTemplateList() {
@@ -205,10 +205,6 @@ public class ExerciseModelManager implements ExerciseModel {
     public void updateFilteredExerciseList(Predicate<Exercise> predicate) {
         requireNonNull(predicate);
         filteredExercises.setPredicate(predicate);
-    }
-    
-    public void updateGoalMap() {
-        
     }
 
     @Override

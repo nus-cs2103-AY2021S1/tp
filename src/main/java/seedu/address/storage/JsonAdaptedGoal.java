@@ -15,7 +15,6 @@ import seedu.address.model.goal.Goal;
  * Jackson-friendly version of {@link Goal}.
  */
 public class JsonAdaptedGoal {
-    
     private final String date;
     private final String calories;
 
@@ -42,7 +41,7 @@ public class JsonAdaptedGoal {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Goal toModelType() throws IllegalValueException {
-        
+
         if (date == null) {
             throw new IllegalValueException("Goal Date field is missing!");
         }
@@ -60,6 +59,6 @@ public class JsonAdaptedGoal {
         final Calories modelCalories = new Calories(calories);
 
         return new Goal(modelCalories, modelDate);
-    }    
+    }
 
 }

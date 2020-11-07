@@ -77,7 +77,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(goalBookFilePath);
         this.goalBookFilePath = goalBookFilePath;
     }
-    
+
 
     @Override
     public boolean equals(Object other) {

@@ -29,7 +29,7 @@ public class GoalCommand extends CommandForExercise{
     public static final String MESSAGE_DUPLICATE_GOAL = "This goal already exists in the Exercise Book";
 
     private final Goal goal;
-    
+
     public GoalCommand(Goal goal) {
         requireNonNull(goal);
         this.goal = goal;

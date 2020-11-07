@@ -48,7 +48,7 @@ public class UniqueGoalMap {
      */
     public void setGoal(Goal target, Goal editedGoal) {
         requireAllNonNull(target, editedGoal);
-        
+
         if (!internalMap.containsKey(target.date)) {
             throw new GoalNotFoundException();
         }
@@ -72,7 +72,7 @@ public class UniqueGoalMap {
             throw new GoalNotFoundException();
         }
     }
-    
+
 
     public void setGoals(UniqueGoalMap replacement) {
         requireNonNull(replacement);

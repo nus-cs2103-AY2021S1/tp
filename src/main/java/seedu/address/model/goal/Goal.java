@@ -9,7 +9,7 @@ import seedu.address.model.exercise.Exercise;
  * Guarantees: immutable;
  */
 public class Goal {
-    
+
     public final Calories goal;
     public final Date date;
 
@@ -22,29 +22,29 @@ public class Goal {
         this.goal = goal;
         this.date = date;
     }
-    
+
     public Goal updateGoal (Calories calorie) {
         return new Goal(goal.subtract(calorie),this.date);
     }
-    
+
     public Date getDate() {
         return date;
     }
-    
+
     public Calories getCalories() {
         return goal;
     }
-    
+
     @Override
     public String toString() {
         return goal.toString();
     }
-    
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.model.goal.Goal // instanceof handles nulls
-                && goal.equals(((Goal) other).goal) 
+                && goal.equals(((Goal) other).goal)
                 && date.equals(((Goal) other).date)); // state check
     }
 

@@ -27,7 +27,6 @@ public interface LogicForExercise {
     public HashMap<String, Integer> getCaloriesByDay();
 
     public Path getExerciseBookFilePath();
-    
 
     public GuiSettings getGuiSettings();
 

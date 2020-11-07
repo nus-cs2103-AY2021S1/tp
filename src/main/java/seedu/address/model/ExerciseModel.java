@@ -43,9 +43,9 @@ public interface ExerciseModel {
      * Returns the user prefs' address book file path.
      */
     Path getExerciseBookFilePath();
-    
+
     Path getGoalBookFilePath();
-    
+
     HashMap<String, Integer> getCaloriesByDay();
 
 
@@ -115,8 +115,8 @@ public interface ExerciseModel {
      * {@code exercise} must not already exist in the address book.
      */
     void addGoal(Goal goal);
-    
-    
+
+
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.
      * {@code target} must exist in the address book.

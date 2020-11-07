@@ -17,9 +17,6 @@ public class StorageManagerForGoal implements StorageForGoal{
     private GoalBookStorage goalBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
-    /**
-     * Creates a {@code GoalManager} with the given {@code GoalBookStorage} and {@code UserPrefStorage}.
-     */
     public StorageManagerForGoal(GoalBookStorage goalBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.goalBookStorage = goalBookStorage;
@@ -44,7 +41,7 @@ public class StorageManagerForGoal implements StorageForGoal{
     }
 
     // ================ GoalBook methods ==============================
-    
+
     @Override
     public Path getGoalBookFilePath() {
         return goalBookStorage.getGoalBookFilePath();
@@ -54,7 +51,7 @@ public class StorageManagerForGoal implements StorageForGoal{
     public Optional<ReadOnlyGoalBook> readGoalBook() throws DataConversionException, IOException {
         return readGoalBook(goalBookStorage.getGoalBookFilePath());
     }
-    
+
     @Override
     public Optional<ReadOnlyGoalBook> readGoalBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
