@@ -43,6 +43,7 @@ Given below are my contributions to the project.
     
   * Developer Guide:
     * Added `delete` feature and implementation details.
+    * Added `find` feature and implementation details.    
     * Generated Target user profile, value proposition, and user stories.
     * Generated Use cases.
     * Generated Non-functional requirements.
