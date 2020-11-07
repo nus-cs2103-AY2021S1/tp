@@ -5,14 +5,14 @@ import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalStaffDatabase;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.junit.jupiter.api.Test;
 
 import com.eva.model.Model;
 import com.eva.model.ModelManager;
 import com.eva.model.UserPrefs;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for LoadCommand.
@@ -28,8 +28,11 @@ public class LoadCommandResult {
     private Model expectedModel = new ModelManager(getTypicalPersonDatabase(),
             getTypicalStaffDatabase(), getTypicalApplicantDatabase(), new UserPrefs());
 
+    /**
+     * execute a normal JavaScript file.
+     */
     @Test
-    public void execute_NormalJavaScript_success() {
+    public void execute_normalJavaScript_success() {
         LoadCommand command = new LoadCommand(NORMAL_JS_FILE.toString());
         assertCommandSuccess(command, model, LoadCommand.MESSAGE_SUCCESS, expectedModel);
     }
