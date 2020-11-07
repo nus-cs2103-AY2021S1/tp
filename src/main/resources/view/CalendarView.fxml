@@ -29,7 +29,7 @@
                         <Insets left="10.0" />
                     </GridPane.margin>
                 </Button>
-                <Button fx:id="rightButton" mnemonicParsing="false" onAction="#handToNext" text="NEXT" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                <Button fx:id="rightButton" mnemonicParsing="false" onAction="#handleToNext" text="NEXT" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                     <GridPane.margin>
                         <Insets right="10.0" />
                     </GridPane.margin>

@@ -32,6 +32,22 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Sets the commandTextField to be on focus when launching
+     */
+    public void setCommandTextFieldFocusOnStart() {
+        commandTextField.requestFocus();
+    }
+
+
+    public void giveCommandTextFieldFocus() {
+        commandTextField.requestFocus();
+    }
+
+    public boolean isCommandTextFieldFocused() {
+        return commandTextField.isFocused();
+    }
+
+    /**
      * Handles the Enter button pressed event.
      */
     @FXML

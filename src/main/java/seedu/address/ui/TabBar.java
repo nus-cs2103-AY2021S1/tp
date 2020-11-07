@@ -101,9 +101,6 @@ public class TabBar extends UiPart<Region> {
         if (entityType == EntityType.PROPERTY) {
             tabBar.getSelectionModel().select(propertyTab);
         }
-        if (entityType == EntityType.MEETING) {
-            // tabBar.getSelectionModel().select(calenderTab);
-        }
     }
 }
 
