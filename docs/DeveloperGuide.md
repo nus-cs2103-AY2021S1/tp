@@ -888,7 +888,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 * 1a. The given command input is in invalid format.
 
-    * 1a1. Common cents shows an error message.
+    * 1a1. Common cCnts shows an error message.
 
       Use case resumes at step 2.
 
@@ -920,19 +920,19 @@ This captures different scenarios of how a user will perform tasks while using _
 
 * 2a. The given command input is in invalid format.
 
-    * 2a1. Common cents shows an error message.
+    * 2a1. Common Cents shows an error message.
 
       Use case resumes at step 2.
       
 * 2b. The new account name is the same as a name of an existing account.
 
-    * 2b1. Common cents shows an error message.
+    * 2b1. Common Cents shows an error message.
     
       Use case resumes at step 2.
       
 * 2c. The new account name is the same as the current name of the account.
 
-    * 2c1. Common cents shows an error message.
+    * 2c1. Common Cents shows an error message.
     
       Use case resumes at step 2.
 </div>
@@ -953,13 +953,13 @@ This captures different scenarios of how a user will perform tasks while using _
 
 * 2a. The given command input is in invalid format.
 
-    * 2a1. Common cents shows an error message.
+    * 2a1. Common Cents shows an error message.
 
       Use case resumes at step 2.
       
 * 2b. The user is already on the account to be switched.
 
-    * 2b1. Common cents shows an error message.
+    * 2b1. Common Cents shows an error message.
     
       Use case resumes at step 2.
 </div>
