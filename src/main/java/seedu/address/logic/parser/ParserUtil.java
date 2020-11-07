@@ -348,18 +348,26 @@ public class ParserUtil {
     public static Criterion parseTaskCriterion(String criterion) throws ParseException {
         assert criterion != null;
         String criterionAllUpperCase = criterion.toUpperCase();
+        String convertedCriterion = criterionAllUpperCase;
+
         switch(criterionAllUpperCase) {
-        case("NAME"):
-            return Criterion.NAME;
-        case("DATE"):
-        case("DEADLINE"):
-            return Criterion.DATE;
-        case("PRIORITY"):
+        case("P"):
         case("PRIO"):
-            return Criterion.PRIORITY;
+            convertedCriterion = "PRIORITY";
+            break;
+        case("D"):
+        case("DEADLINE"):
+            convertedCriterion = "DATE";
+            break;
         default:
+            break;
+        }
+
+        if (!Criterion.isValidCriterion(convertedCriterion)) {
             throw new ParseException(Criterion.MESSAGE_CONSTRAINTS);
         }
+
+        return Criterion.valueOf(convertedCriterion);
     }
 
     ///////////////////// Scheduler /////////////////////////////
