@@ -42,7 +42,7 @@ public class DoneCommandTest {
         }
         DoneCommand doneCommand = new DoneCommand(indexes, durations);
 
-        String expectedMessage = String.format(DoneCommand.buildMessage(tasksToDone));
+        String expectedMessage = DoneCommand.buildMessage(tasksToDone);
 
         ModelManager expectedModel = new ModelManager(model.getPlanus(), new UserPrefs());
         expectedModel.markAsDone(tasksToDone, durations);
@@ -60,7 +60,7 @@ public class DoneCommandTest {
         }
         DoneCommand doneCommand = new DoneCommand(indexes, durations);
 
-        String expectedMessage = String.format(DoneCommand.buildMessage(tasksToDone));
+        String expectedMessage = DoneCommand.buildMessage(tasksToDone);
 
         ModelManager expectedModel = new ModelManager(model.getPlanus(), new UserPrefs());
         expectedModel.markAsDone(tasksToDone, durations);

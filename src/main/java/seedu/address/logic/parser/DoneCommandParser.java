@@ -22,7 +22,7 @@ public class DoneCommandParser implements Parser<DoneCommand> {
      */
     public DoneCommand parse(String args) throws ParseException {
         try {
-            String[] splited = args.trim().split(" ");
+            String[] splited = args.trim().split("[ \n\t]+");
             int length = splited.length;
             Index[] indexes = new Index[length];
             int[] durations = new int[length];
