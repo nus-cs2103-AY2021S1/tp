@@ -26,7 +26,6 @@ public class UndoCommand extends Command {
         } catch (VersionedListException versionedListException) {
             throw new CommandException(versionedListException.getMessage());
         }
-        //model.undoModuleList();
         return new CommandResult(MESSAGE_UNDO_COMMAND_SUCCESS);
     }
 

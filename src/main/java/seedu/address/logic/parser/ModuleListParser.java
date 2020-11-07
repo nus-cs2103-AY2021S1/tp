@@ -10,6 +10,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindModuleCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.modulelistcommands.RedoCommand;
+import seedu.address.logic.commands.modulelistcommands.UndoCommand;
 import seedu.address.logic.commands.gradetrackercommands.AddGradeCommand;
 import seedu.address.logic.commands.modulelistcommands.AddCompletedModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
@@ -22,10 +24,8 @@ import seedu.address.logic.commands.modulelistcommands.DeleteZoomLinkCommand;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.EditZoomLinkCommand;
 import seedu.address.logic.commands.modulelistcommands.ListModuleCommand;
-import seedu.address.logic.commands.modulelistcommands.RedoCommand;
 import seedu.address.logic.commands.modulelistcommands.TargetCapCalculatorCommand;
 import seedu.address.logic.commands.modulelistcommands.UnarchiveModuleCommand;
-import seedu.address.logic.commands.modulelistcommands.UndoCommand;
 import seedu.address.logic.commands.modulelistcommands.ViewArchivedModulesCommand;
 import seedu.address.logic.commands.modulelistcommands.ViewModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -38,11 +38,11 @@ import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
 import seedu.address.logic.parser.modulelistparsers.DeleteZoomLinkParser;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
 import seedu.address.logic.parser.modulelistparsers.EditZoomLinkParser;
-import seedu.address.logic.parser.modulelistparsers.RedoParser;
+import seedu.address.logic.parser.modulelistparsers.FindModuleCommandParser;
 import seedu.address.logic.parser.modulelistparsers.TargetCapCalculatorParser;
 import seedu.address.logic.parser.modulelistparsers.UnarchiveModuleParser;
-import seedu.address.logic.parser.modulelistparsers.UndoParser;
 import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
+
 
 /**
  * Parses user input.
@@ -121,10 +121,10 @@ public class ModuleListParser implements FeatureParser {
         //case EditGradeCommand.COMMAND_WORD:
         //            return new EditGradeParser().parse(arguments);
         case UndoCommand.COMMAND_WORD:
-            return new UndoParser().parse(arguments);
+            return new UndoCommand();
 
         case RedoCommand.COMMAND_WORD:
-            return new RedoParser().parse(arguments);
+            return new RedoCommand();
 
         case ArchiveModuleCommand.COMMAND_WORD:
             return new ArchiveModuleParser().parse(arguments);
