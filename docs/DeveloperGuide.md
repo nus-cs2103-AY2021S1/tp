@@ -415,7 +415,7 @@ The following sequence diagram shows how the delete operation works:
 * **Alternative 1 (current choice):** Provide the index of the flashcard to be deleted.
   * Pros: Easy to implement and CLI-optimized.
   * Cons: User have to know the index of the specified flashcard.
- 
+
 ### Edit Flashcard feature
 
 The Delete mechanism is facilitated by `QuickCache` . It will edit the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
@@ -660,7 +660,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3b. User quits QuickCache while trying out quiz feature.
 
   * 3b1. When opening QuickCache again, quiz resumes from where the User left off.
-    
+
     Use case resumes at step 3.
 
 * *a. User dislikes the GUI.
@@ -837,7 +837,7 @@ MSS:
 
   Use case ends.
 
- 
+
 
 **Use case: UC07 - Update flashcard save file**
 
@@ -966,7 +966,7 @@ MSS:
 * 1a. User wants to remove a tag
 
 	* 1a1. User asks QuickCache to list out all the tags
- 
+
 	* 1a2. QuickCache lists out all the tags
 
 	* 1a3. User enters the name of the tag to be removed
