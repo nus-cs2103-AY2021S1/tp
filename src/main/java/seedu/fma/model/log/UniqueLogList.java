@@ -70,6 +70,14 @@ public class UniqueLogList implements Iterable<Log> {
         internalList.set(index, editedLog);
     }
 
+    public void removeExercise(Exercise exercise) {
+        List<Log> logs = internalList.stream().filter(log -> log.getExercise()
+                .getName().equals(exercise.getName())).collect(Collectors.toList());
+        logs.forEach(log -> {
+            remove(log);
+        });
+    }
+
     public void setExercise(Exercise oldExercise, Exercise newExercise) {
         requireAllNonNull(oldExercise, newExercise);
 

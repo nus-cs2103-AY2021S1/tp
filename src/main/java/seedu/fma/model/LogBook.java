@@ -150,11 +150,12 @@ public class LogBook implements ReadOnlyLogBook {
     }
 
     /**
-     * Removes {@code key} from this {@code LogBook}.
-     * {@code key} must exist in the log book.
+     * Removes {@code target} from this {@code LogBook}.
+     * {@code target} must exist in the log book.
      */
-    public void removeExercise(Exercise key) {
-        exercises.remove(key);
+    public void removeExercise(Exercise target) {
+        exercises.remove(target);
+        logs.removeExercise(target);
     }
 
     //// util methods

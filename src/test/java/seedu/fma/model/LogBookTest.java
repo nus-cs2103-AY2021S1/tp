@@ -92,13 +92,26 @@ public class LogBookTest {
 
     @Test
     public void setExercise_modifyExercise_updateBothExerciseAndLogs() {
+        LogBook logBook = new LogBook();
         Exercise exerciseA = new Exercise(new Name("Jump"), new Calories(30));
         Log logA = new Log(exerciseA, new Rep(50), new Comment("Hi"));
-        fmaBook.addExercise(exerciseA);
-        fmaBook.addLog(logA);
+        logBook.addExercise(exerciseA);
+        logBook.addLog(logA);
         Exercise exerciseB = new Exercise(new Name("Skip"), new Calories(50));
-        fmaBook.setExercise(exerciseA, exerciseB);
-        assertEquals(fmaBook.getLogList().stream().filter(log -> log.getExercise().equals(exerciseB)).count(), 1);
+        logBook.setExercise(exerciseA, exerciseB);
+        assertEquals(logBook.getLogList().stream().filter(log -> log.getExercise().equals(exerciseB)).count(), 1);
+    }
+
+    @Test
+    public void removeExercise_exerciseRemoved_removeBothExerciseAndLogs() {
+        LogBook logBook = new LogBook();
+        Exercise exerciseA = new Exercise(new Name("Jump"), new Calories(30));
+        Log logA = new Log(exerciseA, new Rep(50), new Comment("Hi"));
+        logBook.addExercise(exerciseA);
+        logBook.addLog(logA);
+        assertEquals(logBook.getLogList().size(), 1);
+        logBook.removeExercise(exerciseA);
+        assertEquals(logBook.getLogList().size(), 0);
     }
 
     @Test
