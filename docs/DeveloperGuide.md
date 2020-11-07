@@ -364,8 +364,14 @@ be informed that all ingredient levels are already at zero. Otherwise, The `i-re
 `IngredientBook#setIngredient(originalIngredient, updatedIngredient)` each time the command find an ingredient with a non-zero ingredient's level,
 which replaces the ingredient with a non-zero ingredient's level by a new ingredient object with the same ingredient name and a zero ingredient level. 
   
-The following sequence diagram shows how the reset all ingredients' levels operation works:
+The following sequence diagram shows how the reset all ingredients' levels operation works, assuming that The `i-reset-all` command calls
+ `IngredientBook#setIngredient(originalIngredient, updatedIngredient)` only once, which is when only one ingredient's level 
+ is not at zero.
 ![Reset all Ingredients' Levels Sequence Diagram](images/IngredientResetAllSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `IngredientResetAllCommand` should 
+end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 The following activity diagram summarises what happens when a user executes the reset all ingredients' levels command.
 ![Reset all Ingredients' Levels Activity Diagram](images/IngredientResetAllActivityDiagram.png)

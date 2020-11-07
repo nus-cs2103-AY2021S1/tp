@@ -52,6 +52,9 @@ deactivate CommandResult
 IngredientResetAllCommand --> LogicManager :commandResult
 deactivate IngredientResetAllCommand
 
+IngredientResetAllCommand -[hidden]-> LogicManager : result
+destroy IngredientResetAllCommand
+
 [<--LogicManager : commandResult
 deactivate LogicManager
 @enduml
