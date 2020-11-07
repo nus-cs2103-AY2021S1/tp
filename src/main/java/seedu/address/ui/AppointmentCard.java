@@ -40,7 +40,7 @@ public class AppointmentCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(appointment.getPatientName().fullName);
-        icNumber.setText("IC: " + appointment.getPatientIc().value);
+        icNumber.setText("NRIC: " + appointment.getPatientIc().value);
         startTime.setText(formatter.format(appointment.getStartTime().dateTime));
 
         int minutes = (int) ChronoUnit.MINUTES
