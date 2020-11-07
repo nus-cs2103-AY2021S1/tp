@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 import javafx.beans.value.ChangeListener;
@@ -11,6 +12,7 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Recipe;
 
 /**
@@ -53,8 +55,14 @@ public class SingleRecipeCard extends UiPart<HBox> {
         super(FXML);
         this.recipe = recipe;
         name.setText(recipe.getName().fullName);
-        instruction.setText(recipe.getInstruction().stream()
-                .map(item -> (recipe.getInstruction().indexOf(item) + 1) + ") " + item.toString() + ".\n")
+        ArrayList<Instruction> editedInstruction = new ArrayList<>();
+        for (int i = 0; i < recipe.getInstruction().size(); i++) {
+            Instruction instr = new Instruction((i + 1) + ") "
+                    + recipe.getInstruction().get(i).toString() + ".\n");
+            editedInstruction.add(instr);
+        }
+        instruction.setText(editedInstruction.stream()
+                .map(item -> item.toString())
                 .reduce("", (a, b) -> a + b).trim());
         Image rawImage = new Image(recipe.getRecipeImage().getValue(), 340, 0, true, true);
         PixelReader reader = rawImage.getPixelReader();
