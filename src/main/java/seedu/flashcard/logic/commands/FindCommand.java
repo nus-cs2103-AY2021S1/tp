@@ -28,6 +28,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [KEYWORD]...\n"
             + "Example: " + COMMAND_WORD + " oop";
 
+    public static final String MESSAGE_NO_FLASHCARDS_MATCHING_KEYWORDS = "There are no flashcards that match any of "
+            + "the specified keyword(s).";
+
     private final List<String> keywords;
 
     public FindCommand(List<String> keywords) {
@@ -48,6 +51,10 @@ public class FindCommand extends Command {
                 categoryPredicate, notePredicate, tagPredicate);
         Predicate<Flashcard> allPredicates = listOfPredicates.stream().reduce(Predicate::or).orElse(x->false);
         model.updateFilteredFlashcardList(allPredicates);
+
+        if (model.getFilteredFlashcardList().size() == 0) {
+            return new CommandResult(MESSAGE_NO_FLASHCARDS_MATCHING_KEYWORDS);
+        }
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));
