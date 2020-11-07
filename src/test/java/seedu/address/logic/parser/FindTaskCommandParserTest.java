@@ -79,6 +79,10 @@ public class FindTaskCommandParserTest {
         assertParseFailure(parser, " tag:##", Tag.SEARCH_CONSTRAINTS);
 
         // one of the attribute is invalid
-        assertParseFailure(parser, " title:abc# date: desc:edf", Title.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " title:abc# date:01-01-2020 desc:edf", Title.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " title:abc date:01-01-2020 desc:@@", Description.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " title:abc date:01-01-2020 desc:valid tag:%%", Tag.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " title:abc date:01-01-2020 desc:valid status:compl",
+                Status.SEARCH_CONSTRAINTS);
     }
 }
