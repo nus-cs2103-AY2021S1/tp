@@ -177,9 +177,10 @@ public class FitNusParserTest {
 
     @Test
     public void parseCommand_routineCreate() throws Exception {
-        String userInput = RoutineUtil.getRoutineCreateCommand(LEG_DAY);
+        Routine legDay = new Routine(new Name("Leg Day"));
+        String userInput = RoutineUtil.getRoutineCreateCommand(legDay);
         RoutineCreateCommand actualCommand = (RoutineCreateCommand) parser.parseCommand(userInput);
-        RoutineCreateCommand expectedCommand = new RoutineCreateCommand(LEG_DAY);
+        RoutineCreateCommand expectedCommand = new RoutineCreateCommand(legDay);
         assertEquals(expectedCommand, actualCommand);
     }
 
@@ -212,17 +213,19 @@ public class FitNusParserTest {
 
     @Test
     public void parseCommand_routineAddExercise() throws Exception {
-        String userInput = RoutineUtil.getRoutineAddExerciseCommand(LEG_DAY, SPRINTS);
+        Routine legDay = new Routine(new Name("Leg Day"));
+        String userInput = RoutineUtil.getRoutineAddExerciseCommand(legDay, SPRINTS);
         RoutineAddExerciseCommand actualCommand = (RoutineAddExerciseCommand) parser.parseCommand(userInput);
-        RoutineAddExerciseCommand expectedCommand = new RoutineAddExerciseCommand(LEG_DAY, SPRINTS);
+        RoutineAddExerciseCommand expectedCommand = new RoutineAddExerciseCommand(legDay, SPRINTS);
         assertEquals(expectedCommand, actualCommand);
     }
 
     @Test
     public void parseCommand_routineDeleteExercise() throws Exception {
-        String userInput = RoutineUtil.getRoutineDeleteExerciseCommand(LEG_DAY, SPRINTS);
+        Routine legDay = new Routine(new Name("Leg Day"));
+        String userInput = RoutineUtil.getRoutineDeleteExerciseCommand(legDay, SPRINTS);
         RoutineDeleteExerciseCommand actualCommand = (RoutineDeleteExerciseCommand) parser.parseCommand(userInput);
-        RoutineDeleteExerciseCommand expectedCommand = new RoutineDeleteExerciseCommand(LEG_DAY, SPRINTS);
+        RoutineDeleteExerciseCommand expectedCommand = new RoutineDeleteExerciseCommand(legDay, SPRINTS);
         assertEquals(expectedCommand, actualCommand);
     }
 
