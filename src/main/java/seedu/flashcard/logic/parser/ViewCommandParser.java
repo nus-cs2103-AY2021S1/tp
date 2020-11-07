@@ -3,6 +3,8 @@ package seedu.flashcard.logic.parser;
 import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_FLAG;
 
+import java.util.List;
+
 import seedu.flashcard.commons.core.index.Index;
 import seedu.flashcard.logic.commands.ViewCommand;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
@@ -26,22 +28,20 @@ public class ViewCommandParser implements Parser<ViewCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
         }
 
-        if (argMultimap.getValue(PREFIX_FLAG).isPresent()) {
-            if (argMultimap.getValue(PREFIX_FLAG).get().equals(FLAG_ANSWER)) {
-                return new ViewCommand(index, true);
-            } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
-            }
+        List<String> flagValueList = argMultimap.getAllValues(PREFIX_FLAG);
+        if (!ParserUtil.areValidFlagValues(flagValueList, FLAG_ANSWER)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
+        if (argMultimap.getValue(PREFIX_FLAG).isPresent()) {
+            return new ViewCommand(index, true);
+        }
         return new ViewCommand(index, false);
-
     }
 
 }
