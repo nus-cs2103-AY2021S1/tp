@@ -1,25 +1,35 @@
 package seedu.zookeep.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.zookeep.logic.commands.AppendCommand;
-import seedu.zookeep.logic.commands.EditAnimalDescriptor;
-import seedu.zookeep.logic.commands.ReplaceCommand;
-import seedu.zookeep.model.animal.Id;
-import seedu.zookeep.model.animal.Name;
-import seedu.zookeep.model.animal.Species;
-import seedu.zookeep.model.feedtime.FeedTime;
-import seedu.zookeep.model.medicalcondition.MedicalCondition;
-import seedu.zookeep.testutil.EditAnimalDescriptorBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.zookeep.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.zookeep.logic.commands.CommandTestUtil.*;
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_ID_ARCHIE;
+import static seedu.zookeep.logic.commands.CommandTestUtil.FEED_TIME_DESC_EVENING;
+import static seedu.zookeep.logic.commands.CommandTestUtil.FEED_TIME_DESC_MORNING;
+import static seedu.zookeep.logic.commands.CommandTestUtil.INVALID_FEED_TIME_DESC;
+import static seedu.zookeep.logic.commands.CommandTestUtil.INVALID_MEDICAL_CONDITION_DESC;
+import static seedu.zookeep.logic.commands.CommandTestUtil.MEDICAL_CONDITION_DESC_ARTHRITIS;
+import static seedu.zookeep.logic.commands.CommandTestUtil.MEDICAL_CONDITION_DESC_OBESE;
+import static seedu.zookeep.logic.commands.CommandTestUtil.NAME_DESC_ARCHIE;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_FEED_TIME_EVENING;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_FEED_TIME_MORNING;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_OBESE;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_NAME_ARCHIE;
 import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_FEED_TIME;
 import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_MEDICAL_CONDITION;
 import static seedu.zookeep.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.zookeep.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.zookeep.testutil.TypicalAnimals.*;
+import static seedu.zookeep.testutil.TypicalAnimals.AHMENG;
+import static seedu.zookeep.testutil.TypicalAnimals.BUTTERCUP;
+import static seedu.zookeep.testutil.TypicalAnimals.COCO;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.zookeep.logic.commands.AppendCommand;
+import seedu.zookeep.logic.commands.EditAnimalDescriptor;
+import seedu.zookeep.model.animal.Id;
+import seedu.zookeep.model.feedtime.FeedTime;
+import seedu.zookeep.model.medicalcondition.MedicalCondition;
+import seedu.zookeep.testutil.EditAnimalDescriptorBuilder;
+
 
 class AppendCommandParserTest {
 
