@@ -218,13 +218,12 @@ Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] 
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
- NUMBER UNITS or STRING. NUMBER only accept numbers, a single forward slash to represent fractions or a single
-  full stop to represent decimal numbers. UNITS is a string that accepts alphabets. STRING accepts alphanumeric
-   characters.
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers. STRING accepts
+   alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` should be a number greater than 0 and is only accurate up to 45 decimal places, but Wishful Shrinking
-can save numbers longer than that if they are greater than 0. 
+`QUANTITY` should be a number greater than 0. 
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
@@ -324,12 +323,12 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
- NUMBER STRING or STRING. Here, it only accepts alphanumeric characters, a single forward slash to represent
-  fractions or a single full stop to represent decimal numbers.
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers. STRING accepts
+   alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` should be a number greater than 0 and is only accurate up to 45 decimal places, but Wishful Shrinking
-can save numbers longer than that if they are greater than 0. 
+`QUANTITY` should be a number greater than 0. 
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
@@ -505,12 +504,12 @@ Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
- NUMBER STRING or STRING. Here, it only accepts alphanumeric characters, a single forward slash to represent
-  fractions or a single full stop to represent decimal numbers.
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers. STRING accepts
+   alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` should be a number greater than 0 and is only accurate up to 45 decimal places, but Wishful Shrinking
-can save numbers longer than that if they are greater than 0. 
+`QUANTITY` should be a number greater than 0.  
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.
@@ -571,12 +570,13 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 * The index refers to the index number shown in the displayed Ingredient List.
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-`. After the dash, it only accepts alphanumeric
- characters, a single forward slash to represent fractions or a single full stop to represent decimal numbers.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers. STRING accepts
+   alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` should be a number greater than 0 and is only accurate up to 45 decimal places, but Wishful Shrinking
-can save numbers longer than that if they are greater than 0. 
+`QUANTITY` should be a number greater than 0. 
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.

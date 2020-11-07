@@ -89,9 +89,6 @@ public class Ingredient {
         }
 
         return getValue().equals(otherIngredient.getValue()) && otherIngredient.getQuantity().equals(getQuantity());
-
-
-//        return isSameIngredientName(otherIngredient) && otherIngredient.getQuantity().equals(getQuantity());
     }
 
     /**
