@@ -27,6 +27,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## **3. Design**
 This section shows the architecture design of **OneShelf**.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
+
 ### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
