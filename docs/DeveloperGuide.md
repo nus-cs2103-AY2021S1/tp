@@ -84,50 +84,54 @@ The following sequence diagram shows how the Priority operation works:
 
 #### Implementation
 
-Policy class is implemented as shown in this class diagram:
+`Policy` is implemented as shown in this class diagram:
 
 ![Policy0](images/PolicyClassDiagram.png)
 
-PolicyName and PolicyDescription are separate classes rather than String fields.
-Implenting Policy class this way conforms to the same structure as Person class where String fields are
+`PolicyName` and `PolicyDescription` are separate classes rather than `String` fields.
+Implementing `Policy` this way conforms to the same structure as `Person` where String fields are
 their own classes.
 It also allows for abstraction of methods specified for each of the field classes such as 
-checking for validity of their String field.
+checking for validity of each of the individual class's inputs.
 
 Example:
 
 * `PolicyName#isValidPolicyName` & `PolicyDescription#isValidPolicyDescription`
 
-As shown in [**`Model`**](#model-component) above, each Person has an optional Policy field.
-The Policy field can be added to a client using the `add` command, which is specified by the
+As shown in [**`Model`**](#model-component) above, each Person has an optional `Policy` field.
+The `Policy` field can be added to a client using the `add` command, which is specified by the
 PolicyName Prefix followed by a valid PolicyName. The PolicyName must be valid and a corresponding
-Policy must already be in the PolicyList maintained by ModelManager. The specific Policy object
-is then referenced from the PolicyList and maintained in the Person object.
+`Policy` must already be in the `PolicyList` maintained by `ModelManager`. The specific `Policy` object
+is then referenced from the `PolicyList` and maintained in the `Person` object.
 
-Thus, Commands to add Policy objects into the PolicyList have been implemented.
+Thus, Commands to add `Policy` objects into the `PolicyList` have been implemented.
 
 Given below is the Sequence Diagram that shows how the Add Policy Command `addp` works.
 
 ![AddPolicyCommand](images/AddPolicySequenceDiagram.png)
 
-First, ClientListParser will parse if the correct command, `addp` in this case, is called. Then,
-AddPolicyParser will parse the parameters for the Policy's name and description for their validity
-and values. AddPolicyParser then constructs an AddPolicyCommand with the given Policy using the
-name and description. The Command object is returned to LogicManager which calls the execute 
-method of the Command. Execute checks if the Policy already exists in the Policy List stored
-in Model and if it is not, then the policy is added to the Policy List.
+First, `ClientListParser` will parse if the correct command, `addp` in this case, is called. Then,
+`AddPolicyCommandParser` will parse the parameters for  `Policy`'s name and description for their validity
+and values. `AddPolicyCommandParser` then constructs an `AddPolicyCommand` with the given Policy using the
+name and description. The Command object is returned to `LogicManager` which calls the execute 
+method of the `Command`. Execute checks if the `Policy` already exists in the `PolicyList` stored
+in Model and if it is not, then the `Policy` is added to the `PolicyList`.
 
-Clear Policy list Command `clearp` was also implemented to give the user more control over
-the policy list. `clearp` clears the policy list as well as all the policies allocated to clients 
-through interaction with Model's ClientList and PolicyList.
-The Command works similar to the Add Policy Command as illustrated in the sequence diagram.
+A command used to clear the `PolicyList`, `clearp` was also implemented to give the user 
+more control over the `PolicyList`. `clearp` clears the `PolicyList` as well as all the 
+`Policy`s allocated to clients through interaction with `Model`'s `ClientList` and `PolicyList`.
+The Command works similar to the Add Policy Command as illustrated in the sequence diagram
+in terms of parsing and command creation, but works differently in `Model` as it clears all
+`Policy` objects from the `PolicyList` as well as the `Policy` field of `Person` in
+ the `ClientList`.
 
-PolicyList is a List class stored in Model. It stores Policies in a HashMap. A HashMap was used
-because checking if a key is in the HashMap can be done quickly. Additionally, HashMap was chosen
-over HashTable because we do not require the Collection to be synchronized. Thus, HashMap is more 
-apt due to its higher efficiency and speed.
+`PolicyList` is a List class stored in `Model`. It stores multiple `Policy` objects in a 
+`HashMap`. A `HashMap` was used
+because checking if a key is in the `HashMap` can be done quickly. Additionally, `HashMap` 
+was chosen over `HashTable` because we do not require the Collection to be synchronized. 
+Thus, `HashMap` is more apt due to its higher efficiency and speed.
 
-Lastly, PolicyList is also stored in memory as json file. This requires json-adapted classes to be
+Lastly, `PolicyList` is also stored in memory as `json` file. This requires json-adapted classes to be
 created. The storage classes are shown in [**`Storage`**](#storage-component). They were implemented
 using AB3's storage classes as template.
 
