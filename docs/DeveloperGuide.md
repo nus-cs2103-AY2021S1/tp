@@ -591,6 +591,46 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases … }_
 
+### Adding a deadline
+
+1. Adding a deadline while all tasks are being shown
+
+   1. Prerequisites:  List all deadline using the list-task command. Multiple deadline in the task list.
+
+   1. Test case: `deadline title:Return book datetime:02-01-2020 18:00`<br>
+      Expected: a new deadline with title 'Return book' is added to the task list, a deadline card will be displayed with the detailed info about the deadline.
+
+   1. Test case: `deadline title:Return book datetime:02-01-2020 18:00`<br>
+      Expected: No deadline is added because a deadline with the same details already exists in the task list. Status message informs user that deadline already exists.
+
+   1. Test case: `deadline title:Buy breakfast `<br>
+      Expected: No deadline is added because not all compulsory field is filled. Status message shows invalid command format, and hint user for the correct command format.
+
+   1. Other incorrect delete commands to try: `deadline`, `deadline buy good`, `...` (where command is not in correct format)<br>
+      Expected: Similar to previous.
+
+### Adding a event
+
+1. Adding a event while all tasks are being shown
+
+   1. Prerequisites:  List all events using the list-task command. Multiple events in the task list.
+
+   1. Test case: `event title:Project meeting date:29-10-2020 from:09:00 to:12:30 tag:CS2103T`<br>
+      Expected: a new event with title 'Project meeting' is added to the task list, a event card will be displayed with the detailed info about the event.
+
+   1. Test case: `event title:Project meeting date:29-10-2020 from:09:00 to:12:30 tag:CS2103T`<br>
+      Expected: No event is added because a event with the same details already exists in the task list. Status message informs user that event already exists.
+
+   1. Test case: `event title:Another Project meeting date:29-10-2020 from:09:00 to:12:30 tag:CS2103T`<br>
+      Expected: No event is added because the event time is overlapping with another event that exists in the task list.
+      
+   1. Test case: `event title:carer talk `<br>
+      Expected: No event is added because not all compulsory field is filled. Status message shows invalid command format, and hint user for the correct command format.
+
+   1. Other incorrect delete commands to try: `event`, `carer talk`, `...` (where command is not in correct format)<br>
+      Expected: Similar to previous.
+
+
 ### Deleting a task
 
 1. Deleting a task while all tasks are being shown
