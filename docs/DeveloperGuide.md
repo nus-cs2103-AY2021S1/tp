@@ -720,7 +720,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 2.
     
 
-**Use case: UC04 - Create a flashcard**
+**Use case: UC04 - Create a flashcard with open ended question**
 
 **Preconditions: User has QuickCache open.**
 
@@ -749,9 +749,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
     
 
-**System: QuickCache**
+**Use case: UC05 - Create a flashcard with Multiple choice question**
 
-**Use case: UC05 - Test a single flashcard**
+**Preconditions: User has QuickCache open.**
+
+**MSS**
+
+1.  User requests to add a flashcard
+2.  QuickCache adds it to the list
+3.  QuickCache updates flashcard save file (UC07)
+4.  User requests to list flashcards
+5.  QuickCache shows the list of flashcards including the recently added flashcard
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The question is empty.
+
+  * 1a1. QuickCache shows an error message.
+    
+    Use case ends.
+  
+* 1b. The answer is empty.
+
+  * 1b1. QuickCache shows an error message.
+    
+    Use case ends.
+
+* 1c. The choices is empty.
+
+  * 1b1. QuickCache shows an error message.
+    
+    Use case ends.
+    
+
+**Use case: UC06 - Test a single flashcard**
 
 **Actor: User**
 
@@ -779,7 +812,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: QuickCache**
 
-**Use case: UC06 - Test a set of flashcards by category**
+**Use case: UC07 - Test a set of flashcards by category**
 
 **Actor: User**
 
@@ -839,7 +872,7 @@ MSS:
   
   
 
-**Use case: UC07 - Update flashcard save file**
+**Use case: UC08 - Update flashcard save file**
 
 **Actor: QuickCache**
 
@@ -867,7 +900,7 @@ MSS:
     Use case resumes from step 2.
     
 
-**Use case: UC08 - Import flashcard data file**
+**Use case: UC09 - Import flashcard data file**
 
 **Actor: User**
 
@@ -895,7 +928,7 @@ MSS:
     Use case ends.
     
 
-**Use case: UC09 - Add tags during creation of a Flashcard**
+**Use case: UC10 - Add tags during creation of a Flashcard**
 
 **Actor: User**
 
@@ -925,7 +958,7 @@ MSS:
     Use case ends.
     
 
-**Use case: UC10 - Deleting a tag category**
+**Use case: UC11 - Deleting a tag category**
 
 **Actor: User**
 
@@ -948,7 +981,7 @@ MSS:
     Use case ends.
     
 
-**Use case: UC11 - Edit tags on an existing Flashcard**
+**Use case: UC12 - Edit tags on an existing Flashcard**
 
 **Actor: User**
 
@@ -988,7 +1021,7 @@ MSS:
     Use case ends.
     
 
-**Use case: UC12 - Search for Flashcards based on Tags**
+**Use case: UC13 - Search for Flashcards based on Tags**
 
 **Actor: User**
 
@@ -1000,7 +1033,7 @@ MSS:
     Use case ends.
     
 
-**Use case: UC13 - Open a single flashcard**
+**Use case: UC14 - Open a single flashcard**
 
 **MSS**
 
@@ -1026,7 +1059,7 @@ MSS:
     Use case resumes at step 3.
     
     
-**Use case: UC14 - Edit a flashcard**
+**Use case: UC15 - Edit a flashcard**
 
 **Actor: User**
 **Preconditions: User has QuickCache open.**
