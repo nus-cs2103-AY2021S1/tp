@@ -142,10 +142,12 @@ public class StudentRecordListManager implements StudentRecordList {
         double lowestScore = Integer.MAX_VALUE;
         for (int i = 0; i < internalList.size(); i++) {
             StudentRecord studentRecord = internalList.get(i);
-            double score = studentRecord.getClassParticipation().getRawScore();
+            if (studentRecord.getAttendanceType().equals(AttendanceType.PRESENT)) {
+                double score = studentRecord.getClassParticipation().getRawScore();
 
-            if (score < lowestScore) {
-                lowestScore = score;
+                if (score < lowestScore) {
+                    lowestScore = score;
+                }
             }
         }
 
