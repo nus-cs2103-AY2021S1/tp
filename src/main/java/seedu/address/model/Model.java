@@ -150,8 +150,8 @@ public interface Model {
     /**
      * Updates the filter of the filtered menu item list at the corresponding index to filter by the given
      * {@code comparator}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
+     * Only used for test cases.
+     * @throws NullPointerException if {@code comparator} is null.
      */
     void updateFilteredMenuItemList(Comparator<MenuItem> comparator, boolean isSortedAsc);
 
