@@ -10,7 +10,6 @@ import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_A
 import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_NON_NUMBER_ROOM_NUMBER;
 import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_NON_NUMBER_ROOM_NUMBER_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_DESC_ONE;
-import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_NAME_AMY_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_ONE;
 
 import org.junit.jupiter.api.Test;
@@ -39,7 +38,7 @@ public class SearchRoomCommandParserTest {
                 SearchRoomCommand.MESSAGE_USAGE));
 
         //multiple prefixes found
-        assertParseFailure(parser, VALID_NAME_AMY_DESC + ROOM_NUMBER_DESC_ONE,
+        assertParseFailure(parser, NAME_DESC_AMY + ROOM_NUMBER_DESC_ONE,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchRoomCommand.MESSAGE_USAGE));
     }
 

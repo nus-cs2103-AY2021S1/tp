@@ -7,12 +7,13 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.model.patient.Name.MESSAGE_CONSTRAINTS;
 import static seedu.address.testutil.command.PatientCommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.testutil.command.PatientCommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.testutil.command.PatientCommandTestUtil.NAME_DESC_JAMES;
 import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_JAMES;
 import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_NON_NUMBER_ROOM_NUMBER;
 import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_ROOM_NUMBER;
-import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_NAME_AMY_DESC;
+import static seedu.address.testutil.command.RoomCommandTestUtil.REMOVE_PATIENT_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_ONE;
 import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_TWO;
 
@@ -30,18 +31,19 @@ public class AllocateRoomCommandParserTest {
 
     @Test
     public void parse_invalidInput_failure() {
-        // No field specified
+        //EP: No field specified
         assertParseFailure(parser, VALID_ROOM_NUMBER_ONE, AllocateRoomCommand.MESSAGE_USAGE);
 
-        // Negative integer input
+        //EP: Negative integer input
         assertParseFailure(parser, INVALID_ROOM_NUMBER, MESSAGE_INVALID_FORMAT);
 
-        // Non-integer input
-        assertParseFailure(parser, INVALID_NON_NUMBER_ROOM_NUMBER, MESSAGE_INVALID_FORMAT);
-        // Non-number input
+        //EP: Non-integer input
         assertParseFailure(parser, INVALID_NON_NUMBER_ROOM_NUMBER, MESSAGE_INVALID_FORMAT);
 
-        // No index and no field specified
+        //EP: Non-number input
+        assertParseFailure(parser, INVALID_NON_NUMBER_ROOM_NUMBER, MESSAGE_INVALID_FORMAT);
+
+        //EP: No index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
@@ -52,13 +54,8 @@ public class AllocateRoomCommandParserTest {
     }
 
     @Test
-    public void parse_invalidFieldsValue_failure() {
-        // Invalid patient name
-        assertParseFailure(parser, VALID_ROOM_NUMBER_ONE + INVALID_NAME_DESC, MESSAGE_CONSTRAINTS);
-    }
-
-    @Test
     public void parse_allFieldsSpecified_success() {
+        //EP: Valid patient name and room number
         String userInput = VALID_ROOM_NUMBER_ONE + NAME_DESC_JAMES;
 
         AllocateRoomCommand.AllocateRoomDescriptor descriptor = new AllocateRoomDescriptorBuilder()
@@ -68,12 +65,24 @@ public class AllocateRoomCommandParserTest {
         AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE),
             descriptor, false);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        //EP: valid room number and patient name as "-"
+        userInput = VALID_ROOM_NUMBER_ONE + REMOVE_PATIENT_DESC;
+
+        descriptor = new AllocateRoomDescriptorBuilder()
+            .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_TWO))
+            .withOccupancy(false)
+            .build();
+        expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE),
+            descriptor, true);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_multipleRepeatedValue_acceptsLast() {
+        //EP: valid name followed by another valid name
         String userInput = VALID_ROOM_NUMBER_ONE + NAME_DESC_JAMES
-            + VALID_NAME_AMY_DESC;
+            + NAME_DESC_AMY;
 
         AllocateRoomCommand.AllocateRoomDescriptor descriptor = new AllocateRoomDescriptorBuilder()
             .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_ONE))
@@ -82,16 +91,51 @@ public class AllocateRoomCommandParserTest {
         AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE),
             descriptor, false);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        //EP: valid name followed by patient name as "-"
+        userInput = VALID_ROOM_NUMBER_ONE + NAME_DESC_JAMES
+            + REMOVE_PATIENT_DESC;
+
+        descriptor = new AllocateRoomDescriptorBuilder()
+            .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_ONE))
+            .withOccupancy(false)
+            .build();
+        expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE),
+            descriptor, true);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        //EP: patient name as "-" followed by valid name
+        userInput = VALID_ROOM_NUMBER_ONE + REMOVE_PATIENT_DESC
+            + NAME_DESC_JAMES;
+
+        descriptor = new AllocateRoomDescriptorBuilder()
+            .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_ONE))
+            .withPatient(new Name(VALID_NAME_JAMES))
+            .build();
+        expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_ONE),
+            descriptor, false);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
+        //EP: invalid name followed by valid patient name
         String userInput = VALID_ROOM_NUMBER_TWO + INVALID_NAME_DESC + NAME_DESC_JAMES;
         AllocateRoomCommand.AllocateRoomDescriptor descriptor = new AllocateRoomDescriptorBuilder()
             .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_ONE))
             .withPatient(new Name(VALID_NAME_JAMES)).build();
         AllocateRoomCommand expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_TWO),
             descriptor, false);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        //EP: invalid name followed by patient name as "-"
+        userInput = VALID_ROOM_NUMBER_TWO + INVALID_NAME_DESC + REMOVE_PATIENT_DESC;
+        descriptor = new AllocateRoomDescriptorBuilder()
+            .withRoomNumber(Integer.valueOf(VALID_ROOM_NUMBER_ONE))
+            .withOccupancy(false)
+            .build();
+        expectedCommand = new AllocateRoomCommand(Integer.valueOf(VALID_ROOM_NUMBER_TWO),
+            descriptor, true);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
