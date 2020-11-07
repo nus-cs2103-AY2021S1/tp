@@ -284,6 +284,7 @@ exit
 | Delete student    | ```delete-student INDEX``` <br> e.g., ```delete-student 3```                                                             |
 | Add session       | ```add-session s/SESSION_NAME dt/SESSION_DATE_TIME``` <br> e.g., ```add-session s/CS2103 Tutorial 9 dt/23-10-2020 0900```|
 | Change session    | ```goto s/SESSION_NAME``` <br> e.g., ```goto s/CS2103 Tutorial 9```
+| Delete session    | ```delete-session s/SESSION_NAME``` <br> e.g., ```delete-session s/CS2103 Tutorial 9```
 | Mark              | ```mark INDEX a/ATTENDANCE_TYPE``` <br> e.g., `mark 1 a/absent`                                             |
 | Mark all          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
 | Score             | ```score INDEX cp/SCORE``` <br> e.g., `score 1 cp/5`                                             |
