@@ -1,6 +1,7 @@
 package quickcache.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static quickcache.logic.commands.CommandTestUtil.assertCommandFailure;
 import static quickcache.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static quickcache.logic.commands.CommandTestUtil.showFlashcardAtIndex;
@@ -17,10 +18,33 @@ import quickcache.model.ModelManager;
 import quickcache.model.UserPrefs;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.Question;
+import quickcache.testutil.TypicalIndexes;
 
 public class OpenCommandTest {
 
     private final Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
+
+    @Test
+    public void equals() {
+        OpenCommand firstOpenCommand = new OpenCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD);
+        OpenCommand secondOpenCommand = new OpenCommand(TypicalIndexes.INDEX_SECOND_FLASHCARD);
+
+        // same object -> returns true
+        assertTrue(firstOpenCommand.equals(firstOpenCommand));
+
+        // same values -> returns true
+        OpenCommand firstOpenCommandCopy = new OpenCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD);
+        assertTrue(firstOpenCommand.equals(firstOpenCommandCopy));
+
+        // different types -> returns false
+        assertFalse(firstOpenCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(firstOpenCommand.equals(null));
+
+        // different index -> returns false
+        assertFalse(firstOpenCommand.equals(secondOpenCommand));
+    }
 
     @Test
     public void execute_validIndex_success() {

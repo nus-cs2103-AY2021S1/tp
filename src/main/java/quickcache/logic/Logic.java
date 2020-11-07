@@ -30,7 +30,7 @@ public interface Logic {
      *
      * @see Model#getQuickCache()
      */
-    ReadOnlyQuickCache getAddressBook();
+    ReadOnlyQuickCache getQuickCache();
 
     /**
      * Returns an unmodifiable view of the filtered list of flashcards
@@ -38,9 +38,9 @@ public interface Logic {
     ObservableList<Flashcard> getFilteredFlashcardList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' quick cache file path.
      */
-    Path getAddressBookFilePath();
+    Path getQuickCacheFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

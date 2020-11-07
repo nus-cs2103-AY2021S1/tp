@@ -2,6 +2,7 @@ package quickcache.model.flashcard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_TWO;
@@ -10,7 +11,9 @@ import static quickcache.testutil.TypicalFlashcards.RANDOM2;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -166,6 +169,37 @@ class UniqueFlashcardListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueFlashcardList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void hashcode() {
+        Question question = new OpenEndedQuestion("Question", new Answer("Answer"));
+        Statistics statistics = new Statistics(5, 3);
+        Set<Tag> tags = new HashSet<>();
+        Flashcard flashcard = new Flashcard(question, tags, statistics);
+        UniqueFlashcardList uniqueFlashcardList = new UniqueFlashcardList();
+        UniqueFlashcardList uniqueFlashcardListToCheckAgainst = new UniqueFlashcardList();
+
+        // no flashcards -> returns same hashcode
+        assertEquals(uniqueFlashcardList.hashCode(), uniqueFlashcardListToCheckAgainst.hashCode());
+
+        uniqueFlashcardList.add(flashcard);
+        uniqueFlashcardListToCheckAgainst.add(flashcard);
+
+        // same flashcards -> returns same hashcode
+        assertEquals(uniqueFlashcardList.hashCode(), uniqueFlashcardListToCheckAgainst.hashCode());
+
+        uniqueFlashcardListToCheckAgainst.remove(flashcard);
+
+        // have different number of flashcards -> returns different hashcode
+        assertNotEquals(uniqueFlashcardList.hashCode(), uniqueFlashcardListToCheckAgainst.hashCode());
+
+        Flashcard differentFlashcard = new Flashcard(question, tags, new Statistics(100, 5));
+
+        uniqueFlashcardListToCheckAgainst.add(differentFlashcard);
+
+        //have different flashcards -> returns different hashcode
+        assertNotEquals(uniqueFlashcardList.hashCode(), uniqueFlashcardListToCheckAgainst.hashCode());
     }
 
 }

@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyQuickCache getAddressBook() {
+    public ReadOnlyQuickCache getQuickCache() {
         return model.getQuickCache();
     }
 
@@ -65,7 +65,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getQuickCacheFilePath() {
         return model.getQuickCacheFilePath();
     }
 

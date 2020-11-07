@@ -5,9 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 import org.junit.jupiter.api.Test;
 
 class StatisticsTest {
@@ -32,25 +29,28 @@ class StatisticsTest {
     }
 
     @Test
+    public void incrementStats() {
+        Statistics statistics = new Statistics(5, 3);
+
+        statistics = statistics.incrementTimesTested();
+        Statistics expectedStatistics = new Statistics(6, 3);
+
+        assertEquals(statistics, expectedStatistics);
+
+        statistics = statistics.incrementTimesTestedCorrect();
+        expectedStatistics = new Statistics(6, 4);
+
+        assertEquals(statistics, expectedStatistics);
+    }
+
+    @Test
     public void getCorrectRate() {
         Statistics newStatistics = new Statistics();
         assertEquals(newStatistics.getCorrectRate(), 0.0);
 
         Statistics updatedStatistics = new Statistics(3, 2);
-        assertEquals(updatedStatistics.getCorrectRate(),
-            round((double) updatedStatistics.getTimesTestedCorrect()
-                    / updatedStatistics.getTimesTested() * 100, 2));
-    }
-
-    // Solution below adapted from https://stackoverflow.com/questions/2808535
-    private double round(double value, int places) {
-        if (places < 0) {
-            throw new IllegalArgumentException();
-        }
-
-        BigDecimal bd = BigDecimal.valueOf(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
+        assertEquals(updatedStatistics.getCorrectRate(), (
+                (double) updatedStatistics.getTimesTestedCorrect()) / updatedStatistics.getTimesTested() * 100);
     }
 
     @Test

@@ -21,6 +21,7 @@ import quickcache.commons.core.Messages;
 import quickcache.logic.commands.AddMultipleChoiceQuestionCommand;
 import quickcache.logic.commands.AddOpenEndedQuestionCommand;
 import quickcache.logic.commands.ClearCommand;
+import quickcache.logic.commands.ClearStatsCommand;
 import quickcache.logic.commands.DeleteCommand;
 import quickcache.logic.commands.EditCommand;
 import quickcache.logic.commands.ExitCommand;
@@ -90,6 +91,13 @@ public class QuickCacheParserTest {
         StatsCommand command = (StatsCommand) parser.parseCommand(
                 StatsCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased());
         assertEquals(new StatsCommand(INDEX_FIRST_FLASHCARD), command);
+    }
+
+    @Test
+    public void parseCommand_clearStats() throws Exception {
+        ClearStatsCommand command = (ClearStatsCommand) parser.parseCommand(
+                ClearStatsCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased());
+        assertEquals(new ClearStatsCommand(INDEX_FIRST_FLASHCARD), command);
     }
 
     @Test
