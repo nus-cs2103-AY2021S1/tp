@@ -707,7 +707,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | doctor      | add profile picture to each patient's profile                    | can recognize the patient using the profile picture                                 |
 | `*`      | doctor      | color code patients                                              | know which patients are more at risk (e.g. high blood pressure)                     |
 
-*{More to be added}*
 
 ## **Appendix C: Use Cases**
 
@@ -890,7 +889,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should be able to schedule up to 100 patient appointments without a noticeable sluggishness in performance for typical usage.
 1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
 
 ## **Appendix E: Glossary**
 
@@ -921,8 +919,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+       
 
 ##### F.2 Adding a patient
 
@@ -933,8 +930,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `add`<br>
       Expected: No patient is added. Error details shown in the status message. Status bar remains the same.
-
-1. _{ more test cases …​ }_
+      
 
 ##### F.3 Deleting a patient
 
@@ -951,12 +947,16 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ##### F.4 Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: The json file saved contains data for at least one patient.
+   
+   1. Test case: Corrupted json file<br>
+      Open up `data/clinical.json` in a text editor and change any field to an invalid value. For example, try including an alphabet in the phone number of a patient.
+      Expected: The application should start gracefully with an empty set of data, without crashing. The application will log an error to the console.
 
-1. _{ more test cases …​ }_
+## **Appendix G: Effort**
+
+All members of the team contributed equally to the project and the development guide. For specifics, check out the portfolio pages of the team members, found on [About Us](AboutUs.md).
