@@ -86,7 +86,7 @@ You may want to familarize yourself with them before moving on to the next secti
 
 Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all components of the GUI.
 
-<img src="images/tCheckInfographic.png" width="1428" height="1000" />
+<img src="images/tCheckInfographic.png" width="1000" height="1428" />
 Figure 2 - Annotated GUI of tCheck
 
 #### 3.2.4 Prefix process and usage
@@ -101,12 +101,14 @@ Unexpected prefix(es) entered for commands which do not take in any parameter | 
 
 **Example 1:**
 `i-set i/Milk i/Boba m/90`
+
 **How the command is processed:**
 In this case, the situation of duplicate valid prefixes detected takes place. Hence, only the last, in this case, the second prefix and its following parameters are accepted.
 Thus, the command will be processed in the same way as `i-set i/Boba m/90`.
 
 **Example 2:**
 `i-set-all M/10 P/10 B/10 L/10 G/10 S/10 T/10`
+
 **How the command is processed:**
 In this example, the prefixes `M/`, `P/`, `B/`, `L`, `G` and `S/` are valid but `T/` is invalid. Hence, the situation of
 invalid prefix entered takes place. Since tCheck will not be able to recognize the `T/` entered as a prefix. Thus, it will be treated as
@@ -114,6 +116,7 @@ part of the parameter for the nearest previous prefix, which is `S/`. This will 
 
 **Example 3:**
 `help i/Milk i don't know what to do `
+
 **How the command is processed:**
 In this case, `help` is a command which does not take in any parameter. Hence, the situation of unexpected prefix(es) entered for commands which do not take in any parameter takes place.
 Thus, tCheck will ignore all words come after the command word `help` and the command will be processed in the same way as `help`.
