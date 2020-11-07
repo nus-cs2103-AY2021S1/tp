@@ -689,7 +689,7 @@ Command and Parser make use of Substitutability:
 * `SearchIngredientCommandParser` implements `Parser<SearchIngredientCommand>` <br><br>
 
 The following activity diagram shows how search operation generally works:
-![SearchActivityDiagram](images/implementation/activityDiagram/SearchCommandActivityDiagram.png)
+![SearchActivityDiagram](images/implementation/activityDiagrams/SearchCommandActivityDiagram.png)
 
 
 The following sequence diagram shows how the search operation generally works when searching for recipes: <br>
