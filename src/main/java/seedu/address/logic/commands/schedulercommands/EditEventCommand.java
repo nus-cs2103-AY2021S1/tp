@@ -73,10 +73,6 @@ public class EditEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, updatedEvent));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 
     @Override
     public boolean equals(Object other) {

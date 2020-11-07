@@ -2,14 +2,14 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.AMY;
-import static seedu.address.testutil.TypicalContacts.BOB;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
+import static seedu.address.testutil.contact.TypicalContacts.AMY;
+import static seedu.address.testutil.contact.TypicalContacts.BOB;
+import static seedu.address.testutil.contact.TypicalContacts.getTypicalContactList;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.exceptions.VersionedListException;
-import seedu.address.testutil.ContactListBuilder;
+import seedu.address.testutil.contact.ContactListBuilder;
 
 public class VersionedContactListTest {
     private static final ContactList VALID_CONTACT_LIST = new ContactListBuilder().withContact(AMY)

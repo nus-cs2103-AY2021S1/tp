@@ -55,8 +55,4 @@ public class UnarchiveModuleCommand extends Command {
                 && targetIndex.equals(((UnarchiveModuleCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

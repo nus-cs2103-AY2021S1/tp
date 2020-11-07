@@ -1,9 +1,9 @@
-package seedu.address.storage;
+package seedu.address.storage.contactliststorage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedContact.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.BENSON;
+import static seedu.address.testutil.contact.TypicalContacts.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Telegram;
+import seedu.address.storage.JsonAdaptedContact;
+import seedu.address.storage.JsonAdaptedTag;
 
 public class JsonAdaptedContactTest {
     private static final String INVALID_CONTACT_NAME = "R@chel";

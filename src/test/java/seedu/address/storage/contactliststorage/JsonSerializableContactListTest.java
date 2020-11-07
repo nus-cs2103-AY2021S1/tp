@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ContactList;
 import seedu.address.storage.JsonSerializableContactList;
-import seedu.address.testutil.TypicalContacts;
+import seedu.address.testutil.contact.TypicalContacts;
 
 public class JsonSerializableContactListTest {
 
