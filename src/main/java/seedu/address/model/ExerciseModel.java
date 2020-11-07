@@ -39,7 +39,7 @@ public interface ExerciseModel {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' exercise book file path.
      */
     Path getExerciseBookFilePath();
 
@@ -49,45 +49,48 @@ public interface ExerciseModel {
     HashMap<String, Integer> getCaloriesByDay();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' exercise book file path.
      */
-    void setExerciseBookFilePath(Path addressBookFilePath);
+    void setExerciseBookFilePath(Path exerciseBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces exercise book data with the data in {@code exerciseBook}.
      */
-    void setExerciseBook(ReadOnlyExerciseBook addressBook);
+    void setExerciseBook(ReadOnlyExerciseBook exerciseBook);
 
     /**
-     * Returns the AddressBook
+     * Returns the ExerciseBook
      */
     ReadOnlyExerciseBook getExerciseBook();
 
     /**
-     * Returns true if a Exercise with the same identity as {@code Exercise} exists in the address book.
+     * Returns true if a Exercise with the same identity as {@code Exercise} exists in the exercise book.
      */
     boolean hasExercise(Exercise exercise);
 
     /**
      * Deletes the given exercise.
-     * The exercise must exist in the address book.
+     * The exercise must exist in the exercise book.
      */
     void deleteExercise(Exercise target);
 
     /**
      * Adds the given exercise.
-     * {@code exercise} must not already exist in the address book.
+     * {@code exercise} must not already exist in the exercise book.
      */
     void addExercise(Exercise exercise);
 
-
+    /**
+     * Adds the given template.
+     * {@code template} must not already exist in the exericse book.
+     */
     void addTemplate(Template template);
 
-    void resetTemplate();
+    void resetAll();
 
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the exercise book.
      * The Exercise identity of {@code editedExercise} must not be the
      * same as another existing Exercise in the exercise book.
      */

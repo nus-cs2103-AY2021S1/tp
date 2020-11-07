@@ -115,10 +115,6 @@ public class ExerciseModelManager implements ExerciseModel {
         //updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
     }
 
-    @Override
-    public void resetTemplate() {
-        TemplateList.reset();
-    }
 
     @Override
     public void setExercise(Exercise target, Exercise editedExercise) {
@@ -158,6 +154,11 @@ public class ExerciseModelManager implements ExerciseModel {
     public void updateFilteredExerciseList(Predicate<Exercise> predicate) {
         requireNonNull(predicate);
         filteredExercises.setPredicate(predicate);
+    }
+
+    @Override
+    public void resetAll() {
+        exerciseBook.resetAllData();
     }
 
     @Override

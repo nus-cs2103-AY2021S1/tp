@@ -52,15 +52,27 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setCaloriesByDay(HashMap<String, Integer> newEntry) {
+        this.exercises.setCaloriesByDay(newEntry);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyExerciseBook newData) {
         requireNonNull(newData);
-
         setExercises(newData.getExerciseList());
     }
 
-    //// person-level operations
+    public void resetAllData() {
+        exercises.resetAll();
+        TemplateList.reset();
+    }
+
+    //// exercise-level operations
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
