@@ -109,11 +109,11 @@ Specifically, this section covers:
 3. [Recipe Button](#RecipeButton)
 4. [Ingredient Button](#IngredientButton)
 5. [Recommendation Button](#RecommendationButton)
-6. [Favourites Button](#FavouriteButton)
-7. [Statistics Box](#StatisticsBox)
-8. [Recipe Tile](#RecipeTiles)
-9. [Ingredient Tile](#IngredientTiles)
-10. [Recipe Name and Tags](#RecipeName)
+6. [Statistics Box](#StatisticsBox)
+7. [Recipe Tile](#RecipeTiles)
+8. [Ingredient Tile](#IngredientTiles)
+9. [Recipe Name](#RecipeName)
+10. [Recipe Tags](#RecipeTags)
 11. [Recipe Ingredients](#RecipeIngredients)
 12. [Recipe Steps](#RecipeSteps)
 13. [Menu Bar](#MenuBar)
@@ -162,15 +162,8 @@ ChopChop is able to recommend you recipes to cook if you want it to! The recipes
 
 
 
-<a name="FavouriteButton"></a>
-### 4.6&ensp;Favourite Button
-{:.no_toc}
-ChopChop is able to save your favourite recipes — press the `Favourites` button to view them as [Recipe Tiles](#RecipeTiles).
-
-
-
 <a name="StatisticsBox"></a>
-### 4.7&ensp;Statistics Box
+### 4.6&ensp;Statistics Box
 {:.no_toc}
 ChopChop is able to produce statistics based on the food you make! To view your ingredient or recipe usage statistics, simply input into the `Command Box` one of the `stats` [commands available](#GroupStatsCommands).
 
@@ -178,14 +171,14 @@ ChopChop is able to produce statistics based on the food you make! To view your 
 
 
 <a name="RecipeTiles"></a>
-### 4.8&ensp;Recipe Tiles
+### 4.7&ensp;Recipe Tiles
 {:.no_toc}
 ChopChop is able to show you your recipes in the form of tiles — simply click on a tile to view the detailed information about the selected recipe in the `Main Display Area`, as shown in Figure 1.4.
 
 
 
 <a name="IngredientTiles"></a>
-### 4.9&ensp;Ingredient Tiles
+### 4.8&ensp;Ingredient Tiles
 {:.no_toc}
 ChopChop is able to show you your ingredients in the form of tiles, as shown in Figure 1.3. In each tile, there are 5 components:
 
@@ -209,9 +202,16 @@ Figure 1.4: <i>The Recipe Display Panel of ChopChop.</i>
 
 
 <a name="RecipeName"></a>
-### 4.10&ensp;Recipe Name and Tags
+### 4.9&ensp;Recipe Name
 {:.no_toc}
-ChopChop displays the name of the recipe, and the tags associated with it in this area.
+ChopChop displays the name of the recipe here.
+
+
+
+<a name="RecipeTags"></a>
+### 4.10&ensp;Recipe Tags
+{:.no_toc}
+ChopChop displays the tags associated with this recipe here.
 
 
 
