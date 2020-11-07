@@ -541,17 +541,19 @@ The following sequence diagram shows how the stats operation works:
 
 ### Clear Statistics of Flashcard
 
-The clear statistics of flashcard feature will allow the user to reset the statistics of the flashcard specified by the given index.
-
 #### Implementation
+
+The clear statistics of flashcard feature will allow the user to reset the statistics of the flashcard specified by the given index.
 
 The clear statistics of flashcard implementation requires the creation of a `ClearStatsCommandParser` and a `ClearStatsCommand`. The `ClearStatsCommandParser#parse` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create a `ClearStatsCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
 
 The `ClearStatsCommand` class will replace the `Flashcard` at the specified `Index` with a copy of the original `Flashcard` that has its `Statistics` reset to zero for all fields.
 
+##### Usage
+
 Given below is an example usage scenario and how the `ClearStatsCommand` mechanism behaves at each step.
 
-Step 1. The user launches the application after a few times of playing around with the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
+Step 1. The user launches the application after a few times of using the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
 
 Step 2. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` has values that are not zero.
 
@@ -570,6 +572,10 @@ Step 7. The user executes `stats 1` command to display the `Statistics` of the f
 The following sequence diagram shows how the stats operation works:
 
 ![ClearStatsSequenceDiagram](images/ClearStatsSequenceDiagram.png)
+
+#### Design Considerations:
+
+{insert design considerations}
 
 ### Exporting Flashcards
 
