@@ -1,10 +1,10 @@
 package seedu.address.model.task.comparator;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.todolist.TypicalTasks.LAB_01;
 import static seedu.address.testutil.todolist.TypicalTasks.LAB_02;
+
+import org.junit.jupiter.api.Test;
 
 public class TaskComparatorByDateTest {
 
