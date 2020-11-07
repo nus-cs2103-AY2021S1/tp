@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -65,6 +66,13 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getModuleFilePath());
     }
 
-
+    @Test
+    public void getUserPrefs_correctFilePath() {
+        Path filePath = Paths.get("data/temp.json");
+        UserPrefsStorage userPrefs = new JsonUserPrefsStorage(filePath);
+        ModuleListStorage moduleListStorage = new JsonModuleListStorage(filePath);
+        Storage storage = new StorageManager(moduleListStorage, userPrefs);
+        assertEquals(filePath, storage.getUserPrefsFilePath());
+    }
 
 }
