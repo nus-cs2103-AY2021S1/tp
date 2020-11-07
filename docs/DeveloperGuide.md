@@ -359,8 +359,87 @@ The mechanism for bookmark feature is facilitated by BookmarkCommandParser, Book
 
 #### BookmarkCommand
 
-`BookmarkCommand` class extends the `Command` interface. 
+`BookmarkCommand` class extends the `Command` interface. `BookmarkCommand` class is tasked with changing 
+the isBookmarked parameter of the stocks indicated in parameters of the command to true and creating a 
+new `CommandResult` to be displayed to the user in the user interface.
 
+Some important operations implemented here are:
+* `BookmarkCommand#execute()` Bookmarks the stock in the stockbook if the stock is not already bookmarked
+or if the stock is present in the stockbook. Returns a new `CommandResult` to be displayed to the user
+in the user interface.
+
+### BookmarkCommandParser
+
+`BookmarkCommandParser` class extends the `Parser` interface. `BookmarkCommandParser` class is tasked with 
+parsing the user inputs and generating a new `BookmarkCommand`. The main logic of the bookmark feature is 
+encapsulated here.
+
+`BookmarkCommandParser` receives user input, and extracts the serialNumbers of the stocks to be bookmarked 
+from the arguments. The `parse` method of `BookmarkCommandParser` receives the user input, and extracts
+the serialNumbers of the stocks to be bookmarked. The `parse` method then returns a new `BookmarkCommand` 
+with the given serialNumbers as argument if the user input is a valid `BookmarkCommand` and throws a 
+`ParseException` otherwise.
+
+Some important operations implemented here are:
+* `BookmarkCommandParser#parse()` returns BookmarkCommand to be executed.
+
+### Example Usage Scenerio 
+
+Given Below is one example usage scenerio and explains how the add feature behaves at each step. It is assumed
+that the stock with serial number `fairprice1` exists in the stock book.
+**Example 1:Bookmarking a stock present in the stock book that is not already bookmarked**
+
+Step 1. The user enters `bookmark sn/fairprice1` into the command box.
+
+Step 2. The command word `bookmark` is extracted out in the `StockBookParser` and checked it it matches any
+valid command word.
+
+Step 3. `bookmark` is a valid command word. User input prefixes ,and their values are being passed down to 
+`BookmarkCommandParser#parse()`
+
+Step 4. `BookmarkCommandParser#parse()` will check if the prefixes `sn/` exists as it is compulsory.
+
+Step 5. The prefix `sn/` exist. `BookmarkCommandParser#parse()` will extract the value of the prefix `sn/`
+which in this case is `fairprice1`.
+
+Step 6. `BookmarkCommandParser#parse()` returns a new `BookmarkCommand` with the set of serial numbers 
+containing`fairprice1`.
+
+Step 7. `Logic Manager` then calls `BookmarkCommand#execute()`. Inside the method, it will check if the 
+stock with the serial number `fairprice1` exists in the `Model`.
+
+Step 8. The stock with serial number `fairprice1` exists. The `BookmarkCommand#execute()` method checks 
+if the stock is already bookmarked. Since the stock is not bookmarked before, the `isBookmarked` boolean 
+of the stock is changed to `true`. And the stock list is being sorted to push the newly bookmarked stock
+to the top of the stocklist.
+
+Step 9. The correspoding stocks in the stock book are replaced by the bookmarked stocks.
+
+Step 10. Returns a new `CommandResult` containing the `MESSAGE_BOOKMARK_STOCK_SUCCESS` as its argument.
+
+Step 12. The updated stock message is displayed to the user.
+
+### Sequence Diagram
+
+The following sequence diagram shows how the update feature works in **Example 1**:
+
+### Activity Diagram
+
+The following activity diagram summarizes what happens when the bookmark feature is triggered:
+
+![BookmarkActivityDiagram](images/BookmarkCommandActivityDiagram.png)
+
+### Design Consideration
+
+#### Aspect:How does a stock get bookmarked
+
+* Alternative 1(current implementation):make a temporary copy then replace original with copy
+    * Pros: Eliminates the possibility of original data getting lost. If a bookmarking is unsuccessful then only the copy 
+      will be affected and not the original data. 
+    * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy of the current 
+      stock, update the copy, and replace the original with the copy.
+* Alternative 2:directly changing `Stock` isBookmarked field in `StockBook`
+    *
 
 ### Suggestion Feature
 
