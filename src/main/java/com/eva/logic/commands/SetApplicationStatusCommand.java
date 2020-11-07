@@ -86,6 +86,7 @@ public class SetApplicationStatusCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SetApplicationStatusCommand // instanceof handles nulls
-                && targetIndex.equals(((SetApplicationStatusCommand) other).targetIndex));
+                && targetIndex.equals(((SetApplicationStatusCommand) other).targetIndex))
+                && newApplicationStatus.equals(((SetApplicationStatusCommand) other).newApplicationStatus);
     }
 }

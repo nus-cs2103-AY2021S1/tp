@@ -18,6 +18,7 @@ public class InterviewDate {
 
     /**
      * Creates an object representing the interview date of the applicant from a string
+     *
      * @param date String representation of interview date.
      */
     public InterviewDate(String date) {
@@ -32,6 +33,7 @@ public class InterviewDate {
 
     /**
      * Checks the validity of the date.
+     *
      * @param date String representation of date.
      * @return True if the date is given in dd/MM/yyyy format.
      */
@@ -46,6 +48,7 @@ public class InterviewDate {
 
     /**
      * Checks if the interview is over relative to the current date.
+     *
      * @return True if the interview date is earlier than the current date.
      */
     public boolean isCompleted() {
@@ -55,5 +58,17 @@ public class InterviewDate {
     @Override
     public String toString() {
         return DateUtil.dateToString(interviewDate);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        InterviewDate that = (InterviewDate) o;
+        return interviewDate.equals(that.interviewDate);
     }
 }

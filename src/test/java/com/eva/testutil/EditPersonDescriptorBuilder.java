@@ -1,5 +1,6 @@
 package com.eva.testutil;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -10,6 +11,8 @@ import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.person.applicant.ApplicationStatus;
+import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.tag.Tag;
 
 /**
@@ -80,8 +83,33 @@ public class EditPersonDescriptorBuilder {
         descriptor.setTags(tagSet);
         return this;
     }
+    /**
+     * Sets the {@code Tags} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withTags(Set<Tag> tags) {
+        descriptor.setTags(tags);
+        return this;
+    }
+
+    /**
+     * Sets the {@code InterviewDate} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withInterviewDate (Optional<InterviewDate> interviewDate) {
+        descriptor.setInterviewDate(interviewDate);
+        return this;
+    }
+
+    /**
+     * Sets the {@code ApplicationStatus} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withApplicationStatus(ApplicationStatus applicationStatus) {
+        descriptor.setApplicationStatus(applicationStatus);
+        return this;
+    }
 
     public EditPersonDescriptor build() {
         return descriptor;
     }
+
+
 }

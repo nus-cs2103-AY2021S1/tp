@@ -59,6 +59,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final String VALID_APPLICATION_STATUS = "received";
+    public static final String VALID_INTERVIEW_DATE = "11/11/2020";
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
@@ -80,8 +82,10 @@ public class CommandTestUtil {
                                             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            assertEquals(expectedCommandResult, result);
+            System.out.println("expected  " + expectedCommandResult);
+            System.out.println(result);
             assertEquals(expectedModel, actualModel);
+            assertEquals(expectedCommandResult, result);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }

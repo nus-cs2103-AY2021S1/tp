@@ -53,7 +53,6 @@ public class DeleteApplicantCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredWrongListPanel_failure() {
-        Applicant applicantToDelete = model.getFilteredApplicantList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteApplicantCommand deleteCommand = new DeleteApplicantCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
