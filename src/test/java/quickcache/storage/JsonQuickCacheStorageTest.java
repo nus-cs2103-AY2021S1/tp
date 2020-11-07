@@ -52,7 +52,7 @@ public class JsonQuickCacheStorageTest {
 
     @Test
     public void readQuickCache_invalidFlashcardQuickCache_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidFlashcardQuickCache.json"));
     }
 
     @Test
