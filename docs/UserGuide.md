@@ -551,7 +551,7 @@ the web and paste the `hospify.json` file in the **data file** of your new **Hos
 (Diagram 4.2.2)
 
 <div markdown="block" class="alert alert-warning">
-**:warning: Important:** Ensure that the java version is at least **11**. If your version is less than **11**, 
+**:warning: Important:** Ensure that the java version is at least `11`. If your version is less than `11`, 
 scroll down to the **:information_source: Notes** to the view the download link.
 
 After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
@@ -559,7 +559,7 @@ After verifying that you have at least `java 11` installed, double click on the 
 If it still does not run, type the command `java -jar hospify.jar` in the command prompt in the **SAME directory** 
 containing your `hospify.jar` file shown below.
 
-![running jar from windows prompt](images/faq/windows_runJar.PNG)\
+![running jar from windows prompt](images/faq/windows_runJar.PNG)
 (Diagram 4.2.3)
 
 </div>
@@ -573,7 +573,7 @@ containing your `hospify.jar` file shown below.
 (Diagram 4.2.5)
 
 <div markdown="block" class="alert alert-warning">
-**:warning: Important:** Ensure that the java version is at least **11**. If your version is less than **11**,
+**:warning: Important:** Ensure that the java version is at least `11`. If your version is less than `11`,
 scroll down to the **:information_source: Notes** to the view the download link.
 
 After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
@@ -581,7 +581,7 @@ After verifying that you have at least `java 11` installed, double click on the 
 If it still does not run, type the command `java -jar hospify.jar` in the **TERMINAL** in the **SAME directory** 
 containing your `hospify.jar` file. 
 
-![running jar from windows prompt](images/faq/mac_javaVersion.PNG)
+![running jar from windows prompt](images/faq/mac_runJar.PNG)
 </div>
 
 <div markdown="block" class="alert alert-primary">
