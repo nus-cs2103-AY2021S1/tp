@@ -9,8 +9,6 @@ import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static com.eva.testutil.applicant.TypicalApplicants.getTypicalApplicantDatabase;
 import static com.eva.testutil.staff.TypicalStaffs.getTypicalStaffDatabase;
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -41,7 +39,6 @@ import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.testutil.ApplicantBuilder;
 import com.eva.testutil.CommentPersonDescriptorBuilder;
-import com.eva.testutil.PersonBuilder;
 import com.eva.testutil.staff.StaffBuilder;
 
 import javafx.collections.ObservableList;
