@@ -40,15 +40,9 @@ public class AddModCommandParserTest {
 
         assertParseSuccess(parser, CODE_DESC_CS2103 + NAME_DESC_CS2103,
                 new AddModCommand(expectedModuleCs2103));
-
-    }
-
-    @Test
-    public void parse_optionalFieldsMissing_success() {
-        // zero persons
-        Module expectedModule = new ModuleBuilder(CS1010S).withInstructors().build();
-        assertParseSuccess(parser, CODE_DESC_CS1010S + NAME_DESC_CS1010S,
-            new AddModCommand(expectedModule));
+        // Same input but with different order
+        assertParseSuccess(parser, NAME_DESC_CS2103 + CODE_DESC_CS2103,
+                new AddModCommand(expectedModuleCs2103));
     }
 
     @Test
@@ -62,6 +56,9 @@ public class AddModCommandParserTest {
         // missing name prefix
         assertParseFailure(parser, CODE_DESC_CS50 + VALID_MODULE_NAME_CS50,
                 expectedMessage);
+
+        // missing all
+        assertParseFailure(parser, "m/ n/", expectedMessage);
     }
 
     @Test
@@ -73,7 +70,6 @@ public class AddModCommandParserTest {
         // invalid code
         assertParseFailure(parser, INVALID_MODULE_CODE_DESC + NAME_DESC_CS50,
                 ModuleCode.MESSAGE_CONSTRAINTS);
-
     }
 
     @Test

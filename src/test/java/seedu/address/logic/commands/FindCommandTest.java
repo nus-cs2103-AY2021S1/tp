@@ -24,8 +24,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.DepartmentContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.OfficeContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.RemarkContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.TagContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
@@ -90,6 +92,8 @@ public class FindCommandTest {
 
         List<Predicate<Person>> predicateList = new ArrayList<>();
         predicateList.add(prepareNamePredicate(BENSON.getName().fullName));
+        predicateList.add(prepareEmailPredicate(BENSON.getEmail().value));
+        predicateList.add(preparePhonePredicate(BENSON.getPhone().value));
         predicateList.add(prepareDeptPredicate(BENSON.getDepartment().value));
         predicateList.add(prepareOfficePredicate(BENSON.getOffice().value));
         predicateList.add(prepareRemarkPredicate(BENSON.getRemark().value));
@@ -113,6 +117,20 @@ public class FindCommandTest {
      */
     private DepartmentContainsKeywordsPredicate prepareDeptPredicate(String userInput) {
         return new DepartmentContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code PhoneContainsKeywordsPredicate}.
+     */
+    private PhoneContainsKeywordsPredicate preparePhonePredicate(String userInput) {
+        return new PhoneContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code EmailContainsKeywordsPredicate}.
+     */
+    private EmailContainsKeywordsPredicate prepareEmailPredicate(String userInput) {
+        return new EmailContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
     /**

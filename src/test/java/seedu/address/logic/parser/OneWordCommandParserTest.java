@@ -29,10 +29,66 @@ public class OneWordCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsUnassignCommand() {
+    public void parse_validArgs_returnsUnassignAllCommand() {
 
         assertParseSuccess(parser, "unassignall",
             new UnassignallCommand());
+    }
+
+    @Test
+    public void parse_validArgs_returnsMlistCommand() {
+
+        assertParseSuccess(parser, "mlist",
+                new MlistCommand());
+    }
+
+    @Test
+    public void parse_validArgs_returnsClistCommand() {
+
+        assertParseSuccess(parser, "clist",
+                new ClistCommand());
+    }
+
+    @Test
+    public void parse_validArgs_returnsCclearCommand() {
+
+        assertParseSuccess(parser, "cclear",
+                new CclearCommand());
+    }
+
+    @Test
+    public void parse_validArgs_returnsMclearCommand() {
+
+        assertParseSuccess(parser, "mclear",
+                new MclearCommand());
+    }
+
+    @Test
+    public void parse_validArgs_returnsResetCommand() {
+
+        assertParseSuccess(parser, "reset",
+                new ResetCommand());
+    }
+
+    @Test
+    public void parse_validArgs_returnsSwitchCommand() {
+
+        assertParseSuccess(parser, "switch",
+                new SwitchCommand());
+    }
+
+    @Test
+    public void parse_validArgs_returnsHelpCommand() {
+
+        assertParseSuccess(parser, "help",
+                new HelpCommand());
+    }
+
+    @Test
+    public void parse_validArgs_returnsExitCommand() {
+
+        assertParseSuccess(parser, "exit",
+                new ExitCommand());
     }
 
     @Test

@@ -4,10 +4,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DEPARTMENT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DEPARTMENT_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.OFFICE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.OFFICE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
@@ -15,8 +17,10 @@ import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEPARTMENT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_OFFICE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -38,8 +42,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.DepartmentContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.OfficeContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.RemarkContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.TagContainsKeywordsPredicate;
 
@@ -54,11 +60,6 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
-
-    }
-
-    @Test
     public void parse_validArgsWithOneTypePrefix_returnsFindCommand() {
 
         FindCommand expectedFindCommand;
@@ -69,6 +70,14 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " " + PREFIX_NAME + " \n Alice \n \t Liddel  \t", expectedFindCommand);
+
+        // phone
+        expectedFindCommand = new FindCommand(preparePhonePredicate(VALID_PHONE_BOB));
+        assertParseSuccess(parser, PHONE_DESC_BOB, expectedFindCommand);
+
+        // email
+        expectedFindCommand = new FindCommand(prepareEmailPredicate(VALID_EMAIL_BOB));
+        assertParseSuccess(parser, EMAIL_DESC_BOB, expectedFindCommand);
 
         // department
         expectedFindCommand = new FindCommand(prepareDeptPredicate(VALID_DEPARTMENT_BOB));
@@ -137,11 +146,47 @@ public class FindCommandParserTest {
             expectedFindCommand);
     }
 
+    @Test
+    public void parse_validArgsWithAllPrefixes_returnsFindCommand() {
+
+        List<Predicate<Person>> predicateList = new ArrayList<>();
+        predicateList.add(prepareNamePredicate(VALID_NAME_BOB));
+        predicateList.add(preparePhonePredicate(VALID_PHONE_BOB));
+        predicateList.add(prepareEmailPredicate(VALID_EMAIL_BOB));
+        predicateList.add(prepareDeptPredicate(VALID_DEPARTMENT_BOB));
+        predicateList.add(prepareOfficePredicate(VALID_OFFICE_BOB));
+        predicateList.add(prepareRemarkPredicate(VALID_REMARK_BOB));
+        predicateList.add(prepareTagPredicate(VALID_TAG_FRIEND));
+
+        FindCommand expectedFindCommand = new FindCommand(predicateList);
+
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + DEPARTMENT_DESC_BOB
+                        + OFFICE_DESC_BOB + REMARK_DESC_BOB + TAG_DESC_FRIEND,
+                expectedFindCommand);
+        // Same arguments different order
+        assertParseSuccess(parser, OFFICE_DESC_BOB + NAME_DESC_BOB + DEPARTMENT_DESC_BOB + TAG_DESC_FRIEND
+                        + REMARK_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB, expectedFindCommand);
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private NameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code PhoneContainsKeywordsPredicate}.
+     */
+    private PhoneContainsKeywordsPredicate preparePhonePredicate(String userInput) {
+        return new PhoneContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code EmailContainsKeywordsPredicate}.
+     */
+    private EmailContainsKeywordsPredicate prepareEmailPredicate(String userInput) {
+        return new EmailContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
     /**
