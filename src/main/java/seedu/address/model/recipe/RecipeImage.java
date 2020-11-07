@@ -10,7 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class RecipeImage {
     public static final String MESSAGE_CONSTRAINTS =
-            "Image path should be image link address or local path, can be optional field";
+            "1. Image path should not be empty \n"
+            + "2. Image path should be image link address or local path, can be optional field";
 
     /*
      * The first character of the address must not be a whitespace,
