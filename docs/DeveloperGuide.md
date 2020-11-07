@@ -719,7 +719,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a deadline while all tasks are being shown
 
-   1. Prerequisites:  List all deadline using the list-task command. Multiple deadline in the task list.
+   1. Prerequisites:  List all deadline using the `list-task` command. Multiple deadline in the task list.
 
    1. Test case: `deadline title:Return book datetime:02-01-2020 18:00`<br>
       Expected: a new deadline with title 'Return book' is added to the task list, a deadline card will be displayed with the detailed info about the deadline.
@@ -737,7 +737,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a event while all tasks are being shown
 
-   1. Prerequisites:  List all events using the list-task command. Multiple events in the task list.
+   1. Prerequisites:  List all events using the `list-task` command. Multiple events in the task list.
 
    1. Test case: `event title:Project meeting date:29-10-2020 from:09:00 to:12:30 tag:CS2103T`<br>
       Expected: a new event with title 'Project meeting' is added to the task list, a event card will be displayed with the detailed info about the event.
@@ -759,13 +759,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a task while all tasks are being shown
 
-   1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
+   1. Prerequisites: List all tasks using the `list-task` command. Multiple tasks in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete-task 1`<br>
+      Expected: First task is deleted from the list. Title of the deleted task shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete-task 0`<br>
+      Expected: No task is deleted. Error details shown in the status message. index is not a non-zero unsigned integer.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
