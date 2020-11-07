@@ -1,0 +1,25 @@
+@startuml
+start
+:user executes eat recipe command: eatR 1;
+:Logic executes eat recipe command;
+:EatRecipeCommandParser parses the command: eatR 1;
+
+if () then ([index > 0 and index is integer])
+:execute EatRecipeCommand;
+
+        if () then ([is valid index])
+        :make a copy of recipe from recipe list;
+        :recipe is added into consumption list;
+
+        else ([is invalid index])
+        :throw command exception;
+
+        endif
+
+else ([index <= 0 or index not integer])
+    :throw parse exception;
+
+endif
+stop
+
+@enduml

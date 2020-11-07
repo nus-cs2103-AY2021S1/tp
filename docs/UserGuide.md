@@ -61,7 +61,7 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
 
 # 1. Overview <a id="1-overview"></a>
 Welcome to the Wishful Shrinking User Guide! In this section, you will be given an overview of what Wishful
- Shrinking is about and what you can get out of reading this document.
+ Shrinking is about and what you can get out of reading this document. <br><br>
 
 
 ## 1.1 Introduction <a id="11-introduction"></a>
@@ -74,14 +74,14 @@ Wishful Shrinking is your desktop diet manager. It is an app that helps you **ma
 
 Wishful Shrinking targets **office workers** who tend to discount healthy eating. Office workers are also more
  familiar with desktop applications and typing and correspondingly, Wishful Shrinking is optimized for fast and efficient typers as it uses a Command Line Interface (CLI) with the added beauty of a Graphical User Interface (GUI).
- Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.
+ Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems. <br><br>
 
 ## 1.2 Purpose <a id="12-purpose"></a>
 This user guide provides in-depth documentation on the **installation process, step-by-step instructions** for
- each feature and **troubleshooting recommendations**.
+ each feature and **troubleshooting recommendations**. <br><br>
 
 # 2. About the User Guide <a id="2-about-the-user-guide"></a>
-This section will explain the symbols in the user guide, and the format and parameters of commands.
+This section will explain the symbols in the user guide, and the format and parameters of commands. <br><br>
 
 ## 2.1 Symbols <a id="21-symbols"></a>
 
@@ -150,11 +150,13 @@ The image below is a labeled diagram of each of Wishful Shrinking's components.<
    <br><br><br>
    
    Below is a brief explanation on each of the components:
-   * **List of recipes/ingredients/consumption**: The left window will display either a list of recipes, a list of
-    ingredients or the consumption list depending on your input. In the image above, it is displaying the Recipe
-     List.
-   * **Command Result**: The Command Result box will show the result of your input into the Command Box.
-   * **Command Box**: Here is where you will type all your commands.
+   
+Component | Explanation
+--------|------------------
+**Recipe/Fridge/Consumption tabs** | These are the tabs for recipe-related commands, fridge-related commands and consumption-related commands. The coloured tab shows which tab you are currently in. <br><br> By default, you will be in the **Recipes** tab whenever you start up Wishful Shrinking. When you execute a command, you will automatically be switched to the related tab. <br><br> In the image above, the user is currently in the Recipes tab. 
+**List of recipes/ingredients/consumption** | The left window will display either a list of recipes, a list of ingredients or the consumption list depending on your input. <br><br> In the image above, it is displaying the Recipe List.
+ **Command Result** | The Command Result box will show the result of your input into the Command Box.
+ **Command Box** | Here is where you will type all your commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -662,7 +664,7 @@ Examples:
 Shows the list of recipes that you have eaten, including the recipe's name and calorie. The total calories
  consumed so far is displayed in the command result.
 <br>  The image below is what Wishful Shrinking looks like after you have listed all recipes that you have eaten. <br><br>
-<img src="images/feature/consumption/CaloriesImage.png" width="550" height="300">
+<img src="images/feature/consumption/ListConsumptionImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `calories`
@@ -678,7 +680,7 @@ Format: `calories`
 Deletes the specified recipe from consumption list.
 
 <br>  The image below is what Wishful Shrinking looks like after you have deleted a recipe from the consumption list. <br><br>
-<img src="images/feature/consumption/DeleteCalorieImage.png" width="550" height="300">
+<img src="images/feature/consumption/DeleteConsumptionImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `deleteC INDEX`
