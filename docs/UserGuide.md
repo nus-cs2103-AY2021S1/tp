@@ -712,14 +712,14 @@ prefix indicated is wrong after checking the `add` section in the User Guide. Ho
 wrong (**Figure 6.2**). Can I clarify on this situation?<br>
 
 ![errorMessage](images/commands/errorMessage.png)
-<p align="center"> <sub> <b>Figure 6.2</b>: Error message that might cause confusion </sub> </p></br>
+<p align="center"> <sub> <b>Figure 6.2</b>: Error message that might cause confusion </sub> </p>
 
 **Answer:** 
 Yes, the prefix indicated is wrong as it should be `d/` instead of `n/`. As a result, the category parameter is read as
 `expense n/buy McSpicy a/8.60` instead of `expense`. Do remember to check that the **prefixes and parameters required for a command
 are correct!** If you are unsure of the prefixes and parameters required, do check the sections under features above! 
 
-3\. **Question:** What if I typed in multiple prefixes with valid parameters? For instance, `add c/expense c/revenue d/Buy lunch a/4.30`. </br>
+3\. **Question:** What if I typed in multiple prefixes with valid parameters? For instance, `add c/expense c/revenue d/Buy lunch a/4.30`.
 
 **Answer:** Multiple instances of prefixes, as well as indexes except for `tags (t/)` will not be executed and an error 
 message will be shown. For instance, the example above has both `c/expense` and `c/revenue`, hence the command will not be executed. 
