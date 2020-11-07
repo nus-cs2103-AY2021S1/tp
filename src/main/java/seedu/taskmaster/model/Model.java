@@ -90,6 +90,11 @@ public interface Model {
     void changeSession(SessionName sessionName);
 
     /**
+     * Switches TAskmaster to student list view.
+     */
+    void showStudentList();
+
+    /**
      * Returns true if {@code session} exists in the session list.
      */
     boolean hasSession(Session session);

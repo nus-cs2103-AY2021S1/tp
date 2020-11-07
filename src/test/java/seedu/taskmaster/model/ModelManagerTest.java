@@ -258,7 +258,7 @@ public class ModelManagerTest {
     void markStudent_sessionNotSelected_failure() {
         Session s = initSessionWithAliceAndBenson();
         modelManager.addSession(s);
-        modelManager.changeSession(null);
+        modelManager.showStudentList();
         assertThrows(NoSessionSelectedException.class, () ->
                 modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT));
     }
@@ -289,7 +289,7 @@ public class ModelManagerTest {
     void markStudentWithNusnetId_sessionNotSelected_failure() {
         Session s = initSessionWithAliceAndBenson();
         modelManager.addSession(s);
-        modelManager.changeSession(null);
+        modelManager.showStudentList();
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .markStudentWithNusnetId(ALICE.getNusnetId(), AttendanceType.PRESENT));
     }
@@ -320,7 +320,7 @@ public class ModelManagerTest {
     void scoreStudent_sessionNotSelected_failure() {
         Session s = initSessionWithAliceAndBenson();
         modelManager.addSession(s);
-        modelManager.changeSession(null);
+        modelManager.showStudentList();
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .scoreStudent(ALICE_STUDENT_RECORD, VALID_SCORE_DOUBLE));
     }
@@ -351,7 +351,7 @@ public class ModelManagerTest {
     void scoreStudentWithNusnetId_sessionNotSelected_failure() {
         Session s = initSessionWithAliceAndBenson();
         modelManager.addSession(s);
-        modelManager.changeSession(null);
+        modelManager.showStudentList();
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .scoreStudentWithNusnetId(ALICE.getNusnetId(), VALID_SCORE_DOUBLE));
     }
@@ -389,7 +389,7 @@ public class ModelManagerTest {
         studentRecords.add(BENSON_STUDENT_RECORD);
         Session s = initSessionWithAliceAndBenson();
         modelManager.addSession(s);
-        modelManager.changeSession(null);
+        modelManager.showStudentList();
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .scoreAllStudents(studentRecords, VALID_SCORE_DOUBLE));
     }
@@ -428,7 +428,7 @@ public class ModelManagerTest {
         studentRecords.add(ALICE_STUDENT_RECORD);
         studentRecords.add(BENSON_STUDENT_RECORD);
         modelManager.addSession(s);
-        modelManager.changeSession(null);
+        modelManager.showStudentList();
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .markAllStudentRecords(studentRecords, AttendanceType.PRESENT));
     }
