@@ -97,7 +97,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && personDatabaseFilePath.equals(o.personDatabaseFilePath);
+                && personDatabaseFilePath.equals(o.personDatabaseFilePath)
+                && applicantDatabaseFilePath.equals(o.applicantDatabaseFilePath)
+                && staffDatabaseFilePath.equals(o.staffDatabaseFilePath);
     }
 
     @Override

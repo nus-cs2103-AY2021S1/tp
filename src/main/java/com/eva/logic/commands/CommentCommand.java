@@ -104,6 +104,7 @@ public class CommentCommand extends Command {
         private Set<Tag> tags;
         private Set<Comment> comments;
         private Set<Leave> leaves;
+        private String title;
 
 
         public CommentPersonDescriptor() {}
@@ -210,6 +211,14 @@ public class CommentCommand extends Command {
 
         public Set<Leave> getLeaves() {
             return (leaves != null) ? leaves : new HashSet<>();
+        }
+
+        public String getCommentTitle() {
+            this.comments.forEach(comment -> {
+                this.title = comment.getTitle().getTitleDescription();
+                }
+            );
+            return this.title;
         }
 
         @Override
