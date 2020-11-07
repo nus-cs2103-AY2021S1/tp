@@ -34,7 +34,7 @@ public class PresetCommandParserTest {
 
     @Test
     public void parse_invalidValues_failure() {
-        assertParseFailure(parser, "delete", Messages.NO_INPUT_NAME);
+        assertParseFailure(parser, "delete", Messages.MESSAGE_NO_INPUT_NAME);
         assertParseFailure(parser, "", PresetCommand.MESSAGE_USAGE);
         assertParseFailure(parser, "delte", PresetCommand.MESSAGE_USAGE);
     }

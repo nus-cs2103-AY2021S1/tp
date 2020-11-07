@@ -30,7 +30,7 @@ public class PresetCommandParser implements Parser<PresetCommand> {
         }
 
         if (!save && !load && argsArr[1].equals("")) {
-            throw new ParseException(Messages.NO_INPUT_NAME);
+            throw new ParseException(Messages.MESSAGE_NO_INPUT_NAME);
         }
 
         return save ? new SavePresetCommand(presetName)

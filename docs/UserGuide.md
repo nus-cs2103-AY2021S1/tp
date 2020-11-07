@@ -85,14 +85,14 @@ Format: `vendor [INDEX]`
 * `INDEX` must be a positive integer and must not exceed the size of the vendor list.
 
 Examples:
-* `vendor`: Change back to vendor mode.
+* `vendor`: Changes back to vendor mode.
 * `vendor 2`: Selects the 2<sup>nd</sup> vendor in the list.
 
 ## Menu related commands
 
 ### Displaying supper menu: `menu`
 
-Displays the menu from the selected vendor.
+Displays the default menu from the selected vendor.
 
 - Can be used to display the menu after a `sort` / `find` / `price` command.
 - Note that anything written after the `menu` command will be ignored, and menu will be listed as intended.
@@ -155,13 +155,12 @@ Examples:
 * `price < 3`: lists all food items with price less than $3.
 * `price <= 2`: lists all food items with price less than or equals to $2.
 * `price > 4`: lists all food items with price greater than $4
-* `price >= 13.90001`: lists all food items with price greater than or equal $13.90001
 
 ## Order related commands
 
 ### Adding a food item: `add`
 
-Adds an OrderItem for the user according to the index from the menu to the OrderManager.
+Adds an order item for the user according to the index from the menu to the user's supper order.
 
 Format: `add INDEX [QUANTITY]`
 
@@ -186,7 +185,7 @@ Format: `remove INDEX [QUANTITY]`
 * `QUANTITY` can be specified to indicate the number of item to be deleted. Otherwise, it deletes all quantities of the item at the specified index.
 
 Examples:
-* `remove 2`: remove item at INDEX 2.
+* `remove 2`: remove all quantities of item at INDEX 2.
 * `remove 1 2`: remove item at INDEX 1, of quantity 2.
 
 
@@ -199,6 +198,7 @@ Format: `tag INDEX REMARK`
 - The `INDEX` refers to the index number of the order item.
 - `INDEX` must be positive number and must not exceed the size of the order list.
 - `REMARK` is any non-empty string.
+- If the `REMARK` being added to the order item already exists, it would not be added.
 - Unlimited tags can be added, and is left up to the user's discretion.
 
 Examples:
@@ -264,7 +264,7 @@ Add delivery address and phone number for submission.
 
 Format: `profile PHONE ADDRESS`
 
-- `PHONE` represents your contact number and must be at least 3 digits long.
+- `PHONE` represents your contact number and must be a valid phone number  (First digit must start with a 6/8/9 and must be 8 digits long).
 
 - `ADDRESS` represents your delivery address.
 
@@ -294,11 +294,11 @@ Format: `preset MODE [NAME]`
 
 * `MODE` dictates what the system will perform for the user's supper orders, represented by the formats:
   * `save`: Used to save a preset. (If used without a `NAME`, will save with a default preset name of 'MyPreset')
-  * `load`: Used to load a preset. (If used without a `NAME`, will list all saved presets)
+  * `load`: Used to load a preset. (If used without a `NAME`, will list all saved presets for the current vendor)
   * `delete`: Used to delete a preset. (`NAME` must be specified)
 * `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
   * if `NAME` already exists and in save mode, the new preset will overwrite the existing preset.
-  * `NAME` is **case-sensitive**.
+  * `NAME` is **case-sensitive** and supports space characters.
 * Presets are split by vendors, therefore running `preset save PresetName` for two different vendors will not affect one
 another. Similar for `preset load`.
 
@@ -319,7 +319,12 @@ Examples:
 **A**: Overwrite your current data file with your old data file.
 
 **Q**: Why are some pictures missing on the menu?
-**A**: These are intended, as an example of what is shown if vendors lack a picture for a food item.
+**A**: These are intended as an example of what is shown if vendors lack a picture for a food item.
+
+**Q**: Why am I not allowed to add vendors or menu items?
+**A**: We realised that allowing users to add vendors or menu items from the command line would be too complicated, and
+ it is not something we would like the user to handle.
+ 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -341,6 +346,7 @@ Action | Format
 **Clear** | `clear`
 **Undo** | `undo`
 **Total** | `total`
+**Profile** | `profile PHONE ADDRESS`
 **Submit** | `submit`
 **Preset** | `preset MODE [NAME]`
 

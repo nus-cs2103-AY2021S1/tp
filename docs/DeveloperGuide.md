@@ -87,12 +87,12 @@ The `UI` component has two modes, the Vendor mode and the Menu mode.
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103-T16-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `SupperStrikersParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding an order item).
-1. The command execution can affect the `Storage` (e.g loading from a preset).
+1. The command execution can affect the `Storage` (e.g saving a preset).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions, such as displaying help to the user.
 1. The `CommandResult` object can also instruct the `UI` to re-render the menu when some commands such as `SortCommand` and `FindCommand`.
@@ -113,8 +113,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* contains the `AddressBook` and `MenuManager`, `OrderManager` components.
-    * `AddressBook` stores the data for vendors.
+* contains the `VendorManager` and `MenuManager`, `OrderManager` components.
+    * `VendorManager` stores the data for vendors.
     * `MenuManager` stores the data for food items of the vendor's menu.
     * `OrderManager` stores the data for order items.
 
@@ -136,7 +136,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the vendor book data in json format and read it back.
 * can save the `Preset` objects in json format and read it back.
 * can save the `Profile` object in json format and read it back.
 
@@ -157,10 +157,10 @@ Order commands represents the operations to which users interact with.
 
 #### Add Command
 
-- The Add Command allows the user to add an order item from the selected menu `Model#getFilteredFoodList()`.
-- If the index provided is greater or less than the size of the menu, a `CommandException will be thrown`.
-- If the quantity provided is less or equal to zero, a `CommandException will be thrown`.
-
+- The Add Command allows the user to add an order item from the selected menu `Model#getFilteredMenuItemList()`.
+- If the index provided is greater than the size of the menu or less than equals to zero, a `CommandException will be thrown`.
+- If the quantity provided is less than equals to zero, a `CommandException will be thrown`.
+- If the resultant supper order's quantity added exceeds 100, a `CommandException will be thrown`.
 
 
 The following diagram summarises the sequence when the AddCommand is executed.
@@ -177,11 +177,11 @@ Step 2: The user selects a vendor with the VendorCommand `vendor i`, the corresp
 
 Step 3: The user enters the command `add 2 3` which adds item 2 from the menu with a quantity of 3.
 
-Step 4: `Model#getFilteredFoodList()` is executed to retrieve the list of Food items or menu from the current vendor.
+Step 4: `Model#getFilteredMenuItemList()` is executed to retrieve the list of menu items from the current vendor.
 
 Step 5: AddCommand checks whether the index and quantity inputted is valid. Index and Quantity is valid.
 
-Step 6: An OrderItem object is created from input quantity and the retrieved Food item.
+Step 6: An OrderItem object is created from the retrieved menu item and input quantity.
 
 Step 7: `Model#addOrderItem()` is executed to add the OrderItem into the `Model`.
 
@@ -189,9 +189,9 @@ Step 7: `Model#addOrderItem()` is executed to add the OrderItem into the `Model`
 
 #### Remove Command
 
-- The RemoveCommand allows the user to remove an order from the selected menu `Model#getFilteredOrderItemList()`.
-- If the index provided is greater or less than the size of the menu, a `CommandException will be thrown`.
-- If the quantity provided is less or equal to zero, a `CommandException will be thrown`.
+- The RemoveCommand allows the user to remove an order from his order list `Model#getObservableOrderItemList()`.
+- If the index provided is greater than the size of his order list or less than or equal to zero, a `CommandException will be thrown`.
+- If the quantity provided is less than equals to zero or greater than the current quantity, a `CommandException will be thrown`.
 
 
 
@@ -209,11 +209,11 @@ Step 2: The user has added items with `add i qty`.
 
 Step 3: The user enters the command `remove 1 1` which removes 1 quantity of the item at the 1st index in the order.
 
-Step 4: `Model#getFilteredOrderItemList()` is executed to retrieve the list of OrderItems from the current order.
+Step 4: `Model#getObservableOrderItemList()` is executed to retrieve the list of OrderItems from the current order.
 
 Step 5: RemoveCommand checks whether the index and quantity inputted is valid. Index and Quantity is valid.
 
-Step 6: A new OrderItem object is created from input quantity and the retrieved OrderItem.
+Step 6: A new OrderItem object is created from the retrieved OrderItem and input quantity.
 
 Step 7: `Model#removeOrderItem()` is executed to remove the related OrderItem.
 
@@ -248,8 +248,10 @@ Step 5: `Model#clearOrder()` is executed to clear all OrderItems from the order.
 
 #### Tag Command
 
- - The TagCommand allows the user to add his preferences to an order item in the current order.
- - If the index provided is greater or less than the size of the menu, a `CommandException will be thrown`.
+ - The TagCommand allows the user to specify his preferences to an order item in the current order.
+ - If the index provided is greater than the size of the user's order list or less than equals to zero, a `CommandException will be thrown`.
+ - If the tag provided already exists, a `CommandException will be thrown`.
+
 
 The following diagram summarizes the sequence when the TagCommand is executed. 
 ![TagCommandActivityDiagram](images/TagCommandActivityDiagram.png)
@@ -264,22 +266,20 @@ Step 3: The user enters the command `tag 1 1 no ice` which adds the tag of "1 no
 
 Step 4: `Model#getObservableOrderItemList()` is executed to retrieve the list of OrderItems from the current order.
 
-Step 5: TagCommand checks whether the index inputted is valid. Index is valid.
+Step 5: TagCommand checks whether the index and tag inputted is valid. Index and tag is valid.
 
 Step 6: `Model#tagOrderItem()` is executed to tag the given OrderItem.
-
-Step 7: The tag "1 no ice" is added to the OrderItem at the given index.
 
 
 #### Untag Command
 
-- The UntagCommand allows users to remove tags from an order item in the current order.
-- If the index provided is greater or less than the size of the menu, a `CommandException will be thrown`.
+- The UntagCommand allows users to remove all tags from an order item in the current order.
+- If the index provided is greater than the size of the user's order list or less than equals to zero, a `CommandException will be thrown`.
 
 The following diagram summarizes the sequence when the TagCommand is executed. 
 ![UntagCommandActivityDiagram](images/UntagCommandActivityDiagram.png)
 
-Given below is an example usage scenario and how the TagCommand behaves at each step.
+Given below is an example usage scenario and how the UnTagCommand behaves at each step.
 
 Step 1: The user has selected a vendor with `vendor i`.
 
@@ -287,7 +287,7 @@ Step 2: The user has added items with `add i qty`.
 
 Step 3: The user tagged the item at index 1 with `tag 1 all no ice`.
 
-Step 4: The user enters the command `untag 1` to remove the tag of "all no ice" from the orderitem at index 1.
+Step 4: The user enters the command `untag 1` to remove the tag of "all no ice" from the OrderItem at index 1.
 
 Step 5: `Model#getObservableOrderItemList()` is executed to retrieve the list of OrderItems from the current order.
 
@@ -295,17 +295,18 @@ Step 6: UntagCommand checks whether the index inputted is valid. Index is valid.
 
 Step 7: `Model#untagOrderItem()` is executed to remove all the tags that the given OrderItem has.
 
-Step 8: The tag "all no ice" is removed from the OrderItem at the first index.
-
 
 
 #### Preset Commands
 
-- There are two types of preset commands, `preset save` and `preset load`.
+- There are three types of preset commands, `preset save`, `preset load` `preset delete`.
 - Preset save stores the current order in a file, with the given preset name under the specific vendor.
+- Preset load retrieves the preset with the name provided from the user, and loads it into the current order.
+- Preset delete deletes the preset with the name provided from the user.
+
+- If the name given is invalid for preset commands, a `CommandException will be thrown`.
 - If the name already exists for preset save, the previous file will be overwritten with the current one.
 - Preset load retrieves the preset with the name provided from the file, and loads it into the current order.
-- If the name given is invalid for preset commands, an error will be thrown.
 
 The following sequence diagram summarises the sequence when the LoadPresetCommand is executed.
 
@@ -317,17 +318,15 @@ Given below is an example usage scenario and how the LoadPresetCommand behaves a
 
 Step 1: The user has selected a vendor with `vendor i`.
 
-Step 2: The user has added items with `add i qty`.
+Step 2: The user enters the command `load preset sample` to load the preset named sample.
 
-Step 3: The user enters the command `load preset sample` to load the preset named sample.
+Step 3: `Storage#readPresetManager()` is executed to retrieve the list of all presets, `presets` from the json file.
 
-Step 4: `Storage#readPresetManager()` is executed to retrieve the list of presets, `allLists` from the json file.
+Step 4: The preset with the name `sample` for vendor `i` exists and is valid.
 
-Step 5: The preset with the name `sample` for vendor `i` exists and is valid.
+Step 5: The preset is obtained and the ArrayList of `OrderItem` is obtained.
 
-Step 6:  The preset is converted into `orderItems`, an ArrayList of `OrderItem`.
-
-Step 7: The current order is set to `orderItems` by executing `setOrder(orderItems)`.
+Step 6: `Model#setOrder()` is executed to set the current order to the obtained ArrayList of `OrderItem`.
 
 
 
@@ -347,26 +346,25 @@ Step 1: The user has selected a vendor with `vendor i`.
 
 Step 2: The user has added items with `add i qty`.
 
-Step 3: The user enters the command `save preset sample` to load the preset named sample.
+Step 3: The user enters the command `save preset sample` to save the preset as named sample.
 
-Step 4: `Storage#readPresetManager()` is executed to retrieve the list of presets, `allLists` from the json file.
+Step 4: `Storage#readPresetManager()` is executed to retrieve the list of all presets, `presets` from the json file.
 
-Step 5: The preset with the name `sample` for vendor `i` does not exist
+Step 5: The preset with the name `sample` for vendor `i` does not exist.
 
 Step 6:  The current order item list, `orderItemList`, is retrieved by executing `Model#getObservableOrderItemList()`.
 
-Step 7: `orderItemList` is converted to a preset `newPreset`.
+Step 7: `orderItemList` is converted to a preset named `sample`.
 
-Step 8: `newPreset` is added to the vendor index `i` position of `allLists`.
+Step 7: `sample` is added to the vendor index `i` position of `allLists`.
 
-Step 9: The modified allLists is saved into a json file by executing `Storage#savePresetManager(allLists)`.
+Step 8: `Storage#savePresetManager()` is executed to save the modified `allLists` into the `presets` json file.
 
 
 
 Given below is the activity diagram for SavePresetCommand.
 
 ![SavePresetCommandActivityDiagram](images/SavePresetCommandActivityDiagram.png)
-
 
 
 
@@ -389,10 +387,6 @@ understands the effect of doing so. This also means if a method changes the orde
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Friendly Syntax
 
 The friendly syntax allows users to type in just the prefix of a command to execute it.
@@ -413,26 +407,25 @@ Step 4:  SupperStrikers adds 3 of the 1<sup>st</sup> item into the order.
 
 Step 5: The user enters the command `r 1 1`.
 
-Step 6: The `LogicManager#execute()` is executed to call the `AddressBookParser#parseCommand()` method.
+Step 6: The `LogicManager#execute()` is executed to call the `SupperStrikersParser#parseCommand()` method.
 
-Step 7: `AddressBookParser#parseCommand()` checks if the inputted command word is a prefix of one and only one of the valid commands by filtering the list of valid commands based on whether they start with the user inputted prefix. The `r` in this case maps to the `remove` keyword.
+Step 7: `SupperStrikersParser#parseCommand()` checks if the inputted command word is a prefix of one and only one of the valid commands by filtering the list of valid commands based on whether they start with the user inputted prefix. The `r` in this case maps to the `remove` keyword.
 
 Step 8: The `RemoveCommand` is executed and one quantity of the first item in the order is removed.  
 
-- If there is no command with the given prefix, an `Parse Exception` will be thrown.
-- If the inputted prefix exists for more than 1 command, a `Parse Exception` will be thrown.
+- If there is no command with the given prefix, an `ParseException` will be thrown.
+- If the inputted prefix exists for more than 1 command, a `ParseException` will be thrown.
 - If there is a command which is a prefix for another command, it can no longer be executed.
 
 ### Vendor Commands
 
-* There are two VendorCommand classes in SupperStrikers.
-* `SwitchVendorCommand` allows the user to select a vendor from the `AddressBook` to order from.
-* `VendorCommand`, deselects the vendor to the default unintialized value.
+- There are two VendorCommand classes in SupperStrikers.
+- `SwitchVendorCommand` allows the user to select a vendor from the `VendorManager` to order from.
+- `VendorCommand`, deselects the vendor to the default unintialized value.
 
-* If the vendor does not exist, a `Command Exception` will be thrown
-* If the vendor selected is different from the current vendor, the model will clear the current order.
-
+- If the vendor does not exist, a `CommandException will be thrown`.
 - If the vendor selected is different from the current vendor, the model will clear the current order.
+
 
 #### Switch Vendor Command
 The following activity diagram summarises the process when the SwitchVendorCommand is executed.
@@ -448,16 +441,15 @@ Step 1: The user launches the application for the first time, by default, no ven
 
 Step 2: The user enters the vendor command `vendor i`.
 
-Step 3: `Model#getFilteredVendorList()` is executed to retrieve the list of vendors.
+Step 3: `Model#getObservableVendorList()` is executed to retrieve the list of vendors.
 
 Step 4: SwitchVendorCommand checks whether i<sup>th</sup> index is valid.
 
-Step 5: If the i<sup>th</sup> index is valid, `Model#setVendorIndex(i)` is executed to select the vendor. 
+Step 5: If the i<sup>th</sup> index is valid, `Model#selectVendor(i)` is executed to select the vendor. 
 
 Step 6: Supper Strikers loads the menu of the i<sup>th</sup> vendor into the UI by calling `MainWindow#handleVendor()`.
 
-Step 7: The UI component
-showing the vendor list is hidden and the UI showing the menu is displayed to the user by calling
+Step 7: The UI component showing the vendor list is hidden and the UI showing the menu is displayed to the user by calling
 `MainWindow#displayMenu()`.
 
 Step 8: `Model#resetOrder()` creates a new empty order for the i<sup>th</sup> vendor.
@@ -476,10 +468,11 @@ Step 1: The user has selected a vendor with index `i`.
 
 Step 2: The user enters the vendor command `vendor`.
 
-Step 3:  `Model#setVendorIndex(-1)` is executed to set the vendor to the default uninitialized value.
+Step 3:  `Model#selectVendor(-1)` is executed to set the vendor to the default uninitialized value.
 
-Step 4: The UI component showing the menu is hidden and the UI component showing
-        the vendor list is displayed to the user by calling `MainWindow#displayMenu()`.
+Step 4: The UI component showing the menu is hidden and the UI component showing the vendor list is displayed to the 
+user by calling `MainWindow#displayMenu()`.
+
 Step 5: `Model#resetOrder()` sets the order to a new empty order. 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -530,6 +523,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | NUS resident | save my current order as a preset | load up the preset for fast supper ordering |
 | `* *` | NUS resident | tag an item in my supper order | mention my preferences for that item |
 | `* *` | NUS resident | remove tags from an item in my supper order| fix any mistakes made while tagging that item |
+
 *{More to be added}*
 
 ### Use cases
