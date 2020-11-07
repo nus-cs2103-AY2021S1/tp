@@ -81,6 +81,9 @@ This section details the notations used to specify the command formats in the [c
 * Parameters can be switched around.
   * They do NOT need to come in the order as specified by the formats.
   * E.g. `create_item i/iPad q/100` and `create_item q/100 i/iPad` are both accepted.
+* Range of valid inputs:
+  * Paramters that expect an integer must be between `0` and `2147483647`.
+  
 
 </div>
 
@@ -117,10 +120,12 @@ The `create_inventory` command creates and stores a new inventory record into th
 
 __Format:__ `create_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
 
-This creates a new inventory record for the item `[ITEM_NAME]` of quantity `[QUANTITY]`. For the `[COST]` parameter:
+This creates a new inventory record for the item `[ITEM_NAME]` of quantity `[QUANTITY]`. Note that `QUANTITY` is currently limited to a maximum value of `2147483647`.
 
-* If given, then a finance record is created automatically with a total amount of `COST * QUANTITY`.
-* If left empty, then an **empty** finance record is created with an amount of `0`.
+For the `[ITEM_COST]` parameter:
+
+* If given, then a finance record is created automatically with a total amount of `ITEM_COST * QUANTITY`.
+* If left empty, then an **empty** finance record is created with an amount of `0`. 
 
 __Example:__ `create_inventory i/iphone q/10 c/20`
 
@@ -188,7 +193,7 @@ Currently, our NUStorage has two records as shown below:
 
 __Format:__ `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY] [c/ITEM_COST]`
 
-This allows us to change the item name, quantity and cost of tje inventory rececord with the ID `INDEX`.
+This allows us to change the item name, quantity and cost of the inventory rececord with the ID `INDEX`. Note that `QUANTITY` is currently limited to a maximum value of `2147483647`.
 
 __Example:__ `edit_inventory 2 i/iPad q/10 c/2000` edits the inventory record at index `2`.
 
