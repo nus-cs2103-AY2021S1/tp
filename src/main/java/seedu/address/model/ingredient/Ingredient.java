@@ -96,8 +96,8 @@ public class Ingredient {
     }
 
     /**
-     * Returns true if the ingerdient is in shortage, which is when their levels fall below the default level.
-     * @return true if the ingerdient is in shortage, false otherwise.
+     * Returns true if the ingredient is in shortage, which is when their levels fall below the default level.
+     * @return true if the ingredient is in shortage, false otherwise.
      */
     public boolean isIngredientInShortage() {
         if (this.isSolidIngredient()) {
@@ -108,8 +108,8 @@ public class Ingredient {
     }
 
     /**
-     * Returns true if the solid ingerdient is in shortage.
-     * @return true if the solid ingerdient is in shortage, false otherwise.
+     * Returns true if the solid ingredient is in shortage.
+     * @return true if the solid ingredient is in shortage, false otherwise.
      */
     public boolean isSolidIngredientInShortage() {
         Amount amountOfIngredient = this.getAmount();
@@ -121,8 +121,8 @@ public class Ingredient {
     }
 
     /**
-     * Returns true if the liquid ingerdient is in shortage.
-     * @return true if the liquid ingerdient is in shortage, false otherwise.
+     * Returns true if the liquid ingredient is in shortage.
+     * @return true if the liquid ingredient is in shortage, false otherwise.
      */
     public boolean isLiquidIngredientInShortage() {
         Amount amountOfIngredient = this.getAmount();
@@ -151,7 +151,7 @@ public class Ingredient {
      * @return the string format of the ingredient name.
      */
     public String getIngredientNameAsString() {
-        return ingredientName.getIngredientNameString();
+        return ingredientName.toString();
     }
 
     /**
