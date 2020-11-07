@@ -37,10 +37,15 @@ public class CommandTestUtil {
     public static final String VALID_OPTION_THREE = "3";
     public static final String VALID_TAG_LSM1301 = "LSM1301";
     public static final String VALID_TAG_TAG1 = "Tag 1";
+    public static final String VALID_CHOICE_CHOICE1 = "choice 1";
+    public static final String VALID_CHOICE_CHOICE2 = "choice 2";
+    public static final String VALID_CHOICE_CHOICE3 = "choice 3";
+    public static final String VALID_CHOICE_CHOICE4 = "choice 4";
 
-    public static final String CHOICE_DESC = " " + CliSyntax.PREFIX_CHOICE + "First" + " "
-        + CliSyntax.PREFIX_CHOICE + "Second" + " " + CliSyntax.PREFIX_CHOICE + "Third" + " "
-        + CliSyntax.PREFIX_CHOICE + "Fourth";
+
+    public static final String CHOICE_DESC = " " + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE1 + " "
+        + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE2 + " " + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE3 + " "
+        + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE4;
     public static final String QUESTION_DESC_ONE = " " + CliSyntax.PREFIX_QUESTION + VALID_QUESTION_ONE;
     public static final String QUESTION_DESC_TWO = " " + CliSyntax.PREFIX_QUESTION + VALID_QUESTION_TWO;
     public static final String QUESTION_DESC_THREE = " " + CliSyntax.PREFIX_QUESTION + VALID_QUESTION_THREE;
