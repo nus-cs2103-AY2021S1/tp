@@ -191,4 +191,25 @@ public class StringUtil {
         }
         return str.toString();
     }
+
+    /**
+     * Break the string at keywords founds with newline.
+     * @param s String to break.
+     * @param strict Break only if all the keywords are found.
+     * @param keywords Keywords to break.
+     * @return Formatted string.
+     */
+    public static String stringBreakerByKeywords(String s, boolean strict, String... keywords) {
+        StringBuilder result = new StringBuilder(s);
+
+        for (String keyword : keywords) {
+            int pos = result.lastIndexOf(keyword);
+            if (pos < 0 && strict) {
+                return s;
+            } else if (pos > 0) {
+                result.insert(pos, '\n');
+            }
+        }
+        return result.toString();
+    }
 }

@@ -65,7 +65,7 @@ public class PatientCard extends UiPart<Region> {
         super(FXML);
         this.patient = patient;
         id.setText(displayedIndex + ". ");
-        name.setText(StringUtil.stringBreaker(patient.getName().fullName, 5, 35, false, 2, ".."));
+        name.setText(StringUtil.stringBreaker(patient.getName().fullName, 7, 70, false, 3, ".."));
         nric.setText(patient.getNric().value);
         phone.setText(StringUtil.stringBreaker(patient.getPhone().value, 0, 80, false));
         address.setText(StringUtil.stringBreaker(patient.getAddress().value, 8, 80, false, 5, ".."));
