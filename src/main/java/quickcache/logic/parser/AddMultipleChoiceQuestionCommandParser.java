@@ -1,6 +1,7 @@
 package quickcache.logic.parser;
 
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_QUESTIONS;
 import static quickcache.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static quickcache.logic.parser.CliSyntax.PREFIX_CHOICE;
 import static quickcache.logic.parser.CliSyntax.PREFIX_DIFFICULTY;
@@ -46,6 +47,9 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));
+        }
+        if (argMultimap.getAllValues(PREFIX_QUESTION).size() > 1) {
+            throw new ParseException(MESSAGE_TOO_MANY_QUESTIONS);
         }
 
         Choice[] choicesList = ParserUtil.parseChoices(argMultimap.getAllValues(PREFIX_CHOICE));
