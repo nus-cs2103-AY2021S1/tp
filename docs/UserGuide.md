@@ -508,7 +508,7 @@ The example we have just discussed uses the `add` command. The usage of the `MED
 
 Another method to access the online medical record of the patient directly (without the copy-and-paste mechanism) is shown in the `showMr` command section below.
 
-### Show medical record directly: `showMr`
+### Show medical record directly: `showMr` (by Peh Jun Siang)
 We understand that it might be quite a hassle to copy the URL and paste it in your browser manually. Therefore, we
 implemented a short cut so that you can open up your default browser and with the url directly from **Hospify** with the `showMr`
 command!
