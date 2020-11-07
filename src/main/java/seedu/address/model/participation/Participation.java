@@ -111,6 +111,14 @@ public class Participation {
         this.person = person.getGitUserNameString();
     }
 
+    public void setPerson(String person) {
+        this.person = person;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

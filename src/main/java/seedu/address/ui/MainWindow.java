@@ -25,7 +25,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-    private static final String EMPTY_PROJECT_DASHBOARD_MSG = "No project to be shown here.";
+    private static final String EMPTY_PROJECT_DASHBOARD_MSG = "No project/person to be shown here.";
     private static final String EMPTY_ATTRIBUTES_DASHBOARD_MSG = "No detail to be shown here.";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -237,8 +237,8 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             fillInnerParts();
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

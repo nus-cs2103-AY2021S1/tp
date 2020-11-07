@@ -27,7 +27,7 @@ import seedu.address.model.project.Project;
 public class DeleteTeammateCommandTest {
 
     @Test
-    public void execute_validIndexValidPerson_throwsCommandException() {
+    public void execute_validGitUserIndex_throwsCommandException() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -58,7 +58,7 @@ public class DeleteTeammateCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexValidPerson_throwsCommandException() {
+    public void execute_invalidGitUserIndex_throwsCommandException() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -73,24 +73,26 @@ public class DeleteTeammateCommandTest {
 
     @Test
     public void equals() {
-        DeleteTeammateCommand deleteOne = new DeleteTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE);
-        DeleteTeammateCommand deleteTwe = new DeleteTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE);
-        DeleteTeammateCommand deleteThree = new DeleteTeammateCommand(GIT_USERINDEX_SECOND_TEAMMATE);
+        DeleteTeammateCommand deleteFirst = new DeleteTeammateCommand(
+            GIT_USERINDEX_FIRST_TEAMMATE);
+        DeleteTeammateCommand deleteSecond = new DeleteTeammateCommand(
+            GIT_USERINDEX_FIRST_TEAMMATE);
+        DeleteTeammateCommand deleteThird = new DeleteTeammateCommand(
+            GIT_USERINDEX_SECOND_TEAMMATE);
 
-        // Same object -> returns true
-        assertTrue(deleteOne.equals(deleteOne));
+        // same object -> returns true
+        assertTrue(deleteFirst.equals(deleteFirst));
 
-        // Same values -> return true
-        assertTrue(deleteOne.equals(deleteTwe));
+        // same values -> returns true
+        assertTrue(deleteFirst.equals(deleteSecond));
 
         // different types -> returns false
-        assertFalse(deleteOne.equals(1));
+        assertFalse(deleteFirst.equals(1));
 
         // null -> returns false
-        assertFalse(deleteOne.equals(null));
+        assertFalse(deleteFirst.equals(null));
 
-        // different task -> returns false
-        assertFalse(deleteOne.equals(deleteThree));
+        // different gitUserName -> returns false
+        assertFalse(deleteFirst.equals(deleteThird));
     }
-
 }

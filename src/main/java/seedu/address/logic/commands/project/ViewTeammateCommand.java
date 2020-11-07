@@ -48,7 +48,7 @@ public class ViewTeammateCommand extends Command {
         }
 
         Participation teammate = lastShownList.get(index.getZeroBased());
-        model.enterTeammate(teammate);
+        model.enter(teammate);
 
         return new CommandResult(String.format(MESSAGE_VIEW_TEAMMATE_SUCCESS, teammate));
     }
