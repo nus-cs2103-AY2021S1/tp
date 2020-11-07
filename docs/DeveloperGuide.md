@@ -462,6 +462,39 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
+### Creating a log
+
+1. Creating a log
+
+   1. Prerequisites: At least one exercise in the exercise list.
+
+   1. Test case: `add e/Sit ups r/1 c/my abs hurt :(`<br>
+      Expected: A log with the specified details is created and displayed in the log list. Details of the created log shown in the status message.
+
+   1. Test case: `add e/Sit ups`<br>
+      Expected: No log is created. Error details shown in the status message.
+
+   1. Other incorrect add commands to try: `add`, `add e/x r/1 c/my abs hurt :(` (where x is an exercise that does not exist)<br>
+      Expected: Similar to previous.
+
+### Editing a log
+
+1. Editing a log while all logs are being shown
+
+   1. Prerequisites: List all logs using the `list` command. Multiple logs in the list.
+
+   1. Test case: `edit 1 c/no abs were hurt`<br>
+      Expected: Edits the log at index 1, with a comment of `no abs were hurt`. Details of the edited log shown in the status message.
+
+   1. Test case: `edit 1 r/20 c/no abs were hurt`<br>
+      Expected: Edits the log at index 1, with reps of `20` and a comment of `no abs were hurt`. Details of the edited log shown in the status message.
+
+   1. Test case: `edit 1`<br>
+      Expected: No log is edited. Error details shown in the status message.
+
+   1. Other incorrect edit commands to try: `edit`, `edit x ...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+      
 ### Deleting a log
 
 1. Deleting a log while all logs are being shown
@@ -474,7 +507,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No log is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Saving data
