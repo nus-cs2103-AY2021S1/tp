@@ -138,13 +138,9 @@ public class ModelManager implements Model {
      */
     @Override
     public void changeSession(SessionName sessionName) {
-        if (sessionName == null) {
-            filteredStudentRecords = null;
-            studentRecordPredicate = PREDICATE_SHOW_ALL_STUDENT_RECORDS;
-            updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-            taskmaster.changeSession(null);
-            return;
-        } else if (taskmaster.inSession() && sessionName.equals(taskmaster.currentSessionName())) {
+        requireNonNull(sessionName);
+
+        if (taskmaster.inSession() && sessionName.equals(taskmaster.currentSessionName())) {
             filteredStudentRecords.setPredicate(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
         } else {
             /*
@@ -159,9 +155,15 @@ public class ModelManager implements Model {
 
             taskmaster.changeSession(sessionName);
         }
+    }
 
-
-
+    /**
+     * Switches TAskmaster to student list view.
+     */
+    @Override
+    public void showStudentList() {
+        filteredStudentRecords = null;
+        taskmaster.showStudentList();
     }
 
     @Override
@@ -227,6 +229,7 @@ public class ModelManager implements Model {
     public void scoreAllStudents(List<StudentRecord> students, double score) {
         List<NusnetId> nusnetIds = students
                 .stream()
+                .filter(s -> s.getAttendanceType() == AttendanceType.PRESENT)
                 .map(StudentRecord::getNusnetId)
                 .collect(Collectors.toList());
 
@@ -268,6 +271,7 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+        taskmaster.showStudentList();
     }
 
     /**
@@ -279,6 +283,7 @@ public class ModelManager implements Model {
         if (taskmaster.getSessionList().size() == 0) {
             throw new NoSessionException();
         }
+
         if (getCurrentSession().isNull().get()) {
             throw new NoSessionSelectedException();
         }
@@ -306,6 +311,10 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate) {
         requireNonNull(predicate);
+        if (!taskmaster.inSession()) {
+            throw new NoSessionSelectedException();
+        }
+
         studentRecordPredicate = predicate;
         filteredStudentRecords.setPredicate(predicate);
     }
