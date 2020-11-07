@@ -278,12 +278,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
       
-* 1d. User forgets to indicate the priority of the client. 
-
-    * 1d1. System saves the client with an undefined priority. 
-    
-      Use case ends. 
-      
 **UC02 - User deletes client**
 
 **MSS**
@@ -423,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User chooses to clear all client list.
+1. User chooses to clear the entire client list and archive list.
 2. System gives success message.
 
     Use case ends.  
