@@ -352,7 +352,6 @@ public class ModelManager implements Model {
     @Override
     public void resetTaskToBeDisplayedOnDashboard() {
         taskToBeDisplayedOnDashboard = Optional.empty();
-        projectToBeDisplayedOnDashboard.get().updateTaskOnView(null);
     }
 
     //=========== Teammate To Be Displayed On DashBoard Accessors ======================================================
@@ -370,7 +369,6 @@ public class ModelManager implements Model {
     @Override
     public void resetTeammateToBeDisplayedOnDashboard() {
         teammateToBeDisplayedOnDashboard = Optional.empty();
-        projectToBeDisplayedOnDashboard.get().updateTeammateOnView(null);
     }
 
     //=========== Person To Be Displayed On DashBoard Accessors ======================================================
