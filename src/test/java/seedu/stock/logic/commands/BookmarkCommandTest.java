@@ -31,7 +31,7 @@ public class BookmarkCommandTest {
 
 
     @Test
-    public void execute_bookmarkAlreadyBookmarked_failure() {
+    public void execute_bookmarkAlreadyBookmarked_throwsCommandException() {
         Set<SerialNumber> serialNumbersToBookmark = new LinkedHashSet<>();
         List<Stock> stocksToBookmark = new ArrayList<>();
 
@@ -50,7 +50,7 @@ public class BookmarkCommandTest {
 
 
     @Test
-    public void execute_bookmarkInvalidSerialNumber_success() {
+    public void execute_bookmarkInvalidSerialNumber_throwsCommandException() {
         Set<SerialNumber> serialNumbersToBookmark = new LinkedHashSet<>();
         List<Stock> stocksToBookmark = new ArrayList<>();
         SerialNumber invalidSerialNumber = new SerialNumber("ABC1");
