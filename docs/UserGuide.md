@@ -140,7 +140,7 @@ Input Field | Restrictions and how to specify
 `n/NOTE`        | This is the notes of the flashcard (associated with an answer in the view pane).<br>`NOTE` has no character limit or restrictions.<br>Can be empty.
 `t/TAG`         | These are tags of the flashcard. A flashcard can have more than one tag.<br>`TAG` must be alphanumeric and have a maximum of 50 characters.<br>Must **only** be one word.<br>Cannot be empty.
 `INDEX`         | `INDEX` refers to the index number shown in the displayed flashcard list.<br>Every visible flashcard on the display list has an `INDEX`.<br>`INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
-`KEYWORD`      | `KEYWORD` has no character limit but must be one word (no spaces).
+`KEYWORD`       | `KEYWORD` can be alphanumeric or punctuations. `KEYWORD` has no character limit but there should be no spaces within the keyword. 
 
 
 ## Features
@@ -312,9 +312,10 @@ Format: `find KEYWORD [KEYWORD]...`
 </div> 
 
 Examples: 
-* `find general` 
-* `find general important` 
-* `find GENERAL object`
+* `find general` displays all flashcards containing the word general.
+* `find general important` displays all flashcards containing either the word general and/or important.
+* `find GENERAL object` displays all flashcards containing either the word general and/or object.
+* `find -` displays all flashcards containing "-".
 
 ### View help : `help`
 
