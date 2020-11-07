@@ -20,9 +20,9 @@ public class Overlap {
      */
     private static boolean isOverlappingTimePeriod(LocalDateTime startA, LocalDateTime endA, LocalDateTime startB,
                                                   LocalDateTime endB) {
-        boolean timeOfDayOverlap = (startA.toLocalDate().isBefore(endB.toLocalDate()))
-                && (endA.toLocalDate().isAfter(startB.toLocalDate()));
-        boolean dateOverlap = (startA.toLocalTime().isBefore(endB.toLocalTime()))
+        boolean dateOverlap = !((startA.toLocalDate().isAfter(endB.toLocalDate()))
+                || (endA.toLocalDate().isBefore(startB.toLocalDate())));
+        boolean timeOfDayOverlap = (startA.toLocalTime().isBefore(endB.toLocalTime()))
                 && (endA.toLocalTime().isAfter(startB.toLocalTime()));
         return timeOfDayOverlap && dateOverlap;
     }
