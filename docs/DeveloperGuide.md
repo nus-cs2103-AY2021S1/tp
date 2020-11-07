@@ -127,6 +127,9 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Case>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+The detailed class diagram for the investigation case package is shown below. 
+![Investigation Case Class Diagram](images/InvestigationCaseClassDiagram.png)
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -483,9 +486,11 @@ Various new features are also implemented.
 
 The new `Open Document` feature allows users to easily open `Documents` that are stored in our program. The implementation of this feature
 meant that we had to create a `references` folder on start-up, as well as properly store the file paths of the `Documents`.
+The implementation of the feature had to be carefully designed, as we had to consider the different ways a user might use 
+the program and handle them properly such that the program will not crash (e.g. if the user deletes a document that they added to PIVOT).
 
 In implementing the `Undo` feature, we had to consider how to properly store the old data. The 
-`Undo` feature was not easy to implement, where certain bugs were present but hard to reproduce, and hence
+`Undo` feature was not easy to implement, where certain bugeddddds were present but hard to reproduce, and hence
 vigorous testing was done by the team to find the source of the bugs and to fix it.
 
 The `Archive` feature also required a careful consideration of the design alternatives, so as to show a different view in the GUI. 

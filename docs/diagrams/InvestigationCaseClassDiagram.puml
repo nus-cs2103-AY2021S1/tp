@@ -4,10 +4,6 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model {
-Class ModelManager
-Class Pivot
-
 Package InvestigationCase {
 Class UniqueCaseList
 Class Case
@@ -18,6 +14,7 @@ Class "<<enumeration>>\nStatus" as Status
 note bottom of Status: ACTIVE (default), COLD, CLOSED
 
 Class "<<enumeration>>\nArchiveStatus" as ArchiveStatus
+note bottom of ArchiveStatus: DEFAULT, ARCHIVED
 Class Document
 Class Name
 Class Reference
@@ -34,9 +31,10 @@ Class Address
 }
 
 }
-}
+
 
 Class HiddenOutside #FFFFFF
+Class HiddenOutside2 #FFFFFF
 
 Suspect -down-|> CasePerson
 Witness -down-|> CasePerson
@@ -45,13 +43,13 @@ Victim -down-|> CasePerson
 Title -down-|> Alphanumeric
 Name -up-|> Alphanumeric
 
-Pivot *--> "1" UniqueCaseList
+HiddenOutside2 *--> "1" UniqueCaseList
 UniqueCaseList o--> "*" Case
-Case *--> "1" Title
-Case *--> "1" Status
+Case *---> "1" Title
+Case *---> "1" Status
 Case *--> "0..1" Description
 Case *--> "1 " ArchiveStatus
-Case *--> "*" Document
+Case *---> "*" Document
 Case *--> "*" Suspect
 Case *--> "*" Witness
 Case *--> "*" Victim
@@ -60,11 +58,11 @@ Document *--> "1" Name
 Document *--> "1" Reference
 
 CasePerson *--> "1" Name
-CasePerson *--> "1" Sex
+CasePerson *---> "1" Sex
 CasePerson *--> "1" Phone
 CasePerson *--> "0..1" Email
 CasePerson *--> "0..1" Address
 
-ModelManager --->"1" Case : filtered list
+HiddenOutside --->"1" Case : filtered list
 
 @enduml
