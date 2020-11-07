@@ -41,7 +41,7 @@ MainWindow *-down-> ArchiveModeBox
 
 PersonListPanel -down-> PersonCard
 
-PersonCard -down-> ColorPicker
+PersonCard ..> ColorPicker
 
 MainWindow -left-|> UiPart
 

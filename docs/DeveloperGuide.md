@@ -68,6 +68,11 @@ is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-T16-2/tp/
 
 Several UI parts makes use of a [`DarkTheme.css`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/resources/view/DarkTheme.css) file to set the design theme. This file is found in the `src/main/resources/view` folder. 
 
+The `UI` component,
+
+* Executes user commands using the `Logic` component.
+* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -90,11 +95,26 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### Model component
 
-Coming soon.
+![Structure of the Model Component](images/ModelClassDiagram.png)
+
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
+The `Model`,
+
+* stores a `UserPref` object that represents the user’s preferences.
+* stores the address book data.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* does not depend on any of the other three components.
 
 ### Storage component
 
-Coming soon.
+![Structure of the Storage Component](images/StorageClassDiagram.png)
+
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+The `Storage` component,
+* can save `UserPref` objects in json format and read it back.
+* can save the address book data in json format and read it back.
 
 ### Common classes
 
