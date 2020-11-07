@@ -52,7 +52,7 @@ public class CalorieAddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CalorieAddCommand // instanceof handles nulls
-                && toAdd == (((CalorieAddCommand) other).toAdd));
+                && toAdd.equals(((CalorieAddCommand) other).toAdd));
     }
 }
 
