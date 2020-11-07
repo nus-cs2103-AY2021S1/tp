@@ -5,9 +5,9 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
+Interface ReadOnlyAddressBook <<Interface>>
 Class ModelManager
 Class AddressBook
-Class ReadOnlyAddressBook
 
 Package Person {
 Class Person
@@ -39,5 +39,5 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 
 
-ModelManager -down->"1" Person : filteredPersons
+ModelManager -down->"*" Person : filteredPersons
 @enduml
