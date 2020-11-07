@@ -1,8 +1,12 @@
 package seedu.address.logic.commands.project;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import java.util.HashMap;
@@ -11,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -146,6 +151,62 @@ public class EditTaskCommandTest {
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    /**
+     * Edits a task is currently displayed.
+     */
+    @Test
+    public void execute_editingTaskToBeDisplayed_resetTaskDashboard() {
+        Model newModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Project project = newModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+
+        Task editedTask = new TaskBuilder(SampleDataUtil.generateTask(SampleDataUtil.getTask1()))
+                .withTaskName("Changed name").withTaskDescription("Changed Description").build();
+        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
+
+        project.updateTaskFilter(task -> true);
+        Task taskToEdit = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+
+        newModel.enter(project);
+        newModel.enter(taskToEdit);
+
+        try {
+            new EditTaskCommand(INDEX_FIRST_TASK, descriptor).execute(newModel);
+        } catch (CommandException e) {
+            assertFalse(true);
+        }
+
+        assertTrue(newModel.getTaskToBeDisplayedOnDashboard().get().equals(editedTask)
+                && newModel.getProjectToBeDisplayedOnDashboard().get().getTaskOnView().get().equals(editedTask));
+    }
+
+    /**
+     * Edits a task is currently not displayed.
+     */
+    @Test
+    public void execute_editingTaskNotToBeDisplayed_noChangesToTaskDashboard() {
+        Model newModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Project project = newModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+
+        Task editedTask = new TaskBuilder(SampleDataUtil.generateTask(SampleDataUtil.getTask1()))
+                .withTaskName("Changed name").withTaskDescription("Changed Description").build();
+        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
+
+        project.updateTaskFilter(task -> true);
+        Task task = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+
+        newModel.enter(project);
+        newModel.enter(task);
+
+        try {
+            new EditTaskCommand(INDEX_SECOND_TASK, descriptor).execute(newModel);
+        } catch (CommandException e) {
+            assertFalse(true);
+        }
+
+        assertFalse(newModel.getTaskToBeDisplayedOnDashboard().get().equals(editedTask)
+                && newModel.getProjectToBeDisplayedOnDashboard().get().getTaskOnView().get().equals(editedTask));
     }
 
     /**
