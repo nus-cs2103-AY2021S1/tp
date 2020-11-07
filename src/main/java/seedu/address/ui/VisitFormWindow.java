@@ -62,6 +62,7 @@ public class VisitFormWindow extends UiPart<Stage> {
     public VisitFormWindow(EventHandler<WindowEvent> e, Stage root) {
         super(FXML, root);
         root.setOnHidden(e);
+        root.setResizable(true);
         setup();
     }
 

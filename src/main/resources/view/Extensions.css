@@ -5,7 +5,7 @@
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-background: #eeffdf;
 }
 
 .tag-selector {
@@ -16,42 +16,47 @@
 }
 
 .tooltip-text {
-    -fx-text-fill: white;
+    -fx-text-fill: #000000;
 }
 
-/* Following css was edited from https://stackoverflow.com/questions/19788661/change-javafx-tab-default-look */
-.tab-pane .tab-header-area .tab-header-background {
-    -fx-background-color: derive(#1d1d1d, 20%)
-}
 
-.tab-pane
-{
-    -fx-tab-min-width:90px;
-}
-
-.tab{
-    -fx-background-insets: 0 1 0 1,0,0;
-}
-.tab-pane .tab
-{
-    -fx-background-color: #000000;
-}
-
-.tab-pane .tab:selected
-{
-    -fx-background-color: #3c3c3c;
-}
-
+/* Tab not being selected */
 .tab .tab-label {
     -fx-alignment: CENTER;
     -fx-text-fill: #828282;
-    -fx-font-size: 12px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
 
 .tab:selected .tab-label {
     -fx-alignment: CENTER;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #000000;
+}
+
+.tab {
+    -fx-background-color: #c1d5aa;
+    -fx-pref-width: 575;
+    -fx-pref-height: 75;
+}
+
+.tab-header-background {
+    -fx-background-color: #eeffdf;
+}
+
+/* Gives the colour for the tab indicator below the tab */
+.tab-selected-line {
+    -fx-border-color: #008fff;
+}
+
+/* Gives the tab selection animation colour */
+.jfx-tab-pane .tab-header-area .jfx-rippler {
+    -jfx-rippler-fill : #008fff;
+}
+
+/* Gives the tab border colour U R D L*/
+.jfx-tab-pane .tab:selected {
+    -fx-border-width: 0 0 100 0;
+    -fx-border-color: #afd496;
 }
 
 /* The following CSS is from jfxtras source code. Pasted for modification. */
