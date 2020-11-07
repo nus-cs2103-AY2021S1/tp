@@ -12,9 +12,9 @@ public class DelModCommand extends Command {
 
     public static final String COMMAND_WORD = "delmod";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a module from FaculType. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a module from FaculType.\n"
             + "Parameters: "
-            + PREFIX_MODULE_CODE + "MODULE CODE\n"
+            + PREFIX_MODULE_CODE + "MODULE_CODE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CODE + "CS2103 ";
 
@@ -35,7 +35,7 @@ public class DelModCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasModuleCode(this.moduleCode)) {
-            throw new CommandException(MESSAGE_MODULE_DOES_NOT_EXIST);
+            throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
         model.deleteModule(this.moduleCode);

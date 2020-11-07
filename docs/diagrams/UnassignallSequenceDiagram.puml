@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "parser:UnassignallCommandParser" as UnassignallCommandParser LOGIC_COLOR
+participant "u:UnassignallCommand" as UnassignallCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unassignall")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("unassignall")
+activate AddressBookParser
+
+create UnassignallCommandParser
+AddressBookParser -> UnassignallCommandParser
+activate UnassignallCommandParser
+
+UnassignallCommandParser --> AddressBookParser
+deactivate UnassignallCommandParser
+
+AddressBookParser -> UnassignallCommandParser : parse("")
+activate UnassignallCommandParser
+
+create UnassignallCommand
+
+UnassignallCommandParser -> UnassignallCommand
+activate UnassignallCommand
+
+UnassignallCommand  --> UnassignallCommandParser : u
+deactivate UnassignallCommand
+
+UnassignallCommandParser --> AddressBookParser : u
+deactivate UnassignallCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+UnassignallCommandParser -[hidden]-> AddressBookParser
+destroy UnassignallCommandParser
+
+AddressBookParser --> LogicManager : u
+deactivate AddressBookParser
+
+LogicManager -> UnassignallCommand  : execute()
+activate UnassignallCommand
+
+UnassignallCommand  -> Model : unassignAllInstructors()
+
+activate Model
+
+Model --> UnassignallCommand
+
+deactivate Model
+
+create CommandResult
+UnassignallCommand  -> CommandResult
+activate CommandResult
+
+CommandResult --> UnassignallCommand
+deactivate CommandResult
+
+UnassignallCommand  --> LogicManager : result
+deactivate UnassignallCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

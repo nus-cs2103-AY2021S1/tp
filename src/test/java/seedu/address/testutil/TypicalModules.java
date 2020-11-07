@@ -13,12 +13,15 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.module.Module;
+import seedu.address.testutil.builders.ModuleBuilder;
 
 /**
  * A utility class containing a list of {@code Module} objects to be used in tests.
  */
 public class TypicalModules {
 
+    public static final Module CS50 = new ModuleBuilder()
+            .withCode("CS50").withName("Introduction to Computer Science").build();
     public static final Module CS1010S = new ModuleBuilder()
             .withCode("CS1010S").withName("Programming Methodology")
             .withInstructors(BENSON, FIONA).build();
@@ -38,7 +41,7 @@ public class TypicalModules {
     private TypicalModules() {} // prevents instantiation
 
     public static List<Module> getTypicalModules() {
-        return new ArrayList<>(Arrays.asList(CS1010S, CS1101S, CS2030, CS2100, CS2103));
+        return new ArrayList<>(Arrays.asList(CS50, CS1010S, CS1101S, CS2030, CS2100, CS2103));
     }
 
     /**

@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -28,6 +30,9 @@ class RemarkCommandParserTest {
         // no index specified
         assertParseFailure(parser, "likes fries", MESSAGE_INVALID_FORMAT);
 
+        // no prefix specified
+        assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
+
         // no index and no remark specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
@@ -48,6 +53,14 @@ class RemarkCommandParserTest {
     }
 
     @Test
+    public void parse_duplicatePrefix_failure() {
+        Index targetIndex = INDEX_SECOND_PERSON;
+        String userInput = targetIndex.getOneBased() + REMARK_DESC_BOB + REMARK_DESC_AMY;
+
+        assertParseFailure(parser, userInput, String.format(MESSAGE_DUPLICATE_PREFIX, PREFIX_REMARK));
+    }
+
+    @Test
     public void parse_setRemark_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + REMARK_DESC_BOB;
@@ -60,7 +73,7 @@ class RemarkCommandParserTest {
     @Test
     public void parse_removeRemark_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = Integer.toString(targetIndex.getOneBased());
+        String userInput = targetIndex.getOneBased() + " r/";
 
         Remark remark = new Remark("");
         RemarkCommand expectedCommand = new RemarkCommand(targetIndex, remark);

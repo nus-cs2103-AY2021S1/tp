@@ -36,11 +36,11 @@ import seedu.address.model.module.predicates.ModuleInstructorsContainsKeywordsPr
 import seedu.address.model.module.predicates.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.builders.EditPersonDescriptorBuilder;
+import seedu.address.testutil.builders.ModuleBuilder;
+import seedu.address.testutil.builders.PersonBuilder;
 
 public class AddressBookParserTest {
 
@@ -63,7 +63,6 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_reset() throws Exception {
         assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD) instanceof ResetCommand);
-        assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD + " 3") instanceof ResetCommand);
     }
 
     @Test
@@ -92,7 +91,6 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test
@@ -121,13 +119,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_listContacts() throws Exception {
         assertTrue(parser.parseCommand(ClistCommand.COMMAND_WORD) instanceof ClistCommand);
-        assertTrue(parser.parseCommand(ClistCommand.COMMAND_WORD + " 3") instanceof ClistCommand);
     }
 
     @Test
@@ -138,7 +134,6 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_listModules() throws Exception {
         assertTrue(parser.parseCommand(MlistCommand.COMMAND_WORD) instanceof MlistCommand);
-        assertTrue(parser.parseCommand(MlistCommand.COMMAND_WORD + " 3") instanceof MlistCommand);
     }
 
     @Test

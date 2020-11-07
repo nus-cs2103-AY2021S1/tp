@@ -147,9 +147,29 @@ public interface Model {
      * Unassigns an {@code instructor} from the module with the given {@code moduleCode}.
      * The module with the {@code moduleCode} must exist in the address book.
      */
-    void unassignInstructor(Person instructor, ModuleCode moduleCode) throws CommandException;
+    void unassignInstructor(Person instructor, ModuleCode moduleCode);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Unassigns an {@code instructor} from all modules.
+     */
+    void unassignInstructorFromAll(Person instructor) throws CommandException;
+
+    /**
+     * Returns true if the module with the given {@code moduleCode} has {@code instructor}.
+     */
+    boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor);
+
+    /**
+     * Switches the active module list.
+     */
+    void switchModuleList();
+
+    /**
+     * Returns the active semester.
+     */
+    int getSemester();
+
+    /** Returns an unmodifiable view of the filtered person list. */
     ObservableList<Module> getFilteredModuleList();
 
     /**

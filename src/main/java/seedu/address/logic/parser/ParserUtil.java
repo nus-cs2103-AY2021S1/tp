@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_MODULE_CODE;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_KEYWORD;
 
 import java.util.Collection;
@@ -159,11 +160,15 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> moduleCodes} into a {@code Set<ModuleCode>}.
+     * Module codes must be distinct.
      */
     public static Set<ModuleCode> parseModuleCodes(Collection<String> moduleCodes) throws ParseException {
         requireNonNull(moduleCodes);
         final Set<ModuleCode> codeSet = new HashSet<>();
         for (String code : moduleCodes) {
+            if (codeSet.contains(parseModuleCode(code))) {
+                throw new ParseException(String.format(MESSAGE_DUPLICATE_MODULE_CODE, code));
+            }
             codeSet.add(parseModuleCode(code));
         }
         return codeSet;

@@ -36,6 +36,11 @@ public class AssignCommandParser implements Parser<AssignCommand> {
 
         Set<ModuleCode> moduleCodes = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_MODULE_CODE));
 
+        if (moduleCodes.size() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AssignCommand.MESSAGE_USAGE));
+        }
+
         assert moduleCodes != null;
 
         return new AssignCommand(index, moduleCodes);

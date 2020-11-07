@@ -1,4 +1,4 @@
-package seedu.address.model.module;
+package seedu.address.model.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.module.predicates.ModuleCodeContainsKeywordsPredicate;
-import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.builders.ModuleBuilder;
 
 class ModuleCodeContainsKeywordsPredicateTest {
 

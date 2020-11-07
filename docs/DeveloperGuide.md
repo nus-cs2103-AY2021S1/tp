@@ -103,7 +103,8 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores FaculType data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Person>` and `ObservableList<Module>` that can be 'observed' e.g. the UI
+ can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -133,6 +134,122 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find by attributes feature
+
+#### Implementation
+
+The find mechanism is facilitated by `FindCommand` and `FindCommandParser`. It allows users to search for contacts by
+ their respective attributes. It uses `ModelManager#updateFilteredPersonList(Predicate p)` which is
+  exposed in the `Model` interface as `Model#updateFilteredList(Predicate p)`. The method updates the
+  current person list and filters it according to the given predicate which will then be shown accordingly in the GUI.
+
+The following sequence diagram shows how the find by attributes operation works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a find command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How find executes
+
+* **Alternative 1 (current choice):** AND Searching from multiple attributes and keywords.
+  * Pros: Provides the ability to narrow down search results by adding more keywords and attributes.
+  * Cons: Unable to search for multiple persons with different attributes.
+
+* **Alternative 2:** AND Searching across attributes, OR Searching between keywords.
+  * Pros: Provides the ability to narrow down search results by adding more attributes as well as expanding the search
+   scope by adding more keywords (i.e: more flexible).
+  * Cons: A possible source of confusion as they use different searching methods.
+
+Both options are equally feasible. However, Alternative 1 was chosen to avoid confusion for prospective users.
+
+### Find module by module attributes feature
+
+#### Implementation
+
+The find module mechanism is facilitated by `FindModCommand` and `FindModCommandParser`. It allows users to search for modules based on their respective attributes which are the module code, module name and instructors teaching the module.
+It uses `ModelManager#updateFilteredModuleList(Predicate p)` which is exposed in the Model interface as `Model#updateFilteredModuleList(Predicate p)`.
+The method updates the current module list and filters it according to the given predicate which will then be reflected accordingly in the GUI.
+
+The following sequence diagram shows how the find module by module attributes operation works:
+
+![FindmodActivityDiagram](images/FindmodSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a findmod command:
+
+![FindmodActivityDiagram](images/FindmodActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How findmod executes
+
+* **Alternative 1 (current choice):** AND searching from multiple attributes and OR searching between keywords for module name and instructor attributes. Module code attribute only allows single keywords.
+  * Pros : Provides the ability to narrow down the search results by adding more attributes while also allowing more flexible search within the attributes. Single keyword for module code attribute allows for more focused module code searches.
+  * Cons : Unable to search for multiple modules with different module attributes and unable to search for multiple modules with different module codes.
+
+* **Alternative 2:** And searching across attributes and disallow multiple keyword search across all attributes.
+  * Pros : Provides the ability for a very focused module search.
+  * Cons : Attributes like instructor name and module name might be difficult to remember, and might be difficult to find with just one keyword.
+
+### Deleting Module feature
+
+#### Implementation
+
+The delete module mechanism is facilitated by the `DelmodCommand` and the `DelmodCommandParser`.
+It uses an operation `AddressBook#removeModule()` which is exposed in the `Model` interface as `Model#deleteModule()`.
+Then, the `removeModuleWithCode()` operation is called in `UniqueModuleList`. `UniqueModuleList#removeModuleWithCode()` will remove the module with the specified code
+from the module list.
+
+Given below is the example usage scenario and how the delete module mecahnism behaves at each step.
+
+Step 1. The user launches the application. Facultype is initialized with the module `CS2103` in the addressbook.
+
+Step 2. The user executes the command `delmod m/CS2103` to delete the module with the module code CS2103 in the addressbook.
+
+Step 3. The `delmod` command then calls `Model#deleteModule()` after checking for the existence of the specified module.
+
+Step 4. The Module with the specified module code, will be deleted from the `UniqueModuleList` in the addressbook.
+
+The following sequence diagram shows how the deleting of the module works:
+
+![DelmodActivityDiagram](images/DelmodSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a delmod command:
+
+![DelmodActivityDiagram](images/DelmodActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: What the delmod command deletes by
+* **Alternative 1 (current choice):** Deletes a module based on the module code.
+  * Pros : More intuitive to the Dean to delete by the module code.
+  * Cons : Would be more troublesome to look for the module should the Dean forget the module code.
+
+* **Alternative 2:** Deletes a module based on the index of the module list.
+  * Pros : Dean does not have to memorise all the module code, can simply delete based on what is shown in the module list.
+  * Cons : Less intuitive.
+
+####  Deleting a module from the module list
+
+  a. Prerequisites:  Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
+
+  b. Test case: `delmod m/CS2103`
+  Expected: Module with module code `CS2103` would be deleted from the module list.
+
+  c. Test case: `delmod m/CS1101S`
+  Expected: No module is deleted from the module list since `CS1101S` is not a module that exists in the module list. Error details shown in the status message. Status bar remains the same.
+
+  d. Test case: `delmod m/CS2103 m/CS2100`
+  Expected: No module is deleted from the module list because `delmod` does not allow for multiple deletions. Error details shown in the status message. Status bar remains the same.
+
+  { more test cases ... }
+
 ### Assign feature
 
 #### Implementation
@@ -154,6 +271,119 @@ Then, the `assignInstructor()` operation is called in both `UniqueModuleList` an
 
 Both are equally viable options but Alternative 1 was chosen so `Person` would not have to be redesigned or have too many fields.
 
+### Unassign feature
+
+The assign feature is facilitated by `UnassignCommand` and `UnassignCommandParser`.
+It uses an operation `AddressBook#unassignInstructor()` which is exposed in the `Model` interface as `Model#unassignInstructor()`.
+Then, the `unassignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignInstructor()` will remove the instructor from the module's set of instructors.
+
+The following sequence diagram shows how the unassign operation works:
+
+![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a unassign command:
+
+![UnassignActivityDiagram](images/UnassignActivityDiagram.png)
+
+#### Unassigning a certain instructor from one or more modules
+a. Prerequisites : Unassign all instructors from all modules using the `unassignall` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
+Contact on index `1` is an instructor of module with module code `CS2103` and `CS2100`, while contact on index `2` is an instructor of module with module code `CS2100` and `CS1010S`.
+
+b. Test case : `unassign 1 m/CS2103 m/CS2100`<br>
+Expected : First contact is unassigned from both CS2103 and CS2100 modules. First contact is no longer an instructor of CS2103 nor CS2100 module.
+
+c. Test case : `unassign 2 m/CS2103 m/CS2100`<br>
+Expected : No contact is unassigned from any modules because instructor on index `2` is not an instructor of module `CS2103`.
+
+d. Test case : `unassign 0 m/CS1010S`<br>
+Expected : No contact is unassigned from any modules. Error details shown in the status message. Status bar remains the same.
+
+e. Test case : `unassign 1 m/CS3230`<br>
+Expected : No contact is unassigned from any modules. Error details shown in the status message. Status bar remains the same.
+
+f. Other incorrect unassign commands to try : `unassign`, `unassign x m/y` (where x is larger that the list size or is not an instructor of module y), `unassign a m/b` (where b does not exist in FaculType)<br>
+Expected : Similar to previous.
+
+{ more test cases ... }
+
+
+### Unassignall feature
+
+The assign feature is facilitated by `UnassignallCommand` and `UnassignallCommandParser`.
+It uses an operation `AddressBook#unassignAllInstructors()` which is exposed in the `Model` interface as `Model#unassignAllInstructors()`.
+Then, the `unassignAllInstructors()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignAllInstructors()` will remove all instructors from all modules' set of instructors.
+
+The following sequence diagram shows how the unassignall operation works:
+
+![UnassignallSequenceDiagram](images/UnassignallSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a unassignall command:
+
+![UnassignallActivityDiagram](images/UnassignallActivityDiagram.png)
+
+
+#### Design consideration:
+
+##### Aspect: How unassignall executes
+
+* **Alternative 1 (current choice):** Unassigns all instructors from all modules.
+ * Pros : More efficient to unassign all instructors from all modules.
+ * Cons : Less efficient to unassign a certain instructor from all modules he/she teaches.
+
+* **Alternative 2:** Unassign a certain instructor from all modules he/she teaches.
+ * Pros : More efficient to unassign a certain instructor from all modules he/she teaches.
+ * Cons : Less efficient to unassign all instructors from all modules.
+
+### Clear all contacts feature
+
+#### Implementation
+
+It implements the following operations:
+* `AddressBook#clearContacts()` — Clear all contacts from the list.
+
+These operations are exposed in the `Model` interface as `Model#clearContacts()` and `UniquePersonList` class as `UniquePersonList#clearAll()`
+
+The following sequence diagram shows how the cclear operation works:
+
+![UndoRedoState0](images/ClearContactsSequenceDiagram.png)
+
+Clearing all contacts from the contact list
+
+a. Prerequisites : Clear all contacts from contact list using `cclear` There are 3 contacts with names `Andre Taulani`, `Bayu Skak`, `Cak Lontong` in FaculType.
+
+b. Test case : `cclear` <br>
+Expected : Success message saying "All contacts deleted"
+
+c. Test case : `cclear` on an empty contact list <br>
+Expected : Error message saying "Contact list is already empty".
+
+{ more test cases ... }
+
+### Clear all modules feature
+
+#### Implementation
+
+It implements the following operations:
+* `AddressBook#clearMod()` — Clear all modules from the list.
+
+These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
+
+The following sequence diagram shows how the mclear operation works:
+
+![UndoRedoState0](images/MclearCommandSequenceDiagram.png)
+
+Clearing all modules from the module list
+
+a. Prerequisites : Clear all modules from module list using `mclear` There are 3 modules with module codes `CS2100`, `CS2101`, `CS2102` in FaculType.
+
+b. Test case : `mclear` <br>
+Expected : Success message saying "All modules deleted"
+
+c. Test case : `mclear` on an empty module list <br>
+Expected : Error message saying "Module list is already empty".
+
+{ more test cases ... }
+
 ### \[Proposed\] Switch feature
 
 #### Proposed Implementation
@@ -172,7 +402,7 @@ All operations on `UniqueModuleList` will be done on the active semester. `Addre
 * **Alternative 2:** There is only one module list and there is a filter to only show modules of a particular semester.
   * Pros: More efficient to list the modules of a certain instructor.
   * Cons: Need to add semester field to modules and commands, will have two copies of the same module if held in both semesters, more code to change.
-  
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -333,19 +563,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  FaculType adds the contact
 
     Use case ends.
-    
+
 **Extensions**
 
 * 1a. The attributes are in an invalid format.
-    
+
     * 1a1. FaculType shows an error message.
-    
+
       Use case resumes at step 1.
-      
+
 * 1b. The contact to be added already exists.
 
     * 1b1. FaculType shows an error message.
-    
+
       Use case resumes at step 1.
 
 **Use case: Delete a contact**
@@ -381,13 +611,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType edits the contact
 
     Use case ends.
-    
+
 **Extensions**
 
 *   2a. The list is empty.
 
     Use case ends.
-    
+
 *   3a. The given index is invalid.
 
     * 3a1. FaculType shows an error message.
@@ -399,7 +629,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. FaculType shows an error message.
     
       Use case resumes at step 2.
-      
+ 
 **Use case: Find a contact**
 
 **MSS**
@@ -410,13 +640,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType shows the contact(s)
 
     Use case ends.
-   
+
 **Extensions**
 
 *  2a. The list is empty.
-   
+
    Use case ends.
-      
+ 
 **Use case: Add or update a remark**
 
 **MSS**
@@ -427,19 +657,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType adds/edits the contact's remark
 
     Use case ends.
-    
+
 **Extensions**
 
 *   2a. The list is empty.
 
     Use case ends.
-    
+
 *   3a. The given index is invalid.
 
     * 3a1. FaculType shows an error message.
-    
+
       Use case resumes at step 2.
-      
+
 **Use case: Add a module**
 
 **MSS**
@@ -448,13 +678,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  FaculType adds the module
 
     Use case ends.
-    
+
 **Extensions**
 
 *   1a. The module code already exists.
-    
+
     * 1a1. FaculType shows an error message.
-        
+ 
       Use case resumes at step 1.
 
 **Use case: Delete a module**
@@ -468,17 +698,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-    
+
 *   1a. The module list is empty.
-    
+
     Use case ends.
-    
+
 *   2a. The given module code does not exist.
 
     * 2a1. FaculType shows an error message.
-    
+
     Use case resumes at step 1.
-    
+
 **Use case: Find a module**
 
 **MSS**
@@ -489,11 +719,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType shows the module(s)
 
    Use case ends.
-   
+
 **Extensions**
 
 *  2a. The module list is empty.
-   
+
    Use case ends.
 
 **Use case: Assign a contact to a module**
@@ -508,27 +738,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  FaculType assigns the contact to the module
 
     Use case ends.
-    
+
 **Extensions**
 
 *   2a. The contact list is empty.
 
     Use case ends.
-    
+
 *   4a. The module list is empty.
 
     Use case ends.
-    
+
 *   5a. The given contact does not exist.
-    
+
     *   5a1. FaculType shows an error message.
-    
+
     Use case resumes at step 4.
-        
+
 *   5b. The given module does not exist.
 
     * 5b2. FaculType shows an error message.
-    
+
     Use case resumes at step 4.
 
 ### Non-Functional Requirements
@@ -599,6 +829,24 @@ testers are expected to do more *exploratory* testing.
       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Finding a contact
+
+1. Finding a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+
+   1. Test case: `find n/Alice d/Math`<br>
+      Expected: All contacts that has "Alice" in their name, and "Math" in their department is shown.
+      . Timestamp in the status bar is updated.
+
+   1. Test case: `find n/`<br>
+      Expected: No contacts filtered. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect find commands to try: `find p/abcdef`, `find`, `find Alice`, `...`
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

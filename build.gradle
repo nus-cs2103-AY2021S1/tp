@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'facultype.jar'
+    archiveName = 'FaculType.jar'
 }
 
 gradle.projectsEvaluated {
