@@ -810,42 +810,42 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   i. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample flashcards. The window size may not be optimum.
+   ii. Double-click the jar file Expected: Shows the GUI with a set of sample flashcards. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   i. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file. <br>
+   ii. Re-launch the app by double-clicking the jar file. <br>
        Expected: The most recent window size and location is retained.
 
 1. Exiting the application
    
-   1. Prerequisites: The application must be launched.
+   i. Prerequisites: The application must be launched.
    
-   1. Test case: `exit` <br>
+   ii. Test case: `exit` <br>
        Expected: The application exits and the window closes itself automatically.
    
 ### Adding a flashcard
 
 1. Adding a flashcard when in main window of application
 
-   1. Prerequisites: Application must be in main window and not in review or quiz mode.
+   i. Prerequisites: Application must be in main window and not in review or quiz mode.
    
-   1. Test case (specifying compulsory inputs only): `add q/Does software projects often involve workflows? a/Yes` <br>
+   ii. Test case (specifying compulsory inputs only): `add q/Does software projects often involve workflows? a/Yes` <br>
        Expected: A new flashcard is added to the end of the list of flashcards. Flashcard list panel will then update
        to display all the flashcards in the flashcard deck. The compulsory inputs will be set to 
        what was specified in the command, whereas category will be set to `General` by default when not stated in the
        input. Result display will output the message: 
        `New flashcard added:  Question: Does software projects often involve workflows?`
 
-   1. Test case (missing a compulsory input (`a/ANSWER`)): `add q/What does SWE stand for?` <br>
+   iii. Test case (missing a compulsory input (`a/ANSWER`)): `add q/What does SWE stand for?` <br>
        Expected: No flashcard added to the list of flashcards and input text will turn red to signal an error.
        Result display will output the invalid command format error message.
    
-   1. Test case (missing a compulsory input (`q/QUESTION`)): `add a/Software Engineering` <br>
+   iv. Test case (missing a compulsory input (`q/QUESTION`)): `add a/Software Engineering` <br>
        Expected: No flashcard added to the list of flashcards and input text will turn red to signal an error.
        Result display will output the invalid command format error message.
        
@@ -853,27 +853,27 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a flashcard while all flashcards are being shown
 
-   1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+   i. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
       how to add a flashcard if flashcard deck is empty.
 
-   1. Test case (valid index): `delete 1` <br>
+   ii. Test case (valid index): `delete 1` <br>
       Expected: First flashcard is deleted from the list of flashcards. Result display will output the status of the deleted flashcard. 
 
-   1. Test case (invalid index): `delete 0` <br>
+   iii. Test case (invalid index): `delete 0` <br>
       Expected: No flashcard will be deleted from the list of flashcards and input text will turn red to signal an error.
       Result display will output the invalid command format error message.
 
-   1. Test case (missing index): `delete` <br>
+   iv. Test case (missing index): `delete` <br>
       Expected: Similar to test case iii.
       
 ### Listing flashcards
 
 1. Listing all flashcards in the flashcard deck
 
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+    i. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
     
-    1. Test case: `list` <br>
+    ii. Test case: `list` <br>
         Expected: Flashcard list panel updates to show all flashcard stored in the flashcard deck. Result display will output
         a success message: `Listed all flashcards`
     
@@ -881,39 +881,39 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing a flashcard while all flashcards are being shown
 
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+    i. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
     
-    1. Test case (editing one field of flashcard): `edit 1 q/Is this edited?` <br>
+    ii. Test case (editing one field of flashcard): `edit 1 q/Is this edited?` <br>
         Expected: The `QUESTION` of flashcard at index 1 will be modified to become `Is this edited?`. The remaining fields
         of this flashcard will remain the same. Result display will output the status of the edited flashcard.
         
-    1. Test case (editing multiple fields of flashcard): `edit 1 q/Is this edited? a/Yes` <br> 
+    iii. Test case (editing multiple fields of flashcard): `edit 1 q/Is this edited? a/Yes` <br> 
         Expected: The `QUESTION` and `ANSWER` of flashcard at index 1 will be modified to become `Is this edited?` 
         and `Yes` respectively.The remaining fields of this flashcard will remain the same. Result display will output the status of the edited flashcard.
     
-    1. Test case (missing flashcard field input): `edit 1` <br> 
+    iv. Test case (missing flashcard field input): `edit 1` <br> 
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the message: `At least one field to edit must be provided.`
         
-    1. Test case (missing flashcard field input and index): `edit` <br>
+    v. Test case (missing flashcard field input and index): `edit` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
      
-     <div markdown="span" class="alert alert-info">
-     
-     :information_source: **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
+ <div markdown="span" class="alert alert-info">
+ 
+ :information_source: **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
 
-    </div>
+</div>
     
 ### Clearing all flashcards
 
 1. Clearing all flashcards in the flashcard deck
 
-     1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+     i. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
                 
-     1. Test case: `clear` <br>
+     ii. Test case: `clear` <br>
         Expected: Flashcard list panel updates to show no flashcard stored in the flashcard deck. Result display will output
         a success message: `Flashcard Deck has been cleared!`
      
@@ -921,68 +921,68 @@ testers are expected to do more *exploratory* testing.
 
 1. Filtering for selected flashcards in the flashcard deck
 
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+    i. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
                 
-    1. Test case (filtering by one flashcard field): `filter c/General` <br>
+    ii. Test case (filtering by one flashcard field): `filter c/General` <br>
         Expected: Flashcard list panel updates to show only flashcards belonging to `General` category. Result display will
         output a success message indicating the number of flashcards filtered.
             
-    1. Test case (filtering by multiple flashcard fields): `filter c/General r/3` <br> 
+    iii. Test case (filtering by multiple flashcard fields): `filter c/General r/3` <br> 
         Expected: Flashcard list panel updates to show only flashcards belonging to `General` category and have a rating of `3`. 
         Result display will output a success message indicating the number of flashcards filtered.
         
-    1. Test case (missing flashcard field input): `filter` <br>
+    iv. Test case (missing flashcard field input): `filter` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
         
-    <div markdown="span" class="alert alert-info">
-         
-    :information_source: **Note:** Filtering of flashcards can also be tested on other fields such as `FAVOURITE` and `TAG`. 
-    
-    </div>
+<div markdown="span" class="alert alert-info">
+     
+:information_source: **Note:** Filtering of flashcards can also be tested on other fields such as `FAVOURITE` and `TAG`. 
+
+</div>
     
 ### Favouriting a flashcard
 
 1. Favouriting a flashcard in the flashcard deck
 
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+    i. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
                 
-    1. Test case (valid index): `fav 1` <br> 
+    ii. Test case (valid index): `fav 1` <br> 
         Expected: Flashcard list pane updates to show a favourite(heart) icon beside the flashcard of index 1. Result display
         will output the status of the favourited flashcard.
 
-    1. Test case (invalid index): `fav 0` <br>
+    iii. Test case (invalid index): `fav 0` <br>
         Expected: No flashcard is favourited from the list of flashcards and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
 
-    1. Test case (missing index): `fav` <br>
+    iv. Test case (missing index): `fav` <br>
         Expected: Similar to test case iii.
         
 ### Unfavouriting a flashcard
 
 1. Unfavouriting a flashcard in the flashcard deck
 
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+    i. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
         how to add a flashcard if flashcard deck is empty.
                 
-    1. Test case (valid index): `unfav 1` <br> 
+    ii. Test case (valid index): `unfav 1` <br> 
             Expected: Flashcard list pane updates to unfavourite and remove the favourite(heart) icon beside the flashcard of index 1 (if any). Result display
             will output the status of the unfavourited flashcard.
     
-    1. Test case (invalid index): `unfav 0` <br>
+    iii. Test case (invalid index): `unfav 0` <br>
         Expected: No flashcard is unfavourited from the list of flashcards and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
 
-    1. Test case (missing index): `unfav` <br>
+    iv. Test case (missing index): `unfav` <br>
         Expected: Similar to test case iii.
 
 ### Finding flashcards
 
 1. Finding flashcards in the flashcard deck
     
-   1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+   1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
        
    1. Test case (finding by one keyword): `find general` <br>
@@ -1003,7 +1003,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Entering review mode in the application to review flashcards
     
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
     
     1. Test case: `review` <br>
@@ -1011,7 +1011,7 @@ testers are expected to do more *exploratory* testing.
         
 1. Quitting review mode in the application
 
-    1. Prerequisites: Application must be in review mode. Refer to [Section 1.2](#reviewing-flashcards) on how to enter
+    1. Prerequisites: Application must be in review mode. Refer to [Section 1ii](#reviewing-flashcards) on how to enter
         review mode.
         
     1. Test case: `q` <br>
@@ -1022,7 +1022,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Entering quiz mode in the application
 
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
        
     1. Test case: `quiz` <br>
@@ -1030,7 +1030,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Quitting quiz mode in the application
 
-    1. Prerequisites: Application must be in quiz mode. Refer to [Section 1.2](#quizzing-flashcards) on how to enter
+    1. Prerequisites: Application must be in quiz mode. Refer to [Section 1ii](#quizzing-flashcards) on how to enter
         quiz mode.
         
     1. Test case: `q` <br>
@@ -1041,7 +1041,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Sort flashcards according to review frequency
 
-    1. Prerequisites: Flashcard deck contains more than one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+    1. Prerequisites: Flashcard deck contains more than one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
        
     1. Test case (sort flashcards in an ascending order): `sort reviewed -a` <br>
@@ -1058,7 +1058,7 @@ testers are expected to do more *exploratory* testing.
         
 1. Sort flashcards according to success rate
 
-    1. Prerequisites: Flashcard deck contains more than one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+    1. Prerequisites: Flashcard deck contains more than one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
        
     1. Test case (sort flashcards in an ascending order): `sort success -a` <br>
@@ -1077,7 +1077,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Viewing a flashcard
 
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
        
     1. Test case (view flashcard without answer): `view 1` <br>
@@ -1096,7 +1096,7 @@ testers are expected to do more *exploratory* testing.
     
 1. Viewing the statistics of a flashcard
     
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1.2](#adding-a-flashcard) on 
+    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
        
     1. Test case (view statistics of flashcard at valid index): `stats 1` <br>
