@@ -29,7 +29,7 @@ import seedu.address.model.vendor.VendorManager;
 
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the supper strikers data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

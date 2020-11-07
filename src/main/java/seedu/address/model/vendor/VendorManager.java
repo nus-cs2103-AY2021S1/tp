@@ -7,8 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the vendor manager level
+ * Duplicates are not allowed (by .isSameVendor comparison)
  */
 public class VendorManager implements ReadOnlyVendorManager {
 
@@ -81,8 +81,8 @@ public class VendorManager implements ReadOnlyVendorManager {
     }
 
     /**
-     * Adds a vendor to the address book.
-     * The vendor must not already exist in the address book.
+     * Adds a vendor to the vendor manager.
+     * The vendor must not already exist in the vendor manager.
      */
     public void addVendor(Vendor p) {
         vendors.add(p);
