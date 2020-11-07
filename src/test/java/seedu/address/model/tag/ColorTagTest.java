@@ -17,7 +17,7 @@ public class ColorTagTest {
 
         assertEquals(colorTag.originalColor, colorName);
         assertEquals(colorTag.toString(), colorName);
-        assertEquals(colorTag.cssColor, "rgba(178,0,0,1)");
+        assertEquals(colorTag.cssColor, "rgba(255,0,0,1)");
         assertEquals(colorTag, new ColorTag("rgba(255,0,0,1)"));
     }
 
