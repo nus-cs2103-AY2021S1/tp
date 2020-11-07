@@ -266,9 +266,9 @@ Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 
 * At least one of the optional fields must be provided.
 * The order of the optional fields do not matter. e.g `n/Hans s/River Valley` is the same as `s/River Valley n/Hans`
-* For the name criteria, only students with a name that matches any full keyword specified will be matched.
-* For the school criteria, only students with a school that contains all keywords specified will be matched.
-* For the year criteria, only students with the same year will be matched. (See below for more elaboration)
+* For the name criteria, only students with a name that contains **any full keyword** specified will be matched.
+* For the school criteria, only students with a school that contains **all keywords** specified will be matched.
+* For the year criteria, only students with the **same year** will be matched. (See below for more elaboration for format of year)
 * Only students matching all criteria specified will be returned (i.e `AND` search).
 
 * The format of `YEAR` is as follows:
