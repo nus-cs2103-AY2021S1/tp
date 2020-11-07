@@ -9,7 +9,7 @@ TAskmaster is a **desktop app for managing students, optimized for use via a Com
 - [Quick Start](#quick-start "Go to Quick Start")
     - [Installation](#installation "Go to Installation")
     - [Usage](#usage "Go to Usage")
-- [UI](#ui "Go to UI")
+- [Walkthrough](#walkthrough "Go to Walkthrough")
 - [Commands](#commands "Go to Commands")
     - [Adding a student: `add-student`](#adding-a-student-add-student "Go to Adding a student")
     - [Listing all students: `list-students`](#listing-all-students-list-students "Go to Listing all students")
@@ -43,26 +43,54 @@ TAskmaster is a **desktop app for managing students, optimized for use via a Com
 
 ### Usage
 1. Add the students that you are currently teaching into TAskmaster using the `add-student` command.
-    * You can use the `list-students`, `edit-student`, `find-students`, and `delete-student` commands to read and modify your student list.
-2. Create a new session that represents a tutorial, lab, or recitation session using the `add-session` command.
-    * This session will read your student list and create a list of corresponding student records belonging to that session.
-    * Each student in the student list will be represented by a student record.
-    * This list of records, once created, will be **independent of the student list**. Any modifications to the student list after a session is created **will not** affect the student records in that session.
-    * You can use the `delete-session` command to delete a session from the session list.
+    * You can use the `list-students`, `edit-student`, `find-students` and `delete-student` commands to read and modify your student list.
+2. Create a new session that represents a tutorial, lab or recitation session using the `add-session` command.
 3. Mark your students' attendance and award them class participation marks with the `mark` and `score` commands respectively.
     * Note that you will not be allowed to use these commands outside of a session.
 
-## UI
+## Walkthrough
+On the first use of TAskmaster, the program will be loaded with a sample student list.
+![walkthrough1](images/walkthrough/1.png)
 
-### Accessing the student lists
-Click on the button titled "Students".
-![UiShowcase](images/UiShowcase.png)
+Enter the `clear` command to delete all existing data in TAskmaster.
+![walkthrough2](images/walkthrough/2.png)
 
-### Accessing a session
-Click on the button with the name of the Session.
-![Ui](images/Ui.png)
-The number below the attendance of the student is their current class participation score for the selected session.
+Then, add the students that you are currently teaching into the student list using the `add-student` command.
+![walkthrough3](images/walkthrough/3.png)
 
+* Note that a student must have a non-empty name, a valid telegram handle, email address and NUSNET id.
+* No two students in the student list can share the same NUSNET id.
+* You can use the `find-students`, `edit-student` and `delete-student` commands to filter and modify your student list.
+
+After adding all your students, you can create a new session that represents a tutorial, lab or recitation session using
+the `add-session` command. TAskmaster will automatically switch to the new session view.
+![walkthrough4](images/walkthrough/4.png)
+
+* TAskmaster will read the current student list and create a list of corresponding student records that belongs to the new session created.
+* Each student in the student list is by a student record
+* This list of records, once created, will be **independent of the student list**. Any modifications to the student list after a session is created **will not** affect the student records in that session.
+* You can use the `delete-session` command to delete a session from the session list. This will delete all data (including student records) stored in that session.
+
+Within the session view, you can mark your students' attendance with the `mark` commands.
+![walkthrough5](images/walkthrough/5.png)
+![walkthrough6](images/walkthrough/6.png)
+
+TAskmaster provides you with two ways to get students to call on to answer questions.
+* The `lowest-score` command shows a student that is present and currently have the lowest score. If there are multiple
+present students with the lowest score, the command will show all of them.
+![walkthrough7](images/walkthrough/7.png)
+* The `random-student` command chooses a student that is present randomly.
+![walkthrough8](images/walkthrough/8.png)
+
+You can award class participation score to students using the `score` command.
+![walkthrough9](images/walkthrough/9.png)
+
+Note that you will not be allowed to use any session view commands outside of a session.
+* To switch to a session view, use the `goto` command or click the corresponding button on the left, under 'Sessions'. 
+* To go back to student list view, use the `list-students` command or click the Student List button on the left.
+
+When you are done with TAskmaster, use the `exit` command to close the application.
+ * Data will be saved automatically.
 
 ## Commands
 > Command format:
@@ -185,36 +213,23 @@ goto s/CS2103 Tutorial 9
 ```
 
 ### Marking a student's attendance: `mark`
-Marks the attendance of the specified student from the student list.
+Marks the attendance of the specified student (or all students) in the session.
 ```
 mark INDEX a/ATTENDANCE_TYPE
 ```
 - Marks the attendance at the specified `INDEX` number shown in the displayed student record list.
 - The `INDEX` **must be a positive integer** that exists in said list.
+- Alternatively, the `INDEX` can be replaced with `all` to mark all students in the student list.
 - The `ATTENDANCE_TYPE` must either be `present` or `absent`.
 
 Example Usage:
 ```
+mark all a/present
 mark 1 a/absent
 ```
 
-### Marking all students' attendance: `mark all`
-Marks the attendance of all students in the student list.
-```
-mark all a/ATTENDANCE_TYPE
-```
-- Marks the attendances of all students shown in the displayed student record list.
-- The `ATTENDANCE_TYPE` must either be `present` or `absent`.
-
-Example Usage:
-```
-// Mark all students as present except for student at index 2 who is absent
-mark all a/present
-mark 2 a/absent
-```
-
 ### Scoring students' participation: `score`
-Scores the participation of student(s) in the session.
+Scores the participation of the specified student in the session.
 ```
 score INDEX cp/SCORE
 ```
@@ -227,7 +242,7 @@ Taskmaster supports scoring students' participation score even though the studen
 module-specific instructions (e.g. a module coordinator instructs the TA to give
 a participation mark of 6 if a valid MC is given).
 
-To mark all students **who are present**, you can replace the `INDEX` with the keyword `all`.
+To score all students **who are present**, you can replace the `INDEX` with the keyword `all`.
 
 Example Usage:
 ```
