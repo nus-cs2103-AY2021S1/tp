@@ -1,7 +1,10 @@
 package quickcache.logic.parser;
 
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_ANSWERS;
+import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_QUESTIONS;
 import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_ONE;
+import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.CHOICE_DESC;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
@@ -9,6 +12,7 @@ import static quickcache.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static quickcache.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_ONE;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_THREE;
+import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_ONE;
 import static quickcache.logic.commands.CommandTestUtil.VALID_CHOICE_CHOICE1;
 import static quickcache.logic.commands.CommandTestUtil.VALID_CHOICE_CHOICE2;
@@ -37,6 +41,22 @@ public class AddMultipleChoiceQuestionCommandParserTest {
         CommandParserTestUtil.assertParseSuccess(parser,
             PREAMBLE_WHITESPACE + QUESTION_DESC_ONE + ANSWER_DESC_ONE + CHOICE_DESC,
             new AddMultipleChoiceQuestionCommand(expectedFlashcard));
+    }
+
+    @Test
+    public void parse_multipleQuestionsPresent_failure() {
+        // multiple questions - not accepted
+        CommandParserTestUtil.assertParseFailure(parser,
+                QUESTION_DESC_TWO + QUESTION_DESC_ONE + ANSWER_DESC_ONE + CHOICE_DESC,
+                MESSAGE_TOO_MANY_QUESTIONS);
+    }
+
+    @Test
+    public void parse_mutipleAnswersPresent_failure() {
+        // multiple answers - not accepted
+        CommandParserTestUtil.assertParseFailure(parser,
+                QUESTION_DESC_ONE + ANSWER_DESC_TWO + ANSWER_DESC_ONE + CHOICE_DESC,
+                MESSAGE_TOO_MANY_ANSWERS);
     }
 
     @Test

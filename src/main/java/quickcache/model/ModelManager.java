@@ -14,7 +14,7 @@ import quickcache.commons.util.CollectionUtil;
 import quickcache.model.flashcard.Flashcard;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the QuickCache data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
