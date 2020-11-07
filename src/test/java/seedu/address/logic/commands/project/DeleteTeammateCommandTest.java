@@ -29,11 +29,11 @@ public class DeleteTeammateCommandTest {
     @Test
     public void execute_validGitUserIndex_throwsCommandException() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
 
         Person person = DESC_A;
-        Model expectedModel = model;
         Participation participation =
                 new Participation(person.getGitUserNameString(), project.getProjectName().toString());
         project.addParticipation(participation);
