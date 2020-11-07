@@ -2,9 +2,11 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalModules.CS1101S;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -15,8 +17,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.testutil.builders.AddressBookBuilder;
 
 public class ModelManagerTest {
 
@@ -94,6 +96,90 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasModule_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasModule(null));
+    }
+
+    @Test
+    public void hasModule_moduleNotInActiveSemester_returnsFalse() {
+        assertFalse(modelManager.hasModule(CS1101S));
+        modelManager.addModule(CS1101S);
+        modelManager.switchModuleList();
+        assertFalse(modelManager.hasModule(CS1101S));
+    }
+
+    @Test
+    public void hasModule_moduleInActiveSemester_returnsTrue() {
+        modelManager.addModule(CS1101S);
+        assertTrue(modelManager.hasModule(CS1101S));
+        modelManager.switchModuleList();
+        modelManager.addModule(CS1101S);
+        assertTrue(modelManager.hasModule(CS1101S));
+    }
+
+    @Test
+    public void hasModule_moduleInActiveSemesterDoubleSwitch_returnsTrue() {
+        modelManager.addModule(CS1101S);
+        modelManager.switchModuleList();
+        modelManager.switchModuleList();
+        assertTrue(modelManager.hasModule(CS1101S));
+    }
+
+    @Test
+    public void isEmptyModuleList_activeSemesterEmpty_returnsTrue() {
+        assertTrue(modelManager.isEmptyModuleList());
+        modelManager.addModule(CS1101S);
+        modelManager.switchModuleList();
+        assertTrue(modelManager.isEmptyModuleList());
+    }
+
+    @Test
+    public void clearModules_returnsTrue() {
+        modelManager.addModule(CS1101S);
+        modelManager.clearMod();
+        assertTrue(modelManager.isEmptyModuleList());
+        modelManager.switchModuleList();
+        modelManager.addModule(CS1101S);
+        modelManager.clearMod();
+        assertTrue(modelManager.isEmptyModuleList());
+    }
+
+    @Test
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredModuleList().remove(0));
+    }
+
+    @Test
+    public void isEmptyPersonList_personListNotEmpty_returnsFalse() {
+        modelManager.addPerson(ALICE);
+        assertFalse(modelManager.isEmptyPersonList());
+    }
+
+    @Test
+    public void isEmptyPersonList_personListEmpty_returnsTrue() {
+        assertTrue(modelManager.isEmptyPersonList());
+    }
+
+    @Test
+    public void clearContacts_returnsTrue() {
+        modelManager.addPerson(ALICE);
+        modelManager.clearContacts();
+        assertTrue(modelManager.isEmptyPersonList());
+    }
+
+    @Test
+    public void getSemester_returnsSemester() {
+
+        // before switch -> returns 1
+        assertEquals(modelManager.getSemester(), 1);
+
+        modelManager.switchModuleList();
+
+        // after switch -> returns 2
+        assertEquals(modelManager.getSemester(), 2);
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
@@ -102,24 +188,24 @@ public class ModelManagerTest {
         // same values -> returns true
         modelManager = new ModelManager(addressBook, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
+        assertEquals(modelManagerCopy, modelManager);
 
         // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
+        assertEquals(modelManager, modelManager);
 
         // null -> returns false
-        assertFalse(modelManager.equals(null));
+        assertNotEquals(modelManager, null);
 
         // different types -> returns false
-        assertFalse(modelManager.equals(5));
+        assertNotEquals(modelManager, 5);
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertNotEquals(new ModelManager(differentAddressBook, userPrefs), modelManager);
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertNotEquals(new ModelManager(addressBook, userPrefs), modelManager);
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +213,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertNotEquals(new ModelManager(addressBook, differentUserPrefs), modelManager);
     }
 }

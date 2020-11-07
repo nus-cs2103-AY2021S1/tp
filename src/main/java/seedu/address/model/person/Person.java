@@ -21,18 +21,23 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Department department;
+    private final Office office;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Department department, Office office,
+                  Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, department, office, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.department = department;
+        this.office = office;
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +53,16 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Department getDepartment() {
+        return department;
+    }
+
+    public Office getOffice() {
+        return office;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -92,14 +105,15 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getDepartment().equals(getDepartment())
+                && otherPerson.getOffice().equals(getOffice())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, department, office, remark, tags);
     }
 
     @Override
@@ -110,8 +124,12 @@ public class Person {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
+                .append(" Department: ")
+                .append(getDepartment())
+                .append(" Office: ")
+                .append(getOffice())
+                .append(" Remark: ")
+                .append(getRemark())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

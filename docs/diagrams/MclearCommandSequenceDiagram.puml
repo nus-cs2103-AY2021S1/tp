@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "m:MclearCommand" as MclearCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("mclear")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("mclear")
+activate AddressBookParser
+
+create MclearCommand
+AddressBookParser -> MclearCommand
+activate MclearCommand
+
+MclearCommand --> AddressBookParser : m
+deactivate MclearCommand
+
+AddressBookParser --> LogicManager : m
+deactivate AddressBookParser
+
+LogicManager -> MclearCommand : execute()
+activate MclearCommand
+
+MclearCommand -> Model : clearMod()
+activate Model
+
+Model --> MclearCommand
+deactivate Model
+
+create CommandResult
+MclearCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MclearCommand
+deactivate CommandResult
+
+MclearCommand --> LogicManager : result
+deactivate MclearCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
