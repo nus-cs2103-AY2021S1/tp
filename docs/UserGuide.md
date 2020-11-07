@@ -263,13 +263,13 @@ Examples: `deletetask 2` deletes the second task shown in the displayed task lis
 
 ### Filter tasks `filter `
 
-Filters tasks in the task list by various predicates:
+Filter tasks in the task list by various predicates:
   - by assignee's name
   - by deadline (either a specific deadline or a time range for the deadline)
   - by progress
   - by task's name
 
-Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tp/TASK PROGRESS)||(tn/TASK_NAME)` 
+Format: `filter (ta/ASSIGNEE_GITHUB_USERNAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tp/TASK PROGRESS)||(tn/TASK_NAME)` 
   - User may choose one predicate to filter tasks by
   - Assignee name is the name of the Teammate who is assigned to the task
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
@@ -282,7 +282,7 @@ Example: `filter ta/Lucas` filters all the tasks who have Lucas assigned to them
 
 ### List all tasks `alltasks `
 
-List all tasks in the task list of a project and enters the Task scope.
+List all tasks in the task list of a project and enter the Task scope.
 
 Format: `alltasks `
 
@@ -290,7 +290,7 @@ Example: `alltasks` displays all tasks in the task list.
 
 ### Sort tasks `sort `
 
-Sorts tasks in the task list in ascending/descending order:
+Sort tasks in the task list in ascending/descending order:
 
   - by deadline (either a specific deadline or a time range for the deadline)
   - by progress
