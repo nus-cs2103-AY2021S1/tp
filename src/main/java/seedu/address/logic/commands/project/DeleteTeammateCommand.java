@@ -2,8 +2,6 @@ package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.Command;
@@ -42,45 +40,9 @@ public class DeleteTeammateCommand extends Command {
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    //    public CommandResult execute(Model model) throws CommandException {
-    //        requireNonNull(model);
-    //        Project project = model.getProjectToBeDisplayedOnDashboard().get();
-    //        List<Participation> lastShownList = project.getTeammates();
-    //
-    //        if (!project.hasParticipation(gitUserIndex.getGitUserNameString())) {
-    //            throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
-    //        }
-    //
-    //        Participation participation = project.getParticipation(gitUserIndex.getGitUserNameString());
-    //        Person personToDelete = Person.getPersonFromList(gitUserIndex);
-    //
-    //        assert personToDelete != null;
-    //        Project currentProject;
-    //        for (int i = 0; i < Project.getAllProjects().size(); i++) {
-    //            currentProject = Project.getAllProjects().get(i);
-    //            if (currentProject.hasParticipation(personToDelete.getGitUserNameString())) {
-    //                participation = currentProject.getParticipation(personToDelete.getGitUserNameString());
-    //                currentProject.removeParticipation(participation);
-    //                if (model.hasParticipation(participation)) {
-    //                    model.deleteParticipation(participation);
-    //                }
-    //            }
-    //        }
-    //        Person.getAllPeople().remove(personToDelete);
-    //        model.deletePerson(personToDelete);
-    //
-    //        if (model.getTeammateToBeDisplayedOnDashboard().isPresent()
-    //                && model.getTeammateToBeDisplayedOnDashboard().get().equals(participation)) {
-    //            model.resetTeammateToBeDisplayedOnDashboard();
-    //            project.updateTeammateOnView(null);
-    //        }
-    //
-    //        return new CommandResult(String.format(MESSAGE_DELETE_TEAMMATE_SUCCESS, personToDelete));
-    //    }
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-        List<Participation> lastShownList = project.getTeammates();
 
         if (!project.hasParticipation(gitUserIndex.getGitUserNameString())) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
@@ -89,18 +51,7 @@ public class DeleteTeammateCommand extends Command {
         Participation participation = project.getParticipation(gitUserIndex.getGitUserNameString());
         Person personToDelete = Person.getPersonFromList(gitUserIndex);
 
-        //        Project.deleteAllParticipationOf(participation.getPerson().getGitUserNameString());
-        //        model.deleteParticipation(participation);
-        Participation currentParticipation;
-        Project currentProject;
-        for (int i = 0; i < Project.getAllProjects().size(); i++) {
-            currentProject = Project.getAllProjects().get(i);
-            if (currentProject.hasParticipation(personToDelete.getGitUserNameString())) {
-                currentParticipation = currentProject.getParticipation(personToDelete.getGitUserNameString());
-                currentProject.removeParticipation(currentParticipation);
-        //                model.deleteParticipation(currentParticipation);
-            }
-        }
+        Participation.deleteAllParticipationOf(model, personToDelete);
 
         model.deletePerson(personToDelete);
 
