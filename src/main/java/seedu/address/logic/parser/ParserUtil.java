@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.time.temporal.ChronoUnit.MINUTES;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.appointment.Time.CLOSING_TIME;
+import static seedu.address.model.appointment.Time.OPENING_TIME;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -26,10 +28,14 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
+    public static final int MIN_DURATION = 10; // Appointments cannot have a duration that is lesser than 10 mins.
     public static final String MESSAGE_INVALID_INDEX = "Index must be a positive integer that is more than 0.";
     public static final String MESSAGE_INVALID_DURATION = "Duration must be a positive integer that is more than or "
-            + "equals to 10 mins.";
-
+            + "equals to 10 mins.\nDuration provided must also result in an appointment end time that falls within the"
+            + " operational hours of the clinic on the same day.";
+    public static final String MESSAGE_EMPTY_DURATION = "Duration must not be empty if you have entered the prefix";
+    public static final String MESSAGE_MAX_DURATION = "Duration must be smaller than the number of minutes\n"
+            + "in the working hours for one day";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -160,7 +166,7 @@ public class ParserUtil {
 
         LocalTime parsedTime = TimeParserUtil.parse(trimmedTime);
 
-        if (!Time.isValidStartTime(parsedTime)) {
+        if (!Time.isValidTime(parsedTime)) {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
 
@@ -190,7 +196,13 @@ public class ParserUtil {
         // null duration will use the default one hour duration.
         String trimmedDuration = durationString.trim();
         Duration duration;
-        Duration minDuration = Duration.of(10, MINUTES);
+        Duration minDuration = Duration.of(MIN_DURATION, MINUTES);
+        Duration maxDuration = Duration.between(OPENING_TIME, CLOSING_TIME);
+
+        if (trimmedDuration.isEmpty()) {
+            throw new ParseException(MESSAGE_EMPTY_DURATION);
+        }
+
         try {
             duration = Duration.of(Integer.parseInt(trimmedDuration), MINUTES);
         } catch (NumberFormatException e) {
@@ -205,6 +217,9 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_DURATION);
         }
 
+        if (duration.compareTo(maxDuration) > 0) {
+            throw new ParseException(MESSAGE_MAX_DURATION);
+        }
         return duration;
     }
 }
