@@ -69,6 +69,17 @@ public class ListCommandTest {
     }
 
     @Test
+    public void execute_tenDaysFromCurrentDate_showAssignments() {
+        index = Index.fromZeroBased(10);
+        model.updateFilteredAssignmentList(showLimitedAssignments());
+        String expectedMessage = String.format(
+                Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, model.getFilteredAssignmentList().size());
+        ListCommand listForTenDays = new ListCommand(index);
+        expectedModel.updateFilteredAssignmentList(showLimitedAssignments());
+        assertCommandSuccess(listForTenDays, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_fiftyDaysFromCurrentDate_showAssignments() {
         index = Index.fromZeroBased(50);
         model.updateFilteredAssignmentList(showLimitedAssignments());
