@@ -16,6 +16,10 @@ import seedu.address.model.ingredient.IngredientName;
 
 public class IngredientRestockCommandTest {
 
+    public static final char LINE_SEPARATOR = '\n';
+
+    public static final String AMOUNT_NEEDED_WHEN_RESTOCK = "    Amount needed to reach the minimum stock level: ";
+
     @Test
     public void execute_viewIngredientsInShortage_success() {
         Model model = new ModelManager();
@@ -47,10 +51,10 @@ public class IngredientRestockCommandTest {
         final IngredientRestockCommand standardCommand = new
                 IngredientRestockCommand();
         String ingredientList = "";
-        final char lineSeparator = '\n';
         List<Ingredient> lastShownList = expectedModel.getFilteredIngredientList();
         for (Ingredient i : lastShownList) {
-            ingredientList += i.toString() + lineSeparator;
+            ingredientList += LINE_SEPARATOR + i.toString() + AMOUNT_NEEDED_WHEN_RESTOCK;
+            ingredientList += i.amountNeededToReachRestockLevel() + LINE_SEPARATOR;
         }
         assertCommandSuccess(standardCommand, model,
                 IngredientRestockCommand.MESSAGE_SUCCESS + ingredientList, expectedModel);

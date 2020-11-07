@@ -8,7 +8,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.ingredient.Ingredient;
-import seedu.address.model.ingredient.IngredientName;
 import seedu.address.model.person.Person;
 
 /**
@@ -124,8 +123,6 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
-    boolean hasIngredient(Ingredient ingredient);
-
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -152,8 +149,6 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     void setIngredient(Ingredient target, Ingredient newAmount);
-
-    Ingredient findIngredientByName(IngredientName ingredientName);
 
     /**
      * Returns an ArrayList of ingredients that are in shortage. If

@@ -28,7 +28,7 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
-        headerPersonList.setText("Employee Directory:");
+        headerPersonList.setText("Employee Directory");
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
