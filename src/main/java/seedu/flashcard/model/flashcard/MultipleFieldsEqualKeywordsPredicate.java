@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Flashcard}'s {@code Category, Rating, isFavourite, Tags} matches any of the keywords given.
  */
-public class MultipleFieldsEqualsKeywordsPredicate implements Predicate<Flashcard> {
+public class MultipleFieldsEqualKeywordsPredicate implements Predicate<Flashcard> {
     private final CategoryEqualsKeywordsPredicate categoryPredicate;
     private final RatingEqualsKeywordsPredicate ratingPredicate;
     private final FavouriteEqualsKeywordsPredicate favouritePredicate;
@@ -19,10 +19,10 @@ public class MultipleFieldsEqualsKeywordsPredicate implements Predicate<Flashcar
      * Creates MultipleFieldsEqualsKeywordsPredicate that contains specific predicates for category, rating
      * favourite and tags.
      */
-    public MultipleFieldsEqualsKeywordsPredicate(CategoryEqualsKeywordsPredicate categoryPredicate,
-                                                 RatingEqualsKeywordsPredicate ratingPredicate,
-                                                 FavouriteEqualsKeywordsPredicate favouritePredicate,
-                                                 TagsEqualKeywordsPredicate tagsPredicate) {
+    public MultipleFieldsEqualKeywordsPredicate(CategoryEqualsKeywordsPredicate categoryPredicate,
+                                                RatingEqualsKeywordsPredicate ratingPredicate,
+                                                FavouriteEqualsKeywordsPredicate favouritePredicate,
+                                                TagsEqualKeywordsPredicate tagsPredicate) {
         this.categoryPredicate = categoryPredicate;
         this.ratingPredicate = ratingPredicate;
         this.favouritePredicate = favouritePredicate;
@@ -56,12 +56,14 @@ public class MultipleFieldsEqualsKeywordsPredicate implements Predicate<Flashcar
 
     @Override
     public boolean equals(Object other) {
+        boolean isEqualsToOther = (other instanceof MultipleFieldsEqualKeywordsPredicate // instanceof handles nulls
+                && categoryPredicate.equals(((MultipleFieldsEqualKeywordsPredicate) other).categoryPredicate)
+                && ratingPredicate.equals(((MultipleFieldsEqualKeywordsPredicate) other).ratingPredicate)
+                && favouritePredicate.equals(((MultipleFieldsEqualKeywordsPredicate) other).favouritePredicate)
+                && tagsPredicate.equals(((MultipleFieldsEqualKeywordsPredicate) other).tagsPredicate));
+
         return other == this // short circuit if same object
-                || (other instanceof MultipleFieldsEqualsKeywordsPredicate // instanceof handles nulls
-                && categoryPredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).categoryPredicate)
-                && ratingPredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).ratingPredicate)
-                && favouritePredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).favouritePredicate)
-                && tagsPredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).tagsPredicate));
+                || isEqualsToOther;
     }
 
 }
