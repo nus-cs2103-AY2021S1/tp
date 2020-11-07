@@ -80,13 +80,5 @@ public class CalculateCapCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof CalculateCapCommand); // instanceof handles nulls
     }
-    /**
-     * Indicates if the application session has ended.
-     *
-     * @return False since the sessions has not been terminated.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
+
 }

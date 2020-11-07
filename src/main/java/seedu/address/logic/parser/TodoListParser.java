@@ -61,13 +61,13 @@ public class TodoListParser implements FeatureParser {
             return new DeleteTaskParser().parse(arguments);
 
         case ClearTaskCommand.COMMAND_WORD:
-            return new ClearTaskCommand();
+            return singleWordCommandsChecker(ClearTaskCommand.COMMAND_WORD, arguments);
 
         case FindTaskCommand.COMMAND_WORD:
             return new FindTaskParser().parse(arguments);
 
         case ListTaskCommand.COMMAND_WORD:
-            return new ListTaskCommand();
+            return singleWordCommandsChecker(ListTaskCommand.COMMAND_WORD, arguments);
 
         case SortTaskCommand.COMMAND_WORD:
             return new SortTaskParser().parse(arguments);
@@ -78,17 +78,34 @@ public class TodoListParser implements FeatureParser {
         case CompleteTaskCommand.COMMAND_WORD:
             return new CompleteTaskParser().parse(arguments);
 
-        //case ExitCommand.COMMAND_WORD:
-        //return new ExitCommand();
-
         case HelpTaskCommand.COMMAND_WORD:
-            return new HelpTaskCommand();
+            return singleWordCommandsChecker(HelpTaskCommand.COMMAND_WORD, arguments);
 
         case ViewTaskCommand.COMMAND_WORD:
             return new ViewTaskParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    private Command singleWordCommandsChecker(String commandWord, String argument) throws ParseException {
+        if (!argument.equals("")) {
+            throw new ParseException("Invalid input format, extra string after the command word.");
+        }
+
+        switch (commandWord) {
+        case ClearTaskCommand.COMMAND_WORD:
+            return new ClearTaskCommand();
+
+        case ListTaskCommand.COMMAND_WORD:
+            return new ListTaskCommand();
+
+        case HelpTaskCommand.COMMAND_WORD:
+            return new HelpTaskCommand();
+
+        default:
+            throw new ParseException("Invalid command");
         }
     }
 }

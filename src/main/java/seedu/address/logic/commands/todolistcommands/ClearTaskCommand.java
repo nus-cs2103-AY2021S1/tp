@@ -22,8 +22,4 @@ public class ClearTaskCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

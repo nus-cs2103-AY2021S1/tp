@@ -45,7 +45,7 @@ public class UnarchiveModuleCommand extends Command {
         Module moduleToUnarchive = lastShownList.get(targetIndex.getZeroBased());
         model.unarchiveModule(moduleToUnarchive);
         model.commitModuleList();
-        return new CommandResult(String.format(MESSAGE_UNARCHIVE_MODULE_SUCCESS, moduleToUnarchive.getName()));
+        return new CommandResult(String.format(MESSAGE_UNARCHIVE_MODULE_SUCCESS, moduleToUnarchive));
     }
 
     @Override
@@ -55,8 +55,4 @@ public class UnarchiveModuleCommand extends Command {
                 && targetIndex.equals(((UnarchiveModuleCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

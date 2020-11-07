@@ -57,8 +57,4 @@ public class CompleteTaskCommand extends Command {
             && targetIndex.equals(((CompleteTaskCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

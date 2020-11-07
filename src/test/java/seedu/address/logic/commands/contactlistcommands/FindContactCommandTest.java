@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.ALICE;
-import static seedu.address.testutil.TypicalContacts.BENSON;
-import static seedu.address.testutil.TypicalContacts.CARL;
-import static seedu.address.testutil.TypicalContacts.DANIEL;
-import static seedu.address.testutil.TypicalContacts.ELLE;
-import static seedu.address.testutil.TypicalContacts.FIONA;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
+import static seedu.address.testutil.contact.TypicalContacts.ALICE;
+import static seedu.address.testutil.contact.TypicalContacts.BENSON;
+import static seedu.address.testutil.contact.TypicalContacts.CARL;
+import static seedu.address.testutil.contact.TypicalContacts.DANIEL;
+import static seedu.address.testutil.contact.TypicalContacts.ELLE;
+import static seedu.address.testutil.contact.TypicalContacts.FIONA;
+import static seedu.address.testutil.contact.TypicalContacts.getTypicalContactList;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,7 +31,7 @@ import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
 import seedu.address.model.contact.FindContactCriteria;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.testutil.FindContactCriteriaBuilder;
+import seedu.address.testutil.contact.FindContactCriteriaBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindContactCommand}.
