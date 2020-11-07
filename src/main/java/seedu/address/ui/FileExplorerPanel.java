@@ -44,6 +44,8 @@ public class FileExplorerPanel extends UiPart<Region> {
      * @param fileList the list of children files
      */
     public void setData(CurrentPath currentPath, ObservableList<File> fileList) {
+        assert currentPath != null;
+
         this.currentPath = currentPath;
         fileListView.setItems(fileList);
         fileListView.setCellFactory(listView -> new FileListViewCell());
