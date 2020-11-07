@@ -2,26 +2,62 @@
 layout: page
 title: User Guide
 ---
-
-<img src="images/tCheckLogo.png" width="200" height="200" />
-
-Welcome to the tCheck User Guide! Thank you for choosing tCheck, the most popular command-line milk tea shop management desktop application in the T-Sugar chain!
-
-tCheck offers an integrated system to efficiently manage a T-Sugar shop, by providing sales tracking, ingredient tracking and employees' contact management in one platform.
-
-This guide will help you to get started with tCheck, and provide useful tips along the way.
-
-
-
 * Table of Contents
-    * [About this document](#about-this-document)
+    * [Introduction](#introduction)
     * [Quick start](#quick-start)
+    * [About this document](#about-this-document)
     * [Features](#features)
         * [Commands - Sales Tracking](#commands-sales-tracking) 
         * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
         * [Commands - Contact details](#commands-contact-details)
         * [Commands - General](#commands-general)
     * [Command summary](#command-summary)
+
+## Introduction <a name="introduction"></a>
+<img src="images/tCheckLogo.png" width="200" height="200" />
+
+Welcome to the User Guide of **tCheck**!
+ 
+Are you a bubble tea store manager (from T-Sugar) looking to reduce your time spent on administrative work in store
+management? Look no further, as tCheck can assist you with these tasks.
+
+tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of 
+the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is an
+application optimized for the Command Line Interface (CLI); this means that you use this application by typing
+commands into a _Command Box_. If you are a fast typist, then you will be able to update and retrieve the
+information in tCheck more efficiently, as opposed to using other applications that requires a mouse.
+
+This User Guide will help you get started with tCheck and learn how to use the features that tCheck provides.
+You can start from the [Quick Start](#quick-start) section to learn how to obtain tCheck to begin managing
+ your store more efficiently.
+
+--------------------------------------------------------------------------------------------------------------------
+## Quick start <a name="quick-start"></a>
+
+1. Ensure you have Java `11` or above installed in your Computer.
+
+1. Download the latest `tCheck.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-2/tp/releases).
+
+1. Copy the file to the folder you want to use as the _home folder_ for your tCheck.
+
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+   * **`c-list`** : Lists all employees.
+
+   * **`c-add`**`n/John Doe p/98765432 e/81234567 t/parttime` : Adds an employee
+    named `John Doe` to tCheck.
+
+   * **`c-delete`**`3` : Deletes the 3rd employee shown in the current list.
+
+   * **`c-clear`** : Deletes all employees.
+
+   * **`exit`** : Exits the app.
+
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## About this document  <a name="about-this-document"></a>
@@ -37,35 +73,6 @@ that may come in handy when using tCheck!
 :information_source: 
 Notes describe certain features or behaviour that may
 not be so obvious!
-
---------------------------------------------------------------------------------------------------------------------
-
-## Quick start <a name="quick-start"></a>
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `tCheck.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-2/tp/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your tCheck.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/81234567 t/part time` : Adds an employee's contact
-    named `John Doe` to tCheck.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -290,7 +297,7 @@ An employee can have any number of tags (including 0)
 
 Examples:
 * `c-add n/John Doe p/98765432 e/81234567 a/Blk 123 ABC Road`.
-* `c-add n/Betsy Crowe e/81234567 p/1234567 a/Blk 120 ABC Road t/Friday t/PartTime`.
+* `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road t/Friday t/PartTime`.
 
 #### 3.2 Listing all employees : `c-list`
 
