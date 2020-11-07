@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import static seedu.address.model.task.Deadline.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.address.model.task.Time.TIME_DATE_TIME_FORMAT;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Time;
 
 /**
  * An UI component that displays information of a {@code Assignment}.
@@ -34,7 +34,7 @@ public class AssignmentCard extends UiPart<Region> {
     private static final String MEDIUM_PRIORITY_STYLE_CLASS = "medium-priority";
     private static final String LOW_PRIORITY_STYLE_CLASS = "low-priority";
     private static final String NONE_PRIORITY_STYLE_CLASS = "none-priority";
-    private static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+    private static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(TIME_DATE_TIME_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
 
     /**
@@ -173,7 +173,7 @@ public class AssignmentCard extends UiPart<Region> {
         styleClass.add(NONE_PRIORITY_STYLE_CLASS);
     }
 
-    public void getDueDate(Label label, Deadline deadline) {
+    public void getDueDate(Label label, Time deadline) {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime due = LocalDateTime.parse(deadline.value, inputFormat);
         String formattedDue = due.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));

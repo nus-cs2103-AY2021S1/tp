@@ -4,10 +4,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Time;
 
 /**
  * Represents an Assignment in ProductiveNus.
@@ -22,7 +22,7 @@ public class Assignment extends Task {
     /**
      * Every field must be present and not null.
      */
-    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode, Remind remind, Schedule schedule,
+    public Assignment(Name name, Time deadline, ModuleCode moduleCode, Remind remind, Schedule schedule,
                       Priority priority, Done done) {
         super(name, deadline, moduleCode);
         requireAllNonNull(name, deadline, moduleCode, remind);
@@ -36,7 +36,7 @@ public class Assignment extends Task {
         return schedule;
     }
 
-    public Deadline getDeadline() {
+    public Time getDeadline() {
         return super.getTime();
     }
 

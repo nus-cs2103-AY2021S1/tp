@@ -8,9 +8,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -76,14 +76,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
-        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        Time expectedDeadline = new Time(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
     }
 
     @Test
     public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
         String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
-        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        Time expectedDeadline = new Time(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
     }
 
