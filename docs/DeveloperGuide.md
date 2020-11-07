@@ -165,28 +165,31 @@ The following sequence diagram shows how the Add Open Ended Question mechanism w
 
 ### Add Flashcard with multiple choice question
 
-The Add Multiple Choice Question mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
+#### Implementation
+
+The Add Multiple Choice Question mechanism is facilitated by `QuickCache` . 
+The flashcard created is stored internally inside a `UniqueFlashcardList` within the `QuickCache` object.
+
+##### Usage
 
 Given below is an example usage scenario and how the addmcq mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
 
-Step 2. The user executes `addmcd q/ question ans/1 c/first choice c/second choice c/third choice... t/tag` command to add a flashcard with tag. The `addmcq` command will cause the addition of a flashcard with multiple choice question inside the QuickCache.
+Step 2. The user executes `addmcd q/question ans/1 c/first c/second` command to add a flashcard. This will result in the creation of a flashcard with an multiple choice question inside `QuickCache`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, QuickCache will not create the flashcard.
 </div>
 
-The following sequence diagram shows how the Addmcq operation works:
+The following sequence diagram shows how the Add Multiple Choice Question mechanism works:
 
 ![AddMcqSequenceDiagram](images/AddMcqSequenceDiagram.png)
 
-#### Design consideration:
+#### Design considerations:
 
-##### Aspect: How addmcq executes
-
-* **Alternative 1 (current choice):** Flashcard is saved upon creation inside the QuickCache.
+* **Current implementation:** Flashcard is saved upon creation inside the QuickCache.
   * Pros: Easy to implement and CLI-optimized.
-  * Cons: May be complicated as there will be too many fields in the `add` command.
+  * Cons: May be complicated in the future as there will be too many prefixes along with the `addmcq` command.
 
 ### Open Flashcard
 
