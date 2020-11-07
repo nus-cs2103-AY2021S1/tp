@@ -1,12 +1,8 @@
 package seedu.address.model.assignment;
 
-<<<<<<< HEAD
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.task.Deadline;
-=======
 import seedu.address.model.task.Time;
->>>>>>> 6bec7fb237fbbcccd3fab8fc49fd036c908fcd59
 
 public class Schedule {
     // message constraints occurs if saved data is modified wrongly
@@ -34,18 +30,14 @@ public class Schedule {
     /**
      * Constructs a suggested schedule
      */
-<<<<<<< HEAD
-    public Schedule(Deadline suggestedStartTime, Deadline suggestedEndTime) {
-        checkArgument(isValidSchedule(suggestedStartTime, suggestedEndTime), MESSAGE_CONSTRAINTS);
-=======
     public Schedule(Time suggestedStartTime, Time suggestedEndTime) {
->>>>>>> 6bec7fb237fbbcccd3fab8fc49fd036c908fcd59
+        checkArgument(isValidSchedule(suggestedStartTime, suggestedEndTime), MESSAGE_CONSTRAINTS);
         schedule = true;
         this.suggestedStartTime = suggestedStartTime;
         this.suggestedEndTime = suggestedEndTime;
     }
 
-    public boolean isValidSchedule(Deadline suggestedStartTime, Deadline suggestedEndTime) {
+    public boolean isValidSchedule(Time suggestedStartTime, Time suggestedEndTime) {
         return suggestedStartTime.isBefore(suggestedEndTime);
     }
 

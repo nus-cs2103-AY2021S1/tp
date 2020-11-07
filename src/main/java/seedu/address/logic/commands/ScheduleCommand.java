@@ -47,23 +47,15 @@ public class ScheduleCommand extends Command {
     private static final LocalTime WORKING_END_TIME = LocalTime.parse(END_TIME, DateTimeFormatter.ISO_TIME);
 
     private final Index targetIndex;
-<<<<<<< HEAD
-    private final Deadline doBefore;
-    private final Deadline doAfter;
-=======
     private final Time doBefore;
->>>>>>> 6bec7fb237fbbcccd3fab8fc49fd036c908fcd59
+    private final Time doAfter;
     private final int expectedHours;
 
     /**
      * Constructs a ScheduleCommand to set reminders to the specified assignment.
      * @param targetIndex index of the assignment in the filtered assignment list to edit
      */
-<<<<<<< HEAD
-    public ScheduleCommand(Index targetIndex, int expectedHours, Deadline doAfter, Deadline doBefore) {
-=======
-    public ScheduleCommand(Index targetIndex, int expectedHours, Time doBefore) {
->>>>>>> 6bec7fb237fbbcccd3fab8fc49fd036c908fcd59
+    public ScheduleCommand(Index targetIndex, int expectedHours, Time doAfter, Time doBefore) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
         this.doAfter = doAfter;

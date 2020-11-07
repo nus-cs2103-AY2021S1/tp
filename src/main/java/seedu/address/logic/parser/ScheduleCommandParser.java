@@ -37,12 +37,8 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE));
         }
 
-<<<<<<< HEAD
-        Deadline doAfter = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DO_AFTER).get());
-        Deadline doBefore = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DO_BEFORE).get());
-=======
+        Time doAfter = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DO_AFTER).get());
         Time doBefore = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DO_BEFORE).get());
->>>>>>> 6bec7fb237fbbcccd3fab8fc49fd036c908fcd59
         int expectedTime = ParserUtil.parseExpectedTime(argMultimap.getValue(PREFIX_EXPECTED_HOURS).get());
 
         if (doBefore.isBefore(doAfter)) {
