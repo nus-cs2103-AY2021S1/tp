@@ -71,7 +71,7 @@ public class DeleteFinanceCommandTest {
         showFinanceRecordAtIndex(model, INDEX_FIRST);
 
         Index outOfBoundIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of finance records list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFinanceAccount().getFinanceList().size());
 
         DeleteFinanceCommand deleteFinanceCommand = new DeleteFinanceCommand(outOfBoundIndex);
@@ -97,7 +97,7 @@ public class DeleteFinanceCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different finance record -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
