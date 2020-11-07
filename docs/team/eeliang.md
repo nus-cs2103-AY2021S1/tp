@@ -46,7 +46,7 @@ I helped my teammates with debugging of code and gives them constructive feedbac
 
 ### Contributions to Other Projects
 
-I helped review bugs for "" as part of the PE dry run, during which I reported about 15 errors ranging from simple UI suggestions to potential programme-breaking bugs.
+I helped review bugs for [Team W11-1](https://github.com/AY2021S1-CS2103T-W11-1/tp) as part of the PE dry run, during which I reported about 15 errors ranging from simple UI suggestions to potential programme-breaking bugs.
 
        
         
