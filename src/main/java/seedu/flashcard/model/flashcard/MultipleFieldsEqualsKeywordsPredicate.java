@@ -56,12 +56,14 @@ public class MultipleFieldsEqualsKeywordsPredicate implements Predicate<Flashcar
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof MultipleFieldsEqualsKeywordsPredicate // instanceof handles nulls
+        boolean isEqualsToOther = (other instanceof MultipleFieldsEqualsKeywordsPredicate // instanceof handles nulls
                 && categoryPredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).categoryPredicate)
                 && ratingPredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).ratingPredicate)
                 && favouritePredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).favouritePredicate)
                 && tagsPredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).tagsPredicate));
+
+        return other == this // short circuit if same object
+                || isEqualsToOther;
     }
 
 }

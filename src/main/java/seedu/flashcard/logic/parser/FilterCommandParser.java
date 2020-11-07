@@ -38,11 +38,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_RATING, PREFIX_FAV, PREFIX_TAG);
 
-        boolean noPrefixesPresent = !arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
+        boolean areNoPrefixesPresent = !arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
                 && !arePrefixesPresent(argMultimap, PREFIX_RATING)
                 && !arePrefixesPresent(argMultimap, PREFIX_FAV)
                 && !arePrefixesPresent(argMultimap, PREFIX_TAG);
-        if (noPrefixesPresent
+        if (areNoPrefixesPresent
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
