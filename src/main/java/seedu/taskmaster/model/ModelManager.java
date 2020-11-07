@@ -321,11 +321,11 @@ public class ModelManager implements Model {
 
     @Override
     public void showRandomStudent(Random random) {
-        filteredStudentRecords = new FilteredList<>(taskmaster.getStudentRecordList());
-        filteredStudentRecords.setPredicate(PREDICATE_SHOW_ALL_PRESENT_STUDENT_RECORDS);
+        FilteredList<StudentRecord> temp = new FilteredList<>(taskmaster.getStudentRecordList());
+        temp.setPredicate(PREDICATE_SHOW_ALL_PRESENT_STUDENT_RECORDS);
         try {
-            int index = random.nextInt(filteredStudentRecords.size());
-            StudentRecord randomRecord = filteredStudentRecords.get(index);
+            int index = random.nextInt(temp.size());
+            StudentRecord randomRecord = temp.get(index);
             updateFilteredStudentRecordList(new StudentRecordEqualsPredicate(randomRecord));
         } catch (IllegalArgumentException e) {
             throw new EmptySessionException();
