@@ -107,10 +107,11 @@ This section will give you some useful information about the various command for
 
 This section will help you understand the different fields you will see in [Features](#features). It gives an overview of what they are, how to specify them and any restrictions.
 
-#####General Notes about Input Fields:
+##### General Notes about Input Fields:
 * **Can be empty**  means you can specify the prefix but not pass a value.<br>eg. passing `r/` is valid.
 * **Cannot be empty** means you have to specify a value when you specify the prefix.<br>eg. passing `c/` is invalid.
 * All input fields should not contain other input prefixes. eg. passing in `What is c/?` as a `QUESTION` to `q/QUESTION` is not supported.
+<br>
 
 Input Field | Restrictions and how to specify
 -----------|-----------------------
