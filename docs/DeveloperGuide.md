@@ -251,7 +251,7 @@ The following describes the flow of how `ToggleStudentCardCommand` is performed.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: By default, `StudentListPanel` uses `StudentAcademicCard`.
+:information_source: By default, `StudentListPanel` uses the `StudentAcademicCard`.
 
 </div><br>
 
@@ -261,16 +261,16 @@ The following sequence diagram shows how the `ToggleStudentCardCommand` executio
 
 Figure \___. Sequence diagram for `ToggleStudentCardCommand` execution
 
-Design Considerations
+The following explains the design considerations of the `toggle` command.
 
-Aspect: How GUI respond when toggle is executed
+**Aspect: How the GUI responds when toggle is executed**
 
-* Alternative 1 (current choice): Switch between two types of student cards, `StudentAcademicCard` and `StudentAdminCard` for the cards used in `StudentListPanel`.
+* **Alternative 1 (current choice)**: Switch between two types of student cards, student academic card and student admin card for the cards used in the student list panel.
     * Pros: Easy to implement, reduces cluttering of information, allows for better focus on different information,.
-    * Cons: Can take a long time to execute finish or introduce unfinished toggling if `UniqueStudentList` is very large as `StudentListPanel#toggleState()` refreshes the entire list. 
+    * Cons: Can take a long time to execute finish or introduce unfinished toggling if student list is large.
     
-* Alternative 2: Introduce two tabs, one for admin details and the other for academic details and toggling switches between these two tabs.
-    * Pros: No worry when `UniqueStudentList` is large.
+* **Alternative 2**: Introduce two tabs, one for admin details and the other for academic details and toggling switches between these two tabs.
+    * Pros: Student list size does not slow down execution of command.
     * Cons: Double the work when executing commands such as `find` because there are now two lists to update, repeat of basic information such as student's name, phone, school and academic level, harder to implement.
     
     
@@ -491,6 +491,8 @@ The structure of exam commands is as shown below:
 
 ![ExamCommandClass](images/ExamCommandClassDiagram.png)
 
+Figure \___. Class diagram of exam commands.
+
 ##### 6.3.2.1 Add exam command
 
 The following describes the flow of how `AddExamCommand` is performed.
@@ -542,21 +544,22 @@ The following sequence diagram shows how the exam stats operation works.
 
 Figure \___. Sequence diagram for `ExamStatsCommand` execution
 
-
 The following activity diagram summarises the flow of events when `ExamStatsCommand` is executed.
 
 ![ExamStatsActivityDiagram](images/ExamStatsActivityDiagram.png)
 
 Figure \___. Activity diagram for `ExamStatsCommand` execution
 
-**Aspect: How GUI responds when exam stats is executed**
+The following explains the design considerations of the `exam stats` command.
+
+**Aspect: How the GUI responds when exam stats is executed**
 
 * **Alternative 1 (current choice)**: Open new window that displays exam statistics.
     * Pros: Easy to implement, allows for comparison and reference with student data, allows for multiple students' exam statistics to be opened, easy for users to understand.
     * Cons: Can be more taxing on processor if many windows are opened simultaneously 
     
-* **Alternative 2**: Switch from the displayed student list panel to an exam statistics panel (no need for multiple windows, all in one Reeve window).
-    * Pros: No worry of opening multiple windows which could introduce lag. 
+* **Alternative 2**: Switch from the displayed student list panel to an exam statistics panel.
+    * Pros: Only one window open at all time.
     * Cons: Unable to compare and reference with student data, harder to implement, can introduce confusion when trying to switch back to the student list panel.
 
 #### 6.3.3 Student attendance features
