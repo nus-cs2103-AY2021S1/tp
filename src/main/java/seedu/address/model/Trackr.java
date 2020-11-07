@@ -60,8 +60,8 @@ public class Trackr implements ReadOnlyTrackr<Module> {
     }
 
     /**
-     * Adds an object to Trackr.
-     * The object must not already exist in Trackr.
+     * Adds a Module to Trackr.
+     * The module must not already exist in Trackr.
      */
     public void addModule(Module object) {
         requireNonNull(object);
@@ -69,9 +69,9 @@ public class Trackr implements ReadOnlyTrackr<Module> {
     }
 
     /**
-     * Replaces the given object {@code target} in the list with {@code editedObject}.
+     * Replaces the given module {@code target} in the list with {@code editedModule}.
      * {@code target} must exist in Trackr.
-     * The identity of {@code editedObject} must not be the same as another existing object.
+     * The identity of {@code editedModule} must not be the same as another existing object.
      */
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
@@ -114,13 +114,9 @@ public class Trackr implements ReadOnlyTrackr<Module> {
             .removeTutorialGroup(tutorialGroupToDelete);
     }
 
-    public void setTutorialGroup(TutorialGroup target, TutorialGroup edited) {
+    public void setTutorialGroup(TutorialGroup target, TutorialGroup edited, Module currentModuleInView) {
         requireAllNonNull(target, edited);
-        for (Module module : moduleList) {
-            if (module.getUniqueTutorialGroupList().contains(target)) {
-                module.getUniqueTutorialGroupList().setTutorialGroup(target, edited);
-            }
-        }
+        currentModuleInView.getUniqueTutorialGroupList().setTutorialGroup(target, edited);
     }
 
     // Student Operations
@@ -149,6 +145,14 @@ public class Trackr implements ReadOnlyTrackr<Module> {
     @Override
     public ObservableList<Module> getList() {
         return moduleList.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Student> getStudentList(Module targetModule, TutorialGroup targetTg) {
+        return moduleList
+                .getUniqueTutorialGroupList(targetModule)
+                .getUniqueStudentList(targetTg)
+                .asUnmodifiableObservableList();
     }
 
     @Override

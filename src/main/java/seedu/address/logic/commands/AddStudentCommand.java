@@ -15,7 +15,7 @@ public class AddStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "addStudent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to Trackr. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Student to a Tutorial Group. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

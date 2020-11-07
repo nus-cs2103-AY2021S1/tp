@@ -11,10 +11,10 @@ public class ParticipationBelowCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows a new list of students whose participation score falls below the upper bound. " + "\n"
-            + "Parameters: UPPER_BOUND (must be a positive integer) "
+            + "Parameters: UPPER_BOUND (must be one positive integer) "
             + "Example: " + COMMAND_WORD + " 5 ";
 
-    public static final String MESSAGE_ATTENDANCE_BELOW_SUCCESS = "Here are the students whose "
+    public static final String MESSAGE_PARTICIPATION_BELOW_SUCCESS = "Here are the students whose "
             + "participation are below %s";
     public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";
 
@@ -39,7 +39,7 @@ public class ParticipationBelowCommand extends Command {
 
         model.updateFilteredStudentList(predicate);
         return new CommandResult(String.format(
-                MESSAGE_ATTENDANCE_BELOW_SUCCESS,
+                MESSAGE_PARTICIPATION_BELOW_SUCCESS,
                 upperBound)
         );
     }

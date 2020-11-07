@@ -45,7 +45,6 @@ public class PreviousViewCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ListModuleCommand); // instanceof handles nulls
+        return (other instanceof PreviousViewCommand); // instanceof handles nulls
     }
 }

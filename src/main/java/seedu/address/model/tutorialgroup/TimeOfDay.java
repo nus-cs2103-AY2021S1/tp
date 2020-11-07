@@ -13,9 +13,9 @@ import java.time.format.DateTimeParseException;
 public class TimeOfDay {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Time is supposed to take the form of 'HH:MM'";
+            "START_TIME and END_TIME are supposed to take the form of 'HH:MM'";
     public static final String TIME_CONSTRAINTS =
-            "Start time is supposed to be BEFORE End time";
+            "START_TIME is supposed to be BEFORE END_TIME";
 
 
     private final LocalTime time;

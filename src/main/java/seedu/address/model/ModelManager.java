@@ -88,13 +88,13 @@ public class ModelManager implements Model {
 
     @Override
     public Path getTrackrFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getModuleListFilePath();
     }
 
     @Override
     public void setTrackrFilePath(Path trackrFilePath) {
         requireNonNull(trackrFilePath);
-        userPrefs.setAddressBookFilePath(trackrFilePath);
+        userPrefs.setModuleListFilePath(trackrFilePath);
     }
 
     //=========== moduleList ================================================================================
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
 
     @Override
     public ReadOnlyTrackr<Module> getModuleList() {
-        return moduleList;
+        return new Trackr(moduleList);
     }
 
     //=========== Module Operations ================================================================================
@@ -203,7 +203,7 @@ public class ModelManager implements Model {
     @Override
     public void setTutorialGroup(TutorialGroup target, TutorialGroup edited) {
         requireAllNonNull(target, edited);
-        moduleList.setTutorialGroup(target, edited);
+        moduleList.setTutorialGroup(target, edited, currentModuleInView);
     }
 
     @Override
