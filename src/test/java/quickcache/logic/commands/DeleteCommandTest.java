@@ -122,7 +122,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, "with tags [invalid]");
 
         ModelManager expectedModel = new ModelManager(model.getQuickCache(), new UserPrefs());
-        expectedModel.updateFilteredFlashcardList(flashcard -> true);
+        expectedModel.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
 
         CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
         model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
