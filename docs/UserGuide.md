@@ -327,13 +327,13 @@ Finds all employees whose tags contain the one or more `KEYWORD(s)`.
 
 Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `Friday` will match `friday`.<br>
-* The order of the keywords does not matter. e.g. `monday friday` will match `monday friday`.<br>
+* The search is case-insensitive. For example, `Friday` will match `friday`.<br>
+* The order of the keywords does not matter. For example, `monday friday` will match `monday friday`.<br>
 * Only the tag names are searched.<br>
-* Only full words will be matched. e.g. `Fri` will not match `Friday`.<br>
+* Only full words will be matched. For example, `Fri` will not match `Friday`.<br>
 * Employees whose tag(s) matching at least one keyword will be listed in the Employee
- Directory inside the _Main View_ (i.e. `OR` search).  For example, `Monday Friday` will find employees whose tags
-  contain `Monday` or `Friday`.<br>
+ Directory inside the _Main View_ (i.e. `OR` search).  For example, `c-tag-find Monday Friday` will find employees whose
+  tags contain `Monday` or `Friday`.<br>
 
 <div markdown="span" class="alert alert-primary">
 
@@ -365,9 +365,9 @@ Finds employees whose tags contain today's day (i.e. `Wednesday`, `Thursday`, et
 
 Format: `c-today`
 
-* The search is case-insensitive (e.g `Friday` will match `friday`).<br>
+* The search is case-insensitive (e.g. `Friday` will match `friday`).<br>
 * The application will automatically get today's day based on the computer's current date.<br>
-* Only full words will be marched (e.g `Fri` will not match `Friday`).<br>
+* Only full words will be marched (e.g. `Fri` will not match `Friday`).<br>
 
 <div markdown="span" class="alert alert-primary">
 
@@ -404,9 +404,9 @@ Finds employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Thursday`,
 
 Format: `c-tomorrow`
 
-* The search is case-insensitive. e.g `Friday` will match `friday`.<br>
+* The search is case-insensitive. For example, `Friday` will match `friday`.<br>
 * The application will automatically get tomorrow's day based on the computer's current date.<br>
-* Only full words will be marched (e.g `Fri` will not match `Friday`).<br>
+* Only full words will be marched (e.g. `Fri` will not match `Friday`).<br>
 
 <div markdown="span" class="alert alert-primary">
 
@@ -467,8 +467,8 @@ Format: `c-archive INDEX`
 * The `INDEX` refers to the index number shown in the current Employee Directory inside the _Main View_.<br>
 * The `INDEX` **must be a positive integer** (e.g. 1, 2, 3, ...​).<br>
 * The `INDEX` **should not be larger than** the total number of employees listed in the current 
-_Employee Directory_ pane. (e.g. There are 2 employees listed in the current Employee Directory inside the _Main View_.
- The `INDEX` should be less or equal to 2.)<br>
+_Employee Directory_ pane. For example, there are 2 employees listed in the current Employee Directory inside the _Main
+ View_. The `INDEX` should be less or equal to 2.<br>
 
 <div markdown="span" class="alert alert-primary">
 
@@ -568,9 +568,8 @@ Format: `c-unarchive INDEX`
 * The `INDEX` refers to the index number shown in the current Employee Directory inside the _Main View_.<br>
 * The `INDEX` **must be a positive integer** (e.g. 1, 2, 3, ...​).<br>
 * The `INDEX` **should not be larger than** the total number of employees listed in the current
-Employee Directory inside the _Main View_. 
-(e.g. There are 2 employees listed in the current Employee Directory inside the _Main View_.
- The `INDEX`should be less or equal to 2.)<br>
+Employee Directory inside the _Main View_. For example, there are 2 employees listed in the current Employee
+ Directory inside the _Main View_. The `INDEX`should be less or equal to 2.<br>
 
 <div markdown="span" class="alert alert-primary">
 
