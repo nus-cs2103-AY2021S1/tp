@@ -9,7 +9,6 @@ import java.util.Set;
 
 import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
-import quickcache.logic.commands.AddMultipleChoiceQuestionCommand;
 import quickcache.logic.commands.EditCommand;
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Choice;
