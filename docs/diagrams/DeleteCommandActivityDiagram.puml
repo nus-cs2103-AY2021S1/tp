@@ -7,11 +7,11 @@ start
 if () then ([index > 0 and index is integer])
 :execute DeleteCommand;
 
-        if () then ([is invalid index])
-        :throw command exception;
-
-        else ([is valid index])
+        if () then ([is valid index])
         :item is deleted;
+
+        else ([is invalid index])
+        :throw command exception;
 
         endif
 
