@@ -338,7 +338,7 @@ Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 <div markdown="span" class="alert alert-primary">
 
 **:information_source: Note:**<br>
-* In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
+In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
 . You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
 tag(s) by editing employee's information feature (Refer to `c-edit` command).<br>
 
@@ -367,12 +367,12 @@ Format: `c-today`
 
 * The search is case-insensitive (e.g. `Friday` will match `friday`).<br>
 * The application will automatically get today's day based on the computer's current date.<br>
-* Only full words will be marched (e.g. `Fri` will not match `Friday`).<br>
+* Only full words will be matched (e.g. `Fri` will not match `Friday`).<br>
 
 <div markdown="span" class="alert alert-primary">
 
 **:information_source: Note:**<br>
-* In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
+In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
 . You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
 tag(s) by editing employee's information feature (Refer to `c-edit` command).<br>
 
@@ -482,7 +482,7 @@ If _Employee Directory_ currently shows a list of archived employees (archived e
 </div>
 
 Example:
-* Let's say one of your employees, Alex Yeoh, is no longer working in your bubble tea shop. But he may come back
+Let's say one of your employees, Alex Yeoh, is no longer working in your bubble tea shop. But he may come back
 to work again in the future. You, as a store manager, want to remove him from your employee directory without
 permanently deleting his information, so that you can retrieve/move back his information to your
 employee directory when he comes back to work again. In this case, you can follow these steps.
@@ -515,7 +515,7 @@ If _Employee Directory_ currently shows a list of archived employees (archived e
 </div>
 
 Example:
-* Let's say after you familiarize yourself with tCheck, you want to remove all sample data in employee directory. But
+Let's say after you familiarize yourself with tCheck, you want to remove all sample data in employee directory. But
  you don't want to permanently delete those data, so that you can use them as a reference in the future. In this case
  , you can follow these steps to archive all employees.
 
@@ -575,7 +575,7 @@ Employee Directory inside the _Main View_. For example, there are 2 employees li
 
 **:information_source: Notes about Employee Directory:**<br>
 
-* If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
+If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
  red color label, named as `[Archived]`, in front of their names. While employees in the active/unarchived employee list
   don't have this red label.), command `c-archive-list` needs to be used first to see a list of all your archived
   employees. Then, `c-unarchive INDEX` can be used to unarchive a specified
@@ -622,7 +622,7 @@ All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in
 <div markdown="span" class="alert alert-primary">
 
  **:information_source: Notes about data files:**<br>
- * User should not attempt to make any change in all data files.<br>
+User should not attempt to make any change in all data files.<br>
 
 </div>
 
