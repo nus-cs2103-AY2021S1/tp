@@ -18,6 +18,8 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.patient.Patient;
@@ -66,6 +68,8 @@ public class PatientCard extends UiPart<Region> {
     private Label visitHistory;
     @FXML
     private FlowPane allergies;
+    @FXML
+    private StackPane colorPane;
 
     /**
      * Creates a {@code PatientCode} with the given {@code Patient} and index to display.
@@ -100,7 +104,7 @@ public class PatientCard extends UiPart<Region> {
         patient.getAllergies().stream()
                 .sorted(Comparator.comparing(tag -> tag.allergyName))
                 .forEach(tag -> allergies.getChildren().add(new Label(tag.allergyName)));
-        cardPane.setStyle("-fx-background-color: " + patient.getColorTag().cssColor + ";");
+        colorPane.setStyle("-fx-background-color: " + patient.getColorTag().cssColor + ";");
     }
 
     private static void setupImageView(Image img, ImageView imgView) {
