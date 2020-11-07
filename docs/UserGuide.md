@@ -235,7 +235,7 @@ Example(s):
 
 Deletes the given tags from a contact.
 
-Format: `tag delete CONTACT_NAME t/TAG_NAMES...`
+Format: `tag delete CONTACT_NAME t/TAG_NAME...`
 
 Note(s)
 * Only 1 contact name can be used at a time but multiple tags can be deleted.
@@ -396,7 +396,7 @@ Copies email address of contacts with the given criteria to your clipboard.
 Format: `copy email [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 
 Note(s):
-* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields.
 * At least one of the optional fields must be provided.
 
 Example(s):
@@ -410,7 +410,7 @@ Copies phone numbers of contacts with the given criteria to your clipboard.
 Format: `copy phone [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 
 Note(s):
-* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields.
 * At least one of the optional fields must be provided.
 
 Example(s):
