@@ -5,7 +5,6 @@ import static com.eva.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 //import static com.eva.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 //import static com.eva.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 //import static com.eva.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static com.eva.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static com.eva.testutil.Assert.assertThrows;
 //import static com.eva.testutil.TypicalPersons.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,9 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import com.eva.commons.core.Messages;
-import com.eva.logic.commands.DeleteStaffCommand;
-import com.eva.logic.parser.DeleteStaffCommandParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
