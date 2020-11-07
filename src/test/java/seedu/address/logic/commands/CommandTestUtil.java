@@ -2,9 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHILD_PATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OLD_TAG_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -32,6 +34,7 @@ public class CommandTestUtil {
     public static final String VALID_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.bat";
     public static final String VALID_MAC_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.sh";
     public static final String VALID_MAC_FILE_ADDRESS_TESTFILE = "./src/test/java/seedu/address/testutil/testFile.sh";
+    public static final String VALID_CHILD_FOLDER = "src";
     public static final String VALID_LABEL = "testLabel";
     public static final String INVALID_LABEL = "@label";
 
@@ -41,6 +44,9 @@ public class CommandTestUtil {
     public static final String TAG_DESC_CS2101 = " " + PREFIX_TAG_NAME + VALID_TAG_NAME_CS2101;
     public static final String VALID_LABEL_DESC = " " + PREFIX_LABEL_NAME + VALID_LABEL;
 
+    public static final String VALID_CHILD_PATH = " " + PREFIX_CHILD_PATH + VALID_CHILD_FOLDER;
+    public static final String VALID_PARENT_PATH = " " + PREFIX_PARENT_PATH;
+    public static final String VALID_ABSOLUTE_PATH = " " + PREFIX_FILE_ADDRESS + USER_DIRECTORY_ADDRESS;
 
     public static final String FILE_ADDRESS_DESC_CS2103 = " " + PREFIX_FILE_ADDRESS + VALID_FILE_ADDRESS_CS2103;
     public static final String FILE_ADDRESS_DESC_CS2101 = " " + PREFIX_FILE_ADDRESS + VALID_FILE_ADDRESS_CS2101;

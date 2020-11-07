@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.AddressBookBuilder;
 
 /**
@@ -24,7 +25,7 @@ public class VersionedAddressBookTest {
 
     private final ReadOnlyAddressBook addressBookWithCS2101 = new AddressBookBuilder().withTag(CS2101).build();
     private final ReadOnlyAddressBook addressBookWithCS2103 = new AddressBookBuilder().withTag(CS2103).build();
-    private final ReadOnlyAddressBook emptyAddressBook = new AddressBookBuilder().build();
+    private final ReadOnlyAddressBook emptyAddressBook = SampleDataUtil.getSampleAddressBook();
 
     @Test
     public void commit_singleAddressBook_noStatesRemovedCurrentStateSaved() {
