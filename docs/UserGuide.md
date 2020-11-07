@@ -21,11 +21,11 @@ To navigate around this user guide, you may use the hyperlinks provided at the t
 
 1. `text in box` - represents a command, action, input, output or file
 
-1. **:information_source: Notes:** - represents noteworthy important information
+1. **:information_source: Notes:** - represents noteworthy information
 
 1. **:bulb: Tip:** - represents a useful tip
 
-1. **:warning: Important:** - represents important information
+1. **:warning: Important:** - represents important warnings
 
 ## Quick start
 
@@ -85,7 +85,7 @@ In this section, we will be looking at a series of commands that **Hospify** sup
   e.g `n/NAME [t/ALLERGIES]` can be used as `n/John Doe t/shellfish` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times (including zero times).<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/shellfish`, `t/shellfish t/grass` etc.
+  e.g. `[t/ALLERGIES]…​` can be used as ` ` (i.e. 0 times), `t/shellfish`, `t/shellfish t/grass` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME ic/ NRIC p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME ic/S1234567A` is also acceptable.
@@ -140,14 +140,16 @@ Let us summarise the information above to a single line of command in the follow
 
 Format: `add n/NAME ic/NRIC p/PHONE_NUMBER [e/EMAIL] a/ADDRESS mr/MEDICAL_RECORD_URL [t/ALLERGIES]…​`
 
-* The `NAME` and `ALLERGIES` field should contain alphanumeric characters.
+* The `NAME` (upper limit of 100 characters) and `ALLERGIES` (upper limit of 100 characters) field should contain alphanumeric characters.
 * The `NRIC` field should start with an alphabet, followed by 7 digits, before ending with another alphabet.
-* The `PHONE_NUMBER` field should contain a number that is at least 3 digits long.
+* The `PHONE_NUMBER` field should contain a number that is between 3 and 15 digits (inclusive) long.
 * The `EMAIL` field should contain a valid email address (for more information on email validity, please refer to the [Command Summary](#command-summary)).
-* The `ADDRESS` field can contain any word or number.
+* The `ADDRESS` (upper limit of 200 characters) field can contain any word or number.
 * The `MEDICAL_RECORD` field should contain a valid url (for more information on url validity, please refer to the [Command Summary](#command-summary)).
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
 A patient can have any number of allergies (including 0)
 </div>
 
@@ -184,7 +186,7 @@ Figure 4.2 Listing all patients
 
 Edits an existing patient in **Hospify**.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/ALLERGIES]…​`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -499,6 +501,8 @@ In the following example, we will be using [Google Docs](https://docs.google.com
 
 The example we have just discussed uses the `add` command. The usage of the `MEDICAL_RECORD_URL` field in `edit` works in the same way as described in the `add` example as well.
 
+Another method to access the online medical record of the patient directly (without the copy-and-paste mechanism) is shown in the `showMr` command section below.
+
 ### Clearing all entries: `clear`
 
 This command helps clear all patients' information from **Hospify**.
@@ -515,7 +519,7 @@ Figure 14.6 clear command result
 
 ### Exiting the program: `exit`
 
-Exits the program.
+You can exit the program by typing `exit` on the command line. Alternatively, you can close the window directly. Don't worry, either way, your data is automatically saved in the program!
 
 Format: `exit`
 
@@ -587,14 +591,14 @@ Action | Format, Examples
 * Valid email format
 
     * Emails should be of the format local-part@domain.topleveldomain
-    * The local-part should only contain alphanumeric characters or special characters including !#$%&'*+/=?`{}~^.-
-    * The domain should be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any
-    * The top level domain should be between 2 to 6 (inclusive) characters long and only contain alphabets<br>
+    * The local-part (upper limit of 64 characters) only contains alphanumeric characters or special characters including !#$%&'*+/=?`{}~^.-
+    * The domain should be between 2 and 256 characters long (inclusive), start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any
+    * The top level domain should be between 2 and 6 (inclusive) characters long and only contain alphabets<br>
     
 * Valid URL format
     
     * URL should be of the format (http:// or https://)(www.)domain.topleveldomain/path
     * The URL can start with `http://`, `https://`, `www.` or any of the first two paired with `www.`
-    * The domain should be between 2 to 256 characters long (inclusive) and should only contain alphanumeric characters or special characters including @:%._+~#?&=/
-    * The top level domain should be between 2 to 6 (inclusive) characters long and only contain alphabets
+    * The domain should be between 2 and 256 characters long (inclusive) and should only contain alphanumeric characters or special characters including @:%._+~#?&=/
+    * The top level domain should be between 2 and 6 (inclusive) characters long and only contain alphabets
     * The path follows the same rule as the domain except there is no restriction in its length
