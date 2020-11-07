@@ -1,7 +1,7 @@
 package seedu.address.commons.core;
 
 /**
- * Container for user visible error messages.
+ * Container for common and user visible error messages.
  */
 public class Messages {
     // invalid user inputs

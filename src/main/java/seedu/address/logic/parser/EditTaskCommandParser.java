@@ -54,13 +54,8 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
             }
         }
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
-        if (argMultimap.hasMultipleValues(PREFIX_TITLE)
-                || argMultimap.hasMultipleValues(PREFIX_DESCRIPTION)
-                || argMultimap.hasMultipleValues(PREFIX_TAG)
-                || argMultimap.hasMultipleValues(PREFIX_DATE)
-                || argMultimap.hasMultipleValues(PREFIX_DATE_TIME)
-                || argMultimap.hasMultipleValues(PREFIX_START_TIME)
-                || argMultimap.hasMultipleValues(PREFIX_END_TIME)) {
+        if (Parser.argMultimapHasRepeatedAttributes(argMultimap, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_TAG,
+                PREFIX_DATE, PREFIX_DATE_TIME, PREFIX_START_TIME, PREFIX_END_TIME)) {
             throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
         }
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {

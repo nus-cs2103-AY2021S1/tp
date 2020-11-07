@@ -36,11 +36,8 @@ public class DeadlineCommandParser implements Parser<DeadlineCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", DeadlineCommand.MESSAGE_USAGE));
         }
-
-        if (argMultimap.hasMultipleValues(PREFIX_TITLE)
-                || argMultimap.hasMultipleValues(PREFIX_DATE_TIME)
-                || argMultimap.hasMultipleValues(PREFIX_DESCRIPTION)
-                || argMultimap.hasMultipleValues(PREFIX_TAG)) {
+        if (Parser.argMultimapHasRepeatedAttributes(argMultimap, PREFIX_TITLE,
+                PREFIX_DATE_TIME, PREFIX_DESCRIPTION, PREFIX_TAG)) {
             throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
         }
         Description description = Description.defaultDescription();

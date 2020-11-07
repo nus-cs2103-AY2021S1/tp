@@ -49,7 +49,12 @@ public class CommandTestUtil {
     //valid lesson
     public static final String VALID_TITLE_CS2000 = "CS2000 Lecture";
     public static final String VALID_DESC_CS2000 = "Best lecture ever!";
+    public static final String VALID_DAY_CS2000 = "Monday";
     public static final String VALID_TAG_CS2000 = "CS2103T";
+    public static final String VALID_START_DATE_CS2000 = "01-12-2020";
+    public static final String VALID_END_DATE_CS2000 = "21-12-2020";
+    public static final String VALID_START_TIME_CS2000 = "10:00";
+    public static final String VALID_END_TIME_CS2000 = "12:00";
     public static final Lesson VALID_LESSON_CS2000 = new Lesson(new Title(VALID_TITLE_CS2000),
             new Tag(VALID_TAG_CS2000), new Description(VALID_DESC_CS2000), DayOfWeek.MONDAY,
             LocalTime.of(13, 0), LocalTime.of(14, 0),
@@ -113,7 +118,10 @@ public class CommandTestUtil {
     public static final String VALID_DATETIME_LAB = "01-01-2020 22:00";
     public static final String VALID_TAG_LAB = "CS2100";
     //valid deadline
+    public static final String VALID_TITLE_ESSAY = "submit essay for ES2660";
+    public static final String VALID_DESC_ESSAY = "2000 words!";
     public static final String VALID_DATETIME_ESSAY = "01-01-2020 23:59";
+    public static final String VALID_TAG_ESSAY = "ES2660";
     //invalid deadline
     public static final String INVALID_DATETIME_LAB = "01-13-2020 23:59";
 
@@ -123,7 +131,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -138,7 +146,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
