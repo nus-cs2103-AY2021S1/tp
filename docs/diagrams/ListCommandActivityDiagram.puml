@@ -8,7 +8,7 @@ if () then ([no extra arguments])
 
 :all item in the list is fetched;
 
-else ([extra argument is present])
+else ([include extra arguments])
     :throw parse exception;
 
 endif

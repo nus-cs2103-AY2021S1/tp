@@ -212,13 +212,7 @@ public class Recipe {
             for (int i = 0; i < len; i++) {
                 Instruction instruction = instructions.get(i);
                 String instrStr = instruction.toString();
-                int firstBracket = instrStr.indexOf(")");
-                instrStr = instrStr.substring(firstBracket + 1);
-                if (i == len - 1) {
-                    sb.append((i + 1) + ") " + instrStr);
-                } else {
-                    sb.append((i + 1) + ") " + instrStr + ". ");
-                }
+                sb.append(instrStr + ". ");
             }
             return sb.toString();
         }
