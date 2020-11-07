@@ -537,7 +537,7 @@ The following activity diagram shows how the reset all ingredients' levels opera
     * Pros: Clear implementation. Do not lead to creation of new ingredient objects.
     * Cons: Editing the ingredient level may be more error-prone.
 
-### \[Completed\] Archiving employee feature
+### \[Completed\] Archive employee(s) feature
 
 When employees are no longer working in the store, their information would usually be deleted, or kept in
 the archive. tCheck simulates this archive, storing these contact information in the app so that the user can still
@@ -573,7 +573,7 @@ In tCheck, each employee is modeled as `person` object. The archiving employee f
 
 Given below shows how the `c-archive`, `c-unarchive`, and `c-archive-all` mechanism works in steps based on different scenarios. Two activity diagrams are provided before each detailed explanation to describe how tCheck handles an archiving/unarchiving commands. Three sequence diagrams are attached after the description 
 
-##### 1. Archiving an employee
+##### 1. Archive an employee
 
 *Figure Archive-2. Activity diagram representation of the general flow of archiving of a peron in tCheck*
 
@@ -591,9 +591,13 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 ![Structure of the Storage Component](images/ArchiveSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommand`
+ should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 *Figure Archive-3. Sequence diagram representation of archiving an employee*
 
-##### 2. Unarchiving an employee
+##### 2. Unarchive an employee
 
 ![Structure of the Storage Component](images/UnarchiveActivityDiagram.png)
 
@@ -612,9 +616,13 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 ![Structure of the Storage Component](images/UnarchiveSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnarchiveCommand` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 *Figure Archive-5. Sequence diagram representation of unarchiving an employee*
 
-##### 3. Archiving all employees
+##### 3. Archive all employees
 User can archive all employees(employee is modeled as `person` in the code) by entering the `c-archive-all` command. The
  following steps describe how this behavior is implemented:
 
@@ -625,6 +633,10 @@ Step 2: For each `Person` in the observable 'PersonList', `ArchiveAllCommand` wi
 Step 3: The current `FilteredList` will be updated to only show the empty active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
 ![Structure of the Storage Component](images/ArchiveAllSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveAllCommand` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 *Figure Archive-6. Sequence diagram representation of archiving all employees*
 
