@@ -6,6 +6,7 @@ import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.CHOICE_DESC_CHOICE1;
 import static quickcache.logic.commands.CommandTestUtil.DIFFICULTY_DESC_LOW;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
+import static quickcache.logic.commands.CommandTestUtil.INVALID_CHOICE_DESC;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_THREE;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_TWO;
@@ -90,7 +91,7 @@ public class EditCommandParserTest {
             Question.MESSAGE_CONSTRAINTS);
 
         // empty choice option
-        assertParseFailure(parser, "1 c/", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + INVALID_CHOICE_DESC, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
