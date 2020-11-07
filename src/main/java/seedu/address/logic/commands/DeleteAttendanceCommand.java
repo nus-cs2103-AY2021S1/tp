@@ -29,6 +29,7 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
             + PREFIX_ATTENDANCE_DATE + "LESSON_DATE\n"
             + "Example: " + AttendanceCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
             + PREFIX_ATTENDANCE_DATE + "14/02/2020";
+
     public static final String MESSAGE_SUCCESS = "Attendance deleted for %s for the date of %s";
     public static final String MESSAGE_INVALID_ATTENDANCE_DATE = "There is no existing attendance for the entered date";
 

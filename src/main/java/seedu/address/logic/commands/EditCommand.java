@@ -95,28 +95,41 @@ public class EditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor, editAdminDescriptor);
 
-        boolean changesMadeToStudent = !studentToEdit.isSameStudent(editedStudent);
-        boolean modelContainsEditedStudent = model.hasStudent(editedStudent);
-        boolean duplicateStudentAdded = changesMadeToStudent && modelContainsEditedStudent;
-        if (duplicateStudentAdded) {
-            logger.log(Level.WARNING, "Duplicate student input error");
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
-        ClassTime studentToEditClassTime = studentToEdit.getAdmin().getClassTime();
-        ClassTime editedStudentClassTime = editedStudent.getAdmin().getClassTime();
-        boolean classTimeIsChanged = !(editedStudentClassTime.equals(studentToEditClassTime));
-        boolean modelContainsClashingClassTime = model.isClashingClassTime(editedStudent);
-        boolean newClassTimeIsClashing = classTimeIsChanged && modelContainsClashingClassTime;
-        if (newClassTimeIsClashing) {
-            logger.log(Level.WARNING, "Clashing class time input error");
-            throw new CommandException(Messages.MESSAGE_CLASHING_LESSON);
-        }
+        checkForDuplicateStudent(model, studentToEdit, editedStudent);
+        checkForClashingClassTime(model, studentToEdit, editedStudent);
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
+
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
+    }
+
+    private void checkForDuplicateStudent(Model model, Student studentToEdit, Student editedStudent)
+            throws CommandException {
+        boolean isChangesMadeToStudent = !studentToEdit.isSameStudent(editedStudent);
+        boolean isEditedStudentDuplicate = model.hasStudent(editedStudent);
+        boolean isDuplicateStudentAdded = isChangesMadeToStudent && isEditedStudentDuplicate;
+
+        if (isDuplicateStudentAdded) {
+            logger.log(Level.WARNING, "Duplicate student input error");
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+    }
+
+    private void checkForClashingClassTime(Model model, Student studentToEdit, Student editedStudent)
+            throws CommandException {
+        ClassTime studentToEditClassTime = studentToEdit.getAdmin().getClassTime();
+        ClassTime editedStudentClassTime = editedStudent.getAdmin().getClassTime();
+
+        boolean isClassTimeChanged = !(editedStudentClassTime.equals(studentToEditClassTime));
+        boolean isStudentTimeClashWithOthers = model.isClashingClassTime(editedStudent);
+        boolean isNewClassTimeClashing = isClassTimeChanged && isStudentTimeClashWithOthers;
+
+        if (isNewClassTimeClashing) {
+            logger.log(Level.WARNING, "Clashing class time input error");
+            throw new CommandException(Messages.MESSAGE_CLASHING_LESSON);
+        }
     }
 
     /**

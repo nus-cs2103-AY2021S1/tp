@@ -30,10 +30,12 @@ public class AddAttendanceCommand extends AttendanceCommand {
             + "Example: " + AttendanceCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
             + PREFIX_ATTENDANCE_DATE + "14/02/2020 " + PREFIX_ATTENDANCE_STATUS + "present "
             + PREFIX_ATTENDANCE_FEEDBACK + "attentive";
+
     public static final String MESSAGE_SUCCESS = "Attendance added for %s: %s";
     public static final String MESSAGE_INVALID_ATTENDANCE_DATE =
             "There is already an existing attendance for the entered date! Please use another date, or delete the "
             + "existing attendance before adding a new one.";
+
     private static Logger logger = Logger.getLogger("Add Attendance Log");
 
     private final Index index;

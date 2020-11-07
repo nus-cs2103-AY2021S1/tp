@@ -143,22 +143,6 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
-    @Test
-    public void execute_invalidClashingClassTime_failure() {
-        Index indexLastPerson = Index.fromOneBased(model.getSortedStudentList().size());
-        Student lastStudent = model.getSortedStudentList().get(indexLastPerson.getZeroBased());
-
-        String sameClassTime = lastStudent.getClassTime().convertClassTimeToUserInputString();
-
-        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder().build();
-        EditAdminDescriptor editAdminDescriptor = new EditAdminDescriptorBuilder()
-                .withTime(sameClassTime).build();
-        Index indexOfStudentToEdit = INDEX_FIRST_PERSON;
-        EditCommand editCommand = new EditCommand(indexOfStudentToEdit, editStudentDescriptor, editAdminDescriptor);
-
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_CLASHING_LESSON);
-    }
-
     /**
      * Edit filtered list where index is larger than size of filtered list,
      * but smaller than size of address book
