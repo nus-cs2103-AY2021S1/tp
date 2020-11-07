@@ -39,14 +39,14 @@ wholesome user experience.
 * **New Feature**: Added DailyCalorie classes and implemented its relevant implementations.
   * What it does: allows the user to track their daily calorie intake up to 7 days.
   * Justification: Calories is an important part of tracking your fitness and this implementation allows fitNUS to better help their users.
-  * Highlights: Calorie tracking is done on a daily basis because the team believes that users should not be able to change future or past calorie count.  Implementation was tricky as I wanted any calorie features to be isolated and be able to run by itself. This meant that the calorie classes had to use LocalDate to remove the dependency on the user. This increased the difficulty of testing and equality checks. 
+  * Highlights: Calorie tracking is done on a daily basis because the team believes that users should not be able to change future or past calorie count.  Implementation was tricky as I wanted any calorie features to be isolated and be able to run by itself. This meant that the calorie classes had to use LocalDate to remove the dependency on the user. This increased the difficulty of testing and equality checks.
 
 * **New Feature**: Implemented the graph for calorie tracking on the fitNUS GUI.
   * What it does: allows the user to track their daily calorie intake up to 7 days.
   * Justification: To appeal to the visual users of fitNUS to allow them to follow their progress using graphics.
-    * Highlights: Calorie tracking is done on a daily basis because the team believes that users should not be able to change future or past calorie count. It was difficult to learn the JavaFX for LineChart and implementing such that, it responds to user input of calories. I chose to implement the feature as an ObservableList of calorie entries for every day that the user has edited their calories. This way, the information of calories per day and which day its recording is encapsulated. This ObservableList is passed to the CalorieGraph class to translate into a Series and then plotted on the GUI.
+  * Highlights: Calorie tracking is done on a daily basis because the team believes that users should not be able to change future or past calorie count. It was difficult to learn the JavaFX for LineChart and implementing such that, it responds to user input of calories. I chose to implement the feature as an ObservableList of calorie entries for every day that the user has edited their calories. This way, the information of calories per day and which day its recording is encapsulated. This ObservableList is passed to the CalorieGraph class to translate into a Series and then plotted on the GUI.
   * Credits: Oracle document on LineChart, xAxis, yAxis and their tutorial.
-  
+
 * **New Feature**: Implemented the BMI display on GUI and Body class that supported it.
     * What it does: allows the user to input their height and weight, displaying their BMI.
     * Justification: body metrics are important in tracking your fitness journey, so we felt that it was essential to have this graphics on the GUI.
@@ -62,7 +62,7 @@ wholesome user experience.
   * Wrote test cases for Routine, UniqueRoutineList, DailyCalorie, CalorieLog, Body, Height and Weight and all the
   linked classes. [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195) [#194](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/194) [#193](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/193) [#199](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/199)
   * Disallow the input of repeated prefixes for all the classes in fitNUS where AB3 would take the latest prefix command to be accurate, now only allowing 1 prefix when appropriate.  [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195)
-  
+
 ## Contributions to the team-based tasks:
 
 * Set up assertions in Gradle for fitNUS. [#75](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/75)
