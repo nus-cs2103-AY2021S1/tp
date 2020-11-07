@@ -14,6 +14,8 @@ public class ListProjectsCommand extends Command {
 
     public static final String COMMAND_WORD = "listprojects";
 
+    public static final String MESSAGE_EXTRA_ARGS = "Please do not provide extra arguments after \""
+        + COMMAND_WORD + "\"";
     public static final String MESSAGE_SUCCESS = "Listed all projects";
 
 

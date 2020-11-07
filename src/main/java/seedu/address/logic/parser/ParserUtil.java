@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.ProjectDescription;
@@ -193,6 +194,23 @@ public class ParserUtil {
         }
         return trimmedTaskName;
     }
+
+    /**
+     * Parses searching keywords for task name.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code keywords} is invalid.
+     */
+    public static String[] parseTaskNameKeywords(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        if (trimmedKeywords.isEmpty()) {
+            throw new ParseException(TaskFilterCommand.MESSAGE_BLANK_KEYWORDS);
+        }
+        String[] taskNameKeywords = trimmedKeywords.split("\\s+");
+        return taskNameKeywords;
+    }
+
     /**
      * Parses a {@code String progress} into a {@code Double}.
      * Leading and trailing whitespaces will be trimmed.
