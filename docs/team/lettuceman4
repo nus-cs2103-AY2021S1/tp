@@ -6,7 +6,7 @@ title: Le Hue Man's Project Portfolio Page
 ## Project: Common Cents
 
 Common Cents is a desktop money-tracking application to help small business owners to organise their expenses. With Common Cents,
-a user can hold monetary information such as expenses and revenue in multiple accounts in which each account represents a business. 
+a user can hold monetary information such as expenses and revenue in multiple accounts in which each account represents a business.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
@@ -86,9 +86,3 @@ Given below are my contributions to the project.
   * **Added some details to `User stories` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#user-stories)
   * **Added details to `Appendix: Instructions for manual testing` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#appendix-instructions-for-manual-testing)
   * **Added prefaces for all headings**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html)
-
-  
-
-
-
-
