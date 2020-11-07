@@ -83,6 +83,8 @@ Important cautions that needs to be known before using the feature.
 
 --------------------------------------------------------------------------------------------------------------------
 # 3. User Interface Overview
+*(Written by Le Hue Man)*
+
 As you can see, **figure 3-1** below shows the default user interface (UI) of _Common Cents_ with its components.  
 ![annotatedUi](images/commands/annotatedUi.PNG)
 <p align="center"> <sub> <b>Figure 3-1</b>: Default user interface of <i>Common Cents</i> </sub> </p>
@@ -347,6 +349,7 @@ You can use this to make edits to any existing entries in the tracker when the d
 
 
 ### 5.2.4 Locating entries by description: `find`
+*(Written by Le Hue Man)*
 
 You can use this command to list expenses and/or revenues that have the given keyword(s) in their descriptions. This is 
 useful when you want to find some particular entries to [`delete`](#522-deleting-an-entry-delete) or [`edit`](#523-editing-an-entry-edit). 
@@ -706,8 +709,7 @@ message will be shown. For instance, the example above has both `c/expense` and 
 Please follow the format of the commands closely in the [Features](#5-features) section above!
 --------------------------------------------------------------------------------------------------------------------
 
-# 7. Command summary
-
+# 7. Command Summary
 The table below summarises the above commands in the order of appearance in this User Guide for your reference. 
 
 Action | Format

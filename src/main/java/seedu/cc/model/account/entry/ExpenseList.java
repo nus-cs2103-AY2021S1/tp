@@ -15,16 +15,16 @@ import seedu.cc.model.account.entry.exceptions.EntryNotFoundException;
  * Supports a minimal set of list operations.
  */
 public class ExpenseList implements Iterable<Expense> {
-    private final ObservableList<Expense> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Expense> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Expense> expenses = FXCollections.observableArrayList();
+    private final ObservableList<Expense> unmodifiedExpenses =
+            FXCollections.unmodifiableObservableList(expenses);
 
     /**
      * Returns true if the list contains an equivalent expense as the given argument.
      */
-    public boolean contains(Entry toCheck) {
+    public boolean contains(Expense toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return expenses.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -32,7 +32,7 @@ public class ExpenseList implements Iterable<Expense> {
      */
     public void add(Expense toAdd) {
         requireNonNull(toAdd);
-        internalList.add(toAdd);
+        expenses.add(toAdd);
     }
 
     /**
@@ -42,12 +42,12 @@ public class ExpenseList implements Iterable<Expense> {
     public void setExpense(Expense target, Expense editedExpense) {
         requireAllNonNull(target, editedExpense);
 
-        int index = internalList.indexOf(target);
+        int index = expenses.indexOf(target);
         if (index == -1) {
             throw new EntryNotFoundException();
         }
 
-        internalList.set(index, editedExpense);
+        expenses.set(index, editedExpense);
     }
 
     /**
@@ -56,14 +56,14 @@ public class ExpenseList implements Iterable<Expense> {
      */
     public void remove(Expense toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        if (!expenses.remove(toRemove)) {
             throw new EntryNotFoundException();
         }
     }
 
     public void setExpenses(ExpenseList replacement) {
         requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+        expenses.setAll(replacement.expenses);
     }
 
     /**
@@ -71,38 +71,38 @@ public class ExpenseList implements Iterable<Expense> {
      */
     public void setExpenses(List<Expense> expenses) {
         requireAllNonNull(expenses);
-        internalList.setAll(expenses);
+        this.expenses.setAll(expenses);
     }
 
     /**
      * Clears all contents of this list.
      */
     public void clearExpenses() {
-        internalList.clear();
+        expenses.clear();
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Expense> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        return unmodifiedExpenses;
     }
 
     @Override
     public Iterator<Expense> iterator() {
-        return internalList.iterator();
+        return expenses.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ExpenseList // instanceof handles nulls
-                && internalList.equals(((ExpenseList) other).internalList));
+                && expenses.equals(((ExpenseList) other).expenses));
     }
 
     @Override
     public int hashCode() {
-        return internalList.hashCode();
+        return expenses.hashCode();
     }
 
 }

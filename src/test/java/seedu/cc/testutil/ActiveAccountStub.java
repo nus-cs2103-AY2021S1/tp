@@ -8,7 +8,6 @@ import seedu.cc.model.account.Account;
 import seedu.cc.model.account.ActiveAccount;
 import seedu.cc.model.account.Name;
 import seedu.cc.model.account.ReadOnlyAccount;
-import seedu.cc.model.account.entry.Entry;
 import seedu.cc.model.account.entry.Expense;
 import seedu.cc.model.account.entry.Revenue;
 
@@ -51,11 +50,6 @@ public class ActiveAccountStub implements ActiveAccount {
     @Override
     public Account getAccount() {
         return null;
-    }
-
-    @Override
-    public boolean hasEntry(Entry entry) {
-        return false;
     }
 
     @Override
