@@ -133,6 +133,7 @@ public class GradeTracker implements ReadOnlyGradeTracker {
      * @return true if the assignment already exists
      */
     public boolean containsDuplicateAssignment(Assignment otherAssignment) {
+        requireNonNull(otherAssignment);
         for (Assignment eachAssignment : assignments) {
             if (eachAssignment.equals(otherAssignment)) {
                 return true;

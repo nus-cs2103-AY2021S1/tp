@@ -451,7 +451,7 @@ and the `DATE` to `2020-11-04`.
 
 Finds all tasks that fulfil all the provided search criteria.
 
-Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
+Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [s/STATUS] [t/TAG_KEYWORDS]`
 
  * The search is case-insensitive, e.g. `lab` will match `Lab`.
 
@@ -488,6 +488,14 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
      * You should only provide one search priority, i.e. `p/highest low` is not allowed.
 
      * Tasks with their priority matching the search priority exactly are considered to have fulfilled the task priority search criteria.
+   
+   * Status
+   
+     * Your search status should be one of the following: `completed`, `incomplete` (case-insensitive).
+     
+     * You should only provide one search status, i.e. `s/completed incomplete` is not allowed.
+     
+     * Tasks with their status matching the search status exactly are considered to have fulfilled the task status search criteria.
 
    * Tag
 
@@ -697,11 +705,11 @@ Examples:
  * Edits the contact at the specified `INDEX`. The index refers to the index number of the contact shown
    in the displayed contact list. The index **must be a positive integer** 1, 2, 3...
 
- * At least one of the contact fields must be provided
-
  * At least one of the optional fields must be provided.
 
  * Existing values will be updated to the input values.
+ 
+ * If the contact has an existing telegram field, you can remove it by typing `te/` without specifying any telegram field after it.
 
  * When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
 
@@ -713,6 +721,8 @@ Examples:
     `john` and `john@gmail.com` respectively.
 
   * `editcontact 2 n/Bob Abraham t/` Edits the name of the second contact to be `Bob Abraham` and clears all existing tags of the contact.
+  
+  * `editcontact 1 te/` Deletes the telegram field of the first contact.
 
 
 #### Deleting a contact: `deletecontact`

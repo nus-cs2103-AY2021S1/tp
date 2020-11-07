@@ -15,7 +15,6 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
@@ -146,16 +145,16 @@ public class MainApp extends Application {
             moduleListOptional = storage.readArchivedModuleList();
             if (!moduleListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ArchivedModuleList");
-                initialArchivedModuleList = new ArchivedModuleList();
+                initialArchivedModuleList = new ModuleList();
             } else {
                 initialArchivedModuleList = moduleListOptional.get();
             }
         } catch (DataConversionException ex) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ArchivedModuleList");
-            initialArchivedModuleList = new ArchivedModuleList();
+            initialArchivedModuleList = new ModuleList();
         } catch (IOException ex) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ArchivedModuleList");
-            initialArchivedModuleList = new ArchivedModuleList();
+            initialArchivedModuleList = new ModuleList();
         }
         return initialArchivedModuleList;
     }

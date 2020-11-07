@@ -21,11 +21,11 @@ public class FindTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "findtask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks which match all"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks which match all "
             + "the specified search parameters provided (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
             + "At least one of the following search parameters must be provided: \n"
-            + "Parameters: [n/TASK_NAME] [d/TASK_DATE] [p/TASK_PRIORITY] [t/TASK_TAG]...\n"
+            + "Parameters: [n/TASK_NAME] [d/TASK_DATE] [p/TASK_PRIORITY] [s/TASK_STATUS] [t/TASK_TAG]...\n"
             + "Example: " + COMMAND_WORD + " n/lab t/easy t/cs2103T";
 
     private final Logger logger = LogsCenter.getLogger(FindTaskCommand.class);

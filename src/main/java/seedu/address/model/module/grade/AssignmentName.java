@@ -31,8 +31,7 @@ public class AssignmentName {
      * Returns true if a given string is a valid assignment name.
      */
     public static boolean isValidAssignmentName(String test) {
-        //return test.matches(VALIDATION_REGEX);
-        return true;
+        return test.matches(VALIDATION_REGEX);
     }
 
 

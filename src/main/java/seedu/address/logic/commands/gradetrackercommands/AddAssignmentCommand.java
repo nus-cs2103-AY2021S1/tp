@@ -39,6 +39,8 @@ public class AddAssignmentCommand extends Command {
     public static final String MESSAGE_ASSIGNMENT_NOT_ADDED = "Module to add to not found.";
     public static final String MESSAGE_ASSIGNMENT_PERCENTAGE_THRESHOLD_EXCEEDED = "Adding this assignment would "
             + "exceed the total assignment percentage limit of " + GradeTracker.ASSIGNMENT_PERCENTAGE_TOTAL + "%";
+    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the gradetracker.";
+
 
     private final Logger logger = LogsCenter.getLogger(AddAssignmentCommand.class);
 
@@ -49,6 +51,7 @@ public class AddAssignmentCommand extends Command {
      * Creates an AddAssignmentCommand to add the specified {@code Assignment}
      */
     public AddAssignmentCommand(ModuleName moduleToAdd, Assignment assignment) {
+        requireNonNull(moduleToAdd);
         requireNonNull(assignment);
         logger.info("Adding an assignment: " + assignment.toString());
         this.moduleToAdd = moduleToAdd;
@@ -72,6 +75,10 @@ public class AddAssignmentCommand extends Command {
         if (module.getGradeTracker().exceedsAssignmentPercentageThreshold(assignmentToAdd)) {
             throw new CommandException(MESSAGE_ASSIGNMENT_PERCENTAGE_THRESHOLD_EXCEEDED);
         }
+        if (module.getGradeTracker().containsDuplicateAssignment(assignmentToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
+        }
+
         module.addAssignment(assignmentToAdd);
         logger.info("Assignment has been added: " + assignmentToAdd.toString());
         module.getGradeTracker().calculateNewGrade();
@@ -82,5 +89,23 @@ public class AddAssignmentCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddAssignmentCommand)) {
+            return false;
+        }
+
+        // state check
+        AddAssignmentCommand command = (AddAssignmentCommand) other;
+        return moduleToAdd.equals(command.moduleToAdd)
+                && assignmentToAdd.equals(command.assignmentToAdd);
     }
 }
