@@ -297,16 +297,10 @@ public class ParserUtil {
     public static Priority parseTaskPriority(String priority) throws ParseException {
         assert priority != null;
         String priorityAllUpperCase = priority.toUpperCase();
-        switch(priorityAllUpperCase) {
-        case("HIGH"):
-            return Priority.HIGH;
-        case("NORMAL"):
-            return Priority.NORMAL;
-        case("LOW"):
-            return Priority.LOW;
-        default:
+        if (!Priority.isValidPriority(priorityAllUpperCase)) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
+        return Priority.valueOf(priorityAllUpperCase);
     }
 
     /**

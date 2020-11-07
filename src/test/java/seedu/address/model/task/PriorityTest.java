@@ -19,32 +19,14 @@ public class PriorityTest {
         assertFalse(Priority.isValidPriority("$")); // only non-alphanumeric characters
         assertFalse(Priority.isValidPriority("peter*")); // contains non-alphanumeric characters
         assertFalse(Priority.isValidPriority("1234")); // contains all number
-        assertFalse(Priority.isValidPriority("h i g h")); // contains whitespaces in between
-        assertFalse(Priority.isValidPriority("hig h")); // contains one whitespace
-        assertFalse(Priority.isValidPriority(" high")); // contains whitespace in the front
-        assertFalse(Priority.isValidPriority("high ")); // contains trailing whitespace
+        assertFalse(Priority.isValidPriority("H I G H")); // contains whitespaces in between
+        assertFalse(Priority.isValidPriority("HIG H")); // contains one whitespace
+        assertFalse(Priority.isValidPriority(" HIGH")); // contains whitespace in the front
+        assertFalse(Priority.isValidPriority("HIGH ")); // contains trailing whitespace
 
         // valid Priority, all uppercase
         assertTrue(Priority.isValidPriority("HIGH"));
         assertTrue(Priority.isValidPriority("NORMAL"));
         assertTrue(Priority.isValidPriority("LOW"));
-
-        // valid Priority, all lowercase
-        assertTrue(Priority.isValidPriority("high"));
-        assertTrue(Priority.isValidPriority("normal"));
-        assertTrue(Priority.isValidPriority("low"));
-
-        // valid Priority, mixed
-        assertTrue(Priority.isValidPriority("High"));
-        assertTrue(Priority.isValidPriority("hIgH"));
-        assertTrue(Priority.isValidPriority("HiGh"));
-
-        assertTrue(Priority.isValidPriority("Normal"));
-        assertTrue(Priority.isValidPriority("nOrMaL"));
-        assertTrue(Priority.isValidPriority("NoRmAl"));
-
-        assertTrue(Priority.isValidPriority("Low"));
-        assertTrue(Priority.isValidPriority("lOw"));
-        assertTrue(Priority.isValidPriority("LoW"));
     }
 }

@@ -13,15 +13,13 @@ public enum Priority {
             + "HIGH, NORMAL, and LOW.";
 
     /**
-     * [method might be used in the future to improve SLAP in ParserUtil if needed]
      * Returns true if a given string is a valid priority.
      *
      * @param test given string
      * @return true if priority is valid
      */
     public static boolean isValidPriority(String test) {
-        String inputAllUpperCase = test.toUpperCase();
-        switch(inputAllUpperCase) {
+        switch(test) {
         case ("HIGH"):
         case ("NORMAL"):
         case ("LOW"):
