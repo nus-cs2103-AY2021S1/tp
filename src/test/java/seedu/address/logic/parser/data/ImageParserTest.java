@@ -19,14 +19,14 @@ public class ImageParserTest {
             "https:/onceuponachef.com/images/2019/07/Big-Italian-Salad.jpg";
     private static final String INVALID_LOCAL_IMAGE_STRING = "file:///invalidfilepath.jpg";
     private static final String DEFAULT_IMAGE_PATH = "images/default.jpg";
-    
+
     @Test
     public void parse_invalidPath_success() throws ParseException, IOException, URISyntaxException {
         RecipeImage expectedImage = new RecipeImage(DEFAULT_IMAGE_PATH);
         ImageParser imageParser = new ImageParser();
         Assertions.assertEquals(expectedImage, imageParser.parse(INVALID_URL_IMAGE_STRING));
     }
-    
+
     @Test
     public void parse_validSamplePath_success() throws ParseException, IOException, URISyntaxException {
         RecipeImage expectedImage = new RecipeImage("images/healthy1.jpg");
@@ -41,7 +41,7 @@ public class ImageParserTest {
         Assertions.assertEquals(expectedImage, imageParser.parse(VALID_LOCAL_IMAGE_STRING));
     }
 
-    
+
     @Test
     public void parse_validUrlDifferentComputers_failure() throws ParseException, IOException, URISyntaxException {
         RecipeImage expectedImage = new RecipeImage(
@@ -49,7 +49,6 @@ public class ImageParserTest {
         ImageParser imageParser = new ImageParser();
         Assertions.assertFalse(expectedImage.equals(imageParser.parse(VALID_URL_IMAGE_STRING)));
     }
-     
 
     @Test
     public void getPathsFromResourceJar_validPathDifferentComputer_failure() throws URISyntaxException, IOException {

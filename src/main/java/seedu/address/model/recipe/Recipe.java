@@ -137,6 +137,12 @@ public class Recipe {
                 && otherRecipe.getTags().equals(getTags());
     }
 
+    /**
+     * Returns true if both ingredient lists are the same.
+     * This defines a weaker notion of equality between two ingredient lists.
+     * This method is used to check for adding duplicate ingredients.
+     * @return boolean
+     */
     public boolean isSameIngredients(ArrayList<Ingredient> otherIngredients) {
         ArrayList<Ingredient> ingredients = getIngredient();
         if (ingredients.size() != otherIngredients.size()) {

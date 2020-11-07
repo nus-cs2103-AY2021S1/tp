@@ -1,11 +1,12 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.recipe.Instruction;
-
 import static seedu.address.storage.JsonAdaptedInstruction.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.recipe.Instruction;
 
 public class JsonAdaptedInstructionTest {
     @Test

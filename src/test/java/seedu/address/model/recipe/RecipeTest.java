@@ -2,21 +2,16 @@ package seedu.address.model.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARGARITAS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_SANDWICH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MARGARITAS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_MARGARITAS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SANDWICH;
 import static seedu.address.testutil.TypicalRecipes.MARGARITAS;
 import static seedu.address.testutil.TypicalRecipes.SANDWICH;
 
-import org.junit.jupiter.api.Assertions;
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.testutil.RecipeBuilder;
-
-import java.util.ArrayList;
 
 public class RecipeTest {
 
@@ -31,30 +26,33 @@ public class RecipeTest {
         // different ingredients -> returns false
         Recipe editedSandwich =
                 new RecipeBuilder(SANDWICH)
-                        .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_SANDWICH)
+                        .withIngredient(CommandTestUtil.VALID_INGREDIENT_MARGARITAS,
+                                CommandTestUtil.VALID_QUANTITY_SANDWICH)
                         .build();
         assertFalse(SANDWICH.isSameRecipeNameAndIngredientName(editedSandwich));
 
         // same ingredients and quantity -> returns true
         editedSandwich =
-                new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH)
+                new RecipeBuilder(SANDWICH).withIngredient(CommandTestUtil.VALID_INGREDIENT_SANDWICH,
+                        CommandTestUtil.VALID_QUANTITY_SANDWICH)
                         .build();
         assertTrue(SANDWICH.isSameRecipeNameAndIngredientName(editedSandwich));
 
         // same ingredients and diff quantity -> returns true
         editedSandwich =
-                new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_MARGARITAS)
+                new RecipeBuilder(SANDWICH).withIngredient(CommandTestUtil.VALID_INGREDIENT_SANDWICH,
+                        CommandTestUtil.VALID_QUANTITY_MARGARITAS)
                         .build();
         assertTrue(SANDWICH.isSameRecipeNameAndIngredientName(editedSandwich));
 
         // different ingredients and quantity -> returns false
         editedSandwich = new RecipeBuilder(SANDWICH)
-                .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS)
+                .withIngredient(CommandTestUtil.VALID_INGREDIENT_MARGARITAS, CommandTestUtil.VALID_QUANTITY_MARGARITAS)
                 .build();
         assertFalse(SANDWICH.isSameRecipeNameAndIngredientName(editedSandwich));
 
         // different name -> returns false
-        editedSandwich = new RecipeBuilder(SANDWICH).withName(VALID_NAME_MARGARITAS).build();
+        editedSandwich = new RecipeBuilder(SANDWICH).withName(CommandTestUtil.VALID_NAME_MARGARITAS).build();
         assertFalse(SANDWICH.isSameRecipeNameAndIngredientName(editedSandwich));
 
         // same name -> returns true
@@ -68,22 +66,6 @@ public class RecipeTest {
 
         editedSandwich.setDefaultImage();
         assertTrue(SANDWICH.isSameRecipeNameAndIngredientName(editedSandwich));
-        
-        // 
-        /*
-        // same name, same ingredients, different attributes -> returns true
-        editedSandwich = new RecipeBuilder(SANDWICH)
-                .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_SANDWICH)
-                .withCalories(VALID_CALORIES_MARGARITAS)
-                .build();
-        //assertTrue(SANDWICH.isSameRecipe(editedSandwich));
-
-        // same name, same ingredients, different attributes -> returns true
-        editedSandwich = new RecipeBuilder(SANDWICH)
-                .withCalories(VALID_CALORIES_MARGARITAS)
-                .build();
-        // assertTrue(SANDWICH.isSameRecipe(editedSandwich));
-        */
     }
 
     @Test
@@ -105,12 +87,12 @@ public class RecipeTest {
         assertFalse(SANDWICH.equals(MARGARITAS));
 
         // different name -> returns false
-        Recipe editedSandwich = new RecipeBuilder(SANDWICH).withName(VALID_NAME_MARGARITAS).build();
+        Recipe editedSandwich = new RecipeBuilder(SANDWICH).withName(CommandTestUtil.VALID_NAME_MARGARITAS).build();
         assertFalse(SANDWICH.equals(editedSandwich));
 
         // different ingredients -> returns false
         editedSandwich = new RecipeBuilder(SANDWICH)
-                .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_SANDWICH)
+                .withIngredient(CommandTestUtil.VALID_INGREDIENT_MARGARITAS, CommandTestUtil.VALID_QUANTITY_SANDWICH)
                 .build();
         assertFalse(SANDWICH.equals(editedSandwich));
 
@@ -119,7 +101,7 @@ public class RecipeTest {
     @Test
     public void isSameIngredient() {
         ArrayList<Ingredient> list = new ArrayList<>();
-        list.add(new Ingredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_SANDWICH));
+        list.add(new Ingredient(CommandTestUtil.VALID_INGREDIENT_MARGARITAS, CommandTestUtil.VALID_QUANTITY_SANDWICH));
         assertFalse(SANDWICH.isSameIngredients(list));
     }
 

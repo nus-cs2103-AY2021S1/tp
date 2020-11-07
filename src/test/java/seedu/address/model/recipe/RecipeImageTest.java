@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_SA
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.TypicalRecipes;
 
 public class RecipeImageTest {
@@ -38,7 +39,7 @@ public class RecipeImageTest {
         assertTrue(RecipeImage.isValidImage(
                 "https://cdn.cdnparenting.com/articles/2017/11/502828327-H-300x205.jpg")); //url
     }
-    
+
     @Test
     public void getImagePath() {
         String imagePath = VALID_RECIPE_IMAGE_SANDWICH;

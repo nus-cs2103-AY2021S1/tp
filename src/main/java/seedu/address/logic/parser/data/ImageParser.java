@@ -125,8 +125,6 @@ public class ImageParser {
                     .filter(Files::isRegularFile)
                     .collect(Collectors.toList());
         }
-
         return result;
-
     }
 }
