@@ -79,6 +79,10 @@ Figure 3. Sequence Diagram of delete-i 1 command
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 ### 3.2 UI component
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ItemListPanel`, `DeliveryListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
