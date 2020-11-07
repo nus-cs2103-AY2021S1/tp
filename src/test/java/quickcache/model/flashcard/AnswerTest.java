@@ -42,11 +42,31 @@ class AnswerTest {
         Answer answer2 = new Answer("Photosynthesis is good");
         Answer answerLowerCase = new Answer("photosynthesis is good");
 
+        // same object
+        assertTrue(answer1.checkAnswerIgnoreCase(answer1));
+
         // same answer
         assertTrue(answer1.checkAnswer(answer2));
 
         // different cased answer
-        assertTrue(answer1.checkAnswer(answerLowerCase));
+        assertFalse(answer1.checkAnswer(answerLowerCase));
+    }
+
+    @Test
+    public void checkAnswerIgnoreCase() {
+        // example answers
+        Answer answer1 = new Answer("Photosynthesis is good");
+        Answer answer2 = new Answer("Photosynthesis is good");
+        Answer answerLowerCase = new Answer("photosynthesis is good");
+
+        // same object
+        assertTrue(answer1.checkAnswerIgnoreCase(answer1));
+
+        // same answer
+        assertTrue(answer1.checkAnswerIgnoreCase(answer2));
+
+        // different cased answer
+        assertTrue(answer1.checkAnswerIgnoreCase(answerLowerCase));
     }
 
     @Test

@@ -45,13 +45,14 @@ public class Answer {
     }
 
     /**
-     * Lower cases the answer.
+     * Checks the given userAnswer with the correct answer.
+     * This is done by strictly comparing lower case string equality.
      *
-     * @param answer to be normalized.
-     * @return lower-cased answer.
+     * @param userAnswer the user's answer.
+     * @return true if the user's answer is equal to the actual answer.
      */
-    private String normalizeAnswer(String answer) {
-        return answer.toLowerCase();
+    public boolean checkAnswerIgnoreCase(Answer userAnswer) {
+        return this.value.toLowerCase().equals(userAnswer.getValue().toLowerCase());
     }
 
     /**
