@@ -1,16 +1,18 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DoneCommand;
-
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DURATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODEL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DURATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODEL;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DoneCommand;
+
 
 public class DoneCommandParserTest {
 
