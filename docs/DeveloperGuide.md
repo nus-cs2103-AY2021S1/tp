@@ -188,7 +188,11 @@ Predicate<Person> composedPredicate = predicate1.and(predicate2);
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-Coming soon.
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
