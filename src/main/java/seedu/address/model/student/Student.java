@@ -121,6 +121,13 @@ public class Student {
     }
 
     /**
+     * Returns true if the given student has a lesson time that clashes with this student.
+     */
+    public boolean hasClashingClassTimeWith(Student otherStudent) {
+        return admin.hasClashingClassTime(otherStudent.admin);
+    }
+
+    /**
      * Returns true if both student have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */
@@ -170,6 +177,10 @@ public class Student {
     }
 
     //==============QUESTION OPERATIONS==============//
+
+    /**
+     * Returns true if there is an existing {@code Question} in the question list that has the same question.
+     */
     public boolean containsQuestion(Question question) {
         return academic.containsQuestion(question);
     }
@@ -207,6 +218,15 @@ public class Student {
         requireNonNull(target);
 
         return new Student(name, phone, school, year, admin, academic.deleteQuestion(target));
+    }
+
+    //==============ATTENDANCE OPERATIONS==============//
+
+    /**
+     * Returns true if there is an existing {@code Attendance} in the attendance list that shares the same date.
+     */
+    public boolean containsAttendance(Attendance attendance) {
+        return academic.containsAttendance(attendance);
     }
 
     //==============ADMIN ACCESSORS==============//

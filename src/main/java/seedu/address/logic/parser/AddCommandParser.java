@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.DateUtil.TODAY;
 import static seedu.address.logic.parser.CliSyntax.ALL_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.COMPULSORY_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
@@ -13,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.student.admin.Fee.FREE_OF_CHARGE;
-import static seedu.address.model.student.admin.PaymentDate.TODAY;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ import seedu.address.model.student.admin.PaymentDate;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddCommandParser extends PrefixDependentParser<AddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -49,7 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
 
-        if (!arePrefixesPresent(argMultimap, COMPULSORY_PREFIXES)
+        if (!areRequiredPrefixesPresent(argMultimap, COMPULSORY_PREFIXES)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }

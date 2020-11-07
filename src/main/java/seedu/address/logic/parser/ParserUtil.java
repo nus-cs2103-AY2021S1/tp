@@ -3,21 +3,17 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.AddExamCommand;
 import seedu.address.logic.commands.ScheduleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.notes.note.Description;
 import seedu.address.model.notes.note.Title;
-import seedu.address.model.schedule.LessonEvent;
 import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -212,7 +208,7 @@ public class ParserUtil {
     public static Detail parseDetail(String detail) throws ParseException {
         requireNonNull(detail);
         String trimmedDetail = detail.trim();
-        if (!Detail.isValidAdditionalDetail(trimmedDetail)) {
+        if (!Detail.isValidDetail(trimmedDetail)) {
             throw new ParseException(Detail.MESSAGE_CONSTRAINTS);
         }
         return new Detail(trimmedDetail);
@@ -221,11 +217,11 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> details} into a {@code List<Detail>}.
      */
-    public static List<Detail> parseDetails(Collection<String> additionalDetails)
+    public static List<Detail> parseDetails(Collection<String> details)
             throws ParseException {
-        requireNonNull(additionalDetails);
+        requireNonNull(details);
         final List<Detail> detailSet = new ArrayList<>();
-        for (String detail : additionalDetails) {
+        for (String detail : details) {
             detailSet.add(parseDetail(detail));
         }
         return detailSet;
@@ -262,9 +258,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String input} into a {@ScheduleViewMode}.
+     * Parses {@code String input} into a {@code ScheduleViewMode}.
      * Case of the input string is ignored.
-     * @throws ParseException when given input string is not one of the view mode.
+     *
+     * @throws ParseException if the given {@code string} is of a valid view mode.
      */
     public static ScheduleViewMode parseViewMode(String input) throws ParseException {
 
@@ -279,41 +276,19 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code dateToViewSchedule} into a LocalDate object.
+     * Parses a {@code String dateToViewSchedule} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException when input string does not follow the format
      */
     public static LocalDate parseViewDate(String dateToViewSchedule) throws ParseException {
         requireNonNull(dateToViewSchedule);
-        String dateView = dateToViewSchedule.trim();
-
-        Pattern pattern = Pattern.compile("(?<day>[0-9]{1,2})(/)(?<month>[0-9]{1,2})(/)(?<year>[0-9]{2}|[0-9]{4})");
-
-        Matcher matcher = pattern.matcher(dateView);
-
-        if (!matcher.matches()) {
-            throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_DATE);
-        }
         try {
-            return LocalDate.parse(dateView, LessonEvent.VIEW_DATE_FORMAT);
-        } catch (DateTimeParseException e) {
-            throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_DATE);
+            return parseDate(dateToViewSchedule);
+        } catch (ParseException e) {
+            throw new ParseException(ScheduleViewCommand.MESSAGE_CONSTRAINTS);
         }
 
-    }
-
-    /**
-     * Parses a {@code String examDate} into a {@code Exam} formatted {@code String}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code examDate} is invalid.
-     */
-    public static String parseExamDate(String examDate) throws ParseException {
-        requireNonNull(examDate);
-        String trimmedExamDate = examDate.trim();
-        if (!Exam.isValidDate(trimmedExamDate)) {
-            throw new ParseException(AddExamCommand.MESSAGE_EXAM_INVALID_DATE);
-        }
-        return trimmedExamDate;
     }
 
     /**
@@ -325,8 +300,8 @@ public class ParserUtil {
     public static String parseExamName(String examName) throws ParseException {
         requireNonNull(examName);
         String trimmedExamName = examName.trim();
-        if (trimmedExamName.isEmpty()) {
-            throw new ParseException(AddExamCommand.MESSAGE_EXAM_INVALID_NAME);
+        if (!Exam.isValidExamName(trimmedExamName)) {
+            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
         return trimmedExamName;
     }
@@ -347,31 +322,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String lessonDate} into a {@code Attendance} formatted {@code String}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String attendanceStatus} into a {@code boolean}.
+     * Leading and trailing whitespaces will be trimmed, and case is ignored.
      *
-     * @throws ParseException if the given {@code lessonDate} is invalid.
-     */
-    public static String parseAttendanceDate(String lessonDate) throws ParseException {
-        requireNonNull(lessonDate);
-        String trimmedLessonDate = lessonDate.trim();
-        if (!Attendance.isValidDate(trimmedLessonDate)) {
-            throw new ParseException(Attendance.DATE_CONSTRAINTS);
-        }
-        return trimmedLessonDate;
-    }
-
-    /**
-     * Parses a {@code String attendanceStatus} into a {@code Attendance} formatted {@code String}.
      * @throws ParseException if the given {@code attendanceStatus} is invalid.
      */
-    public static String parseAttendanceStatus(String attendanceStatus) throws ParseException {
+    public static boolean parseAttendanceStatus(String attendanceStatus) throws ParseException {
         requireNonNull(attendanceStatus);
         String formattedStatus = attendanceStatus.trim().toLowerCase();
-        if (!Attendance.isValidAttendanceStatus(formattedStatus)) {
+        if (!Attendance.isValidStatus(formattedStatus)) {
             throw new ParseException(Attendance.STATUS_CONSTRAINTS);
         }
-        return formattedStatus;
+        return formattedStatus.equals(Attendance.PRESENT_STATUS);
     }
 
     /**
@@ -387,6 +349,21 @@ public class ParserUtil {
             throw new ParseException(Feedback.MESSAGE_CONSTRAINTS);
         }
         return new Feedback(trimmedFeedback);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is not a valid date.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!DateUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(DateUtil.DATE_CONSTRAINTS);
+        }
+        return DateUtil.parseToDate(trimmedDate);
     }
 
 }

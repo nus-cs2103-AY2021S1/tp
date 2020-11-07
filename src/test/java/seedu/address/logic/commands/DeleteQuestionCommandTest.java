@@ -93,6 +93,7 @@ public class DeleteQuestionCommandTest {
         Student expected = deleteQuestion(questionIndex, clone);
         Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
         expectedModel.setStudent(clone, expected);
+        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
         String expectedMessage = String.format(MESSAGE_SUCCESS, expected.getName(), removed);

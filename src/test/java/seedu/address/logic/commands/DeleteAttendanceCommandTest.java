@@ -36,7 +36,7 @@ public class DeleteAttendanceCommandTest {
             .getAttendance().get(0).getLessonDate();
     private static final String USER_INPUT_DATE = model.getFilteredStudentList().get(0)
             .getAttendance().get(0).getUserInputDate();
-    private final Attendance validAttendance = new Attendance(USER_INPUT_DATE, "present",
+    private final Attendance validAttendance = new Attendance(TEST_DATE, true,
             new Feedback("sleepy"));
 
     @Test
@@ -106,6 +106,7 @@ public class DeleteAttendanceCommandTest {
 
         ModelManager expectedModel = new ModelManager(newModel.getReeve(), new UserPrefs(), newModel.getNotebook());
         expectedModel.setStudent(clone, expectedStudent);
+        showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
 
         assertCommandSuccess(command, newModel, expectedMessage, expectedModel);
     }
@@ -135,26 +136,26 @@ public class DeleteAttendanceCommandTest {
 
     @Test
     public void equals() {
-        DeleteAttendanceCommand deleteAdditionalDetailCommand =
+        DeleteAttendanceCommand deleteAttendanceCommand =
                 new DeleteAttendanceCommand(INDEX_FIRST_PERSON, TEST_DATE);
 
         // same object -> return true;
-        assertTrue(deleteAdditionalDetailCommand.equals(deleteAdditionalDetailCommand));
+        assertTrue(deleteAttendanceCommand.equals(deleteAttendanceCommand));
 
         // different object -> return false;
-        assertFalse(deleteAdditionalDetailCommand.equals("hello"));
+        assertFalse(deleteAttendanceCommand.equals("hello"));
 
         // same fields -> return true;
-        assertTrue(deleteAdditionalDetailCommand.equals(new DeleteAttendanceCommand(INDEX_FIRST_PERSON,
+        assertTrue(deleteAttendanceCommand.equals(new DeleteAttendanceCommand(INDEX_FIRST_PERSON,
                 TEST_DATE)));
 
         // different student index -> return false;
-        assertFalse(deleteAdditionalDetailCommand.equals(new DeleteAttendanceCommand(INDEX_SECOND_PERSON,
+        assertFalse(deleteAttendanceCommand.equals(new DeleteAttendanceCommand(INDEX_SECOND_PERSON,
                 TEST_DATE)));
 
         // different date -> return false;
         LocalDate altDate = TEST_DATE.plusDays(1);
-        assertFalse(deleteAdditionalDetailCommand.equals(new DeleteAttendanceCommand(INDEX_FIRST_PERSON,
+        assertFalse(deleteAttendanceCommand.equals(new DeleteAttendanceCommand(INDEX_FIRST_PERSON,
                 altDate)));
     }
 }

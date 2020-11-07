@@ -38,7 +38,7 @@ public class JsonAdaptedAdmin {
                             @JsonProperty("classTime") String classTime,
                             @JsonProperty("fee") String fee,
                             @JsonProperty("paymentDate") String paymentDate,
-                            @JsonProperty("additionalDetails") List<JsonAdaptedDetail> additionalDetails) {
+                            @JsonProperty("details") List<JsonAdaptedDetail> additionalDetails) {
         this.classVenue = classVenue;
         this.classTime = classTime;
         this.fee = fee;
@@ -55,7 +55,7 @@ public class JsonAdaptedAdmin {
         this.classVenue = student.getClassVenue().toString();
         this.classTime = student.getClassTime().convertClassTimeToUserInputString();
         this.fee = student.getFee().convertFeeToUserInputString();
-        this.paymentDate = student.getPaymentDate().convertPaymentDateToUserInputString();
+        this.paymentDate = student.getPaymentDate().getUserInputDate();
         additionalDetails.addAll(student.getDetails().stream()
                 .map(JsonAdaptedDetail::new)
                 .collect(Collectors.toList()));

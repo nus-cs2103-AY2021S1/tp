@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.EXAM_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EXAM_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EXAM_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATE_BOB;
@@ -41,7 +43,7 @@ public class ExamCommandParserTest {
         //all fields presents - single
         String userInput = ADD_EXAM_DESC + INDEX_SECOND_PERSON.getOneBased() + EXAM_DESC_AMY;
         AddExamCommand expectedCommand = new AddExamCommand(INDEX_SECOND_PERSON,
-                new Exam(VALID_EXAM_NAME_AMY, VALID_EXAM_DATE_AMY, new Score(VALID_EXAM_SCORE_AMY)));
+                new Exam(VALID_EXAM_NAME_AMY, EXAM_DATE_AMY, new Score(VALID_EXAM_SCORE_AMY)));
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -49,7 +51,7 @@ public class ExamCommandParserTest {
         userInput = ADD_EXAM_DESC + INDEX_SECOND_PERSON.getOneBased() + EXAM_DESC_AMY + " " + PREFIX_EXAM_NAME
                 + VALID_EXAM_NAME_BOB;
         expectedCommand = new AddExamCommand(INDEX_SECOND_PERSON,
-                new Exam(VALID_EXAM_NAME_BOB, VALID_EXAM_DATE_AMY, new Score(VALID_EXAM_SCORE_AMY)));
+                new Exam(VALID_EXAM_NAME_BOB, EXAM_DATE_AMY, new Score(VALID_EXAM_SCORE_AMY)));
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -57,7 +59,7 @@ public class ExamCommandParserTest {
         userInput = ADD_EXAM_DESC + INDEX_SECOND_PERSON.getOneBased() + EXAM_DESC_AMY + " " + PREFIX_EXAM_DATE
                 + VALID_EXAM_DATE_BOB;
         expectedCommand = new AddExamCommand(INDEX_SECOND_PERSON,
-                new Exam(VALID_EXAM_NAME_AMY, VALID_EXAM_DATE_BOB, new Score(VALID_EXAM_SCORE_AMY)));
+                new Exam(VALID_EXAM_NAME_AMY, EXAM_DATE_BOB, new Score(VALID_EXAM_SCORE_AMY)));
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -65,7 +67,7 @@ public class ExamCommandParserTest {
         userInput = ADD_EXAM_DESC + INDEX_SECOND_PERSON.getOneBased() + EXAM_DESC_AMY + " " + PREFIX_SCORE
                 + VALID_EXAM_SCORE_BOB;
         expectedCommand = new AddExamCommand(INDEX_SECOND_PERSON,
-                new Exam(VALID_EXAM_NAME_AMY, VALID_EXAM_DATE_AMY, new Score(VALID_EXAM_SCORE_BOB)));
+                new Exam(VALID_EXAM_NAME_AMY, EXAM_DATE_AMY, new Score(VALID_EXAM_SCORE_BOB)));
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

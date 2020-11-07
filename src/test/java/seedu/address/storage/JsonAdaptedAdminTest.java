@@ -28,7 +28,7 @@ public class JsonAdaptedAdminTest {
     private static final String VALID_CLASS_VENUE = BOB.getClassVenue().toString();
     private static final String VALID_CLASS_TIME = BOB.getClassTime().convertClassTimeToUserInputString();
     private static final String VALID_FEE = BOB.getFee().convertFeeToUserInputString();
-    private static final String VALID_PAYMENT_DATE = BOB.getPaymentDate().convertPaymentDateToUserInputString();
+    private static final String VALID_PAYMENT_DATE = BOB.getPaymentDate().getUserInputDate();
     private static final List<JsonAdaptedDetail> VALID_ADDITIONAL_DETAILS =
             BOB.getDetails().stream().map(JsonAdaptedDetail::new).collect(Collectors.toList());
 
@@ -105,7 +105,7 @@ public class JsonAdaptedAdminTest {
     }
 
     @Test
-    public void toModelType_invalidAdditionalDetails_throwsIllegalValueException() {
+    public void toModelType_invalidDetails_throwsIllegalValueException() {
 
         List<JsonAdaptedDetail> invalidDetails = new ArrayList<>(VALID_ADDITIONAL_DETAILS);
         invalidDetails.add(new JsonAdaptedDetail(INVALID_ADDITIONAL_DETAIL));

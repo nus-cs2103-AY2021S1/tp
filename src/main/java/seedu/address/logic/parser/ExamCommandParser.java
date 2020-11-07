@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
 import static seedu.address.logic.parser.ReeveParser.BASIC_COMMAND_FORMAT;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 
 import seedu.address.commons.core.index.Index;
@@ -24,7 +25,7 @@ import seedu.address.model.student.academic.exam.Score;
 /**
  * Parses input arguments and creates a new ExamCommand object.
  */
-public class ExamCommandParser implements Parser<ExamCommand> {
+public class ExamCommandParser extends PrefixDependentParser<ExamCommand> {
 
     private static final String ERROR_ADD_EXAM =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExamCommand.MESSAGE_USAGE);
@@ -75,7 +76,7 @@ public class ExamCommandParser implements Parser<ExamCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, EXAM_COMMAND_PREFIXES);
 
-        if (!arePrefixesPresent(argMultimap, EXAM_COMMAND_PREFIXES)) {
+        if (!areRequiredPrefixesPresent(argMultimap, EXAM_COMMAND_PREFIXES)) {
             throw new ParseException(ERROR_ADD_EXAM);
         }
 
@@ -88,7 +89,7 @@ public class ExamCommandParser implements Parser<ExamCommand> {
         }
 
         String examName = ParserUtil.parseExamName(argMultimap.getValue(PREFIX_EXAM_NAME).get());
-        String examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM_DATE).get());
+        LocalDate examDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_EXAM_DATE).get());
         Score score = ParserUtil.parseScore(argMultimap.getValue(PREFIX_SCORE).get().trim());
 
         Exam exam = new Exam(examName, examDate, score);
@@ -104,7 +105,7 @@ public class ExamCommandParser implements Parser<ExamCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EXAM_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EXAM_INDEX)) {
+        if (!areRequiredPrefixesPresent(argMultimap, PREFIX_EXAM_INDEX)) {
             throw new ParseException(ERROR_DEL_EXAM);
         }
 

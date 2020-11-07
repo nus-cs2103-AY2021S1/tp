@@ -9,15 +9,15 @@
       "classTime": "5 1500-1700",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
-      "additionalDetails": ["owesMoney", "friends"]
+      "details": ["owesMoney", "friends"]
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       }],
@@ -46,15 +46,15 @@
       "classTime": "5 1500-1700",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
-      "additionalDetails": ["owesMoney", "friends"]
+      "details": ["owesMoney", "friends"]
     },
     "academic" : {
       "questions": [ {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       }],

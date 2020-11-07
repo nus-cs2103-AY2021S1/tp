@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotebook;
 
@@ -38,5 +41,19 @@ public class ExamStatsCommandTest {
         ExamStatsCommand command = new ExamStatsCommand(outOfBoundsStudentIndex);
 
         assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void equals() {
+        ExamStatsCommand testExamStatsCommand = new ExamStatsCommand(INDEX_FIRST_PERSON);
+
+        // same object -> return true;
+        assertTrue(testExamStatsCommand.equals(testExamStatsCommand));
+
+        // same index -> return true;
+        assertTrue(testExamStatsCommand.equals(new ExamStatsCommand(INDEX_FIRST_PERSON)));
+
+        // different index -> return false;
+        assertFalse(testExamStatsCommand.equals(new ExamStatsCommand(INDEX_SECOND_PERSON)));
     }
 }

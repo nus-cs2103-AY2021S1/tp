@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +38,6 @@ public class AddExamCommand extends ExamCommand {
 
     public static final String MESSAGE_EXAM_ADDED_SUCCESS = "New exam added to %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_EXAM = "%1$s already exists under %2$s";
-    public static final String MESSAGE_EXAM_INVALID_NAME = "Exam names should be should only contain "
-            + "alphanumeric characters and spaces, and it should not be blank";
-    public static final String MESSAGE_EXAM_INVALID_DATE = "Exam dates should be in the form dd/mm/yy, "
-            + "and should not be blank";
 
     private final Index index;
     private final Exam toAdd;
@@ -79,7 +74,6 @@ public class AddExamCommand extends ExamCommand {
                 selectedStudent.getSchool(), selectedStudent.getYear(), selectedStudent.getAdmin(),
                 selectedStudent.getQuestions(), exams, selectedStudent.getAttendance());
         model.setStudent(selectedStudent, updatedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EXAM_ADDED_SUCCESS, updatedStudent.getName(), toAdd));
     }
 

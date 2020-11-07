@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_FEEDBACK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
@@ -15,6 +18,8 @@ import static seedu.address.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.student.academic.Attendance;
+import seedu.address.model.student.academic.Feedback;
 import seedu.address.model.student.academic.question.SolvedQuestion;
 import seedu.address.model.student.academic.question.UnsolvedQuestion;
 import seedu.address.testutil.StudentBuilder;
@@ -141,6 +146,37 @@ public class StudentTest {
         newAlice = editedAlice.deleteQuestion(new SolvedQuestion(DEFAULT_QUESTION_MATH, DEFAULT_SOLUTION));
         assertNotEquals(editedAlice, newAlice);
         assertEquals(expected, newAlice);
+    }
+
+    @Test
+    public void containsAttendance() {
+        Feedback amyFeedback = new Feedback(VALID_ATTENDANCE_FEEDBACK_AMY);
+        Attendance standard = new Attendance(ATTENDANCE_DATE_AMY, true, amyFeedback);
+        Student aliceAcademic = new StudentBuilder(ALICE).withAttendances(standard).build();
+        assertTrue(aliceAcademic.containsAttendance(standard));
+
+        Attendance test = new Attendance(ATTENDANCE_DATE_AMY, false, amyFeedback);
+        assertTrue(aliceAcademic.containsAttendance(test));
+
+        test = new Attendance(ATTENDANCE_DATE_AMY, true);
+        assertTrue(aliceAcademic.containsAttendance(test));
+
+        test = new Attendance(ATTENDANCE_DATE_BOB, true, amyFeedback);
+        assertFalse(aliceAcademic.containsAttendance(test));
+    }
+
+    @Test
+    public void hasClashingClassTimeWith() {
+        // same class time
+        assertTrue(ALICE.hasClashingClassTimeWith(ALICE));
+
+        // clashes
+        Student test = new StudentBuilder(ALICE).withClassTime("5 1530-1800").build();
+        assertTrue(ALICE.hasClashingClassTimeWith(test));
+
+        // does not clash
+        test = new StudentBuilder(ALICE).withClassTime("3 1400-1500").build();
+        assertFalse(ALICE.hasClashingClassTimeWith(test));
     }
 
 }

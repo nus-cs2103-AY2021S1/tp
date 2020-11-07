@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.DateUtil.parseToDate;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_STATUS;
@@ -22,6 +23,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -123,12 +125,20 @@ public class CommandTestUtil {
             + PREFIX_EXAM_DATE + VALID_EXAM_DATE_BOB + " "
             + PREFIX_SCORE + VALID_EXAM_SCORE_BOB;
 
-    public static final String ATTENDANCE_DESC_AMY = " " + PREFIX_ATTENDANCE_DATE + VALID_ATTENDANCE_DATE_AMY + " "
+    public static final LocalDate EXAM_DATE_AMY = parseToDate(VALID_EXAM_DATE_AMY);
+    public static final LocalDate EXAM_DATE_BOB = parseToDate(VALID_EXAM_DATE_BOB);
+
+    public static final String ATTENDANCE_DESC_WITH_FEEDBACK_AMY = " "
+            + PREFIX_ATTENDANCE_DATE + VALID_ATTENDANCE_DATE_AMY + " "
             + PREFIX_ATTENDANCE_STATUS + VALID_ATTENDANCE_STATUS_AMY + " "
             + PREFIX_ATTENDANCE_FEEDBACK + VALID_ATTENDANCE_FEEDBACK_AMY;
+    public static final String ATTENDANCE_DESC_AMY = " " + PREFIX_ATTENDANCE_DATE + VALID_ATTENDANCE_DATE_AMY + " "
+            + PREFIX_ATTENDANCE_STATUS + VALID_ATTENDANCE_STATUS_AMY;
     public static final String ATTENDANCE_DESC_BOB = " " + PREFIX_ATTENDANCE_DATE + VALID_ATTENDANCE_DATE_BOB + " "
-            + PREFIX_ATTENDANCE_STATUS + VALID_ATTENDANCE_STATUS_BOB + " "
-            + PREFIX_ATTENDANCE_FEEDBACK + VALID_ATTENDANCE_FEEDBACK_BOB;
+            + PREFIX_ATTENDANCE_STATUS + VALID_ATTENDANCE_STATUS_BOB;
+
+    public static final LocalDate ATTENDANCE_DATE_AMY = parseToDate(VALID_ATTENDANCE_DATE_AMY);
+    public static final LocalDate ATTENDANCE_DATE_BOB = parseToDate(VALID_ATTENDANCE_DATE_BOB);
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -139,24 +149,6 @@ public class CommandTestUtil {
     public static final String INVALID_FEE_DESC = " " + PREFIX_FEE + "$20"; // '$' allowed for schools
     // 'alphabets' not allowed in payment date
     public static final String INVALID_PAYMENT_DESC = " " + PREFIX_PAYMENT + "alphabets";
-    // '*' not allowed in details
-    public static final String INVALID_ADDITIONAL_DETAIL_DESC = " " + PREFIX_DETAILS + "hubby*";
-    // empty string not allowed for exam names
-    public static final String INVALID_EXAM_NAME_DESC = " " + PREFIX_EXAM_NAME + " " + " "
-            + PREFIX_EXAM_DATE + VALID_EXAM_DATE_AMY + " "
-            + PREFIX_SCORE + VALID_EXAM_SCORE_AMY;
-    // 'alphabets' not allowed in exam date
-    public static final String INVALID_EXAM_DATE_DESC = " " + PREFIX_EXAM_NAME + VALID_EXAM_NAME_AMY + " "
-            + PREFIX_EXAM_DATE + "alphabets" + " "
-            + PREFIX_SCORE + VALID_EXAM_SCORE_AMY;
-    // first int of scores should be <= to second int
-    public static final String INVALID_EXAM_SCORE_DESC_MORE = " " + PREFIX_EXAM_NAME + VALID_EXAM_NAME_AMY + " "
-            + PREFIX_EXAM_DATE + VALID_EXAM_DATE_AMY + " "
-            + PREFIX_SCORE + "100/50";
-    // both ints of scores cannot not be negative
-    public static final String INVALID_EXAM_SCORE_DESC_NEGATIVE = " " + PREFIX_EXAM_NAME + VALID_EXAM_NAME_AMY + " "
-            + PREFIX_EXAM_DATE + VALID_EXAM_DATE_AMY + " "
-            + PREFIX_SCORE + "-50/-100";
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "BABABANBNANABBABABSNBA";
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION

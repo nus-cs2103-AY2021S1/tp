@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.address.commons.util.DateUtil.parseToDate;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -30,8 +31,9 @@ import seedu.address.testutil.StudentBuilder;
  * and unit tests for ExamCommand
  */
 public class AddExamCommandTest {
+
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNotebook());
-    private Exam dummyExam = new Exam("Mid Year 2020", "26/7/2020", new Score("26/50"));
+    private Exam dummyExam = new Exam("Mid Year 2020", parseToDate("26/7/2020"), new Score("26/50"));
 
     @Test
     public void constructors_null_throwsNullPointerException() {
@@ -98,6 +100,7 @@ public class AddExamCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
         expectedModel.setStudent(clone, expectedStudent);
+        showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
@@ -130,7 +133,7 @@ public class AddExamCommandTest {
         assertNotEquals(addExamCommand, new AddExamCommand(INDEX_SECOND_PERSON, dummyExam));
 
         // different exam -> return false;
-        Exam altExam = new Exam("Alt Exam", "12/12/2020", new Score("1/1"));
+        Exam altExam = new Exam("Alt Exam", parseToDate("12/12/2020"), new Score("1/1"));
         assertNotEquals(addExamCommand, new AddExamCommand(INDEX_FIRST_PERSON, altExam));
     }
 }
