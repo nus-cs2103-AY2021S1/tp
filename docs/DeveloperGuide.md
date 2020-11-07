@@ -162,7 +162,6 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Current Implementation
 
-The Add feature 
 The add feature is facilitated by `LogicManager` and `ModelManager`. The add command supports the following inputs from the user
 
 * `q/QUESTION`
