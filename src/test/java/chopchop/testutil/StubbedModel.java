@@ -119,6 +119,17 @@ public class StubbedModel extends chopchop.model.ModelStub {
         this.ingredients.remove(target);
     }
 
+    @Override
+    public void startEditingIngredients() {
+        this.ingredients.startEditing();
+    }
+
+    @Override
+    public void finishEditingIngredients() {
+        this.ingredients.finishEditing();
+    }
+
+
     // do nothing for these
     @Override
     public void addRecipeUsage(Recipe recipe) {

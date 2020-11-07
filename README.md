@@ -14,10 +14,12 @@ The project is implemented in Java with a command-oriented interface in a GUI co
 
 User guides and developer guides are also provided for users and developers to quickly get up to speed on the project.
 
-<br />
 The name “ChopChop” comes from a Cantonese phrase that means to “hurry up”, reflecting the speed in which users can use our application to manage their recipes. It’s also related to the act of chopping, a common action in the kitchen.
 
-<br />
 For the detailed documentation of this project, see the <a href="https://ay2021s1-cs2103t-t10-3.github.io/tp/"><b>Product Website</b></a>.
 
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+## License
+
+This project is licensed under the MIT license. It is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+Libraries used: JavaFX, JUnit, Jackson, Jfoenix
