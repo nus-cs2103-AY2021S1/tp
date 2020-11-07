@@ -15,16 +15,16 @@ import seedu.cc.model.account.entry.exceptions.EntryNotFoundException;
  * Supports a minimal set of list operations.
  */
 public class RevenueList implements Iterable<Revenue> {
-    private final ObservableList<Revenue> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Revenue> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Revenue> revenues = FXCollections.observableArrayList();
+    private final ObservableList<Revenue> unmodifiedRevenues =
+            FXCollections.unmodifiableObservableList(revenues);
 
     /**
      * Returns true if the list contains an equivalent revenue as the given argument.
      */
-    public boolean contains(Entry toCheck) {
+    public boolean contains(Revenue toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return revenues.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -32,7 +32,7 @@ public class RevenueList implements Iterable<Revenue> {
      */
     public void add(Revenue toAdd) {
         requireNonNull(toAdd);
-        internalList.add(toAdd);
+        revenues.add(toAdd);
     }
 
     /**
@@ -42,12 +42,12 @@ public class RevenueList implements Iterable<Revenue> {
     public void setRevenue(Revenue target, Revenue editedRevenue) {
         requireAllNonNull(target, editedRevenue);
 
-        int index = internalList.indexOf(target);
+        int index = revenues.indexOf(target);
         if (index == -1) {
             throw new EntryNotFoundException();
         }
 
-        internalList.set(index, editedRevenue);
+        revenues.set(index, editedRevenue);
     }
 
     /**
@@ -56,14 +56,14 @@ public class RevenueList implements Iterable<Revenue> {
      */
     public void remove(Revenue toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        if (!revenues.remove(toRemove)) {
             throw new EntryNotFoundException();
         }
     }
 
     public void setRevenues(RevenueList replacement) {
         requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+        revenues.setAll(replacement.revenues);
     }
 
     /**
@@ -71,38 +71,38 @@ public class RevenueList implements Iterable<Revenue> {
      */
     public void setRevenues(List<Revenue> revenues) {
         requireAllNonNull(revenues);
-        internalList.setAll(revenues);
+        this.revenues.setAll(revenues);
     }
 
     /**
      * Clears all contents of this list.
      */
     public void clearRevenues() {
-        internalList.clear();
+        revenues.clear();
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Revenue> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        return unmodifiedRevenues;
     }
 
     @Override
     public Iterator<Revenue> iterator() {
-        return internalList.iterator();
+        return revenues.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RevenueList // instanceof handles nulls
-                && internalList.equals(((RevenueList) other).internalList));
+                && revenues.equals(((RevenueList) other).revenues));
     }
 
     @Override
     public int hashCode() {
-        return internalList.hashCode();
+        return revenues.hashCode();
     }
 
 }
