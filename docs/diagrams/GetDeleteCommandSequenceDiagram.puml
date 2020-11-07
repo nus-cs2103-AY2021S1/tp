@@ -6,7 +6,6 @@ box Logic LOGIC_COLOR_T1
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
 participant "argMultimap:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
-participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant ":NameContainsKeywordsPredicate" as NameContainsKeywordsPredicate LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 end box
@@ -39,12 +38,6 @@ activate ArgumentMultimap
 
 ArgumentMultimap -> DeleteCommandParser : names
 deactivate ArgumentMultimap
-
-DeleteCommandParser -> ParserUtil : parseAllNames(names)
-activate ParserUtil
-
-ParserUtil --> DeleteCommandParser : nameSet
-deactivate ParserUtil
 
 create NameContainsKeywordsPredicate
 DeleteCommandParser -> NameContainsKeywordsPredicate
