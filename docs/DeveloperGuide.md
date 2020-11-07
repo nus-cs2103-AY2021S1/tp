@@ -970,17 +970,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding the sales of a drink item while all sales are being shown.
 
-    1. Prerequisites: List all sales using the `s-list` command. The full list of drinks sales will be shown.
+   1. Prerequisites: List all sales using the `s-list` command. The full list of drinks sales will be shown.
    
-    2. Test case: `s-find BSBBT`
-       Expected: BSBBT's sales data shown in the sales tracker panel.
+   2. Test case: `s-find BSBBT`<br>
+      Expected: BSBBT's sales data shown in the sales tracker panel.
       
-    3. Test case: `s-find BSBBT BSBM`
-       Expected: BSBBT's sales data and BSBM's sales data shown in the sales tracker panel.
+   3. Test case: `s-find BSBBT BSBM`<br>
+      Expected: BSBBT's sales data and BSBM's sales data shown in the sales tracker panel.
       
-    4. Test case: `s-find HUGB`
-       Expected: No drink's sales data shown in the sales tracker panel.
+   4. Test case: `s-find HUGB`<br>
+      Expected: No drink's sales data shown in the sales tracker panel.
    
-    5. Test case: `s-find`
-       Expected: Error details shown in the status message
-      
+   5. Test case: `s-find`<br>
+      Expected: Error details shown in the status message.
+
