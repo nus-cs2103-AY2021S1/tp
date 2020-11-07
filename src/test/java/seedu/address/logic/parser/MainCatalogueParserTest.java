@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.global.AddCommand;
 import seedu.address.logic.commands.global.ClearCommand;
 import seedu.address.logic.commands.global.DeleteCommand;
@@ -44,9 +45,12 @@ import seedu.address.logic.commands.global.ListProjectsCommand;
 import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AddTeammateCommand;
+import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.DeleteTaskCommand;
+import seedu.address.logic.commands.project.DeleteTeammateCommand;
+import seedu.address.logic.commands.project.DeleteTeammateParticipationCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.commands.project.TaskSorterCommand;
@@ -55,11 +59,13 @@ import seedu.address.logic.commands.project.ViewTeammateCommand;
 import seedu.address.logic.parser.exceptions.InvalidScopeException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Status;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.ProjectUtil;
@@ -75,6 +81,41 @@ public class MainCatalogueParserTest {
         Project project = new ProjectBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(ProjectUtil.getAddCommand(project), Status.PROJECT_LIST);
         assertEquals(new AddCommand(project), command);
+    }
+
+    @Test
+    public void parseCommand_addTeammate() throws Exception {
+        Person teammate = new PersonBuilder().build();
+        AddTeammateCommand command =
+            (AddTeammateCommand) parser.parseCommand(PersonUtil.getAddTeammateCommand(teammate), Status.PROJECT);
+        assertEquals(new AddTeammateCommand(teammate), command);
+    }
+
+    @Test
+    public void parseCommand_addPart() throws Exception {
+        GitUserIndex gitUserIndex = new GitUserIndex(VALID_TEAMMATE_GIT_USERNAME_A);
+        AddTeammateParticipationCommand command =
+            (AddTeammateParticipationCommand) parser.parseCommand(AddTeammateParticipationCommand.COMMAND_WORD
+                + " " + VALID_TEAMMATE_GIT_USERNAME_A, Status.PROJECT);
+        assertEquals(new AddTeammateParticipationCommand(gitUserIndex), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTeammate() throws Exception {
+        GitUserIndex gitUserIndex = new GitUserIndex(VALID_TEAMMATE_GIT_USERNAME_A);
+        DeleteTeammateCommand command =
+            (DeleteTeammateCommand) parser.parseCommand(DeleteTeammateCommand.COMMAND_WORD + " "
+                + VALID_TEAMMATE_GIT_USERNAME_A, Status.PROJECT);
+        assertEquals(new DeleteTeammateCommand(gitUserIndex), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTeammateParticipation() throws Exception {
+        GitUserIndex gitUserIndex = new GitUserIndex(VALID_TEAMMATE_GIT_USERNAME_A);
+        DeleteTeammateParticipationCommand command =
+            (DeleteTeammateParticipationCommand) parser.parseCommand(DeleteTeammateParticipationCommand
+                .COMMAND_WORD + " " + VALID_TEAMMATE_GIT_USERNAME_A, Status.PROJECT);
+        assertEquals(new DeleteTeammateParticipationCommand(gitUserIndex), command);
     }
 
     @Test
