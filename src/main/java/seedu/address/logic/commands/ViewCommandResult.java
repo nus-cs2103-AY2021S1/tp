@@ -7,7 +7,7 @@ import seedu.address.model.module.grade.Assignment;
 import seedu.address.ui.DisplayZoomLink;
 
 public class ViewCommandResult extends CommandResult {
-
+//TODO
     private String textArea;
     private List<DisplayZoomLink> displayZoomLinks;
     private List<Assignment> assignments;
