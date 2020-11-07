@@ -9,9 +9,9 @@ show members
 package Commands {
 Class "{abstract}\nCommand" as Command
 Class "{abstract}\nNegateCommand" as NegateCommand {
-    + {static} String COMMAND_WORD
-    - Index index
-    ~getTargetIndex(Index)
+    + {static} COMMAND_WORD : String = "un"
+    - index : Index
+    ~getTargetIndex(targetIndex : Index)
 }
 
 Class UnremindCommand
