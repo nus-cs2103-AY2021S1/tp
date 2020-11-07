@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
