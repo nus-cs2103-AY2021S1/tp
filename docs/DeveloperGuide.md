@@ -995,7 +995,7 @@ testers are expected to do more *exploratory* testing.
         
     1. Test case: `q` <br>
         Expected: Main window of application switches to display flashcard list. Result display will output a success
-        message: `Exited review mode`
+        message: `Exited Review mode`
         
 ### Quizzing flashcards
 
@@ -1033,7 +1033,7 @@ testers are expected to do more *exploratory* testing.
         
     1. Test case (sort flashcards with missing inputs): `sort` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command format rror message.
+        Result display will output the invalid command format error message.
         
 1. Sort flashcards according to success rate
 
@@ -1070,9 +1070,6 @@ testers are expected to do more *exploratory* testing.
     1. Test case (view flashcard at invalid index): `view 0` <br>
         Expected: Flashcard view and flashcard answer panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
-            
-    1. Other incorrect view commands to try: `view 0 -a` and `view x` (where x is larger than the list size or x is a negative integer) <br>
-        Expected: Similar to test case iv.
                
 ### Viewing the statistics of a flashcard
     
@@ -1088,9 +1085,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case (view statistics of flashcard at invalid index): `stats 0` <br>
         Expected: Flashcard view panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
-    
-    1. Other incorrect stats command to try: `stats x` (where x is larger than the list size or x is a negative integer) <br>
-        Expected: Similar to test case iii.
+        
         
 --------------------------------------------------------------------------------------------------------------------
 
