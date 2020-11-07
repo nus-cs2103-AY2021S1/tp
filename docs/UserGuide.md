@@ -217,7 +217,7 @@ Examples:
 ### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about ingredients:**<br>
 
