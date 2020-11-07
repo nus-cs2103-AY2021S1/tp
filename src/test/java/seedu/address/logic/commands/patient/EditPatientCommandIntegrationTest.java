@@ -2,15 +2,18 @@ package seedu.address.logic.commands.patient;
 
 //@author LeeMingDe
 
+import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientRecords;
-import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
 import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandSuccess;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
@@ -23,21 +26,28 @@ import seedu.address.testutil.PatientBuilder;
 public class EditPatientCommandIntegrationTest {
 
     //patient records -> [ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE]
-    //room list -> [room 7, Alice; room 8, Benson; room 10, null, room 11, null, with task]
-    private Model model = new ModelManager(getTypicalPatientRecords(), getTypicalRoomList(), new UserPrefs());
+    private Model model;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalPatientRecords(), new RoomList(), new UserPrefs());
+    }
+
+    @AfterEach
+    public void reset() {
+        model = new ModelManager(getTypicalPatientRecords(), new RoomList(), new UserPrefs());
+    }
 
     @Test
     public void execute_editPatient_success() {
         Patient editedPatient = new PatientBuilder().withName("John Doe").build();
-        Patient alice = model.getFilteredPatientList().get(0);
 
         EditPatientCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPatient).build();
-        EditPatientCommand editPatientCommand = new EditPatientCommand(alice.getName(), descriptor);
+        EditPatientCommand editPatientCommand = new EditPatientCommand(ALICE.getName(), descriptor);
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
-
         ModelManager expectedModel =
-            new ModelManager(model.getPatientRecords(), getTypicalRoomList(), new UserPrefs());
-        expectedModel.setPatient(alice, editedPatient);
+            new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
+        expectedModel.setPatient(ALICE, editedPatient);
         assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
     }
 

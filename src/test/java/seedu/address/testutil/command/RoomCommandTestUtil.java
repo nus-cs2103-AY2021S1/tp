@@ -11,6 +11,7 @@ public class RoomCommandTestUtil {
     public static final String VALID_ROOM_NUMBER_TWO = "2";
     public static final int VALID_ROOM_NUMBER_SEVEN = 7;
     public static final int VALID_ROOM_NUMBER_EIGHT = 8;
+    public static final int VALID_ROOM_NUMBER_TEN = 10;
     public static final Index VALID_ROOM_INDEX_ONE = Index.fromOneBased(1);
     public static final Index VALID_ROOM_INDEX_TWO = Index.fromOneBased(2);
 

@@ -27,7 +27,7 @@ public class AllocateRoomDescriptorBuilder {
         descriptor = new AllocateRoomDescriptor();
         descriptor.setRoomNumber(room.getRoomNumber());
         descriptor.setOccupied(room.isOccupied());
-        descriptor.setPatientName(room.getPatient().get().getName());
+        descriptor.setPatientName(room.getPatient().isPresent() ? room.getPatient().get().getName() : null);
     }
 
     /**
