@@ -18,7 +18,7 @@ public class JsonSerializableModuleListTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
             "JsonSerializableModuleListTest");
     private static final Path TYPICAL_MODULES_FILE = TEST_DATA_FOLDER.resolve("typicalModuleModuleList.json");
-    private static final Path INVALID_MODULES_FILE = TEST_DATA_FOLDER.resolve("invalidContactContactList.json");
+    private static final Path INVALID_MODULES_FILE = TEST_DATA_FOLDER.resolve("invalidModuleModuleList.json");
     private static final Path DUPLICATE_MODULES_FILE = TEST_DATA_FOLDER.resolve("duplicateModuleModuleList.json");
 
     @Test

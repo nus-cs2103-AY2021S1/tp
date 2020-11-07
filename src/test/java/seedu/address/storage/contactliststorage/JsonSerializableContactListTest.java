@@ -1,27 +1,26 @@
-package seedu.address.storage.contactListStorage;
-
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ContactList;
-import seedu.address.model.ModuleList;
-import seedu.address.storage.JsonSerializableContactList;
-import seedu.address.testutil.TypicalContacts;
-import seedu.address.testutil.TypicalModules;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
+package seedu.address.storage.contactliststorage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.ContactList;
+import seedu.address.storage.JsonSerializableContactList;
+import seedu.address.testutil.TypicalContacts;
+
 public class JsonSerializableContactListTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
-            "JsonSerializableModuleListTest");
-    private static final Path TYPICAL_CONTACTS_FILE = TEST_DATA_FOLDER.resolve("typicalModuleModuleList.json");
+            "JsonSerializableContactListTest");
+    private static final Path TYPICAL_CONTACTS_FILE = TEST_DATA_FOLDER.resolve("typicalContactContactList.json");
     private static final Path INVALID_CONTACTS_FILE = TEST_DATA_FOLDER.resolve("invalidContactContactList.json");
-    private static final Path DUPLICATE_CONTACTS_FILE = TEST_DATA_FOLDER.resolve("duplicateModuleModuleList.json");
+    private static final Path DUPLICATE_CONTACTS_FILE = TEST_DATA_FOLDER.resolve("duplicateContactContactList.json");
 
     @Test
     public void toModelType_typicalContactsFile_success() throws Exception {

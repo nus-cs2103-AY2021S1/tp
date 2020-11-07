@@ -1,28 +1,28 @@
-package seedu.address.storage.contactListStorage;
+package seedu.address.storage.contactliststorage;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ContactList;
-import seedu.address.model.ModuleList;
-import seedu.address.model.ReadOnlyContactList;
-import seedu.address.model.ReadOnlyModuleList;
-import seedu.address.storage.JsonContactListStorage;
-import seedu.address.storage.JsonModuleListStorage;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalContacts.ALICE;
+import static seedu.address.testutil.TypicalContacts.AMY;
+import static seedu.address.testutil.TypicalContacts.BOB;
+import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.*;
-import static seedu.address.testutil.TypicalModules.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ContactList;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.storage.JsonContactListStorage;
 
 public class JsonContactListStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data"
-            , "JsonContactListStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonContactListStorageTest");
 
     @TempDir
     public Path testFolder;
