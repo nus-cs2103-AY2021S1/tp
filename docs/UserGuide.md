@@ -455,12 +455,20 @@ While allocating rooms to students, it is probably easier to view rooms and stud
 
 Format: `toggle-split`
 
+<div markdown="span" class="alert alert-info">
+:information_source: Note that `toggle-split` will cause the application to switch to the combined students and rooms tab, regardless of what tab you previously had open.
+</div>
+
 ![](images/CombinedStudentsRoomsTab.png)
 
 #### View students and rooms in separate tabs: `toggle-split`
 If the rooms and students tab are currently combined, `toggle-split` will separate them into 2 separate tabs, as shown below.
 
 Format: `toggle-split`
+
+<div markdown="span" class="alert alert-info">
+:information_source: Note that `toggle-split` will cause the application to switch to the students tab, regardless of what tab you previously had open.
+</div>
 
 ![](images/SeparateStudentsRoomsTab.png)
 
