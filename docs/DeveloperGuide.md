@@ -250,6 +250,9 @@ The following prefixes are used to identify the type of keywords:
 - `/p` for Priority keywords
 
 ##### Predicate classes 
+
+![Class diagram for Predicate classes](images/PredicateClassDiagram.png)
+
 The following Predicate classes implements `Predicate<Assignment>` and are passed into the constructor of `FindCommand` when the user inputs keywords of its assigned field:
 
 - NameContainsKeywordsPredicate for name keywords
@@ -258,10 +261,6 @@ The following Predicate classes implements `Predicate<Assignment>` and are passe
 - PriorityContainsKeywordsPredicate for priority keywords
 
 The keywords are stored in a `List<String>` that is passed into the constructor of the predicate so that the overridden `test` method from `Predicate<Assignment>` class can evaluate the keywords with the specific attribute of an assignment, being name, module code, deadline or priority, to return a boolean value.
-
-Given below is the class diagram of these Predicate classes:
-
------- CLASS DIAGRAM---------
 
 ##### FindCommandParser Class
 The `FindCommandParser` class implements `Parser<FindCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `FindCommand` object. It contains private methods which checks for the presence of multiple prefixes and invalid keywords, which will throw a `ParseException` if detected.
