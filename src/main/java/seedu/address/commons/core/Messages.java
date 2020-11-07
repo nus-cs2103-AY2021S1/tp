@@ -44,6 +44,6 @@ public class Messages {
     public static final String MESSAGE_PRESET_DELETE_SUCCESS = "Preset %s has been deleted.";
     public static final String MESSAGE_PRESET_LOAD_ERROR = "Presets cannot be read.";
     public static final String MESSAGE_PRESET_NOT_FOUND = "Preset %s cannot be found.";
-    public static final String NO_INPUT_NAME = "You must specify a preset name to delete!";
-
+    public static final String MESSAGE_NO_INPUT_NAME = "You must specify a preset name to delete!";
+    public static final String MESSAGE_EXISTING_TAG = "'%s' is already tagged to the order item!";
 }

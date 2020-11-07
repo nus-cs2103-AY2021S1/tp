@@ -53,6 +53,9 @@ public class TagCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
         }
         OrderItem orderItem = order.get(index);
+        if (orderItem.getTags().contains(tag)) {
+            throw new CommandException(String.format(Messages.MESSAGE_EXISTING_TAG, tag.tagName));
+        }
         model.tagOrderItem(orderItem, tag);
         return new CommandResult(String.format(MESSAGE_TAG_SUCCESS, tag.tagName, index + 1));
     }

@@ -36,6 +36,10 @@ public class TagCommandTest {
         expectedSet.add(tag);
         assertCommandSuccess(tagCommand, model, commandResult, expectedModel);
         assertEquals(model.getObservableOrderItemList().get(0).getTags(), expectedSet);
+
+        String errorResult = String.format(Messages.MESSAGE_EXISTING_TAG, tag.tagName);
+        assertCommandFailure(tagCommand, model, errorResult);
+        assertEquals(model.getObservableOrderItemList().get(0).getTags(), expectedSet);
     }
 
     @Test
@@ -53,4 +57,5 @@ public class TagCommandTest {
         Tag tag = new Tag("1 no ice");
         assertCommandFailure(new TagCommand(Index.fromZeroBased(0), tag), model, Messages.MESSAGE_VENDOR_NOT_SELECTED);
     }
+
 }
