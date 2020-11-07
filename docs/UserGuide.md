@@ -92,7 +92,6 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-  
 
 **:information_source: Notes about scoping:**<br>
 
@@ -173,7 +172,7 @@ Examples: `startproject 2` Initialises the second project in the project list.
 
 Adds a project to the project list.
 
-Format: `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS...] `
+Format: `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS]... `
   - The fields can be entered in any order, as long as the prefixes are matched correctly
   - Project Name can be any alphanumeric value (containing only alphabets and / or numbers)
   - Repo URL must be a valid link
@@ -204,10 +203,12 @@ Examples: `delete 2` deletes the second project from the catalogue.
 
 Finds projects whose names contain the given keywords.
 
-Format: `find [KEYWORD...]`
-- The search is case-insensitive. e.g run will match Run
+Format: `find KEYWORD [MORE_KEYWORDS]`
+- The search is case-insensitive. e.g `run` will match `Run`
+- The order of the keywords does not matter. e.g. `Project CS2103T` will match `CS2103T Project`
 - Only the name of the projects are searched
-- Can be multiple words
+- Must provide at least one keyword
+- There can be multiple keywords
 - Keywords provided must be complete words and will only match complete words from the name of the project. e.g. `find Task` will not return the **Taskmania** project.
 
 Example: `find scare` returns the **Scare House** and **Easily scare Night** projects.
@@ -288,12 +289,12 @@ Examples: `deletetask 2` deletes the second task shown in the displayed task lis
 ### Filter tasks `filter `
 
 Filters tasks in the task list by various predicates:
-  - by assignee's name
+  - by assignee's GitHub username
   - by deadline (either a specific deadline or a time range for the deadline)
   - by progress
   - by task's name
 
-Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tp/TASK PROGRESS)||(tn/TASK_NAME)` 
+Format: `filter (ta/ASSIGNEE_GITHUB_USERNAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tp/TASK PROGRESS)||(tn/KEYWORD [MORE_KEYWORDS])` 
   - User may choose one predicate to filter tasks by
   - Assignee name is the name of the Teammate who is assigned to the task
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers)
@@ -302,8 +303,14 @@ Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/EN
   - Start date and end date in the time range follows the format *DD-MM-YYYY*
   - There should be a space between `START_DATE` and `end/` (`filter start/01-11-2020end/02-11-2020` is invalid)
   - Task progress is a percentage value indicating how much of the task is done
+  - The search is case-insensitive. e.g `run` will match `Run`
+- The order of the keywords does not matter. e.g. `Project CS2103T` will match `CS2103T Project`
+- Only the name of the projects are searched
+- Must provide at least one keyword
+- There can be multiple keywords
+- Keywords provided must be complete words and will only match complete words from the name of the project. e.g. `find Task` will not return the **Taskmania** project.
 
-Example: `filter tn/CS2103T` filters all the tasks whose task names contain `CS2103T`, and displays those tasks.
+Example: `filter tn/CS2103T` filters all the tasks whose task names contain the keyword `CS2103T`, and displays those tasks.
 
 ### List all tasks `alltasks `
 

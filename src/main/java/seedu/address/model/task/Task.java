@@ -18,11 +18,11 @@ import seedu.address.model.project.Deadline;
  */
 public class Task implements Comparable<Task> {
 
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String TASK_NAME_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
 
     public static final String NAME_MESSAGE_CONSTRAINTS =
-            "Task name can be any values, and it should not be blank";
+            "Task name should only contain alphanumeric characters and spaces, and it should not be blank";
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS =
             "Task description can be any values, and it should not be blank";
     public static final String PUBLISH_DATE_MESSAGE_CONSTRAINTS =
@@ -70,7 +70,7 @@ public class Task implements Comparable<Task> {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidTaskName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(TASK_NAME_VALIDATION_REGEX);
     }
 
     /**

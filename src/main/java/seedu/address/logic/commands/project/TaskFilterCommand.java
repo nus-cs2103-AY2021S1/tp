@@ -30,7 +30,7 @@ public class TaskFilterCommand extends Command {
             + "Parameters: ("
             + PREFIX_TASK_ASSIGNEE + "ASSIGNEE GITHUB USERNAME)||("
             + PREFIX_TASK_DEADLINE + "DEADLINE)||("
-            + PREFIX_TASK_NAME + "TASK NAME)||("
+            + PREFIX_TASK_NAME + "KEYWORD [MORE_KEYWORDS]...)||("
             + PREFIX_TASK_PROGRESS + "PROGRESS)||("
             + PREFIX_TASK_IS_DONE + "DONE STATUS)||("
             + PREFIX_START_DATE + "START DATE "

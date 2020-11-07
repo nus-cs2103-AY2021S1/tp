@@ -11,9 +11,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.GitUserName;
@@ -21,6 +21,7 @@ import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 
 /**
  * Parses input {@code String} and creates a TaskFilterCommand object.
@@ -58,8 +59,8 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
             predicate = task -> task.isDueOn(deadline);
         }
         if (argMultimap.getValue(PREFIX_TASK_NAME).isPresent()) {
-            String taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
-            predicate = task -> StringUtil.containsWordIgnoreCase(task.getTaskName(), taskName);
+            String[] taskNameKeywords = ParserUtil.parseTaskNameKeywords(argMultimap.getValue(PREFIX_TASK_NAME).get());
+            predicate = new TaskNameContainsKeywordsPredicate(Arrays.asList(taskNameKeywords));
         }
         if (argMultimap.getValue(PREFIX_TASK_PROGRESS).isPresent()) {
             Double progress = ParserUtil.parseTaskProgress(argMultimap.getValue(PREFIX_TASK_PROGRESS).get());
