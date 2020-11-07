@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
@@ -247,9 +248,9 @@ public interface Model {
 
     void viewRoutine(Routine routineToView);
 
-    void addCalories(int calories);
+    void addCalories(Calorie calorie);
 
-    void minusCalories(int calories);
+    void minusCalories(Calorie calorie);
 
     ObservableList<DailyCalorie> getFilteredDailyCalorie();
 

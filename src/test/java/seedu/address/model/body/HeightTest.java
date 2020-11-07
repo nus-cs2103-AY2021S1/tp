@@ -1,6 +1,8 @@
 package seedu.address.model.body;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -27,32 +29,43 @@ public class HeightTest {
 
     @Test
     public void validityChecks() {
+        // invalid format checks -> returns false
+        assertFalse(Height.isValidHeight("-1"));
+        assertFalse(Height.isValidHeight("170.000"));
+        assertFalse(Height.isValidHeight("170.00.0"));
+
+        // valid format checks -> returns true
+        assertTrue(Height.isValidHeight("170"));
+        assertTrue(Height.isValidHeight("170.0"));
+        assertTrue(Height.isValidHeight("170.00"));
+
+        // invalid range checks -> returns false
         assertFalse(Height.isValidHeight(-1));
         assertFalse(Height.isValidHeight(-1.0));
         assertFalse(Height.isValidHeight(0));
         assertFalse(Height.isValidHeight(-0));
         assertFalse(Height.isValidHeight(-1000));
         assertFalse(Height.isValidHeight(1000));
-        assertFalse(Height.isValidHeight(90));
-        assertFalse(Height.isValidHeight(251));
+        assertFalse(Height.isValidHeight(100));
+        assertFalse(Height.isValidHeight(250));
 
-        assertTrue(Height.isValidHeight(170));
+        // valid range checks -> returns true
+        assertTrue(Height.isValidHeight(101));
         assertTrue(Height.isValidHeight(190));
-        assertTrue(Height.isValidHeight("170"));
-        assertTrue(Height.isValidHeight("190"));
+        assertTrue(Height.isValidHeight(249));
     }
 
     @Test
     public void toStringTest() {
-        assertTrue(sampleHeight.toString().equals(sampleHeight.toString()));
-        assertTrue(sampleHeight.toString().equals(sampleHeight2.toString()));
-        assertFalse(sampleHeight.toString().equals(sampleHeight3.toString()));
+        assertEquals(sampleHeight.toString(), sampleHeight.toString());
+        assertEquals(sampleHeight2.toString(), sampleHeight.toString());
+        assertNotEquals(sampleHeight3.toString(), sampleHeight.toString());
 
     }
 
     @Test
     public void hashCodeTest() {
-        assertTrue(sampleHeight.hashCode() == sampleHeight.hashCode());
-        assertFalse(sampleHeight.hashCode() == sampleHeight3.hashCode());
+        assertEquals(sampleHeight.hashCode(), sampleHeight.hashCode());
+        assertNotEquals(sampleHeight3.hashCode(), sampleHeight.hashCode());
     }
 }

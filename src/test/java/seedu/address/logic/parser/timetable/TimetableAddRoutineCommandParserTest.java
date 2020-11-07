@@ -5,11 +5,11 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.model.timetable.DurationTest.DURATION_1600_1800;
-import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.timetable.TimetableAddRoutineCommand;
+import seedu.address.model.routine.Routine;
 import seedu.address.model.timetable.Day;
 import seedu.address.model.timetable.Duration;
 import seedu.address.model.util.Name;
@@ -24,8 +24,9 @@ public class TimetableAddRoutineCommandParserTest {
     public void parse_allFieldsPresent_success() {
         // whitespace only preamble
         String userInput = " r/Leg Day D/monday T/1600-1800";
+        Routine legDay = new Routine(new Name("Leg Day"));
         TimetableAddRoutineCommand expectedCommand = new TimetableAddRoutineCommand(
-                LEG_DAY, Day.MONDAY, DURATION_1600_1800);
+                legDay, Day.MONDAY, DURATION_1600_1800);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

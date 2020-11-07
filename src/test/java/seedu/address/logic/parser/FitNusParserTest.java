@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_LESSON;
 import static seedu.address.testutil.TypicalLessons.MA1521;
-import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +22,9 @@ import seedu.address.logic.commands.timetable.TimetableAddRoutineCommand;
 import seedu.address.logic.commands.timetable.TimetableDeleteSlotCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.routine.Routine;
 import seedu.address.model.timetable.Slot;
+import seedu.address.model.util.Name;
 import seedu.address.testutil.EditLessonDescriptorBuilder;
 import seedu.address.testutil.LessonBuilder;
 import seedu.address.testutil.LessonUtil;
@@ -77,9 +78,10 @@ public class FitNusParserTest {
 
     @Test
     public void parseCommand_timetableAddRoutine() throws Exception {
-        Slot slot = new SlotBuilder().withActivity(LEG_DAY).build();
+        Routine legDay = new Routine(new Name("Leg Day"));
+        Slot slot = new SlotBuilder().withActivity(legDay).build();
         TimetableAddRoutineCommand expectedCommand = new TimetableAddRoutineCommand(
-                LEG_DAY, slot.getDay(), slot.getDuration());
+                legDay, slot.getDay(), slot.getDuration());
         TimetableAddRoutineCommand actualCommand =
                 (TimetableAddRoutineCommand) parser.parseCommand(SlotUtil.getTimetableAddRoutineCommand(slot));
         assertEquals(expectedCommand, actualCommand);

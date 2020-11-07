@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.CalorieLog;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
@@ -266,18 +267,18 @@ public class FitNus implements ReadOnlyFitNus {
 
     /**
      * Adds calories into today's calorie log.
-     * @param calories The amount of calories that the user wants to add.
+     * @param calorie The amount of calories that the user wants to add.
      */
-    public void addCalories(int calories) {
-        calorieLog.addCalories(calories);
+    public void addCalories(Calorie calorie) {
+        calorieLog.addCalories(calorie);
     }
 
     /**
      * Deducts calories from today's calorie log.
-     * @param calories The amount of calories that the user wants to deduct.
+     * @param calorie The amount of calories that the user wants to deduct.
      */
-    public void minusCalories(int calories) {
-        calorieLog.minusCalories(calories);
+    public void minusCalories(Calorie calorie) {
+        calorieLog.minusCalories(calorie);
     }
 
     /**

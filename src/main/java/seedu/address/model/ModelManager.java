@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
@@ -149,8 +150,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addCalories(int calories) {
-        fitNus.addCalories(calories);
+    public void addCalories(Calorie calorie) {
+        fitNus.addCalories(calorie);
         updateFilteredCalorieLog(PREDICATE_SHOW_ALL_LOGS);
     }
 
@@ -161,8 +162,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void minusCalories(int calories) {
-        fitNus.minusCalories(calories);
+    public void minusCalories(Calorie calorie) {
+        fitNus.minusCalories(calorie);
     }
 
     @Override

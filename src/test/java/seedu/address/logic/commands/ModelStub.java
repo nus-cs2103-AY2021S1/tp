@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyFitNus;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
@@ -116,12 +117,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addCalories(int calories) {
+    public void addCalories(Calorie calories) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void minusCalories(int calories) {
+    public void minusCalories(Calorie calories) {
         throw new AssertionError("This method should not be called.");
     }
 
