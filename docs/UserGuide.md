@@ -386,22 +386,22 @@ Terminology | Definition
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Tag** | `tag t>TAG_NAME f>FILE_PATH [l>LABEL]` <br> e.g., `tag t>newTag f>c:/myfolder/file.jpg l>MyFile` or `tag t>newTag f>c:/myfolder/file.jpg` 
-**Show** | `show t>TAG_NAME`
-**Untag** | `untag t>TAG_NAME`
-**Retag** | `retag o>OLD_TAG_NAME t>NEW_TAG_NAME` <br> e.g., `retag o>mytag t>newtag`
-**Find** | `find KEYWORD` <br> e.g., `find newtag` or  `find newlabel`
-**Open** | `open t>TAG_NAME` or `open l>LABEL` <br> e.g., `open t>newTag` or `open l>newlabel`
-**Label** | `label t>TAG_NAME l>LABEL1 [l>LABEL2...]` <br> e.g., `label t>newtag l>new` or `label t>myFile l>important l>exclusive`
-**Unlabel** | `unlabel t>TAG_NAME l>LABEL1 [l>LABEL2...]` <br> e.g., `unlabel t>newtag l>new` or `unlabel t>myFile l>important l>exclusive`
-**List** | `ls`
-**Cd to an absolute file Path**| `cd f>ABSOLUTE_FILE_PATH` <br> e.g., `cd f>C:\Users`
-**Cd to a relative file Path**| `cd ./RELATIVE_FILE_PATH` <br> e.g., `cd ./project01`
-**Cd to the parent file Path**| `cd ../`
-**Undo** | `undo`
-**Redo** | `redo`
-**Clear** | `clear`
-**Help** | `help` or `help COMMAND` <br> e.g., `help tag`
-**Exit** | `exit`
+Action | Format | Examples
+--------|--------|----------
+**Tag** | `tag t>TAG_NAME f>FILE_PATH [l>LABEL]` | `tag t>cs2103 f>c:/nus/cs2103 l>cs`
+**Show** | `show t>TAG_NAME` | `show t>cs2103`
+**Untag** | `untag t>TAG_NAME` | `untag t>cs2103`
+**Retag** | `retag o>OLD_TAG_NAME t>NEW_TAG_NAME` | `retag o>cs2103 t>cs2103t`
+**Find** | `find KEYWORD` | `find 2103`
+**Open** | `open t>TAG_NAME` or `open l>LABEL` | `open t>cs2103` or `open l>cs`
+**Label** | `label t>TAG_NAME l>LABEL1 [l>LABEL2...]` | `label t>cs2103 l>core` or `label t>cs2103 l>important l>core`
+**Unlabel** | `unlabel t>TAG_NAME l>LABEL1 [l>LABEL2...]` | `unlabel t>cs2103 l>cs` or `unlabel t>cs2103 l>important l>cs`
+**List** | `ls` | `ls`
+**Cd to an absolute file Path**| `cd f>ABSOLUTE_FILE_PATH` | `cd f>C:\Users`
+**Cd to a relative file Path**| `cd ./RELATIVE_FILE_PATH` | `cd ./project01`
+**Cd to the parent file Path**| `cd ../` | `cd ../`
+**Undo** | `undo` | `undo`
+**Redo** | `redo` | `redo`
+**Clear** | `clear` | `clear`
+**Help** | `help` or `help COMMAND` | `help cd`
+**Exit** | `exit` | `exit`
