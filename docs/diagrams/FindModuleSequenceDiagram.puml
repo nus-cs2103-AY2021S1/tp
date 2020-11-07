@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackrParser" as TrackrParser LOGIC_COLOR
+participant ":FindModuleCommandParser" as FindModuleCommandParser LOGIC_COLOR
+participant "f:FindModuleCommand" as FindModuleCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+participant "pred:ModuleContainsKeywordPredicate" as ModuleContainsKeywordPredicate LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findMod cs2100")
+activate LogicManager
+
+LogicManager -> TrackrParser : parseCommand("findMod cs2100")
+activate TrackrParser
+
+create FindModuleCommandParser
+TrackrParser -> FindModuleCommandParser
+activate FindModuleCommandParser
+
+FindModuleCommandParser --> TrackrParser
+deactivate FindModuleCommandParser
+
+TrackrParser -> FindModuleCommandParser : parse("cs2100")
+activate FindModuleCommandParser
+
+create ModuleContainsKeywordPredicate
+FindModuleCommandParser -> ModuleContainsKeywordPredicate
+activate ModuleContainsKeywordPredicate
+
+ModuleContainsKeywordPredicate --> FindModuleCommandParser: pred
+deactivate ModuleContainsKeywordPredicate
+
+create FindModuleCommand
+FindModuleCommandParser -> FindModuleCommand
+activate FindModuleCommand
+
+FindModuleCommand --> FindModuleCommandParser : f
+deactivate FindModuleCommand
+
+FindModuleCommandParser --> TrackrParser : f
+deactivate FindModuleCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindModuleCommandParser -[hidden]-> TrackrParser
+destroy FindModuleCommandParser
+
+TrackrParser --> LogicManager : f
+deactivate TrackrParser
+
+LogicManager -> FindModuleCommand : execute()
+activate FindModuleCommand
+
+FindModuleCommand -> Model : updateFilteredModuleList(pred)
+activate Model
+
+Model --> FindModuleCommand
+deactivate Model
+
+create CommandResult
+FindModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindModuleCommand
+deactivate CommandResult
+
+FindModuleCommand --> LogicManager : result
+deactivate FindModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

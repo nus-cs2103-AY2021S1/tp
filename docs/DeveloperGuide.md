@@ -154,25 +154,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented. 
 
-### Section 4.1 - Add feature
-#### Overview
-
-The Add feature in Trackr enables users to easily add models to the app. Users will be able to keep track of models they are
-in charge of.
-
-There are three types of models:
+Trackr has three different data types: 
 - `Module`: The current module the user is teaching
 - `TutorialGroup`: The tutorial groups that the user is teaching
 - `Student`: The students currently being taught by the user
 
+As mentioned in [insert design diagram number], 
+Trackr stores these data in the following manner: UniqueModuleList contains Modules. Each module has a UniqueTutorialGroupList 
+that stores all the Tutorial Groups of that particular Module. Lastly, each Tutorial Group has a UniqueStudentList that stores all the
+Students of that particular Tutorial Group.
+
+Trackr's three data type also share the same commands, which are:
+* Add
+* Delete
+* Edit
+* Find
+* List
+* View
+* Clear
+* Exit
+
+Since Trackr stores and manages its data recursively, the commands for Module, Tutorial Group and Student work similarly.
+
+### Section 4.1 - Add Commands (addMod, addTG, addStudent)
+#### Overview
+
+The Add command in Trackr enables users to easily add data types to the app. Users will be able to keep track of data they are
+in charge of.
+
 #### Implementation
-Trackr contains a `UniqueList<Module>`, which in turn, contains the modules taught by the user. Each Add command
-for `Module`, `TutorialGroup`, and `Student` is split into `AddModuleCommand`, `AddTutorialGroupCommand`, and `AddStudentCommand`.
+Each Add command for `Module`, `TutorialGroup`, and `Student` is split into `AddModuleCommand`, `AddTutorialGroupCommand`, and `AddStudentCommand`, respectively.
 Each command class extends `Command`.
 
 Given below is an example of the interaction between the Model and the `AddModuleCommand` of Trackr.
 
-![AddModSequenceDiagram](images/AddModSequenceDiagram.png)
+![AddModuleSequenceDiagram](images/AddModSequenceDiagram.png)
 
 #### Design Considerations
 **Aspect: List to contain the models**
@@ -182,7 +198,161 @@ Given below is an example of the interaction between the Model and the `AddModul
 - Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
     - Pros: Easier to implement
     - Cons: More repetitive code
+### Section 4.2 - Delete Commands (deleteMod, deleteTG, deleteStudent)
+#### Overview
 
+The Delete command in Trackr enables users to easily delete data types from the app.
+
+#### Implementation
+Each Delete command for `Module`, `TutorialGroup`, and `Student` is split into `DeleteModuleCommand`, `DeleteTutorialGroupCommand`, and `DeleteStudentCommand`, respectively.
+Each command class extends `Command`.
+
+Given below is an example of the interaction between the Model and the `DeleteModuleCommand` of Trackr.
+
+![DeleteModuleSequenceDiagram](images/DeleteModuleSequenceDiagram.png)
+
+#### Design Considerations
+**Aspect: List to contain the models**
+- Option 1: Generic `UniqueList` that contains the models
+    - Pros: Abstraction,
+    - Cons: Harder to implement
+- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
+    - Pros: Easier to implement
+    - Cons: More repetitive code
+    
+### Section 4.3 - Edit Commands (editMod, editTG, editStudent)
+#### Overview
+
+The Edit command in Trackr enables users to easily edit data types. Users will be able to modify data.
+
+#### Implementation
+Each Edit command for `Module`, `TutorialGroup`, and `Student` is split into `EditModuleCommand`, `EditTutorialGroupCommand`, and `EditStudentCommand`, respectively.
+Each command class extends `Command`.
+
+Given below is an example of the interaction between the Model and the `EditModuleCommand` of Trackr.
+
+![EditModuleSequenceDiagram](images/EditModuleSequenceDiagram.png)
+
+#### Design Considerations
+**Aspect: List to contain the models**
+- Option 1: Generic `UniqueList` that contains the models
+    - Pros: Abstraction,
+    - Cons: Harder to implement
+- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
+    - Pros: Easier to implement
+    - Cons: More repetitive code
+    
+### Section 4.4 - Find Commands (findMod, findTG, findStudent)
+#### Overview
+
+The Find command in Trackr enables users to easily find data based on keywords. This will save their time whenever they want to 
+find a specific data.
+
+#### Implementation
+Each Find command for `Module`, `TutorialGroup`, and `Student` is split into `FindModuleCommand`, `FindTutorialGroupCommand`, and `FindStudentCommand`, respectively.
+Each command class extends `Command`.
+
+Given below is an example of the interaction between the Model and the `FindModuleCommand` of Trackr.
+
+![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
+
+#### Design Considerations
+**Aspect: List to contain the models**
+- Option 1: Generic `UniqueList` that contains the models
+    - Pros: Abstraction,
+    - Cons: Harder to implement
+- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
+    - Pros: Easier to implement
+    - Cons: More repetitive code
+    
+### Section 4.5 - List Commands (listMod, listTG, listStudent)
+#### Overview
+
+The List command in Trackr enables users to easily list all data. Users will be able to see all data after using the Find Commands.
+
+#### Implementation
+Each List command for `Module`, `TutorialGroup`, and `Student` is split into `ListModuleCommand`, `ListTutorialGroupCommand`, and `ListStudentCommand`, respectively.
+Each command class extends `Command`.
+
+Given below is an example of the interaction between the Model and the `ListModuleCommand` of Trackr.
+
+![ListModSequenceDiagram](images/ListModuleCommandSequenceDiagram.png)
+
+#### Design Considerations
+**Aspect: List to contain the models**
+- Option 1: Generic `UniqueList` that contains the models
+    - Pros: Abstraction,
+    - Cons: Harder to implement
+- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
+    - Pros: Easier to implement
+    - Cons: More repetitive code
+    
+### Section 4.6 - View Commands (addMod, addTG, addStudent)
+#### Overview
+
+The Vieww command in Trackr enables users to easily navigate between the different views: Module View, Tutorial Group View and Student View.
+
+#### Implementation
+Each View command for `TutorialGroup`, and `Student` is split into `ViewTutorialGroupCommand`, and `ViewStudentCommand`, respectively. Note that there
+is no View command for `Module`. Each command class extends `Command`.
+
+Given below is an example of the interaction between the Model and the `ViewTutorialGroupCommand` of Trackr.
+
+![ViewTGSequenceDiagram](images/ViewTutorialGroupCommandSequenceDiagram.png)
+
+#### Design Considerations
+**Aspect: List to contain the models**
+- Option 1: Generic `UniqueList` that contains the models
+    - Pros: Abstraction,
+    - Cons: Harder to implement
+- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
+    - Pros: Easier to implement
+    - Cons: More repetitive code
+    
+### Section 4.7 - Clear Commands (clear)
+#### Overview
+
+The Clear command in Trackr enables users to easily clears all data. Users will be able to erase all data in one simple command.
+
+#### Implementation
+The Clear command is the same for `Module`, `TutorialGroup`, and `Student`, which falls under `ClearCommand`
+The command class extends `Command`.
+
+Given below is an example of the interaction between the Model and the `ClearCommand` of Trackr.
+
+![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
+
+#### Design Considerations
+**Aspect: List to contain the models**
+- Option 1: Generic `UniqueList` that contains the models
+    - Pros: Abstraction,
+    - Cons: Harder to implement
+- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
+    - Pros: Easier to implement
+    - Cons: More repetitive code
+    
+### Section 4.8 - Exit Commands (exit)
+#### Overview
+
+The Exit command in Trackr enables users to easily exit the app. Users will be able to close the application. Data will be
+saved automatically.
+
+#### Implementation
+The Exit command is the same for `Module`, `TutorialGroup`, and `Student`, which falls under `ExitCommand`
+The command class extends `Command`.
+
+Given below is an example of the interaction between the Model and the `ExitCommand` of Trackr.
+
+![ExitCommandSequenceDiagram](images/ExitCommandSequenceDiagram.png)
+
+#### Design Considerations
+**Aspect: List to contain the models**
+- Option 1: Generic `UniqueList` that contains the models
+    - Pros: Abstraction,
+    - Cons: Harder to implement
+- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
+    - Pros: Easier to implement
+    - Cons: More repetitive code
 ### Section 4.2 - \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
