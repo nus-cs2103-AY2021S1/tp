@@ -13,9 +13,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.timetable.Slot;
 import seedu.address.model.timetable.Day;
 import seedu.address.model.timetable.Duration;
+import seedu.address.model.timetable.Slot;
 
 /**
  * Parses input arguments and creates a new TimetableDeleteSlotCommand object

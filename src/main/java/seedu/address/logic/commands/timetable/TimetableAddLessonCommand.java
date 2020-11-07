@@ -11,9 +11,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.timetable.Slot;
 import seedu.address.model.timetable.Day;
 import seedu.address.model.timetable.Duration;
+import seedu.address.model.timetable.Slot;
 
 public class TimetableAddLessonCommand extends Command {
 
@@ -42,7 +42,7 @@ public class TimetableAddLessonCommand extends Command {
     private final Duration duration;
 
     /**
-     * Creates an RoutineAddCommand to add the specified {@code Routine}
+     * Creates a TimetableAddLessonCommand to add the specified {@code Lesson} into Timetable.
      */
     public TimetableAddLessonCommand(Lesson lesson, Day day, Duration duration) {
         requireAllNonNull(lesson, day, duration);

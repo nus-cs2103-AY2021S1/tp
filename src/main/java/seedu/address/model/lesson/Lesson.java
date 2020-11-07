@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.Tag;
 import seedu.address.model.timetable.Activity;
 import seedu.address.model.util.Name;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Lesson in user's timetable.

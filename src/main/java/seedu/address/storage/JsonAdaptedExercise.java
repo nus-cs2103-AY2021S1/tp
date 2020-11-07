@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.util.Name;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.Name;
 
 /**
  * Jackson-friendly version of {@link Exercise}.

@@ -33,6 +33,9 @@ public class TimetableDeleteSlotCommand extends Command {
 
     private final Slot slotToFind;
 
+    /**
+     * Creates a TimetableDeleteSlotCommand to delete the specified {@code Slot} from Timetable.
+     */
     public TimetableDeleteSlotCommand(Slot slot) {
         requireNonNull(slot);
         slotToFind = slot;

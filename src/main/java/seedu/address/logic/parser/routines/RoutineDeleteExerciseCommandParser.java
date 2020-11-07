@@ -16,9 +16,9 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.util.Name;
 import seedu.address.model.routine.Routine;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.Name;
 
 /**
  * Parses input arguments and creates a new RoutineDeleteExerciseCommand object

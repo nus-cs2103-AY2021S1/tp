@@ -12,9 +12,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.exceptions.DuplicateExerciseException;
 import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
-import seedu.address.model.timetable.Activity;
 import seedu.address.model.routine.exceptions.DuplicateRoutineException;
 import seedu.address.model.routine.exceptions.RoutineNotFoundException;
+import seedu.address.model.timetable.Activity;
 
 /**
  * A list of routines that enforces uniqueness between its elements and does not allow nulls.

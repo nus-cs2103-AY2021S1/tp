@@ -12,10 +12,10 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FitNus;
 import seedu.address.model.ReadOnlyFitNus;
+import seedu.address.model.body.Body;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.body.Body;
 import seedu.address.model.routine.Routine;
 import seedu.address.model.timetable.Slot;
 
