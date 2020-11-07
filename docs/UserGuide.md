@@ -278,13 +278,14 @@ Format: `sort COMPARISON_MEANS`
 
 * The valid options for the sorting method `COMPARISON_MEANS` are `name`, `classTime` or `year`.
 * Only one option for the sorting method can be specified.
-* Sorting methods (case sensitive):
+* The sorting method is case sensitive when being specified
+* Sorting methods:
 	* `name`: Sorts students by their name in alphabetical order. This is case insensitive.
-	* `classTime`: Sorts students by the day followed by time of their class.
-	* `year`: Sorts students by their school year, with `Primary` students coming before `Secondary` students followed by `JC` students.
+	* `classTime`: Sorts students by the the time of their class first by the day than the time.
+	* `year` Sorts students by the school year they are in with `Primary` type years coming before `Secondary` type coming before `JC` type.
 
 Examples:
-* `sort year` to sort students by year of study.
+* `sort year` to sort students by their year
 
 #### 3.3.7 Finding students with overdue fees: `overdue` (By: Ying Gao)
 
