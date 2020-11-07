@@ -551,7 +551,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Editing an expense**
+**Use Case: UC05 - Editing an expense**
 
 **MSS**
 
@@ -571,7 +571,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Editing a revenue**
+**Use Case: UC06 - Editing a revenue**
 
 **MSS**
 
@@ -591,7 +591,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Clearing all expense entries**
+**Use Case: UC07 - Clearing all expense entries**
 
 **MSS**
 
@@ -611,7 +611,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Clearing all revenue entries**
+**Use Case: UC08 - Clearing all revenue entries**
 
 **MSS**
 
@@ -631,7 +631,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Undoing an add command**
+**Use Case: UC09 - Undoing an add command**
 
 **MSS**
 
@@ -642,7 +642,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Undoing a delete command**
+**Use Case: UC10 - Undoing a delete command**
 
 **MSS**
 
@@ -653,40 +653,40 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Undoing a edit command**
+**Use Case: UC11 - Undoing an edit command**
 
 **MSS**
 
-1.  User requests <u> edit an expense (UC)</u>.
+1.  User requests <u> edit an expense (UC05)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the edit command and displays success message.
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Undoing a clear all expenses command**
+**Use Case: UC12 - Undoing a clear all expenses command**
 
 **MSS**
 
-1.  User requests to <u> clear all expenses (UC)</u>.
+1.  User requests to <u> clear all expenses (UC07)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the clear expenses command and displays success message.
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Undoing a clear all revenues command**
+**Use Case: UC13 - Undoing a clear all revenues command**
 
 **MSS**
 
-1.  User requests to <u> clear all revenues (UC)</u>.
+1.  User requests to <u> clear all revenues (UC08)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the clear revenues command and displays success message.
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Finding specific expenses**
+**Use Case: UC14 - Finding specific expenses**
 
 **MSS**
 
@@ -718,7 +718,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Finding specific revenues**
+**Use Case: UC15 - Finding specific revenues**
 
 **MSS**
 
@@ -750,14 +750,14 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Finding specific entries (either expenses or revenues)**
+**Use Case: UC16 - Finding specific entries (either expenses or revenues)**
 
 **MSS**
 
 1. User requests to find some specific entries by giving keywords.
 2. Common Cents filters both expense and revenue lists to show the required entries and displays success message.
 
-    Use case ends.
+    Use case ends. 
 
 **Extensions**
 
@@ -782,7 +782,33 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Adding an account**
+**Use Case: UC17 - Calculate total profits**
+
+**MSS**
+
+1. User requests to calculate profits at current state.
+2. Common Cents calculates profits by finding the difference between revenues and expense and returns profit amount as a message.
+
+    Use case ends.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC18 - List all entries**
+
+**MSS**
+
+1. User requests to find some specific entries (UC16).
+2. User requests to list all entries.
+3. Commmon Cents displays all entries again before find command was used.
+
+    Use case ends.
+</div>
+
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC19 - Adding an account**
 
 **MSS**
 
@@ -808,7 +834,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Adding an account**
+**Use Case: UC20 - Adding an account**
 
 **MSS**
 
@@ -834,7 +860,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Listing accounts**
+**Use Case: UC21 - Listing accounts**
 
 **MSS**
 
@@ -846,7 +872,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Delete a account**
+**Use Case: UC22 - Delete an account**
 
 **MSS**
 
@@ -858,27 +884,27 @@ This captures different scenarios of how a user will perform tasks while using _
 
 **Extensions**
 
-* 2a. The given command input is in invalid format.
+* 1a. The given command input is in invalid format.
 
-    * 2a1. Common cents shows an error message.
+    * 1a1. Common cents shows an error message.
 
       Use case resumes at step 2.
 
-* 2b. Common Cents only has an account.
+* 1b. Common Cents only has an account.
 
-    * 2b1. Common Cents shows an error message.
+    * 1b1. Common Cents shows an error message.
     
       Use case resumes at step 2.
     
-* 2c. User is currently managing the account to be deleted.
-    * 2c1. Common Cents shows an error message.
+* 1c. User is currently managing the account to be deleted.
+    * 1c1. Common Cents shows an error message.
           
       Use case resumes at step 2.
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Editing the account's name**
+**Use Case: UC23 - Editing the account's name**
 
 **MSS**
 
@@ -911,7 +937,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Switching to an account**
+**Use Case: UC24 - Switching to an account**
 
 **MSS**
 
@@ -938,7 +964,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Exiting app**
+**Use Case: UC25 - Exiting app**
     
 **MSS**
 
