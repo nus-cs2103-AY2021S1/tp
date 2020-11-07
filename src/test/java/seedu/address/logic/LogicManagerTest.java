@@ -49,7 +49,7 @@ public class LogicManagerTest {
     public void setUp() {
         JsonExerciseBookStorage exerciseBookStorage =
                 new JsonExerciseBookStorage(temporaryFolder.resolve("exerciseBook.json"));
-        JsonGoalBookStorage goalBookStorage = 
+        JsonGoalBookStorage goalBookStorage =
                 new JsonGoalBookStorage(temporaryFolder.resolve("goalbook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManagerForExercise storage = new StorageManagerForExercise(exerciseBookStorage, userPrefsStorage);
