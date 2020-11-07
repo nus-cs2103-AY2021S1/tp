@@ -37,7 +37,7 @@ public class AddCommand extends CommandForExercise {
             + PREFIX_TAG + "home "
             + PREFIX_TAG + "gym";
 
-    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s\n" 
+    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s\n"
             + "Congratulations! You have burnt %2$.6s kg";
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the exercise book";
 

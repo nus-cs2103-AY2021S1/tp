@@ -32,7 +32,7 @@ public class ExerciseModelManager implements ExerciseModel {
     /**
      * Initializes a ExerciseModelManager with the given exerciseBook and userPrefs.
      */
-    public ExerciseModelManager(ReadOnlyExerciseBook exerciseBook, 
+    public ExerciseModelManager(ReadOnlyExerciseBook exerciseBook,
                                 ReadOnlyGoalBook goalBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(exerciseBook, userPrefs);

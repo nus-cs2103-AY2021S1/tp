@@ -24,7 +24,7 @@ public class AddExerciseFromTemplate extends CommandForExercise {
             + PREFIX_DATE + "31-12-2020 "
             + PREFIX_CALORIES + "100";
 
-    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s \n " 
+    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s \n "
             + "You have burnt %1$s kg";
 
     private final Exercise toAdd;
