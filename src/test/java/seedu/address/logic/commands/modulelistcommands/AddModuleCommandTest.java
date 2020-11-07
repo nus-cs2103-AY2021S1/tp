@@ -71,6 +71,15 @@ public class AddModuleCommandTest {
         assertFalse(addCs2103tCommand.equals(addCs2101Command));
     }
 
+    @Test
+    public void test_toString() {
+        Module validModule = new ModuleBuilder().build();
+        AddModuleCommand addModuleCommand = new AddModuleCommand(validModule);
+        String expectedString = "addmodule" + " " + validModule.toString();
+
+        assertEquals(expectedString, addModuleCommand.toString());
+    }
+
     /**
      * A Model stub that contains a single module.
      */

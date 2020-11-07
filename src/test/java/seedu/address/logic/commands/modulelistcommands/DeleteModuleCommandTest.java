@@ -36,8 +36,12 @@ public class DeleteModuleCommandTest {
             new EventList(),
             new UserPrefs());
 
+    private Model archivedModel = new ModelManager();
+
+    // ============================ unarchived test ============================ //
+
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexUnfilteredListWithUnarchived_success() {
         Module moduleToDelete = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(INDEX_FIRST_MODULE);
 
@@ -56,7 +60,7 @@ public class DeleteModuleCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidIndexUnfilteredListWithUnarchived_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredModuleList().size() + 1);
         DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(outOfBoundIndex);
 
@@ -64,7 +68,7 @@ public class DeleteModuleCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexFilteredListWithUnarchived_success() {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
 
         Module moduleToDelete = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
@@ -86,7 +90,7 @@ public class DeleteModuleCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_invalidIndexFilteredListWithUnarchived_throwsCommandException() {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
 
         Index outOfBoundIndex = INDEX_SECOND_MODULE;
@@ -96,6 +100,74 @@ public class DeleteModuleCommandTest {
         DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(outOfBoundIndex);
         assertCommandFailure(deleteModuleCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
     }
+
+    // ========================== archived test ============================== //
+
+    @Test
+    public void execute_validIndexUnfilteredListWithArchived_success() {
+        archivedModel.setArchivedModuleList(getTypicalModuleList());
+        archivedModel.displayArchivedModules();
+
+        Module moduleToDelete = archivedModel.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(INDEX_FIRST_MODULE);
+
+        String expectedMessage = String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete);
+
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.setArchivedModuleList(getTypicalModuleList());
+        expectedModel.displayArchivedModules();
+        expectedModel.deleteArchivedModule(moduleToDelete);
+
+        assertCommandSuccess(deleteModuleCommand, archivedModel, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexUnfilteredListWithArchived_throwsCommandException() {
+        archivedModel.setArchivedModuleList(getTypicalModuleList());
+        archivedModel.displayArchivedModules();
+
+        Index outOfBoundIndex = Index.fromOneBased(archivedModel.getFilteredModuleList().size() + 1);
+        DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(outOfBoundIndex);
+
+        assertCommandFailure(deleteModuleCommand, archivedModel, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_validIndexFilteredListWithArchived_success() {
+        archivedModel.setArchivedModuleList(getTypicalModuleList());
+        archivedModel.displayArchivedModules();
+
+        showModuleAtIndex(archivedModel, INDEX_FIRST_MODULE);
+
+        Module moduleToDelete = archivedModel.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(INDEX_FIRST_MODULE);
+
+        String expectedMessage = String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete);
+
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.setArchivedModuleList(getTypicalModuleList());
+        expectedModel.displayArchivedModules();
+        expectedModel.deleteArchivedModule(moduleToDelete);
+        showNoModule(expectedModel);
+
+        assertCommandSuccess(deleteModuleCommand, archivedModel, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexFilteredListWithArchived_throwsCommandException() {
+        archivedModel.setArchivedModuleList(getTypicalModuleList());
+        archivedModel.displayArchivedModules();
+        showModuleAtIndex(archivedModel, INDEX_FIRST_MODULE);
+
+        Index outOfBoundIndex = INDEX_SECOND_MODULE;
+        // ensures that outOfBoundIndex is still in bounds of module list
+        assertTrue(outOfBoundIndex.getZeroBased() < archivedModel.getModuleListDisplayed().getModuleList().size());
+
+        DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(outOfBoundIndex);
+        assertCommandFailure(deleteModuleCommand, archivedModel, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+    }
+
+    // =========================== general test ================================= //
 
     @Test
     public void equals() {
