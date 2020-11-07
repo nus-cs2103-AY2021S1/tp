@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to get recommended recipes. (Pull requests [\#109](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/109))
   * What it does: allows the user to get recipes that they can make based on their fridge, that is the recipes whose ingredients are all present in their fridge.
   * Justification: This feature improves the product significantly because a user can easily search for what recipes they are able to make, which the ingredient that are already present in their fridge.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+  * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation too was challenging as it was a new command that was not very similar to existing commands.
   
 * **New Feature**: Added the ability to add ingredients to the user's fridge. (Pull requests [\#41](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/41))
   * What it does: allows the user to add ingredients to their fridge in Wishful Shrinking.
@@ -38,15 +38,17 @@ Given below are my contributions to the project.
   * Managed release `v1.2` (1 release) on GitHub
   * Refactored code to add and support the Ingredient class when work began on the fridge related features
   * Updated the links and architecture sequence diagram, Logic, Model and Storage class diagrams in the Developer Guide to match Wishful Shrinking
+  * Labelled and explained Wishful Shrinking's UI components in the User guide
+  * Reminded team members to review and approve pull requests in a timely manner
 
 * **Enhancements to existing features**:
-  * Added support for tags for recipes (Pull requests [\#85](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/85))
+  * Added support for tags in recipes (Pull requests [\#85](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/85))
     * Justification: This feature, which is built off of the existing tag feature in Address Book 3, allows users to easily tag their favourite recipes, in order to easily filter by them later.
 
   * Added the ability to search for a recipe in the recipe list by its ingredients or tags, in addition to name. (Pull requests [\#109](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/109))
     * Justification: This feature improves upon the original "search for contact by name" feature that was originally in AddressBook Level 3, and later implemented in Wishful Shrinking, as it now allows users to search for recipes not only by name, but also by the ingredients it contains, which is essential in recipes, and also tags, which are helpful for the user to filter their favourite recipes.
 
-  * Wrote additional tests for existing features to increase coverage from 63.5% to 67.5% (Pull requests [\#246](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/246))
+  * Wrote additional tests for existing features to increase test coverage from 63.5% to 67.5% (Pull requests [\#246](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/246))
 
 * **Documentation**:
   * User Guide:
@@ -55,6 +57,7 @@ Given below are my contributions to the project.
     * Did cosmetic tweaks to User Guide and ensured phrasing used was consistent and accurate: [\#178](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/178)
   * Developer Guide:
     * Added implementation details of the `addF`, `deleteC`, `recommend` and `searchR` feature: [\#118](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/118/files)
+    * Did cosmetic tweaks to Developer Guide and ensured phrasing used was consistent and accurate: [\#259](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/259)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117), [\#115](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/115), [\#175](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/175), [\#173](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/173)

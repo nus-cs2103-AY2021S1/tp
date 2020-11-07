@@ -10,8 +10,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SANDWI
 import static seedu.address.testutil.TypicalRecipes.MARGARITAS;
 import static seedu.address.testutil.TypicalRecipes.SANDWICH;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.testutil.RecipeBuilder;
 
 public class RecipeTest {
@@ -61,7 +64,11 @@ public class RecipeTest {
         editedSandwich = new RecipeBuilder(SANDWICH)
                .build();
         assertTrue(SANDWICH.isSameRecipeNameAndIngredientName(editedSandwich));
+
+        editedSandwich.setDefaultImage();
+        assertTrue(SANDWICH.isSameRecipeNameAndIngredientName(editedSandwich));
     }
+
 
     @Test
     public void isSameRecipe() {
@@ -80,13 +87,15 @@ public class RecipeTest {
 
         // same ingredients and quantity -> returns true
         editedSandwich =
-                new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH)
+                new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH,
+                        VALID_QUANTITY_SANDWICH)
                         .build();
         assertTrue(SANDWICH.isSameRecipe(editedSandwich));
 
         // same ingredients and diff quantity -> returns false
         editedSandwich =
-                new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_MARGARITAS)
+                new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH,
+                        VALID_QUANTITY_MARGARITAS)
                         .build();
         assertFalse(SANDWICH.isSameRecipe(editedSandwich));
 
@@ -134,4 +143,12 @@ public class RecipeTest {
         assertFalse(SANDWICH.equals(editedSandwich));
 
     }
+
+    @Test
+    public void isSameIngredient() {
+        ArrayList<Ingredient> list = new ArrayList<>();
+        list.add(new Ingredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_SANDWICH));
+        assertFalse(SANDWICH.isSameIngredients(list));
+    }
+
 }

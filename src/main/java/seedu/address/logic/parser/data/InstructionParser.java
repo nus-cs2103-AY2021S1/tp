@@ -28,8 +28,7 @@ public class InstructionParser {
             }
         }
         if (instructions.size() == 0) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "This recipe must contain instruction"));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Instruction.MESSAGE_CONSTRAINTS));
         }
         return instructions;
     }

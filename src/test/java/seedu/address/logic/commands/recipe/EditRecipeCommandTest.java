@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_PASTA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_SANDWICH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_SANDWICH_DUPLICATE_INGREDIENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_SIMILAR_SANDWICH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_SIMILAR_SANDWICH_INGREDIENT_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_SIMILAR_SANDWICH_NAME;
@@ -391,6 +392,13 @@ public class EditRecipeCommandTest {
                 new EditRecipeDescriptorBuilder().withName(VALID_NAME_MARGARITAS).build());
 
         assertCommandFailure(editRecipeCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_validRecipeWithDuplicateIngredients_throwsCommandException() {
+        EditRecipeDescriptor descriptor = VALID_DESCRIPTOR_SANDWICH_DUPLICATE_INGREDIENT;
+        EditRecipeCommand editRecipeCommand = new EditRecipeCommand(INDEX_FIRST_RECIPE, descriptor);
+        assertCommandFailure(editRecipeCommand, model, EditRecipeCommand.MESSAGE_DUPLICATE_INGREDIENTS);
     }
 
     @Test

@@ -1,11 +1,13 @@
 package seedu.address.logic.parser.data;
 
-import java.io.BufferedInputStream;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -16,6 +18,7 @@ import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,7 +29,6 @@ import seedu.address.model.recipe.RecipeImage;
  */
 public class ImageParser {
     private static final String DIRECTORY_NAME = "data/";
-    private boolean isDoneLoading = false;
 
     /**
      * Parses a String of image path to
@@ -38,66 +40,72 @@ public class ImageParser {
      * @throws ParseException
      */
     public RecipeImage parse(String imagePath) throws ParseException, IOException, URISyntaxException {
-        String filename = "";
+        String fileName = "";
+        String imageLocalPath = imagePath;
         try {
             if (imagePath.length() > 4 && imagePath.substring(0, 4).equals("http")) {
                 for (int i = imagePath.length() - 1; i >= 0; i--) {
                     if (imagePath.charAt(i) == '/') {
-                        filename = imagePath.substring(i + 1);
+                        fileName = imagePath.substring(i + 1);
                         break;
                     }
                 }
                 URL url = new URL(imagePath);
-                CompletableFuture<byte[]> completableFuture = CompletableFuture.supplyAsync(() -> {
-                    try {
-                        InputStream in = new BufferedInputStream(url.openStream());
-                        ByteArrayOutputStream out = new ByteArrayOutputStream();
-                        byte[] buf = new byte[1024];
-                        int n = 0;
-                        while (-1 != (n = in.read(buf))) {
-                            out.write(buf, 0, n);
-                        }
-                        out.close();
-                        in.close();
-                        return out.toByteArray();
-                    } catch (Exception e) {
-                        return null;
-                    }
-                });
-                while (!completableFuture.isDone()) {
-                    this.isDoneLoading = false;
-                }
-                this.isDoneLoading = true;
-                byte[] response = completableFuture.get();
-                //imagePath = AddRecipeCommandParser.class.getResource("/images").getPath() + "/" + filename;
-                imagePath = DIRECTORY_NAME + filename;
-                //imagePath = getPathsFromResourceJAR("data") + "/" + filename;
+                imagePath = DIRECTORY_NAME + fileName;
                 File directory = new File(DIRECTORY_NAME);
                 if (!directory.exists()) {
                     directory.mkdir();
                 }
                 FileOutputStream fos = new FileOutputStream(imagePath);
-                URL jarLocation = this.getClass().getProtectionDomain().getCodeSource().getLocation();
-                URL data = new URL(jarLocation, DIRECTORY_NAME + filename);
-                imagePath = data.toURI().getPath();
-                fos.write(response);
-                fos.close();
-                //File file = FileHelp.from("file:///" + imagePath, filename);
-                //imagePath = file.getPath();
-                imagePath = "file://" + imagePath;
+                imageLocalPath = getImageFromUrl(url, fileName, fos);
             }
         } catch (Exception e) {
-            imagePath = "images/default.jpg";
+            e.printStackTrace();
+            imageLocalPath = "images/default.jpg";
         }
-
         //return new RecipeImage("images/" + filename);
-        return new RecipeImage(imagePath);
+        if (imagePath.length() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RecipeImage.MESSAGE_CONSTRAINTS));
+        }
+        return new RecipeImage(imageLocalPath);
     }
 
-    public boolean isDoneLoading() {
-        return this.isDoneLoading;
-    }
+    private String getImageFromUrl(URL url, String fileName, FileOutputStream fos)
+            throws ExecutionException, InterruptedException {
+        String imagePathDefault = "images/default.jpg";
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
+            try {
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("GET");
+                con.setConnectTimeout(5000);
+                con.setReadTimeout(5000);
+                InputStream responseStream = con.getInputStream();
+                URL jarLocation = this.getClass().getProtectionDomain().getCodeSource().getLocation();
+                URL data = new URL(jarLocation, DIRECTORY_NAME + fileName);
 
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+                int n = 0;
+                while (-1 != (n = responseStream.read(buf))) {
+                    out.write(buf, 0, n);
+                }
+                out.close();
+                responseStream.close();
+                fos.write(out.toByteArray());
+                fos.close();
+
+                return ("file://" + data.toURI().getPath());
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+        String imagePath = completableFuture.get();
+        if (imagePath != null) {
+            return imagePath;
+        }
+        return imagePathDefault;
+    }
 
     /**
      * Get all paths from a folder that inside the JAR file.
@@ -125,8 +133,6 @@ public class ImageParser {
                     .filter(Files::isRegularFile)
                     .collect(Collectors.toList());
         }
-
         return result;
-
     }
 }

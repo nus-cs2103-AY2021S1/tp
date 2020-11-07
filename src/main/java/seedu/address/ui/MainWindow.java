@@ -303,11 +303,6 @@ public class MainWindow extends UiPart<Stage> {
             ParseException, IOException, URISyntaxException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            //handle showing single recipe
-            Recipe selected = commandResult.getRecipe();
-            if (selected != null) {
-                showDrawer(selected);
-            }
             //handle closing drawer
             if (commandResult.isClose()) {
                 if (leftDrawer.isClosed()) {
@@ -320,6 +315,12 @@ public class MainWindow extends UiPart<Stage> {
             } else if (leftDrawer.isOpened()) {
                 CommandException commandException = new CommandException("Close drawer first!");
                 throw commandException;
+            }
+
+            //handle showing single recipe
+            Recipe selected = commandResult.getRecipe();
+            if (selected != null) {
+                showDrawer(selected);
             }
 
             if (commandResult.isShowHelp()) {

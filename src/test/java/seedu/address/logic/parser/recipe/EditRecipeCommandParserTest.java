@@ -8,12 +8,13 @@ import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_MARGA
 import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RECIPE_IMAGE_DESC_SANDWICH;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RECIPE_IMAGE_SANDWICH;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MISSING_INSTRUCTIONS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.NEGATIVE_CALORIES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NON_INTEGER_CALORIES_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.Number;
 import static seedu.address.logic.commands.CommandTestUtil.RECIPE_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_NOODLE;
@@ -41,6 +42,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_RECIPE;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.recipe.EditRecipeCommand;
 import seedu.address.logic.commands.recipe.EditRecipeCommand.EditRecipeDescriptor;
 import seedu.address.model.ingredient.Ingredient;
@@ -72,15 +74,15 @@ public class EditRecipeCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        String recipeWithNegativeIndex = invalidRecipeIndexField(Number.NEGATIVE);
+        String recipeWithNegativeIndex = invalidRecipeIndexField(CommandTestUtil.Number.NEGATIVE);
         assertParseFailure(parser, recipeWithNegativeIndex, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        String recipeWithZeroIndex = invalidRecipeIndexField(Number.ZERO);
+        String recipeWithZeroIndex = invalidRecipeIndexField(CommandTestUtil.Number.ZERO);
         assertParseFailure(parser, recipeWithZeroIndex, MESSAGE_INVALID_FORMAT);
 
         // non integer index
-        String recipeWithNonIntegerIndex = invalidRecipeIndexField(Number.NON_INTEGER);
+        String recipeWithNonIntegerIndex = invalidRecipeIndexField(CommandTestUtil.Number.NON_INTEGER);
         assertParseFailure(parser, recipeWithNonIntegerIndex, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
@@ -122,15 +124,15 @@ public class EditRecipeCommandParserTest {
         assertParseFailure(parser, recipeWithInvalidName, Name.MESSAGE_CONSTRAINTS);
 
         // invalid recipe calorie specified: zero
-        String recipeWithZeroCalories = invalidRecipeCalorieField(Number.ZERO);
+        String recipeWithZeroCalories = invalidRecipeCalorieField(CommandTestUtil.Number.ZERO);
         assertParseFailure(parser, recipeWithZeroCalories, Calories.MESSAGE_CONSTRAINTS);
 
         // invalid recipe calorie specified: non integer
-        String recipeWithNonIntegerCalories = invalidRecipeCalorieField(Number.NON_INTEGER);
+        String recipeWithNonIntegerCalories = invalidRecipeCalorieField(CommandTestUtil.Number.NON_INTEGER);
         assertParseFailure(parser, recipeWithNonIntegerCalories, Calories.MESSAGE_CONSTRAINTS);
 
         // invalid recipe calorie specified: negative
-        String recipeWithNegativeCalories = invalidRecipeCalorieField(Number.NEGATIVE);
+        String recipeWithNegativeCalories = invalidRecipeCalorieField(CommandTestUtil.Number.NEGATIVE);
         assertParseFailure(parser, recipeWithNegativeCalories, Calories.MESSAGE_CONSTRAINTS);
 
 
@@ -275,6 +277,12 @@ public class EditRecipeCommandParserTest {
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_MARGARITAS;
         descriptor = new EditRecipeDescriptorBuilder().withTags(VALID_TAG_MARGARITAS).build();
+        expectedCommand = new EditRecipeCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        //recipe image
+        userInput = targetIndex.getOneBased() + INVALID_RECIPE_IMAGE_DESC_SANDWICH;
+        descriptor = new EditRecipeDescriptorBuilder().withImage(INVALID_RECIPE_IMAGE_SANDWICH).build();
         expectedCommand = new EditRecipeCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

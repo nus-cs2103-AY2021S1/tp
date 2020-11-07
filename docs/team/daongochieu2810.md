@@ -45,7 +45,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Updated UI diagram and implementation details for `selectR` and `close`: [\#177](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/177) 
     * Added implementation details for `addR`, `deleteR` and `deleteF`: [\#123](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/123)
-
+    
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#179](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/179)
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/124), [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/44))

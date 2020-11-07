@@ -1,0 +1,16 @@
+@startuml
+start
+:user executes close command: close;
+:Logic executes close command;
+:CloseCommandParser parses the command: close;
+
+if () then ([drawer is opened])
+:execute CloseCommand;
+
+else ([drawer is closed])
+    :throw command exception;
+
+endif
+stop
+
+@enduml
