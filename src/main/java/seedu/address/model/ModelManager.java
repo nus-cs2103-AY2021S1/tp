@@ -164,7 +164,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteParticipation(Participation target) {
-        if(mainCatalogue.hasParticipation(target)) {
+        if (mainCatalogue.hasParticipation(target)) {
             mainCatalogue.removeParticipation(target);
         }
     }
@@ -241,22 +241,22 @@ public class ModelManager implements Model {
     @Override
     public void quit() {
         switch (mainCatalogue.getStatus()) {
-        case PROJECT:
-            resetProjectToBeDisplayedOnDashboard();
-            resetTaskToBeDisplayedOnDashboard();
-            resetTeammateToBeDisplayedOnDashboard();
-            break;
-        case TASK:
-            resetTaskToBeDisplayedOnDashboard();
-            break;
-        case TEAMMATE:
-            resetTeammateToBeDisplayedOnDashboard();
-            break;
-        case PERSON:
-            resetPersonToBeDisplayedOnDashboard();
-            break;
-        default:
-            break;
+            case PROJECT:
+                resetProjectToBeDisplayedOnDashboard();
+                resetTaskToBeDisplayedOnDashboard();
+                resetTeammateToBeDisplayedOnDashboard();
+                break;
+            case TASK:
+                resetTaskToBeDisplayedOnDashboard();
+                break;
+            case TEAMMATE:
+                resetTeammateToBeDisplayedOnDashboard();
+                break;
+            case PERSON:
+                resetPersonToBeDisplayedOnDashboard();
+                break;
+            default:
+                break;
         }
         mainCatalogue.quit();
     }
@@ -325,15 +325,16 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return userPrefs.equals(other.userPrefs)
-               && filteredProjects.equals(other.filteredProjects);
-                //&& filteredTasks.equals(other.filteredTasks)
-                //&& filteredTeammates.equals(other.filteredTeammates);
+                && filteredProjects.equals(other.filteredProjects);
+        //&& filteredTasks.equals(other.filteredTasks)
+        //&& filteredTeammates.equals(other.filteredTeammates);
     }
 
     //=========== Project To Be Displayed On DashBoard Accessors ======================================================
 
     /**
      * Updates the project to be displayed on project dashboard.
+     *
      * @param project project to be displayed on dashboard
      */
     @Override
