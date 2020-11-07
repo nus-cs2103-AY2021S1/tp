@@ -29,7 +29,7 @@ title: Developer Guide
     - [3.2. Eat Recipe Feature](#32-eat-recipe-feature)
         * [3.2.1 Implementation](#321-implementation)
         * [3.2.2 Design Consideration](#322-design-consideration)
-            * [Aspect: What fields to extract from the eaten recipes to save in the Consumption List](#3221-aspect)
+            * [Aspect: What fields to extract from the eaten recipes to save in the consumption list](#3221-aspect)
 	    <br><br>
     - [3.3. List Features](#33-list-features)
         * [3.3.1 Implementation](#331-implementation)
@@ -578,7 +578,7 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Pros: Easy for users to edit an ingredient.
   * Cons: Involves another command to set the command box to show the information of the ingredient that the user wishes to edit.
 
-* **Alternative 2:** User need to retype the existing ingredient's field that they wish to modify, if they want to modify only a part of the
+* **Alternative 2:** User needs to retype the existing ingredient's field that they wish to modify, if they want to modify only a part of the
  existing field
   * Pros: Easy to implement.
   * Cons: Not user friendly. <br><br>
