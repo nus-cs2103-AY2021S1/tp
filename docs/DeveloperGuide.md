@@ -466,6 +466,7 @@ This captures different scenarios of how a user will perform tasks while using _
 (For all use cases below, the **System** is the `CommonCents` and the **Actor** is the `user`, unless specified otherwise)
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC01 - Adding an expense**
 
 **MSS**
@@ -485,6 +486,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC02 - Adding a revenue**
 
 **MSS**
@@ -504,6 +506,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC03 - Deleting an expense**
 
 **MSS**
@@ -523,6 +526,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC04 - Deleting a revenue**
 
 **MSS**
@@ -542,6 +546,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC - Undoing an add command**
 
 **MSS**
@@ -601,6 +606,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC - Finding specific revenues**
 
 **MSS**
@@ -632,6 +638,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC - Finding specific entries (either expenses or revenues)**
 
 **MSS**
@@ -663,6 +670,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC - Adding an account**
 
 **MSS**
@@ -688,6 +696,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC - Adding an account**
 
 **MSS**
@@ -713,6 +722,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC - Listing accounts**
 
 **MSS**
@@ -724,6 +734,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC - Delete a account**
 
 **MSS**
@@ -755,6 +766,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC - Editing the account's name**
 
 **MSS**
@@ -787,6 +799,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC - Switching to an account**
 
 **MSS**
@@ -813,6 +826,7 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
+
 **Use case: UC - Exiting app**
     
 **MSS**
