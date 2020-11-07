@@ -1,0 +1,20 @@
+@startuml
+start
+:user inputs recommend command: recommend;
+:Logic executes recommend command;
+
+if () then ([no extra arguments])
+:execute RecommendCommand;
+
+:ingredients between recipes and user's fridge are compared;
+
+:recipes in the recipe list whose ingredients match the user's fridge are returned;
+
+
+else ([include extra arguments])
+    :throw parse exception;
+
+endif
+stop
+
+@enduml
