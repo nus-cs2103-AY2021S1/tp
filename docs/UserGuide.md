@@ -4,41 +4,8 @@ title: User Guide
 ---
 Welcome to the User Guide for Eva!
 
-- [**1. Introduction**](#1-introduction)
-- [**2. Getting Started**](#2-getting-started)
-- [**3. Features**](#3-features)
-  * [3.1. Common Commands](#31-common-commands)
-    + [3.1.1. View](#311-view--view)
-    + [3.1.2. List all persons : `list`](#312-list-all-persons--list)
-    + [3.1.3. Find a person](#313-find-a-person--find-find_type-)
-  * [3.2. General Commands](#32-general-commands)
-    + [3.2.1. Clear all entries : `clear`](#321-clear-all-entries--clear)
-    + [3.2.2. Find help : `help`](#322-find-help--help)
-    + [3.2.3. Exit the program : `exit`](#323-exit-the-program--exit)
-  * [3.3. Staff commands](#33-staff-commands)
-    + [3.3.1. Add a staff: `adds`](#331-add-a-staff-adds)
-    + [3.3.2. Delete a staff: `dels`](#332-delete-a-staff-dels)
-    + [3.3.3. Edit a staff: `edits`](#333-edit-a-staff-edits)
-    + [3.3.4. Record leave taken by staff: `addl`](#334-record-leave-taken-by-staff-addl)
-    + [3.3.5. Delete leave taken by staff: `dell`](#335-delete-leave-taken-by-staff-dell)
-  * [3.4. Applicant commands](#34-applicant-commands)
-    + [3.4.1 Add an applicant: `adda`](#341-add-an-applicant-adda)
-    + [3.4.2. Delete an applicant: `dela`](#342-delete-an-applicant-dela)
-    + [3.4.3. Edit an applicant: `edita`](#343-edit-an-applicant-edita)
-    + [3.4.4. Add an application: `addapp`](#344-add-an-application-addapp)
-    + [3.4.5. Delete an application: `delapp`](#345-delete-an-application-delapp)
-    + [3.4.6. Set application status: `setas`](#346-set-application-status-setas)
-  * [3.5. Comment Commands](#35-comment-commands)
-    + [3.5.1 Add comment to a staff/applicant: `addc INDEX c/ ti/TITLE d/Date desc/DESCRIPTION`](#351-add-comment-to-a-staffapplicant-addc-index-c-tititle-ddate-descdescription)
-    + [3.5.2 Delete comment from a staff/applicant: `delc INDEX c/ ti/TITLE_TO_DELETE`](#352-delete-comment-from-a-staffapplicant-delc-index-c-tititle_to_delete)
-    + [3.5.3 Edit comment on an applicant: `editc INDEX c/ ti/TITLE_TO_EDIT d/DATE_OF_TITLE_TO_EDIT desc/ NEW_DESC`](#353-edit-comment-on-an-applicant-editc-index-c-tititle_to_edit-ddate_of_title_to_edit-desc-new_desc)
-  * [3.6. Archive data files `[coming in v2.0]`](#36-archive-data-files-coming-in-v20)
-- [**4. FAQ**](#4-faq)
-- [**5. Command summary**](#5-command-summary)
-  * [5.1. Common](#51-common)
-  * [5.2. General](#52-general)
-  * [5.3. Staff](#53-staff)
-  * [5.4. Applicant](#54-applicant)
+* Table of Contents
+{:toc}
 
 ## 1. Introduction
 
@@ -126,49 +93,9 @@ You can also find the records in the `data` folder where the `eva.jar` file is l
 
 </div>
 
-### 3.1. Common Commands
-#### 3.1.1. View : `view`
+### 3.1. System Commands
 
-Brings you to the profile panel of the staff, if on the staff list, or applicant, if on the applicant list, at the specified index. 
-
-Format: `view INDEX`
-
-Example:
-* `view 1`
-
-#### 3.1.2. List all persons : `list`
-
-Shows a list of all persons in the application.
-
-Format: `list LIST_TYPE-`
-
-Examples:
-* `list s-` : lists all staffs
-* `list a-` : lists all applicants
-
-#### 3.1.3. Find a person : `find FIND_TYPE-`
-
-Shows a list of the persons whose name contains one of the given names.
-
-Format `find FIND_TYPE- KEYWORD`
-
-Examples:
-* `find s- Doe`
-* `find a- John`
-
-### 3.2. General Commands
-
-#### 3.2.1. Clear all entries : `clear`
-
-Clears all entries from Eva.
-
-Format: `clear DATABASE_TYPE-`
-
-Examples:
-* `clear s-`
-* `clear a-`
-
-#### 3.2.2. Find help : `help`
+#### 3.1.1. Find help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -176,13 +103,14 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-#### 3.2.3. Exit the program : `exit`
+#### 3.1.2. Exit the program : `exit`
 
 Exits the program. 
 
 Format: `exit`
 
-### 3.3. Staff commands
+
+### 3.2. Staff commands
 
 <div>
 
@@ -193,7 +121,11 @@ Format: `exit`
 
 </div>
 
-#### 3.3.1. Add a staff: `adds`
+#### 3.2.1. List all staffs : `list s-`
+
+Shows a list of all staffs in Eva.
+
+#### 3.2.2. Add a staff: `adds`
 
 Adds a staff to Eva.
 
@@ -206,7 +138,25 @@ Examples:
 * `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Developer`
 
-#### 3.3.2. Delete a staff: `dels`
+#### 3.2.3. Find a staff : `find s-`
+
+Shows a list of staffs whose name contains one of the given names.
+
+Format `find FIND_TYPE- KEYWORD`
+
+Examples:
+* `find s- Doe`
+
+#### 3.2.4. View : `view`
+
+Brings you to the profile panel of the staff at the specified index. 
+
+Format: `view INDEX`
+
+Example:
+* `view 1`
+
+#### 3.2.5. Delete a staff: `dels`
 
 Deletes a staff from Eva. 
 
@@ -215,7 +165,7 @@ Format: `dels INDEX`
 Example:
 * `dels 1`
 
-#### 3.3.3 Edit a staff: `edits`
+#### 3.2.6. Edit a staff: `edits`
 
 Edits general details of a staff from eva (excluding leave taken)
 
@@ -233,7 +183,7 @@ Example:
 * `edits 1 n/NEW_NAME p/99999999 a/NEW_ADDRESS e/NEW@example.com`
 
 
-#### 3.3.4. Record leave taken by staff: `addl`
+#### 3.2.7. Record leave taken by staff: `addl`
 
 Records leave taken by a staff that is in Eva. <br>
 Format: `addl INDEX l/d/DATE [d/DATE] [l/d/DATE [d/DATE]]…​`
@@ -253,7 +203,7 @@ Examples:
 * `addl 1 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`
 * `addl 2 l/d/10/10/2020 d/08/10/2020 l/d/09/09/2020`
 
-#### 3.3.5. Delete leave taken by staff: `dell`
+#### 3.2.8. Delete leave taken by staff: `dell`
 
 Removes record of leave taken by staff. <br>
 Format: `dell INDEX d/DATE`
@@ -263,13 +213,21 @@ Examples:
 * `find s- Betsy` followed by `dell 1 d/09/09/2020` deletes the leave from the 1st person in the results of the `find s-` command.
 * `dell 2 d/09/09/2020`
 
-### 3.4. Applicant commands
+#### 3.2.9. Clear staff database : `clear s-`
+
+Clears all staff entries from Eva.
+
+### 3.3. Applicant commands
 
 - All commands under applicant can only be done on either applicant list or applicant profile except `adda`, 
  which can be done on anywhere
  - While in profiles, only details of the profile that is being viewed can be changed.
 
-#### 3.4.1 Add an applicant: `adda`
+#### 3.3.1. List all applicants : `list a-`
+
+Shows a list of all applicants in Eva.
+
+#### 3.3.2 Add an applicant: `adda`
 
 Adds an applicant to Eva.
 
@@ -287,7 +245,25 @@ Examples:
 * `adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
 * `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Role: Developer`
 
-#### 3.4.2. Delete an applicant: `dela`
+#### 3.3.3. Find an applicant : `find a-`
+
+Shows a list of staffs whose name contains one of the given names.
+
+Format `find FIND_TYPE- KEYWORD`
+
+Examples:
+* `find a- Doe`
+
+#### 3.3.4. View : `view`
+
+Brings you to the profile panel of the applicant at the specified index. 
+
+Format: `view INDEX`
+
+Example:
+* `view 1`
+
+#### 3.3.5. Delete an applicant: `dela`
 
 Deletes an applicant with the specified index on the displayed list in Eva. 
 
@@ -296,7 +272,7 @@ Format: `dela INDEX`
 Example:
 * `dela 1`
 
-#### 3.4.3 Edit an applicant: `edita`
+#### 3.3.6. Edit an applicant: `edita`
 
 Edits general details of an applicant from eva (excluding application status)
 
@@ -316,30 +292,40 @@ Example:
 * `edita 1 id/ 10/10/2010`
 
 
-#### 3.4.4. Add an application: `addapp`
+#### 3.3.7. Add an application: `addapp`
 
-Adds an application to an applicant under Eva.
+Adds an application (resume details) to an applicant with the specified index under Eva.
 
 Format: `addapp INDEX [filepath]`
 
  - An applicant should be created prior to the addition of its application.
- - You may use the sample resume by keying in `sample` as filepath.
+
+:bulb: **Tip:**
+
+* You may find a resume text file generated in the data folder `data/resume.txt`, which is in the same directory as your jar file. This is the strict template to follow for resume files. 
+
+:bulb: **Tip:**
+
+* You may use the sample resume by keying in `sample` as filepath.
 
 Example:
-* `addapp 1 data\resume.txt`
+* `addapp 1 data/resume.txt`
 * `addapp 1 sample`
 
 
-#### 3.4.5. Delete an application: `delapp`
+#### 3.3.8. Delete an application: `delapp`
 
-Deletes an application from an applicant under Eva.
+Deletes an application from an applicant with the specified index under Eva.
 
 Format: `delapp INDEX`
+
+:note: **Note:**
+ * `delapp` replaces the current application of the target applicant with a blank application.
 
 Example:
 * `delapp 1`
 
-#### 3.4.6. Set application status: `setas`
+#### 3.3.9. Set application status: `setas`
 [This feature is coming soon] <br>
 Sets the application status of an applicant with the specified index on the displayed list in Eva.
 
@@ -354,7 +340,7 @@ Format: `setas INDEX NEW_APPLICATION_STATUS`
 Example:
 * `setas 1 received`
 
-### 3.5. Comment Commands
+### 3.4. Comment Commands
 
 Commands to add, delete and edit comments on staff or applicants
 
@@ -368,7 +354,7 @@ Commands to add, delete and edit comments on staff or applicants
 
 </div>
  
-#### 3.5.1 Add comment to a staff/applicant: `addc INDEX c/ `
+#### 3.4.1 Add comment to a staff/applicant: `addc`
 
 Adds a comment to a staff/applicant under eva
 
@@ -377,7 +363,7 @@ Format: `addc INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
 Example:
 * `addc 1 c/ ti/title d/10/10/2010 desc/description`
 
-#### 3.5.2 Delete comment from a staff/applicant: `delc INDEX c/ `
+#### 3.4.2 Delete comment from a staff/applicant: `delc`
 
 Deletes a comment from a staff/applicant under eva
 
@@ -387,7 +373,7 @@ Examples:
 * Comment to delete has title: Example, Date: 10/10/2010, Description: Example of comment, Staff index is 1
 * Command: `delc 1 c/ ti/Example`
 
-#### 3.5.3. Edit comment on a staff: `editc INDEX c/`
+#### 3.4.3. Edit comment on a staff: `editc`
 
 Edits the description of a comment on a staff. 
 
@@ -398,11 +384,7 @@ Examples:
 * Command: `editc 1 c/ ti/Example d/10/10/2010 desc/New Example of comment`
 
 
-### 3.6. Archive data files `[coming in v2.0]`
-
-##
-
-_{explain the feature here}_
+### 3.5. Script Engine `[coming in v2.0]`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -415,42 +397,38 @@ _{explain the feature here}_
 **A**: Open terminal and traverse to the directory the `eva.jar` file is in. Then type the command `java -jar eva.jar`.
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Command summary
+## 5. Command summary                                                                                 |
 
-### 5.1. Common
-
-| Action   | Format, Examples                                                                                                           |
-|----------|----------------------------------------------------------------------------------------------------------------------------|
-| **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
-| **Find** | `find [s- ⎮ a-] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find a-James Jake`                                                                 |
-| **List** | `list [s- ⎮ a-]`<br> e.g., `list s-`   
-| **Clear** | `clear [s- ⎮ a-]` <br> e.g., `clear s-`           |
-| **View** | `view INDEX`<br> e.g., `view 2`                                                                                            |
-
-### 5.2. General
+### 5.1. System
 
 | Action    | Format, Examples   |
 |-----------|--------------------|
 | **Help**  | `help`             |
 | **Exit**  | `exit`             |
 
-### 5.3. Staff
+### 5.2. Staff
 
 | Action          | Format, Examples                                                                                                                                        |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **AddStaff**    | `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **DeleteStaff** | `dels INDEX`<br> e.g., `delstaff 1`                                                                                                                 |
+| **List** | `list s-`   
+| **AddStaff**    | `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **Find** | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find s- James Jake`                                                                 |
+| **View** | `view INDEX`<br> e.g., `view 2`                                                                                            |
+| **DeleteStaff** | `dels INDEX`<br> e.g., `dels 1`         
+| **Edit** | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edits 2 n/James Lee e/jameslee@example.com` |
 | **AddLeave**    | `addl INDEX l/d/DATE [d/DATE]` <br> e.g., `addl 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`                                                   |
 | **DeleteLeave** | `dell INDEX d/DATE`<br> e.g., `dell 1 d/10/10/2020`                                                                                       |
+| **Clear** | `clear s-`         |
 
-### 5.4. Applicant
+### 5.3. Applicant
 
 | Action                | Format, Examples                                                                                                 |
 |-----------------------|------------------------------------------------------------------------------------------------------------------|
+| **List** | `list a-`   
 | **AddApplicant**      | `adda` <br> e.g., `adda n/John Doe p/98765432 e/jd@example.com a/John street, block 123, #01-01` |
+| **Find** | `find a- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find a- James Jake`                                                                 |
+| **View** | `view INDEX`<br> e.g., `view 2`                                                                                            |
 | **DeleteApplicant**   | `dela` <br> e.g., `dela 1`                                                                       |
 | **AddApplication**    | `addapp INDEX [filepath]` <br> e.g., `addapp 1 C:\Users\Public\Downloads\resume.txt`             |
 | **DeleteApplication** | `delapp INDEX` <br> e.g., `delapp 1`                                                       |
 | **SetAppStatus**      | `setas INDEX NEW_APPLICATION_STATUS` <br> e.g., `setas 1 processing`                               |
-
-
