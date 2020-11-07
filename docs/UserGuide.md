@@ -167,6 +167,10 @@ In general, Warenager will not be able to parse any prefix besides the 15 valid 
 invalid prefix as a parameter instead. <br>
 For example, in `delete sn/Fairprice1 x/Random`, `Fairprice1 x/Random` will be recognized as the `<serial number>`. 
 
+If a recognized prefix is supplied to a command which does not require this field, Warenager will not be able to parse this command
+ and will show you an error message. <br>
+For example, `print fn/stocks ni/0` is not a valid command as `ni/0` is not required in the `print` command.
+
 </div>
 
 <div markdown="block" class="alert alert-warning">
@@ -255,6 +259,8 @@ Adds a new stock into the inventory. A unique serial number for the new stock wi
 
 <div markdown="block" class="alert alert-info">
 
+**:information_source: Note for low quantity field:**<br>
+
 The low quantity field is the amount where you deem the stock to be low in quantity. Stocks that are highlighted 
 in red are stocks that have quantities less than or equal to the low quantity field.
 The optional field low quantity will be set to 0 if not present in the input.
@@ -270,7 +276,7 @@ add n/<name> s/<source> q/<quantity> l/<location> [lq/<low quantity>]
 <h4>Examples</h4>
 
 ```
-add n/Orange s/shengshiong q/1300 l/fruits section
+add n/Orange s/Shengshiong q/1300 l/Fruits section
 add n/Sprite s/Ntuc q/1000 l/Drinks section lq/5000
 ```
 
@@ -364,11 +370,11 @@ delete sn/courts1 sn/courts2
 ```
 
 <h4>Below is a guided example for deleting stocks:</h4>
-Step 1.Before you start any deletion, you might want to use the command `list lt/all` to list all
+**Step 1.** Before you start any deletion, you might want to use the command `list lt/all` to list all
 the stocks you have in Warenager. 
 ![delete_step1](images/delete/delete_step1.png)
 
-Step 2. Let's delete the stock with serial number `COURTS2`. The fields are **not** case-sensitive.<br>
+**Step 2.** Let's delete the stock with serial number `COURTS2`. The fields are **not** case-sensitive.<br>
 A valid delete input would be `delete sn/courts2`.
 
 **Before input**:
@@ -380,7 +386,7 @@ A valid delete input would be `delete sn/courts2`.
 
 ![delete_step3](images/delete/delete_step3.png)
 
-Step 3. Multiple stocks can also be deleted at the same time. Let's delete 2 stocks with serial numbers `COURTS3`
+**Step 3.** Multiple stocks can also be deleted at the same time. Let's delete 2 stocks with serial numbers `COURTS3`
 and `COURTS4`. It can be done by chaining the serial numbers when deleting.<br>
 A valid delete input would be `delete sn/courts3 sn/courts4`.<br>
 
@@ -530,14 +536,14 @@ Let's try finding with an **invalid prefix**: `/nt` for the `find` command.
 
 Type `find nt/apple` into the command box and enter. 
 
-**After input**:
+**After input:**
 ![find-step-5](images/find/find-step-6.png)
 
 Let's try finding with a **duplicate** valid prefix for the `find` command.
 
 Type `find n/apple n/pineapple` into the command box and enter.
 
-**After input**:
+**After input:**
 ![find-step-6](images/find/find-step-7.png)
 </div>
 
@@ -677,40 +683,34 @@ Values to be updated are case-insensitive.
 
 <h4>Below is a guided example for updating stocks:</h4>
 
-**Step 1.**
-
-Before you start any updating activity, make sure to use the command `list lt/all` to list all
+**Step 1.** Before you start any updating activity, make sure to use the command `list lt/all` to list all
 the stocks you have in Warenager. The list shown below will be the basis reference for this guided example. <br>
 
 ![update_step1](images/update/update_step1.png)
 
-**Step 2.**
-
-Let's update the stock with serial number `NTUC1`. Let's update the name to `Apple` and the low quantity to `100`. Remember that the fields are **case-insensitive**. <br>
+**Step 2.** Let's update the stock with serial number `NTUC1`. Let's update the name to `Apple` and the low quantity to `100`. Remember that the fields are **case-insensitive**. <br>
 A valid update input would be `update sn/ntuc1 n/apple lq/100`. <br>
 
-**Before input**:
+**Before input:**
 
 ![update_step2](images/update/update_step2.png)
 
 
-**After input**:
+**After input:**
 
 ![update_step3](images/update/update_step3.png)
 
-**Step 3.**
-
-Multiple stocks can also be updated at the same time. Let's update 2 stocks with serial numbers `FAIRPRICE1`
+**Step 3.** Multiple stocks can also be updated at the same time. Let's update 2 stocks with serial numbers `FAIRPRICE1`
 and `FAIRPRICE3`. It can be done by chaining the serial numbers when updating.<br>
 Let's update the low quantity to `200` and the location to `Discount section`
 A valid update input would be `update sn/fairprice1 sn/fairprice3 lq/200 l/discount section`. <br>
 
-**Before input**:
+**Before input:**
 
 ![update_step4](images/update/update_step4.png)
 
 
-**After input**:
+**After input:**
 
 ![update_step5](images/update/update_step5.png)
 
@@ -1109,12 +1109,12 @@ Start Warenager. Suppose you want to display source statistics. After the input,
 the title in the statistics window as highlighted corresponds to the type of statistics shown.<br>
 The valid statistics input would be `stats st/source`.
 
-**Before input**:
+**Before input:**
 
 ![statistics_step1](images/statistics/statistics_step1.png)
 
 
-**After input**:
+**After input:**
 
 ![statistics_step2](images/statistics/statistics_step2.png)
 
@@ -1122,12 +1122,12 @@ Now suppose you want to display source statistics for the source company `courts
 should notice that the title in the statistics window as highlighted now corresponds to the source company `courts`.<br>
 The valid statistics input would be `stats st/source-qd-courts`.
 
-**Before input**:
+**Before input:**
 
 ![statistics_step3](images/statistics/statistics_step3.png)
 
 
-**After input**:
+**After input:**
 
 ![statistics_step4](images/statistics/statistics_step4.png)
 
@@ -1156,13 +1156,15 @@ bookmark sn/<serial number> [sn/<serial number>]...
 bookmark sn/giant1
 ```
 
-**Before input**:
+**Before input:**
 
 ![bookmark_before](images/bookmark/bookmark_before.png)
 
-**After input**:
+**After input:**
 
 ![bookmark_after](images/bookmark/bookmark.png)
+
+<div markdown="block" class="alert alert-warning">
 
 **:warning: Nonexistent Stocks**
 
@@ -1177,6 +1179,8 @@ Bookmarking a bookmarked stock will also result in an error. Using the bookmark 
 you should expect the following error:
 
 ![bookmark_already_bookmarked](images/bookmark/bookmark_already.png)
+
+</div>
 
 
 ### Unbookmarking stocks in the list: `unbookmark`
@@ -1194,14 +1198,16 @@ unbookmark sn/<serial number> [sn/<serial number>]...
 unbookmark sn/giant1
 ```
 
-**Before input**:
+**Before input:**
 
 ![GUI_component](images/bookmark/unbookmark_before.png)
 
 
-**After input**:
+**After input:**
 
 ![GUI_component](images/bookmark/unbookmark.png)
+
+<div markdown="block" class="alert alert-warning">
 
 **:warning: Nonexistent Stocks**
 
@@ -1216,6 +1222,8 @@ Unbookmarking a stock that is not bookmarked will also result in an error.
 Using the bookmark input `bookmark sn/fairprice1`,you should expect the following error:
 
 ![bookmark_already_bookmarked](images/bookmark/unbookmark_not.png)
+
+</div>
 
 ### Sorting inventory: `sort`
 Sort the inventory by a specific field and order.
@@ -1259,39 +1267,33 @@ the stock with quantity `2`, since `100` is greater than `2`.
 
 <h4>Below is a guided example for sorting stocks:</h4>
 
-**Step 1.**
-
-The list shown below will be the basis reference for this guided example. <br>
+**Step 1.** The list shown below will be the basis reference for this guided example. <br>
 
 ![sort_step1](images/sort/sort_step1.png)
 
-**Step 2.**
-
-In the picture above, the stock is sorted by serial number in ascending order.
+**Step 2.** In the picture above, the stock is sorted by serial number in ascending order.
 Suppose that we now want to view the stocks by name in ascending order instead. <br>
 A valid sort input would be `sort o/ascending by/name`. <br>
 
-**Before input**:
+**Before input:**
 
 ![sort_step2](images/sort/sort_step2.png)
 
 
-**After input**:
+**After input:**
 
 ![sort_step3](images/sort/sort_step3.png)
 
-**Step 3.**
-
-It is also possible to sort in descending order.
+**Step 3.** It is also possible to sort in descending order.
 Suppose that we now want to view the stocks by quantity in descending order. <br>
 A valid sort input would be `sort o/descending by/quantity`. <br>
 
-**Before input**:
+**Before input:**
 
 ![sort_step4](images/sort/sort_step4.png)
 
 
-**After input**:
+**After input:**
 
 ![sort_step5](images/sort/sort_step5.png)
 
@@ -1399,15 +1401,11 @@ can be found at Warenager's [Developer Guide](https://ay2021s1-cs2103t-t15-3.git
 
 <h4>Below is a guided example for command suggestion:</h4>
 
-**Step 1.**
-
-The list shown below will be the basis reference for this guided example. <br>
+**Step 1.** The list shown below will be the basis reference for this guided example. <br>
 
 ![suggestion_step1](images/suggestion/suggestion_step1.png)
 
-**Step 2.**
-
-Suppose now we want to add a new stock with the following description:
+**Step 2.** Suppose now we want to add a new stock with the following description:
 * name: eggplant
 * source: fairprice
 * quantity: 500
@@ -1418,25 +1416,23 @@ A valid input would be `add n/eggplant s/fairprice q/500 l/vegetable section lq/
 
 But we make a mistake and instead entered `ad n/eggplant sn/fairprice q/500 l/vegetable section lq/100`
 
-**Before input**:
+**Before input:**
 
 ![suggestion_step2](images/suggestion/suggestion_step2.png)
 
-**After input**:
+**After input:**
 
 ![suggestion_step3](images/suggestion/suggestion_step3.png)
 
-**Step 3.**
-
-As shown above, the suggestion `add n/eggplant s/<source> q/500 l/vegetable section lq/100` is generated.
+**Step 3.** As shown above, the suggestion `add n/eggplant s/<source> q/500 l/vegetable section lq/100` is generated.
 Now we can amend our input according to the suggested format.
 We now enter a valid input `add n/eggplant s/fairprice q/500 l/vegetable section lq/100`.
 
-**Before input**:
+**Before input:**
 
 ![suggestion_step4](images/suggestion/suggestion_step4.png)
 
-**After input**:
+**After input:**
 
 ![suggestion_step5](images/suggestion/suggestion_step5.png)
 
@@ -1466,9 +1462,9 @@ print fn/<file name>
 print fn/stocks
 ```
 
-<h4>Below is a guided example for deleting stocks:</h4>
+<h4>Below is a guided example for creating CSV file:</h4>
 
-**Step 1.** Let's create a CSV file named `stocks`. Start by typing print fn/stocks in the command box. 
+**Step 1.** Let's create a CSV file with a file name of `stocks`. Start by typing `print fn/stocks` in the command box. 
 
 ![stockCsvExample](images/stockCsvExample.png)
 
@@ -1516,12 +1512,12 @@ clear
 
 <h4>Below is the expected outcome for clearing Warenager:</h4>
 
-**Before input**:
+**Before input:**
 
 ![clear_step1](images/clear/clear_step1.png)
 
 
-**After input**:
+**After input:**
 
 ![clear_step2](images/clear/clear_step2.png)
 
@@ -1541,27 +1537,27 @@ data tab after each startup.
 
 ![tab_startup](images/tab/tab_startup.png)
 
-Step 1. Now input the command word `tab` and hit enter. This should bring you to the next tab,
+**Step 1.** Now input the command word `tab` and hit enter. This should bring you to the next tab,
 which is the **Statistics** tab.
 
-**Before input**
+**Before input:**
 
 ![tab_step1](images/tab/tab_step1.png)
 
-**After input**
+**After input:**
 
 ![tab_step2](images/tab/tab_step2.png)
 
-Step 2. Now input the command word `tab` again and hit enter. This should bring you to the next tab,
+**Step 2.** Now input the command word `tab` again and hit enter. This should bring you to the next tab,
 which is the **Stock view** tab.
 
-**After input**
+**After input:**
 
 ![tab_step3](images/tab/tab_step3.png)
 
-Step 3. Now input the command word `tab` again and hit enter. This should bring you back to the **Data** tab.
+**Step 3.** Now input the command word `tab` again and hit enter. This should bring you back to the **Data** tab.
 
-**After input**
+**After input:**
 
 ![tab_step4](images/tab/tab_step4.png)
 

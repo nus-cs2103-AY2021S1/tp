@@ -19,6 +19,10 @@ public class PrintCommandParser implements Parser<PrintCommand> {
     public static final String INVALID_PRINT_ARGUMENT = "File name is invalid. File name should only contain"
             + " alphanumeric characters and should not be empty.";
 
+    private final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+
+    private final Prefix[] validPrefixesForPrint = { PREFIX_FILE_NAME};
+
     /**
      * Parses the given {@code String} of arguments in the context of the PrintCommand
      * and returns an PrintCommand object for execution.
@@ -26,8 +30,12 @@ public class PrintCommandParser implements Parser<PrintCommand> {
      */
     public PrintCommand parse(String args) throws ParseException {
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_FILE_NAME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
+
+        // Invalid prefixes used in Print command
+        if (ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForPrint)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrintCommand.MESSAGE_USAGE));
+        }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_FILE_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {

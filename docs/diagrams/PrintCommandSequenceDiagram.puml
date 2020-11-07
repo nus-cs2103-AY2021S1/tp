@@ -19,7 +19,7 @@ end box
 [-> LogicManager : execute()
 activate LogicManager
 
-LogicManager -> StockBookParser : parseCommand()
+LogicManager -> StockBookParser : parseCommand(...)
 activate StockBookParser
 
 create PrintCommandParser
@@ -29,16 +29,16 @@ activate PrintCommandParser
 PrintCommandParser --> StockBookParser
 deactivate PrintCommandParser
 
-StockBookParser -> PrintCommandParser : parse(args)
+StockBookParser -> PrintCommandParser : parse(...)
 activate PrintCommandParser
 
-PrintCommandParser -> PrintCommandParser : arePrefixesPresent()
+PrintCommandParser -> PrintCommandParser : arePrefixesPresent(...)
 activate PrintCommandParser
 
 PrintCommandParser --> PrintCommandParser
 deactivate PrintCommandParser
 
-PrintCommandParser -> PrintCommandParser : doesPrefixesAppearOnce()
+PrintCommandParser -> PrintCommandParser : doesPrefixesAppearOnce(...)
 activate PrintCommandParser
 
 PrintCommandParser --> PrintCommandParser
@@ -63,7 +63,7 @@ activate Model
 Model --> PrintCommand
 deactivate Model
 
-PrintCommand -> FileUtil : createIfMissing()
+PrintCommand -> FileUtil : createIfMissing(...)
 activate FileUtil
 
 FileUtil --> PrintCommand
@@ -82,7 +82,7 @@ PrintCommand--> PrintCommand
 deactivate PrintCommand
 
 loop stocks
-PrintCommand -> PrintCommand : printStock()
+PrintCommand -> PrintCommand : printStock(...)
 activate PrintCommand
 PrintCommand --> PrintCommand
 deactivate PrintCommand
