@@ -63,7 +63,7 @@ public class DeleteTeammateCommand extends Command {
                 currentProject.removeParticipation(participation);
                 for (int j = 0; j < model.getFilteredParticipationList().size(); j++) {
                     if (model.hasParticipation(participation)) {
-                        model.deleteParticipation(participation);
+                        //                        model.deleteParticipation(participation);
                     }
                 }
             }
