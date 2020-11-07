@@ -123,20 +123,71 @@ This section describes some noteworthy details on how certain features are imple
 
 The features mentioned are:
 
-- [Opening of flashcards](#open-flashcard)
-- [Displaying statistics of a flashcard](#display-statistics-of-flashcard)
-- [Clear statistics of a flashcard](#clear-statistics-of-flashcard)
-- [Find by tag and question keywords](#find-by-tag-and-question-keywords)
-- [Tagging system](#tags)
-- [Delete by tags](#delete-by-tag)
-- [Setting difficulty for flashcards](#difficulty)
 - [Adding flashcards with open ended questions](#add-flashcard-with-open-ended-question)
 - [Adding flashcards with multiple choice questions](#add-flashcard-with-multiple-choice-question)
-- [Deleting a flashcard by index](#delete-by-index)
+- [Opening of flashcards](#open-flashcard)
+- [Tagging system](#tags)
 - [Editing a flashcard](#edit-flashcard)
+- [Deleting a flashcard by index](#delete-by-index)
+- [Delete by tags](#delete-by-tag)
+- [Find by tag and question keywords](#find-by-tag-and-question-keywords)
+- [Setting difficulty for flashcards](#difficulty)
+- [Displaying statistics of a flashcard](#display-statistics-of-flashcard)
+- [Clear statistics of a flashcard](#clear-statistics-of-flashcard)
 - [Testing a flashcard](#testing-a-flashcard)
 - [Export](#exporting-flashcards)
 - [Import](#importing-flashcards)
+
+### Add Flashcard with open-ended question
+
+The Add mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `add q/ question... t/tag` command to add a flashcard with tag. The `add` command will cause the addition of a flashcard with open-ended question inside the QuickCache.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+
+The following sequence diagram shows how the Add operation works:
+
+![AddOpenEndedSequenceDiagram](images/AddOpenEndedSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How Add executes
+
+* **Alternative 1 (current choice):** Flashcard is saved upon creation inside the QuickCache.
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: May be complicated as there will be too many fields in the `add` command.
+
+### Add Flashcard with multiple choice question
+
+The Add Multiple Choice Question mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
+
+Given below is an example usage scenario and how the addmcq mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `addmcd q/ question ans/1 c/first choice c/second choice c/third choice... t/tag` command to add a flashcard with tag. The `addmcq` command will cause the addition of a flashcard with multiple choice question inside the QuickCache.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+The following sequence diagram shows how the Addmcq operation works:
+
+![AddMcqSequenceDiagram](images/AddMcqSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How addmcq executes
+
+* **Alternative 1 (current choice):** Flashcard is saved upon creation inside the QuickCache.
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: May be complicated as there will be too many fields in the `add` command.
 
 ### Open Flashcard
 
@@ -168,6 +219,225 @@ Step 6. The GUI will then proceed to get the `Question` from `Feedback` and disp
 The following sequence diagram shows how the open operation works:
 
 ![OpenSequenceDiagram](images/OpenSequenceDiagram.png)
+
+### Tags
+
+The tags mechanism is facilitated by `Flashcard` upon creation. It is stored internally as an `Set<Tag>` inside the `flashcard` object.
+
+Given below is an example usage scenario and how the tag mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `add q/ question... t/tag` command to add a flashcard with tag. The `add` command will cause the addition of a flashcard with a tag inside the QuickCache.
+
+Step 3. The user executes `edit 1 t/tag` to edit the tag in the first flashcard of the list. The edit command will change the internal structure of flashcard such that the `Set<Tag>` is updated.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+#### Design consideration:
+
+##### Aspect: How tag executes
+
+* **Alternative 1 (current choice):** Tag is saved upon creation.
+  * Pros: Easy to implement.
+  * Cons: May be complicated as there will be too many fields in the `add` command.
+
+* **Alternative 2:** Individual command knows how to tag by
+  itself.
+  * Pros: Will be less complicated.
+  * Cons: There may be too many commands which can be combined to one.
+
+### Edit Flashcard
+
+The Delete mechanism is facilitated by `QuickCache` . It will edit the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `edit 1 ...` command to edit some of the fields given in the command on the first flashcard. The `edit` command will cause the creation of a flashcard with updated field and set it to be the flashcard on the index in `UniqueFlashcardList`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+The following sequence diagram shows how the edit operation works:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How edit executes
+
+* **Alternative 1 (current choice):** Provide the index of the flashcard to be edited.
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: User have to know the index of the specified flashcard.
+
+
+### Delete By Index
+
+The  Delete mechanism is facilitated by `QuickCache` . It will delete the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `delete 1` command to delete the first flashcard. The `delete` command will cause the deletion of a flashcard inside the QuickCache.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+The following sequence diagram shows how the delete operation works:
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How delete executes
+
+* **Alternative 1 (current choice):** Provide the index of the flashcard to be deleted.
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: User have to know the index of the specified flashcard.
+
+### Delete by tag
+
+This delete by tag feature will allow the user to delete flashcards specified by a given set of tags.
+
+#### Implementation
+
+The delete by tag implementation requires changes to be made to the `DeleteCommandParser`. Currently, `DeleteCommandParser` takes in a single argument for `index`. The proposed implementation will require the `ArgumentTokenizer` and `ParseUtil` to parse for any `PREFIX_TAG`. If both `index` and `tag` are given, then a `CommandException` will be returned.
+
+Changes to the `DeleteCommand` class will also have to be made as it must be able to perform a different execution step depending whether or not it is deleting by tag or index. This will be done by implementing a boolean value `isDeleteByTag`. If the value is false, then the original execution for deleting by `index` will be executed. Else it, will follow the description below on how the proposed delete by tag mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+ Step 2. The user executes `delete t/MCQ` command to delete all flashcards with the tag `MCQ`.
+
+ Step 3. This will call `DeleteCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags` will be called to create tags for the arguments.
+
+ Step 4. A new `FlashcardPredicate` will then be created from the given tags. It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `DeleteCommand`
+
+ Step 5. `DeleteCommand#execute` will filter the `QuickCache` model with the provided predicate and get back the filtered list
+
+ Step 6. It will then iterate through the list and call `QuickCache#deleteFlashcard` on each `Flashcard` in the list.
+
+ Step 7. After execution, `CommandResult` will contain a message indicating that all flashcards with the specified tags have been deleted.
+
+### Find by tag and question keywords
+
+This find by tag and question keywords feature will allow the user to find flashcards specified by specifying tags and/or keywords that they possess.
+
+#### Implementation
+
+The find by tag and question keywords implementation requires changes to be made to the `FindCommandParser`. Currently, `FindCommandParser#parse` takes in the keyword arguments as a single `String` which is then split into individual keywords. The proposed implementation will require the `ArgumentTokenizer` and `ParseUtil` to parse for any `PREFIX_TAG` and/or `PREFIX_QUESTION`. `ParserUtil` will parse them accordingly and insert them into the necessary `Predicate<Flashcard>` which will be used for filtering the `Flashcard` list. If neither of them are provided or the `Tag` provided is non-aplhanumeric, then a `CommandException` will be thrown.
+
+Since more than one `Predicate<Flashcard>` will be used, a class called `FlashcardPredicate` will be introduced that collects all `Predicate<Flashcard>` into one class.
+
+`NameContainsKeywordsPredicate` will have to be refactored into `QuestionContainsKeywordsPredicate`. A new `Predicate<Flashcard>` for filtering the `Flashcard` based on `Tags` called `FlashcardContainsTagPredicate` also has to be made.
+
+Changes to the `FindCommand` class will also have to be made as it currently works for `NameContainsKeywordsPredicate`. The new implementation will involve the `FindCommand` storing one `FlashcardPredicate`.
+
+Given below is an example usage scenario and how the `FindCommand` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+ Step 2. The user executes `find t/Assembly q/What` command to find a `Flashcard` with the tag `Assembly` and the keyword `What` in its `Question`.
+
+ Step 3. This will call `FindCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags`and `Parserutil#parseKeywords` will be called to create tags and keywords for the arguments.
+
+ Step 4. A new `FlashcardPredicate` will then be created from the `QuestionContainsKeywordsPredicate` and `FlashcardContainsTagPredicate` generated from the given tags and keywords. It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `FindCommand`
+
+ Step 5. `FindCommand#execute` will set the `QuickCache` model's filter with the provided predicate.
+
+ Step 6. The GUI will then proceed to get the filtered list based on the newly set predicate to display to the user.
+
+ Step 7. After execution, `CommandResult` will contain a message indicating that it has listed all `Flashcards` based on the specified restrictions.
+
+ The following sequence diagram shows how the find operation works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+### Setting difficulty of flashcards
+
+The difficulty mechanism is facilitated by `Flashcard` upon creation. It is stored internally as a `Difficulty` inside the `flashcard` object.
+
+The `Difficulty` class takes difficulty levels from `Difficulties` enums which contains four difficulty levels `LOW`, `MEDIUM`, `HIGH` and `UNSPECIFIED`.
+
+Given below is an example usage scenario and how the difficulty mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `add q/question... d/difficultyLevel` command to add a flashcard with difficulty. The `add` command will cause the addition of a flashcard with a difficulty inside the QuickCache.
+ * If the user executes `add q/question...` command without `d/` prefix. The `add` command will cause the addition of a flashcard with a difficulty set to `UNSPECIFIED` inside the QuickCache.
+
+Step 3. The user executes `edit 1 d/difficultyLevel` to edit the difficulty in the first flashcard of the list. The edit command will change the internal structure of flashcard such that the `Difficulty` is updated.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+#### Design consideration:
+
+##### Aspect: How Difficulty executes
+
+* **Alternative 1 (current choice):** Difficulty is saved upon creation.
+  * Pros: Easy to implement.
+  * Cons: May be complicated as there will be too many fields in the `add` command.
+
+* **Alternative 2:** Individual command knows how to add difficulty by
+  itself.
+  * Pros: Will be less complicated.
+  * Cons: There may be too many commands which can be combined to one.
+
+
+### Testing a flashcard
+
+#### Implementation
+
+The test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` stored within the flashcard. `Flashcard` implements the following methods.
+* `Flashcard#getFlashcardAfterTestSuccess()` — Returns a new `Flashcard` object with `Statistics:timesTested` and `Statistics:timesTestedCorrect` incremented by one.
+* `Flashcard#getFlashcardAfterTestFailure()` — Returns a new `Flashcard` object with `Statistics:timesTested` incremented by one.
+
+Given below is an example usage scenario and how the test mechanism behaves at each step.
+
+Step 1. The user launches the application. The `Flashcard` to be tested will be initialized with the initial flashcard state.
+
+![TestState0](images/TestState0.png)
+
+Step 2. The user tests the flashcard with a specified `answer` or `option`.
+
+Step 2a. The user executes `test 1 ans/correct answer` command to test the `Flashcard`. The `test` command calls `Flashcard#getFlashcardAfterTestSuccess()`, and replaces the previously tested flashcard with the newly updated flashcard, changing its state.
+
+![TestState1](images/TestState1.png)
+
+Step 2b. The user executes `test 1 ans/wrong answer` command to test the `Flashcard`. The `test` command calls `Flashcard#getFlashcardAfterTestFailure()`, and replaces the previously tested flashcard with the newly updated flashcard, changing its state.
+
+![TestState2](images/TestState2.png)
+
+The following sequence diagram shows how the test operation works:
+
+![TestSequenceDiagram](images/TestSequenceDiagram.png)
+
+The following sequence diagram shows how the input get parsed:
+
+![TestParserSequenceDiagram](images/TestParserSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a test command on a specified flashcard:
+
+![TestActivityDiagram](images/TestActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How tests manipulate statistics
+
+* **Alternative 1 (current choice):** Increments a counter of `timesTestedCorrect` and `timesTested` in `Statistics`.
+  * Pros: Easy to implement.
+  * Cons: Unable to keep track of useful information such as performance over time.
+
+* **Alternative 2:** `Statistics` is made up of an `Array` of `test`, including information such as `timestamp`
+  * Pros: Retrieval of useful statistics will be possible.
+  * Cons: Save file will expand very quickly because each `test` record needs to be logged.
+
+_{more aspects and alternatives to be added}_
 
 ### Display Statistics of Flashcard
 
@@ -231,278 +501,9 @@ The following sequence diagram shows how the stats operation works:
 
 ![ClearStatsSequenceDiagram](images/ClearStatsSequenceDiagram.png)
 
-### Find by tag and question keywords
-
-This find by tag and question keywords feature will allow the user to find flashcards specified by specifying tags and/or keywords that they possess.
-
-#### Implementation
-
-The find by tag and question keywords implementation requires changes to be made to the `FindCommandParser`. Currently, `FindCommandParser#parse` takes in the keyword arguments as a single `String` which is then split into individual keywords. The proposed implementation will require the `ArgumentTokenizer` and `ParseUtil` to parse for any `PREFIX_TAG` and/or `PREFIX_QUESTION`. `ParserUtil` will parse them accordingly and insert them into the necessary `Predicate<Flashcard>` which will be used for filtering the `Flashcard` list. If neither of them are provided or the `Tag` provided is non-aplhanumeric, then a `CommandException` will be thrown.
-
-Since more than one `Predicate<Flashcard>` will be used, a class called `FlashcardPredicate` will be introduced that collects all `Predicate<Flashcard>` into one class.
-
-`NameContainsKeywordsPredicate` will have to be refactored into `QuestionContainsKeywordsPredicate`. A new `Predicate<Flashcard>` for filtering the `Flashcard` based on `Tags` called `FlashcardContainsTagPredicate` also has to be made.
-
-Changes to the `FindCommand` class will also have to be made as it currently works for `NameContainsKeywordsPredicate`. The new implementation will involve the `FindCommand` storing one `FlashcardPredicate`.
-
-Given below is an example usage scenario and how the `FindCommand` mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
-
- Step 2. The user executes `find t/Assembly q/What` command to find a `Flashcard` with the tag `Assembly` and the keyword `What` in its `Question`.
-
- Step 3. This will call `FindCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags`and `Parserutil#parseKeywords` will be called to create tags and keywords for the arguments.
-
- Step 4. A new `FlashcardPredicate` will then be created from the `QuestionContainsKeywordsPredicate` and `FlashcardContainsTagPredicate` generated from the given tags and keywords. It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `FindCommand`
-
- Step 5. `FindCommand#execute` will set the `QuickCache` model's filter with the provided predicate.
-
- Step 6. The GUI will then proceed to get the filtered list based on the newly set predicate to display to the user.
-
- Step 7. After execution, `CommandResult` will contain a message indicating that it has listed all `Flashcards` based on the specified restrictions.
-
- The following sequence diagram shows how the find operation works:
-
-![FindSequenceDiagram](images/FindSequenceDiagram.png)
-
-### Delete by tag
-
-This delete by tag feature will allow the user to delete flashcards specified by a given set of tags.
-
-#### Implementation
-
-The delete by tag implementation requires changes to be made to the `DeleteCommandParser`. Currently, `DeleteCommandParser` takes in a single argument for `index`. The proposed implementation will require the `ArgumentTokenizer` and `ParseUtil` to parse for any `PREFIX_TAG`. If both `index` and `tag` are given, then a `CommandException` will be returned.
-
-Changes to the `DeleteCommand` class will also have to be made as it must be able to perform a different execution step depending whether or not it is deleting by tag or index. This will be done by implementing a boolean value `isDeleteByTag`. If the value is false, then the original execution for deleting by `index` will be executed. Else it, will follow the description below on how the proposed delete by tag mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
-
- Step 2. The user executes `delete t/MCQ` command to delete all flashcards with the tag `MCQ`.
-
- Step 3. This will call `DeleteCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags` will be called to create tags for the arguments.
-
- Step 4. A new `FlashcardPredicate` will then be created from the given tags. It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `DeleteCommand`
-
- Step 5. `DeleteCommand#execute` will filter the `QuickCache` model with the provided predicate and get back the filtered list
-
- Step 6. It will then iterate through the list and call `QuickCache#deleteFlashcard` on each `Flashcard` in the list.
-
- Step 7. After execution, `CommandResult` will contain a message indicating that all flashcards with the specified tags have been deleted.
-
-### Tags
-
-The tags mechanism is facilitated by `Flashcard` upon creation. It is stored internally as an `Set<Tag>` inside the `flashcard` object.
-
-Given below is an example usage scenario and how the tag mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
-
-Step 2. The user executes `add q/ question... t/tag` command to add a flashcard with tag. The `add` command will cause the addition of a flashcard with a tag inside the QuickCache.
-
-Step 3. The user executes `edit 1 t/tag` to edit the tag in the first flashcard of the list. The edit command will change the internal structure of flashcard such that the `Set<Tag>` is updated.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
-</div>
-
-#### Design consideration:
-
-##### Aspect: How tag executes
-
-* **Alternative 1 (current choice):** Tag is saved upon creation.
-  * Pros: Easy to implement.
-  * Cons: May be complicated as there will be too many fields in the `add` command.
-
-* **Alternative 2:** Individual command knows how to tag by
-  itself.
-  * Pros: Will be less complicated.
-  * Cons: There may be too many commands which can be combined to one.
-
-### Difficulty
-
-The difficulty mechanism is facilitated by `Flashcard` upon creation. It is stored internally as a `Difficulty` inside the `flashcard` object.
-
-The `Difficulty` class takes difficulty levels from `Difficulties` enums which contains four difficulty levels `LOW`, `MEDIUM`, `HIGH` and `UNSPECIFIED`.
-
-Given below is an example usage scenario and how the difficulty mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
-
-Step 2. The user executes `add q/question... d/difficultyLevel` command to add a flashcard with difficulty. The `add` command will cause the addition of a flashcard with a difficulty inside the QuickCache.
- * If the user executes `add q/question...` command without `d/` prefix. The `add` command will cause the addition of a flashcard with a difficulty set to `UNSPECIFIED` inside the QuickCache.
-
-Step 3. The user executes `edit 1 d/difficultyLevel` to edit the difficulty in the first flashcard of the list. The edit command will change the internal structure of flashcard such that the `Difficulty` is updated.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
-</div>
-
-#### Design consideration:
-
-##### Aspect: How Difficulty executes
-
-* **Alternative 1 (current choice):** Difficulty is saved upon creation.
-  * Pros: Easy to implement.
-  * Cons: May be complicated as there will be too many fields in the `add` command.
-
-* **Alternative 2:** Individual command knows how to add difficulty by
-  itself.
-  * Pros: Will be less complicated.
-  * Cons: There may be too many commands which can be combined to one.
-
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
-### Add Flashcard with open-ended question
-
-The Add mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
-
-Given below is an example usage scenario and how the add mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
-
-Step 2. The user executes `add q/ question... t/tag` command to add a flashcard with tag. The `add` command will cause the addition of a flashcard with open-ended question inside the QuickCache.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
-</div>
-
-
-The following sequence diagram shows how the Add operation works:
-
-![AddOpenEndedSequenceDiagram](images/AddOpenEndedSequenceDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How Add executes
-
-* **Alternative 1 (current choice):** Flashcard is saved upon creation inside the QuickCache.
-  * Pros: Easy to implement and CLI-optimized.
-  * Cons: May be complicated as there will be too many fields in the `add` command.
-
-### Add Flashcard with multiple choice question
-
-The Add Multiple Choice Question mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
-
-Given below is an example usage scenario and how the addmcq mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
-
-Step 2. The user executes `addmcd q/ question ans/1 c/first choice c/second choice c/third choice... t/tag` command to add a flashcard with tag. The `addmcq` command will cause the addition of a flashcard with multiple choice question inside the QuickCache.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
-</div>
-
-The following sequence diagram shows how the Addmcq operation works:
-
-![AddMcqSequenceDiagram](images/AddMcqSequenceDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How addmcq executes
-
-* **Alternative 1 (current choice):** Flashcard is saved upon creation inside the QuickCache.
-  * Pros: Easy to implement and CLI-optimized.
-  * Cons: May be complicated as there will be too many fields in the `add` command.
-
-### Delete By Index
-
-The  Delete mechanism is facilitated by `QuickCache` . It will delete the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
-
-Given below is an example usage scenario and how the delete mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
-
-Step 2. The user executes `delete 1` command to delete the first flashcard. The `delete` command will cause the deletion of a flashcard inside the QuickCache.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
-</div>
-
-The following sequence diagram shows how the delete operation works:
-
-![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How delete executes
-
-* **Alternative 1 (current choice):** Provide the index of the flashcard to be deleted.
-  * Pros: Easy to implement and CLI-optimized.
-  * Cons: User have to know the index of the specified flashcard.
-
-### Edit Flashcard
-
-The Delete mechanism is facilitated by `QuickCache` . It will edit the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
-
-Given below is an example usage scenario and how the edit mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
-
-Step 2. The user executes `edit 1 ...` command to edit some of the fields given in the command on the first flashcard. The `edit` command will cause the creation of a flashcard with updated field and set it to be the flashcard on the index in `UniqueFlashcardList`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
-</div>
-
-The following sequence diagram shows how the edit operation works:
-
-![EditSequenceDiagram](images/EditSequenceDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How edit executes
-
-* **Alternative 1 (current choice):** Provide the index of the flashcard to be edited.
-  * Pros: Easy to implement and CLI-optimized.
-  * Cons: User have to know the index of the specified flashcard.
-
-
-### Testing a flashcard
-
-#### Implementation
-
-The test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` stored within the flashcard. `Flashcard` implements the following methods.
-* `Flashcard#getFlashcardAfterTestSuccess()` — Returns a new `Flashcard` object with `Statistics:timesTested` and `Statistics:timesTestedCorrect` incremented by one.
-* `Flashcard#getFlashcardAfterTestFailure()` — Returns a new `Flashcard` object with `Statistics:timesTested` incremented by one.
-
-Given below is an example usage scenario and how the test mechanism behaves at each step.
-
-Step 1. The user launches the application. The `Flashcard` to be tested will be initialized with the initial flashcard state.
-
-![TestState0](images/TestState0.png)
-
-Step 2. The user tests the flashcard with a specified `answer` or `option`.
-
-Step 2a. The user executes `test 1 ans/correct answer` command to test the `Flashcard`. The `test` command calls `Flashcard#getFlashcardAfterTestSuccess()`, and replaces the previously tested flashcard with the newly updated flashcard, changing its state.
-
-![TestState1](images/TestState1.png)
-
-Step 2b. The user executes `test 1 ans/wrong answer` command to test the `Flashcard`. The `test` command calls `Flashcard#getFlashcardAfterTestFailure()`, and replaces the previously tested flashcard with the newly updated flashcard, changing its state.
-
-![TestState2](images/TestState2.png)
-
-The following sequence diagram shows how the test operation works:
-
-![TestSequenceDiagram](images/TestSequenceDiagram.png)
-
-The following sequence diagram shows how the input get parsed:
-
-![TestParserSequenceDiagram](images/TestParserSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes a test command on a specified flashcard:
-
-![TestActivityDiagram](images/TestActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How tests manipulate statistics
-
-* **Alternative 1 (current choice):** Increments a counter of `timesTestedCorrect` and `timesTested` in `Statistics`.
-  * Pros: Easy to implement.
-  * Cons: Unable to keep track of useful information such as performance over time.
-
-* **Alternative 2:** `Statistics` is made up of an `Array` of `test`, including information such as `timestamp`
-  * Pros: Retrieval of useful statistics will be possible.
-  * Cons: Save file will expand very quickly because each `test` record needs to be logged.
-
-_{more aspects and alternatives to be added}_
 
 ### Exporting Flashcards
 
