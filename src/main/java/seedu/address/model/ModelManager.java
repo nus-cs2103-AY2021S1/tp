@@ -164,8 +164,9 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteParticipation(Participation target) {
-
-        mainCatalogue.removeParticipation(target);
+        if(mainCatalogue.hasParticipation(target)) {
+            mainCatalogue.removeParticipation(target);
+        }
     }
 
     //    @Override
