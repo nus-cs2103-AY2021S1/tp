@@ -103,22 +103,22 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W15-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#56-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#52-ui-component): The UI of the App.
+* [**`Logic`**](#53-logic-component): The command executor.
+* [**`Model`**](#54-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#55-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -142,9 +142,9 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/ui)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `Notebook` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -158,9 +158,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `ReeveParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -177,21 +177,17 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+![Structure of the Academic Class](images/AcademicClassDiagram.png)
+![Structure of the Academic Class](images/AdminClassDiagram.png)
+
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the reeve data.
+* exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
 
 ### 5.5 Storage component
 
@@ -284,18 +280,26 @@ The student administrative details feature keeps track of essential administrati
 The following describes the flow of how `AddCommand` is performed.
 
 1. Upon successfully parsing the user input, the `AddCommand#execute(Model model)` is called which checks whether
-the added student already exists in the `UniqueStudentList`.
+the added student already exists in the `UniqueStudentList` using the `Model#hasStudent(Student toAdd)`.
 2. A unique student is defined by `Name`, `Phone`, `School` and `Year`. If a duplicate student is defined,
 a `CommandException` is thrown and the student will not be added.
-3. If the added student is not a duplicate, then the `Model#addStudent(Student student)` is called to add the student.
+3. The `AddCommand#execute(Model model)` also checks if the student to be added has clashing `ClassTime` with other students already in the `UniqueStudentList`.
+4. Two student's `ClassTime` is considered clashing if they overlap either partially or fully. A `CommandException` will be thrown if there are other students with clashing class time.
+5. If the added student is not a duplicate and there are no clashes in class time, then the `Model#addStudent(Student toAdd)` is called to add the student.
 A new `CommandResult` is returned with a success message and the added student.
-4. The student is be added into `UniqueStudentList` and a success message is shown in the result display.
+6. The student is be added into `UniqueStudentList` and a success message is shown in the result display.
 
 The following activity diagram summarizes the flow of events when the `AddCommand` is being executed:
 
 ![Flow of Add Student Command](images/AddStudentActivityDiagram.png)
 
-Figure ___. Activity Diagram for AddStudentCommand
+Figure ___. Activity Diagram for `AddCommand`
+
+The following sequence diagram summarizes the execution of the `AddCommand`
+
+![Execution of Add Student Command](images/AddStudentSequenceDiagram.png)
+
+Figure /__. Sequence Diagram for `AddCommand`
 
 #### 6.2.2 Edit Student Command
 
@@ -537,19 +541,47 @@ Figure \___. Activity diagram for `ExamStatsCommand` execution
 
 ### 6.4 Schedule Command
 
-This section describes the operations that `ScheduleCommand` performs.
+This section describes the operations that `ScheduleViewCommand` performs.
 
-1. Upon successful parsing of the user input date into `LocalDate` , the `ScheduleCommand#execute(Model model)` method is called.
-2. The method `LocalDate#getDayOfWeek()` is then called on the `LocalDate` that is parsed from the user input to get the `dayOfWeek`.
-3. The `dayOfWeek` is then used to create a `Predicate<Student>` to check if the student has the same day as the date.
-4. Then the method `Model#updateFilteredPersonList(Predicate<Student>)` is then called to filter students based on predicate created in **Step 3**.
-5. The StudentListPanel is then populated with the students that have lesson on the day.
+1. Upon successful parsing of the user input, the `ScheduleViewCommand#execute(Model)` method is called.
+2. The method `Model#setViewDate(LocalDate)` is then called to set the viewing date of the user in `SchedulePrefs`
+3. Similarly, the method `ModelsetViewMode(ScheduleViewMode)` is called next to set the viewing mode (weekly/daily) of the user in `SchedulePrefs`. 
+4. After which, the method `updateFilteredStudentList(Predicate)` is called to get all the students. 
+The `Predicate` argument will be `PREDICATE_SHOW_ALL_STUDENTS` which is a reusable final predicate variable.
+5. Thereafter, the method `Model#updateClassTimesToEvent()` will be called to translate all student's `ClassTime` to `LessonEvent`
+6. The `Scheduler` then calls the method `resetData(List<Event>)` with the updated `LessonEvent` objects.
+7. The `CommandResult` is then returned.
 
-The following activity diagram summarizes the flow of events when the `ScheduleCommand` is being executed:
+The following activity diagram summarizes the flow of events when the `ScheduleViewCommand` is being executed:
 
 ![ScheduleActivity](images/ScheduleActivityDiagram.png)
 
-Figure \___. Activity diagram for `ScheduleCommand` execution
+Figure 6.4.1 Activity diagram for `ScheduleCommand` execution
+
+The following sequence diagram illustrates to execution of the `ScheduleViewCommand`.
+
+![ScheduleSequence](images/ScheduleSequenceDiagram.png)
+
+Figure 6.4.2 Sequence diagram for `ScheduleCommand` execution
+
+:information_source: Figure 6.4.1 and 6.4.2 illustrates the `ScheduleCommand` execution within the `Logic` and `Model` Component.
+
+For the `Ui` component, a calendar using **jfxtras** library will be updated with the `LessonEvent` after the `CommandResult` is returned.
+The `'LessonEvent` is provided to the `Ui` by the `LogicManager` through the `Model` component.
+The `Model` in turns gets the `LessonEvent` from the `Scheduler` which keeps a list of updated events.
+The calendar with `LessonEvent` is then displayed to the user through the interface. This is assuming that no exception arises.
+
+### 6.4.1 Design Consideration
+
+The following are the various design choices made regarding the feature and alternatives that were considered prior to implementation.
+
+* Current Implementation:
+    * The current implementation creates `LessonEvent`s from the `studentList` update the to the `Ui` whenever the `ScheduleViewCommand` is called.
+    
+* Alternatives Considered:
+    * Creating a `Event` storage component that stores `LessonEvent` based on `Student`'s `ClassTime`. 
+    This would violate the data integrity of the `Student` we currently have and introduce additional complexity in 
+    maintaining both data structures.
 
 ### 6.5 Notes Command
 
@@ -980,7 +1012,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample students. The window size may not be optimum.
 
 1. Saving window preferences
 

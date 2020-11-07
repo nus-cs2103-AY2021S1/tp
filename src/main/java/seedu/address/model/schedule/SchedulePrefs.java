@@ -32,11 +32,11 @@ public class SchedulePrefs {
         this.viewMode = viewMode;
     }
 
-    public LocalDateTime getViewDateTime() {
+    public LocalDateTime getViewDate() {
         return viewDateTime;
     }
 
-    public void setViewDateTime(LocalDate viewDate) {
+    public void setViewDate(LocalDate viewDate) {
         requireNonNull(viewDate);
         this.viewDateTime = LocalDateTime.of(viewDate, DEFAULT_TIME);
     }
@@ -55,7 +55,7 @@ public class SchedulePrefs {
         }
 
         SchedulePrefs otherPrefs = (SchedulePrefs) other;
-        return otherPrefs.getViewDateTime().equals(getViewDateTime())
+        return otherPrefs.getViewDate().equals(getViewDate())
                 && otherPrefs.getViewMode().equals(getViewMode());
     }
 
