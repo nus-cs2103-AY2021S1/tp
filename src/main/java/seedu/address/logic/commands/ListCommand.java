@@ -26,6 +26,8 @@ public class ListCommand extends Command {
     }
 
     /**
+     * Constructs list command, with the archive mode depending on the input.
+     *
      * @param isArchiveMode indicates if the user wants to view the archive.
      */
     public ListCommand(boolean isArchiveMode) {
