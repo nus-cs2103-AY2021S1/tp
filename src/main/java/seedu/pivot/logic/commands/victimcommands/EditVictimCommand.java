@@ -3,6 +3,7 @@ package seedu.pivot.logic.commands.victimcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_SUSPECT;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_VICTIM;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -10,6 +11,7 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -24,13 +26,16 @@ import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
+import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
 import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
 
+/**
+ * Represents an Edit command for editing a Victim in a Case in PIVOT.
+ */
 public class EditVictimCommand extends EditPersonCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_VICTIM
@@ -45,7 +50,7 @@ public class EditVictimCommand extends EditPersonCommand implements Undoable {
             + PREFIX_EMAIL + "newEmail@mail.com "
             + PREFIX_ADDRESS + "New Road Crescent\n\n";
 
-    public static final String MESSAGE_EDIT_VICTIMS_SUCCESS = "Edited Victim: %1$s";
+    public static final String MESSAGE_EDIT_VICTIM_SUCCESS = "Edited Victim: %1$s";
 
     private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(EditVictimCommand.class);
@@ -75,7 +80,17 @@ public class EditVictimCommand extends EditPersonCommand implements Undoable {
         Victim editedVictim = createEditedPerson(victimToEdit, editPersonDescriptor);
 
         if (editedVictims.contains(editedVictim)) {
+            logger.info("Failed to edit victim: The edited victim has the same name, sex, phone, "
+                    + "email and address as an existing victim in PIVOT.");
             throw new CommandException(MESSAGE_DUPLICATE_VICTIM);
+        }
+
+        List<Victim> victimsToNotEdit = new ArrayList<>(editedVictims);
+        victimsToNotEdit.remove(victimToEdit);
+        if (victimsToNotEdit.stream().anyMatch(editedVictim:: isSamePerson)) {
+            logger.info("Failed to edit victim: The edited victim has the same name, sex, phone as an "
+                    + "existing victim in PIVOT.");
+            throw new CommandException(MESSAGE_DUPLICATE_SUSPECT);
         }
 
         editedVictims.set(personIndex.getZeroBased(), editedVictim);
@@ -84,9 +99,9 @@ public class EditVictimCommand extends EditPersonCommand implements Undoable {
                 caseToEdit.getTags(), caseToEdit.getArchiveStatus());
 
         model.setCase(caseToEdit, editedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_VICTIMS_SUCCESS, editedVictim), this);
+        model.commitPivot(String.format(MESSAGE_EDIT_VICTIM_SUCCESS, editedVictim), this);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_VICTIMS_SUCCESS, editedVictim));
+        return new CommandResult(String.format(MESSAGE_EDIT_VICTIM_SUCCESS, editedVictim));
     }
 
     private Victim createEditedPerson(Victim victimToEdit, EditPersonDescriptor editPersonDescriptor) {
@@ -104,5 +119,21 @@ public class EditVictimCommand extends EditPersonCommand implements Undoable {
     @Override
     public Page getPage() {
         return pageType;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditVictimCommand)) {
+            return false;
+        }
+
+        EditVictimCommand otherEditVictimCommand = (EditVictimCommand) other;
+        return otherEditVictimCommand.caseIndex.equals(caseIndex)
+                && otherEditVictimCommand.personIndex.equals(personIndex)
+                && otherEditVictimCommand.editPersonDescriptor.equals(editPersonDescriptor);
     }
 }

@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.model.investigationcase.caseperson.Witness;
@@ -93,17 +92,17 @@ public class CaseTest {
 
         // different suspect
         Suspect suspect = new CasePersonBuilder().buildSuspect();
-        editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).withSuspects(suspect).build();
+        editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).addSuspects(suspect).build();
         assertFalse(ALICE_PAULINE_ASSAULT.equals(editedAlice));
 
         // different witness
         Witness witness = new CasePersonBuilder().buildWitness();
-        editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).withWitnesses(witness).build();
+        editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).addWitnesses(witness).build();
         assertFalse(ALICE_PAULINE_ASSAULT.equals(editedAlice));
 
         // different victims
         Victim victim = new CasePersonBuilder().buildVictim();
-        editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).withVictims(victim).build();
+        editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).addVictims(victim).build();
         assertFalse(ALICE_PAULINE_ASSAULT.equals(editedAlice));
 
         // different document
@@ -132,21 +131,21 @@ public class CaseTest {
         Suspect suspect = new CasePersonBuilder().buildSuspect();
         List<Suspect> suspects = new ArrayList<>();
         suspects.add(suspect);
-        testCase = new CaseBuilder().withSuspects(suspect).build();
+        testCase = new CaseBuilder().addSuspects(suspect).build();
         assertEquals(suspects, testCase.getSuspects());
 
         // Victim
         Victim victim = new CasePersonBuilder().buildVictim();
         List<Victim> victims = new ArrayList<>();
         victims.add(victim);
-        testCase = new CaseBuilder().withVictims(victim).build();
+        testCase = new CaseBuilder().addVictims(victim).build();
         assertEquals(victims, testCase.getVictims());
 
         // Witness
         Witness witness = new CasePersonBuilder().buildWitness();
         List<Witness> witnesses = new ArrayList<>();
         witnesses.add(witness);
-        testCase = new CaseBuilder().withWitnesses(witness).build();
+        testCase = new CaseBuilder().addWitnesses(witness).build();
         assertEquals(witnesses, testCase.getWitnesses());
 
         // Document

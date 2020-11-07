@@ -9,11 +9,10 @@ import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_NON_E
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.SEX_DESC_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_BOB;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_SEX_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_PHONE;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -21,14 +20,15 @@ import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.suspectcommands.AddSuspectCommand;
+import seedu.pivot.logic.commands.testutil.CommandTestUtil;
 import seedu.pivot.logic.state.StateManager;
-import seedu.pivot.model.investigationcase.caseperson.Name;
+import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 import seedu.pivot.testutil.CasePersonBuilder;
 
 public class AddSuspectCommandParserTest {
 
-    private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static Index index = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
 
     private AddSuspectCommandParser parser = new AddSuspectCommandParser();
 
@@ -46,7 +46,7 @@ public class AddSuspectCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Suspect expectedSuspect = new CasePersonBuilder().withName(VALID_CASEPERSON_NAME_BOB)
-                .withSex(VALID_SEX_BOB).withPhone(VALID_PHONE_BOB)
+                .withSex(CommandTestUtil.VALID_CASEPERSON_SEX_BOB).withPhone(VALID_CASEPERSON_PHONE)
                 .buildSuspect();
 
         // normal input

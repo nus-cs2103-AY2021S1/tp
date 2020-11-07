@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,13 +52,13 @@ public class ArchiveCommandTest {
     @Test
     public void equals() {
         Index alternateCaseIndex = Index.fromZeroBased(1000);
-        ArchiveCommand command = new ArchiveCommand(INDEX_FIRST_PERSON);
+        ArchiveCommand command = new ArchiveCommand(FIRST_INDEX);
 
         // same object -> returns true
         assertTrue(command.equals(command));
 
         // same values -> returns true
-        assertTrue(command.equals(new ArchiveCommand(INDEX_FIRST_PERSON)));
+        assertTrue(command.equals(new ArchiveCommand(FIRST_INDEX)));
 
         // different types -> returns false
         assertFalse(command.equals(1));
@@ -76,7 +76,7 @@ public class ArchiveCommandTest {
         Case validCase = new CaseBuilder().build();
         modelStub.addCase(validCase);
 
-        CommandResult commandResult = new ArchiveCommand(INDEX_FIRST_PERSON).execute(modelStub);
+        CommandResult commandResult = new ArchiveCommand(FIRST_INDEX).execute(modelStub);
         Case archivedCase = new CaseBuilder().withArchiveStatus(ArchiveStatus.ARCHIVED).build();
 
         assertEquals(String.format(ArchiveCommand.MESSAGE_ARCHIVE_CASE_SUCCESS, validCase),

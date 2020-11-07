@@ -3,7 +3,6 @@ package seedu.pivot.testutil;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_STATUS_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_STATUS_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_BOB;
 
@@ -37,17 +36,17 @@ public class TypicalCases {
     public static final Case ALICE_PAULINE_ASSAULT = new CaseBuilder().withTitle("Alice Pauline Assault")
             .withDocument("name", "validButShouldNotExist.txt")
             .withStatus("COLD")
-            .withVictims(TOM)
-            .withWitnesses(JANICE)
-            .withSuspects(PETER)
+            .addVictims(TOM)
+            .addWitnesses(JANICE)
+            .addSuspects(PETER)
             .withTags("friends")
             .build();
     public static final Case BENSON_MEIER_ROBBERY = new CaseBuilder().withTitle("Benson Meier Robbery")
             .withStatus("CLOSED")
             .withDocument("name", "test1.txt")
             .withDescription("Was hit with a very big banana!")
-            .withVictims(TOM)
-            .withWitnesses(JANICE)
+            .addVictims(TOM)
+            .addWitnesses(JANICE)
             .withTags("owesMoney", "friends")
             .build();
 
@@ -74,7 +73,7 @@ public class TypicalCases {
             .withTags(VALID_TAG_FRIEND).build();
     public static final Case BOB_CHOO_SALON_THEFT = new CaseBuilder().withTitle(VALID_TITLE_BOB)
             .withStatus(VALID_STATUS_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .build();
 
     // Manually added - Cases that are archived
     public static final Case JUNK_YARD_MURDER = new CaseBuilder().withTitle("Junk Yard Murder")

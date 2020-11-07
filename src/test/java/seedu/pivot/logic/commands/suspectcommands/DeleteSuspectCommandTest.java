@@ -21,9 +21,9 @@ import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.commands.testutil.ModelStub;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Case;
+import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
 import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
@@ -73,7 +73,7 @@ public class DeleteSuspectCommandTest {
     public void execute_suspectDeletedByModel_success() throws CommandException {
         StateManager.setState(DEFAULT_CASE_INDEX);
         Case testCase = new CaseBuilder()
-                .withSuspects(DEFAULT_SUSPECT).build();
+                .addSuspects(DEFAULT_SUSPECT).build();
         List<Case> caseList = new ArrayList<>();
         caseList.add(testCase);
 
@@ -95,7 +95,7 @@ public class DeleteSuspectCommandTest {
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
         DeleteCommand command = new DeleteSuspectCommand(DEFAULT_CASE_INDEX, invalidIndex);
         assertThrows(CommandException.class,
-                UserMessages.MESSAGE_INVALID_SUSPECTS_DISPLAYED_INDEX, () -> command.execute(modelStub));
+                UserMessages.MESSAGE_INVALID_SUSPECT_DISPLAYED_INDEX, () -> command.execute(modelStub));
         StateManager.resetState();
     }
 

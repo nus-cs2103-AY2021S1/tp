@@ -11,7 +11,7 @@ import static seedu.pivot.logic.commands.Command.TYPE_VICTIM;
 import static seedu.pivot.logic.commands.Command.TYPE_WITNESS;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +39,7 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsListTabCommand() {
-        StateManager.setState(INDEX_FIRST_PERSON);
+        StateManager.setState(FIRST_INDEX);
         assertParseSuccess(parser, TYPE_DOC, new ListTabCommand(TYPE_DOC));
         assertParseSuccess(parser, TYPE_SUSPECT, new ListTabCommand(TYPE_SUSPECT));
         assertParseSuccess(parser, TYPE_WITNESS, new ListTabCommand(TYPE_WITNESS));
@@ -58,7 +58,7 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_invalidArgsAtCasePage_throwsParseException() {
-        StateManager.setState(INDEX_FIRST_PERSON); // At Case Page
+        StateManager.setState(FIRST_INDEX); // At Case Page
         assertParseFailure(parser, " ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ListCommand.MESSAGE_USAGE_CASE_PAGE));
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -77,7 +77,7 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_mainPageArgsAtCasePage_throwsParseException() {
-        StateManager.setState(INDEX_FIRST_PERSON); // At Case Page
+        StateManager.setState(FIRST_INDEX); // At Case Page
         assertParseFailure(parser, TYPE_CASE, MESSAGE_INCORRECT_MAIN_PAGE);
         assertParseFailure(parser, TYPE_ARCHIVE, MESSAGE_INCORRECT_MAIN_PAGE);
         StateManager.resetState(); // At Main Page

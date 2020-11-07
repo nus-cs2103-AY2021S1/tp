@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.testutil.Assert.assertThrows;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,30 +22,25 @@ import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.commands.testutil.ModelStub;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Case;
+import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
 import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.testutil.CaseBuilder;
+import seedu.pivot.testutil.CasePersonBuilder;
 
 
 public class AddVictimCommandTest {
-    private static final Name DEFAULT_NAME = new Name("Test Name");
-    private static final Sex DEFAULT_SEX = Sex.createSex("m");
-    private static final Phone DEFAULT_PHONE = new Phone("91234567");
-    private static final Address DEFAULT_ADDRESS = new Address("Blk 123");
-    private static final Email DEFAULT_EMAIL = new Email("abc@gmail.com");
-    private static final Victim DEFAULT_VICTIM = new Victim(DEFAULT_NAME, DEFAULT_SEX,
-            DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS);
-    private static final Index DEFAULT_INDEX = Index.fromZeroBased(0);
+
+    private static final Victim TEST_VICTIM = new CasePersonBuilder().buildVictim();
 
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddVictimCommand(null, null));
-        assertThrows(NullPointerException.class, () -> new AddVictimCommand(null, DEFAULT_VICTIM));
-        assertThrows(NullPointerException.class, () -> new AddVictimCommand(DEFAULT_INDEX, null));
+        assertThrows(NullPointerException.class, () -> new AddVictimCommand(null, TEST_VICTIM));
+        assertThrows(NullPointerException.class, () -> new AddVictimCommand(FIRST_INDEX, null));
     }
 
     @Test
@@ -54,11 +50,11 @@ public class AddVictimCommandTest {
         Index alternateIndex = Index.fromZeroBased(1000);
 
         // same object -> returns true
-        AddCommand testCommand = new AddVictimCommand(DEFAULT_INDEX, DEFAULT_VICTIM);
+        AddCommand testCommand = new AddVictimCommand(FIRST_INDEX, TEST_VICTIM);
         assertTrue(testCommand.equals(testCommand));
 
         // same values -> returns true
-        assertTrue(testCommand.equals(new AddVictimCommand(DEFAULT_INDEX, DEFAULT_VICTIM)));
+        assertTrue(testCommand.equals(new AddVictimCommand(FIRST_INDEX, TEST_VICTIM)));
 
         // different types -> returns false
         assertFalse(testCommand.equals(1));
@@ -67,21 +63,21 @@ public class AddVictimCommandTest {
         assertFalse(testCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(testCommand.equals(new AddVictimCommand(DEFAULT_INDEX, alternateVictim)));
-        assertFalse(testCommand.equals(new AddVictimCommand(alternateIndex, DEFAULT_VICTIM)));
+        assertFalse(testCommand.equals(new AddVictimCommand(FIRST_INDEX, alternateVictim)));
+        assertFalse(testCommand.equals(new AddVictimCommand(alternateIndex, TEST_VICTIM)));
         assertFalse(testCommand.equals(new AddVictimCommand(alternateIndex, alternateVictim)));
     }
 
     @Test
     public void execute_validVictim_success() throws CommandException {
-        StateManager.setState(DEFAULT_INDEX);
+        StateManager.setState(FIRST_INDEX);
         Case testCase = new CaseBuilder().build();
         List<Case> caseList = new ArrayList<>();
         caseList.add(testCase);
 
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
-        AddCommand command = new AddVictimCommand(DEFAULT_INDEX, DEFAULT_VICTIM);
-        assertEquals(String.format(AddVictimCommand.MESSAGE_ADD_VICTIM_SUCCESS, DEFAULT_VICTIM),
+        AddCommand command = new AddVictimCommand(FIRST_INDEX, TEST_VICTIM);
+        assertEquals(String.format(AddVictimCommand.MESSAGE_ADD_VICTIM_SUCCESS, TEST_VICTIM),
                 command.execute(modelStub).getFeedbackToUser());
 
         StateManager.resetState();
@@ -89,13 +85,13 @@ public class AddVictimCommandTest {
 
     @Test
     public void execute_sameVictim_throwsCommandException() {
-        StateManager.setState(DEFAULT_INDEX);
-        Case testCase = new CaseBuilder().withVictims(DEFAULT_VICTIM).build();
+        StateManager.setState(FIRST_INDEX);
+        Case testCase = new CaseBuilder().addVictims(TEST_VICTIM).build();
         List<Case> caseList = new ArrayList<>();
         caseList.add(testCase);
 
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
-        AddCommand command = new AddVictimCommand(DEFAULT_INDEX, DEFAULT_VICTIM);
+        AddCommand command = new AddVictimCommand(FIRST_INDEX, TEST_VICTIM);
         assertThrows(CommandException.class,
                 UserMessages.MESSAGE_DUPLICATE_VICTIM, () -> command.execute(modelStub));
         StateManager.resetState();

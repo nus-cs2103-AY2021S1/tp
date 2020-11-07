@@ -10,6 +10,7 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -24,13 +25,16 @@ import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
+import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
 import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 
+/**
+ * Represents an Edit command for editing a Suspect in a Case in PIVOT.
+ */
 public class EditSuspectCommand extends EditPersonCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_SUSPECT
@@ -68,13 +72,23 @@ public class EditSuspectCommand extends EditPersonCommand implements Undoable {
         List<Suspect> editedSuspects = caseToEdit.getSuspects();
 
         if (personIndex.getZeroBased() >= editedSuspects.size()) {
-            throw new CommandException(UserMessages.MESSAGE_INVALID_SUSPECTS_DISPLAYED_INDEX);
+            throw new CommandException(UserMessages.MESSAGE_INVALID_SUSPECT_DISPLAYED_INDEX);
         }
 
         Suspect suspectToEdit = editedSuspects.get(personIndex.getZeroBased());
         Suspect editedSuspect = createEditedPerson(suspectToEdit, editPersonDescriptor);
 
         if (editedSuspects.contains(editedSuspect)) {
+            logger.info("Failed to edit suspect: The edited suspect has the same name, sex, phone, "
+                    + "email and address as an existing suspect in PIVOT.");
+            throw new CommandException(MESSAGE_DUPLICATE_SUSPECT);
+        }
+
+        List<Suspect> suspectsToNotEdit = new ArrayList<>(editedSuspects);
+        suspectsToNotEdit.remove(suspectToEdit);
+        if (suspectsToNotEdit.stream().anyMatch(editedSuspect:: isSamePerson)) {
+            logger.info("Failed to edit suspect: The edited suspect has the same name, sex, phone as an "
+                    + "existing suspect in PIVOT.");
             throw new CommandException(MESSAGE_DUPLICATE_SUSPECT);
         }
 
@@ -104,5 +118,21 @@ public class EditSuspectCommand extends EditPersonCommand implements Undoable {
     @Override
     public Page getPage() {
         return pageType;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditSuspectCommand)) {
+            return false;
+        }
+
+        EditSuspectCommand otherEditSuspectCommand = (EditSuspectCommand) other;
+        return otherEditSuspectCommand.caseIndex.equals(caseIndex)
+                && otherEditSuspectCommand.personIndex.equals(personIndex)
+                && otherEditSuspectCommand.editPersonDescriptor.equals(editPersonDescriptor);
     }
 }

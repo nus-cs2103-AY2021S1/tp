@@ -1,7 +1,7 @@
 package seedu.pivot.logic.parser;
 
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,8 +13,8 @@ import seedu.pivot.logic.state.StateManager;
 
 public class DeleteDocumentCommandParserTest {
 
-    private static Index caseIndex = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
-    private static Index miscTypeIndex = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static Index caseIndex = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
+    private static Index miscTypeIndex = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
 
     private DeleteCommandParser parser = new DeleteCommandParser();
 

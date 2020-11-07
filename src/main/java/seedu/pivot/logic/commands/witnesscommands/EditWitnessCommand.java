@@ -10,6 +10,7 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -24,13 +25,16 @@ import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
+import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
 import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Witness;
 
+/**
+ * Represents an Edit command for editing a Witness in a Case in PIVOT.
+ */
 public class EditWitnessCommand extends EditPersonCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_WITNESS
@@ -75,6 +79,16 @@ public class EditWitnessCommand extends EditPersonCommand implements Undoable {
         Witness editedWitness = createEditedPerson(witnessToEdit, editPersonDescriptor);
 
         if (editedWitnesses.contains(editedWitness)) {
+            logger.info("Failed to edit witness: The edited witness has the same name, sex, phone, "
+                    + "email and address as an existing witness in PIVOT.");
+            throw new CommandException(MESSAGE_DUPLICATE_WITNESS);
+        }
+
+        List<Witness> witnessesToNotEdit = new ArrayList<>(editedWitnesses);
+        witnessesToNotEdit.remove(witnessToEdit);
+        if (witnessesToNotEdit.stream().anyMatch(editedWitness:: isSamePerson)) {
+            logger.info("Failed to edit witness: The edited witness has the same name, sex, phone as an "
+                    + "existing witness in PIVOT.");
             throw new CommandException(MESSAGE_DUPLICATE_WITNESS);
         }
 
@@ -90,7 +104,8 @@ public class EditWitnessCommand extends EditPersonCommand implements Undoable {
     }
 
     private Witness createEditedPerson(Witness witnessToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert witnessToEdit != null;
+        assert witnessToEdit != null : "Witness provided is null";
+        assert editPersonDescriptor != null : "EditPersonDescriptor provided is null";
 
         Name updatedName = editPersonDescriptor.getName().orElse(witnessToEdit.getName());
         Sex updatedSex = editPersonDescriptor.getSex().orElse(witnessToEdit.getSex());
@@ -104,5 +119,21 @@ public class EditWitnessCommand extends EditPersonCommand implements Undoable {
     @Override
     public Page getPage() {
         return pageType;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditWitnessCommand)) {
+            return false;
+        }
+
+        EditWitnessCommand otherEditWitnessCommand = (EditWitnessCommand) other;
+        return otherEditWitnessCommand.caseIndex.equals(caseIndex)
+                && otherEditWitnessCommand.personIndex.equals(personIndex)
+                && otherEditWitnessCommand.editPersonDescriptor.equals(editPersonDescriptor);
     }
 }

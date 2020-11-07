@@ -4,7 +4,7 @@ import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -23,7 +23,7 @@ public class AddDescriptionCommandParserTest {
     public static final String EMPTY_DESC = "";
     public static final String BLANK_DESC = " ";
 
-    private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static Index index = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
 
     private AddDescriptionCommandParser parser = new AddDescriptionCommandParser();
 

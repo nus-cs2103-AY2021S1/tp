@@ -10,10 +10,10 @@ import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
+import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.Reference;
 import seedu.pivot.model.investigationcase.Status;
 import seedu.pivot.model.investigationcase.Title;
-import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.model.investigationcase.caseperson.Witness;
@@ -94,13 +94,10 @@ public class CaseBuilder {
     }
 
     /**
-     * Parses the {@code witnesses} into a {@code List<Witness>} and set it to the {@code Case} that we are building.
+     * Sets the {@code Status} of the {@code Case} that we are building.
      */
-    public CaseBuilder withWitnesses(Witness ... witnesses) {
-        if (this.witnesses == null) {
-            this.witnesses = new ArrayList<>();
-        }
-        this.witnesses.addAll(Arrays.asList(witnesses));
+    public CaseBuilder withStatus(String status) {
+        this.status = Status.createStatus(status);
         return this;
     }
 
@@ -116,17 +113,33 @@ public class CaseBuilder {
     }
 
     /**
-     * Sets the {@code Status} of the {@code Case} that we are building.
+     * Parses the {@code suspects} into a {@code List<Suspect>} and set it to the {@code Case} that we are building.
      */
-    public CaseBuilder withStatus(String status) {
-        this.status = Status.createStatus(status);
+    public CaseBuilder withSuspects(Suspect ... suspects) {
+        this.suspects = Arrays.asList(suspects);
         return this;
     }
 
     /**
-     * Parses the {@code suspects} into a {@code List<Suspect>} and set it to the {@code Case} that we are building.
+     * Parses the {@code victims} into a {@code List<Victim>} and set it to the {@code Case} that we are building.
      */
-    public CaseBuilder withSuspects(Suspect ... suspects) {
+    public CaseBuilder withVictims(Victim ... victims) {
+        this.victims = Arrays.asList(victims);
+        return this;
+    }
+
+    /**
+     * Parses the {@code witnesses} into a {@code List<Witness>} and set it to the {@code Case} that we are building.
+     */
+    public CaseBuilder withWitnesses(Witness ... witnesses) {
+        this.witnesses = Arrays.asList(witnesses);
+        return this;
+    }
+
+    /**
+     * Parses the {@code suspects} into a {@code List<Suspect>} and adds it to the {@code Case} that we are building.
+     */
+    public CaseBuilder addSuspects(Suspect ... suspects) {
         if (this.suspects == null) {
             this.suspects = new ArrayList<>();
         }
@@ -135,13 +148,24 @@ public class CaseBuilder {
     }
 
     /**
-     * Parses the {@code victims} into a {@code List<Victim>} and set it to the {@code Case} that we are building.
+     * Parses the {@code victims} into a {@code List<Victim>} and adds it to the {@code Case} that we are building.
      */
-    public CaseBuilder withVictims(Victim ... victims) {
+    public CaseBuilder addVictims(Victim ... victims) {
         if (this.victims == null) {
             this.victims = new ArrayList<>();
         }
         this.victims.addAll(Arrays.asList(victims));
+        return this;
+    }
+
+    /**
+     * Parses the {@code witnesses} into a {@code List<Witness>} and adds it to the {@code Case} that we are building.
+     */
+    public CaseBuilder addWitnesses(Witness ... witnesses) {
+        if (this.witnesses == null) {
+            this.witnesses = new ArrayList<>();
+        }
+        this.witnesses.addAll(Arrays.asList(witnesses));
         return this;
     }
 

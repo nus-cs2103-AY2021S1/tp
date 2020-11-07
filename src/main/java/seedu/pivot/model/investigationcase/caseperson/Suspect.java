@@ -1,5 +1,7 @@
 package seedu.pivot.model.investigationcase.caseperson;
 
+import seedu.pivot.model.investigationcase.Name;
+
 /**
  * Represents a Suspect in the investigation case.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -12,6 +14,20 @@ public class Suspect extends CasePerson {
      */
     public Suspect(Name name, Sex sex, Phone phone, Email email, Address address) {
         super(name, sex, phone, email, address);
+    }
+
+    /**
+     * Returns true if both cases have the same name, sex and phone.
+     * This defines a weaker notion of equality between two suspects.
+     */
+    public boolean isSamePerson(Suspect otherSuspect) {
+        if (otherSuspect == this) {
+            return true;
+        }
+
+        return otherSuspect.getName().equals(getName())
+                && otherSuspect.getSex().equals(getSex())
+                && otherSuspect.getPhone().equals(getPhone());
     }
 
     /**
@@ -31,6 +47,8 @@ public class Suspect extends CasePerson {
         Suspect otherSuspect = (Suspect) other;
         return otherSuspect.getName().equals(getName())
                 && otherSuspect.getSex().equals(getSex())
-                && otherSuspect.getPhone().equals(getPhone());
+                && otherSuspect.getPhone().equals(getPhone())
+                && otherSuspect.getEmail().equals(getEmail())
+                && otherSuspect.getAddress().equals(getAddress());
     }
 }

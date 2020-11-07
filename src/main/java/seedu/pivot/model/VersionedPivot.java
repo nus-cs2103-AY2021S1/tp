@@ -106,8 +106,8 @@ public class VersionedPivot extends Pivot {
      * Removes all states after the current state.
      */
     public void purgeStates() {
-        int stateAfterCurrent = currentStatePointer + 1;
-        for (int i = stateAfterCurrent; i < pivotStateList.size(); i++) {
+        int len = pivotStateList.size();
+        for (int i = len - 1; i > currentStatePointer; i--) {
             pivotStateList.remove(i);
         }
 
