@@ -14,7 +14,6 @@ import java.util.Set;
 
 import com.eva.commons.core.Messages;
 import com.eva.logic.commands.AddApplicantCommand;
-import com.eva.logic.commands.AddStaffCommand;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
@@ -44,7 +43,7 @@ public class AddApplicantCommandParser implements Parser<AddApplicantCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddStaffCommand.MESSAGE_USAGE));
+                    AddApplicantCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

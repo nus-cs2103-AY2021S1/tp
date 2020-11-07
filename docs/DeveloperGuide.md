@@ -118,7 +118,7 @@ The `Model`,
 * does not depend on any of the other five components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `EvaStorage`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `EvaStorage`, which `Person` references. This allows `EvaStorage` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -148,29 +148,29 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 3.1.1 Leave System
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedEvaStorage`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current eva database state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous eva database state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone eva database state from its history.
+* `VersionedEvaStorage#commit()` — Saves the current eva database state in its history.
+* `VersionedEvaStorage#undo()` — Restores the previous eva database state from its history.
+* `VersionedEvaStorage#redo()` — Restores a previously undone eva database state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitEvaStorage()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial eva database state, and the `currentStatePointer` pointing to that single eva database state.
+Step 1. The user launches the application for the first time. The `VersionedEvaStorage` will be initialized with the initial eva database state, and the `currentStatePointer` pointing to that single eva database state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the eva database. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the eva database after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted eva database state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the eva database. The `delete` command calls `Model#commitEvaStorage()`, causing the modified state of the eva database after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted eva database state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified eva database state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitEvaStorage()`, causing another modified eva database state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the eva database state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitEvaStorage()`, so the eva database state will not be saved into the `addressBookStateList`.
 
 </div>
 
@@ -178,7 +178,7 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial EvaStorage state, then there are no previous EvaStorage states to restore. The `undo` command uses `Model#canUndoEvaStorage()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -191,17 +191,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the eva database to that state.
+The `redo` command does the opposite — it calls `Model#redoEvaStorage()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the eva database to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest eva database state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `EvaStorageStateList.size() - 1`, pointing to the latest eva database state, then there are no undone EvaStorage states to restore. The `redo` command uses `Model#canRedoEvaStorage()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the eva database, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list s-`. Commands that do not modify the eva database, such as `list`, will usually not call `Model#commitEvaStorage()`, `Model#undoEvaStorage()` or `Model#redoEvaStorage()`. Thus, the `EvaStorageStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all eva database states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitEvaStorage()`. Since the `currentStatePointer` is not pointing at the end of the `EvaStorageStateList`, all eva database states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -286,9 +286,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Director of Human Resources                | I want to have quick and easy access to all HR information|                                               |
 | `* * *`  | organised HR manager                       | add data of applicants           | have these data at one place in a neat manner                          |
 | `* *`    | organised HR manager                       | delete data of applicants        | have these data at one place in a neat manner                          |
-| `* *`    | busy HR staff with a lot of things to do  |  know my interview appointments with the applicants quickly| I will not forget any such appointments and attend necessary interviews |
+| `* *`    | busy HR staff with a lot of things to do   |  know my interview appointments with the applicants quickly| I will not forget any such appointments and attend necessary interviews |
 | `* *`    | HR manager                                 | easily keep track of applicant’s application status |clear understanding of the recruitment process at any given point of time |
- 
+| `*`      | Programmer as a part-time HR manager       | automate Eva workflow            | simplify workflow as much as possible
+
 ### 5.3 Use cases
 
 (For all use cases below, the **System** is the `Eva` and the **Actor** is the `user`, unless specified otherwise)
@@ -873,7 +874,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `list -staff`
+1. User types in `list s-`
 2. Eva shows all staff records with indexes beside.
     Use case ends.
 
@@ -888,7 +889,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `list -applicant`
+1. User types in `list a-`
 2. Eva shows all applicant records with indexes beside.
     Use case ends.
 
@@ -901,7 +902,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ***Use case: UC20 - find staff records by name***
 
+**MSS**
+
+1. User types in `find s- Alex`
+2. Eva shows all staff records whose name contains "Alex" with indexes beside.
+    Use case ends.
+    
+**Extensions**
+
+* 1a. Eva does not find any applicant records with the given name.
+
+    * 1a1. Eva informs the user that no records exist.
+    Use case ends.
+
 ***Use case: UC21 - find applicant records by name***
+
+**MSS**
+
+1. User types in `find a- Alex`
+2. Eva shows all applicant records whose name contains "Alex" with indexes beside.
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find any applicant records with the given name.
+
+    * 1a1. Eva informs the user that no records exist.
+    Use case ends.
 
 ***Use case: UC22 - viewing staff profile***
 
@@ -1093,8 +1120,44 @@ testers are expected to do more *exploratory* testing.
 
 ### 6.6 Saving data
 
-1. Dealing with missing/corrupted data files
+Eva generates a `data` directory to store databases and user preferences.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Test case: Remove `data` directory and restart Eva.<br>
+   Expected: Eva would start with a sample staff database and a sample applicant database using default user preferences.
+   
+1. Test case: Remove `data/applicantDatabase.json` and restart Eva.<br>
+   Expected: Eva would add a sample applicant database.
+   
+1. Test case: Edit `data/applicantDatabase.json` with invalid format and restart Eva.<br>
+   Expected: Eva would not load applicant database and leave applicant list empty.
+   
+1. Test case: Remove `data/staffDatabase.json` and restart Eva.<br>
+   Expected: Eva would add a sample staff database.
+   
+1. Test case: Edit `data/staffDatabase.json` with invalid format and restart Eva.<br>
+   Expected: Eva would not load staff database and leave staff list empty.
 
-1. _{ more test cases …​ }_
+
+### 6.7 Find staff and applicants
+
+1. Find an applicant with the given name.
+
+    1. Test case: `find a- Joe`<br>
+       Expected: Applicant records whose name contains "Joe" show up. A message shows the count of found records.
+    
+    1. Test case `find a-`<br>
+       Expected: An error message as well as command usage shows up to inform the user of wrong command format.
+       
+1. Find a staff with the given name.
+
+    1. Test case: `find s- Joe`<br>
+       Expected: Staff records whose name contains "Joe" show up. A message shows the count of found records.
+    
+    1. Test case `find s-`<br>
+       Expected: An error message as well as command usage shows up to inform the user of wrong command format.
+       
+1. A common mistake that misses an indicator `a-` or `s-`.
+    
+    1. Test case: `find Joe`<br>
+       Expected: An error message as well as command usage shows up to inform the user of wrong command format.
+

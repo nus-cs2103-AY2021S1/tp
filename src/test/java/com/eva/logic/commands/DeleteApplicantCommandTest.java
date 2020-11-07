@@ -3,6 +3,7 @@ package com.eva.logic.commands;
 import static com.eva.logic.commands.CommandTestUtil.assertChangePanelCommandSuccess;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandFailure;
 import static com.eva.logic.commands.CommandTestUtil.showApplicantAtIndex;
+import static com.eva.logic.commands.DeleteApplicantCommand.MESSAGE_WRONG_PANEL;
 import static com.eva.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static com.eva.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -49,6 +50,19 @@ public class DeleteApplicantCommandTest {
         assertChangePanelCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
+
+    @Test
+    public void execute_validIndexUnfilteredWrongListPanel_failure() {
+        DeleteApplicantCommand deleteCommand = new DeleteApplicantCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
+                MESSAGE_WRONG_PANEL);
+
+        model.setPanelState(PanelState.STAFF_LIST);
+
+        assertCommandFailure(deleteCommand, model, expectedMessage);
+    }
+
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
@@ -91,6 +105,7 @@ public class DeleteApplicantCommandTest {
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
+
 
     @Test
     public void equals() {

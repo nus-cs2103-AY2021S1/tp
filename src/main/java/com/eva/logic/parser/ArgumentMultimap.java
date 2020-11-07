@@ -52,6 +52,15 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns the count of non-empty prefixes.
+     */
+    public long getNonEmptyPrefixCount() {
+        return argMultimap.keySet().stream()
+                .filter(prefix -> !prefix.toString().isBlank())
+                .count();
+    }
+
+    /**
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */
     public String getPreamble() {

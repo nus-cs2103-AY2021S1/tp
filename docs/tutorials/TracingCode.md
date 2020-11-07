@@ -56,7 +56,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. To start the debugging session, simply `Run` \> `Debug Main`
 
-1. Enter `edit 1 n/Alice Yeoh` into the command box and press `Enter`.
+1. Enter `edits 1 n/Alice Yeoh` into the command box and press `Enter`.
 
 1. The Debugger tool window should show up and look something like this:<br>
    ![DebuggerStep1](../images/tracing/DebuggerStep1.png)
@@ -105,7 +105,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. `Step into` the line where user input in parsed from a String to a Command.
 
-    **`AddressBookParser\#parseCommand()`**
+    **`EvaParser\#parseCommand()`**
 
    ``` java
    public Command parseCommand(String userInput) throws ParseException {
@@ -120,7 +120,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. We see that the value of `commandWord` is now `edit` but `arguments` is still not processed in any meaningful way.
 
-1. Stepping into the `switch`, we obviously stop at **`AddressBookParser\#parseCommand()`.**
+1. Stepping into the `switch`, we obviously stop at **`EvaParser\#parseCommand()`.**
 
     ``` java
     ...
@@ -142,7 +142,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. Let’s continue stepping through until we return to `LogicManager#execute()`.
 
     The sequence diagram below shows the details of the execution path through the Logic component. Does the execution path you traced in the code so far matches with the diagram?<br>
-    ![Tracing an `edit` command through the Logic component](../images/tracing/LogicSequenceDiagram.png)
+    ![Tracing an `edits` command through the Logic component](../images/tracing/LogicSequenceDiagram.png)
 
 1. Now let’s see what happens when we call `command#execute()`\!
 

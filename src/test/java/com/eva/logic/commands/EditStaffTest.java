@@ -40,7 +40,7 @@ public class EditStaffTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedStaff).build();
         EditStaffCommand editStaffCommand = new EditStaffCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStaff);
+        String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS, editedStaff);
         CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
 
         Model expectedModel = new ModelManager(
@@ -66,7 +66,7 @@ public class EditStaffTest {
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditStaffCommand editStaffCommand = new EditStaffCommand(indexLastStaff, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStaff);
+        String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS, editedStaff);
         CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
 
         Model expectedModel = new ModelManager(
@@ -84,7 +84,7 @@ public class EditStaffTest {
         EditStaffCommand editStaffCommand = new EditStaffCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
         Staff editedStaff = model.getFilteredStaffList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStaff);
+        String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS, editedStaff);
         CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
 
         Model expectedModel = new ModelManager(
@@ -105,7 +105,7 @@ public class EditStaffTest {
         EditStaffCommand editStaffCommand = new EditStaffCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStaff);
+        String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS, editedStaff);
         CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
 
         Model expectedModel = new ModelManager(

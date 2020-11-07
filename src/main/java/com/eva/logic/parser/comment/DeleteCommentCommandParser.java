@@ -2,12 +2,14 @@ package com.eva.logic.parser.comment;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static com.eva.logic.parser.ParserUtil.arePrefixesPresent;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
+import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.CommentCommand;
 import com.eva.logic.commands.DeleteCommentCommand;
@@ -30,6 +32,13 @@ public class DeleteCommentCommandParser {
                 ArgumentTokenizer.tokenize(args, PREFIX_COMMENT);
 
         Index index;
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_COMMENT)
+                || argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                            DeleteCommentCommand.MESSAGE_USAGE));
+        }
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());

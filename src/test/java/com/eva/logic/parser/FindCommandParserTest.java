@@ -23,9 +23,16 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_noValidPrefixes_throwsParseException() {
         // no "s-" or "a-"
         assertParseFailure(parser, "Alice Bob",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_multiplePrefixes_throwsParseException() {
+        // both "s-" and "a-"
+        assertParseFailure(parser, "s- Alice a- Bob",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 

@@ -79,7 +79,7 @@ public class ApplicationStatus {
             return false;
         }
         ApplicationStatus that = (ApplicationStatus) o;
-        return value == that.value;
+        return value.equals(that.value);
     }
 
 }

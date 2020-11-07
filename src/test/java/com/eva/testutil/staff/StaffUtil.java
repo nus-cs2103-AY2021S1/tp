@@ -2,16 +2,21 @@ package com.eva.testutil.staff;
 
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static com.eva.logic.parser.CliSyntax.PREFIX_DATE;
+import static com.eva.logic.parser.CliSyntax.PREFIX_DESC;
 import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
+import static com.eva.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.Set;
 
+import com.eva.commons.util.DateUtil;
 import com.eva.logic.commands.AddStaffCommand;
 import com.eva.logic.commands.CommentCommand;
+import com.eva.logic.commands.DeleteStaffCommand;
 import com.eva.model.comment.Comment;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
@@ -29,6 +34,10 @@ public class StaffUtil {
         return AddStaffCommand.COMMAND_WORD + " " + getStaffDetails(staff);
     }
 
+    public static String getDeleteStaffCommand(int index) {
+        return DeleteStaffCommand.COMMAND_WORD + " " + getDeleteStaffDetails(index);
+    }
+
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
@@ -42,11 +51,20 @@ public class StaffUtil {
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         staff.getComments().stream().forEach(
-            s -> sb.append(PREFIX_COMMENT + s.getTitle().getTitleDescription() + " ")
+            s -> sb.append(PREFIX_COMMENT + " "
+                    + PREFIX_TITLE + " " + s.getTitle().getTitleDescription() + " "
+                    + PREFIX_DATE + " " + DateUtil.dateToString(s.getDate()) + " "
+                    + PREFIX_DESC + " " + s.getDescription())
         );
         staff.getLeaves().stream().forEach(
             s -> sb.append(PREFIX_LEAVE + s.getStartDate().toString() + s.getEndDate().toString() + " ")
         );
+        return sb.toString();
+    }
+
+    public static String getDeleteStaffDetails(int index) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(index);
         return sb.toString();
     }
 

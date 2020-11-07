@@ -3,29 +3,29 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EvaParser" as EvaParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedEvaStorage" as VersionedEvaStorage MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> EvaParser : parseCommand(undo)
+activate EvaParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+EvaParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> EvaParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+EvaParser --> LogicManager : u
+deactivate EvaParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
@@ -33,12 +33,12 @@ activate UndoCommand
 UndoCommand -> Model : undoAddressBook()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedEvaStorage : undo()
+activate VersionedEvaStorage
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyEvaDatabase)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedEvaStorage -> VersionedEvaStorage :resetData(ReadOnlyEvaDatabase)
+VersionedEvaStorage --> Model :
+deactivate VersionedEvaStorage
 
 Model --> UndoCommand
 deactivate Model

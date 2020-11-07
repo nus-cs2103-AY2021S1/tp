@@ -1,5 +1,6 @@
 package com.eva.logic.parser;
 
+import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.commons.util.StringUtil.formatForParse;
 import static com.eva.logic.parser.CliSyntax.PREFIX_DATE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_DESC;
@@ -45,8 +46,8 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws IndexParseException, ParseException {
-        if (oneBasedIndex.isEmpty()) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+        if (oneBasedIndex.isEmpty() /*|| !checkIfNumber(oneBasedIndex)*/) {
+            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
@@ -167,6 +168,9 @@ public class ParserUtil {
             if (desc.split(" ").length == 1 && desc.split(" ")[0].equals("")) {
                 throw new ParseException("Description must not be empty");
             }
+            if (checkForInvalidComment(desc) || checkForInvalidComment(title)) {
+                throw new ParseException("Comment should not contain '|'");
+            }
             return new Comment(DateUtil.dateParsed(date), desc, title);
         } else if (!argMultiMap.getValue(PREFIX_TITLE).isEmpty()
                 && argMultiMap.getValue(PREFIX_DESC).isEmpty()
@@ -266,5 +270,33 @@ public class ParserUtil {
             throw new ParseException(ApplicationStatus.MESSAGE_CONSTRAINTS);
         }
         return new ApplicationStatus(value);
+    }
+
+    /**
+     * Checks for invalid comment
+     * @param comment
+     * @return
+     */
+    public static boolean checkForInvalidComment (String comment) {
+        for (int i = 0; i < comment.length(); i++) {
+            if (comment.charAt(i) == '|') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks for invalid input
+     * @param index
+     * @return
+     */
+    public static boolean checkIfNumber(String index) {
+        try {
+            Integer.parseInt(index);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 }
