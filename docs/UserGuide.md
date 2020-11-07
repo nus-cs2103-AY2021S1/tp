@@ -33,7 +33,6 @@ Formatting | Meaning | Examples
 e/EXAMPLE | The character before the forward slash ("/") is a prefix, and words in **UPPER_CASE** after the slash are the parameters to be supplied by you | In `exercise_add e/EXERCISE`, `EXERCISE` is a parameter which can be used as `exercise_add e/Deadlift`
 [ x/X ] | Square brackets signify optional fields that you can consider using | `exercise_add e/EXERCISE [t/TAG]` can be used as `exercise_add e/Deadlift t/glutes` or `exercise_add e/Deadlift`
 `...` | Fields which are followed by `...` indicate that they can be used more than once | `[t/TAG]...` can be used as `t/first t/important t/form` etc.
-Duplicate parameters | Only the argument of the last occurring duplicate parameter will be considered if the command format does not expect multiple parameters (i.e. fields without `...`) | In `exercise_add e/Deadlift e/Lunges`, an exercise with the name `Lunges` will be added and `e/Deadlift` is ignored
 Order of parameters | Valid parameters can be provided in any order unless one of the parameters is `INDEX`, in which case `INDEX` must be the first parameter | In `exercise_edit INDEX [e/EXERCISE] [t/TAG]...`, `exercise_edit INDEX [t/TAG]... [e/EXERCISE]` is also accepted. However, `exercise_edit [e/EXERCISE] INDEX [t/TAG]...` is not allowed
 `mark-up` | Grey highlight of a word signifies the actual input that you can use | You can type `exercise_delete 1` in the command box and press *Enter* to execute the command
 Call Outs | Red boxes will be drawn up around areas of interest to alert you `[coming in v1.4]` | -
@@ -447,12 +446,14 @@ Note that you are viewing 2 lessons as of now.
 
 ### 4.4 Timetable
 
-You can add both Routines and Lessons to your timetable to get an overview of your week. You can switch between the
-Timetable and Homepage display by clicking on either of the tabs found at the top left of the interface.
-In this subsection, we will explore the timetable feature and its respective commands.
+You can add both Routines and Lessons to your timetable to get an overview of your week. You can navigate between the
+Timetable and Homepage display by clicking on the corresponding tabs found at the top left of the interface.
+The following illustration shows a pre-filled view of the Timetable:
+
+![Timetable View](./images/timetable_view.png)
 
 Any changes made to existing routines or lessons that have already been added as a slot in the Timetable will be
-reflected automatically on the Timetable.
+reflected automatically on the Timetable. In this subsection, we will explore the timetable feature and its related commands.
 
 #### 4.4.1 Add routine to timetable : `timetable_add_routine`
 
@@ -514,23 +515,10 @@ Note that Leg Workout routine slot is no longer reflected on the Timetable.
 
 ![Timetable Delete Slot After](./images/timetable_delete_slot_after.png)
 
-#### 4.4.4 View timetable :
-
-Views the timetable in fitNUS.
-
-Format: -
-
-Example:
-* Click on the timetable tab at the top left of the interface to view timetable.
-
-**View of Timetable**
-
-![Timetable View](./images/timetable_view.png)
-
 ### 4.5 BMI
 
 fitNUS allows you to record your height and weight in order to better keep track of the progression of your health
-journey. You can check your current BMI once you have keyed in the 2 parameters in the command box.
+journey. You BMI will be displayed on the Home tab once you have keyed in the 2 parameters in the command box.
 
 #### 4.5.1 Add or edit height : `height`
 
@@ -538,10 +526,18 @@ Adds the specified height, in centimetres, to fitNUS.
 
 Format: `height h/HEIGHT`
 
-Examples:
-* `height h/170.5` Adds or edits the height of the user, which is 170.5 cm.
+Example:
+* `height h/170` Adds or edits the height of the user, which is 170 cm.
 
-![Add Height](./images/height.png)
+**Before inputting "170" cm:**
+
+![Add Height Before](./images/height_before.png)
+Notice how the default height is set to 160 cm before the change. 
+
+**After inputting "170" cm:**
+
+![Add Height After](./images/height_after.png)
+Notice the updated height of 170 cm after the change.
 
 #### 4.5.2 Add or edit weight : `weight`
 
@@ -549,27 +545,24 @@ Adds the specified weight, in kilograms, to fitNUS.
 
 Format: `weight w/WEIGHT`
 
-Examples:
+Example:
 * `weight w/72.8` Adds or edits the weight of the user, which is 72.8 kg.
 
-![Add Weight](./images/weight.png)
+**Before inputting "72.8" kg:**
 
-#### 4.5.3 View BMI : `bmi`
+![Add Weight Before](./images/weight_before.png)
+Notice how the default weight is set to 45 kg before the change.
 
-Calculates and displays the user's BMI based on the height and weight input.
+**After inputting "72.8" kg:**
 
-Format: `bmi`
-
-Examples:
-* `bmi` Views BMI.
-
-![View bmi](./images/bmi.png)
+![Add Weight After](./images/weight_after.png)
+Notice the updated weight of 72.8 kg after the change.
 
 ### 4.6 Calorie
 
 You can keep track of your daily caloric intake and expenditure by inputting the values in the command box.
 You can add or deduct a specified amount from your current calorie count. All successful modifications will be
-automatically reflected in the Calorie Graph.
+automatically reflected in the Calorie Graph on the Home tab.
 
 #### 4.6.1 Add calories : `calorie_add`
 
@@ -577,10 +570,17 @@ Adds the specified calorie amount to fitNUS.
 
 Format: `calorie_add c/CALORIE`
 
-Examples:
-* `calorie_add c/600` Adds 600 calories to today's sum.
+Example:
+* `calorie_add c/1500` Adds 1500 calories to today's sum.
 
-![Calorie Add](./images/calorie_add.png)
+**Before adding "1500" calories:**
+
+![Calorie Add Before](./images/calorie_add_before.png)
+Notice that the Calorie Graph has no data points.
+
+**After adding "1500" calories:**
+
+![Calorie Add After](./images/calorie_add_after.png)
 
 #### 4.6.2 Deduct calories : `calorie_minus`
 
@@ -588,10 +588,16 @@ Deducts the specified calorie amount from today's sum.
 
 Format: `calorie_minus c/CALORIE`
 
-Examples:
-* `calorie_minus c/250` Deducts 250 calories from today's sum.
+Example:
+* `calorie_minus c/600` Deducts 600 calories from today's sum.
 
-![Calorie Minus](./images/calorie_minus.png)
+**Before deducting "600" calories:**
+
+![Calorie Minus Before](./images/calorie_minus_before.png)
+
+**After deducting "600" calories:**
+
+![Calorie Minus After](./images/calorie_minus_after.png)
 
 ### 4.7 Miscellaneous
 
@@ -599,12 +605,35 @@ These are some essential commands that you can use fitNUS that are not linked to
 
 #### 4.7.1 Help: `help`
 
-Links you to the User Guide where there is comprehensive summary of all commands in fitNUS. The link will appear in a
-pop-up. Additionally, use a keyword to search for a group of commands.
+Shows a brief description of all possible commands. Links you to the User Guide where there is a comprehensive guide of
+the program usage instructions in fitNUS. The link will appear in a pop-up.
 
 Format: `help` or `help [COMMAND_KEYWORD]`
 
-![Help](./images/help.png)
+Example:
+* `help` Shows a scrollable full command list.
+
+**Before inputting "help":**
+
+![Help](./images/help_before.png)
+
+**After inputting "help":**
+
+![Help](./images/help_after.png)
+
+Alternatively, use a keyword to search for a group of commands.
+The following depicts what would happen if you chose to streamline your search to a certain keyword.
+
+Example:
+* `help timetable` Shows all the commands containing the word "timetable".
+
+**Before inputting "help timetable":**
+
+![Help](./images/help_keyword_before.png)
+
+**After inputting "help timetable":**
+
+![Help](./images/help_keyword_after.png)
 
 #### 4.7.2 Clear: `clear`
 
@@ -685,7 +714,6 @@ Action | Format | Examples
 **Add Routine to Timetable** | `timetable_add_routine r/ROUTINE D/DAY T/TIME` | `timetable_add_routine r/Leg Day Session D/Monday T/1600-1800`
 **Add Lesson to Timetable** | `timetable_add_lesson n/LESSON D/DAY T/TIME` | `timetable_add_lesson n/CS2103T D/Tuesday T/1200-1400`
 **Delete Routine or Lesson from Timetable** | `timetable_delete_slot D/DAY T/TIME` | `timetable_delete_slot D/Monday T/1600-1800`
-**View timetable** | - | Click on timetable tab at the top left of interface
 
 ### 5.5 BMI
 
@@ -693,7 +721,6 @@ Action | Format | Examples
 --------|-------|-----------
 **Add or edit Height** | `height h/HEIGHT` | `height h/170.5`
 **Add or edit Weight** | `weight w/WEIGHT` | `weight w/72.8`
-**View BMI** | `bmi` | `bmi`
 
 ### 5.6 Calorie
 
