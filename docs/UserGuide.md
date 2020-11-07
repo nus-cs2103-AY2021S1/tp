@@ -75,28 +75,42 @@ This section will give you some useful information about the various command for
 <div markdown="block" class="alert alert-info">
 
 * Words in UPPER_CASE are the parameters to be supplied by the user.<br>
-  * eg. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is my name?`<br>
+  * eg. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is my name?`
+
+<br>
   
 * Items in angle brackets `<>` are either/or options. Each option is delineated by a `|` . 
-  * eg. `<success|reviewed>` can be used as either `success` or `reviewed` but not both.<br>
+  * eg. `<success|reviewed>` can be used as either `success` or `reviewed` but not both.
+
+<br>
 
 * Words in lower_case are to be specified exactly. 
-  * eg. in `sort <success|reviewed>`, `success` and `reviewed` must be specified exactly.<br>
+  * eg. in `sort <success|reviewed>`, `success` and `reviewed` must be specified exactly.
+
+<br>
 
 * Items in square brackets are optional (zero or one instance).<br>
-  * eg. `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name?` or as `q/What is my name? c/topic 1`<br>
+  * eg. `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name?` or as `q/What is my name? c/topic 1`
+
+<br>
 
 * Items in square brackets with trailing ellipsis are optional (zero, one or multiple instances).<br>
   * eg. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
   `q/What is my name? t/topic1 t/fun` 
   * Multiple instances of the tag prefix is accepted, and the app will read every instance
-  in the input.<br>
+  in the input.
+
+<br>
 
 * Multiple instances of the same prefix will not throw an error. However, the app will only read the **last instance** in the input (except for tags).
-  * eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category<br>
+  * eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category
+
+<br>
   
 * Parameters can be in any order.
-  * eg. Specifying `q/QUESTION a/ANSWER` or `a/ANSWER q/QUESTION` are both acceptable.<br>
+  * eg. Specifying `q/QUESTION a/ANSWER` or `a/ANSWER q/QUESTION` are both acceptable.
+
+<br>
   
 * All additional input after commands which do not have input fields such as `list`, `exit`, `clear`, `help`, `review`, `quiz` will be ignored.
   * eg. `list` and `list 123` will have the same effect.
@@ -111,6 +125,7 @@ This section will help you understand the different fields you will see in [Feat
 * **Can be empty**  means you can specify the prefix but not pass a value.<br>eg. passing `r/` is valid.
 * **Cannot be empty** means you have to specify a value when you specify the prefix.<br>eg. passing `c/` is invalid.
 * All input fields should not contain other input prefixes. eg. passing in `What is c/?` as a `QUESTION` to `q/QUESTION` is not supported.
+
 <br>
 
 Input Field | Restrictions and how to specify
@@ -125,7 +140,6 @@ Input Field | Restrictions and how to specify
 `INDEX`         | `INDEX` refers to the index number shown in the displayed flashcard list.<br>Every visible flashcard on the display list has an `INDEX`.<br>`INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 `KEYWORD`      | `KEYWORD` has no character limit but must be one word (no spaces).
 
-<br>
 
 ## Features
 
