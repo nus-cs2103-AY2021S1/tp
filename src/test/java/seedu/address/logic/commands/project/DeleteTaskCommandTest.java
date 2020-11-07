@@ -105,7 +105,7 @@ class DeleteTaskCommandTest {
     }
 
     /**
-     * Deletes a task is currently displayed.
+     * Deletes a task that is currently displayed.
      */
     @Test
     public void execute_deletingTaskToBeDisplayed_resetTaskDashboard() {
@@ -120,8 +120,8 @@ class DeleteTaskCommandTest {
 
         try {
             new DeleteTaskCommand(INDEX_FIRST_TASK).execute(newModel);
-        } catch (CommandException e) {
-            assertFalse(true);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of the command should not fail.", ce);
         }
 
         assertTrue(newModel.getTaskToBeDisplayedOnDashboard().isEmpty()
@@ -129,7 +129,7 @@ class DeleteTaskCommandTest {
     }
 
     /**
-     * Deletes a task is currently not displayed.
+     * Deletes a task that is currently not displayed.
      */
     @Test
     public void execute_deletingTaskNotToBeDisplayed_noChangesToTaskDashboard() {
@@ -144,8 +144,8 @@ class DeleteTaskCommandTest {
 
         try {
             new DeleteTaskCommand(INDEX_SECOND_TASK).execute(newModel);
-        } catch (CommandException e) {
-            assertFalse(true);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of the command should not fail.", ce);
         }
 
         assertTrue(newModel.getTaskToBeDisplayedOnDashboard().isPresent());

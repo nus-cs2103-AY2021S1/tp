@@ -28,7 +28,7 @@ import seedu.address.model.task.TaskComparators;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Project {
-    private static final Predicate<Task> SHOW_ALL_TASKS_PREDICATE = task -> true;
+    public static final Predicate<Task> SHOW_ALL_TASKS_PREDICATE = task -> true;
     // List of all Projects
     private static ArrayList<Project> allProjects = new ArrayList<>();
 
@@ -44,6 +44,7 @@ public class Project {
     private Predicate<Task> taskFilter = SHOW_ALL_TASKS_PREDICATE;
     private Comparator<Task> taskComparator = TaskComparators.SORT_BY_DEADLINE;
     private final Set<Task> tasks = new HashSet<>();
+
     // Display helper
     private Optional<Task> taskOnView;
     private Optional<Participation> teammateOnView;
@@ -105,7 +106,7 @@ public class Project {
     }
 
     /**
-     * Deletes a task from the project
+     * Deletes a task from the project.
      *
      * @param task task to be deleted.
      * @return true if the task to be deleted is in the project, and false otherwise.
