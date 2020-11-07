@@ -12,11 +12,11 @@ import java.util.Objects;
  */
 public class Event {
 
-    private String eventName;
-    private LocalDateTime eventStartDateTime;
-    private LocalDateTime eventEndDateTime;
-    private String uniqueIdentifier; // uid for iCalendarAgenda use
-    private EventRecurrence recurrence;
+    protected String eventName;
+    protected LocalDateTime eventStartDateTime;
+    protected LocalDateTime eventEndDateTime;
+    protected String uniqueIdentifier; // uid for iCalendarAgenda use
+    protected EventRecurrence recurrence;
 
     /**
      * Creates an Event object that will be link to the user's schedule.

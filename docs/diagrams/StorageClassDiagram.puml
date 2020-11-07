@@ -22,14 +22,6 @@ StorageManager o-down-> UserPrefsStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonReeveStorage .up.|> ReeveStorage
 JsonReeveStorage .down.> JsonSerializableReeve
-JsonSerializableReeve *--> "*" JsonAdaptedStudent
-JsonAdaptedStudent -right-> "1" JsonAdaptedAdmin
-JsonAdaptedStudent --> "1" JsonAdaptedAcademic
-JsonAdaptedAdmin -down-> "*" JsonAdaptedDetail
-JsonAdaptedAcademic -down-> "*" JsonAdaptedQuestion
-JsonAdaptedAcademic -down-> "*" JsonAdaptedExam
-JsonAdaptedAcademic -down-> "*" JsonAdaptedAttendance
 JsonNotebookStorage .up.|> NotebookStorage
 JsonNotebookStorage .down.> JsonSerializableNotebook
-JsonSerializableNotebook *-down-> "*" JsonAdaptedNote
 @enduml

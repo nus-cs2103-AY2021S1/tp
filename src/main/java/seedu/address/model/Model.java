@@ -147,7 +147,7 @@ public interface Model {
 
     ObservableList<VEvent> getLessonEventsList();
 
-    boolean isClashingClassTime(Student toCheck);
+    boolean hasClashingClassTimeWith(Student toCheck);
 
     /**
      * Replaces notebook data with the data in {@code notebook}.

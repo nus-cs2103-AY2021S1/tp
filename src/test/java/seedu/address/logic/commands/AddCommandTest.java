@@ -4,15 +4,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalStudents.AMY;
+import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotebook;
 
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ModelStub;
 import seedu.address.model.ModelStubAcceptingStudentAdded;
 import seedu.address.model.ModelStubWithStudent;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
@@ -41,6 +49,18 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_clashingClassTime_throwsCommandException() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNotebook());
+        String clashTime = model.getSortedStudentList()
+                .get(INDEX_FIRST_PERSON.getZeroBased())
+                .getClassTime()
+                .convertClassTimeToUserInputString();
+        Student clashingStudent = new StudentBuilder(AMY).withClassTime(clashTime).build();
+        AddCommand command = new AddCommand(clashingStudent);
+        assertThrows(CommandException.class, Messages.MESSAGE_CLASHING_LESSON, () -> command.execute(model));
     }
 
     @Test
