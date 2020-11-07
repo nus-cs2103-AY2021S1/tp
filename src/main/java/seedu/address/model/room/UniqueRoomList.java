@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.stream.IntStream;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
@@ -22,7 +24,10 @@ public class UniqueRoomList implements Iterable<Room> {
 
     private int numOfRooms;
     private PriorityQueue<Room> rooms = new PriorityQueue<>(new ComparableRoom());
-    private ObservableList<Room> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Room> internalList = FXCollections.observableArrayList((Room room) -> {
+        Observable[] updatedTasks = new Observable[]{room.getReadOnlyTasks()};
+        return updatedTasks;
+    });
     private final ObservableList<Room> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -266,9 +271,10 @@ public class UniqueRoomList implements Iterable<Room> {
         return internalList.stream().anyMatch(toCheck::isSameRoom);
     }
 
+    //@@author chiamyunqing
     /**
      * Clears the room which contains the patient with the given name.
-     *
+     * Tasks should still remain in the room.
      * @param patientName to clear the room from.
      */
     public void clearRoom(Name patientName) {
@@ -280,11 +286,13 @@ public class UniqueRoomList implements Iterable<Room> {
             Name patientNameInRoom = internalList.get(i - 1).getPatient().get().getName();
             if (patientName.equals(patientNameInRoom)) {
                 Room roomToClear = internalList.get(i - 1);
-                setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber()));
+                setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber(),
+                        false, Optional.empty(), new RoomTasks(roomToClear.getReadOnlyTasks())));
                 break;
             }
         }
     }
+    //@@author chiamyunqing
 
     /**
      * Replaces the room {@code target} in the list with {@code editedRoom}.

@@ -76,28 +76,29 @@ public class ParserUtilTest {
         assertEquals(VALID_TASK_INDEX_ONE, ParserUtil.parseTaskIndex("  1  "));
     }
 
+    //@@author w-yeehong
     @Test
     public void arePrefixesPresent() {
         Prefix prefixOnePresent = mock(Prefix.class);
         Prefix prefixTwoPresent = mock(Prefix.class);
         Prefix prefixThreeMissing = mock(Prefix.class);
 
-        ArgumentMultimap argMultimap = mock(ArgumentMultimap.class);
-        when(argMultimap.getValue(prefixOnePresent)).thenReturn(Optional.of("one"));
-        when(argMultimap.getValue(prefixTwoPresent)).thenReturn(Optional.of("two"));
-        when(argMultimap.getValue(prefixThreeMissing)).thenReturn(Optional.empty());
+        ArgumentMultimap argMultimapMock = mock(ArgumentMultimap.class);
+        when(argMultimapMock.getValue(prefixOnePresent)).thenReturn(Optional.of("one"));
+        when(argMultimapMock.getValue(prefixTwoPresent)).thenReturn(Optional.of("two"));
+        when(argMultimapMock.getValue(prefixThreeMissing)).thenReturn(Optional.empty());
 
         // One missing prefix - returns false
-        assertFalse(ParserUtil.arePrefixesPresent(argMultimap, prefixThreeMissing));
+        assertFalse(ParserUtil.arePrefixesPresent(argMultimapMock, prefixThreeMissing));
 
         // One present and one missing prefixes - returns false
-        assertFalse(ParserUtil.arePrefixesPresent(argMultimap, prefixOnePresent, prefixThreeMissing));
+        assertFalse(ParserUtil.arePrefixesPresent(argMultimapMock, prefixOnePresent, prefixThreeMissing));
 
         // No prefixes - returns true
-        assertTrue(ParserUtil.arePrefixesPresent(argMultimap));
+        assertTrue(ParserUtil.arePrefixesPresent(argMultimapMock));
 
         // Two present prefixes - returns true
-        assertTrue(ParserUtil.arePrefixesPresent(argMultimap, prefixOnePresent, prefixTwoPresent));
+        assertTrue(ParserUtil.arePrefixesPresent(argMultimapMock, prefixOnePresent, prefixTwoPresent));
     }
 
     @Test
@@ -106,25 +107,26 @@ public class ParserUtilTest {
         Prefix prefixTwoPresent = mock(Prefix.class);
         Prefix prefixThreeMissing = mock(Prefix.class);
 
-        ArgumentMultimap argMultimap = mock(ArgumentMultimap.class);
-        when(argMultimap.getValue(prefixOnePresent)).thenReturn(Optional.of("one"));
-        when(argMultimap.getValue(prefixTwoPresent)).thenReturn(Optional.of("two"));
-        when(argMultimap.getValue(prefixThreeMissing)).thenReturn(Optional.empty());
+        ArgumentMultimap argMultimapMock = mock(ArgumentMultimap.class);
+        when(argMultimapMock.getValue(prefixOnePresent)).thenReturn(Optional.of("one"));
+        when(argMultimapMock.getValue(prefixTwoPresent)).thenReturn(Optional.of("two"));
+        when(argMultimapMock.getValue(prefixThreeMissing)).thenReturn(Optional.empty());
 
         // No prefixes - returns false
-        assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimap));
+        assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimapMock));
 
         // Two present prefixes - returns false
-        assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimap, prefixOnePresent, prefixTwoPresent));
+        assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimapMock, prefixOnePresent, prefixTwoPresent));
 
         // Two present and one missing prefixes - returns false
-        assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimap,
+        assertFalse(ParserUtil.isExactlyOnePrefixPresent(argMultimapMock,
                 prefixOnePresent, prefixTwoPresent, prefixThreeMissing));
 
         // One present prefix - returns true
-        assertTrue(ParserUtil.isExactlyOnePrefixPresent(argMultimap, prefixOnePresent));
+        assertTrue(ParserUtil.isExactlyOnePrefixPresent(argMultimapMock, prefixOnePresent));
 
         // One present and one missing prefixes - returns true
-        assertTrue(ParserUtil.isExactlyOnePrefixPresent(argMultimap, prefixOnePresent, prefixThreeMissing));
+        assertTrue(ParserUtil.isExactlyOnePrefixPresent(argMultimapMock, prefixOnePresent, prefixThreeMissing));
     }
+    //@@author w-yeehong
 }

@@ -17,6 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTaskAssociation;
 import seedu.address.model.task.Task;
 
 /**
@@ -27,9 +28,11 @@ public class ModelManager implements Model {
 
     private final PatientRecords patientRecords;
     private final RoomList roomList;
+    private final RoomTaskRecords roomTaskRecords;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Room> filteredRooms;
+    private final FilteredList<RoomTaskAssociation> filteredRoomTaskRecords;
 
     /**
      * Initializes a ModelManager with the given patient records, room records and userPrefs.
@@ -44,16 +47,25 @@ public class ModelManager implements Model {
         this.patientRecords = new PatientRecords(patientRecords);
         this.roomList = new RoomList(roomList);
         this.userPrefs = new UserPrefs(userPrefs);
+
+        RoomTaskRecords theRoomTaskRecords;
+        try {
+            theRoomTaskRecords = RoomTaskRecords.getInstance();
+        } catch (AssertionError e) { // need to first initialize RoomTasksRecords
+            theRoomTaskRecords = RoomTaskRecords.init(this.roomList.getReadOnlyList());
+        }
+
+        roomTaskRecords = theRoomTaskRecords;
         filteredPatients = new FilteredList<>(this.patientRecords.getReadOnlyList());
         filteredRooms = new FilteredList<>(this.roomList.getReadOnlyList());
+        filteredRoomTaskRecords = new FilteredList<>(this.roomTaskRecords.getReadOnlyList());
     }
 
     public ModelManager() {
         this(new PatientRecords(), new RoomList(), new UserPrefs());
     }
 
-
-    //=========== UserPrefs ==================================================================================
+    //=========== UserPrefs =================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -88,7 +100,7 @@ public class ModelManager implements Model {
         userPrefs.setCovigentAppFilePath(covigentAppFilePath);
     }
 
-    //=========== Patient Records ================================================================================
+    //=========== Patient Records ===========================================================================
 
     @Override
     public void setPatientRecords(ReadOnlyList<Patient> patientRecords) {
@@ -100,14 +112,21 @@ public class ModelManager implements Model {
         return patientRecords;
     }
 
-    //=========== RoomList ================================================================================
+    //=========== RoomList ==================================================================================
 
     @Override
     public void setRoomList(ReadOnlyList<Room> rooms) {
         this.roomList.resetData(rooms);
     }
 
-    //=========== Patients ====================================================================================
+    //=========== RoomTaskRecords ===========================================================================
+
+    @Override
+    public ReadOnlyList<RoomTaskAssociation> getRoomTaskRecords() {
+        return roomTaskRecords;
+    }
+
+    //=========== Patients ==================================================================================
 
     @Override
     public boolean hasPatient(Patient patient) {
@@ -158,7 +177,7 @@ public class ModelManager implements Model {
     }
     //@@author LeeMingDe
 
-    //=========== Filtered Patient List Accessors =============================================================
+    //=========== Filtered Patient List Accessors ===========================================================
 
     @Override
     public ObservableList<Patient> getFilteredPatientList() {
@@ -171,7 +190,7 @@ public class ModelManager implements Model {
         filteredPatients.setPredicate(predicate);
     }
 
-    //=========== Room List ========================================================================================
+    //=========== Room List =================================================================================
 
     @Override
     public int getNumOfExcessOccupiedRooms() {
@@ -261,7 +280,7 @@ public class ModelManager implements Model {
     }
     //@@author w-yeehong
 
-    //=========== Filtered RoomList Accessors ==========================================================================
+    //=========== Filtered RoomList Accessors ===============================================================
 
     @Override
     public ObservableList<Room> getRoomListObservableList() {
@@ -290,7 +309,7 @@ public class ModelManager implements Model {
 
     }
 
-    //=========== Tasks ========================================================================================
+    //=========== Tasks =====================================================================================
 
     //@@author w-yeehong
     @Override
@@ -319,17 +338,22 @@ public class ModelManager implements Model {
         assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
         room.setTask(target, editedTask);
     }
-
     //@@author w-yeehong
 
+    //=========== Filtered RoomTaskRecords Accessors ========================================================
+
     @Override
-    public void updateFilteredTaskList(Predicate<Task> datePredicate) {
-        for (int i = 0; i < roomList.getNumOfRooms(); i++) {
-            roomList.getRoomObservableList().get(i).setPredicateOnRoomTasks(datePredicate);
-        }
+    public void updateTasksInFilteredRoomTaskRecords(Predicate<Task> taskPredicate) {
+        requireNonNull(taskPredicate);
+        filteredRoomTaskRecords.setPredicate(roomTaskAssociation -> taskPredicate.test(roomTaskAssociation.getTask()));
     }
 
-    //=========== Miscellaneous ========================================================================================
+    @Override
+    public ObservableList<RoomTaskAssociation> getFilteredRoomTaskRecords() {
+        return filteredRoomTaskRecords;
+    }
+
+    //=========== Miscellaneous =============================================================================
 
     @Override
     public boolean equals(Object obj) {

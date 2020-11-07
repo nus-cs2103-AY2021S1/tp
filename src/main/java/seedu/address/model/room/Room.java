@@ -5,10 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
@@ -105,13 +103,6 @@ public class Room {
     }
 
     /**
-     * Returns a filtered list as an {@code FilteredList}.
-     */
-    public FilteredList<Task> getFilteredTasks() {
-        return tasks.getFilteredList();
-    }
-
-    /**
      * Returns an unmodifiable version of the list of tasks in this room as a {@code ReadOnlyList}.
      */
     public ReadOnlyList<Task> getReadOnlyList() {
@@ -179,13 +170,6 @@ public class Room {
     }
 
     /**
-     * Sets the {@code predicate} to filter the tasks in this room.
-     */
-    public void setPredicateOnRoomTasks(Predicate<Task> predicate) {
-        tasks.setPredicate(predicate);
-    }
-
-    /**
      * Enumerates the tasks in this room, numbering and specifying the details of each task.
      *
      * @return A print-friendly summary for the tasks in this room.
@@ -242,7 +226,8 @@ public class Room {
 
     @Override
     public String toString() {
-        String patientDetails = getPatient().isEmpty() ? "-" : getPatient().get().toString();
+        String noPatientText = "-";
+        String patientDetails = getPatient().map(Patient::toString).orElse(noPatientText);
         final StringBuilder builder = new StringBuilder();
         builder.append("Room Number: ")
                 .append(getRoomNumber() + "\n")

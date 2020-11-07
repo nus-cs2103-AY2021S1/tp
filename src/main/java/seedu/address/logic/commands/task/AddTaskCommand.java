@@ -52,14 +52,12 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (roomNumber < 0) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_NUMBER);
-        }
 
         Optional<Room> optionalRoom = model.getRoomWithRoomNumber(roomNumber);
+        assert optionalRoom != null : "The return value from Model#getRoomWithRoomNumber(...) should never be null.";
+
         Room room = optionalRoom.orElseThrow(() ->
                 new CommandException(Messages.MESSAGE_INVALID_ROOM_NUMBER));
-        assert room != null : "Target room should never be null.";
 
         model.addTaskToRoom(taskToAdd, room);
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS,

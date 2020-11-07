@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
@@ -24,8 +25,12 @@ import seedu.address.testutil.RoomBuilder;
 import seedu.address.testutil.TypicalRooms;
 
 public class ModelManagerTest {
+    private ModelManager modelManager;
 
-    private ModelManager modelManager = new ModelManager();
+    @BeforeEach
+    public void setUp() {
+        modelManager = new ModelManager();
+    }
 
     @Test
     public void constructor() {
@@ -177,7 +182,9 @@ public class ModelManagerTest {
 
     @Test
     public void setSingleRoom_targetEditedRoom_success() {
+        modelManager = new ModelManager();
         modelManager.initRooms(8);
+
         Room room = modelManager.getRoomListObservableList().get(6);
         room.setPatient(ALICE);
         room.setOccupied(true);

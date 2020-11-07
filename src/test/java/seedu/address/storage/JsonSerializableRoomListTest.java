@@ -21,13 +21,13 @@ class JsonSerializableRoomListTest {
     private static final Path TYPICAL_ROOM_LIST = TEST_DATA_FOLDER.resolve("typicalRoomsInRoomList.json");
     private static final Path WRONG_ORDER_ROOM_LIST = TEST_DATA_FOLDER.resolve("notCorrectOrder.json");
     private static final Path START_ROOM_NUMBER_NOT_ONE = TEST_DATA_FOLDER.resolve("notCorrectStartRooms.json");
+
     @Test
     public void toModelType_typicalRoomFile_success() throws Exception {
         JsonSerializableRoomList dataFromFile = JsonUtil.readJsonFile(TYPICAL_ROOM_LIST,
                 JsonSerializableRoomList.class).get();
         RoomList covigentAppFromFile = dataFromFile.toModelType();
         RoomList typicalRoomList = TypicalRooms.getTypicalRoomList();
-
         assertEquals(covigentAppFromFile, typicalRoomList);
     }
 

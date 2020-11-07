@@ -5,10 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.task.Task;
@@ -21,14 +19,12 @@ import seedu.address.model.task.TaskList;
 public class RoomTasks implements ReadOnlyList<Task> {
 
     private final TaskList tasks;
-    private final FilteredList<Task> filteredTaskList;
 
     /**
      * Creates an empty list of tasks in the room.
      */
     public RoomTasks() {
         tasks = new TaskList();
-        filteredTaskList = new FilteredList<>(tasks.asUnmodifiableObservableList());
     }
 
     /**
@@ -38,7 +34,6 @@ public class RoomTasks implements ReadOnlyList<Task> {
         requireAllNonNull(tasksToAdd);
         tasks = new TaskList();
         tasks.setTasks(tasksToAdd);
-        filteredTaskList = new FilteredList<>(tasks.asUnmodifiableObservableList());
     }
 
     //// task-level operations
@@ -98,23 +93,6 @@ public class RoomTasks implements ReadOnlyList<Task> {
      */
     public boolean isEmpty() {
         return tasks.isEmpty();
-    }
-
-    //// filtered-task operations
-
-    /**
-     * Returns the filtered list of tasks for this room.
-     */
-    public FilteredList<Task> getFilteredList() {
-        return filteredTaskList;
-    }
-
-    /**
-     * Sets the {@code predicate} to filter the tasks in this room.
-     */
-    public void setPredicate(Predicate<Task> predicate) {
-        requireNonNull(predicate);
-        filteredTaskList.setPredicate(predicate);
     }
 
     @Override

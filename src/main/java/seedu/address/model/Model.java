@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTaskAssociation;
 import seedu.address.model.task.Task;
 
 /**
@@ -63,6 +64,16 @@ public interface Model {
     ReadOnlyList<Patient> getPatientRecords();
 
     /**
+     * Replaces room list with the data in {@code covigentApp}.
+     */
+    void setRoomList(ReadOnlyList<Room> rooms);
+
+    /**
+     * Returns the room task records.
+     */
+    ReadOnlyList<RoomTaskAssociation> getRoomTaskRecords();
+
+    /**
      * Returns true if a patient with the same identity as {@code patient} exists in the patient records.
      */
     boolean hasPatient(Patient patient);
@@ -113,11 +124,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
-
-    /**
-     * Replaces room list with the data in {@code covigentApp}.
-     */
-    void setRoomList(ReadOnlyList<Room> rooms);
 
     /**
      * Returns total number of rooms in the application's {@code RoomList}.
@@ -247,9 +253,15 @@ public interface Model {
     void setTaskToRoom(Task target, Task editedTask, Room room);
 
     /**
-     * Update the filterTaskList with {@code datePredicate}.
+     * Update the tasks in {@code filteredRoomTaskRecords} with {@code taskPredicate}.
      *
-     * @param datePredicate The dueDate predicate.
+     * @param taskPredicate The predicate to filter the tasks.
      */
-    void updateFilteredTaskList(Predicate<Task> datePredicate);
+    void updateTasksInFilteredRoomTaskRecords(Predicate<Task> taskPredicate);
+
+    /**
+     * Returns an unmodifiable view of the list of {@code RoomTaskAssociation} backed by the
+     * internal list of {@code RoomTaskRecords}.
+     */
+    ObservableList<RoomTaskAssociation> getFilteredRoomTaskRecords();
 }

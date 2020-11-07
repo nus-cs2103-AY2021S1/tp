@@ -143,7 +143,7 @@ public class MainWindow extends UiPart<Stage> {
         roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
         roomListPanelPlaceHolder.getChildren().add(roomListPanel.getRoot());
 
-        roomTaskListPanel = new RoomTaskListPanel(logic.getFilteredRoomList());
+        roomTaskListPanel = new RoomTaskListPanel(logic.getFilteredRoomTaskRecords());
         taskListPanelPlaceholder.getChildren().add(roomTaskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

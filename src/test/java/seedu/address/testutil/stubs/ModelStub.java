@@ -15,6 +15,7 @@ import seedu.address.model.RoomList;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTaskAssociation;
 import seedu.address.model.task.Task;
 
 /**
@@ -68,6 +69,16 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setRoomList(ReadOnlyList<Room> rooms) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ReadOnlyList<RoomTaskAssociation> getRoomTaskRecords() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasPatient(Patient patient) {
         throw new AssertionError("This method should not be called.");
     }
@@ -104,11 +115,6 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredPatientList(Predicate<Patient> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setRoomList(ReadOnlyList<Room> rooms) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -207,7 +213,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredTaskList(Predicate<Task> datePredicate) {
+    public void updateTasksInFilteredRoomTaskRecords(Predicate<Task> taskPredicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<RoomTaskAssociation> getFilteredRoomTaskRecords() {
         throw new AssertionError("This method should not be called.");
     }
 

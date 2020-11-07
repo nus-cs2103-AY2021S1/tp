@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTaskAssociation;
 import seedu.address.storage.Storage;
 
 
@@ -94,5 +95,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Room> getFilteredRoomList() {
         return model.getFilteredRoomList();
+    }
+
+    @Override
+    public ObservableList<RoomTaskAssociation> getFilteredRoomTaskRecords() {
+        return model.getFilteredRoomTaskRecords();
     }
 }

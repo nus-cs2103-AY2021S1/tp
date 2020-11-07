@@ -2,15 +2,13 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTaskAssociation;
 
 /**
  * Panel containing the list of room with tasks.
@@ -22,67 +20,36 @@ public class RoomTaskListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(RoomTaskListPanel.class);
 
     @FXML
-    private ScrollPane roomScrollPane;
-    @FXML
-    private VBox roomBox;
+    private ListView<RoomTaskAssociation> roomTaskListView;
 
     /**
      * Creates a {@code RoomTaskListPanel} with the given {@code ObservableList}.
      */
-    public RoomTaskListPanel(ObservableList<Room> roomTaskList) {
+    public RoomTaskListPanel(ObservableList<RoomTaskAssociation> roomTaskAssociations) {
         super(FXML);
-        populatePanel(roomTaskList);
-        updateDetailsIfChanged(roomTaskList);
+        roomTaskListView.setItems(roomTaskAssociations);
+        roomTaskListView.setCellFactory(listView -> new RoomTaskListViewCell());
+        logger.info("RoomTaskListPanel has been initialized with tasks from all rooms.");
     }
 
     /**
-     * Populates the {@code RoomTaskListPanel} with the {@code Room} containing at least one {@code Task}.
-     *
-     * @param roomTaskList The list of rooms containing tasks with which to populate the panel.
+     * Custom {@code ListCell} that displays the graphics of a {@code RoomTaskAssociation} using a {@code TaskCard}.
      */
-    private void populatePanel(ObservableList<Room> roomTaskList) {
-        for (Room room : roomTaskList) {
-            roomBox.getChildren().add(new RoomTaskDetailsPanel(room).getRoot());
-        }
+    class RoomTaskListViewCell extends ListCell<RoomTaskAssociation> {
+        @Override
+        protected void updateItem(RoomTaskAssociation roomTaskAssociation, boolean empty) {
+            super.updateItem(roomTaskAssociation, empty);
 
-        logger.info("RoomTaskListPanel has been populated.");
-    }
-
-    /**
-     * Clears old data and repopulates the @code RoomTaskListPanel} with the {@code Room} containing at least
-     * one {@code Task}.
-     *
-     * @param roomTaskList The list of rooms containing tasks with which to repopulate the panel.
-     */
-    private void resetPanel(ObservableList<Room> roomTaskList) {
-        // Naive solution; For better performance, employ some form of caching
-        roomBox.getChildren().clear();
-        populatePanel(roomTaskList);
-    }
-
-    //@@author w-yeehong
-    /**
-     * Attaches a listener to {@code roomList}, repopulating the panel whenever
-     * there are removals in the list of rooms.
-     *
-     * Fixes the issue of the panel not refreshing when a room is removed from the
-     * list of rooms.
-     *
-     * @param roomList The room list to listen to for changes.
-     */
-    private void updateDetailsIfChanged(ObservableList<Room> roomList) {
-        roomList.addListener(new ListChangeListener<Room>() {
-            @Override
-            public void onChanged(Change<? extends Room> change) {
-                while (change.next()) {
-                    int indexOfChange = change.getFrom();
-                    Index index = Index.fromZeroBased(indexOfChange);
-                    logger.info("Changes detected in Room " + index.getOneBased()
-                            + ". Updating RoomTaskListPanel...");
-                    resetPanel(roomList);
-                }
+            if (empty || roomTaskAssociation == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                int roomNumber = roomTaskAssociation.getRoomNumber();
+                int taskIndex = roomTaskAssociation.getTaskIndex();
+                int totalNumberOfTasksInRoom = roomTaskAssociation.getTotalTasksInRoom();
+                setGraphic(new TaskCard(roomNumber, taskIndex, totalNumberOfTasksInRoom,
+                        roomTaskAssociation.getTask()).getRoot());
             }
-        });
+        }
     }
-    //@@author w-yeehong
 }

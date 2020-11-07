@@ -5,6 +5,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.command.GeneralCommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DATETIME_DUE_FORMAT;
 import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DATETIME_DUE_VALUE;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DESCRIPTION_EMPTY_STRING;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DESCRIPTION_EXCEED_LIMIT;
 import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DATETIME_DUE_REMIND_PATIENT;
 import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DESCRIPTION_REMIND_PATIENT;
 
@@ -21,6 +23,15 @@ public class TaskParserUtilTest {
     @Test
     public void parseDescription_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> TaskParserUtil.parseDescription((String) null));
+    }
+
+    @Test
+    public void parseDescription_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                TaskParserUtil.parseDescription(INVALID_DESCRIPTION_EMPTY_STRING)); // empty string
+
+        assertThrows(ParseException.class, () ->
+                TaskParserUtil.parseDescription(INVALID_DESCRIPTION_EXCEED_LIMIT)); // exceed character limit
     }
 
     @Test

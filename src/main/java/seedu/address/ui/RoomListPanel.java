@@ -69,7 +69,7 @@ public class RoomListPanel extends UiPart<Region> {
             @Override
             public void onChanged(Change<? extends Room> change) {
                 while (change.next()) {
-                    if (change.wasAdded()) {
+                    if (change.wasAdded() || change.wasUpdated()) {
                         logger.log(Level.INFO, "OnChangeListener is fired");
                         int indexToChange = change.getFrom();
                         Room roomToDisplay = change.getList().get(indexToChange);
