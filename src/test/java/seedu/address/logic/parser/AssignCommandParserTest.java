@@ -70,6 +70,10 @@ class AssignCommandParserTest {
         assertParseFailure(parser, "1" + CODE_DESC_CS50
                 + INVALID_MODULE_CODE_DESC, ModuleCode.MESSAGE_CONSTRAINTS);
 
+        // invalid module code followed by valid module code
+        assertParseFailure(parser, "1" + INVALID_MODULE_CODE_DESC
+                + CODE_DESC_CS50, ModuleCode.MESSAGE_CONSTRAINTS);
+
         // multiple invalid module codes
         assertParseFailure(parser, "1" + INVALID_MODULE_CODE_DESC
                 + INVALID_MODULE_CODE_DESC, ModuleCode.MESSAGE_CONSTRAINTS);

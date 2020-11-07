@@ -29,6 +29,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.MclearCommand;
 import seedu.address.logic.commands.MlistCommand;
 import seedu.address.logic.commands.ResetCommand;
+import seedu.address.logic.commands.SwitchCommand;
+import seedu.address.logic.commands.UnassignallCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.predicates.ModuleCodeContainsKeywordsPredicate;
@@ -139,6 +141,16 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_clearModules() throws Exception {
         assertTrue(parser.parseCommand(MclearCommand.COMMAND_WORD) instanceof MclearCommand);
+    }
+
+    @Test
+    public void parseCommand_switch() throws Exception {
+        assertTrue(parser.parseCommand(SwitchCommand.COMMAND_WORD) instanceof SwitchCommand);
+    }
+
+    @Test
+    public void parseCommand_unassignall() throws Exception {
+        assertTrue(parser.parseCommand(UnassignallCommand.COMMAND_WORD) instanceof UnassignallCommand);
     }
 
     @Test
