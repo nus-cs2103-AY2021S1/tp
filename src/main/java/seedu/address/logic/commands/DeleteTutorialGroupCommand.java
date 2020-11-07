@@ -47,4 +47,11 @@ public class DeleteTutorialGroupCommand extends Command {
         model.deleteTutorialGroup(tutorialGroupToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_SUCCESS, tutorialGroupToDelete));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof DeleteTutorialGroupCommand // instanceof handles nulls
+            && targetIndex.equals(((DeleteTutorialGroupCommand) other).targetIndex)); // state check
+    }
 }

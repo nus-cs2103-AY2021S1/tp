@@ -22,11 +22,11 @@ public class EditModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "editMod";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the module id of the module identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the module code of the module identified "
             + "by the index number used in the displayed module list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "m/MODULE_ID \n"
+            + "m/MODULE_CODE \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE + "CS2100";
 
@@ -85,7 +85,7 @@ public class EditModuleCommand extends Command {
 
         ModuleId updatedModuleId = editModuleDescriptor.getModuleId().orElse(moduleToEdit.getModuleId());
 
-        return new Module(updatedModuleId);
+        return new Module(updatedModuleId, moduleToEdit.getUniqueTutorialGroupList());
     }
 
     @Override

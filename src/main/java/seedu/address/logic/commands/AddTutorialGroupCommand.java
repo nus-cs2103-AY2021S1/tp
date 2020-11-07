@@ -16,13 +16,13 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
 public class AddTutorialGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "addTG";
-    public static final String MESSAGE_SUCCESS = "Tutorial Group has been added";
-    public static final String MESSAGE_DUPLICATE_TUTORIAL_GRP = "This Tutorial Group already exists";
-    public static final String MESSAGE_IN_MODULE_VIEW = "You are currently in Module View. "
+    public static final String MESSAGE_SUCCESS = "New tutorial group added: %s";
+    public static final String MESSAGE_IN_MODULE_VIEW = "You are currently in the Module View. "
         + "Use viewTG MODULE_INDEX to view the Tutorial Groups of the Module you want";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial group already exists in the current module.";
     public static final String MESSAGE_NOT_IN_TUTORIAL_VIEW = "You are currently not in the Tutorial Group view. "
         + "Use listTG to go back to the tutorial group view.";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Tutorial Group to a Module. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Tutorial Group to a Module. \n"
         + "Parameters: "
         + PREFIX_TUTORIAL_GRP + "TUTORIAL_GROUP_CODE "
         + PREFIX_TUTORIAL_GRP_DAY + "DAY_OF_WEEK "
@@ -54,8 +54,8 @@ public class AddTutorialGroupCommand extends Command {
             throw new CommandException(MESSAGE_IN_MODULE_VIEW);
         } else if (model.isInStudentView()) {
             throw new CommandException(MESSAGE_NOT_IN_TUTORIAL_VIEW);
-        } else if (lastShownList.contains(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL_GRP);
+        } else if (lastShownList.stream().anyMatch(tg -> tg.isSame(toAdd))) {
+            throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);
         }
 
         model.addTutorialGroup(toAdd);

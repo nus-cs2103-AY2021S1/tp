@@ -15,7 +15,7 @@ public class FindModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "findMod";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all modules whose module id contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all modules whose module code contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " cs2100 cs3243 CS2030";

@@ -8,6 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_START_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -20,6 +24,9 @@ import seedu.address.model.Model;
 import seedu.address.model.Trackr;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
+import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.Student;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -31,14 +38,17 @@ public class CommandTestUtil {
     public static final String VALID_NAME_ALEX = "Alex Tan";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_NAME_BENG = "Ah Beng";
+    public static final String VALID_NAME_CHARLIE = "CHARLIE CHEN";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_ALEX = "91234567";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_PHONE_BENG = "81234567";
+    public static final String VALID_PHONE_CHARLIE = "82223333";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_ALEX = "alextan@u.nus.edu";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_EMAIL_BENG = "abeng@u.nus.edu";
+    public static final String VALID_EMAIL_CHARLIE = "charlie@hi.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -47,12 +57,24 @@ public class CommandTestUtil {
     public static final String VALID_STUDENT_ID_ALEX = "A1234567X";
     public static final String VALID_STUDENT_ID_BOB = "A7654321X";
     public static final String VALID_STUDENT_ID_BENG = "A7654321B";
+    public static final String VALID_STUDENT_ID_CHARLIE = "A1928835B";
+    public static final String VALID_TUTORIAL_GROUP_B014 = "B014";
+    public static final String VALID_TUTORIAL_GROUP_DAY_MON = "MON";
+    public static final String VALID_TUTORIAL_GROUP_1300 = "13:00";
+    public static final String VALID_TUTORIAL_GROUP_1500 = "15:00";
+    public static final String INVALID_TUTORIAL_GROUP_1500 = "1500";
+
     public static final String VALID_MODULE_CS2103T = "CS2103T";
     public static final String VALID_MODULE_CS2040 = "CS2040";
 
     public static final String MODULE_ID_DESC_CS2103T = " " + PREFIX_MODULE + VALID_MODULE_CS2103T;
     public static final String MODULE_ID_DESC_CS2040 = " " + PREFIX_MODULE + VALID_MODULE_CS2040;
     public static final String INVALID_MODULE_ID = " " + PREFIX_MODULE + "CS@";
+
+    public static final String TUTORIAL_GROUP_ID_B014 = " " + PREFIX_TUTORIAL_GRP + VALID_TUTORIAL_GROUP_B014
+        + " " + PREFIX_TUTORIAL_GRP_DAY + VALID_TUTORIAL_GROUP_DAY_MON
+        + " " + PREFIX_TUTORIAL_GRP_START_TIME + VALID_TUTORIAL_GROUP_1300
+        + " " + PREFIX_TUTORIAL_GRP_END_TIME + VALID_TUTORIAL_GROUP_1500;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -65,12 +87,16 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_ALEX = " " + PREFIX_NAME + VALID_NAME_ALEX;
     public static final String NAME_DESC_BENG = " " + PREFIX_NAME + VALID_NAME_BENG;
+    public static final String NAME_DESC_CHARLIE = " " + PREFIX_NAME + VALID_NAME_CHARLIE;
     public static final String PHONE_DESC_ALEX = " " + PREFIX_PHONE + VALID_PHONE_ALEX;
     public static final String PHONE_DESC_BENG = " " + PREFIX_PHONE + VALID_PHONE_BENG;
+    public static final String PHONE_DESC_CHARLIE = " " + PREFIX_PHONE + VALID_PHONE_CHARLIE;
     public static final String EMAIL_DESC_ALEX = " " + PREFIX_EMAIL + VALID_EMAIL_ALEX;
     public static final String EMAIL_DESC_BENG = " " + PREFIX_EMAIL + VALID_EMAIL_BENG;
+    public static final String EMAIL_DESC_CHARLIE = " " + PREFIX_EMAIL + VALID_EMAIL_CHARLIE;
     public static final String STUDENT_ID_DESC_ALEX = " " + PREFIX_STUDENT_ID + VALID_STUDENT_ID_ALEX;
     public static final String STUDENT_ID_DESC_BENG = " " + PREFIX_STUDENT_ID + VALID_STUDENT_ID_BENG;
+    public static final String STUDENT_ID_DESC_CHARLIE = " " + PREFIX_STUDENT_ID + VALID_STUDENT_ID_CHARLIE;
     public static final String MODULE_DESC_ALEX = " " + PREFIX_MODULE + VALID_MODULE_CS2103T;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
@@ -84,6 +110,7 @@ public class CommandTestUtil {
 
     public static final EditStudentCommand.EditStudentDescriptor DESC_ALEX;
     public static final EditStudentCommand.EditStudentDescriptor DESC_BENG;
+    public static final EditStudentCommand.EditStudentDescriptor DESC_CHARLIE;
 
 
     static {
@@ -93,6 +120,9 @@ public class CommandTestUtil {
         DESC_BENG = new EditStudentDescriptorBuilder().withName(VALID_NAME_BENG)
                 .withPhone(VALID_PHONE_BENG).withEmail(VALID_EMAIL_BENG)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_CHARLIE = new EditStudentDescriptorBuilder().withName(VALID_NAME_CHARLIE)
+                .withPhone(VALID_PHONE_CHARLIE).withEmail(VALID_EMAIL_CHARLIE)
+                .withTags(VALID_TAG_FRIEND).build();
     }
 
     /**
@@ -155,4 +185,20 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredModuleList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the student at the give {@code targetIndex} in the
+     * {@code mode}'s student list.
+     */
+    public static void showStudentAtIndex(Model model, Index targetIndex, Module targetModule,
+                                          TutorialGroup targetTutorialGroup) {
+        model.setViewToTutorialGroup(targetModule);
+        model.setViewToStudent(targetTutorialGroup);
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
+
+        Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
+        final String[] splitName = student.getName().toString().split("\\s+");
+        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredStudentList().size());
+    }
 }

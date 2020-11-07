@@ -109,8 +109,10 @@ public class TutorialGroup {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TutorialGroup) // instanceof handles nulls
-                && getId().equals(((TutorialGroup) other).getId()); // state check
-
+                && getId().equals(((TutorialGroup) other).getId())
+            && getDayOfWeek().equals(((TutorialGroup) other).getDayOfWeek())
+            && getStartTime().equals(((TutorialGroup) other).getStartTime())
+            && getEndTime().equals(((TutorialGroup) other).getEndTime()); // state check
     }
 
     @Override

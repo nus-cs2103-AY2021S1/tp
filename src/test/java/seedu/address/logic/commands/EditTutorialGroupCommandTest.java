@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.EditTutorialGroupCommand.EditTutorialGroupDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -32,9 +33,10 @@ public class EditTutorialGroupCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
         ModelStubWithOneTutorialGroup modelStub = new ModelStubWithOneTutorialGroup();
         TutorialGroup editedTutorialGroup = new TutorialGroupBuilder().withTutorialGroupId("B014").build();
+        EditTutorialGroupDescriptor editTutorialGroupDescriptor =
+            new EditTutorialGroupDescriptor(editedTutorialGroup);
 
-        CommandResult commandResult = new EditTutorialGroupCommand(INDEX_FIRST_PERSON, editedTutorialGroup.getId(),
-            editedTutorialGroup.getDayOfWeek(), editedTutorialGroup.getStartTime(), editedTutorialGroup.getEndTime())
+        CommandResult commandResult = new EditTutorialGroupCommand(INDEX_FIRST_PERSON, editTutorialGroupDescriptor)
             .execute(modelStub);
 
         assertEquals(String.format(EditTutorialGroupCommand.MESSAGE_EDIT_TUTORIAL_SUCCESS, editedTutorialGroup.getId()),
@@ -46,9 +48,9 @@ public class EditTutorialGroupCommandTest {
     public void execute_duplicateTutorialUnfilteredList_failure() throws CommandException {
         ModelStubWithTwoTutorialGroup modelStub = new ModelStubWithTwoTutorialGroup();
         TutorialGroup editedTutorialGroup = new TutorialGroupBuilder().withTutorialGroupId("T003").build();
+        EditTutorialGroupDescriptor editTutorialGroupDescriptor = new EditTutorialGroupDescriptor(editedTutorialGroup);
         EditTutorialGroupCommand editCommand = new EditTutorialGroupCommand(INDEX_FIRST_PERSON,
-            editedTutorialGroup.getId(), editedTutorialGroup.getDayOfWeek(),
-            editedTutorialGroup.getStartTime(), editedTutorialGroup.getEndTime());
+            editTutorialGroupDescriptor);
 
         assertThrows(CommandException.class, EditTutorialGroupCommand.MESSAGE_DUPLICATE_TUTORIAL, ()
             -> editCommand.execute(modelStub));

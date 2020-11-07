@@ -31,9 +31,10 @@ public class TypicalStudents {
             .withAttendance("1", "2", "5", "13")
             .build();
 
+    // don't add attendance to this student
     public static final Student CHARLIE = new StudentBuilder()
             .withName("CHARLIE CHEN")
-            .withEmail("ccharlie@u.nus.edu")
+            .withEmail("charlie@hi.com")
             .withPhone("82223333")
             .withTags("CS2103T")
             .withStudentId("A1928835B")
@@ -65,6 +66,23 @@ public class TypicalStudents {
             .withTags("CS1231S")
             .withStudentId("A2038468T")
             .withAttendance("1", "2", "4", "10")
+            .build();
+
+    public static final Student ATTENDANCE_TEST = new StudentBuilder()
+            .withName("Attendance Test")
+            .withEmail("fionachan@u.nus.edu")
+            .withPhone("82938378")
+            .withTags("CS1231S")
+            .withStudentId("A2038468T")
+            .build();
+
+    public static final Student ATTENDANCE_TEST_WEEK_2 = new StudentBuilder()
+            .withName("Attendance Test")
+            .withEmail("fionachan@u.nus.edu")
+            .withPhone("82938378")
+            .withTags("CS1231S")
+            .withStudentId("A2038468T")
+            .withAttendance("2")
             .build();
 
     private TypicalStudents() {} // prevents instantiation

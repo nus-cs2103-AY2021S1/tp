@@ -12,11 +12,11 @@
 4. [Features](#4-features)<br>
    4.1 [View help: `help`](#41-view-help-help)<br>
    4.2 [Module features](#42-module-features)<br>
-   --- 4.2.1 [List all modules: `listMod`](#421-list-all-modules-listmod)<br>
-   --- 4.2.2 [Add a module: `addMod`](#422-add-a-module-addmod)<br>
-   --- 4.2.3 [Delete a module: `deleteMod`](#423-delete-a-module-deletemod)<br>
+   --- 4.2.1 [Add a module: `addMod`](#421-add-a-module-addmod)<br>
+   --- 4.2.2 [Delete a module: `deleteMod`](#422-delete-a-module-deletemod)<br>
+   --- 4.2.3 [Edit a module: `editMod`](#423-edit-a-module-editmod)<br>
    --- 4.2.4 [Find a module: `findMod`](#424-find-a-module-findmod)<br>
-   --- 4.2.5 [Edit a module: `editMod`](#425-edit-a-module-editmod)<br>
+   --- 4.2.5 [List all modules: `listMod`](#425-list-all-modules-listmod)<br>
    4.3 [Tutorial group features](#43-tutorial-group-features)<br>
    --- 4.3.1 [View all tutorial groups in a module: `viewTG`](#431-view-all-tutorial-groups-in-a-module-viewtg)<br>
    --- 4.3.2 [Add a tutorial group to a module: `addTG`](#432-add-a-tutorial-group-to-a-module-addtg)<br>
@@ -138,32 +138,62 @@ Figure 3.3.3 Student view
 
 ## 4. Features
 
-### 4.1 View help: `help`
+### 4.1 Navigation Features
+
+#### 4.1.1 View help: `help`
 
 Shows a message explaining how to access the user guide.
 
 Format: `help`
 
+Example: `help`
+
+Expected Outcome:
+
+![HelpCommand](images/HelpCommand.png)
+
+#### 4.1.2 Clear Trackr: `clear`
+
+Clears all data inside Trackr.
+
+Format: `clear`
+
+> Note
+> - Method can be called in ANY view.
+> - Trackr will erase all data.
+> - Method is irreversible.
+> - View will change to Module view.
+
+Example: `clear`
+
+Expected Outcome:
+
+![ClearCommand](images/ClearCommand.png)
+
+#### 4.1.3 Exit Trackr: `exit`
+
+Exits Trackr and automatically saves the data.
+
+Format: `exit`
+
+> Note
+> - Method can be called in ANY view.
+> - Trackr will close by itself.
+
+Example: `exit`
+
 ### 4.2 Module features
 
-#### 4.2.1 List all modules: `listMod`
-
-Shows all the modules you have added in the Module view.
-
-Format: `listMod`
-
-> You should perform the following features while in the Module view.
-
-#### 4.2.2 Add a module: `addMod`
+#### 4.2.1 Add a module: `addMod`
 
 Adds a module to the module list.
 
 Format: `addMod m/MODULE_CODE`
 
-Note:
-
-- Modules should not share the same name.
-- It is recommended to use the exact code of the module.
+> Note:
+> - Method can only be called in the Module view.
+> - Modules should not share the same code.
+> - It is recommended to use the exact code of the module.
 
 Example:
 
@@ -172,32 +202,52 @@ Example:
 
 Expected Outcome:
 
-- From the example above, the result box will display the following message:
+![AddModuleCommand](images/AddModuleCommand.png)
 
-    New module added: CS2100
-
-#### 4.2.3 Delete a module: `deleteMod`
+#### 4.2.2 Delete a module: `deleteMod`
 
 Deletes a module based on the given `INDEX`
 
 Format: `deleteMod INDEX`
 
-Note:
-
-- `INDEX` refers to the index number shown in the Module view.
-- `INDEX` must be a positive integer starting from 1.
-- Deleting a module is irreversible.
+> Note:
+> - Method can only be called in the Module view.
+> - `INDEX` refers to the index number shown in the Module view.
+> - `INDEX` must be a positive integer starting from 1.
+> - Deleting a module is irreversible.
 
 Example:
 
-- Deletes a module at index _2_ in the module list.
-    - `deleteMod 2`
+- Deletes a module at index _1_ in the module list.
+    - `deleteMod 1`
 
 Expected Outcome:
 
-- From the example above, the result box will display the following message:
+![DeleteModuleCommand](images/DeleteModuleCommand.png)
+    
+#### 4.2.3 Edit a module: `editMod`
 
-    Module deleted: module at index 2
+Edits a module with the provided details.
+
+Format: `editMod INDEX m/MODULE_CODE`
+
+> Note:
+> - Method can only be called in the Module view.
+> - `INDEX` refers to the index number shown in the Module view.
+> - `INDEX` must be a positive integer starting from 1.
+> - New module code must be provided.
+> - Existing values will be updated to the given values.
+> - New module code should not already exist.
+
+Example:
+
+- Editing the module code of the first module to be _CS2020_.
+
+    - `editMod 1 m/CS2020`
+
+Expected Outcome:
+
+![EditModuleCommand](images/EditMod.png)
 
 #### 4.2.4 Find a module: `findMod`
 
@@ -205,41 +255,39 @@ Finds and lists all modules in the current Module view whose field contains any 
 
 Format: `findMod KEYWORD`
 
-Note:
-
-- `KEYWORD` is not case-sensitive (e.g. _cs2100_ will match _CS2100_).
-- The search will look for matches in the module's code.
-- If no module matching the keyword is found, the Module view will be empty.
+> Note:
+> - Method can only be called in the Module view.
+> - `KEYWORD` is not case-sensitive (e.g. _cs2100_ will match _CS2100_).
+> - `KEYWORD` can be a substring (e.g. _CS20_ will match _CS2020_).
+> - The search will look for matches in the module's code. 
+> - If no module matching the keyword is found, the Module view will be empty.
 
 Example:
 
-- Finds a module with `KEYWORD` _cs2100_.
+- Finds a module with `KEYWORD` _cs20_.
 
-    - `findMod cs2100`
+    - `findMod cs20`
 
 Expected Outcome:
 
-- From the example given above, the Module view will display the modules matching the criteria:
+![FindModuleCommand](images/FindModuleCommand.png)
 
-#### 4.2.5 Edit a module: `editMod`
+#### 4.2.5 List all modules: `listMod`
 
-Edits a module with the provided details.
+Shows all the modules you have added in the Module view.
 
-Format: `editMod INDEX m/MODULE_CODE`
+Format: `listMod`
 
-Note:
-
-- `INDEX` refers to the index number shown in the Module view.
-- `INDEX` must be a positive integer starting from 1.
-- New module code must be provided.
-- Existing values will be updated to the given values.
-- New module code should not already exist.
+> Note
+> - Method can be called in ANY view.
 
 Example:
+- Lists all modules in Trackr.
+    - `listMod`
+    
+Expected Outcome:
 
-- Editing the module code of the first module to be _CS2020_.
-
-    - `editMod 1 m/CS2020`
+![ListModuleCommand](images/ListModuleCommand.png)
 
 ### 4.3 Tutorial Group features
 
@@ -452,32 +500,41 @@ for MacOS and Linux users.
 
 ## 6. Command Summary
 
-### 6.1 Module commands
+### 6.1 Navigation Features
 
-Command | Summary
---------|--------
-`listMod` | Views all modules in __Trackr__.
-`addMod m/MODULE_CODE` | Adds a new module to the current Module view.
-`deleteMod INDEX` | Deletes a module from the current Module view.
-`findMod KEYWORD` | Finds module(s) that contain the keyword in the current Module view.
-`editMod INDEX m/MODULE_CODE` | Edits the module code in the specified index to be the new module code.
+Command | Description | Compatible View
+--------|--------|--------
+`help` | Shows a message explaining how to access the user guide | ANY
+`clear` | Clears all data inside Trackr | ANY
+`exit` | Clears all data inside Trackr | ANY
 
-### 6.2 Tutorial Group commands
 
-Command | Summary
---------|--------
-`viewTG MODULE_INDEX` | Views all Tutorial Groups in a Module.
-`addTG tg/TG_CODE` | Adds a Tutorial Group to a Module.
-`findTG TARGET_TG_CODE` | Finds a Tutorial Group.
-`deleteTG TG_INDEX` | Deletes a Tutorial Group from a Module.
+### 6.2 Module Features
 
-### 6.3 Student commands
+Command | Description | Compatible View
+--------|--------|--------
+`addMod m/MODULE_CODE` | Adds a new module to the current Module view | MODULE
+`deleteMod INDEX` | Deletes a module from the current Module view | MODULE
+`editMod INDEX m/MODULE_CODE` | Edits the module code in the specified index to be the new module code | MODULE
+`findMod KEYWORD` | Finds module(s) that contain the keyword in the current Module view | MODULE
+`listMod` | Views all modules in __Trackr__ | ANY
 
-Command | Summary
---------|--------
-`viewStudent INDEX` | Views all students in the given tutorial group.
-`addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view.
-`deleteStudent INDEX` | Deletes a student from the current Student view.
-`editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...` | Edits a student in the current Student view.
-`findStudent KEYWORD` | Finds student(s) whose name(s) contain the keyword in the current Student view.
-`listStudent` | Shows a list of all students in the current Student view.
+### 6.3 Tutorial Group Features
+
+Command | Description | Compatible View
+--------|--------|--------
+`viewTG MODULE_INDEX` | Views all Tutorial Groups in a Module | MODULE
+`addTG tg/TG_CODE` | Adds a Tutorial Group to a Module | TUTORIAL GROUP
+`findTG TARGET_TG_CODE` | Finds a Tutorial Group | TUTORIAL GROUP
+`deleteTG TG_INDEX` | Deletes a Tutorial Group from a Module | TUTORIAL GROUP
+
+### 6.4 Student Features
+
+Command | Description | Compatible View
+--------|--------|--------
+`viewStudent INDEX` | Views all students in the given tutorial group | TUTORIAL GROUP
+`addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view | STUDENT
+`deleteStudent INDEX` | Deletes a student from the current Student view | STUDENT
+`editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...` | Edits a student in the current Student view | STUDENT
+`findStudent KEYWORD` | Finds student(s) whose name(s) contain the keyword in the current Student view | STUDENT
+`listStudent` | Shows a list of all students in the current Student view | STUDENT
