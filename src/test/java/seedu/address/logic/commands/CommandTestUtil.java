@@ -23,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditMeetingDescriptorBuilder;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.TagPersonDescriptorBuilder;
 
@@ -60,6 +61,23 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final String VALID_PARTICIPANT_AMY = VALID_NAME_AMY;
+    public static final String VALID_PARTICIPANT_BOB = VALID_NAME_BOB;
+
+    public static final String PARTICIPANT_DESC_AMY =
+            " " + PREFIX_PARTICIPANT + VALID_PARTICIPANT_AMY;
+    public static final String PARTICIPANT_DESC_BOB =
+            " " + PREFIX_PARTICIPANT + VALID_PARTICIPANT_BOB;
+
+    public static final String VALID_MODULE_NAME_CS1000 = "CS1000";
+    public static final String VALID_MODULE_NAME_CS1001 = "CS1001";
+
+    public static final String MODULE_DESC_CS1000 = " " + PREFIX_MODULE + VALID_MODULE_NAME_CS1000;
+    public static final String MODULE_DESC_CS1001 = " " + PREFIX_MODULE + VALID_MODULE_NAME_CS1001;
+
+    public static final String ADD_MODULE_DESC_CS1000 = " " + PREFIX_NAME + VALID_MODULE_NAME_CS1000;
+    public static final String ADD_MODULE_DESC_CS1001 = " " + PREFIX_NAME + VALID_MODULE_NAME_CS1001;
+
     public static final String VALID_MEETING_NAME = "New Meeting Name";
     public static final String VALID_DATE = "2021-01-12";
     public static final String VALID_TIME = "18:00";
@@ -72,8 +90,6 @@ public class CommandTestUtil {
     public static final String VALID_DATE_CM1112_MEETING = "2022-04-07";
     public static final String VALID_TIME_CM1111_MEETING = "10:00";
     public static final String VALID_TIME_CM1112_MEETING = "11:00";
-    public static final String VALID_PARTICIPANT_AMY = VALID_NAME_AMY;
-    public static final String VALID_PARTICIPANT_BOB = VALID_NAME_BOB;
 
     public static final String MODULE_DESC_CM1111_MEETING = " " + PREFIX_MODULE + VALID_MODULE_NAME_CM1111_MEETING;
     public static final String MODULE_DESC_CM1112_MEETING = " " + PREFIX_MODULE + VALID_MODULE_NAME_CM1112_MEETING;
@@ -83,16 +99,15 @@ public class CommandTestUtil {
     public static final String DATE_DESC_CM1112_MEETING = " " + PREFIX_DATE + VALID_DATE_CM1112_MEETING;
     public static final String TIME_DESC_CM1111_MEETING = " " + PREFIX_TIME + VALID_TIME_CM1111_MEETING;
     public static final String TIME_DESC_CM1112_MEETING = " " + PREFIX_TIME + VALID_TIME_CM1112_MEETING;
-    public static final String PARTICIPANT_DESC_AMY =
-            " " + PREFIX_PARTICIPANT + VALID_PARTICIPANT_AMY;
-    public static final String PARTICIPANT_DESC_BOB =
-            " " + PREFIX_PARTICIPANT + VALID_PARTICIPANT_BOB;
 
     public static final String INVALID_MODULE_NAME = " " + PREFIX_MODULE + "James&"; // '&' not allowed in module names
     public static final String INVALID_MEETING_NAME = " " + PREFIX_NAME + "James&"; // '&' not allowed in meeting names
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2020/01/12"; // '/' not allowed in dates
     public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "1000"; // missing ':' symbol
     public static final String INVALID_PARTICIPANT_DESC = " " + PREFIX_PARTICIPANT + "a*"; // '*' not allowed in names
+
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS1000;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS1001;
 
     public static final EditMeetingCommand.EditMeetingDescriptor DESC_CM1111;
     public static final EditMeetingCommand.EditMeetingDescriptor DESC_CM1112;
@@ -104,6 +119,13 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    static {
+        DESC_CS1000 = new EditModuleDescriptorBuilder().withModuleName(VALID_MODULE_NAME_CS1000)
+                .withMembers(VALID_PARTICIPANT_AMY).build();
+        DESC_CS1001 = new EditModuleDescriptorBuilder().withModuleName(VALID_MODULE_NAME_CS1001)
+                .withMembers(VALID_PARTICIPANT_BOB).build();
     }
 
     static {

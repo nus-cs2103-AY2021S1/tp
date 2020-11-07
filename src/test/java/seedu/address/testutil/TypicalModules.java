@@ -18,6 +18,12 @@ import seedu.address.model.ModuleBook;
 import seedu.address.model.module.Module;
 
 public class TypicalModules {
+    public static final Module CS1000 = new ModuleBuilder()
+            .withName("CS1000")
+            .withMembers(new HashSet<>(Arrays.asList(AMY))).build();
+    public static final Module CS1001 = new ModuleBuilder()
+            .withName("CS1000")
+            .withMembers(new HashSet<>(Arrays.asList(BOB))).build();
     public static final Module CS2100 = new ModuleBuilder()
             .withName("CS2100")
             .withMembers(new HashSet<>(Arrays.asList(BENSON, GEORGE))).build();
@@ -49,4 +55,6 @@ public class TypicalModules {
     public static List<Module> getTypicalModules() {
         return new ArrayList<>(Arrays.asList(CS2100, CS2101, CS2102, CS2104));
     }
+
+
 }

@@ -6,13 +6,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleName;
 
 
 
-public class DeleteModuleCommandParser {
+public class DeleteModuleCommandParser  implements Parser<DeleteModuleCommand>{
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteModuleCommand
      * and returns a DeleteModuleCommand object for execution.
