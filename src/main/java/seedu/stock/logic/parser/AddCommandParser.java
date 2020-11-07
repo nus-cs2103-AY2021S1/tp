@@ -24,10 +24,10 @@ import seedu.stock.model.stock.Stock;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
-    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+    private final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
 
-    private static final Prefix[] validPrefixesForAdd =
-            { PREFIX_NAME, PREFIX_SOURCE, PREFIX_QUANTITY, PREFIX_LOCATION, PREFIX_LOW_QUANTITY};
+    private final Prefix[] validPrefixesForAdd = { PREFIX_NAME, PREFIX_SOURCE, PREFIX_QUANTITY, PREFIX_LOCATION,
+        PREFIX_LOW_QUANTITY};
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

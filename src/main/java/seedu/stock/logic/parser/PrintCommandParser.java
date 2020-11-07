@@ -14,14 +14,14 @@ import seedu.stock.logic.parser.exceptions.ParseException;
  */
 public class PrintCommandParser implements Parser<PrintCommand> {
 
-    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
-
-    private static final Prefix[] validPrefixesForPrint = { PREFIX_FILE_NAME};
-
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public static final String INVALID_PRINT_ARGUMENT = "File name is invalid. File name should only contain"
             + " alphanumeric characters and should not be empty.";
+
+    private final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+
+    private final Prefix[] validPrefixesForPrint = { PREFIX_FILE_NAME};
 
     /**
      * Parses the given {@code String} of arguments in the context of the PrintCommand
