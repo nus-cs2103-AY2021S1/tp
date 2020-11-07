@@ -138,7 +138,7 @@ public class ModelManager implements Model {
     @Override
     public void changeSession(SessionName sessionName) {
         requireNonNull(sessionName);
-        
+
         if (taskmaster.inSession() && sessionName.equals(taskmaster.currentSessionName())) {
             filteredStudentRecords.setPredicate(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
         } else {
