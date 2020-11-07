@@ -226,7 +226,6 @@ More examples:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* `NUMBER_OF_DAYS` **must be a positive integer** 1, 2, 3, …​
 * **Only one** number can be keyed in. For example, `list 1 2` will not work. 
 </div>
 
@@ -298,7 +297,6 @@ This is the table of prefixes used:
 | `mod/` | mod/MODULE_CODE | - `mod/ST2334` |
 | `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
 
-<div markdown="block" class="alert alert-primary">
 
 Here is an example with steps to follow:
 
