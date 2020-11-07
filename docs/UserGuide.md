@@ -337,21 +337,21 @@ Example: `addteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/1
   - email of lucas@gmail.com
   - address of 18 Evelyn road
   
-### Add a teammate to a project `addpart`
+### Add a teammate to a project `addtoproject`
 
 Add an existing teammate to the current project.
 
-Format: `addpart GIT_USER_NAME`
+Format: `addtoproject GIT_USER_NAME`
 
-Example: `addpart Lucas98` adds Lucas98 to the current project that the user is in.
+Example: `addtoproject Lucas98` adds Lucas98 to the current project that the user is in.
 
-### Remove a teammate from a project `deletepart`
+### Remove a teammate from a project `deletefromproject`
 
 Removes an existing teammate from the current project.
 
-Format: `deletepart GIT_USER_NAME`
+Format: `deletefromproject GIT_USER_NAME`
 
-Example: `deletepart Lucas98` removes Lucas98 from the current project.
+Example: `deletefromproject Lucas98` removes Lucas98 from the current project.
 
 ### Edit a teammate’s details `editteammate`
 
@@ -426,8 +426,8 @@ Action | Format, Examples | Scope
 **Sort tasks** | `sort (sa/)||(sd/) (td/)||(tp/)||(tn/)`<br>e.g. `sort sa/ td/` | project scope 
 **View Details of A Task** | `viewtask INDEX` <br> e.g. `viewtask 1` | project scope
 **Create new teammate** | `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)` eg, `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road`| project scope
-**Add a teammate to a project** | `addpart` | `addpart GIT_USER_NAME` eg, `addpart LucasTai98` | project scope
-**Remove a teammate from a project** | `deletepart` | `deletepart GIT_USER_NAME` eg, `deletepart LucasTai98` | project scope
+**Add a teammate to a project** | `addtoproject` | `addtoproject GIT_USER_NAME` eg, `addtoproject LucasTai98` | project scope
+**Remove a teammate from a project** | `deletefromproject` | `deletefromproject GIT_USER_NAME` eg, `deletefromproject LucasTai98` | project scope
 **Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|
 **View a teammate’s details** | `viewteammate GIT_USER_NAME` | project scope
 **Delete a teammate** | `deleteteammate GIT_USER_NAME` | project scope
