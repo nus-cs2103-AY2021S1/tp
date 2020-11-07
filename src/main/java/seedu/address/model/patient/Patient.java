@@ -147,10 +147,10 @@ public class Patient {
                 .append(getNric())
                 .append(" Phone: ")
                 .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" Email: ")
+                .append(getEmail())
                 .append(" Allergies: ");
         getAllergies().forEach(builder::append);
         builder.append(" Appointments: ");
