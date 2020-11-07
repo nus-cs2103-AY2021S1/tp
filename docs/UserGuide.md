@@ -125,7 +125,7 @@ Format: `leave`
 - Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope
 - If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect
 
-# 2.2 Features in project list scope
+## 2.2 Features in project list scope
 
 ### 2.2.1 Start work on an existing project `startproject`
 
@@ -211,7 +211,7 @@ Note: Please enter a valid repository URL. Taskmania is an offline application a
 
 Example: `edit 1 n/Resident Evil project /d new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
 
-# 2.3 Task-related features in project scope
+## 2.3 Task-related features in project scope
 
 ### 2.3.1 Add task to a project `addtask`
 
@@ -337,7 +337,7 @@ Format: `viewtask INDEX `
 
 Example: `viewtask 4` displays all information from task number 4 in the list.
 
-# 2.4 Teammate-related features in project scope
+## 2.4 Teammate-related features in project scope
 
 ### 2.4.1 Create a new teammate in a project `addteammate`
 
@@ -405,7 +405,7 @@ Format: `deleteteammate GITHUB_USERNAME`
 Example: `deleteteammate Lucas97` deletes the teammate with Github username Lucas97, and removes him from any project he
  was in.
 
-# 2.5 Features in person scope
+## 2.5 Features in person scope
 
 ### 2.5.1 Start work on an existing person `startperson`
 Initialises the person specified.
