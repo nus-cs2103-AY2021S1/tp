@@ -476,14 +476,19 @@ This implementation is considerably more involved hence we proceeded with the cu
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an …​                                  | I want to …​                            | So that I can…​                                                         |
+| Priority | As a/an …​                              | I want to …​                        | So that I can…​                                                     |
 | -------- | ------------------------------------------ | -------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions                 | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | track what I am eating                 |                                                                        |
 | `* * *`  | user                                       | delete a food item                     | remove food items that I no longer care of                             |
 | `* * *`  | user                                       | easily add food items/details          | keep track of my diet                                                  |
+| `* * *`  | user                                       | easily export my data                  | transfer my old data to a new computer or as backup                    |
+| `* * *`  | user                                       | easily load my data                    | restore the previous backups i have made                               |
+| `* * *`  | user                                       | undo my functions                      | fix my accidental mistakes in my commands                              |
 | `* *`    | frequent user                              | perform tasks on a group of food items |                                                                        |
 | `* *`    | expert user                                | create shortcuts for tasks             | frequently performed tasks                                             |
+| `* *`    | user                                       | tag my items for identification        | so that I can find them easily                                         |
+| `* *`    | user                                       | untag my items                         | in case I made a mistake in tagging                                    |
 | `*`      | programmer                                 | make use of the CLI like design        | get used to CLI in the future                                          |
 | `*`      | programmer                                 | be able to customise the application   | improve my workflow and make it faster                                 |
 
