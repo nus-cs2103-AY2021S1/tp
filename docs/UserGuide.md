@@ -182,6 +182,10 @@ Documents (name and reference that the users input on creation), `Suspects`/`Wit
 * Cases matching at least one keyword will be returned (i.e. `OR` search). e.g. keywords `Hans Bo` will return case 
 containing `Hans Gruber`, `Bo Yang` in their details.
 
+Note that after doing a `find` command, if an `add case`, `delete case`, `archive case` (used in the `Home` section) 
+or `unarchive case` (used in the `Archive` section) command is used, 
+the list of cases will be updated to show the full list of cases in `Home` \ `Archive` section, depending on which section they are in.
+
 Format:  `find KEYWORD [MORE_KEYWORDS]`
 
 Example:
