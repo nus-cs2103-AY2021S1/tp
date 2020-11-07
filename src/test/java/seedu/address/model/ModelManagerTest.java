@@ -10,7 +10,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2030;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalStudents.ALEX;
-import static seedu.address.testutil.TypicalStudents.FIONA;
 import static seedu.address.testutil.TypicalTutorialGroups.T05;
 import static seedu.address.testutil.TypicalTutorialGroups.V04;
 
@@ -155,7 +154,6 @@ public class ModelManagerTest {
         Trackr trackr = new TrackrBuilder()
                 .withModule(CS2030)
                 .withTutorialGroup(V04, CS2030)
-                .withStudent(FIONA, V04, CS2030)
                 .build();
         Trackr differentTrackr = new Trackr();
         UserPrefs userPrefs = new UserPrefs();
