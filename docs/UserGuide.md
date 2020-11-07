@@ -135,9 +135,9 @@ Examples:
 
 Format: `delete INDEX [MORE_INDEXES]`
 
-You can delete assignments from your assignment list by specifying the assignment `INDEX` as shown in your list.
+You can delete **one or more** assignments from your assignment list by specifying the `INDEX` of assignments you want to delete as shown in your list.
 
-You can delete **one or more** assignments at a time. Here is an example with steps to follow:
+Here is an example with steps to follow:
 
 1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the Command Box as per their indexes that are labelled in the figure.
 
@@ -219,12 +219,6 @@ Here is an example with steps for you to follow:
 ![ListCommand2](images/ListCommandDiagram2.png)
 *Figure X: The displayed message and the updated list*
 
-<div markdown="span" class="alert alert-success">
-
-**:bulb: Tip:**
-You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
-</div>
-
 More examples: 
 - `list`
 - `list 7`
@@ -259,7 +253,6 @@ This is the table of prefixes used:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note for prefixes and keywords:**<br>
-* Date keywords must be in the format **dd-MM-yyyy** and time keywords must be in the format **HHmm**.
 * For prefix `d/`, date keywords are **irrespective of time** and time keywords are **irrespective of date**. For example, `find d/1300 25-11-2020` finds all assignments due on 25-11-2020, at any time of the day and all assignments due at 1300, on any date.
 * Keywords used with prefixes `n/`,`mod/` and `p/` are **case-insensitive**.
 </div>
