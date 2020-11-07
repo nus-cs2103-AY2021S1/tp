@@ -137,6 +137,16 @@ Note that this autocompletion can only be triggered at the end of input string e
 * Note that while in Autocomplete mode you cannot edit suggestions unless you iterated back to your own input or you press `Backspace`.
 * Pressing `Enter` will lock in your current selection and take you out of Autocomplete mode.
 
+### Command History
+Similar to other command lines, Modduke supports a command history function where pressing the up or down keys brings 
+users back to previous successful commands.
+
+The `Up` key brings users to previous command wheras the `Down` key brings users to the next command in the command history 
+queue.
+
+* Note that the commands must be successful to be logged into command history and that command history only tracks commands
+in the current session. This means if restart Modduke, commands in the previous sessions won't be available.
+
 ### Adding a contact : `contact add`
 
 Adds a contact to Modduke.

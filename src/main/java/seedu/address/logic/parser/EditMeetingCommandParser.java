@@ -39,6 +39,8 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMeetingCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.checkDuplicatePrefix(PREFIX_NAME, PREFIX_MODULE, PREFIX_NEWNAME, PREFIX_DATE, PREFIX_TIME);
+
         ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_MODULE).get());
         MeetingName meetingName = ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_NAME).get());
 

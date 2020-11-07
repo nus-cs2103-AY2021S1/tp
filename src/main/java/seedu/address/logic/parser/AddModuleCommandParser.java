@@ -28,6 +28,7 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
         }
+        argMultimap.checkDuplicatePrefix(PREFIX_NAME);
 
         ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get());
         Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_PARTICIPANT));

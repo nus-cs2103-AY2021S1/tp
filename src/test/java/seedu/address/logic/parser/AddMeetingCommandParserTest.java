@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_CM1111_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_CM1112_MEETING;
@@ -53,38 +54,6 @@ public class AddMeetingCommandParserTest {
                 + MODULE_DESC_CM1111_MEETING
                 + MEETING_NAME_DESC_CM1111_MEETING
                 + DATE_DESC_CM1111_MEETING
-                + TIME_DESC_CM1111_MEETING
-                + PARTICIPANT_DESC_AMY, new AddMeetingCommand(expectedMeeting));
-
-        // multiple modules - last module accepted
-        assertParseSuccess(parser, MODULE_DESC_CM1112_MEETING
-                + MODULE_DESC_CM1111_MEETING
-                + MEETING_NAME_DESC_CM1111_MEETING
-                + DATE_DESC_CM1111_MEETING
-                + TIME_DESC_CM1111_MEETING
-                + PARTICIPANT_DESC_AMY, new AddMeetingCommand(expectedMeeting));
-
-        // multiple meeting names - last name accepted
-        assertParseSuccess(parser, MODULE_DESC_CM1111_MEETING
-                + MEETING_NAME_DESC_CM1112_MEETING
-                + MEETING_NAME_DESC_CM1111_MEETING
-                + DATE_DESC_CM1111_MEETING
-                + TIME_DESC_CM1111_MEETING
-                + PARTICIPANT_DESC_AMY, new AddMeetingCommand(expectedMeeting));
-
-        // multiple dates - last date accepted
-        assertParseSuccess(parser, MODULE_DESC_CM1111_MEETING
-                + MEETING_NAME_DESC_CM1111_MEETING
-                + DATE_DESC_CM1112_MEETING
-                + DATE_DESC_CM1111_MEETING
-                + TIME_DESC_CM1111_MEETING
-                + PARTICIPANT_DESC_AMY, new AddMeetingCommand(expectedMeeting));
-
-        // multiple times - last time accepted
-        assertParseSuccess(parser, MODULE_DESC_CM1111_MEETING
-                + MEETING_NAME_DESC_CM1111_MEETING
-                + DATE_DESC_CM1111_MEETING
-                + TIME_DESC_CM1112_MEETING
                 + TIME_DESC_CM1111_MEETING
                 + PARTICIPANT_DESC_AMY, new AddMeetingCommand(expectedMeeting));
 
@@ -144,6 +113,38 @@ public class AddMeetingCommandParserTest {
                         + VALID_MEETING_NAME_CM1111_MEETING
                         + VALID_DATE_CM1111_MEETING,
                 expectedMessage);
+
+        // multiple modules
+        assertParseFailure(parser, MODULE_DESC_CM1112_MEETING
+                + MODULE_DESC_CM1111_MEETING
+                + MEETING_NAME_DESC_CM1111_MEETING
+                + DATE_DESC_CM1111_MEETING
+                + TIME_DESC_CM1111_MEETING
+                + PARTICIPANT_DESC_AMY, String.format(MESSAGE_DUPLICATE_PREFIX, "m/"));
+
+        // multiple meeting names
+        assertParseFailure(parser, MODULE_DESC_CM1111_MEETING
+                + MEETING_NAME_DESC_CM1112_MEETING
+                + MEETING_NAME_DESC_CM1111_MEETING
+                + DATE_DESC_CM1111_MEETING
+                + TIME_DESC_CM1111_MEETING
+                + PARTICIPANT_DESC_AMY, String.format(MESSAGE_DUPLICATE_PREFIX, "n/"));
+
+        // multiple dates
+        assertParseFailure(parser, MODULE_DESC_CM1111_MEETING
+                + MEETING_NAME_DESC_CM1111_MEETING
+                + DATE_DESC_CM1112_MEETING
+                + DATE_DESC_CM1111_MEETING
+                + TIME_DESC_CM1111_MEETING
+                + PARTICIPANT_DESC_AMY, String.format(MESSAGE_DUPLICATE_PREFIX, "d/"));
+
+        // multiple times
+        assertParseFailure(parser, MODULE_DESC_CM1111_MEETING
+                + MEETING_NAME_DESC_CM1111_MEETING
+                + DATE_DESC_CM1111_MEETING
+                + TIME_DESC_CM1112_MEETING
+                + TIME_DESC_CM1111_MEETING
+                + PARTICIPANT_DESC_AMY, String.format(MESSAGE_DUPLICATE_PREFIX, "t/"));
     }
 
     @Test

@@ -37,6 +37,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
+        argMultimap.checkDuplicatePrefix(PREFIX_MODULE, PREFIX_NAME, PREFIX_DATE, PREFIX_TIME);
 
         ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_MODULE).get());
         MeetingName meetingName = ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_NAME).get());

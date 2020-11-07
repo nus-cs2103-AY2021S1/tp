@@ -1,10 +1,15 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -56,5 +61,18 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
+    }
+
+    /**
+     * Checks for Duplicate prefixes that are not allowed by the command
+     * @param prefixes
+     * @throws ParseException
+     */
+    public void checkDuplicatePrefix(Prefix ... prefixes) throws ParseException {
+        for (Prefix prefix : prefixes) {
+            if (getAllValues(prefix).size() > 1) {
+                throw new ParseException(String.format(MESSAGE_DUPLICATE_PREFIX, prefix.getPrefix()));
+            }
+        }
     }
 }

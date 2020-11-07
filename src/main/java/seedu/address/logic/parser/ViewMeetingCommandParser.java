@@ -23,6 +23,8 @@ public class ViewMeetingCommandParser implements Parser<ViewMeetingCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME);
 
+        argMultimap.checkDuplicatePrefix(PREFIX_MODULE, PREFIX_NAME);
+
         if (!arePrefixesPresent(argMultimap, PREFIX_MODULE, PREFIX_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewMeetingCommand.MESSAGE_USAGE));
         }
