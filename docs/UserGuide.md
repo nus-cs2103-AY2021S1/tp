@@ -264,14 +264,17 @@ Finds students who satisfy the given search criteria.
 
 Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
 * At least one of the optional fields must be provided.
-* The order of the optional fields do not matter. e.g `n/Hans s/River Valley` will match `s/River Valley n/Hans`
-* Only full words will be matched. e.g `han` will not match `hans`.
-* For the name, students with a name that matches any whole keyword specified will be matched.
-* For the school, students with a school that contains all keywords specified will be matched.
-* For the year, only students with the same year will be matched. (See below for more notes)
+* The order of the optional fields do not matter. e.g `n/Hans s/River Valley` is the same as `s/River Valley n/Hans`
+* For the name criteria, students with a name that matches any full keyword specified will be matched.
+* For the school criteria, students with a school that contains all keywords specified will be matched.
+* For the year criteria, only students with the same year will be matched. (See below for more elaboration)
 * Only students matching all criteria specified will be returned (i.e `AND` search).
+
+* The format of `YEAR` is as follows:
+    * `TYPE_OF_SCHOOL LEVEL` (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
+    * `TYPE_OF_SCHOOL` can be primary(pri, p), secondary(sec, s) or jc. 
+    * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
 
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
