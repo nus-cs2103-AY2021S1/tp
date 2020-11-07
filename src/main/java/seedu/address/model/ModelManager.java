@@ -195,8 +195,8 @@ public class ModelManager implements Model {
         assert accessPointer >= 0;
         versionedModuleList.undo();
         versionedArchivedModuleList.undo();
-        setModuleList(versionedModuleList.getCurrentModuleList());
-        setArchivedModuleList(versionedArchivedModuleList.getCurrentModuleList());
+        setModuleList(versionedModuleList);
+        setArchivedModuleList(versionedArchivedModuleList);
     }
 
     @Override
@@ -204,8 +204,8 @@ public class ModelManager implements Model {
         assert accessPointer >= 0;
         versionedModuleList.redo();
         versionedArchivedModuleList.redo();
-        setModuleList(versionedModuleList.getCurrentModuleList());
-        setArchivedModuleList(versionedArchivedModuleList.getCurrentModuleList());
+        setModuleList(versionedModuleList);
+        setArchivedModuleList(versionedArchivedModuleList);
     }
     //Archived Modules
     @Override
@@ -332,14 +332,14 @@ public class ModelManager implements Model {
     public void undoContactList() throws VersionedListException {
         assert accessPointer >= 0;
         versionedContactList.undo();
-        setContactList(versionedContactList.getCurrentContactList());
+        setContactList(versionedContactList);
     }
 
     @Override
     public void redoContactList() throws VersionedListException {
         assert accessPointer >= 0;
         versionedContactList.redo();
-        setContactList(versionedContactList.getCurrentContactList());
+        setContactList(versionedContactList);
     }
 
     //=========== Todo List =============================================================
@@ -392,14 +392,14 @@ public class ModelManager implements Model {
     public void undoTodoList() throws VersionedListException {
         assert accessPointer >= 0;
         versionedTodoList.undo();
-        setTodoList(versionedTodoList.getCurrentTodoList());
+        setTodoList(versionedTodoList);
     }
 
     @Override
     public void redoTodoList() throws VersionedListException {
         assert accessPointer >= 0;
         versionedTodoList.redo();
-        setTodoList(versionedTodoList.getCurrentTodoList());
+        setTodoList(versionedTodoList);
     }
 
     //=========== General =============================================================
@@ -585,14 +585,14 @@ public class ModelManager implements Model {
     public void undoEventList() throws VersionedListException {
         assert accessPointer >= 0;
         versionedEventList.undo();
-        setEventList(versionedEventList.getCurrentEventList());
+        setEventList(versionedEventList);
     }
 
     @Override
     public void redoEventList() throws VersionedListException {
         assert accessPointer >= 0;
         versionedEventList.redo();
-        setEventList(versionedEventList.getCurrentEventList());
+        setEventList(versionedEventList);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package seedu.address.logic.parser.contactlistparsers;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.Comparator;
 
 import seedu.address.logic.commands.contactlistcommands.SortContactCommand;
@@ -17,11 +19,16 @@ public class SortContactParser implements Parser<SortContactCommand> {
      * and returns an SortContactCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public SortContactCommand parse(String args) {
+    public SortContactCommand parse(String args) throws ParseException {
         Comparator<Contact> comparator = new ContactComparatorByName();
-        if (args.trim().equals("r")) {
-            comparator = comparator.reversed();
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            return new SortContactCommand(comparator);
         }
-        return new SortContactCommand(comparator);
+        if (args.trim().equals("r")) {
+            return new SortContactCommand(comparator.reversed());
+        }
+        throw new ParseException(
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortContactCommand.MESSAGE_USAGE));
     }
 }

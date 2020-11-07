@@ -38,10 +38,8 @@ import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
 import seedu.address.logic.parser.modulelistparsers.DeleteZoomLinkParser;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
 import seedu.address.logic.parser.modulelistparsers.EditZoomLinkParser;
-import seedu.address.logic.parser.modulelistparsers.RedoParser;
 import seedu.address.logic.parser.modulelistparsers.TargetCapCalculatorParser;
 import seedu.address.logic.parser.modulelistparsers.UnarchiveModuleParser;
-import seedu.address.logic.parser.modulelistparsers.UndoParser;
 import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
 
 /**
@@ -80,20 +78,8 @@ public class ModuleListParser implements FeatureParser {
         case DeleteModuleCommand.COMMAND_WORD:
             return new DeleteModuleParser().parse(arguments);
 
-        case ClearModuleCommand.COMMAND_WORD:
-            return new ClearModuleCommand();
-
         case FindModuleCommand.COMMAND_WORD:
             return new FindModuleCommandParser().parse(arguments);
-
-        case ListModuleCommand.COMMAND_WORD:
-            return new ListModuleCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
 
         case AddZoomLinkCommand.COMMAND_WORD:
             return new AddZoomLinkParser().parse(arguments);
@@ -113,33 +99,82 @@ public class ModuleListParser implements FeatureParser {
         case AddCompletedModuleCommand.COMMAND_WORD:
             return new AddCompletedModuleParser().parse(arguments);
 
-        case CalculateCapCommand.COMMAND_WORD:
-            return new CalculateCapCommand();
-
         case TargetCapCalculatorCommand.COMMAND_WORD:
             return new TargetCapCalculatorParser().parse(arguments);
-        //case EditGradeCommand.COMMAND_WORD:
-        //            return new EditGradeParser().parse(arguments);
-        case UndoCommand.COMMAND_WORD:
-            return new UndoParser().parse(arguments);
-
-        case RedoCommand.COMMAND_WORD:
-            return new RedoParser().parse(arguments);
 
         case ArchiveModuleCommand.COMMAND_WORD:
             return new ArchiveModuleParser().parse(arguments);
 
-        case ViewArchivedModulesCommand.COMMAND_WORD:
-            return new ViewArchivedModulesCommand();
-
         case UnarchiveModuleCommand.COMMAND_WORD:
             return new UnarchiveModuleParser().parse(arguments);
 
-        //case EditGradeCommand.COMMAND_WORD:
-        //            return new EditGradeParser().parse(arguments);
+        case ClearModuleCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(ClearModuleCommand.COMMAND_WORD, arguments);
+
+        case ExitCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(ExitCommand.COMMAND_WORD, arguments);
+
+        case HelpCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(HelpCommand.COMMAND_WORD, arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(UndoCommand.COMMAND_WORD, arguments);
+
+        case RedoCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(RedoCommand.COMMAND_WORD, arguments);
+
+        case CalculateCapCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(CalculateCapCommand.COMMAND_WORD, arguments);
+
+        case ListModuleCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(ListModuleCommand.COMMAND_WORD, arguments);
+
+        case ViewArchivedModulesCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(ViewArchivedModulesCommand.COMMAND_WORD, arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
+    /**
+     * Returns the respective Command for the singleWord Commands after checking the arguments.
+     * @param commandWord the command word for respective commands.
+     * @param argument the argument after the command word.
+     * @return the repective command.
+     * @throws ParseException if there is an argument after the command word.
+     */
+    public Command singleWordCommandsChecker(String commandWord, String argument) throws ParseException {
+        if (!argument.equals("")) {
+            throw new ParseException("Invalid input format, extra string after the command word.");
+        }
+        switch (commandWord) {
+        case ClearModuleCommand.COMMAND_WORD:
+            return new ClearModuleCommand();
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
+        case CalculateCapCommand.COMMAND_WORD:
+            return new CalculateCapCommand();
+
+        case ListModuleCommand.COMMAND_WORD:
+            return new ListModuleCommand();
+
+        case ViewArchivedModulesCommand.COMMAND_WORD:
+            return new ViewArchivedModulesCommand();
+
+        default:
+            throw new ParseException("Invalid command");
+        }
+    }
 }

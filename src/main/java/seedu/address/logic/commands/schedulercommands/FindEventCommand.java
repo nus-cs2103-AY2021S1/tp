@@ -44,10 +44,6 @@ public class FindEventCommand extends Command {
                 model.getFilteredEventList().size()));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 
     @Override
     public boolean equals(Object other) {

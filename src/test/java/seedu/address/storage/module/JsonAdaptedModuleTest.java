@@ -3,7 +3,6 @@ package seedu.address.storage.module;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.BENSON;
 import static seedu.address.testutil.TypicalModules.CS2030;
 
 import java.util.ArrayList;
@@ -27,7 +26,6 @@ public class JsonAdaptedModuleTest {
     private static final String INVALID_MC = "-1.0";
 
     private static final String VALID_NAME = CS2030.getName().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final List<JsonAdaptedZoomLink> VALID_ZOOM_LINKS = new ArrayList<>();
     private static final JsonAdaptedGradeTracker VALID_GRADE_TRACKER = new JsonAdaptedGradeTracker(
             CS2030.getGradeTracker());
