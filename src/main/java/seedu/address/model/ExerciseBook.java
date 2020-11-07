@@ -52,14 +52,6 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setCaloriesByDay(HashMap<String, Integer> newEntry) {
-        this.exercises.setCaloriesByDay(newEntry);
-    }
-
-    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyExerciseBook newData) {
@@ -67,6 +59,9 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
         setExercises(newData.getExerciseList());
     }
 
+    /**
+     * Reset all the data inside ExerciseBook.
+     */
     public void resetAllData() {
         exercises.resetAll();
         TemplateList.reset();
