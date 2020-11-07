@@ -1343,9 +1343,8 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+       Expected: The most recent window size and location is retained. <br><br>
 
-1. _{ more test cases …​ }_
 
 ### 6.2 Deleting a Recipe <a id="62-deleting-a-recipe"></a>
 
@@ -1360,9 +1359,8 @@ testers are expected to do more *exploratory* testing.
       Expected: No recipe is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `deleteR`, `deleteR x`, `...` (where x is larger than the recipe list size)<br>
-      Expected: Similar to previous.
+      Expected: Similar to previous. <br><br>
 
-1. _{ more test cases …​ }_
 
 ### 6.3 Saving Data <a id="63-saving-data"></a>
 
