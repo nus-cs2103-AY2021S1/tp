@@ -534,7 +534,7 @@ The following activity diagram shows how the reset all ingredients' levels opera
     * Pros: Clear implementation. Do not lead to creation of new ingredient objects.
     * Cons: Editing the ingredient level may be more error-prone.
 
-### Archiving employee feature
+### \[Completed\] Archiving employee feature
 
 When employees are no longer working in the store, their information would usually be deleted, or kept in
 the archive. tCheck simulates this archive, storing these contact information in the app so that the user can still
@@ -722,10 +722,11 @@ with phone number, using a prefix to identify them.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* To assist on manpower management
-    * The product will provide a platform to allow the user to manage employees’ contact 
-      information (e.g. contact number, emergency contact, address etc).
-    * The product could help the user to find available manpower for specific days.
+
+* To manage the employees' contact information digitally
+    * The product will provide a platform to allow the user to save his/ her employees’ contact 
+      information (eg. emergency contacts, address etc).
+    * It can manage contacts faster than a typical mouse/GUI driven app 
 * To digitise inventory keeping
     * The product will help to digitise inventory keeping, and thus helps to save the user’s time and prevent 
       human error in calculation. It does not ensure that the employees use the same amount of ingredients in making 
@@ -786,9 +787,8 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 **MSS**
 
-1. User gives command to list all employees.
-2. User archives an employee from employee directory. 
-3. tCheck will move this corresponding employee into the archive and displays a success message.
+1. User archives an employee from employee directory. 
+2. tCheck will move this corresponding employee into the archive and displays a success message.
      
      Use case ends.
 
@@ -797,7 +797,7 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 * 2a. tCheck detects an incorrect input format.
         
-        * 2a1. tCheck requests the user to re-enter with the correct format.
+        * 2a1. tCheck requests the user to re-enter the data in the correct format.
         
     	* 2a2. User enters new data.
     	
@@ -807,11 +807,11 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 * 2b. tCheck detects that the specified employee does not exist.
         
-        * 2b1. tCheck requests the user to re-enter a valid index that corresponds with an existing employee.
+        * 2b1. tCheck requests the user to re-enter a valid index that corresponds to an existing employee.
         
         * 2b2. User enters new index.
         
-        Steps 2b1-2b2 are repeated until the index entered is a valid index.
+        Steps 2b1-2b2 are repeated until the index entered is valid.
         
         Use case resumes from step 3.
 
@@ -827,7 +827,7 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 1. User gives command to list all employees.
 1. User archives all employees. 
-3. tCheck will move all contact details into the archive and displays a success message.
+3. tCheck will move all contact details into the archive and display a success message.
 
      Use case ends.
 
@@ -836,7 +836,7 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 * 2a. tCheck detects an incorrect input format.
 
-        * 2a1. tCheck requests the user to re-enter with the correct format.
+        * 2a1. tCheck requests the user to re-enter in the correct format.
         
     	* 2a2. User enters new data.
     	
@@ -926,16 +926,15 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
 3.  Should be able to respond within 2 second for each operation.
 4.  Should be able to function fully without access to internet.
 5.  Should be for a single user.
-6.  Data files should remain unchanged when transferring from a computer to another.
+6.  Data files should remain unchanged when transferring from one computer to another.
 7.  Should not attempt to make any change in all data files.
-8.  Should not handle the printing of the report (i.e. sales report).
-9.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
  be able to accomplish most of the tasks faster using commands than using the mouse.
-10.  A user without prior experience on inventory management system should be able to accomplish most of the tasks
+9.  A user without prior experience in inventory management system should be able to accomplish most of the tasks
  using commands. 
 
 ### Glossary
@@ -999,12 +998,12 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `c-archive 1`<br>
       Expected: First employee is archived from the list. Details of the archived contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is archived. Error details shown in the status message.
+   1. Test case: `c-archive 0`<br>
+      Expected: No employee is archived. Error details shown in the status message.
 
    1. Other incorrect archive commands to try: `archive`, `c-archive x`, `...` (where x is larger than the list size
    )<br>
-      Expected: No person is archived. Error details shown in the status message.
+      Expected: No employee is archived. Error details shown in the status message.
       
 ### Saving data
 
