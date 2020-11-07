@@ -1,0 +1,10 @@
+@startuml
+start
+:User inputs list command: recipes;
+:Logic executes ListRecipeCommand;
+:execute ListRecipeCommand;
+:recipe list is fetched;
+
+stop
+
+@enduml
