@@ -408,7 +408,7 @@ The following sequence diagram shows how list operation works when `execute("rec
 
 ![ListSequenceDiagram](images/implementation/sequenceDiagrams/ListSequence.png)
 
-<div markdown="block" class="alert alert-info" style="overflow:auto">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline">
 
 :bell: **Note**                                                                                                
                                                                                                                

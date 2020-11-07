@@ -42,7 +42,6 @@ import seedu.address.model.recipe.Recipe;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static int wordLimit = 1000;
     private static final String FXML = "MainWindow.fxml";
     private static String themeColor = "#0088c7;";
 
@@ -302,9 +301,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException,
             ParseException, IOException, URISyntaxException {
-        if (commandText.length() > wordLimit) {
-            throw new CommandException("Command too long!");
-        }
         try {
             CommandResult commandResult = logic.execute(commandText);
             //handle closing drawer
