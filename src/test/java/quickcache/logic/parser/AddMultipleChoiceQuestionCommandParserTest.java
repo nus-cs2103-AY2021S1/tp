@@ -44,7 +44,7 @@ public class AddMultipleChoiceQuestionCommandParserTest {
     }
 
     @Test
-    public void parse_MultipleQnsPresent_failure() {
+    public void parse_multipleQnsPresent_failure() {
         // multiple questions - not accepted
         CommandParserTestUtil.assertParseFailure(parser,
                 QUESTION_DESC_TWO + QUESTION_DESC_ONE + ANSWER_DESC_ONE + CHOICE_DESC,
