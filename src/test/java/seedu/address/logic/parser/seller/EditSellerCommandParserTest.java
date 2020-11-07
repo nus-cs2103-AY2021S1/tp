@@ -88,7 +88,7 @@ public class EditSellerCommandParserTest {
                 + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditSellerDescriptor descriptor = new EditSellerDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).build();
+                .withDefaultIdAndTag().withPhone(VALID_PHONE_BOB).build();
         EditSellerCommand expectedCommand = new EditSellerCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -99,8 +99,8 @@ public class EditSellerCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB;
 
-        EditSellerDescriptor descriptor = new EditSellerDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .build();
+        EditSellerDescriptor descriptor = new EditSellerDescriptorBuilder()
+                .withDefaultIdAndTag().withPhone(VALID_PHONE_BOB).build();
         EditSellerCommand expectedCommand = new EditSellerCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -111,13 +111,15 @@ public class EditSellerCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditSellerDescriptor descriptor = new EditSellerDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditSellerDescriptor descriptor = new EditSellerDescriptorBuilder()
+                .withDefaultIdAndTag().withName(VALID_NAME_AMY).build();
         EditSellerCommand expectedCommand = new EditSellerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-        descriptor = new EditSellerDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        descriptor = new EditSellerDescriptorBuilder()
+                .withDefaultIdAndTag().withPhone(VALID_PHONE_AMY).build();
         expectedCommand = new EditSellerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -128,7 +130,8 @@ public class EditSellerCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + PHONE_DESC_AMY + PHONE_DESC_BOB;
 
-        EditSellerDescriptor descriptor = new EditSellerDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditSellerDescriptor descriptor = new EditSellerDescriptorBuilder()
+                .withDefaultIdAndTag().withPhone(VALID_PHONE_BOB).build();
         EditSellerCommand expectedCommand = new EditSellerCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -139,13 +142,15 @@ public class EditSellerCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditSellerDescriptor descriptor = new EditSellerDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditSellerDescriptor descriptor = new EditSellerDescriptorBuilder()
+                .withDefaultIdAndTag().withPhone(VALID_PHONE_BOB).build();
         EditSellerCommand expectedCommand = new EditSellerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        descriptor = new EditSellerDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        descriptor = new EditSellerDescriptorBuilder()
+                .withDefaultIdAndTag().withPhone(VALID_PHONE_BOB).build();
         expectedCommand = new EditSellerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

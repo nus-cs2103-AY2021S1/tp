@@ -37,4 +37,16 @@ public class NameTest {
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
     }
+
+    @Test
+    public void isValidLength() {
+        // invalid length
+        assertFalse(Name.isValidLength("abcefghijklmnopqrstuvcdvfasdsafdsaaa")); // without spaces
+        assertFalse(Name.isValidLength("peter the 2nd the 3rd the 4th the 5th")); // with spaces
+
+        // valid length
+        assertTrue(Name.isValidLength("peterjack")); // without spaces
+        assertTrue(Name.isValidLength("Peter Jack Kor Ming Soon")); // with spaces
+
+    }
 }

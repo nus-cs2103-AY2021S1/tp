@@ -17,7 +17,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.id.BidderId;
@@ -42,9 +41,9 @@ public class EditMeetingCommand extends Command {
             + "\n[" + PREFIX_MEETING_BIDDER_ID + "B12] "
             + "\n[" + PREFIX_MEETING_PROPERTY_ID + "P14] "
             + "\n[" + PREFIX_MEETING_DATE + "20-10-2020] "
-            + "\n[" + PREFIX_MEETING_VENUE + "bedok]\n"
-            + "\n[" + PREFIX_MEETING_STARTTIME + "12:30]\n"
-            + "\n[" + PREFIX_MEETING_ENDTIME + "13:30]\n"
+            + "\n[" + PREFIX_MEETING_VENUE + "bedok]"
+            + "\n[" + PREFIX_MEETING_STARTTIME + "12:30]"
+            + "\n[" + PREFIX_MEETING_ENDTIME + "13:30]"
             + "\nExample: " + COMMAND_WORD + " 1 "
             + PREFIX_MEETING_VENUE + "eunos "
             + PREFIX_MEETING_DATE + "20-10-2019 ";
@@ -86,8 +85,7 @@ public class EditMeetingCommand extends Command {
 
         model.setMeeting(meetingToEdit, editedMeeting);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
-        return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting))
-                .setEntity(EntityType.MEETING);
+        return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting));
     }
 
     /**

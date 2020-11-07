@@ -65,7 +65,7 @@ public class EditBidderCommand extends Command {
         Bidder bidderToEdit = lastShownList.get(index.getZeroBased());
         Bidder editedBidder = createEditedBidder(bidderToEdit, editBidderDescriptor);
 
-        if (!bidderToEdit.isSamePerson(editedBidder) && model.hasBidder(editedBidder)) {
+        if (!bidderToEdit.isSameBidder(editedBidder) && model.hasBidder(editedBidder)) {
             throw new CommandException(MESSAGE_DUPLICATE_BIDDER);
         }
 
@@ -83,8 +83,8 @@ public class EditBidderCommand extends Command {
         assert bidderToEdit != null;
         Name updatedName = editBidderDescriptor.getName().orElse(bidderToEdit.getName());
         Phone updatedPhone = editBidderDescriptor.getPhone().orElse(bidderToEdit.getPhone());
-        BidderId updatedBidderId = editBidderDescriptor.getId().orElse((BidderId) bidderToEdit.getId());
-        return new Bidder(updatedName, updatedPhone, updatedBidderId);
+        BidderId unmodifiedBidderId = (BidderId) bidderToEdit.getId();
+        return new Bidder(updatedName, updatedPhone, unmodifiedBidderId);
     }
 
     @Override

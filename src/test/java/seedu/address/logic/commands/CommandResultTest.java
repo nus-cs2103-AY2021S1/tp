@@ -8,6 +8,25 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+
+    @Test
+    public void commandResultUiComponent_success() {
+        CommandResult commandResult = new CommandResult("", false, false, false);
+        assertTrue(commandResult.setNavigationTrue().isUiComponent());
+
+        // same values -> returns false
+        assertFalse(commandResult.isShowHelp());
+
+        // same values -> returns false
+        assertFalse(commandResult.isExit());
+
+        // same values -> returns true
+        assertTrue(commandResult.setEntity(EntityType.BIDDER).getEntityType() == EntityType.BIDDER);
+
+        // different values -> returns false
+        assertFalse(commandResult.setEntity(EntityType.SELLER).getEntityType() == EntityType.BIDDER);
+    }
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");

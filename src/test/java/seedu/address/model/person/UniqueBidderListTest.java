@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.bidder.TypicalBidder.ALICE;
+import static seedu.address.testutil.bidder.TypicalBidder.BIDDER_ALICE;
 import static seedu.address.testutil.bidder.TypicalBidder.BOB;
 
 import java.util.Arrays;
@@ -73,7 +74,7 @@ public class UniqueBidderListTest {
     }
 
     @Test
-    public void setBidder_editedPersonIsSamePerson_success() {
+    public void setBidder_editedBidderIsSameBidder_success() {
         uniqueBidderList.add(ALICE);
         uniqueBidderList.setBidder(ALICE, ALICE);
         UniqueBidderList expectedUniqueBidderList = new UniqueBidderList();
@@ -82,7 +83,7 @@ public class UniqueBidderListTest {
     }
 
     @Test
-    public void setBidder_editedPersonHasSameIdentity_success() {
+    public void setBidder_editedBidderHasSameIdentity_success() {
         uniqueBidderList.add(ALICE);
         Bidder editedAlice = new BidderBuilder(ALICE).build();
         uniqueBidderList.setBidder(ALICE, editedAlice);
@@ -118,7 +119,7 @@ public class UniqueBidderListTest {
     }
 
     @Test
-    public void remove_existingPerson_removesBidder() {
+    public void remove_existingBidder_removesBidder() {
         uniqueBidderList.add(ALICE);
         uniqueBidderList.remove(ALICE);
         UniqueBidderList expectedUniqueBidderList = new UniqueBidderList();
@@ -126,7 +127,7 @@ public class UniqueBidderListTest {
     }
 
     @Test
-    public void setPersons_nullUniqueBidderList_throwsNullPointerException() {
+    public void setBidders_nullUniqueBidderList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueBidderList.setBidders((UniqueBidderList) null));
     }
 
@@ -155,9 +156,9 @@ public class UniqueBidderListTest {
     }
 
     @Test
-    public void setBidders_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Bidder> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueBidderList.setBidders(listWithDuplicatePersons));
+    public void setBidders_listWithDuplicateBidders_throwsDuplicatePersonException() {
+        List<Bidder> listWithDuplicateBidders = Arrays.asList(BIDDER_ALICE, BIDDER_ALICE);
+        assertThrows(DuplicatePersonException.class, () -> uniqueBidderList.setBidders(listWithDuplicateBidders));
     }
 
     @Test

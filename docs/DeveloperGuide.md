@@ -7,7 +7,7 @@ title: Developer Guide
 
 Refer to the guide <<SettingUp#, here>>.
 
-== Design
+Design
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -61,21 +61,65 @@ The *Sequence Diagram* below shows how the components interact with each other f
 The sections below give more details of each component.
 
 ### UI component
+{ start of `ui` section written by: Kor Ming Soon }
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/uidiagram/Ui-Component.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of two components:
+- `MainWindow` 
+- `HelpWindow`
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+---
+#### [`MainWindow.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+
+`MainWindow` is made up of the following parts:
+- [`ResultDisplay`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/ResultDisplay.java)
+- [`CommandBox`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CommandBox.java)
+- [`TabBar`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/TabBar.java)
+- [`StatusBarFooter`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/TabBar.java) 
+- [`CalendarView`]((https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java))
+- [`MeetingListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/meeting/MeetingListPanel.java)
+
+![Breakdown of Ui Component](images/uidiagram/Ui-Component-Breakdown.png)
+*Note that the font colour in the picture is only different for visibility purposes.*
+
+The `TabBar` component itself consists of the following parts:
+- [`PropertyListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/property/PropertyListPanel.java)
+- [`BidderListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/bidder/BidderListPanel.java)
+- [`SellerListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/seller/SellerListPanel.java)
+- [`BidListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/bid/BidListPanel.java)
+
+Each panel will display the list of the entities corresponding to the name of the panel.
+
+---
+#### [`HelpWindow.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/HelpWindow.java)
+
+The `HelpWindow` is a pop up window that is activated upon clicking of the Help button in PropertyFree, or when the `help` command
+is executed.
+
+The `Copy URL` button would automically copy the link of PropertyFree's User Guide into the user's clipboard.
+
+![Breakdown of Ui Component](images/uidiagram/Ui-Component-HelpWindow.png)
+
+---
+
+All the above-mentioned components in `MainWindow` and `HelpWindow`, inherit from the abstract `UiPart` class.
+
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` 
+files that are in the `src/main/resources/view` folder. 
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 * Returns what to be printed out on the UI
+
+{ end of `ui` section written by: Kor Ming Soon }
 
 ### Logic component
 
@@ -98,29 +142,91 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 </div>
 
 ### Model component
+{ start of Model Component section written by: Kor Ming Soon }
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/modelDiagram/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address//model/Model.java)
+    
+> Note that the usage of the term `ENTITY` in this section represents any of the following entities in PropertyFree:
+> `Property`, `Seller`, `Bidder`, `Bid` and `Meeting`.
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
 * does not depend on any of the other three components.
 
+* stores the following `ENTITY` book data which consists of the following:
+    - `PropertyBook`
+    - `SellerAddressBook` 
+    - `BidderAddressBook`
+    - `MeetingBook`
+    - `BidBook`
+    
+* exposes an unmodifiable `ObservableList<ENTITY>` that can be 'observed' by the UI component.
 
-<div markdown="span" class="alert alert-info"> 
+  *e.g. the UI is bounded to the 5 different lists so that 
+  the UI automatically updates when the data in any of the lists are changed.*
 
-:information_source: 
+The following segment of the `Model` components further breaks down each `ENTITY` for a more elaborate 
+explanation of each entities' design.
+- Property
+- Bidder and Seller
+- Bid
+- Meeting  
+---
+### Bidder and Seller 
+The following class diagram depicts how the `Bidder` and `Seller` are created. The `Bidder` and `Seller` both extend from the
+abstract `ClientPerson` which in turn extends from abstract `Person`.  
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+![Bidder and Seller Diagram](images/modelDiagram/BidderSellerModelDiagram.png)
 
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+Note that the `CLIENTId` (BidderId / SellerId) design is elaborated in [Id] in the `Property` segment.
 
-</div>
+ ##### Design Considerations
 
+ 1. Alternative 1 (current choice): Extending `Bidder` and `Seller` from `ClientPerson`, and `ClientPerson` from `Person`.
+    - Pros: 
+        - Neater segmentation of entities
+        - Easier extensibility for additional entities who require an `Id`
+        in the future if necessary (e.g Person representing an organization or company)
+    - Cons: 
+        - Increased code complexity
+
+ 2. Alternative 2: Extending `Bidder` and `Seller` directly from `Person`
+    - Pros: 
+        - Sufficient and possible coverage for current requirements of PropertyFree
+        - Lesser code complexity
+        - Lesser changes to AB3 code base
+    - Cons: 
+        - Lesser extensibility and increased possibility of coupling if more entities are introduced
+        
+ 3. Alternative 3 (current choice): Changing `Tag` from `Set<Tag>` in original AB3 implementation
+    - Pros: 
+        - Lesser code complexity and fewer testing required for extension.
+        - Better suited for PropertyFree's purpose as a client management system where the purpose of the client is already 
+        well specified without need for `Set<Tag>`
+        - Improved UI by having `Tag` acting as a form of visual identifier, instead of complete removal of `Tag`
+    - Cons: 
+        - Refactoring from original AB3 implementation required substantial time
+        
+        *`Tag` was kept in `Person` instead of `ClientPerson` to reduce refactoring required from AB3.*
+       
+#### ID
+The follow class diagram depicts the design behind `Id` and the subclasses: `SellerId`, `BidderId` and `PropertyId`.
+
+![Id Diagram](images/modelDiagram/IdModelDiagram.png)
+
+{ end of Model Component section written by: Kor Ming Soon }
+
+--- 
+
+### Property 
+
+### Bid 
+
+### Meeting 
 
 ### Storage component
 
@@ -140,57 +246,113 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented. The details of the features are
-categorized accordingly to the entities. Specifically: Bidder, Seller, Bid, Property and Meeting.
+This section describes noteworthy details on how certain features are implemented. The details of the features are
+categorized accordingly to the features: 
+1. `Add`
+2. `Edit`
+3. `Find`
+4. `Sort`
+5. `Delete`
+6. `List`
 
-### 1. Bidder / Seller
- 
- Despite being two separate entities, bidder and seller entities will be presented together in the implementation as
- both entities are very similar in terms of implementation.
- 
- ### **Implementation**
- 
- #### 1.1 **Delete**: delete a bidder / seller - `delete-b` or `delete-s`
- 
- `delete` is supported by the `DeleteBidderCommand` and `DeleteSellerCommand`.
- 
- Given below is the example usage scenario:
- 
- **Step 1**. The user launches the PropertyFree application. 
- 
- **Step 2**. After loading data from the storage to the application memory,
- the list of `bidders` or `sellers` in the `BidderAddressBook` and `SellerAddressBook` can either contain existing bidders
- or sellers, or is empty. However, as we are deleting existing bidders or sellers, we will assumed that there are
- bidders or sellers in the book.
- 
- **Step 3**. The user then executes `delete-b <INDEX>`. If the `<INDEX>` is out of bound. PropertyFree will give a 
- display error message indicating that the index is wrong.
- 
- **Step 4**. The application will then retrieve the corresponding bidder or seller, delete it, and return a new list without the
- corresponding bidder or seller.
- 
- The following activity diagram summarises what happens when a user executes `delete-b` or `delete-s` command:
- 
- ![DeleteBidderActivityDiagram](images/BidderDeleteActivityDiagram.png)
- 
- The following sequence diagram summarises as well how the components of Model and Logic interact during the execution
- of the command:
- 
- ![DeleteBidderSequenceDiagram](images/DeleteBidderSequenceDiagram.png)
+Additional features apart from the above-mentioned feature includes:
+- Automated change of `TabBar` and `ENTITYListPanel` with corresponding ENTITY command
+- `next` and `prev` command for Calendar UI Navigation
+- Key-press for UI navigation
 
- #### Design Considerations
- 
- 1. Alternative 1 (current choice): Displays the list in the appropriate tab accordingly, depending on the relevant
- entity of the command. (i.e `delete-b` will bring the application to the bidder tab automatically.)
-    
-    - Pros: Automatic switching of tabs allows user to switch between tabs without having to 
-    interact with the GUI. 
-    - Cons: User may not desire to switch tabs automatically even if a command is given for the relevant entity.
- 
- 2. Alternative 2: Have a separate window for bidder and sellers.
+#### 1. Add
 
-    - Pros: Neater UI and improves usability for the agent.
-    - Cons: More command lines will be required if user wants to close the separate window.
+#### 2. Edit
+
+#### 3. Find
+
+#### 4. Sort 
+
+#### 5. Delete
+{ start of Delete section written by: Kor Ming Soon }
+
+The `Delete` command applies to **all entities** in PropertyFree. Apart from `DeletePropertyCommand`, `DeleteBidderCommand`
+and `DeleteSellerCommand` with slight differences in implementation (elaborated below), all other entities follow the same
+implementation.
+
+1. When the `Delete` command is executed by the user, the input it passed into
+the `LogicManager` and thereafter parsed and identified in `AddressBookParser`. 
+
+2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
+, the corresponding `DeleteENTITYCommandParser` object is formed. The user input then goes
+through another level of parsing in `DeleteENTITYCommandParser`.
+
+3. The `DeleteENTITYCommandParser` identifies the `Index` corresponding to the user's input, and a new `DeleteENTITYCommand`
+object is formed taking in the identified `Index`. 
+The `DeleteENTITYCommand` is then encapsulated under `Command` and passed back into the `LogicManager`.
+
+4. The `DeleteENTITYCommand` calls `execute(model)`. The execution of the command then interacts
+with the `Model` component, and retrieves the unmodifiable view of `ObservableList<ENTITY>`.
+
+5. The `DeleteEntityCommand` retrieves the corresponding `ENTITY` to the `Index` (as received in 3), and calls on the
+`deleteENTITY(ENTITYToDelete)` method of the `Model`.
+
+6. The `Model` accesses the relevant ENTITYBook and removes the `ENTITYToDelete`. The `Ui` then "listens" to the 
+changes in the ENTITYBook and updates the GUI.
+
+7. Finally, `DeleteENTITYCommand` is then encapsulated as a `CommandResult` and passed into the `LogicManager`.
+
+![Delete Command Sequence Diagram](images/deleteCommandDiagram/deleteCommandSequenceDiagram.png)
+
+
+##### 5.1 Delete Bidder Command
+
+> The `Logic` portion of the sequence diagram shown subsequently is truncated to give more focus on the `Model` as the
+> `Logic` implementation is similar to the above-mentioned. 
+
+The `DeleteBidderCommand` deletes the `bidderToDelete` corresponding to to the index given in the user input.
+The command varies as other entities tied to the `bidderToDelete` by the `Id` will be deleted as well, namely:
+`Bid` and `Meeting`.
+
+1. Upon retrieving the `bidderToDelete`, the `bidderToDelete`'s `bidderId` is then retrieved and passed into
+`removeAllBidsWithBidderId(bidderId)`. 
+
+2. `BidBook` in turn calls `removeAllWithBidder(bidderId)` to iterate and delete through the list of bids 
+containing the attribute of`bidderId`.
+
+3. Step 1 and Step 2 are repeated but with `removeAllMeetingsWithBidderId(bidderId)` and `MeetingBook`.
+
+![Delete Bidder Command Sequence Diagram](images/deleteCommandDiagram/deleteBidderCommandSequenceDiagram.png)
+
+##### 5.2 Delete Seller Command
+
+The `DeleteSellerCommand` deletes the `SellertoBeDeleted` corresponding to to the index given in the user input.
+The command varies as other entities tied to the `sellerToDelete` by the `Id` will be deleted as well, namely:
+`Property`. The deletion of the `Property` will in turn delete other entities (elaborated in 5.3).
+
+1. Upon retrieving the `sellerToDelete`, the `sellerToDelete`'s `sellerId` is then retrieved and passed into
+`removeAllBidsWithSellerId(sellerId)`. 
+
+2. `PropertyBook` in turn calls `removeAllWithBidder(bidderId)` to iterate and delete through the list of properties 
+containing the attribute of`sellerId`.
+
+![Delete Seller Command Sequence Diagram](images/deleteCommandDiagram/deleteSellerCommandSequenceDiagram.png)
+
+{ end of Delete section written by: Kor Ming Soon }
+##### 5.3 Delete Property Command
+![Delete Property Command Sequence Diagram](images/deleteCommandDiagram/deletePropertyCommandSequenceDiagram.png)
+
+
+#### 6. List
+
+### UI Navigation Implementation
+#### 1. Automated `TabBar` Switching
+#### 2. Calendar Navigation
+#### 3. Key-press UI Navigation
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
  
  #### 1.2 **Find**: find bidder(s) and seller(s) based on their names - `find-b` or `find-s`
  

@@ -440,7 +440,6 @@ public class ModelManager implements Model {
     @Override
     public void setBidder(Bidder target, Bidder editedBidder) {
         requireAllNonNull(target, editedBidder);
-
         bidderAddressBook.setBidder(target, editedBidder);
     }
 

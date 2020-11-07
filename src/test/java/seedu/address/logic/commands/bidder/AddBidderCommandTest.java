@@ -89,7 +89,7 @@ public class AddBidderCommandTest {
         @Override
         public boolean hasBidder(Bidder bidder) {
             requireNonNull(bidder);
-            return this.bidder.isSamePerson(bidder);
+            return this.bidder.isSameBidder(bidder);
         }
     }
 
@@ -103,7 +103,7 @@ public class AddBidderCommandTest {
         @Override
         public boolean hasBidder(Bidder bidder) {
             requireNonNull(bidder);
-            return biddersAdded.stream().anyMatch(bidder::isSamePerson);
+            return biddersAdded.stream().anyMatch(bidder::isSameBidder);
         }
 
         @Override

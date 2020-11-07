@@ -10,7 +10,7 @@ import seedu.address.model.person.seller.Seller;
  */
 public class SellerBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_NAME = "Ash Ketchum";
     public static final String DEFAULT_PHONE = "85355255";
     public static final SellerId DEFAULT_SELLER_ID = new SellerId(0);
 

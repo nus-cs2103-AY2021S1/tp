@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_VENUE;
 
 import seedu.address.logic.commands.meetingcommands.FindMeetingCommand;
-import seedu.address.logic.commands.property.FindPropertyCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -76,7 +75,7 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
         }
 
         if (!findMeetingDescriptor.isAnyFieldFound()) {
-            throw new ParseException(FindPropertyCommand.MESSAGE_NO_FILTERS);
+            throw new ParseException(FindMeetingCommand.MESSAGE_USAGE);
         }
 
         return new FindMeetingCommand(findMeetingDescriptor);

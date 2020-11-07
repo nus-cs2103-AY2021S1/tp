@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="700" minWidth="1250" onCloseRequest="#handleExit" title="PropertyFree" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="700" minWidth="1250" onCloseRequest="#handleExit" title="PropertyFree" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png" />
     </icons>
@@ -112,7 +112,7 @@
                                        <Insets />
                                     </opaqueInsets>
                                       </StackPane>
-                                      <VBox fx:id="calendarList" maxWidth="450.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                                      <VBox fx:id="calendarList" maxWidth="350.0" prefWidth="300.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                                     <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #0f143c; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 0);" VBox.vgrow="ALWAYS">
                                        <children>
                                                 <HBox alignment="CENTER" prefHeight="41.0" prefWidth="304.0">

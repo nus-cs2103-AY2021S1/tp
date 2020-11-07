@@ -28,7 +28,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
- * UI component that is displayed. Adapted from https://github.com/SirGoose3432/javafx-calendar
+ * UI calendar component that is displayed.
+ * Adapted from https://github.com/SirGoose3432/javafx-calendar
+ * and https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
  */
 public class CalendarView extends UiPart<Region> {
 
@@ -41,15 +43,17 @@ public class CalendarView extends UiPart<Region> {
     private int day;
     private int month;
     private int year;
+
     private YearMonth yearMonth;
     private LocalDate todayDate;
     private LocalDate nonPivotDate;
     private LocalDate pivotDate;
     private LocalDate firstDayOfTheMonth;
+
     private int prevMonthBalance;
     private int nextMonthBalance;
     private int thisMonthBalance;
-    private final int dayOfTheMonthForToday;
+    private final int currentDay;
 
     @FXML
     private Text monthYearText;
@@ -80,13 +84,17 @@ public class CalendarView extends UiPart<Region> {
         this.day = todayDate.getDayOfMonth();
         this.month = todayDate.getMonthValue();
         this.year = todayDate.getYear();
-        this.dayOfTheMonthForToday = this.day;
+        this.currentDay = this.day;
         this.yearMonth = YearMonth.of(this.year, this.month);
         this.firstDayOfTheMonth = yearMonth.atDay(1);
         setMonthYearLabel();
         generateCalender();
     }
 
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with minor modifications (renaming variables).
     /**
      * It will update the attributes in the class according to the meetingDate parse in
      * @param date the new meetingDate
@@ -100,12 +108,13 @@ public class CalendarView extends UiPart<Region> {
     }
 
     private boolean isSameMonth(LocalDate d1, LocalDate d2) {
-        LocalDate pivot = d1.withDayOfMonth(1);
-        LocalDate toCheck = d2.withDayOfMonth(1);
-        return pivot.equals(toCheck);
+        return d1.withDayOfMonth(1).equals(d2.withDayOfMonth(1));
     }
 
-
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with no modifications.
     /**
      * Find the number of days in a month given the year and month.
      *
@@ -123,6 +132,10 @@ public class CalendarView extends UiPart<Region> {
         }
     }
 
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with no modifications.
     /**
      * Find the number of days in a month given the year and month.
      *
@@ -140,6 +153,10 @@ public class CalendarView extends UiPart<Region> {
         }
     }
 
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with no modifications.
     /**
      * Find the number of days in the previous month given the year and month.
      *
@@ -153,6 +170,10 @@ public class CalendarView extends UiPart<Region> {
         }
     }
 
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with no modifications.
     /**
      * Set the monthYear Label's content.
      */
@@ -166,6 +187,10 @@ public class CalendarView extends UiPart<Region> {
     }
 
 
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with minor modifications (change of colours).
     /**
      * Fill up the simulateGridPane[] with the meetingDate in order.
      */
@@ -190,6 +215,10 @@ public class CalendarView extends UiPart<Region> {
         }
     }
 
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with minor modifications (change of colours).
     /**
      * Generate Label for dateGridPane.
      *
@@ -203,6 +232,10 @@ public class CalendarView extends UiPart<Region> {
         return label;
     }
 
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with no modifications.
     /**
      * Generate a VBox with specific calendar.
      *
@@ -220,6 +253,10 @@ public class CalendarView extends UiPart<Region> {
     }
 
 
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with no modifications.
     /**
      * Assign a Vbox to each GridPane.
      * Each Vbox contains a Label.
@@ -246,7 +283,7 @@ public class CalendarView extends UiPart<Region> {
                 }
 
                 if (isSameMonth(this.todayDate, this.nonPivotDate)
-                        && i == this.prevMonthBalance + this.dayOfTheMonthForToday - 1) {
+                        && i == this.prevMonthBalance + this.currentDay - 1) {
                     holder.setBorder(new Border(new BorderStroke(Color.valueOf("white"),
                             BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
                 }
@@ -282,6 +319,11 @@ public class CalendarView extends UiPart<Region> {
         }
     }
 
+
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with no modifications.
     /**
      * Refresh the whole dateGridPane to show latest UI.
      */
@@ -292,6 +334,11 @@ public class CalendarView extends UiPart<Region> {
         generateCalender();
     }
 
+
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with no modifications.
     /**
      * generate a new local meetingDate according to input new meetingDate.
      *
@@ -310,6 +357,10 @@ public class CalendarView extends UiPart<Region> {
         }
     }
 
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with no modifications.
     /**
      * Initialise calendar to previous month data when the next button is clicked.
      */
@@ -320,30 +371,19 @@ public class CalendarView extends UiPart<Region> {
         refreshCalenderView();
     }
 
+
+    // @@author {zwasd}-reused
+    // Reused from
+    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+    // with no modifications.
     /**
      * Initialise calendar to next month data when the next button is clicked.
      */
     @FXML
-    public void handToNext() {
+    public void handleToNext() {
         this.nonPivotDate = nonPivotDate.plusMonths(1);
         updateDayMonthYear(nonPivotDate);
         refreshCalenderView();
     }
-
-    /**
-     * This method will update the pivotDate to the new active meetingDate.
-     * @param date the new pivot meetingDate
-     */
-    public void updateActiveDate(LocalDate date) {
-        this.pivotDate = date;
-        this.nonPivotDate = date;
-        this.day = date.getDayOfMonth();
-        this.month = date.getMonthValue();
-        this.year = date.getYear();
-        this.yearMonth = YearMonth.of(this.year, this.month);
-        this.firstDayOfTheMonth = yearMonth.atDay(1);
-        refreshCalenderView();
-    }
-
 
 }

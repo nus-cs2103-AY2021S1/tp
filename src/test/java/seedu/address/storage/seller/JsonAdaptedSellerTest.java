@@ -3,7 +3,7 @@ package seedu.address.storage.seller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.sellerstorage.JsonAdaptedSeller.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.seller.TypicalSeller.BENSON;
+import static seedu.address.testutil.seller.TypicalSeller.SELLER_BENSON;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,14 +19,14 @@ public class JsonAdaptedSellerTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_BIDDER_ID = "B-1";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
+    private static final String VALID_NAME = SELLER_BENSON.getName().toString();
+    private static final String VALID_PHONE = SELLER_BENSON.getPhone().toString();
     private static final String VALID_BIDDER_ID = "B1";
 
     @Test
     public void toModelType_validSellerDetails_returnsSeller() throws Exception {
-        JsonAdaptedSeller seller = new JsonAdaptedSeller(BENSON);
-        assertEquals(BENSON, seller.toModelType());
+        JsonAdaptedSeller seller = new JsonAdaptedSeller(SELLER_BENSON);
+        assertEquals(SELLER_BENSON, seller.toModelType());
     }
 
     @Test

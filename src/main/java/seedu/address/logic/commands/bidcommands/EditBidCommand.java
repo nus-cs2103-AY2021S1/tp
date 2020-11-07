@@ -73,7 +73,7 @@ public class EditBidCommand extends Command {
         if (!bidToEdit.isSameBid(editedBid) && model.hasBid(editedBid)) {
             throw new CommandException(MESSAGE_DUPLICATE_BID);
         }
-        if (bidToEdit.isSameBid(editedBid)) {
+        if (bidToEdit.isBidBeenEdited(editedBid)) {
             throw new CommandException(MESSAGE_NOT_EDITED);
         }
 

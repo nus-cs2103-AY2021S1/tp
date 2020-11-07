@@ -3,7 +3,6 @@ package seedu.address.logic.commands.sellercommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -20,11 +19,9 @@ public class AddSellerCommand extends Command {
             + "\n\nParameters: "
             + "\n" + PREFIX_NAME + "NAME "
             + "\n" + PREFIX_PHONE + "PHONE "
-            + "\n" + "[" + PREFIX_TAG + "TAG]\n"
             + "\n" + "Example:\n" + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_TAG + "seller ";
+            + PREFIX_PHONE + "98765432 ";
 
     public static final String MESSAGE_SUCCESS = "New seller added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This seller already exists in the seller address book";

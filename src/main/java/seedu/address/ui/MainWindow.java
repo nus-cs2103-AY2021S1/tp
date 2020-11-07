@@ -4,10 +4,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -28,6 +31,8 @@ import seedu.address.ui.meeting.MeetingListPanel;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String STATUS_MESSAGE = "Welcome to PropertyFree, "
+            + "the one place to manage all your properties.";
     private final Logger logger = LogsCenter.getLogger(getClass());
     private Stage primaryStage;
     private Logic logic;
@@ -75,6 +80,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
     }
+
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -124,8 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         TabBar personAndJobTabPane = new TabBar(this.logic);
         personAndBidTabPanePlaceholder.getChildren().add(personAndJobTabPane.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter("Welcome to PropertyFree, "
-                + "the one place to manage all your properties.");
+        StatusBarFooter statusBarFooter = new StatusBarFooter(STATUS_MESSAGE);
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         MeetingListPanel meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
@@ -133,8 +138,24 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        setCommandBoxDefaultFocus(commandBox);
 
         calendar.getChildren().add(calendarView.getRoot());
+
+        handleFocusRequestWhenKeyPressed(commandBox);
+        setCommandBoxDefaultFocus(commandBox);
+    }
+
+    /**
+     * Sets the default focus on launch to be commandBox
+     */
+    private void setCommandBoxDefaultFocus(CommandBox commandBox) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                commandBox.setCommandTextFieldFocusOnStart();
+            }
+        });
     }
 
     /**
@@ -179,20 +200,42 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void setAutoTab(EntityType entityType) {
-        TabBar personAndJobTabPane = new TabBar(this.logic);
-        personAndJobTabPane.setTab(entityType);
-        personAndBidTabPanePlaceholder.getChildren().add(personAndJobTabPane.getRoot());
+        if (entityType != null) {
+            TabBar personAndJobTabPane = new TabBar(this.logic);
+            personAndJobTabPane.setTab(entityType);
+            personAndBidTabPanePlaceholder.getChildren().add(personAndJobTabPane.getRoot());
+        }
     }
 
     @FXML
     private void setCalendarNavigation(String direction) throws CommandException {
         if (direction.equals("next")) {
-            calendarView.handToNext();
+            calendarView.handleToNext();
         } else if (direction.equals("prev")) {
             calendarView.handleToPrev();
         } else {
             throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    /**
+     * Creates the key pressed event triggers.
+     */
+    public void handleFocusRequestWhenKeyPressed(CommandBox commandBox) {
+        primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.SHIFT) {
+                    calendarView.handleToNext();
+                }
+                if (keyEvent.getCode() == KeyCode.CONTROL) {
+                    calendarView.handleToPrev();
+                }
+                if (!commandBox.isCommandTextFieldFocused() && keyEvent.getCode() == KeyCode.ENTER) {
+                    commandBox.giveCommandTextFieldFocus();
+                }
+            }
+        });
     }
 
     /**

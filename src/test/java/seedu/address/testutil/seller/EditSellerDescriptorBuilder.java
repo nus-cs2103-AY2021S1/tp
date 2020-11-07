@@ -1,5 +1,7 @@
 package seedu.address.testutil.seller;
 
+import static seedu.address.model.person.seller.Seller.SELLER_TAG;
+
 import seedu.address.logic.commands.sellercommands.EditSellerCommand.EditSellerDescriptor;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.person.Name;
@@ -21,6 +23,7 @@ public class EditSellerDescriptorBuilder {
         this.descriptor = new EditSellerDescriptor(descriptor);
     }
 
+
     /**
      * Returns an {@code EditSellerDescriptor} with fields containing {@code seller}'s details
      */
@@ -29,7 +32,16 @@ public class EditSellerDescriptorBuilder {
         descriptor.setName(seller.getName());
         descriptor.setPhone(seller.getPhone());
         descriptor.setTag(seller.getTag());
-        descriptor.setId((SellerId) seller.getId());
+        descriptor.setSellerId((SellerId) seller.getId());
+    }
+
+    /**
+     * Creates a EditSellerDescriptorBuilder with default id and tag.
+     */
+    public EditSellerDescriptorBuilder withDefaultIdAndTag() {
+        this.descriptor.setSellerId(SellerId.DEFAULT_SELLER_ID);
+        this.descriptor.setTag(SELLER_TAG);
+        return this;
     }
 
     /**
@@ -53,11 +65,12 @@ public class EditSellerDescriptorBuilder {
      * that we are building.
      */
     public EditSellerDescriptorBuilder withId(String id) {
-        descriptor.setId(new SellerId(id));
+        descriptor.setSellerId(new SellerId(id));
         return this;
     }
 
     public EditSellerDescriptor build() {
         return descriptor;
     }
+
 }

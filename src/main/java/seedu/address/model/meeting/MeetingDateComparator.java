@@ -8,23 +8,23 @@ import java.util.Date;
 /**
  * Compares meetings based on meetingDate and sorts them chronologically.
  */
-public class MeetingTimeComparator extends MeetingComparator implements Comparator<Meeting> {
+public class MeetingDateComparator extends MeetingComparator implements Comparator<Meeting> {
 
     public static final String SORT_CRITERIA = "meetingDate";
     public static final String MESSAGE_INVALID_TIME = "MeetingDate is not in valid format.";
 
     @Override
     public int compare(Meeting meeting1, Meeting meeting2) {
-        String time1 = meeting1.getMeetingDate().date;
-        String time2 = meeting2.getMeetingDate().date;
+        String date1 = meeting1.getMeetingDate().date;
+        String date2 = meeting2.getMeetingDate().date;
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
         try {
-            Date date1 = formatter.parse(time1);
-            Date date2 = formatter.parse(time2);
-            if (date1.before(date2)) {
+            Date parsedDate1 = formatter.parse(date1);
+            Date parsedDate2 = formatter.parse(date2);
+            if (parsedDate1.before(parsedDate2)) {
                 return -1;
-            } else if (date2.before(date1)) {
+            } else if (parsedDate2.before(parsedDate1)) {
                 return 1;
             } else {
                 return 0;

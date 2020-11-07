@@ -16,16 +16,6 @@ public class Seller extends ClientPerson {
     public static final Tag SELLER_TAG = new Tag("seller");
 
     /**
-     * Constructs a Seller from name, phone and tags.
-     *
-     * @param name The name of the seller.
-     * @param phone The phone number.
-     */
-    public Seller(Name name, Phone phone) {
-        super(name, phone, SELLER_TAG, DEFAULT_SELLER_ID);
-    }
-
-    /**
      * Constructs the seller with the name, phone, tags, and id.
      *  @param name name of the seller.
      * @param phone phone number.
@@ -44,12 +34,9 @@ public class Seller extends ClientPerson {
         this.clientId = updatedId;
     }
 
-    /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
-     */
+
     public boolean isSameSeller(Seller otherSeller) {
-        return otherSeller != null && super.isSamePerson(otherSeller);
+        return this.isSameClient(otherSeller);
     }
 
     /**

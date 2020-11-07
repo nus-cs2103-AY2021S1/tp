@@ -12,11 +12,13 @@ import seedu.address.model.tag.Tag;
 public class Bidder extends ClientPerson {
 
     public static final Tag BIDDER_TAG = new Tag("bidder");
+    private boolean isWinningBidder; // meant for extension
 
     /**
      * Constructs the bidder with the name, phone, tags, and id.
-     * @param name name of the bidder.
-     * @param phone phone number.
+     *
+     * @param name     name of the bidder.
+     * @param phone    phone number.
      * @param bidderId identifier.
      */
     public Bidder(Name name, Phone phone, BidderId bidderId) {
@@ -28,12 +30,8 @@ public class Bidder extends ClientPerson {
         this.clientId = updatedId;
     }
 
-    /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
-     */
     public boolean isSameBidder(Bidder otherBidder) {
-        return otherBidder != null && super.isSamePerson(otherBidder);
+        return this.isSameClient(otherBidder);
     }
 
     /**

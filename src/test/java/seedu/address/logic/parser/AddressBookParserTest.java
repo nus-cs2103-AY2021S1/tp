@@ -37,6 +37,8 @@ import seedu.address.logic.commands.biddercommands.DeleteBidderCommand;
 import seedu.address.logic.commands.biddercommands.EditBidderCommand;
 import seedu.address.logic.commands.biddercommands.FindBidderCommand;
 import seedu.address.logic.commands.biddercommands.ListBidderCommand;
+import seedu.address.logic.commands.calendarnavigation.NextCalendarNavigationCommand;
+import seedu.address.logic.commands.calendarnavigation.PrevCalendarNavigationCommand;
 import seedu.address.logic.commands.property.AddPropertyCommand;
 import seedu.address.logic.commands.property.DeletePropertyCommand;
 import seedu.address.logic.commands.property.EditPropertyCommand;
@@ -65,12 +67,57 @@ public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
 
 
+    // ====================== CALENDAR NAVIGATION ============================ //
+    @Test
+    public void calendarNavigation_nextCommandThrowsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand(NextCalendarNavigationCommand.COMMAND_WORD + "rubbish"));
+
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand("TESITNG" + NextCalendarNavigationCommand.COMMAND_WORD + " p/testing"));
+    }
+
+    @Test
+    public void calendarNavigation_nextCommandSuccess() throws ParseException {
+        assertTrue(parser.parseCommand(NextCalendarNavigationCommand.COMMAND_WORD)
+                instanceof NextCalendarNavigationCommand);
+    }
+
+    @Test
+    public void calendarNavigation_prevCommandThrowsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand(PrevCalendarNavigationCommand.COMMAND_WORD + "what"));
+
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand("TESITNG" + PrevCalendarNavigationCommand.COMMAND_WORD + " p/testing"));
+    }
+
+    @Test
+    public void calendarNavigation_prevCommandSuccess() throws ParseException {
+        assertTrue(parser.parseCommand(PrevCalendarNavigationCommand.COMMAND_WORD)
+                instanceof PrevCalendarNavigationCommand);
+    }
+
     // ====================== BIDDER ============================ //
     @Test
     public void parseBidderCommand_bidderAdd() throws Exception {
         Bidder bidder = new BidderBuilder().build();
         AddBidderCommand command = (AddBidderCommand) parser.parseCommand(BidderUtil.getAddBidderCommand(bidder));
         assertEquals(new AddBidderCommand(bidder), command);
+
+        // invalid input test
+        // opposite input
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(AddBidderCommand.COMMAND_WORD + "n/12345 p/Kor Ming Soon"));
+        // negative phone number
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(AddBidderCommand.COMMAND_WORD + "n/Ming Soon p/-78945"));
+        // missing field - name
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(AddBidderCommand.COMMAND_WORD + "p/123456789"));
+        // missing field - phone
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(AddBidderCommand.COMMAND_WORD + "n/Kor Ming Soon"));
     }
 
     @Test
@@ -80,7 +127,21 @@ public class AddressBookParserTest {
         EditBidderCommand command = (EditBidderCommand) parser.parseCommand(EditBidderCommand.COMMAND_WORD
                 + " " + INDEX_FIRST_PERSON.getOneBased()
                 + " " + BidderUtil.getEditBidderDescriptorDetails(descriptor));
-        //assertEquals(new EditBidderCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditBidderCommand(INDEX_FIRST_PERSON, descriptor), command);
+
+        // invalid input test
+        // name with number input
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(EditBidderCommand.COMMAND_WORD + "1 n/67890"));
+        // phone with negative input
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(EditBidderCommand.COMMAND_WORD + "1 p/-1234"));
+        // incorrect index number
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(EditBidderCommand.COMMAND_WORD + "-1 n/Kor Ming Soon"));
+        // missing prefix
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(EditBidderCommand.COMMAND_WORD + "1 111"));
     }
 
     @Test
@@ -90,6 +151,17 @@ public class AddressBookParserTest {
                 FindBidderCommand.COMMAND_WORD
                         + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindBidderCommand(new NameContainsKeywordsPredicate(keywords)), command);
+
+        // invalid input test
+        // missing index
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(FindBidderCommand.COMMAND_WORD + "aaaaaaaa"));
+        // number placed in "name" input field
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(FindBidderCommand.COMMAND_WORD + "1 159753"));
+        // negative index
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(FindBidderCommand.COMMAND_WORD + "-1 Kor Ming Soon"));
     }
 
     @Test
@@ -97,6 +169,20 @@ public class AddressBookParserTest {
         DeleteBidderCommand command = (DeleteBidderCommand) parser.parseCommand(
                 DeleteBidderCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteBidderCommand(INDEX_FIRST_PERSON), command);
+
+        // invalid input test
+        // negative number
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(DeleteBidderCommand.COMMAND_WORD + "-1"));
+        // decimal
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(DeleteBidderCommand.COMMAND_WORD + "0.1"));
+        // wrong number
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(DeleteBidderCommand.COMMAND_WORD + "0"));
+        // empty
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(DeleteBidderCommand.COMMAND_WORD + ""));
     }
 
     @Test
@@ -112,16 +198,37 @@ public class AddressBookParserTest {
         Seller seller = new SellerBuilder().build();
         AddSellerCommand command = (AddSellerCommand) parser.parseCommand(SellerUtil.getAddSellerCommand(seller));
         assertEquals(new AddSellerCommand(seller), command);
+
+        // invalid input test
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(AddSellerCommand.COMMAND_WORD + "n/12345 p/Kor Ming Soon"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(AddSellerCommand.COMMAND_WORD + "n/Ming Soon p/-78945"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(AddSellerCommand.COMMAND_WORD + "p/123456789"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(AddSellerCommand.COMMAND_WORD + "n/Kor Ming Soon"));
     }
 
     @Test
     public void parseSellerCommand_sellerEdit() throws Exception {
         Seller seller = new SellerBuilder().build();
-        EditSellerCommand.EditSellerDescriptor descriptor = new EditSellerDescriptorBuilder(seller).build();
+        EditSellerCommand.EditSellerDescriptor descriptor =
+                new EditSellerDescriptorBuilder(seller).build();
         EditSellerCommand command = (EditSellerCommand) parser.parseCommand(EditSellerCommand.COMMAND_WORD
                 + " " + INDEX_FIRST_PERSON.getOneBased()
                 + " " + SellerUtil.getEditSellerDescriptorDetails(descriptor));
-        //assertEquals(new EditSellerCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditSellerCommand(INDEX_FIRST_PERSON, descriptor), command);
+
+        // invalid input test
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(EditSellerCommand.COMMAND_WORD + "1 n/67890"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(EditSellerCommand.COMMAND_WORD + "1 p/-1234"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(EditSellerCommand.COMMAND_WORD + "-1 n/Kor Ming Soon"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(EditSellerCommand.COMMAND_WORD + "1 111"));
     }
 
     @Test
@@ -130,6 +237,14 @@ public class AddressBookParserTest {
         FindSellerCommand command = (FindSellerCommand) parser.parseCommand(
                 FindSellerCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindSellerCommand(new NameContainsKeywordsPredicate(keywords)), command);
+
+        // invalid input test
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(FindSellerCommand.COMMAND_WORD + "aaaaaaaa"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(FindSellerCommand.COMMAND_WORD + "1 159753"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(FindSellerCommand.COMMAND_WORD + "-1 Kor Ming Soon"));
     }
 
     @Test
@@ -137,6 +252,16 @@ public class AddressBookParserTest {
         DeleteSellerCommand command = (DeleteSellerCommand) parser.parseCommand(
                 DeleteSellerCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteSellerCommand(INDEX_FIRST_PERSON), command);
+
+        // invalid input test
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(DeleteSellerCommand.COMMAND_WORD + "-1"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(DeleteSellerCommand.COMMAND_WORD + "0.1"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(DeleteSellerCommand.COMMAND_WORD + "0"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(DeleteSellerCommand.COMMAND_WORD + ""));
     }
 
     @Test

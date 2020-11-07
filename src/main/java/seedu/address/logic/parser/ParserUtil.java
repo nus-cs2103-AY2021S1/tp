@@ -50,6 +50,9 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
+        if (!Name.isValidLength(name)) {
+            throw new ParseException(Name.NAME_LENGTH_EXCEED);
+        }
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
@@ -66,7 +69,7 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
+        if (!Phone.isValidPhone(trimmedPhone) || !Phone.isValidLength(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
@@ -124,7 +127,7 @@ public class ParserUtil {
             Date dateObject = formatter.parse(trimmedTime);
             Date currentActualDate = Calendar.getInstance().getTime();
             if (dateObject.before(currentActualDate)) {
-                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
+                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS_PAST_DATE);
             }
             String dateString = formatter.format(dateObject);
             return new MeetingDate(dateString);

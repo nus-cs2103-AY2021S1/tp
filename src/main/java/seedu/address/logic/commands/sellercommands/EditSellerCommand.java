@@ -65,7 +65,7 @@ public class EditSellerCommand extends Command {
         Seller sellerToEdit = lastShownList.get(index.getZeroBased());
         Seller editedSeller = createEditedSeller(sellerToEdit, editSellerDescriptor);
 
-        if (!sellerToEdit.isSamePerson(editedSeller) && model.hasSeller(editedSeller)) {
+        if (!sellerToEdit.isSameSeller(editedSeller) && model.hasSeller(editedSeller)) {
             throw new CommandException(MESSAGE_DUPLICATE_SELLER);
         }
 
@@ -83,8 +83,8 @@ public class EditSellerCommand extends Command {
         assert sellerToEdit != null;
         Name updatedName = editSellerDescriptor.getName().orElse(sellerToEdit.getName());
         Phone updatedPhone = editSellerDescriptor.getPhone().orElse(sellerToEdit.getPhone());
-        SellerId updatedId = editSellerDescriptor.getId().orElse((SellerId) sellerToEdit.getId());
-        return new Seller(updatedName, updatedPhone, updatedId);
+        SellerId unmodifiedSellerId = (SellerId) sellerToEdit.getId();
+        return new Seller(updatedName, updatedPhone, unmodifiedSellerId);
     }
 
 
@@ -128,7 +128,7 @@ public class EditSellerCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setTag(toCopy.tag);
-            setId(toCopy.id);
+            setSellerId(toCopy.id);
         }
 
         /**
@@ -162,7 +162,7 @@ public class EditSellerCommand extends Command {
             return Optional.ofNullable(tag);
         }
 
-        public void setId(SellerId id) {
+        public void setSellerId(SellerId id) {
             this.id = id;
         }
 

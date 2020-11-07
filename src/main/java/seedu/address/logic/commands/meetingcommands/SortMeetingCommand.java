@@ -6,7 +6,6 @@ import java.util.Comparator;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
@@ -46,6 +45,6 @@ public class SortMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateSortedMeetingList(comparator);
-        return new CommandResult(MESSAGE_SUCCESS).setEntity(EntityType.MEETING);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

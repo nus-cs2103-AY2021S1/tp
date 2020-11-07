@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.model.person.bidder.Bidder.BIDDER_TAG;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.biddercommands.EditBidderCommand;
@@ -13,6 +14,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.id.BidderId;
 
 /**
  * Parses input arguments and creates a new EditBidderCommand object
@@ -49,6 +51,9 @@ public class EditBidderCommandParser implements Parser<EditBidderCommand> {
         if (!editBidderDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditBidderCommand.MESSAGE_NOT_EDITED);
         }
+
+        editBidderDescriptor.setTag(BIDDER_TAG);
+        editBidderDescriptor.setBidderId(BidderId.DEFAULT_BIDDER_ID);
 
         return new EditBidderCommand(index, editBidderDescriptor);
     }

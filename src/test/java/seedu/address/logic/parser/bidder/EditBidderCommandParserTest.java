@@ -85,7 +85,7 @@ public class EditBidderCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + NAME_DESC_AMY;
 
         EditBidderDescriptor descriptor = new EditBidderDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).build();
+                .withDefaultIdAndTag().withPhone(VALID_PHONE_BOB).build();
         EditBidderCommand expectedCommand = new EditBidderCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -96,7 +96,8 @@ public class EditBidderCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB;
 
-        EditBidderDescriptor descriptor = new EditBidderDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditBidderDescriptor descriptor = new EditBidderDescriptorBuilder()
+                .withDefaultIdAndTag().withPhone(VALID_PHONE_BOB).build();
         EditBidderCommand expectedCommand = new EditBidderCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -107,13 +108,15 @@ public class EditBidderCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditBidderDescriptor descriptor = new EditBidderDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditBidderDescriptor descriptor = new EditBidderDescriptorBuilder()
+                .withDefaultIdAndTag().withName(VALID_NAME_AMY).build();
         EditBidderCommand expectedCommand = new EditBidderCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-        descriptor = new EditBidderDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        descriptor = new EditBidderDescriptorBuilder()
+                .withDefaultIdAndTag().withPhone(VALID_PHONE_AMY).build();
         expectedCommand = new EditBidderCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -125,7 +128,8 @@ public class EditBidderCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY
                 + PHONE_DESC_AMY + PHONE_DESC_BOB;
 
-        EditBidderDescriptor descriptor = new EditBidderDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditBidderDescriptor descriptor = new EditBidderDescriptorBuilder()
+                .withDefaultIdAndTag().withPhone(VALID_PHONE_BOB).build();
         EditBidderCommand expectedCommand = new EditBidderCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -136,13 +140,15 @@ public class EditBidderCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditBidderDescriptor descriptor = new EditBidderDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditBidderDescriptor descriptor = new EditBidderDescriptorBuilder()
+                .withDefaultIdAndTag().withPhone(VALID_PHONE_BOB).build();
         EditBidderCommand expectedCommand = new EditBidderCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        descriptor = new EditBidderDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        descriptor = new EditBidderDescriptorBuilder()
+                .withDefaultIdAndTag().withPhone(VALID_PHONE_BOB).build();
         expectedCommand = new EditBidderCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
