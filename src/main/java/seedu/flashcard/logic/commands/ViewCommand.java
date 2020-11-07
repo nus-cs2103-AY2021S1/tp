@@ -1,7 +1,8 @@
 package seedu.flashcard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.flashcard.logic.parser.CliSyntax.FLAG_ANSWER;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_FLAG;
+import static seedu.flashcard.logic.parser.ViewCommandParser.FLAG_ANSWER;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class ViewCommand extends Command {
             + ": Views the flashcard identified by the index number used in the displayed flashcard list. "
             + "Specify -a to show answer and notes too.\n"
             + "Parameters: INDEX (must be a positive integer greater than 0)"
-            + " [" + FLAG_ANSWER + "]\n"
+            + " [" + PREFIX_FLAG + FLAG_ANSWER + "]\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_VIEW_FLASHCARD_SUCCESS = "Viewed Flashcard: %1$s";

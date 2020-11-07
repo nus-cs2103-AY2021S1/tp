@@ -117,6 +117,18 @@ This section will give you some useful information about the various command for
 * All additional input after commands which do not have input fields such as `list`, `exit`, `clear`, `help`, `review`, `quiz` will be ignored.
   * eg. `list` and `list 123` will have the same effect.
 
+<br>
+
+* Flags such as `-a` and `-d` allow white spaces within them.
+  * eg. `sort success -   a` is valid and will sort flashcards by success rate in ascending order.
+  * eg. `view 1 -  a` is valid and will view the first flashcard in the displayed flashcard list with answer shown.
+
+<br>
+
+* Prefixes and flags are both case sensitive.
+  * eg. `q/` is not the same as `Q/`
+  * eg. `-a` is not the same as `-A`
+
 </div>
 
 ## Common Input Fields
