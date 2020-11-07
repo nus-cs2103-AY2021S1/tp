@@ -143,6 +143,91 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding a `Lesson`
+
+#### Implementation
+
+The classes involved in creating a lesson are `Lesson` and`LessonCommand`. The user inputs the `dayOfTheWeek` , `startTime` and `endTime` of the lesson as well as the `startDate` and `endDate`. The lesson information is then stored in planus.json.
+
+`Lesson` implements the following operations:
+
+* `Lesson#createRecurringTasks` — Creates a list of recurring event tasks based on the lesson's details.
+
+  <br>
+
+The following sequence diagram describes what happens when a user adds a lesson:
+
+#### Design consideration:
+
+##### Aspect: How to store lessons in PlaNus
+
+* **Alternative 1 (current choice):** Save lesson information in a lesson json object.
+  * Pros: Saves space as lessons that occur over a long period of time are not stored as many events that contain similar attributes.
+  * Cons: PlaNus will be slower on start up as lessons have to be turned into events and added to PlaNus.
+
+* **Alternative 2:** Save lessons as multiple recurring events.
+  * Pros: PlaNus will be faster on start up as lessons are already stored as events.
+  * Cons: Uses more space by storing more json objects.
+
+### Data analysis feature
+
+#### Implementation
+
+The data analysis feature is facilitated by `Statistics` and `StatisticsData`. 
+
+The time taken to complete each task is stored internally in planus.json when the `DoneCommand` is executed. The `Statistics` class facilitates the reading of the data from Planus.json.
+
+`Statistics` implements the following operations:
+
+* `Statistics#generateStatistics(startDate, endDate)` — Computes total duration of time spent on all tasks and lessons for the specified time period and stores it in a data structure.
+
+  <br>
+
+The `StatisticsData` class contains the methods to store and retrieve information from the custom data structure. The custom data structure comprises of a HashMap where the **`tag` containing the module code** is the **key** and the **value** is a size two integer array with the **total time spent on `task`** being stored in the first index and the **total time spent on `lesson`** in the second index.
+
+`StatisticsData` implements the following operations to read and update data stored in this custom data structure:
+
+* `StatisticsData#addTag(tag)` — Stores the module tag in the data structure.
+
+* `StatisticsData#addTaskTime(tag, value)` — Adds the time taken for tasks with the specified module tag.
+
+* `StatisticsData#addLessonTime(tag, value)` — Adds the time taken for lessons with the specified module tag.
+
+* `StatisticsData#getTotalTime(tag)` — Retrieves total time spent on both lessons and tasks associated with module tag from data structure.
+
+  <br>
+
+The following activity diagram summarises when the data analysis chart and data is being updated in the UI:
+
+
+
+The following sequence diagram describes what happens when the user keys in the `done` comman:
+
+
+
+#### Design consideration:
+
+##### Aspect: How to track time spent on each task or lesson
+
+* **Alternative 1 (current choice)**: Allow user to input how much time he has spent on each deadline  with the `done` command and automatically calculating the time spent on each `event`/`lesson` by assuming the user has spent the amount of time between the start and end time of the `event`/`lesson`.
+  * Pros: 
+    * User does not have to key in as many commands as he inputs the time spent on each task when he completed the task. 
+    * User does not have to worry about time spent on all `event` and `lesson`.
+  * Cons: 
+    * User must manually keep track of the time spent on the deadline.
+    * User is not able to indicate actual time spent on `event` and `lesson`.
+
+* **Alternative 2:** Use a `start` and `stop` command to indicate when the user is spending time on a `deadline`/`event`/`lesson`, automatically recording the time spent.
+  * Pros: User will be able to more accurately track time spent on each `task`/`lesson`.
+  * Cons: Keying in multiple `start` and `stop` commands may be tedious for the user.
+
+
+
+**This is where my part ends**
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
