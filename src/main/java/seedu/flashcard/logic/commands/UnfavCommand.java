@@ -33,6 +33,8 @@ public class UnfavCommand extends Command {
 
     public static final String MESSAGE_UNFAVOURITE_FLASHCARD_SUCCESS = "Unfavourited Flashcard: %1$s";
 
+    public static final String MESSAGE_FLASHCARD_NOT_FAVOURITED = "This flashcard is not favourited.";
+
     private final Index targetIndex;
 
     public UnfavCommand(Index targetIndex) {
@@ -53,7 +55,7 @@ public class UnfavCommand extends Command {
 
 
         if (!flashcardToUnfavourite.isFavourite()) {
-            return new CommandResult(String.format(MESSAGE_UNFAVOURITE_FLASHCARD_SUCCESS, flashcardToUnfavourite));
+            return new CommandResult(MESSAGE_FLASHCARD_NOT_FAVOURITED);
         }
 
         Flashcard unfavouredFlashcard = createUnfavouriteFlashcard(flashcardToUnfavourite);

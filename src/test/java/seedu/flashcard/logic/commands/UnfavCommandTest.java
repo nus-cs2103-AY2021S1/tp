@@ -87,6 +87,24 @@ public class UnfavCommandTest {
     }
 
     @Test
+    public void execute_unfavouriteUnfavouritedFlashcard_success() {
+        Flashcard flashcardToUnfavourite = model.getFilteredFlashcardList()
+                .get(INDEX_FIRST_FLASHCARD.getZeroBased());
+
+        Flashcard flashcardNotFavourited = new FlashcardBuilder(flashcardToUnfavourite)
+                .withFavouriteStatus(true).build();
+
+        UnfavCommand unfavCommand = new UnfavCommand(INDEX_FIRST_FLASHCARD);
+
+        String expectedMessage = UnfavCommand.MESSAGE_FLASHCARD_NOT_FAVOURITED;
+
+        Model expectedModel = new ModelManager(new FlashcardDeck(model.getFlashcardDeck()), new UserPrefs());
+        expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), flashcardNotFavourited);
+
+        assertCommandSuccess(unfavCommand, model, expectedMessage, model);
+    }
+
+    @Test
     public void equals() {
         UnfavCommand unfavCommand = new UnfavCommand(INDEX_FIRST_FLASHCARD);
         UnfavCommand unfavSecondCommand = new UnfavCommand(INDEX_SECOND_FLASHCARD);

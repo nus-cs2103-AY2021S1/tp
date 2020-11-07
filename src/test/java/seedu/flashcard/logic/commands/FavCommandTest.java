@@ -91,7 +91,7 @@ public class FavCommandTest {
 
         FavCommand favCommand = new FavCommand(INDEX_SECOND_FLASHCARD);
 
-        String expectedMessage = String.format(FavCommand.MESSAGE_FAVOURITE_FLASHCARD_SUCCESS, favouritedFlashcard);
+        String expectedMessage = FavCommand.MESSAGE_FLASHCARD_IS_ALREADY_FAVOURITED;
 
         Model expectedModel = new ModelManager(new FlashcardDeck(model.getFlashcardDeck()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(1), favouritedFlashcard);
