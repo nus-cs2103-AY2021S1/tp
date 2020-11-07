@@ -7,19 +7,20 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ArchiveCommand;
+import seedu.address.logic.commands.UnarchiveCommand;
 
 
-public class ArchiveCommandParserTest {
-    private ArchiveCommandParser parser = new ArchiveCommandParser();
+
+public class UnarchiveCommandParserTest {
+    private UnarchiveCommandParser parser = new UnarchiveCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new ArchiveCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new UnarchiveCommand(INDEX_FIRST_PERSON));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnarchiveCommand.MESSAGE_USAGE));
     }
 }
