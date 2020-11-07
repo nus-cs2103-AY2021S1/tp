@@ -14,6 +14,7 @@ public class ListCommandParserTest {
     @Test
     public void parse_validArgs_returnsListCommand() {
         assertParseSuccess(parser, "1", new ListCommand(Index.fromZeroBased(1)));
+        assertParseSuccess(parser, "25", new ListCommand(Index.fromZeroBased(25)));
         assertParseSuccess(parser, "50", new ListCommand(Index.fromZeroBased(50)));
     }
 

@@ -16,9 +16,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 public class TimetableRetriever {
     private static final String JSON_API = "https://api.nusmods.com/v2/2020-2021/modules/";
@@ -182,7 +182,7 @@ public class TimetableRetriever {
             if (date.isAfter(LocalDate.now())) {
                 String startTime = date.format(LOCAL_DATE_FORMATTER) + " " + (String) currentData.get("startTime");
                 String endTime = date.format(LOCAL_DATE_FORMATTER) + " " + (String) currentData.get("endTime");
-                lessons.add(new Lesson(new Name(name), new Deadline(startTime), new Deadline(endTime),
+                lessons.add(new Lesson(new Name(name), new Time(startTime), new Time(endTime),
                         new ModuleCode(module)));
             }
         }

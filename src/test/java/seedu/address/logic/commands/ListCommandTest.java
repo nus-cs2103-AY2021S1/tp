@@ -17,8 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.task.Deadline;
-
+import seedu.address.model.task.Time;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -31,7 +30,7 @@ public class ListCommandTest {
 
     private Predicate<Assignment> showLimitedAssignments() {
         return assignment -> {
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Deadline.DEADLINE_DATE_TIME_FORMAT)
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Time.TIME_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);
             String dateAndTimeToParse = assignment.getDeadline().value;
             LocalDateTime currentDateAndTime = LocalDateTime.now();
@@ -67,6 +66,17 @@ public class ListCommandTest {
         ListCommand listForOneDay = new ListCommand(index);
         expectedModel.updateFilteredAssignmentList(showLimitedAssignments());
         assertCommandSuccess(listForOneDay, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_tenDaysFromCurrentDate_showAssignments() {
+        index = Index.fromZeroBased(10);
+        model.updateFilteredAssignmentList(showLimitedAssignments());
+        String expectedMessage = String.format(
+                Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, model.getFilteredAssignmentList().size());
+        ListCommand listForTenDays = new ListCommand(index);
+        expectedModel.updateFilteredAssignmentList(showLimitedAssignments());
+        assertCommandSuccess(listForTenDays, model, expectedMessage, expectedModel);
     }
 
     @Test

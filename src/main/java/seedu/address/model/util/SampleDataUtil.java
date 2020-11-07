@@ -9,9 +9,9 @@ import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 /**
  * Contains utility methods for populating {@code ProductiveNus} with sample data.
@@ -26,12 +26,12 @@ public class SampleDataUtil {
     private static final Priority MEDIUM_PRIORITY = new Priority("MEDIUM");
     private static final Done NOT_DONE = new Done();
     private static final Done IS_DONE = new Done(true);
-    private static final Deadline DEADLINE_OVERDUE = new Deadline(LocalDateTime.now().minusDays(1));
-    private static final Deadline DEADLINE_12_HOURS = new Deadline(LocalDateTime.now().plusHours(12));
-    private static final Deadline DEADLINE_5_DAYS = new Deadline(LocalDateTime.now().plusDays(5));
-    private static final Deadline DEADLINE_15_DAYS = new Deadline(LocalDateTime.now().plusDays(15));
-    private static final Deadline DEADLINE_25_DAYS = new Deadline(LocalDateTime.now().plusDays(25));
-    private static final Deadline DEADLINE_60_DAYS = new Deadline(LocalDateTime.now().plusDays(60));
+    private static final Time DEADLINE_OVERDUE = new Time(LocalDateTime.now().minusDays(1));
+    private static final Time DEADLINE_12_HOURS = new Time(LocalDateTime.now().plusHours(12));
+    private static final Time DEADLINE_5_DAYS = new Time(LocalDateTime.now().plusDays(5));
+    private static final Time DEADLINE_15_DAYS = new Time(LocalDateTime.now().plusDays(15));
+    private static final Time DEADLINE_25_DAYS = new Time(LocalDateTime.now().plusDays(25));
+    private static final Time DEADLINE_60_DAYS = new Time(LocalDateTime.now().plusDays(60));
     public static Assignment[] getSampleAssignments() {
         return new Assignment[] {
             new Assignment(new Name("CS1231S Homework"), DEADLINE_5_DAYS,
@@ -56,7 +56,7 @@ public class SampleDataUtil {
         suggestedStartTime = suggestedStartTime.withHour(7);
         suggestedStartTime = suggestedStartTime.withMinute(0);
         LocalDateTime suggestedEndTime = suggestedStartTime.plusHours(2);
-        return new Schedule(new Deadline(suggestedStartTime), new Deadline(suggestedEndTime));
+        return new Schedule(new Time(suggestedStartTime), new Time(suggestedEndTime));
     }
 
     private static Schedule getValidScheduleBeforeNextMonth() {
@@ -65,7 +65,7 @@ public class SampleDataUtil {
         suggestedStartTime = suggestedStartTime.withHour(19);
         suggestedStartTime = suggestedStartTime.withMinute(0);
         LocalDateTime suggestedEndTime = suggestedStartTime.plusHours(3);
-        return new Schedule(new Deadline(suggestedStartTime), new Deadline(suggestedEndTime));
+        return new Schedule(new Time(suggestedStartTime), new Time(suggestedEndTime));
     }
 
     public static ReadOnlyProductiveNus getSampleProductiveNus() {

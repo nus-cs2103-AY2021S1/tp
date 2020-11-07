@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import static seedu.address.model.task.Deadline.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.address.model.task.Time.TIME_DATE_TIME_FORMAT;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -17,8 +17,8 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Time;
 
 /**
  * Panel containing the list of tasks.
@@ -29,7 +29,7 @@ public class UpcomingTaskListPanel extends UiPart<Region> {
     private static final long DAY_PER_WEEK = 7;
     private static final long MIN_DAY_PER_MONTH = 28;
     private static final String FXML = "UpcomingTaskListPanel.fxml";
-    private static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+    private static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(TIME_DATE_TIME_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
     private static final String DUE_SOON_STYLE_CLASS = "due-soon";
     private static final String OVERDUE_STYLE_CLASS = "overdue";
@@ -48,7 +48,7 @@ public class UpcomingTaskListPanel extends UiPart<Region> {
         upcomingTaskListView.setCellFactory(listView -> new UpcomingTaskListViewCell());
     }
 
-    public static void getDueDate(Label label, Deadline deadline) {
+    public static void getDueDate(Label label, Time deadline) {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime due = LocalDateTime.parse(deadline.value, inputFormat);
         String formattedDue = due.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));

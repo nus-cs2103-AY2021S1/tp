@@ -9,9 +9,9 @@ import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 /**
  * Jackson-friendly version of {@link Assignment}.
@@ -95,12 +95,12 @@ class JsonAdaptedAssignment {
 
         if (deadline == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
-        if (!Deadline.isValidDeadline(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!Time.isValidTime(deadline)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
-        final Deadline modelDeadline = new Deadline(deadline);
+        final Time modelDeadline = new Time(deadline);
 
         if (moduleCode == null) {
             throw new IllegalValueException(String.format(
@@ -118,6 +118,7 @@ class JsonAdaptedAssignment {
         // the assignment is scheduled
         if ((suggestedStartTime.equals("") || suggestedEndTime.equals("")) && isScheduled) {
             throw new IllegalValueException(
+<<<<<<< HEAD
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Schedule.class.getSimpleName()));
         }
         if (isScheduled && !Deadline.isValidDeadline(suggestedStartTime)) {
@@ -125,6 +126,15 @@ class JsonAdaptedAssignment {
         }
         if (isScheduled && !Deadline.isValidDeadline(suggestedEndTime)) {
             throw new IllegalValueException(Schedule.END_TIME_MESSAGE_CONSTRAINS);
+=======
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
+        }
+        if (!suggestedStartTime.equals("") && !Time.isValidTime(suggestedStartTime)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+        }
+        if (!suggestedEndTime.equals("") && !Time.isValidTime(suggestedEndTime)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+>>>>>>> 6bec7fb237fbbcccd3fab8fc49fd036c908fcd59
         }
         // the assignment is not scheduled
         if (!isScheduled && (!suggestedStartTime.equals("") || !suggestedEndTime.equals(""))) {
@@ -132,8 +142,8 @@ class JsonAdaptedAssignment {
         }
 
         if (isScheduled) {
-            final Schedule modelSchedule = new Schedule(new Deadline(suggestedStartTime),
-                    new Deadline(suggestedEndTime));
+            final Schedule modelSchedule = new Schedule(new Time(suggestedStartTime),
+                    new Time(suggestedEndTime));
             return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, modelSchedule, modelPriority,
                     modelDone);
         } else {

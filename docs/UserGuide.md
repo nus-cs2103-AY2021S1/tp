@@ -26,7 +26,7 @@ You can familiarize yourself with the terminologies, syntax and icons used in th
 ### GUI terminologies
 The figure below shows the GUI of ProductiveNUS, with its sections labelled. 
 ![GUI](images/GUI.png)
-*Figure X: Labelled GUI sections*
+*Figure 1: Labelled GUI sections*
 
 ### Icon usages
 Wondering what each icon is used for? You can refer to the table below to find out.
@@ -71,6 +71,7 @@ For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
    ![Ui](images/Ui.png)
+   *Figure 2: ProductiveNUS GUI*
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -114,7 +115,7 @@ For example, to add a lab report assignment that is **due** on 23th April 2020 1
 simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the information of the assignment will be displayed as shown in the labelled diagram below.
 
    ![UserGuideAddCommand](images/UserGuideAddCommand.PNG)
-   *Figure 1: Information of the assignment added labelled*
+   *Figure 3: Information of the assignment added labelled*
 
 <div markdown="block" class="alert alert-primary">
 
@@ -135,21 +136,21 @@ Examples:
 
 Format: `delete INDEX [MORE_INDEXES]`
 
-You can delete assignments from your assignment list by specifying the assignment `INDEX` as shown in your list.
+You can delete **one or more** assignments from your assignment list by specifying the `INDEX` of assignments you want to delete as shown in your list.
 
-You can delete **one or more** assignments at a time. Here is an example with steps to follow:
+Here is an example with steps to follow:
 
 1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the Command Box as per their indexes that are labelled in the figure.
 
 ![DeleteCommand1](images/DeleteCommandDiagram1.png)
-*Figure X: User input and location of assignment indexes*
+*Figure 4: User input and location of assignment indexes*
 
 2) You have successfully deleted both assignments from the assignment list, and they are no longer displayed.
 
 3) A "Deleted assignment(s)" message that includes the information of your deleted assignments will be displayed in the Message Box.
 
 ![DeleteCommand2](images/DeleteCommandDiagram2.png)
-*Figure X: The displayed message and the updated list*
+*Figure 5: The displayed message and the updated list*
 
 Examples:
 * `delete 1`
@@ -175,14 +176,14 @@ Follow these steps and try importing your timetable:
 1) At your NUSMods timetable website, click on the "Share/Sync" button to obtain your timetable share link URL.
 
    ![NusModsShareSync](images/NusModsShareSync.PNG)
-   *Figure X: The "Share/Sync" at the NUSMods website highlighted in green*
+   *Figure 6: The "Share/Sync" at the NUSMods website highlighted in green*
 
 2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command.
 
 3) Added lesson information can be found in your task list.
 
    ![UserGuideUpcomingTasks](images/UserGuideUpcomingTasks.PNG)
-   *Figure X: Added lesson information can be found in the `Upcoming tasks` list highlighted in red*
+   *Figure 7: Added lesson information can be found in the `Upcoming tasks` list highlighted in red*
 
 <div markdown="block" class="alert alert-primary">
 
@@ -210,20 +211,14 @@ Here is an example with steps for you to follow:
 1) You can enter `list 3` as shown in the diagram below to list your assignments that are due within 3 days from the current date and time. 
 
 ![ListCommand1](images/ListCommandDiagram1.png)
-*Figure X: `list 3` inputted by user*
+*Figure 8: `list 3` inputted by user*
 
 2) If the current date and time is 29/10/2020 1800, all assignments due within this date and time to 01/11/2020 1800 will be displayed in the assignment list. 
 
 3) A message that indicates the number of assignments listed is displayed in the Message Box.
 
 ![ListCommand2](images/ListCommandDiagram2.png)
-*Figure X: The displayed message and the updated list*
-
-<div markdown="span" class="alert alert-success">
-
-**:bulb: Tip:**
-You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
-</div>
+*Figure 9: The displayed message and the updated list*
 
 More examples: 
 - `list`
@@ -232,7 +227,6 @@ More examples:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* `NUMBER_OF_DAYS` **must be a positive integer** 1, 2, 3, …​
 * **Only one** number can be keyed in. For example, `list 1 2` will not work. 
 </div>
 
@@ -259,7 +253,6 @@ This is the table of prefixes used:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note for prefixes and keywords:**<br>
-* Date keywords must be in the format **dd-MM-yyyy** and time keywords must be in the format **HHmm**.
 * For prefix `d/`, date keywords are **irrespective of time** and time keywords are **irrespective of date**. For example, `find d/1300 25-11-2020` finds all assignments due on 25-11-2020, at any time of the day and all assignments due at 1300, on any date.
 * Keywords used with prefixes `n/`,`mod/` and `p/` are **case-insensitive**.
 </div>
@@ -269,14 +262,14 @@ Here is an example with steps to follow:
 1) To find assignments from the modules CS2100 and ST2334, you can simply key in `find mod/CS2100 ST2334`. 
 
 ![FindCommand1](images/FindCommandDiagram1.png)
-*Figure X: `find mod/CS2100 ST2334` inputted by user*
+*Figure 10: `find mod/CS2100 ST2334` inputted by user*
 
 2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
 
 3) A message that indicates the number of assignments found is displayed in the Message Box.
 
 ![FindCommand2](images/FindCommandDiagram2.png)
-*Figure X: The displayed message and the updated list*
+*Figure 11: The displayed message and the updated list*
 
 
 <div markdown="block" class="alert alert-primary">
@@ -305,23 +298,20 @@ This is the table of prefixes used:
 | `mod/` | mod/MODULE_CODE | - `mod/ST2334` |
 | `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
 
-<div markdown="block" class="alert alert-primary">
 
 Here is an example with steps to follow:
 
 1) To edit the name of the assignment with the first index in the assignment list to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
 
 ![EditCommand1](images/EditCommand1.png)
-
-*Figure X: `edit 1 n/Statistics Lab` inputted by user*
+*Figure 12: `edit 1 n/Statistics Lab` inputted by user*
 
 2) The assignment name will be changed to "Statistics Lab".
 
 3) A message that indicates details of the new edited assignment is displayed in the Message Box.
 
 ![EditCommand2](images/EditCommand2.png)
-
-*Figure X: The displayed message and the edited assignment*
+*Figure 13: The displayed message and the edited assignment*
 
 <div markdown="block" class="alert alert-primary">
 
@@ -337,29 +327,29 @@ Format: `remind INDEX [MORE_INDEXES]`
 You can set reminders for specific assignments which will be displayed in `Your reminders` (Highlighted in red in the figure below) for your easy referral.
 
    ![YourReminders](images/YourReminders.png)
-   *Figure X: `Your reminders` highlighted in red*
+   *Figure 14: `Your reminders` highlighted in red*
 
 You can use the `INDEX` of the assignment as shown in your assignment list to set reminders for that assignment. 
 
 For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the Figure X) and adds it to `Your reminders` (Figure X).
 
    ![Remind1](images/Remind1.png)
-   *Figure X: Before "Statistics tutorial" is added into `Your reminders`*
+   *Figure 15: Before "Statistics tutorial" is added into `Your reminders`*
       
    ![Remind1InYourReminders](images/Remind1InYourReminders.png)
-   *Figure X: "Statistics tutorial" (highlighted in red) is added into `Your reminders`*
+   *Figure 16: "Statistics tutorial" (highlighted in red) is added into `Your reminders`*
 
 You can set reminders for **more than one** assignments at a time as well. Here is an example with steps for you to follow:
 
 1) To set reminders assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your assignment list as shown in Figure X), you can simply enter `remind 2 4` into the Command Box.
 
    ![Remind24](images/Remind24.png)
-   *Figure X: Before "Essay" and "Assignment 3" are added into `Your reminders`*
+   *Figure 17: Before "Essay" and "Assignment 3" are added into `Your reminders`*
 
 2) You have successfully set reminders for both assignments, and they can now be found under `Your reminders`.
 
    ![Remind24InYourReminders](images/Remind24InYourReminders.png)
-   *Figure X: "Essay" and "Assignment 3" (highlighted in red) are added into `Your reminders`*
+   *Figure 18: "Essay" and "Assignment 3" (highlighted in red) are added into `Your reminders`*
 
 
 <div markdown="block" class="alert alert-primary">
@@ -379,10 +369,10 @@ You can remove your reminded assignments from `Your reminders` by specifying the
 For example, `unremind 1` will remove the first assignment in `Your reminders` ("CS2106 Lab" as shown in the figure below).
 
    ![Unemind1](images/Unremind1.png)
-   *Figure X: Before "Statistics tutorial" (highlighted in red) is removed from `Your reminders`*
+   *Figure 19: Before "Statistics tutorial" (highlighted in red) is removed from `Your reminders`*
       
    ![Unremind1YourReminders](images/Unremind1YourReminders.png)
-   *Figure X: "Statistics tutorial" is removed from`Your reminders`*
+   *Figure 20: "Statistics tutorial" is removed from`Your reminders`*
 
 <div markdown="block" class="alert alert-primary">
   
@@ -400,7 +390,7 @@ You can set priority levels for assignments based on their urgency. Assignments 
 shown with a coloured priority tag (As shown highlighted in red in the figure below).
 
    ![UserGuidePriorityTags](images/UserGuidePriorityTags.PNG)
-   *Figure X: The priority tags of assignments highlighted in red*
+   *Figure 21: The priority tags of assignments highlighted in red*
 
 You can use the `INDEX` of the assignment as shown in your assignment list to set priority tag for that assignment.
 
@@ -443,17 +433,17 @@ an example with steps to follow:
 the command line based on the indexes labelled in the figure.
 
    ![UserGuideDoneCommandIndex](images/UserGuideDoneCommandIndex.PNG)
-   *Figure 10a: `Indexes` of assignments labelled*
+   *Figure 22: `Indexes` of assignments labelled*
    
 2) The two assignments will be marked as done and each assignment will have a green tick displayed as labelled in the figure. 
 
    ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicksAdded.PNG)
-   *Figure 10b: Added ticks labelled*
+   *Figure 23: Added ticks labelled*
 
 3) A message that includes the information of the assignments marked as done will be displayed in the Command Box.
 
    ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.PNG)
-   *Figure 10c: Message shown in Command Box labelled*
+   *Figure 24: Message shown in Command Box labelled*
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
@@ -476,17 +466,17 @@ You can unmark `one` done assignment at a time. Here is an example with steps to
 you can simply enter `undone 2` into the command line based on the index labelled in the figure.
 
    ![UserGuideUndoneCommandIndex](images/UserGuideUndoneCommandIndex.PNG)
-   *Figure 11a: `Index` of assignment labelled*
+   *Figure 25: `Index` of assignment labelled*
 
 2) The green tick associated to the assignment is no longer displayed as shown in the diagram below.
 
    ![UserGuideUndoneCommandTickRemoval](images/UserGuideUndoneCommandTickRemoval.PNG)
-   *Figure 11b: Deleted green tick labelled*
+   *Figure 26: Deleted green tick labelled*
 
 3) A message that includes the information of your assignment marked as undone will be displayed in the Command Box.
 
    ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.PNG)
-   *Figure 11c: Message shown in Command Box labelled*
+   *Figure 27: Message shown in Command Box labelled*
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
@@ -545,7 +535,7 @@ Format: `help`
 If you are new to ProductiveNUS or want to have a quick overview of all the available commands, you can simply enter `help` and a Help Window will appear as shown in the labelled diagram below.
 
    ![UserGuideHelpCommand](images/UserGuideHelpCommand.PNG)
-   *Figure 12: Help Window labelled*
+   *Figure 28: Help Window labelled*
 
 ### Exiting the program : `exit`
 
@@ -599,7 +589,7 @@ You can reschedule by using the schedule command on that assignment again.<br>
 
 1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the diagram below.<br>
    ![UserGuideReschedule](images/UserGuideReschedule.PNG)
-   *Figure 20a: Index of the assignment to reschedule labelled*
+   *Figure 29: Index of the assignment to reschedule labelled*
    
 <div markdown="span" class="alert alert-success">
 **:bulb: Tip:**
@@ -610,7 +600,7 @@ You can paste the command into the command box after step 2 and repeat step 1-2 
 
 2. Press ENTER to reschedule your assignment and your assignment will be scheduled to another time or day as shown in the diagram below.<br>
    ![UserGuideRescheduleSuccess](images/UserGuideRescheduleSuccess.PNG)
-   *Figure 20b: New suggested time for assignment labelled*
+   *Figure 30: New suggested time for assignment labelled*
 <br>
 
 **Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?<br>
@@ -619,17 +609,17 @@ You can paste the command into the command box after step 2 and repeat step 1-2 
 1. Open the folder where you have downloaded and saved the productivenus.jar file.
 2. Copy the file directory of the folder. You can refer to the labelled diagram below.<br>
    ![UserGuideLocateDirectory](images/UserGuideLocateDirectory.PNG)
-   *Figure 21a: File directory labelled*
+   *Figure 31: File directory labelled*
    
 3. Open your command prompt. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
 4. Your command prompt will start, and it should look something similar to the diagram below.<br>
    ![UserGuideCommandPrompt](images/UserGuideCommandPrompt.PNG)
-   *Figure 21b: Interface of Command Prompt*
+   *Figure 32: Interface of Command Prompt*
    
 4. In the command prompt, type `cd ` and paste the file directory that you have copied in step 2.
 <br>For example, `cd C:\Users\YourUserName\Desktop\ProductiveNUS`.
 5. Press ENTER and the file directory will be shown in the command prompt as shown in the diagram below.<br>
    ![UserGuideChangeDirectory](images/UserGuideChangeDirectory.PNG)
-   *Figure 21c: After changing file directory in Command Prompt*
+   *Figure 33: After changing file directory in Command Prompt*
    
 6. Finally, type `java -jar productivenus.jar` and press ENTER to start the app.
