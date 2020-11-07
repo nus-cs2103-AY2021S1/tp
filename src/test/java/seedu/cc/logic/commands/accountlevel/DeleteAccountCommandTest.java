@@ -18,11 +18,13 @@ import seedu.cc.model.account.Name;
 import seedu.cc.testutil.TypicalEntries;
 
 public class DeleteAccountCommandTest {
-    private Model model = new ModelManager(TypicalEntries.getTypicalCommonCents(), new UserPrefs());
+    private static final String SECOND_ACCOUNT_NAME = "Second Account";
+
+    private final Model model = new ModelManager(TypicalEntries.getTypicalCommonCents(), new UserPrefs());
 
     @Test
     public void execute_validIndex_success() {
-        Account secondAccount = new Account(new Name("Second Account"));
+        Account secondAccount = new Account(new Name(SECOND_ACCOUNT_NAME));
         model.addAccount(secondAccount);
 
         DeleteAccountCommand deleteAccountCommand = new DeleteAccountCommand(INDEX_SECOND_ENTRY);
@@ -55,7 +57,7 @@ public class DeleteAccountCommandTest {
 
     @Test
     public void execute_deleteCurrentActiveAccount_throwCommandException() {
-        Account secondAccount = new Account(new Name("Second Account"));
+        Account secondAccount = new Account(new Name(SECOND_ACCOUNT_NAME));
         model.addAccount(secondAccount);
         DeleteAccountCommand deleteAccountCommand = new DeleteAccountCommand(INDEX_FIRST_ENTRY);
 
@@ -66,7 +68,7 @@ public class DeleteAccountCommandTest {
 
     @Test
     public void equals() {
-        Account secondAccount = new Account(new Name("Second Account"));
+        Account secondAccount = new Account(new Name(SECOND_ACCOUNT_NAME));
         model.addAccount(secondAccount);
 
         DeleteAccountCommand deleteFirstAccountCommand = new DeleteAccountCommand(INDEX_FIRST_ENTRY);

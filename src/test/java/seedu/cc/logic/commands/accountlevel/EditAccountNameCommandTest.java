@@ -17,6 +17,11 @@ import seedu.cc.model.account.Name;
 
 public class EditAccountNameCommandTest {
     private static final Account GENERAL_ACCOUNT = new Account(new Name("General account"));
+    private static final Name NEW_NAME = new Name("New Name");
+    private static final Name NAME_ONE = new Name("Name One");
+    private static final Name NAME_TWO = new Name("Name Two");
+    private static final int ONE = 1;
+
     private Model model = new ModelManager();
 
     @BeforeEach
@@ -32,7 +37,7 @@ public class EditAccountNameCommandTest {
     @Test
     public void execute_editNameOfFirstAccount_success() {
         Name currentName = GENERAL_ACCOUNT.getName();
-        Name newName = new Name("new Name");
+        Name newName = NEW_NAME;
         EditAccountNameCommand editAccountNameCommand = new EditAccountNameCommand(newName);
 
         Model expectedModel = new ModelManager(model.getCommonCents(), new UserPrefs());
@@ -45,9 +50,18 @@ public class EditAccountNameCommandTest {
     }
 
     @Test
+    public void execute_editSameName_failure() {
+        Name name = GENERAL_ACCOUNT.getName();
+        EditAccountNameCommand editAccountNameCommand = new EditAccountNameCommand(name);
+
+        String expectedMessage = EditAccountNameCommand.MESSAGE_NAME_UNCHANGED;
+
+        assertCommandFailure(editAccountNameCommand, model, expectedMessage);
+    }
+
+    @Test
     public void execute_editDuplicatedName_failure() {
-        Name currentName = GENERAL_ACCOUNT.getName();
-        Name newName = new Name("new Name");
+        Name newName = NEW_NAME;
         model.addAccount(new Account(newName));
         EditAccountNameCommand editAccountNameCommand = new EditAccountNameCommand(newName);
 
@@ -58,8 +72,8 @@ public class EditAccountNameCommandTest {
 
     @Test
     public void equals() {
-        Name nameOne = new Name("Name 1");
-        Name nameTwo = new Name("Name 2");
+        Name nameOne = NAME_ONE;
+        Name nameTwo = NAME_TWO;
         EditAccountNameCommand editAccountNameOneCommand = new EditAccountNameCommand(nameOne);
         EditAccountNameCommand editAccountNameTwoCommand = new EditAccountNameCommand(nameTwo);
 
@@ -71,7 +85,7 @@ public class EditAccountNameCommandTest {
         assertTrue(editAccountNameOneCommand.equals(addAccountNameOneCommandCopy));
 
         // different types -> returns false
-        assertFalse(editAccountNameOneCommand.equals(1));
+        assertFalse(editAccountNameOneCommand.equals(ONE));
 
         // null -> returns false
         assertFalse(editAccountNameOneCommand.equals(null));

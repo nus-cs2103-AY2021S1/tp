@@ -10,7 +10,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.cc.model.account.entry.Entry;
 import seedu.cc.model.account.entry.Expense;
 import seedu.cc.model.account.entry.Revenue;
 
@@ -102,13 +101,6 @@ public class ActiveAccountManager implements ActiveAccount {
     @Override
     public Account getAccount() {
         return activeAccount.copyData();
-    }
-
-    @Override
-    public boolean hasEntry(Entry entry) {
-        requireNonNull(entry);
-
-        return activeAccount.hasEntry(entry);
     }
 
     @Override

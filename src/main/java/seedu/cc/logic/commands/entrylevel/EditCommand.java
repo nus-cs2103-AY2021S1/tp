@@ -51,7 +51,7 @@ public class EditCommand extends Command {
     public static final String PREFIXES = PREFIX_CATEGORY + "CATEGORY\n"
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]\n"
             + "[" + PREFIX_AMOUNT + "AMOUNT]\n";
-    public static final String MESSAGE_SUCCESS = "Edited Entry: %1$s";
+    public static final String MESSAGE_SUCCESS = "Entry edited!\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     private Index index;
     private EditEntryDescriptor editEntryDescriptor;

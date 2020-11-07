@@ -86,7 +86,12 @@ public interface Model {
     /**
      * Checks if the filtered account list is empty.
      */
-    public boolean hasNoAccount();
+    boolean hasNoAccount();
+
+    /**
+     * Returns account from filtered list at {@index} of the list.
+     */
+    Account getAccountFromFilteredList(int index);
 
     /** Returns an unmodifiable view of the filtered account list */
     ObservableList<Account> getFilteredAccountList();

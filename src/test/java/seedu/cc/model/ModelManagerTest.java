@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cc.testutil.Assert.assertThrows;
+import static seedu.cc.testutil.TypicalEntries.getTypicalAccount;
+import static seedu.cc.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,6 +17,7 @@ import seedu.cc.commons.core.GuiSettings;
 import seedu.cc.model.account.Account;
 import seedu.cc.model.account.Name;
 import seedu.cc.model.account.exceptions.AccountNotFoundException;
+
 
 public class ModelManagerTest {
 
@@ -145,6 +148,14 @@ public class ModelManagerTest {
         modelManager.addAccount(editedAccount);
         modelManager.setAccount(editedAccount);
         assertTrue(modelManager.hasAccount(editedAccount));
+    }
+
+    @Test
+    public void getAccountFromFilteredList_validAccount_returnsTrue() {
+        modelManager.addAccount(getTypicalAccount());
+        Account expectedAccount = getTypicalAccount();
+        Account actualAccount = modelManager.getAccountFromFilteredList(INDEX_FIRST_ENTRY.getZeroBased());
+        assertEquals(actualAccount, expectedAccount);
     }
 
     @Test

@@ -58,7 +58,7 @@ public class DeleteAccountCommand extends Command {
         }
 
         Account currentActiveAccount = activeAccount.getAccount();
-        Account toBeDeleted = accounts.get(index);
+        Account toBeDeleted = model.getAccountFromFilteredList(index);
         boolean isAccountActive = currentActiveAccount.isSameAccount(toBeDeleted);
         if (isAccountActive) {
             throw new CommandException(MESSAGE_ACTIVE_ACCOUNT);

@@ -29,6 +29,8 @@ public class EditAccountNameCommand extends Command {
 
     public static final String MESSAGE_DUPLICATED_NAME = "There is already another account with this name!";
 
+    public static final String MESSAGE_NAME_UNCHANGED = "Your current account already has this name!";
+
     public final Name name;
 
     /**
@@ -43,15 +45,20 @@ public class EditAccountNameCommand extends Command {
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireAllNonNull(model, activeAccount);
         Account previousAccount = activeAccount.getAccount();
+        Name previousName = previousAccount.getName();
 
         Account accountForCheck = new Account(name);
+
+        if (name.equals(previousName)) {
+            throw new CommandException(MESSAGE_NAME_UNCHANGED);
+        }
+
         if (model.hasAccount(accountForCheck)) {
             throw new CommandException(MESSAGE_DUPLICATED_NAME);
         }
         activeAccount.setName(name);
         Account newAccount = activeAccount.getAccount();
         model.setAccount(previousAccount, newAccount);
-        Name previousName = previousAccount.getName();
         Name newName = newAccount.getName();
         return CommandResultFactory
             .createDefaultCommandResult(String.format(MESSAGE_SUCCESS, previousName.toString(), newName.toString()));

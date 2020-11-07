@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.cc.logic.commands.CommandResult;
 import seedu.cc.logic.commands.CommandResultFactory;
-import seedu.cc.logic.commands.exceptions.CommandException;
 import seedu.cc.model.Model;
 import seedu.cc.model.account.ActiveAccount;
 import seedu.cc.model.account.ActiveAccountManager;
@@ -22,21 +21,27 @@ import seedu.cc.testutil.ModelStub;
 import seedu.cc.testutil.TypicalEntries;
 
 public class FindCommandTest {
-
+    private static final String FIRST_EXPENSE_KEYWORD = "firstExpense";
+    private static final String SECOND_EXPENSE_KEYWORD = "secondExpense";
+    private static final String FIRST_REVENUE_KEYWORD = "firstRevenue";
+    private static final String SECOND_REVENUE_KEYWORD = "secondRevenue";
+    private static final String VALID_NONEXISTENT_KEYWORD = "none";
+    private static final String VALID_EXISTING_EXPENSE_KEYWORD = "shovel";
+    private static final String VALID_EXISTING_REVENUE_KEYWORD = "sold";
+    private static final String VALID_EXISTING_KEYWORDS = "rent flowers";
     private final Model modelStub = new ModelStub();
     private final ActiveAccount activeAccount = new ActiveAccountManager(TypicalEntries.getTypicalAccount());
-
     @Test
     public void equals() {
         ExpenseDescriptionContainsKeywordsPredicate firstExpensePredicate =
-            new ExpenseDescriptionContainsKeywordsPredicate(Collections.singletonList("firstExpense"));
+            new ExpenseDescriptionContainsKeywordsPredicate(Collections.singletonList(FIRST_EXPENSE_KEYWORD));
         ExpenseDescriptionContainsKeywordsPredicate secondExpensePredicate =
-            new ExpenseDescriptionContainsKeywordsPredicate(Collections.singletonList("secondExpense"));
+            new ExpenseDescriptionContainsKeywordsPredicate(Collections.singletonList(SECOND_EXPENSE_KEYWORD));
 
         RevenueDescriptionContainsKeywordsPredicate firstRevenuePredicate =
-            new RevenueDescriptionContainsKeywordsPredicate(Collections.singletonList("firstRevenue"));
+            new RevenueDescriptionContainsKeywordsPredicate(Collections.singletonList(FIRST_REVENUE_KEYWORD));
         RevenueDescriptionContainsKeywordsPredicate secondRevenuePredicate =
-            new RevenueDescriptionContainsKeywordsPredicate(Collections.singletonList("secondRevenue"));
+            new RevenueDescriptionContainsKeywordsPredicate(Collections.singletonList(SECOND_REVENUE_KEYWORD));
 
         FindCommand findFirstExpenseCommand = new FindCommand(firstExpensePredicate);
         FindCommand findSecondExpenseCommand = new FindCommand(secondExpensePredicate);
@@ -75,9 +80,9 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_nonexistentKeyword_noExpenseFound() throws CommandException {
+    public void execute_nonexistentKeyword_noExpenseFound() {
         ExpenseDescriptionContainsKeywordsPredicate predicate =
-            new ExpenseDescriptionContainsKeywordsPredicate(Collections.singletonList("NONE"));
+            new ExpenseDescriptionContainsKeywordsPredicate(Collections.singletonList(VALID_NONEXISTENT_KEYWORD));
         CommandResult expectedCommandResult = CommandResultFactory
             .createDefaultCommandResult(MESSAGE_EMPTY_FILTERED_LIST);
         CommandResult actualCommandResult = new FindCommand(predicate).execute(modelStub, activeAccount);
@@ -85,9 +90,9 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_nonexistentKeyword_noRevenueFound() throws CommandException {
+    public void execute_nonexistentKeyword_noRevenueFound() {
         RevenueDescriptionContainsKeywordsPredicate predicate =
-            new RevenueDescriptionContainsKeywordsPredicate(Collections.singletonList("NONE"));
+            new RevenueDescriptionContainsKeywordsPredicate(Collections.singletonList(VALID_NONEXISTENT_KEYWORD));
         CommandResult expectedCommandResult = CommandResultFactory
             .createDefaultCommandResult(MESSAGE_EMPTY_FILTERED_LIST);
         CommandResult actualCommandResult = new FindCommand(predicate).execute(modelStub, activeAccount);
@@ -95,11 +100,11 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_nonexistentKeyword_noEntryFound() throws CommandException {
+    public void execute_nonexistentKeyword_noEntryFound() {
         ExpenseDescriptionContainsKeywordsPredicate predicateExpense =
-            new ExpenseDescriptionContainsKeywordsPredicate(Collections.singletonList("NONE"));
+            new ExpenseDescriptionContainsKeywordsPredicate(Collections.singletonList(VALID_NONEXISTENT_KEYWORD));
         RevenueDescriptionContainsKeywordsPredicate predicateRevenue =
-            new RevenueDescriptionContainsKeywordsPredicate(Collections.singletonList("NONE"));
+            new RevenueDescriptionContainsKeywordsPredicate(Collections.singletonList(VALID_NONEXISTENT_KEYWORD));
         CommandResult expectedCommandResult = CommandResultFactory
             .createDefaultCommandResult(MESSAGE_EMPTY_FILTERED_LIST);
         CommandResult actualCommandResult = new FindCommand(predicateExpense, predicateRevenue)
@@ -108,9 +113,9 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_validKeywords_foundInExpenseList() throws CommandException {
+    public void execute_validKeywords_foundInExpenseList() {
         ExpenseDescriptionContainsKeywordsPredicate predicateExpense =
-            new ExpenseDescriptionContainsKeywordsPredicate(Collections.singletonList("shovel"));
+            new ExpenseDescriptionContainsKeywordsPredicate(Collections.singletonList(VALID_EXISTING_EXPENSE_KEYWORD));
         CommandResult expectedCommandResult = CommandResultFactory
             .createDefaultCommandResult(MESSAGE_ENTRIES_UPDATED);
         CommandResult actualCommandResult = new FindCommand(predicateExpense).execute(modelStub, activeAccount);
@@ -118,9 +123,9 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_validKeywords_foundInRevenueList() throws CommandException {
+    public void execute_validKeywords_foundInRevenueList() {
         RevenueDescriptionContainsKeywordsPredicate predicateRevenue =
-            new RevenueDescriptionContainsKeywordsPredicate(Collections.singletonList("sold"));
+            new RevenueDescriptionContainsKeywordsPredicate(Collections.singletonList(VALID_EXISTING_REVENUE_KEYWORD));
         CommandResult expectedCommandResult = CommandResultFactory
             .createDefaultCommandResult(MESSAGE_ENTRIES_UPDATED);
         CommandResult actualCommandResult = new FindCommand(predicateRevenue).execute(modelStub, activeAccount);
@@ -128,11 +133,11 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_validKeywords_foundInEitherList() throws CommandException {
+    public void execute_validKeywords_foundInEitherList() {
         ExpenseDescriptionContainsKeywordsPredicate predicateExpense =
-            new ExpenseDescriptionContainsKeywordsPredicate(Collections.singletonList("shovel"));
+            new ExpenseDescriptionContainsKeywordsPredicate(Collections.singletonList(VALID_EXISTING_EXPENSE_KEYWORD));
         RevenueDescriptionContainsKeywordsPredicate predicateRevenue =
-            new RevenueDescriptionContainsKeywordsPredicate(Collections.singletonList("flower"));
+            new RevenueDescriptionContainsKeywordsPredicate(Collections.singletonList(VALID_EXISTING_REVENUE_KEYWORD));
         CommandResult expectedCommandResult = CommandResultFactory
             .createDefaultCommandResult(MESSAGE_ENTRIES_UPDATED);
         CommandResult actualCommandResult = new FindCommand(predicateExpense, predicateRevenue)
@@ -141,9 +146,9 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_validMultipleKeyWords_foundInEitherList() throws CommandException {
-        ExpenseDescriptionContainsKeywordsPredicate predicateExpense = prepareExpensePredicate("rent flower");
-        RevenueDescriptionContainsKeywordsPredicate predicateRevenue = prepareRevenuePredicate("rent flower");
+    public void execute_validMultipleKeyWords_foundInEitherList() {
+        ExpenseDescriptionContainsKeywordsPredicate predicateExpense = prepareExpensePredicate(VALID_EXISTING_KEYWORDS);
+        RevenueDescriptionContainsKeywordsPredicate predicateRevenue = prepareRevenuePredicate(VALID_EXISTING_KEYWORDS);
         CommandResult expectedCommandResult = CommandResultFactory
             .createDefaultCommandResult(MESSAGE_ENTRIES_UPDATED);
         CommandResult actualCommandResult = new FindCommand(predicateExpense, predicateRevenue)

@@ -22,9 +22,9 @@ public class ClearCommand extends Command {
             + "Example: " + COMMAND_WORD + "\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + "CATEGORY";
     public static final String PREFIXES = PREFIX_CATEGORY + "CATEGORY";
-    public static final String MESSAGE_CLEAR_ENTRY_SUCCESS = "Cleared all %1$s" + "s";
+    public static final String MESSAGE_CLEAR_ENTRY_SUCCESS = "Cleared all %1$s" + "s!";
 
-    public static final String MESSAGE_CLEAR_BOTH_CATEGORY_SUCCESS = "Cleared all expenses and revenues";
+    public static final String MESSAGE_CLEAR_BOTH_CATEGORY_SUCCESS = "Cleared all expenses and revenues!";
 
     private static final Category NO_CATEGORY = null;
 
