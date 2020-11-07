@@ -392,13 +392,16 @@ The following 2 Activity Diagrams (*Figures 21.1 & 21.2*) summarise what happens
 ### 4.3. Snapshot feature (by Aizat)
 
 #### 4.3.1. Implementation
+This section explains the implementation of the snapshot feature. This feature allows users
+to save the current state of their `ZooKeepBook` as a json file with their desired file name.
 
 The snapshot feature is implemented by the `SnapCommand` and `SnapCommandParser` classes. 
-`SnapCommandParser` parses the user's input as a file name and then creates a `SnapCommand` 
-object with a `Path` object representing the save destination and file name as parameters.
+`SnapCommandParser` parses the user's input as a file name. If the file name is valid,
+ it returns a `SnapCommand` object with a `Path` object representing the save destination 
+ and the file name as arguments. If the file name is invalid, it returns an error message.
 
-`SnapCommand` executes by copying the current state of the ZooKeepBook and then utilising
-`StorageManager`'s save method to save the copied ZooKeepBook with the user specified file name.
+`SnapCommand` executes by copying the current state of the `ZooKeepBook` and then calls
+`StorageManager#saveZooKeepBook(...)` to save the copied `ZooKeepBook` with the user specified file name.
 
 The following Sequence Diagram (*Figure 22*) illustrates the creation and execution of a `SnapCommand`:
 
@@ -410,6 +413,12 @@ The following Sequence Diagram (*Figure 22*) illustrates the creation and execut
 :information_source: **Note:** The lifelines for `SnapCommandParser`, `SnapCommand`, `StorageManager` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+The following Activity Diagram (*Figure 23*) shows the flow of the execution of a `SnapCommand`:
+
+<p align="center"><img src="images/SnapCommandActivityDiagram.png"/></p>
+
+<p align="center"><i>Figure 23: Activity Diagram when snap command is executed</i></p>
 
 #### 4.3.2. Design consideration:
 
@@ -428,11 +437,11 @@ This section explains the implementation of the Sort command feature in the ZooK
 * For the animal id, it will be in increasing order.
 * For the animal feed time, it will be from earliest to latest. 
 
-The following Sequence Diagram (*Figure 23*) shows the Logic and Model Components when a sort command is being executed:
+The following Sequence Diagram (*Figure 24*) shows the Logic and Model Components when a sort command is being executed:
 
 <p align="center"><img src="images/SortSequenceDiagram.png"/></p>
 
-<p align="center"><i>Figure 23: Sequence Diagram when sort command is executed</i></p>
+<p align="center"><i>Figure 24: Sequence Diagram when sort command is executed</i></p>
 
 <div markdown="span" class="alert alert-info">:information_source:  **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -454,11 +463,11 @@ The in-memory model of the ZooKeepBook data sorts and updates the animal list. T
 
 Upon the completion of the user command, a success message (Sorted all animals by name) and the updated sorted list is displayed below the message.
 
-The following Activity Diagram (*Figure 24*) summarises what happens when a user executes a sort command.
+The following Activity Diagram (*Figure 25*) summarises what happens when a user executes a sort command.
 
 <p align="center"><img src="images/SortCommandActivityDiagram.png"/></p>
 
-<p align="center"><i>Figure 24: Activity Diagram when user executes sort command</i></p>
+<p align="center"><i>Figure 25: Activity Diagram when user executes sort command</i></p>
 
 #### 4.4.2. Design Consideration:
   
@@ -487,11 +496,11 @@ The following notable methods are used for the feed times feature:
 
 The parsing and displaying of feed times were adapted from the Medical Condition field.
 
-Given below is a Sequence Diagram (*Figure 25*) shows how the operation of adding feed times works.
+Given below is a Sequence Diagram (*Figure 26*) shows how the operation of adding feed times works.
 
 <p align="center"><img src="images/FeedTimesSequenceDiagram.png"/></p>
 
-<p align="center"><i>Figure 25: Sequence Diagram when animal is added with feed times</i></p>
+<p align="center"><i>Figure 26: Sequence Diagram when animal is added with feed times</i></p>
 
 Step 1. The user inputs an add command, specifying feed times to be added for an Animal (eg. add n/Pikachu i/1307 s/Pokemon f/1234 f/0001 f/2200)
 
@@ -509,11 +518,11 @@ Step 4. The `ArgumentTokenizer` class returns the feed times found in the users 
 Step 5. An `Animal` object is created with the Set of `FeedTime` objects.
 
 
-The following Activity Diagram (*Figure 26*) summarizes what happens when feed times are added to an Animal:
+The following Activity Diagram (*Figure 27*) summarizes what happens when feed times are added to an Animal:
 
 <p align="center"><img src="images/FeedTimesActivityDiagram.png"/></p>
 
-<p align="center"><i>Figure 26: Activity Diagram when user adds an animal with feed times</i></p>
+<p align="center"><i>Figure 27: Activity Diagram when user adds an animal with feed times</i></p>
 
 #### 4.5.2. Design consideration:
 
