@@ -132,8 +132,10 @@ Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM] [t
 * Refer to [common input fields](#common-input-fields) on what the different fields are and how to specify them.
 * After a new flashcard is added, all flashcards will be listed. 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If the category is not specified, the flashcard will have the <b>General</b> category.
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** If the category is not specified, the flashcard will have the <b>General</b> category.
+
 </div>
 
 Examples:
@@ -226,9 +228,10 @@ Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 <div markdown="span" class="alert alert-primary">:memo: Note:
 <code>filter r/</code> will filter for all unrated flashcards.</div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
 
-Want to list all your flashcards after using `filter`? Use the [list](#list-all-flashcards--list) command.</div> 
+:bulb: **Tip:** Want to list all your flashcards after using `filter`? Use the [list](#list-all-flashcards--list) command.
+</div> 
 
 Examples:
 *  `filter c/SDLC` filters and lists all flashcards belonging to the SDLC category.
@@ -279,9 +282,9 @@ Format: `find KEYWORD [KEYWORD]...`
 * The keywords are **case insensitive**.
 * Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
 
-Want to list all your flashcards after using `find`? Use the [list](#list-all-flashcards--list) command.</div> 
+:bulb: **Tip:** Want to list all your flashcards after using `find`? Use the [list](#list-all-flashcards--list) command.</div> 
 
 Examples: 
 * `find general` 
