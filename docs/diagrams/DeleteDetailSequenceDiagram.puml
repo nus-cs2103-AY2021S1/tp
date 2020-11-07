@@ -5,13 +5,13 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ReeveParser" as ReeveParser LOGIC_COLOR
 participant ":DetailCommandParser" as DetailCommandParser LOGIC_COLOR
-participant "a:AddDetailCommand" as AddDetailCommand LOGIC_COLOR
+participant "d:DeleteDetailCommand" as DeleteDetailCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant "updatedStudent:Student" as Student MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
-participant "studentToAddDetail:Student" as oldStudent MODEL_COLOR
+participant "studentToDeleteDetail:Student" as oldStudent MODEL_COLOR
 end box
 
 [-> LogicManager : execute(...)
@@ -30,51 +30,51 @@ deactivate DetailCommandParser
 ReeveParser -> DetailCommandParser : parse(...)
 activate DetailCommandParser
 
-create AddDetailCommand
-DetailCommandParser -> AddDetailCommand : AddDetailCommand(...)
-activate AddDetailCommand
+create DeleteDetailCommand
+DetailCommandParser -> DeleteDetailCommand : DeleteDetailCommand(...)
+activate DeleteDetailCommand
 
-AddDetailCommand --> DetailCommandParser : a
-deactivate AddDetailCommand
+DeleteDetailCommand --> DetailCommandParser : d
+deactivate DeleteDetailCommand
 
-DetailCommandParser --> ReeveParser : a
+DetailCommandParser --> ReeveParser : d
 deactivate DetailCommandParser
 
 DetailCommandParser -[hidden]> ReeveParser
 destroy DetailCommandParser
 
-ReeveParser --> LogicManager : a
+ReeveParser --> LogicManager : d
 deactivate ReeveParser
 
-LogicManager -> AddDetailCommand : execute(...)
-activate AddDetailCommand
+LogicManager -> DeleteDetailCommand : execute(...)
+activate DeleteDetailCommand
 
-AddDetailCommand -> AddDetailCommand : super.updateStudentDetail(...)
-activate AddDetailCommand
+DeleteDetailCommand -> DeleteDetailCommand : super.updateStudentDetail(...)
+activate DeleteDetailCommand
 
 create Student
-AddDetailCommand -> Student : Student(...)
+DeleteDetailCommand -> Student : Student(...)
 activate Student
 
-Student --> AddDetailCommand : updatedStudent
+Student --> DeleteDetailCommand : updatedStudent
 deactivate Student
 
-AddDetailCommand --> AddDetailCommand : updatedStudent
-deactivate AddDetailCommand
+DeleteDetailCommand --> DeleteDetailCommand : updatedStudent
+deactivate DeleteDetailCommand
 
-AddDetailCommand -> Model : setStudent(studentToAddDetail, updatedStudent)
+DeleteDetailCommand -> Model : setStudent(studentToDeleteDetail, updatedStudent)
 activate Model
 
-Model --> AddDetailCommand
+Model --> DeleteDetailCommand
 deactivate Model
 
 destroy oldStudent
 
-AddDetailCommand --> LogicManager : result
-deactivate AddDetailCommand
+DeleteDetailCommand --> LogicManager : result
+deactivate DeleteDetailCommand
 
-AddDetailCommand -[hidden]> LogicManager
-destroy AddDetailCommand
+DeleteDetailCommand -[hidden]> LogicManager
+destroy DeleteDetailCommand
 
 [<-- LogicManager : result
 deactivate LogicManager

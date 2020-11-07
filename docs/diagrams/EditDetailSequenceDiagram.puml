@@ -9,9 +9,9 @@ participant "e:EditDetailCommand" as EditDetailCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant "updatedStudent:Student" as Student MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
-participant "student:Student" as Student MODEL_COLOR
-participant "d:Detail" as Detail MODEL_COLOR
+participant "studentToEditDetail:Student" as oldStudent MODEL_COLOR
 end box
 
 [-> LogicManager : execute(...)
@@ -21,7 +21,7 @@ LogicManager -> ReeveParser : parseCommand(...)
 activate ReeveParser
 
 create DetailCommandParser
-ReeveParser -> DetailCommandParser
+ReeveParser -> DetailCommandParser : DetailCommandParser()
 activate DetailCommandParser
 
 DetailCommandParser --> ReeveParser
@@ -30,15 +30,8 @@ deactivate DetailCommandParser
 ReeveParser -> DetailCommandParser : parse(...)
 activate DetailCommandParser
 
-create Detail
-DetailCommandParser -> Detail : parseDetail(...)
-activate Detail
-
-Detail --> DetailCommandParser : d
-deactivate Detail
-
 create EditDetailCommand
-DetailCommandParser -> EditDetailCommand
+DetailCommandParser -> EditDetailCommand : EditDetailCommand(...)
 activate EditDetailCommand
 
 EditDetailCommand --> DetailCommandParser : e
@@ -60,7 +53,7 @@ EditDetailCommand -> EditDetailCommand : super.updateStudentDetail(...)
 activate EditDetailCommand
 
 create Student
-EditDetailCommand -> Student
+EditDetailCommand -> Student : Student(...)
 activate Student
 
 Student --> EditDetailCommand : updatedStudent
@@ -69,11 +62,13 @@ deactivate Student
 EditDetailCommand --> EditDetailCommand : updatedStudent
 deactivate EditDetailCommand
 
-EditDetailCommand -> Model : setStudent(student, updatedStudent)
+EditDetailCommand -> Model : setStudent(studentToEditDetail, updatedStudent)
 activate Model
 
 Model --> EditDetailCommand
 deactivate Model
+
+destroy oldStudent
 
 EditDetailCommand --> LogicManager : result
 deactivate EditDetailCommand
@@ -81,6 +76,6 @@ deactivate EditDetailCommand
 EditDetailCommand -[hidden]> LogicManager
 destroy EditDetailCommand
 
-[<-- LogicManager
+[<-- LogicManager : result
 deactivate LogicManager
 @enduml

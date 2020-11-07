@@ -5,8 +5,7 @@ start
 if() then([command is valid])
     if() then([student index is valid])
         if() then([detail index is valid])
-            :Create student copy;
-            :Replace detail in student copy with updated detail;
+            :Create student copy with updated detail;
             :Replace student with modified copy;
             :Display success message;
         else([detail index is invalid])

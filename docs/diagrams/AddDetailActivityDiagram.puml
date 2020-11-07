@@ -4,8 +4,7 @@ start
 :Parses the command;
 if() then([command is valid])
     if() then([student index is valid])
-        :Create student copy;
-        :Add detail to student copy;
+        :Create student copy with added detail;
         :Replace student with modified copy;
         :Display success message;
     else([student index is invalid])

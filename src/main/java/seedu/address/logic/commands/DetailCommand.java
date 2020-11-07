@@ -18,11 +18,17 @@ public abstract class DetailCommand extends Command {
      * @param details new list of details.
      * @return updated Student.
      */
-    public Student updateStudentDetail(Student studentToAddDetail, List<Detail> details) {
-        Student updatedStudent = new Student(studentToAddDetail.getName(), studentToAddDetail.getPhone(),
-                studentToAddDetail.getSchool(), studentToAddDetail.getYear(),
-                studentToAddDetail.getClassVenue(), studentToAddDetail.getClassTime(),
-                studentToAddDetail.getFee(), studentToAddDetail.getPaymentDate(), details,
+    protected Student updateStudentDetail(Student studentToAddDetail, List<Detail> details) {
+        Student updatedStudent = new Student(
+                studentToAddDetail.getName(),
+                studentToAddDetail.getPhone(),
+                studentToAddDetail.getSchool(),
+                studentToAddDetail.getYear(),
+                studentToAddDetail.getClassVenue(),
+                studentToAddDetail.getClassTime(),
+                studentToAddDetail.getFee(),
+                studentToAddDetail.getPaymentDate(),
+                details,
                 studentToAddDetail.getAcademic());
 
         return updatedStudent;
