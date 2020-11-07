@@ -194,24 +194,26 @@ The following sequence diagram shows how the Add Multiple Choice Question mechan
 
 ### Open Flashcard
 
-The open flashcard feature will allow the user to open a flashcard specified by the given index and display it in the GUI.
-
 #### Implementation
 
-The open flashcard implementation requires the creation of an `OpenCommandParser` and an `OpenCommand`. The `OpenCommandParser#parse` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create an `OpenCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
+The Open flashcard feature will allow the user to open a flashcard specified by the given index and display it in the GUI.
+The `OpenCommandParser#parse` takes in a single `String` argument called `index`. It then parses the argument and creates an `Index` object to be passed on to 
+the `OpenCommand` class instance. If no argument is given, then a `CommandException` will be thrown.
 
-The `OpenCommand` class will have to pass the `Question` to the GUI for it to display the`Question` of the `Flashcard` to the user. This will be done by passing the `Question` into a `Feedback` object which is an attribute of the `CommandResult` given to the GUI.
+During execution, the `OpenCommand` class will pass the `Question` to the GUI for it to display the`Question` of the `Flashcard` to the user.
+This is be done by passing the `Question` into a `Feedback` object which is an attribute of the `CommandResult` given to the GUI.
 
-The GUI will change the content of some of its placeholders to display the question and if available, its choices to the user. The GUI will change the contents of its placeholders accordingly if other commands aside from another `OpenCommand` is called afterwards.
+The GUI will change the content of some of its placeholders to display the question and if available, its choices to the user. 
+The GUI will change the contents of its placeholders accordingly if other commands aside from another `OpenCommand` is called afterwards.
 
 ##### Usage
 Given below is an example usage scenario and how the `OpenCommand` mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
 
 Step 2. The user executes `open 1` command to display the first flashcard in the list on the GUI.
 
-Step 3. This will call `OpenCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input to index (represented by an `Index` object) of the first `Flashcard`.
+Step 3. This will call `OpenCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input to index of the first `Flashcard`.
 
 Step 4. The `Index` is then passed to the `OpenCommand`
 
@@ -222,6 +224,13 @@ Step 6. The GUI will then proceed to get the `Question` from `Feedback` and disp
 The following sequence diagram shows how the open operation works:
 
 ![OpenSequenceDiagram](images/OpenSequenceDiagram.png)
+
+#### Design considerations:
+
+* **Current implementation:** Flashcard is taken from the last displayed list
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: nil
+
 
 ### Tags
 
