@@ -583,6 +583,8 @@ The following sequence diagram shows how the stats operation works:
 
 The export mechanism is facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be exported is passed to `Storage` to save to local data.
 
+##### Usage
+
 Given below is an example usage scenario and how the export mechanism behaves at each step.
 
 Step 1. The user inputs the `find t/cs2100` command to find all `Flashcard` containing the tag `cs2100`. The `Model` updates its current filtered flashcard list.
@@ -601,20 +603,16 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ![ExportActivityDiagram](images/ExportActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations:
 
-##### Aspect: How to output the export file
-
-* **Alternative 1 (current choice):** Predefined directory of `/export/`
+* **Current choice:** Predefined directory of `/export/`
   * Pros: Easy to implement.
   * Cons: The user will have to navigate to his `/export/` folder to retrieve output file.
 
-* **Alternative 2:** User specifies which directory to save the export file to.
+* **Alternative:** User specifies which directory to save the export file to.
   * Pros: More control over where the export file will end up at.
   * Cons: Difficult to implement.
   * Cons: Command becomes more complicated as the entire path needs to be typed out.
-
-_{more aspects and alternatives to be added}_
 
 ### Importing Flashcards
 
