@@ -117,7 +117,7 @@ Displays a link to this User Guide.
 | Command Format (Bid)  | Example |
 | :--- | :--- |
 | add-bid `b/PROPERTY_ID` `c/BIDDER_ID` `m/BID_AMOUNT`  | add-bid b/P1 c/B2 m/150000.20  |
-| edit-bid `<INDEX_NUMBER>` `b/[NEW_PROPERTY_ID]` `c/[NEW_BIDDER_ID]` `m/[NEW_BID_AMOUNT]` | edit-bid 1 b/ P99 c/ B12 m/1.20 |
+| edit-bid `<INDEX_NUMBER>` `[b/NEW_PROPERTY_ID]` `[c/NEW_BIDDER_ID]` `[m/NEW_BID_AMOUNT]` | edit-bid 1 b/ P99 c/ B12 m/1.20 |
 | find-bid `[KEYWORDS]` | find-bid P1 B2 $65000.00 |
 | delete-bid `<INDEX_NUMBER>` | delete-bid 1 |
 | list-bid | list-bid |
@@ -127,9 +127,9 @@ Displays a link to this User Guide.
 | View | add-m q/v `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `d/<DATE> s/<STARTTIME> e/<ENDTIME>` | add-m q/v b/B12 p/P12 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00 |
 | Administrative | add-m q/a `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `d/<DATE> s/<STARTTIME> e/<ENDTIME>` | add-m q/a b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
 | Paperwork  |add-m q/p `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `d/<DATE> s/<STARTTIME> e/<ENDTIME>` | add-m q/p b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
-| |edit-m `<INDEX>` `b/BIDDER_ID` `p/PROPERTY_ID` `v/VENUE` `d/DATE s/<STARTTIME> e/<ENDTIME>` | edit-m 2 v/eunos |
+| |edit-m `<INDEX>` `[b/BIDDER_ID]` `[p/PROPERTY_ID]` `[v/VENUE]` `[d/DATE] [s/<STARTTIME>] [e/<ENDTIME>]` | edit-m 2 v/eunos |
 | |delete-m `<INDEX_NUMBER>` | delete-m 3 |
-| | sort-m `o/<ORDER>` | sort-m o/asc |
+| | sort-m `o/ORDER` | sort-m o/asc |
 | | list-m | list-m |
 
 | Command Format (Calendar)  | Example |
@@ -544,7 +544,7 @@ deleted.
 
 ## Adding a Bid for a Property
 
-Adds a bid to the bid list which is automatically sorted by property followed by the bid amount.
+Adds a bid to the bid list. The Bid is automatically sorted by property Id followed by the bid amount.
 
 - Command: `add-bid`
 - Format: `add-bid b/PROPERTY_ID c/BIDDER_ID m/BID_AMOUNT`
@@ -611,7 +611,7 @@ to property: P1
 
 ## Editing a Bid
 
-Will edit a bid based on the values given for each parameter. The edited bid will be automatically sorted.
+Will edit a bid based on the values given for each parameter.  The edited Bid is automatically sorted by property Id followed by the bid amount.
 
 - Command: `edit-bid`
 - Format: `edit-bid <INDEX_NUMBER> [b/PROPERTY_ID] [c/BIDDER_ID] [m/BID_AMOUNT]`
@@ -899,58 +899,6 @@ Picture Example:
 | ![november](images/CalendarPictures/Calendar_November.png) | ![october](images/CalendarPictures/Calendar_October.png) |
 
 ---
-
-
-
-### Command Format Summary Tables
-
-
-| Command Format (Property)  | Example |
-| :--- | :--- |
-| add-p n/PROPERTY_NAME s/SELLER_ID ap/ASKING_PRICE t/TYPE a/ADDRESS r/IS_RENTAL  | add-p n/Sunrise s/S1 ap/100 t/Landed a/99 Sunrise Street r/No  |
-| edit-p <INDEX_NUMBER> [n/NAME] [a/ADDRESS] [s/SELLER_ID] [ap/ASKING_PRICE] [t/PROPERTY_TYPE] [r/IS_RENTAL]  | edit-p 1 n/Cove Residences a/23 Cove Street |
-| find-p [p/PROPERTY_ID_KEYWORDS] [n/NAME_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/SELLER_ID_KEYWORDS] [t/PROPERTY_TYPE_KEYWORDS] [ap/ASKING_PRICE_FILTER] [r/IS_RENTAL] [c/IS_CLOSED_DEAL] | n/Sunrise Cove a/Street Road |
-| delete-p PROPERTY_ID or delete-p <INDEX_NUMBER> | delete-p P23 or delete-p 5 |
-| list-p | list-p |
-
-| Command Format (Bidder)  | Example |
-| :--- | :--- |
-| add-b n/BIDDER_NAME p/PHONE_NUMBER  | add-b n/Marcus Duigan p/12345678  |
-| edit-b <INDEX_NUMBER> [n/NEW_NAME] [p/NEW_PHONE_NUMBER] | edit-b 1 n/Marcus Weagle Duigan p/987654321 |
-| find-b [KEYWORDS] | find-b duigan |
-| delete-b <INDEX_NUMBER> | delete-b 1 |
-| list-b | list-b |
-
-| Command Format (Seller)  | Example |
-| :--- | :--- |
-| add-s n/SELLER_NAME p/PHONE_NUMBER  | add-b n/Marcus Duigan p/12345678  |
-| edit-s <INDEX_NUMBER> [n/NEW_NAME] [p/NEW_PHONE_NUMBER] | edit-s 1 n/Marcus Weagle Duigan p/987654321 |
-| find-s [KEYWORDS] | find-s duigan |
-| delete-s <INDEX_NUMBER> | delete-s 1 |
-| list-s | list-s |
-
-| Command Format (Bid)  | Example |
-| :--- | :--- |
-| add-bid b/PROPERTY_ID c/BIDDER_ID m/BID_AMOUNT  | add-bid b/P1 c/B2 m/150000.20  |
-| edit-bid <INDEX_NUMBER> b/[NEW_PROPERTY_ID] c/[NEW_BIDDER_ID] m/[NEW_BID_AMOUNT] | edit-bid 1 b/ P99 c/ B12 m/1.20 |
-| find-bid [KEYWORDS] | find-bid P1 B2 $65000.00 |
-| delete-bid <INDEX_NUMBER> | delete-bid 1 |
-| list-bid | list-bid |
-
-|  Command Format (Meeting)  | Example |
-| :--- | :--- |
-| add-m q/MEETING_TYPE b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME | add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00  |
-| delete-m <INDEX_NUMBER> | delete-m 1 |
-| find-m <INDEX_NUMBER> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME | find-m b/B1 p/P1|
-| list-m | list-m |
-| edit-m <INDEX_NUMBER> b/BIDDER_ID p/PROPERTY_ID v/VENUE d/DATE s/STARTTIME e/ENDTIME | edit-m  b/B1 p/P1 |
-| sort-m o/<ORDER> | sort-m o/asc |
-
-| Command Format (Calendar)  | Example |
-| :--- | :--- |
-| next  | next  |
-| prev | prev |
-
 
 #Thank You For Using PropertyFree!
 

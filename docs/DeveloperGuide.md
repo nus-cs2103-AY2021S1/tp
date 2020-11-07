@@ -20,7 +20,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Class Diagram of the Logic Component](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -226,6 +226,39 @@ The follow class diagram depicts the design behind `Id` and the subclasses: `Sel
 
 ### Bid 
 
+{ start of Model Component section written by: Marcus Duigan Xing Yu }
+
+The following class diagram depicts how a `Bid` is created.
+
+![Bid Diagram](images/modelDiagram/BidModelDiagram.png)
+
+ ##### Design Considerations
+
+ 1. Alternative 1 (current choice): Do not give bids its own Bid Id.
+    - Pros: 
+        - A bid is already unique as it cannot have the same property id and bidder id for two separate
+          bids. Thus having a unique bid Id over complicates the bid for no reason
+    - Cons: 
+        - The user must know the bidder Id and property Id to find the exact bid instead of using a bid Id
+
+ 2. Alternative 2: Give a specific Id to the bids.
+    - Pros: 
+        - Can track how many bids have been made
+        - Easier for users to execute certain commands aka delete-bid
+    - Cons: 
+        - More complicated
+        - Having a bid Id does not help other entities 
+        
+ 3. Alternative 3: Create a bid specific to a property and have a list of bidders as a parameter.
+    - Pros: 
+        - Associates all bidder Id's to a specific property
+        - Easier to track if there is a duplicate bidder for a certain bid
+    - Cons: 
+        - Difficult to edit specific bids in terms of parameters
+        - Difficult to find all bids related to a specific bidder
+
+{ end of Model Component section written by: Marcus Duigan Xing Yu }
+
 ### Meeting 
 
 ### Storage component
@@ -261,13 +294,56 @@ Additional features apart from the above-mentioned feature includes:
 - Key-press for UI navigation
 
 #### 1. Add
+{ start of Add section written by: Marcus Duigan Xing Yu}
 
+The `Add` command applies to **all entities** in PropertyFree. Apart from `AddBidCommand`, `AddMeetingCommand` with slight differences in implementation (elaborated below), all other entities follow the same
+implementation.
+
+1. When the `Add` command is executed by the user, the input it passed into
+the `LogicManager` and thereafter parsed and identified in `AddressBookParser`. 
+
+2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
+, the corresponding `AddENTITYCommandParser` object is formed. The user input then goes
+through another level of parsing in `AddENTITYCommandParser`.
+
+3. The `AddENTITYCommandParser` identifies the parameters corresponding to the user's input, and a new `AddENTITYCommand`
+object is formed taking in the identified parameters. 
+The `AddENTITYCommand` is then encapsulated under `Command` and passed back into the `LogicManager`.
+
+4. The `AddENTITYCommand` calls `execute(model)`. The execution of the command then interacts
+with the `Model` component, and retrieves the unmodifiable view of `ObservableList<ENTITY>`.
+
+5. The `Model` accesses the relevant ENTITYBook and adds the object to the ENTITYBook. The `Ui` then "listens" to the 
+changes in the ENTITYBook and updates the GUI.
+
+6. Finally, `AddENTITYCommand` is then encapsulated as a `CommandResult` and passed into the `LogicManager`.
+
+![Add Command Sequence Diagram](images/AddCommandSequenceDiagram.png)
+
+##### 1.1 Add Bid Command
+
+7. For Add-bid Command they have an additional step of checking whether the user inputs for bidder Id and property Id are valid before 
+adding to the Bidbook as seen in the diagram above.  
+
+8. For add-bid command, it also contains an auto-sort feature where it will call a sort-bid method which ensures the list is always sorted
+by property Id followed by Bid Amount. For further clarification, refer to section 4. Sort for a more in depth description.
+
+{ end of Add section written by: Marcus Duigan Xing Yu}
 #### 2. Edit
 
 #### 3. Find
 
 #### 4. Sort 
 
+##### 4.1 Auto-Sort Feature for add-bid and edit-bid
+{ start of Add/Edit auto-sort feature section written by: Marcus Duigan Xing Yu}
+
+During the execution of `add-bid` and `edit-bid` command in the model manager, it executes a sort function similar to the above diagram's execution stage. The method names that are 
+called instead are `updateSortedBidList(bidComparator)` which is called after the `addBid/updateFilteredBidList` method is called.
+
+![Auto-Sort Feature Sequence Diagram](images/AutoSortBidSequenceDiagram.png)
+
+{ end of Add/Edit auto-sort feature section written by: Marcus Duigan Xing Yu}
 #### 5. Delete
 { start of Delete section written by: Kor Ming Soon }
 
@@ -339,6 +415,33 @@ containing the attribute of`sellerId`.
 
 
 #### 6. List
+
+{ start of List section written by: Marcus Duigan Xing Yu }
+
+The `List` command applies to **all entities** in PropertyFree. All entities follow the same
+implementation.
+
+1. When the `List` command is executed by the user, the input it passed into
+the `LogicManager` and thereafter parsed and identified in `AddressBookParser`. 
+
+2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
+, the corresponding `ListENTITYCommand` object is formed.
+
+4. The `ListENTITYCommand` calls `execute(model)`. The execution of the command then interacts
+with the `Model` component, and retrieves the unmodifiable view of `ObservableList<ENTITY>`.
+
+5. The `ListEntityCommand` then calls on the
+`updateFilteredENTITYLIST` method of the `Model` and applies the filter predicate of PREDICATE_SHOW_ALL_ENTITY.
+
+                                                
+6. The `Model` accesses the relevant ENTITYBook and displays the entire list in the ENTITYBook. The `Ui` then "listens" to the 
+changes in the display for the ENTITYBook and updates the GUI.
+
+7. Finally, `ListENTITYCommand` is then encapsulated as a `CommandResult` and passed into the `LogicManager`.
+
+![List Command Sequence Diagram](images/ListCommandSequenceDiagram.png)
+
+{ end of List section written by: Marcus Duigan Xing Yu }
 
 ### UI Navigation Implementation
 #### 1. Automated `TabBar` Switching
