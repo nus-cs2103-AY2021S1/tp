@@ -50,7 +50,7 @@ There would be 4 settings for the priority feature: High, Medium, Low, Undefined
 
 ![Proposed UI](images/UIPriority.png)
 
-Firstly, the field would be added to the Person class. This would be similar to the method described in the tutorial:  https://nus-cs2103-ay2021s1.github.io/tp/tutorials/AddRemark.html, where instead of adding a command, we would be editing the add command to include an optional priority field. 
+Firstly, the field would be added to the Person class. This would be similar to the method described in the [tutorial](https://nus-cs2103-ay2021s1.github.io/tp/tutorials/AddRemark.html), where instead of adding a command, we would be editing the add command to include an optional priority field. 
 
 Given below is an example usage scenario and how the priority mechanism behaves when a user is added. Note that this addition of users via addcommand is the same command used when the user launches the application for the first time. 
 
@@ -243,6 +243,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | expert user                                | view all archived clients      | see the clients that I am no longer working with                       |
 | `* *`    | expert user                                | unarchive clients              | display them when I start working with them again                      |
 | `* *`    | regular user                               | clear all clients              | delete irrelevant client data when I move to a new company             |
+| `* *`    | regular user                               | exit the app                   | start to relax                                                         | 
+
 
 
 ### Use cases
@@ -428,11 +430,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
   
-**UC09 - User quits app**
+**UC09 - User exits the app**
 
 **MSS**
 
-1. User chooses to quit app.
+1. User chooses to exit the app.
 2. System exits app and closes the interface.
   
   Use case ends.
@@ -457,6 +459,7 @@ should be able to accomplish most of the tasks faster using commands than using 
 * **Active List** / **Active Client List**: List of clients not in the archive.
 * **Active Mode**: The mode which allows users to view the active list.
 * **Archive Mode**: The mode which allows users to view the archive.
+* **Priority Indicator**: The rectangle that shows the priority of the client in the list.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -485,8 +488,6 @@ testers are expected to do more *exploratory* testing.
 
    2. Re-launch the app by using the `java -jar` command.<br>
       Expected: The most recent window size and location is retained.
-
-      
       
  ### Listing all active clients
  
@@ -508,8 +509,23 @@ testers are expected to do more *exploratory* testing.
  
     2. Test case: `list r/`<br>
        Expected: All archived clients listed. Success message shown. "Archived Client List" is shown below the success message.
-       
+       The color of the priority indicator for each archived client is darkened. 
        ![List All Archived Clients](images/listAllArchivedClients.png)
+       
+### Adding a client
+
+1. Adding a client while the active clients are being shown.
+    
+    1. Prerequisites: List all active clients (see [List Active Clients](#listing-all-active-clients)). Client does not exist. (A client does not exist
+    as long as there is not a client in the clientlist which does not have the same name AND same email or phone number)
+    
+    2. Test case: `add n/John Cena`<br>
+    Expected: The client John Cena is added to the active list. Success message shown. Priority of the user is undefined (white rectangle)
+    
+
+2. Adding a client while the archived clients are being shown.
+
+
 
 ### Archiving a client
 
@@ -520,7 +536,8 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `archive 1`<br>
       Expected: 
       First client is archived, and is no longer shown in the active list. Details of the archived client shown in the status message.
-      Upon listing all archived clients (see [List Archived Clients](#listing-all-archived-clients)), the archived client can be seen.
+      Upon listing all archived clients (see [List Archived Clients](#listing-all-archived-clients)), the archived client can be seen.  
+      The color of the archived client will be darkened to indicator that the client has been archived.     
 
    3. Test case: `archive 0`<br>
       Expected: No client is archived. Error details shown in the status message.
@@ -539,6 +556,7 @@ testers are expected to do more *exploratory* testing.
       Expected: 
       First client is unarchived, and is no longer shown in the archive. Details of the unarchived client shown in the status message.
       Upon listing all active clients (see [List Active Clients](#listing-all-active-clients)), the unarchived client can be seen.
+      The color of the priority indicator is lightened to show that the client has been unarchived.
 
    3. Test case: `unarchive 0`<br>
       Expected: No client is unarchived. Error details shown in the status message.
@@ -564,7 +582,16 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
    
    5. Another similar test to try: Deleting a client while archived clients are being shown
-     
+
+### Clearing the list
+
+1. Clearing the client list.
+
+    1. Prerequisites: None.
+    
+    2. Test case: `clear` <br>
+    Expected:
+    Both the active list and the archived list are cleared. Status message will indicate that the client list has been cleared. 
 
 ### Displaying help
  
@@ -578,6 +605,15 @@ testers are expected to do more *exploratory* testing.
        ![help message](images/helpMessage.png)
        
        Upon pasting the URL into the browser, the User Guide is displayed.
+       
+### Leaving the app
+ 
+ 1. Leaving the app
+ 
+    1. Prerequisites: I4I must be open.
+
+    2. Test case: `exit`<br>
+       Expected: The app closes.
        
      
 **TO UPDATE BELOW**
