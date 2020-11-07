@@ -41,6 +41,9 @@ public class AccumulatedQuantity {
 
     /**
      * Returns true if a given int is more than zero or more.
+     *
+     * @param test The integer to be tested.
+     * @return A boolean value indicating if the value is valid.
      */
     public static boolean isValidAccumulatedQuantity(String test) {
         requireNonNull(test);

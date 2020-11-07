@@ -9,6 +9,9 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains unit tests for QuantityAdder.
+ */
 public class QuantityAdderTest {
 
     @Test

@@ -15,8 +15,6 @@ public class StockViewCommandParser implements Parser<StockViewCommand> {
 
     private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
     private static final Prefix[] validPrefixesForNoteView = { PREFIX_SERIAL_NUMBER };
-    private static final Prefix[] invalidPrefixesForNoteView =
-            ParserUtil.getInvalidPrefixesForCommand(validPrefixesForNoteView);
 
     @Override
     public StockViewCommand parse(String args) throws ParseException {
@@ -25,7 +23,7 @@ public class StockViewCommandParser implements Parser<StockViewCommand> {
 
         // Check if command format is correct
         if (!areAllPrefixesPresent(argMultimap, validPrefixesForNoteView)
-                || isAnyPrefixPresent(argMultimap, invalidPrefixesForNoteView)
+                || ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForNoteView)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StockViewCommand.MESSAGE_USAGE));
@@ -40,17 +38,6 @@ public class StockViewCommandParser implements Parser<StockViewCommand> {
         SerialNumber serialNumber = ParserUtil.parseSerialNumber(serialNumberInput);
 
         return new StockViewCommand(serialNumber);
-    }
-
-    /**
-     * Returns true if any one of the prefixes does not contain an empty {@code Optional} value
-     * in the given {@code ArgumentMultimap}.
-     * @param argumentMultimap map of prefix to keywords entered by user
-     * @param prefixes prefixes to parse
-     * @return boolean true if a prefix specified is present
-     */
-    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**

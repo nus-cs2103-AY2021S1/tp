@@ -16,6 +16,8 @@ public class TypicalSerialNumberSets {
             .withAccumulatedQuantity("1").build();
     public static final SerialNumberSet GIANT = new SerialNumberSetBuilder().withSource("giant")
             .withAccumulatedQuantity("1").build();
+    public static final SerialNumberSet COLD_STORAGE = new SerialNumberSetBuilder().withSource("cold storage")
+            .withAccumulatedQuantity("1").build();
 
     private TypicalSerialNumberSets() {} // prevents instantiation
 
@@ -30,7 +32,7 @@ public class TypicalSerialNumberSets {
         return serialNumberSetsBook;
     }
     public static List<SerialNumberSet> getTypicalSerialNumberSets() {
-        return new ArrayList<>(Arrays.asList(NTUC, FAIRPRICE, GIANT));
+        return new ArrayList<>(Arrays.asList(COLD_STORAGE, NTUC, FAIRPRICE, GIANT));
     }
 
 }

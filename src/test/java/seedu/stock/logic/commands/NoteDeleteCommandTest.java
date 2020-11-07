@@ -11,6 +11,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.Assert.assertThrows;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
+import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FOURTH_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_THIRD_STOCK;
 import static seedu.stock.testutil.TypicalStocks.UNKNOWN_SERIAL_NUMBER;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
@@ -63,7 +64,7 @@ public class NoteDeleteCommandTest {
 
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(model.getFilteredStockList().get(1),
+        expectedModel.setStock(model.getFilteredStockList().get(2),
                 secondStockWithDeletedNote);
 
         assertCommandSuccess(noteDeleteCommand, model, expectedMessage, expectedModel);
@@ -86,7 +87,7 @@ public class NoteDeleteCommandTest {
 
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(model.getFilteredStockList().get(0),
+        expectedModel.setStock(model.getFilteredStockList().get(1),
                 firstStockWithAllNotesDeleted);
 
         assertCommandSuccess(noteDeleteCommand, model, expectedMessage, expectedModel);
@@ -95,7 +96,7 @@ public class NoteDeleteCommandTest {
     @Test
     public void execute_deleteNoteFromStockWithoutNotesUnfilteredList_failure() {
 
-        NoteDeleteCommand noteDeleteCommand = new NoteDeleteCommand(SERIAL_NUMBER_THIRD_STOCK,
+        NoteDeleteCommand noteDeleteCommand = new NoteDeleteCommand(SERIAL_NUMBER_FOURTH_STOCK,
                 new NoteIndex(VALID_NOTE_INDEX));
 
         assertCommandFailure(noteDeleteCommand, model, Messages.MESSAGE_STOCK_HAS_NO_NOTE);

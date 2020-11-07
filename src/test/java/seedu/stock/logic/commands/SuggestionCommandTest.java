@@ -13,6 +13,10 @@ import seedu.stock.model.ModelManager;
 import seedu.stock.model.SerialNumberSetsBook;
 import seedu.stock.model.UserPrefs;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests
+ * for SuggestionCommand.
+ */
 public class SuggestionCommandTest {
 
     private SerialNumberSetsBook serialNumbers = getTypicalSerialNumberSetsBook();

@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StockParser" as StockParser LOGIC_COLOR
+participant ":UnbookmarkCommandParser" as UnbookmarkCommandParser LOGIC_COLOR
+participant ":UnbookmarkCommand" as UnbookmarkCommand LOGIC_COLOR
+participant ":CommandException" as CommandException LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Stock" as Stock MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> StockParser : parseCommand()
+activate StockParser
+
+create UnbookmarkCommandParser
+StockParser -> UnbookmarkCommandParser
+activate UnbookmarkCommandParser
+
+UnbookmarkCommandParser --> StockParser
+deactivate UnbookmarkCommandParser
+
+StockParser -> UnbookmarkCommandParser : parse(args)
+activate UnbookmarkCommandParser
+
+create UnbookmarkCommand
+UnbookmarkCommandParser -> UnbookmarkCommand
+activate UnbookmarkCommand
+
+UnbookmarkCommand --> UnbookmarkCommandParser
+deactivate UnbookmarkCommand
+
+UnbookmarkCommandParser --> StockParser
+deactivate UnbookmarkCommandParser
+
+StockParser -> LogicManager
+deactivate StockParser
+
+LogicManager -> UnbookmarkCommand : execute()
+activate UnbookmarkCommand
+
+UnbookmarkCommand -> Model : updateFilteredStockList()
+    activate Model
+    Model --> UnbookmarkCommand
+        deactivate Model
+
+alt stock not present in Stock
+
+    create CommandException
+    UnbookmarkCommand -> CommandException
+    activate CommandException
+    CommandException --> UnbookmarkCommand
+    deactivate CommandException
+
+else if stock is not bookmarked
+    Model --> UnbookmarkCommand
+        deactivate Model
+        create CommandException
+        UnbookmarkCommand -> CommandException
+        activate CommandException
+        CommandException --> UnbookmarkCommand
+        deactivate CommandException
+
+else stock present in Stock
+    UnbookmarkCommand -> Stock:setUnbookmarked()
+    activate Stock
+    Stock --> UnbookmarkCommand
+    deactivate Stock
+    UnbookmarkCommand -> Model :setStock()
+    activate Model
+    Model --> UnbookmarkCommand
+    deactivate Model
+
+end
+
+UnbookmarkCommand --> LogicManager
+deactivate UnbookmarkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

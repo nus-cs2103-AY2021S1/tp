@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.stock.model.stock.Stock;
 
+/**
+ * Contains unit tests for SortUtl.
+ */
 public class SortUtilTest {
     private List<Stock> toTestComparator;
 

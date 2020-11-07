@@ -35,6 +35,9 @@ public class Name {
 
     /**
      * Returns true if a given string is a valid name.
+     *
+     * @param test The name to be tested.
+     * @return A boolean value indicating if the name is valid.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -57,5 +60,4 @@ public class Name {
     public int hashCode() {
         return fullName.hashCode();
     }
-
 }

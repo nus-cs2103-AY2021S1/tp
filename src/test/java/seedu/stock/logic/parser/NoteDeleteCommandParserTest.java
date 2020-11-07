@@ -16,8 +16,8 @@ import static seedu.stock.logic.commands.CommandTestUtil.VALID_NOTE_INDEX;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIAL_NUMBER_APPLE;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
+import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_THIRD_STOCK;
 
 import org.junit.jupiter.api.Test;
 
@@ -96,7 +96,7 @@ public class NoteDeleteCommandParserTest {
         NoteIndex noteIndexStub = new NoteIndex(VALID_NOTE_INDEX);
         // no leading and trailing whitespaces
         NoteDeleteCommand expectedNoteCommand =
-                new NoteDeleteCommand(SERIAL_NUMBER_FIRST_STOCK, noteIndexStub);
+                new NoteDeleteCommand(SERIAL_NUMBER_SECOND_STOCK, noteIndexStub);
         assertParseSuccess(parser,
                 SERIAL_NUMBER_DESC_APPLE + NOTE_INDEX_DESC,
                 expectedNoteCommand);
@@ -110,18 +110,18 @@ public class NoteDeleteCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + SERIAL_NUMBER_DESC_APPLE + NOTE_INDEX_DESC,
-                new NoteDeleteCommand(SERIAL_NUMBER_FIRST_STOCK, noteIndexStub));
+                new NoteDeleteCommand(SERIAL_NUMBER_SECOND_STOCK, noteIndexStub));
 
         // field headers in different order
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + NOTE_INDEX_DESC + SERIAL_NUMBER_DESC_BANANA,
-                new NoteDeleteCommand(SERIAL_NUMBER_SECOND_STOCK, noteIndexStub));
+                new NoteDeleteCommand(SERIAL_NUMBER_THIRD_STOCK, noteIndexStub));
 
         // whitespaces in between different headers
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + NOTE_INDEX_DESC
                         + "                  " + SERIAL_NUMBER_DESC_BANANA,
-                new NoteDeleteCommand(SERIAL_NUMBER_SECOND_STOCK, noteIndexStub));
+                new NoteDeleteCommand(SERIAL_NUMBER_THIRD_STOCK, noteIndexStub));
     }
 
     @Test
