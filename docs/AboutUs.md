@@ -54,6 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/chloelee767.png" width="200px">
 
 [[github](http://github.com/chloelee767)]
+[[portfolio](team/chloelee767.md)]
 
 * Role: Developer, Git Expert
 * Responsibilities: Testing

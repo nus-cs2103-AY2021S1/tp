@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_FLOOR;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
@@ -26,7 +27,12 @@ public class AddRoomCommand extends Command {
             "Parameters: "
                     + PREFIX_ROOM_FLOOR + "FLOOR "
                     + PREFIX_ROOM_NUMBER + "ROOM_NUMBER "
-                    + PREFIX_ROOM_TYPE + "ROOM_TYPE");
+                    + PREFIX_ROOM_TYPE + "ROOM_TYPE "
+                    + "[" + PREFIX_TAG + "TAG]...\n"
+                    + "Example: " + COMMAND_WORD + " "
+                    + PREFIX_ROOM_FLOOR + "11 "
+                    + PREFIX_ROOM_NUMBER + "101 "
+                    + PREFIX_ROOM_TYPE + "CN");
 
     private final Room toAdd;
 
