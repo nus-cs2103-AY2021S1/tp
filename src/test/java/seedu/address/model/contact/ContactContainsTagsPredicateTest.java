@@ -35,7 +35,7 @@ public class ContactContainsTagsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different predicate values -> returns false
+        // different values -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
