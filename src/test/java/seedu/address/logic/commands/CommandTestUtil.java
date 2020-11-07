@@ -87,6 +87,7 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_LAB05 = "Finish Lab 5 Report";
     public static final String VALID_NAME_LAB07 = "Finish Lab 7 Report";
+    public static final String VALID_NAME_ASSIGNMENT01 = "Submit Assignment 1";
     public static final String VALID_PRIORITY_HIGH = "HIGH";
     public static final String VALID_PRIORITY_NORMAL = "NORMAL";
     public static final String VALID_TAG_CS2100 = "CS2100";
