@@ -120,6 +120,12 @@ public class Participation {
         this.project = project;
     }
 
+    /**
+     * deletes all the participation that involves personToDelete.
+     *
+     * @param model current model.
+     * @param personToDelete person whose participations are to be deleted.
+     */
     public static void deleteAllParticipationOf(Model model, Person personToDelete) {
         Participation currentParticipation;
         Project currentProject;
