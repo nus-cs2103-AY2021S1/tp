@@ -37,7 +37,7 @@ public class AddRecipeCommand extends Command {
             + PREFIX_INGREDIENT + "chicken -100.50g, lettuce - a bit, tomato -3/4 cups "
             + PREFIX_CALORIES + "100 "
             + PREFIX_INSTRUCTION + "Cook. Eat. "
-            + PREFIX_RECIPE_IMAGE + "images/salad.jpg "
+            + PREFIX_RECIPE_IMAGE + "images/healthy1.jpg "
             + PREFIX_TAG + "healthy "
             + PREFIX_TAG + "delicious";
 
