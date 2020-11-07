@@ -27,8 +27,9 @@ public class IngredientResetAllCommand extends Command {
             + "Parameters: There are no parameters.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "All ingredient levels are reset to 0.";
-    public static final String MESSAGE_NO_CHANGE = "All Ingredient levels are already at 0.";
+    public static final String MESSAGE_SUCCESS = "All ingredients' levels are reset to 0.";
+    public static final String MESSAGE_NO_CHANGE = "All Ingredients' levels have been already at 0 before the "
+            + "resetting all ingredient's levels command (i-reset-all) is entered.";
 
     /**
      * Executes the command and returns the result message.
