@@ -24,45 +24,45 @@ EvaParser -> DeleteStaffCommandParser
 activate DeleteStaffCommandParser
 
 DeleteStaffCommandParser --> EvaParser
-deactivate DeleteStaffCommandParser
+deactivate DeleteCommandParser
 
-EvaParser -> DeleteStaffCommandParser : parse("1")
-activate DeleteStaffCommandParser
+EvaParser -> DeleteCommandParser : parse("1")
+activate DeleteCommandParser
 
-create DeleteStaffCommand
-DeleteStaffCommandParser -> DeleteStaffCommand
-activate DeleteStaffCommand
+create DeleteCommand
+DeleteCommandParser -> DeleteCommand
+activate DeleteCommand
 
-DeleteStaffCommand --> DeleteStaffCommandParser : d
-deactivate DeleteStaffCommand
+DeleteCommand --> DeleteCommandParser : d
+deactivate DeleteCommand
 
-DeleteStaffCommandParser --> EvaParser : d
-deactivate DeleteStaffCommandParser
+DeleteCommandParser --> EvaParser : d
+deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteStaffCommandParser -[hidden]-> EvaParser
-destroy DeleteStaffCommandParser
+DeleteCommandParser -[hidden]-> EvaParser
+destroy DeleteCommandParser
 
 EvaParser --> LogicManager : d
 deactivate EvaParser
 
-LogicManager -> DeleteStaffCommand : execute()
-activate DeleteStaffCommand
+LogicManager -> DeleteCommand : execute()
+activate DeleteCommand
 
-DeleteStaffCommand -> Model : deleteStaff(1)
+DeleteCommand -> Model : deleteStaff(1)
 activate Model
 
-Model --> DeleteStaffCommand
+Model --> DeleteCommand
 deactivate Model
 
 create CommandResult
-DeleteStaffCommand -> CommandResult
+DeleteCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteStaffCommand
+CommandResult --> DeleteCommand
 deactivate CommandResult
 
-DeleteStaffCommand --> LogicManager : result
-deactivate DeleteStaffCommand
+DeleteCommand --> LogicManager : result
+deactivate DeleteCommand
 
 [<--LogicManager
 deactivate LogicManager
