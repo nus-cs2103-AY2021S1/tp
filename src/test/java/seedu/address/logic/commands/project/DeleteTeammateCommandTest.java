@@ -34,9 +34,10 @@ public class DeleteTeammateCommandTest {
 
         Person person = DESC_A;
         Model expectedModel = model;
-        project.addParticipation(person);
+        Participation participation = new Participation(person.getGitUserNameString(),project.getProjectName().toString());
+        project.addParticipation(participation);
 
-        Participation participation = project.getParticipation(GIT_USERINDEX_FIRST_TEAMMATE
+        participation = project.getParticipation(GIT_USERINDEX_FIRST_TEAMMATE
             .getGitUserNameString());
         model.addPerson(person);
         model.addParticipation(participation);
