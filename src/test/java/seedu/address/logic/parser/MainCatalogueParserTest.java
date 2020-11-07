@@ -137,19 +137,15 @@ public class MainCatalogueParserTest {
         Project project = new ProjectBuilder().build();
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PROJECT.getOneBased() + " " + ProjectUtil.getEditProjectDescriptorDetails(descriptor),
-            Status.PROJECT_LIST);
+                        + INDEX_FIRST_PROJECT.getOneBased() + " " + ProjectUtil.getEditProjectDescriptorDetails(descriptor),
+                Status.PROJECT_LIST);
         assertEquals(new EditCommand(INDEX_FIRST_PROJECT, descriptor), command);
     }
 
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD, Status.PROJECT_LIST) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3",
-            Status.PROJECT_LIST) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD, Status.PROJECT) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3",
-            Status.PROJECT) instanceof ExitCommand);
     }
 
     @Test
