@@ -26,8 +26,8 @@ public class AddApplicationCommand extends Command {
             + "Parameters: "
             + "INDEX FILEPATH \n"
             + "Example: " + COMMAND_WORD + " "
-            + "src\\main\\java\\com\\eva\\logic\\parser\\resume.txt \n"
-            + "or if you would like to scan a sample resume: " + COMMAND_WORD + " 1 sample";
+            + "1 data/resume.txt \n"
+            + "or if you would like to use an in-built sample resume: " + COMMAND_WORD + " 1 sample";
     public static final String MESSAGE_WRONG_PANEL = "Please switch to applicant list panel "
             + "via 'list a-' to add application of applicant";
 
