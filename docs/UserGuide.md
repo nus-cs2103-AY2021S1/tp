@@ -219,7 +219,7 @@ t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 
 #### 3.3.2 Listing all students: `list`
 
-You can view the list of all students in **Reeve**.
+You can view the list of all students in **Reeve** sorted by name.
 
 Format: `list`
 
@@ -264,19 +264,23 @@ Finds students who satisfy the given search criteria.
 
 Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
 * At least one of the optional fields must be provided.
-* The order of the optional fields do not matter. e.g `n/Hans s/River Valley` will match `s/River Valley n/Hans`
-* Only full words will be matched. e.g `han` will not match `hans`.
-* For the name, students with a name that matches any whole keyword specified for the name will be considered to match for the name.
-* For the school, students with a school that contains any keyword specified for the school will be considered to match for the school.
+* The order of the optional fields do not matter. e.g `n/Hans s/River Valley` is the same as `s/River Valley n/Hans`
+* For the name criteria, only students with a name that contains **any full keyword** specified will be matched.
+* For the school criteria, only students with a school that contains **all keywords** specified will be matched.
+* For the year criteria, only students with the **same year** will be matched. (See below for more elaboration for format of year)
 * Only students matching all criteria specified will be returned (i.e `AND` search).
+
+* The format of `YEAR` is as follows:
+    * `TYPE_OF_SCHOOL LEVEL` (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
+    * `TYPE_OF_SCHOOL` can be primary(pri, p), secondary(sec, s) or jc. 
+    * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
 
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
 * `find n/Alex david` does not match `Alexis Davinder`.
-* `find s/yishun sec` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
-* `find s/yishun secondary` does not match `Yishun Sec`
+* `find s/yishun sec` matches `Yishun Secondary School`, `Yishun Town Secondary School` and `Yishun Sec`.
+* `find s/yishun secondary` matches `Yishun Secondary School` and `Yishun Town Secondary School` but not `Yishun Sec`.
 * `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
 
 #### 3.3.5 Deleting a student: `delete`
@@ -606,7 +610,7 @@ Action | Format, Examples
 --------|------------------
 **Add Student** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]...​` <br> e.g., `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 **Edit Student** | `edit STUDENT_INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
-**Find Student** | `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`<br> e.g., `find n/alex s/yishun`
+**Find Student** | `find [n/NAME] [s/SCHOOL] [y/YEAR]`<br> e.g., `find n/alex s/yishun`
 **List Students** | `list`
 **Delete Student** | `delete STUDENT_INDEX`<br> e.g. `delete 3`
 **Sort Students** | `sort COMPARISON_MEANS`<br> e.g. `sort year`
