@@ -14,8 +14,8 @@ public class FindLessonCommand extends Command {
             + "containing the specified valid search phrase (case-insensitive)"
             + "and displays them as a list with index numbers.\n"
             + "Parameters: ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...\n"
-            + "For list of all available attribute, please refer to the user guide by typing 'help' command\n"
-            + "Example: " + COMMAND_WORD + " title:meet zijian day:Mon";
+            + "For list of all available attributes, please refer to the user guide by typing 'help' command\n"
+            + "Example: " + COMMAND_WORD + " title:Tutorial day:Monday";
     public static final String MESSAGE_LESSONS_LISTED_OVERVIEW = "%1$d lessons listed!";
     private final LessonContainsKeywordsPredicate predicate;
 

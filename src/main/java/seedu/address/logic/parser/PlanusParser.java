@@ -51,7 +51,15 @@ public class PlanusParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+        // general commands
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
+        // commands related to tasks
         case EventCommand.COMMAND_WORD:
             return new EventCommandParser().parse(arguments);
         case DeadlineCommand.COMMAND_WORD:
@@ -60,8 +68,6 @@ public class PlanusParser {
             return new EditTaskCommandParser().parse(arguments);
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskCommandParser().parse(arguments);
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
         case FindTaskCommand.COMMAND_WORD:
             return new FindTaskCommandParser().parse(arguments);
         case LessonCommand.COMMAND_WORD:
@@ -70,10 +76,6 @@ public class PlanusParser {
             return new ListTaskCommand();
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
 
         // commands related to lessons
         case ListLessonCommand.COMMAND_WORD:
@@ -85,6 +87,7 @@ public class PlanusParser {
         case DeleteLessonCommand.COMMAND_WORD:
             return new DeleteLessonCommandParser().parse(arguments);
 
+        // fallback
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

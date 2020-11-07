@@ -33,4 +33,17 @@ public interface Parser<T extends Command> {
     static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
+    /**
+     * Returns true if the {@code ArgumentMultimap} contains multiple inputs of the same attributes.
+     * @return true if it contains multiple attributes.
+     */
+    static boolean argMultimapHasRepeatedAttributes(ArgumentMultimap argMultimap, Prefix... prefixes) {
+        for (Prefix prefix : prefixes) {
+            if (argMultimap.hasMultipleValues(prefix)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

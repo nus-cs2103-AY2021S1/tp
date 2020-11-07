@@ -66,16 +66,9 @@ public class EditLessonCommandParser implements Parser<EditLessonCommand> {
                 throw new ParseException(Time.RANGE_CONSTRAINTS);
             }
         }
-
         EditLessonDescriptor editLessonDescriptor = new EditLessonDescriptor();
-        if (argMultimap.hasMultipleValues(PREFIX_TITLE)
-                || argMultimap.hasMultipleValues(PREFIX_DAY)
-                || argMultimap.hasMultipleValues(PREFIX_DESCRIPTION)
-                || argMultimap.hasMultipleValues(PREFIX_TAG)
-                || argMultimap.hasMultipleValues(PREFIX_START_DATE)
-                || argMultimap.hasMultipleValues(PREFIX_END_DATE)
-                || argMultimap.hasMultipleValues(PREFIX_START_TIME)
-                || argMultimap.hasMultipleValues(PREFIX_END_TIME)) {
+        if (Parser.argMultimapHasRepeatedAttributes(argMultimap, PREFIX_TITLE, PREFIX_DAY, PREFIX_DESCRIPTION,
+                PREFIX_TAG, PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_START_TIME, PREFIX_END_TIME)) {
             throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
         }
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
