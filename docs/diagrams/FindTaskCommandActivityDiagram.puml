@@ -1,0 +1,21 @@
+@startuml
+
+start
+
+:User enters the command to find tasks;
+
+:FindTaskParser parses the command arguments;
+
+if () then ([command arguments are valid])
+        :Create FindTaskCriteria to encapsulate a list of predicates;
+        :Create predicate objects to test for matching tasks and add them to FindTaskCriteria;
+        :Create and execute FindTaskCommand to find all matching tasks;
+        :Update UI to display the search results;
+else ([else])
+        :Throw parse exception;
+        :Update UI to display the error message;
+
+endif
+
+stop
+@enduml

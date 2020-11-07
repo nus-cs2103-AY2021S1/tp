@@ -14,11 +14,12 @@ import seedu.address.model.module.grade.comparator.AssignmentNameComparator;
  */
 public class GradeTracker implements ReadOnlyGradeTracker {
     public static final String MESSAGE_INVALID_GRADE =
-            "Grades should be provided in the range from 0.00 to 1.00.";
+            "Grades should be provided in the range from 0.00 to 100.00.";
     public static final String MESSAGE_INVALID_GRADEPOINT =
             "GradePoint should be given as a decimal from 0.00 to 5.00.";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT =
             "Assignments cannot be repeated.";
+    public static final double ASSIGNMENT_PERCENTAGE_TOTAL = 100;
     private final UniqueAssignmentList assignments;
     private final AssignmentNameComparator comparator = new AssignmentNameComparator();
     /*
@@ -80,7 +81,7 @@ public class GradeTracker implements ReadOnlyGradeTracker {
     }
 
     public List<Assignment> getSortedAssignments() {
-        List<Assignment> sortedAssignments = new SortedList<Assignment>(assignments
+        List<Assignment> sortedAssignments = new SortedList<>(assignments
                 .asUnmodifiableObservableList(), comparator);
         return sortedAssignments;
     }
@@ -110,20 +111,19 @@ public class GradeTracker implements ReadOnlyGradeTracker {
     public static boolean isValidGradeTracker(GradeTracker gradeTracker) {
         boolean areAssignmentsValid = true;
         for (Assignment eachAssignment: gradeTracker.assignments) {
-            if (!AssignmentName.isValidAssignmentName(eachAssignment.getAssignmentName().get().assignmentName)
+            if (eachAssignment.getAssignmentName().isPresent()
+                    && !AssignmentName.isValidAssignmentName(eachAssignment.getAssignmentName().get().assignmentName)
+                    && eachAssignment.getAssignmentPercentage().isPresent()
                     && AssignmentPercentage.isValidAssignmentPercentage(
                             eachAssignment.getAssignmentPercentage().get().assignmentPercentage)
+                    && eachAssignment.getAssignmentResult().isPresent()
                     && AssignmentResult.isValidAssignmentResult(
                             eachAssignment.getAssignmentResult().get().assignmentResult)) {
                 areAssignmentsValid = false;
                 break;
             }
         }
-        if (Grade.isValidGrade(gradeTracker.grade.gradeResult) && areAssignmentsValid) {
-            return true;
-        } else {
-            return false;
-        }
+        return Grade.isValidGrade(gradeTracker.grade.gradeResult) && areAssignmentsValid;
     }
 
     /**
@@ -133,12 +133,72 @@ public class GradeTracker implements ReadOnlyGradeTracker {
      * @return true if the assignment already exists
      */
     public boolean containsDuplicateAssignment(Assignment otherAssignment) {
+        requireNonNull(otherAssignment);
         for (Assignment eachAssignment : assignments) {
             if (eachAssignment.equals(otherAssignment)) {
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * Checks if the current total assignment percentages exceed 100.00 if the next assignment is added.
+     *
+     * @return true if the threshold is exceeded.
+     */
+    public boolean exceedsAssignmentPercentageThreshold(Assignment assignment) {
+        double totalAssignmentPercentage = 0;
+
+        for (Assignment eachAssignment : assignments) {
+            if (eachAssignment.getAssignmentPercentage().isPresent()) {
+                totalAssignmentPercentage += eachAssignment.getAssignmentPercentage().get().assignmentPercentage;
+            }
+        }
+
+        return totalAssignmentPercentage + assignment.getAssignmentPercentage().get().assignmentPercentage
+                > ASSIGNMENT_PERCENTAGE_TOTAL;
+    }
+
+    /**
+     * Functions like exceedsAssignmentPercentageThreshold but specific to edit assignment command.
+     *
+     * @return true if the threshold is exceeded.
+     */
+    public boolean exceedsAssignmentPercentageThreshold(Assignment assignmentToEdit, Assignment editedAssignment) {
+        double totalAssignmentPercentage = 0;
+
+        for (Assignment eachAssignment : assignments) {
+            if (eachAssignment.getAssignmentPercentage().isPresent()) {
+                totalAssignmentPercentage += eachAssignment.getAssignmentPercentage().get().assignmentPercentage;
+            }
+        }
+        totalAssignmentPercentage = totalAssignmentPercentage + (editedAssignment.getAssignmentPercentage().get()
+                .assignmentPercentage - assignmentToEdit.getAssignmentPercentage().get().assignmentPercentage);
+        return totalAssignmentPercentage > ASSIGNMENT_PERCENTAGE_TOTAL;
+    }
+
+    /**
+     * Calculates the current updated grade to set for the gradetracker.
+     *
+     * @return the updated grade for the gradetracker.
+     */
+    public Grade calculateNewGrade() {
+        double accumulatedAssignmentPercentage = 0;
+        double accumulatedAssignmentResult = 0;
+        for (Assignment eachAssignment : assignments) {
+            if (eachAssignment.getAssignmentPercentage().isPresent() && eachAssignment.getAssignmentResult()
+                    .isPresent()) {
+                double assignmentPercentage = eachAssignment.getAssignmentPercentage().get().assignmentPercentage;
+                double assignmentResult = eachAssignment.getAssignmentResult().get().assignmentResult;
+                accumulatedAssignmentPercentage += assignmentPercentage;
+                accumulatedAssignmentResult = (assignmentPercentage / ASSIGNMENT_PERCENTAGE_TOTAL) * assignmentResult;
+            }
+        }
+        Grade newGrade = new Grade(accumulatedAssignmentResult
+                / (accumulatedAssignmentPercentage / ASSIGNMENT_PERCENTAGE_TOTAL));
+        this.grade = newGrade;
+        return newGrade;
     }
 
     @Override

@@ -36,8 +36,4 @@ public class ViewArchivedModulesCommand extends Command {
                 || (other instanceof DeleteModuleCommand); // instanceof handles nulls
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

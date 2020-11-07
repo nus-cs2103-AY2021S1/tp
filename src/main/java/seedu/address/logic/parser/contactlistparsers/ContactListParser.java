@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ContactListParser implements FeatureParser {
 
     /**
-     * Used for initial separation of command word and args.
+     * Used for initial separation of command word and arguments.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
@@ -32,10 +32,12 @@ public class ContactListParser implements FeatureParser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public Command parseCommand(String userInput) throws ParseException {
+
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
@@ -55,16 +57,13 @@ public class ContactListParser implements FeatureParser {
             return new DeleteContactParser().parse(arguments);
 
         case ClearContactCommand.COMMAND_WORD:
-            return new ClearContactCommand();
+            return singleWordCommandsChecker(ClearContactCommand.COMMAND_WORD, arguments);
 
         case FindContactCommand.COMMAND_WORD:
             return new FindContactParser().parse(arguments);
 
         case ListContactCommand.COMMAND_WORD:
-            return new ListContactCommand();
-
-        //case ExitCommand.COMMAND_WORD:
-            //return new ExitCommand();
+            return singleWordCommandsChecker(ListContactCommand.COMMAND_WORD, arguments);
 
         case ImportantContactCommand.COMMAND_WORD:
             return new ImportantContactParser().parse(arguments);
@@ -77,6 +76,23 @@ public class ContactListParser implements FeatureParser {
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    private Command singleWordCommandsChecker(String commandWord, String argument) throws ParseException {
+        if (!argument.equals("")) {
+            throw new ParseException("Invalid input format, extra string after the command word.");
+        }
+
+        switch (commandWord) {
+        case ClearContactCommand.COMMAND_WORD:
+            return new ClearContactCommand();
+
+        case ListContactCommand.COMMAND_WORD:
+            return new ListContactCommand();
+
+        default:
+            throw new ParseException("Invalid command");
         }
     }
 }

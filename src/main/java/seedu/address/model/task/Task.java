@@ -59,7 +59,7 @@ public class Task {
      * @param status status of the task
      * @param dateCreated date creation of the task
      */
-    public Task(TaskName name, Set<Tag> tags, Priority priority, Date date, Status status, LocalDate dateCreated) {
+    private Task(TaskName name, Set<Tag> tags, Priority priority, Date date, Status status, LocalDate dateCreated) {
         requireAllNonNull(name, status);
         this.name = name;
         this.tags.addAll(tags);
