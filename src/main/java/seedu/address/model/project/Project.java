@@ -333,7 +333,7 @@ public class Project {
     /**
      * Removes all instances of a person's participation
      */
-    public static void DeleteAllParticipationOf(Participation participation){
+    public static void deleteAllParticipationOf(Participation participation) {
         for (Project allProject : allProjects) {
             allProject.removeParticipation(participation);
         }
