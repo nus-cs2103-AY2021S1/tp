@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -22,19 +22,19 @@ public class ViewTeammateCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the details of the teammate identified "
             + "by the index number used in the displayed teammate list.\n"
-            + "example: viewteammate 2 ";
+            + "example: " + COMMAND_WORD + " LucasTai98 ";
 
     public static final String MESSAGE_VIEW_TEAMMATE_SUCCESS = "Started TEAMMATE: %1$s";
 
-    private final Index index;
+    private final GitUserIndex gitUserIndex;
 
     /**
-     * @param index of the task in the filtered teammate list to edit
+     * @param gitUserIndex of the teammate in the current project to view
      *
      */
-    public ViewTeammateCommand(Index index) {
-        requireNonNull(index);
-        this.index = index;
+    public ViewTeammateCommand(GitUserIndex gitUserIndex) {
+        requireNonNull(gitUserIndex);
+        this.gitUserIndex = gitUserIndex;
     }
 
     @Override
@@ -43,11 +43,11 @@ public class ViewTeammateCommand extends Command {
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
         List<Participation> lastShownList = project.getTeammates();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_INDEX);
+        if (!project.hasParticipation(gitUserIndex.getGitUserName())) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
         }
 
-        Participation teammate = lastShownList.get(index.getZeroBased());
+        Participation teammate = project.getParticipation(gitUserIndex.getGitUserName());
         model.enter(teammate);
 
         return new CommandResult(String.format(MESSAGE_VIEW_TEAMMATE_SUCCESS, teammate));
@@ -67,6 +67,6 @@ public class ViewTeammateCommand extends Command {
 
         // state check
         ViewTeammateCommand e = (ViewTeammateCommand) other;
-        return index.equals(e.index);
+        return gitUserIndex.equals(e.gitUserIndex);
     }
 }
