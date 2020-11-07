@@ -10,7 +10,7 @@ title: Developer Guide
 ## **Introduction**
 
 ### **Purpose**
-This document specified architecture, software design decisions and features for the application, ProductiveNUS. It will provide you with the essential information on its development process. 
+This document specified architecture, software design decisions and features for the application, ProductiveNUS. It will provide you with the essential information on its development process.
 
 ### **Scope**
 The intended audience of this document are developers, designers, and software testers.
@@ -222,8 +222,8 @@ The user can find assignments by providing keywords of the following fields:
 The user can find assignments with single or multiple keywords of the same type of field.
 
 It implements the following operations:
-* `find n/Lab` - Finds assignments with a name that has "Lab".
-* `find mod/CS2100 CS2103T` - Finds assignments from the module CS2100 and CS2103T.
+* `find n/Lab` - Finds assignments with names that has "Lab".
+* `find mod/CS2100 CS2103T` - Finds assignments from the modules CS2100 and CS2103T.
 * `find d/1200 24-10-2020` - Finds assignments with due time 1200 (regardless of date), and with due date 24-10-2020 (regardless of time).
 * `find p/HIGH` - Finds assignments of high priority.
 
@@ -241,53 +241,41 @@ We thus concluded that finding by specific fields would be beneficial for users,
 #### Current Implementation
 
 ##### Prefixes used in identifying keywords
-The use of prefixes before keywords allows for validation of keywords in the user's input, with Regular Expressions.
+The use of prefixes before keywords allows for validation of keywords in the user's input.
 
-The following prefixes are used to identify the fields and its keywords:
-- `/n` for Name
-- `/mod` for Module code
-- `/d` for Due date or time
-- `/p` for Priority
+The following prefixes are used to identify the type of keywords:
+- `/n` for Name keywords
+- `/mod` for Module code keywords
+- `/d` for Due date or time keywords
+- `/p` for Priority keywords
 
 ##### Predicate classes 
-The following Predicate classes implements `Predicate<Assignment>` and are used when the user inputs keywords of its assigned field:
-- NameContainsKeywordsPredicate
-- ModuleCodeContainsKeywordsPredicate
-- DeadlineContainsKeywordsPredicate
-- PriorityContainsKeywordsPredicate
 
-Given below is the class diagram of these Predicate classes:
+![Class diagram for Predicate classes](images/PredicateClassDiagram.png)
+*Figure X: Class diagram for Predicate classes*
 
------- CLASS DIAGRAM---------
+The following Predicate classes implements `Predicate<Assignment>` and specific ones are passed into the constructor of `FindCommand` when the user inputs keywords of its assigned field:
 
+- NameContainsKeywordsPredicate for name keywords
+- ModuleCodeContainsKeywordsPredicate for module code keywords
+- DeadlineContainsKeywordsPredicate for date or time keywords
+- PriorityContainsKeywordsPredicate for priority keywords
 
-
-##### FindCommand Class
-- `FindCommand` extends abstract class `Command` and overrides the method `execute` in `CommandResult`.
-- The constructor of `FindCommand` takes in a Predicate depending on the prefix or keywords in the user's input. 
-- This class contains static `String` attributes of error messages to be displayed in the event of invalid user input.
+The keywords are stored in a `List<String>` that is passed into the constructor of the predicate so that the overridden `test` method from `Predicate<Assignment>` class can evaluate the keywords with the specific attribute of an assignment, being name, module code, deadline or priority, to return a boolean value.
 
 ##### FindCommandParser Class
-- The `FindCommandParser` class contains private methods to parse each type of keyword field, and to check for valid input format.
-- `FindCommandParser` implements `Parser<FindCommand>` and it parses the user's input to return a `FindCommand` object.
+The `FindCommandParser` class implements `Parser<FindCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `FindCommand` object. It contains private methods which checks for the presence of multiple prefixes and invalid keywords, which will throw a `ParseException` if detected.
 
-Given below is the class diagram of `FindCommandParser` class.
+Its `parse` method takes in a string of user input. If there are no multiple prefixes found and user input is not empty, it would then check for the type of prefix present as well as whether there is a preamble before the prefix and after the `find` input command. This ensures that there are no invalid command formats used by the user. 
 
+If no invalid command format is detected, each keyword in the string of keywords are parsed in a for loop. For name, module code and priority keywords, parsing is done via its parse method in `ParserUtil` to ensure that each keyword is valid. These parse methods are `parseName`, `parseModuleCode` and `parsePriority` respectively and they throw `ParseExceptions` in the event of invalid input. For date or time keywords, Regular expressions are used to identify its format, with date format being identified with `^\\d{2}-\\d{2}-\\d{4}$` and time format being identified with `^\\d{4}$`. Once the date and time keywords inputted by the user are identified, date keywords are parsed into `LocalDate` and time keywords are parsed into `LocalTime`. A `ParseException` will be thrown if a `DateTimeException` is caught in the event of failed parsing of date with `DateTimeFormatter` pattern `dd_MM-uuuu` or time with the `DateTimeFormatter` pattern `HHmm`.
 
+##### FindCommand Class
+The `FindCommand` class extends abstract class `Command` and it is responsible for finding assignments based on the user's input keywords. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and a `Predicate<Assignment>` attribute, `predicate`. The constructor of `FindCommand` takes in a `Predicate<Assignment>` depending on the prefix or keywords in the user's input and its attribute `predicate` is initialized to this value.
+ 
+ It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, it calls the `updatedFilteredAssignmentList` method of a `Model` object, `model`, it takes in, so that the filter of the filtered assignment list will be updated by the given predicate and a list of filtered assignments will be displayed to the user, along with an indication message on the number of assignments listed.
 
-
-
-
------- CLASS DIAGRAM---------
-
-
-
-
-
-
-
-
-
+Upon successful parsing, a `FindCommand` object is returned.
 
 #### Usage Scenario
 
@@ -343,7 +331,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ### List by days feature
 
 The user can list all his assignments with `list` without a subsequent argument index, or list assignments with 
-deadlines within a number of days from the current date (and time), with this number being an argument index after `list`.
+deadlines within a 1 to 50 days from the current date and time, with the number of days being an argument index after `list`.
 
 It implements the following operations:
 * `list` - Lists all assignments
@@ -358,16 +346,20 @@ whereas finding assignments by date or time will only display assignments due on
 
 #### Current Implementation
 
-##### ListCommand Class
-- It extends the abstract class `Command` and overrides the method `execute` in `CommandResult`.
-- The constructor of `ListCommand` takes in an `Index` which is parsed from the zero based index of the user's input.
-- The class contains a private method `showLimitedAssignments()` that returns a `Predicate<Assignment>`. This method will filter 
-assignments to be displayed based on the argument index in the user's input.
-- The class also contains a private attribute `numberOfDays` of type `Index` and `String` attributes of messages to be displayed to the user.
-
 ##### ListCommandParser Class
-- `ListCommandParser` implements `Parser<ListCommand>`. It has a method `parse` which parses the user's input to return a `ListCommand` object.
-- With the use of Regular Expressions to identify index arguments present in the input, it sets a boolean variable `hasArgumentIndex`.
+The `ListCommandParser` class implements `Parser<ListCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `ListCommand` object. Regular Expressions are used to identify the presence of an input argument in `args`, which takes into account all characters and even special characters. If no argument index is found in `args`, a `ListCommand` object which takes in an `Index` of zero base 0 is returned and this 0 value will identify the command as listing all assignments.
+
+If input argument is found, it is then checked with Regular Expressions whether the argument is in the range 1 to 50 inclusive. If so, the string `args` is parsed into an `Index` which is then passed in as the argument to `ListCommand` that is returned.
+
+##### ListCommand Class
+The `ListCommand` class extends abstract class `Command` and it is responsible for listing assignments based on the user's input command. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and an `Index` attribute, `numberOfDays`. The constructor of ListCommand takes in an `Index` and its attribute `numberOfDays` is initialized to this value.
+
+It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, if the zero base value of `numberOfDays` is 0, a predicate `PREDICATE_SHOW_ALL_ASSIGNMENT` is passed into 
+the `updatedFilteredAssignmentList` method of a `Model` object, `model`. If the zero base value is not 0, `showLimitedAssignments` method with return type `Predicate<Assignment>` is passed into the `updatedFilteredAssignmentList` method. This method uses lambda expressions to filter assignments with deadlines that fall within the number of days window inputted by the user.
+
+##### Design Considerations
+
+
 
 #### Usage scenario
 The following is a usage scenario of when the user wants to list assignments that are due within the next 3 days from now.
@@ -400,15 +392,12 @@ It will provide convenience to users who want to delete more than one assignment
 #### Current Implementation
 
 ##### DeleteCommand class 
-- It extends the abstract class `Command` and overrides the method `execute` in `CommandResult`.
-- `DeleteCommandParser` implements `Parser<DeleteCommand>` and it parses the user's input to return a `DeleteCommand` object.
-- It contains a private attribute ` targetIndexes`, of type `List<Index>`. It stores a list of indexes of respective assignments to be deleted.  
-- The constructor of `DeleteCommand` takes in a `List<Index>`. 
+The `DeleteCommand` class extends abstract class `Command` and it is responsible for deleting assignments based on the user's input indexes. It contains static `String` attributes of messages to be displayed to the user, and a `List<Index>` attribute, `targetIndexes`. The constructor of `DeleteCommand` takes in a `List<Index>` argument and `targetIndexes` is initialized to this value.
+
+ It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, `targetIndexes` is sorted in descending order with `INDEX_COMPARATOR` in `CommandLogic` class and then it calls `checkForDuplicationIndexes` and `checkForInvalidIndexes` methods in `CommandLogic`. The zero base value of each `Index` in `targetIndexes` is stored in a `List<Integer>` and the number of distinct values and size of the list is found so that duplicated indexes can be found by comparing the number of distinct values and number of elements in the list. Invalid indexes includes numbers that are not in the range from 1 to the number of assignments in the list. If no `CommandException` is thrown when duplicated or invalid indexes are found, the assignments are deleted by calling `deleteAssignments` method on `model` repeatedly until all indexes in the `targetedIndexes` are accounted for.
 
 ##### DeleteCommandParser Class
-- `DeleteCommandParser` implements `Parser<DeleteCommand>`. 
-- It has a method `parse` which parses the user's input by calling `parseIndexes` method of `ParserUtil`, to return `parsedIndexes` of type `List<Index>`.
-- The `parse` method returns a `DeleteCommand` object that takes in `parsedIndexes`.
+The `DeleteCommandParser` class implements `Parser<DeleteCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `DeleteCommand` object. It calls `parseIndexes` method from `ParserUtil` class to parse the string user input into multiple `Index` which is then stored in a `List<Index>`. A `ParseException` is caught if parsing is unsuccessful.
 
 ##### Design Considerations
 To delete an assignment, it calls the `deleteAssignment` method of `model`.
@@ -431,7 +420,7 @@ The following is a usage scenario of when the user wants to delete the first and
  Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(delete 1 2)` API call.
  
  
- DIAGRAM
+
  
  
 
