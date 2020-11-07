@@ -1,5 +1,12 @@
 package seedu.address.model.util;
 
+import static seedu.address.commons.util.DateTimeUtil.DATE_FORMATTER;
+import static seedu.address.commons.util.DateTimeUtil.TIME_FORMATTER;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import seedu.address.model.Planus;
 import seedu.address.model.ReadOnlyPlanus;
 import seedu.address.model.lesson.Lesson;
@@ -15,13 +22,6 @@ import seedu.address.model.task.deadline.Status;
 import seedu.address.model.task.event.EndDateTime;
 import seedu.address.model.task.event.Event;
 import seedu.address.model.task.event.StartDateTime;
-
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalTime;
-
-import static seedu.address.commons.util.DateTimeUtil.DATE_FORMATTER;
-import static seedu.address.commons.util.DateTimeUtil.TIME_FORMATTER;
 
 
 /**
@@ -47,21 +47,21 @@ public class SampleDataUtil {
 
     public static Lesson[] getSampleLessons() {
         return new Lesson[] {
-                new Lesson(new Title("Tutorial"), new Tag("CS1101S"),
-                        new Description("I love functional programming!"), DayOfWeek.MONDAY,
-                        LocalTime.parse("12:00", TIME_FORMATTER), LocalTime.parse("14:00", TIME_FORMATTER),
-                        LocalDate.parse("01-08-2020", DATE_FORMATTER),
-                        LocalDate.parse("01-12-2020", DATE_FORMATTER)),
-                new Lesson(new Title("Lab"), new Tag("CS2100"),
-                        new Description("Logic Gates!"), DayOfWeek.THURSDAY,
-                        LocalTime.parse("16:00", TIME_FORMATTER), LocalTime.parse("17:00", TIME_FORMATTER),
-                        LocalDate.parse("01-08-2020", DATE_FORMATTER),
-                        LocalDate.parse("01-12-2020", DATE_FORMATTER)),
-                new Lesson(new Title("Lecture"), new Tag("CS2105"),
-                        new Description("Protocols"), DayOfWeek.MONDAY,
-                        LocalTime.parse("14:00", TIME_FORMATTER), LocalTime.parse("16:00", TIME_FORMATTER),
-                        LocalDate.parse("01-08-2020", DATE_FORMATTER),
-                        LocalDate.parse("01-12-2020", DATE_FORMATTER))
+            new Lesson(new Title("Tutorial"), new Tag("CS1101S"),
+                    new Description("I love functional programming!"), DayOfWeek.MONDAY,
+                    LocalTime.parse("12:00", TIME_FORMATTER), LocalTime.parse("14:00", TIME_FORMATTER),
+                    LocalDate.parse("01-08-2020", DATE_FORMATTER),
+                    LocalDate.parse("01-12-2020", DATE_FORMATTER)),
+            new Lesson(new Title("Lab"), new Tag("CS2100"), new Description("Logic Gates!"),
+                    DayOfWeek.THURSDAY, LocalTime.parse("16:00", TIME_FORMATTER),
+                    LocalTime.parse("17:00", TIME_FORMATTER),
+                    LocalDate.parse("01-08-2020", DATE_FORMATTER),
+                    LocalDate.parse("01-12-2020", DATE_FORMATTER)),
+            new Lesson(new Title("Lecture"), new Tag("CS2105"),
+                    new Description("Protocols"), DayOfWeek.MONDAY,
+                    LocalTime.parse("14:00", TIME_FORMATTER), LocalTime.parse("16:00", TIME_FORMATTER),
+                    LocalDate.parse("01-08-2020", DATE_FORMATTER),
+                    LocalDate.parse("01-12-2020", DATE_FORMATTER))
         };
     }
 
