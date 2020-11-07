@@ -46,7 +46,7 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws IndexParseException, ParseException {
-        if (oneBasedIndex.isEmpty() /*|| !checkIfNumber(oneBasedIndex)*/) {
+        if (oneBasedIndex.isEmpty() || !checkIfNumber(oneBasedIndex)) {
             throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         String trimmedIndex = oneBasedIndex.trim();
@@ -288,15 +288,24 @@ public class ParserUtil {
 
     /**
      * Checks for invalid input
-     * @param index
-     * @return
      */
     public static boolean checkIfNumber(String index) {
         try {
-            Integer.parseInt(index);
+            Integer.parseInt(index.trim());
         } catch (NumberFormatException e) {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if the prefix does not have any arguments.
+     */
+    public static boolean isEmptyPrefix(ArgumentMultimap argMultimap, Prefix prefix) {
+        if (argMultimap.getAllValues(prefix).size() == 1) {
+            return argMultimap.getAllValues(prefix).get(0).isEmpty();
+        } else {
+            return false;
+        }
     }
 }

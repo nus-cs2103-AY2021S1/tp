@@ -22,7 +22,8 @@ public class DeleteStaffCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "a",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteStaffCommand.MESSAGE_USAGE));
     }
 
     @Test
