@@ -122,6 +122,17 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getTagList().remove(0));
     }
 
+    @Test
+    public void hashcode_equals_success() {
+        AddressBook newAddressBook = new AddressBook();
+
+        // same object -> returns true
+        assertTrue(addressBook.hashCode() == addressBook.hashCode());
+
+        //different object --> returns true
+        assertTrue(addressBook.hashCode() == newAddressBook.hashCode());
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
