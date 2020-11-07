@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -125,11 +126,19 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Status.class.getSimpleName()));
         }
-        final Status modelStatus = Status.valueOf(status);
-
+        final Status modelStatus;
+        try {
+            modelStatus = Status.valueOf(status);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        }
+        final LocalDate modelDateCreated;
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-
-        final LocalDate modelDateCreated = LocalDate.parse(dateCreated);
+        try {
+            modelDateCreated = LocalDate.parse(dateCreated);
+        } catch (DateTimeParseException e) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+        }
 
         Task task = new Task(modelTaskName);
         task = task.setTags(modelTags);

@@ -20,7 +20,6 @@ import seedu.address.model.task.Task;
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
-
     // LABS
     public static final Task LAB_01 = new TaskBuilder().withName("Finish Lab01")
             .withTags("Lab", "CS2030").withPriority("HIGH").withDate("2020-11-05")
@@ -54,7 +53,7 @@ public class TypicalTasks {
         .withStatus("COMPLETED").build();
 
     // Manually added
-    public static final Task TUTORIAL_01 = new TaskBuilder().withName("Attemp Tutorial 1")
+    public static final Task TUTORIAL_01 = new TaskBuilder().withName("Attempt Tutorial 1")
         .withTags("Tutorial", "CS2106").withPriority("LOW").withDate("2020-11-13")
         .withStatus("COMPLETED").build();
     public static final Task TUTORIAL_02 = new TaskBuilder().withName("Attemp Tutorial 2")

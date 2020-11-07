@@ -61,7 +61,6 @@ public class JsonTodoListStorage implements TodoListStorage {
      * @param filePath location of the data. Cannot be null.
      */
     public void saveTodoList(ReadOnlyTodoList todoList, Path filePath) throws IOException {
-        assert todoList != null && filePath != null;
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableTodoList(todoList), filePath);
     }
