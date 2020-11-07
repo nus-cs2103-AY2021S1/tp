@@ -342,8 +342,6 @@ The following activity diagram summarizes what happens when a user executes a fa
   * Cons: Flashcard would not be immutable
 
 
-_{more aspects and alternatives to be added}_
-
 ### \[Implemented\] Filter feature
 
 #### Current Implementation
