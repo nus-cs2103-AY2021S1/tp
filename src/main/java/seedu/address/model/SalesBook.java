@@ -114,6 +114,7 @@ public class SalesBook implements ReadOnlySalesBook {
         record.sort();
     }
 
+    //// util methods
     public void setSalesRecordEntry(SalesRecordEntry newAmount) {
         requireAllNonNull(newAmount);
         record.setSalesEntry(newAmount);

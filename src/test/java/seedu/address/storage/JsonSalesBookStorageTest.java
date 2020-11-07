@@ -3,11 +3,11 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalSalesRecordEntries.UPDATED_BSBBT;
-import static seedu.address.testutil.TypicalSalesRecordEntries.UPDATED_BSBGT;
-import static seedu.address.testutil.TypicalSalesRecordEntries.UPDATED_BSBM;
-import static seedu.address.testutil.TypicalSalesRecordEntries.UPDATED_BSPBT;
-import static seedu.address.testutil.TypicalSalesRecordEntries.UPDATED_BSPGT;
+import static seedu.address.testutil.TypicalSalesRecordEntries.BSBBT;
+import static seedu.address.testutil.TypicalSalesRecordEntries.BSBGT;
+import static seedu.address.testutil.TypicalSalesRecordEntries.BSBM;
+import static seedu.address.testutil.TypicalSalesRecordEntries.BSPBT;
+import static seedu.address.testutil.TypicalSalesRecordEntries.BSPGT;
 import static seedu.address.testutil.TypicalSalesRecordEntries.getTypicalSalesBook;
 
 import java.io.IOException;
@@ -68,37 +68,37 @@ public class JsonSalesBookStorageTest {
         assertEquals(original, new SalesBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.setSalesRecordEntry(UPDATED_BSBGT);
+        original.setSalesRecordEntry(BSBGT);
         jsonSalesBookStorage.saveSalesBook(original, filePath);
         readBack = jsonSalesBookStorage.readSalesBook(filePath).get();
         assertEquals(original, new SalesBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.setSalesRecordEntry(UPDATED_BSBBT);
+        original.setSalesRecordEntry(BSBBT);
         jsonSalesBookStorage.saveSalesBook(original, filePath);
         readBack = jsonSalesBookStorage.readSalesBook(filePath).get();
         assertEquals(original, new SalesBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.setSalesRecordEntry(UPDATED_BSPBT);
+        original.setSalesRecordEntry(BSPBT);
         jsonSalesBookStorage.saveSalesBook(original, filePath);
         readBack = jsonSalesBookStorage.readSalesBook(filePath).get();
         assertEquals(original, new SalesBook(readBack));
 
         // Save and read without specifying file path
-        original.setSalesRecordEntry(UPDATED_BSPGT);
+        original.setSalesRecordEntry(BSPGT);
         jsonSalesBookStorage.saveSalesBook(original); // file path not specified
         readBack = jsonSalesBookStorage.readSalesBook().get(); // file path not specified
         assertEquals(original, new SalesBook(readBack));
 
         // Save and read without specifying file path
-        original.setSalesRecordEntry(UPDATED_BSBBT);
+        original.setSalesRecordEntry(BSBBT);
         jsonSalesBookStorage.saveSalesBook(original); // file path not specified
         readBack = jsonSalesBookStorage.readSalesBook().get(); // file path not specified
         assertEquals(original, new SalesBook(readBack));
 
         // Save and read without specifying file path
-        original.setSalesRecordEntry(UPDATED_BSBM);
+        original.setSalesRecordEntry(BSBM);
         jsonSalesBookStorage.saveSalesBook(original); // file path not specified
         readBack = jsonSalesBookStorage.readSalesBook().get(); // file path not specified
         assertEquals(original, new SalesBook(readBack));
