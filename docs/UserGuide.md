@@ -246,12 +246,12 @@ Finds all ingredients that contain the KEYWORD(s) in their names.
 
 Format: `i-find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `milk` will match `Milk`.
-* The order of the keywords does not matter. e.g. `Milk Boba` will match `Boba Milk`.
-* Only the ingredient name is searched.
-* Only full words will be matched e.g. `Mil` will not match `Milk`.
-* Ingredients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Milk Boba` will return the ingredient `Milk` and the ingredient `Boba`.
+* The search is case-insensitive. For example, `milk` will match `Milk`.<br>
+* The order of the keywords does not matter. For example, `Milk Boba` will match `Boba Milk`.<br>
+* Only the ingredient names are searched.<br>
+* Only full words will be matched. For example, `Mil` will not match `Milk`.<br>
+* Ingredients matching at least one keyword will be be listed in the Ingredient Tracker inside the _Main View_ 
+(i.e. `OR` search). For example, `i-find Milk Boba` will find the ingredient `Milk` and the ingredient `Boba`.<br>
 
 Example: Let's say you want to find the ingredients that have names containing the keyword `Tea`.
 You can follow these instructions:
