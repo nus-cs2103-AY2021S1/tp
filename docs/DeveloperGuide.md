@@ -145,12 +145,16 @@ The `Storage` component,
 
 The `StateManager` component,
 * can set the state for an opened `Case` in the app, denoted by its `Index`.
+* can set the state for an opened `Section` in the app, denoted by its `ArchiveStatus`.
+* can set the state for an opened `Tab` in the app, denoted by its `TabState`.
 * can reset the state.
 * can return the state.
 * can request the `UiStateManager` to refresh its state.
 
 The `UiStateManager` component,
 * can set the state for an opened `Case` in the app, denoted by its `Index`.
+* can set the state for an opened `Section` in the app, denoted by its `ArchiveStatus`.
+* can set the state for an opened `Tab` in the app, denoted by its `TabState`.
 * can reset the state.
 * can refresh its state.
 
