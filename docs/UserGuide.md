@@ -104,13 +104,13 @@ Note(s):
 
 ### Fuzzy Find Completion (Fzf)
 
-Currently Modduke supports Fuzzy Find Completion from v1.4 onward. You can trigger the `fzf` mode
+Currently Modduke supports Fuzzy Find Completion from v1.4 onward. You can trigger the fzf mode
 using `ctrl + space`. Currently our fzf will search through all contact names, module names and meeting names and will
 match entries that contain the prefix entered.
 
 ![Fzf Example](images/FzfCompletionExample.gif)
 
-You can exit `fzf` mode by manually pressing `esc`. You will also be taken automatically out of `fzf` mode once you select one
+You can exit fzf mode by manually pressing `esc`. You will also be taken automatically out of fzf mode once you select one
 of the fzf options by navigating to desired option using arrow keys and making the selection by pressing `enter`. Alternatively,
 you can make the selection using your mouse.
 
@@ -441,8 +441,10 @@ Modduke's data is saved in the hard disk automatically after any command that ch
 
 ### Command Line Shortcuts
 
-`Ctrl-U` --- Clears CommandBox
-`Ctrl-W` --- Deletes text from the cursor position to previous word
+Shortcut | Action
+--------|------------------
+`Ctrl-U` | Clears CommandBox
+`Ctrl-W` | Deletes text from the cursor position to previous word
 
 --------------------------------------------------------------------------------------------------------------------
 
