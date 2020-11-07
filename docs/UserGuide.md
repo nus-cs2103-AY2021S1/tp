@@ -423,7 +423,7 @@ Format: `close`
 
 ### 5.1.8 Searching for a recipe: `searchR` <a id="search-recipe"></a>
 
-Finds recipes in the Recipe List that contain all the specified ingredient(s), name or tag(s).
+Finds recipes in the Recipe List that contains all the specified ingredient(s), or whose name or tag(s) contain any of the specified keywords.
 
 <br>  The image below is what Wishful Shrinking looks like after you have searched for a recipe. In this case, the recipe is being searched by ingredients. <br><br>
 <img src="images/feature/recipe/SearchRecipeImage.png" width="550" height="300">
@@ -434,10 +434,12 @@ Format: `searchR [i/INGREDIENT [ MORE INGREDIENTS]] [n/NAME] [t/TAG [ MORE TAGS]
 * The search is case-insensitive. e.g. `salad` will match `Salad`.
 * The search will match partial keywords. e.g. `sandw` will match `sandwich`.
 * The order of the keywords does not matter. e.g. Ham Salad will match Salad with Ham.
-* All fields are optional, but **at least one** of the fields must be present to search by recipe ingredient(s), recipe name or recipe tag(s).
+* If multiple keywords are specified for **name** and **tags**, all recipes containing **any** of the keywords will match the search.
+* If multiple **ingredients** are searched, only recipes that contain **all** of the ingredients specified will match the search.
+* All fields are optional, but **only one** of the fields must be present to search by recipe ingredient(s), recipe name or recipe tag(s).
 * If more than one field is specified, Wishful Shrinking will only search by the **first** field stated.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-    Multiple ingredients and tags are separated by a space and not a comma.
+    Multiple ingredients and tags are separated by a **space** and not a comma.
 </div>
 
 Examples:
@@ -619,6 +621,7 @@ Format: `searchF KEYWORD [ MORE KEYWORDS]`
 
 * Input keywords are only compared against the ingredient name.
 * The search is case-insensitive. e.g `peanut` will match `Peanut`.
+* The search will match partial keywords. e.g. `tomat` will match `tomato`.
 * The order of the keywords does not matter. e.g. Peanut Butter will match Butter with Peanut.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
     Ingredient quantity is not taken into account when determining whether two ingredients matches.
