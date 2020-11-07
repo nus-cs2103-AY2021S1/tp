@@ -556,8 +556,9 @@ commands are :
 
 #### Implementation
 
-In tCheck, each employee is modeled as `person` object. The archiving employee feature is facilitated by the
- `ArchiveStatus` attribute of a `person`. The following methods in the `Person` class and the `Model`interface facilitate this feature:
+In tCheck, each employee is modeled as `Person` object. The archiving employee feature is facilitated by the
+ `ArchiveStatus` attribute of a `Person`. The following methods in the `Person` class and the `Model`interface
+  facilitate this feature:
 
 * `Person#archive()` — A method that sets the person's `ArchiveStatus` to `true`. It's equivalent to archive the person.
 * `Person#unarchive()` — A method that sets the person's `ArchiveStatus` to `false`. It's equivalent to unarchive the
@@ -577,7 +578,7 @@ Given below shows how the `c-archive`, `c-unarchive`, and `c-archive-all` mechan
 
 *Figure Archive-2. Activity diagram representation of the general flow of archiving of a peron in tCheck*
 
-User can archive a specific employee (modeled as a `person` in the code) by entering the `c-archive INDEX` command. The
+User can archive a specific employee (modeled as a `Person` in the code) by entering the `c-archive INDEX` command. The
  following steps describe how this behavior is implemented:
 
 Step 1: The user archives a `Person` in the current observable `PersonList` with command `c-archive 1`. `ArchiveCommand` is created with the parsed arguments, and executed.
@@ -603,7 +604,7 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 *Figure Archive-4. Activity diagram representation of the general flow of unarchiving of an employee in tCheck*
 
-User can unarchive an already-archived employee(modeled as `person` in the code) by entering the `c-unarchive INDEX
+User can unarchive an already-archived employee(modeled as `Person` in the code) by entering the `c-unarchive INDEX
 ` command. The following steps describe how this behavior is implemented:
 
 Step 1: The user unarchives a `Person` in the current observable `PersonList` with command `c-unarchive 1`. `UnarchiveCommand` is created with the parsed arguments, and executed.
@@ -623,7 +624,7 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 *Figure Archive-5. Sequence diagram representation of unarchiving an employee*
 
 ##### 3. Archive all employees
-User can archive all employees(employee is modeled as `person` in the code) by entering the `c-archive-all` command. The
+User can archive all employees(employee is modeled as `Person` in the code) by entering the `c-archive-all` command. The
  following steps describe how this behavior is implemented:
 
 Step 1: The user archives all `Person`s in the current observable `PersonList` with command `c-archive-all`. `ArchiveAllCommand` is created with the parsed arguments, and executed.
@@ -644,7 +645,7 @@ Step 3: The current `FilteredList` will be updated to only show the empty active
 
 ##### Aspect: The implementation to store archived employees
 
-Notes: Employee is modeled as `person` in the code.
+Notes: Employee is modeled as `Person` in the code.
 
 * **Alternative 1 (current choice):** `Person` contains an `ArchiveStatus` field.
 
