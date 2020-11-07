@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -94,14 +93,13 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        ClassTime studentToEditClassTime = studentToEdit.getAdmin().getClassTime();
-        ClassTime editedStudentClassTime = editedStudent.getAdmin().getClassTime();
-        if (!(editedStudentClassTime.equals(studentToEditClassTime)) && model.isClashingClassTime(editedStudent)) {
+        ClassTime studentToEditClassTime = studentToEdit.getClassTime();
+        ClassTime editedStudentClassTime = editedStudent.getClassTime();
+        if (!(editedStudentClassTime.equals(studentToEditClassTime)) && model.hasClashingClassTimeWith(editedStudent)) {
             throw new CommandException(Messages.MESSAGE_CLASHING_LESSON);
         }
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
 

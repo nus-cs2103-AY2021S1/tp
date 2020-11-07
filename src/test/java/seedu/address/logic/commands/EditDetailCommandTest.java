@@ -121,6 +121,7 @@ public class EditDetailCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
         expectedModel.setStudent(clone, expectedStudent);
+        showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
 
         assertCommandSuccess(editAdditionalDetailCommand, model, expectedMessage, expectedModel);
     }

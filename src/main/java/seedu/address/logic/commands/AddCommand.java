@@ -67,7 +67,7 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        if (model.isClashingClassTime(toAdd)) {
+        if (model.hasClashingClassTimeWith(toAdd)) {
             throw new CommandException(Messages.MESSAGE_CLASHING_LESSON);
         }
 

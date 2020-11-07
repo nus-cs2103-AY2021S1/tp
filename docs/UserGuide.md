@@ -89,7 +89,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 3. Copy the file to the folder you want to use as the _home folder_ for **Reeve**.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/ReeveGUI.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -108,7 +108,27 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 1. Refer to the [Features](#3-features) section below for details of each command.
 
 ### 2.2 Making sense of **Reeve**'s layout
-(to be added when GUI is finalised)
+![Reeve's Layou](images/ReeveLayout.png)
+
+1. **Menu**
+
+    These tabs allows you to simply click on them and get what is needed. 
+
+2. **Main Panel**
+
+    The main panel shows your list of students for easy reference. It also displays your schedule when the schedule command is called. 
+
+3. **Result Display**
+
+    The result display is where Reeve provides responses to your commands.
+
+4. **Notes Panel**
+
+    The notes panel displays all your notes that you have added.
+
+5. **Command Box**
+
+    The command box allows you to type any commands that is accepted in Reeve.
 
 ## 3. Features
 
@@ -215,6 +235,11 @@ Edits an existing student in **Reeve**.
 
 Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] `
 
+* Edits the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* Start time has to be before end time.
+
 <div markdown="block" class="alert alert-info">
 
 :information_source: The format of TIME is {int: Day_of_week} {int: Start_time}-{int: End_time}<br>
@@ -222,12 +247,12 @@ Day_of_week refers to an Integer value from 1 - 7, with 1, 3 and 7 representing 
 Start_time and End_time refer to time values in 24hr format (1200-1700)<br>
 E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.
 
-</div>
+:information_source: If using this command after `find`, the edited student may no longer satisfy the search criteria depending on the field changed.
+In that case the student will be hidden from view and can be viewed again using `list` or `find`.<br>
+E.g. `edit 1 n/Amy Choo` after `find n/Bob` will cause the student to be hidden since her name no longer contains "Bob".
+You can use `list` or `find` (e.g `find n/Amy`) to display her information again. 
 
-* Edits the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* Start time has to be before end time.
+</div>
 
 Examples:
 *  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st student to be `Alex`, `99999999` and `Meridian Junior College` respectively.
@@ -266,8 +291,6 @@ Format: `delete STUDENT_INDEX`
 <div markdown="block" class="alert alert-info">
 
 :information_source: `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
-
-:information_source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
 
 </div>
 

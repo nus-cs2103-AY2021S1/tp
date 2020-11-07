@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -62,7 +61,6 @@ public class SolveQuestionCommand extends QuestionCommand {
         Student replacement = asker.setQuestion(target, solved);
 
         model.setStudent(asker, replacement);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
         return new CommandResult(String.format(MESSAGE_SUCCESS, replacement.getName(), solved));
     }

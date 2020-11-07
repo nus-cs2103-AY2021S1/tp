@@ -75,7 +75,7 @@ public class AddDetailCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_throwsCommandException() {
+    public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -91,6 +91,7 @@ public class AddDetailCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
         expectedModel.setStudent(clone, expectedStudent);
+        showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }

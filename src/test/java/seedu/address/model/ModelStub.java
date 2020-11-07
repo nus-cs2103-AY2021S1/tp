@@ -140,7 +140,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean isClashingClassTime(Student toCheck) {
+    public boolean hasClashingClassTimeWith(Student toCheck) {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -25,7 +25,7 @@ public class ModelStubAcceptingStudentAdded extends ModelStub {
     }
 
     @Override
-    public boolean isClashingClassTime(Student toCheck) {
+    public boolean hasClashingClassTimeWith(Student toCheck) {
         return false;
     }
 
