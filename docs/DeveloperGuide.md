@@ -846,7 +846,7 @@ There are two commands users can use:
 Find and FindExact features allow search for four fields:
 
 Field         | Prefix
---------------| -------
+-------| -------
 Name          |   n/
 Source        |   s/
 Serial Number |   sn/
@@ -871,12 +871,17 @@ The list of `FieldContainsKeywordsPredicate` is obtained from parsing
 the user input, to produce either of the following predicates shown
 in the table below, for each `Prefix` and keywords pair.
 
-(Note that the user input should contain at least one `Prefix` and keywords to search.
+<div markdown="span" class="alert alert-info">:information_source: 
+
+**Note:**
+The user input should contain at least one `Prefix` and keywords to search.
 The table below shows which `FieldContainsKeywordsPredicate`
-is generate for the specific `Prefix`.)
+is generated for the specific `Prefix`.
+
+</div>
 
 Prefix       | FieldContainsKeywordsPredicate
--------------| -------------------------
+-------------| --------------------------------------
 n/<keywords> | NameContainsKeywordsPredicate
 s/<keywords> | SourceContainsKeywordsPredicate
 l/<keywords> | LocationContainsKeywordsPredicate
@@ -1065,6 +1070,133 @@ at least one of `a`, `this`, `is`, `banana`.)
   * Pros: Only the argument corresponding to the last appearance of the prefix will be used.
   Allows users to input prefix and corresponding arguments to override the last occurrence of this prefix.
   * Cons: Users may type 2 of the required prefixes accidentally and search for unintended stocks.
+
+### Note Feature
+
+#### Description
+The Note feature allows users to add and delete notes from a stock. 
+
+There are two commands users can use:
+* `note` - Adds a note to the stock specified by the stock's serial number.
+Note: Multiple notes can be added to the stock.
+* `notedelete` - Deletes a note, specified by note index, from the stock specified by the stock's serial number.
+
+Prefixes used in the Note feature:
+
+Command       | Fields       | Prefixes
+--------------| -------------| ---------------------------
+`note`        | Serial Number<br>Note | sn/<br>nt/
+`notedelete`  | Serial Number<br>Note Index | sn/<br>ni/  
+
+
+#### Mechanism for Adding Notes
+The mechanism for adding notes is facilitated by classes `NoteCommand`, and `NoteCommandParser`.
+
+#### NoteCommandParser
+The `NoteCommandParser` class implements the `Parser` interface. 
+`NoteCommandParser` class is tasked with parsing the user inputs
+to generate a `NoteCommand` with arguments `SerialNumber` of the stock
+and `Note` to add.
+
+The `SerialNumber` and `Note` is obtained from parsing the user input.
+Upon successful parsing, `NoteCommand` object generated will then be passed on to the `LogicManager` to be executed.
+
+If the user inputs do not contain all of the specified `Prefix` for `NoteCommand`, an error message will be shown and no `NoteCommand` object will be created.
+
+`NoteCommandParser` implements the following important operations:
+
+* `NoteCommandParser#parse()` -
+ Parses the user input to produce a `NoteCommand`.
+
+#### NoteCommand
+The `NoteCommand` class extends the `Command` abstract class. The `NoteCommand` class is tasked with creating a new `CommandResult` that represents the result of the execution of a `NoteCommand`. 
+
+The construction of a `NoteCommand` takes in a `Serial Number` of stock and a `Note` to add to the stock.
+
+When a `NoteCommand` is executed, a `CommandResult` is constructed with the status message,
+showing the successful adding of the note to the stock.
+The execution of `NoteCommand` adds the note to the stock and updates the stock list in `Model`
+with the stock with the added note.
+
+`NoteCommand` implements the following important operations:
+
+* `NoteCommand#execute()` -
+Executes the search and returns the result message of the search.
+
+#### Example Usage Scenario (Adding Note)
+Given below are some example usage scenarios and how
+ the adding note feature mechanism behaves at each step.
+
+**Example 1: Adding a note to a stock with Serial Number "ntuc1"**
+
+Step 1. The user enters `note sn/ntuc1 nt/Bought from ntuc.`.
+
+Step 2. `MainWindow#executeCommand()` is called with the user input.
+Within this method, `LogicManager#execute()` is called with the
+user input to obtain a `CommandResult`.
+
+Step 3. The command word `note` is extracted out in `StockBookParser`.
+The command word matches `COMMAND_WORD`: `note` in the `NoteCommand` class.
+
+Step 4. The remaining user input is passed to the `NoteCommandParser` where within the
+`NoteCommandParser#parse()` method, the respective `ParserUtil#parseSerialNumber()` and
+`ParserUtil#parseNote` methods are called to generate a `Serial Number` of the stock
+and `Note` to add to stock. 
+
+Step 5. The `NoteCommandParser#parse()` method then returns a `NoteCommand`,
+constructed with the `Serial Number` of stock and `Note` to add to stock. 
+
+Step 6. `LogicManager#execute()` then calls `NoteCommand#execute()` method,
+with current `Model` as argument. Within this method call, `Stock#addNote()` adds the note to the stock,
+and the `Model` is updated with the stock with the added note.
+
+Step 7. The result of the note command is stored in the returning `CommandResult`object
+and displayed with `ResultDisplay`.
+
+Step 8. User views the new `StockListPanel` with the filtered stock list.
+
+#### Sequence Diagram
+The following sequence diagram shows how the Note feature (adding of note) works for Example 1:
+![Note Feature Sequence Diagram](images/NoteFeatureSequenceDiagram.png)
+
+#### Activity Diagram
+The following activity diagram summarizes what happens when
+ the Note feature (adding of note) is triggered:
+![Note Feature Activity Diagram](images/NoteFeatureActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: Representation of notes for a stock
+* **Alternative 1 (current implementation):** A stock can have multiple notes and
+each note is indexed. <br>
+* Pros: Allows user to add multiple notes to stock while maintaining the ability to clearly
+differentiate between the different notes. With indexed notes, users are able to reference
+specific notes in command.
+* Cons: Users may not want the indexing, as it may seem like a priority ranking for the notes.
+
+* **Alternative 2:** A stock can have multiple notes and each note is denoted by bullet point. <br>
+* Pros: Allows user to add multiple notes to stock while maintaining ability to clearly differentiate
+between the different notes.
+* Cons: Unable to reference a specific note in command.
+
+* **Alternative 3:** A stock can only have one note, but each time a note is added, it replaces
+the previous note. <br>
+* Pros: Allows user to quickly replace notes with just one command.
+* Cons: Users are unable to add multiple notes to the same stock and differentiate between the notes.
+Each time the user wants to add on to a note, the user has to retype the entire note again with the
+added details.
+
+##### Aspect: Input format for note command.
+
+* **Alternative 1 (current implementation):** Duplicate prefixes cannot be present in user input.
+  * Pros: Removes ambiguity in choosing the corresponding arguments used in adding notes to stocks.
+  * Cons: Users have to retype their command in the case where
+  they forget which prefixes they have typed and input duplicate prefixes.
+
+* **Alternative 2:** Duplicate prefixes can be present in user input.
+  * Pros: Only the argument corresponding to the last appearance of the prefix will be used.
+  Allows users to input prefix and corresponding arguments to override the last occurrence of this prefix.
+  * Cons: Users may type 2 of the required prefixes accidentally and add a note to an unintended stock.
 
 ### Statistics Feature
 
