@@ -37,7 +37,7 @@ project documents, Coding standards, format of deliverables
 
 * Role: Developer
 * Responsibilities: Project repository manager and maintainer, main PR reviewer and merger, Update feature,
-  Git & GitHub expert.
+  Suggestion feature, Sort feature, and Git & GitHub expert.
 
 
 ### Lau Jun Hao Ashley

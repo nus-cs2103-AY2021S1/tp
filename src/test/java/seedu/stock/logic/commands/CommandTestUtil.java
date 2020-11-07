@@ -92,6 +92,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "donje#y"; // '#' not allowed in names
     public static final String INVALID_SERIAL_NUMBER_DESC = " " + PREFIX_SERIAL_NUMBER;
+    public static final String INVALID_SERIAL_NUMBER_DESC2 = " " + PREFIX_SERIAL_NUMBER + "fairprice";
     public static final String INVALID_SOURCE_DESC = " " + PREFIX_SOURCE; // missing source
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-100"; // negative quantity not allowed
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // '*' not allowed in tags

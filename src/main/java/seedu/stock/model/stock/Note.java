@@ -33,6 +33,9 @@ public class Note {
 
     /**
      * Returns true if a given string is a valid note.
+     *
+     * @param test The note to be tested.
+     * @return A boolean value indicating if the note is valid.
      */
     public static boolean isValidNote(String test) {
         return test.matches(VALIDATION_REGEX);
