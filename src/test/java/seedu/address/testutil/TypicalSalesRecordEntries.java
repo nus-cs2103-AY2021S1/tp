@@ -8,6 +8,7 @@ import seedu.address.model.Drink;
 import seedu.address.model.SalesBook;
 import seedu.address.model.SalesRecordEntry;
 
+//@@author ureshiiYing
 /**
  * A utility class containing a list of {@code SalesRecordEntry} objects to be used in tests.
  */

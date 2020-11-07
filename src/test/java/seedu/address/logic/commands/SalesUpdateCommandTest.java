@@ -33,7 +33,7 @@ public class SalesUpdateCommandTest {
 
         SalesUpdateCommand command = new SalesUpdateCommand(sales);
 
-        String expectedMessage = String.format(SalesUpdateCommand.MESSAGE_SUCCESS, sales.toString());
+        String expectedMessage = SalesUpdateCommand.MESSAGE_SUCCESS;
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), model.getSalesBook(),
                 new IngredientBook(), new UserPrefs());
         expectedModel.overwrite(sales);

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.ParserUtil.parseNumberSold;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -171,6 +172,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseNumberSold_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> parseNumberSold("99999999999999999"));
         assertThrows(ParseException.class, () -> ParserUtil.parseNumberSold("-1"));
         assertThrows(ParseException.class, () -> ParserUtil.parseNumberSold("+100"));
     }
