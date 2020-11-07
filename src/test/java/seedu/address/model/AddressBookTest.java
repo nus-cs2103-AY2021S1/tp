@@ -26,7 +26,7 @@ import seedu.address.testutil.TagBuilder;
 
 public class AddressBookTest {
 
-    AddressBook addressBook = new AddressBook();
+    private AddressBook addressBook = new AddressBook();
 
     @BeforeEach
     public void init() {
