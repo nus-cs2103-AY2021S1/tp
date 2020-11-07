@@ -566,15 +566,19 @@ The minimum edit distance between two strings is defined as the minimum cost nee
 The transformation cost comes from the types of editing operations performed and how many of those operations performed.
 
 There are three types of editing operations:
+
 * **Insertion**: <br>
-  Inserts a new character in the string. Insertion has a cost of 1. <br>
+  Inserts a new character in the string. Insertion has a cost of 2. <br>
   Example: `apple -> apples` and `sly -> slay`.
+
 * **Deletion**: <br>
-  Deletes a character from the string. Deletion has a cost of 1. <br>
+  Deletes a character from the string. Deletion has a cost of 2. <br>
   Example: `oranges -> orange` and `bandana -> banana`.
+
 * **Substitution**: <br>
   Change a character in the string into another different character. Substitution has a cost of 3. It is more expensive
-  to substitute than inserting or deleting a character. <br>
+  to substitute than inserting or deleting a character. However, the cost is less than two times the cost of
+  either insertion or deletion, so that it is cheaper to substitute rather than deleting and then inserting.
   Example: `prey -> pray` and `like -> lime`.
 
 The smaller the minimum edit distance between two strings, the more similar they are.
@@ -588,45 +592,50 @@ Suppose there are two strings:
 
 Define `D(i, j)` to be the minimum edit distance between the first `i` characters of `X` and the first `j` characters of `Y`.
 
-Consider doing all possible editing operations:
+Now if the character at position `i` in `X` equals the character at position `j` in `Y`, then simply <br>
+`D(i, j) = D(i - 1, j - 1)` <br>
+
+Else, if they are not the same, consider doing all possible editing operations:
 * **Insertion**: <br>
   If `i > j`, then we can insert the character at position `j + 1` in `X` to position `j + 1` at `Y`.
-  Hence, `D(i, j) + 1 = D(i, j + 1)` in this case. <br>
+  Hence, `D(i, j) + 2 = D(i, j + 1)` in this case. <br>
   If `i < j`, then we can insert the character at position `i + 1` in `Y` to position `i + 1` at `X`.
-  Hence, `D(i, j) + 1 = D(i + 1, j)` in this case. <br>
+  Hence, `D(i, j) + 2 = D(i + 1, j)` in this case. <br>
+
 * **Deletion**: <br>
   If `i > j`, then we can delete the character at position `i` in `X`.
-  Hence, `D(i, j) = D(i - 1, j) + 1` in this case. <br>
+  Hence, `D(i, j) = D(i - 1, j) + 2` in this case. <br>
   If `i < j`, then we can delete the character at position `j` in `Y`.
-  Hence, `D(i, j) = D(i, j - 1) + 1` in this case. <br>
+  Hence, `D(i, j) = D(i, j - 1) + 2` in this case. <br>
+
 * **Substitution**: <br>
   We can change the character at position `i` in X to match the character at position `j` in `Y`, or
   we can change the character at position `j` in `Y` to match the character at position `i` in `X`. <br>
   Hence, `D(i, j) = D(i - 1, j - 1) + 3` in this case. <br>
 
 The base cases for the recursion are:
-* `D(i, 0) = i` since the best way is to delete everything from `X` or inserting every character in `X` to `Y`.
-* `D(0, j) = j` since the best way is to delete everything from `Y` or inserting every character in `Y` to `X`.
+* `D(i, 0) = 2 * i` since the best way is to delete everything from `X` or inserting every character in `X` to `Y`.
+* `D(0, j) = 2 * j` since the best way is to delete everything from `Y` or inserting every character in `Y` to `X`.
 
 In all possible editing operations, the value `D(i, j)` can only change to:
-* `D(i - 1, j) + 1`
-* `D(i, j - 1) + 1`
+* `D(i - 1, j) + 2`
+* `D(i, j - 1) + 2`
 * `D(i - 1, j - 1) + 3`
 
-Since we want to find the minimum edit distance,
+Since we want to find the minimum edit distance, <br>
 `D(i, j) = min(D(i - 1, j) + 1, D(i, j - 1) + 1, D(i - 1, j - 1) + 3)`.
 
-Since it is a recursion, the algorithm is implemented using dynamic programming to improve speed by remembering already
-computed states. The current implementation do the following steps:
+Since it is a recursion, the algorithm is implemented using bottom-up dynamic programming to improve speed 
+by remembering already computed states. The current implementation do the following steps:
 
 1. Creates a table to store computed states (2D `dp` array).
 2. Fill up the base cases in the table.
-3. Using a double for loop, fill up the table according to the recursion formula above.
+3. Fill up the table according to the recursion formula above.
 4. Returns the minimum edit distance between the two strings compared.
 
-**Time complexity**: `O(n * n)` due to the double for loop.
+**Time complexity**: `O(n * n)` due to having to fill up the table with size `n * n`.
 
-**Space complexity**: `O(n * n)` due to the table.
+**Space complexity**: `O(n * n)` due to the table size.
 
 #### Activity Diagram
 
@@ -1359,23 +1368,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | tech-savvy warehouse manager                                | to easily type shorter commands                                                      | I am able to execute functions quickly                                 |
 | `* * *`  | collaborative user                                          | my inventory to be able to be shared with my collaborators                           | my collaborators can only read and find data                           |
 | `* * *`  | tech savvy warehouse manager                                | to be able to change the information of my existing stock in the application         | I can keep my existing inventories updated                             |
-| `* *`    | major shareholder                                           | to easily understand how inventory count works                                       | I can determine if the investment is worthy                            |
-| `* *`    | manager                                                     | to be able to gather the statistics (eg. profit) of the items in inventory           | I can report the profitability of products                             |
-| `* *`    | forgetful stock                                            | to add optional notes at certain stocks                                              | I can be reminded of important information                             |
-| `* *`    | busy manager                                                | to be able to see or highlight low stocks at a glance                                | I can replenish them in time                                           |
-| `* *`    | busy manager                                                | to automate the calculation of how much stock to restock based on the current stocks | I do not need to spend time manually calculating                       |
-| `* *`    | tech savvy warehouse manager                                | to be able to bookmark certain items in the warehouse                                | I can access and augment their information easily                      |
+| `*`      | major shareholder                                           | to easily understand how inventory count works                                       | I can determine if the investment is worthy                            |
+| `* * *`  | manager                                                     | to be able to gather the statistics (eg. profit) of the items in inventory           | I can report the profitability of products                             |
+| `* * *`  | forgetful manager                                           | to add optional notes at certain stocks                                              | I can be reminded of important information                             |
+| `* * *`  | busy manager                                                | to be able to see or highlight low stocks at a glance                                | I can replenish them in time                                           |
+| `*`      | busy manager                                                | to automate the calculation of how much stock to restock based on the current stocks | I do not need to spend time manually calculating                       |
+| `* * *`  | tech savvy warehouse manager                                | to be able to bookmark certain items in the warehouse                                | I can access and augment their information easily                      |
 | `* * *`  | beginner user                                               | have an easy-to-understand interface                                                 |                                                                        |
 | `* * *`  | multi-OS user                                               | to run the application on popular operating systems in the market                    |                                                                        |
 | `* * *`  | tech savvy warehouse manager                                | to have a smooth flowing platform                                                    | I can track my inventories easily (Good UX)                            |
 | `* * *`  | new user                                                    | to read the documentation                                                            | I will be able to know how to use the program                          |
 | `* * *`  | offline user                                                | to run the application offline without the need to connect to the internet           |                                                                        |
 | `* * *`  | warehouse manager                                           | to store my data in a digitalised platform                                           | I do not have to fear for data loss                                    |
-| `* * *`  | impatient user                                              | to run the appli cation and execute commands without lag                             |                                                                        |
+| `* * *`  | impatient user                                              | to run the application and execute commands without lag                              |                                                                        |
 | `* * *`  | warehouse manager                                           | to have the capacity to store all my inventory data                                  | I am able to expand my range of inventory                              |
 | `* * *`  | tech savvy warehouse manager that can type fast             | to have a platform                                                                   | I can track my stocks through typing                                   |
 | `* * *`  | tech savvy warehouse manager                                | to digitalize my inventory                                                           | I do not have to find a physical space to store my inventory details   |
 | `* * *`  | warehouse manager                                           | to be able to easily teach my subordinates how to use the software                   | they can cover my role when I am not around                            |
+| `* * *`  | user                                                        | to sort my inventory by the fields I want                                            | I can view my stocks easier                                            |
+
 
 ### Use cases
 
@@ -1679,14 +1690,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case 9: Update the name of a stock.
+#### Use case 9: Updating a stock.
 
 **MSS**
 
 1.  User requests to list stocks.
 2.  Warenager lists all stocks including their serial number.
-3.  User requests to change a specific stock's name.
-4.  Warenager updates the stock's name.
+3.  User requests to change a specific stock's fields.
+4.  Warenager updates the stock's fields.
 
     Use case ends.
 
@@ -1696,7 +1707,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given format is missing the field header sn/.
+* 3a. The given format is missing the prefix sn/.
 
     * 3a1. Warenager shows an error message.
 
@@ -1708,20 +1719,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3c. The given format is missing the field header n/.
+* 3c. The prefixes to update the fields are invalid.
 
-    * 3c1. Warenager shows an error message.
-
+    * 3c1. Warenager shows an error message
+    
       Use case resumes at step 2.
 
-#### Use case 10: Update the location of a stock
+#### Use case 10: Updating multiple stocks
 
 **MSS**
 
 1.  User requests to list stocks.
 2.  Warenager lists all stocks including their serial number.
-3.  User requests to change a specific stock's location.
-4.  Warenager updates the stock's location.
+3.  User requests to change some stock's fields.
+4.  Warenager updates the stock's fields.
 
     Use case ends.
 
@@ -1731,60 +1742,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given format is missing the field header sn/.
+* 3a. The given format is missing the prefix sn/.
 
     * 3a1. Warenager shows an error message.
 
       Use case resumes at step 2.
 
-* 3b. The stock with the given serial number is not found.
+* 3b. One of the stock with the given serial numbers is not found.
 
     * 3b1. Warenager shows an error message.
 
       Use case resumes at step 2.
 
-* 3c. The given format is missing the field header l/.
+* 3c. The prefixes to update the fields are invalid.
 
-    * 3c1. Warenager shows an error message.
-
+    * 3c1. Warenager shows an error message
+    
       Use case resumes at step 2.
 
-#### Use case 11: Update the source of a stock
-
-**MSS**
-
-1.  User requests to list stocks.
-2.  Warenager lists all stocks including their serial number.
-3.  User requests to change a specific stock's source.
-4.  Warenager updates the stock's source.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list of all stocks is empty.
-
-  Use case ends.
-
-* 3a. The given format is missing the field header sn/.
-
-    * 3a1. Warenager shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The stock with the given serial number is not found.
-
-    * 3b1. Warenager shows an error message.
-
-      Use case resumes at step 2.
-
-* 3c. The given format is missing the field header s/.
-
-    * 3c1. Warenager shows an error message.
-
-      Use case resumes at step 2.
-
-#### Use case 12: Using the stats command
+#### Use case 11: Using the stats command
 
 **MSS**
 
@@ -1825,7 +1801,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case 13: Adding a note to a stock
+#### Use case 12: Adding a note to a stock
 
 **MSS**
 
@@ -1865,7 +1841,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case 14: Deleting a note from a stock
+#### Use case 13: Deleting a note from a stock
 
 **MSS**
 
@@ -1911,7 +1887,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case 15: Deleting all notes from a stock
+#### Use case 14: Deleting all notes from a stock
 
 **MSS**
 
@@ -1957,7 +1933,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
      
-#### Use case 16: Generating a csv file that contains all stocks
+#### Use case 15: Generating a csv file that contains all stocks
 
 **MSS**
 
@@ -1980,17 +1956,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  
       Use case resumes at step 1.
 
-#### Use case 17: Generating a csv file that contains all stocks sorted in desired order
+#### Use case 16: Generating a csv file that contains all stocks sorted in desired order
 
  **MSS**
  
  1.  User sort stocks in stock book (Use case..) in their desired order.
- 2.  User request to generate csv file based on the existing stock book (Use case 16).
+ 2.  User request to generate csv file based on the existing stock book (Use case 15).
  3.  Warenager generates a csv file containing all stocks.
  
      Use case ends.
 
-#### Use case 18: Using the help command
+#### Use case 17: Using the help command
 
 **MSS**
 
@@ -2007,7 +1983,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case 19: Suggestion feature
+#### Use case 18: Suggestion feature
 
 **MSS**
 
@@ -2036,7 +2012,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-#### Use case 20: Sort stocks by field and order
+#### Use case 19: Sort stocks by field and order
 
 **MSS**
 
@@ -2065,7 +2041,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case 21: Clearing Warenager's data
+#### Use case 20: Clearing Warenager's data
 
 **MSS**
 
@@ -2087,7 +2063,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
       
-#### Use case 22: Toggling tabs in Warenager.
+#### Use case 21: Toggling tabs in Warenager.
 
 **MSS**
 
@@ -2109,7 +2085,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
       
-#### Use case 23: Exit Warenager
+#### Use case 22: Exit Warenager
 
 **MSS**
 
@@ -2346,18 +2322,14 @@ testers are expected to do more *exploratory* testing.
        Expected: The stock with serial number Flower11 will have a new location Vase 3.
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/2103 s/Flower Distributor Association`
-       Expected: The stock with serial number Flower11 will have a new source Flower Distributor Association.
-       Details of the updated stock is shown in the status message.
-
-    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3 s/Flower Distributor Association`
+    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3`
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50, a new name Rose,
-       a new location Vase3, a new source Flower Distributor Association.
+       and a new location Vase3
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3 s/Flower Distributor Association`
+    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3`
        Expected: The stock with serial number Flower11 and Flower12 will have an increase of quantity by 50, a new name Rose,
-       a new location Vase3, a new source Flower Distributor Association.
+       and a new location Vase3.
        Details of the updated stock is shown in the status message.
 
 ### Generate statistics

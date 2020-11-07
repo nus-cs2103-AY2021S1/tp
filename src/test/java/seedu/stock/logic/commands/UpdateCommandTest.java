@@ -27,16 +27,16 @@ import seedu.stock.testutil.TypicalStocks;
 import seedu.stock.testutil.UpdateStockDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
-  and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model)
+ * and unit tests for UpdateCommand.
  */
 public class UpdateCommandTest {
-
     private SerialNumberSetsBook serialNumbers = getTypicalSerialNumberSetsBook();
     private Model model = new ModelManager(getTypicalStockBook(), new UserPrefs(), serialNumbers);
 
     @Test
     public void execute_onlyQuantityUpdated_success() {
+        // EP: new quantity
         Stock updatedStock = new StockBuilder(TypicalStocks.BANANA).withQuantity("2101").build();
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
@@ -44,6 +44,32 @@ public class UpdateCommandTest {
         String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_STOCK_SUCCESS, "\n" + updatedStock);
 
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
+                new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
+        expectedModel.setStock(model.getFilteredStockList().get(2), updatedStock);
+
+        assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
+
+        // EP: increment quantity
+        updatedStock = new StockBuilder(TypicalStocks.BANANA).withQuantity("2203").build();
+        descriptor = new UpdateStockDescriptorBuilder(TypicalStocks.BANANA).withQuantityAdder("100").build();
+        updateCommand = new UpdateCommand(descriptor);
+
+        expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_STOCK_SUCCESS, "\n" + updatedStock);
+
+        expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
+                new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
+        expectedModel.setStock(model.getFilteredStockList().get(2), updatedStock);
+
+        assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
+
+        // EP: decrement quantity
+        updatedStock = new StockBuilder(TypicalStocks.BANANA).withQuantity("2100").build();
+        descriptor = new UpdateStockDescriptorBuilder(TypicalStocks.BANANA).withQuantityAdder("-3").build();
+        updateCommand = new UpdateCommand(descriptor);
+
+        expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_STOCK_SUCCESS, "\n" + updatedStock);
+
+        expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
         expectedModel.setStock(model.getFilteredStockList().get(2), updatedStock);
 
@@ -68,6 +94,21 @@ public class UpdateCommandTest {
     @Test
     public void execute_onlyNameUpdated_success() {
         Stock updatedStock = new StockBuilder(TypicalStocks.BANANA).withName("mochi").build();
+        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
+        UpdateCommand updateCommand = new UpdateCommand(descriptor);
+
+        String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_STOCK_SUCCESS, "\n" + updatedStock);
+
+        Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
+                new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
+        expectedModel.setStock(model.getFilteredStockList().get(2), updatedStock);
+
+        assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_onlyLowQuantityUpdated_success() {
+        Stock updatedStock = new StockBuilder(TypicalStocks.BANANA).withLowQuantity("1000").build();
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
