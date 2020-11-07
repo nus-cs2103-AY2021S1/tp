@@ -1,26 +1,31 @@
 package seedu.address.logic.parser.gradetrackerparsers;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ASSIGNMENT_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ASSIGNMENT_PERCENTAGE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ASSIGNMENT_RESULT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULENAME_CSA200;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_PERCENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_RESULT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand;
 import seedu.address.logic.commands.gradetrackercommands.EditAssignmentDescriptor;
-import seedu.address.logic.commands.schedulercommands.EditEventCommand;
-import seedu.address.logic.parser.schedulerparsers.EditEventParser;
-import seedu.address.model.event.EventName;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.AssignmentName;
 import seedu.address.model.module.grade.AssignmentPercentage;
 import seedu.address.model.module.grade.AssignmentResult;
-import seedu.address.testutil.event.EditEventDescriptorBuilder;
 import seedu.address.testutil.gradetracker.EditAssignmentDescriptorBuilder;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_1;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 public class EditAssignmentParserTest {
 
@@ -78,7 +83,8 @@ public class EditAssignmentParserTest {
                 .withAssignmentName(VALID_ASSIGNMENT_NAME_1).withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1)
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
         ModuleName expectedModuleName = new ModuleName(VALID_MODULENAME_CS2103T);
-        EditAssignmentCommand expectedCommand = new EditAssignmentCommand(INDEX, expectedModuleName, expectedDescriptor);
+        EditAssignmentCommand expectedCommand = new EditAssignmentCommand(INDEX,
+                expectedModuleName, expectedDescriptor);
         assertParseSuccess(parser, validInputAllFields, expectedCommand);
     }
 
@@ -87,7 +93,8 @@ public class EditAssignmentParserTest {
         EditAssignmentDescriptor expectedDescriptor = new EditAssignmentDescriptorBuilder()
                 .withAssignmentName(VALID_ASSIGNMENT_NAME_1).build();
         ModuleName expectedModuleName = new ModuleName(VALID_MODULENAME_CS2103T);
-        EditAssignmentCommand expectedCommand = new EditAssignmentCommand(INDEX, expectedModuleName, expectedDescriptor);
+        EditAssignmentCommand expectedCommand = new EditAssignmentCommand(INDEX,
+                expectedModuleName, expectedDescriptor);
         assertParseSuccess(parser, validInputAssignmentName, expectedCommand);
     }
 
@@ -96,7 +103,8 @@ public class EditAssignmentParserTest {
         EditAssignmentDescriptor expectedDescriptor = new EditAssignmentDescriptorBuilder()
                 .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1).build();
         ModuleName expectedModuleName = new ModuleName(VALID_MODULENAME_CS2103T);
-        EditAssignmentCommand expectedCommand = new EditAssignmentCommand(INDEX, expectedModuleName, expectedDescriptor);
+        EditAssignmentCommand expectedCommand = new EditAssignmentCommand(INDEX, expectedModuleName,
+                expectedDescriptor);
         assertParseSuccess(parser, validInputAssignmentPercentage, expectedCommand);
     }
 
@@ -105,7 +113,8 @@ public class EditAssignmentParserTest {
         EditAssignmentDescriptor expectedDescriptor = new EditAssignmentDescriptorBuilder()
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
         ModuleName expectedModuleName = new ModuleName(VALID_MODULENAME_CS2103T);
-        EditAssignmentCommand expectedCommand = new EditAssignmentCommand(INDEX, expectedModuleName, expectedDescriptor);
+        EditAssignmentCommand expectedCommand = new EditAssignmentCommand(INDEX, expectedModuleName,
+                expectedDescriptor);
         assertParseSuccess(parser, validInputAssignmentResult, expectedCommand);
     }
 
@@ -127,7 +136,8 @@ public class EditAssignmentParserTest {
 
     @Test
     public void parse_invalidAssignmentPercentage_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignmentPercentage.MESSAGE_CONSTRAINTS);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AssignmentPercentage.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, invalidAssignmentPercentage, expectedMessage);
     }
 
@@ -139,7 +149,8 @@ public class EditAssignmentParserTest {
 
     @Test
     public void parse_missingEditFields_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAssignmentCommand.MESSAGE_NOT_EDITED);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditAssignmentCommand.MESSAGE_NOT_EDITED);
         assertParseFailure(parser, invalidMissingEditFields, expectedMessage);
     }
 }

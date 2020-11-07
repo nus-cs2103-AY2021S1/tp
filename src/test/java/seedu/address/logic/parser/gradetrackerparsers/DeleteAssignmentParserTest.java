@@ -1,18 +1,23 @@
 package seedu.address.logic.parser.gradetrackerparsers;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.gradetrackercommands.DeleteAssignmentCommand;
-import seedu.address.model.module.ModuleName;
-
-import java.util.NoSuchElementException;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULENAME_CSA200;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2030;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.NoSuchElementException;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.gradetrackercommands.DeleteAssignmentCommand;
+import seedu.address.model.module.ModuleName;
+
 
 public class DeleteAssignmentParserTest {
     private static final Index INDEX = Index.fromOneBased(1);

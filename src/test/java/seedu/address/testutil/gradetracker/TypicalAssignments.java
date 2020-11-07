@@ -13,7 +13,6 @@ import java.util.List;
 
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.GradeTracker;
-import seedu.address.testutil.gradetracker.AssignmentBuilder;
 
 /**
  * A utility class containing a list of {@code Assignment} objects to be used in tests.

@@ -1,33 +1,40 @@
 package seedu.address.logic.parser.gradetrackerparsers;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GRADE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULENAME_CSA200;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2030;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.CommandTestUtil;
+
 import seedu.address.logic.commands.gradetrackercommands.AddGradeCommand;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Grade;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class AddGradeParserTest {
     private static final String VALID_INPUT = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_GRADE + VALID_GRADE_1;
 
-    private static final String MULTIPLE_MODULE_NAMES =  " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String MULTIPLE_MODULE_NAMES = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_NAME + VALID_MODULENAME_CS2030
             + " " + PREFIX_GRADE + VALID_GRADE_1;
 
-    private static final String MULTIPLE_GRADES =  " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String MULTIPLE_GRADES = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_GRADE + VALID_GRADE_1
             + " " + PREFIX_GRADE + VALID_GRADE_2;
 
-    private static final String INVALID_MODULE_NAME =  " " + PREFIX_NAME + INVALID_MODULENAME_CSA200
+    private static final String INVALID_MODULE_NAME = " " + PREFIX_NAME + INVALID_MODULENAME_CSA200
             + " " + PREFIX_GRADE + VALID_GRADE_1;
 
-    private static final String INVALID_GRADE_FIELD =  " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String INVALID_GRADE_FIELD = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_GRADE + INVALID_GRADE;
 
     private static final String MISSING_MODULE_NAME = " " + PREFIX_GRADE + VALID_GRADE_1;

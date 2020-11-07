@@ -1,36 +1,36 @@
 package seedu.address.logic.commands.gradetrackercommands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
-import static seedu.address.testutil.TypicalModules.getTypicalModulesWithAssignmentList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.ModelStub;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.event.AddEventCommandTest;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.schedulercommands.AddEventCommand;
-import seedu.address.model.*;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.event.Event;
+import seedu.address.model.ContactList;
+import seedu.address.model.EventList;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ModuleList;
+import seedu.address.model.TodoList;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Assignment;
-import seedu.address.model.module.grade.GradeTracker;
-import seedu.address.model.module.grade.ReadOnlyGradeTracker;
 import seedu.address.testutil.ModuleBuilder;
-import seedu.address.testutil.event.EventBuilder;
 import seedu.address.testutil.gradetracker.AssignmentBuilder;
-
-import java.util.ArrayList;
 
 public class AddAssignmentCommandTest {
 

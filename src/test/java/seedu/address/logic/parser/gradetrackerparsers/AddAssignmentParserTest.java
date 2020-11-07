@@ -1,7 +1,28 @@
 package seedu.address.logic.parser.gradetrackerparsers;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ASSIGNMENT_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ASSIGNMENT_PERCENTAGE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ASSIGNMENT_RESULT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULENAME_CSA200;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2030;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_PERCENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_RESULT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.CommandTestUtil;
+
 import seedu.address.logic.commands.gradetrackercommands.AddAssignmentCommand;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Assignment;
@@ -10,11 +31,6 @@ import seedu.address.model.module.grade.AssignmentPercentage;
 import seedu.address.model.module.grade.AssignmentResult;
 import seedu.address.testutil.gradetracker.AssignmentBuilder;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class AddAssignmentParserTest {
 
@@ -75,11 +91,11 @@ public class AddAssignmentParserTest {
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1;
 
-    private static final String MISSING_ASSIGNMENT_PERCENTAGE =  " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String MISSING_ASSIGNMENT_PERCENTAGE = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_RESULT + VALID_ASSIGNMENT_RESULT_1;
 
-    private static final String MISSING_ASSIGNMENT_RESULT =  " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String MISSING_ASSIGNMENT_RESULT = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_1
             + " " + PREFIX_ASSIGNMENT_PERCENTAGE + VALID_ASSIGNMENT_PERCENTAGE_1;
 
@@ -112,7 +128,8 @@ public class AddAssignmentParserTest {
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
 
         //takes in second module name
-        assertParseSuccess(parser, MULTIPLE_MODULE_NAMES, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
+        assertParseSuccess(parser, MULTIPLE_MODULE_NAMES, new AddAssignmentCommand(expectedModuleName,
+                expectedAssignment));
     }
 
     @Test
@@ -123,7 +140,8 @@ public class AddAssignmentParserTest {
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
 
         //takes in second assignment name
-        assertParseSuccess(parser, MULTIPLE_ASSIGNMENT_NAMES, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
+        assertParseSuccess(parser, MULTIPLE_ASSIGNMENT_NAMES, new AddAssignmentCommand(expectedModuleName,
+                expectedAssignment));
     }
 
     @Test
@@ -134,7 +152,8 @@ public class AddAssignmentParserTest {
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
 
         //takes in second assignment percentage
-        assertParseSuccess(parser, MULTIPLE_ASSIGNMENT_PERCENTAGES, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
+        assertParseSuccess(parser, MULTIPLE_ASSIGNMENT_PERCENTAGES, new AddAssignmentCommand(expectedModuleName,
+                expectedAssignment));
     }
 
     @Test
@@ -145,7 +164,8 @@ public class AddAssignmentParserTest {
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_2).build();
 
         //takes in second assignment percentage
-        assertParseSuccess(parser, MULTIPLE_ASSIGNMENT_RESULTS, new AddAssignmentCommand(expectedModuleName, expectedAssignment));
+        assertParseSuccess(parser, MULTIPLE_ASSIGNMENT_RESULTS, new AddAssignmentCommand(expectedModuleName,
+                expectedAssignment));
     }
 
     @Test
