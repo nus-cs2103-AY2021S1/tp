@@ -219,11 +219,8 @@ Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
-  single forward slash to represent fractions or a single full stop to represent decimal numbers. STRING accepts
-   alphabets.
-</div>
-<div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` should be a number greater than 0. 
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should be
+   greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
@@ -324,11 +321,8 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
-  single forward slash to represent fractions or a single full stop to represent decimal numbers. STRING accepts
-   alphabets.
-</div>
-<div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` should be a number greater than 0. 
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+   be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
@@ -505,11 +499,8 @@ Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
-  single forward slash to represent fractions or a single full stop to represent decimal numbers. STRING accepts
-   alphabets.
-</div>
-<div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` should be a number greater than 0.  
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+   be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.
@@ -572,11 +563,8 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
-  single forward slash to represent fractions or a single full stop to represent decimal numbers. STRING accepts
-   alphabets.
-</div>
-<div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` should be a number greater than 0. 
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+   be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.

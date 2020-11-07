@@ -62,12 +62,12 @@ public class ParserUtil {
     public static String parseIngredient(String ingredients) throws ParseException {
         requireNonNull(ingredients);
         String trimmedIngredient = ingredients.trim();
-        if (trimmedIngredient.indexOf(",") != -1) {
-            throw new ParseException(EditIngredientCommand.MESSAGE_ONE_INGREDIENT);
-        }
         String ingName = trimmedIngredient;
         if (trimmedIngredient.equals("")) {
             throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedIngredient.indexOf(",") != -1) {
+            throw new ParseException(EditIngredientCommand.MESSAGE_ONE_INGREDIENT);
         }
         String ingQuantity = "";
         int indexOfDash = trimmedIngredient.indexOf("-");
