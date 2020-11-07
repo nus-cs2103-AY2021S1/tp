@@ -28,7 +28,7 @@
             *[6.2.6.2 Edit detail command](#6262-edit-detail-command)
             *[6.2.6.3 Delete detail command](#6263-delete-detail-command)            
     * [6.3 Student academic details features](#63-student-academic-details-features)
-        * [6.3.1 Question Commands](#631-question-commands)
+        * [6.3.1 Question commands](#631-question-commands)
             * [6.3.1.1 Add question command](#6311-add-question-command)
             * [6.3.1.2 Solve question command](#6312-solve-question-command)
             * [6.3.1.3 Delete question command](#6313-delete-question-command)
@@ -36,7 +36,9 @@
             * [6.3.2.1 Add exam command](#6321-add-exam-command)
             * [6.3.2.2 Delete exam command](#6322-delete-exam-command)
             * [6.3.2.3 Exam Stats command](#6323-exam-stats-command)
-        * [6.3.3 Student attendance features](#633-student-attendance-features)
+        * [6.3.3 Attendance commands](#633-attendance-commands)
+            * [6.3.3.1 Add attendance command](#6331-add-attendance-command)
+            * [6.3.3.2 Delete attendance command](#6332-delete-attendance-command)
     * [6.4 Schedule command](#64-schedule-command)
     * [6.5 Notes command](#65-notes-command)
 - [7. Documentation](#7-documentation)
@@ -389,7 +391,7 @@ Figure 5.1.5.2. Activity diagram for `OverdueCommand` execution
 
 #### 6.2.6 Detail Commands
 
-The student additional details feature keeps track of any additional details a tutor wants to add to a student. It comprises of the following commands:
+The Detail commands keep track of any additional details a tutor wants to add to a student. They comprise of the following commands:
 
 * `AddDetailCommand` - Adds a detail to a specified student.
 * `EditDetailCommand` - Edits a specified detail in a specified student.
@@ -473,7 +475,7 @@ This section describes some key details on how academic details features are imp
 
 #### 6.3.1 Question Commands
 
-The student questions feature keeps track of questions raised by a student to his tutor. It comprises of the following commands:
+The Question commmands keep track of questions raised by a student to his tutor. They comprise of the following commands:
 
 * `AddQuestionCommand` - Adds a question to a specified student.
 * `SolveQuestionCommand` - Marks a specified question from a specified student as solved.
@@ -553,7 +555,7 @@ Figure 5.2.3.2. Activity diagram for `DeleteQuestionCommand` execution
 
 #### 6.3.2 Exam Commands
 
-The student exams feature keeps track of exam records of a student. It comprises of the following commands:
+The Exam commands keep track of exam records of a student. They comprise of the following commands:
 
 * `AddExamCommand` - Adds a exam record to a specified student.
 * `DeleteExamCommand` - Deletes a specified exam record from a specified student.
@@ -622,7 +624,60 @@ The following activity diagram summarises the flow of events when `ExamStatsComm
 Figure \___. Activity diagram for `ExamStatsCommand` execution
 
 
-#### 6.3.3 Student attendance features
+#### 6.3.3 Attendance Commands
+
+The Attendance commands keep track of the attendance for a student. They comprise of the following commands:
+
+* `AddAttendanceCommand` - Adds an attendance to a specified student.
+* `DeleteAttendanceCommand` - Deletes a specified attendance from a specified student.
+
+##### 6.3.3.1 Add Attendance Command
+
+The following describes the flow of how `AddAttendanceCommand` is performed.
+
+1. Upon successfully parsing the user input, `AddAttendanceCommand#execute(Model model)`, and it checks if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the attendance will not be added.
+3. If the student exists, `AddAttendanceCommand#execute(Model model)` then checks if the student has an existing attendance with the input attendance date.
+4. If there is such an attendance, a `CommandException` is thrown and the attendance will not be added.
+5. If there is no such attendance, the attendance is added to the student's list of attendances, and `AttendanceCommand#updateStudentAttendance(Student studentToAddAttendance, List<Attendance> attendances)` is called to create a modified copy of the student with the new attendance.
+4. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the attendance added.
+5. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The following sequence diagram shows how the attendance adding operation works.
+
+![AddAttendanceSequence](images/AddAttendanceSequenceDiagram.png)
+
+Figure 5.2.1.1. Sequence diagram for `AddAttendanceCommand` execution
+
+The following activity diagram summarises the flow of events when `AddAttendanceCommand` is executed.
+
+![AddAttendanceActivity](images/AddAttendanceActivityDiagram.png)
+
+Figure 5.2.1.2. Activity diagram for `AddAttendanceCommand` execution
+
+##### 6.3.3.2 Delete Attendance Command
+
+The following describes the flow of how `DeleteAttendanceCommand` is performed.
+
+1. Upon successfully parsing the user input, `DeleteAttendanceCommand#execute(Model model)`, and it checks if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the attendance will not be deleted.
+3. If the student exists, `DeleteAttendanceCommand#execute(Model model)` then checks if the student has an existing attendance with the input attendance date.
+4. If there is no such attendance, a `CommandException` is thrown and the attendance will not be deleted.
+5. If there is such an attendance, the attendance is deleted from the student's list of attendances, and `AttendanceCommand#updateStudentAttendance(Student studentToDeleteAttendance, List<Attendance> attendances)` is called to create a modified copy of the student with attendance removed.
+4. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the attendance deleted.
+5. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The following sequence diagram shows how the attendance deleting operation works.
+
+![DeleteAttendanceSequence](images/DeleteAttendanceSequenceDiagram.png)
+
+Figure 5.2.1.1. Sequence diagram for `DeleteAttendanceCommand` execution
+
+The following activity diagram summarises the flow of events when `DeleteAttendanceCommand` is executed.
+
+![DeleteAttendanceActivity](images/DeleteAttendanceActivityDiagram.png)
+
+Figure 5.2.1.2. Activity diagram for `DeleteAttendanceCommand` execution
 
 ### 6.4 Schedule Command
 
