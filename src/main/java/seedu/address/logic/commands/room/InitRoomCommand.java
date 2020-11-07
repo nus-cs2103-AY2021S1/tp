@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.room;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ROOMS;
+
 import java.util.Objects;
 
 import seedu.address.logic.commands.Command;
@@ -40,6 +42,7 @@ public class InitRoomCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.setInitNumOfRooms(numOfRooms);
+        model.updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
         if (numOfRooms == ZERO) {
             throw new CommandException(MESSAGE_ZERO_CANNOT_BE_AN_INPUT);
         } else if (numOfRooms < ZERO) {
@@ -50,6 +53,7 @@ public class InitRoomCommand extends Command {
             throw new CommandException(String.format(MESSAGE_INSUFFICIENT_ROOMS, model.getNumOfExcessOccupiedRooms()));
         }
         model.addRooms(numOfRooms);
+        model.updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, numOfRooms));
     }
 

@@ -55,20 +55,29 @@ public class UniqueRoomList implements Iterable<Room> {
     public void setRoom(Room room) {
         int roomNumber = room.getRoomNumber();
         if (room.getRoomNumber() > internalList.size()) {
-            for (int i = internalList.size(); i < roomNumber - 1; i++) {
-                Index index = Index.fromOneBased(i);
-                Room roomToAdd = new Room(index.getOneBased());
-                internalList.add(roomToAdd);
-                rooms.add(room);
-            }
+            setRoomForRoomNumberLessThanNumberOfRooms(room);
         } else {
-            Index index = Index.fromOneBased(roomNumber);
-            Room currRoom = internalList.get(index.getZeroBased());
-            internalList.remove(index.getZeroBased());
-            rooms.remove(currRoom);
-            internalList.add(index.getZeroBased(), room);
+            setRoomForRoomNumberMoreThanNumberOfRooms(room);
+        }
+    }
+    private void setRoomForRoomNumberLessThanNumberOfRooms(Room room) {
+        int roomNumber = room.getRoomNumber();
+        for (int i = internalList.size(); i < roomNumber - 1; i++) {
+            Index index = Index.fromOneBased(i);
+            Room roomToAdd = new Room(index.getOneBased());
+            internalList.add(roomToAdd);
             rooms.add(room);
         }
+    }
+
+    private void setRoomForRoomNumberMoreThanNumberOfRooms(Room room) {
+        int roomNumber = room.getRoomNumber();
+        Index index = Index.fromOneBased(roomNumber);
+        Room currRoom = internalList.get(index.getZeroBased());
+        internalList.remove(index.getZeroBased());
+        rooms.remove(currRoom);
+        internalList.add(index.getZeroBased(), room);
+        rooms.add(room);
     }
     /**
      * Returns Priority Queue of rooms

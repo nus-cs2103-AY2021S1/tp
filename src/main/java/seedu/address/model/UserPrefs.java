@@ -16,7 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path covigentAppFilePath = Paths.get("data" , "covigentapp.json");
     private Path numberOfRoomsFilePath = Paths.get("data", "numberOfRooms.txt");
-    private Path roomsOccupiedFilePath = Paths.get("data", "roomsOccupied.json");
+    private Path roomsOccupiedFilePath = Paths.get("data", "roomInformation.json");
     private Path taskFilePath = Paths.get("data", "task.json");
     /**
      * Creates a {@code UserPrefs} with default values.

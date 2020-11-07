@@ -23,8 +23,22 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=itssodium)
 
-* **Enhancements to existing features**:
-  * Wrote additional test cases for some of the features and classes that I created
+* **Enhancement to existing features**:
+  * move tab panel from top to the left [\#105](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/105)
+  * wrote unit test cases for `initroom` and `findemptyroom` commands and room attributes. [\#21](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/21)
 
 * **Additional Code to aid Feature**:
-  * Added most of the classes for rooms, including reading, writing and storing room classes
+  * Added most of the classes for rooms [\#26](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/26)
+  * Handled storage in Json format for Rooms and Tasks. [\#64](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/64), [\#84](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/84)
+
+* **Documentation**:
+  * User Guide:
+    * Added documentation for features `initroom`, `findemptyroom` and `listroom`
+    * Add FAQ section for UG to answer common questions asked my users
+  * Developer Guide:
+    * Updated the implementation for Storage
+    * Added implementation details for Room
+    
+* **Community**:
+  * Reported Bugs and suggestions for another team, TrackIt [link](https://github.com/itssodium/ped/issues)
+  * PRs reviewed (with non-trivial review comments): [\#69](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/69), [\#85](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/85) and [\#90](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/90)

@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.rooms;
 
 import java.util.Optional;
 
@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.room.Room;
+import seedu.address.storage.JsonSerializableTaskList;
+import seedu.address.storage.patient.JsonAdaptedPatient;
+
 //@@author itssodium
 public class JsonAdaptedRoom {
 
