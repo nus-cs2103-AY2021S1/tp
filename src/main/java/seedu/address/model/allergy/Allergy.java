@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Allergy {
 
-    public static final String MESSAGE_CONSTRAINTS = "Allergies names should be alphabetical and " +
-            "between 1 to 100 characters long.";
+    public static final String MESSAGE_CONSTRAINTS = "Allergies names should be alphabetical and "
+            + "between 1 to 100 characters long.";
     public static final String VALIDATION_REGEX = "\\p{Alpha}+";
 
     public final String allergyName;
