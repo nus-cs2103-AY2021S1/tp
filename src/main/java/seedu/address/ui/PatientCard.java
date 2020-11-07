@@ -79,6 +79,8 @@ public class PatientCard extends UiPart<Region> {
 
         if (patient.getAllergies().isEmpty()) {
             noAllergiesLabel.setText("NONE");
+        } else {
+            noAllergiesLabel.setText("");
         }
 
         Set<Appointment> appointmentList = patient.getAppointments();

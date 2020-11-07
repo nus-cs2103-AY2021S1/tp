@@ -98,6 +98,8 @@ public class AppointmentWindow extends UiPart<Stage> {
 
         if (patient.getAllergies().isEmpty()) {
             noAllergiesLabel.setText("NONE");
+        } else {
+            noAllergiesLabel.setText("");
         }
 
         // clear the lists
