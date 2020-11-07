@@ -1,0 +1,37 @@
+@startuml
+:User executes XYZENTITYCommand;
+if  () then ([ENTITY.TYPE == BIDDER])
+    :Display BidderListPanel in GUI;
+if () then ([ENTITY.TYPE == SELLER])
+    :Display BidderListPanel in GUI;
+
+else if () then  ([ENTITY.TYPE == BID])
+    :Display BidderListPanel in GUI;
+
+else if () then ([ENTITY.TYPE == PROPERTY])
+    :Display BidderListPanel in GUI;
+
+else ([ENTITY.TYPE == null])
+    :No changes in GUI;
+
+endif
+
+stop
+
+@enduml
+
+@startuml
+start
+:Agent executes delete bidder command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([bidder index exists])
+    :Purge redunant states;
+    :Save AddressBook to
+    addressBookStateList;
+else ([else])
+endif
+stop
+@enduml

@@ -86,6 +86,10 @@ The UI consists of two components:
 ![Breakdown of Ui Component](images/uidiagram/Ui-Component-Breakdown.png)
 *Note that the font colour in the picture is only different for visibility purposes.*
 
+After deliberation, we chose to proceed with TabBar as TabBar allowed
+us to represent the details of our entities neatly. 
+Each entity in Property belongs to a designated `ListPanel` (as shown below).
+
 The `TabBar` component itself consists of the following parts:
 - [`PropertyListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/property/PropertyListPanel.java)
 - [`BidderListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/bidder/BidderListPanel.java)
@@ -93,6 +97,24 @@ The `TabBar` component itself consists of the following parts:
 - [`BidListPanel`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/bid/BidListPanel.java)
 
 Each panel will display the list of the entities corresponding to the name of the panel.
+
+1. Alternative 1 (current choice): Choosing `TabBar` to represent information of our entities.
+    - Pros: 
+        - Neater segmentation of entities visually
+        - Able to leverage on existing AB3 Ui implementation for representing `Person`
+            
+    - Cons:
+        - Requires user to click to switch tab, not CLI-centric (tackled below)
+        
+ 2. Alternative 2: Maintain a single list on GUI and list only relevant entities based on certain actions such
+ as commands.
+    - Pros: 
+        - Fewer changes to existing AB3 Ui implementation
+    - Cons: 
+        - Increases code complexity as a combined list has to be created and filter accordingly
+
+The thought process behind the `Ui` was ultimately a choice between usability of the application
+and complexity of implementation.
 
 ---
 #### [`HelpWindow.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/HelpWindow.java)
@@ -361,9 +383,61 @@ containing the attribute of`sellerId`.
 
 This section explains the `Ui` implementation in PropertyFree. 
 
-#### 1. Automated `TabBar` Switching
-#### 2. Calendar Navigation
-#### 3. Key-press UI Navigation
+The implementation of `Ui` was implemented keeping in mind the constraint that the 
+target user is more inclined towards command line interface. 
+
+#### 1. Automated `TabBar` Switching based on Command
+
+Given that PropertyFree deals with a variety of different entities. The challenge was identifying the corresponding
+action and representing the right entity on the GUI.
+
+The implemented is done as such:
+
+- Creation of an `EntityType` (Enumeration) containing the following:  `BIDDER`, `SELLER`, `BID`, `PROPERTY` and `MEETING`. 
+
+- `CommandResult` is given another attribute of `EntityType`, and a `setEntity(EntityType)` method is created. The method is
+then called during the creation of the `CommandResult` object at each command.
+
+- The `CommandResult` then passes the `EntityType` in `MainWindow` to set the `TabBar` accordingly to the entity relevant to 
+command executed by the user.
+
+The following activity diagram depicts the user journey and how the GUI responds accordingly in different scenarios.
+
+![Automated Tab Bar Activity Diagram](images/uidiagram/autoTabBarActivityDiagram.png)
+
+#### 2. Key-press UI Navigation
+
+> The term `focus` refers to the component of which the user is able to interact with at any given moment.
+
+Upon launch, the PropertyFree will set the focus in the `CommandBox`'s text field. 
+This section highlights three simple key-press `Ui` navigation feature.
+
+- Navigating to next month in CalendarView: `SHIFT`
+- Navigating to previous month in CalendarView: `CONTROL`
+- Navigating to `CommandBox`'s text field (when not in focus): `ENTER`
+
+The key-press navigation is implemented in `MainWindow` where the method `handleFocusRequestWhenKeyPressed(CommandBox)` 
+configures the `primaryStage` with an `addEventFilter()` to "listen" to the event when a key is pressed.
+
+This in turns calls the method `handle(KeyEvent)` that runs and determine which key is pressed.
+Thereafter executes one of the three possible navigation.
+
+
+#### 3. Calendar Navigation Command
+
+Calendar Navigation Command serves to provide an alternative for users to view the `CalendarView` if the user's keyboard
+layout does not provide convenience for `SHIFT` or `CONTROL`.
+
+Two commands are created to handle the user input:
+
+- `NextCalendarNavigationCommand`
+- `PrevCalendarNavigationCommand`
+
+The implementation of the two above-mentioned commands are largely similar to the `ListENTITYCommand`. 
+
+However, apart from passing the `MESSAGE_SUCCESS` to `ResultDisplay`, the `CommandResult` checks `isCalendarNavigation()`
+and calls the `handleToNext()` or `handleToPrev()` method in `CalendarView` depending on the user command input.
+
  
  { end of Ui implementation section written by: Kor Ming Soon }
 

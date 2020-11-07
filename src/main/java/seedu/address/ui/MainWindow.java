@@ -257,7 +257,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             setAutoTab(commandResult.getEntityType());
 
-            if (commandResult.isUiComponent()) {
+            if (commandResult.isCalendarNavigation()) {
                 setCalendarNavigation(commandText);
             }
 
