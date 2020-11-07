@@ -94,6 +94,16 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void startEditingIngredients() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void finishEditingIngredients() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public Path getRecipeBookFilePath() {
         throw new AssertionError("This method should not be called.");
     }

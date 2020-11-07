@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/seowalex.png" width="200px">
 
 [[github](http://github.com/seowalex)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/seowalex.md)]
 
 * Role: Code quality/Integration
 
@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/fall9x.png" width="200px">
 
 [[github](http://github.com/fall9x)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/fall9x.md)]
 
 * Role: Testing / Documentation
 

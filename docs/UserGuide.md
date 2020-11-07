@@ -109,11 +109,11 @@ Specifically, this section covers:
 3. [Recipe Button](#RecipeButton)
 4. [Ingredient Button](#IngredientButton)
 5. [Recommendation Button](#RecommendationButton)
-6. [Favourites Button](#FavouriteButton)
-7. [Statistics Box](#StatisticsBox)
-8. [Recipe Tile](#RecipeTiles)
-9. [Ingredient Tile](#IngredientTiles)
-10. [Recipe Name and Tags](#RecipeName)
+6. [Statistics Box](#StatisticsBox)
+7. [Recipe Tile](#RecipeTiles)
+8. [Ingredient Tile](#IngredientTiles)
+9. [Recipe Name](#RecipeName)
+10. [Recipe Tags](#RecipeTags)
 11. [Recipe Ingredients](#RecipeIngredients)
 12. [Recipe Steps](#RecipeSteps)
 13. [Menu Bar](#MenuBar)
@@ -162,15 +162,8 @@ ChopChop is able to recommend you recipes to cook if you want it to! The recipes
 
 
 
-<a name="FavouriteButton"></a>
-### 4.6&ensp;Favourite Button
-{:.no_toc}
-ChopChop is able to save your favourite recipes — press the `Favourites` button to view them as [Recipe Tiles](#RecipeTiles).
-
-
-
 <a name="StatisticsBox"></a>
-### 4.7&ensp;Statistics Box
+### 4.6&ensp;Statistics Box
 {:.no_toc}
 ChopChop is able to produce statistics based on the food you make! To view your ingredient or recipe usage statistics, simply input into the `Command Box` one of the `stats` [commands available](#GroupStatsCommands).
 
@@ -178,14 +171,14 @@ ChopChop is able to produce statistics based on the food you make! To view your 
 
 
 <a name="RecipeTiles"></a>
-### 4.8&ensp;Recipe Tiles
+### 4.7&ensp;Recipe Tiles
 {:.no_toc}
 ChopChop is able to show you your recipes in the form of tiles — simply click on a tile to view the detailed information about the selected recipe in the `Main Display Area`, as shown in Figure 1.4.
 
 
 
 <a name="IngredientTiles"></a>
-### 4.9&ensp;Ingredient Tiles
+### 4.8&ensp;Ingredient Tiles
 {:.no_toc}
 ChopChop is able to show you your ingredients in the form of tiles, as shown in Figure 1.3. In each tile, there are 5 components:
 
@@ -209,9 +202,16 @@ Figure 1.4: <i>The Recipe Display Panel of ChopChop.</i>
 
 
 <a name="RecipeName"></a>
-### 4.10&ensp;Recipe Name and Tags
+### 4.9&ensp;Recipe Name
 {:.no_toc}
-ChopChop displays the name of the recipe, and the tags associated with it in this area.
+ChopChop displays the name of the recipe here.
+
+
+
+<a name="RecipeTags"></a>
+### 4.10&ensp;Recipe Tags
+{:.no_toc}
+ChopChop displays the tags associated with this recipe here.
 
 
 
@@ -343,6 +343,7 @@ The same thing applies to commands; <code>f <kbd>tab</kbd></code> would cycle be
 <br/><br/>
 <hr/>
 <br/>
+
 <a name="GroupGeneralCommands"></a>
 ### 5.3&ensp;General Commands
 
@@ -443,6 +444,7 @@ Figure 3.2: <i>The recommendations view</i>
 <br/><br/>
 <hr/>
 <br/>
+
 <a name="GroupRecipeCommands"></a>
 ### 5.4&ensp;Recipe Commands
 
@@ -798,30 +800,37 @@ Figure 9.3: <i>Back to the main recipe list</i>
 <a name="FilterRecipeCommand"></a>
 #### 5.4.7&ensp;Filtering Recipes — **`filter`**`recipe` (Jialei)
 
-This command filters all recipes and lists those containing all the ingredients and tags specified in the command.
+This command filters all recipes and lists those containing all given name, tag and ingredient keywords.
 
 **Usage**:
 ```
 filter recipe
+  [/name <name-keywords>...]...
   [/tag <tag-keywords>...]...
   [/ingredient <ingredient-keywords>...]...
 ```
 
-- Keywords do not have to be complete to match the 'tag' or 'ingredient' names.
+- Keywords do not have to be complete to match the 'name', 'tag' or 'ingredient' names.
 - Multiple search terms from the same category are allowed. e.g. `/tag movie /tag family`
 - Search terms can be placed in any order.
 - The filtering is case-insensitive and allows spaces between keywords in a single search term. e.g. `/tag family favourite` is allowed.
 
 Constraints:
-- At least one search term must be given, and they should be either `/tag` or `/ingredient`.
+- At least one search term must be given, and they should be either `/name`, `/tag` or `/ingredient`.
 - Search terms must not be empty.
 
 Examples:
+- `filter recipe /name ginger`<br />
+  This matches **Gingerbread Man** and **Ginger Chicken Soup**, the only recipes which names include **ginger**.
+  
+- `filter recipe /name sweet /name cake`<br />
+  This matches **Sweet Choco Cake** and **Sweet Caramel Cake**, the only recipes which names include both **sweet** and **cake**.
+  
 - `filter recipe /tag family reunion`<br />
   This matches **Spring Rolls** and **Hot Pot**, the only recipes with 'tag' **family reunion**.
 
 - `filter recipe /tag snacks /tag sweet` <br />
-  This matches **Chocolate Cookie** and **Gummy Bears**, the only recipes with 'tag' **snacks** and 'tag' **sweet**.
+  This matches **Chocolate Cookie** and **Gummy Bears**, the only recipes with both 'tag' **snacks** and 'tag' **sweet**.
 
 - `filter recipe /ingredient eggs` <br />
   This matches **Egg Tart** and **Scrambled Eggs**, assuming they are the only recipes using **eggs**.
@@ -829,7 +838,7 @@ Examples:
 - `filter recipe /ingredient chicken /ingredient cheese /ingredient pineapple` <br />
   This matches **Chicken Quesadilla**, assuming it is the only recipe using **chicken**, **cheese**, and **pineapple**.
 
-- `filter recipe /tag local dish /ingredient chicken /ingredient white rice /tag family favourite` <br />
+- `filter recipe /tag local dish /name chicken /ingredient chicken /ingredient white rice /tag family favourite /name rice` <br />
   This matches **Chicken Rice**, assuming it is the only recipe that matches all the criteria specified.
 
 To illustrate, suppose you had the following two recipes:
@@ -840,9 +849,10 @@ To illustrate, suppose you had the following two recipes:
   Figure 10.1: <i>The starting recipes</i>
 </div>
 
-Then, you wanted to search for recipes with tags **christmas** and **baked**, using ingredients **honey**, **ginger root**, and **molasses** — you would use this command (separated into lines for clarity):
+Then, you wanted to search for recipes with tags **christmas** and **baked**, using ingredients **honey**, **ginger root**, and **molasses**, and whose names contain keywords **ginger** and **bread** — you would use this command (separated into lines for clarity):
 ```
 filter recipe
+  /name men /name bread
   /tag christmas /tag baked
   /ingredient honey /ingredient ginger /ingredient molasses
 ```
@@ -854,7 +864,7 @@ After executing the command, similar to the effect of [`find recipe`](#FindRecip
 Figure 10.2: <i>Only one recipe matched all the provided criteria</i>
 </div>
 
-Note how the search term `ginger` matched the ingredient `ginger root`, and the search term `baked` matched the tag `home baked`. Again, to reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
+Note how the search term `ginger` matched the ingredient `ginger root`, the search term `baked` matched the tag `home baked`, and search terms `men` and `bread` matched the name`Gingerbread Men`. Again, to reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
 
 
 
@@ -911,6 +921,7 @@ Figure 11.3: <i>Insufficient ingredients to make the pancakes</i>
 <br/><br/>
 <hr/>
 <br/>
+
 <a name="GroupIngredientCommands"></a>
 ### 5.5&ensp;Ingredient Commands
 
@@ -1080,25 +1091,32 @@ Again, you can either click the Ingredients button, or use `list ingredients` to
 <a name="FilterIngredientCommand"></a>
 #### 5.5.5&ensp;Filtering Ingredients — **`filter`**`ingredient` (Jialei)
 
-This command filters all ingredients and lists those that match all the tags and expiry dates specified in the command.
+This command filters all ingredients and lists those that match all the name keywords, tags and expiry dates specified in the command.
 
 **Usage**:
 ```
 filter ingredient
+  [/name <name-keywords>...]...
   [/expiry <expiry-date>]
   [/tag <tag-keywords>...]...
 ```
 
-- Keywords following `/tag` do not have to be complete to match the 'tag' name.
+- Keywords following `/tag` and `/name` do not have to be complete to match the 'tag' or the ingredient's 'name'.
 - `/expiry <expiry-date>` filters the ingredients and only lists those that expire before the date provided.
-- When there are multiple expiry dates specified,, only the earliest one will be considered.
+- When there are multiple expiry dates specified, only the earliest one will be considered.
 - Except for the changes in the search fields, this feature works identically to the [`filter recipe`](#FilterRecipeCommand) command above.
 
 Constraints:
-- At least one search term must be given, and they should be either `/expiry` or `/tag`.
+- At least one search term must be given, and they should be either `/name`, `/expiry` or `/tag`.
 - Search terms must not be empty.
 
 Examples:
+- `filter ingredient /name dark chocolate` <br />
+  This matches **dark chocolate** and **dark chocolate syrup**, assuming they are the only ingredients whose names contain **dark chocolate**.
+  
+- `filter ingredient /name dark chocolate /syrup` <br />
+  This matches **dark chocolate syrup**, assuming it is the only ingredient whose name contains both **dark chocolate** and **syrup**.
+
 - `filter ingredient /tag bitter taste` <br />
   This matches **bitter melon** and **dark chocolate**, assuming they are the only ingredients tagged with **bitter taste**.
 
@@ -1108,24 +1126,24 @@ Examples:
 - `filter ingredient /expiry 2020-12-01 /expiry 2020-10-31 /expiry 2023-01-01` <br />
   This matches **apple**, if it is the only ingredient expiring before **2020-10-31**. Note that only the earliest date is considered here (in this case, 31st October 2020), and the rest are ignored.
 
-- `filter ingredient /tag powdery /expiry 2020-12-31 /tag bakery` <br />
+- `filter ingredient /tag powdery /expiry 2020-12-31 /tag bakery /name soda` <br />
   This matches **baking soda**, assuming it is the only ingredient that matches all the specified criteria.
 
-To illustrate, suppose you want to search for ingredients tagged both **delicious** and **favourite**, and expiring before **2020-12-31**; you can use `filter ingredient /tag delicious /expiry 2020-12-31 /tag favourite`:
+To illustrate, suppose you want to search for ingredients tagged both **bakery** and **sweet**, expiring before **2021-12-31** and containing **sugar** in the name; you can use `filter ingredient /tag bakery /expiry 2021-12-31 /tag sweet /name sugar`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_ingredient_1.png" width="75%" /> <br />
 Figure 16.1: <i>The initial list of ingredients</i>
 </div>
 
-After executing the command, similar to the effect of **filter recipe** command, the ingredient list has changed, showing the only matching ingredients, **Bacon** and **Rainbow Sprinkles**:
+After executing the command, similar to the effect of **filter recipe** command, the ingredient list has changed, showing the only matching ingredients, **Brown Sugar** and **Granulated Sugar**:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_ingredient_2.png" width="75%" /> <br />
 Figure 16.2: <i>The ingredients matching all the provided criteria</i>
 </div>
 
-Note that **Chocolate Sprinkles**, which was also tagged **delicious** and **favourite**, was not included because it expired in 2021.
+Note that **Honey**, which was also tagged **bakery** and **sweet** and would expire before **2021-12-31**, was not included because its name does not contain **sugar**.
 
 Again, to reset the search filter or go back to the full ingredient view, you can click the Ingredients button or run the `list ingredients` command.
 
@@ -1381,6 +1399,7 @@ edit recipe &lt;#REF&gt;
     <td>Searches for ingredients by one or more filtering criteria</td>
     <td><pre>
 filter ingredient
+  [/name &lt;name-keywords&gt;...]...
   [/expiry &lt;expiry-date&gt;]
   [/tag &lt;tag-keywords&gt;...]...
 </pre></td>
@@ -1390,6 +1409,7 @@ filter ingredient
     <td>Searches for recipes by one or more filtering criteria</td>
     <td><pre>
 filter recipe
+  [/name &lt;name-keywords&gt;...]...
   [/tag &lt;tag-keywords&gt;...]...
   [/ingredient
     &lt;ingr-keywords&gt;...]...

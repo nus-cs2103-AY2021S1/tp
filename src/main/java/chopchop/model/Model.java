@@ -155,6 +155,18 @@ public interface Model {
      */
     void updateFilteredIngredientList(Predicate<? super Ingredient> predicate);
 
+    /**
+     * Starts a bulk edit operation for ingredients. Every call to {@code startEditingIngredients} *MUST*
+     * be paired with a corresponding call to {@code finishEditingIngredients}. These pairs can be nested.
+     */
+    void startEditingIngredients();
+
+    /**
+     * Finishes a bulk edit operation for ingredients. Every call to {@code finishEditingIngredients} *MUST*
+     * be paired with a corresponding call to {@code startEditingIngredients}. These pairs can be nested.
+     */
+    void finishEditingIngredients();
+
     /** Returns the UsageList of recipe */
     UsageList<RecipeUsage> getRecipeUsageList();
 

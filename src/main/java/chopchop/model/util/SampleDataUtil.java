@@ -1,7 +1,7 @@
 package chopchop.model.util;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import chopchop.model.EntryBook;
 import chopchop.model.ReadOnlyEntryBook;
@@ -19,40 +19,39 @@ public class SampleDataUtil {
     public static Ingredient[] getSampleIngredients() {
         return new Ingredient[] {
             new Ingredient("Apple", Count.of(8), null,
-                new HashSet<>(Arrays.asList(new Tag("fruit"), new Tag("low calorie")))),
+                Set.of(new Tag("fruit"), new Tag("low calorie"))),
             new Ingredient("Apricot Preserves", Volume.millilitres(100), new ExpiryDate("2020-12-30"),
-                new HashSet<>(Arrays.asList(new Tag("fruit"), new Tag("bakery")))),
+                Set.of(new Tag("fruit"), new Tag("bakery"))),
             new Ingredient("Banana", Count.of(5), null,
-                new HashSet<>(Arrays.asList(new Tag("fruit"), new Tag("low calorie")))),
+                Set.of(new Tag("fruit"), new Tag("low calorie"))),
             new Ingredient("Butter", Mass.grams(200), new ExpiryDate("2020-12-01"),
-                new HashSet<>(Arrays.asList(new Tag("dairy"), new Tag("high calorie")))),
+                Set.of(new Tag("dairy"), new Tag("high calorie"))),
             new Ingredient("Brown Sugar", Mass.grams(300), new ExpiryDate("2021-07-03"),
-                    new HashSet<>(Arrays.asList(new Tag("sweet"), new Tag("kitchen"), new Tag("bakery")))),
+                    Set.of(new Tag("sweet"), new Tag("kitchen"), new Tag("bakery"))),
             new Ingredient("Cream", Mass.grams(460), new ExpiryDate("2020-11-15"),
-                new HashSet<>(Arrays.asList(new Tag("high calorie"), new Tag("high sugar level")))),
+                Set.of(new Tag("high calorie"), new Tag("high sugar level"))),
             new Ingredient("Egg", Count.of(12), new ExpiryDate("2020-12-01"),
-                new HashSet<>(Arrays.asList(
-                    new Tag("high protein"), new Tag("breakfast"), new Tag("frequently used")))),
+                Set.of(new Tag("high protein"), new Tag("breakfast"), new Tag("frequently used"))),
             new Ingredient("Flour", Mass.kilograms(3.5), null,
-                new HashSet<>(Arrays.asList(new Tag("staple food"), new Tag("bakery"), new Tag("carbohydrate")))),
+                Set.of(new Tag("staple food"), new Tag("bakery"), new Tag("carbohydrate"))),
             new Ingredient("French Vinaigrette", Volume.millilitres(300), new ExpiryDate("2021-05-01"),
-                new HashSet<>(Arrays.asList(new Tag("high calorie"), new Tag("salad dressing")))),
+                Set.of(new Tag("high calorie"), new Tag("salad dressing"))),
             new Ingredient("Ginger Root", Mass.grams(200), new ExpiryDate("2021-01-02"),
-                new HashSet<>(Arrays.asList(new Tag("bakery"), new Tag("healthy")))),
+                Set.of(new Tag("bakery"), new Tag("healthy"))),
             new Ingredient("Granulated Sugar", Mass.grams(200), new ExpiryDate("2021-10-10"),
-                new HashSet<>(Arrays.asList(new Tag("sweet"), new Tag("kitchen"), new Tag("bakery")))),
+                Set.of(new Tag("sweet"), new Tag("kitchen"), new Tag("bakery"))),
             new Ingredient("Ground Cinnamon", Mass.grams(100), new ExpiryDate("2020-12-29"),
-                new HashSet<>(Arrays.asList(new Tag("kitchen"), new Tag("bakery")))),
+                Set.of(new Tag("kitchen"), new Tag("bakery"))),
             new Ingredient("Honey", Volume.millilitres(650), new ExpiryDate("2021-07-06"),
-                new HashSet<>(Arrays.asList(new Tag("sweet"), new Tag("high sugar level"), new Tag("bakery")))),
+                Set.of(new Tag("sweet"), new Tag("high sugar level"), new Tag("bakery"))),
             new Ingredient("Olive Oil", Volume.litres(1.5), new ExpiryDate("2022-05-07"),
-                new HashSet<>(Arrays.asList(new Tag("kitchen"), new Tag("healthy"), new Tag("salad dressing")))),
+                Set.of(new Tag("kitchen"), new Tag("healthy"), new Tag("salad dressing"))),
             new Ingredient("Pineapple Juice", Volume.litres(2), new ExpiryDate("2020-12-31"),
-                new HashSet<>(Arrays.asList(new Tag("high sugar level"), new Tag("drink"), new Tag("fruit")))),
+                Set.of(new Tag("high sugar level"), new Tag("drink"), new Tag("fruit"))),
             new Ingredient("Salt", Mass.grams(200), new ExpiryDate("2021-06-24"),
-                new HashSet<>(Arrays.asList(new Tag("kitchen"), new Tag("salty")))),
-            new Ingredient("Vanilla Extract", Mass.grams(150), new ExpiryDate("2020-12-28"),
-                new HashSet<>(Arrays.asList(new Tag("bakery"), new Tag("sweet")))),
+                Set.of(new Tag("kitchen"), new Tag("salty"))),
+            new Ingredient("Vanilla Extract", Volume.millilitres(150), new ExpiryDate("2020-12-28"),
+                Set.of(new Tag("bakery"), new Tag("sweet"))),
         };
     }
 
@@ -67,17 +66,17 @@ public class SampleDataUtil {
     public static Recipe[] getSampleRecipe() {
         return new Recipe[] {
             new Recipe("Apple Tart",
-                Arrays.asList(
+                List.of(
                     new IngredientReference("Apple", Count.of(5)),
                     new IngredientReference("Apricot Preserves", Volume.teaspoons(2)),
-                    new IngredientReference("Butter", Volume.tablespoons(12)),
-                    new IngredientReference("Brown Sugar", Volume.cups(0.6)),
-                    new IngredientReference("Flour", Volume.cups(1.5)),
-                    new IngredientReference("Granulated Sugar", Volume.tablespoons(1)),
-                    new IngredientReference("Ground Cinnamon", Volume.teaspoons(1.25)),
-                    new IngredientReference("Salt", Volume.teaspoons(0.5)),
+                    new IngredientReference("Butter", Mass.grams(170)),
+                    new IngredientReference("Brown Sugar", Mass.grams(128)),
+                    new IngredientReference("Flour", Mass.grams(200)),
+                    new IngredientReference("Granulated Sugar", Mass.grams(12)),
+                    new IngredientReference("Ground Cinnamon", Mass.grams(10)),
+                    new IngredientReference("Salt", Mass.grams(3)),
                     new IngredientReference("Vanilla Extract", Volume.teaspoons(1))),
-                Arrays.asList(
+                List.of(
                     new Step("Peel, core and slice the apples."),
                     new Step("Preheat the oven to 350 Celsius Degree."),
                     new Step("In a large bowl, toss all apples, 1/3 cup of brown sugar, 1 teaspoon of cinnamon "
@@ -90,15 +89,15 @@ public class SampleDataUtil {
                         + "leftover butter cut into small cubes. Bake until crust is golden and apples are tender, "
                         + "about one hour."),
                     new Step("Brush with melted apricot preserves and let cool slightly before slicing and serving.")),
-                new HashSet<>(Arrays.asList(new Tag("fruit"), new Tag("bakery"), new Tag("Family's Favourite")))),
+                Set.of(new Tag("fruit"), new Tag("bakery"), new Tag("Family's Favourite"))),
 
             new Recipe("Scrambled Eggs",
-                Arrays.asList(
+                List.of(
                     new IngredientReference("Butter", Mass.grams(20)),
                     new IngredientReference("Cream", Mass.grams(20)),
                     new IngredientReference("Egg", Count.of(2)),
                     new IngredientReference("Salt", Mass.grams(0.5))),
-                Arrays.asList(
+                List.of(
                     new Step("Lightly whisk 2 eggs, 20g of cream and a pinch of salt together until the "
                             + "mixture has just one consistency."),
                     new Step("Heat a small non-stick frying pan for a minute or so, then add the butter and "
@@ -109,19 +108,53 @@ public class SampleDataUtil {
                     new Step("Repeat until the eggs are softly set and slightly runny in places. Remove from "
                             + "the heat and leave for a moment to finish cooking."),
                     new Step("Give a final stir and serve the velvety scramble without delay.")),
-                new HashSet<>(Arrays.asList(
-                    new Tag("simple recipe"), new Tag("healthy"), new Tag("high protein")))),
+                Set.of(
+                    new Tag("simple"), new Tag("healthy"), new Tag("high protein"))),
+
             new Recipe("Sweet Banana Salad",
-                Arrays.asList(
+                List.of(
                     new IngredientReference("Banana", Count.of(2)),
                     new IngredientReference("French Vinaigrette", Volume.millilitres(20)),
                     new IngredientReference("Honey", Volume.millilitres(15))),
-                Arrays.asList(
+                List.of(
                     new Step("Cut the banana and put it into a bowl."),
                     new Step("Pour the French Vinaigrette into the bowl, and mix them well."),
                     new Step("Add honey at the top.")),
-                new HashSet<>(Arrays.asList(
-                    new Tag("simple recipe"), new Tag("healthy"), new Tag("fruit"))))
+                Set.of(new Tag("simple"), new Tag("healthy"), new Tag("fruit"))),
+
+            new Recipe("Pancakes",
+                List.of(
+                    new IngredientReference("Flour", Mass.grams(200)),
+                    new IngredientReference("Egg", Count.of(2)),
+                    new IngredientReference("Milk", Volume.millilitres(150)),
+                    new IngredientReference("Butter", Mass.grams(120)),
+                    new IngredientReference("Vanilla Extract", Volume.teaspoons(1))),
+                List.of(
+                    new Step("Mix ingredients together"),
+                    new Step("Pour batter onto the pancake grill"),
+                    new Step("Cook for 10 minutes, or till golden brown"),
+                    new Step("Flip the pancake and repeat for the other side"),
+                    new Step("Serve generously with syrup")),
+                Set.of(new Tag("breakfast"), new Tag("simple"))),
+
+            new Recipe("Banana Milkshake",
+                List.of(
+                    new IngredientReference("Banana", Count.of(1)),
+                    new IngredientReference("Milk", Volume.millilitres(250)),
+                    new IngredientReference("Vanilla Extract", Volume.teaspoons(1))),
+                List.of(
+                    new Step("Cut the banana into thin slices"),
+                    new Step("Place the milk, banana slices, and vanilla extract into a blender"),
+                    new Step("Blend the mixture to taste")),
+                Set.of(new Tag("breakfast"), new Tag("healthy"), new Tag("fruit"))),
+
+            new Recipe("Salted Water",
+                List.of(
+                    new IngredientReference("Salt", Mass.grams(90))),
+                List.of(
+                    new Step("Add the salt into 250ml of water"),
+                    new Step("Stir the mixture well")),
+                Set.of(new Tag("healthy"), new Tag("simple")))
         };
     }
 
