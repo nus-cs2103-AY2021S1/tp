@@ -108,7 +108,25 @@ public class NuStorageParserTest {
     @Test
     public void parseCommand_findFinance() throws Exception {
         assertTrue(parser.parseCommand(FindFinanceCommand.COMMAND_WORD
-                + " keyword") instanceof FindFinanceCommand);
+                + " id/ID") instanceof FindFinanceCommand);
+
+        assertTrue(parser.parseCommand(FindFinanceCommand.COMMAND_WORD
+                + " aft/1999-02-04 20:00 bef/2020-01-01") instanceof FindFinanceCommand);
+
+        assertTrue(parser.parseCommand(FindFinanceCommand.COMMAND_WORD
+                + " item/no") instanceof FindFinanceCommand);
+
+        assertTrue(parser.parseCommand(FindFinanceCommand.COMMAND_WORD
+                + " id/ID item/no") instanceof FindFinanceCommand);
+
+        assertTrue(parser.parseCommand(FindFinanceCommand.COMMAND_WORD
+                + " id/ID aft/1999-02-04 20:00 bef/2020-01-01") instanceof FindFinanceCommand);
+
+        assertTrue(parser.parseCommand(FindFinanceCommand.COMMAND_WORD
+                + " aft/1999-02-04 20:00 bef/2020-01-01 item/no") instanceof FindFinanceCommand);
+
+        assertTrue(parser.parseCommand(FindFinanceCommand.COMMAND_WORD
+                + " id/ID aft/1999-02-04 20:00 bef/2020-01-01 item/no") instanceof FindFinanceCommand);
     }
 
     @Test
