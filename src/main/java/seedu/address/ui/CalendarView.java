@@ -380,31 +380,10 @@ public class CalendarView extends UiPart<Region> {
      * Initialise calendar to next month data when the next button is clicked.
      */
     @FXML
-    public void handToNext() {
+    public void handleToNext() {
         this.nonPivotDate = nonPivotDate.plusMonths(1);
         updateDayMonthYear(nonPivotDate);
         refreshCalenderView();
     }
-
-
-    // @@author {zwasd}-reused
-    // Reused from
-    // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
-    // with no modifications.
-    /**
-     * This method will update the pivotDate to the new active meetingDate.
-     * @param date the new pivot meetingDate
-     */
-    public void updateActiveDate(LocalDate date) {
-        this.pivotDate = date;
-        this.nonPivotDate = date;
-        this.day = date.getDayOfMonth();
-        this.month = date.getMonthValue();
-        this.year = date.getYear();
-        this.yearMonth = YearMonth.of(this.year, this.month);
-        this.firstDayOfTheMonth = yearMonth.atDay(1);
-        refreshCalenderView();
-    }
-
 
 }
