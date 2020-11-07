@@ -308,7 +308,7 @@ Format: `i-restock`
 
 #### 3.1 Adding an employee : `c-add`
 
-Adds an employee to the contact list.
+Adds an employee to the employee directory.
 
 Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
 
@@ -324,7 +324,7 @@ Examples:
 
 #### 3.2 Listing all employees : `c-list`
 
-Shows a list of all employees in the contact list.
+Shows a list of all employees in the employee directory.
 
 
 Format: `c-list`
@@ -356,7 +356,7 @@ tags contain `Thursday` will be listed out.
 #### 3.5 Editing a person : `c-edit`
 
 
-Edits the corresponding contact information in the contact list.
+Edits the corresponding employee's information in the employee directory.
 
 Format: `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG] ...`
 
@@ -373,9 +373,9 @@ Examples:
 *  `c-edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
 
-#### 3.6 Locating persons by keywords: `c-find`
+#### 3.6 Locating employees by keywords: `c-find`
 
-Finds all active(unarchived) contacts that contain the KEYWORD(s) in their names.
+Finds all active(unarchived) employees that contain the KEYWORD(s) in their names.
 
 Format: `c-find KEYWORD [MORE_KEYWORDS] ...`
 
@@ -390,9 +390,9 @@ Examples:
 * `c-find John` returns `john` and `John Doe`.
 * `c-find alex david` returns `Alex Yeoh`, `David Li`.<br>
 
-#### 3.7 Locating persons based on matching tags: `c-tag-find`
+#### 3.7 Locating employees based on matching tags: `c-tag-find`
 
-Finds all active(unarchived) contacts that contain the KEYWORD(s) in their tags.
+Finds all active(unarchived) employees that contain the KEYWORD(s) in their tags.
 
 Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
 
@@ -409,12 +409,12 @@ Examples:
 
 #### 3.8 Deleting a person : `c-delete`
 
-Deletes the specified employee from the contact list.
+Deletes the specified employee from the employee directory.
 
 Format: `c-delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed employee directory.
 * The index **must be a positive integer** 1, 2, 3, ...​
 
 Examples:
@@ -423,7 +423,7 @@ Examples:
 
 #### 3.9 Clearing all entries : `c-clear`
 
-Clears all entries from the contact list.
+Clears all entries from the employee directory.
 
 Format: `c-clear`
 
