@@ -235,18 +235,18 @@ public class ModelManager implements Model {
     public void quit() {
         switch (mainCatalogue.getStatus()) {
         case PROJECT:
-            projectToBeDisplayedOnDashboard = Optional.empty();
-            teammateToBeDisplayedOnDashboard = Optional.empty();
-            taskToBeDisplayedOnDashboard = Optional.empty();
+            resetProjectToBeDisplayedOnDashboard();
+            resetTaskToBeDisplayedOnDashboard();
+            resetTeammateToBeDisplayedOnDashboard();
             break;
         case TASK:
-            taskToBeDisplayedOnDashboard = Optional.empty();
+            resetTaskToBeDisplayedOnDashboard();
             break;
         case TEAMMATE:
-            teammateToBeDisplayedOnDashboard = Optional.empty();
+            resetTeammateToBeDisplayedOnDashboard();
             break;
         case PERSON:
-            personToBeDisplayedOnDashboard = Optional.empty();
+            resetPersonToBeDisplayedOnDashboard();
             break;
         default:
             break;
@@ -342,6 +342,11 @@ public class ModelManager implements Model {
         return projectToBeDisplayedOnDashboard;
     }
 
+    @Override
+    public void resetProjectToBeDisplayedOnDashboard() {
+        projectToBeDisplayedOnDashboard = Optional.empty();
+    }
+
     //=========== Task To Be Displayed On DashBoard Accessors ======================================================
     @Override
     public void updateTaskToBeDisplayedOnDashboard(Task task) {
@@ -352,6 +357,11 @@ public class ModelManager implements Model {
     @Override
     public Optional<Task> getTaskToBeDisplayedOnDashboard() {
         return taskToBeDisplayedOnDashboard;
+    }
+
+    @Override
+    public void resetTaskToBeDisplayedOnDashboard() {
+        taskToBeDisplayedOnDashboard = Optional.empty();
     }
 
     //=========== Teammate To Be Displayed On DashBoard Accessors ======================================================
@@ -366,6 +376,11 @@ public class ModelManager implements Model {
         return teammateToBeDisplayedOnDashboard;
     }
 
+    @Override
+    public void resetTeammateToBeDisplayedOnDashboard() {
+        teammateToBeDisplayedOnDashboard = Optional.empty();
+    }
+
     //=========== Person To Be Displayed On DashBoard Accessors ======================================================
     @Override
     public void updatePersonToBeDisplayedOnDashboard(Person person) {
@@ -376,5 +391,10 @@ public class ModelManager implements Model {
     @Override
     public Optional<Person> getPersonToBeDisplayedOnDashboard() {
         return personToBeDisplayedOnDashboard;
+    }
+
+    @Override
+    public void resetPersonToBeDisplayedOnDashboard() {
+        personToBeDisplayedOnDashboard = Optional.empty();
     }
 }

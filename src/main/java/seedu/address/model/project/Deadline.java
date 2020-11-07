@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.task.Date;
 
@@ -16,6 +17,7 @@ public class Deadline implements Comparable<Deadline> {
             "Deadline should only be in the format of dd-MM-yyyy HH:mm:ss, "
                     + "and the time should only be in the format of 24-Hour";
     public static final String VALIDATION_REGEX = "(\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2})";
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     private final String deadline;
     private final LocalDateTime dateTime;
 
@@ -28,28 +30,7 @@ public class Deadline implements Comparable<Deadline> {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         this.deadline = deadline;
-        dateTime = convertIntoDateTime(deadline);
-    }
-
-    /**
-     * Converts a valid deadline string into LocalDateTime.
-     * @param deadline  the deadline string to be converted
-     * @return  an LocalDateTime object that corresponds to the deadline string
-     */
-    public LocalDateTime convertIntoDateTime(String deadline) {
-        assert isValidDeadline(deadline);
-        String[] dateTime = deadline.split(" ");
-        String dateString = dateTime[0];
-        String timeString = dateTime[1];
-        String[] date = dateString.split("-");
-        String[] time = timeString.split(":");
-        int day = Integer.parseInt(date[0]);
-        int month = Integer.parseInt(date[1]);
-        int year = Integer.parseInt(date[2]);
-        int hour = Integer.parseInt(time[0]);
-        int minute = Integer.parseInt(time[1]);
-        int second = Integer.parseInt(time[2]);
-        return LocalDateTime.of(year, month, day, hour, minute, second);
+        dateTime = LocalDateTime.parse(deadline, FORMATTER);;
     }
 
     /**
@@ -94,7 +75,7 @@ public class Deadline implements Comparable<Deadline> {
         LocalDateTime startDate = start.atStartOfDay();
         LocalDateTime endDate = end.atStartOfDay().plusDays(1);
         return (dateTime.isAfter(startDate) || dateTime.isEqual(startDate))
-            && dateTime.isBefore(endDate);
+                && dateTime.isBefore(endDate);
     }
 
 
