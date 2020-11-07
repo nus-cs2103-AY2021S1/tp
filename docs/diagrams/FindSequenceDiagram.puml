@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FoodInventoryParser" as FoodInventoryParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "d:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find d/apple e/30-9-2020 p/medium t/frozen")
+activate LogicManager
+
+LogicManager -> FoodInventoryParser : parseCommand("find d/apple e/30-9-2020 p/medium t/frozen")
+activate FoodInventoryParser
+
+create FindCommandParser
+FoodInventoryParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> FoodInventoryParser
+deactivate FindCommandParser
+
+FoodInventoryParser -> FindCommandParser : parse(" d/apple e/30-9-2020 p/medium t/frozen")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser
+deactivate FindCommand
+
+FindCommandParser --> FoodInventoryParser
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> FoodInventoryParser
+destroy FindCommandParser
+
+FoodInventoryParser --> LogicManager
+deactivate FoodInventoryParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> FindCommand : combinePredicate()
+FindCommand -> Model : updateFilteredFoodList(predicate)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

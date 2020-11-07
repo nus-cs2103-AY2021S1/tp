@@ -11,8 +11,13 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class ExpiringFoodListPanel
+Class ExpiringFoodListCard
+Class ExpiredFoodWindow
+Class ExpiredFoodListPanel
+Class ExpiredFoodListCard
+Class FoodListPanel
+Class FoodCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -33,28 +38,44 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
+MainWindow *-down-> ExpiringFoodListPanel
+MainWindow *-down-> FoodListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> ExpiredFoodWindow
 
-PersonListPanel -down-> PersonCard
+FoodListPanel -down-> FoodCard
+ExpiringFoodListPanel -down-> ExpiringFoodListCard
+ExpiredFoodWindow -down-> ExpiredFoodListPanel
+ExpiredFoodListPanel -down-> ExpiredFoodListCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+ExpiringFoodListPanel --|> UiPart
+ExpiringFoodListCard --|> UiPart
+ExpiredFoodWindow --|> UiPart
+ExpiredFoodListPanel --|> UiPart
+ExpiredFoodListCard --|> UiPart
+FoodListPanel --|> UiPart
+FoodCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-PersonCard ..> Model
+FoodCard .down.> Model
+ExpiringFoodListCard .down.> Model
+ExpiredFoodListCard .down.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
+ExpiredFoodWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+FoodListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+ExpiredFoodListPanel -[hidden]left- ExpiringFoodListPanel
 
 MainWindow -[hidden]-|> UiPart
+UiPart -[hidden]-|> Model
+
 @enduml

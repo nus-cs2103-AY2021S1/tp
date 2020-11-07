@@ -5,23 +5,24 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyFoodInventory <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class FoodInventory
+Class ReadOnlyFoodInventory
+Class VersionedFoodInventory
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Food {
+Class Food
+Class Description
+Class ExpiryDate
+Class Priority
+Class Quantity
+Class UniqueFoodList
 }
 
 Package Tag {
@@ -32,25 +33,26 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+FoodInventory .up.|> ReadOnlyFoodInventory
+VersionedFoodInventory .up.|> FoodInventory
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" VersionedFoodInventory
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+VersionedFoodInventory *--> "1" UniqueFoodList
+UniqueFoodList o--> "*" Food
+Food *--> Description
+Food *--> ExpiryDate
+Food *--> Priority
+Food *--> Quantity
+Food *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Description -[hidden]right-> ExpiryDate
+ExpiryDate -[hidden]right-> Priority
+Priority -[hidden]right-> Quantity
 
-ModelManager -->"1" Person : filtered list
+ModelManager -->"1" Food : filtered list
 @enduml

@@ -1,0 +1,46 @@
+{
+  "_comment": "SimplyKitchen saves file which contains the same Food values as in TypicalFood#getTypicalFoodInventory()",
+  "foods" : [ {
+    "description" : "Anchovies",
+    "priority": "LOW",
+    "expiryDate" : "1-1-2020",
+    "quantity": "1 jar",
+    "tagged" : [ "raw", "fresh water" ]
+  }, {
+      "description": "Bagel",
+    "priority": "LOW",
+    "expiryDate" : "1-2-2020",
+    "quantity": "5",
+    "tagged" : [ "sugar-free", "cheese" ]
+  }, {
+    "description": "Carrot Cake",
+    "priority": "LOW",
+    "expiryDate" : "1-3-2020",
+    "quantity": "10 slice",
+    "tagged" : [ ]
+  }, {
+    "description": "Dark Chocolate",
+    "priority": "HIGH",
+    "expiryDate" : "1-6-2020",
+    "quantity": "1.5 bar",
+    "tagged" : [ "85%" ]
+  }, {
+    "description": "Eggs",
+    "priority": "HIGH",
+    "expiryDate" : "1-12-2020",
+    "quantity": "1.25 carton",
+    "tagged" : [ ]
+  }, {
+    "description": "French Fries",
+    "priority": "LOW",
+    "expiryDate" : "31-1-2020",
+    "quantity": "1 packet",
+    "tagged" : [ ]
+  }, {
+    "description": "Ginger",
+    "priority": "LOW",
+    "expiryDate" : "31-12-2020",
+    "quantity": "200 g",
+    "tagged" : [ ]
+  } ]
+}

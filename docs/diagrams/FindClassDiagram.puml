@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+Interface Predicate <<Interface>>
+
+DescriptionContainsKeywordsPredicate .up.|> Predicate
+ExpiryDateSearchPredicate .up.|> Predicate
+PrioritySearchPredicate .up.|> Predicate
+TagSearchPredicate .up.|> Predicate
+
+FindCommand o-up-> DescriptionContainsKeywordsPredicate
+FindCommand o-up-> ExpiryDateSearchPredicate
+FindCommand o-up-> PrioritySearchPredicate
+FindCommand o-up-> TagSearchPredicate
+
+FindCommandParser .up.> DescriptionContainsKeywordsPredicate
+FindCommandParser .up.> ExpiryDateSearchPredicate
+FindCommandParser .up.> PrioritySearchPredicate
+FindCommandParser .up.> TagSearchPredicate
+
+FindCommandParser .left.> FindCommand
+FindCommandParser .down.> ArgumentMultimap
+
+FindCommand .down.> Model
+@enduml
