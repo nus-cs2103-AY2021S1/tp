@@ -22,9 +22,9 @@ title: Developer Guide
             * [Aspect 1: Concern while adding a new feature](#3121-aspect-1)<br>
             * [Aspect 2: Should we allow adding duplicate recipes](#3122-aspect-2)
         * [3.1.3 Design Consideration - **Add Ingredient**](#313-design-consideration-add-ingredient)
-            * [Aspect 1: Concern while adding a new feature](#3131-aspect-1)<br>
-            * [Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity](#3132-aspect-2)<br>
-	    	* [Aspect 3: Should we allow adding duplicate ingredients and stacking quantities](#3133-aspect-3)
+            * [Aspect 1: Concern while adding a new feature](#3131-aspect-1)
+            * [Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity](#3132-aspect-2)
+            * [Aspect 3: Should we allow adding duplicate ingredients and stacking quantities](#3133-aspect-3)
 	    <br><br>
     - [3.2. Eat Recipe Feature](#32-eat-recipe-feature)
         * [3.2.1 Implementation](#321-implementation)
@@ -48,17 +48,17 @@ title: Developer Guide
         * [3.4.3 Design Consideration - **Delete Ingredient**](#343-design-consideration-delete-ingredient)
             * [Aspect: Concern while adding a new feature](#3431-aspect)
         * [3.4.4 Design Consideration - **Delete Consumption**](#344-design-consideration-delete-consumption)
-            * [Aspect 1: Concern while adding a new feature](#3441-aspect-1)<br>
-	    	* [Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present)](#3422-aspect-2)
+            * [Aspect 1: Concern while adding a new feature](#3441-aspect-1)
+	    	    * [Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present)](#3442-aspect-2)
 	    <br><br>
     - [3.5. Edit Features](#35-edit-features)
         * [3.5.1 Implementation](#351-implementation)
         * [3.5.2 Design Consideration - **Edit Recipe**](#352-design-consideration-edit-recipe)
-            * [Aspect 1: Concern while adding a new feature](#3521-aspect-1)<br>
-	    	* [Aspect 2: How to provide users with more ease while editing a recipe](#3522-aspect-2)
+            * [Aspect 1: Concern while adding a new feature](#3521-aspect-1)
+            * [Aspect 2: How to provide users with more ease while editing a recipe](#3522-aspect-2)
         * [3.5.3 Design Consideration - **Edit Ingredient**](#353-design-consideration-edit-ingredient)
-            * [Aspect 1: Concern while adding a new feature](#3531-aspect-1)<br>
-	    	* [Aspect 2: How to provide users with more ease while editing an ingredient](#3532-aspect-2)
+            * [Aspect 1: Concern while adding a new feature](#3531-aspect-1)
+            * [Aspect 2: How to provide users with more ease while editing an ingredient](#3532-aspect-2)
 	    <br><br>
     - [3.6. Get Edit Features](#36-get-edit-features)
         * [3.6.1 Implementation](#361-implementation)
@@ -83,8 +83,8 @@ title: Developer Guide
     - [3.9. Recommend Feature](#39-recommend-feature)
         * [3.9.1 Implementation](#391-implementation)
         * [3.9.2 Design Consideration](#392-design-consideration)
-            * [Aspect 1: How do we quickly and accurately compare the ingredients between each recipe and the user’s fridge](#3921-aspect-1)<br>
-	    	* [Aspect 2: Should we take an ingredient's quantity into account when recommending recipes](#3922-aspect-2)
+            * [Aspect 1: How do we quickly and accurately compare the ingredients between each recipe and the user’s fridge](#3921-aspect-1)
+            * [Aspect 2: Should we take an ingredient's quantity into account when recommending recipes](#3922-aspect-2)
 	    <br><br>
     - [3.10. Clear Features](#310-clear-features)
         * [3.10.1 Implementation](#3101-implementation)
