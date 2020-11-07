@@ -51,6 +51,10 @@ public class StudentRecord {
         return classParticipation;
     }
 
+    public boolean isSameStudentAs(StudentRecord other) {
+        return this.nusnetId.equals(other.nusnetId);
+    }
+
     @Override
     public String toString() {
         return String.format(STRING_FORMAT, nusnetId, attendanceType.name(), classParticipation);

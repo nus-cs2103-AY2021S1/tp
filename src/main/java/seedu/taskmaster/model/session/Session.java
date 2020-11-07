@@ -1,7 +1,6 @@
 package seedu.taskmaster.model.session;
 
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;

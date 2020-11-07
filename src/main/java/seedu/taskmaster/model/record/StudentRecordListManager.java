@@ -6,13 +6,11 @@ import static seedu.taskmaster.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.taskmaster.commons.util.CollectionUtil;
-import seedu.taskmaster.model.session.exceptions.EmptySessionException;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.model.student.exceptions.DuplicateStudentException;

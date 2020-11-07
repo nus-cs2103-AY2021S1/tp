@@ -2,7 +2,6 @@ package seedu.taskmaster.model.record;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.student.NusnetId;
