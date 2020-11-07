@@ -83,7 +83,7 @@ a child level of `PROJECT` and it is definitely not in `PERSON` scope because `P
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Features** in global scope
+# **Features** in global scope
 
 ### Viewing help : `help`
 
@@ -181,7 +181,7 @@ Format: `find [KEYWORD...]`
 - The search is case-insensitive. e.g run will match Run
 - Only the name of the projects are searched
 - Can be multiple words
-- Keywords provided must be complete words and will only match complete words from the name of the project 
+- Keywords provided must be complete words and will only match **complete words** from the name of the project 
 
 Example: `find scare` returns the **Scare House** and **Easily scare Night** projects.
 
@@ -200,6 +200,9 @@ Format: `edit (INDEX) [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DE
   - Repo URL must be a valid link
   - Description can be anything, as long as it is not blank
   - Any number of tags can be added, separated by space " "
+  
+Note: Please enter a valid repository URL. Taskmania is an offline application and can only check the validity of the
+ URL, and not whether the repository exists.
 
 Example: `edit 1 n/Resident Evil project /d new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
 
@@ -315,11 +318,11 @@ Example: `viewtask 4` displays all information from task number 4 in the list.
 
 ## **Teammate-related features**
 
-### Create a new teammate in a project `newteammate`
+### Create a new teammate in a project `addteammate`
 
 Creates a new teammate in a project with all the relevant fields contained in it.
 
-Format: `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)`
+Format: `addteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)`
   - All fields are necessary to fill in
   - Teammate name has to be 1 or more words consisting only of letters
   - The Git User name has to be a unique Github registered User Name
@@ -327,12 +330,28 @@ Format: `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me
   - The email has to have a proper prefix and proper domain name consisting of at least 2 letters
   - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank
 
-Example: `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` creates a new teamamte in the respective project with:
+Example: `addteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` creates a new teamamte in the respective project with:
   - name Lucas
-  - Git name of Lucas98
+  - Git Username of Lucas98
   - phone number of 93824823
   - email of lucas@gmail.com
   - address of 18 Evelyn road
+  
+### Add a teammate to a project `addpart`
+
+Add an existing teammate to the current project.
+
+Format: `addpart GIT_USER_NAME`
+
+Example: `addpart Lucas98` adds Lucas98 to the current project that the user is in.
+
+### Remove a teammate from a project `deletepart`
+
+Removes an existing teammate from the current project.
+
+Format: `deletepart GIT_USER_NAME`
+
+Example: `deletepart Lucas98` removes Lucas98 from the current project.
 
 ### Edit a teammate’s details `editteammate`
 
@@ -358,11 +377,12 @@ Example: `viewteammate Lucas98` displays all the information about the teammate 
 
 ### Delete a teammate `deleteteammate`
 
-View all of a specific teammate's details.
+Delete all of a specific teammate's details, as well as remove teammate from all projects teammate was a part of.
 
 Format: `deleteteammate GIT_USER_NAME`
 
-Example: `deleteteammate Lucas97` deletes the teammate with git username Lucas97.
+Example: `deleteteammate Lucas97` deletes the teammate with git username Lucas97, and removes him from any project he
+ was in.
 
 # **Features** in person scope
 
@@ -393,7 +413,7 @@ Action | Format, Examples | Scope
 **Leave a view** | `leave` | global scope
 **Start a project** | `startproject INDEX`<br> e.g., `startproject 3` | project_list scope
 **Start a person** | `startperson INDEX`<br> e.g., `startperson 3` | person_list scope
-**Add** | `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS...] `   eg, `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging hell` | global scope
+**Add** | `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS...] `   eg, `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/hell tg/abs` | global scope
 **Delete project** | `delete INDEX` <br> e.g. `delete 2` | global scope
 **Find KEYWORD** | `find KEYWORD` <br> e.g. `find read` | global scope
 **edit** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project /d new horror`| global scope
@@ -403,9 +423,11 @@ Action | Format, Examples | Scope
 **Delete Task** | `deletetask INDEX` <br>e.g. `deletetask 1` | project scope 
 **Filter Tasks** | ``filter (ta/ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tn/TASK_NAME)||(tp/PROGRESS))``<br>e.g. `filter ta/Alice` | project scope
 **Show all the tasks** | `alltasks` | project scope 
-**Sort tasks ** | `sort (sa/)||(sd/) (td/)||(tp/)||(tn/)`<br>e.g. `sort sa/ td/` | project scope 
+**Sort tasks** | `sort (sa/)||(sd/) (td/)||(tp/)||(tn/)`<br>e.g. `sort sa/ td/` | project scope 
 **View Details of A Task** | `viewtask INDEX` <br> e.g. `viewtask 1` | project scope
 **Create new teammate** | `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)` eg, `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road`| project scope
+**Add a teammate to a project** | `addpart` | `addpart GIT_USER_NAME` eg, `addpart LucasTai98` | project scope
+**Remove a teammate from a project** | `deletepart` | `deletepart GIT_USER_NAME` eg, `deletepart LucasTai98` | project scope
 **Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|
 **View a teammate’s details** | `viewteammate GIT_USER_NAME` | project scope
 **Delete a teammate** | `deleteteammate GIT_USER_NAME` | project scope
