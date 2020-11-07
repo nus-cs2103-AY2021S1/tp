@@ -27,6 +27,13 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## **3. Design**
 This section shows the architecture design of **OneShelf**.
 
+
+
+
+
+
+
+
 ### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
