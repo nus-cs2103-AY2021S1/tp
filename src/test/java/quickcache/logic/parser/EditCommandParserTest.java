@@ -88,6 +88,9 @@ public class EditCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_QUESTION_DESC + INVALID_ANSWER_DESC,
             Question.MESSAGE_CONSTRAINTS);
+
+        // empty choice option
+        assertParseFailure(parser, "1 c/", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -176,6 +179,5 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-
 
 }
