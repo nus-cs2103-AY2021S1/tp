@@ -930,7 +930,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Adding a patient
+### Adding an employee
 
 1. Adding a new employee to the active employee directory
 
