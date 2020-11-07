@@ -512,21 +512,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to <ins>list flashcards (UC02)</ins>
-2.  User requests to delete a specific flashcard based on the index in the list
-3.  SWEe! deletes the flashcard
+1.  User requests to delete a specific flashcard based on the index in the list
+2.  SWEe! deletes the flashcard
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-
-* 2a. The given index is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -535,27 +530,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to <ins>list flashcards (UC02)</ins>
-2.  User requests to edit the details of a specific flashcard based on the index in the list
-3.  SWEe! edits the flashcard
+1.  User requests to edit the details of a specific flashcard based on the index in the list
+2.  SWEe! edits the flashcard
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-  
-* 2a. The given index is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
-* 2b. The format of the given details are invalid.
+* 1b. The format of the given details are invalid.
 
-    * 2b1. SWEe! shows an error message.
+    * 1b1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -564,21 +554,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to <ins>list flashcards (UC02)</ins>
-2.  User requests to favourite a specific flashcard based on the index in the list
-3.  SWEe! favourites the flashcard
+1.  User requests to favourite a specific flashcard based on the index in the list
+2.  SWEe! favourites the flashcard
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-
-* 2a. The given index is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -587,21 +572,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to <ins>list flashcards (UC02)</ins>
-2.  User requests to unfavourite a specific flashcard based on the index in the list
-3.  SWEe! unfavourites the flashcard
+1.  User requests to unfavourite a specific flashcard based on the index in the list
+2.  SWEe! unfavourites the flashcard
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-
-* 2a. The given index is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -610,17 +590,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to <ins>list flashcards (UC02)</ins>
-2.  User requests to clear all flashcards in the list
-3.  SWEe! clears the list
+1.  User requests to clear all flashcards in the list
+2.  SWEe! clears the list
 
     Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-
-  Use case ends.
 
 
 #### Use case: UC08 - Find flashcards
@@ -663,21 +636,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to <ins>list flashcards (UC02)</ins>
-2.  User requests to sort the list in an order based on a sort criteria
+1.  User requests to sort the list of flashcards in an order based on a sort criteria
 3.  SWEe! displays the list of flashcards in the specified order
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. Input format is invalid.
 
-  Use case ends.
-  
-* 2a. Input format is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -698,8 +666,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to review flashcards
 2.  SWEe! enters review mode
-3.  User enters `down` key to show answer
-4.  User enters `right` key to show the next flashcard in the list
+3.  User enters `↓ key` to show answer
+4.  User enters `→ key` key to show the next flashcard or `← key` to show the previous flashcard in the list
     Steps 3-4 are repeated until the user finishes reviewing all flashcards or until the user enters `q` key to quit review mode
 
     Use case ends.
@@ -719,7 +687,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to quiz flashcards
 2.  SWEe! enters quiz mode
-3.  User enters `down` key to show answer
+3.  User enters `↓ key` key to show answer
 4.  User enters `y`/`n` key depending on whether user answers the flashcard correctly
 5.  SWEe! shows the next flashcard to quiz
 
@@ -740,21 +708,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to <ins>list flashcards (UC02)</ins>
-2.  User requests to view a specific flashcard based on the index in the list
-3.  SWEe! shows the flashcard in detail
+1.  User requests to view a specific flashcard based on the index in the list
+2.  SWEe! shows the flashcard in detail
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-
-* 2a. The given index is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
@@ -763,21 +726,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to <ins>list flashcards (UC02)</ins>
-2.  User requests to view the statistics of a specific flashcard based on the index in the list
-3.  SWEe! shows the flashcard's statistics
+1.  User requests to view the statistics of a specific flashcard based on the index in the list
+2.  SWEe! shows the flashcard's statistics
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
-
-* 2a. The given index is invalid.
-
-    * 2a1. SWEe! shows an error message.
+    * 1a1. SWEe! shows an error message.
 
       Use case ends.
 
