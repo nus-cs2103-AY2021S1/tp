@@ -57,16 +57,15 @@ public class DeleteTeammateCommand extends Command {
 
         assert personToDelete != null;
         Project currentProject;
-        Participation currentParticipation;
         for (int i = 0; i < Project.getAllProjects().size(); i++) {
             currentProject = Project.getAllProjects().get(i);
             if (currentProject.hasParticipation(personToDelete.getGitUserNameString())) {
-                currentParticipation = currentProject.getParticipation(personToDelete.getGitUserNameString());
-                currentProject.removeParticipation(currentParticipation);
+                participation = currentProject.getParticipation(personToDelete.getGitUserNameString());
+                currentProject.removeParticipation(participation);
                 for (int j = 0; j < model.getFilteredParticipationList().size(); j++) {
-                //                    if (model.hasParticipation(currentParticipation)) {
-                //                        model.deleteParticipation(currentParticipation);
-                //                    }
+                    if (model.hasParticipation(participation)) {
+                        model.deleteParticipation(participation);
+                    }
                 }
             }
         }
