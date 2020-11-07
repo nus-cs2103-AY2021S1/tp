@@ -43,7 +43,7 @@ public class FlashcardQuestionCard extends UiPart<Region> {
     private Label diagramErrorMessage;
 
     /**
-     * Creates a {@code FlashcardQuestionCard} with the given {@code Flashcard} and index to display.
+     * Creates a {@code FlashcardQuestionCard} with the given {@code Flashcard} to display.
      */
     public FlashcardQuestionCard(Flashcard flashcard) {
         super(FXML);

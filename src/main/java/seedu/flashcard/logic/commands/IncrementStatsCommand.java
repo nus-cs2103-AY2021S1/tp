@@ -6,6 +6,9 @@ import seedu.flashcard.model.Model;
 import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Statistics;
 
+/**
+ * Increments the statistics of a flashcard.
+ */
 public class IncrementStatsCommand extends Command {
     public static final String MESSAGE_INCREMENT_STATS_FLASHCARD_SUCCESS = "Increment Flashcard Stats: %1$s";
     private final Flashcard flashcard;
