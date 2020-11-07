@@ -1,6 +1,5 @@
 package seedu.fma.logic.parser;
 
-import static seedu.fma.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
@@ -38,7 +37,6 @@ public class DeleteExCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String
-                .format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteExCommand.MESSAGE_USAGE), logBook);
+        assertParseFailure(parser, "a", ParserUtil.MESSAGE_INVALID_INDEX, logBook);
     }
 }

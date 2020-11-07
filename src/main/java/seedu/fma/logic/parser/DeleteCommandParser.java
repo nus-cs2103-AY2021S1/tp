@@ -1,7 +1,5 @@
 package seedu.fma.logic.parser;
 
-import static seedu.fma.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.fma.commons.core.index.Index;
 import seedu.fma.logic.commands.DeleteCommand;
 import seedu.fma.logic.parser.exceptions.ParseException;
@@ -18,13 +16,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args, ReadOnlyLogBook logBook) throws ParseException {
-        try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
-        }
+        Index index = ParserUtil.parseIndex(args);
+        return new DeleteCommand(index);
     }
-
 }
