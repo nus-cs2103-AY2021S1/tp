@@ -39,6 +39,12 @@ Class Allergy
 Package History {
 Class CommandHistory
 }
+
+Package Appointment {
+Class UniqueAppointmentList
+Class Appointment
+Class AppointmentDateTime
+}
 }
 
 Class HiddenOutside #FFFFFF
@@ -75,5 +81,12 @@ ProfilePicture -[hidden]right-> Sex
 Sex -[hidden]right-> BloodType
 Allergy -[hidden]right-> BloodType
 
+CliniCal *--> "1" UniqueAppointmentList
+UniqueAppointmentList o--> "*" Appointment
+Appointment *--> AppointmentDateTime
+Appointment *--> Name
+Appointment *--> IcNumber
+
 ModelManager -->"1" Patient : filtered list
+ModelManager -->"1" Appointment : filtered list
 @enduml

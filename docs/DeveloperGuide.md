@@ -90,7 +90,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CalendarDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -141,7 +141,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the CliniCal application data.
-* exposes an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes unmodifiable `ObservableList<Patient>` and `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -591,6 +591,47 @@ The following activity diagram summarizes the main steps taken to display the pa
         * Requires re-implementation of current codebase which might introduce subtle bugs.
         * Need to ensure that functionality of the `Profile` facade class is optimized. Our team assessed that the current 
           implementation is better as it is less prone to introduce new bugs to our existing codebase.
+
+### 3.7 Delete Appointment feature
+#### 3.7.1 Implementation
+
+This feature allows users to edit existing appointments. When an appointment is updated, the corresponding calendar GUI is updated via a listener in the `appointmentList`.
+
+This feature comprises the `DeleteAppointmentCommand` class. However, much of the logic lies within the `CalendarDisplay` class as it contains the logic for updating the GUI of the calendar. Given below is an example usage scenario and how the mechanism behaves at each step.
+
+<p align="center">
+    <img src="images/DeleteAppointmentSequenceDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 28. Component Interactions for DeleteAppointment Command</em>
+</p>
+
+Step 1. User inputs "deleteappt 1" command to delete the first appointment on the list. 
+
+Step 2. User input is parsed to obtain the appointment index to delete.
+
+Step 3. After successful parsing of user input, the `DeleteAppointmentCommand#execute(Model model)` method is called.
+
+Step 4. The `Model#deleteAppointment` method is then called which deletes the specified Appointment from the ObservableList.
+
+Step 5. The modification of the ObservableList causes an event to be generated and forwarded to CalendarDisplay, as CalendarDisplay had set a listener on the ObservableList.
+
+Step 6. CalendarDisplay creates a new `VCalendar` with the new list and then creates a new `ICalendarAgenda` with the created `VCalendar`, which is then set as the calendar GUI.
+
+Step 6. As a result of the successful deletion of the appointment object, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### 3.7.2 Design considerations
+
+* **Current Implementation:** A new `VCalendar` object and `ICalendarObject` is created when there is a change in the appointment list.
+    * Pros:
+        * Easy to implement and greatly reduces complexity of code.
+    * Cons:
+        * May take a greater number of CPU cycles to carry out as every appointment has to be processed when there is a single change in the appointment list.
+ * **Alternative Implementation:** Modify the `VEvent` objects stored in `ICalendarAgenda` when there is a change in the appointment list.
+    * Pros:
+        * More efficient use of CPU cycles, possibly better performance on lower end machines
+    * Cons:
+        * Requires an extreme increase in complexity of code, as the modification would be different for addition/deletion/edit of appointments.
+        * Increases coupling between `CalendarDisplay`, a UI element, and `Model`.
         
 --------------------------------------------------------------------------------------------------------------------
 
