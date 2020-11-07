@@ -4,8 +4,6 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-title Inside Consumption
-
 Class WishfulShrinking
 Class ModelManager
 
@@ -30,9 +28,9 @@ WishfulShrinking *--> "1" ConsumptionList
 ConsumptionList--> "*" Consumption
 Consumption--> "1" Recipe
 Recipe *--> "1" Name
-Recipe *--> "1.." Ingredient
+Recipe *--> "1..*" Ingredient
 Recipe *--> "1" Calories
-Recipe *--> "1" Instruction
+Recipe *--> "1..*" Instruction
 Recipe *--> "0..1" RecipeImage
 Recipe --> "*" Tag
 

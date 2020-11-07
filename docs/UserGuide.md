@@ -72,7 +72,7 @@ Wishful Shrinking is your desktop diet manager. It is an app that helps you **ma
 2. **Recommend recipes** to improve ease of home cooking 
 3. **Track daily food and calorie** intake<br><br>
 
-Wishful Shrinking targets **office workers** who tend to neglect on healthy eating. Office workers are also more
+Wishful Shrinking targets **office workers** who tend to neglect healthy eating. Office workers are also more
  familiar with desktop applications and typing and correspondingly, Wishful Shrinking is optimized for fast and efficient typers as it uses a Command Line Interface (CLI) with the added beauty of a Graphical User Interface (GUI).
  Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems. <br><br>
 

@@ -75,7 +75,7 @@ title: Developer Guide
     - [3.8. Search Features](#38-search-features)
         * [3.8.1 Implementation](#381-implementation)
         * [3.8.2 Design Consideration - **Search Recipe**](#382-design-consideration-search-recipe)
-            * [Aspect 1: Concern while adding a new feature](#3821-aspect-1)
+            * [Aspect 1: Concern while adding a new feature](#3821-aspect-1)<br>
             * [Aspect 2: How do we successfully search and filter the recipes based on the user’s search](#3822-aspect-2)
         * [3.8.3 Design Consideration - **Search Ingredient**](#383-design-consideration-search-ingredient)
             * [Aspect: Concern while adding a new feature](#3831-aspect)
