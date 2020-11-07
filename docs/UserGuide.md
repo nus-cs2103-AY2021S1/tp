@@ -556,7 +556,7 @@ Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 * `INDEX` refers to the patient's index number as shown in the displayed patient list in the **Patients** tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
 * `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment.
-    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/21/2020 23:59`.
+    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/12/2020 23:59`.
     * Note that you will need to input the hour (`HH`) in  the 24-hour format.
 
 * `DURATION` refers to the duration of the appointment, in minutes.
@@ -601,7 +601,7 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_
 * `PATIENT_NAME` refers to the name of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab.
 * `PATIENT_IC` refers to the NRIC of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab. 
 * `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment. 
-    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/21/2020 23:59`.
+    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/12/2020 23:59`.
     * Note that you will need to input the hour (`HH`) in  the 24-hour format. 
 * `DURATION` refers to the duration of the appointment, in minutes.
 
