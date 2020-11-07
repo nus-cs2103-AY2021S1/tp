@@ -294,7 +294,7 @@ It implements the following operations:
 * `FavCommand#createFavouriteFlashcard(Flashcard flashcardToFavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `true`.
 * `UnfavCommand#createUnfavouriteFlashcard(Flashcard flashcardToUnfavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `false`.
 
-Given below is an example usage scenario and how the favourite/unfavourite mechanism behaves at each step.
+Given below is an example usage scenario and how the favourite and unfavourite mechanism behaves at each step.
 
 Step 1: The user launches the application 
 
