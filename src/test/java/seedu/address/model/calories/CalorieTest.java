@@ -1,16 +1,18 @@
-package seedu.address.model.calorie;
+package seedu.address.model.calories;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import seedu.address.model.calorie.Calorie;
 
 public class CalorieTest {
 
     @Test
     public void isValidCalorie() {
         // invalid format checks -> returns false
-        assertFalse(Calorie.isValidCalorie("-1"));
+        Assertions.assertFalse(Calorie.isValidCalorie("-1"));
         assertFalse(Calorie.isValidCalorie("100.0"));
         assertFalse(Calorie.isValidCalorie("100.0.0"));
 

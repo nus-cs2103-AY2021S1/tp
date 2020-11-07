@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.calories;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CalorieMinusCommand;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ModelStub;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FitNus;
 import seedu.address.model.ReadOnlyFitNus;
