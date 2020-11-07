@@ -312,6 +312,12 @@ Adds an employee to the Employee Directory.
 
 Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]`
 
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**
+PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.
+
 <div markdown="span" class="alert alert-primary">:bulb: 
 
 **Tip:**
