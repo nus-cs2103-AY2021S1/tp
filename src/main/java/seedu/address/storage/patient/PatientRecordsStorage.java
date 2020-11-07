@@ -21,7 +21,7 @@ public interface PatientRecordsStorage {
     Path getPatientRecordsFilePath();
 
     /**
-     * Returns CovigentApp data as a {@code ReadOnlyList<Room>}.
+     * Returns CovigentApp data as a {@code ReadOnlyList<Patient>}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
