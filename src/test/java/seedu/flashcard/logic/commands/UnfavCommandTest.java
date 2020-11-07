@@ -96,7 +96,7 @@ public class UnfavCommandTest {
 
         UnfavCommand unfavCommand = new UnfavCommand(INDEX_FIRST_FLASHCARD);
 
-        String expectedMessage = UnfavCommand.MESSAGE_UNFAVOURITE_A_NOT_FAVOURITED_FLASHCARD_ERROR;
+        String expectedMessage = UnfavCommand.MESSAGE_UNFAVOURITE_NOT_FAVOURITED_FLASHCARD_ERROR;
 
         assertCommandFailure(unfavCommand, model, expectedMessage);
     }
