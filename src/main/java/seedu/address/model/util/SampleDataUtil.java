@@ -52,7 +52,7 @@ public class SampleDataUtil {
     public static ReadOnlyList<Room> getSampleRoomList() {
         RoomList roomList = new RoomList();
         for (Room room : getSampleRoom()) {
-            roomList.addRooms(room);
+            roomList.initRooms(room);
         }
         return roomList;
     }

@@ -52,7 +52,7 @@ public class JsonSerializableRoomList {
                 throw new IllegalValueException(WRONG_ORDER_OF_ROOM);
             }
             currRoomNum++;
-            roomList.addRooms(room);
+            roomList.initRooms(room);
         }
         return roomList;
     }

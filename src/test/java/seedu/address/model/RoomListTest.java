@@ -52,7 +52,7 @@ class RoomListTest {
     @Test
     public void getRoomWithRoomNumber_roomInList_returnsRoom() {
         RoomList roomList = new RoomList();
-        roomList.addRooms(ROOM7_PATIENT_ALICE_NO_TASK);
+        roomList.initRooms(ROOM7_PATIENT_ALICE_NO_TASK);
         Optional<Room> optionalRoom = roomList.getRoomWithRoomNumber(7);
         assertTrue(optionalRoom.map(room -> room.getRoomNumber() == 7).orElse(false));
     }

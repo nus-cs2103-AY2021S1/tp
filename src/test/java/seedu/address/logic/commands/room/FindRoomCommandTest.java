@@ -30,8 +30,8 @@ class FindRoomCommandTest {
                 new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
         Predicate<Room> predicate = getFilterByRoomNumberPredicate(new Room(1));
         expectedModel.updateFilteredRoomList(predicate);
-        model.addRooms(100);
-        expectedModel.addRooms(100);
+        model.initRooms(100);
+        expectedModel.initRooms(100);
         String expectedMessage = String.format(FindRoomCommand.MESSAGE_SUCCESS, 1);
         assertCommandSuccess(new FindRoomCommand(), model, expectedMessage, expectedModel);
     }

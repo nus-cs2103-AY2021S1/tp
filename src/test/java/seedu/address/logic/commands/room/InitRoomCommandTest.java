@@ -29,7 +29,7 @@ public class InitRoomCommandTest {
         Model expectedModel =
                 new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
         String expectedMessage = String.format(InitRoomCommand.MESSAGE_SUCCESS, 100);
-        expectedModel.addRooms(100);
+        expectedModel.initRooms(100);
         assertCommandSuccess(new InitRoomCommand(100), model, expectedMessage, expectedModel);
     }
 
@@ -41,12 +41,12 @@ public class InitRoomCommandTest {
 
         //initRoom to 10 rooms first
         String expectedMessage = String.format(InitRoomCommand.MESSAGE_SUCCESS, 10);
-        expectedModel.addRooms(10);
+        expectedModel.initRooms(10);
         assertCommandSuccess(new InitRoomCommand(10), model, expectedMessage, expectedModel);
 
         //initRoom to 50 rooms -> increase number of rooms
         String expectedMessage2 = String.format(InitRoomCommand.MESSAGE_SUCCESS, 50);
-        expectedModel.addRooms(50);
+        expectedModel.initRooms(50);
         assertCommandSuccess(new InitRoomCommand(50), model, expectedMessage2, expectedModel);
     }
 
@@ -58,12 +58,12 @@ public class InitRoomCommandTest {
 
         //initRoom to 50 rooms first
         String expectedMessage = String.format(InitRoomCommand.MESSAGE_SUCCESS, 50);
-        expectedModel.addRooms(50);
+        expectedModel.initRooms(50);
         assertCommandSuccess(new InitRoomCommand(50), model, expectedMessage, expectedModel);
 
         //initRoom to 10 rooms -> decrease number of rooms
         String expectedMessage2 = String.format(InitRoomCommand.MESSAGE_SUCCESS, 10);
-        expectedModel.addRooms(10);
+        expectedModel.initRooms(10);
         assertCommandSuccess(new InitRoomCommand(10), model, expectedMessage2, expectedModel);
     }
 
@@ -77,7 +77,7 @@ public class InitRoomCommandTest {
 
         //initRoom to 50 rooms -> increase number of rooms
         String expectedMessage2 = String.format(InitRoomCommand.MESSAGE_SUCCESS, 50);
-        expectedModel.addRooms(50);
+        expectedModel.initRooms(50);
         assertCommandSuccess(new InitRoomCommand(50), model, expectedMessage2, expectedModel);
     }
 
@@ -91,7 +91,7 @@ public class InitRoomCommandTest {
 
         //initRoom to 5 rooms -> decrease number of rooms
         String expectedMessage2 = String.format(InitRoomCommand.MESSAGE_SUCCESS, 5);
-        expectedModel.addRooms(5);
+        expectedModel.initRooms(5);
 
         assertCommandSuccess(new InitRoomCommand(5), model, expectedMessage2, expectedModel);
     }

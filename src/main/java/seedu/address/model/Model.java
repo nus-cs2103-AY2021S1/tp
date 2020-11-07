@@ -127,7 +127,7 @@ public interface Model {
     /**
      * @param num is the number of rooms to define in a hotel.
      */
-    void addRooms(int num);
+    void initRooms(int num);
 
     /**
      * Returns whether a decrease in number of rooms would have space for existing rooms

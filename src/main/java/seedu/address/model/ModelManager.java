@@ -191,8 +191,8 @@ public class ModelManager implements Model {
         roomList.setPreferredNumOfRooms(numOfRooms);
     }
     @Override
-    public void addRooms(int num) {
-        roomList.addRooms(num);
+    public void initRooms(int num) {
+        roomList.initRooms(num);
     }
 
     //@@author LeeMingDe
