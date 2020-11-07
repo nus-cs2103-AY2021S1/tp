@@ -485,6 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | frequent user                              | perform tasks on a group of food items |                                                                        |
 | `* *`    | expert user                                | create shortcuts for tasks             | frequently performed tasks                                             |
 | `*`      | programmer                                 | make use of the CLI like design        | get used to CLI in the future                                          |
+| `*`      | programmer                                 | be able to customise the application   | improve my workflow and make it faster                                 |
 
 
 ### 9.3 Use cases
