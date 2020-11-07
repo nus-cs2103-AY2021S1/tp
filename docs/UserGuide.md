@@ -325,15 +325,15 @@ Examples:
 
 Finds all employees whose tags contain the one or more `KEYWORD(s)`.
 
-Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
+Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `Friday` will match `friday`.<br>
 * The order of the keywords does not matter. e.g. `monday friday` will match `monday friday`.<br>
 * Only the tag names are searched.<br>
 * Only full words will be matched. e.g. `Fri` will not match `Friday`.<br>
-* Employees whose tag(s) matching at least one keyword will be listed in the Employee Directory section in
-the _Main View_ (i.e. `OR` search).  For example, `Monday Friday` will find employees whose tags contain `Monday` or
- `Friday`.<br>
+* Employees whose tag(s) matching at least one keyword will be listed in the Employee
+ Directory inside the _Main View_ (i.e. `OR` search).  For example, `Monday Friday` will find employees whose tags
+  contain `Monday` or `Friday`.<br>
 
 <div markdown="span" class="alert alert-primary">
 
@@ -355,7 +355,7 @@ Steps to find employees who are available to work on `Monday` or `Friday`:
 Outcome:
 1. The _Result Display_ will show the total number of employees who are can work on `Monday` or `Friday`.
 
-2. Employees who are can work on `Monday` or `Friday` will be listed in the Employee Directory section in the _Main View_.
+2. Employees who are can work on `Monday` or `Friday` will be listed in the Employee Directory inside the _Main View_.
 
 {Screenshot}
 
@@ -394,7 +394,7 @@ Outcome:
     b. Total number of employees who are available today.
     
     c. The success message.
-2. The available manpower for today will be listed in the Employee Directory section in the _Main View_.
+2. The available manpower for today will be listed in the Employee Directory inside the _Main View_.
 
 {Screenshot}
 
@@ -433,7 +433,7 @@ Outcome:
     b. Total number of employees who are available tomorrow.
     
     c. The success message.
-2. The available manpower for tomorrow will be listed in the Employee Directory section in the _Main View_.
+2. The available manpower for tomorrow will be listed in the Employee Directory inside the _Main View_.
 
 {Screenshot}
 
@@ -463,11 +463,11 @@ Archives the specified employee from tCheck.
 
 Format: `c-archive INDEX`
 
-* Archives the employee at the specified `INDEX` in the Employee Directory section in the _Main View_.<br>
-* The `INDEX` refers to the index number shown in the current Employee Directory section in the _Main View_.<br>
+* Archives the employee at the specified `INDEX` in the Employee Directory inside the _Main View_.<br>
+* The `INDEX` refers to the index number shown in the current Employee Directory inside the _Main View_.<br>
 * The `INDEX` **must be a positive integer** (e.g. 1, 2, 3, ...​).<br>
 * The `INDEX` **should not be larger than** the total number of employees listed in the current 
-_Employee Directory_ pane. (e.g. There are 2 employees listed in the currentEmployee Directory section in the _Main View_.
+_Employee Directory_ pane. (e.g. There are 2 employees listed in the current Employee Directory inside the _Main View_.
  The `INDEX` should be less or equal to 2.)<br>
 
 <div markdown="span" class="alert alert-primary">
@@ -494,13 +494,13 @@ Steps to archive the first employee, Alex Yeoh, in the sample data:
 
 Outcome:
 1. The _Result Display_ will show a success message with the employee's name that you have archived.
-2. Alex Yeoh's information will be removed from Employee Directory section in the _Main View_.
+2. Alex Yeoh's information will be removed from Employee Directory inside the _Main View_.
 
 {Screenshot}
 
 #### 3.11 Archiving all employees : `c-archive-all`
 
-Archives all employees in the Employee Directory section in the _Main View_.
+Archives all employees in the Employee Directory inside the _Main View_.
 
 Format: `c-archive-all`
 
@@ -526,13 +526,13 @@ Steps to archive all employees in the sample data:
 
 Outcome:
 1. The _Result Display_ will show a success message.
-2. All employees will be removed from Employee Directory section in the _Main View_.
+2. All employees will be removed from Employee Directory inside the _Main View_.
 
 {Screenshot}
 
 #### 3.12 Listing all archived employees : `c-archive-list`
 
-Shows a list of all archived employees in Employee Directory section in the _Main View_.
+Shows a list of all archived employees in Employee Directory inside the _Main View_.
 
 Format: `c-archive-list`
 
@@ -555,7 +555,7 @@ Steps to see archived employees:
 
 Outcome:
 1. The _Result Display_ will show a success message.
-2. All archived employees will be listed in Employee Directory section in the _Main View_.
+2. All archived employees will be listed in Employee Directory inside the _Main View_.
 
 {Screenshot}
 
@@ -564,12 +564,12 @@ Unarchives the specified employee from the archived employee list.
 
 Format: `c-unarchive INDEX`
 
-* Unarchives the employee at the specified `INDEX` in the Employee Directory section in the _Main View_.<br>
-* The `INDEX` refers to the index number shown in the current Employee Directory section in the _Main View_.<br>
+* Unarchives the employee at the specified `INDEX` in the Employee Directory inside the _Main View_.<br>
+* The `INDEX` refers to the index number shown in the current Employee Directory inside the _Main View_.<br>
 * The `INDEX` **must be a positive integer** (e.g. 1, 2, 3, ...​).<br>
 * The `INDEX` **should not be larger than** the total number of employees listed in the current
-Employee Directory section in the _Main View_. 
-(e.g. There are 2 employees listed in the current Employee Directory section in the _Main View_.
+Employee Directory inside the _Main View_. 
+(e.g. There are 2 employees listed in the current Employee Directory inside the _Main View_.
  The `INDEX`should be less or equal to 2.)<br>
 
 <div markdown="span" class="alert alert-primary">
@@ -597,8 +597,8 @@ Steps to unarchive the first employee, Alex Yeoh, in the archived employee list:
 
 Outcome:
 1. The _Result Display_ will show a success message with the employee's name that you have unarchived.
-2. Alex Yeoh's information will be removed from the archived employee list shown in Employee Directory section in the
- _Main View_.
+2. Alex Yeoh's information will be removed from the archived employee list shown in Employee Directory inside
+ the _Main View_.
 
 {Screenshot}
 
@@ -673,7 +673,7 @@ Action | Format, Examples
 **List** | `c-list`
 **Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
 **Find by name** | `c-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-find James Jake`
-**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-tag-find Friday Monday PartTime`
+**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Find available manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
