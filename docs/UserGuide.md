@@ -107,7 +107,7 @@ This section will give you some useful information about the various command for
 
 This section will help you understand the different fields you will see in [Features](#features). It gives an overview of what they are, how to specify them and any restrictions.
 
-##### General Notes about Input Fields:
+#### General Notes about Input Fields:
 * **Can be empty**  means you can specify the prefix but not pass a value.<br>eg. passing `r/` is valid.
 * **Cannot be empty** means you have to specify a value when you specify the prefix.<br>eg. passing `c/` is invalid.
 * All input fields should not contain other input prefixes. eg. passing in `What is c/?` as a `QUESTION` to `q/QUESTION` is not supported.
@@ -124,6 +124,8 @@ Input Field | Restrictions and how to specify
 `t/TAG`         | These are tags of the flashcard. A flashcard can have more than one tag.<br>`TAG` must be alphanumeric and have a maximum of 50 characters.<br>Must **only** be one word.<br>Cannot be empty.
 `INDEX`         | `INDEX` refers to the index number shown in the displayed flashcard list.<br>Every visible flashcard on the display list has an `INDEX`.<br>`INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 `KEYWORD`      | `KEYWORD` has no character limit but must be one word (no spaces).
+
+<br>
 
 ## Features
 
