@@ -835,27 +835,14 @@ testers are expected to do more *exploratory* testing.
 
 ### Resetting all ingredients' levels to zero
 
-1. Resetting all ingredients' levels to zero when all ingredients' levels are at zero
+1. Resetting all ingredients' levels to zero when not all ingredients' levels are at zero
 
    1. Test case: `i-reset-all`<br>
-      Expected: All ingredients' levels should be reset to zero.
+      Expected: All ingredients' levels are at zero. A success message is shown in the _Result Display_.
 
-   1. Test case: `i-reset-all 1`<br>
-      Expected: All ingredients' levels should be reset to zero, the extra input `1` will be ignored.
-   
-1. Resetting all ingredients' levels to zero when some ingredients' levels are at zero
-
-   1. Test case: `i-reset-all`<br>
-      Expected: All ingredients' levels should be at zero, ingredients originally with a non-zero ingredient's level will have their ingredients' levels reset to zero.
-
-   1. Test case: `i-reset-all pack`<br>
-      Expected: All ingredients' levels should be at zero, the extra input `pack` will be ignored.
 
 1. Resetting all ingredients' levels to zero when all ingredients' levels are already at zero
 
    1. Test case: `i-reset-all`<br>
-      Expected: All ingredients'levels are still at zero. A message will be shown explaining that all ingredients' levels are already at zero.
-
-   1. Test case: `i-reset-all pack`<br>
-      Expected: All ingredients'levels are still at zero. A message will be shown explaining that all ingredients' levels are already at zero.
-      the extra input `pack` will be ignored.
+      Expected: All ingredients'levels are still at zero. A message is shown in the _Result Display_ explaining that 
+      all ingredients' levels are already at zero, before resetting all ingredients' levels to zero.
