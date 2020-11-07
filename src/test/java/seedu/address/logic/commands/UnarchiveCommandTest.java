@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.IngredientBook;
 import seedu.address.model.Model;
@@ -22,13 +21,14 @@ import seedu.address.testutil.TypicalPersons;
 public class UnarchiveCommandTest {
     private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new SalesBook(),
             new IngredientBook(), new UserPrefs());
-
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(outOfBoundIndex);
 
-        assertCommandFailure(unarchiveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(unarchiveCommand, model,
+                String.format(UnarchiveCommand.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX_UNARCHIVE,
+                model.getFilteredPersonList().size()));
     }
 
     @Test
@@ -42,7 +42,9 @@ public class UnarchiveCommandTest {
 
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(outOfBoundIndex);
 
-        assertCommandFailure(unarchiveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(unarchiveCommand, model,
+                String.format(UnarchiveCommand.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX_UNARCHIVE,
+                model.getFilteredPersonList().size()));
     }
 
     @Test
