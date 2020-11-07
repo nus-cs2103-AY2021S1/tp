@@ -19,6 +19,7 @@ import seedu.address.model.ingredient.Ingredient;
  * Parse user inputted ingredients.
  */
 public class IngredientParser {
+    public static int quantityLimit = 1000000;
     /**
      * Parses a String made of 1 or more ingredient name and optional quantity then
      * adds them to an ArrayList of Ingredient objects to be returned
@@ -37,6 +38,9 @@ public class IngredientParser {
             if (indexOfDash != -1) {
                 ingName = ingName.substring(0, indexOfDash).trim();
                 ingQuantity = getIngredientQuantity(ingredientsToken[i]).trim();
+            }
+            if (ingQuantity.length() > quantityLimit) {
+                throw new ParseException("Quantity exceeded limit!");
             }
             ingredients.add(new Ingredient(ingName, ingQuantity));
         }
