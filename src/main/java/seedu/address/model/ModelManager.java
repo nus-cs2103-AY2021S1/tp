@@ -158,6 +158,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteParticipation(Participation target) {
+
         mainCatalogue.removeParticipation(target);
     }
 
@@ -166,6 +167,15 @@ public class ModelManager implements Model {
     //        mainCatalogue.addParticipation(participation);
     //        update
     //    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Participation} backed by the internal list of
+     * {@code versionedMainCatalogue}
+     */
+    @Override
+    public ObservableList<Participation> getFilteredParticipationList() {
+        return filteredParticipations;
+    }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {

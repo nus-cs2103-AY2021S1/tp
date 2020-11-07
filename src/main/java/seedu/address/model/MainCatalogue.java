@@ -165,7 +165,9 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
      * {@code key} must exist in the main catalogue.
      */
     public void removeParticipation(Participation key) {
-        participations.remove(key);
+        if(participations.contains(key)) {
+            participations.remove(key);
+        }
     }
 
     //// project-level operations

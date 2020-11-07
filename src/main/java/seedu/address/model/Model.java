@@ -124,6 +124,8 @@ public interface Model {
      */
     void deleteParticipation(Participation target);
 
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Participation> getFilteredParticipationList();
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

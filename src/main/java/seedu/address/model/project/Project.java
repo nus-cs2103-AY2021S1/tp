@@ -333,9 +333,9 @@ public class Project {
     /**
      * Removes all instances of a person's participation
      */
-    public static void deleteAllParticipationOf(Participation participation) {
+    public static void deleteAllParticipationOf(String gitUsername) {
         for (Project allProject : allProjects) {
-            allProject.removeParticipation(participation);
+            allProject.removeParticipationWithName(gitUsername);
         }
     }
 
