@@ -130,7 +130,7 @@ This would be the home page of CliniCal, where the appointment list would be on 
 
 ### 4.2 Patients Tab
 
-[**INSERT PICTURE OF SAMPLE DATA PATIENTS TAB WITH ANNOTATIONS OF PATIENT LIST AND PATIENT INDEX**]
+![Patient Tab Layout](images/patientLayout.png)
 
 This tab shows you the patient database and the details of each patient, together with a summary of each visit.
 
