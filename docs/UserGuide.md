@@ -136,7 +136,7 @@ Input Field | Restrictions and how to specify
 `a/ANSWER`      | This is the answer on the flashcard.<br>`ANSWER` has no character limit or restrictions (eg. can have spaces).<br>Cannot be empty.
 `c/CATEGORY`    | This is the category of the flashcard.<br>`CATEGORY` must be alphanumeric and have a maximum of 50 characters. It can consist of multiple words but there should only be 1 space between words.<br>Cannot be empty.
 `r/RATING`      | This is the star rating of the flashcard.<br>`RATING` must be a number between 1 and 5 inclusive.<br>Can be empty.
-`d/DIAGRAM`     | This is the diagram of the flashcard (associated with a question in the view pane).<br>`DIAGRAM` must be a valid relative or absolute path to a file. <br>Currently only supports file path **without** spaces.<br>Only supports the following image file types: jpg, png, jpeg, bmp, gif<br>Can be empty.
+`d/DIAGRAM`     | This is the diagram of the flashcard (associated with a question in the view pane).<br>`DIAGRAM` must be a valid relative or absolute path to a file. <br>Currently only supports file path **without** spaces.eg. <br>image/umlDiagram.png is supported but image/u mlDiagram.png is not supported <br>Only supports the following image file types: jpg, png, jpeg, bmp, gif<br>Can be empty.
 `n/NOTE`        | This is the notes of the flashcard (associated with an answer in the view pane).<br>`NOTE` has no character limit or restrictions.<br>Can be empty.
 `t/TAG`         | These are tags of the flashcard. A flashcard can have more than one tag.<br>`TAG` must be alphanumeric and have a maximum of 50 characters.<br>Must **only** be one word.<br>Cannot be empty.
 `INDEX`         | `INDEX` refers to the index number shown in the displayed flashcard list.<br>Every visible flashcard on the display list has an `INDEX`.<br>`INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
@@ -281,7 +281,7 @@ Format: `fav INDEX`
 * `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
-* `list` followed by `fav 2` favourites the 2nd flashcard in the displayed list.
+* `list` followed by `fav 2` favourites the 2nd flashcard in the displayed flashcard list.
 
 ### Unfavourite a flashcard  : `unfav`
 
@@ -293,7 +293,7 @@ Format: `unfav INDEX`
 * `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
-* `list` followed by `unfav 2` unfavourites the 2nd flashcard in the displayed list.
+* `list` followed by `unfav 2` unfavourites the 2nd flashcard in the displayed flashcard list.
 
 ### Find flashcards : `find`
 
@@ -434,8 +434,8 @@ Format: `view INDEX [-a]`
 * If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
 Examples:
-* `view 1` shows the 1st flashcard (in the displayed list) on the view pane without answer and notes.
-* `view 1 -a` shows the 1st flashcard (in the displayed list) on the view pane with answer and notes.
+* `view 1` shows the 1st flashcard (in the displayed flashcard list) on the view pane without answer and notes.
+* `view 1 -a` shows the 1st flashcard (in the displayed flashcard list) on the view pane with answer and notes.
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
@@ -470,7 +470,7 @@ Format: `stats INDEX`
 * `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Example:
-* `stats 1` shows the statistics of the 1st flashcard (in the displayed list) on the view pane.
+* `stats 1` shows the statistics of the 1st flashcard (in the displayed flashcard list) on the view pane.
 
 The statistics feature works in conjunction with the [quiz](#quiz-flashcards-quiz) feature.
 
