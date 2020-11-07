@@ -630,204 +630,380 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### A.3&ensp;Use cases
 
-| Use Case ID | Description                            |
-| ----------- | -------------------------------------- |
-| UC01        | Add a recipe                           |
-| UC02        | Delete a recipe                        |
+| Use Case ID  | Description                            |
+| -----------  | -------------------------------------- |
+| [UC01](#U01) | Add recipe                             |
+| [UC02](#U02) | Delete recipe                          |
+| [UC03](#U03) | Edit recipe                            |
+| [UC04](#U04) | List recipes                           |
+| [UC05](#U05) | View recipe                            |
+| [UC06](#U06) | Filter recipes                         |
+| [UC07](#U07) | Make recipe                            |
+| [UC08](#U08) | List recipe recommendations            |
+| [UC09](#U09) | View recipe statistics                 |
+| [UC10](#U10) | Add ingredient                         |
+| [UC11](#U11) | Delete ingredient                      |
+| [UC12](#U12) | Edit ingredient                        |
+| [UC13](#U13) | List ingredients                       |
+| [UC14](#U14) | Filter ingredients                     |
+| [UC15](#U15) | View ingredient statistics             |
+
 
 (For all use cases below, the **System** is the `Food Recipe Management System (FRMS)` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: U1 - Add recipe**
+<a name="U01"></a>
+**Use case: U01 - Add recipe**
 
 **MSS:**
 
 1. User chooses to add a recipe.
-2. User enters the details according to the format.
-3. FRMS displays a confirmation message with the new recipe.
+2. User enters parameters to be added.
+3. FRMS adds the recipe.
+4. FRMS displays a confirmation message.
 
     Use case ends.
 
 **Extensions:**
-* 2a. FRMS detects invalid input format.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.
-	     Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays an error messages.  
+	  Use case ends.
 * 2b. FRMS detects a duplicate recipe.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.
-	     Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
-
-
-**Use case: U2 - Delete recipe**
+    * 2b1. FRMS displays an error messages.  
+      Use case ends.
+      
+<a name="U02"></a>
+**Use case: U02 - Delete recipe**
 
 **MSS:**
 
 1. User chooses to delete a recipe.
-2. User enters the recipe name.
-3. FRMS displays a confirmation message.
+2. User provides the recipe to be deleted.
+3. FRMS removes the recipe.
+4. FRMS displays a confirmation message.
 
     Use case ends.
 
 **Extensions:**
-* 2a. FRMS detects invalid input format.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.
-	     Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
-* 2b. FRMS detects invalid input of recipe name.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.
-	     Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays an error message.  
+      Use case ends.
+* 3a. There are no recipes in the FRMS.
+    * 3a1. FRMS displays an error message.  
+      Use case ends.
+* 3b. The recipe to be deleted is not the FRMS.
+    * 3b1. FRMS displays an error message.  
+	  Use case ends.
 
 
-**Use case: U3 - List recipes**
+<a name="U03"></a>
+**Use case: U03 - Edit recipe**
 
 **MSS:**
 
-1. User chooses to list all recipes.
-2. User requests for the recipes.
-3. FRMS display all the recipes.
+1. User chooses to edit a recipe.
+2. User provides the recipe to be edited.
+3. User provide the parameters to be edited.
+3. FRMS edits the recipe.
+4. FRMS displays a confirmation message.
 
     Use case ends.
 
 **Extensions:**
-* 2a. FRMS detects invalid input format.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters data according to the correct format.
-	     Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
+* 2a. FRMS detects an invalid input format.
+    * 2a1. FRMS displays an error message.  
+      Use case ends.
+* 3a. FRMS detects an invalid input parameter.
+    * 3a1. FRMS displays an error message.  
+      Use case ends.
+* 4a. There are no recipes in the FRMS.
+    * 4a1. FRMS displays an error message.  
+      Use case ends.
+* 4b. The recipe to be edited is not the FRMS.
+    * 4b1. FRMS displays an error message.  
+	  Use case ends.
+	  
+	  
+<a name="U04"></a>
+**Use case: U04 - List recipes**
+
+**MSS:**
+
+1. User chooses to list recipes.
+2. User requests for the recipes.
+3. FRMS display the recipes.
+4. FRMS displays a confirmation message.
+
+    Use case ends.
+
+**Extensions:**
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays error messages.  
+	  Use case ends.
+* 3a. There are no recipes in the FRMS.
+     * 3a1. FRMS displays an error message.  
+       Use case ends.
 
 
-**Use case: U4 - Filter recipes**
+<a name="U05"></a>
+**Use case: U05 - View recipe**
+
+**MSS:**
+
+1. User chooses to view a recipe.
+2. User provides the recipe to be displayed.
+3. FRMS displays the recipe.
+4. FRMS displays a confirmation message.
+
+    Use case ends.
+
+**Extensions:**
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays an error message.  
+      Use case ends.
+* 3a. There are no recipes in the FRMS.
+    * 3a1. FRMS displays an error message.  
+      Use case ends.
+* 3b. The recipe to be displayed is not the FRMS.
+    * 3b1. FRMS displays an error message.  
+	  Use case ends.
+
+<a name="U06"></a>
+**Use case: U06 - Filter recipe**
 
 **MSS:**
 
 1. User chooses to view a list of filtered recipes.
-2. User enters the filter conditions.
+2. User specifies the filter conditions.
 3. FMRS displays a filtered list of recipes.
+4. FRMS displays a confirmation message.
 
     Use case ends.
 
 **Extensions:**
-* 2a. FRMS detects invalid input format.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.
-	     Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
-* 2b. Filtered list does not contain any recipes.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.
-	     Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays an error message.  
+      Use case ends.
+* 3a. There are no recipes in the FRMS.
+    * 3a1. FRMS displays an error message.  
+      Use case ends.
+* 3b. There are no recipes that match the filter conditions in the FRMS.
+    * 3b1. FRMS displays an error message.  
+      Use case ends.
+              
 
-
-**Use case: U5 - List ingredients**
+<a name="U07"></a>
+**Use case: U07 - Make recipe**
 
 **MSS:**
 
-1. User chooses to view all ingredients.
-2. User inputs the command to request for the ingredients.
-3. FRMS shows the confirmation message and displays the complete list of ingredients.
+1. User chooses to make a recipes.
+2. User provides the recipe to be made.
+3. FRMS makes the recipe.
+4. FRMS displays a confirmation message.
 
     Use case ends.
 
 **Extensions:**
-* 2a. FRMS detects invalid input format.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters data according to the correct format.
-	     Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays an error message.  
+      Use case ends.
+* 3a. There are no recipes in the FRMS.
+    * 3a1. FRMS displays an error message.  
+      Use case ends.
+* 3b. The recipe to be displayed is not the FRMS.
+    * 3b1. FRMS displays an error message.  
+	  Use case ends.
+	  
+	  
+<a name="U08"></a>
+**Use case: U08 - List recipe recommends**
+
+**MSS:**
+
+1. User chooses to list recipes recommendations.
+2. User requests for the recipes recommendation.
+3. FRMS display the recipes.
+4. FRMS displays a confirmation message.
+
+    Use case ends.
+
+**Extensions:**
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays error messages.  
+	  Use case ends.
+* 3a. There are no recipes in the FRMS.
+     * 3a1. FRMS displays an error message.  
+       Use case ends.	  
+	  
+	  
+<a name="U09"></a>
+**Use case: U09 - View recipe statistics**
+
+**MSS:**
+
+1. User chooses to view recipe statistics.
+2. User provides the parameter for the statistics to be viewed.
+3. FRMS displays the recipe statistics.
+4. FRMS displays a confirmation message.
+
+    Use case ends.
+
+**Extensions:**
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays an error message.  
+      Use case ends.
+* 3a. There are no recipe statistics in the FRMS.
+    * 3a1. FRMS displays an error message.  
+      Use case ends.
+* 3b. There are no recipe statistics for the given parameters in the FRMS.
+    * 3b1. FRMS displays an error message.  
+      Use case ends.
 
 
-**Use case: U6 - Add Ingredient**
+
+<a name="U10"></a>
+**Use case: U10 - Add ingredient**
 
 **MSS:**
 
 1. User chooses to add an ingredient.
-2. User enters the details according to the format.
-3. FRMS displays a confirmation message with the new ingredient.
+2. User enters the parameters to be added.
+3. FRMS adds the ingredient.
+3. FRMS displays a confirmation message.
 
 **Extensions:**
 
-* 2a. FRMS detects invalid input format.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.
-      Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
-* 2b. FRMS detects a duplicate ingredient.
-    * 2b1. FRMS displays error messages.
-    * 2b2. User enters new data.
-      Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
-
-
-**Use case: U7 - Delete Ingredient**
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays an error message.  
+      Use case ends.
+* 2b. FRMS detects a duplicate recipe but the unit of measurement for the quantity of the ingredients are the same.
+    * 2b1. FRMS updates the quantity of the ingredient.
+    * 2b2. FRMS displays a confirmation message. 
+      Use case ends.
+* 2c. FRMS detects a duplicate recipe but the unit of measurement for the quantity of the ingredients are different.
+    * 2a1. FRMS displays an error message.  
+      Use case ends.
+    
+    
+<a name="U11"></a>
+**Use case: U11 - Delete ingredient**
 
 **MSS:**
 
 1. User chooses to delete an ingredient.
 2. User enters the details according to the format.
+3. FRMS deletes the ingredient.
 3. FRMS displays a confirmation message.
 
 **Extensions:**
-* 2a. FRMS detects invalid input format.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.
-      Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
-* 2b. FRMS detects invalid input of ingredient name.
-    * 2b. FRMS displays error messages.
-    * 2b. User enters new data.
-      Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
+
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays an error message.  
+      Use case ends.
+* 3a. There are no ingredients in the FRMS.
+    * 3a1. FRMS displays an error message.  
+      Use case ends.
+* 3b. The ingredient to be deleted is not the FRMS.
+    * 3b1. FRMS displays an error message.  
+	  Use case ends.
 
 
-
-
-**Use case: U8 - View expiring ingredients**
+<a name="U12"></a>
+**Use case: U12 - Edit ingredient**
 
 **MSS:**
-1. User chooses to view a list of expiring ingredients.
-2. User enters the date range.
-3. FMRS displays a filtered list of expiring ingredients.
+
+1. User chooses to edit an ingredient.
+2. User provides the ingredient to be edited.
+3. User provide the parameters to be edited.
+3. FRMS edits the ingredient.
+4. FRMS displays a confirmation message.
+
+    Use case ends.
 
 **Extensions:**
-* 2a. FRMS detects invalid input format.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.
-      Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
-* 2b. Filtered list does not contain any ingredients in the date range.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.
-      Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
+* 2a. FRMS detects an invalid input format.
+    * 2a1. FRMS displays an error message.  
+      Use case ends.
+* 3a. FRMS detects an invalid input parameter.
+    * 3a1. FRMS displays an error message.  
+      Use case ends.
+* 4a. There are no ingredients in the FRMS.
+    * 4a1. FRMS displays an error message.  
+      Use case ends.
+* 4b. The ingredient to be edited is not the FRMS.
+    * 4b1. FRMS displays an error message.  
+	  Use case ends.
 
 
-
-**Use case: U9 - Filter ingredients**
+<a name="U13"></a>
+**Use case: U13 - List ingredients**
 
 **MSS:**
+
+1. User chooses to list ingredients.
+2. User requests for the ingredients.
+3. FRMS display the ingredients.
+4. FRMS displays a confirmation message.
+
+    Use case ends.
+
+**Extensions:**
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays error messages.  
+	  Use case ends.
+* 3a. There are no ingredients in the FRMS.
+     * 3a1. FRMS displays an error message.  
+       Use case ends.
+
+
+<a name="U14"></a>
+**Use case: U14 - Filter ingredients**
+
+**MSS:**
+
 1. User chooses to view a list of filtered ingredients.
-2. User enters the filter conditions.
+2. User specifies the filter conditions.
 3. FMRS displays a filtered list of ingredients.
+4. FRMS displays a confirmation message.
+
+    Use case ends.
 
 **Extensions:**
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays an error message.  
+      Use case ends.
+* 3a. There are no ingredients in the FRMS.
+    * 3a1. FRMS displays an error message.  
+      Use case ends.
+* 3b. There are no ingredients that match the filter conditions in the FRMS.
+    * 3b1. FRMS displays an error message.  
+      Use case ends.
+              
+              
+<a name="U15"></a>
+**Use case: U15 - View ingredient statistics**
 
-* 2a. FRMS detects invalid input format.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.
-      Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
-* 2b. Filtered list does not contain any ingredients.
-    * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.
-      Steps a-b are repeated until the data entered are correct.
-	      User case resumes from step 3.
-	      
+**MSS:**
+
+1. User chooses to view ingredient statistics.
+2. User provides the parameter for the statistics to be viewed.
+3. FRMS displays the ingredient statistics.
+4. FRMS displays a confirmation message.
+
+    Use case ends.
+
+**Extensions:**
+* 2a. FRMS detects an invalid input format or parameter.
+    * 2a1. FRMS displays an error message.  
+      Use case ends.
+* 3a. There are no ingredient statistics in the FRMS.
+    * 3a1. FRMS displays an error message.  
+      Use case ends.
+* 3b. There are no ingredient statistics for the given parameters in the FRMS.
+    * 3b1. FRMS displays an error message.  
+      Use case ends.
+  
 
 
 
