@@ -1,6 +1,5 @@
 package seedu.address.commons.core.index;
 
-
 import seedu.address.model.person.GitUserName;
 
 /**
@@ -34,6 +33,7 @@ public class GitUserIndex {
      * @return boolean to indicate validity of gitusername
      */
     public boolean isValidGitUserIndex(String gitUserName) {
+        assert (gitUserName != null);
         String trimmedGitUserName = gitUserName.trim();
         return GitUserName.isValidGitUserName(trimmedGitUserName);
     }
@@ -41,8 +41,7 @@ public class GitUserIndex {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Index // instanceof handles nulls
+            || (other instanceof GitUserIndex // instanceof handles nulls
             && uniqueGitUserIndex.equals(((GitUserIndex) other).uniqueGitUserIndex)); // state check
     }
-
 }

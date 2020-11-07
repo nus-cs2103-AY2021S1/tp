@@ -37,11 +37,11 @@ import seedu.address.logic.commands.global.ListPersonsCommand;
 import seedu.address.logic.commands.global.ListProjectsCommand;
 import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
+import seedu.address.logic.commands.project.AddTeammateCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.DeleteTaskCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
-import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.commands.project.TaskSorterCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
@@ -259,7 +259,7 @@ public class MainCatalogueParserTest {
 
 
         try {
-            parser.parseCommand(NewTeammateCommand.COMMAND_WORD + " "
+            parser.parseCommand(AddTeammateCommand.COMMAND_WORD + " "
                 + PersonUtil.getCommandInfo(ALICE), Status.PROJECT_LIST);
             fail();
         } catch (Exception e) {

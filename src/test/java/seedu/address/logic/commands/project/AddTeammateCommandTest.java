@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -19,35 +18,35 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains tests regarding NewTeammateCommand
+ * Contains tests regarding AddTeammateCommand
  */
-public class NewTeammateCommandTest {
+public class AddTeammateCommandTest {
     @Test
     public void execute_invalidPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> {
-            new NewTeammateCommand(null);
+            new AddTeammateCommand(null);
         });
     }
 
     @Test
     public void execute_invalidModel_throwsNullPointerException() {
-        NewTeammateCommand newTeammateCommand = new NewTeammateCommand(DESC_A);
+        AddTeammateCommand addTeammateCommand = new AddTeammateCommand(DESC_A);
         Model model = null;
         assertThrows(NullPointerException.class, () -> {
-            newTeammateCommand.execute(model);
+            addTeammateCommand.execute(model);
         });
     }
 
     @Test
     public void execute_validModel() {
-        NewTeammateCommand newTeammateCommand = new NewTeammateCommand(DESC_A);
+        AddTeammateCommand addTeammateCommand = new AddTeammateCommand(DESC_A);
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         model.updateProjectToBeDisplayedOnDashboard(AI);
-        String expectedResult = String.format(NewTeammateCommand.MESSAGE_NEW_TEAMMATE_SUCCESS,
+        String expectedResult = String.format(AddTeammateCommand.MESSAGE_NEW_TEAMMATE_SUCCESS,
             DESC_A.getGitUserNameString());
 
         try {
-            CommandResult commandResult = newTeammateCommand.execute(model);
+            CommandResult commandResult = addTeammateCommand.execute(model);
             assertEquals(expectedResult, commandResult.getFeedbackToUser());
         } catch (Exception e) {
             fail();
@@ -58,26 +57,26 @@ public class NewTeammateCommandTest {
     @Test
     public void execute_equals() {
 
-        NewTeammateCommand newTeammateCommand1 = new NewTeammateCommand(DESC_A);
-        NewTeammateCommand newTeammateCommand2 = new NewTeammateCommand(DESC_B);
-        NewTeammateCommand newTeammateCommand3 = new NewTeammateCommand(DESC_C);
+        AddTeammateCommand addTeammateCommand1 = new AddTeammateCommand(DESC_A);
+        AddTeammateCommand addTeammateCommand2 = new AddTeammateCommand(DESC_B);
+        AddTeammateCommand addTeammateCommand3 = new AddTeammateCommand(DESC_C);
 
         // same object -> returns true
-        assertEquals(newTeammateCommand1, newTeammateCommand1);
+        assertEquals(addTeammateCommand1, addTeammateCommand1);
 
         // same values -> returns true
-        NewTeammateCommand newTeammateCommand1copy = new NewTeammateCommand(DESC_A);
-        assertEquals(newTeammateCommand1copy, newTeammateCommand1);
+        AddTeammateCommand addTeammateCommand1Copy = new AddTeammateCommand(DESC_A);
+        assertEquals(addTeammateCommand1Copy, addTeammateCommand1);
 
         // different types -> returns false
-        assertFalse(newTeammateCommand1.equals("this test will return false"));
+        assertNotEquals(addTeammateCommand1, "this test will return false");
 
         // null -> returns false
-        assertNotEquals(newTeammateCommand1, null);
+        assertNotEquals(addTeammateCommand1, null);
 
         // different tasks -> returns false
-        assertNotEquals(newTeammateCommand2, newTeammateCommand1);
-        assertNotEquals(newTeammateCommand3, newTeammateCommand2);
+        assertNotEquals(addTeammateCommand2, addTeammateCommand1);
+        assertNotEquals(addTeammateCommand3, addTeammateCommand2);
     }
 
 

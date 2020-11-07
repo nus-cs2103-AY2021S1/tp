@@ -8,6 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -51,9 +54,9 @@ public class CommandTestUtil {
     public static final String REPOURL_DESC_A = " " + PREFIX_REPOURL + VALID_REPOURL_A;
     public static final String REPOURL_DESC_B = " " + PREFIX_REPOURL + VALID_REPOURL_B;
     public static final String PROJECT_DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION
-        + VALID_PROJECT_DESCRIPTION_A;
+            + VALID_PROJECT_DESCRIPTION_A;
     public static final String PROJECT_DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION
-        + VALID_PROJECT_DESCRIPTION_B;
+            + VALID_PROJECT_DESCRIPTION_B;
     public static final String PROJECT_TAG_DESC_FRIEND = " " + PREFIX_PROJECT_TAG + VALID_PROJECT_TAG_B;
     public static final String PROJECT_TAG_DESC_HUSBAND = " " + PREFIX_PROJECT_TAG + VALID_PROJECT_TAG_A;
     public static final String TASK_DESC_DG = " " + PREFIX_TASK + VALID_PROJECT_TAG_DG;
@@ -65,10 +68,10 @@ public class CommandTestUtil {
     public static final String INVALID_REPOURL_DESC = " " + PREFIX_REPOURL
             + "https://github.com/a/b"; // missing '.git' part
     public static final String INVALID_PROJECT_DESCRIPTION_DESC = " "
-        + PREFIX_DESCRIPTION; // empty string not allowed
+            + PREFIX_DESCRIPTION; // empty string not allowed
     // for addresses
     public static final String INVALID_PROJECT_TAG_DESC = " " + PREFIX_PROJECT_TAG
-        + "hubby*"; // '*' not allowed in tags
+            + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -76,14 +79,20 @@ public class CommandTestUtil {
     public static final EditCommand.EditProjectDescriptor DESC_A;
     public static final EditCommand.EditProjectDescriptor DESC_B;
 
+    //Invalid attributes for task
+    public static final String INVALID_TASK_NAME = " " + PREFIX_TASK_NAME + "";
+    public static final String INVALID_DEADLINE = " " + PREFIX_TASK_DEADLINE + "29022020000000";
+    public static final String INVALID_PROGRESS = " " + PREFIX_TASK_PROGRESS + "101";
+
+
     static {
         DESC_A = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_A)
                 .withDeadline(VALID_DEADLINE_A).withRepoUrl(VALID_REPOURL_A).withProjectDescription(
-                VALID_PROJECT_DESCRIPTION_A)
+                        VALID_PROJECT_DESCRIPTION_A)
                 .withTags(VALID_PROJECT_TAG_B).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL).build();
         DESC_B = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_B)
                 .withDeadline(VALID_DEADLINE_B).withRepoUrl(VALID_REPOURL_B).withProjectDescription(
-                VALID_PROJECT_DESCRIPTION_B)
+                        VALID_PROJECT_DESCRIPTION_B)
                 .withTags(VALID_PROJECT_TAG_A, VALID_PROJECT_TAG_B).withTasks(VALID_PROJECT_TAG_DG).build();
     }
 
@@ -93,7 +102,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -108,7 +117,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -129,6 +138,7 @@ public class CommandTestUtil {
         assertEquals(expectedMainCatalogue, actualModel.getProjectCatalogue());
         assertEquals(expectedFilteredList, actualModel.getFilteredProjectList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the project at the given {@code targetIndex} in the
      * {@code model}'s main catalogue.

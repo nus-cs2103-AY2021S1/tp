@@ -50,7 +50,7 @@ class JsonAdaptedTask {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        taskName = source.taskName;
+        taskName = source.getTaskName();
         description = source.getDescription();
         publishDate = source.getPublishDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         deadline = source.getDeadline().map(Deadline::toString).orElse(null);

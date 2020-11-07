@@ -29,7 +29,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W10-3/tp/blob/master/src/main/java
+/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for:
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -54,7 +55,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
- the command `delete 1`.
+ the command `delete 1`, which deletes project 1.
 
 The sections below give more details of each component:
 
@@ -150,6 +151,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+
+### Logging of data
+
+To record data, after each action, we used the`java.util.logging` pckage.  
+
+Logging implements several levels using  to describe at a glance the severity of the message. This allows developers 
+to identify the message at a glance.
+
+The log level is set to `INFO` by default, but can be modified to any other level with the use of the setter
+method `setLogLevel`.
+
+**Logging levels**
+- SEVERE (events that are of considerable importance and which will prevent normal program execution.   
+They should be reasonably intelligible to end users and to system administrators.)
+- WARNING (may cause issues, proceed with caution)
+- INFO (should be used for reasonably significant messages that will make sense to 
+end users and system administrators.)
+
+There are many other logging levels available in the Level class, however these above should be sufficient.
+
 
 ### Scoping feature
 
@@ -439,7 +461,7 @@ The New Teammate created is added in the following places:
  - global static variable `allPeople` in the Person class 
  - within the project it was created for, in the associated Participation class
 
-The New Teammate command has to be prefixed with `newteammate` and include **all** of the following fields:
+The New Teammate command has to be prefixed with `addteammate` and include **all** of the following fields:
  - `mn/` prefix followed by the name of the new teammate
  - `mg/` prefix followed by the teammate's Github User Name
  - `mp/` prefix followed by the phone number of the teammate
@@ -449,32 +471,64 @@ The New Teammate command has to be prefixed with `newteammate` and include **all
 
 The teammate is created in the project scope and assigned to that project. Further assignment of that user to other projects can be done in the scope of other projects.
 
-Given below is an example usage scenario and how the `NewTeammate` mechanism behaves at each step:
+Given below is an example usage scenario and how the `AddTeammate` mechanism behaves at each step:
 
-Step 1: The user enters `start 1` for example to start project 1 from the mainscreen.The user is greeted with the projects list on the left, and the description of the project in the centre.
+Step 1: The user enters `startproject 2` for example to start project 1 from the mainscreen.The user is greeted with the
+ projects list on the left, and the description of the project in the centre.
 
 ![MainscreenUi](images/MainscreenUi.png)
    
    *Figure 23: What the app looks like after 'start 1' command*
 
-Step 2: The user enters a New Teammate command such as `newteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon@gmail.com ma/13 Cupertino Loop`. The command text is passed into `LogicManager` (an implementation of Logic) which passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is `newteammate`. A new instance of `TeammateCommandParser` class is then created which proceeds to parse the various fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
+Step 2: The user enters a New Teammate command such as `addteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon
+@gmail.com ma/13 Cupertino Loop`. The command text is passed into `LogicManager` (an implementation of Logic) which
+ passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is
+  `addteammate`. A new instance of `TeammateCommandParser` class is then created which proceeds to parse the various
+   fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
 
-If the fields are all valid, a new `Person` object would be created in the same class and passed into the `NewTeammateCommand` class. 
+If the fields are all valid, a new `Person` object would be created in the same class and passed into the
+ `AddTeammateCommand` class. 
 
-Within the `NewTeammateCommand` class, an instance of `NewTeammateCommand` is created, along with an instance of the teammate created in the same class and this instance of `Command` is passed back to `LogicManager`.
+Within the `AddTeammateCommand` class, an instance of `AddTeammateCommand` is created, along with an instance of the
+ teammate created in the same class and this instance of `Command` is passed back to `LogicManager`.
 
 LogicManager then calls the method `execute` of the NewTeammateCommand which stores the teammate into the respective project's participation list, and for the project to be stored in the teammate's participation list. While seeming to increase coupling, it however keeps both classes separate and would not break each other when something is changed.
 
 The diagram below summarises what is happening above with the help of a sequence diagram:
-![NewTeammateSequenceDiagramImagae](images/NewTeammateSequenceDiagram.png)
+![AddTeammateSequenceDiagramImagae](images/AddTeammateSequenceDiagram.png)
    
-   *Figure 24: Sequence Diagram of the 'newteammate' command*
+   *Figure 24: Sequence Diagram of the 'addteammate' command*
 
 The diagram below gives a short overview on what happens when a user's input is received:
 
-![NewTeammateActivityDiagramImagae](images/NewTeammateActivityDiagram.png)
+![AddTeammateActivityDiagramImagae](images/AddTeammateActivityDiagram.png)
    
-   *Figure 25: Activity Diagram of the 'newteammate' command*
+   *Figure 25: Activity Diagram of the 'addteammate' command*
+   
+#### Design consideration:
+
+##### Aspect: Whether Teammate can be instantiated without filling up all attributes
+
+* **Alternative 1 (current choice):** All fields must be filled up
+  * Pros: No ambiguity about a teammate, every teammate's information is standardised.
+  * Cons: The user may not know every aspect of a user such as his address, for example.
+
+* **Alternative 2:** Only some fields have to be filled up, such as gitUserName and name.
+  * Pros: Teammate can be created without knowing all information of a user.
+  * Cons: Contacting such teammates would be difficult as the user would not be pressed to enter the teammate's
+  phone number or address. 
+
+##### Aspect: Whether to take name as an attribute when gitUserName is already present as an attribute
+
+* **Alternative 1 (current choice):** Keep both name and gitUserName
+  * Pros: GitUserName may be something entirely different from the teammate's name, and would be difficult
+  for the user to identify if the user simply knew the teammate by his real name.
+  * Cons: The gitUserName exactly matches the teammate's name, and the name field is irrelevant. However, this is 
+  generally quite rare.
+* **Alternative 2:** Only have gitUserName as an attribute.
+  * Pros: The user has one less attribute to enter when instantiating the teammate.
+  * Cons: If the gitUserName is very different from the teammate's actual name, it may be difficult for the user
+  to remember, as is often the case for gitUserNames.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -492,6 +546,23 @@ Allow more manipulations on persons after entered the view of `Person` dashboard
 The behaviors of managing persons would be similar to the behaviors of managing projects. Thus, it is possible to reuse the commands that are set for `PROJECT` or lower scope. There are two suggested approaches:
 1. Duplicate the relevant commands in `PROJECT` scope to make them available in `PERSON` scope.
 2. Change the scoping requirement of existing `PROJECT` scope commands and change the behavior to accommodate both scopes.
+
+### Teammate comparing
+
+**Current implementation in the project:**
+Call `viewteammate` to view one teammate and call it again to view another.
+
+**Extension features:**
+Allow for multiple teammates to be viewed side by side to compare qualifications and other characteristics to 
+determine who is most suitable for a project.
+
+**Extension guidelines:**
+The behaviour of comparing teammates would be akin to seeing 2 teammates side by side. In this scenario, each teammate
+would have more attributes such as experience, educational qualifications etc.
+
+The teammates displayed side by side would be compared attribute by attribute to allow the user to see at a 
+glance which teammate to pick for a project easily.
+
 
 ### More records for projects and persons
 

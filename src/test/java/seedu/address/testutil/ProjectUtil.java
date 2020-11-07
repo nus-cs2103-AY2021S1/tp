@@ -40,7 +40,7 @@ public class ProjectUtil {
             s -> sb.append(PREFIX_PROJECT_TAG + s.projectTagName + " ")
         );
         project.getTasks().stream().forEach(
-            s -> sb.append(PREFIX_TASK + s.taskName + " ")
+            s -> sb.append(PREFIX_TASK + s.getTaskName() + " ")
         );
         return sb.toString();
     }
@@ -71,7 +71,7 @@ public class ProjectUtil {
             if (tasks.isEmpty()) {
                 sb.append(PREFIX_TASK);
             } else {
-                tasks.forEach(s -> sb.append(PREFIX_TASK).append(s.taskName).append(" "));
+                tasks.forEach(s -> sb.append(PREFIX_TASK).append(s.getTaskName()).append(" "));
             }
         }
         return sb.toString();

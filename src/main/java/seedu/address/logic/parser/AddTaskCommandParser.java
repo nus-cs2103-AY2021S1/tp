@@ -28,7 +28,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                         PREFIX_TASK_DEADLINE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TASK_NAME,
-                PREFIX_TASK_PROGRESS)
+                PREFIX_TASK_PROGRESS, PREFIX_TASK_DEADLINE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }

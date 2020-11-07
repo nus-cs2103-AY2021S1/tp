@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -57,10 +58,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane middleDashboardPlaceHolder;
+    private ScrollPane middleDashboardPlaceHolder;
 
     @FXML
-    private StackPane rightAttributesDashboardPlaceHolder;
+    private ScrollPane rightAttributesDashboardPlaceHolder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -161,29 +162,29 @@ public class MainWindow extends UiPart<Stage> {
         if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()
                 && logic.getPersonToBeDisplayedOnDashboard().isEmpty()) {
             emptyProjectDashboard = new EmptyDashboard(EMPTY_PROJECT_DASHBOARD_MSG);
-            middleDashboardPlaceHolder.getChildren().add(emptyProjectDashboard.getRoot());
+            middleDashboardPlaceHolder.setContent(emptyProjectDashboard.getRoot());
         } else if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()
                 && logic.getPersonToBeDisplayedOnDashboard().isPresent()) {
             personDashboard = new PersonDashboard(logic.getPersonToBeDisplayedOnDashboard());
-            middleDashboardPlaceHolder.getChildren().add(personDashboard.getRoot());
+            middleDashboardPlaceHolder.setContent(personDashboard.getRoot());
         } else if (logic.getPersonToBeDisplayedOnDashboard().isEmpty()
                 && logic.getProjectToBeDisplayedOnDashBoard().isPresent()) {
             projectDashboard = new ProjectDashboard(logic.getProjectToBeDisplayedOnDashBoard());
-            middleDashboardPlaceHolder.getChildren().add(projectDashboard.getRoot());
+            middleDashboardPlaceHolder.setContent(projectDashboard.getRoot());
         }
 
         if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
                 && logic.getTeammateToBeDisplayedOnDashboard().isPresent()) {
             teammateDashboard = new TeammateDashboard(logic.getTeammateToBeDisplayedOnDashboard());
-            rightAttributesDashboardPlaceHolder.getChildren().add(teammateDashboard.getRoot());
+            rightAttributesDashboardPlaceHolder.setContent(teammateDashboard.getRoot());
         } else if (logic.getTaskToBeDisplayedOnDashboard().isPresent()
                 && logic.getTeammateToBeDisplayedOnDashboard().isEmpty()) {
             taskDashboard = new TaskDashboard(logic.getTaskToBeDisplayedOnDashboard());
-            rightAttributesDashboardPlaceHolder.getChildren().add(taskDashboard.getRoot());
+            rightAttributesDashboardPlaceHolder.setContent(taskDashboard.getRoot());
         } else if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
                 && logic.getTeammateToBeDisplayedOnDashboard().isEmpty()) {
             emptyAttributesDashboard = new EmptyDashboard(EMPTY_ATTRIBUTES_DASHBOARD_MSG);
-            rightAttributesDashboardPlaceHolder.getChildren().add(emptyAttributesDashboard.getRoot());
+            rightAttributesDashboardPlaceHolder.setContent(emptyAttributesDashboard.getRoot());
         }
     }
 

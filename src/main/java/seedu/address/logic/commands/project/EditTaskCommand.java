@@ -44,6 +44,7 @@ public class EditTaskCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited TASK: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the current project.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -72,9 +73,12 @@ public class EditTaskCommand extends Command {
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        if (!project.addTask(editedTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
 
         project.deleteTask(taskToEdit);
-        project.addTask(editedTask);
+        //        project.addTask(editedTask);
         if (editedTask.hasAnyAssignee()) {
             editedTask.getAssignees().forEach(
                 assignee -> project.getParticipation(assignee).deleteTask(taskToEdit)
@@ -91,8 +95,16 @@ public class EditTaskCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)
+            throws CommandException {
         assert taskToEdit != null;
+        if (!editTaskDescriptor.getTaskName().isPresent()
+                && !editTaskDescriptor.getDeadline().isPresent()
+                && !editTaskDescriptor.getProgress().isPresent()
+                && !editTaskDescriptor.getTaskDescription().isPresent()
+                && !editTaskDescriptor.getAssignees().isPresent()) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
 
         String updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline().orElse(null));

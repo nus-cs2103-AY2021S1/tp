@@ -20,12 +20,12 @@
 }
 
 #Header {
-    -fx-font: 25pt"Arial";
+    -fx-font: 20pt"Arial";
     -fx-background-color: #F3CE8F;
 }
 
 #Title {
-    -fx-font: 45pt"Arial";
+    -fx-font: 25pt"Arial";
     -fx-background-color: #F3CE8F;
 }
 
@@ -33,11 +33,11 @@
     -fx-font: 15pt"Arial";
 }
 
-/*----------------------------------------- Project Dashboard ---------------------------------------------------*/
-
-#dashboardPT {
-    -fx-font: 25pt"Arial";
+#dashboardVbox {
+    -fx-background-color: derive(#FEE5B6, 20%);
 }
+
+/*----------------------------------------- Project Dashboard ---------------------------------------------------*/
 
 #dashboardDeadline {
     -fx-font: 15pt"Arial";
@@ -49,10 +49,6 @@
 
 #dashboardRU {
     -fx-font: 15pt"Arial";
-}
-
-#dashboardTask {
-    -fx-font: 25pt"Arial";
 }
 
 /*--------------------------------------- Task Dashboard ---------------------------------------------------*/
