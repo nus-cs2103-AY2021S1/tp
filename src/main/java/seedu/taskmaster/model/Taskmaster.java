@@ -84,7 +84,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         requireNonNull(newData);
         setStudents(newData.getStudentList());
         setSessions(newData.getSessionList());
-        currentSession = new SimpleObjectProperty<>();
+        currentSession.setValue(null);
     }
 
     /* Session-Level Operations */
