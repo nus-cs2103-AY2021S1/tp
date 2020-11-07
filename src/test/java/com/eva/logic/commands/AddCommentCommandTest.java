@@ -1,11 +1,12 @@
 package com.eva.logic.commands;
 
+import static com.eva.commons.core.PanelState.APPLICANT_LIST;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandFailure;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static com.eva.testutil.Assert.assertThrows;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
+import static com.eva.testutil.applicant.TypicalApplicants.getTypicalApplicantDatabase;
 import static com.eva.testutil.staff.TypicalStaffs.getTypicalStaffDatabase;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -38,6 +39,7 @@ import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
+import com.eva.testutil.ApplicantBuilder;
 import com.eva.testutil.CommentPersonDescriptorBuilder;
 import com.eva.testutil.PersonBuilder;
 import com.eva.testutil.staff.StaffBuilder;
@@ -48,14 +50,17 @@ public class AddCommentCommandTest {
 
     public static final Index INDEX = Index.fromZeroBased(1);
     public static final Staff STAFF = new StaffBuilder().build();
-    public static final CommentCommand.CommentPersonDescriptor DESCRIPTOR =
+    public static final CommentCommand.CommentPersonDescriptor STAFF_DESCRIPTOR =
             new CommentPersonDescriptorBuilder(STAFF).build();
+    public static final Applicant APPLICANT = new ApplicantBuilder().build();
+    public static final CommentCommand.CommentPersonDescriptor APPLICANT_DESCRIPTOR =
+            new CommentPersonDescriptorBuilder(APPLICANT).build();
     public static final List<Comment> COMMENT_LIST = new ArrayList<>(STAFF.getComments());
     private Model model;
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommentCommand(null, DESCRIPTOR));
+        assertThrows(NullPointerException.class, () -> new AddCommentCommand(null, STAFF_DESCRIPTOR));
     }
 
     @Test
@@ -69,8 +74,8 @@ public class AddCommentCommandTest {
                 getTypicalApplicantDatabase(), new UserPrefs());
 
         Person staffToAddComment = expectedModel.getFilteredStaffList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person staff = AddCommentCommand.createAddEditedPerson(staffToAddComment, DESCRIPTOR);
-        AddCommentCommand addCommentCommand = new AddCommentCommand(INDEX_FIRST_PERSON, DESCRIPTOR);
+        Person staff = AddCommentCommand.createAddEditedPerson(staffToAddComment, STAFF_DESCRIPTOR);
+        AddCommentCommand addCommentCommand = new AddCommentCommand(INDEX_FIRST_PERSON, STAFF_DESCRIPTOR);
 
         expectedModel.setStaff((Staff) staffToAddComment, (Staff) staff);
         String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, staff);
@@ -87,8 +92,8 @@ public class AddCommentCommandTest {
         expectedModel.setPanelState(PanelState.STAFF_PROFILE);
 
         Person staffToAddComment = expectedModel.getFilteredStaffList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person staff = AddCommentCommand.createAddEditedPerson(staffToAddComment, DESCRIPTOR);
-        AddCommentCommand addCommentCommand = new AddCommentCommand(INDEX_FIRST_PERSON, DESCRIPTOR);
+        Person staff = AddCommentCommand.createAddEditedPerson(staffToAddComment, STAFF_DESCRIPTOR);
+        AddCommentCommand addCommentCommand = new AddCommentCommand(INDEX_FIRST_PERSON, STAFF_DESCRIPTOR);
 
         expectedModel.setStaff((Staff) staffToAddComment, (Staff) staff);
         expectedModel.setCurrentViewStaff(new CurrentViewStaff((Staff) staff, INDEX_FIRST_PERSON));
@@ -102,11 +107,51 @@ public class AddCommentCommandTest {
     }
 
     @Test
+    public void execute_commentAcceptedByModelOnApplicantList_addSuccessful() throws Exception {
+        ModelManager expectedModel = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+
+        Person applicantToAddComment = expectedModel.getFilteredApplicantList().get(INDEX_FIRST_PERSON.getZeroBased());
+        expectedModel.setPanelState(APPLICANT_LIST);
+        Person applicant = AddCommentCommand.createAddEditedPerson(applicantToAddComment, APPLICANT_DESCRIPTOR);
+        AddCommentCommand addCommentCommand = new AddCommentCommand(INDEX_FIRST_PERSON, APPLICANT_DESCRIPTOR);
+
+        expectedModel.setApplicant((Applicant) applicantToAddComment, (Applicant) applicant);
+        String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, applicant);
+        CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
+        model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        model.setPanelState(APPLICANT_LIST);
+        assertCommandSuccess(addCommentCommand, model, expectedResult, expectedModel);
+    }
+
+    @Test
+    public void execute_commentAcceptedByModelOnApplicantProfile_addSuccessful() throws Exception {
+        ModelManager expectedModel = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        expectedModel.setPanelState(PanelState.APPLICANT_PROFILE);
+
+        Person applicantToAddComment = expectedModel.getFilteredApplicantList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person applicant = AddCommentCommand.createAddEditedPerson(applicantToAddComment, APPLICANT_DESCRIPTOR);
+        AddCommentCommand addCommentCommand = new AddCommentCommand(INDEX_FIRST_PERSON, APPLICANT_DESCRIPTOR);
+
+        expectedModel.setApplicant((Applicant) applicantToAddComment, (Applicant) applicant);
+        expectedModel.setCurrentViewApplicant(new CurrentViewApplicant((Applicant) applicant, INDEX_FIRST_PERSON));
+
+        String expectedMessage = String.format(AddCommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, applicant);
+        CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
+        model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        model.setPanelState(PanelState.APPLICANT_PROFILE);
+        assertCommandSuccess(addCommentCommand, model, expectedResult, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredStaffList_throwsCommandException() {
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStaffList().size() + 1);
-        AddCommentCommand addCommentCommand = new AddCommentCommand(outOfBoundIndex, DESCRIPTOR);
+        AddCommentCommand addCommentCommand = new AddCommentCommand(outOfBoundIndex, STAFF_DESCRIPTOR);
         assertCommandFailure(addCommentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 

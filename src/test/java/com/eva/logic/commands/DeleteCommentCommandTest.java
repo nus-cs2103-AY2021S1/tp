@@ -4,8 +4,8 @@ import static com.eva.logic.commands.CommandTestUtil.assertCommandFailure;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static com.eva.testutil.Assert.assertThrows;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
+import static com.eva.testutil.applicant.TypicalApplicants.getTypicalApplicantDatabase;
 import static com.eva.testutil.staff.TypicalStaffs.getTypicalStaffDatabase;
 
 import java.util.ArrayList;
@@ -20,11 +20,16 @@ import com.eva.model.Model;
 import com.eva.model.ModelManager;
 import com.eva.model.UserPrefs;
 import com.eva.model.comment.Comment;
+import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.staff.Staff;
+import com.eva.testutil.ApplicantBuilder;
 import com.eva.testutil.CommentPersonDescriptorBuilder;
 import com.eva.testutil.staff.StaffBuilder;
+
 
 
 
@@ -36,6 +41,9 @@ public class DeleteCommentCommandTest {
     public static final CommentCommand.CommentPersonDescriptor DESCRIPTOR =
             new CommentPersonDescriptorBuilder(STAFF).build();
     public static final List<Comment> COMMENT_LIST = new ArrayList<>(STAFF.getComments());
+    public static final Applicant APPLICANT = new ApplicantBuilder().build();
+    public static final CommentCommand.CommentPersonDescriptor APPLICANT_DESCRIPTOR =
+            new CommentPersonDescriptorBuilder(APPLICANT).build();
     private Model model;
 
     @Test
@@ -97,6 +105,64 @@ public class DeleteCommentCommandTest {
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
         model.setPanelState(PanelState.STAFF_PROFILE);
+        assertCommandSuccess(deleteCommentCommand, model, expectedResult, expectedModel);
+    }
+
+    @Test
+    public void execute_commentDeletedByModelOnApplicantList_deleteSuccessful() throws Exception {
+        ModelManager expectedModel = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+
+        expectedModel.setPanelState(PanelState.APPLICANT_LIST);
+        Person applicantToDeleteComment =
+                expectedModel.getFilteredApplicantList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person description = new Applicant(applicantToDeleteComment.getName(),
+                applicantToDeleteComment.getPhone(),
+                applicantToDeleteComment.getEmail(),
+                applicantToDeleteComment.getAddress(),
+                applicantToDeleteComment.getTags(),
+                applicantToDeleteComment.getComments(),
+                new ApplicationStatus("received"));
+        CommentCommand.CommentPersonDescriptor editedperson = new CommentPersonDescriptorBuilder(description).build();
+        Person applicant = DeleteCommentCommand.createDeleteEditedPerson(applicantToDeleteComment, editedperson);
+        DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(INDEX_FIRST_PERSON, editedperson);
+
+        expectedModel.setApplicant((Applicant) applicantToDeleteComment, (Applicant) applicant);
+        String expectedMessage = String.format(CommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS, applicant);
+        CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
+        model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        model.setPanelState(PanelState.APPLICANT_LIST);
+        assertCommandSuccess(deleteCommentCommand, model, expectedResult, expectedModel);
+    }
+
+    @Test
+    public void execute_commentDeletedByModelOnApplicantProfile_deleteSuccessful() throws Exception {
+        ModelManager expectedModel = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        expectedModel.setPanelState(PanelState.APPLICANT_PROFILE);
+
+        Person applicantToDeleteComment =
+                expectedModel.getFilteredApplicantList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person description = new Applicant(applicantToDeleteComment.getName(),
+                applicantToDeleteComment.getPhone(),
+                applicantToDeleteComment.getEmail(),
+                applicantToDeleteComment.getAddress(),
+                applicantToDeleteComment.getTags(),
+                applicantToDeleteComment.getComments(),
+                new ApplicationStatus("received"));
+        CommentCommand.CommentPersonDescriptor editedperson = new CommentPersonDescriptorBuilder(description).build();
+        Person applicant = DeleteCommentCommand.createDeleteEditedPerson(applicantToDeleteComment, editedperson);
+        DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(INDEX_FIRST_PERSON, editedperson);
+
+        expectedModel.setApplicant((Applicant) applicantToDeleteComment, (Applicant) applicant);
+        expectedModel.setCurrentViewApplicant(new CurrentViewApplicant((Applicant) applicant, INDEX_FIRST_PERSON));
+
+        String expectedMessage = String.format(AddCommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS, applicant);
+        CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
+        model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        model.setPanelState(PanelState.APPLICANT_PROFILE);
         assertCommandSuccess(deleteCommentCommand, model, expectedResult, expectedModel);
     }
 

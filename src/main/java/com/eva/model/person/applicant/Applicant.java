@@ -68,6 +68,24 @@ public class Applicant extends Person {
     }
 
     /**
+     * Creates of an applicant object with a fixed interview date.
+     */
+    public Applicant(Name name,
+                     Phone phone,
+                     Email email,
+                     Address address,
+                     Set<Tag> tags,
+                     Set<Comment> comments,
+                     Optional<InterviewDate> interviewDate,
+                     ApplicationStatus status,
+                     Application application) {
+        super(name, phone, email, address, tags, comments);
+        this.interviewDate = interviewDate;
+        this.applicationStatus = status;
+        this.application = application;
+    }
+
+    /**
      * Sets the application status of the specific applicant to be accepted.
      */
     public void setApplicantAccepted() {

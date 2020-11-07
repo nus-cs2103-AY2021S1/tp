@@ -15,7 +15,6 @@ import com.eva.logic.commands.EditCommand;
 import com.eva.logic.parser.ArgumentMultimap;
 import com.eva.logic.parser.ArgumentTokenizer;
 import com.eva.logic.parser.ParserUtil;
-import com.eva.logic.parser.Prefix;
 import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
@@ -33,7 +32,7 @@ public class AddCommentCommandParser {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_COMMENT, new Prefix("|"));
+                        PREFIX_COMMENT);
 
         Index index;
 
@@ -44,10 +43,6 @@ public class AddCommentCommandParser {
                     AddCommentCommand.MESSAGE_ADDCOMMENT_USAGE), pe);
         } catch (IndexParseException pe) {
             throw new ParseException(pe.getMessage());
-        }
-
-        if (argMultimap.getValue(new Prefix("|")).isPresent()) {
-            throw new ParseException("Comments does not allow '|'");
         }
 
 
@@ -70,7 +65,7 @@ public class AddCommentCommandParser {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Comment>> parseCommentsForEdit(Collection<String> comments) throws ParseException {
+    public static Optional<Set<Comment>> parseCommentsForEdit(Collection<String> comments) throws ParseException {
         assert comments != null;
 
         if (comments.isEmpty() || comments.size() == 1

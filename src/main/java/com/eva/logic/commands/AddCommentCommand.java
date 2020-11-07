@@ -28,6 +28,7 @@ import com.eva.model.person.Phone;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
@@ -37,7 +38,8 @@ public class AddCommentCommand extends CommentCommand {
     public static final String COMMAND_WORD = "addc";
 
     public static final String MESSAGE_ADDCOMMENT_USAGE = "Format for this command: \n"
-            + COMMAND_WORD + " INDEX c/ ti/TITLE d/DATE desc/DESCRIPTION";
+            + COMMAND_WORD + " INDEX c/ ti/TITLE d/DATE desc/DESCRIPTION\n"
+            + "Please note that comment cannot have the character '|'.";
     public static final String MESSAGE_DUPLICATE_COMMENT = "Duplicate comment titles not allowed";
 
 
@@ -148,10 +150,12 @@ public class AddCommentCommand extends CommentCommand {
         } else if (personToEdit instanceof Applicant) {
             ApplicationStatus applicationStatus = ((Applicant) personToEdit).getApplicationStatus();
             Optional<InterviewDate> interviewDate = ((Applicant) personToEdit).getInterviewDate();
+            Application application = ((Applicant) personToEdit).getApplication();
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                    updatedTags, updatedComments, interviewDate, applicationStatus);
+                    updatedTags, updatedComments, interviewDate, applicationStatus, application);
+        } else {
+            throw new CommandException("Invalid Persontype");
         }
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedComments);
     }
 
     private static void checkDuplicateComment(Comment comment, Set<Comment> updatedComments) throws CommandException {
