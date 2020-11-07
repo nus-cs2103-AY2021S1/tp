@@ -103,6 +103,15 @@ public class TaskTest {
                 .withDate(VALID_DATE1).withStatus(VALID_STATUS_COMPLETED)
                 .withDateCreated(VALID_DATE_CREATED_1).build();
         assertTrue(LAB_01.isSameTask(editedLab01));
+
+        // same status, different fields -> returns false
+        editedLab01 = new TaskBuilder(LAB_01)
+            .withName(VALID_NAME_LAB05)
+            .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_NORMAL)
+            .withPriority(VALID_PRIORITY_NORMAL)
+            .withDate(VALID_DATE1).withStatus(VALID_STATUS_COMPLETED)
+            .withDateCreated(VALID_DATE_CREATED_1).build();
+        assertFalse(LAB_01.isSameTask(editedLab01));
     }
 
     @Test
