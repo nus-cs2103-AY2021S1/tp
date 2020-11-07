@@ -35,7 +35,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 FlashcardDeck *--> "1" UniqueFlashcardList
 UniqueFlashcardList o-left-> "*" Flashcard
 
-ModelManager -->"1" Flashcard : filtered list
-ModelManager -->"1" Flashcard : sorted list
+ModelManager --> Flashcard : filtered list
+ModelManager --> Flashcard : sorted list
 
 @enduml
