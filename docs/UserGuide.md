@@ -68,13 +68,14 @@ Format: `help`
 
 ## 3.2. Add exercises : `add`
 
-Add an exercise to the application, with calories burnt, muscles worked and tags as optional.
+Add an exercise to the application, with date, calories burnt, muscles worked and tags as optional.
 
 ![add command message](images/addCommandMessage.png)
 
 Format: `add n/EXERCISE d/DESCRIPTION [at/DATE] [c/CALORIES] [m/MUSCLE]... [t/TAG]...`
 
 - The format for the DATE should be in the form of DD-MM-YYYY.
+- If DATE is not provided, the default date will be the current day.
 
 Examples:
 - `add n/running d/10 mins at/31-12-2020 c/100 m/chest m/arm t/home t/gym`
