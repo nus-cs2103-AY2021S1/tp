@@ -5,10 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Objects;
 
-import javafx.animation.PauseTransition;
 import javafx.collections.ObservableList;
 import seedu.cc.model.account.entry.Amount;
-import seedu.cc.model.account.entry.Entry;
 import seedu.cc.model.account.entry.Expense;
 import seedu.cc.model.account.entry.ExpenseList;
 import seedu.cc.model.account.entry.Revenue;
