@@ -328,44 +328,56 @@ Finds all employees whose tags contain the one or more `KEYWORD(s)`.
 Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
 
 * The search is case-insensitive. e.g `Friday` will match `friday`.<br>
-* The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.<br>
+* The order of the keywords does not matter. e.g. `monday friday` will match `monday friday`.<br>
 * Only the tag names are searched.<br>
 * Only full words will be matched. e.g. `Fri` will not match `Friday`.<br>
 * Employees whose tag(s) matching at least one keyword will be listed in the _Employee Directory_ pane
- (i.e. `OR` search).  e.g. `Friday Monday` will find employees whose tags contain `Friday` or `Monday`.<br>
+ (i.e. `OR` search).  e.g. `Monday Friday` will find employees whose tags contain `Monday` or `Friday`.<br>
 
+<div markdown="span" class="alert alert-primary">
 
-Examples:
-* Let's say you want to find out who are the available to work on `Monday` or `Friday`. In this case, the two key
- words are `Monday` and `Friday`. You can follow these steps.
+**:information_source: Note:**<br>
+* In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
+. You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
+tag(s) by editing employee's information feature (Refer to `c-edit` command).<br>
+
+</div>
+
+Example:
+* Let's say you want to find out who is available to work on `Monday` or `Friday`. In this case, the two 
+keywords are `Monday` and `Friday`. You can follow these steps.
 
 Steps to find employees who are available to work on `Monday` or `Friday`:
 1. Type `c-tag-find monday friday` into the _Command Box_.
 2. Press `Enter` to execute.
 
 Outcome:
-1. The _Result Display_ will show the total number of employees who are can work on `Friday` or `Monday`.
+1. The _Result Display_ will show the total number of employees who are can work on `Monday` or `Friday`.
 
-2. Employees who are can work on `Friday` or `Monday` will be listed in the _Employee Directory_ pane.
+2. Employees who are can work on `Monday` or `Friday` will be listed in the _Employee Directory_ pane.
 
 {Screenshot}
 
 #### 3.6 Locating all employees who are available to work today: `c-today`
 
-Finds employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc).
+Finds employees whose tags contain today's day (i.e. `Wednesday`, `Thursday`, etc).
 
 Format: `c-today`
 
 * The search is case-insensitive (e.g `Friday` will match `friday`).<br>
-* The application will automatically get today's day based on the current computer's date.<br>
+* The application will automatically get today's day based on the computer's current date.<br>
 * Only full words will be marched (e.g `Fri` will not match `Friday`).<br>
+
+<div markdown="span" class="alert alert-primary">
 
 **:information_source: Note:**<br>
 * In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
 . You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
-tag(s) by using editing employee's information feature (Refer to `c-edit` command).<br>
+tag(s) by editing employee's information feature (Refer to `c-edit` command).<br>
 
-Examples:
+</div>
+
+Example:
 * Let's say today is `Thursday`. You want to find out who are the available manpower for today. You can follow these
  steps.
 
@@ -387,20 +399,24 @@ Outcome:
 
 #### 3.7 Locating all employees who are available to work tomorrow: `c-tomorrow`
 
-Finds employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Tuesday`, etc).
+Finds employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Thursday`, etc).
 
 Format: `c-tomorrow`
 
 * The search is case-insensitive. e.g `Friday` will match `friday`.<br>
-* The application will automatically get tomorrow's day based on the current computer's date.<br>
+* The application will automatically get tomorrow's day based on the computer's current date.<br>
 * Only full words will be marched (e.g `Fri` will not match `Friday`).<br>
+
+<div markdown="span" class="alert alert-primary">
 
 **:information_source: Note:**<br>
 * In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
 . You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
-tag(s) by using editing employee's information feature (Refer to `c-edit` command).<br>
+tag(s) by editing employee's information feature (Refer to `c-edit` command).<br>
 
-Examples:
+</div>
+
+Example:
 * Let's say tomorrow is `Friday`. You want to find out who are the available manpower for tomorrow. You can follow these
  steps.
 
@@ -453,15 +469,18 @@ Format: `c-archive INDEX`
 _Employee Directory_ pane. (e.g. There are 2 employees listed in the current _Employee Directory_ pane. The `INDEX`
 should be less or equal to 2.)<br>
 
-**:information_source: Notes:**<br>
+<div markdown="span" class="alert alert-primary">
+
+**:information_source: Notes about Employee Directory:**<br>
 
 * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
  color label, named as `[Archived]`, in front of the name), command `c-active-list` needs to be used first to see a
   list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified
   by `INDEX`.<br>
 
+</div>
 
-Examples:
+Example:
 * Let's say one of your employees, Alex Yeoh, is no longer working in your bubble tea shop. But he may come back
 to work again in the future. You, as a store manager, want to remove him from your employee directory without
 permanently deleting his information, so that you can retrieve/move back his information to your
@@ -484,14 +503,17 @@ Archives all employees in the _Employee Directory_ pane.
 
 Format: `c-archive-all`
 
-**:information_source: Notes:**<br>
+<div markdown="span" class="alert alert-primary">
+
+**:information_source: Notes about Employee Directory:**<br>
 
 * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
  color label, named as `[Archived]`, in front of their names), command `c-active-list` needs to be used first to see a
   list of all your employees. Then, `c-archive-all` can be used to archive all employees.<br>
 
+</div>
 
-Examples:
+Example:
 * Let's say after you familiarize yourself with tCheck, you want to remove all sample data in employee directory. But
  you don't want to permanently delete those data, so that you can use them as a reference in the future. In this case
  , you can follow these steps to archive all employees.
@@ -513,12 +535,16 @@ Shows a list of all archived employees in _Employee Directory_ pane.
 
 Format: `c-archive-list`
 
-**:information_source: Notes:**<br>
+<div markdown="span" class="alert alert-primary">
+
+**:information_source: Notes about displaying archived employees in tCheck:**<br>
 
 * Archived employees will be shown with a red color label, named as `[Archived]`, in front of their names. You may
  refer to the screenshot below.<br>
 
-Examples:
+</div>
+
+Example:
 * Let's say you want to see an archived employee's information, you can follow these steps.
 
 Steps to see archived employees:
@@ -544,7 +570,9 @@ Format: `c-unarchive INDEX`
 _Employee Directory_ pane. (e.g. There are 2 employees listed in the current _Employee Directory_ pane. The `INDEX`
 should be less or equal to 2.)<br>
 
-**:information_source: Notes:**<br>
+<div markdown="span" class="alert alert-primary">
+
+**:information_source: Notes about Employee Directory:**<br>
 
 * If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
  red color label, named as `[Archived]`, in front of their names. While employees in the active/unarchived employee list
@@ -552,8 +580,9 @@ should be less or equal to 2.)<br>
   employees. Then, `c-unarchive INDEX` can be used to unarchive a specified
    employee identified by `INDEX`.<br>
 
+</div>
 
-Examples:
+Example:
 * Let's say one of your ex-employees, Alex Yeoh, is now rehired to work in your bubble tea shop. Since he worked in
  the store before, and you archived his data when he left last time. Now, instead of typing his information again and
   use `c-add` command to add him into your employee directory. You can just unarchive him
@@ -584,22 +613,28 @@ Exits the program.
 Format: `exit`
 
 #### 4.3 Saving the data :
-
-All tCheck data (i.e. ingredient data, sales data, employees' data) will be saved in the hard disk as json
- file automatically after each command executes. There is no need to save manually by entering any command.
+All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in the hard disk automatically after each
+ command. There is no need to save manually by entering any command.
  
- **:information_source: Notes:**<br>
+ 
+<div markdown="span" class="alert alert-primary">
+
+ **:information_source: Notes about data files:**<br>
  * User should not attempt to make any change in all data files.<br>
+
+</div>
 
 #### 4.4 Calendar :
 
-tCheck also provides a calendar pane when you start the application. It will automatically jump to the current today's
- date based on your computer's date. It is designed to help you, a store manager, to quick access 
- to the current month's calendar, so that you can easily find out what day is a specific date during 
- your work planning.
+tCheck also shows a current month's calendar when you start the application. You may use it for your working planning.
+
+
+<div markdown="span" class="alert alert-primary">
 
  **:information_source: Notes:**<br>
- * In the current version, tCheck only can show the calendar for the current month.<br>
+ * In the current version, tCheck can only show the calendar for the current month.<br>
+ 
+ </div>
  
  {Screenshot}
  
