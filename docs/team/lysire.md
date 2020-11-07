@@ -29,7 +29,9 @@ Given below are my contributions to the project.
     but also the process of making invalid commands valid as the user can simply navigate to the command and make minor modifications
     instead of having to type the entire command.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it 
-    required changes to existing commands and set up keyboard shortcuts for the command. 
+    required changes to existing commands. While setting up the keyboard shortcuts for the history command, 
+    a `KeyboardShortcutsEnum` class similar to the `CommandWordEnum` class was created to prevent code duplication and allow easier addition of keyboard
+    shortcuts in the future.
   * Credits: Code for the history command is adapted from addressbook-level4, which can be found at https://github.com/se-edu/addressbook-level4. 
       
 * **New Feature**: Added the ability to undo/redo previous commands that change the state of ResiReg, either through
