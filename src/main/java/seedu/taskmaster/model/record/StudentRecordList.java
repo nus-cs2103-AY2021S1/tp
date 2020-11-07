@@ -2,7 +2,6 @@ package seedu.taskmaster.model.record;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.student.NusnetId;
@@ -41,13 +40,6 @@ public interface StudentRecordList extends Iterable<StudentRecord> {
      * {@code studentRecords} must not contain duplicate students.
      */
     void setStudentRecords(List<StudentRecord> studentRecords);
-
-    /**
-     * Returns a random Student Record from the Student Record List
-     * @param random A Random object
-     * @return A random Student Record
-     */
-    StudentRecord getRandomStudentRecord(Random random);
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}

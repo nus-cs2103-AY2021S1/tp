@@ -243,16 +243,16 @@ Displays all students with the lowest score in the current session.
 ```
 lowest-score
 ```
-- Lists the records of all students in the current session with the lowest score.
-- Will show no students if the student record list is empty.
+- Lists the records of all present students in the current session with the lowest score.
+- Will show no students if the student record list has no present students.
 
-### Get a random student: `random-student`
-Displays a random student from the current session
+### Get random student: `random-student`
+Displays a random present student from the current session
 ```
 random-student
 ```
-- Lists a random student from the current session.
-- Does not work if the session has no students.
+- Lists a random student that is present from the current session.
+- Does not work if the session has no present students.
 
 ### Clearing all entries: `clear`
 Clears all saved data in Taskmaster (both students and sessions).
