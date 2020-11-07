@@ -70,15 +70,15 @@ You can follow the steps below to get CliniCal up and running:
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `help` and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all your patients.
+   * `list`: Lists all your patients.
 
    * `add n/John Doe p/98765432 ic/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to the patient database.
 
    * `delete 3` : Deletes the 3rd patient shown in the patient list.
 
-   * `clear` : Deletes all your patients.
+   * `clear`: Deletes all your patients.
 
-   * `exit` : Exits the app.
+   * `exit`: Exits the app.
 
 1. Refer to the [**Features**](#5-features) below for details of each command or refer to the [**Command Summary**](#7-command-summary) to quickly refer to all available commands.
 
@@ -88,7 +88,7 @@ You can follow the steps below to get CliniCal up and running:
 
 ## 4. User Interface
 
-CliniCal contains a Graphical User Interface (GUI) which serves to allow you to easily view his upcoming appointments and also patient records.
+CliniCal contains a Graphical User Interface (GUI) which serves to allow you to easily view upcoming appointments and also patient records.
 
 [**INSERT PICTURE ON FIRST STARTUP OF CLINICAL WITH ANNOTATIONS OF THE MAIN PARTS OF THE GUI (indicated below)**]
 
@@ -106,7 +106,7 @@ If you wish to start afresh, enter the `clear` command to clear all entries from
 
 [**INSERT PICTURE ON FIRST STARTUP ON OVERVIEW TAB WITH ANNOTATIONS OF APPOINTMENT LIST, CALENDAR AND APPOINTMENT INDEX**]
 
-This would be the home page of CliniCal, where the appointment list would be on the left and the calendar view on the right.
+This would be the home page of CliniCal, where the appointment list would be on the left, and the calendar view on the right.
 
 * The index used to access each appointment is shown next to the patient's name.
 
@@ -279,19 +279,19 @@ Examples:
 
 #### 5.2.2 Adding profile picture: `addpicture`
 
-Add a profile picture to your patient’s profile by specifying the filepath to desired profile picture.
-If the person has an existing profie picture, you can use this command to update the profile picture with a new picture.
+Add a profile picture to the patient’s profile by specifying the image's filepath.
+If the person already has an existing profile picture, you can use this command to update the profile picture with a new picture.
 
 ![example of patient with new profile](images/addProfileExample.png)
 
 Format: `addpicture INDEX f/FILE_PATH`
 
 * All patient profiles are preloaded with a stock profile picture.
-* Make sure to add the correct profile picture in, `addpicture` cannot be undone using `undo`!
+* `addpicture` cannot be undone using `undo`. You can repeat the `addpicture` command to update your desired profile picture.
 
 Examples:
 *  `addpicture 3 f/data/profile_3.jpg` Replaces existing profile picture with 'profile_3.jpg' found in
-                                                  'data' folder for the 3rd patient, i.e Carl Kurz
+                                                  'data' folder for the 3rd patient on the list
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
@@ -457,7 +457,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 * `INDEX` refers to the patient's index number as shown in the displayed patient list.
 * `VISIT_DATE` refers to the date of visitation.
-    * It follows the format of `dd/MM/yyyy`, for example `31/21/2020 23:59`.
+    * It follows the format of `dd/MM/yyyy`, for example `23/10/2020`.
     * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
     * Only dates before and *up till and including today* are accepted.
 * `VISIT_DATE` is optional. If no visit date is being specified in the command, then the current date on the local machine will be used to record the patient's visit.
@@ -493,7 +493,7 @@ Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
 * `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
 * Both indexes **must be a positive number** 1, 2, 3, …​
 * `VISIT_DATE` refers to the new date of visitation that you wish to amend to.
-    * It follows the format of `dd/MM/yyyy`, for example `31/21/2020 23:59`.
+    * It follows the format of `dd/MM/yyyy`, for example `23/10/2020`.
     * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
     * Only dates before and *up till and including today* are accepted.
 * `VISIT_DATE` is optional. If no visit date is being specified in the command, then the date of the visitation will remain the same.
@@ -687,7 +687,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g. `add n/James Ho p/22224444 ic/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
 **Add profile picture** | `addpicture 1 f/data/profile_picture.png`
-**Add Visit** | `addvisit INDEX [vd/VISIT_DATE]` <br> e.g. `addvisit 1 vd/06/10/2020`
+**Add Visit** | `addvisit INDEX [vd/VISIT_DATE]` <br> e.g. `addvisit 1 vd/31/12/2020`
 **Add Appointment** | `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION` <br> e.g., `addappt 1 st/27/12/2020 14:00 d/60`
 **Clear** | `clear`
 **Clear command history** | `clearhistory`
@@ -696,7 +696,7 @@ Action | Format, Examples
 **Delete Appointment** | `deleteappt INDEX` <br> e.g. `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com `
 **Edit Appointment** | `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_TIME] [d/DURATION]` <br> e.g. `editappt 3 st/12/12/2020 10:10 d/40`
-**Edit Visit** | `editvisit INDEX i/VISIT_INDEX` <br> e.g. `editvisit 1 i/2`
+**Edit Visit** | `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]` <br> e.g. `editvisit 1 i/2`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **List** | `list`
 **Help** | `help`
