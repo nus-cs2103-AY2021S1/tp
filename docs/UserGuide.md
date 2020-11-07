@@ -664,7 +664,7 @@ Examples:
 Shows the list of recipes that you have eaten, including the recipe's name and calorie. The total calories
  consumed so far is displayed in the command result.
 <br>  The image below is what Wishful Shrinking looks like after you have listed all recipes that you have eaten. <br><br>
-<img src="images/feature/consumption/CaloriesImage.png" width="550" height="300">
+<img src="images/feature/consumption/ListConsumptionImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `calories`
@@ -680,7 +680,7 @@ Format: `calories`
 Deletes the specified recipe from consumption list.
 
 <br>  The image below is what Wishful Shrinking looks like after you have deleted a recipe from the consumption list. <br><br>
-<img src="images/feature/consumption/DeleteCalorieImage.png" width="550" height="300">
+<img src="images/feature/consumption/DeleteConsumptionImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `deleteC INDEX`
