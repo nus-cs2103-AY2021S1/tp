@@ -29,8 +29,8 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_APP_DURATION + "DURATION_IN_MINUTES\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
-            + PREFIX_APP_STARTTIME + "12/12/2020 10:00 "
-            + PREFIX_APP_DURATION + "15";
+            + PREFIX_APP_STARTTIME + "15/11/2020 10:00 "
+            + PREFIX_APP_DURATION + "60";
 
     public static final String MESSAGE_SUCCESS = "New appointment added:\n%1$s";
     public static final String MESSAGE_CONFLICTING_APP =
