@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.global.EditCommand.EditProjectDescriptor;
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.Model;
@@ -145,6 +146,61 @@ public class EditCommandTest {
                 new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_B).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+    }
+
+    /**
+     * Edits project is currently display on dashboard.
+     */
+    @Test
+    public void execute_editingProjectToBeDisplayed_changesToProjectToBeDisplayed() {
+        Model newModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Index indexLastProject = Index.fromOneBased(newModel.getFilteredProjectList().size());
+        Project lastProject = newModel.getFilteredProjectList().get(indexLastProject.getZeroBased());
+
+        newModel.enter(lastProject);
+
+        ProjectBuilder projectInList = new ProjectBuilder(lastProject);
+        Project editedProject = projectInList.withProjectName(VALID_PROJECT_NAME_B).withDeadline(VALID_DEADLINE_B)
+                .withTags(VALID_PROJECT_TAG_A).build();
+
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_B)
+                .withDeadline(VALID_DEADLINE_B).withTags(VALID_PROJECT_TAG_A).build();
+
+        try {
+            new EditCommand(indexLastProject, descriptor).execute(newModel);
+        } catch (CommandException e) {
+            assertFalse(true);
+        }
+
+        assertTrue(newModel.getProjectToBeDisplayedOnDashboard().get().isSameProject(editedProject));
+    }
+
+    /**
+     * Edits a project is currently not displayed.
+     */
+    @Test
+    public void execute_editingProjectNotToBeDisplayed_noChangesToProjectToBeDisplayed() {
+        Model newModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Index indexLastProject = Index.fromOneBased(newModel.getFilteredProjectList().size());
+        Project lastProject = newModel.getFilteredProjectList().get(indexLastProject.getZeroBased());
+
+        newModel.enter(lastProject);
+
+        Project firstProject = newModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        ProjectBuilder projectInList = new ProjectBuilder(firstProject);
+        Project editedProject = projectInList.withProjectName(VALID_PROJECT_NAME_B).withDeadline(VALID_DEADLINE_B)
+                .withTags(VALID_PROJECT_TAG_A).build();
+
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_B)
+                .withDeadline(VALID_DEADLINE_B).withTags(VALID_PROJECT_TAG_A).build();
+
+        try {
+            new EditCommand(INDEX_FIRST_PROJECT, descriptor).execute(newModel);
+        } catch (CommandException e) {
+            assertFalse(true);
+        }
+
+        assertFalse(newModel.getProjectToBeDisplayedOnDashboard().get().isSameProject(editedProject));
     }
 
     @Test

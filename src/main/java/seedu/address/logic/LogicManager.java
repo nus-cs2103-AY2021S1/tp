@@ -114,6 +114,7 @@ public class LogicManager implements Logic {
         case PROJECT_LIST:
         case PROJECT:
         case TASK:
+        case TEAMMATE:
             return true;
         default:
             return false;

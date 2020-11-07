@@ -276,7 +276,7 @@ public class Project {
         boolean teammatePresent = false;
         List<Participation> listOfTeammates = this.getTeammates();
         for (Participation teammate : listOfTeammates) {
-            if (teammate.getPerson().getGitUserNameString().equals(gitUserIndex.getGitUserName())) {
+            if (teammate.getPerson().getGitUserNameString().equals(gitUserIndex.getGitUserNameString())) {
                 teammatePresent = true;
                 break;
             }
@@ -290,7 +290,7 @@ public class Project {
     public int getTeammateIndex(GitUserIndex gitUserIndex) {
         List<Participation> listOfTeammates = this.getTeammates();
         for (int i = 0; i < listOfTeammates.size(); i++) {
-            if (listOfTeammates.get(i).getPerson().getGitUserNameString().equals(gitUserIndex.getGitUserName())) {
+            if (listOfTeammates.get(i).getPerson().getGitUserNameString().equals(gitUserIndex.getGitUserNameString())) {
                 return i;
             }
         }
@@ -329,6 +329,15 @@ public class Project {
         return otherProject != null
                 && otherProject.getProjectName().equals(getProjectName())
                 && (otherProject.getDeadline().equals(getDeadline()) || otherProject.getRepoUrl().equals(getRepoUrl()));
+    }
+
+    /**
+     * Removes all instances of a person's participation
+     */
+    public static void deleteAllParticipationOf(Participation participation) {
+        for (Project allProject : allProjects) {
+            allProject.removeParticipation(participation);
+        }
     }
 
     /**

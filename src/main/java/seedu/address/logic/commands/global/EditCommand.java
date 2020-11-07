@@ -93,6 +93,11 @@ public class EditCommand extends Command {
 
         model.setProject(projectToEdit, editedProject);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+
+        if (model.getProjectToBeDisplayedOnDashboard().isPresent()
+                && projectToEdit.isSameProject(model.getProjectToBeDisplayedOnDashboard().get())) {
+            model.enter(editedProject);
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject));
     }
 

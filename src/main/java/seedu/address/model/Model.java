@@ -168,20 +168,20 @@ public interface Model {
     void enter(Person person);
 
     /**
-     * Quits the current project view.
-     */
-    void quit();
-
-    /**
      * Enters the designated task of the current project.
      */
-    void enterTask(Task task);
+    void enter(Task task);
 
     /**
      * Enters the designated teammate of the current project.
      * @param teammate
      */
-    void enterTeammate(Participation teammate);
+    void enter(Participation teammate);
+
+    /**
+     * Quits the current project view.
+     */
+    void quit();
 
     /**
      * Updates the project to be displayed on dashboard.
@@ -196,6 +196,11 @@ public interface Model {
     Optional<Project> getProjectToBeDisplayedOnDashboard();
 
     /**
+     * Resets the project to be displayed on dashboard.
+     */
+    void resetProjectToBeDisplayedOnDashboard();
+
+    /**
      * Updates the task to be displayed on dashboard.
      */
     void updateTaskToBeDisplayedOnDashboard(Task task);
@@ -204,6 +209,11 @@ public interface Model {
      * Gets the task to be displayed on dashboard.
      */
     Optional<Task> getTaskToBeDisplayedOnDashboard();
+
+    /**
+     * Resets the task to be displayed on dashboard.
+     */
+    void resetTaskToBeDisplayedOnDashboard();
 
     /**
      * Updates the teammate to be displayed on dashboard.
@@ -216,6 +226,11 @@ public interface Model {
     Optional<Participation> getTeammateToBeDisplayedOnDashboard();
 
     /**
+     * Resets the project to be displayed on dashboard.
+     */
+    void resetTeammateToBeDisplayedOnDashboard();
+
+    /**
      * Updates the person to be displayed on dashboard.
      */
     void updatePersonToBeDisplayedOnDashboard(Person person);
@@ -224,5 +239,10 @@ public interface Model {
      * Gets the person to be displayed on dashboard.
      */
     Optional<Person> getPersonToBeDisplayedOnDashboard();
+
+    /**
+     * Resets the person to be displayed on dashboard.
+     */
+    void resetPersonToBeDisplayedOnDashboard();
 
 }

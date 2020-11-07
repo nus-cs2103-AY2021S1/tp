@@ -3,49 +3,19 @@ layout: page
 title: User Guide
 ---
 
+------------------------------------------------------------------------------------------------
+
 # User Guide for Taskmania
 
 Taskmania (based off AB3) is a **desktop app for a project leader to manage team members and tasks** to be finished in a
  software project, optimized for use via a Command Line Interface (CLI) while still having the benefits of a 
  Graphical User Interface (GUI). If you can type fast, Taskmania can allow you to manage your team faster than 
  a traditional point and click interface.
-
-## Contents
-- **Quickstart**
-- **Features in global scope**
-  - Get help `help` 
-  - Exit application `exit`
-  - List all projects `listprojects `
-  - List all person `listpersons `
-  - Leave a current page `leave`
-
-- **Features in project_list scope**
-  - Start working on an existing project `startproject `
-  - Add a new project to the catalogue `add `
-  - Delete a project from the catalogue `delete `
-  - Locate projects with matching keywords `find ` 
-  - Edit details of a project `edit `
-
-- **Features in project scope**
-  - Task-related features
-    - Add a task to a project `addtask `
-    - Assign a task to a teammate `assign `
-    - Edit a task `edittask `
-    - Delete a task `deletetask`
-    - Filter tasks by various attributes `filter `
-    - List all tasks `alltasks`
-    - Sort tasks by various attributes `sort`
-    - View details of a task `viewtask `
-  - Teammate-related features
-    - Create a new teammate in a project `newteammate `
-    - Edit a teammate's details `editteammate `
-    - View a teammate's details `viewteammate `
-    - Delete a teammate `deleteteammate`
-  
-- **Features in person_list scope**
-  - Start working on an existing person `startperson `
-  
-- **Summary**
+ 
+ ## Table of contents
+ 
+ * Table of Contents
+ {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -60,13 +30,13 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 4. Double-click the file to start the app. The window that appears will be similar to the below should appear in a few seconds. Note how
  the app contains some sample information.<br>
    ![Ui](images/Ui.png)
-   *Figure 1: What the app looks like on startup*
+   *Figure 1: A view of Taskmania at startup*
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
  open the help window.<br>
    Some commands you can try:
 
-   * **`startproject 1 `** : Opens the first project
+   * **`startproject 1`** : Opens the first project
 
    * **`exit`** : Exits the app
 
@@ -180,15 +150,18 @@ Format: `add n/PROJECT_NAME dl/DEADLINE ru/REPO_URL d/PROJECT_DESCRIPTION [tg/TA
   - Repo URL must be a valid link
   - Description can be anything, as long as it is not blank
   - Any number of tags can be added, where each new tag would require the prefix tg/ before the tag
+  
+Note: Please enter a valid repository URL. Taskmania is an offline application and can only check the validity of the
+ URL, and not whether the repository exists.
 
-Example: `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging hell` 
+Example: `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/hell tg/abs` 
 
 Adds a new project with the 
 - projectName Blair project 
 - deadline of 29 February 2020 midnight 
 - URL for the team repository 
 - Coding in Greenwich as the description 
-- 2 tags "challenging" and "hell"
+- 2 tags "hell" and "abs"
 
 ### Delete a project from the catalogue `delete `
 
@@ -211,7 +184,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 - Only the name of the projects are searched
 - Must provide at least one keyword
 - There can be multiple keywords
-- Keywords provided must be complete words and will only match complete words from the name of the project. e.g. `find Task` will not return the **Taskmania** project.
+- Keywords provided must be complete words and will only match **complete words** from the name of the project. e.g. `find Task` will not return the **Taskmania** project.
 
 Example: `find scare` returns the **Scare House** and **Easily scare Night** projects.
 
@@ -232,6 +205,9 @@ Format: `edit INDEX [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESC
   - Repo URL must be a valid link
   - Description can be anything, as long as it is not blank
   - Any number of tags can be added, separated by space " "
+  
+Note: Please enter a valid repository URL. Taskmania is an offline application and can only check the validity of the
+ URL, and not whether the repository exists.
 
 Example: `edit 1 n/Resident Evil project /d new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
 
@@ -365,11 +341,11 @@ Example: `viewtask 4` displays all information from task number 4 in the list.
 
 ## **Teammate-related features**
 
-### Create a new teammate in a project `newteammate`
+### Create a new teammate in a project `addteammate`
 
 Creates a new teammate in a project with all the relevant fields contained in it.
 
-Format: `newteammate mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS`
+Format: `addteammate mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS`
   - All fields are necessary to fill in
   - Teammate name has to be 1 or more words consisting only of letters
   - The Github username has to be a unique Github registered User Name
@@ -377,12 +353,28 @@ Format: `newteammate mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAI
   - The email has to have a proper prefix and proper domain name consisting of at least 2 letters
   - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank
 
-Example: `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` creates a new teamamte in the respective project with:
+Example: `addteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` creates a new teamamte in the respective project with:
   - name Lucas
   - Github username of Lucas98
   - phone number of 93824823
   - email of lucas@gmail.com
   - address of 18 Evelyn road
+  
+### Add a teammate to a project `addpart`
+
+Add an existing teammate to the current project.
+
+Format: `addpart GITHUB_USERNAME`
+
+Example: `addpart Lucas98` adds Lucas98 to the current project that the user is in.
+
+### Remove a teammate from a project `deletepart`
+
+Removes an existing teammate from the current project.
+
+Format: `deletepart GITHUB_USERNAME`
+
+Example: `deletepart Lucas98` removes Lucas98 from the current project.
 
 ### Edit a teammate’s details `editteammate`
 
@@ -408,11 +400,12 @@ Example: `viewteammate Lucas98` displays all the information about the teammate 
 
 ### Delete a teammate `deleteteammate`
 
-View all of a specific teammate's details.
+Delete all of a specific teammate's details, as well as remove teammate from all projects teammate was a part of.
 
 Format: `deleteteammate GITHUB_USERNAME`
 
-Example: `deleteteammate Lucas97` deletes the teammate with Github username Lucas97.
+Example: `deleteteammate Lucas97` deletes the teammate with Github username Lucas97, and removes him from any project he
+ was in.
 
 # **Features** in person scope
 
@@ -451,14 +444,16 @@ Action | Format, Examples | Scope
 **Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
 **Edit task details** | `edittask INDEX [n/TASK_NAME[ [tp/TASK_PROGRESS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` | project scope
 **Delete a task** | `deletetask INDEX` <br>e.g. `deletetask 1` | project scope 
-**Filter tasks** | ``filter (ta/ASSIGNEE_GITHUB_USERNAME)||(tn/KEYWORD [MORE_KEYWORDS]...)(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tp/TASK_PROGRESS)||(done/DONE_STATUS)``<br>e.g. `filter tn/CS2103T` | project scope
+**Filter tasks** | <code>filter (ta/ASSIGNEE_GITHUB_USERNAME)&#124;&#124;(tn/KEYWORD [MORE_KEYWORDS]...)&#124;&#124;(td/DEADLINE)&#124;&#124;(start/START_DATE end/END_DATE)&#124;&#124;(tp/TASK_PROGRESS)&#124;&#124;(done/DONE_STATUS)</code> <br>e.g. `filter tn/CS2103T` | project scope
 **Show all the tasks** | `alltasks` | project scope 
-**Sort tasks ** | `sort (sa/)||(sd/) (td/)||(tp/)||(tn/)||(done/)`<br>e.g. `sort sa/ td/` | project scope 
+**Sort tasks** | <code>sort (sa/)&#124;&#124;(sd/)&#124;&#124;(td/)&#124;&#124;(tp/)&#124;&#124;(tn/)&#124;&#124;(done/)</code> <br>e.g. `sort sa/ td/` | project scope 
 **View Details of A Task** | `viewtask INDEX` <br> e.g. `viewtask 1` | project scope
-**Create new teammate** | `newteammate mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS` eg, `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` | project scope
-**Edit teammate details** | `editteammate GITHUB_USERNAME [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way` |
-**View a teammate’s details** | `viewteammate GITHUB_USERNAME` | project scope
-**Delete a teammate** | `deleteteammate GITHUB_USERNAME` | project scope
+**Create a new teammate** | `newteammate mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS` e.g. `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` | project scope
+**Add a teammate to a project** | `addpart GITHUB_USERNAME` e.g. `addpart LucasTai98` | project scope
+**Remove a teammate from a project** | `deletepart GITHUB_USERNAME` e.g. `deletepart LucasTai98` | project scope
+**Edit teammate details** | `editteammate GITHUB_USERNAME [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` e.g. `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|
+**View a teammate’s details** | `viewteammate GITHUB_USERNAME` e.g. `viewteammate Lucas98`| project scope
+**Delete a teammate** | `deleteteammate GITHUB_USERNAME` e.g. `deleteteammate Lucas98` | project scope
 
 ### Glossary
 

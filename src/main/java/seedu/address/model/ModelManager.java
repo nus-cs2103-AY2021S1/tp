@@ -206,30 +206,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void quit() {
-        switch (mainCatalogue.getStatus()) {
-        case PROJECT:
-            projectToBeDisplayedOnDashboard = Optional.empty();
-            teammateToBeDisplayedOnDashboard = Optional.empty();
-            taskToBeDisplayedOnDashboard = Optional.empty();
-            break;
-        case TASK:
-            taskToBeDisplayedOnDashboard = Optional.empty();
-            break;
-        case TEAMMATE:
-            teammateToBeDisplayedOnDashboard = Optional.empty();
-            break;
-        case PERSON:
-            personToBeDisplayedOnDashboard = Optional.empty();
-            break;
-        default:
-            break;
-        }
-        mainCatalogue.quit();
-    }
-
-    @Override
-    public void enterTask(Task task) {
+    public void enter(Task task) {
         mainCatalogue.enterTask(task);
         this.teammateToBeDisplayedOnDashboard = Optional.empty();
         this.projectToBeDisplayedOnDashboard.get().updateTaskOnView(task);
@@ -237,11 +214,34 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void enterTeammate(Participation teammate) {
+    public void enter(Participation teammate) {
         mainCatalogue.enterTeammate(teammate);
         this.taskToBeDisplayedOnDashboard = Optional.empty();
         this.projectToBeDisplayedOnDashboard.get().updateTeammateOnView(teammate);
         updateTeammateToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTeammateOnView().get());
+    }
+
+    @Override
+    public void quit() {
+        switch (mainCatalogue.getStatus()) {
+        case PROJECT:
+            resetProjectToBeDisplayedOnDashboard();
+            resetTaskToBeDisplayedOnDashboard();
+            resetTeammateToBeDisplayedOnDashboard();
+            break;
+        case TASK:
+            resetTaskToBeDisplayedOnDashboard();
+            break;
+        case TEAMMATE:
+            resetTeammateToBeDisplayedOnDashboard();
+            break;
+        case PERSON:
+            resetPersonToBeDisplayedOnDashboard();
+            break;
+        default:
+            break;
+        }
+        mainCatalogue.quit();
     }
 
     //=========== Filtered Project List Accessors =============================================================
@@ -332,6 +332,11 @@ public class ModelManager implements Model {
         return projectToBeDisplayedOnDashboard;
     }
 
+    @Override
+    public void resetProjectToBeDisplayedOnDashboard() {
+        projectToBeDisplayedOnDashboard = Optional.empty();
+    }
+
     //=========== Task To Be Displayed On DashBoard Accessors ======================================================
     @Override
     public void updateTaskToBeDisplayedOnDashboard(Task task) {
@@ -342,6 +347,11 @@ public class ModelManager implements Model {
     @Override
     public Optional<Task> getTaskToBeDisplayedOnDashboard() {
         return taskToBeDisplayedOnDashboard;
+    }
+
+    @Override
+    public void resetTaskToBeDisplayedOnDashboard() {
+        taskToBeDisplayedOnDashboard = Optional.empty();
     }
 
     //=========== Teammate To Be Displayed On DashBoard Accessors ======================================================
@@ -356,6 +366,11 @@ public class ModelManager implements Model {
         return teammateToBeDisplayedOnDashboard;
     }
 
+    @Override
+    public void resetTeammateToBeDisplayedOnDashboard() {
+        teammateToBeDisplayedOnDashboard = Optional.empty();
+    }
+
     //=========== Person To Be Displayed On DashBoard Accessors ======================================================
     @Override
     public void updatePersonToBeDisplayedOnDashboard(Person person) {
@@ -366,5 +381,10 @@ public class ModelManager implements Model {
     @Override
     public Optional<Person> getPersonToBeDisplayedOnDashboard() {
         return personToBeDisplayedOnDashboard;
+    }
+
+    @Override
+    public void resetPersonToBeDisplayedOnDashboard() {
+        personToBeDisplayedOnDashboard = Optional.empty();
     }
 }
