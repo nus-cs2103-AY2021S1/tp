@@ -115,16 +115,22 @@ class JsonAdaptedAssignment {
 
         final Done modelDone = new Done(isDone);
 
+        // the assignment is scheduled
         if ((suggestedStartTime.equals("") || suggestedEndTime.equals("")) && isScheduled) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Schedule.class.getSimpleName()));
         }
-        if (!suggestedStartTime.equals("") && !Time.isValidTime(suggestedStartTime)) {
-            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+        if (isScheduled && !Time.isValidTime(suggestedStartTime)) {
+            throw new IllegalValueException(Schedule.START_TIME_MESSAGE_CONSTRAINS);
         }
-        if (!suggestedEndTime.equals("") && !Time.isValidTime(suggestedEndTime)) {
-            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+        if (isScheduled && !Time.isValidTime(suggestedEndTime)) {
+            throw new IllegalValueException(Schedule.END_TIME_MESSAGE_CONSTRAINS);
         }
+        // the assignment is not scheduled
+        if (!isScheduled && (!suggestedStartTime.equals("") || !suggestedEndTime.equals(""))) {
+            throw new IllegalValueException(Schedule.NOT_SCHEDULED_CONSTRAINS);
+        }
+
         if (isScheduled) {
             final Schedule modelSchedule = new Schedule(new Time(suggestedStartTime),
                     new Time(suggestedEndTime));

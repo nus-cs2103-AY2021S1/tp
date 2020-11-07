@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DO_AFTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DO_BEFORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPECTED_HOURS;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -39,22 +41,24 @@ public class ScheduleCommand extends Command {
     public static final String MESSAGE_SCHEDULE_ASSIGNMENT_SUCCESS = "Schedule Assignment: %1$s";
     public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " INDEX (must be a positive integer) "
             + PREFIX_EXPECTED_HOURS + "EXPECTED HOURS (must be between " + MIN_HOURS + " and " + MAX_HOURS + " hours) "
-            + PREFIX_DO_BEFORE + "BEFORE ";
+            + PREFIX_DO_AFTER + "AFTER " + PREFIX_DO_BEFORE + "BEFORE";
 
     private static final LocalTime WORKING_START_TIME = LocalTime.parse(START_TIME, DateTimeFormatter.ISO_TIME);
     private static final LocalTime WORKING_END_TIME = LocalTime.parse(END_TIME, DateTimeFormatter.ISO_TIME);
 
     private final Index targetIndex;
     private final Time doBefore;
+    private final Time doAfter;
     private final int expectedHours;
 
     /**
      * Constructs a ScheduleCommand to set reminders to the specified assignment.
      * @param targetIndex index of the assignment in the filtered assignment list to edit
      */
-    public ScheduleCommand(Index targetIndex, int expectedHours, Time doBefore) {
+    public ScheduleCommand(Index targetIndex, int expectedHours, Time doAfter, Time doBefore) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
+        this.doAfter = doAfter;
         this.doBefore = doBefore;
         this.expectedHours = expectedHours;
     }
@@ -70,7 +74,10 @@ public class ScheduleCommand extends Command {
 
         Assignment assignmentToSchedule = lastShownList.get(targetIndex.getZeroBased());
 
-        Schedule schedule = createValidSchedule(assignmentToSchedule, model.getFilteredTaskList());
+
+        List<Task> taskList = new ArrayList<>(model.getFilteredTaskList());
+        taskList.remove(assignmentToSchedule);
+        Schedule schedule = createValidSchedule(assignmentToSchedule, taskList);
 
         Assignment scheduledAssignment = createScheduledAssignment(assignmentToSchedule, schedule);
 
@@ -79,15 +86,18 @@ public class ScheduleCommand extends Command {
     }
 
     private Schedule createValidSchedule(Assignment assignmentToSchedule, List<Task> taskList) throws CommandException {
-        LocalDateTime newDeadline = doBefore.toLocalDateTime();
+        LocalDateTime after = doAfter.toLocalDateTime();
+        LocalDateTime before = doBefore.toLocalDateTime();
         if (assignmentToSchedule.getDeadline().isBefore(doBefore)) {
-            newDeadline = assignmentToSchedule.getDeadline().toLocalDateTime();
+            before = assignmentToSchedule.getDeadline().toLocalDateTime();
+        }
+        if (after.isBefore(LocalDateTime.now())) {
+            after = LocalDateTime.now();
         }
 
-        LocalDateTime nearestTime = roundToHour(LocalDateTime.now().plusHours(1));
+        after = roundToHour(after.plusMinutes(59));
 
-        List<LocalDateTime> possibleTime = generateAllPossibleTime(nearestTime,
-                newDeadline, taskList);
+        List<LocalDateTime> possibleTime = generateAllPossibleTime(after, before, taskList);
 
         if (possibleTime.isEmpty()) {
             throw new CommandException("No possible schedule");
@@ -96,9 +106,7 @@ public class ScheduleCommand extends Command {
     }
 
     private LocalDateTime roundToHour(LocalDateTime time) {
-        int min = time.getMinute();
-        time = time.minusMinutes(min % 60);
-        return time;
+        return time.truncatedTo(ChronoUnit.HOURS);
     }
 
     private Schedule getRandom(List<LocalDateTime> list) {
@@ -110,7 +118,7 @@ public class ScheduleCommand extends Command {
 
     private List<LocalDateTime> generateAllPossibleTime(LocalDateTime start, LocalDateTime end, List<Task> taskList) {
         List<LocalDateTime> possibleTime = new ArrayList<>();
-        for (LocalDateTime i = start; i.isBefore(end); i = i.plusHours(1)) {
+        for (LocalDateTime i = start; !i.plusHours(expectedHours).isAfter(end); i = i.plusHours(1)) {
             boolean canSchedule = true;
             // working hours
             if (!isWorkingHour(i, i.plusHours(expectedHours))) {
@@ -118,11 +126,13 @@ public class ScheduleCommand extends Command {
             }
             // no overlap
             for (Task j: taskList) {
-                if (haveOverlap(i, i.plusHours(expectedHours), j)) {
+                if (!haveNoOverlap(i, i.plusHours(expectedHours), j)) {
+                    if (canSchedule) {
+                        System.out.println(i + " " + j.getTime());
+                    }
                     canSchedule = false;
                 }
             }
-
             if (canSchedule) {
                 possibleTime.add(i);
             }
@@ -131,19 +141,20 @@ public class ScheduleCommand extends Command {
     }
 
     private boolean isWorkingHour(LocalDateTime start, LocalDateTime end) {
-        return !start.toLocalTime().isBefore(WORKING_START_TIME) && !end.toLocalTime().isAfter(WORKING_END_TIME);
+        return !start.toLocalTime().isBefore(WORKING_START_TIME) && !end.toLocalTime().isAfter(WORKING_END_TIME)
+                && !end.toLocalTime().isBefore(WORKING_START_TIME);
     }
 
-    private boolean haveOverlap(LocalDateTime start, LocalDateTime end, Task task) {
+    private boolean haveNoOverlap(LocalDateTime start, LocalDateTime end, Task task) {
         if (task instanceof Assignment) {
             if (!((Assignment) task).getSchedule().isScheduled()) {
-                return false;
+                return true;
             }
-            return (!start.isBefore(((Assignment) task).getSchedule().getSuggestedStartTime().toLocalDateTime())
-                    && !end.isAfter(((Assignment) task).getSchedule().getSuggestedEndTime().toLocalDateTime()));
+            return (!end.isAfter(((Assignment) task).getSchedule().getSuggestedStartTime().toLocalDateTime())
+                    || (!start.isBefore(((Assignment) task).getSchedule().getSuggestedEndTime().toLocalDateTime())));
         }
-        return (!start.isBefore(task.getTime().toLocalDateTime())
-                && !end.isAfter(((Lesson) task).getEndTime().toLocalDateTime()));
+        return (!end.isAfter(task.getTime().toLocalDateTime())
+                || (!start.isBefore(((Lesson) task).getEndTime().toLocalDateTime())));
     }
 
     /**

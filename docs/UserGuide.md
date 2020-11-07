@@ -492,15 +492,15 @@ The suggested schedule with start time and end time will be displayed in the ass
 It is guaranteed that the suggested time slot will not class with any of your lessons or the suggested time
 slots of other assignments.
 
-Format: `schedule INDEX expected/EXPECTED_HOUR dobefore/BEFORE_DATE BEFORE_TIME`
+Format: `schedule INDEX hrs/EXPECTED_HOUR af/AFTER_DATE AFTER_TIME by/BEFORE_DATE BEFORE_TIME`
 * Suggests a schedule for the assignment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed assignment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The expected number of hours for an assignment **must be a positive integer between `1` and `5`**.
 
 Examples:
-* `schedule 1 expected/2 before/23-12-2020 2359`
-* `schedule 2 expected/5 before/01-01-2021 0530`
+* `schedule 1 hrs/2 af/23-12-2020 1800 by/23-12-2020 2359`
+* `schedule 2 hrs/5 af/01-01-2020 0530 by/01-01-2021 0530`
 
 ### Removing suggested time for assignments:
 
