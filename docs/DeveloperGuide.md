@@ -473,11 +473,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
         Use case ends.
 
-**UC09 - User clears policy list**    
+**UC09 - User clears the list of existing policy**    
 
 **MSS**
 
-1. User chooses clear policy list.
+1. User chooses to clear the policy list.
 2. System gives success message.
     
     Use case ends.
