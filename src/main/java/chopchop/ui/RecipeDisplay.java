@@ -54,7 +54,7 @@ public class RecipeDisplay extends UiPart<Region> {
         this.display();
 
         // Implements responsive percentage widths for columns
-        this.getRoot().widthProperty().addListener(((observable, oldValue, newValue) -> {
+        this.getRoot().widthProperty().addListener((observable, oldValue, newValue) -> {
             var col1 = new ColumnConstraints();
             var col2 = new ColumnConstraints();
 
@@ -72,7 +72,7 @@ public class RecipeDisplay extends UiPart<Region> {
             }
 
             this.gridPane.getColumnConstraints().addAll(col1, col2);
-        }));
+        });
     }
 
     /**
@@ -104,6 +104,7 @@ public class RecipeDisplay extends UiPart<Region> {
                 .flatMap(s -> {
                     var label = new Label(String.format("%d.", 1 + s.fst()));
                     label.setPrefWidth(20);
+                    label.getStyleClass().add("recipe-steps-numbering");
 
                     return List.of(
                         label, new Text(String.format("%s\n", s.snd()))
