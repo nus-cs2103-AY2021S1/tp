@@ -142,7 +142,7 @@ This tab shows you the patient database and the details of each patient, togethe
 
 ### 4.3 Profile Window
 
-[**INSERT PICTURE OF SAMPLE DATA OF BERNICE YU PATIENT PROFILE WITH ANNOTATIONS OF PATIENT PROFILE PICTURE, PERSONAL DETAILS PANE, VISITS PANEL AND VISITATION LOG INDEX**]
+![Profile Window Layout](images/profileLayout.png)
 
 This window shows you the individual patient profile picture and personal details in an easy to read manner.
 
