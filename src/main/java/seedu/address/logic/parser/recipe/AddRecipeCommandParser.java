@@ -55,7 +55,7 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
-        String ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
+        String ingredientString = ParserUtil.parseIngredients(argMultimap.getValue(PREFIX_INGREDIENT).get());
         ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
 
         if (IngredientParser.hasDuplicates(ingredients)) {

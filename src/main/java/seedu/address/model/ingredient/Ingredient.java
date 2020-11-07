@@ -21,11 +21,14 @@ public class Ingredient {
                     + " or a single forward slash.\n"
                     + "5. Ingredient quantity should be a number greater than 0.";
     public static final String QUANTITY_CONSTRAINTS =
-            "1. Ingredient quantity should be in format -NUMBER UNITS with an optional space in between\n"
-                    + "2. Ingredient quantity should only consist of alphanumeric characters, a single full stop "
+                    "1. Ingredient quantity should only consist of alphanumeric characters, a single full stop "
                     + "or a single forward slash.\n"
-                    + "3. Ingredient quantity should be a number greater than 0 and is only accurate up to 45 "
-                    + "decimal places.";
+                    + "2. Ingredient quantity should be in format -NUMBER STRING e.g. -54.0 kilograms or "
+                    + "-STRING e.g. -a pinch where NUMBER only accept "
+                    + "up to 10 numbers, including a single forward slash to represent fractions or a single "
+                    + "full stop to represent decimal numbers and STRING accepts alphabets. "
+                    + " or \n"
+                    + "3. Ingredient quantity should be a number greater than 0.";
     public static final String HYPHEN_CONSTRAINTS = "Each ingredient has an optional field quantity that is "
             + "separated by a spaced followed by a hyphen.";
 
@@ -35,7 +38,7 @@ public class Ingredient {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ][\\p{Alnum} ]*";
     public static final String VALIDATION_REGEX_QUANTITY = "[\\p{Alnum}\\/\\. ]*";
-    public static final String VALIDATION_REGEX_UNITS = "[\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX_STRING = "[\\p{Alpha} ]*";
     private String value;
     private String quantity;
 
@@ -85,7 +88,7 @@ public class Ingredient {
             return true;
         }
 
-        return isSameIngredientName(otherIngredient) && otherIngredient.getQuantity().equals(getQuantity());
+        return getValue().equals(otherIngredient.getValue()) && otherIngredient.getQuantity().equals(getQuantity());
     }
 
     /**
@@ -134,8 +137,9 @@ public class Ingredient {
         }
         String digits = digitsAndUnits[0];
         String units = digitsAndUnits[1];
-        return ((!digits.equals("") && StringUtil.isNonZeroUnsignedFloat(digits)) || digits.equals(""))
-                && units.matches(VALIDATION_REGEX_UNITS);
+        return ((!digits.equals("") && StringUtil.isNonZeroUnsignedFloat(digits) && digits.length() < 11)
+                || digits.equals(""))
+                && units.matches(VALIDATION_REGEX_STRING);
     }
 
     private static String[] getDigitsAndUnitsFromQuantity(String quantity) {
@@ -145,13 +149,17 @@ public class Ingredient {
         for (int i = 0; i < quantity.length(); i++) {
             char c = quantity.charAt(i);
             if (hasEncounteredUnits) {
+                //Digit in STRING area
+                if (Character.isDigit(c)) {
+                    return null;
+                }
                 units.append(c);
                 //Quantity is in STRING format
             } else if (i == 0 && !Character.isDigit(c) && !Character.isWhitespace(c)) {
                 units.append(quantity);
                 break;
 
-            //Quantity is in NUMBER UNITS format
+            //Quantity is in NUMBER STRING format
             } else if (!Character.isDigit(c) && !Character.isWhitespace(c) && c != '.' && c != '/') {
                 hasEncounteredUnits = true;
                 units.append(c);

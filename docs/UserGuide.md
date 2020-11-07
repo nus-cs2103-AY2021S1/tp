@@ -193,6 +193,11 @@ Component | Explanation
 
 ## 5. Commands <a id="5-commands"></a>
 
+<div markdown="span" class="alert alert-primary">:memo: **Note:**
+If multiple prefixes and values are specified when the format only specifies one, then the only last value is
+ accepted. e.g. `addF i/apple i/banana` only banana is accepted
+</div> 
+
 ## 5.1 Recipe-related Commands <a id="51-recipe-related-commands"></a>
 
 The Recipe-related commands include [`addR`](#add-recipe), [`recipes`](#list-recipe), [`deleteR`](#delete-recipe
@@ -212,10 +217,12 @@ Adds a recipe to Recipe List.
 Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES [img/IMAGE] inst
 /INSTRUCTION[. MORE INSTRUCTIONS] [t/TAG]...`
 
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+* `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-` and after the dash, only accepts alphanumeric characters
-, forward slashes and full stops.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should be
+   greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
@@ -312,10 +319,12 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 
 * Edits the recipe at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Recipe List.
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+* `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-` and after the dash, only accepts alphanumeric characters
-, forward slashes and full stops.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+   be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
@@ -336,10 +345,6 @@ Multiple ingredients are separated by `,`.
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
   No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
   
-
-<div markdown="span" class="alert alert-primary">:memo: **Note:**
-Multiple ingredients are separated by `,`.
-</div>
  
 * All fields are optional, but **at least** the recipe index and one of the fields must be present to edit
      a recipe.    
@@ -493,10 +498,12 @@ Adds an ingredient to the Fridge.
 
 Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+* `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-` and after the dash, only accepts alphanumeric
- characters, a single forward slash to represent fractions or a single full stop to represent decimal numbers.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+   be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.
@@ -555,10 +562,12 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 
 * Edits the ingredient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Ingredient List.
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+* `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before the dash and after, only accepts alphanumeric characters
-, forward slashes and full stops.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+   be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.
@@ -719,6 +728,11 @@ Shows a message explaining how to access the help page.
 <br><br><br>
 
 Format: `help`
+
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
+   To go back to the app, simply click on the Wishful Shrinking tab at the top of the window.
+</div>
+
 <br><br><br>
 
 ### 5.4.2 Exiting the program : `exit` <a id="exit"></a>
