@@ -112,6 +112,8 @@ The `Model`,
 * stores an unmodifiable list of Accounts.
 * does not depend on any of the other three components.
 
+The `Account`,
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Entry` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
@@ -156,7 +158,7 @@ These operations are exposed in the `ActiveAccount` interface as `ActiveAccount#
 
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
-Prelude. When the user first runs Common Cents, `ActiveAccountManager` does not store any previous states as shown in the diagram below.
+Prelude. When the user first runs _Common Cents_, `ActiveAccountManager` does not store any previous states as shown in the diagram below.
 
 ![UndoState0](images/UndoState0.png)
 
@@ -464,7 +466,8 @@ This captures different scenarios of how a user will perform tasks while using _
 (For all use cases below, the **System** is the `CommonCents` and the **Actor** is the `user`, unless specified otherwise)
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC01 - Adding an expense**
+
+**Use Case: UC01 - Adding an expense**
 
 **MSS**
 
@@ -483,7 +486,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC02 - Adding a revenue**
+
+**Use Case: UC02 - Adding a revenue**
 
 **MSS**
 
@@ -502,7 +506,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC03 - Deleting an expense**
+
+**Use Case: UC03 - Deleting an expense**
 
 **MSS**
 
@@ -521,7 +526,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC04 - Deleting a revenue**
+
+**Use Case: UC04 - Deleting a revenue**
 
 **MSS**
 
@@ -540,15 +546,99 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Undoing an add command**
+
+**Use Case: UC - Editing an expense**
+
+**MSS**
+
+1.  User requests to edit an expense entry.
+2.  Common Cents edits the supplied parameters the expense entry in the expense list and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common cents shows an error message.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC - Editing a revenue**
+
+**MSS**
+
+1.  User requests to edit a revenue entry.
+2.  Common Cents edits the supplied parameters the revenue entry in the revenue list and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common cents shows an error message.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC - Clearing all expense entries**
+
+**MSS**
+
+1. User requests to clear all entries in expense list.
+2. Common Cents clears all expense entries in the expense list and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common cents shows an error message.
+
+      Use case resumes at step 1.    
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC - Clearing all revenue entries**
+
+**MSS**
+
+1. User requests to clear all entries in revenue list.
+2. Common Cents clears all expense entries in the revenue list and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common cents shows an error message.
+
+      Use case resumes at step 1.    
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC - Undoing an add command**
 
 **MSS**
 
 1.  User requests <u> add an expense (UC01)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the add command and displays success message.
+</div>
 
-**Use case: UC - Undoing a delete command**
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC - Undoing a delete command**
 
 **MSS**
 
@@ -558,7 +648,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Undoing a edit command**
+
+**Use Case: UC - Undoing a edit command**
 
 **MSS**
 
@@ -568,7 +659,30 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Finding specific expenses**
+
+**Use Case: UC - Undoing a clear all expenses command**
+
+**MSS**
+
+1.  User requests to <u> clear all expenses (UC)</u>.
+2.  User requests to undo command.
+3.  Common Cents returns to the state prior to the clear expenses command and displays success message.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC - Undoing a clear all revenues command**
+
+**MSS**
+
+1.  User requests to <u> clear all revenues (UC)</u>.
+2.  User requests to undo command.
+3.  Common Cents returns to the state prior to the clear revenues command and displays success message.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC - Finding specific expenses**
 
 **MSS**
 
@@ -599,7 +713,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Finding specific revenues**
+
+**Use Case: UC - Finding specific revenues**
 
 **MSS**
 
@@ -630,7 +745,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Finding specific entries (either expenses or revenues)**
+
+**Use Case: UC - Finding specific entries (either expenses or revenues)**
 
 **MSS**
 
@@ -661,7 +777,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Adding an account**
+
+**Use Case: UC - Adding an account**
 
 **MSS**
 
@@ -686,7 +803,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Adding an account**
+
+**Use Case: UC - Adding an account**
 
 **MSS**
 
@@ -711,7 +829,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Listing accounts**
+
+**Use Case: UC - Listing accounts**
 
 **MSS**
 
@@ -722,7 +841,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Delete a account**
+
+**Use Case: UC - Delete a account**
 
 **MSS**
 
@@ -753,7 +873,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Editing the account's name**
+
+**Use Case: UC - Editing the account's name**
 
 **MSS**
 
@@ -785,7 +906,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Switching to an account**
+
+**Use Case: UC - Switching to an account**
 
 **MSS**
 
@@ -811,7 +933,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Exiting app**
+
+**Use Case: UC - Exiting app**
     
 **MSS**
 
@@ -846,7 +969,9 @@ Definitions of certain terms used in this Developer Guide.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -879,7 +1004,7 @@ Basic instructions to test entry-level commands of _Common Cents_.
       Pie chart and total expense value are updated.
       
    1. Test case: `add c/revenue d/selling paintings a/25 t/arts`<br>   
-      Expected: Revenue  is added to the end of the revenue list. Details of the revenue added shown in the status message. 
+      Expected: Revenue is added to the end of the revenue list. Details of the revenue added shown in the status message. 
       Pie chart and total revenue value are updated.
       
    1. Test case: `add c/wronginput d/buying paint a/6.45 t/arts`<br>
@@ -997,3 +1122,36 @@ Basic instructions to test saving and loading of user data of _Common Cents_.
    1. Launch Common Cent via CLI
        1. Expected: CLI displays log stating that data file is not found and a sample data is loaded. Common Cents
        launches with two accounts, `Default Account 1` and `Default Account 2` and each account has sample expenses and revenues.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+This section highlights the team effort to build _Common Cents_ from AB3. While it was not easy, it was a fufilling and valuable experience for all of us.
+
+### Effort
+* Total of 10kLoC written.
+* Total 245 hours of work: 7 hours spent per person (total 5 of us) per week.
+* ~30 pages of UG
+* ~40 pages of DG
+
+### Challenges
+
+#### Management
+* During v1.2 iterations, the deadlines were not set properly and we struggled to produce a working app in that iteration. From there, we learnt to set internal deadlines and longer buffer periods in v1.3 and v1.4.
+* Documentation was not updated regularly as the focus was on the code.
+
+#### Coding
+* We had to modify the OOP structure of AB3 to include another layer of logic, which is the Account and ActiveAccount layer. 
+* It was difficult to maintain relatively high code coverage for JUnit tests as many new classes were added through the iterations.
+* JavaFX was a foreign library to learn and apply in the application.
+* Much defensive coding had to be implemented to avoid unnecessary mutability of variables.
+
+### Milestones
+* Week 7: Started to modify AB3
+* Week 8: UI design is completed
+* Week 9: First successful run of _Common Cents_
+* Week 10: Release of v1.2.1
+* Week 11: Completion of v1.3 of _Common Cents_ and first draft of UG/DG
+* Week 11: Release of v1.3
+* Week 12: Completion of v1.4 of _Common Cents_
+* Week 13: Release of v1.4 and submission of final draft of UG/DG

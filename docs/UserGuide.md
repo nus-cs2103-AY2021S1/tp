@@ -170,14 +170,14 @@ Here are some general notes about the commands in _Common Cents_
   e.g. in `add c/CATEGORY...`, `CATEGORY` is a parameter which can be used as `add c/REVENUE...`
 
 * Items in square brackets are optional.<br>
-  e.g `...a/AMOUNT [t/TAG]` can be used as `...a/50.10 t/Supplies` or as `...a/50.10`.
+  e.g. `...a/AMOUNT [t/TAG]` can be used as `...a/50.10 t/Supplies` or as `...a/50.10`.
 
 * Parameters **preceded by a prefix** can be in any order.<br>
   e.g. if the command specifies `c/CATEGORY d/DESCRIPTION...`, `d/DESCRIPTION c/CATEGORY...` is also acceptable.
 
-* **Numeric** parameters (e.g. `ENTRY_INDEX`) must be in the correct order.<br>
-  e.g. if the command specifies `ENTRY_INDEX c/CATEGORY`, only `ENTRY_INDEX c/CATEGORY` is acceptable 
-  and `c/CATEGORY ENTRY_INDEX` is invalid. 
+* **Numeric** parameters (e.g. `INDEX`) must be in the correct order.<br>
+  e.g. if the command specifies `INDEX c/CATEGORY`, only `INDEX c/CATEGORY` is acceptable 
+  and `c/CATEGORY INDEX` is invalid. 
   
 * Commands with no prefix parameters (e.g. `clear`, `profit`, `listacc`) can take in extra words after the command word
   without affecting its execution.<br>
@@ -277,7 +277,7 @@ You can use this command when you want to add an entry (expense/revenue) to the 
 You can use this command to remove an entry (expense/revenue) from the tracker when you do not want to keep track of 
 it anymore.
 
-**Format:** `delete ENTRY_INDEX c/CATEGORY`
+**Format:** `delete INDEX c/CATEGORY`
 
 <div markdown="block" class="alert alert-success">
 
@@ -305,7 +305,7 @@ it anymore.
 
 * Deletes the entry at the specified INDEX.
 * The index refers to the index number shown in the displayed entry lists.
-* The index must be a positive integer (eg. 1, 2, 3), and must be within the range of the number of entries (e.g. if there are 10 entries, the INDEX given cannot be > 10).
+* The index must be a positive integer (e.g. 1, 2, 3), and must be within the range of the number of entries (e.g. if there are 10 entries, the INDEX given cannot be > 10).
 
 </div>
 
@@ -344,6 +344,17 @@ You can use this to make edits to any existing entries in the tracker when the d
 * When editing an entry’s tags, the existing tags of the entry will be removed i.e adding of tags is not cumulative.
 * The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries
 (e.g. if there are 10 entries, the `INDEX` given cannot be > 10).
+* It is possible for you to use the `find` function then `edit`.
+* The `edit` command still executes if you use the same description, amount or tags as the existing entry in the parameters.
+
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
+:warning: **Warning:**
+
+* When you use the 'edit' command after the 'find' command, if the edited description does not match the predicate, it disappears from the list!
 
 </div>
 
@@ -391,14 +402,14 @@ description (**Figure 5.2-5**)
 [comment]: <> (This only appears in Github CSS)
 
 :bulb: **Tip:** When there are a lot of entries, and you want to delete something, 
-you can use `find` to search for it in the list and use [`delete ENTRY_INDEX`](#522-deleting-an-entry-delete) to remove it from the updated
+you can use `find` to search for it in the list and use [`delete INDEX`](#522-deleting-an-entry-delete) to remove it from the updated
 list, with the updated `ENTRY INDEX`.
 
 </div>
 
 ### 5.2.5 Listing all entries: `list`
 
-You can use this command to list all entries in the current account when you want to have an overview of you account.
+You can use this command to list all entries in the current account when you want to have an overview of your account.
 
 **Format:** `list`
  
@@ -415,13 +426,13 @@ You can use this command to list all entries in the current account when you wan
 
 You can use this command to clear all entries from a particular category when you do not need to track them anymore.
  
-**Format:** `clear`
+**Format:** `clear [c/CATEGORY]`
  
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
 
-
+* `clear`: Clears all entries visible in both the expense and revenue lists
 * `clear c/expense`: Clears all entries visible in expense list (**Figure 5.2-6**)
 * `clear c/revenue`: Clears all entries visible in revenue list
 
@@ -434,12 +445,11 @@ You can use this command to clear all entries from a particular category when yo
 
 :information_source: **Note:**
 
-The `clear` command will clear all entries in the stipulated category. If you would like to delete selected
+* The `clear` command will clear all entries in the stipulated category. If you would like to delete selected
 entries, use the `delete` command instead.
+* It is possible for you to use the `find` function then `clear`.
 
 </div>
-
-
 
 ### 5.2.7 Calculating net profits based on expenses and revenues: `profit` 
 
@@ -493,9 +503,10 @@ You can use this command to return to the state of the entry prior to the previo
 
 :information_source: **Note:**
 
-Do note that the `undo` command can only undo  [`add`](#521-adding-an-entry-add), [`delete`](#522-deleting-an-entry-delete),
+* Do note that the `undo` command can only undo  [`add`](#521-adding-an-entry-add), [`delete`](#522-deleting-an-entry-delete),
 [`edit`](#523-editing-an-entry-edit) and [`clear`](#526-clearing-all-expenses-or-revenue-clear) commands at the entry-level. 
-Account-level commands cannot be reverted using the `undo` command.
+Account-level commands cannot be reverted using the `undo` command. 
+* Once you use the [`switchacc`](#535-switching-accounts-switchacc) command, all the previous states for the `undo` command will be lost. This would mean that if you choose to switch back to the account, you cannot undo the previous entry-level commands anymore.
 
 </div>
 
@@ -673,37 +684,43 @@ This section contains a few frequently asked questions with regard to _Common Ce
 ## 6.1 General Inquiry
 This section features general questions about _Common Cents_ that are not specific to the features.
 
-1. **Question:** How do I save my data in _Common Cents_?<br>
+1\. **Question:** How do I save my data in _Common Cents_?<br>
+
 **Answer:** You do not need to do anything! Your data will be automatically saved in the `data` folder
  under the name of `CommonCents.json`.
 
-2. **Question:** How do I transfer my data to another computer?<br>
+2\. **Question:** How do I transfer my data to another computer?<br>
+
 **Answer:** Install the app in the other computer and overwrite the default data file (in the `data` folder) with the file 
 `(CommonCents.json)` that contains the data of your previous _Common Cents_ session.
 
-3. **Question:** What if I notice something wrong with the application?<br>
+3\. **Question:** What if I notice something wrong with the application?<br>
+
 **Answer:** You may submit a bug report or send us a notice directly [here](https://github.com/AY2021S1-CS2103T-T13-4/tp).
 
 
 
 ## 6.2 Features Inquiry
 This section features feature-related questions about _Common Cents_.
-1. **Question:** What happens if I forget my account names?<br>
+
+1\. **Question:** What happens if I forget my account names?<br>
+
 **Answer:** You may use the `listacc` command to see a full list of your existing accounts.
 
-2. **Question:** I encountered this situation when using the features as shown in the screenshot below. I understand that the 
+2\. **Question:** I encountered this situation when using the features as shown in the screenshot below. I understand that the 
 prefix indicated is wrong after checking the `add` section in the User Guide. However, the error message states that my category is
-wrong. Can I clarify on this situation?<br>
+wrong (**Figure 6.2**). Can I clarify on this situation?<br>
 
 ![errorMessage](images/commands/errorMessage.png)
-<p align="center"> <sub> <b>Figure</b>: Error message that might cause confusion </sub> </p>
+<p align="center"> <sub> <b>Figure 6.2</b>: Error message that might cause confusion </sub> </p>
 
-   **Answer:** 
+**Answer:** 
 Yes, the prefix indicated is wrong as it should be `d/` instead of `n/`. As a result, the category parameter is read as
 `expense n/buy McSpicy a/8.60` instead of `expense`. Do remember to check that the **prefixes and parameters required for a command
 are correct!** If you are unsure of the prefixes and parameters required, do check the sections under features above! 
 
-3. **Question:** What if I typed in multiple prefixes with valid parameters? For instance, `add c/expense c/revenue d/Buy lunch a/4.30`
+3\. **Question:** What if I typed in multiple prefixes with valid parameters? For instance, `add c/expense c/revenue d/Buy lunch a/4.30`.
+
 **Answer:** Multiple instances of prefixes, as well as indexes except for `tags (t/)` will not be executed and an error 
 message will be shown. For instance, the example above has both `c/expense` and `c/revenue`, hence the command will not be executed. 
 Please follow the format of the commands closely in the [Features](#5-features) section above!
@@ -717,8 +734,8 @@ Action | Format
 [**Help**](#511-viewing-help--help) | `help`
 [**Exit**](#512-exiting-the-program--exit) | `exit`
 [**Add**](#521-adding-an-entry-add) | `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
-[**Delete**](#522-deleting-an-entry-delete) | `delete ENTRY_INDEX c/CATEGORY`
-[**Edit**](#523-editing-an-entry-edit) | `edit ENTRY_INDEX c/CATEGORY [d/DESCRIPTION] [a/AMOUNT] [t/TAG]`
+[**Delete**](#522-deleting-an-entry-delete) | `delete INDEX c/CATEGORY`
+[**Edit**](#523-editing-an-entry-edit) | `edit INDEX c/CATEGORY [d/DESCRIPTION] [a/AMOUNT] [t/TAG]`
 [**Find**](#524-locating-entries-by-description-find) | `find k/KEYWORD [MORE_KEYWORDS]`
 [**List**](#525-listing-all-entries-list) | `list`
 [**Clear**](#526-clearing-all-expenses-or-revenue-clear) | `clear c/CATEGORY`
