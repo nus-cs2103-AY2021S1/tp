@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.RecipeImage;
 
- /**
+/**
  * Parse user inputted image path.
  */
 public class ImageParser {
