@@ -29,6 +29,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - [View the statistics of a flashcard](#view-the-statistics-of-flashcard-stats): `stats`
         - [Exit the program](#exit-the-program--exit): `exit`
         - [Saving the data](#saving-the-data)
+    - [FAQ](#faq)
     - [Command summary](#command-summary)
         
 
@@ -502,6 +503,19 @@ Format: `exit`
 ### Saving the data
 
 Flashcards data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: What is the difference between review mode and quiz mode?<br>
+**A**: Review mode is like a sandbox mode where you can move back and forth between flashcards. In quiz mode, you can only go forward. Also, quiz mode asks you for feedback and keeps track of statistics but review mode doesn't.
+
+**Q**: Are success frequency and correct count of a flashcard the same thing?<br>
+**A**: Yes. They both refer to how many times you answered with `y` in quiz mode for the flashcard.
+
+**Q**: Why doesn't review mode affect review frequency/count of a flashcard?<br>
+**A**: We know the naming may be a little bit confusing but just keep in mind that review mode does **not** affect the statistics (success, review frequency) of a flashcard. Only quiz mode does!
 
 --------------------------------------------------------------------------------------------------------------------
 
