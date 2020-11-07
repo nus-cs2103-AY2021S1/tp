@@ -513,7 +513,7 @@ Figure 14.5 clear command
 ![clear command result](images/clear%20command%20result.png)
 Figure 14.6 clear command result
 
-### Exiting the program: `exit`
+### Exiting the program: `exit` (by Cao Qin)
 
 Exits the program.
 
