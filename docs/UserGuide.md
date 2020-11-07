@@ -249,6 +249,8 @@ Adds a new stock into the inventory. A unique serial number for the new stock wi
 
 <div markdown="block" class="alert alert-info">
 
+**:information_source: Note for low quantity field:**<br>
+
 The low quantity field is the amount where you deem the stock to be low in quantity. Stocks that are highlighted 
 in red are stocks that have quantities less than or equal to the low quantity field.
 The optional field low quantity will be set to 0 if not present in the input.
@@ -358,11 +360,11 @@ delete sn/courts1 sn/courts2
 ```
 
 <h4>Below is a guided example for deleting stocks:</h4>
-Step 1.Before you start any deletion, you might want to use the command `list lt/all` to list all
+**Step 1.** Before you start any deletion, you might want to use the command `list lt/all` to list all
 the stocks you have in Warenager. 
 ![delete_step1](images/delete/delete_step1.png)
 
-Step 2. Let's delete the stock with serial number `COURTS2`. The fields are **not** case-sensitive.<br>
+**Step 2.** Let's delete the stock with serial number `COURTS2`. The fields are **not** case-sensitive.<br>
 A valid delete input would be `delete sn/courts2`.
 
 **Before input**:
@@ -374,7 +376,7 @@ A valid delete input would be `delete sn/courts2`.
 
 ![delete_step3](images/delete/delete_step3.png)
 
-Step 3. Multiple stocks can also be deleted at the same time. Let's delete 2 stocks with serial numbers `COURTS3`
+**Step 3.** Multiple stocks can also be deleted at the same time. Let's delete 2 stocks with serial numbers `COURTS3`
 and `COURTS4`. It can be done by chaining the serial numbers when deleting.<br>
 A valid delete input would be `delete sn/courts3 sn/courts4`.<br>
 
@@ -671,12 +673,12 @@ Values to be updated are case-insensitive.
 
 <h4>Below is a guided example for updating stocks:</h4>
 
-Before you start any updating activity, make sure to use the command `list lt/all` to list all
+**Step 1.** Before you start any updating activity, make sure to use the command `list lt/all` to list all
 the stocks you have in Warenager. The list shown below will be the basis reference for this guided example. <br>
 
 ![update_step1](images/update/update_step1.png)
 
-Let's update the stock with serial number `NTUC1`. Let's update the name to `Apple` and the low quantity to `100`. Remember that the fields are **case-insensitive**. <br>
+**Step 2.** Let's update the stock with serial number `NTUC1`. Let's update the name to `Apple` and the low quantity to `100`. Remember that the fields are **case-insensitive**. <br>
 A valid update input would be `update sn/ntuc1 n/apple lq/100`. <br>
 
 **Before input**:
@@ -688,7 +690,7 @@ A valid update input would be `update sn/ntuc1 n/apple lq/100`. <br>
 
 ![update_step3](images/update/update_step3.png)
 
-Multiple stocks can also be updated at the same time. Let's update 2 stocks with serial numbers `FAIRPRICE1`
+**Step 3.** Multiple stocks can also be updated at the same time. Let's update 2 stocks with serial numbers `FAIRPRICE1`
 and `FAIRPRICE3`. It can be done by chaining the serial numbers when updating.<br>
 Let's update the low quantity to `200` and the location to `Discount section`
 A valid update input would be `update sn/fairprice1 sn/fairprice3 lq/200 l/discount section`. <br>
