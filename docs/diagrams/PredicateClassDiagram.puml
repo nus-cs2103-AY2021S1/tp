@@ -12,7 +12,6 @@ Class NameContainsKeywordsPredicate
 Class ModuleCodeContainsKeywordsPredicate
 Class DeadlineContainsKeywordsPredicate
 Class PriorityContainsKeywordsPredicate
-
 }
 
 NameContainsKeywordsPredicate ..up|> "<<Interface>>\nPredicate<Assignment>"

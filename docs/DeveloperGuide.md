@@ -10,7 +10,7 @@ title: Developer Guide
 ## **Introduction**
 
 ### **Purpose**
-This document specified architecture, software design decisions and features for the application, ProductiveNUS. It will provide you with the essential information on its development process. 
+This document specified architecture, software design decisions and features for the application, ProductiveNUS. It will provide you with the essential information on its development process.
 
 ### **Scope**
 The intended audience of this document are developers, designers, and software testers.
