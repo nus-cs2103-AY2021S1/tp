@@ -20,7 +20,7 @@
     * [6.2 Student administrative details features](#62-student-administrative-details-features)
         * [6.2.1 Add student command](#621-add-student-command)
         * [6.2.2 Edit student command](#622-edit-student-command)
-        * [6.2.3 Delete student command](#623-delete-student-command)      
+        * [6.2.3 Delete student command](#623-delete-student-command)
         * [6.2.4 Find student command](#624-find-student-command)  
         * [6.2.5 Overdue command](#625-overdue-command)
     * [6.3 Student academic details features](#63-student-academic-details-features)
@@ -33,8 +33,8 @@
             * [6.3.2.2 Delete exam command](#6322-delete-exam-command)
             * [6.3.2.3 Exam Stats command](#6323-exam-stats-command)
         * [6.3.3 Student attendance features](#633-student-attendance-features)
-    * [6.4 Schedule command](#64-schedule-command)    
-    * [6.5 Notes command](#65-notes-command)    
+    * [6.4 Schedule command](#64-schedule-command)
+    * [6.5 Notes command](#65-notes-command)
 - [7. Documentation](#7-documentation)
 - [8. Logging](#8-logging)
 - [9. Testing](#9-testing)
@@ -84,7 +84,7 @@ Here is a summary (Table 1) of the symbols that are used in this Developer Guide
 Table 1: Summary of symbols
 
 Symbol | Meaning
--------|--------
+:-----:|:-------
 `command` | A grey highlight indicates a command that can be executed by **Reeve**.
 :information_source: | Indicates important information. 
 :bulb: | Indicates tips.
@@ -103,22 +103,22 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W15-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#56-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#52-ui-component): The UI of the App.
+* [**`Logic`**](#53-logic-component): The command executor.
+* [**`Model`**](#54-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#55-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -142,9 +142,9 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/ui)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `Notebook` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -158,9 +158,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `ReeveParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -177,21 +177,17 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+![Structure of the Academic Class](images/AcademicClassDiagram.png)
+![Structure of the Academic Class](images/AdminClassDiagram.png)
+
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the reeve data.
+* exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
 
 ### 5.5 Storage component
 
@@ -229,13 +225,47 @@ This section describes some noteworthy details on how certain features are imple
 
 ### 6.1 General features
 
+This section describes some key details on how general features are implemented.
+
 #### 6.1.1 Help Command
 
+The following describes the flow of how `HelpCommand` is performed.
+
+1. Upon successfully parsing the user input, the `HelpCommand#execute(Model model)` is called.
+2. A `CommandResult` with the `showHelp` field set to true is returned and `MainWindow#handleHelp()` is called.
+3. A Help display window will be opened showing a link to the User Guide. 
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: If there is already a Help window already opened, and `HelpCommand` is executed, `HelpWindow#focus()` will be called to focus on the already opened window.
+
+</div>
+
 #### 6.1.2 Toggle Command
+
+The following describes the flow of how `ToggleStudentCardCommand` is performed.
+
+1. Upon successfully parsing the user input, the `ToggleStudentCardCommand#execute(Model model)` is called.
+2. A `CommandResult` with the `toggleStudentCard` field set to true is returned and `MainWindow#handleAcademicPanel()` is called.
+3. Student cards in `StudentListPanel` will be switched. 
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: By default, `StudentListPanel` uses `StudentAcademicCard`.
+
+</div><br>
+
+The following sequence diagram shows how the `ToggleStudentCardCommand` execution works.
+
+![ToggleStudentCardSequenceDiagram](images/ToggleStudentCardSequenceDiagram.png)
+
+Figure \___. Sequence diagram for `ToggleStudentCardCommand` execution
 
 #### 6.1.3 Exit Command
 
 ### 6.2 Student administrative details features
+
+This section describes some key details on how administrative details features are implemented.
 
 The student administrative details feature keeps track of essential administrative student details. The feature comprises of the following commands,
 * `AddCommand` - Adds a student into the student list
@@ -250,18 +280,26 @@ The student administrative details feature keeps track of essential administrati
 The following describes the flow of how `AddCommand` is performed.
 
 1. Upon successfully parsing the user input, the `AddCommand#execute(Model model)` is called which checks whether
-the added student already exists in the `UniqueStudentList`.
+the added student already exists in the `UniqueStudentList` using the `Model#hasStudent(Student toAdd)`.
 2. A unique student is defined by `Name`, `Phone`, `School` and `Year`. If a duplicate student is defined,
 a `CommandException` is thrown and the student will not be added.
-3. If the added student is not a duplicate, then the `Model#addStudent(Student student)` is called to add the student.
+3. The `AddCommand#execute(Model model)` also checks if the student to be added has clashing `ClassTime` with other students already in the `UniqueStudentList`.
+4. Two student's `ClassTime` is considered clashing if they overlap either partially or fully. A `CommandException` will be thrown if there are other students with clashing class time.
+5. If the added student is not a duplicate and there are no clashes in class time, then the `Model#addStudent(Student toAdd)` is called to add the student.
 A new `CommandResult` is returned with a success message and the added student.
-4. The student is be added into `UniqueStudentList` and a success message is shown in the result display.
+6. The student is be added into `UniqueStudentList` and a success message is shown in the result display.
 
 The following activity diagram summarizes the flow of events when the `AddCommand` is being executed:
 
 ![Flow of Add Student Command](images/AddStudentActivityDiagram.png)
 
-Figure ___. Activity Diagram for AddStudentCommand
+Figure ___. Activity Diagram for `AddCommand`
+
+The following sequence diagram summarizes the execution of the `AddCommand`
+
+![Execution of Add Student Command](images/AddStudentSequenceDiagram.png)
+
+Figure /__. Sequence Diagram for `AddCommand`
 
 #### 6.2.2 Edit Student Command
 
@@ -290,6 +328,19 @@ The following activity diagram summarises the flow of events when `EditCommand` 
 Figure \___. Activity diagram for `EditCommand` execution
 
 ### 6.2.3 Delete Student Command
+
+The following describes the flow of how `DeleteCommand` is performed.
+
+1. Upon successfully parsing the user input, the `DeleteCommand#execute(Model model)` is called which checks whether
+the specified `Index` is a valid index based on the `UniqueStudentList`, in the case where it is invalid, a `CommandException` is thrown and no student will be deleted.
+2. Otherwise, the `Student` at the specified valid `Index` is then removed from the `UniqueStudentList` using the `Model#deleteStudent(Student target)` method.
+3. The specified student is deleted from the `UniqueStudentList` and a success message is shown in the result display.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: A valid `Index` is one that is within the bounds of the `UniqueStudentList`.
+
+</div>
 
 ### 6.2.4 Find Student Command
 
@@ -333,13 +384,15 @@ Figure 5.1.5.2. Activity diagram for `OverdueCommand` execution
 
 ### 6.3 Student academic details features
 
+This section describes some key details on how academic details features are implemented.
+
 #### 6.3.1 Student questions features
 
-The student questions feature keeps track of questions raised by a student to his tutor. The features comprises of the following commands:
+The student questions feature keeps track of questions raised by a student to his tutor. It comprises of the following commands:
 
-* `AddQuestionCommand` - Adds a question to a specified student
-* `SolveQuestionCommand` - Marks a specified question from a specified student as solved
-* `DeleteQuestionCommand` - Deletes a specified question from a specified student
+* `AddQuestionCommand` - Adds a question to a specified student.
+* `SolveQuestionCommand` - Marks a specified question from a specified student as solved.
+* `DeleteQuestionCommand` - Deletes a specified question from a specified student.
 
 ##### 6.3.1.1 Add Question Command
 
@@ -415,29 +468,120 @@ Figure 5.2.3.2. Activity diagram for `DeleteQuestionCommand` execution
 
 #### 6.3.2 Student exam features
 
+The student exams feature keeps track of exam records of a student. It comprises of the following commands:
+
+* `AddExamCommand` - Adds a exam record to a specified student.
+* `DeleteExamCommand` - Deletes a specified exam record from a specified student.
+* `ExamStatsCommand` - Displays the exam statistics of a specified student in the form of a line graph.
+
+The structure of exam commands is as shown below:
+
+![ExamCommandClass](images/ExamCommandClassDiagram.png)
+
 ##### 6.3.2.1 Add exam command
+
+The following describes the flow of how `AddExamCommand` is performed.
+
+1. Upon successfully parsing the user input, `AddExamCommand#execute(Model model)` is called to check if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the exam will not be added.
+3. If the student exists, `AddExamCommand#execute(Model model)` checks if the student already has a similar exam recorded.
+4. A unique exam is defined solely by its `examName`. If a duplicate exam is found, a `CommandException` is thrown and the exam will not be added.
+5. If the exam is not a duplicate, `Student#getExams()` is called get the current list of exams of the specified student.
+6. The new exam is added into this current list and a new updated `Student` is created which is exactly the same characteristics of the specified student but with the updated exam list.
+7. `Model#setPerson(Student selectedStudent, Student updatedStudent)` is called to replace the student with the updated copy. A new `CommandResult` is returned with a success message showing the affected student and the exam added.
+8. The updated student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The sequence(insert image reference here) of how add exam operates is very similar to that of add question. 
 
 ##### 6.3.2.2 Delete exam command
 
+The following describes the flow of how `DeleteExamCommand` is performed.
+
+1. Upon successfully parsing the user input, `DeleteExamCommand#execute(Model model)` is called to check if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown.
+3. If the student exists, `DeleteExamCommand#execute(Model model)` checks if there is a exam at the specified position.
+4. If the exam does not exist, a `CommandException` is thrown.
+5. If the exam exists, `Student#getExams()` is called get the current list of exams of the specified student.
+6. `Model#setPerson(Student selectedStudent, Student updatedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the exam removed.
+7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Exams are specified based on the indexes of the list of exams shown on the academic view of student details.
+
+</div><br>
+
+The sequence(insert image reference here) of how add exam operates is very similar to that of delete question. 
+
 ##### 6.3.2.3 Exam Stats command
+
+The following describes the flow of how `ExamStatsCommand` is performed.
+
+1. Upon successfully parsing the user input, `ExamStatsCommand#execute(Model model)` is called to check if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and no exam statistics window will be shown.
+3. If the student exists, `ExamStatsCommand#execute(Model model)` gets the specified student from `sortedStudentList`. 
+4. A `CommandResult` with a non-null student input is returned and `MainWindow#handleExamStats(Student student)` is called.
+5. A new ExamStats display window will be opened showing a line graph representing the exam scores of the specified student.
+
+The following sequence diagram shows how the exam stats operation works.
+
+![ExamStatsSequenceDiagram](images/ExamStatsSequenceDiagram.png)
+
+Figure \___. Sequence diagram for `ExamStatsCommand` execution
+
+
+The following activity diagram summarises the flow of events when `ExamStatsCommand` is executed.
+
+![ExamStatsActivityDiagram](images/ExamStatsActivityDiagram.png)
+
+Figure \___. Activity diagram for `ExamStatsCommand` execution
+
 
 #### 6.3.3 Student attendance features
 
 ### 6.4 Schedule Command
 
-This section describes the operations that `ScheduleCommand` performs.
+This section describes the operations that `ScheduleViewCommand` performs.
 
-1. Upon successful parsing of the user input date into `LocalDate` , the `ScheduleCommand#execute(Model model)` method is called.
-2. The method `LocalDate#getDayOfWeek()` is then called on the `LocalDate` that is parsed from the user input to get the `dayOfWeek`.
-3. The `dayOfWeek` is then used to create a `Predicate<Student>` to check if the student has the same day as the date.
-4. Then the method `Model#updateFilteredPersonList(Predicate<Student>)` is then called to filter students based on predicate created in **Step 3**.
-5. The StudentListPanel is then populated with the students that have lesson on the day.
+1. Upon successful parsing of the user input, the `ScheduleViewCommand#execute(Model)` method is called.
+2. The method `Model#setViewDate(LocalDate)` is then called to set the viewing date of the user in `SchedulePrefs`
+3. Similarly, the method `ModelsetViewMode(ScheduleViewMode)` is called next to set the viewing mode (weekly/daily) of the user in `SchedulePrefs`. 
+4. After which, the method `updateFilteredStudentList(Predicate)` is called to get all the students. 
+The `Predicate` argument will be `PREDICATE_SHOW_ALL_STUDENTS` which is a reusable final predicate variable.
+5. Thereafter, the method `Model#updateClassTimesToEvent()` will be called to translate all student's `ClassTime` to `LessonEvent`
+6. The `Scheduler` then calls the method `resetData(List<Event>)` with the updated `LessonEvent` objects.
+7. The `CommandResult` is then returned.
 
-The following activity diagram summarizes the flow of events when the `ScheduleCommand` is being executed:
+The following activity diagram summarizes the flow of events when the `ScheduleViewCommand` is being executed:
 
 ![ScheduleActivity](images/ScheduleActivityDiagram.png)
 
-Figure \___. Activity diagram for `ScheduleCommand` execution
+Figure 6.4.1 Activity diagram for `ScheduleCommand` execution
+
+The following sequence diagram illustrates to execution of the `ScheduleViewCommand`.
+
+![ScheduleSequence](images/ScheduleSequenceDiagram.png)
+
+Figure 6.4.2 Sequence diagram for `ScheduleCommand` execution
+
+:information_source: Figure 6.4.1 and 6.4.2 illustrates the `ScheduleCommand` execution within the `Logic` and `Model` Component.
+
+For the `Ui` component, a calendar using **jfxtras** library will be updated with the `LessonEvent` after the `CommandResult` is returned.
+The `'LessonEvent` is provided to the `Ui` by the `LogicManager` through the `Model` component.
+The `Model` in turns gets the `LessonEvent` from the `Scheduler` which keeps a list of updated events.
+The calendar with `LessonEvent` is then displayed to the user through the interface. This is assuming that no exception arises.
+
+### 6.4.1 Design Consideration
+
+The following are the various design choices made regarding the feature and alternatives that were considered prior to implementation.
+
+* Current Implementation:
+    * The current implementation creates `LessonEvent`s from the `studentList` update the to the `Ui` whenever the `ScheduleViewCommand` is called.
+    
+* Alternatives Considered:
+    * Creating a `Event` storage component that stores `LessonEvent` based on `Student`'s `ClassTime`. 
+    This would violate the data integrity of the `Student` we currently have and introduce additional complexity in 
+    maintaining both data structures.
 
 ### 6.5 Notes Command
 
@@ -460,40 +604,74 @@ Refer to the [DevOps guide](DevOps.md).
 
 **Target user profile**:
 
-* is a Singapore primary/secondary/junior college private tutors
+* is a Singapore primary/secondary/junior college 1 to 1 private tutors
 * has a need to manage a significant number of student contacts
 * has a need to manage administrative details of students
-* has a need to manage administrative details of lessons
+* has a need to manage academic details of students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Helps tutors organise administrative details of their students and lesson with ease and manage student needs better.
-
+**Value proposition**: Helps tutors organise administrative and academic details of their students with ease and manage student needs better.
 
 ## **Appendix B: User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                   | I want to …​                                          | So that I can…​                                                                     |
-| -------- | --------------------------| ----------------------------------------------------- | ----------------------------------------------------------------------              |
-| `* * *`  | user ready to use Reeve   | input my student’s details (Admin)                    | refer to instructions when I forget how to use the App                              |
-| `* * *`  | novice user               | be able to save meeting links for online lessons      | keep track of meeting links when my student cannot make it for a physical lesson    |                                                                       |
-| `* * *`  | expert user               | view my students' preferred tutoring location         | figure out how to get that location                                                 |
-| `* * *`  | expert user               | edit my students' personal details                    | get rid of outdated data                                                            |
-| `* * *`  | expert user               | view my student's details                             | refer to them when needed                                                           |
-| `* * *`  | expert user               | add details to each student                | add other miscellaneous details which can allow me to better cater to student needs |
-| `* * *`  | long-time user            | delete students' data                                 | remove irrelevant data of students who are no longer my tutees                      |
-| `* * *`  | expert user               | find a student's record                               | retrieve students' data with ease                                                   |
-
-*{More to be added}*
+| Priority | As a …​                               | I want to …​                                          | So that I can…​                                                                     |
+| -------- | --------------------------------------| ----------------------------------------------------- | ----------------------------------------------------------------------              |
+| `* * *`  | private tutor ready to use Reeve      | view a list of commands and how to use them           | learn how the application works or in case I forgot how some of the commands work   |
+| `* * *`  | private tutor ready to use Reeve      | add my students' details                              | store them and retrieve them whenever I need                                        |
+| `* * *`  | private tutor                         | view my students' preferred tutoring location         | figure out how to get that location                                                 |
+| `* * *`  | private tutor                         | edit my students' personal details                    | update outdated data                                                                |
+| `* * *`  | private tutor                         | view my student's details                             | refer to them when needed                                                           |
+| `* * *`  | private tutor                         | add additional details to each student                | add other miscellaneous details which can allow me to better cater to student needs |
+| `* * *`  | private tutor with many students      | find a student's record                               | retrieve students' data with ease                                                   |
+| `* * *`  | private tutor who is a long-term user | delete students' data                                 | remove irrelevant data of students who are no longer my tutees                      |
+|  `* *`   | private tutor                         | record my student's questions                         | help them with their queries after the lesson                                       |
+|  `* *`   | private tutor                         | input my student’s school test scores                 | keep track of their progress                                                        |
+|  `* *`   | private tutor                         | track my students' attendance                         | keep track of students' lesson records                                              |
+|  `* *`   | private tutor                         | input feedback to specific lessons                    | improve my capabilities as a tutor                                                  |
+|  `* *`   | private tutor                         | view a list of notes/reminders                        | keep track of key information easily                                                |
+|  `* *`   | private tutor                         | view my tutoring schedule for a particular day        | plan my plans accordingly                                                           |
+|   `*`    | private tutor                         | view my students' academic progress                   | know which students need more help                                                  |
+|   `*`    | private tutor  ready to use Reeve     | view the type of student details that are displayed   | focus on the details that I am currently concerned with                             |
 
 ## **Appendix C: Use Cases**
 
-(For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise)
+For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise. 
+Use cases also assume that whenever an invalid command is entered by the user, Reeve displays an error message. 
 
-**UC01: Adding a student**
+**UC01: Displaying help menu**
+
+**MSS**
+
+1. User enters a command to open help menu.
+2. Reeve displays a success message and the help menu.
+
+   Use case ends.
+
+**UC02: Toggling displays between administrative and academic details of students**
+
+**MSS**
+
+1. User enters a command to toggle display students details.
+2. Reeve displays a success message and the toggled display of students details.
+
+   Use case ends.
+   
+**UC03: Exiting the application**
+
+**MSS**
+
+1. User enters a command to exit the application.
+2. All processes of Reeve ends.
+
+   Use case ends.
+   
+
+**UC04: Adding a student**
 
 **MSS**
 
@@ -505,40 +683,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User provides input with missing compulsory fields.
-    * 1a1. Reeve requests for appropriate input.
+    * 1a1. Reeve displays an error message.
 
       Use case resumes from step 1.
 
 * 1b. User provides input with invalid format.
-    * 1b1. Reeve requests for appropriate input with valid format.
+    * 1b1. Reeve displays an error message.
 
       Use case resumes from step 1.
-
-**UC02: Searching for a student**
+  
+**UC05: Listing all students**
 
 **MSS**
 
-1.  User enters a command to find all students that match the given search parameter (name, school, year or subject).
-2.  Reeve displays all students matching the criteria.
+1. User enters a command to list students.
+2. Reeve displays the students list with student details.
 
-    Use case ends.
-
-**Extensions**
-
-* 1a. User provides input with invalid data into the search parameter.
-    * 1a1. Reeve displays erroneous field and expected format.
-
-      Use case resumes at step 1.
-* 1b. User provides input without a search parameter.
-    * 1a1. Reeve displays a message indicating a search parameter was not provided.
-
-      Use case resumes at step 1.
-* 1c. No students match the given criteria.
-    * 1c1. Reeve displays a message indicating no match found.
-
-      Use case ends.
-
-**UC03: Editing a student's details**
+   Use case ends.
+      
+**UC06: Editing a student's details**
 
 **MSS**
 
@@ -567,7 +730,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	  Use case resumes at step 2.
 
-**UC04: Deleting a student**
+**UC07: Deleting a student**
 
 **MSS**
 
@@ -589,16 +752,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC05: Listing all students**
+**UC08: Searching for a student**
 
 **MSS**
 
-1. User enters a command to list students.
-2. Reeve displays the students list with student details.
+1.  User enters a command to find all students that match the given search parameter (name, school, year or subject).
+2.  Reeve displays all students matching the criteria.
 
-   Use case ends.
+    Use case ends.
 
-**UC06: Clearing all student records**
+**Extensions**
+
+* 1a. User provides input with invalid data into the search parameter.
+    * 1a1. Reeve displays erroneous field and expected format.
+
+      Use case resumes at step 1.
+* 1b. User provides input without a search parameter.
+    * 1a1. Reeve displays a message indicating a search parameter was not provided.
+
+      Use case resumes at step 1.
+* 1c. No students match the given criteria.
+    * 1c1. Reeve displays a message indicating no match found.
+
+      Use case ends.
+
+**UC09: Clearing all student records**
 
 **MSS**
 
@@ -607,7 +785,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**UC07: Adding a question to a student**
+**UC00: Adding a question to a student**
 
 **MSS**
 
@@ -635,7 +813,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC07: Resolving a question from a student**
+**UC00: Resolving a question from a student**
 
 **MSS**
 
@@ -674,7 +852,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**UC07: Deleting a question from a student**
+**UC00: Deleting a question from a student**
 
 **MSS**
 
@@ -702,7 +880,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC07: Finding all students with overdue tuition fees**
+**UC00: Finding all students with overdue tuition fees**
 
 **MSS**
 
@@ -722,6 +900,85 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. Reeve displays an empty list.
 
     Use case ends.
+    
+**UC00: Adding an exam record to a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to add an exam record to a specific student in the list.
+4. Reeve updates the specified student in the list with the newly added exam record.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student index.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User inputs an exam record in an invalid format.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+      
+**UC00: Deleting an exam record from a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to delete a specific exam record from a specific student in the list.
+4. Reeve updates the specified student in the list with the removed question.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User provides input with an invalid exam record. 
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+      
+**UC00: Displaying exam statistics of a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to view the exam statistics on a specific student.
+4. Reeve displays a success message and the exam statistics.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+      
 
 ## **Appendix D: Non-Functional Requirements**
 
@@ -729,13 +986,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  The response to any use action should become visible within 5 seconds.
 3.  The program should be able to handle at least 100 students.
 4.  The graphical user interface should be easy to use for non-IT savvy users.
-
-*{More to be added}*
+5.  The program should be able to run even without internet connection.
 
 ## **Appendix E: Glossary**
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+The following table provides the definitions of the various terms used in this Developer Guide.
+
+Term | Definition
+--------|------------------
+Mainstream OS | Refers to Windows, Linux, Unix, OS-X.
+Private contact detail | A contact detail that is not meant to be shared with others.
 
 ## **Appendix F: Instructions for Manual Testing**
 
@@ -752,7 +1012,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample students. The window size may not be optimum.
 
 1. Saving window preferences
 

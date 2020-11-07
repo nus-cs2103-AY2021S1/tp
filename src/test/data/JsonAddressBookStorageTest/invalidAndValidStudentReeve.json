@@ -9,7 +9,7 @@
       "classTime": "1 1500-1700",
       "fee": "12.01",
       "paymentDate": "20/12/2020",
-      "additionalDetails": ["He's valid"]
+      "details": ["He's valid"]
     },
     "academic" : {
       "questions": [{
@@ -46,7 +46,7 @@
       "classTime": "1 1500-1700",
       "fee": "12.01",
       "paymentDate": "20/12/2020",
-      "additionalDetails": ["He's valid"]
+      "details": ["He's valid"]
     },
     "academic" : {
       "questions": [{

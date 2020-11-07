@@ -34,8 +34,10 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.OverdueCommand;
 import seedu.address.logic.commands.QuestionCommand;
+import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.SolveQuestionCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.ToggleStudentCardCommand;
 import seedu.address.logic.commands.notes.AddNoteCommand;
 import seedu.address.logic.commands.notes.DeleteNoteCommand;
 import seedu.address.logic.commands.notes.EditNoteCommand;
@@ -85,7 +87,8 @@ public class ReeveParserTest {
         EditCommand.EditAdminDescriptor editAdminDescriptor = new EditAdminDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " "
-                + StudentUtil.getEditStudentDescriptorDetails(editStudentDescriptor));
+                + StudentUtil.getEditStudentDescriptorDetails(editStudentDescriptor)
+                + StudentUtil.getEditAdminDescriptorDetails(editAdminDescriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, editStudentDescriptor, editAdminDescriptor), command);
     }
 
@@ -184,8 +187,6 @@ public class ReeveParserTest {
         assertEquals(new DeleteNoteCommand(INDEX_FIRST), deleteNoteCommand);
     }
 
-
-
     @Test
     public void parseCommand_attendance() throws Exception {
         assertTrue(parser.parseCommand("attendance add 1 d/19/02/2020 a/present f/attentive")
@@ -193,6 +194,18 @@ public class ReeveParserTest {
         assertTrue(parser.parseCommand("attendance delete 3 d/25/12/2020")
                 instanceof AttendanceCommand);
     }
+
+    @Test
+    public void parseCommand_schedule() throws Exception {
+        assertTrue(parser.parseCommand("schedule m/weekly d/2/11/2020") instanceof ScheduleCommand);
+        assertTrue(parser.parseCommand("schedule m/DAILY d/4/07/2018") instanceof ScheduleCommand);
+    }
+
+    @Test
+    public void parseCommand_toggle() throws Exception {
+        assertTrue(parser.parseCommand("toggle") instanceof ToggleStudentCardCommand);
+    }
+
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()

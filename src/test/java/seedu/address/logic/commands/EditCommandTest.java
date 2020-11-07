@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FEE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -31,7 +32,7 @@ import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
@@ -94,17 +95,17 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Student studentInSortedList = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student editedStudent = new StudentBuilder(studentInSortedList).withName(VALID_NAME_BOB)
+        Student editedStudent = new StudentBuilder(studentInSortedList).withSchool(VALID_SCHOOL_BOB)
                 .withFee(VALID_FEE_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build(),
+                new EditStudentDescriptorBuilder().withSchool(VALID_SCHOOL_BOB).build(),
                 new EditAdminDescriptorBuilder().withFee(VALID_FEE_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs(), getTypicalNotebook());
-        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
-
+        expectedModel.setStudent(studentInSortedList, editedStudent);
+        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -162,6 +163,19 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_clashingClassTimeUnfilteredList_failure() {
+        String clash = getClassTimeInputString();
+        assertEditClassTimeFailure(clash);
+    }
+
+    @Test
+    public void execute_clashingClassTimeFilteredList_failure() {
+        String clash = getClassTimeInputString();
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        assertEditClassTimeFailure(clash);
+    }
+
+    @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY,
                 new EditAdminDescriptorBuilder().build());
@@ -188,6 +202,23 @@ public class EditCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB,
                 new EditAdminDescriptorBuilder().build())));
+    }
+
+    /**
+     * Tests that a class time clash error is thrown.
+     */
+    private void assertEditClassTimeFailure(String classTimeInput) {
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().build();
+        EditAdminDescriptor adminDescriptor = new EditAdminDescriptorBuilder().withTime(classTimeInput).build();
+        EditCommand command = new EditCommand(INDEX_FIRST_PERSON, descriptor, adminDescriptor);
+
+        assertCommandFailure(command, model, Messages.MESSAGE_CLASHING_LESSON);
+    }
+
+    private String getClassTimeInputString() {
+        return model.getSortedStudentList().get(INDEX_SECOND_PERSON.getZeroBased())
+                .getClassTime()
+                .convertClassTimeToUserInputString();
     }
 
 }

@@ -19,7 +19,7 @@ public class SchedulePrefsTest {
 
     @Test
     public void setViewMode_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> schedulePrefs.setViewDateTime(null));
+        assertThrows(NullPointerException.class, () -> schedulePrefs.setViewDate(null));
     }
 
     @Test

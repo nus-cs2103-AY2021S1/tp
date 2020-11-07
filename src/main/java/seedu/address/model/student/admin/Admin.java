@@ -54,13 +54,22 @@ public class Admin {
     }
 
     /**
+     * Returns true if the given Admin objects have a clash in class time.
+     */
+    public boolean hasClashingClassTime(Admin other) {
+        return classTime.clashesWith(other.classTime);
+    }
+
+    /**
      * Get details of student formatted for GUI use.
      * @return formatted details.
      */
     public String getFormattedDetails() {
         String result = "";
+        int index = 1;
         for (Detail detail: details) {
-            result = result + "- " + detail.toString() + "\n";
+            result = result + index + ". " + detail.toString() + "\n";
+            index++;
         }
         return result;
     }
