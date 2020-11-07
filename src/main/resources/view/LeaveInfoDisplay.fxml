@@ -2,7 +2,22 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.Label?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane styleClass="status-bar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
+        </columnConstraints>
+        <Label fx:id="display" />
+    </GridPane>
     <ListView fx:id="leaveListView" VBox.vgrow="ALWAYS" />
+    <GridPane styleClass="status-bar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
+        </columnConstraints>
+        <Label fx:id="leavesTaken" />
+    </GridPane>
 </VBox>

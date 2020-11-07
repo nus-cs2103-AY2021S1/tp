@@ -8,6 +8,7 @@ import com.eva.ui.UiPart;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -17,11 +18,14 @@ import javafx.scene.layout.Region;
  */
 public class CommentListPanel extends UiPart<Region> {
     private static final String FXML = "CommentListPanel.fxml";
+    private static final String DISPLAY_NAME = "Comments";
 
     private final Logger logger = LogsCenter.getLogger(CommentListPanel.class);
 
     @FXML
     private ListView<Comment> commentListView;
+    @FXML
+    private Label display;
 
     /**
      * Creates a {@code CommentListPanel} with the given {@code ObservableList}.
@@ -30,6 +34,7 @@ public class CommentListPanel extends UiPart<Region> {
         super(FXML);
         commentListView.setItems(commentList);
         commentListView.setCellFactory(listView -> new CommentListViewCell());
+        display.setText(DISPLAY_NAME);
     }
 
     /**

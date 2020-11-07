@@ -1,6 +1,7 @@
 package com.eva.model.person.staff.leave;
 
 import static com.eva.commons.util.DateUtil.dateParsed;
+import static com.eva.commons.util.DateUtil.dateToString;
 import static com.eva.commons.util.DateUtil.getDaysBetween;
 import static java.util.Objects.requireNonNull;
 
@@ -96,9 +97,9 @@ public class Leave {
     @Override
     public String toString() {
         if (startDate.equals(endDate)) {
-            return String.format(SINGLE_DAY_LEAVE, leaveLength, startDate);
+            return String.format(SINGLE_DAY_LEAVE, leaveLength, dateToString(startDate));
         } else {
-            return String.format(MULTIPLE_DAY_LEAVE, leaveLength, startDate, endDate);
+            return String.format(MULTIPLE_DAY_LEAVE, leaveLength, dateToString(startDate), dateToString(endDate));
         }
     }
 }

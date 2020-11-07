@@ -9,7 +9,7 @@ public class IntegerUtil {
      * @param test int to test. Cannot be empty.
      */
     public static void requirePositive(int test) {
-        checkArgument(test > 0);
+        checkArgument(test >= 0);
     }
 
     /**
@@ -18,6 +18,6 @@ public class IntegerUtil {
      * @param test int to test. Cannot be empty.
      */
     public static void requirePositive(int test, String errorMessage) {
-        checkArgument(test > 0, errorMessage);
+        checkArgument(test >= 0, errorMessage);
     }
 }

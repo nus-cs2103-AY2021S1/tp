@@ -2,6 +2,8 @@ package com.eva.ui.profile.staff.view;
 
 import static com.eva.commons.util.DateUtil.dateToString;
 
+import java.time.LocalDate;
+
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.ui.UiPart;
 
@@ -32,6 +34,8 @@ public class LeaveInfoCard extends UiPart<Region> {
     private Label date;
     @FXML
     private Label duration;
+    @FXML
+    private Label status;
 
     /**
      * Creates a {@code LeaveInfoCard} with the given {@code Leave} and index to display.
@@ -40,7 +44,21 @@ public class LeaveInfoCard extends UiPart<Region> {
         super(FXML);
         this.leave = leave;
         date.setText(formatDate(leave));
-        duration.setText(leave.getLeaveLength() + " Days");
+        duration.setText(
+                leave.getLeaveLength() == 1 ? leave.getLeaveLength() + " Day" : leave.getLeaveLength() + " Days");
+
+        String statusString = getLeaveStatus();
+        status.setText(statusString);
+        switch (statusString) {
+        case "Approved":
+            status.setStyle("-fx-background-color: #DFEEC7;");
+            break;
+        case "On Current Leave":
+            status.setStyle("-fx-background-color: #FFF6D5;");
+            break;
+        default:
+            status.setStyle("-fx-background-color: #FFD1D5;");
+        }
     }
 
     /**
@@ -51,6 +69,22 @@ public class LeaveInfoCard extends UiPart<Region> {
                         ? dateToString(leave.startDate)
                         : String.format(
                         "%s to %s", dateToString(leave.startDate), dateToString(leave.endDate));
+    }
+
+    /**
+     * Returns the status of the leave with relation to the date the user is on.
+     */
+    private String getLeaveStatus() {
+        LocalDate today = LocalDate.now();
+        LocalDate startLeaveDate = leave.getStartDate();
+        LocalDate endLeaveDate = leave.getEndDate();
+        if (today.isBefore(startLeaveDate)) {
+            return "Approved";
+        } else if (today.isAfter(endLeaveDate)) {
+            return "Taken";
+        } else {
+            return "On Current Leave";
+        }
     }
 
     @Override

@@ -47,6 +47,10 @@ public class Email {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String toDisplay() {
+        return "Email " + value;
+    }
+
     @Override
     public String toString() {
         return value;

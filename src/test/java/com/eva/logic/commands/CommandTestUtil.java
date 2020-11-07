@@ -19,6 +19,8 @@ import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
 import com.eva.model.person.NameContainsKeywordsPredicate;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.staff.Staff;
 import com.eva.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -95,6 +97,7 @@ public class CommandTestUtil {
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
+
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage} and assumes that the command changes panel in the model.
@@ -121,6 +124,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getPersonDatabase());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s eva database.
@@ -133,6 +137,34 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the Applicant at the given {@code targetIndex} in the
+     * {@code model}'s eva database.
+     */
+    public static void showApplicantAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredApplicantList().size());
+
+        Applicant applicant = model.getFilteredApplicantList().get(targetIndex.getZeroBased());
+        final String[] splitName = applicant.getName().fullName.split("\\s+");
+        model.updateFilteredApplicantList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredApplicantList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s eva database.
+     */
+    public static void showStaffAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStaffList().size());
+
+        Staff staff = model.getFilteredStaffList().get(targetIndex.getZeroBased());
+        final String[] splitName = staff.getName().fullName.split("\\s+");
+        model.updateFilteredStaffList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredStaffList().size());
     }
 
 }

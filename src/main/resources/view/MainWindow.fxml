@@ -15,7 +15,7 @@
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Eva" minWidth="800" minHeight="600" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/eva1.png" />
   </icons>
   <scene>
     <Scene>
@@ -27,7 +27,7 @@
       <VBox fx:id="mainWindow">
         <SplitPane VBox.vgrow="ALWAYS">
           <VBox fx:id="sideBar" VBox.vgrow="ALWAYS" SplitPane.resizableWithParent="false"
-                minWidth="180" focusTraversable="false">
+                minWidth="180" maxWidth="180" focusTraversable="false">
             <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
               <Menu mnemonicParsing="false" text="File">
                 <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -36,7 +36,7 @@
                 <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
               </Menu>
             </MenuBar>
-            <Label fx:id="EvaLogo" VBox.vgrow="NEVER" text="EVA" />
+            <Label fx:id="EvaLogo" VBox.vgrow="NEVER" text="EVA"/>
             <StackPane fx:id="sideBarPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
           <VBox>

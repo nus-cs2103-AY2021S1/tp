@@ -4,6 +4,7 @@ import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -103,6 +104,18 @@ public class UniqueLeaveList implements Iterable<Leave> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Leave> asUnmodifiableObservableList() {
+        internalList.sort(new Comparator<Leave>() {
+            @Override
+            public int compare(Leave o1, Leave o2) {
+                if (o1.getStartDate().isBefore(o2.getStartDate())) {
+                    return -1;
+                } else if (o1.getStartDate().isAfter(o2.getStartDate())) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        });
         return internalUnmodifiableList;
     }
 

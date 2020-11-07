@@ -29,8 +29,10 @@ import com.eva.model.person.Phone;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
+import com.eva.model.person.staff.leave.LeaveTaken;
 import com.eva.model.tag.Tag;
 
 
@@ -58,8 +60,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the eva database.";
-    public static final String MESSAGE_NO_APPLICANTORSTAFF = "Please key in s- or a- to indicate "
-            + "if you want to edit applicant or staff";
 
     private String personType;
     private final Index index;
@@ -138,11 +138,12 @@ public class EditCommand extends Command {
         } else if (personToEdit instanceof Applicant) {
             ApplicationStatus applicationStatus = ((Applicant) personToEdit).getApplicationStatus();
             Optional<InterviewDate> updatedInterviewDate = editPersonDescriptor.getInterviewDate();
+            Application application = ((Applicant) personToEdit).getApplication();
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                    updatedTags, newComments, updatedInterviewDate, applicationStatus);
+                    updatedTags, newComments, updatedInterviewDate, applicationStatus, application);
+        } else {
+            throw new CommandException("Invalid personType");
         }
-        return new Person(updatedName, updatedPhone,
-                updatedEmail, updatedAddress, updatedTags, newComments);
     }
 
     /**
@@ -199,11 +200,13 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private LeaveTaken leaveTaken;
         private Set<Tag> tags;
         private Set<Comment> comments;
         private Set<Leave> leaves;
         private Optional<InterviewDate> interviewDate;
         private ApplicationStatus applicationStatus;
+        private String title;
 
         public EditPersonDescriptor() {}
 
@@ -216,6 +219,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setLeaveTaken(toCopy.leaveTaken);
             setTags(toCopy.tags);
             setComments(toCopy.comments);
             setLeaves(toCopy.leaves);
@@ -227,7 +231,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, comments,
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, leaveTaken, tags, comments,
                     leaves, applicationStatus, interviewDate);
         }
 
@@ -261,6 +265,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setLeaveTaken(LeaveTaken leaveTaken) {
+            this.leaveTaken = leaveTaken;
+        }
+
+        public Optional<LeaveTaken> getLeaveTaken() {
+            return Optional.ofNullable(leaveTaken);
         }
 
         /**
@@ -317,6 +329,13 @@ public class EditCommand extends Command {
             return this.applicationStatus;
         }
 
+        public String getCommentTitle() {
+            this.comments.forEach(comment -> {
+                    this.title = comment.getTitle().getTitleDescription();
+                }
+            );
+            return this.title;
+        }
 
         @Override
         public boolean equals(Object other) {

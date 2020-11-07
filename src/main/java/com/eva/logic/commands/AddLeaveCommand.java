@@ -5,7 +5,6 @@ import static com.eva.commons.core.PanelState.STAFF_PROFILE;
 import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static com.eva.logic.parser.CliSyntax.PREFIX_DATE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE;
-import static com.eva.model.Model.PREDICATE_SHOW_ALL_STAFFS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -88,9 +87,7 @@ public class AddLeaveCommand extends Command {
             sb.append(leave.toString()).append(", ");
         }
         model.setStaff(staffToTakeLeave, staffToTakeLeave); //force update model to update leave list.
-        if (panelState.equals(STAFF_LIST)) {
-            model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
-        } else if (panelState.equals(STAFF_PROFILE)) {
+        if (panelState.equals(STAFF_PROFILE)) {
             Staff staffToView = lastShownList.get(targetIndex.getZeroBased());
             model.setCurrentViewStaff(new CurrentViewStaff(staffToView, targetIndex));
         }

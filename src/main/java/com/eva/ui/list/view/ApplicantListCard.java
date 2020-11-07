@@ -72,7 +72,7 @@ public class ApplicantListCard extends UiPart<Region> {
         email.setText(applicant.getEmail().value);
         applicationStatus.setText(applicant.getApplicationStatus().toString());
         interviewDate.setText(interviewDateToDisplay(applicant.getInterviewDate()));
-        tags.getChildren().add(new Label("applicant"));
+        tags.getChildren().add(new Label("Applicant"));
         applicant.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

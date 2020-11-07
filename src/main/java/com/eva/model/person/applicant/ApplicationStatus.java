@@ -3,14 +3,13 @@ package com.eva.model.person.applicant;
 import static com.eva.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
-
-
 /**
  * Represents the application status of an applicant - accepted, rejected or processing.
  */
 public class ApplicationStatus {
     public static final String MESSAGE_CONSTRAINTS =
-            "Application Status should only contain the words: processing, accepted, rejected. It should not be blank";
+            "Application Status should only contain the words: "
+                    + "received, processing, accepted, rejected. It should not be blank";
     private PossibleApplicationStatus value;
 
     /**
@@ -62,8 +61,25 @@ public class ApplicationStatus {
         this.value = PossibleApplicationStatus.REJECTED;
     }
 
+    public PossibleApplicationStatus getValue() {
+        return this.value;
+    }
+
     @Override
     public String toString() {
         return value.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ApplicationStatus that = (ApplicationStatus) o;
+        return value == that.value;
+    }
+
 }

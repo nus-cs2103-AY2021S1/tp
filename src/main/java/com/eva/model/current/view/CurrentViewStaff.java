@@ -33,20 +33,8 @@ public class CurrentViewStaff implements ReadOnlyCurrentViewStaff {
         this.index = Index.fromZeroBased(0);
     }
 
-    /*/**
-     * Creates a currentView with the current viewing staff.
-     */
-    /*public CurrentViewStaff(Staff currentView) {
-        requireNonNull(currentView);
-        this.currentView = currentView;
-        this.leaves = new UniqueLeaveList();
-        this.leaves.fill(currentView.getLeaves());
-        this.comments = new UniqueCommentsList();
-        this.comments.fill(currentView.getComments());
-    }*/
-
     /**
-     * Creates a currentView with the current viewing staff index.
+     * Creates a currentView with the current viewing staff.
      */
     public CurrentViewStaff(Staff currentView, Index index) {
         requireNonNull(currentView);

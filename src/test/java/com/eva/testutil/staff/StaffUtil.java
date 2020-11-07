@@ -1,4 +1,4 @@
-package com.eva.testutil;
+package com.eva.testutil.staff;
 
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;

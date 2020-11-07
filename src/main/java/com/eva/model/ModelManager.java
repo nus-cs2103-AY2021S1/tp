@@ -21,6 +21,7 @@ import com.eva.model.current.view.ReadOnlyCurrentViewApplicant;
 import com.eva.model.current.view.ReadOnlyCurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
@@ -191,13 +192,13 @@ public class ModelManager implements Model {
     @Override
     public void addStaffLeave(Staff target, Leave leave) {
         target.getLeaves().add(leave);
-        target.getLeaveBalance().deductLeaveBalance(leave.getLeaveLength());
+        target.getLeaveTaken().addLeaveTaken(leave.getLeaveLength());
     }
 
     @Override
     public void deleteStaffLeave(Staff target, Leave leave) {
         target.getLeaves().remove(leave);
-        target.getLeaveBalance().addLeaveBalance(leave.getLeaveLength());
+        target.getLeaveTaken().deductLeaveTaken(leave.getLeaveLength());
     }
 
     @Override
@@ -312,6 +313,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setApplicationStatus(Applicant applicant, ApplicationStatus status) {
+        applicant.setApplicationStatus(status);
+    }
+
+    @Override
     public void deleteApplication(Applicant target, Application toSet) {
         target.setApplication(toSet);
     }
@@ -395,7 +401,25 @@ public class ModelManager implements Model {
                 && staffDatabase.equals(other.staffDatabase)
                 && applicantDatabase.equals(other.applicantDatabase)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredStaffs.equals(other.filteredStaffs)
+                && filteredApplicants.equals(other.filteredApplicants);
+
     }
 
+    @Override
+    public String toString() {
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append(getApplicantDatabase()).append("\n")
+                .append(getStaffDatabase()).append("\n")
+                .append(getPersonDatabase()).append("\n")
+                .append(getUserPrefs()).append("\n")
+                .append(getCurrentViewStaff()).append("\n")
+                .append(getCurrentViewApplicant()).append("\n")
+                .append(getFilteredApplicantList()).append("\n")
+                .append(getFilteredStaffList()).append("\n")
+                .append(getFilteredPersonList()).append("\n");
+        return toReturn.toString();
+
+    }
 }

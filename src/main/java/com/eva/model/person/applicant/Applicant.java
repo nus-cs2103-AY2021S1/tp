@@ -39,6 +39,24 @@ public class Applicant extends Person {
     }
 
     /**
+     * Creates of an applicant object with a fixed interview date.
+     */
+    public Applicant(Name name,
+                     Phone phone,
+                     Email email,
+                     Address address,
+                     Set<Tag> tags,
+                     Set<Comment> comments,
+                     Optional<InterviewDate> interviewDate,
+                     ApplicationStatus status,
+                     Application application) {
+        super(name, phone, email, address, tags, comments);
+        this.interviewDate = interviewDate;
+        this.applicationStatus = status;
+        this.application = application;
+    }
+
+    /**
      * Creates of an applicant object without a fixed interview date.
      */
     public Applicant(Name name,
@@ -56,6 +74,7 @@ public class Applicant extends Person {
 
     /**
      * Creates an Applicant object from a Person Object.
+     *
      * @param person
      * @param interviewDate
      * @param status
@@ -65,6 +84,8 @@ public class Applicant extends Person {
                 person.getTags(), person.getComments(), Optional.ofNullable(interviewDate), status);
         this.application = new Application();
     }
+
+
 
     /**
      * Sets the application status of the specific applicant to be accepted.
@@ -102,13 +123,39 @@ public class Applicant extends Person {
         return applicationStatus;
     }
 
+    public void setApplicationStatus(ApplicationStatus status) {
+        this.applicationStatus = status;
+    }
+
+    public Application getApplication() {
+        return application;
+    }
+
     public void setApplication(Application application) {
         assert application != null;
         this.application = application;
     }
 
-    public Application getApplication() {
-        return application;
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Applicant)) {
+            return false;
+        }
+
+        Applicant otherApplicant = (Applicant) other;
+        return otherApplicant.getName().equals(getName())
+                && otherApplicant.getPhone().equals(getPhone())
+                && otherApplicant.getEmail().equals(getEmail())
+                && otherApplicant.getAddress().equals(getAddress())
+                && otherApplicant.getTags().equals(getTags())
+                && otherApplicant.getApplicationStatus().equals(getApplicationStatus())
+                && otherApplicant.getInterviewDate().equals(getInterviewDate())
+                && otherApplicant.getApplication().equals(getApplication());
+
     }
 
     @Override
@@ -124,7 +171,7 @@ public class Applicant extends Person {
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         builder.append(" Interview Date: ")
-                .append(getInterviewDate().isEmpty() ? "Interview date not set yet" : getInterviewDate())
+                .append(getInterviewDate().isEmpty() ? "Not set yet" : getInterviewDate().get())
                 .append(" Application Status: ")
                 .append(getApplicationStatus());
         return builder.toString();

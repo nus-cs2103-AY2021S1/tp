@@ -3,7 +3,6 @@ package com.eva.logic.commands;
 import static com.eva.commons.core.PanelState.STAFF_LIST;
 import static com.eva.commons.core.PanelState.STAFF_PROFILE;
 import static com.eva.logic.commands.EditCommand.MESSAGE_DUPLICATE_PERSON;
-import static com.eva.logic.commands.EditCommand.MESSAGE_EDIT_PERSON_SUCCESS;
 import static com.eva.logic.commands.EditCommand.createEditedPerson;
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
@@ -44,6 +43,8 @@ public class EditStaffCommand extends Command {
 
     public static final String MESSAGE_WRONG_PANEL = "Please switch to staff list panel "
             + "via 'list s-' to edit staff";
+    public static final String MESSAGE_EDIT_STAFF_SUCCESS = "Edited Person: %1$s";
+
 
     private final Index index;
     private final EditCommand.EditPersonDescriptor editPersonDescriptor;
@@ -90,7 +91,25 @@ public class EditStaffCommand extends Command {
             Staff staffToView = lastShownList.get(index.getZeroBased());
             model.setCurrentViewStaff(new CurrentViewStaff(staffToView, index));
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson),
+        return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedPerson),
                 false, false, true);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditStaffCommand)) {
+            return false;
+        }
+
+        // state check
+        EditStaffCommand e = (EditStaffCommand) other;
+        return index.equals(e.index)
+                && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 }
