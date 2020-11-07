@@ -290,8 +290,8 @@ The favourite/unfavourite mechanism is faciliated by `LogicManager` and `ModelMa
 A `isFavourite` boolean attribute is stored internally in `Flashcard`, to keep track of whether the flashcard is favourited. When the user favourites a flashcard, `isFavourite` is set to true, and set to false otherwise. 
  
 It implements the following operations:
-* `Flashcard#isFavourite()` - Checks whether the current flashcard is favourited
-* `FavCommand#createFavouriteFlashcard(Flashcard flashcardToFavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `true`
+* `Flashcard#isFavourite()` - Checks whether the current flashcard is favourited.
+* `FavCommand#createFavouriteFlashcard(Flashcard flashcardToFavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `true`.
 * `UnfavCommand#createUnfavouriteFlashcard(Flashcard flashcardToUnfavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `false`.
 
 Given below is an example usage scenario and how the favourite/unfavourite mechanism behaves at each step.
@@ -317,11 +317,6 @@ Step 3: The user executes `unfav 1` command to unfavourite the 1st flashcard in 
 `unfav` Command then calls `ModelManager#setFlashcard(fav1, f1)` to replace the current flashcard, `fav1`,  with the unfavourited flashcard, `f1`.
 
 ![FavUnfavState2](images/FavUnfavState2.png)
-
-The following sequence diagram shows how the `unfav` operation works:
-
-![UnfavouriteSequenceDiagram](images/UnfavouriteSequenceDiagram.png)
-
 
 The following activity diagram summarizes what happens when a user executes a favourite/unfavourite command:
 
