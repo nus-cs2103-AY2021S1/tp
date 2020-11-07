@@ -1,13 +1,17 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -59,7 +63,6 @@ public class PersonDashboard extends UiPart<Region> {
         email.setText("Email: " + this.person.getEmail().value);
         address.setWrappingWidth(500);
         address.setText("Address: " + this.person.getAddress().value);
-        /*
         header1.setText("Projects: ");
         AtomicInteger index = new AtomicInteger();
         index.getAndIncrement();
@@ -71,9 +74,9 @@ public class PersonDashboard extends UiPart<Region> {
         AtomicInteger index2 = new AtomicInteger();
         index.getAndIncrement();
         tasks.setText(this.person.getTasks().stream()
-                .sorted(Comparator.comparing(task -> task.taskName))
+                .sorted(Comparator.comparing(Task::getTaskName))
                 .map(Task::getTaskName).reduce("", (a, b) -> a + index2.getAndIncrement() + ". " + b + "\n"));
-         */
+
     }
 
     @Override
