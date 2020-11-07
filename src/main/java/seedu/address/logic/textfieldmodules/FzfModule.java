@@ -7,7 +7,6 @@ import java.util.function.Supplier;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -47,13 +46,13 @@ public class FzfModule {
 
     /**
      * Attaches FZF module to a TextField component which generates suggestions from the supplied list
-     * @param tf  TextField to be attached.
+     * @param textField  TextField to be attached.
      * @param supplier  Supplies the list from which suggestions will be generated
      */
-    public static FzfModule attachTo(TextField tf, Supplier<List<String>> supplier) {
-        requireNonNull(tf);
+    public static FzfModule attachTo(TextField textField, Supplier<List<String>> supplier) {
+        requireNonNull(textField);
         requireNonNull(supplier);
-        return new FzfModule(tf, supplier);
+        return new FzfModule(textField, supplier);
     }
 
     private void setupFzf() {
@@ -79,11 +78,7 @@ public class FzfModule {
                     menu.hide();
                 }
                 if (!menu.isShowing()) {
-                    if (Thread.currentThread().getName() == "Test worker") {
-                        Platform.runLater(() -> menu.show(attachedTextField, menuX, menuY));
-                    } else {
-                        menu.show(attachedTextField, menuX, menuY);
-                    }
+                    menu.show(attachedTextField, menuX, menuY);
                 }
             }
         });
