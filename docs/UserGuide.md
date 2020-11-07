@@ -61,7 +61,7 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
 
 # 1. Overview <a id="1-overview"></a>
 Welcome to the Wishful Shrinking User Guide! In this section, you will be given an overview of what Wishful
- Shrinking is about and what you can get out of reading this document.
+ Shrinking is about and what you can get out of reading this document. <br><br>
 
 
 ## 1.1 Introduction <a id="11-introduction"></a>
@@ -74,14 +74,14 @@ Wishful Shrinking is your desktop diet manager. It is an app that helps you **ma
 
 Wishful Shrinking targets **office workers** who tend to discount healthy eating. Office workers are also more
  familiar with desktop applications and typing and correspondingly, Wishful Shrinking is optimized for fast and efficient typers as it uses a Command Line Interface (CLI) with the added beauty of a Graphical User Interface (GUI).
- Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.
+ Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems. <br><br>
 
 ## 1.2 Purpose <a id="12-purpose"></a>
 This user guide provides in-depth documentation on the **installation process, step-by-step instructions** for
- each feature and **troubleshooting recommendations**.
+ each feature and **troubleshooting recommendations**. <br><br>
 
 # 2. About the User Guide <a id="2-about-the-user-guide"></a>
-This section will explain the symbols in the user guide, and the format and parameters of commands.
+This section will explain the symbols in the user guide, and the format and parameters of commands. <br><br>
 
 ## 2.1 Symbols <a id="21-symbols"></a>
 
@@ -150,11 +150,13 @@ The image below is a labeled diagram of each of Wishful Shrinking's components.<
    <br><br><br>
    
    Below is a brief explanation on each of the components:
-   * **List of recipes/ingredients/consumption**: The left window will display either a list of recipes, a list of
-    ingredients or the consumption list depending on your input. In the image above, it is displaying the Recipe
-     List.
-   * **Command Result**: The Command Result box will show the result of your input into the Command Box.
-   * **Command Box**: Here is where you will type all your commands.
+   
+Component | Explanation
+--------|------------------
+**Recipe/Fridge/Consumption tabs** | These are the tabs for recipe-related commands, fridge-related commands and consumption-related commands. The coloured tab shows which tab you are currently in. <br><br> By default, you will be in the **Recipes** tab whenever you start up Wishful Shrinking. When you execute a command, you will automatically be switched to the related tab. <br><br> In the image above, the user is currently in the Recipes tab. 
+**List of recipes/ingredients/consumption** | The left window will display either a list of recipes, a list of ingredients or the consumption list depending on your input. <br><br> In the image above, it is displaying the Recipe List.
+ **Command Result** | The Command Result box will show the result of your input into the Command Box.
+ **Command Box** | Here is where you will type all your commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -191,6 +193,11 @@ The image below is a labeled diagram of each of Wishful Shrinking's components.<
 
 ## 5. Commands <a id="5-commands"></a>
 
+<div markdown="span" class="alert alert-primary">:memo: **Note:**
+If multiple prefixes and values are specified when the format only specifies one, then the only last value is
+ accepted. e.g. `addF i/apple i/banana` only banana is accepted
+</div> 
+
 ## 5.1 Recipe-related Commands <a id="51-recipe-related-commands"></a>
 
 The Recipe-related commands include [`addR`](#add-recipe), [`recipes`](#list-recipe), [`deleteR`](#delete-recipe
@@ -210,10 +217,12 @@ Adds a recipe to Recipe List.
 Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES [img/IMAGE] inst
 /INSTRUCTION[. MORE INSTRUCTIONS] [t/TAG]...`
 
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+* `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-` and after the dash, only accepts alphanumeric characters
-, forward slashes and full stops.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should be
+   greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
@@ -310,10 +319,12 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 
 * Edits the recipe at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Recipe List.
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+* `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-` and after the dash, only accepts alphanumeric characters
-, forward slashes and full stops.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+   be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
@@ -334,10 +345,6 @@ Multiple ingredients are separated by `,`.
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
   No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
   
-
-<div markdown="span" class="alert alert-primary">:memo: **Note:**
-Multiple ingredients are separated by `,`.
-</div>
  
 * All fields are optional, but **at least** the recipe index and one of the fields must be present to edit
      a recipe.    
@@ -428,6 +435,7 @@ Format: `searchR [i/INGREDIENT [ MORE INGREDIENTS]] [n/NAME] [t/TAG [ MORE TAGS]
 * The search will match partial keywords. e.g. `sandw` will match `sandwich`.
 * The order of the keywords does not matter. e.g. Ham Salad will match Salad with Ham.
 * All fields are optional, but **at least one** of the fields must be present to search by recipe ingredient(s), recipe name or recipe tag(s).
+* If more than one field is specified, Wishful Shrinking will only search by the **first** field stated.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
     Multiple ingredients and tags are separated by a space and not a comma.
 </div>
@@ -490,10 +498,12 @@ Adds an ingredient to the Fridge.
 
 Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+* `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-` and after the dash, only accepts alphanumeric
- characters, a single forward slash to represent fractions or a single full stop to represent decimal numbers.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+   be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.
@@ -552,10 +562,12 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 
 * Edits the ingredient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Ingredient List.
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+* `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before the dash and after, only accepts alphanumeric characters
-, forward slashes and full stops.
+`QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
+ -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+   be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.
@@ -662,7 +674,7 @@ Examples:
 Shows the list of recipes that you have eaten, including the recipe's name and calorie. The total calories
  consumed so far is displayed in the command result.
 <br>  The image below is what Wishful Shrinking looks like after you have listed all recipes that you have eaten. <br><br>
-<img src="images/feature/consumption/CaloriesImage.png" width="550" height="300">
+<img src="images/feature/consumption/ListConsumptionImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `calories`
@@ -678,7 +690,7 @@ Format: `calories`
 Deletes the specified recipe from consumption list.
 
 <br>  The image below is what Wishful Shrinking looks like after you have deleted a recipe from the consumption list. <br><br>
-<img src="images/feature/consumption/DeleteCalorieImage.png" width="550" height="300">
+<img src="images/feature/consumption/DeleteConsumptionImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `deleteC INDEX`
@@ -716,6 +728,11 @@ Shows a message explaining how to access the help page.
 <br><br><br>
 
 Format: `help`
+
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
+   To go back to the app, simply click on the Wishful Shrinking tab at the top of the window.
+</div>
+
 <br><br><br>
 
 ### 5.4.2 Exiting the program : `exit` <a id="exit"></a>

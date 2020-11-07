@@ -62,7 +62,7 @@ public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
             editRecipeDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_INGREDIENT).isPresent()) {
-            String ingredientString = ParserUtil.parseIngredient(argMultimap
+            String ingredientString = ParserUtil.parseIngredients(argMultimap
                     .getValue(PREFIX_INGREDIENT).get());
             ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
             editRecipeDescriptor.setIngredient(ingredients);

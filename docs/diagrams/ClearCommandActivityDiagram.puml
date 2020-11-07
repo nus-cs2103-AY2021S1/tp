@@ -1,0 +1,18 @@
+@startuml
+start
+:user executes clear command: clear;
+:Logic executes clear command;
+:ClearCommandParser parses the command: clear;
+
+if () then ([no extra arguments])
+:execute ClearCommand;
+
+:all item in the list is being clear;
+
+else ([include extra arguments])
+    :throw parse exception;
+
+endif
+stop
+
+@enduml

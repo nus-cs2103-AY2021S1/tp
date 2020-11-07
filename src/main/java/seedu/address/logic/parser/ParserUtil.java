@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.ingredient.EditIngredientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Calories;
@@ -53,12 +54,44 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String ingredients} into a {@code Ingredient}.
+     * Parses a {@code String ingredient} into a {@code Ingredient}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code ingredients} is invalid.
      */
     public static String parseIngredient(String ingredients) throws ParseException {
+        requireNonNull(ingredients);
+        String trimmedIngredient = ingredients.trim();
+        String ingName = trimmedIngredient;
+        if (trimmedIngredient.equals("")) {
+            throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedIngredient.indexOf(",") != -1) {
+            throw new ParseException(EditIngredientCommand.MESSAGE_ONE_INGREDIENT);
+        }
+        String ingQuantity = "";
+        int indexOfDash = trimmedIngredient.indexOf("-");
+        if (indexOfDash != -1) {
+            ingName = trimmedIngredient.substring(0, indexOfDash).trim();
+            ingQuantity = trimmedIngredient.substring(indexOfDash + 1).trim();
+        }
+        if ((ingName != "" && !ingName.matches(VALIDATION_REGEX))) {
+            throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
+        }
+
+        if (ingQuantity != "") {
+            parseQuantity(ingQuantity);
+        }
+        return trimmedIngredient;
+    }
+
+    /**
+     * Parses a {@code String ingredients} into a {@code Ingredient}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ingredients} is invalid.
+     */
+    public static String parseIngredients(String ingredients) throws ParseException {
         requireNonNull(ingredients);
         String[] ingredientsArr = ingredients.split(",");
         if (ingredientsArr.length == 0) {
@@ -66,25 +99,7 @@ public class ParserUtil {
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < ingredientsArr.length; i++) {
-            String trimmedIngredient = ingredientsArr[i].trim();
-            String ingName = trimmedIngredient;
-            if (trimmedIngredient.equals("")) {
-                throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
-            }
-            String ingQuantity = "";
-            int indexOfDash = trimmedIngredient.indexOf("-");
-            if (indexOfDash != -1) {
-                ingName = trimmedIngredient.substring(0, indexOfDash).trim();
-                ingQuantity = trimmedIngredient.substring(indexOfDash + 1).trim();
-            }
-            if ((ingName != "" && !ingName.matches(VALIDATION_REGEX))) {
-                throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
-            }
-
-            if (ingQuantity != "") {
-                parseQuantity(ingQuantity);
-            }
-
+            String trimmedIngredient = parseIngredient(ingredientsArr[i]);
             if (i != ingredientsArr.length - 1) {
                 sb.append(trimmedIngredient + ", ");
             } else {
