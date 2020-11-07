@@ -69,4 +69,5 @@ destroy DeleteContactCommand
 
 [<--LogicManager
 deactivate LogicManager
+
 @enduml
