@@ -299,7 +299,6 @@ changes in the ENTITYBook and updates the GUI.
 
 ![Delete Command Sequence Diagram](images/deleteCommandDiagram/deleteCommandSequenceDiagram.png)
 
-
 ##### 5.1 Delete Bidder Command
 
 > The `Logic` portion of the sequence diagram shown subsequently is truncated to give more focus on the `Model` as the
@@ -333,6 +332,24 @@ containing the attribute of`sellerId`.
 
 ![Delete Seller Command Sequence Diagram](images/deleteCommandDiagram/deleteSellerCommandSequenceDiagram.png)
 
+ ##### Design Considerations
+ 
+  Due to time constraint we decided to forgo certain attributes and features which would have distinctly separated `Bidder`
+  and `Seller` better (such as winning `bidder`). The implementation was designed with future extensions in mind. 
+  This consideration applies to all `Commands` pertaining to `Bidder` and `Seller`, not just `Delete`.
+  
+ 1. Alternative 1 (current choice): Having `DeleteBidderCommand` and `DeleteSellerCommand` extends from `Command` rather than
+ a common command such as `DeleteClientCommand`. 
+ 
+    - Pros: 
+        - Less coupling if an extension is required in the future
+        - Less refactoring was required from original implementation of AB3
+        
+    - Cons: 
+        - Arguably less of an OOP design
+        - Unable to exploit polymorphism even though both `Bidder` and `Seller` have a degree of similarity between both
+        - Increases code complexity in `AddressBookParser`
+        
 { end of Delete section written by: Kor Ming Soon }
 ##### 5.3 Delete Property Command
 ![Delete Property Command Sequence Diagram](images/deleteCommandDiagram/deletePropertyCommandSequenceDiagram.png)
@@ -341,6 +358,9 @@ containing the attribute of`sellerId`.
 #### 6. List
 
 ### UI Navigation Implementation
+
+This section explains the Ui 
+
 #### 1. Automated `TabBar` Switching
 #### 2. Calendar Navigation
 #### 3. Key-press UI Navigation
