@@ -277,12 +277,19 @@ Format: `i-set i/INGREDIENT_NAME m/AMOUNT`
 * Sets the `INGREDIENT_NAME` to the specified `AMOUNT`.
 
 Example:
-* `i-set i/Milk m/90`
+Let's say you wants to set the ingredient Milk's level to 90 L. 
+You can follow these instructions:
+
+1. Type `i-set i/Milk m/90` into the _Command Box_.
+2. Press "Enter" on your keyboard to execute the command.
+
 
 <img src="images/IngredientSetCommand.png" width="1000" height="700" />
 Figure above shows tCheck's GUI during the command is being entered.
 
-* Expected Result:
+Outcome:
+1. The _Result Display_ will show a success message.
+2. You can now see that tCheck has updated Milk's level to 90 L in The Ingredient Tracker inside the _Main View_.
 
 <img src="images/IngredientSetCommandResultDisplay.png" width="1000" height="700" />
 Figure above showing tCheck's GUI after pressing "Enter". Note that the amount for Milk is updated in Ingredient Tracker section inside the _Main View_.
@@ -296,27 +303,42 @@ Format: `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOU
 * Sets all ingredients' levels as such : Milk : `AMOUNT_FOR_MILK` L, Pearl : `AMOUNT_FOR_PEARL` KG, Boba : `AMOUNT_FOR_BOBA` KG, Black Tea : `AMOUNT_FOR_BLACK_TEA` L, Green Tea: `AMOUNT_FOR_GREEN_TEA`, Brown Sugar : `AMOUNT_FOR_BROWN_SUGAR` KG.
 
 Example:
-* `i-set-all M/20 P/20 B/20 L/50 G/80 S/50`
+Let's say you want to set Milk's level to 20, Pearl's level to 20, Boba's level to 20, Black Tea's level to 20, Green Tea's level to 80 and Brown Sugar's level to 50.
+You can follow these instructions:
+
+1. Type `i-set-all M/20 P/20 B/20 L/50 G/80 S/50` into the _Command Box_.
+2. Press "Enter" on your keyboard to execute the command.
 
 <img src="images/IngredientSetAllCommand.png" width="1000" height="700" />
 Figure above shows tCheck's GUI during the command is being entered.
 
-* Expected Result:
+Outcome:
+1. The _Result Display_ will show a success message.
+2. You can now see that tCheck has updated all ingredients' levels to the specified amounts in the Ingredient Tracker inside the _Main View_.
 
 <img src="images/IngredientSetAllCommandResultDisplay.png" width="1000" height="700" />
 Figure above showing tCheck's GUI after pressing "Enter". Note that all amounts for the ingredients are updated in Ingredient Tracker inside the _Main View_.
 
 #### 2.3 Setting all ingredients to different levels : `i-set-default`
 
-Sets all ingredients' levels to their pre-determined default levels for a stall.
+Sets all ingredients' levels to their pre-determined default levels for a store.
 
 Format: `i-set-default`
 
 * Sets all ingredients' levels to their default levels : Milk : 50 L, Pearl : 20 KG, Boba : 20 KG, Black Tea : 50 L, Green Tea : 50 L, Brown Sugar : 20 KG.
 
 Example:
-* `i-set-default`
-* tCheck GUI behaves similarly to examples given in the previous command, except no parameters are taken in.
+Let's say you want to set all ingredients' levels to their pre-determined default amounts in tCheck.
+You can follow these instructions:
+
+1. Type `i-set-default` into the _Command Box_.
+2. Press "Enter" on your keyboard to execute the command.
+
+Outcome:
+1. The _Result Display_ will show a success message.
+2. You can now see that tCheck has updated all ingredients' levels to the pre-determined default amounts in the Ingredient Tracker inside the _Main View_.
+
+tCheck GUI behaves similarly to examples given in the previous command, except no parameters are taken in.
 
 #### 2.4 Listing all ingredients' levels : `i-list`
 Lists the ingredient's levels of all ingredient types.
