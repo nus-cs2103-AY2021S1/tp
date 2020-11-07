@@ -1,5 +1,7 @@
 package seedu.address.logic.parser.data;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -61,7 +63,10 @@ public class ImageParser {
             e.printStackTrace();
             imageLocalPath = "images/default.jpg";
         }
-        System.out.println(imageLocalPath);
+        //return new RecipeImage("images/" + filename);
+        if (imagePath.length() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RecipeImage.MESSAGE_CONSTRAINTS));
+        }
         return new RecipeImage(imageLocalPath);
     }
 
@@ -102,7 +107,6 @@ public class ImageParser {
         return imagePathDefault;
     }
 
-
     /**
      * Get all paths from a folder that inside the JAR file.
      *
@@ -129,8 +133,6 @@ public class ImageParser {
                     .filter(Files::isRegularFile)
                     .collect(Collectors.toList());
         }
-
         return result;
-
     }
 }
