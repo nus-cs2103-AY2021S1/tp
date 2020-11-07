@@ -39,9 +39,6 @@ public class EditInventoryCommandParser implements Parser<EditInventoryCommand> 
 
         if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
             int quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
-            if (quantity < 0) {
-                throw new ParseException(EditInventoryCommand.MESSAGE_INVALID_QUANTITY_INPUT);
-            }
             editInventoryDescriptor.setQuantity(quantity);
         }
 
