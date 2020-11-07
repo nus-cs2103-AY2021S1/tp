@@ -541,8 +541,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | faculty leader          | find modules by their code         |                                                                                      |
 | `* * *`  | faculty leader          | find modules by their name            |                                                                                   |
 | `* * *`  | faculty leader          | find modules by the instructor's name |                                                                                   |
-| `* * *`  | faculty leader          | assign instructors to various modules     | keep a record of all the modules they teach                                   |
-| `* * *`  | faculty leader          | unassign instructors from various modules | update the record of instructors when necessary                               |
+| `* * *`  | faculty leader          | assign a contact to various modules       | keep a record of all the modules they teach                                   |
+| `* * *`  | faculty leader          | unassign a contact from various modules   | update the record of instructors when necessary                               |
 | `* * *`  | faculty leader          | unassign all instructors from all modules | update the record of instructors when there are syllabus restructuring        |
 | `* * *`  | user                    | clear all contacts                  |                                                                                     |
 | `* * *`  | faculty leader          | clear all modules                   | discard all previous semester's information                                         |
