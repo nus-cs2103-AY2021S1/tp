@@ -55,7 +55,7 @@ public class DeleteDetailCommandTest {
         Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails(TEST_DETAIL).build();
         Detail detail = new Detail(TEST_DETAIL);
-        DeleteDetailCommand deleteAdditionalDetailCommand =
+        DeleteDetailCommand deleteDetailCommand =
                 new DeleteDetailCommand(TEST_INDEX_FIRST_STUDENT, TEST_INDEX_FIRST_DETAIL);
         Student expectedStudent = new StudentBuilder(ALICE).withDetails().build();
         model.setStudent(asker, clone);
@@ -66,7 +66,7 @@ public class DeleteDetailCommandTest {
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
         expectedModel.setStudent(clone, expectedStudent);
 
-        assertCommandSuccess(deleteAdditionalDetailCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteDetailCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -135,27 +135,26 @@ public class DeleteDetailCommandTest {
 
     @Test
     public void equals() {
-        Detail testDetail = new Detail(TEST_DETAIL);
-        DeleteDetailCommand deleteAdditionalDetailCommand =
+        DeleteDetailCommand deleteDetailCommand =
                 new DeleteDetailCommand(INDEX_FIRST_PERSON, TEST_INDEX_FIRST_DETAIL);
 
         // same object -> return true;
-        assertTrue(deleteAdditionalDetailCommand.equals(deleteAdditionalDetailCommand));
+        assertTrue(deleteDetailCommand.equals(deleteDetailCommand));
 
         // different object -> return false;
-        assertFalse(deleteAdditionalDetailCommand.equals("hello"));
+        assertFalse(deleteDetailCommand.equals("hello"));
 
         // same fields -> return true;
-        assertTrue(deleteAdditionalDetailCommand.equals(new DeleteDetailCommand(INDEX_FIRST_PERSON,
+        assertTrue(deleteDetailCommand.equals(new DeleteDetailCommand(INDEX_FIRST_PERSON,
                 TEST_INDEX_FIRST_DETAIL)));
 
         // different student index -> return false;
-        assertFalse(deleteAdditionalDetailCommand.equals(new AddDetailCommand(INDEX_SECOND_PERSON,
-                testDetail)));
+        assertFalse(deleteDetailCommand.equals(new DeleteDetailCommand(INDEX_SECOND_PERSON,
+                TEST_INDEX_FIRST_DETAIL)));
 
         // different detail index -> return false;
         Detail altDetail = new Detail("he watches birds");
-        assertFalse(deleteAdditionalDetailCommand.equals(new DeleteDetailCommand(INDEX_FIRST_PERSON,
+        assertFalse(deleteDetailCommand.equals(new DeleteDetailCommand(INDEX_FIRST_PERSON,
                 TEST_INDEX_SECOND_DETAIL)));
     }
 }

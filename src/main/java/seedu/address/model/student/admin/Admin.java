@@ -66,8 +66,10 @@ public class Admin {
      */
     public String getFormattedDetails() {
         String result = "";
+        int index = 1;
         for (Detail detail: details) {
-            result = result + "- " + detail.toString() + "\n";
+            result = result + index + ". " + detail.toString() + "\n";
+            index++;
         }
         return result;
     }

@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_FEEDBACK_AMY;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_EXAM_FYE;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_EXAM_MYE;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_MATH;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_NEWTON;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
@@ -14,6 +15,7 @@ import static seedu.address.testutil.TypicalStudents.ALICE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.question.SolvedQuestion;
 import seedu.address.model.student.academic.question.UnsolvedQuestion;
 import seedu.address.testutil.StudentBuilder;
@@ -103,4 +105,37 @@ public class AcademicTest {
         test = new Attendance(ATTENDANCE_DATE_BOB, true, amyFeedback);
         assertFalse(aliceAcademic.containsAttendance(test));
     }
+
+    @Test
+    public void getFormattedQuestions() {
+        Academic aliceAcademic = new StudentBuilder(ALICE).withQuestions(DEFAULT_QUESTION_MATH,
+                DEFAULT_QUESTION_NEWTON).build().getAcademic();
+        String expectedText = "1. " + new UnsolvedQuestion(DEFAULT_QUESTION_MATH)
+                + "\n2. " + new UnsolvedQuestion(DEFAULT_QUESTION_NEWTON) + "\n";
+        assertEquals(expectedText, aliceAcademic.getFormattedQuestions());
+    }
+
+    @Test
+    public void getFormattedAttendance() {
+        Attendance amyAttendance = new Attendance(ATTENDANCE_DATE_AMY, true);
+        Attendance bobAttendance = new Attendance(ATTENDANCE_DATE_BOB, true);
+        Academic aliceAcademic = new StudentBuilder(ALICE).withAttendances(amyAttendance, bobAttendance)
+                .build().getAcademic();
+        String expectedText = "1. " + amyAttendance
+                + "\n2. " + bobAttendance + "\n";
+        assertEquals(expectedText, aliceAcademic.getFormattedAttendance());
+    }
+
+    @Test
+    public void getFormattedExams() {
+        Exam examFye = DEFAULT_EXAM_FYE;
+        Exam examMye = DEFAULT_EXAM_MYE;
+        Academic aliceAcademic = new StudentBuilder(ALICE).withExams(examFye, examMye)
+                .build().getAcademic();
+        String expectedText = "1." + examFye
+                + "\n2." + examMye + "\n";
+        assertEquals(expectedText, aliceAcademic.getFormattedExams());
+    }
+
+
 }
