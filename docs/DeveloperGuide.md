@@ -705,8 +705,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                       | get the statistic of quiz      | get a visualisation form of my performance                                |
 | `*`      | user                                       | track the progress             | know what I have done when using the app                                  |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `QuickCache` and the **Actor** is the `user`, unless specified otherwise)
