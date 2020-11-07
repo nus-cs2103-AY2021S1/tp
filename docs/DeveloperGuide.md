@@ -23,12 +23,16 @@
         * [6.2.3 Delete student command](#623-delete-student-command)
         * [6.2.4 Find student command](#624-find-student-command)  
         * [6.2.5 Overdue command](#625-overdue-command)
+        * [6.2.6 Detail commands](#626-detail-commands)
+            *[6.2.6.1 Add detail command](#6261-add-detail-command)
+            *[6.2.6.2 Edit detail command](#6262-edit-detail-command)
+            *[6.2.6.3 Delete detail command](#6263-delete-detail-command)            
     * [6.3 Student academic details features](#63-student-academic-details-features)
-        * [6.3.1 Student questions features](#631-student-questions-features)
+        * [6.3.1 Question Commands](#631-question-commands)
             * [6.3.1.1 Add question command](#6311-add-question-command)
             * [6.3.1.2 Solve question command](#6312-solve-question-command)
             * [6.3.1.3 Delete question command](#6313-delete-question-command)
-        * [6.3.2 Student exam features](#632-student-exam-features)
+        * [6.3.2 Exam Commands](#632-exam-commands)
             * [6.3.2.1 Add exam command](#6321-add-exam-command)
             * [6.3.2.2 Delete exam command](#6322-delete-exam-command)
             * [6.3.2.3 Exam Stats command](#6323-exam-stats-command)
@@ -382,11 +386,92 @@ The following activity diagram summarises the flow of events when `OverdueComman
 
 Figure 5.1.5.2. Activity diagram for `OverdueCommand` execution
 
+
+#### 6.2.6 Detail Commands
+
+The student additional details feature keeps track of any additional details a tutor wants to add to a student. It comprises of the following commands:
+
+* `AddDetailCommand` - Adds a detail to a specified student.
+* `EditDetailCommand` - Edits a specified detail in a specified student.
+* `DeleteDetailCommand` - Deletes a specified detail from a specified student.
+
+##### 6.2.6.1 Add Detail Command
+
+The following describes the flow of how `AddDetailCommand` is performed.
+
+1. Upon successfully parsing the user input, `AddDetailCommand#execute(Model model)`, and it checks if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the detail will not be added.
+3. If the student exists, the detail is added to the student's list of details, and `DetailCommand#updateStudentDetail(Student studentToAddDetail, List<Detail> details)` is called to create a modified copy of the student with the new detail.
+4. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the detail added.
+5. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The following sequence diagram shows how the detail adding operation works.
+
+![AddDetailSequence](images/AddDetailSequenceDiagram.png)
+
+Figure 5.2.1.1. Sequence diagram for `AddDetailCommand` execution
+
+The following activity diagram summarises the flow of events when `AddDetailCommand` is executed.
+
+![AddDetailActivity](images/AddDetailActivityDiagram.png)
+
+Figure 5.2.1.2. Activity diagram for `AddDetailCommand` execution
+
+##### 6.2.6.2 Edit Detail Command
+
+The following describes the flow of how `EditDetailCommand` is performed.
+
+1. Upon successfully parsing the user input, `EditDetailCommand#execute(Model model)`, and it checks if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the detail will not be edited.
+3. If the student exists, `EditDetailCommand#execute(Model model)` then checks if the detail at the specified position exists.
+4. If there is no detail at the specified position, a `CommandException` is thrown and the detail will not be edited. 
+5. If the detail exists, the newly updated detail is added to the student's list of details, and `DetailCommand#updateStudentDetail(Student studentToEditDetail, List<Detail> details)` is called to create a modified copy of the student with the new detail.
+6. `Student#addQuestion(Question question)` is called to create a modified copy of the student with a newly added question.
+7. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the detail added.
+8. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The following sequence diagram shows how the detail editing operation works.
+
+![EditDetailSequence](images/EditDetailSequenceDiagram.png)
+
+Figure 5.2.1.1. Sequence diagram for `EditDetailCommand` execution
+
+The following activity diagram summarises the flow of events when `EditDetailCommand` is executed.
+
+![EditDetailActivity](images/EditDetailActivityDiagram.png)
+
+Figure 5.2.1.2. Activity diagram for `EditDetailCommand` execution
+
+##### 6.2.6.3 Delete Detail Command
+
+The following describes the flow of how `DeleteDetailCommand` is performed.
+
+1. Upon successfully parsing the user input, `DeleteDetailCommand#execute(Model model)`, and it checks if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the detail will not be deleted.
+3. If the student exists, `DeleteDetailCommand#execute(Model model)` then checks if the detail at the specified position exists.
+4. If there is no detail at the specified position, a `CommandException` is thrown and the detail will not be deleted. 
+5. If the detail exists, the detail is removed from the student's list of details, and `DetailCommand#updateStudentDetail(Student studentToDeleteDetail, List<Detail> details)` is called to create a modified copy of the student with detail removed.
+6. `Student#addQuestion(Question question)` is called to create a modified copy of the student with a newly added question.
+7. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the removed detail.
+8. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The following sequence diagram shows how the detail deleting operation works.
+
+![DeleteDetailSequence](images/DeleteDetailSequenceDiagram.png)
+
+Figure 5.2.1.1. Sequence diagram for `DeleteDetailCommand` execution
+
+The following activity diagram summarises the flow of events when `DeleteDetailCommand` is executed.
+
+![DeleteDetailActivity](images/DeleteDetailActivityDiagram.png)
+
+Figure 5.2.1.2. Activity diagram for `DeleteDetailCommand` execution
+
 ### 6.3 Student academic details features
 
 This section describes some key details on how academic details features are implemented.
 
-#### 6.3.1 Student questions features
+#### 6.3.1 Question Commands
 
 The student questions feature keeps track of questions raised by a student to his tutor. It comprises of the following commands:
 
@@ -403,7 +488,7 @@ The following describes the flow of how `AddQuestionCommand` is performed.
 3. If the student exists, `AddQuestionCommand#execute(Model model)` checks if the student already has a similar question recorded.
 4. A unique question is defined solely by its `question` and does not take into account if the question has been solved. If a duplicate question is found, a `CommandException` is thrown and the question will not be added.
 5. If the question is not a duplicate, `Student#addQuestion(Question question)` is called to create a modified copy of the student with a newly added question.
-6. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question added.
+6. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question added.
 7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 The following sequence diagram shows how the question adding operation works.
@@ -427,7 +512,7 @@ The following describes the flow of how `SolveQuestionCommand` is performed.
 3. If the student exists, `SolveQuestionCommand#execute(Model model)` checks if there is a question at the specified position.
 4. If the question does not exist, a `CommandException` is thrown and the question will not be resolved.
 5. If the question exists, `Student#setQuestion(Question target, Question newQuestion)` is called to create a modified copy of the student where the specified question has been replaced with a solved version.
-6. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question solved.
+6. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question solved.
 7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 The following sequence diagram shows how the question solving operation works.
@@ -451,7 +536,7 @@ The following describes the flow of how `DeleteQuestionCommand` is performed.
 3. If the student exists, `DeleteQuestionCommand#execute(Model model)` checks if there is a question at the specified position.
 4. If the question does not exist, a `CommandException` is thrown and the question will not be resolved.
 5. If the question exists, `Student#deleteQuestion(Question target)` is called to create a modified copy of the student without the specified question.
-6. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question removed.
+6. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question removed.
 7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 The following sequence diagram shows how the question deletion operation works.
@@ -466,7 +551,7 @@ The following activity diagram summarises the flow of events when `DeleteQuestio
 
 Figure 5.2.3.2. Activity diagram for `DeleteQuestionCommand` execution
 
-#### 6.3.2 Student exam features
+#### 6.3.2 Exam Commands
 
 The student exams feature keeps track of exam records of a student. It comprises of the following commands:
 
@@ -488,7 +573,7 @@ The following describes the flow of how `AddExamCommand` is performed.
 4. A unique exam is defined solely by its `examName`. If a duplicate exam is found, a `CommandException` is thrown and the exam will not be added.
 5. If the exam is not a duplicate, `Student#getExams()` is called get the current list of exams of the specified student.
 6. The new exam is added into this current list and a new updated `Student` is created which is exactly the same characteristics of the specified student but with the updated exam list.
-7. `Model#setPerson(Student selectedStudent, Student updatedStudent)` is called to replace the student with the updated copy. A new `CommandResult` is returned with a success message showing the affected student and the exam added.
+7. `Model#setStudent(Student selectedStudent, Student updatedStudent)` is called to replace the student with the updated copy. A new `CommandResult` is returned with a success message showing the affected student and the exam added.
 8. The updated student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 The sequence(insert image reference here) of how add exam operates is very similar to that of add question. 
@@ -502,7 +587,7 @@ The following describes the flow of how `DeleteExamCommand` is performed.
 3. If the student exists, `DeleteExamCommand#execute(Model model)` checks if there is a exam at the specified position.
 4. If the exam does not exist, a `CommandException` is thrown.
 5. If the exam exists, `Student#getExams()` is called get the current list of exams of the specified student.
-6. `Model#setPerson(Student selectedStudent, Student updatedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the exam removed.
+6. `Model#setStudent(Student selectedStudent, Student updatedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the exam removed.
 7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 <div markdown="block" class="alert alert-info">
