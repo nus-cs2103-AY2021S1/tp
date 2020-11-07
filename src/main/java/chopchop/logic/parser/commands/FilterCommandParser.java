@@ -16,7 +16,9 @@ import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.ExpiryDateOnOrBeforePredicate;
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
+import chopchop.model.attributes.NameContainsKeywordsFilterPredicate;
 
+import static chopchop.commons.util.Strings.ARG_NAME;
 import static chopchop.commons.util.Strings.ARG_EXPIRY;
 import static chopchop.commons.util.Strings.ARG_INGREDIENT;
 import static chopchop.commons.util.Strings.ARG_TAG;
@@ -62,11 +64,12 @@ public class FilterCommandParser {
     private static Result<? extends Command> parseFilterIngredientCommand(CommandArguments args) {
 
         Optional<String> err;
-        var supportedArgs = List.of(ARG_TAG, ARG_EXPIRY);
+        var supportedArgs = List.of(ARG_NAME, ARG_TAG, ARG_EXPIRY);
         if ((err = checkArguments(args, "filter ingredient", supportedArgs)).isPresent()) {
             return Result.error(err.get());
         }
 
+        var names = args.getArgument(ARG_NAME);
         var exps = args.getArgument(ARG_EXPIRY);
         var tags = args.getArgument(ARG_TAG);
 
@@ -74,12 +77,15 @@ public class FilterCommandParser {
             return Result.error(err.get());
         } else if ((err = checkImproperFieldInput("Tag", tags)).isPresent()) {
             return Result.error(err.get());
+        } else if ((err = checkImproperFieldInput("Name", names)).isPresent()) {
+            return Result.error(err.get());
         }
 
         return parseExpiryDates(exps)
             .map(optExpiry -> new FilterIngredientCommand(
                 optExpiry.map(ExpiryDateOnOrBeforePredicate::new).orElse(null),
-                tags.isEmpty() ? null : new TagContainsKeywordsPredicate(tags)
+                tags.isEmpty() ? null : new TagContainsKeywordsPredicate(tags),
+                names.isEmpty() ? null : new NameContainsKeywordsFilterPredicate(names)
             ));
     }
 
@@ -87,11 +93,12 @@ public class FilterCommandParser {
     private static Result<? extends Command> parseFilterRecipeCommand(CommandArguments args) {
 
         Optional<String> err;
-        var supportedArgs = List.of(ARG_TAG, ARG_INGREDIENT);
+        var supportedArgs = List.of(ARG_NAME, ARG_TAG, ARG_INGREDIENT);
         if ((err = checkArguments(args, "filter recipe", supportedArgs)).isPresent()) {
             return Result.error(err.get());
         }
 
+        var names = args.getArgument(ARG_NAME);
         var ingredients = args.getArgument(ARG_INGREDIENT);
         var tags = args.getArgument(ARG_TAG);
 
@@ -99,11 +106,14 @@ public class FilterCommandParser {
             return Result.error(err.get());
         } else if ((err = checkImproperFieldInput("Ingredient", ingredients)).isPresent()) {
             return Result.error(err.get());
+        } else if ((err = checkImproperFieldInput("Name", names)).isPresent()) {
+            return Result.error(err.get());
         }
 
         return Result.of(new FilterRecipeCommand(
             tags.isEmpty() ? null : new TagContainsKeywordsPredicate(tags),
-            ingredients.isEmpty() ? null : new IngredientsContainsKeywordsPredicate(ingredients)
+            ingredients.isEmpty() ? null : new IngredientsContainsKeywordsPredicate(ingredients),
+            names.isEmpty() ? null : new NameContainsKeywordsFilterPredicate(names)
         ));
     }
 

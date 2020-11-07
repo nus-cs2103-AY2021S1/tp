@@ -2,12 +2,15 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Entry;
 import chopchop.model.Model;
 import chopchop.model.attributes.ExpiryDateOnOrBeforePredicate;
+import chopchop.model.attributes.NameContainsKeywordsFilterPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
 
 /**
@@ -17,6 +20,7 @@ import chopchop.model.attributes.TagContainsKeywordsPredicate;
 public class FilterIngredientCommand extends Command {
 
     private final TagContainsKeywordsPredicate tagPredicates;
+    private final NameContainsKeywordsFilterPredicate namePredicates;
     private final ExpiryDateOnOrBeforePredicate expPredicate;
 
     /**
@@ -25,23 +29,20 @@ public class FilterIngredientCommand extends Command {
      * @param tagPredicates
      */
     public FilterIngredientCommand(ExpiryDateOnOrBeforePredicate expPredicate,
-            TagContainsKeywordsPredicate tagPredicates) {
+                                   TagContainsKeywordsPredicate tagPredicates,
+                                   NameContainsKeywordsFilterPredicate namePredicates) {
         this.tagPredicates = tagPredicates;
         this.expPredicate = expPredicate;
+        this.namePredicates = namePredicates;
     }
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
 
+        List<Predicate<Entry>> predicates = Arrays.asList(expPredicate, tagPredicates, namePredicates);
         Predicate<Entry> p = x -> true;
-        if (expPredicate != null && tagPredicates != null) {
-            p = expPredicate.and(tagPredicates);
-        } else if (expPredicate != null) {
-            p = expPredicate;
-        } else if (tagPredicates != null) {
-            p = tagPredicates;
-        }
+        p = predicates.stream().filter(x -> x != null).reduce(p, (x, y) -> x.and(y));
         model.updateFilteredIngredientList(p);
 
         var sz = model.getFilteredIngredientList().size();
@@ -60,6 +61,6 @@ public class FilterIngredientCommand extends Command {
     }
 
     public static String getCommandHelp() {
-        return "Filters ingredients by one or more criteria (tags and expiry dates)";
+        return "Filters ingredients by one or more criteria (names, tags and expiry dates)";
     }
 }

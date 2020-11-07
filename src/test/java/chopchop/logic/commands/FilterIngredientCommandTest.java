@@ -7,6 +7,8 @@ import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
+
+import chopchop.model.attributes.NameContainsKeywordsFilterPredicate;
 import org.junit.jupiter.api.Test;
 
 import chopchop.model.attributes.ExpiryDate;
@@ -27,9 +29,27 @@ public class FilterIngredientCommandTest {
         new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
 
     @Test
+    public void execute_multipleNames_noIngredientFound() {
+        var namePredicate = prepareNamePredicate("ba", "ap");
+        var command = new FilterIngredientCommand(null, null, namePredicate);
+        expectedModel.updateFilteredIngredientList(namePredicate);
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(), model.getFilteredIngredientList());
+    }
+
+    @Test
+    public void execute_multipleNames_multipleIngredientsFound() {
+        var namePredicate = prepareNamePredicate("a", "a");
+        var command = new FilterIngredientCommand(null, null, namePredicate);
+        expectedModel.updateFilteredIngredientList(namePredicate);
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(APRICOT, BANANA), model.getFilteredIngredientList());
+    }
+
+    @Test
     public void execute_multipleTags_noIngredientFound() {
         var tagPredicate = prepareTagPredicate("Sweet", "Vegetable");
-        var command = new FilterIngredientCommand(null, tagPredicate);
+        var command = new FilterIngredientCommand(null, tagPredicate, null);
         expectedModel.updateFilteredIngredientList(tagPredicate);
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(), model.getFilteredIngredientList());
@@ -38,39 +58,97 @@ public class FilterIngredientCommandTest {
     @Test
     public void execute_multipleTags_multipleRecipesFound() {
         var tagPredicate = prepareTagPredicate("Sweet", "Fruit");
-        var command = new FilterIngredientCommand(null, tagPredicate);
+        var command = new FilterIngredientCommand(null, tagPredicate, null);
         expectedModel.updateFilteredIngredientList(tagPredicate);
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(APRICOT, BANANA), model.getFilteredIngredientList());
     }
 
     @Test
-    public void execute_multipleIngredients_multipleIngredientsFound() {
+    public void execute_singleExpiryDate_multipleIngredientsFound() {
         var expiryPredicate = prepareExpiryPredicate("2023-12-12");
-        var command = new FilterIngredientCommand(expiryPredicate, null);
+        var command = new FilterIngredientCommand(expiryPredicate, null, null);
         expectedModel.updateFilteredIngredientList(expiryPredicate);
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(APRICOT, BANANA), model.getFilteredIngredientList());
     }
 
     @Test
-    public void execute_multipleTagsIngredients_multipleIngredientsFound() {
+    public void execute_singleExpiryDate_noIngredientFound() {
+        var expiryPredicate = prepareExpiryPredicate("2000-01-01");
+        var command = new FilterIngredientCommand(expiryPredicate, null, null);
+        expectedModel.updateFilteredIngredientList(expiryPredicate);
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(), model.getFilteredIngredientList());
+    }
+
+    @Test
+    public void execute_multipleNamesTags_multipleIngredientsFound() {
+        var namePredicate = prepareNamePredicate("a", "a");
+        var tagPredicate = prepareTagPredicate("Sweet", "Fruit");
+        var command = new FilterIngredientCommand(null, tagPredicate, namePredicate);
+        expectedModel.updateFilteredIngredientList(namePredicate.and(tagPredicate));
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(APRICOT, BANANA), model.getFilteredIngredientList());
+    }
+
+    @Test
+    public void execute_multipleNamesTags_noIngredientFound() {
+        var namePredicate = prepareNamePredicate("a", "apricots");
+        var tagPredicate = prepareTagPredicate("Sweet", "Fruit");
+        var command = new FilterIngredientCommand(null, tagPredicate, namePredicate);
+        expectedModel.updateFilteredIngredientList(namePredicate.and(tagPredicate));
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(), model.getFilteredIngredientList());
+    }
+
+    @Test
+    public void execute_multipleTagsSingleExpiryDate_multipleIngredientsFound() {
         var tagPredicate = prepareTagPredicate("Sweet", "Fruit");
         var expiryPredicate = prepareExpiryPredicate("2023-01-01");
-        var command = new FilterIngredientCommand(expiryPredicate, tagPredicate);
+        var command = new FilterIngredientCommand(expiryPredicate, tagPredicate, null);
         expectedModel.updateFilteredIngredientList(expiryPredicate.and(tagPredicate));
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(APRICOT, BANANA), model.getFilteredIngredientList());
     }
 
     @Test
-    public void execute_multipleTagsIngredients_noIngredientFound() {
-        var tagPredicate = prepareTagPredicate("Spicy", "Sweet");
-        var expiryPredicate = prepareExpiryPredicate("2020-01-01");
-        var command = new FilterIngredientCommand(expiryPredicate, tagPredicate);
+    public void execute_multipleTagsSingleExpiryDate_noIngredientFound() {
+        var tagPredicate = prepareTagPredicate("Salty", "Fruit");
+        var expiryPredicate = prepareExpiryPredicate("2023-01-01");
+        var command = new FilterIngredientCommand(expiryPredicate, tagPredicate, null);
         expectedModel.updateFilteredIngredientList(expiryPredicate.and(tagPredicate));
         assertCommandSuccess(command, model, expectedModel);
         assertEquals(Arrays.asList(), model.getFilteredIngredientList());
+    }
+
+    @Test
+    public void execute_multipleNamesTagsSingleExpiryDate_multipleIngredientFound() {
+        var namePredicate = prepareNamePredicate("a", "a");
+        var tagPredicate = prepareTagPredicate("Fruit", "Sweet");
+        var expiryPredicate = prepareExpiryPredicate("2023-12-12");
+        var command = new FilterIngredientCommand(expiryPredicate, tagPredicate, namePredicate);
+        expectedModel.updateFilteredIngredientList(expiryPredicate.and(tagPredicate).and(namePredicate));
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(APRICOT, BANANA), model.getFilteredIngredientList());
+    }
+
+    @Test
+    public void execute_multipleNamesTagsSingleExpiryDate_noIngredientFound() {
+        var namePredicate = prepareNamePredicate("a", "ap");
+        var tagPredicate = prepareTagPredicate("Spicy", "Sweet");
+        var expiryPredicate = prepareExpiryPredicate("2020-01-01");
+        var command = new FilterIngredientCommand(expiryPredicate, tagPredicate, null);
+        expectedModel.updateFilteredIngredientList(expiryPredicate.and(tagPredicate).and(namePredicate));
+        assertCommandSuccess(command, model, expectedModel);
+        assertEquals(Arrays.asList(), model.getFilteredIngredientList());
+    }
+
+    /**
+     * Parses {@code userInputs} into a {@code NameContainsKeywordsFilterPredicate}.
+     */
+    private NameContainsKeywordsFilterPredicate prepareNamePredicate(String... userInputs) {
+        return new NameContainsKeywordsFilterPredicate(Arrays.asList(userInputs));
     }
 
     /**
@@ -87,4 +165,3 @@ public class FilterIngredientCommandTest {
         return new ExpiryDateOnOrBeforePredicate(new ExpiryDate(userInput));
     }
 }
-
