@@ -33,6 +33,9 @@ public class NoteIndex {
 
     /**
      * Returns true if a given string is a non-negative number.
+     *
+     * @param index The index to be tested.
+     * @return A boolean value indicating if the index is a valid index.
      */
     public static boolean isValidNoteIndex(String index) {
         requireNonNull(index);

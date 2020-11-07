@@ -44,6 +44,9 @@ import seedu.stock.logic.commands.TabCommand;
 import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 
+/**
+ * Contains unit tests for SuggestionCommandParser.
+ */
 public class SuggestionCommandParserTest {
     @Test
     public void parse_exitCommandSuggestion_success() {

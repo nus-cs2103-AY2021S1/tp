@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains unit tests for SuggestionUtil.
+ */
 public class SuggestionUtilTest {
     @Test
     public void min() {
