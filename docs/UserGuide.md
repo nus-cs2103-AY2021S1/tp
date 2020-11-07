@@ -97,9 +97,9 @@ The `help` command shows the list of all the commands and their usages with exam
 
 Format: `help`
 
-After executing the `help`, the sizable Help Window as shown below pops up. The commands are sorted alphabetically.
+After executing the `help`, the **sizable Help Window** pops up as shown below. The commands are sorted alphabetically.
 
-![tp_help_command](images/helpWindow.png)\
+![tp_help_command](images/helpWindow.PNG)\
 Figure 1.1 Help window
 
 <div markdown="block" class="alert alert-primary">
@@ -354,7 +354,7 @@ Figure X Show appointments via GUI
 If the number of patients is too large, it might be difficult to find the patient's information to click.
 In that case, you can use the command line to show the patient's appointments.
 
-![show appointments via command line](images/showAppt/showAppt_input.PNG)
+![show appointments via command line](images/showAppt/showAppt_input.PNG)\
 Figure X Show appointments via Command Line
 
 Format: `showAppt NRIC`
@@ -367,7 +367,7 @@ The **Appointment window should pop up** after successfully running the command 
 Figure X Appointments window with appointments of patient
 
 <div markdown="span" class="alert alert-primary">
-**:bulb: Tip:** You can **click on the headers** to sort the appointments from earliest to latest or latest to earliest.
+**:bulb: Tip:** You can **click on the **DATE** header** to sort the appointments from earliest to latest or latest to earliest.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -507,6 +507,32 @@ In the following example, we will be using [Google Docs](https://docs.google.com
 The example we have just discussed uses the `add` command. The usage of the `MEDICAL_RECORD_URL` field in `edit` works in the same way as described in the `add` example as well.
 
 Another method to access the online medical record of the patient directly (without the copy-and-paste mechanism) is shown in the `showMr` command section below.
+
+### Show medical record directly: `showMr`
+We understand that it might be quite a hassle to copy the URL and paste it in your browser manually. Therefore, we
+implemented a short cut so that you can open up your default browser and with the url directly from **Hospify** with the `showMr`
+command!
+
+Format: `showMr NRIC`\
+Example: `showMr s1234567A`
+
+Running the command as shown below will open your computer's **default browser** with the patient's medical record.
+![showMr command](images/showMrExample.PNG)
+Diagram X Using the `showMr` command to open patient's medical record.
+
+<div markdown="block" class="alert alert-warning">
+
+In the unlikely event that `showMr` command does not open up the medical record in your default browser,
+use the **manual method** described in [the above section](#using-the-medical-record-feature-mr-by-cedric-lim-jun-wei)
+on the medical record feature.
+
+**:warning: Important:** - Check that your URL is valid if the medical record does not open on your browser.
+
+Depending on the `Operating System` you are using, the `showMr` command may not work 
+sometimes because there might be some issues with your default browser. Do drop us an email
+at **hospify_enquiry@gmail.com** to notify the tech team if it does not open on your browser.
+
+</div>
 
 ### Clearing all entries: `clear`
 
