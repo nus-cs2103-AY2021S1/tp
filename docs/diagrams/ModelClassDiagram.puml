@@ -27,7 +27,7 @@ Class Person
 Class Address
 Class Name
 Class Phone
-Class Emergency
+Class EmergencyContact
 Class UniquePersonList
 }
 
@@ -48,7 +48,7 @@ HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
 SalesBook .up.|> ReadOnlySalesBook
-IngredientBook .up|> ReadOnlyIngredientBook
+IngredientBook .up.|> ReadOnlyIngredientBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
@@ -67,7 +67,7 @@ UniqueIngredientList o--> "*"Ingredient
 
 Person *--> "1" Name
 Person *--> "1" Phone
-Person *--> "1" Emergency
+Person *--> "1" EmergencyContact
 Person *--> "1" Address
 Person *--> "*" Tag
 
@@ -79,7 +79,7 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 
 
-ModelManager -->"1" Person : filtered list
-ModelManager -->"1" Ingredient : filtered list
-ModelManager -->"1" SalesRecordEntry : filtered list
+ModelManager -->"*" Person : filtered list
+ModelManager -->"*" Ingredient : filtered list
+ModelManager -->"*" SalesRecordEntry : filtered list
 @enduml
