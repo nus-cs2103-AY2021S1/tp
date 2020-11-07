@@ -2,11 +2,7 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":MainCatalogueParser" as MainCatalogueParser LOGIC_COLOR
-participant ":TaskFilterCommandParser" as TaskFilterCommandParser LOGIC_COLOR
-participant "t:TaskFilterCommand" as TaskFilterCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "a:TaskFilterCommand" as TaskFilterCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -14,45 +10,7 @@ participant ":Model" as Model MODEL_COLOR
 participant "Taskmania:Project" as Project MODEL_COLOR
 end box
 
-[-> LogicManager : execute("filtert ta/T-Fang")
-activate LogicManager
-
-LogicManager -> Model: getStatus()
-activate Model
-
-Model --> LogicManager: status
-deactivate Model
-
-LogicManager -> MainCatalogueParser : parseCommand("filtert ta/T-Fang", status)
-activate MainCatalogueParser
-
-create TaskFilterCommandParser
-MainCatalogueParser -> TaskFilterCommandParser
-activate TaskFilterCommandParser
-
-TaskFilterCommandParser --> MainCatalogueParser
-deactivate TaskFilterCommandParser
-
-MainCatalogueParser -> TaskFilterCommandParser : parse("ta/T-Fang")
-activate TaskFilterCommandParser
-
-create TaskFilterCommand
-TaskFilterCommandParser -> TaskFilterCommand
-activate TaskFilterCommand
-
-TaskFilterCommand --> TaskFilterCommandParser : t
-deactivate TaskFilterCommand
-
-TaskFilterCommandParser --> MainCatalogueParser : t
-deactivate TaskFilterCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-TaskFilterCommandParser -[hidden]-> MainCatalogueParser
-destroy TaskFilterCommandParser
-
-MainCatalogueParser --> LogicManager : t
-deactivate MainCatalogueParser
-
-LogicManager -> TaskFilterCommand : execute()
+[-> TaskFilterCommand : execute()
 activate TaskFilterCommand
 
 TaskFilterCommand -> Model : getProjectToBeDisplayedOnDashboard()
@@ -67,16 +25,6 @@ activate Project
 Project --> TaskFilterCommand :
 deactivate Project
 
-create CommandResult
-TaskFilterCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> TaskFilterCommand
-deactivate CommandResult
-
-TaskFilterCommand --> LogicManager : result
+[<--TaskFilterCommand
 deactivate TaskFilterCommand
-
-[<--LogicManager
-deactivate LogicManager
 @enduml

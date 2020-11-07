@@ -18,19 +18,19 @@ import seedu.address.model.project.Deadline;
  */
 public class Task implements Comparable<Task> {
 
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String TASK_NAME_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
 
     public static final String NAME_MESSAGE_CONSTRAINTS =
-            "Task name can be any values, and it should not be blank";
+            "Task name should only contain alphanumeric characters and spaces, and it should not be blank.";
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS =
-            "Task description can be any values, and it should not be blank";
+            "Task description can be any values, and it should not be blank.";
     public static final String PUBLISH_DATE_MESSAGE_CONSTRAINTS =
-            "Publish date should only be in the format of dd-MM-yyyy";
+            "Publish date should only be in the format of dd-MM-yyyy.";
     public static final String PROGRESS_MESSAGE_CONSTRAINTS =
-            "Progress values should only contain integers between 0 and 100 inclusive, and it should not be blank";
+            "Progress values should only contain integers between 0 and 100 inclusive, and it should not be blank.";
     public static final String IS_DONE_MESSAGE_CONSTRAINTS =
-            "Is done values should only contain booleans, and it should not be blank";
+            "Done status should only be \"true\" or \"false\".";
 
     private final String taskName;
     private final String description;
@@ -70,7 +70,7 @@ public class Task implements Comparable<Task> {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidTaskName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(TASK_NAME_VALIDATION_REGEX);
     }
 
     /**
@@ -177,9 +177,8 @@ public class Task implements Comparable<Task> {
     /**
      * Checks if the task has an assignee whose name matches the given name.
      *
-     * @param assigneeGitUserName the assignee's name to look for
-     * @return true if this task has an assignee whose name matches the given name,
-     * and false otherwise
+     * @param assigneeGitUserName the assignee's name to look for.
+     * @return true if this task has an assignee whose name matches the given name, and false otherwise.
      */
     public boolean hasAssigneeWhoseGitNameIs(GitUserName assigneeGitUserName) {
         return assignees.stream()
@@ -189,8 +188,8 @@ public class Task implements Comparable<Task> {
     /**
      * Checks if the task is due on the given deadline.
      *
-     * @param deadline the given deadline to check
-     * @return true if the task is due on the given deadline, and false otherwise
+     * @param deadline the given deadline to check.
+     * @return true if the task is due on the given deadline, and false otherwise.
      */
     public boolean isDueOn(Deadline deadline) {
         assert (deadline != null);

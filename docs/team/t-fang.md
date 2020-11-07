@@ -28,7 +28,7 @@ Given below are my contributions to the project.
     * Created relevant parsers
     * Allowed user to filter tasks by assignee, deadline, or task name, progress, done status
     * Added relevant test cases.
-* **New Feature**: Added commands to show all the tasks
+* **New Feature**: Added a command to show all the tasks
     (Pull Request [\#138](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/138))
   * What changes made: 
     * Created AllTasksCommand
@@ -37,6 +37,8 @@ Given below are my contributions to the project.
     (Pull Request [\#188](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/188))
   * What changes made: 
     * Created TaskSorterCommand and the relevant parser
+    * Created several comparators in TaskComparators class
+    * Created ArgumentMultimapUtil class to faciliate checking prefixes inside a Argument Multimap.
     * Updated MainCatalogueParser
     * Allowed user to sort the task list by task name, deadline, progress, and done status
     * Added relevant test cases
@@ -48,16 +50,16 @@ Given below are my contributions to the project.
     * Allowed user to delete a task from the task list
     * Added relevant test cases
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=T-Fang&tabRepo=AY2021S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
-* **Project management**:
 * **Enhancements to existing features**: Update task filter to support filtering by progress/isDone 
     (Pull Request [\#138](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/138))
     * What changes made: 
         * Added more prefixes
-        * Updated relevant parser
+        * Updated TaskFilterCommandParser
+        * Updated MainCatalogueParser
 * **Enhancements to existing features**: Add Deadline support to AddTaskCommand and task filter
     (Pull Request [\#139](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/139))
     * What changes made: 
-        * Allowed user to create tasks with deadlines(optional)
+        * Allowed user to create tasks with deadlines (optional)
         * Fully supported filter tasks by deadline
 * **Enhancements to existing features**: Update task filter to support filtering tasks within a time range 
     (Pull Request [\#188](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/188))
@@ -71,8 +73,10 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for basic task-related features.
     * Came up with the first draft of feature list.
-    * Added `filter` feature guide
-    * Added `alltasks` feature guides (Pull Request [\#149](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/149))
+    * Added feature guide for `filter`
+    * Added feature guide for `alltasks`  (Pull Request [\#149](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/149))
+    * Added feature guide for `sort` (Pull Request [\#188](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/188))
+    * Added feature guide for `deletetask` (Pull Request [\#271](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/271))
   * Developer Guide:
     * Wrote first draft of non-functional requirements. (Pull Request [\#54](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/54))
     * Added and updated Use Cases related to `filter`
@@ -81,4 +85,3 @@ Given below are my contributions to the project.
 * **Community**:
   * Updated `README.md` for team repository.
 * **Tools**:
-* _{you can add/remove categories in the list above}_
