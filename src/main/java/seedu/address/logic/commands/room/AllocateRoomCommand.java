@@ -37,7 +37,6 @@ public class AllocateRoomCommand extends Command {
             + PREFIX_NAME + "Mary Doe";
 
     public static final String MESSAGE_ALLOCATE_ROOM_SUCCESS = "Allocated Room: %1$s";
-    public static final String MESSAGE_DUPLICATE_ROOM = "The patient is already allocated to a room.";
     public static final String MESSAGE_NO_PATIENT_TO_REMOVE = "There is no patient in this room to remove.";
 
     private final Integer roomNumberToAllocate;
@@ -73,7 +72,7 @@ public class AllocateRoomCommand extends Command {
         Room roomWithAllocatedPatient = allocatePatientToRoom(model, roomToAllocate, allocateRoomDescriptor);
 
         if (!roomToAllocate.isSameRoom(roomWithAllocatedPatient) && model.hasRoom(roomWithAllocatedPatient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ROOM);
+            throw new CommandException(MESSAGE_PATIENT_ALREADY_ASSIGNED);
         }
 
         model.setSingleRoom(roomToAllocate, roomWithAllocatedPatient);
