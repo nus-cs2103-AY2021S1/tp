@@ -1,7 +1,9 @@
 package seedu.stock.model.util;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.stock.model.ReadOnlySerialNumberSetsBook;
 import seedu.stock.model.ReadOnlyStockBook;
 import seedu.stock.model.stock.SerialNumberSet;
