@@ -38,7 +38,6 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.requestFocus();
     }
 
-
     public void giveCommandTextFieldFocus() {
         commandTextField.requestFocus();
     }

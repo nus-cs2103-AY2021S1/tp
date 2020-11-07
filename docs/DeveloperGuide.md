@@ -61,6 +61,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 The sections below give more details of each component.
 
 ### UI component
+{ start of `ui` section written by: Kor Ming Soon }
 
 ![Structure of the UI Component](images/uidiagram/Ui-Component.png)
 
@@ -141,6 +142,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 </div>
 
 ### Model component
+{ start of Model Component section written by: Kor Ming Soon }
 
 ![Structure of the Model Component](images/modelDiagram/ModelClassDiagram.png)
 
@@ -216,6 +218,8 @@ The follow class diagram depicts the design behind `Id` and the subclasses: `Sel
 
 ![Id Diagram](images/modelDiagram/IdModelDiagram.png)
 
+{ end of Model Component section written by: Kor Ming Soon }
+
 --- 
 
 ### Property 
@@ -257,19 +261,79 @@ Additional features apart from the above-mentioned feature includes:
 - Key-press for UI navigation
 
 #### 1. Add
+
 #### 2. Edit
+
 #### 3. Find
+
 #### 4. Sort 
+
 #### 5. Delete
-The `Delete` command applies to **all entities** in PropertyFree. 
+{ start of Delete section written by: Kor Ming Soon }
+
+The `Delete` command applies to **all entities** in PropertyFree. Apart from `DeletePropertyCommand`, `DeleteBidderCommand`
+and `DeleteSellerCommand` with slight differences in implementation (elaborated below), all other entities follow the same
+implementation.
+
+1. When the `Delete` command is executed by the user, the input it passed into
+the `LogicManager` and thereafter parsed and identified in `AddressBookParser`. 
+
+2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
+, the corresponding `DeleteENTITYCommandParser` object is formed. The user input then goes
+through another level of parsing in `DeleteENTITYCommandParser`.
+
+3. The `DeleteENTITYCommandParser` identifies the `Index` corresponding to the user's input, and a new `DeleteENTITYCommand`
+object is formed taking in the identified `Index`. 
+The `DeleteENTITYCommand` is then encapsulated under `Command` and passed back into the `LogicManager`.
+
+4. The `DeleteENTITYCommand` calls `execute(model)`. The execution of the command then interacts
+with the `Model` component, and retrieves the unmodifiable view of `ObservableList<ENTITY>`.
+
+5. The `DeleteEntityCommand` retrieves the corresponding `ENTITY` to the `Index` (as received in 3), and calls on the
+`deleteENTITY(ENTITYToDelete)` method of the `Model`.
+
+6. The `Model` accesses the relevant ENTITYBook and removes the `ENTITYToDelete`. The `Ui` then "listens" to the 
+changes in the ENTITYBook and updates the GUI.
+
+7. Finally, `DeleteENTITYCommand` is then encapsulated as a `CommandResult` and passed into the `LogicManager`.
+
 ![Delete Command Sequence Diagram](images/deleteCommandDiagram/deleteCommandSequenceDiagram.png)
 
+
 ##### 5.1 Delete Bidder Command
+
+> The `Logic` portion of the sequence diagram shown subsequently is truncated to give more focus on the `Model` as the
+> `Logic` implementation is similar to the above-mentioned. 
+
+The `DeleteBidderCommand` deletes the `bidderToDelete` corresponding to to the index given in the user input.
+The command varies as other entities tied to the `bidderToDelete` by the `Id` will be deleted as well, namely:
+`Bid` and `Meeting`.
+
+1. Upon retrieving the `bidderToDelete`, the `bidderToDelete`'s `bidderId` is then retrieved and passed into
+`removeAllBidsWithBidderId(bidderId)`. 
+
+2. `BidBook` in turn calls `removeAllWithBidder(bidderId)` to iterate and delete through the list of bids 
+containing the attribute of`bidderId`.
+
+3. Step 1 and Step 2 are repeated but with `removeAllMeetingsWithBidderId(bidderId)` and `MeetingBook`.
+
 ![Delete Bidder Command Sequence Diagram](images/deleteCommandDiagram/deleteBidderCommandSequenceDiagram.png)
 
 ##### 5.2 Delete Seller Command
+
+The `DeleteSellerCommand` deletes the `SellertoBeDeleted` corresponding to to the index given in the user input.
+The command varies as other entities tied to the `sellerToDelete` by the `Id` will be deleted as well, namely:
+`Property`. The deletion of the `Property` will in turn delete other entities (elaborated in 5.3).
+
+1. Upon retrieving the `sellerToDelete`, the `sellerToDelete`'s `sellerId` is then retrieved and passed into
+`removeAllBidsWithSellerId(sellerId)`. 
+
+2. `PropertyBook` in turn calls `removeAllWithBidder(bidderId)` to iterate and delete through the list of properties 
+containing the attribute of`sellerId`.
+
 ![Delete Seller Command Sequence Diagram](images/deleteCommandDiagram/deleteSellerCommandSequenceDiagram.png)
 
+{ end of Delete section written by: Kor Ming Soon }
 ##### 5.3 Delete Property Command
 ![Delete Property Command Sequence Diagram](images/deleteCommandDiagram/deletePropertyCommandSequenceDiagram.png)
 
@@ -287,49 +351,8 @@ The `Delete` command applies to **all entities** in PropertyFree.
  
  
  
- 
- 
- #### 1.1 **Delete**: delete a bidder / seller - `delete-b` or `delete-s`
- 
- `delete` is supported by the `DeleteBidderCommand` and `DeleteSellerCommand`.
- 
- Given below is the example usage scenario:
- 
- **Step 1**. The user launches the PropertyFree application. 
- 
- **Step 2**. After loading data from the storage to the application memory,
- the list of `bidders` or `sellers` in the `BidderAddressBook` and `SellerAddressBook` can either contain existing bidders
- or sellers, or is empty. However, as we are deleting existing bidders or sellers, we will assumed that there are
- bidders or sellers in the book.
- 
- **Step 3**. The user then executes `delete-b <INDEX>`. If the `<INDEX>` is out of bound. PropertyFree will give a 
- display error message indicating that the index is wrong.
- 
- **Step 4**. The application will then retrieve the corresponding bidder or seller, delete it, and return a new list without the
- corresponding bidder or seller.
- 
- The following activity diagram summarises what happens when a user executes `delete-b` or `delete-s` command:
- 
- ![DeleteBidderActivityDiagram](images/BidderDeleteActivityDiagram.png)
- 
- The following sequence diagram summarises as well how the components of Model and Logic interact during the execution
- of the command:
- 
- ![DeleteBidderSequenceDiagram](images/DeleteBidderSequenceDiagram.png)
 
- #### Design Considerations
  
- 1. Alternative 1 (current choice): Displays the list in the appropriate tab accordingly, depending on the relevant
- entity of the command. (i.e `delete-b` will bring the application to the bidder tab automatically.)
-    
-    - Pros: Automatic switching of tabs allows user to switch between tabs without having to 
-    interact with the GUI. 
-    - Cons: User may not desire to switch tabs automatically even if a command is given for the relevant entity.
- 
- 2. Alternative 2: Have a separate window for bidder and sellers.
-
-    - Pros: Neater UI and improves usability for the agent.
-    - Cons: More command lines will be required if user wants to close the separate window.
  
  #### 1.2 **Find**: find bidder(s) and seller(s) based on their names - `find-b` or `find-s`
  
