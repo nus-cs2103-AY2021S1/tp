@@ -1,5 +1,16 @@
 package com.eva.testutil.staff;
 
+import static com.eva.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static com.eva.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static com.eva.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static com.eva.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static com.eva.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static com.eva.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static com.eva.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static com.eva.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static com.eva.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static com.eva.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +28,7 @@ import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 import com.eva.model.util.SampleDataUtil;
+
 
 public class TypicalStaffs {
     public static final Staff ALEX = new StaffBuilder().withName("Alex Yeoh").withPhone("87438807")
@@ -56,6 +68,11 @@ public class TypicalStaffs {
                     new String[] {"24/12/2020"}
                     )
             .withComments("Gambling|2020-11-10|Has a problem with gambling")
+            .build();
+    public static final Staff AMY = new StaffBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+    public static final Staff BOB = new StaffBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     private TypicalStaffs() {}

@@ -357,7 +357,7 @@ Commands to add, delete and edit comments on staff or applicants
  
 #### 3.4.1 Add comment to a staff/applicant: `addc`
 
-Adds a comment to a staff/applicant under eva
+Adds a comment to a staff/applicant under eva depending on which panel you are in
 
 Format: `addc INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
 
@@ -366,7 +366,7 @@ Example:
 
 #### 3.4.2 Delete comment from a staff/applicant: `delc`
 
-Deletes a comment from a staff/applicant under eva
+Deletes a comment from a staff/applicant under eva depending on which panel you are in
 
 Format: `delc INDEX c/ ti/TITLE_OF_COMMENT_TO_DELETE`
 

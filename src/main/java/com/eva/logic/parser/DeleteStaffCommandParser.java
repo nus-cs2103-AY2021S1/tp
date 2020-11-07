@@ -9,7 +9,7 @@ import com.eva.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteStaffCommand object.
  */
-public class DeleteStaffCommandParser {
+public class DeleteStaffCommandParser implements Parser<DeleteStaffCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteStaffCommand

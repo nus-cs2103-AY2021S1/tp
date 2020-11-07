@@ -85,8 +85,6 @@ public class Applicant extends Person {
         this.application = new Application();
     }
 
-
-
     /**
      * Sets the application status of the specific applicant to be accepted.
      */
