@@ -9,11 +9,18 @@ Welcome to the User Guide for Eva!
 
 ## 1. Introduction
 
-Eva is a simple and lightweight application that **handles HR related administrative tasks**, 
-like managing staff performance and recruitment of applicants, faster than a typical mouse/GUI driven app. 
-This application is better suited for start-ups with a size of about 5-30 staff. 
+![Eva Logo](images/ugimages/evalogo.png)
 
-This user guide takes you through the basics of Eva and helps you get moving straightaway.
+Welcome and thanks for downloading Eva!
+
+What is _Eva_?
+
+Eva is a simple and lightweight desktop application that **handles HR related administrative tasks**, 
+like managing your company staffs and recording details related to recruitment.<br>
+Eva comes with a command line interface (CLI) which is faster than a typical mouse/GUI driven app after you or your staffs get used to it.<br>
+
+We hope that through our app, you and your company will be empowered and able to solve your basic HR needs.<br>
+This user guide will take you through the basics of Eva and help you get moving straightaway.
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -61,7 +68,7 @@ Note how the app contains some sample data.<br>
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -84,7 +91,8 @@ Note how the app contains some sample data.<br>
 
 </div>
 
-<div>
+<div markdown="block" class="alert alert-primary">
+
 :bulb: **Tip:**
 
 Eva automatically saves any changes made to the records in your hard disk when using the commands below!
@@ -93,40 +101,84 @@ You can also find the records in the `data` folder where the `eva.jar` file is l
 
 </div>
 
-### 3.1. System Commands
+### 3.1. Eva GUI
 
-#### 3.1.1. Find help : `help`
+Before we dive into the features, let us help you familiarize yourself with our GUI!
 
-Shows a message explaining how to access the help page.
+As of `v1.4`, Eva currently has four different application panels it can switch between:
 
-![help message](images/helpMessage.png)
+* The `Staff List` :
+
+![staffListPanel intro](images/ugimages/Intro1.png)
+
+* The `Staff Profile` :
+
+![staffProfilePanel intro](images/ugimages/Intro2.png)
+
+* The `Applicant List` :
+
+![applicantListPanel intro](images/ugimages/Intro3.png)
+
+* The `Staff Profile` :
+
+![applicantProfilePanel intro](images/ugimages/Intro4.png)
+
+These four panels form the core of our application to be sure to familiarize yourself with them! Once ready, move on to the [Commands](#32-system-commands)!
+
+
+### 3.2. System Commands
+
+#### 3.2.1. Open help window : `help`
+
+If you're not sure of how to use Eva at any point in time, use the `help` command!
+
+The `help` command shows a message explaining how to access the help page.
 
 Format: `help`
 
-#### 3.1.2. Exit the program : `exit`
+![help message](images/ugimages/Help.png)
 
-Exits the program. 
+#### 3.2.2. Exit the program : `exit`
+
+Done using Eva? The `exit` command exits the program!
 
 Format: `exit`
 
+<div markdown="block" class="alert alert-info">
 
-### 3.2. Staff commands
+**:information_source: Note:** The exit command immediately closes the app upon execution.<br>
+
+As mentioned earlier in [Features](#3-features), there is no need to manually save data! So don't worry if you accidentally close your app!
+
+</div>
+
+![exit](images/ugimages/Exit.png)
+
+### 3.3. Staff commands
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**<br>
 
-* All commands under staff can only be done on either staff list or staff profile panel except `adds`, which can be done on any panel
+* All commands under staff can only be done on either staff list or staff profile panel except `adds`, which can be done on any panel<br>
  
-* While in staff profile, only details of the profile that is being viewed can be changed.
+* While in staff profile, only details of the profile that is being viewed can be changed.<br>
 
 </div>
 
-#### 3.2.1. List all staffs : `list s-`
+Staff commands give you the ability to keep track of your staffs which help you make business and manpower decisions.
 
-Shows a list of all staffs in Eva.
+#### 3.3.1. List all staffs : `list`
 
-#### 3.2.2. Add a staff: `adds`
+The staff list panel serves as your primary tool to give you an overview of all the staffs in your company.
+
+This command changes the panel to the [`Staff List`](#31-eva-gui) and shows a list of all staffs in the Eva Database.
+
+Format: `list s-`
+
+![listStaff](images/ugimages/ListStaff.png)
+
+#### 3.3.2. Add a staff: `adds`
 
 Adds a staff to Eva.
 
@@ -139,7 +191,7 @@ Examples:
 * `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
 
-#### 3.2.3. Find a staff : `find s-`
+#### 3.3.3. Find a staff : `find s-`
 
 Shows a list of staffs whose name contains one of the given names.
 
@@ -148,16 +200,20 @@ Format `find FIND_TYPE- KEYWORD`
 Examples:
 * `find s- Doe`
 
-#### 3.2.4. View : `view`
+#### 3.3.4. View : `view`
 
-Brings you to the profile panel of the staff at the specified index. 
+Want a more in depth and focused view of a staff? Use this command to open up their individual profile!
+
+This command changes the panel to the [`Staff Profile`](#31-eva-gui) and Brings you to the profile panel of the staff at the specified index. 
 
 Format: `view INDEX`
 
 Example:
 * `view 1`
 
-#### 3.2.5. Delete a staff: `dels`
+![viewStaff](images/ugimages/ViewStaff.png)
+
+#### 3.3.5. Delete a staff: `dels`
 
 Deletes a staff from Eva. 
 
@@ -166,7 +222,7 @@ Format: `dels INDEX`
 Example:
 * `dels 1`
 
-#### 3.2.6. Edit a staff: `edits`
+#### 3.3.6. Edit a staff: `edits`
 
 Edits general details of a staff from eva (excluding leave taken)
 
@@ -176,41 +232,69 @@ Example:
 * `edits 1 n/John Doe p/99999999 a/John Street e/NEW@example.com`
 
 
-#### 3.2.7. Record leave taken by staff: `addl`
+#### 3.3.7. Record leave taken by staff: `addl`
 
-Records leave taken by a staff that is in Eva. <br>
+Need to record down when your staffs are taking leaves?
+
+This command records the leave taken by a staff in the Eva Database. <br>
+
 Format: `addl INDEX l/d/DATE [d/DATE] [l/d/DATE [d/DATE]]…​`
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
+:bulb: **Tip:**<br>
 
-* Addition of multiple leaves using the same command is supported. A leave can have either one (single day) or two dates (start and end inclusive).
-* Dates can be input in any order. Eva will sort the leaves and dates according to which date comes first.
+* Addition of multiple leaves using the same command is supported. A leave can have either one (single day) or two dates (start and end inclusive).<br>
+
+* Dates can be input in any order. Eva will sort the leaves and dates according to which date comes first.<br>
+
+* Eva automatically tells you if a staff has either already taken the leave, is in the process of taking it or has not taken the leave. This can be seen on the [Staff Profile](#31-eva-gui). <br>
+
+* Eva also automatically tallies up the total number of leave days taken by a staff and displays the total below the leaves! This can be seen on the [Staff Profile](#31-eva-gui). <br>
 
 </div>
 
 Examples:
 * `list s-` followed by `adll 2 l/d/20/10/2020` adds the leave record with the given date(s) to the 2nd person in the shown list.
-* `find s- Betsy` followed by `adll 1 l/d/20/10/2020` adds the leave to the 1st person in the results of the `find s-` command.
+* `find s- Betsy` followed by `addl 1 l/d/20/10/2020` adds the leave to the 1st person in the results of the `find s-` command.
 * `addl 1 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`
 * `addl 2 l/d/10/10/2020 d/08/10/2020 l/d/09/09/2020`
 
-#### 3.2.8. Delete leave taken by staff: `dell`
+![addLeave](images/ugimages/AddLeave.png)
 
-Removes record of leave taken by staff. <br>
+#### 3.3.8. Delete leave taken by staff: `dell`
+
+Should a staff be unable to take their leave and cancels or postpones, Eva allows you to delete their recorded leaves!
+
+This command removes the record of leave taken by staff, specified by the date given.<br>
+
 Format: `dell INDEX d/DATE`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** 
+If a leave record lasts from 08/11/2020 to 12/11/2020, any date keyed in that date range will cause the whole record to be deleted.<br>
+
+</div>
 
 Examples:
 * `list s-` followed by `dell 2 d/09/10/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
 * `find s- Betsy` followed by `dell 1 d/09/10/2020` deletes the leave from the 1st person in the results of the `find s-` command.
 * `dell 2 d/09/10/2020`
 
-#### 3.2.9. Clear staff database : `clear s-`
+![deleteLeave](images/ugimages/DeleteLeave.png)
 
-Clears all staff entries from Eva.
+#### 3.3.9. Clear staff database : `clear s-`
 
-### 3.3. Applicant commands
+Want to get rid of all entries at once?
+
+This command clears all staff entries from the Eva database.
+
+Format: `clear s-`
+
+![clearStaff](images/ugimages/ClearStaff.png)
+
+### 3.4. Applicant commands
 
 <div>
 
@@ -221,11 +305,11 @@ Clears all staff entries from Eva.
 
 </div>
 
-#### 3.3.1. List all applicants : `list a-`
+#### 3.4.1. List all applicants : `list a-`
 
 Shows a list of all applicants in Eva.
 
-#### 3.3.2 Add an applicant: `adda`
+#### 3.4.2 Add an applicant: `adda`
 
 Adds an applicant to Eva.
 
@@ -243,7 +327,7 @@ Examples:
 * `adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
 * `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Developer`
 
-#### 3.3.3. Find an applicant : `find a-`
+#### 3.4.3. Find an applicant : `find a-`
 
 Shows a list of staffs whose name contains one of the given names.
 
@@ -252,7 +336,7 @@ Format `find FIND_TYPE- KEYWORD`
 Examples:
 * `find a- Doe`
 
-#### 3.3.4. View : `view`
+#### 3.4.4. View : `view`
 
 Brings you to the profile panel of the applicant at the specified index. 
 
@@ -261,7 +345,7 @@ Format: `view INDEX`
 Example:
 * `view 1`
 
-#### 3.3.5. Delete an applicant: `dela`
+#### 3.4.5. Delete an applicant: `dela`
 
 Deletes an applicant with the specified index on the displayed list in Eva. 
 
@@ -270,7 +354,7 @@ Format: `dela INDEX`
 Example:
 * `dela 1`
 
-#### 3.3.6. Edit an applicant: `edita`
+#### 3.4.6. Edit an applicant: `edita`
 
 Edits general details of an applicant from eva (excluding application status)
 
@@ -290,7 +374,7 @@ Example:
 * `edita 1 id/ 10/10/2010`
 
 
-#### 3.3.7. Add an application: `addapp`
+#### 3.4.7. Add an application: `addapp`
 
 Adds an application (resume details) to an applicant with the specified index under Eva.
 
@@ -311,7 +395,7 @@ Example:
 * `addapp 1 sample`
 
 
-#### 3.3.8. Delete an application: `delapp`
+#### 3.4.8. Delete an application: `delapp`
 
 Deletes an application from an applicant with the specified index under Eva.
 
@@ -323,7 +407,7 @@ Format: `delapp INDEX`
 Example:
 * `delapp 1`
 
-#### 3.3.9. Set application status: `setas`
+#### 3.4.9. Set application status: `setas`
 Sets the application status of an applicant with the specified index on the displayed list in Eva.
 
 Format: `setas INDEX as/NEW_APPLICATION_STATUS`
@@ -337,7 +421,9 @@ Format: `setas INDEX as/NEW_APPLICATION_STATUS`
 Example:
 * `setas 1 as/received`
 
-### 3.4. Comment Commands
+### 3.4.10 Clear applicant database: `clear`
+
+### 3.5. Comment Commands
 
 Commands to add, delete and edit comments on staff or applicants
 
@@ -354,7 +440,7 @@ Commands to add, delete and edit comments on staff or applicants
 
 </div>
  
-#### 3.4.1 Add comment to a staff/applicant: `addc`
+#### 3.5.1 Add comment to a staff/applicant: `addc`
 
 Adds a comment to a staff/applicant under eva depending on which panel you are in
 
@@ -363,7 +449,7 @@ Format: `addc INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
 Example:
 * `addc 1 c/ ti/Working Ethics d/10/10/2010 desc/Good`
 
-#### 3.4.2 Delete comment from a staff/applicant: `delc`
+#### 3.5.2 Delete comment from a staff/applicant: `delc`
 
 Deletes a comment from a staff/applicant under eva depending on which panel you are in
 
@@ -373,7 +459,7 @@ Example Scenario:
 * Comment to delete has Title: Working Ethics, Date: 10/10/2010, Description:Good, Staff index is 1
 * Command: `delc 1 c/ ti/Working Ethics`
 
-#### 3.4.3. Edit comment on a staff: `editc`
+#### 3.5.3. Edit comment on a staff: `editc`
 
 Edits only the description of a comment on a staff. 
 
@@ -425,15 +511,15 @@ Example Scenario:
 
 | Action          | Format, Examples                                                                                                                                        |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **List** | `list s-`   
+| **ListStaffs** | `list s-`   
 | **AddStaff**    | `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **Find** | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find s- James Jake`                                                                 |
+| **FindStaff** | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find s- James Jake`                                                                 |
 | **View** | `view INDEX`<br> e.g., `view 2`                                                                                            |
 | **DeleteStaff** | `dels INDEX`<br> e.g., `dels 1`         
-| **Edit** | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edits 2 n/James Lee e/jameslee@example.com` |
+| **EditStaff** | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edits 2 n/James Lee e/jameslee@example.com` |
 | **AddLeave**    | `addl INDEX l/d/DATE [d/DATE]` <br> e.g., `addl 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`                                                   |
 | **DeleteLeave** | `dell INDEX d/DATE`<br> e.g., `dell 1 d/10/10/2020`                                                                                       |
-| **Clear** | `clear s-`         |
+| **ClearStaffDatabase** | `clear s-`         |
 
 ### 5.3. Applicant
 
@@ -447,3 +533,4 @@ Example Scenario:
 | **AddApplication**    | `addapp INDEX [filepath]` <br> e.g., `addapp 1 C:\Users\Public\Downloads\resume.txt`             |
 | **DeleteApplication** | `delapp INDEX` <br> e.g., `delapp 1`                                                       |
 | **SetAppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g., `setas 1 as/processing`                               |
+| **ClearApplicantDatabase** | `clear s-`         |
