@@ -1,9 +1,12 @@
 package seedu.address.logic.textfieldmodules;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.List;
 
-import javafx.scene.control.ContextMenu;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -11,12 +14,12 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
 import javafx.scene.Scene;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ApplicationExtension.class)
 class FzfModuleTest extends HeadlessTestBase {
@@ -65,7 +68,7 @@ class FzfModuleTest extends HeadlessTestBase {
         robot.press(KeyCode.CONTROL, KeyCode.SPACE);
 
         // navigate down the list to last element
-        for(int i = 0; i < sampleNameList.size() - 1; i ++) {
+        for (int i = 0; i < sampleNameList.size() - 1; i++) {
             robot.press(KeyCode.DOWN);
             robot.release(KeyCode.DOWN);
         }
