@@ -205,6 +205,11 @@ Examples:
 * `s-find BSBBT` returns `BSBBT`'s sales data.
 * `s-find BSBBT BSBM` returns `BSBBT`'s sales data and `BSBM`'s sales data.<br>
 
+#### 1.4 Ranking the list of drinks sold : `s-rank`
+Shows a ranked list of all types of drinks sold in the Sales Tracker. The list of drinks
+is ranked from the most popular to least popular.
+
+Format: `s-rank`
 
 ### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
@@ -219,16 +224,16 @@ Examples:
 
 * All ingredients' initial levels (the levels you see when running tCheck for the very first time) are set to 0.<br>
 
-* tCheck is designed specifically for an imaginary bubble tea brand, T-Sugar, which produces all their drinks using six ingredients. Hence, all available ingredients in a T-Sugar stall are pre-defined in tCheck's ingredient book and no other ingredient can be added.<br>
+* tCheck is designed specifically for an imaginary bubble tea brand, T-Sugar, which produces all their drinks using six ingredients. Hence, all available ingredients in a T-Sugar store are pre-defined in tCheck's ingredient book and no other ingredient can be added.<br>
 
-* Please note that the ingredient names are **case-sensitive** to ensure consistency with the ingredient names displayed in Ingredient Tracker section of _Main View_.<br>
+* Please note that the ingredient names are **case-sensitive** to ensure consistency with the ingredient names displayed in Ingredient Tracker section of the _Main View_.<br>
 
 * Please be informed that a prefix is chosen for an ingredient using the following logic : 
    1. Use the first letter of the ingredient name. 
    2. If that letter is taken by another ingredient, use the first letter of the second word for that ingredient. 
    3. If the ingredient name does not have a second word or if the first letter of the second word is not unique, use the second letter of the first word of the ingredient name.
 
-* Here is a comprehensive list of all available ingredients and their pre-determined default levels in a T-Sugar bubble tea stall:<br>
+* Here is a comprehensive list of all available ingredients and their pre-determined default levels in a T-Sugar bubble tea store:<br>
     * Milk, 50 L<br>
     * Pearl, 20 KG<br>
     * Boba, 20 KG<br>
