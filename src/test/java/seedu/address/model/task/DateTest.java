@@ -12,6 +12,7 @@ class DateTest {
 
     @Test
     void isValidDate_invalidDate_false() {
+        assertFalse(Date.isValidDate("11-11-2020 10:20:00"));
         assertFalse(Date.isValidDate("11/01/2020")); // should use "-" instead of "/"
         assertFalse(Date.isValidDate("11-1-2020")); // should be in the form of dd-mm-yyyy
         assertFalse(Date.isValidDate("30-02-2020")); // February does not have 30 days
@@ -22,6 +23,7 @@ class DateTest {
 
     @Test
     void isValidDate_validDate_true() {
+        assertTrue(Date.isValidDate("11-11-0008"));
         assertTrue(Date.isValidDate("31-10-2020"));
         assertTrue(Date.isValidDate("30-09-2020"));
         assertTrue(Date.isValidDate("31-07-2020"));

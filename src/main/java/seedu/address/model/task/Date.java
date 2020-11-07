@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a Date, with which the user can set a time range to filter tasks.
@@ -34,11 +35,8 @@ public class Date {
      */
     public LocalDate convertIntoDate(String dateString) {
         assert isValidDate(dateString);
-        String[] date = dateString.split("-");
-        int day = Integer.parseInt(date[0]);
-        int month = Integer.parseInt(date[1]);
-        int year = Integer.parseInt(date[2]);
-        return LocalDate.of(year, month, day);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return LocalDate.parse(dateString, formatter);
     }
 
     /**
@@ -54,7 +52,7 @@ public class Date {
         int year = Integer.parseInt(strings[2]);
         boolean isValidDay = day <= 31 && day >= 1;
         boolean isValidMonth = month <= 12 && month >= 1;
-        //year is always valid because it matches the regex as 4 digits of integers (1000 - 9999)
+        //year is always valid because it matches the regex as 4 digits of integers
         if (day == 29 && month == 2) {
             if (year % 400 == 0) {
                 return true;
@@ -65,8 +63,7 @@ public class Date {
             }
         } else if ((day == 30 || day == 31) && month == 2) {
             return false;
-        } else if (day == 31 && (month == 4 || month == 6
-            || month == 9 || month == 11)) {
+        } else if (day == 31 && (month == 4 || month == 6 || month == 9 || month == 11)) {
             return false;
         } else {
             return isValidDay && isValidMonth;
@@ -90,8 +87,8 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Date// instanceof handles nulls
-            && date.equals(((Date) other).date)); // state check
+                || (other instanceof Date // instanceof handles nulls
+                && date.equals(((Date) other).date)); // state check
     }
 
     @Override
