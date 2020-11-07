@@ -191,6 +191,20 @@ The following sequence diagram shows how the `add` operation works:
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2: The user executes `add q/OOP is good. T/F ? a/T` command to add a flashcard with question “OOP is good.T/F ?” and answer “T” . `LogicManager` calls `FlashcardDeckParser#parseCommand(String args))` which calls
+`AddCommandParser#parse(String args)` .
+
+Step 3. `AddCommandParser` calls `ParserUtil#parseAnswer` and `ParserUtil#parseQuestion` to check for input validation. If input validation is successful, `AddCommandParser` calls the constructor of `Flashcard` and creates a flashcard. Consequently, a new `AddCommand` with the flashcard as the parameter is created.
+
+Step 4: `LogicManager` then calls `AddCommand#execute(Model model)`.
+
+Step 5: `AddCommand` then add a flashcard to the flashcard deck by calling `Model#addFlashcard`.
+
+Step 6: A `CommandResult` is generated and Model updates the `filteredFlashcardList` by adding the flashcard which is then updated in the UI.
 
 ### \[Implemented\] Review feature
 
