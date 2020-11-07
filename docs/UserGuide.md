@@ -127,7 +127,7 @@ Format: `leave`
 
 # **Features** in project_list scope
 
-### Start work on an existing project `startproject `
+### Start work on an existing project `startproject`
 
 Initialises the project specified.
 
@@ -138,7 +138,7 @@ Format: `startproject INDEX`
 
 Examples: `startproject 2` Initialises the second project in the project list.
 
-### Add a new project to the catalogue `add `
+### Add a new project to the catalogue `add`
 
 Adds a project to the project list.
 
@@ -163,7 +163,7 @@ Adds a new project with the
 - Coding in Greenwich as the description 
 - 2 tags "hell" and "abs"
 
-### Delete a project from the catalogue `delete `
+### Delete a project from the catalogue `delete`
 
 Deletes a project and all associated information from the project catalogue.
 
@@ -174,7 +174,7 @@ Format: `delete INDEX `
 
 Examples: `delete 2` deletes the second project from the catalogue.
 
-#### Locate projects by keyword `find `
+#### Locate projects by keyword `find`
 
 Finds projects whose names contain the given keywords.
 
@@ -190,7 +190,7 @@ Example: `find scare` returns the **Scare House** and **Easily scare Night** pro
 
 Outcome: The projects with matching names will be shown to the user.
 
-### Edits details of a project `edit `
+### Edits details of a project `edit`
 
 Updates the details of a project.
 
@@ -215,7 +215,7 @@ Example: `edit 1 n/Resident Evil project /d new horror` changes the name of the 
 
 ## **Task-related features**
 
-### Add task to a project `addtask `
+### Add task to a project `addtask`
 
 Creates a new task and adds it to the current project.
 
@@ -228,7 +228,7 @@ Format: `addtask tn/TASK NAME tp/TASK PROGRESS td/TASK DEADLINE `
 
 Example: `addtask tn/Do User Guide tp/30 td/29-02-2020 00:00:00` creates a task named Do User Guide, 30% completed, and has a deadline of 29th Feb 2020, midnight.
 
-### Assign a task to a teammate `assign `
+### Assign a task to a teammate `assign`
 
 Assigns a task to a teammate within a project.
 
@@ -240,7 +240,7 @@ Format: `assign TASKINDEX TEAMMATE_GITHUB_USERNAME  `
 
 Example: `assign 3 Lucas98` assigns task number 3 in the list to user *Lucas98*.
 
-### Edit task to a project `edittask `
+### Edit task to a project `edittask`
 
 Edits the indicated task in a project.
 
@@ -256,7 +256,7 @@ Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] `
 
 Example: `edittask 3 tn/Finish project` changes the name of task 3 in the list to Finish project.
 
-### Delete a task from the project `deletetask `
+### Delete a task from the project `deletetask`
 
 Deletes a task and all associated information from the project.
 
@@ -268,7 +268,7 @@ Format: `deletetask INDEX`
 
 Examples: `deletetask 2` deletes the second task shown in the displayed task list.
 
-### Filter tasks `filter `
+### Filter tasks `filter`
 
 Filters tasks in the task list by various task attributes:
   - by assignee's GitHub username - `ta/ASSIGNEE_GITHUB_USERNAME`
@@ -305,7 +305,7 @@ Specifically:
 
 Example: `filter tn/CS2103T` finds all the tasks whose task names contain the keyword `CS2103T`, and displays those tasks.
 
-### List all tasks `alltasks `
+### List all tasks `alltasks`
 
 Lists all tasks in the task list of the project.
 
@@ -329,7 +329,7 @@ Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)||(done/)`
 
 Example: `sort sa/ td/` sorts the task list by task deadline in ascending order. Then the tasks on the top of the task list are those with imminent deadlines.
 
-### View details of a task `viewtask `
+### View details of a task `viewtask`
 
 View all the details of a task, beyond the little information given in the project view.
 
@@ -409,7 +409,7 @@ Example: `deleteteammate Lucas97` deletes the teammate with Github username Luca
 
 # **Features** in person scope
 
-### Start work on an existing person `startperson `
+### Start work on an existing person `startperson`
 Initialises the person specified.
 
 Format: `startperson INDEX`
