@@ -60,6 +60,7 @@ public class CommandTestUtil {
     public static final EditRecipeCommand.EditRecipeDescriptor
             VALID_DESCRIPTOR_SIMILAR_SANDWICH_NAME_AND_INGREDIENT_NAME;
     public static final EditRecipeCommand.EditRecipeDescriptor VALID_DESCRIPTOR_SIMILAR_SANDWICH_INGREDIENT_NAME;
+    public static final EditRecipeCommand.EditRecipeDescriptor VALID_DESCRIPTOR_SANDWICH_DUPLICATE_INGREDIENT;
 
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -79,11 +80,20 @@ public class CommandTestUtil {
             + "Lay cheese and ham on the mustard half; "
             + "lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half.";
     public static final String VALID_RECIPE_IMAGE_SANDWICH = "images/sandwich.jpeg";
+    public static final String INVALID_RECIPE_IMAGE_SANDWICH = "images/sand.jpeg";
     public static final String VALID_TAG_SANDWICH = "healthy";
 
     //SANDWICH SIMILAR
     public static final String VALID_INGREDIENT_SANDWICH_SIMILAR = "Kaiser Rolls Or Other Breads";
     public static final String VALID_QUANTITY_SANDWICH_SIMILAR = "2 wholes";
+
+    //DUPLICATE INGREDIENTS FOR SANDWICH
+    public static final String DUPLICATE_INGREDIENT_SANDWICH =
+            "Kaiser Rolls Or Other Breads, Kaiser Rolls Or Other Breads";
+    public static final String DUPLICATE_QUANTITY_SANDWICH = "2 wholes, 2 wholes";
+
+    public static final String INVALID_RECIPE_IMAGE_DESC_SANDWICH =
+            " " + PREFIX_RECIPE_IMAGE + INVALID_RECIPE_IMAGE_SANDWICH;
 
     //PASTA
     public static final String VALID_INGREDIENT_PASTA = "Pasta";
@@ -588,6 +598,13 @@ public class CommandTestUtil {
         VALID_DESCRIPTOR_SIMILAR_SANDWICH_INGREDIENT_NAME = new EditRecipeDescriptorBuilder().withName(
                 "Sandwich similar")
                 .withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH)
+                .withCalories(VALID_CALORIES_SANDWICH)
+                .withImage(VALID_RECIPE_IMAGE_SANDWICH)
+                .withInstruction(VALID_INSTRUCTION_SANDWICH)
+                .withTags(VALID_TAG_SANDWICH).build();
+        VALID_DESCRIPTOR_SANDWICH_DUPLICATE_INGREDIENT = new EditRecipeDescriptorBuilder().withName(
+                "Sandwich")
+                .withIngredient(DUPLICATE_INGREDIENT_SANDWICH, DUPLICATE_QUANTITY_SANDWICH)
                 .withCalories(VALID_CALORIES_SANDWICH)
                 .withImage(VALID_RECIPE_IMAGE_SANDWICH)
                 .withInstruction(VALID_INSTRUCTION_SANDWICH)
