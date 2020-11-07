@@ -21,9 +21,9 @@ public class IngredientRestockCommand extends Command {
     public static final String COMMAND_WORD = "i-restock";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the ingredient's levels of all ingredient types"
-            + " that fall below their minimum stock levels, which are their default levels\n"
-            + "and require the user to restock. The amount needed for each ingredient to reach the minimum "
-            + "stock level is also stated.\n"
+            + " that fall below their pre-determined default levels\n"
+            + "and require the user to restock. The amount needed for each ingredient to reach its pre-determined "
+            + "default level is also stated.\n"
             + "The minimum stock levels for Boba, Pearl and Brown Sugar are 20 kg, while the minimum stock levels for "
             + "Milk, Black Tea and Green Tea are 50 L.\n"
             + "If the input contains extra words, those extra words will be ignored. "
