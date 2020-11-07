@@ -184,12 +184,13 @@ Format: `exit`
 
 ### 3.3. Staff commands
 
-<div>
+<div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
-- All commands under staff can only be done on either staff list or staff profile panel except `adds`, 
- which can be done on any panel
-- While in profiles, only details of the profile that is being viewed can be changed.
+:bulb: **Tip:**<br>
+
+* All commands under staff can only be done on either staff list or staff profile panel except `adds`, which can be done on any panel
+ 
+* While in staff profile, only details of the profile that is being viewed can be changed.
 
 </div>
 
@@ -220,14 +221,6 @@ Example:
 Edits general details of a staff from eva (excluding leave taken)
 
 Format: `edits INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]`
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:**
-
-* Edit of comment needs to be in required format: `c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE DESC/NEW_DESCRIPTION`
-
-</div>
 
 Example:
 * `edits 1 n/NEW_NAME p/99999999 a/NEW_ADDRESS e/NEW@example.com`
