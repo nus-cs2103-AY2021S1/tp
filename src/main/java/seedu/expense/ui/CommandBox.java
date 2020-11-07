@@ -15,6 +15,7 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
+    private static final int MAX_CHARACTERS = 450;
 
     private final CommandExecutor commandExecutor;
 
@@ -29,6 +30,10 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+
+        // calls #handleTextFieldLength() whenever there is a change to the text of the command box.
+        commandTextField.lengthProperty().addListener((observable, oldValue, newValue) ->
+            handleTextFieldLength(oldValue, newValue));
     }
 
     /**
@@ -41,6 +46,20 @@ public class CommandBox extends UiPart<Region> {
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        }
+    }
+
+    /**
+     * Manages the length of {@code commandTextField}
+     *
+     * @param oldValue length of previous TextField
+     * @param newValue length of current TextField
+     */
+    private void handleTextFieldLength(Number oldValue, Number newValue) {
+        if (newValue.intValue() > oldValue.intValue()) {
+            if (commandTextField.getText().length() >= MAX_CHARACTERS) {
+                commandTextField.setText(commandTextField.getText().substring(0, MAX_CHARACTERS));
+            }
         }
     }
 
