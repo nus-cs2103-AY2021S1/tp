@@ -25,7 +25,8 @@ public class SalesUpdateCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the sales of the drinks as entered. "
             + "Existing sales record will be overwritten by the input.\n"
-            + "Parameters: A/NUM [B/NUM] ... where A, B refers to the drink abbreviation.\n"
+            + "Parameters: DRINK [MORE_DRINKS] where DRINK is formatted as A/NUM.\n"
+            + "A refers to the drink's abbreviation and NUM refers to the sales of that drink.\n"
             + "You must record the sales of at least one item, as a non-negative unsigned integer"
             + String.format(" that is less than %d.\n", MAX_NUM_ALLOWED)
             + "Example: " + COMMAND_WORD + " " + PREFIX_BSBM + "100" + " " + PREFIX_BSPM + "0";

@@ -92,7 +92,7 @@ not be so obvious!
 
 ### 1. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 The Sales Tracking features allows you to keep a record of the sales of the bubble tea drinks inside the
-Sales Tracker. You are able to view data related to sales tracking in the _Sales Tracker Pane_.
+Sales Tracker. You are able to view data related to sales tracking in the Sales Tracker inside the _Main View_.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -120,9 +120,10 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's Sales Tra
 Updates the number of drinks sold for each drink type as given in the user input. The previous records will
 be overwritten.
 
-Format: `s-update A/NUM [B/NUM] [C/NUM] ...`
-* `A`, `B`, `C` are abbreviations for the drink types.
-* `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
+Format: `s-update DRINK [MORE_DRINKS]`
+* where `DRINK` is formatted as `A/NUM`
+    * `A` refers to the drink's abbreviation.
+    * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
 less than or equal to 99999999.
 * The sales of at least one drink item should be recorded when using this command.
 
@@ -130,12 +131,13 @@ Example: Let's say you want to update the sales of Brown Sugar Boba Milk, `BSBM`
 and Brown Sugar Boba Black Tea, `BSBBT`, to 120 in the Sales Tracker. You can follow these instructions:
 
 1. Type `s-update BSBM/100 BSBBT/120` into the _Command Box_.
-2. Press `Enter` to execute the command.
+2. Press "Enter" to execute the command.
 
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. You can now see that the sales of the two drinks have been updated accordingly in the _Sales Tracker Pane_. 
+2. You can now see that the sales of the two drinks have been updated accordingly in the Sales Tracker inside the
+_Main View_. 
 
 {Example outcome screenshot to be added later}
 
@@ -149,13 +151,13 @@ Example: Let's say you want to see a list of the drink sales that have been reco
 instructions:
 
 1. Type `s-list` into the _Command Box_.
-2. Press `Enter` to execute the command.
+2. Press "Enter" to execute the command.
 
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. The _Sales Tracker Pane_ will show a list of the drinks sales in descending order, where the drink with the
-most sales is on the top of the list.
+2. The Sales Tracker inside the _Main View_ will show a list of the drinks sales in descending order, where the drink
+ with the most sales is listed on top.
 
 {Example outcome screenshot to be added later}
 
