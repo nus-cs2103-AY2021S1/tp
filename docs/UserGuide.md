@@ -205,7 +205,7 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
  
 Examples:
 * `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Developer`
+* `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
 
 #### 3.3.2. Delete a staff: `dels`
 
@@ -223,7 +223,7 @@ Edits general details of a staff from eva (excluding leave taken)
 Format: `edits INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]`
 
 Example:
-* `edits 1 n/NEW_NAME p/99999999 a/NEW_ADDRESS e/NEW@example.com`
+* `edits 1 n/John Doe p/99999999 a/John Street e/NEW@example.com`
 
 
 #### 3.3.4. Record leave taken by staff: `addl`
@@ -258,9 +258,14 @@ Examples:
 
 ### 3.4. Applicant commands
 
+<div>
+
+:bulb: **Tip:**
 - All commands under applicant can only be done on either applicant list or applicant profile except `adda`, 
  which can be done on anywhere
- - While in profiles, only details of the profile that is being viewed can be changed.
+- While in profiles, only details of the profile that is being viewed can be changed.
+
+</div>
 
 #### 3.4.1 Add an applicant: `adda`
 
@@ -358,6 +363,9 @@ Commands to add, delete and edit comments on staff or applicants
 * Comment Commands take index reference from which type of person user is viewing. 
     * If user is viewing staff list or profile, comment commands takes index reference from staff list.
     * If user is viewing applicant list or profile, comment commands takes index reference from applicant list.
+    * Comments are arranged according to date, then alphabetically if same date.
+    * Comments do not support the input `|`.
+    * Comment description can only be seen in profiles.
 
 </div>
  
@@ -368,7 +376,7 @@ Adds a comment to a staff/applicant under eva
 Format: `addc INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
 
 Example:
-* `addc 1 c/ ti/title d/10/10/2010 desc/description`
+* `addc 1 c/ ti/Working Ethics d/10/10/2010 desc/Good`
 
 #### 3.5.2 Delete comment from a staff/applicant: `delc INDEX c/ `
 
@@ -376,19 +384,19 @@ Deletes a comment from a staff/applicant under eva
 
 Format: `delc INDEX c/ ti/TITLE_OF_COMMENT_TO_DELETE`
 
-Examples:
-* Comment to delete has title: Example, Date: 10/10/2010, Description: Example of comment, Staff index is 1
-* Command: `delc 1 c/ ti/Example`
+Example Scenario:
+* Comment to delete has Title: Working Ethics, Date: 10/10/2010, Description:Good, Staff index is 1
+* Command: `delc 1 c/ ti/Working Ethics`
 
-#### 3.5.3. Edit comment on a staff: `editc INDEX c/`
+#### 3.5.3. Edit comment on a staff/applicant: `editc INDEX c/`
 
-Edits the description of a comment on a staff. 
+Edits only the description of a comment on a staff. 
 
 Format: `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION`
 
-Examples:
-* Comment to change has title: Example, Date: 10/10/2010, Description: Example of comment, and staff index is 1
-* Command: `editc 1 c/ ti/Example d/10/10/2010 desc/New Example of comment`
+Example Scenario:
+* Comment to change has Title: Working Ethics, Date: 10/10/2010, Description: Good, and staff index is 1
+* Command: `editc 1 c/ ti/Working Ethics d/10/10/2010 desc/Quite Bad`
 
 
 ### 3.6. Archive data files `[coming in v2.0]`
