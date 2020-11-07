@@ -3,49 +3,19 @@ layout: page
 title: User Guide
 ---
 
+------------------------------------------------------------------------------------------------
+
 # User Guide for Taskmania
 
 Taskmania (based off AB3) is a **desktop app for a project leader to manage team members and tasks** to be finished in a
  software project, optimized for use via a Command Line Interface (CLI) while still having the benefits of a 
  Graphical User Interface (GUI). If you can type fast, Taskmania can allow you to manage your team faster than 
  a traditional point and click interface.
-
-## Contents
-- **Quickstart**
-- **Features in global scope**
-  - Get help `help` 
-  - Exit application `exit`
-  - List all projects `listprojects `
-  - List all person `listpersons `
-  - Leave a current page `leave`
-
-- **Features in project_list scope**
-  - Start working on an existing project `startproject `
-  - Add a new project to the catalogue `add `
-  - Delete a project from the catalogue `delete `
-  - Locate projects with matching keywords `find ` 
-  - Edit details of a project `edit `
-
-- **Features in project scope**
-  - Task-related features
-    - Add a task to a project `addtask `
-    - Assign a task to a teammate `assign `
-    - Edit a task `edittask `
-    - Delete a task `deletetask`
-    - Filter tasks by various attributes `filter `
-    - List all tasks `alltasks`
-    - Sort tasks by various attributes `sort`
-    - View details of a task `viewtask `
-  - Teammate-related features
-    - Create a new teammate in a project `newteammate `
-    - Edit a teammate's details `editteammate `
-    - View a teammate's details `viewteammate `
-    - Delete a teammate `deleteteammate`
-  
-- **Features in person_list scope**
-  - Start working on an existing person `startperson `
-  
-- **Summary**
+ 
+ ## Table of contents
+ 
+ * Table of Contents
+ {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -60,13 +30,13 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 4. Double-click the file to start the app. The window that appears will be similar to the below should appear in a few seconds. Note how
  the app contains some sample information.<br>
    ![Ui](images/Ui.png)
-   *Figure 1: What the app looks like on startup*
+   *Figure 1: A preview of Taskmania in action*
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
  open the help window.<br>
    Some commands you can try:
 
-   * **`startproject 1 `** : Opens the first project
+   * **`startproject 1`** : Opens the first project
 
    * **`exit`** : Exits the app
 
@@ -113,7 +83,7 @@ a child level of `PROJECT` and it is definitely not in `PERSON` scope because `P
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Features** in global scope
+## **Features** in global scope
 
 ### Viewing help : `help`
 
@@ -179,15 +149,18 @@ Format: `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION
   - Repo URL must be a valid link
   - Description can be anything, as long as it is not blank
   - Any number of tags can be added, where each new tag would require the prefix tg/ before the tag
+  
+Note: Please enter a valid repository URL. Taskmania is an offline application and can only check the validity of the
+ URL, and not whether the repository exists.
 
-Example: `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging hell` 
+Example: `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/hell tg/abs` 
 
 Adds a new project with the 
 - projectName Blair project 
 - deadline of 29 February 2020 midnight 
 - URL for the team repository 
 - Coding in Greenwich as the description 
-- 2 tags "challenging" and "hell"
+- 2 tags "hell" and "abs"
 
 ### Delete a project from the catalogue `delete `
 
