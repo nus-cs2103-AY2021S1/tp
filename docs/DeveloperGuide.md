@@ -347,29 +347,42 @@ The following sequence diagram shows how the Delete By Index mechanism works:
   * Pros: Less overlapping and easier to debug.
   * Cons: Extra work needed to implement the delete command.
 
-### Delete by tag
-
-This delete by tag feature will allow the user to delete flashcards specified by a given set of tags.
+### Delete By Tag
 
 #### Implementation
 
-The delete by tag implementation requires changes to be made to the `DeleteCommandParser`. Currently, `DeleteCommandParser` takes in a single argument for `index`. The proposed implementation will require the `ArgumentTokenizer` and `ParseUtil` to parse for any `PREFIX_TAG`. If both `index` and `tag` are given, then a `CommandException` will be returned.
+The Delete By Tag mechanism will delete flashcards specified by a given set of tags. Any flashcard containing
+at least one of the specified tags will be deleted.
 
-Changes to the `DeleteCommand` class will also have to be made as it must be able to perform a different execution step depending whether or not it is deleting by tag or index. This will be done by implementing a boolean value `isDeleteByTag`. If the value is false, then the original execution for deleting by `index` will be executed. Else it, will follow the description below on how the proposed delete by tag mechanism behaves at each step.
+It works by filtering for the flashcards in the `model` and deleting them one by one.
 
-Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+##### Usage
+
+Given below is an example usage scenario and how the Delete By Tag mechanism behaves at each step.
+
+ Step 1. The user launches the application. 
 
  Step 2. The user executes `delete t/MCQ` command to delete all flashcards with the tag `MCQ`.
 
- Step 3. This will call `DeleteCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags` will be called to create tags for the arguments.
-
- Step 4. A new `FlashcardPredicate` will then be created from the given tags. It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `DeleteCommand`
+ Step 3. This will call `DeleteCommandParser#parse` which will then parse the arguments provided. 
+ Within `DeleteCommandParser#parse`, `ParserUtil#parseTags` will be called to create a `FlashcardPredicate` using the tags.
+ 
+ Step 4. A new `DeleteCommand` object will be created with its `isDeleteByTag` field set to `true`. The `FlashcardPredicate`
+ will also be passed to the `DeleteCommand` object.
 
  Step 5. `DeleteCommand#execute` will filter the `QuickCache` model with the provided predicate and get back the filtered list
 
  Step 6. It will then iterate through the list and call `QuickCache#deleteFlashcard` on each `Flashcard` in the list.
 
- Step 7. After execution, `CommandResult` will contain a message indicating that all flashcards with the specified tags have been deleted.
+#### Design considerations:
+
+* **Current choice:** Delete command works for both index and tags
+  * Pros: Convenient for the user as there is only one command.
+  * Cons: Extra checks have to be implemented to make sure that the correct deletion mechanism is executed.
+
+* **Alternative:** Create a seperate delete command for deleting by tags
+  * Pros: Less overlapping and easier to debug.
+  * Cons: Extra work needed to implement the delete command.
 
 ### Find by tag and question keywords
 
