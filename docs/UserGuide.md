@@ -581,7 +581,8 @@ After verifying that you have at least `java 11` installed, double click on the 
 If it still does not run, type the command `java -jar hospify.jar` in the **TERMINAL** in the **SAME directory** 
 containing your `hospify.jar` file. 
 
-![running jar from windows prompt](images/faq/mac_runJar.PNG)
+![running jar from windows prompt](images/faq/mac_runJar.PNG)\
+(Diagram 4.2.6)
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -595,7 +596,7 @@ containing your `hospify.jar` file.
 ![download jar](images/faq/download_jar.PNG)\
 (Diagram 4.3.1)
 
-**Q**: My question is not listed in the FAQ?\
+**Q**: My question is not listed in the FAQ. What should I do?\
 **A**: For inquires, please send email to our developer team at **hospify_enquiry@gmail.com**.
 
 
