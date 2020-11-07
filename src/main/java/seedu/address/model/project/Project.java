@@ -331,6 +331,15 @@ public class Project {
     }
 
     /**
+     * Removes all instances of a person's participation
+     */
+    public static void DeleteAllParticipationOf(Participation participation){
+        for (Project allProject : allProjects) {
+            allProject.removeParticipation(participation);
+        }
+    }
+
+    /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.
      */
