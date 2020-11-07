@@ -27,6 +27,7 @@ This User Guide is co-written by Josiah, Joshua, Gilbert, Francis and Xingjian. 
     6. [Finding flashcards](#finding-flashcards)
         1. [Finding by question](#finding-by-question)
         2. [Finding by tags](#finding-by-tags)
+        3. [Finding by tags and question](#finding-by-tags-and-question)
     7. [Deleting flashcards](#deleting-flashcards)
         1. [Deleting by index](#deleting-by-index)
         2. [Deleting by tags](#deleting-by-tags)
@@ -48,7 +49,8 @@ This User Guide is co-written by Josiah, Joshua, Gilbert, Francis and Xingjian. 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction to QuickCache <a name="intro"></a>
+<a name="intro"></a>
+## Introduction to QuickCache
 
 **QuickCache** is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
@@ -59,7 +61,8 @@ The **QuickCache User Guide** helps you get started with using **QuickCache**. T
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Using this guide <a name="using-this-guide"></a>
+<a name="using-this-guide"></a>
+## Using this guide
 
 Before diving into **QuickCache** and getting to know its features, lets get familiar with the symbols used in this user guide.
 
@@ -120,7 +123,8 @@ Here is a quick start on how you can start using our app in your own computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features <a name="features"></a>
+<a name="features"></a>
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -140,7 +144,8 @@ Here is a quick start on how you can start using our app in your own computer.
 
 </div>
 
-### Viewing help : `help` <a name="help"></a>
+<a name="help"></a>
+### Viewing help : `help`
 
 If you want to see a step-by-step guide for all QuickCache commands, you can get the URL to the QuickCache user guide by using the help command.
 
@@ -148,7 +153,8 @@ Format: `help`
 
 ![HelpMessage](images/helpMessage.png)
 
-### Creating a new flashcard <a name="creating-a-new-flashcard"></a>
+<a name="creating-a-new-flashcard"></a>
+### Creating a new flashcard
 You can add a new flashcard to the list.
 
 <div class="alert alert-danger">
@@ -158,7 +164,8 @@ You cannot have multiple question and answer prefixes.
 
 </div>
 
-#### Creating a flashcard with open ended question: `add q/QUESTION ans/ANSWER [t/TAG]... [d/DIFFICULTY]` <a name="oeq"></a>
+<a name="oeq"></a>
+#### Creating a flashcard with open ended question: `add q/QUESTION ans/ANSWER [t/TAG]... [d/DIFFICULTY]`
 You can create a flashcard that contains an open ended question which will be added to the list.
 
 1. You can use the add command to add a flashcard with an open ended question which will be added to the list.
@@ -179,7 +186,8 @@ For example, you can enter`add q/Sample Question ans/Sample Answer`
 
 </div>
 
-#### Creating a flashcard with multiple choice question: `addmcq q/QUESTION ans/ANSWER c/CHOICE... [t/TAG]... [d/DIFFICULTY]` <a name="mcq"></a>
+<a name="mcq"></a>
+#### Creating a flashcard with multiple choice question: `addmcq q/QUESTION ans/ANSWER c/CHOICE... [t/TAG]... [d/DIFFICULTY]`
 You can create a flashcard that contains a multiple choice question which will be added to the list.
 
 1. You can use the addmcq command to add a flashcard with a multiple choice question which will be added to the list.
@@ -202,7 +210,8 @@ For example, you can enter `addmcq q/Sample Question ans/1  c/Sample Choice c/Sa
 
 </div>
 
-### Opening a flashcard: `open INDEX` <a name="opening-a-flashcard"></a>
+<a name="opening-a-flashcard"></a>
+### Opening a flashcard: `open INDEX`
 
 To view a flashcard you can open it by its index.
 
@@ -227,7 +236,8 @@ To view a flashcard you can open it by its index.
 
 You have successfully opened a flashcard!
 
-### Editing a flashcard: `edit INDEX [q/QUESTION] [ans/ANSWER] [c/CHOICE]... [t/TAG]... [d/DIFFICULTY]` <a name="editing-a-flashcard"></a>
+<a name="editing-a-flashcard"></a>
+### Editing a flashcard: `edit INDEX [q/QUESTION] [ans/ANSWER] [c/CHOICE]... [t/TAG]... [d/DIFFICULTY]`
 
 You can edit a flashcard that you have created previously.
 
@@ -258,13 +268,15 @@ You have successfully edited a flashcard.
 
 </div>
 
-### Listing all flashcards : `list` <a name="listing-all-flashcards"></a>
+<a name="listing-all-flashcards"></a>
+### Listing all flashcards : `list`
 
 Shows a list of all flashcards currently created.
 
 Format: `list`
 
-### Finding flashcards <a name="finding-flashcards"></a>
+<a name="finding-flashcards"></a>
+### Finding flashcards
 
 To find flashcards, you can find them by specifying keywords within their questions and/or specifying their tags.
 
@@ -274,7 +286,8 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 </div>
 
-#### Finding by question: `find q/KEYWORD...` <a name="finding-by-question"></a>
+<a name="finding-by-question"></a>
+#### Finding by question: `find q/KEYWORD...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -296,7 +309,8 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindQuestionStep3](./images/FindQuestionStep3.png)
 
-#### Finding by tags: `find t/TAG1...` <a name="finding-by-tags"></a>
+<a name="finding-by-tags"></a>
+#### Finding by tags: `find t/TAG1...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -316,7 +330,8 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindTagsStep3](./images/FindTagsStep3.png)
 
-#### Finding by tags and keywords: `find t/TAG... q/KEYWORD...`
+<a name="finding-by-tags-and-question"></a>
+#### Finding by tags and question: `find t/TAG... q/KEYWORD...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -339,7 +354,8 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindQuestionAndTagsStep3](./images/FindQuestionAndTagsStep3.png)
 
-### Deleting flashcards <a name="deleting-flashcards"></a>
+<a name="deleting-flashcards"></a>
+### Deleting flashcards
 
 To delete a flashcard, you can either delete it by its index or based off its tags.
 
@@ -349,7 +365,8 @@ To delete a flashcard, you can either delete it by its index or based off its ta
 
 </div>
 
-#### Deleting by index : `delete INDEX` <a name="deleting-by-index"></a>
+<a name="deleting-by-index"></a>
+#### Deleting by index : `delete INDEX`
 
 You can delete a flashcard based on the index shown in the last displayed list.
 
@@ -374,7 +391,8 @@ You can delete a flashcard based on the index shown in the last displayed list.
 
 You have successfully deleted a flashcard!
 
-#### Deleting by tags : `delete t/TAG...` <a name="deleting-by-tags"></a>
+<a name="deleting-by-tags"></a>
+#### Deleting by tags : `delete t/TAG...`
 
 You can delete a group of flashcards based on a specified tag. All flashcards that have this specified tag will be deleted.
 
@@ -398,14 +416,17 @@ You can delete a group of flashcards based on a specified tag. All flashcards th
 
 You have successfully deleted all the flashcards with the specified tag(s)!
 
-#### Clearing all entries : `clear` <a name="clear"></a>
+<a name="clear"></a>
+#### Clearing all entries : `clear`
 Suppose you are in a situation where you want to get rid of all the flashcards in QuickCache. You might find it troublesome to delete each flashcard one-by-one. Instead, you can utilize the clear command to clear all flashcards on QuickCache directly.
 
 Format: `clear`
 
-### Testing a flashcard <a name="testing-flashcard"></a>
+<a name="testing-flashcard"></a>
+### Testing a flashcard
 
-#### Containing an open-ended question : `test INDEX ans/ANSWER` <a name="testing-oeq"></a>
+<a name="testing-oeq"></a>
+#### Containing an open-ended question : `test INDEX ans/ANSWER`
 
 You can test yourself with a flashcard containing open-ended question by specifying an answer.
 
@@ -430,7 +451,8 @@ You can test yourself with a flashcard containing open-ended question by specify
 
 You have successfully tested yourself on an open-ended question!
 
-#### Containing a multiple choice question : `test INDEX o/OPTION` <a name="testing-mcq"></a>
+<a name="testing-mcq"></a>
+#### Containing a multiple choice question : `test INDEX o/OPTION`
 
 You can also test yourself a flashcard containing a multiple choice question by specifying an option.
 
@@ -456,7 +478,8 @@ You can also test yourself a flashcard containing a multiple choice question by 
 
 You have successfully tested yourself on a multiple choice question!
 
-### Displaying statistics <a name="displaying-statistics"></a>
+<a name="displaying-statistics"></a>
+### Displaying statistics
 
 <div class="alert alert-danger">
 :exclamation: You can only show statistics based on index or based on tags but not both!
@@ -467,7 +490,8 @@ Statistics include:
 * The number of times and the percentage the user answers all flashcards containing the specified tag(s) correctly.
 * The number of times and the percentage the user answers all flashcards containing the specified tag(s) incorrectly.
 
-#### Statistics by index: `stats INDEX` <a name="stats-by-index"></a>
+<a name="stats-by-index"></a>
+#### Statistics by index: `stats INDEX`
 
 You can display the statistics of a specified flashcard in a Pie Chart based on the last displayed list.
 
@@ -489,7 +513,8 @@ You can display the statistics of a specified flashcard in a Pie Chart based on 
 
 You have successfully displayed the statistics of a flashcard!
 
-#### Statistics by tags: `stats t/TAG...` <a name="stats-by-tags"></a>
+<a name="stats-by-tags"></a>
+#### Statistics by tags: `stats t/TAG...`
 
 You can also display the statistics of multiple flashcards in a Pie Chart by specifying tags.
 
@@ -507,7 +532,8 @@ You can also display the statistics of multiple flashcards in a Pie Chart by spe
 
 You have successfully displayed the statistics of all flashcards containing the specified tags!
 
-### Clearing a flashcard's statistics : `clearstats INDEX` <a name="clearing-a-flashcards-statistics"></a>
+<a name="clearing-a-flashcards-statistics"></a>
+### Clearing a flashcard's statistics : `clearstats INDEX`
 
 To clear the statistics of a flashcard you can use the clearstats command.
 
@@ -547,9 +573,11 @@ To clear the statistics of a flashcard you can use the clearstats command.
 
 You have successfully cleared the statistics of a flashcard!
 
-### Sharing flashcards <a name="sharing-flashcards"></a>
+<a name="sharing-flashcards"></a>
+### Sharing flashcards
 
-#### Exporting a set of flashcards : `export FILE_NAME` <a name="export"></a>
+<a name="export"></a>
+#### Exporting a set of flashcards : `export FILE_NAME`
 
 You can export all flashcards from the last displayed list into a file named `FILE_NAME` for backup or sharing with your friends.
 
@@ -580,7 +608,8 @@ You can export all flashcards from the last displayed list into a file named `FI
 
 Voila! You have successfully exported your flashcards into a file.
 
-#### Importing a set of flashcards : `import FILE_NAME` <a name="import"></a>
+<a name="import"></a>
+#### Importing a set of flashcards : `import FILE_NAME`
 
 You can import external flashcards into your local QuickCache as well.
 
@@ -614,24 +643,29 @@ You can import external flashcards into your local QuickCache as well.
 
 Good job! You have successfully imported flashcards from an external file.
 
-### Exiting the program : `exit` <a name="exit"></a>
+<a name="exit"></a>
+### Exiting the program : `exit`
 
 You can exit QuickCache by using the exit command.
 
 Format: `exit`
 
-### Saving the data <a name="save"></a>
+<a name="save"></a>
+### Saving the data
 For your convenience, QuickCache data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ <a name="faq"></a>
+<a name="faq"></a>
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous QuickCache home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-## Command summary <a name="command-summary"></a>
+
+<a name="command-summary"></a>
+## Command summary
 
 If you need to quickly look up a command, we have added a table below to summarize all the commands offered by QuickCache.
 
