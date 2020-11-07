@@ -225,20 +225,6 @@ public class StudentRecordListManager implements StudentRecordList {
     }
 
     /**
-     * Returns a random Student Record from the Student Record List
-     * @return A random Student Record
-     */
-    @Override
-    public StudentRecord getRandomStudentRecord(Random random) {
-        try {
-            int index = random.nextInt(internalList.size());
-            return internalList.get(index);
-        } catch (IllegalArgumentException e) {
-            throw new EmptySessionException();
-        }
-    }
-
-    /**
      * Stores the details to edit the student record with. Each non-empty field value will replace the
      * corresponding field value of the student record. Note that the name and nusnetId cannot be changed.
      */
