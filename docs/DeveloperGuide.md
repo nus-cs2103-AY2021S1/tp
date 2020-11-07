@@ -1690,14 +1690,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case 9: Update the name of a stock.
+#### Use case 9: Updating a stock.
 
 **MSS**
 
 1.  User requests to list stocks.
 2.  Warenager lists all stocks including their serial number.
-3.  User requests to change a specific stock's name.
-4.  Warenager updates the stock's name.
+3.  User requests to change a specific stock's fields.
+4.  Warenager updates the stock's fields.
 
     Use case ends.
 
@@ -1707,7 +1707,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given format is missing the field header sn/.
+* 3a. The given format is missing the prefix sn/.
 
     * 3a1. Warenager shows an error message.
 
@@ -1719,20 +1719,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3c. The given format is missing the field header n/.
+* 3c. The prefixes to update the fields are invalid.
 
-    * 3c1. Warenager shows an error message.
-
+    * 3c1. Warenager shows an error message
+    
       Use case resumes at step 2.
 
-#### Use case 10: Update the location of a stock
+#### Use case 10: Updating multiple stocks
 
 **MSS**
 
 1.  User requests to list stocks.
 2.  Warenager lists all stocks including their serial number.
-3.  User requests to change a specific stock's location.
-4.  Warenager updates the stock's location.
+3.  User requests to change some stock's fields.
+4.  Warenager updates the stock's fields.
 
     Use case ends.
 
@@ -1742,60 +1742,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given format is missing the field header sn/.
+* 3a. The given format is missing the prefix sn/.
 
     * 3a1. Warenager shows an error message.
 
       Use case resumes at step 2.
 
-* 3b. The stock with the given serial number is not found.
+* 3b. One of the stock with the given serial numbers is not found.
 
     * 3b1. Warenager shows an error message.
 
       Use case resumes at step 2.
 
-* 3c. The given format is missing the field header l/.
+* 3c. The prefixes to update the fields are invalid.
 
-    * 3c1. Warenager shows an error message.
-
+    * 3c1. Warenager shows an error message
+    
       Use case resumes at step 2.
 
-#### Use case 11: Update the source of a stock
-
-**MSS**
-
-1.  User requests to list stocks.
-2.  Warenager lists all stocks including their serial number.
-3.  User requests to change a specific stock's source.
-4.  Warenager updates the stock's source.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list of all stocks is empty.
-
-  Use case ends.
-
-* 3a. The given format is missing the field header sn/.
-
-    * 3a1. Warenager shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The stock with the given serial number is not found.
-
-    * 3b1. Warenager shows an error message.
-
-      Use case resumes at step 2.
-
-* 3c. The given format is missing the field header s/.
-
-    * 3c1. Warenager shows an error message.
-
-      Use case resumes at step 2.
-
-#### Use case 12: Using the stats command
+#### Use case 11: Using the stats command
 
 **MSS**
 
@@ -1836,7 +1801,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case 13: Adding a note to a stock
+#### Use case 12: Adding a note to a stock
 
 **MSS**
 
@@ -1876,7 +1841,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case 14: Deleting a note from a stock
+#### Use case 13: Deleting a note from a stock
 
 **MSS**
 
@@ -1922,7 +1887,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case 15: Deleting all notes from a stock
+#### Use case 14: Deleting all notes from a stock
 
 **MSS**
 
@@ -1968,7 +1933,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
      
-#### Use case 16: Generating a csv file that contains all stocks
+#### Use case 15: Generating a csv file that contains all stocks
 
 **MSS**
 
@@ -1991,17 +1956,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  
       Use case resumes at step 1.
 
-#### Use case 17: Generating a csv file that contains all stocks sorted in desired order
+#### Use case 16: Generating a csv file that contains all stocks sorted in desired order
 
  **MSS**
  
  1.  User sort stocks in stock book (Use case..) in their desired order.
- 2.  User request to generate csv file based on the existing stock book (Use case 16).
+ 2.  User request to generate csv file based on the existing stock book (Use case 15).
  3.  Warenager generates a csv file containing all stocks.
  
      Use case ends.
 
-#### Use case 18: Using the help command
+#### Use case 17: Using the help command
 
 **MSS**
 
@@ -2018,7 +1983,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case 19: Suggestion feature
+#### Use case 18: Suggestion feature
 
 **MSS**
 
@@ -2047,7 +2012,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-#### Use case 20: Sort stocks by field and order
+#### Use case 19: Sort stocks by field and order
 
 **MSS**
 
@@ -2076,7 +2041,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case 21: Clearing Warenager's data
+#### Use case 20: Clearing Warenager's data
 
 **MSS**
 
@@ -2098,7 +2063,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
       
-#### Use case 22: Toggling tabs in Warenager.
+#### Use case 21: Toggling tabs in Warenager.
 
 **MSS**
 
@@ -2120,7 +2085,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
       
-#### Use case 23: Exit Warenager
+#### Use case 22: Exit Warenager
 
 **MSS**
 
