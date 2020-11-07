@@ -42,6 +42,7 @@ public class FindLessonCommandParser implements Parser<FindLessonCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "",
                     FindLessonCommand.MESSAGE_USAGE));
         }
+
         LessonContainsKeywordsPredicate predicate = new LessonContainsKeywordsPredicate();
         setKeyword(PREFIX_TITLE, argMultimap, predicate);
         setKeyword(PREFIX_DESCRIPTION, argMultimap, predicate);

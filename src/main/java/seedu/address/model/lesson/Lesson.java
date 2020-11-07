@@ -180,7 +180,7 @@ public class Lesson implements TimeSlot {
     }
 
     /**
-     * Returns true if both lessons of the same title have the same start and end date, and the same start and end time.
+     * Returns true if both lessons of the same attributes but may contain different descriptions.
      */
     public boolean isSameLesson(Lesson otherLesson) {
         if (otherLesson == this) {
@@ -189,10 +189,34 @@ public class Lesson implements TimeSlot {
         return otherLesson != null
                 && otherLesson.getTitle().equals(getTitle())
                 && otherLesson.getDayOfWeek().equals(getDayOfWeek())
+                && otherLesson.getStartDate().equals(getStartDate())
+                && otherLesson.getEndDate().equals(getEndDate())
                 && otherLesson.getStartTime().equals(getStartTime())
                 && otherLesson.getEndTime().equals(getEndTime())
+                && otherLesson.getTag().equals(getTag());
+    }
+    /**
+     * Returns true if both lessons have the same identity and data fields.
+     * This defines a stronger notion of equality between two events.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Lesson)) {
+            return false;
+        }
+        Lesson otherLesson = (Lesson) other;
+        return otherLesson != null
+                && otherLesson.getTitle().equals(getTitle())
+                && otherLesson.getDayOfWeek().equals(getDayOfWeek())
+                && otherLesson.getDescription().equals(getDescription())
                 && otherLesson.getStartDate().equals(getStartDate())
-                && otherLesson.getEndDate().equals(getEndDate());
+                && otherLesson.getEndDate().equals(getEndDate())
+                && otherLesson.getStartTime().equals(getStartTime())
+                && otherLesson.getEndTime().equals(getEndTime())
+                && otherLesson.getTag().equals(getTag());
     }
     @Override
     public int hashCode() {
@@ -216,9 +240,9 @@ public class Lesson implements TimeSlot {
                 .append(" End Time: ")
                 .append(getEndTime())
                 .append(" Start Date: ")
-                .append(getStartDate())
+                .append(getStartDate().format(DateTimeUtil.DATE_FORMATTER))
                 .append(" End Date: ")
-                .append(getEndDate());
+                .append(getEndDate().format(DateTimeUtil.DATE_FORMATTER));
         return builder.toString();
     }
 

@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.DateTimeUtil.isStartDateBeforeEndDate;
+import static seedu.address.commons.util.DateTimeUtil.isStartTimeBeforeEndTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
@@ -18,6 +21,7 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.LessonCommand;
+import seedu.address.logic.parser.exceptions.MultipleAttributesException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.Time;
@@ -35,7 +39,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public LessonCommand parse(String args) throws ParseException {
+    public LessonCommand parse(String args) throws ParseException, MultipleAttributesException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_DAY,
                         PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_START_TIME, PREFIX_END_TIME);
@@ -43,6 +47,10 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TAG, PREFIX_DAY, PREFIX_START_DATE, PREFIX_END_DATE,
                 PREFIX_START_TIME, PREFIX_END_TIME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", LessonCommand.MESSAGE_USAGE));
+        }
+        if (Parser.argMultimapHasRepeatedAttributes(argMultimap, PREFIX_TITLE, PREFIX_DAY, PREFIX_DESCRIPTION,
+                PREFIX_TAG, PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_START_TIME, PREFIX_END_TIME)) {
+            throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
         }
         Description description = Description.defaultDescription();
 
@@ -63,6 +71,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         } else {
             throw new ParseException(DateTimeUtil.DATE_TIME_CONSTRAINTS);
         }
+
         if (!isStartDateBeforeEndDate(startDate, endDate)) {
             throw new ParseException(DateTimeUtil.RANGE_CONSTRAINTS);
         }
@@ -88,26 +97,11 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         Lesson lesson = new Lesson(title, tag, description, dayOfWeek, startTime, endTime, startDate, endDate);
         return new LessonCommand(lesson);
     }
-
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    /**
-     * Returns true if the start date is before the end date.
-     */
-    private static boolean isStartDateBeforeEndDate(LocalDate startDate, LocalDate endDate) {
-        return startDate.isBefore(endDate);
-    }
-
-    /**
-     * Returns true if the start time is before the end time.
-     */
-    private static boolean isStartTimeBeforeEndTime(LocalTime startTime, LocalTime endTime) {
-        return startTime.isBefore(endTime);
     }
 }

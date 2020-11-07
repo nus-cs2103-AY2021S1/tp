@@ -51,6 +51,10 @@ public class ArgumentMultimap {
         return new ArrayList<>(argMultimap.get(prefix));
     }
 
+    public boolean hasMultipleValues(Prefix prefix) {
+        return getAllValues(prefix).size() > 1;
+    }
+
     /**
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */

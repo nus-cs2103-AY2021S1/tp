@@ -45,7 +45,6 @@ public class EndDateTime extends DateTime {
         String datetime = date + " " + time;
         return new EndDateTime(datetime);
     }
-
     /**
      * Creates a new EndDateTime object with the date changed.
      *

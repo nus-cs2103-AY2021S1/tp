@@ -111,10 +111,11 @@ public class Deadline extends Task {
         if (otherDeadline == this) {
             return true;
         }
-
         return otherDeadline != null
                 && otherDeadline.getTitle().equals(getTitle())
-                && otherDeadline.getDeadlineDateTime().equals(getDeadlineDateTime());
+                && otherDeadline.getDeadlineDateTime().equals(getDeadlineDateTime())
+                && otherDeadline.getDescription().equals(getDescription())
+                && otherDeadline.getTag().equals(getTag());
     }
 
     public LocalDateTime getDeadlineDateTimeValue() {
@@ -178,23 +179,31 @@ public class Deadline extends Task {
     @Override
     public int compareTo(Task otherTask) {
         if (otherTask instanceof Event) {
+            if (((Event) otherTask).isEnded()) {
+                return -1;
+            }
+            if (this.isDone()) {
+                return 1;
+            }
             if (deadlineDateTime.isFilled) {
                 return getDeadlineDateTimeValue().compareTo(((Event) otherTask).getEndDateTimeValue());
-            } else {
-                return 1;
             }
-        } else { //otherTask instanceof Deadline
-            Deadline deadline = (Deadline) otherTask;
+            return 1;
+        }
+        //otherTask instanceof Deadline
+        Deadline deadline = (Deadline) otherTask;
+        if (this.isDone() == deadline.isDone()) {
             if (deadline.isDeadlineDateTimeFilled() && deadlineDateTime.isFilled) {
                 return getDeadlineDateTimeValue().compareTo(deadline.getDeadlineDateTimeValue());
-            } else if (deadline.isDeadlineDateTimeFilled() && !deadlineDateTime.isFilled) {
-                return 1;
-            } else if (!deadline.isDeadlineDateTimeFilled() && deadlineDateTime.isFilled) {
-                return -1;
-            } else {
-                return getTitle().toString().compareTo(deadline.getTitle().toString());
             }
+            if (deadline.isDeadlineDateTimeFilled() && !deadlineDateTime.isFilled) {
+                return 1;
+            }
+            if (!deadline.isDeadlineDateTimeFilled() && deadlineDateTime.isFilled) {
+                return -1;
+            }
+            return getTitle().toString().compareTo(deadline.getTitle().toString());
         }
+        return this.isDone() ? 1 : -1;
     }
-
 }

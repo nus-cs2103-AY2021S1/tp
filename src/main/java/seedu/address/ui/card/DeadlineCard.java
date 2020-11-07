@@ -98,7 +98,7 @@ public class DeadlineCard extends UiPart<Region> {
     }
 
     private boolean loadDuration(Deadline deadline) {
-        if (deadline.getDuration().isFilled()) {
+        if (!deadline.getDuration().isFilled()) {
             card.getChildren().remove(durationHolder);
             return false;
         } else {

@@ -41,6 +41,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
                 PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", FindTaskCommand.MESSAGE_USAGE));
         }
+
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         setKeyword(PREFIX_TITLE, argMultimap, predicate);
         setKeyword(PREFIX_DESCRIPTION, argMultimap, predicate);

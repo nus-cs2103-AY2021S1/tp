@@ -191,6 +191,15 @@ users can do the following:
 ![add deadline_result](./images/AddDeadlineCommandResult.png)
 
 <br>
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes**<br>
+
+* Multiple inputs of the same attribute is not allowed. 
+E.g. `deadline title:Return book title:Borrow book datetime:02-01-2020 18:00` is not allowed as the `title` attribute is input twice.
+</div>
+
+<br>
 
 ### 2.3 Add an event : `event`
 
@@ -203,7 +212,7 @@ Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTI
 
 * Adds an event to PlaNus,
     * with the specified title in `title:TITLE`,
-    * with the specified description in `description:DESCRIPTION`,
+    * with the specified description in `desc:DESCRIPTION`,
     * on the date specified in `date:DATE`, starting from the time specified in `from:START_TIME` to the time specified in `to:END_TIME`,
     * with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
   * the added event will be tracked for time analysis if it has a tag.
@@ -222,6 +231,16 @@ users can do the following:
 2) This adds the corresponding event to PlaNus. You can see the added event in the task list and the calendar. The duration if the event will be recorded for time analysis.
 
 ![add event_result](./images/AddEventCommandResult.png)
+
+<br>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes**<br>
+
+* Multiple inputs of the same attribute is not allowed. 
+E.g. `event title:Project meeting title:Group meeting date:29-10-2020 from:09:00 to:12:30 tag:CS2103T` is not allowed as the `title` attribute is input twice.
+</div>
 
 <br>
 
@@ -324,6 +343,16 @@ Other examples:
     * Edits the second task in the results of the `find-task` command if the task is an event, changing its date to 01-01-2020 and its description to "Homework is difficult", otherwise, PlaNus will notify the user of the incompatible error.
 * `edit-task 1 tag:CS2103T` 
     * Edits the first task in the results of the `list-task` command, changing its tag to "CS2103T".
+
+<br>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes**<br>
+
+* Multiple inputs of the same attribute is not allowed. 
+E.g. `edit-task title:play games title:watch tv` is not allowed as the `title` attribute is input twice.
+</div>
 
 <br>
 
@@ -468,6 +497,15 @@ time analysis.
 ![add lesson result](./images/AddLessonCommandResult.png)
 
 <br>
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes**<br>
+
+* Multiple inputs of the same attribute is not allowed. 
+E.g. `lesson title:Tutorial title:Lecture tag:CS2103T day:Mon from:12:00 to:14:00 start:10-08-2020 end:10-12-2020` is not allowed as the `title` attribute is input twice.
+</div>
+
+<br>
 
 ### 3.3 Edit a lesson : `edit-lesson`
 
@@ -508,6 +546,18 @@ This changes the day of the first lesson to every Wednesday. You can see the cal
 time analysis also updated.
 
 ![edit lesson result](./images/EditLessonCommandResult.png)
+
+<br>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes**<br>
+
+* Multiple inputs of the same attribute is not allowed. 
+E.g. `edit-lesson title:tutorial 1 title:tutorial 2` is not allowed as the `title` attribute is input twice.
+</div>
+
+<br>
 
 ### 3.4 Find a lesson : `find-lesson`
 
@@ -555,8 +605,9 @@ Other examples include:
     * Lists all lessons with a tag containing 'CS2040'.
 * `find-lesson date:01-01-2020` .
     * List all lessons happening on 01-01-2020.
-* `find-task title:dinner title:lunch`.
-    * List all lessons with the title including either `dinner` or `lunch`.
+* `find-lesson title:dinner title:lunch`.
+    * List all
+     lessons with the title including either `dinner` or `lunch`.
 * `find-lesson datetime:01-01-2020 14:00` 
     * Lists all lessons happening on 01-01-2020 at 14:00.
 
@@ -601,7 +652,7 @@ for more information. Sample usage:
 * `find-lesson title:Lab` followed by `delete-lesson 1` 
     * Deletes the 1st lesson in the results of the `find-lesson` command.
 
-
+<br>
 
 ## 4. Calendar View
 
@@ -676,7 +727,7 @@ Therefore, the **time analysis for the week** will show that the **time spent on
 | **Exit**   | `exit`                                                       |
 | **List task**   | `list-task` |
 | **Add Event**  | `event title:TITLE [desc:DESCRIPTION] date:DATE from:TIME to:TIME tag:MODULE_CODE` <br> e.g. `event title:CS2103T Group meeting date:23-10-2020 from:20:00 to:22:00 tag:CS2103T` |
-| **Add Deadline**  | `deadline title:TITLE [desc:DESCRIPTION] [datetime:DATETIME] tag:MODULE_CODE` <br> e.g. `deadline title:Assignment2 submission datetime:23-10-2020 18:00 tag:CS2103T` |
+| **Add Deadline**  | `deadline title:TITLE [desc:DESCRIPTION] datetime:DATETIME tag:MODULE_CODE` <br> e.g. `deadline title:Assignment2 submission datetime:23-10-2020 18:00 tag:CS2103T` |
 | **Delete task** | `delete-task INDEX...` <br> e.g. `delete-task 3`, `delete-task 3, 4, 5`                       |
 | **Done task**   | `done INDEX:TIME_TAKEN...`<br> e.g. `done 1:20`, `done 1:20 2:60 3:120`    |
 | **Find task**   | `find-task ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g.`find-task title:dinner date:02-02-2020` |

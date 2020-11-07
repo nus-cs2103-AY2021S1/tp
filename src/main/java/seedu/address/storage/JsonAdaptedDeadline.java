@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.model.tag.Tag;
@@ -151,10 +152,14 @@ class JsonAdaptedDeadline {
 
         final Duration modelDuration;
 
-        if (!Duration.isValidDuration(duration)) {
-            throw new IllegalValueException(Duration.INVALID_DURATION_FORMAT);
+        if (duration == Duration.NULL_VALUE) {
+            modelDuration = Duration.createNullDuration();
         } else {
-            modelDuration = new Duration(duration);
+            if (!Duration.isValidDuration(duration)) {
+                throw new IllegalValueException(Messages.INVALID_DURATION_FORMAT);
+            } else {
+                modelDuration = new Duration(duration);
+            }
         }
 
         final Tag modelTag;

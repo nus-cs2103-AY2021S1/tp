@@ -16,7 +16,6 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.deadline.Deadline;
 
-
 /**
  * Represents a Task in the PlaNus task list.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -61,12 +60,12 @@ public class Event extends Task implements TimeSlot {
         return endDateTime;
     }
 
-    public LocalDateTime getEndDateTimeValue() {
-        return endDateTime.getValue();
-    }
-
     public LocalDateTime getStartDateTimeValue() {
         return startDateTime.getValue();
+    }
+
+    public LocalDateTime getEndDateTimeValue() {
+        return endDateTime.getValue();
     }
     public DayOfWeek getDayOfWeek() {
         return getStartDateTimeValue().getDayOfWeek();
@@ -101,7 +100,7 @@ public class Event extends Task implements TimeSlot {
     }
     /**
      * Returns true if both events of the same title, start and end datetime.
-     * This defines a strong notion of equality between two events to allow recurring events yet preventing duplicates.
+     * This defines a weak notion of equality between two events to allow recurring events yet preventing duplicates.
      */
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {
@@ -113,6 +112,12 @@ public class Event extends Task implements TimeSlot {
                 && otherEvent.getEndDateTime().equals(getEndDateTime());
     }
 
+    /**
+     * Returns true if the event is already ended
+     */
+    public boolean isEnded() {
+        return getEndDateTimeValue().isBefore(LocalDateTime.now());
+    }
 
     /**
      * Returns true if both events have the same identity and data fields.
@@ -172,15 +177,24 @@ public class Event extends Task implements TimeSlot {
     @Override
     public int compareTo(Task otherTask) {
         if (otherTask instanceof Event) {
-            return getEndDateTimeValue().compareTo(((Event) otherTask).getEndDateTimeValue());
-        } else {
-            Deadline deadline = (Deadline) otherTask;
-            if (deadline.isDeadlineDateTimeFilled()) {
-                return getEndDateTimeValue().compareTo(deadline.getDeadlineDateTimeValue());
-            } else {
-                return -1;
+            if (this.isEnded() == ((Event) otherTask).isEnded()) {
+                return getEndDateTimeValue().compareTo(((Event) otherTask).getEndDateTimeValue());
             }
+            if (this.isEnded()) {
+                return 1;
+            }
+            return -1;
         }
+        Deadline deadline = (Deadline) otherTask;
+        if (this.isEnded()) {
+            return 1;
+        }
+        if (deadline.isDone()) {
+            return 1;
+        }
+        if (deadline.isDeadlineDateTimeFilled()) {
+            return getEndDateTimeValue().compareTo(deadline.getDeadlineDateTimeValue());
+        }
+        return -1;
     }
-
 }

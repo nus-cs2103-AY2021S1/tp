@@ -2,12 +2,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,50 +15,115 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Planus;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
+import seedu.address.model.task.Title;
+import seedu.address.model.task.event.EndDateTime;
+import seedu.address.model.task.event.Event;
+import seedu.address.model.task.event.StartDateTime;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
-    public static final String VALID_TITLE_AMY = "Amy Bee";
-    public static final String VALID_TITLE_BOB = "Bob Choo";
-    public static final String VALID_DATE_TIME_AMY = "31-12-2020 17:00";
-    public static final String VALID_DATE_TIME_BOB = "01-01-2020 00:00";
-    public static final String VALID_DESCRIPTION_AMY = "amy,example.com";
-    public static final String VALID_DESCRIPTION_BOB = "bob,example.com";
-    public static final String VALID_TYPE_BOB = "deadline";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
-
-
-    public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
-    public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
-    public static final String DATE_TIME_DESC_AMY = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_AMY;
-    public static final String DATE_TIME_DESC_BOB = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_BOB;
-    public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
-    public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
-    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "Homework&"; // '&' not allowed in titles
-    public static final String INVALID_DATE_TIME_DESC = " " + PREFIX_DATE_TIME
-            + "32-11-2000 19:00"; // 32nd day not allowed
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "bob@yahoo"; // '@' not allowed
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
+    //valid lesson
     public static final String VALID_TITLE_CS2103T = "CS2103T Lecture";
     public static final String VALID_DESC_CS2103T = "Best lecture ever!";
+    public static final String VALID_DAY_CS2103T = "Monday";
     public static final String VALID_START_TIME_CS2103T = "12:00";
     public static final String VALID_END_TIME_CS2103T = "14:00";
     public static final String VALID_START_DATE_CS2103T = "01-01-2020";
-    public static final String VALID_END_DATE_CS2103T = "01-05-2020";
-    public static final String VALID_TAG = "CS2103T";
+    public static final String VALID_END_DATE_CS2103T = "01-11-2020";
+    public static final String VALID_TAG_CS2103T = "CS2103T";
+    public static final Lesson VALID_LESSON_CS2103T = new Lesson(new Title(VALID_TITLE_CS2103T),
+            new Tag(VALID_TAG_CS2103T), new Description(VALID_DESC_CS2103T), DayOfWeek.MONDAY,
+            LocalTime.of(12, 0), LocalTime.of(14, 0),
+            LocalDate.of(2020, 1, 1), LocalDate.of(2020, 11, 1));
+    public static final Lesson VALID_LESSON_CS2103T_NO_DESC = new Lesson(new Title(VALID_TITLE_CS2103T),
+            new Tag(VALID_TAG_CS2103T), Description.defaultDescription(), DayOfWeek.MONDAY,
+            LocalTime.of(12, 0), LocalTime.of(14, 0),
+            LocalDate.of(2020, 1, 1), LocalDate.of(2020, 11, 1));
+    //valid lesson
+    public static final String VALID_TITLE_CS2000 = "CS2000 Lecture";
+    public static final String VALID_DESC_CS2000 = "Best lecture ever!";
+    public static final String VALID_DAY_CS2000 = "Monday";
+    public static final String VALID_TAG_CS2000 = "CS2103T";
+    public static final String VALID_START_DATE_CS2000 = "01-12-2020";
+    public static final String VALID_END_DATE_CS2000 = "21-12-2020";
+    public static final String VALID_START_TIME_CS2000 = "10:00";
+    public static final String VALID_END_TIME_CS2000 = "12:00";
+    public static final Lesson VALID_LESSON_CS2000 = new Lesson(new Title(VALID_TITLE_CS2000),
+            new Tag(VALID_TAG_CS2000), new Description(VALID_DESC_CS2000), DayOfWeek.MONDAY,
+            LocalTime.of(13, 0), LocalTime.of(14, 0),
+            LocalDate.of(2020, 1, 1), LocalDate.of(2020, 11, 1));
+    //valid lesson
+    public static final String VALID_TITLE_CS2100 = "CS2100 Lecture";
+    public static final String VALID_DESC_CS2100 = "Cool lecture!";
+    public static final String VALID_DAY_CS2100 = "Tuesday";
+    public static final String VALID_START_TIME_CS2100 = "14:00";
+    public static final String VALID_END_TIME_CS2100 = "16:00";
+    public static final String VALID_START_DATE_CS2100 = "01-11-2020";
+    public static final String VALID_END_DATE_CS2100 = "01-12-2020";
+    public static final String VALID_TAG_CS2100 = "CS2100";
+    public static final Lesson VALID_LESSON_CS2100 = new Lesson(new Title(VALID_TITLE_CS2100),
+            new Tag(VALID_TAG_CS2100), new Description(VALID_DESC_CS2100), DayOfWeek.TUESDAY,
+            LocalTime.of(14, 0), LocalTime.of(16, 0),
+            LocalDate.of(2020, 11, 1), LocalDate.of(2020, 12, 1));
+    //invalid lesson
+    public static final String INVALID_DAY_CS2103T = "ajhsf";
+    public static final String INVALID_START_TIME_CS2103T = "14:60";
+    public static final String INVALID_END_TIME_CS2103T = "16:60";
+    public static final String INVALID_START_DATE_CS2103T = "32-11-2020";
+    public static final String INVALID_END_DATE_CS2103T = "01-13-2020";
+    //invalid lesson
+    public static final String INVALID_DAY_CS2100 = "ajhsf";
+    public static final String INVALID_START_TIME_CS2100 = "14:60";
+    public static final String INVALID_END_TIME_CS2100 = "16:60";
+    public static final String INVALID_START_DATE_CS2100 = "32-11-2020";
+    public static final String INVALID_END_DATE_CS2100 = "01-13-2020";
+    //valid event
+    public static final String VALID_TITLE_EXPERIMENT = "Science experiment";
+    public static final String VALID_DESC_EXPERIMENT = "Do grape experiment";
+    public static final String VALID_DATE_EXPERIMENT = "01-01-2020";
+    public static final String VALID_START_TIME_EXPERIMENT = "10:00";
+    public static final String VALID_END_TIME_EXPERIMENT = "12:00";
+    public static final String VALID_START_DATETIME_EXPERIMENT = "01-01-2020 10:00";
+    public static final String VALID_END_DATETIME_EXPERIMENT = "01-01-2020 12:00";
+    public static final String VALID_TAG_EXPERIMENT = "LSM1301";
+    public static final Event VALID_EVENT_EXPERIMENT = Event.createUserEvent(new Title(VALID_TITLE_EXPERIMENT),
+            new StartDateTime(VALID_START_DATETIME_EXPERIMENT), new EndDateTime(VALID_END_DATETIME_EXPERIMENT),
+            new Description(VALID_DESC_EXPERIMENT), new Tag(VALID_TAG_EXPERIMENT));
+    //valid event that clashes with CS2100 Lecture
+    public static final String VALID_TITLE_MEETING = "Project meeting";
+    public static final String VALID_DESC_MEETING = "Important meeting that clashes with CS2100 Lecture";
+    public static final String VALID_DATE_MEETING = "03-11-2020";
+    public static final String VALID_START_TIME_MEETING = "14:00";
+    public static final String VALID_END_TIME_MEETING = "22:00";
+    public static final String VALID_START_DATETIME_MEETING = "03-11-2020 14:00";
+    public static final String VALID_END_DATETIME_MEETING = "03-11-2020 22:00";
+    public static final String VALID_TAG_MEETING = "CS2101";
+    public static final Event VALID_EVENT_MEETING = Event.createUserEvent(new Title(VALID_TITLE_MEETING),
+            new StartDateTime(VALID_START_DATETIME_MEETING), new EndDateTime(VALID_END_DATETIME_MEETING),
+            new Description(VALID_DESC_MEETING), new Tag(VALID_TAG_MEETING));
+    //invalid event
+    public static final String INVALID_DATE_MEETING = "32-01-2020";
+    public static final String INVALID_START_TIME_MEETING = "20:60";
+    public static final String INVALID_END_TIME_MEETING = "25:60";
+    //valid deadline
+    public static final String VALID_TITLE_LAB = "Do weekly lab assignment";
+    public static final String VALID_DESC_LAB = "Prepare for demo during tutorial";
+    public static final String VALID_DATETIME_LAB = "01-01-2020 22:00";
+    public static final String VALID_TAG_LAB = "CS2100";
+    //valid deadline
+    public static final String VALID_TITLE_ESSAY = "submit essay for ES2660";
+    public static final String VALID_DESC_ESSAY = "2000 words!";
+    public static final String VALID_DATETIME_ESSAY = "01-01-2020 23:59";
+    public static final String VALID_TAG_ESSAY = "ES2660";
+    //invalid deadline
+    public static final String INVALID_DATETIME_LAB = "01-13-2020 23:59";
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -66,7 +131,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -81,7 +146,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }

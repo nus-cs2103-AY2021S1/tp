@@ -1,15 +1,19 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.deadline.Duration;
 
 /**
  * Parses input arguments and creates a new DeleteTaskCommand object
  */
 public class DoneCommandParser implements Parser<DoneCommand> {
+
+    static final String MAX_INT = String.valueOf(Integer.MAX_VALUE);
+    static final String NUMBER_FORMAT_ERROR = "should be a positive number and the maximum duration is "
+            + MAX_INT + " minutes";
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteTaskCommand
@@ -18,23 +22,27 @@ public class DoneCommandParser implements Parser<DoneCommand> {
      */
     public DoneCommand parse(String args) throws ParseException {
         try {
-
             String[] splited = args.trim().split(" ");
-            Index[] indexes = new Index[splited.length];
-            int[] durations = new int[splited.length];
-            for (int i = 0; i < splited.length; i++) {
+            int length = splited.length;
+            Index[] indexes = new Index[length];
+            int[] durations = new int[length];
+            for (int i = 0; i < length; i++) {
                 String[] pair = splited[i].trim().split(":");
-                if (pair.length <= 1) {
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", DoneCommand.MESSAGE_USAGE));
+                if (pair.length < 2) {
+                    throw new ParseException(Messages.INVALID_DONE_INDEX_FORMAT);
                 }
                 indexes[i] = ParserUtil.parseIndex(pair[0]);
                 durations[i] = Integer.parseInt((pair[1]));
+                if (!Duration.isValidDuration(durations[i])) {
+                    throw new ParseException(Messages.INVALID_DURATION_FORMAT);
+                }
             }
             return new DoneCommand(indexes, durations);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage(), DoneCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage(),
+                            DoneCommand.MESSAGE_USAGE), pe);
+        } catch (NumberFormatException ne) {
+            throw new ParseException(NUMBER_FORMAT_ERROR);
         }
     }
 

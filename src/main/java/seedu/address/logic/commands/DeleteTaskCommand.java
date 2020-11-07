@@ -39,16 +39,9 @@ public class DeleteTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
-        Task[] tasksToDelete = new Task[targetIndexes.length];
-        if (Index.hasDuplicateIndex(targetIndexes)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_INDEX);
-        }
-        for (int i = 0; i < targetIndexes.length; i++) {
-            if (targetIndexes[i].getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
-            }
-            tasksToDelete[i] = lastShownList.get(targetIndexes[i].getZeroBased());
-        }
+        Task[] tasksToDelete =
+                checkIndexValidity(targetIndexes, lastShownList, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX)
+                .toArray(new Task[0]);
 
         model.deleteTask(tasksToDelete);
         for (Task task : tasksToDelete) {
@@ -64,11 +57,11 @@ public class DeleteTaskCommand extends Command {
      * returns message built by the list of tasks deleted.
      */
     public static String buildMessage(Task[] tasks) {
-        String message = "";
-        for (int i = 0; i < tasks.length; i++) {
-            message += String.format(MESSAGE_DELETE_TASK_SUCCESS, tasks[i].getTitle()) + "\n";
+        StringBuilder message = new StringBuilder();
+        for (Task task : tasks) {
+            message.append(String.format(MESSAGE_DELETE_TASK_SUCCESS, task.getTitle())).append("\n");
         }
-        return message;
+        return message.toString();
     }
 
     @Override

@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.EVENT_OVERLAP_CONSTRAINTS;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -30,6 +32,7 @@ import seedu.address.model.task.deadline.DeadlineDateTime;
 import seedu.address.model.task.event.EndDateTime;
 import seedu.address.model.task.event.Event;
 import seedu.address.model.task.event.StartDateTime;
+import seedu.address.model.util.Overlap;
 
 /**
  * Edits the details of an existing task in PlaNus task list.
@@ -56,7 +59,6 @@ public class EditTaskCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in PlaNus.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -83,13 +85,10 @@ public class EditTaskCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
-        checkEditability(taskToEdit, editTaskDescriptor);
+        checkAttributes(taskToEdit, editTaskDescriptor);
 
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
-
-        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
+        checkEditedTaskValidity(model, taskToEdit, editedTask);
 
         model.setTask(taskToEdit, editedTask);
         if (model.hasCalendarTask(taskToEdit)) {
@@ -100,7 +99,19 @@ public class EditTaskCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
-    private void checkEditability(Task task, EditTaskDescriptor editTaskDescriptor) throws CommandException {
+    private void checkEditedTaskValidity(Model model, Task taskToEdit, Task editedTask) throws CommandException {
+        if (editedTask instanceof Event
+                && Overlap.overlapWithOtherTimeSlots(model, (Event) taskToEdit, (Event) editedTask)) {
+            throw new CommandException(EVENT_OVERLAP_CONSTRAINTS);
+        }
+
+        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+
+        }
+    }
+
+    private void checkAttributes(Task task, EditTaskDescriptor editTaskDescriptor) throws CommandException {
         if ((task instanceof Event)) {
             if (task.isLesson()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EVENT_EDIT_TYPE);

@@ -2,6 +2,8 @@ package seedu.address.model.task.deadline;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.commons.core.Messages;
+
 /**
  * Represents a Deadline Task's Status in the PlaNus task list.
  * Guarantees: immutable;
@@ -9,21 +11,20 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Duration {
 
     public static final int NULL_VALUE = -1;
-    public static final String INVALID_DURATION_FORMAT = "The valid of duration is not valid";
     public final int valueInMinutes;
     public final boolean isFill;
     /**
      * Constructs a {@code Duration}.
-     * @param valueInMinutes
+     * @param valueInMinutes an integer representing the value in minutes.
      */
     public Duration(int valueInMinutes) {
         if (valueInMinutes == NULL_VALUE) {
-            this.isFill = true;
+            this.isFill = false;
             this.valueInMinutes = valueInMinutes;
         } else {
-            checkArgument(isValidDuration(valueInMinutes), Duration.INVALID_DURATION_FORMAT);
+            checkArgument(isValidDuration(valueInMinutes), Messages.INVALID_DURATION_FORMAT);
             this.valueInMinutes = valueInMinutes;
-            this.isFill = false;
+            this.isFill = true;
         }
     }
 
@@ -39,7 +40,7 @@ public class Duration {
     }
 
     public static boolean isValidDuration(int duration) {
-        return duration == NULL_VALUE || duration >= 0;
+        return duration >= 0;
     }
 
     @Override

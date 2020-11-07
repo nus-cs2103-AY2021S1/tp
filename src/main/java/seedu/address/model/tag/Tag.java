@@ -24,8 +24,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        String upperCaseTag = tagName.toUpperCase();
-        this.tagName = upperCaseTag;
+        this.tagName = tagName.toUpperCase();
     }
 
     /**

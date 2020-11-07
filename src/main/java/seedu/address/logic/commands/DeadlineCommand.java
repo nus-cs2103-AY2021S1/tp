@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,7 +23,7 @@ public class DeadlineCommand extends Command {
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DATE_TIME + "DEADLINE_DATE_TIME "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Do experiment "
@@ -31,7 +32,6 @@ public class DeadlineCommand extends Command {
             + PREFIX_TAG + "LSM1301";
 
     public static final String MESSAGE_SUCCESS = "New deadline added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DEADLINE = "This deadline already exists in PlaNus.";
 
     private final Deadline toAdd;
 
