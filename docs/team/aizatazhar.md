@@ -34,12 +34,12 @@ Given below are my contributions to the project.
       
   * Developer Guide:
       * Updated links to code within the DG ([#185](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/185))
-      * Updated `AddressBook` documentation and UML diagrams to reflect `ZooKeep` in Architecture, Logic and UI sections ([#186](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/186), [#198](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/198))
+      * Updated `AddressBook` documentation and UML diagrams to reflect `ZooKeep` in Architecture, Logic and UI sections ([#186](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/186), [#198](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/198), [#271](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/271))
       * Added documentation for snapshot feature to DG ([#137](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/137), [#156](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/156))
       
 * **Tools**:
   * Set up Codecov to monitor code coverage ([\#45](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/45))
-  * Set up Codacy to enforce code quality ([\#56](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/56)))
+  * Set up Codacy to enforce code quality ([\#56](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/56))
 
 * **Project management**:
   * Created issues detailing the high-level tasks for [milestone 1.2](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Aaizatazhar+milestone%3Av1.2+) 
