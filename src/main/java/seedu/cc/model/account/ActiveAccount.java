@@ -62,11 +62,6 @@ public interface ActiveAccount {
     Account getAccount();
 
     /**
-     * Returns true if an expense/revenue entry with the same identity as {@code entry} exists in the account.
-     */
-    boolean hasEntry(Entry entry);
-
-    /**
      * Returns true if a expense with the same identity as {@code expense} exists in the account.
      */
     boolean hasExpense(Expense expense);

@@ -10,10 +10,14 @@ import static seedu.cc.commons.util.AppUtil.checkArgument;
 public class Category {
     public static final String MESSAGE_CONSTRAINTS = "Category can only be e, r, expense or revenue and "
             + "its not case sensitive.";
+    public static final String EXPENSE_MESSAGE = "expense";
+    public static final String REVENUE_MESSAGE = "revenue";
+
     private static final String VALIDATION_REGEX =
             "([Ee]([Xx][Pp][Ee][Nn][Ss][Ee])?|([Rr]([Ee][Vv][Ee][Nn][Uu][Ee])?))";
     private static final String EXPENSE_REGEX = "[Ee]([Xx][Pp][Ee][Nn][Ss][Ee])?";
     private static final String REVENUE_REGEX = "([Rr]([Ee][Vv][Ee][Nn][Uu][Ee])?)";
+
     private final String value;
 
 
@@ -45,7 +49,11 @@ public class Category {
 
     @Override
     public String toString() {
-        return this.value;
+        if (isExpense()) {
+            return EXPENSE_MESSAGE;
+        }
+        assert isRevenue();
+        return REVENUE_MESSAGE;
     }
 
     @Override
