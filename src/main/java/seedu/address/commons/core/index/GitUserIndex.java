@@ -23,7 +23,7 @@ public class GitUserIndex {
         }
     }
 
-    public String getGitUserName() {
+    public String getGitUserNameString() {
         return uniqueGitUserIndex;
     }
 
@@ -36,6 +36,10 @@ public class GitUserIndex {
         assert (gitUserName != null);
         String trimmedGitUserName = gitUserName.trim();
         return GitUserName.isValidGitUserName(trimmedGitUserName);
+    }
+
+    public GitUserName getGitUserName() {
+        return new GitUserName(uniqueGitUserIndex);
     }
 
     @Override

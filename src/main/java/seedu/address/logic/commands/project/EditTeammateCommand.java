@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -77,12 +76,11 @@ public class EditTeammateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-        List<Participation> lastShownList = project.getTeammates();
 
-        if (!project.hasParticipation(gitUserIndex.getGitUserName())) {
+        if (!project.hasParticipation(gitUserIndex.getGitUserNameString())) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
         }
-        Participation participation = project.getParticipation(gitUserIndex.getGitUserName());
+        Participation participation = project.getParticipation(gitUserIndex.getGitUserNameString());
 
         Person oldTeammate = Person.getPersonFromList(gitUserIndex);
         Person editedTeammate = createEditedTeammate(participation, editTeammateDescriptor);
