@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.ingredientcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 
 import java.util.ArrayList;
 
@@ -56,6 +57,7 @@ public class IngredientRestockCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
         ArrayList<Ingredient> ingredientInShortage = model.findIngredientInShortage();
         int sizeOfList = ingredientInShortage.size();
         if (sizeOfList == 0) {

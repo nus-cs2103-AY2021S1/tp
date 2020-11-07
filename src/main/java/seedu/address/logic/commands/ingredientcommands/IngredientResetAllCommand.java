@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.ingredientcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class IngredientResetAllCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
         List<Ingredient> lastShownList = model.getFilteredIngredientList();
 
         boolean isNotAlreadyReset = false;
