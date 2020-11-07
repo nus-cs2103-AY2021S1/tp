@@ -35,7 +35,7 @@ import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
 
 /**
- * Updates an existing stock in the stock book.
+ * Updates existing stocks in the stock book.
  */
 public class UpdateCommand extends Command {
 
