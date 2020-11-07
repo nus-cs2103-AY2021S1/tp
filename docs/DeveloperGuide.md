@@ -585,9 +585,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-*   1a. The module code already exists.
+* 1a. The attributes are in an invalid format.
 
     * 1a1. FaculType shows an error message.
+
+      Use case resumes at step 1.
+
+*   1b. The module code already exists.
+
+    * 1b1. FaculType shows an error message.
 
       Use case resumes at step 1.
       
