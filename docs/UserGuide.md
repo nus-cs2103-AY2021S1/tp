@@ -72,12 +72,12 @@ Wishful Shrinking is your desktop diet manager. It is an app that helps you **ma
 2. **Recommend recipes** to improve ease of home cooking 
 3. **Track daily food and calorie** intake<br><br>
 
-Wishful Shrinking targets **office workers** who tend to discount healthy eating. Office workers are also more
+Wishful Shrinking targets **office workers** who tend to neglect healthy eating. Office workers are also more
  familiar with desktop applications and typing and correspondingly, Wishful Shrinking is optimized for fast and efficient typers as it uses a Command Line Interface (CLI) with the added beauty of a Graphical User Interface (GUI).
  Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems. <br><br>
 
 ## 1.2 Purpose <a id="12-purpose"></a>
-This user guide provides in-depth documentation on the **installation process, step-by-step instructions** for
+This user guide provides in-depth documentation on the **installation process**, **step-by-step instructions** for
  each feature and **troubleshooting recommendations**. <br><br>
 
 # 2. About the User Guide <a id="2-about-the-user-guide"></a>
@@ -109,7 +109,7 @@ t/ | TAG | Recipe tag
 **:information_source: Notes about the command format:**<br>
 
 * All prefixes must be preceded by a space.<br>
-   e.g ` t/`, ` i/`
+   e.g <code> t/</code>, <code> i/</code>
 
 * All commands are **case-sensitive**.<br>
   e.g. in `addR`, `add` is in small letters while `R` is in capital letters.
@@ -186,7 +186,7 @@ Component | Explanation
    
    * **`help`** : Opens the help window.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [next section](#5-command) for details of each command.
 <br><br>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -484,7 +484,7 @@ Format: `clearR`
 
 ## 5.2 Fridge-related Commands <a id="52-fridge-related-commands"></a>
 
-The Fridge-related commands include [`addF`](#add-ingredient), [`Fridge`](#list-ingredient), [`deleteF`](#delete-ingredient), 
+The Fridge-related commands include [`addF`](#add-ingredient), [`fridge`](#list-ingredient), [`deleteF`](#delete-ingredient), 
 [`editF`](#edit-ingredient), [get `editF`](#get-edit-ingredient), [`searchF`](#search-ingredient) and [`clearF
 `](#clear-ingredient). These are the
  commands in Wishful Shrinking that are relevant only to the Fridge.

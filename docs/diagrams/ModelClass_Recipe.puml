@@ -4,8 +4,6 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-title Inside Recipe
-
 Class WishfulShrinking
 Class ModelManager
 
@@ -24,9 +22,9 @@ Class Tag
 WishfulShrinking *--> "1" UniqueRecipeList
 UniqueRecipeList o--> "*" Recipe
 Recipe *--> "1" Name
-Recipe *--> "1.." Ingredient
+Recipe *--> "1..*" Ingredient
 Recipe *--> "1" Calories
-Recipe *--> "1" Instruction
+Recipe *--> "1..*" Instruction
 Recipe *--> "0..1" RecipeImage
 Recipe --> "*" Tag
 
