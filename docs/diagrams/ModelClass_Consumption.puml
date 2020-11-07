@@ -19,30 +19,27 @@ Class Ingredient
 Class Name
 Class Calories
 Class Instruction
-Class Image
-}
-
-}
-
-
-Package Tag {
+Class RecipeImage
 Class Tag
 }
+
+}
+
 
 WishfulShrinking *--> "1" ConsumptionList
 ConsumptionList--> "*" Consumption
 Consumption--> "1" Recipe
-Recipe *--> Name
-Recipe *--> Ingredient
-Recipe *--> Calories
-Recipe *--> Instruction
-Recipe *--> Image
+Recipe *--> "1" Name
+Recipe *--> "1.." Ingredient
+Recipe *--> "1" Calories
+Recipe *--> "1" Instruction
+Recipe *--> "0..1" RecipeImage
 Recipe --> "*" Tag
 
 Name -[hidden]right-> Ingredient
 Ingredient -[hidden]right-> Calories
 Calories -[hidden]right-> Instruction
-Instruction -[hidden]right-> Image
+Instruction -[hidden]right-> RecipeImage
 
 ModelManager -->"1" Consumption: filtered consumption list
 @enduml
