@@ -394,7 +394,7 @@ Sorts all flashcards according to the criteria given.
 Format: `sort <success|reviewed> <-a|-d>`
 
 * Specifying `-a` means sorting by the criteria in ascending order.
-* Specifying `-d` means sorting by the crtieria in descending order.
+* Specifying `-d` means sorting by the criteria in descending order.
 
 Examples: 
 * `sort reviewed -a` shows a list of all flashcards sorted according to review frequency in ascending order
