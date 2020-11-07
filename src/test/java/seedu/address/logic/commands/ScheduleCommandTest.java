@@ -7,13 +7,13 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showAssignmentAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
-import static seedu.address.testutil.TypicalTime.EARLY_TIME;
-import static seedu.address.testutil.TypicalTime.LATE_TIME;
 import static seedu.address.testutil.TypicalExpectedHours.EXPECTED_HOUR_MAX;
 import static seedu.address.testutil.TypicalExpectedHours.EXPECTED_HOUR_MIN;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ASSIGNMENT;
+import static seedu.address.testutil.TypicalTime.EARLY_TIME;
+import static seedu.address.testutil.TypicalTime.LATE_TIME;
 
 import org.junit.jupiter.api.Test;
 

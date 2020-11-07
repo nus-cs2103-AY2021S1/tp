@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalTime.EARLY_TIME;
 import static seedu.address.testutil.TypicalTime.LATE_TIME;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.task.Time;
 
 public class ScheduleTest {
@@ -24,8 +25,7 @@ public class ScheduleTest {
     @Test
     public void isValidSchedule() {
         // null schedule
-        assertThrows(NullPointerException.class, () -> Schedule.isValidSchedule(true,null, null));
-
+        assertThrows(NullPointerException.class, () -> Schedule.isValidSchedule(true, null, null));
         // invalid schedules
         assertFalse(Schedule.isValidSchedule(false, new Time("30-04-2020 1800"),
                 null)); // no schedule but start time is present
