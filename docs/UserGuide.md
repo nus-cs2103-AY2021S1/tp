@@ -188,7 +188,7 @@ Example:
 ## 3.12. Add templates : `create`
 Adds an exercise template.
 
-Format: `create n/NAME c/CALORIES`  
+Format: `create n/EXERCISE c/CALORIES`  
 
 Examples:<br>
 - `create n/pushup c/100` Creates the exercise template with the name push up, description half an hour and calories 100.
