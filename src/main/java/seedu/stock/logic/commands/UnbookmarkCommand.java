@@ -111,26 +111,41 @@ public class UnbookmarkCommand extends Command {
 
         }
 
-        model.sortFilteredStockList(SortUtil.generateGeneralComparator());
+
 
         if (stocksNotFound.size() == serialNumbers.size()) {
-            return new CommandResult(String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound)));
+            throw new CommandException(String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound)));
         } else if (notUpdatedStocks.size() == serialNumbers.size()) {
-            return new CommandResult(String.format(MESSAGE_NOT_BOOKMARKED , stocksAsString(notUpdatedStocks)));
+            throw new CommandException(String.format(MESSAGE_NOT_BOOKMARKED , stocksAsString(notUpdatedStocks)));
         } else if (updatedStocks.size() == serialNumbers.size()) {
+            model.sortFilteredStockList(SortUtil.generateGeneralComparator());
+
             return new CommandResult(String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks)));
+        } else if (notUpdatedStocks.size() > 0 && stocksNotFound.size() > 0) {
+            String result = String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
+                    + "\n" + String.format(MESSAGE_NOT_BOOKMARKED, stocksAsString(notUpdatedStocks));
+            throw new CommandException(result);
         } else if (notUpdatedStocks.size() == 0 && stocksNotFound.size() > 0) {
             String result = String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
                     + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
+
+            model.sortFilteredStockList(SortUtil.generateGeneralComparator());
+
             return new CommandResult(result);
         } else if (stocksNotFound.size() == 0 && notUpdatedStocks.size() > 0) {
             String result = String.format(MESSAGE_NOT_BOOKMARKED , stocksAsString(notUpdatedStocks))
                     + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
+
+            model.sortFilteredStockList(SortUtil.generateGeneralComparator());
+
             return new CommandResult(result);
         } else {
             String result = String.format(MESSAGE_NOT_BOOKMARKED , stocksAsString(notUpdatedStocks))
                     + "\n" + String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
                     + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
+
+            model.sortFilteredStockList(SortUtil.generateGeneralComparator());
+
             return new CommandResult(result);
         }
 
