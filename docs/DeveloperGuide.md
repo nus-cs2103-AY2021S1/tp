@@ -286,9 +286,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Director of Human Resources                | I want to have quick and easy access to all HR information|                                               |
 | `* * *`  | organised HR manager                       | add data of applicants           | have these data at one place in a neat manner                          |
 | `* *`    | organised HR manager                       | delete data of applicants        | have these data at one place in a neat manner                          |
-| `* *`    | busy HR staff with a lot of things to do  |  know my interview appointments with the applicants quickly| I will not forget any such appointments and attend necessary interviews |
+| `* *`    | busy HR staff with a lot of things to do   |  know my interview appointments with the applicants quickly| I will not forget any such appointments and attend necessary interviews |
 | `* *`    | HR manager                                 | easily keep track of applicant’s application status |clear understanding of the recruitment process at any given point of time |
- 
+| `*`      | Programmer as a part-time HR manager       | automate Eva workflow            | simplify workflow as much as possible
+
 ### 5.3 Use cases
 
 (For all use cases below, the **System** is the `Eva` and the **Actor** is the `user`, unless specified otherwise)
@@ -901,7 +902,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ***Use case: UC20 - find staff records by name***
 
+**MSS**
+
+1. User types in `find s- Joe`
+2. Eva shows all staff records whose name contains "Joe" with indexes beside.
+    Use case ends.
+    
+**Extensions**
+
+* 1a. Eva does not find any applicant records with the given name.
+
+    * 1a1. Eva informs the user that no records exist.
+    Use case ends.
+
 ***Use case: UC21 - find applicant records by name***
+
+**MSS**
+
+1. User types in `find a- Joe`
+2. Eva shows all applicant records whose name contains "Joe" with indexes beside.
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find any applicant records with the given name.
+
+    * 1a1. Eva informs the user that no records exist.
+    Use case ends.
 
 ***Use case: UC22 - viewing staff profile***
 
