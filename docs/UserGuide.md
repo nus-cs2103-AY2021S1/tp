@@ -345,7 +345,7 @@ tag(s) by editing employee's information feature (Refer to `c-edit` command).<br
 </div>
 
 Example:
-* Let's say you want to find out who is available to work on `Monday` or `Friday`. In this case, the two 
+Let's say you want to find out who is available to work on `Monday` or `Friday`. In this case, the two 
 keywords are `Monday` and `Friday`. You can follow these steps.
 
 Steps to find employees who are available to work on `Monday` or `Friday`:
@@ -379,7 +379,7 @@ tag(s) by editing employee's information feature (Refer to `c-edit` command).<br
 </div>
 
 Example:
-* Let's say today is `Thursday`. You want to find out who are the available manpower for today. You can follow these
+Let's say today is `Thursday`. You want to find out who are the available manpower for today. You can follow these
  steps.
 
 Steps to find today's available manpower:
@@ -411,7 +411,7 @@ Format: `c-tomorrow`
 <div markdown="span" class="alert alert-primary">
 
 **:information_source: Note:**<br>
-* In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
+In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
 . You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
 tag(s) by editing employee's information feature (Refer to `c-edit` command).<br>
 
@@ -474,7 +474,7 @@ _Employee Directory_ pane. (e.g. There are 2 employees listed in the current Emp
 
 **:information_source: Notes about Employee Directory:**<br>
 
-* If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
+If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
  color label, named as `[Archived]`, in front of the name), command `c-active-list` needs to be used first to see a
   list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified
   by `INDEX`.<br>
@@ -508,7 +508,7 @@ Format: `c-archive-all`
 
 **:information_source: Notes about Employee Directory:**<br>
 
-* If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
+If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
  color label, named as `[Archived]`, in front of their names), command `c-active-list` needs to be used first to see a
   list of all your employees. Then, `c-archive-all` can be used to archive all employees.<br>
 
@@ -540,13 +540,13 @@ Format: `c-archive-list`
 
 **:information_source: Notes about displaying archived employees in tCheck:**<br>
 
-* Archived employees will be shown with a red color label, named as `[Archived]`, in front of their names. You may
+Archived employees will be shown with a red color label, named as `[Archived]`, in front of their names. You may
  refer to the screenshot below.<br>
 
 </div>
 
 Example:
-* Let's say you want to see an archived employee's information, you can follow these steps.
+Let's say you want to see an archived employee's information, you can follow these steps.
 
 Steps to see archived employees:
 1. Type `c-archive-list` into the _Command Box_.
@@ -585,7 +585,7 @@ Employee Directory inside the _Main View_.
 </div>
 
 Example:
-* Let's say one of your ex-employees, Alex Yeoh, is now rehired to work in your bubble tea shop. Since he worked in
+Let's say one of your ex-employees, Alex Yeoh, is now rehired to work in your bubble tea shop. Since he worked in
  the store before, and you archived his data when he left last time. Now, instead of typing his information again and
   use `c-add` command to add him into your employee directory. You can just unarchive him
  and move his data to your employee directory by following these steps.
