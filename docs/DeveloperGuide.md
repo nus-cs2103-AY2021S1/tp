@@ -157,9 +157,11 @@ This section describes some noteworthy details on how certain features are imple
 ### \[Completed\] Recording/ Updating Sales Data
 
 tCheck allows users to record and update the sales information on the drink sold. The command to use this feature is:
-`s-update A/NUM [B/NUM] ...` where:
-* `A`, `B`, `C` are abbreviations for the drink types.
-* `NUM` refers to the number of drinks sold.
+`s-update DRINK [MORE_DRINKS]` where:
+* `DRINK` is formatted as `A/NUM`, where
+    * `A` refers to the drink's abbreviation.
+    * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
+less than or equal to 99999999.
 
 The user may use this command for a single `Drink`, or multiple `Drink`s types, as indicated by the
 
