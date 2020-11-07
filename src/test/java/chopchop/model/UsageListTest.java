@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import chopchop.commons.util.Pair;
 import chopchop.model.usage.RecipeUsage;
+import chopchop.model.usage.Usage;
 import chopchop.testutil.TypicalUsages;
 
 class UsageListTest {
@@ -94,7 +95,8 @@ class UsageListTest {
     void getRecentlyUsed() {
         var ul = new UsageList<>(getRecipeList());
         var lst = ul.getRecentlyUsed(5);
-        assertEquals(getListViewRecipeList().subList(0, 5), lst);
+        assertEquals(getListViewRecipeList().subList(0, 5).stream()
+            .map(Usage::getListViewPair).collect(Collectors.toList()), lst);
     }
 
     @Test
@@ -137,6 +139,6 @@ class UsageListTest {
         var res = testList.getRecentlyUsed(4);
         assertEquals(new ArrayList<>(Arrays.asList(
             RECIPE_A_E, RECIPE_A_B, RECIPE_A_A, RECIPE_B_A
-        )), res);
+        )).stream().map(Usage::getListViewPair).collect(Collectors.toList()), res);
     }
 }

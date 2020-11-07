@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import chopchop.commons.util.Pair;
+
 public abstract class Usage {
     private final String name;
     private final LocalDateTime date;
@@ -47,6 +49,13 @@ public abstract class Usage {
             return true;
         }
         return this.date.isBefore(u2);
+    }
+
+    /**
+     * Returns a pair of strings that is suitable for constructing list view panel.
+     */
+    public Pair<String, String> getListViewPair() {
+        return new Pair<>(this.getName(), this.getPrintableDate());
     }
 
     @Override

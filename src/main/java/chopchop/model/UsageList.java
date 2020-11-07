@@ -109,24 +109,24 @@ public class UsageList<T extends Usage> {
             return new ArrayList<>();
         } else if (after != null && before == null) {
             return getUsagesAfter(after).stream()
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .map(Usage::getListViewPair)
                 .collect(Collectors.toList());
         } else if (after == null) {
             return getUsagesBefore(before).stream()
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .map(Usage::getListViewPair)
                 .collect(Collectors.toList());
         } else {
             return this.usages.stream()
                 .filter(x -> x.isAfter(after))
                 .filter(x -> x.isBefore(before))
                 .sorted(comparator)
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .map(Usage::getListViewPair)
                 .collect(Collectors.toList());
         }
 
     }
 
-    public List<T> getRecentlyUsed(int n) {
+    public List<Pair<String, String>> getRecentlyUsed(int n) {
         assert n >= 0;
 
         var sorted = new ArrayList<>(this.usages);
@@ -140,7 +140,7 @@ public class UsageList<T extends Usage> {
             i++;
         }
 
-        return output;
+        return output.stream().map(Usage::getListViewPair).collect(Collectors.toList());
     }
 
     public List<Pair<String, String>> getMostUsed() {

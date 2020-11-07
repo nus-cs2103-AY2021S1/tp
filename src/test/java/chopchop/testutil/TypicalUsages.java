@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import chopchop.model.UsageList;
+import chopchop.model.attributes.units.Count;
 import chopchop.model.attributes.units.Mass;
+import chopchop.model.attributes.units.Volume;
 import chopchop.model.usage.IngredientUsage;
 import chopchop.model.usage.RecipeUsage;
 
@@ -40,32 +42,32 @@ public class TypicalUsages {
 
     public static final IngredientUsage INGREDIENT_A_A =
         new IngredientUsage("A", Date.USAGE_DATE_A,
-            Mass.grams(1));
+            Count.of(1));
     public static final IngredientUsage INGREDIENT_A_B =
         new IngredientUsage("A", Date.USAGE_DATE_B,
-            Mass.grams(1));
+            Mass.milligrams(1));
     public static final IngredientUsage INGREDIENT_A_C =
         new IngredientUsage("A", Date.USAGE_DATE_C,
             Mass.grams(1));
     public static final IngredientUsage INGREDIENT_A_D =
         new IngredientUsage("A", Date.USAGE_DATE_D,
-            Mass.grams(1));
+            Mass.kilograms(1));
     public static final IngredientUsage INGREDIENT_A_E =
         new IngredientUsage("A", Date.USAGE_DATE_E,
-            Mass.grams(1));
+            Volume.cups(1));
 
     public static final IngredientUsage INGREDIENT_B_A =
         new IngredientUsage("B", Date.USAGE_DATE_A,
-            Mass.grams(1));
+            Volume.litres(1));
     public static final IngredientUsage INGREDIENT_B_B =
         new IngredientUsage("B", Date.USAGE_DATE_B,
-            Mass.grams(1));
+            Volume.millilitres(1));
     public static final IngredientUsage INGREDIENT_B_C =
         new IngredientUsage("B", Date.USAGE_DATE_C,
-            Mass.grams(1));
+            Volume.tablespoons(1));
     public static final IngredientUsage INGREDIENT_B_D =
         new IngredientUsage("B", Date.USAGE_DATE_D,
-            Mass.grams(1));
+            Volume.teaspoons(1));
     public static final IngredientUsage INGREDIENT_B_E =
         new IngredientUsage("B", Date.USAGE_DATE_E,
             Mass.grams(1));

@@ -2,9 +2,6 @@ package chopchop.logic.commands;
 
 import static chopchop.commons.util.Enforce.enforceNonNull;
 
-import java.util.stream.Collectors;
-
-import chopchop.commons.util.Pair;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
@@ -24,10 +21,7 @@ public class StatsRecipeRecentCommand extends Command {
         enforceNonNull(model);
 
         var output = model.getRecentlyUsedRecipes(N_MOST_RECENT);
-        var msgOutput = output.stream()
-            .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
-            .collect(Collectors.toList());
-        return CommandResult.statsMessage(msgOutput, msgOutput.isEmpty()
+        return CommandResult.statsMessage(output, output.isEmpty()
             ? "No recipes were made recently"
             : "Here are your recently made recipes");
     }
