@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.CS2101;
 import static seedu.address.testutil.TypicalTags.CS2103;
 import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTags.getTypicalTags;
 
 import java.io.File;
 import java.util.Arrays;
@@ -120,6 +121,17 @@ public class AddressBookTest {
     @Test
     public void getTagList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getTagList().remove(0));
+    }
+
+    @Test
+    public void hashcode_equals_success() {
+        AddressBook newAddressBook = new AddressBook();
+
+        // same object -> returns true
+        assertTrue(addressBook.hashCode() == addressBook.hashCode());
+
+        //different object --> returns true
+        assertTrue(addressBook.hashCode() ==  newAddressBook.hashCode());
     }
 
     /**

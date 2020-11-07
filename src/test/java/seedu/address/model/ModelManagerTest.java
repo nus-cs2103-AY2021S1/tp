@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TAGS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTags.CS2101;
 import static seedu.address.testutil.TypicalTags.CS2103;
 import static seedu.address.testutil.TypicalTags.MYFILE;
 
@@ -12,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
@@ -22,6 +24,10 @@ public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
 
+    @BeforeEach
+    public void init() {
+        modelManager = new ModelManager();
+    }
     @Test
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
@@ -91,6 +97,14 @@ public class ModelManagerTest {
     @Test
     public void getFilteredTagList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTagList().remove(0));
+    }
+
+    @Test
+    public void setTag_tagInAddressBook_success() {
+        modelManager.addTag(CS2103);
+        modelManager.setTag(CS2103, CS2101);
+        assertTrue(modelManager.hasTag(CS2101));
+
     }
 
     @Test
