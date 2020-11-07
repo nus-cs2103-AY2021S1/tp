@@ -311,15 +311,18 @@ public class ParserUtil {
      */
     public static Status parseTaskStatus(String status) throws ParseException {
         assert status != null;
-        String priorityAllUpperCase = status.toUpperCase();
-        switch(priorityAllUpperCase) {
-        case("COMPLETED"):
-            return Status.COMPLETED;
-        case("INCOMPLETE"):
-            return Status.NOT_COMPLETED;
-        default:
+        String statusAllUpperCase = status.toUpperCase();
+        String convertedStatus = status;
+
+        if (statusAllUpperCase.equals("INCOMPLETE")) {
+            convertedStatus = "NOT_COMPLETED";
+        }
+
+        if (!Status.isValidStatus(convertedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
+
+        return Status.valueOf(convertedStatus);
     }
 
     /**
