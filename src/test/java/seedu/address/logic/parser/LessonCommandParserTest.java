@@ -38,7 +38,59 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Title;
 
 public class LessonCommandParserTest {
+
     private final LessonCommandParser parser = new LessonCommandParser();
+
+    @Test
+    public void parse_validArgs_returnsLessonCommand() {
+        Lesson expectedLesson = VALID_LESSON_CS2103T;
+        LessonCommand expectedLessonCommand = new LessonCommand(expectedLesson);
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedLessonCommand
+        );
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser,
+                String.format(" %s %s %s %s %s    %s %s   %s  %s   %s %s   %s %s   %s %s  %s  ",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedLessonCommand
+        );
+        // omit optional description
+        Lesson expectedLesson2 = VALID_LESSON_CS2103T_NO_DESC;
+        LessonCommand expectedLessonCommand2 = new LessonCommand(expectedLesson2);
+        assertParseSuccess(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedLessonCommand2
+        );
+    }
+
     @Test
     public void parse_overlappingLesson_returnsFalse() {
         // start time same as end time
@@ -192,55 +244,6 @@ public class LessonCommandParserTest {
                         PREFIX_END_DATE, VALID_END_DATE_CS2103T
                 ),
                 DateTimeUtil.DAY_MESSAGE_CONSTRAINTS);
-    }
-
-    @Test
-    public void parse_validArgs_returnsLessonCommand() {
-        Lesson expectedLesson = VALID_LESSON_CS2103T;
-        LessonCommand expectedLessonCommand = new LessonCommand(expectedLesson);
-        // no leading and trailing whitespaces
-        assertParseSuccess(parser,
-                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
-                        PREFIX_TITLE, VALID_TITLE_CS2103T,
-                        PREFIX_TAG, VALID_TAG_CS2103T,
-                        PREFIX_DAY, VALID_DAY_CS2103T,
-                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
-                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
-                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
-                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
-                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
-                ),
-                expectedLessonCommand
-        );
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser,
-                String.format(" %s %s %s %s %s    %s %s   %s  %s   %s %s   %s %s   %s %s  %s  ",
-                        PREFIX_TITLE, VALID_TITLE_CS2103T,
-                        PREFIX_TAG, VALID_TAG_CS2103T,
-                        PREFIX_DAY, VALID_DAY_CS2103T,
-                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
-                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
-                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
-                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
-                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
-                ),
-                expectedLessonCommand
-        );
-        // omit optional description
-        LessonCommand expectedLessonCommand2 = new LessonCommand(VALID_LESSON_CS2103T_NO_DESC);
-        assertParseSuccess(parser,
-                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
-                        PREFIX_TITLE, VALID_TITLE_CS2103T,
-                        PREFIX_TAG, VALID_TAG_CS2103T,
-                        PREFIX_DAY, VALID_DAY_CS2103T,
-                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
-                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
-                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
-                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
-                ),
-                expectedLessonCommand2
-        );
     }
 
     @Test

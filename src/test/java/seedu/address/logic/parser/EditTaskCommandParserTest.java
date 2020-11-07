@@ -28,18 +28,105 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+
+import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateTimeUtil;
+import seedu.address.logic.commands.EditTaskCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
+import seedu.address.model.task.deadline.DeadlineDateTime;
+
 
 public class EditTaskCommandParserTest {
 
     private final EditTaskCommandParser parser = new EditTaskCommandParser();
+
+    @Test
+    public void parse_validArgs_returnsEditTaskCommand() {
+        Index index = INDEX_FIRST_TASK;
+        //edit title
+        EditTaskCommand.EditTaskDescriptor editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor();
+        editTaskDescriptor.setTitle(new Title(VALID_TITLE_MEETING));
+        EditTaskCommand expectedEditTaskCommand = new EditTaskCommand(index, editTaskDescriptor);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_TITLE, VALID_TITLE_MEETING),
+                expectedEditTaskCommand);
+
+        //edit tag
+        EditTaskCommand.EditTaskDescriptor editTaskDescriptor1 = new EditTaskCommand.EditTaskDescriptor();
+        editTaskDescriptor1.setTag(new Tag(VALID_TAG_MEETING));
+        EditTaskCommand expectedEditTaskCommand1 = new EditTaskCommand(index, editTaskDescriptor1);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_TAG, VALID_TAG_MEETING),
+                expectedEditTaskCommand1);
+
+        //edit description
+        EditTaskCommand.EditTaskDescriptor editTaskDescriptor2 = new EditTaskCommand.EditTaskDescriptor();
+        editTaskDescriptor2.setDescription(new Description(VALID_DESC_MEETING));
+        EditTaskCommand expectedEditTaskCommand2 = new EditTaskCommand(index, editTaskDescriptor2);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_DESCRIPTION, VALID_DESC_MEETING),
+                expectedEditTaskCommand2);
+
+        //edit date
+        EditTaskCommand.EditTaskDescriptor editTaskDescriptor3 = new EditTaskCommand.EditTaskDescriptor();
+        try {
+            editTaskDescriptor3.setEventDate(ParserUtil.parseDate(VALID_DATE_MEETING));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        EditTaskCommand expectedEditTaskCommand3 = new EditTaskCommand(index, editTaskDescriptor3);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_DATE, VALID_DATE_MEETING),
+                expectedEditTaskCommand3);
+
+        //edit start time
+        EditTaskCommand.EditTaskDescriptor editTaskDescriptor4 = new EditTaskCommand.EditTaskDescriptor();
+        editTaskDescriptor4.setStartTime(LocalTime.parse(VALID_START_TIME_MEETING));
+        EditTaskCommand expectedEditTaskCommand4 = new EditTaskCommand(index, editTaskDescriptor4);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_START_TIME, VALID_START_TIME_MEETING),
+                expectedEditTaskCommand4);
+
+        //edit end time
+        EditTaskCommand.EditTaskDescriptor editTaskDescriptor5 = new EditTaskCommand.EditTaskDescriptor();
+        editTaskDescriptor5.setEndTime(LocalTime.parse(VALID_END_TIME_MEETING));
+        EditTaskCommand expectedEditTaskCommand5 = new EditTaskCommand(index, editTaskDescriptor5);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_END_TIME, VALID_END_TIME_MEETING),
+                expectedEditTaskCommand5);
+
+        //edit date and time
+        EditTaskCommand.EditTaskDescriptor editTaskDescriptor6 = new EditTaskCommand.EditTaskDescriptor();
+        editTaskDescriptor4.setDeadlineDateTime(new DeadlineDateTime(VALID_DATETIME_LAB));
+        EditTaskCommand expectedEditTaskCommand6 = new EditTaskCommand(index, editTaskDescriptor6);
+        assertParseSuccess(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_DATE_TIME, VALID_DATETIME_LAB),
+                expectedEditTaskCommand6);
+    }
 
     @Test
     public void parse_inValidTimeRange_returnsFalse() {
