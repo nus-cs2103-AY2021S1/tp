@@ -776,15 +776,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Attribute**: A piece of information associated to a contact, i.e. name, contact, number, email, department, office, remark, tag(s)
 * **Contact**: A member of a faculty
-* **Module**: A course held in a college or university. A module can be assigned to a contact
-* **Assignment**: A module handled by a contact. Assignment links a contact with a module
-* **Remark**: A short description of a contact. Remark is an optional attribute
+* **Contact attribute**: A piece of information associated to a contact, i.e. name, contact, number, email, department, office, remark, tag(s)
+* **Remark**: A short description of a contact. Remark is an optional contact attribute
 * **Tag**: An optional one-word identifier of a contact. A contact can have multiple tags
+* **Module**: A course held in a college or university. A module can be assigned to a contact
+* **Module attribute**: A piece of information associated to a module, i.e. module code, module name
+* **Module code**: A shorter unique identifier of a module
+* **Module name**: An identifier for a module that is more descriptive than the module code
 * **Instructor** : A faculty member who teaches a particular module
-
+* **Assignment**: A module handled by a contact. Assignment links a contact with a module. Once linked, the contact can be considered an instructor
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
