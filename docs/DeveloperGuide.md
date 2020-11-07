@@ -655,7 +655,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests for help.
-2.  SWEe! displays help window with link to User Guide.
+2.  SWEe! displays help window.
 
     Use case ends.
     
