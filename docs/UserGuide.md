@@ -29,9 +29,9 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
     ![Home Page at Main, highlighted navigation](images/home_main_nav.png)
 
-1. The left panel highlighted in the image below is the `Main Page` of the app. It lists all of the `Cases` stored in PIVOT according to the `Section` you are in. By using a `Main Page Command`,  you can interact with the `Cases` in this page. (Refer to [Features](#features) below for the commands)
+1. The left panel highlighted in the image below is the `Main Page` of the app. It lists all of the `Cases` stored in PIVOT according to the `Section` you are in. By using a `Main Page Command`,  you can interact with the `Cases` in this page. (Refer to [Main page](#main-page) below for the commands)
 
-1. By typing `open case 1` in the Command Line, the right panel is updated. This is `Case Page` of the app (highlighted below). It displays the `Case` information. By using a `Case Page Command`,  you can interact with the `Case` details in this page. (Refer to [Features](#features) below for the commands)
+1. By typing `open case 1` in the Command Line, the right panel is updated. This is `Case Page` of the app (highlighted below). It displays the `Case` information. By using a `Case Page Command`,  you can interact with the `Case` details in this page. (Refer to [Investigation Case page](#investigation-case-page) below for the commands)
 
     ![Home Page at Case, highlighted main and case page](images/home_case_nav.png)
     
@@ -99,7 +99,7 @@ The same `Suspect`/`Witness`/`Victim` can also appear in different cases.
 </div>
 
 ### Main page
-The main page of the application when the user first enters the app.
+The commands listed below can only be used in the `Main Page` of the app.
 
 #### List all unarchived cases in Home section: `list case`
 Shows the `Home` section and lists all unarchived cases in PIVOT.
@@ -190,7 +190,7 @@ Example:
 * `find 91234567 bishan` could return a case with the Victim having Phone number `91234567`, and cases containing `bishan` in their details
 
 ### Investigation Case page
-The page of the application when the user opens a specified case.
+The commands listed below can only be used in the `Case Page` of the app.
 
 #### List all documents in the current case: `list doc`
 Switches to the `Document` tab and lists all suspects for the current case.
@@ -238,7 +238,7 @@ Example:
 
 **:information_source: Notes about the restrictions for the fields of a person (suspect/victim/witness):**<br>
 
-* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
+* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only). The first letter of each word will be auto-capitalised.
 * `SEX` should only be either M or F, and is case-insensitive.
 * `PHONE` should only contain numbers, and it should be at least 3 digits long.
 * `EMAIL` should be of the format local-part@domain.top-level-domain and adhere to the following constraints:
@@ -336,7 +336,7 @@ This document `newFireDoc.pdf` must be manually added to the `references` folder
 
 **:information_source: Notes about the restrictions for the fields of a person (suspect/victim/witness):**<br>
 
-* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).
+* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank (no value, spaces only).  The first letter of each word will be auto-capitalised.
 * `SEX` should only be either M or F, and is case-insensitive.
 * `PHONE` should only contain numbers, and it should be at least 3 digits long.
 * `EMAIL` should be of the format local-part@domain.top-level-domain and adhere to the following constraints:
@@ -441,17 +441,20 @@ Example:
 Returns to the application main page.
 
 ### Both pages
+The commands listed below can be used in the both pages of the app.
 
 #### Undo: `undo`
 
 Undoes the previous command. Open, list, find and return commands are unable to be undone.
 
 Format: `undo`
+- Undoing a `Case Command` will not show in the `Result Display` which unique `Case` the command was executed in.
 
 #### Redo: `redo`
 
 Redoes the command that was just undone. Open, list, find and return commands are unable to be redone. If another command that changes the data of PIVOT is used after an undo 
 command, redo will not be able to be called.
+- Redoing a `Case Command` will not show in the `Result Display` which unique `Case` the command was executed in.
 
 Format: `redo`
 
@@ -464,6 +467,8 @@ using undo/redo will make the application return to the main page.<br>
 e.g. `add case t:Lost Wallet` will add a new case to PIVOT. `open case 1` will open the first case in the list of cases,
 and the application will now be at the case page. Using `undo` will undo the `add case t:Lost Wallet command`, which is
 a `main page command`. This will bring the application back to the main page.
+
+`Undo` has to be called before any `Redo` can be called. An `Undo` command itself cannot be undone. In order to restore the previous command that was undone, `redo` will have to be called. Likewise, a `redo` command itself cannot be undone as well. Calling `undo` after a `redo` will just restore PIVOT to the state where `undo` was initially called.
 </div>
 
 #### Help: `help`
