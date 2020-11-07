@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_HEIGHT;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Height;
+import seedu.address.model.body.Height;
 
 public class AddHeightCommand extends Command {
     public static final String COMMAND_WORD = "height";
@@ -40,6 +40,6 @@ public class AddHeightCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddHeightCommand // instanceof handles nulls
-                && this.height == ((AddHeightCommand) other).height);
+                && this.height.equals(((AddHeightCommand) other).height));
     }
 }

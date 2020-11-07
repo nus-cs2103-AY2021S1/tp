@@ -5,9 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Activity;
-import seedu.address.model.slot.Slot;
-import seedu.address.model.slot.UniqueSlotList;
 
 public class Timetable {
 

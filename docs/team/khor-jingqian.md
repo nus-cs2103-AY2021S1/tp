@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Khor Jing Qian's Project Portfolio P{age
+title: Khor Jing Qian's Project Portfolio Page
 ---
 
 ## Project: fitNUS
@@ -8,7 +8,7 @@ title: Khor Jing Qian's Project Portfolio P{age
 ### Overview
 
 fitNUS is a desktop address book application that is targeted at NUS students that are looking to improve their fitness.
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15
 kLoC.
 
 ### About the Team
@@ -33,22 +33,24 @@ wholesome user experience.
 * **New Feature**: Added Routine classes and implemented its relevant implementations.
   * What it does: allows the user to store pre-existing Exercises and users are able to add Routine into their timetable.
   * Justification: This is a core feature of fitNUS and allows users to customise what exercises they want in a routine and the time and date of when they want to try out this Routine.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Highlights: Implementing Routine required a deep understanding of how the original AB3 functioned. The implementation was made even more challenging by the fact that
-  it was built on Exercise and maintaining low coupling was tough.
+  it was built on Exercise and maintaining low coupling was tough and introduced many issues. Whenever an Exercise was deleted or edited, the corresponding Routine that has implemented it has to remove or edit the Exercise as well.
 
 * **New Feature**: Added DailyCalorie classes and implemented its relevant implementations.
   * What it does: allows the user to track their daily calorie intake up to 7 days.
   * Justification: Calories is an important part of tracking your fitness and this implementation allows fitNUS to better help their users.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Highlights: Calorie tracking is done on a daily basis because the team believes that users should not be able to change future or past calorie count.
+  * Highlights: Calorie tracking is done on a daily basis because the team believes that users should not be able to change future or past calorie count.  Implementation was tricky as I wanted any calorie features to be isolated and be able to run by itself. This meant that the calorie classes had to use LocalDate to remove the dependency on the user. This increased the difficulty of testing and equality checks.
 
 * **New Feature**: Implemented the graph for calorie tracking on the fitNUS GUI.
   * What it does: allows the user to track their daily calorie intake up to 7 days.
-  * Justification: Calories is an important part of tracking your fitness and this implementation allows fitNUS to better help their users.
-  * Highlights: Calorie tracking is done on a daily basis because the team believes that users should not be able to change future or past calorie count.
+  * Justification: To appeal to the visual users of fitNUS to allow them to follow their progress using graphics.
+  * Highlights: Calorie tracking is done on a daily basis because the team believes that users should not be able to change future or past calorie count. It was difficult to learn the JavaFX for LineChart and implementing such that, it responds to user input of calories. I chose to implement the feature as an ObservableList of calorie entries for every day that the user has edited their calories. This way, the information of calories per day and which day its recording is encapsulated. This ObservableList is passed to the CalorieGraph class to translate into a Series and then plotted on the GUI.
+  * Credits: Oracle document on LineChart, xAxis, yAxis and their tutorial.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Implemented the BMI display on GUI and Body class that supported it.
+    * What it does: allows the user to input their height and weight, displaying their BMI.
+    * Justification: body metrics are important in tracking your fitness journey, so we felt that it was essential to have this graphics on the GUI.
+    * Highlights:  highlights of this feature is more of being user-centric and having design considerations where users may try to input unreasonable figures. In such cases, the ParserUtil will detect this input as a ParseException. Implementation of the GUI treats the Body as an Observable object that detects any change in the Height or Weight classes that it contains. The GUI listens for changes, and updates the BMI accordingly.
 
 * **Code contributed**: You can view my code contributions to fitNUS [here](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=khor-jingqian&tabRepo=AY2021S1-CS2103T-T09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other).
 
@@ -56,11 +58,14 @@ wholesome user experience.
   * Managed releases `v1.3(trial)` and `v1.3` (2 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI to fit our vision for fitNUS, adjusting the arrangement and finding icons for fitNUS.
-  * Wrote test cases for Routine, UniqueRoutineList, DailyCalorie, CalorieLog, as well as its relevant commands and parser.
+  * Updated the GUI to fit our vision for fitNUS, adjusting the arrangement. [#104](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/104) [#100](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/100) [#184](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/184) [#188](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/188)
+  * Wrote test cases for Routine, UniqueRoutineList, DailyCalorie, CalorieLog, Body, Height and Weight and all the
+  linked classes. [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195) [#194](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/194) [#193](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/193) [#199](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/199)
+  * Disallow the input of repeated prefixes for all the classes in fitNUS where AB3 would take the latest prefix command to be accurate, now only allowing 1 prefix when appropriate.  [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195)
 
 ## Contributions to the team-based tasks:
 
+* Set up assertions in Gradle for fitNUS. [#75](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/75)
 * Release management, handled v1.3(trial) and v1.3.
 * Maintaining issue-tracker and milestone, reminding team mates to make sure their workload is reflected in the issues.
 * Timely reminders to close their issues and finish up before milestone deadline.
@@ -68,39 +73,26 @@ wholesome user experience.
 
 ## Contribution to the User Guide:
 
-* Wrote most of the documentation for Exercise, Routine, BMI.
+* Writeup for Exercise, Routine and BMI, excluding pictures. [#76](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/76) [#85](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/85) [#90](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/90) [#92](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/92)
 
-[Exercise commands](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/UserGuide.md#41-exercise)
+* Contributed some pictures for UG (refer to above links to UG edits).
 
-[Routine commands](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/UserGuide.md#42-routine)
-
-[BMI Commands](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/UserGuide.md#45-bmi)
-
-* Added most of the images in the User Guide with respect to features.
-
-* Wrote the command summary for User Guide.
-
-[Command Summary](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/UserGuide.md#5-command-summary)
+* Wrote the command summary for User Guide(refer to above links to UG edits).
 
 ## Contributions to the Developer Guide:
 
-Added implementation details of the command `routine_create`, showing in depth understanding of the sequence of method calls in fitNUS.
+* Added implementation details of the command `routine_create`, showing in depth understanding of the sequence of method calls in fitNUS. [#85](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/85) [#92](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/92)
 
-[Create Routine](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/DeveloperGuide.md#create-routine)
+* Refactored architecture diagrams from AB3 to better reflect how fitNUS works. (refer to above links to DG edits)
 
-Refactored architecture diagrams from AB3 to better reflect how fitNUS works.
+* Wrote User Stories and Manual testing for the group. [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195)
 
-[Logic Diagram & Sequence diagram](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/DeveloperGuide.md#architecture)
+* Added an Activity Diagram for `routine_create` for better clarity [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195)
 
-[Ui Diagram](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/DeveloperGuide.md#ui-component)
-
-[Logic Component & its sequence diagram](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/DeveloperGuide.md#logic-component)
-
-[Model Components](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/DeveloperGuide.md#model-component)
-
-[Storage Diagram](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/DeveloperGuide.md#storage-component)
-
+* Wrote design considerations for `routine_create` [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195)
 
 ##Community
-  * Reported bugs and suggestions for other teams in the class during PE Dry Run.
+  * Reported feature flaws and suggestions for other teams in the class during PE Dry Run. [#1](https://github.com/khor-jingqian/ped/issues/1) [#2](https://github.com/khor-jingqian/ped/issues/1) [#3](https://github.com/khor-jingqian/ped/issues/3)
+
+  * Left non-trivial comments on team mate's PR. [#196](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/196)
 

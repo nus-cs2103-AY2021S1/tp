@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddHeightCommand;
 import seedu.address.logic.commands.AddWeightCommand;
-import seedu.address.logic.commands.BmiCommand;
 import seedu.address.logic.commands.CalorieAddCommand;
 import seedu.address.logic.commands.CalorieMinusCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -20,9 +19,6 @@ import seedu.address.logic.commands.ExerciseFindCommand;
 import seedu.address.logic.commands.ExerciseListCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.TimetableAddLessonCommand;
-import seedu.address.logic.commands.TimetableAddRoutineCommand;
-import seedu.address.logic.commands.TimetableDeleteSlotCommand;
 import seedu.address.logic.commands.lessons.LessonAddCommand;
 import seedu.address.logic.commands.lessons.LessonDeleteCommand;
 import seedu.address.logic.commands.lessons.LessonEditCommand;
@@ -35,6 +31,9 @@ import seedu.address.logic.commands.routines.RoutineDeleteExerciseCommand;
 import seedu.address.logic.commands.routines.RoutineFindCommand;
 import seedu.address.logic.commands.routines.RoutineListCommand;
 import seedu.address.logic.commands.routines.RoutineViewCommand;
+import seedu.address.logic.commands.timetable.TimetableAddLessonCommand;
+import seedu.address.logic.commands.timetable.TimetableAddRoutineCommand;
+import seedu.address.logic.commands.timetable.TimetableDeleteSlotCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.lessons.LessonAddCommandParser;
 import seedu.address.logic.parser.lessons.LessonDeleteCommandParser;
@@ -46,6 +45,9 @@ import seedu.address.logic.parser.routines.RoutineDeleteCommandParser;
 import seedu.address.logic.parser.routines.RoutineDeleteExerciseCommandParser;
 import seedu.address.logic.parser.routines.RoutineFindCommandParser;
 import seedu.address.logic.parser.routines.RoutineViewCommandParser;
+import seedu.address.logic.parser.timetable.TimetableAddLessonCommandParser;
+import seedu.address.logic.parser.timetable.TimetableAddRoutineCommandParser;
+import seedu.address.logic.parser.timetable.TimetableDeleteSlotCommandParser;
 
 /**
  * Parses user input.
@@ -88,9 +90,6 @@ public class FitNusParser {
 
         case AddWeightCommand.COMMAND_WORD:
             return new AddWeightCommandParser().parse(arguments);
-
-        case BmiCommand.COMMAND_WORD:
-            return new BmiCommand();
 
         case CalorieAddCommand.COMMAND_WORD:
             return new CalorieAddCommandParser().parse(arguments);

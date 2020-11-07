@@ -199,9 +199,10 @@ public class CalorieLogTest {
     public void addCaloriesTest() {
         CalorieLog l3 = new CalorieLog();
         assertEquals(l3.getCalories(), 0);
-        l3.addCalories(1000);
+        Calorie calorie1000 = new Calorie(1000);
+        l3.addCalories(calorie1000);
         assertEquals(l3.getCalories(), 1000);
-        l3.addCalories(1000);
+        l3.addCalories(calorie1000);
         assertEquals(l3.getCalories(), 2000);
 
         DailyCalorie test = new DailyCalorie(LocalDate.of(2020, 10, 5));
@@ -221,15 +222,16 @@ public class CalorieLogTest {
         l4.add(test5);
         l4.add(test6);
 
-        l4.addCalories(1000);
+        l4.addCalories(calorie1000);
         assertFalse(l4.contains(test));
     }
 
     @Test
     public void minusCaloriesTest() {
-        l1.addCalories(1000);
-        l2.addCalories(1000);
-        l1.minusCalories(10);
+        Calorie calorie1000 = new Calorie(1000);
+        l1.addCalories(calorie1000);
+        l2.addCalories(calorie1000);
+        l1.minusCalories(new Calorie(10));
         assertFalse(l1.getCalories() == l2.getCalories());
 
         DailyCalorie test = new DailyCalorie(LocalDate.of(2020, 10, 5));
@@ -249,7 +251,7 @@ public class CalorieLogTest {
         l4.add(test5);
         l4.add(test6);
 
-        assertThrows(DailyCalorieNotFoundException.class, () -> l4.minusCalories(1000));
+        assertThrows(DailyCalorieNotFoundException.class, () -> l4.minusCalories(calorie1000));
     }
 
     @Test

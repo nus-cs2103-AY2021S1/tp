@@ -1,11 +1,11 @@
 package seedu.address.model.body;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.address.model.person.Weight;
 
 public class WeightTest {
     private final Weight sampleWeight = new Weight(70.0);
@@ -28,32 +28,43 @@ public class WeightTest {
 
     @Test
     public void validityChecks() {
+        // invalid format checks -> returns false
+        assertFalse(Weight.isValidWeight("-1"));
+        assertFalse(Weight.isValidWeight("50.000"));
+        assertFalse(Weight.isValidWeight("50.0.0"));
+
+        // valid format checks -> returns true
+        assertTrue(Weight.isValidWeight("70"));
+        assertTrue(Weight.isValidWeight("70.0"));
+        assertTrue(Weight.isValidWeight("70.00"));
+
+        // invalid range checks -> returns false
         assertFalse(Weight.isValidWeight(-1));
         assertFalse(Weight.isValidWeight(-1.0));
         assertFalse(Weight.isValidWeight(0));
         assertFalse(Weight.isValidWeight(-0));
         assertFalse(Weight.isValidWeight(-1000));
         assertFalse(Weight.isValidWeight(1000));
-        assertFalse(Weight.isValidWeight(251));
-        assertFalse(Weight.isValidWeight(25));
+        assertFalse(Weight.isValidWeight(200));
+        assertFalse(Weight.isValidWeight(30));
 
+        // valid range checks -> returns true
         assertTrue(Weight.isValidWeight(70));
-        assertTrue(Weight.isValidWeight(110));
-        assertTrue(Weight.isValidWeight("70"));
-        assertTrue(Weight.isValidWeight("110"));
+        assertTrue(Weight.isValidWeight(31));
+        assertTrue(Weight.isValidWeight(199));
     }
 
     @Test
     public void toStringTest() {
-        assertTrue(sampleWeight.toString().equals(sampleWeight.toString()));
-        assertTrue(sampleWeight.toString().equals(sampleWeight2.toString()));
-        assertFalse(sampleWeight.toString().equals(sampleWeight3.toString()));
+        assertEquals(sampleWeight.toString(), sampleWeight.toString());
+        assertEquals(sampleWeight2.toString(), sampleWeight.toString());
+        assertNotEquals(sampleWeight3.toString(), sampleWeight.toString());
 
     }
 
     @Test
     public void hashCodeTest() {
-        assertTrue(sampleWeight.hashCode() == sampleWeight.hashCode());
-        assertFalse(sampleWeight.hashCode() == sampleWeight3.hashCode());
+        assertEquals(sampleWeight.hashCode(), sampleWeight.hashCode());
+        assertNotEquals(sampleWeight3.hashCode(), sampleWeight.hashCode());
     }
 }

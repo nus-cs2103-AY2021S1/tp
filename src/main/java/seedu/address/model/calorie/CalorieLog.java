@@ -58,12 +58,12 @@ public class CalorieLog implements Iterable<DailyCalorie> {
      * If DailyCalorie does not already exist in the list,
      * then it must be a different day.
      */
-    public void addCalories(int calories) {
+    public void addCalories(Calorie calorie) {
         boolean isContained = false;
         for (DailyCalorie entry : internalList) {
             if (entry.getDate().equals(LocalDate.now())) {
                 int index = internalList.indexOf(entry);
-                entry.addCalories(calories);
+                entry.addCalories(calorie.getCalorie());
                 internalList.set(index, entry);
                 isContained = true;
                 break;
@@ -76,7 +76,7 @@ public class CalorieLog implements Iterable<DailyCalorie> {
                 internalList.remove(0);
             }
             DailyCalorie newDay = new DailyCalorie(LocalDate.now());
-            newDay.addCalories(calories);
+            newDay.addCalories(calorie.getCalorie());
             internalList.add(newDay);
             Collections.sort(internalList);
         }
@@ -87,12 +87,12 @@ public class CalorieLog implements Iterable<DailyCalorie> {
      * If DailyCalorie does not already exist in the list,
      * then it must be a different day.
      */
-    public void minusCalories(int calories) {
+    public void minusCalories(Calorie calorie) {
         boolean isContained = false;
         for (DailyCalorie entry : internalList) {
             if (entry.getDate().equals(LocalDate.now())) {
                 int index = internalList.indexOf(entry);
-                entry.minusCalories(calories);
+                entry.minusCalories(calorie.getCalorie());
                 internalList.set(index, entry);
                 isContained = true;
                 break;

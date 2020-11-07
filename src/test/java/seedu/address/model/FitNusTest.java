@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalLessons.getTypicalFitNus;
 import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 import static seedu.address.testutil.TypicalRoutines.UPPER_BODY;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -23,17 +24,18 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.exceptions.DuplicateLessonException;
-import seedu.address.model.person.Body;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Weight;
 import seedu.address.model.routine.Routine;
 import seedu.address.model.routine.exceptions.DuplicateRoutineException;
-import seedu.address.model.slot.Slot;
+import seedu.address.model.timetable.Slot;
+import seedu.address.model.util.Name;
 import seedu.address.testutil.LessonBuilder;
 
 public class FitNusTest {
@@ -105,9 +107,94 @@ public class FitNusTest {
         assertTrue(fitNus.hasLesson(editedGes1028));
     }
 
+
+
     @Test
     public void getLessonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> fitNus.getLessonList().remove(0));
+    }
+
+
+    //Height, Weight and BMI testing
+
+    @Test
+    public void bmiTesting() {
+
+        //This is using fitNUS values when it first starts up
+        Double bmi = (45 / Math.pow((160 / 100.0), 2));
+        assertEquals(fitNus.getBmi(), bmi);
+    }
+
+    @Test
+    public void heightTesting() {
+        assertEquals(fitNus.getHeight(), new Height(160));
+
+        fitNus.addHeight(new Height(170));
+
+        assertEquals(fitNus.getHeight(), new Height(170));
+    }
+
+    @Test
+    public void weightTesting() {
+        assertEquals(fitNus.getWeight(), new Weight(45.0));
+
+        fitNus.addWeight(new Weight(80));
+
+        assertEquals(fitNus.getWeight(), new Weight(80));
+    }
+
+    //Calorie testing
+
+    @Test
+    public void calorieTest() {
+        FitNus modelFitNus = new FitNus();
+
+        //Before adding any calorie
+        assertEquals(modelFitNus.getCalories(), 0);
+        assertEquals(modelFitNus.getDailyCalorieList().size(), 0);
+
+        //After adding calorie
+        modelFitNus.addCalories(new Calorie(1000));
+        assertEquals(modelFitNus.getCalories(), 1000);
+        assertEquals(modelFitNus.getDailyCalorieList().size(), 1);
+
+        //After deducting calories, calorie count should change but entry must remain
+        modelFitNus.minusCalories(new Calorie(1000));
+        assertEquals(modelFitNus.getCalories(), 0);
+        assertEquals(modelFitNus.getDailyCalorieList().size(), 1);
+    }
+
+    @Test
+    public void settingCalorieLogTest() {
+
+        FitNus modelFitNus = new FitNus();
+
+        DailyCalorie modelDailyCalorie = new DailyCalorie(LocalDate.of(2020, 7, 3));
+        DailyCalorie modelDailyCalorie1 = new DailyCalorie(LocalDate.of(2020, 7, 4));
+        DailyCalorie modelDailyCalorie2 = new DailyCalorie(LocalDate.of(2020, 7, 5));
+        DailyCalorie modelDailyCalorie3 = new DailyCalorie(LocalDate.of(2020, 7, 6));
+        DailyCalorie modelDailyCalorie4 = new DailyCalorie(LocalDate.of(2020, 7, 7));
+        DailyCalorie modelDailyCalorie5 = new DailyCalorie(LocalDate.of(2020, 7, 8));
+        DailyCalorie modelDailyCalorie6 = new DailyCalorie(LocalDate.of(2020, 7, 9));
+
+        List<DailyCalorie> modelCalorieLog = new ArrayList<>();
+        modelCalorieLog.add(modelDailyCalorie);
+        modelCalorieLog.add(modelDailyCalorie1);
+        modelCalorieLog.add(modelDailyCalorie2);
+        modelCalorieLog.add(modelDailyCalorie3);
+        modelCalorieLog.add(modelDailyCalorie4);
+        modelCalorieLog.add(modelDailyCalorie5);
+        modelCalorieLog.add(modelDailyCalorie6);
+
+        modelFitNus.addCalorieEntries(modelCalorieLog);
+        assertEquals(modelFitNus.getDailyCalorieList().size(), 7);
+
+        //Adding a new calorie entry will delete oldest one and maintain a 7 day long log.
+        assertTrue(modelFitNus.hasDailyCalorie(modelDailyCalorie));
+        modelFitNus.addCalories(new Calorie(1000));
+        assertEquals(modelFitNus.getCalories(), 1000);
+        assertEquals(modelFitNus.getDailyCalorieList().size(), 7);
+        assertFalse(modelFitNus.hasDailyCalorie(modelDailyCalorie));
     }
 
     //Routine tests

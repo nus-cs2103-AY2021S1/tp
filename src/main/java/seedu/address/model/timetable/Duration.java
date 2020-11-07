@@ -89,6 +89,21 @@ public class Duration {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Duration)) {
+            return false;
+        }
+
+        Duration otherDuration = (Duration) other;
+        return otherDuration.getStartTime().equals(startTime)
+                && otherDuration.getEndTime().equals(endTime);
+    }
+
+    @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
         return startTime.format(formatter) + "-" + endTime.format(formatter);

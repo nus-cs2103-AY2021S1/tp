@@ -6,18 +6,19 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.CalorieLog;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.UniqueExerciseList;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.UniqueLessonList;
-import seedu.address.model.person.Body;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Weight;
 import seedu.address.model.routine.Routine;
 import seedu.address.model.routine.UniqueRoutineList;
-import seedu.address.model.slot.Slot;
+import seedu.address.model.timetable.Slot;
 import seedu.address.model.timetable.Timetable;
 
 /**
@@ -161,7 +162,7 @@ public class FitNus implements ReadOnlyFitNus {
         addWeight(newBody.getWeight());
     }
 
-    //// person-level operations
+    //// body-level operations
 
     /**
      * Returns true if an exercise with the same identity as {@code exercise} exists in fitNUS.
@@ -266,18 +267,18 @@ public class FitNus implements ReadOnlyFitNus {
 
     /**
      * Adds calories into today's calorie log.
-     * @param calories The amount of calories that the user wants to add.
+     * @param calorie The amount of calories that the user wants to add.
      */
-    public void addCalories(int calories) {
-        calorieLog.addCalories(calories);
+    public void addCalories(Calorie calorie) {
+        calorieLog.addCalories(calorie);
     }
 
     /**
      * Deducts calories from today's calorie log.
-     * @param calories The amount of calories that the user wants to deduct.
+     * @param calorie The amount of calories that the user wants to deduct.
      */
-    public void minusCalories(int calories) {
-        calorieLog.minusCalories(calories);
+    public void minusCalories(Calorie calorie) {
+        calorieLog.minusCalories(calorie);
     }
 
     /**

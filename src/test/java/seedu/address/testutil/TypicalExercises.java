@@ -7,7 +7,7 @@ import java.util.List;
 
 import seedu.address.model.FitNus;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.person.Name;
+import seedu.address.model.util.Name;
 
 public class TypicalExercises {
 

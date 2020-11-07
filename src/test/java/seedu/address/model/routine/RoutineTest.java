@@ -14,7 +14,7 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.person.Name;
+import seedu.address.model.util.Name;
 
 public class RoutineTest {
 

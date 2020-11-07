@@ -12,16 +12,17 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.person.Body;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Weight;
 import seedu.address.model.routine.Routine;
 import seedu.address.model.routine.RoutineNameContainsKeywordsPredicate;
-import seedu.address.model.slot.Slot;
-import seedu.address.model.slot.SlotDayPredicate;
+import seedu.address.model.timetable.Slot;
+import seedu.address.model.timetable.SlotDayPredicate;
 
 /**
  * Represents the in-memory model of the fitNUS data.
@@ -149,8 +150,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addCalories(int calories) {
-        fitNus.addCalories(calories);
+    public void addCalories(Calorie calorie) {
+        fitNus.addCalories(calorie);
         updateFilteredCalorieLog(PREDICATE_SHOW_ALL_LOGS);
     }
 
@@ -161,8 +162,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void minusCalories(int calories) {
-        fitNus.minusCalories(calories);
+    public void minusCalories(Calorie calorie) {
+        fitNus.minusCalories(calorie);
     }
 
     @Override

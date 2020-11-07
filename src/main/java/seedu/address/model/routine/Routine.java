@@ -5,8 +5,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.person.Activity;
-import seedu.address.model.person.Name;
+import seedu.address.model.timetable.Activity;
+import seedu.address.model.util.Name;
 
 public class Routine extends Activity {
 
@@ -68,6 +68,10 @@ public class Routine extends Activity {
         return otherRoutine.getName().equals(getName());
     }
 
+    @Override
+    public boolean isRoutine() {
+        return true;
+    }
 
     /**
      * Returns true if both routines have the same identity and data fields.

@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Body;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Weight;
+import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
 
 /**
  * Jackson-friendly version of {@link Body}.
@@ -19,7 +19,7 @@ class JsonAdaptedBody {
     private final double weight;
 
     /**
-     * Constructs a {@code JsonAdaptedBody} with the given person details.
+     * Constructs a {@code JsonAdaptedBody} with the given body details.
      */
     @JsonCreator
     public JsonAdaptedBody(@JsonProperty("height") double height,
@@ -42,10 +42,10 @@ class JsonAdaptedBody {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Body.
      */
     public Body toModelType() throws IllegalValueException {
-        if (height <= 0) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
-        } else if (weight <= 0) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
+        if (!Height.isValidHeight(height)) {
+            throw new IllegalValueException(Height.MESSAGE_CONSTRAINTS_LIMIT);
+        } else if (!Weight.isValidWeight(weight)) {
+            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS_LIMIT);
         }
         Body newBody = new Body();
         newBody.setHeight(new Height(height));
