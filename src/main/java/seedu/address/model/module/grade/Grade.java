@@ -28,7 +28,7 @@ public class Grade {
      * @return true if the grade is valid.
      */
     public static boolean isValidGrade(double test) {
-        if (test >= 0 && test <= 1) {
+        if (test >= 0 && test <= 100) {
             return true;
         } else {
             return false;
