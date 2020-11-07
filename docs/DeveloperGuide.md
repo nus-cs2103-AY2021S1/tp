@@ -492,7 +492,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `edit 1`<br>
       Expected: No log is edited. Error details shown in the status message.
 
-   1. Other incorrect edit commands to try: `edit`, `edit x ...` (where x is larger than the list size)<br>
+   1. Other incorrect edit commands to try: `edit`, `edit x ...` (where x is larger than the list size or less than 1)<br>
       Expected: Similar to previous.
       
 ### Deleting a log
@@ -507,7 +507,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No log is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size or less than 1)<br>
       Expected: Similar to previous.
 
 ### Saving data
