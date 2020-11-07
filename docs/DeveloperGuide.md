@@ -100,7 +100,9 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the stock book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the serial number sets book data (i.e. the data of all the serial numbers generated in Warenager)
+* exposes an unmodifiable `ObservableList<Stock>` that can be 'observed'
+e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -1326,9 +1328,8 @@ The following activity diagram summarizes what happens when the print feature is
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: Allows users to manage stocks faster than a typical mouse/GUI driven app.
-Includes higher level features such as ability to bookmark mostly used products and highlights stocks
+Includes higher level features such as ability to bookmark important stocks and highlights stocks
 that are low in quantity to improve user experience.
-
 
 ### User stories
 
@@ -1342,14 +1343,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | warehouse manager                                           | to be able to search for stocks easily                                               | I can refer to them quickly                                            |
 | `* * *`  | admin                                                       | to print out all the stocks in the inventory                                         | I can keep records of the inventory                                    |
 | `* * *`  | warehouse manager                                           | to be able to view all the stocks there are in the warehouse clearly                 | I can make decisions better                                            |
-| `* * *`  | forgetful manager                                           | to list the features and the way to use them                                         | I can refer to this feature when I forget how to use certain features  |
+| `* * *`  | forgetful warehouse manager                                 | to list the features and the way to use them                                         | I can refer to this feature when I forget how to use certain features  |
 | `* * *`  | multi-device user                                           | to transport data from one device to another                                         | I will not have to key in items one by one again                       |
 | `* * *`  | tech-savvy warehouse manager                                | to easily type shorter commands                                                      | I am able to execute functions quickly                                 |
 | `* * *`  | collaborative user                                          | my inventory to be able to be shared with my collaborators                           | my collaborators can only read and find data                           |
 | `* * *`  | tech savvy warehouse manager                                | to be able to change the information of my existing stock in the application         | I can keep my existing inventories updated                             |
 | `* *`    | major shareholder                                           | to easily understand how inventory count works                                       | I can determine if the investment is worthy                            |
-| `* *`    | manager                                                     | to be able to gather the statistics (eg. profit) of the items in inventory           | I can report the profitability of products                             |
-| `* *`    | forgetful stock                                            | to add optional notes at certain stocks                                              | I can be reminded of important information                             |
+| `* *`    | warehouse manager                                           | to be able to gather the statistics (eg. profit) of the items in inventory           | I can report the profitability of products                             |
+| `* *`    | forgetful warehouse manager                                 | to add optional notes at certain stocks                                              | I can be reminded of important information                             |
 | `* *`    | busy manager                                                | to be able to see or highlight low stocks at a glance                                | I can replenish them in time                                           |
 | `* *`    | busy manager                                                | to automate the calculation of how much stock to restock based on the current stocks | I do not need to spend time manually calculating                       |
 | `* *`    | tech savvy warehouse manager                                | to be able to bookmark certain items in the warehouse                                | I can access and augment their information easily                      |
@@ -1907,7 +1908,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Warenager deletes all notes from the stock.
 
     Use case ends.
-    
+
 **Extensions**
 * 1a. The given input has an additional header.
 
@@ -1944,7 +1945,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1f1. Warenager shows an error message.
 
      Use case resumes at step 1.
-     
+
 #### Use case 16: Generating a csv file that contains all stocks
 
 **MSS**
@@ -2096,8 +2097,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Warenager shows an error message and tells user to use the proper format, giving a suggestion.
 
       Use case resumes at step 1.
-      
-#### Use case 23: Exit Warenager
+
+#### Use case 23: Viewing details of a stock in Warenager
+
+**MSS**
+
+1.  User requests to view details of a stock in Warenager.
+2.  Warenager toggles to the Stock View tab.
+3.  Warenager displays the details of the stock.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given input has an additional header.
+
+    * 1a1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+
+    * 1b1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+
+    * 1c1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1d. The given input is empty.
+
+    * 1d1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1e. The stock cannot be found based on given input.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+#### Use case 24: Exit Warenager
 
 **MSS**
 
@@ -2123,12 +2165,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5.  Should be easy to pickup so that a user of managerial role can quickly teach their employees should he/she be absent.
 6.  Should have an easy-to-understand interface, for beginner users to use the application comfortably.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Stock**: Item in the inventory.
 * **Field**: (name, serial number, quantity, location stored, source) of the stock in inventory
 
@@ -2466,6 +2505,34 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect statistics commands to try: `ta`, `tab sn/ntuc1`
       Expected: Similar to previous.
+
+### Viewing details of a stock.
+
+1. Viewing details of a stock.
+
+    1. Test case: `stockview sn/ntuc1`
+        Expected: Warenager toggles to the Stock View tab, the details of the stock
+        with serial number ntuc1 is shown.
+        
+    1. Test case: `stockview sn/ntuc1 sn/ntuc2`
+            Expected: No stock viewed as duplicate field serial number is entered.
+            Error details shown in the status message. Suggestion message will be shown too.
+
+    1. Test case: `stockview sn/ntuc`.
+        Expected: No stock viewed as serial number given is not a valid serial number.
+        Error details shown in the status message. Suggestion message will be shown too.
+
+    1. Test case: `stockview sn/`.
+             Expected: No note delete due to invalid command format of empty input for field note index.
+             Error details shown in the status message. Suggestion message will be shown too.
+
+    1. Test case: `stockview`.
+             Expected: No note delete due to invalid command format of missing header in input.
+             Error details shown in the status message. Suggestion message will be shown too.
+
+    1. Test case: `stockview q/1111`<br>
+          Expected: No note deleted due to invalid field header q/.
+          Error details shown in the status message. Suggestion message will be shown too.
 
 ### Clearing data in Warenager
 
