@@ -11,9 +11,9 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
  software project, optimized for use via a Command Line Interface (CLI) while still having the benefits of a 
  Graphical User Interface (GUI). If you can type fast, Taskmania can allow you to manage your team faster than 
  a traditional point and click interface.
- 
+
  ## Table of contents
- 
+
  * Table of Contents
  {:toc}
 
@@ -150,7 +150,7 @@ Format: `add n/PROJECT_NAME dl/DEADLINE ru/REPO_URL d/PROJECT_DESCRIPTION [tg/TA
   - Repo URL must be a valid link
   - Description can be anything, as long as it is not blank
   - Any number of tags can be added, where each new tag would require the prefix tg/ before the tag
-  
+
 Note: Please enter a valid repository URL. Taskmania is an offline application and can only check the validity of the
  URL, and not whether the repository exists.
 
@@ -184,7 +184,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 - Only the name of the projects are searched
 - Must provide at least one keyword
 - There can be multiple keywords
-- Keywords provided must be complete words and will only match **complete words** from the name of the project. e.g. `find Task` will not return the **Taskmania** project.
+- Keywords provided must be **complete words** and will only match **complete words** from the name of the project. e.g. `find Task` will not return the **Taskmania** project.
 
 Example: `find scare` returns the **Scare House** and **Easily scare Night** projects.
 
@@ -205,7 +205,7 @@ Format: `edit INDEX [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESC
   - Repo URL must be a valid link
   - Description can be anything, as long as it is not blank
   - Any number of tags can be added, separated by space " "
-  
+
 Note: Please enter a valid repository URL. Taskmania is an offline application and can only check the validity of the
  URL, and not whether the repository exists.
 
@@ -290,7 +290,7 @@ Specifically:
    - Only the name of the tasks are searched
    - Must provide at least one keyword
    - There can be multiple keywords
-   - Keywords provided must be complete words and will only match complete words from the name of the task. e.g. `filter tn/dat` will not return the **Refine data flow** task
+   - Keywords provided must be **complete words** and will only match **complete words** from the name of the task. e.g. `filter tn/dat` will not return the **Refine data flow** task
 
 3. `filter td/DEADLINE` finds all the tasks whose deadlines match the given `DEADLINE`
    - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
@@ -359,7 +359,7 @@ Example: `addteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/1
   - phone number of 93824823
   - email of lucas@gmail.com
   - address of 18 Evelyn road
-  
+
 ### Add a teammate to a project `addpart`
 
 Add an existing teammate to the current project.

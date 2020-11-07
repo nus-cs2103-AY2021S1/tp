@@ -14,6 +14,8 @@ public class ListPersonsCommand extends Command {
 
     public static final String COMMAND_WORD = "listpersons";
 
+    public static final String MESSAGE_EXTRA_ARGS = "Please do not provide extra arguments after \""
+        + COMMAND_WORD + "\"";
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
 

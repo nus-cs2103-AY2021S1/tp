@@ -11,6 +11,9 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 
+    public static final String MESSAGE_EXTRA_ARGS = "Please do not provide extra arguments after \""
+        + COMMAND_WORD + "\"";
+
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Main Catalogue as requested ...";
 
     @Override

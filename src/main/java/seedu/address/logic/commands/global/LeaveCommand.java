@@ -16,6 +16,8 @@ public class LeaveCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Leaves the current detail view and go back to the upper level view.\n";
 
+    public static final String MESSAGE_EXTRA_ARGS = "Please do not provide extra arguments after \""
+        + COMMAND_WORD + "\"";
     public static final String MESSAGE_LEAVE_SUCCESS = "Left the current detail view";
 
     @Override
