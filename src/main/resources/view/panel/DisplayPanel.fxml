@@ -48,7 +48,7 @@
                         </VBox>
                         <VBox alignment="CENTER" styleClass="vbox-with-border">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="480.0" styleClass="label-header" stylesheets="@../DarkTheme.css" text="Time Analysis For The Past Week" textAlignment="CENTER">
+                              <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="480.0" styleClass="label-header" text="Time Analysis For The Past Week" textAlignment="CENTER">
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </VBox.margin>
@@ -79,8 +79,8 @@
                <children>
                   <HBox StackPane.alignment="TOP_LEFT">
                      <children>
-                        <StackPane minWidth="300.0" HBox.hgrow="NEVER" />
-                        <StackPane fx:id="calendarPanelPlaceholder" />
+                        <StackPane fx:id="calendarPanelPlaceholder" HBox.hgrow="ALWAYS" />
+                        <StackPane fx:id="schedulePanelPlaceholder" HBox.hgrow="NEVER" />
                      </children>
                   </HBox>
                </children>

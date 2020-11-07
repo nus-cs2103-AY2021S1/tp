@@ -77,6 +77,16 @@ public class LessonCard extends UiPart<Region> {
         }
     }
 
+    @FXML
+    private void handleMouseIn() {
+        description.setWrapText(true);
+    }
+
+    @FXML
+    private void handleMouseOut() {
+        description.setWrapText(false);
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

@@ -11,9 +11,16 @@ import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
 import seedu.address.model.StatisticsData;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.schedule.UpcomingSchedule;
+import static seedu.address.ui.util.ScheduleUiUtil.IN_THE_DAY;
+import static seedu.address.ui.util.ScheduleUiUtil.IN_THE_CALENDAR;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.function.Predicate;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -26,6 +33,7 @@ public class DisplayPanel extends UiPart<Region> {
     private TaskListPanel taskListPanel;
     private LessonListPanel lessonListPanel;
     private CalendarPanel calendarPanel;
+    private UpcomingSchedule upcomingSchedule;
     private StatsSummaryPanel statsSummaryPanel;
     private PieChart pieChart;
     private HashMap<String, String> tagColors;
@@ -44,6 +52,9 @@ public class DisplayPanel extends UiPart<Region> {
 
     @FXML
     private StackPane calendarPanelPlaceholder;
+
+    @FXML
+    private StackPane schedulePanelPlaceholder;
 
     @FXML
     private StackPane pieChartPlaceholder;
@@ -78,7 +89,10 @@ public class DisplayPanel extends UiPart<Region> {
         lessonListPanel = new LessonListPanel(logic.getFilteredLessonList());
         lessonListPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
 
-        calendarPanel = new CalendarPanel(logic.getFilteredCalendarList());
+        upcomingSchedule = new UpcomingSchedule(logic.getFilteredCalendarList());
+        schedulePanelPlaceholder.getChildren().add(upcomingSchedule.getRoot());
+
+        calendarPanel = new CalendarPanel(logic.getFilteredCalendarList(), upcomingSchedule);
         calendarPanelPlaceholder.getChildren().add(calendarPanel.getRoot());
 
         loadPieChart(logic.getStatisticsData());
@@ -145,15 +159,19 @@ public class DisplayPanel extends UiPart<Region> {
 
     private String getRandomColor() {
         String letters = "0123456789ABCDEF";
-        String color = "#";
-        for (int i = 0; i < 6; i++) {
-            if (i == 2) {
-                color += letters.charAt((int)Math.floor(Math.random() * 8));
+        String color = "#00";
+        for (int i = 0; i < 4; i++) {
+            if (i == 0) {
+                color += letters.charAt((int)Math.floor(Math.random() * 4) * 2);
                 continue;
             }
 
             color += letters.charAt((int)Math.floor(Math.random() * 16));
         }
         return color;
+    }
+
+    public void endThread() {
+        upcomingSchedule.endThread();
     }
 }

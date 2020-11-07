@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import seedu.address.model.tag.Tag;
 
@@ -51,6 +52,10 @@ public abstract class Task implements Comparable<Task> {
      * Returns the date in which the task occurs.
      */
     public abstract LocalDate getDate();
+    /**
+     * Returns the time in which the task occurs.
+     */
+    public abstract LocalDateTime getStartTime();
     /**
      * Returns true if both tasks of the same title, date and time.
      * This defines a strong notion of equality between two tasks to allow recurring tasks yet preventing duplicates.
