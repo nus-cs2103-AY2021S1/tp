@@ -10,7 +10,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
  */
 public class ReviewPanel extends StudyPanel {
 
-    public static final String EXIT_MESSAGE = "Exited review mode";
+    public static final String EXIT_MESSAGE = "Exited Review mode";
     public static final String HELP_MESSAGE = "You are in review mode \n\u2191 hide answer   \u2193 show answer   "
             + "\u2190 previous flashcard" + "   \u2192 next flashcard" + "   q quit review mode";
     public static final int RIGHT_ARROW = 39;
