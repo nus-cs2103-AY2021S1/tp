@@ -930,6 +930,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a patient
+
+1. Adding a new employee to the active employee directory
+
+   1. Test case: `c-add n/John Doe p/98765432 e/87654321 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`<br>
+      Expected: An employee named John Doe should be added into the active employee directory with his phone number, emergency contact, address,
+      and tags.
+
+   1. Test case: `c-add`<br>
+      Expected: No employee is added. Error details shown in the status message. Status bar remains the same.
+      
 ### Deleting an employee
 
 1. Deleting an employee while all active employees are being shown
@@ -954,3 +965,22 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Finding sales of drinks
+
+1. Finding the sales of a drink item while all sales are being shown.
+
+    1. Prerequisites: List all sales using the `s-list` command. The full list of drinks sales will be shown.
+   
+    2. Test case: `s-find BSBBT`
+       Expected: BSBBT's sales data shown in the sales tracker panel.
+      
+    3. Test case: `s-find BSBBT BSBM`
+       Expected: BSBBT's sales data and BSBM's sales data shown in the sales tracker panel.
+      
+    4. Test case: `s-find HUGB`
+       Expected: No drink's sales data shown in the sales tracker panel.
+   
+    5. Test case: `s-find`
+       Expected: Error details shown in the status message
+      
