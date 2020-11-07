@@ -36,7 +36,7 @@ public class CommandTestUtil {
     public static final String VALID_OPTION_TWO = "2";
     public static final String VALID_OPTION_THREE = "3";
     public static final String VALID_TAG_LSM1301 = "LSM1301";
-    public static final String VALID_TAG_MODULE = "Module";
+    public static final String VALID_TAG_TAG1 = "Tag 1";
 
     public static final String CHOICE_DESC = " " + CliSyntax.PREFIX_CHOICE + "First" + " "
         + CliSyntax.PREFIX_CHOICE + "Second" + " " + CliSyntax.PREFIX_CHOICE + "Third" + " "
