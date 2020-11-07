@@ -2,8 +2,8 @@ package seedu.address.logic.commands.modulelistcommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
+import static seedu.address.testutil.contact.TypicalContacts.getTypicalContactList;
 import static seedu.address.testutil.todolist.TypicalTasks.getTypicalTodoList;
 
 import org.junit.jupiter.api.BeforeEach;

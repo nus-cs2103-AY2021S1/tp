@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
+import static seedu.address.testutil.contact.TypicalContacts.getTypicalContactList;
 import static seedu.address.testutil.todolist.TypicalTasks.getTypicalTodoList;
 
 import org.junit.jupiter.api.Test;
