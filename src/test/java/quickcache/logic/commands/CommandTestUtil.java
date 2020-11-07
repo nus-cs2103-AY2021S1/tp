@@ -66,6 +66,7 @@ public class CommandTestUtil {
     public static final String INVALID_QUESTION_DESC = " " + CliSyntax.PREFIX_QUESTION + " ";
     public static final String INVALID_ANSWER_DESC = " " + CliSyntax.PREFIX_ANSWER + " ";
     public static final String INVALID_OPTION_DESC = " " + CliSyntax.PREFIX_OPTION + " ";
+    public static final String INVALID_CHOICE_DESC = " " + CliSyntax.PREFIX_CHOICE + " ";
     public static final String INVALID_OPTION_NON_ALPHANUMERIC_DESC = " " + CliSyntax.PREFIX_OPTION + "abc";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
