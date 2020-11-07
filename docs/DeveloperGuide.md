@@ -1240,6 +1240,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**UC09: View Selected Meeting Details**
+
+**MSS**
+
+1.  User chooses to view details of a meeting
+2.  Modduke accepts request and displays both agendas and notes for the selected meeting
+    
+    Use case ends.
+    
+**Extensions**
+
+* 1a. Modduke detects invalid command format.
+
+  * 1a1. Modduke gives an alert for the invalid command format.
+
+    Use case ends
+    
+* 1b. User enters a meeting that does not exist.
+
+  * 1b1. Modduke shows a message informing user that the meeting provided is not in the meeting list.
+
+    Use case ends  
+    
+
 **UC10: List Meetings**
 
 **MSS**
@@ -1282,6 +1306,32 @@ Use case same as UC09: Delete Meeting
 
 1.  User makes request to edit a specific consult
 2.  Modduke accepts request and makes changes to consult
+
+    Use case ends.
+    
+**UC13: Switch to light theme**
+
+**Guarantees**
+
+*  The theme set will be light theme regardless of current theme
+
+**MSS**
+
+1.  User makes request to switch to light theme
+2.  Modduke switches to light theme
+
+    Use case ends.
+
+**UC14: Switch to dark theme**
+
+**Guarantees**
+
+*  The theme set will be dark theme regardless of current theme
+
+**MSS**
+
+1.  User makes request to switch to dark theme
+2.  Modduke switches to dark theme
 
     Use case ends.
 
