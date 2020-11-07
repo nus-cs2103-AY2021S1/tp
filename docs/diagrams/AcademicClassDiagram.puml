@@ -6,7 +6,9 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Academic {
 Class Academic
-Class Question
+abstract Class Question
+Class UnsolvedQuestion
+Class SolvedQuestion
 Class Exam
 Class Attendance
 }
@@ -15,5 +17,8 @@ Class Attendance
 Academic *--> "*" Question
 Academic *--> "*" Exam
 Academic *--> "*" Attendance
+Question <|-- UnsolvedQuestion
+Question <|-down- SolvedQuestion
 
+Question -[hidden]left- Attendance
 @enduml
