@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":tCheckParser" as tCheckParser LOGIC_COLOR
 participant ":ArchiveCommand" as ArchiveCommand LOGIC_COLOR
 end box
 
@@ -13,18 +13,18 @@ end box
 [-> LogicManager : execute(archive)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(archive)
-activate AddressBookParser
+LogicManager -> tCheckParser : parseCommand(archive)
+activate tCheckParser
 
 create ArchiveCommand
-AddressBookParser -> ArchiveCommand
+tCheckParser -> ArchiveCommand
 activate ArchiveCommand
 
-ArchiveCommand --> AddressBookParser
+ArchiveCommand --> tCheckParser
 deactivate ArchiveCommand
 
-AddressBookParser --> LogicManager :
-deactivate AddressBookParser
+tCheckParser --> LogicManager :
+deactivate tCheckParser
 
 LogicManager -> ArchiveCommand : execute()
 activate ArchiveCommand
