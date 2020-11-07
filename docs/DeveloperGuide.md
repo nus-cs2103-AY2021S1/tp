@@ -112,7 +112,10 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
 </div>
 
 ### Model component
@@ -128,12 +131,18 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The Model class diagram shown above omits details of the Flashcard class due to space constraint. Instead, the omitted details have been extracted and are shown here:<br>
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The Model class diagram shown above omits details of the Flashcard class due to space constraint. Instead, the omitted details have been extracted and are shown here:<br>
+
 </div>
 
 ![FlashcardClassDiagram](images/FlashcardClassDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FlashcardDeck`, which `Flashcard` references. This allows `FlashcardDeck` to only require one `Tag` object per unique `Tag`, instead of each `Flashcard` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FlashcardDeck`, which `Flashcard` references. This allows `FlashcardDeck` to only require one `Tag` object per unique `Tag`, instead of each `Flashcard` needing their own `Tag` object.<br>
+
 </div>
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
@@ -262,7 +271,9 @@ The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -344,9 +355,9 @@ It works when the `LogicManager` listens for a filter command input from the use
 parses the command to filter out relevant flashcards based on the category, rating, favourite status and/or tags.
 
 The filter feature supports filtering of multiple flashcard fields by parsing the command using `FilterCommandParser#parse(String args)`
-and creates a new `FilterCommand` object that contains a `MultipleFieldsEqualsKeywordsPredicate` predicate object.
+and creates a new `FilterCommand` object that contains a `MultipleFieldsEqualKeywordsPredicate` predicate object.
 
-The `MultipleFieldsEqualsKeywordsPredicate` predicate object then encapsulates the following predicate objects:
+The `MultipleFieldsEqualKeywordsPredicate` predicate object then encapsulates the following predicate objects:
 * `CategoryEqualsKeywordsPredicate`
 * `RatingEqualsKeywordsPredicate` 
 * `FavouriteEqualsKeywordsPredicate`
@@ -354,7 +365,7 @@ The `MultipleFieldsEqualsKeywordsPredicate` predicate object then encapsulates t
 
 It implements the following operations:
 * `FilterCommand#execute(Model model)` to update `Model` to show only the filtered flashcards
-* `MultipleFieldsEqualsKeywordsPredicate#test(Flashcard flashcard)` to check every flashcard in `Model` against the 
+* `MultipleFieldsEqualKeywordsPredicate#test(Flashcard flashcard)` to check every flashcard in `Model` against the 
 various encapsulated predicates for different fields in the flashcard (category, rating, favourite status and tags) and will only
 return true if all encapsulated predicates return true.
 * `ModelManager#updateFilteredFlashcardList(Predicate<Flashcard> predicate)` takes in a predicate to update 
@@ -788,7 +799,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -830,11 +843,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case (missing a compulsory input (`a/ANSWER`)): `add q/What does SWE stand for?` <br>
        Expected: No flashcard added to the list of flashcards and input text will turn red to signal an error.
-       Result display will output the invalid command error message.
+       Result display will output the invalid command format error message.
    
    1. Test case (missing a compulsory input (`q/QUESTION`)): `add a/Software Engineering` <br>
        Expected: No flashcard added to the list of flashcards and input text will turn red to signal an error.
-       Result display will output the invalid command error message.
+       Result display will output the invalid command format error message.
        
 ### Deleting a flashcard
 
@@ -848,9 +861,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case (invalid index): `delete 0` <br>
       Expected: No flashcard will be deleted from the list of flashcards and input text will turn red to signal an error.
-      Result display will output the invalid command error message.
+      Result display will output the invalid command format error message.
 
-   1. Other incorrect delete commands to try: `delete` and `delete x` (where x is larger than the list size or x is a negative integer)<br>
+   1. Test case (missing index): `delete` <br>
       Expected: Similar to test case iii.
       
 ### Listing flashcards
@@ -879,16 +892,20 @@ testers are expected to do more *exploratory* testing.
         Expected: The `QUESTION` and `ANSWER` of flashcard at index 1 will be modified to become `Is this edited?` 
         and `Yes` respectively.The remaining fields of this flashcard will remain the same. Result display will output the status of the edited flashcard.
     
-    1. Test case (missing flashcard field input): `edit 1` where `INDEX` <br> 
+    1. Test case (missing flashcard field input): `edit 1` <br> 
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the message: `At least one field to edit must be provided.`
         
     1. Test case (missing flashcard field input and index): `edit` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
      
-     :bulb: **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
+     <div markdown="span" class="alert alert-info">
+     
+     :information_source: **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
 
+    </div>
+    
 ### Clearing all flashcards
 
 1. Clearing all flashcards in the flashcard deck
@@ -917,9 +934,13 @@ testers are expected to do more *exploratory* testing.
         
     1. Test case (missing flashcard field input): `filter` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
         
-    :bulb: **Note:** Filtering of flashcards can also be tested on other fields such as `FAVOURITE` and `TAG`. 
+    <div markdown="span" class="alert alert-info">
+         
+    :information_source: **Note:** Filtering of flashcards can also be tested on other fields such as `FAVOURITE` and `TAG`. 
+    
+    </div>
     
 ### Favouriting a flashcard
 
@@ -934,9 +955,9 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case (invalid index): `fav 0` <br>
         Expected: No flashcard is favourited from the list of flashcards and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
 
-    1. Other incorrect favourite commands to try: `fav` and `fav x` (where x is larger than the list size or x is a negative integer) <br>
+    1. Test case (missing index): `fav` <br>
         Expected: Similar to test case iii.
         
 ### Unfavouriting a flashcard
@@ -952,9 +973,9 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case (invalid index): `unfav 0` <br>
         Expected: No flashcard is unfavourited from the list of flashcards and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
 
-    1. Other incorrect unfavourite commands to try: `unfav` and `unfav x` (where x is larger than the list size or x is a negative integer) <br>
+    1. Test case (missing index): `unfav` <br>
         Expected: Similar to test case iii.
 
 ### Finding flashcards
@@ -976,7 +997,7 @@ testers are expected to do more *exploratory* testing.
        
    1. Test case (missing keyword): `find` <br>
        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
-       Result display will output the invalid command error message.
+       Result display will output the invalid command format error message.
 
 ### Reviewing flashcards
 
@@ -988,6 +1009,15 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `review` <br>
         Expected: Main window of application switches to review mode and displays the first flashcard in the flashcard deck.
         
+1. Quitting review mode in the application
+
+    1. Prerequisites: Application must be in review mode. Refer to [Section 1.2](#reviewing-flashcards) on how to enter
+        review mode.
+        
+    1. Test case: `q` <br>
+        Expected: Main window of application switches to display flashcard list. Result display will output a success
+        message: `Exited Review mode`
+        
 ### Quizzing flashcards
 
 1. Entering quiz mode in the application
@@ -998,6 +1028,15 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `quiz` <br>
         Expected: Main window of application switches to quiz mode and displays the first flashcard in the flashcard deck.
 
+1. Quitting quiz mode in the application
+
+    1. Prerequisites: Application must be in quiz mode. Refer to [Section 1.2](#quizzing-flashcards) on how to enter
+        quiz mode.
+        
+    1. Test case: `q` <br>
+        Expected: Main window of application switches to display flashcard list. Result display will output a success
+        message: `Exited Quiz mode`
+        
 ### Sorting of flashcards
 
 1. Sort flashcards according to review frequency
@@ -1015,7 +1054,7 @@ testers are expected to do more *exploratory* testing.
         
     1. Test case (sort flashcards with missing inputs): `sort` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
         
 1. Sort flashcards according to success rate
 
@@ -1032,7 +1071,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case (sort flashcards with missing inputs): `sort` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
         
 ### Viewing a flashcard
 
@@ -1051,10 +1090,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case (view flashcard at invalid index): `view 0` <br>
         Expected: Flashcard view and flashcard answer panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
-            
-    1. Other incorrect view commands to try: `view 0 -a` and `view x` (where x is larger than the list size or x is a negative integer) <br>
-        Expected: Similar to test case iv.
+        Result display will output the invalid command format error message.
                
 ### Viewing the statistics of a flashcard
     
@@ -1069,10 +1105,8 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case (view statistics of flashcard at invalid index): `stats 0` <br>
         Expected: Flashcard view panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
-    
-    1. Other incorrect stats command to try: `stats x` (where x is larger than the list size or x is a negative integer) <br>
-        Expected: Similar to test case iii.
+        Result display will output the invalid command format error message.
+        
         
 --------------------------------------------------------------------------------------------------------------------
 
