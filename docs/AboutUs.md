@@ -11,7 +11,6 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/dcchan98.png" width="200px">
 
-[[homepage]](https://ay2021s1-cs2103t-w17-3.github.io/tp/)
 [[github]](https://github.com/dcchan98)
 [[portfolio]](team/dcchan98)
 
