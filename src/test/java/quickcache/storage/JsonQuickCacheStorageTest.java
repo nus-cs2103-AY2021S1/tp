@@ -20,7 +20,7 @@ import quickcache.model.QuickCache;
 import quickcache.model.ReadOnlyQuickCache;
 
 public class JsonQuickCacheStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonQuickCacheStorageTest");
 
     @TempDir
     public Path testFolder;
