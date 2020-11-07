@@ -11,9 +11,11 @@ This User Guide is co-written by Josiah, Joshua, Gilbert, Francis and Xingjian. 
 
 ##Table of Contents
 
+<link rel="stylesheet" href="UserGuide.css">
+
 1. [Introduction](#intro)
 2. [Using this guide](#using-this-guide)
-3. [Quick start](#quickstart)
+3. [Quick start](#quick-start)
 4. [Features](#features)
     1. [Viewing help](#help)
     2. [Creating a new flashcard](#creating-a-new-flashcard)
@@ -70,7 +72,8 @@ Before diving into **QuickCache** and getting to know its features, lets get fam
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start <a name="quickstart"></a>
+<a name="quick-start"></a>
+## Quick start
 Here is a quick start on how you can start using our app in your own computer.
 
 1. Ensure you have Java `11` or above installed in your Computer.
