@@ -2,7 +2,6 @@ package seedu.address.logic.commands.modulelistcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -21,8 +20,7 @@ public class AddModuleCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "CS2100 "
-            + PREFIX_ZOOM_LINK + "www.zoom.com";
+            + PREFIX_NAME + "CS2100 ";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";

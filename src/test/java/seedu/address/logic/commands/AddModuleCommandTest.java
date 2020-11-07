@@ -30,7 +30,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
 // import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.contact.ContactBuilder;
 
 public class AddModuleCommandTest {
 
@@ -87,7 +87,7 @@ public class AddModuleCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    protected class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -352,6 +352,21 @@ public class AddModuleCommandTest {
         public void undoTodoList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void commitEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void commit(int i) {
             throw new AssertionError("This method should not be called.");
@@ -409,21 +424,6 @@ public class AddModuleCommandTest {
         public void displayNonArchivedModules() {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public ObservableList getFilteredArchivedModuleList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList getFilteredUnarchivedModuleList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredArchivedModuleList(Predicate<Module> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
         @Override
         public boolean getModuleListDisplay() {
             throw new AssertionError("This method should not be called.");
@@ -431,39 +431,39 @@ public class AddModuleCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single module.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Module person;
+    public class ModelStubWithModule extends ModelStub {
+        private final Module module;
 
-        ModelStubWithPerson(Module person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithModule(Module module) {
+            requireNonNull(module);
+            this.module = module;
         }
 
         @Override
-        public boolean hasModule(Module person) {
-            requireNonNull(person);
-            return this.person.isSameModule(person);
+        public boolean hasModule(Module module) {
+            requireNonNull(module);
+            return this.module.isSameModule(module);
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Module> personsAdded = new ArrayList<>();
+    public class ModelStubAcceptingPersonAdded extends ModelStub {
+        final ArrayList<Module> modulesAdded = new ArrayList<>();
 
         @Override
         public boolean hasModule(Module person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSameModule);
+            return modulesAdded.stream().anyMatch(person::isSameModule);
         }
 
         @Override
         public void addModule(Module person) {
             requireNonNull(person);
-            personsAdded.add(person);
+            modulesAdded.add(person);
         }
 
         @Override

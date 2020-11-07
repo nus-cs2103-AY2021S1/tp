@@ -8,8 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.modulelistcommands.AddZoomDescriptor;
 import seedu.address.logic.commands.modulelistcommands.AddZoomLinkCommand;
+import seedu.address.logic.commands.modulelistcommands.ZoomDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -46,11 +46,11 @@ public class AddZoomLinkParser implements Parser<AddZoomLinkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddZoomLinkCommand.MESSAGE_USAGE), ex);
         }
-        AddZoomDescriptor descriptor = new AddZoomDescriptor();
+        ZoomDescriptor descriptor = new ZoomDescriptor();
         ZoomLink zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get());;
         ModuleLesson lesson = ParserUtil.parseModuleLesson(argMultimap.getValue(PREFIX_NAME).get());;
 
-        descriptor.setLink(zoomLink);
+        descriptor.setZoomLink(zoomLink);
         descriptor.setModuleLesson(lesson);
 
         return new AddZoomLinkCommand(moduleIndex, descriptor);

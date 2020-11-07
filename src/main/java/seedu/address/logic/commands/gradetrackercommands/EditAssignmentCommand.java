@@ -23,6 +23,7 @@ import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.AssignmentName;
 import seedu.address.model.module.grade.AssignmentPercentage;
 import seedu.address.model.module.grade.AssignmentResult;
+import seedu.address.model.module.grade.GradeTracker;
 
 public class EditAssignmentCommand extends Command {
     public static final String COMMAND_WORD = "editassignment";
@@ -43,6 +44,8 @@ public class EditAssignmentCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_MODULE_INVALID = "The module to edit assignment is invalid.";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the gradetracker.";
+    public static final String MESSAGE_ASSIGNMENT_PERCENTAGE_THRESHOLD_EXCEEDED = "Editing this assignment would "
+            + "exceed the total assignment percentage limit of " + GradeTracker.ASSIGNMENT_PERCENTAGE_TOTAL + "%";
 
     private final Logger logger = LogsCenter.getLogger(EditAssignmentCommand.class);
 
@@ -94,6 +97,11 @@ public class EditAssignmentCommand extends Command {
         if (!assignmentToEdit.isSameAssignment(editedAssignment)
                 && moduleWithAssignment.getGradeTracker().containsDuplicateAssignment(editedAssignment)) {
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
+        }
+
+        if (moduleWithAssignment.getGradeTracker().exceedsAssignmentPercentageThreshold(assignmentToEdit,
+                editedAssignment)) {
+            throw new CommandException(MESSAGE_ASSIGNMENT_PERCENTAGE_THRESHOLD_EXCEEDED);
         }
 
         moduleWithAssignment.getGradeTracker().setAssignment(assignmentToEdit, editedAssignment);

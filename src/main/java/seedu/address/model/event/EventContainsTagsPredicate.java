@@ -36,8 +36,12 @@ public class EventContainsTagsPredicate implements Predicate<Event> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EventContainsTagsPredicate // instanceof handles nulls
-                && searchTags.equals(((EventContainsTagsPredicate) other).searchTags)); // state check
+        if (other == this) {
+            return true;
+        } else if (other instanceof EventContainsTagsPredicate) {
+            return this.searchTags.equals(((EventContainsTagsPredicate) other).searchTags);
+        } else {
+            return false;
+        }
     }
 }

@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-// import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -26,7 +25,7 @@ import seedu.address.model.ReadOnlyModuleList;
 // import seedu.address.model.contact.Contact;
 import seedu.address.storage.JsonModuleListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-// import seedu.address.testutil.ContactBuilder;
+// import seedu.address.testutil.contact.ContactBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

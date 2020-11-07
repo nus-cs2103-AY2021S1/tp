@@ -346,6 +346,13 @@ public class Module {
         }
         return false;
     }
+
+    /**
+     * Returns the module for the view command.
+     */
+    public String toViewTextArea() {
+        return String.format("Module Name: %s \nMCs: %s", getName(), getModularCredits().toString());
+    }
     @Override
     public String toString() {
         return String.format("Module Name: %s, ZoomLink: %s, MCs: %s", getName(), getAllLinks(),
@@ -368,7 +375,8 @@ public class Module {
 
         Module otherModule = (Module) other;
         return otherModule.getName().equals(getName());
-        /*return otherModule.getName().equals(getName())
+        //&& otherModule.getAllLinks().equals(getAllLinks());
+        /*return otherModule.getName().equals(getName());
                 && otherModule.getLink().equals(getLink())
                 && otherModule.getAllLinks().equals(getAllLinks())
                 && otherModule.getModularCredits().equals((getModularCredits()))

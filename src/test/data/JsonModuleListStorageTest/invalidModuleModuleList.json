@@ -1,0 +1,17 @@
+
+{
+  "modules" : [ {
+    "name" : "cs2105@",
+    "zoomLinks" : [ {
+      "lesson" : "lecture",
+      "link" : "https://nus-sg.zoom.us/j/CS2105"
+    } ],
+    "gradeTracker" : {
+      "assignments" : [ ],
+      "grade" : 0.0,
+      "gradePoint" : null
+    },
+    "modularCredits" : "4.0",
+    "tagged" : [ ]
+  }]
+}

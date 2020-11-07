@@ -18,7 +18,14 @@ public class EventName {
     private final String name;
 
     /**
-     * Creates a EventName object that represents the name of a Event.
+     * Creates an EventName that is null to represent an empty EventName.
+     */
+    public EventName() {
+        this.name = "";
+    }
+
+    /**
+     * Creates an EventName object that represents the name of a Event.
      * @param name
      */
     public EventName(String name) {

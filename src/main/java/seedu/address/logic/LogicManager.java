@@ -11,12 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.FeatureParser;
-import seedu.address.logic.parser.GradeTrackerParser;
-import seedu.address.logic.parser.ModuleListParser;
-import seedu.address.logic.parser.TodoListParser;
-import seedu.address.logic.parser.contactlistparsers.ContactListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.schedulerparsers.SchedulerParser;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyEventList;
@@ -37,12 +32,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final ModuleListParser moduleListParser;
-    private final ContactListParser contactListParser;
-    private final TodoListParser todoListParser;
-    private final GradeTrackerParser gradeTrackerParser;
     private final ParserManager parserManager;
-    private final SchedulerParser schedulerParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -50,13 +40,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        moduleListParser = new ModuleListParser();
-        contactListParser = new ContactListParser();
-        todoListParser = new TodoListParser();
-        gradeTrackerParser = new GradeTrackerParser();
-        schedulerParser = new SchedulerParser();
-        parserManager = new ParserManager(moduleListParser, todoListParser, contactListParser,
-                gradeTrackerParser, schedulerParser);
+        parserManager = new ParserManager();
     }
 
     @Override
@@ -88,16 +72,15 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Module> getFilteredModuleList() {
         return model.getFilteredModuleList();
-        //return model.getFilteredModuleList();
     }
 
-    @Override
+    /*@Override
     public ObservableList<Module> getFilteredModuleListDisplay() {
         if (model.getModuleListDisplay()) {
             return model.getFilteredArchivedModuleList();
         }
         return model.getFilteredModuleList();
-    }
+    }*/
 
     @Override
     public Path getModuleListFilePath() {

@@ -28,11 +28,11 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="tags" />
       <FlowPane fx:id="zoomLinks" />
       <Label fx:id="zoomLink" styleClass="cell_small_label" />
-         <Label fx:id="modularCredits" layoutX="25.0" layoutY="71.0" styleClass="cell_small_label" text="\$modularCredits" />
+      <Label fx:id="modularCredits" layoutX="25.0" layoutY="71.0" styleClass="cell_small_label" text="\$modularCredits" />
       <FlowPane fx:id="assignments" />
+      <FlowPane fx:id="tags" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

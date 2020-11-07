@@ -8,17 +8,17 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
 
-CAP5Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key 
-module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management 
+CAP5Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key
+module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management
 of module details. CAP5Buddy also functions as a scheduling system, todo list and contact list.
 
-## **Setting up, getting started**
+## **1. Setting up**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **2. Design**
 
 ### Architecture
 
@@ -124,7 +124,7 @@ component will be converting data in json format into java objects.
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 ### Common classes
 
-**API** : 
+**API** :
 
 ## Module List
 ![Structure of the Module List Component](images/ModuleListDiagram.png)
@@ -138,7 +138,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * GradeTracker is a container class that stores:
   * Grade for a module
   * Assignments for a module
-  
+
 #### ModuleList class
 **ModuleList class** : [`ModuleList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ModuleList.java)
 
@@ -200,12 +200,12 @@ TodoList will be explained more comprehensively in the [TodoList feature](#todol
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **3. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
 
-## Module list management feature
+## 3.1 Module list management feature
 
 
 
@@ -224,7 +224,9 @@ This section describes some noteworthy details on how certain features are imple
 The proposed grade tracker feature is an association class used to store additional information for the module. 
 The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`. 
 
+
 ![Structure of the Module List Component](images/GradeTrackerDiagram.png)
+
 
 When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
 to the rest of the project as the command is parsed and then executed.
@@ -277,8 +279,6 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
      * User does not need to input unnecessary modules.
      * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user). 
     * Cons : Will require additional storage.
-
-
 
 
 
@@ -468,7 +468,7 @@ zoom link related commands.
 
 
 
-### Contact List Management
+### 3.2 Contact List Management
 
 As a module tracking system, Cap 5 Buddy allows users to manage a list of module-related contacts with ease.
 This is especially important since being enrolled in numerous modules results in the need to keep track of
@@ -730,7 +730,7 @@ Given below is the sequence diagram showing the interaction between `FindContact
 
 
 
-### TodoList feature
+### 3.3 TodoList feature
 
 #### Implementation
 
@@ -757,7 +757,7 @@ The Task class supports the following operations :
 
 * Setters for all the field
 * Getters for all the field
-* `Task#isSameTask()` - checks if two tasks are the same i.e. have the same name 
+* `Task#isSameTask()` - checks if two tasks are the same i.e. have the same name
 (weaker than Task#equals() which requires all the fields to be the same)
 * `Task#hasSameTag()` - checks if the task has the specified tag
 * `Task#hasSamePriority()` - checks if the task has the specified priority
@@ -766,7 +766,7 @@ The Task class supports the following operations :
 ##### Container Component
 
 The TodoList class is facilitated by UniqueTodoList. The UniqueTodoList is stored internally inside
-the TodoList class which act like a wrapper class. 
+the TodoList class which act like a wrapper class.
 
 The TodoList class supports the following operations :
 
@@ -795,25 +795,26 @@ TodoList implements ReadOnlyTodoList which require the following operation :
 * Alternative 1 (current): <br/>
   Use one concrete class i.e. Task without inheritance involved. The type of the task
   is represented by the Tag field instead.
-  
+
   Pros :
   * Easier to implement
   * Types are not pre-defined i.e. can simply add a different tag to represent different type of task
-  
+
   Cons :
   * All type of task have the same pre-defined field
 
 * Alternative 2 : <br/>
   Use one abstract class i.e. Task with inheritance. Each subclasses represent a type of a Task.
-  
+
   Pros :
   * Difference between type are clear and standardized
   * Can be considered more OOP
-  
+
   Cons :
   * Types must be pre-defined i.e. cannot add new type of classes without adding codes
-  
+
   Alternative 1 is chosen since we prioritize user freedom to create custom type for the task.
+
   
 
 
@@ -901,7 +902,9 @@ ambiguity by ensuring all constraints related to the command are made known to t
 
 
     
-### Event list management feature
+### 3.4 Event list management feature
+
+
 
 ### \[Proposed\] Add Event feature
 ![Structure of the Add Event command](images/AddEventSequenceDiagram.png)
@@ -943,9 +946,6 @@ Cons:
   
     
     
-    
-    
-    
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -984,6 +984,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ------------------------------------------------------ |
+|                 | module list | |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App |
 | `* * *`  | user                                       | add a new module               | keep track of the module information easily            |
 | `* * *`  | user                                       | delete a module                | remove modules that are completed                      |
@@ -991,6 +992,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
 | `* *`    | user                                       | calculate my cumulative average point   | plan my academic progress for the future      |
 | `* *`    | user                                       | add graded assignments       | add the information of the assignments that contributed to my grade      |
+|          | contact list                               |                                | |
 | `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
 | `* *`    | user                                       | delete graded assignments      | remove the assignments that are do not contribute to my grade anymore|
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
@@ -1002,13 +1004,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | sort tasks based on criteria   | easily manage the tasks by order                       |
 | `* *`    | user                                       | filter tasks based on criteria | easily manage the tasks by group                       |
 | `*`      | user                                       | reset the status of a task     | change a task from labeled as completed to not completed |
-| `*`      | user                                       | archive a task                 | hide irrelevant tasks that might still be useful for future purposes |               
+| `*`      | user                                       | archive a task                 | hide irrelevant tasks that might still be useful for future purposes |
+| | todo list | |
+| | event list | |
 
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `CAP5BUDDY` and the **Actor** is the `user`, unless specified otherwise)
+
+## Module list use cases
+
+
+
+## Contact list use cases
+
+
+## Todo list use cases
 
 **Use case: Add a new Module**
 
@@ -1544,6 +1557,17 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+### Module List
+
+
+### Contact List
+
+
+### Todo List
+
+
+### Event List
 
 ### Saving data
 

@@ -20,9 +20,13 @@ public class EventNameContainsKeyWordsPredicate implements Predicate<Event> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EventNameContainsKeyWordsPredicate // instanceof handles nulls
-                && keywords.equals(((EventNameContainsKeyWordsPredicate) other).keywords)); // state check
+        if (other == this) {
+            return true;
+        } else if (other instanceof EventNameContainsKeyWordsPredicate) {
+            return keywords.equals(((EventNameContainsKeyWordsPredicate) other).keywords);
+        } else {
+            return false;
+        }
     }
 
 }

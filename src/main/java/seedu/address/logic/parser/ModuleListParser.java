@@ -34,7 +34,6 @@ import seedu.address.logic.parser.modulelistparsers.AddCompletedModuleParser;
 import seedu.address.logic.parser.modulelistparsers.AddModuleParser;
 import seedu.address.logic.parser.modulelistparsers.AddZoomLinkParser;
 import seedu.address.logic.parser.modulelistparsers.ArchiveModuleParser;
-import seedu.address.logic.parser.modulelistparsers.CalculateCapParser;
 import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
 import seedu.address.logic.parser.modulelistparsers.DeleteZoomLinkParser;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
@@ -115,7 +114,7 @@ public class ModuleListParser implements FeatureParser {
             return new AddCompletedModuleParser().parse(arguments);
 
         case CalculateCapCommand.COMMAND_WORD:
-            return new CalculateCapParser().parse(arguments);
+            return new CalculateCapCommand();
 
         case TargetCapCalculatorCommand.COMMAND_WORD:
             return new TargetCapCalculatorParser().parse(arguments);

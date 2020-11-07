@@ -16,8 +16,8 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.ContactContainsTagsPredicate;
+import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
 import seedu.address.model.contact.FindContactCriteria;
-import seedu.address.model.contact.NameContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,7 +44,8 @@ public class FindContactParser implements Parser<FindContactCommand> {
 
         if (argMultiMap.getValue(PREFIX_NAME).isPresent()) {
             List<String> keywordsAsList = ParserUtil.parseSearchKeywords(argMultiMap.getValue(PREFIX_NAME).get());
-            NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(keywordsAsList);
+            ContactNameContainsKeywordsPredicate namePredicate =
+                    new ContactNameContainsKeywordsPredicate(keywordsAsList);
             findContactCriteria.addPredicate(namePredicate);
         }
 

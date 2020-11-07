@@ -96,19 +96,21 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 5px;
+    -fx-border-width: 5;
+    -fx-border-color: transparent;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+   -fx-background-color: transparent;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: transparent;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: transparent;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -116,20 +118,33 @@
     -fx-border-width: 1;
 }
 
-.list-cell .label {
-    -fx-text-fill: white;
-}
-
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-text-fill: white;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: white;
+}
+
+.cell_important_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+    -fx-padding: 5 5 5 5;
+}
+
+.cell_small_label_header {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #FFEBCD;
 }
 
 .stack-pane {
@@ -308,8 +323,10 @@
 }
 
 #cardPane {
-    -fx-background-color: transparent;
+    -fx-background-color: #505050;
+    -fx-border-radius: 20;
     -fx-border-width: 0;
+    -fx-background-radius: 20px;
 }
 
 #commandTypeLabel {
@@ -345,8 +362,41 @@
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
+    -fx-padding: 5 5 5 5;
+    -fx-border-radius: 1;
+    -fx-background-radius: 10px;
+    -fx-font-size: 13;
+}
+
+#contactTags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#contactTags .label {
+    -fx-text-fill: white;
+    -fx-background-color: #db7093;
+    -fx-padding: 3 8 3 8;
+    -fx-border-radius: 1;
+    -fx-background-radius: 10px;
     -fx-font-size: 11;
+}
+
+#taskTags .label {
+    -fx-text-fill: white;
+    -fx-background-color: #ff7f50;
+    -fx-padding: 5 5 5 5;
+    -fx-border-radius: 1;
+    -fx-background-radius: 10px;
+    -fx-font-size: 11;
+}
+
+#taskTags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#zoomLinkList .content {
+    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-radius: 0;
 }

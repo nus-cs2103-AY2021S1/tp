@@ -46,4 +46,15 @@ public class ViewEventCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof ViewEventCommand) {
+            return this.index.equals(((ViewEventCommand) other).index);
+        } else {
+            return false;
+        }
+    }
 }
