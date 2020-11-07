@@ -61,3 +61,4 @@ Given below are my contributions to the project.
   * Contributed to forum discussions [Automated Text UI testing issues](https://github.com/nus-cs2103-AY2021S1/forum/issues/7), [Helped to fix error regarding Smoke testing](https://github.com/nus-cs2103-AY2021S1/forum/issues/265)
   * Reported bugs and suggestions for other teams in the class (Done in the Mock Practical Exam for F09-1): [#136](https://github.com/AY2021S1-CS2103-F09-1/tp/issues/136) [#135](https://github.com/AY2021S1-CS2103-F09-1/tp/issues/135)
   [#141](https://github.com/AY2021S1-CS2103-F09-1/tp/issues/141)
+  
