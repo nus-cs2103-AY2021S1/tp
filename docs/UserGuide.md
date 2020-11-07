@@ -95,7 +95,7 @@ Examples:
 Success:
 ![Ui](images/screenshots/v1.3add_success.png)
 
-### Listing logs : `list`
+### Listing all logs : `list`
 
 Shows a list of all logs logged by the user in the application.
 
@@ -135,7 +135,7 @@ Deletes the specified log.
 Format: `delete <index>`
 
 - Deletes the log at the specified `<index>`.
-- The index refers to the index number shown in the list of logs.
+- The index refers to the index number shown in the current list of logs.
 - The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
@@ -194,7 +194,7 @@ Format: `editex <index> [e/exercise] [c/calories per rep]`
 * Existing values will be updated to the input values.
 
 Constraints:
-- calories must be within range 1-1000 inclusive
+- Calories must be within range 1-1000 inclusive
 
 Examples:
 - `editex 2 e/Sit ups` Edits an exercise at index `2` with name `Sit ups`.
@@ -236,7 +236,7 @@ Format: `exit`
 
 ### Clear FixMyAbs
 
-Clear all the data including all logs and all exercises stored by FixMyAbs
+Clear all the data including all logs and all exercises stored in FixMyAbs.
 
 Format: `clear`
 
@@ -265,11 +265,11 @@ Exercise log data are saved in the hard disk automatically after any command tha
 | **Add Log**    | `add e/<exercise name> r/<reps> c/[comment]`  | e.g. `add e/Sit ups r/30 c/Send help`, `add e/Sit ups r/30 c/`       |
 | **Delete Log** | `delete <index>`                          | e.g. `delete 3`                      |
 | **Edit Log**   | `edit <index> [r/reps] [c/comment]`       | e.g.`edit 1 r/20 c/no abs were hurt`, `edit 1 r/20`, `edit 1 c/no abs were hurt` |
-| **List Logs**   | `list`                                    |
+| **List Logs**   | `list`                                    | e.g. `list`
 | **Add exercise**   | `addex e/<exercise name> c/<calories per rep>` | e.g. `addex e/Lunges c/5` |
 | **Edit exercise**   | `editex <index> [e/exercise name] [c/calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6`, `editex 1 e/One-legged Lunges`, `editex 1 c/6` |
 | **Delete exercise**   | `deleteex <index>` | e.g. `deleteex 1` |
-| **Clear**  | `clear`                                   |                   |
-| **Find**   | `find <keywords in logs>`                         | e.g.`find pushups`                   |
-| **Help**   | `help`                         | e.g.`help`                   |
-| **Exit**   | `exit`                                    |
+| **Clear**  | `clear`                                   | e.g. `clear`                   |
+| **Find**   | `find <keywords in logs>`                         | e.g. `find pushups`                   |
+| **Help**   | `help`                         | e.g. `help`                   |
+| **Exit**   | `exit`                                    | e.g. `exit`
