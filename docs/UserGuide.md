@@ -73,7 +73,7 @@ We have structured this User Guide in a way so that you can find what you need e
 
    * Ingredients Tracking
 
-   * Employee Management
+   * Manpower Management
 
    * Other general features
 
@@ -224,7 +224,7 @@ Examples:
 * Please note that the ingredient names are **case-sensitive** to ensure consistency with the ingredient names displayed in Ingredient Tracker section of _Main View_.<br>
 
 * Please be informed that a prefix is chosen for an ingredient using the following logic : 
-   1. Use the fist letter of the ingredient name. 
+   1. Use the first letter of the ingredient name. 
    2. If that letter is taken by another ingredient, use the first letter of the second word for that ingredient. 
    3. If the ingredient name does not have a second word or if the first letter of the second word is not unique, use the second letter of the first word of the ingredient name.
 
@@ -538,6 +538,7 @@ Action | Format, Examples
 **Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
 **Reset all ingredients**| `i-reset-all`
+**View a single ingredient**| `i-view-single i/INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
 **View all ingredients that the user should restock**| `i-restock`
 **List**| `i-list`
 
@@ -547,6 +548,8 @@ Action | Format, Examples
 -------|------------------------------
 **Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
 **List** | `c-list`
+**Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
+**Find by name** | `c-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-find James Jake`
 **List available manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
