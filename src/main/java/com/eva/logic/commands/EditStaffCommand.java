@@ -43,7 +43,7 @@ public class EditStaffCommand extends Command {
 
     public static final String MESSAGE_WRONG_PANEL = "Please switch to staff list panel "
             + "via 'list s-' to edit staff";
-    public static final String MESSAGE_EDIT_STAFF_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_STAFF_SUCCESS = "Edited Staff: %1$s";
 
 
     private final Index index;
