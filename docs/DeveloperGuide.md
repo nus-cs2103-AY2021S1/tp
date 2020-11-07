@@ -830,11 +830,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case (missing a compulsory input (`a/ANSWER`)): `add q/What does SWE stand for?` <br>
        Expected: No flashcard added to the list of flashcards and input text will turn red to signal an error.
-       Result display will output the invalid command error message.
+       Result display will output the invalid command format error message.
    
    1. Test case (missing a compulsory input (`q/QUESTION`)): `add a/Software Engineering` <br>
        Expected: No flashcard added to the list of flashcards and input text will turn red to signal an error.
-       Result display will output the invalid command error message.
+       Result display will output the invalid command format error message.
        
 ### Deleting a flashcard
 
@@ -848,9 +848,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case (invalid index): `delete 0` <br>
       Expected: No flashcard will be deleted from the list of flashcards and input text will turn red to signal an error.
-      Result display will output the invalid command error message.
+      Result display will output the invalid command format error message.
 
-   1. Other incorrect delete commands to try: `delete` and `delete x` (where x is larger than the list size or x is a negative integer)<br>
+   1. Test case (missing index): `delete` <br>
       Expected: Similar to test case iii.
       
 ### Listing flashcards
@@ -879,13 +879,13 @@ testers are expected to do more *exploratory* testing.
         Expected: The `QUESTION` and `ANSWER` of flashcard at index 1 will be modified to become `Is this edited?` 
         and `Yes` respectively.The remaining fields of this flashcard will remain the same. Result display will output the status of the edited flashcard.
     
-    1. Test case (missing flashcard field input): `edit 1` where `INDEX` <br> 
+    1. Test case (missing flashcard field input): `edit 1` <br> 
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the message: `At least one field to edit must be provided.`
         
     1. Test case (missing flashcard field input and index): `edit` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
      
      :bulb: **Note:** Editing of flashcard can also be tested on other fields such as `CATEGORY`, `NOTE`, `RATING`, `DIAGRAM` and `TAG`.
 
@@ -917,7 +917,7 @@ testers are expected to do more *exploratory* testing.
         
     1. Test case (missing flashcard field input): `filter` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
         
     :bulb: **Note:** Filtering of flashcards can also be tested on other fields such as `FAVOURITE` and `TAG`. 
     
@@ -934,9 +934,9 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case (invalid index): `fav 0` <br>
         Expected: No flashcard is favourited from the list of flashcards and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
 
-    1. Other incorrect favourite commands to try: `fav` and `fav x` (where x is larger than the list size or x is a negative integer) <br>
+    1. Test case (missing index): `fav` <br>
         Expected: Similar to test case iii.
         
 ### Unfavouriting a flashcard
@@ -952,9 +952,9 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case (invalid index): `unfav 0` <br>
         Expected: No flashcard is unfavourited from the list of flashcards and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
 
-    1. Other incorrect unfavourite commands to try: `unfav` and `unfav x` (where x is larger than the list size or x is a negative integer) <br>
+    1. Test case (missing index): `unfav` <br>
         Expected: Similar to test case iii.
 
 ### Finding flashcards
@@ -976,7 +976,7 @@ testers are expected to do more *exploratory* testing.
        
    1. Test case (missing keyword): `find` <br>
        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
-       Result display will output the invalid command error message.
+       Result display will output the invalid command format error message.
 
 ### Reviewing flashcards
 
@@ -988,6 +988,15 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `review` <br>
         Expected: Main window of application switches to review mode and displays the first flashcard in the flashcard deck.
         
+1. Quitting review mode in the application
+
+    1. Prerequisites: Application must be in review mode. Refer to [Section 1.2](#reviewing-flashcards) on how to enter
+        review mode.
+        
+    1. Test case: `q` <br>
+        Expected: Main window of application switches to display flashcard list. Result display will output a success
+        message: `Exited review mode`
+        
 ### Quizzing flashcards
 
 1. Entering quiz mode in the application
@@ -998,6 +1007,15 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `quiz` <br>
         Expected: Main window of application switches to quiz mode and displays the first flashcard in the flashcard deck.
 
+1. Quitting quiz mode in the application
+
+    1. Prerequisites: Application must be in quiz mode. Refer to [Section 1.2](#quizzing-flashcards) on how to enter
+        quiz mode.
+        
+    1. Test case: `q` <br>
+        Expected: Main window of application switches to display flashcard list. Result display will output a success
+        message: `Exited Quiz mode`
+        
 ### Sorting of flashcards
 
 1. Sort flashcards according to review frequency
@@ -1015,7 +1033,7 @@ testers are expected to do more *exploratory* testing.
         
     1. Test case (sort flashcards with missing inputs): `sort` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format rror message.
         
 1. Sort flashcards according to success rate
 
@@ -1032,7 +1050,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case (sort flashcards with missing inputs): `sort` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
         
 ### Viewing a flashcard
 
@@ -1051,7 +1069,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case (view flashcard at invalid index): `view 0` <br>
         Expected: Flashcard view and flashcard answer panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
             
     1. Other incorrect view commands to try: `view 0 -a` and `view x` (where x is larger than the list size or x is a negative integer) <br>
         Expected: Similar to test case iv.
@@ -1069,7 +1087,7 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case (view statistics of flashcard at invalid index): `stats 0` <br>
         Expected: Flashcard view panel will not update and input text will turn red to signal an error.
-        Result display will output the invalid command error message.
+        Result display will output the invalid command format error message.
     
     1. Other incorrect stats command to try: `stats x` (where x is larger than the list size or x is a negative integer) <br>
         Expected: Similar to test case iii.
