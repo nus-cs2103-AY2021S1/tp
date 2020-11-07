@@ -43,11 +43,11 @@ Note how the app contains some sample data.<br>
 
    * **`list a-`** : Lists all applicants, changes the panel to display the applicant list.
    
-   * **`adda`**` n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
+   * **`adda`**`  n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
    
    * **`list s-`** : Lists all staffs, changes the panel to display the staff list.
 
-   * **`adds`**` n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
+   * **`adds`**`  n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
 
    * **`dels`**` 3` : Deletes the 3rd staff shown in the staff list.
    
