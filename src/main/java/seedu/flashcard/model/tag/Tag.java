@@ -9,7 +9,7 @@ import static seedu.flashcard.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be a single word, alphanumeric and "
+    public static final String MESSAGE_CONSTRAINTS = "Tag names should be a single word, alphanumeric and "
                                                         + "not more than 50 characters";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
