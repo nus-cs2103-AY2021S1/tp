@@ -118,12 +118,13 @@ The case below follows the same execution above. However, the AddCommandParser f
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](hhttps://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the PIVOT data.
+* stores the history of PIVOT states.
 * exposes an unmodifiable `ObservableList<Case>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -282,8 +283,8 @@ Commands that are able to be undone/redone will implement an interface `Undoable
 When a main page command is being undone/redone, PIVOT will return to the main page. The method `Undoable#getPage())`
 informs the caller whether the command is a main page command or a case page command.
 
-The undo/redo feature is facilitated by `VersionedPivot`. It extends `Pivot` with an undo/redo history,
-stored internally as a `pivotStateList`, which is a list of `PivotState` objects, and a `currentStatePointer`.
+The undo/redo feature is facilitated by `VersionedPivot`. It has an undo/redo history of `PivotState` objects,
+stored internally as a `pivotStateList`, and a `currentStatePointer`.
 `VersionedPivot` also keeps track of the command that is to be undone/redone as `commandResult`, and the corresponding
 command message as `commandMessageResult`. Both `commandResult` and `commandMessageResult` will be retrieved from
 the `PivotState` objects stored in `pivotStateList`.
