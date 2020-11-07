@@ -25,6 +25,7 @@ import seedu.address.logic.parser.gradetrackerparsers.EditAssignmentParser;
  */
 public class GradeTrackerParser implements FeatureParser {
     /**
+     * TODO
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
