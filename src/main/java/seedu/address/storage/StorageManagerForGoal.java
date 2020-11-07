@@ -13,7 +13,7 @@ import seedu.address.model.UserPrefs;
 
 public class StorageManagerForGoal implements StorageForGoal{
     
-    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+    private static final Logger logger = LogsCenter.getLogger(StorageManagerForGoal.class);
     private GoalBookStorage goalBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
