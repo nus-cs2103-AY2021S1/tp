@@ -262,6 +262,8 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
     Figure 5: Add new item of duck
     <br>
 
+<div style="page-break-after: always;"></div>
+
 4. Press key arrow up on your keyboard to toggle to previous command and press Enter. 
    You should receive an error message, refer to Figure 6:
     <br>
@@ -712,10 +714,18 @@ Look up prices on a 'supplier' database
 Notify the user if a certain stock is below threshold
 
 
+<<<<<<< Updated upstream
 
 --------------------------------------------------------------------------------------------------------------------
+<<<<<<< Updated upstream
 <div style="page-break-after: always;"></div>
+=======
+=======
+<div style="page-break-after: always;"></div>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
+--------------------------------------------------------------------------------------------------------------------
 ## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer? <br>
@@ -731,8 +741,15 @@ You may refer to the [video](#installationvideo) of installation guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<<<<<<< Updated upstream
 
+<<<<<<< Updated upstream
 <div style="page-break-after: always;"></div>
+=======
+=======
+<div style="page-break-after: always;"></div>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 ## 5. Command Summary
 
