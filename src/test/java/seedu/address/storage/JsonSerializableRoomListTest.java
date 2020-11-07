@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.RoomList;
+import seedu.address.storage.rooms.JsonSerializableRoomList;
 import seedu.address.testutil.TypicalRooms;
 
 

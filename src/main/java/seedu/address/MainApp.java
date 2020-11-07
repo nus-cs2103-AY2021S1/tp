@@ -25,13 +25,14 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.JsonPatientRecordsStorage;
-import seedu.address.storage.JsonRoomOccupancyStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.PatientRecordsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.patient.JsonPatientRecordsStorage;
+import seedu.address.storage.patient.PatientRecordsStorage;
+import seedu.address.storage.rooms.JsonRoomOccupancyStorage;
+import seedu.address.storage.rooms.RoomRecordsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -62,7 +63,7 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         PatientRecordsStorage patientRecordsStorage =
                 new JsonPatientRecordsStorage(userPrefs.getCovigentAppFilePath());
-        JsonRoomOccupancyStorage roomOccupancyStorage = new JsonRoomOccupancyStorage(
+        RoomRecordsStorage roomOccupancyStorage = new JsonRoomOccupancyStorage(
                 userPrefs.getRoomsOccupiedFilePath());
         storage = new StorageManager(patientRecordsStorage, roomOccupancyStorage, userPrefsStorage);
 
@@ -89,7 +90,7 @@ public class MainApp extends Application {
         ReadOnlyList<Room> initialRoomList;
 
         try {
-            readOnlyRoomOccupancy = storage.readRoomOccupancyStorage();
+            readOnlyRoomOccupancy = storage.readOnlyRoomOccupancy();
             initialRoomList = readOnlyRoomOccupancy.orElseGet(SampleDataUtil::getSampleRoomList);
         } catch (DataConversionException e) {
             logger.warning(

@@ -242,7 +242,7 @@ public class Room {
 
     @Override
     public String toString() {
-        String patientDetails = getPatient().isEmpty() ? "-" : getPatient().toString();
+        String patientDetails = getPatient().isEmpty() ? "-" : getPatient().get().toString();
         final StringBuilder builder = new StringBuilder();
         builder.append("Room Number: ")
                 .append(getRoomNumber() + "\n")
