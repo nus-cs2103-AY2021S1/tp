@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -25,7 +26,13 @@ import seedu.address.testutil.TagBuilder;
 
 public class AddressBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    AddressBook addressBook = new AddressBook();
+
+    @BeforeEach
+    public void init() {
+        addressBook = new AddressBook();
+    }
+
 
     @Test
     public void constructor() {
