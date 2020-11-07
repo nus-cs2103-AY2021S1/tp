@@ -198,6 +198,9 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Receives the corresponding entityType and executes the method to switch tab bar automatically.
+     */
     @FXML
     private void setAutoTab(EntityType entityType) {
         if (entityType != null) {
@@ -207,6 +210,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void setCalendarNavigation(String direction) throws CommandException {
         if (direction.equals("next")) {
@@ -251,7 +257,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             setAutoTab(commandResult.getEntityType());
 
-            if (commandResult.isUiComponent()) {
+            if (commandResult.isCalendarNavigation()) {
                 setCalendarNavigation(commandText);
             }
 
