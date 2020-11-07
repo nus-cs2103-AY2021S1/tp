@@ -70,7 +70,7 @@ not be so obvious!
 --------------------------------------------------------------------------------------------------------------------
 #### 3.2.2. General Symbols and Syntax 
 
-The following table gives you general symbols and syntax used in this User Guide.
+The following table explains general symbols and syntax used in this User Guide.
 
 | Syntax |  What it means |
 |----------|-------------|
@@ -308,7 +308,7 @@ Format: `i-restock`
 
 #### 3.1 Adding an employee : `c-add`
 
-Adds an employee to the employee directory.
+Adds an employee to the Employee Directory.
 
 Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]`
 
@@ -324,7 +324,7 @@ Examples:
 
 #### 3.2 Listing all employees : `c-list`
 
-Shows a list of all employees in the employee directory.
+Shows a list of all employees in the Employee Directory.
 
 
 Format: `c-list`
@@ -356,7 +356,7 @@ tags contain `Thursday` will be listed out.
 #### 3.5 Editing a person : `c-edit`
 
 
-Edits the corresponding employee's information in the employee directory.
+Edits the corresponding employee's information in the Employee Directory.
 
 Format: `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG]`
 
@@ -409,12 +409,12 @@ Examples:
 
 #### 3.8 Deleting a person : `c-delete`
 
-Deletes the specified employee from the employee directory.
+Deletes the specified employee from the Employee Directory.
 
 Format: `c-delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed employee directory.
+* The index refers to the index number shown in the displayed Employee Directory.
 * The index **must be a positive integer** 1, 2, 3, ...​
 
 Examples:
@@ -423,7 +423,7 @@ Examples:
 
 #### 3.9 Clearing all entries : `c-clear`
 
-Clears all entries from the employee directory.
+Clears all entries from the Employee Directory.
 
 Format: `c-clear`
 
