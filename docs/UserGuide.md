@@ -100,7 +100,7 @@ The `help` command shows a list of all the commands and their usages with exampl
 Format: `help`
 <div markdown="block" class="alert alert-primary">
 
-**:bulb: Tip:** You can click on the headers `COMMAND` and `USAGE` to sort the commands in a descending or ascending manner.
+**:bulb: Tip:** Whenever you feel lost when using **Hospify**, the `help` command can be very helpful.
 
 **:bulb: Tip:** You can copy the URL of the **Hospify User Guide** to your clipboard to view a more detailed description
 for the commands.
