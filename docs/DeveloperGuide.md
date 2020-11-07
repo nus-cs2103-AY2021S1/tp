@@ -139,7 +139,7 @@ The mechanism is facilitated by an `Exercise` class. An `Exercise` class has `Na
 A user can add an `Exercise`to the `LogBook` by executing the `addex` command.
 
 #### Example usage scenario
-Given below is an example usage scenario and how the `add log` mechanism behaves at each step after launching the application.
+Given below is an example usage scenario and how the `add exercise` mechanism behaves at each step after launching the application.
 
 Step 1. The user executes the command `addex e/Jumping kicks c/2`. `FixMyAbsParser` creates a new `AddExCommandParser` and calls the `AddExCommandParser#parse()` method.
 
@@ -185,6 +185,7 @@ The following sequence diagram shows how the `Add Log` feature works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
+</div>
 
 ![](images/DeleteExDiagram.png)
 
@@ -313,20 +314,43 @@ _{More to be added}_
 
 (For all use cases below, the **System** is `FixMyAbs` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Delete an exercise**
+**Use case: UC01 - Create a log**
 
 **MSS**
 
-1. User requests to list exercises
-2. FixMyAbs shows a list of completed exercises
-3. User requests to delete a specific exercise in the list
-4. FixMyAbs deletes the exercise
+1. User requests to create a specific log
+2. FixMyAbs creates the log
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 1a. The given exercise does not exist.
+
+  - 1a1. FixMyAbs shows an error message.
+
+    Use case resumes at step 1.
+    
+- 1b. The given reps is invalid.
+
+  - 1b1. FixMyAbs shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: UC-02 - Edit a log**
+
+**MSS**
+
+1. User requests to list all logs
+2. FixMyAbs shows a list of all recorded logs
+3. User requests to edit a specific log in the list
+4. FixMyAbs edits the log according to user specifications
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list of logs is empty.
 
   Use case ends.
 
@@ -336,20 +360,20 @@ _{More to be added}_
 
     Use case resumes at step 2.
 
-**Use case: UC-02 - Edit an exercise**
+**Use case: UC03 - Delete a log**
 
 **MSS**
 
-1. User requests to list exercises
-2. FixMyAbs shows a list of completed exercises
-3. User requests to edit a specific exercise in the list
-4. FixMyAbs edits the exercise according to user specifications
+1. User requests to list all logs
+2. FixMyAbs shows a list of all recorded logs
+3. User requests to delete a specific log in the list
+4. FixMyAbs deletes the log
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 2a. The list of logs is empty.
 
   Use case ends.
 
@@ -358,16 +382,54 @@ _{More to be added}_
   - 3a1. FixMyAbs shows an error message.
 
     Use case resumes at step 2.
+    
+**Use case: UC04 - Find logs**
 
-_{More to be added}_
+**MSS**
 
+1. User requests to find all logs that contain specific keywords
+2. FixMyAbs shows a list of all recorded logs that contain all the specified keywords
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. No keywords are given.
+
+  - 1a1. FixMyAbs shows an error message.
+
+    Use case resumes at step 1.
+    
+**Use case: UC05 - Create an exercise**
+
+**MSS**
+
+1. User requests to create a specific exercise
+2. FixMyAbs creates the exercise
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The given exercise already exists.
+
+  - 1a1. FixMyAbs shows an error message.
+
+    Use case resumes at step 1.
+    
+- 1b. The given calories per rep is invalid.
+
+  - 1b1. FixMyAbs shows an error message.
+
+    Use case resumes at step 1.
+    
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 exercises without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-_{More to be added}_
+4.  Response time and processing time for user input should be under 0.1s.
+5.  Startup and showdown times should be under 1.0s.
 
 ### Glossary
 
@@ -388,9 +450,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file.<br>
+      Expected: Shows the GUI with a set of sample logs and exercises. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -399,8 +462,39 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Creating a log
 
+1. Creating a log
+
+   1. Prerequisites: At least one exercise in the exercise list.
+
+   1. Test case: `add e/Sit ups r/1 c/my abs hurt :(`<br>
+      Expected: A log with the specified details is created and displayed in the log list. Details of the created log shown in the status message.
+
+   1. Test case: `add e/Sit ups`<br>
+      Expected: No log is created. Error details shown in the status message.
+
+   1. Other incorrect add commands to try: `add`, `add e/x r/1 c/my abs hurt :(` (where x is an exercise that does not exist)<br>
+      Expected: Similar to previous.
+
+### Editing a log
+
+1. Editing a log while all logs are being shown
+
+   1. Prerequisites: List all logs using the `list` command. Multiple logs in the list.
+
+   1. Test case: `edit 1 c/no abs were hurt`<br>
+      Expected: Edits the log at index 1, with a comment of `no abs were hurt`. Details of the edited log shown in the status message.
+
+   1. Test case: `edit 1 r/20 c/no abs were hurt`<br>
+      Expected: Edits the log at index 1, with reps of `20` and a comment of `no abs were hurt`. Details of the edited log shown in the status message.
+
+   1. Test case: `edit 1`<br>
+      Expected: No log is edited. Error details shown in the status message.
+
+   1. Other incorrect edit commands to try: `edit`, `edit x ...` (where x is larger than the list size or less than 1)<br>
+      Expected: Similar to previous.
+      
 ### Deleting a log
 
 1. Deleting a log while all logs are being shown
@@ -408,20 +502,31 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all logs using the `list` command. Multiple logs in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First log is deleted from the list. Details of the deleted log shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No log is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No log is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size or less than 1)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
+1. Saving data upon shutdown
+
+   1. Make some changes in the app.
+
+   1. Close the window or use the `exit` command.
+    
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: All changes should be saved.
+    
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Locate the local data file `.\data\logbook.json`.
+   
+   1. Test case: Delete the file. Launch the app by double-clicking the jar file.<br>
+      Expected: A new data file will be created with a set of sample logs and exercises.
+   
+   1. Test case: Corrupt the file (e.g. delete an attribute of a log). Launch the app by double-clicking the jar file.<br>
+      Expected: The app will startup without any data.
