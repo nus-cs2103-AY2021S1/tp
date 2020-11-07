@@ -24,8 +24,10 @@ Given below are my contributions to the project.
   * Wrote additional tests for additional features in the application (Pull requests [\#155]())
 
 * **Documentation**:
+  * User Guide:
+    * Made necessary edits to various sections. (Pull request [\#246]())
   * Developer Guide:
-    * Added the introduction to the document and the guide to set up the repo for development.
+    * Added the introduction to the document and the guide to set up the repo for development. (Pull request [\#111]())
 
 * **Community**:
   * Contributed to forum discussions (examples: [Forum activities](https://nus-cs2103-ay2021s1.github.io/dashboards/contents/forum-activities.html#16-kim-kwon-ktaekwon000-16-posts))

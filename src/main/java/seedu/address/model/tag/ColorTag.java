@@ -35,7 +35,7 @@ public class ColorTag {
             originalColor = "None";
         } else {
             checkArgument(isValidColorName(colorName), MESSAGE_CONSTRAINTS);
-            Color tempColor = Color.web(colorName).darker();
+            Color tempColor = Color.web(colorName);
             cssColor = String.format("rgba(%d,%d,%d,%d)",
                     (int) (255 * tempColor.getRed()),
                     (int) (255 * tempColor.getGreen()),

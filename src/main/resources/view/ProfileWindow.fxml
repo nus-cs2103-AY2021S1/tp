@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.stage.Stage?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
 
 <fx:root fx:id="Profile" minHeight="660" minWidth="650" title="Patient Profile" type="Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <icons>
@@ -59,7 +55,7 @@
                   <children>
                      <HBox maxHeight="35" minHeight="35" prefHeight="35">
                         <children>
-                           <Label maxHeight="35" minHeight="35" prefHeight="35" maxWidth="198.0" minWidth="125.0" prefWidth="450.0" styleClass="label-bright" text="Name: " />
+                           <Label maxHeight="35" maxWidth="198.0" minHeight="35" minWidth="125.0" prefHeight="35" prefWidth="450.0" styleClass="label-bright" text="Name: " />
                            <TextArea fx:id="name" editable="false" maxHeight="35" minHeight="35" prefHeight="35" styleClass="text-field" text="nil" />
                         </children>
                         <opaqueInsets>
@@ -71,7 +67,7 @@
                      </HBox>
                      <HBox maxHeight="35" minHeight="35" prefHeight="35">
                         <children>
-                           <Label maxHeight="35" minHeight="35" prefHeight="35" maxWidth="198.0" minWidth="125.0" prefWidth="450.0" styleClass="label-bright" text="Phone:">
+                           <Label maxHeight="35" maxWidth="198.0" minHeight="35" minWidth="125.0" prefHeight="35" prefWidth="450.0" styleClass="label-bright" text="Phone:">
                               <HBox.margin>
                                  <Insets />
                               </HBox.margin></Label>
@@ -86,7 +82,7 @@
                      </HBox>
                      <HBox maxHeight="35" minHeight="35" prefHeight="35">
                         <children>
-                           <Label maxHeight="35" minHeight="35" prefHeight="35" maxWidth="198.0" minWidth="125.0" prefWidth="450.0" styleClass="label-bright" text="IC:" />
+                           <Label maxHeight="35" maxWidth="198.0" minHeight="35" minWidth="125.0" prefHeight="35" prefWidth="450.0" styleClass="label-bright" text="IC:" />
                            <TextArea fx:id="icNumber" editable="false" maxHeight="35" minHeight="35" prefHeight="35" styleClass="text-field" text="nil" />
                         </children>
                         <opaqueInsets>
@@ -98,7 +94,7 @@
                      </HBox>
                      <HBox maxHeight="35" minHeight="35" prefHeight="35">
                         <children>
-                           <Label maxHeight="35" minHeight="35" prefHeight="35" maxWidth="198.0" minWidth="125.0" prefWidth="450.0" styleClass="label-bright" text="Email:" />
+                           <Label maxHeight="35" maxWidth="198.0" minHeight="35" minWidth="125.0" prefHeight="35" prefWidth="450.0" styleClass="label-bright" text="Email:" />
                            <TextArea fx:id="email" editable="false" maxHeight="35" minHeight="35" prefHeight="35" styleClass="text-field" text="nil" />
                         </children>
                         <opaqueInsets>
@@ -110,7 +106,7 @@
                      </HBox>
                      <HBox maxHeight="35" minHeight="35" prefHeight="35">
                         <children>
-                           <Label maxHeight="35" minHeight="35" prefHeight="35" maxWidth="198.0" minWidth="125.0" prefWidth="450.0" styleClass="label-bright" text="Sex:" />
+                           <Label maxHeight="35" maxWidth="198.0" minHeight="35" minWidth="125.0" prefHeight="35" prefWidth="450.0" styleClass="label-bright" text="Sex:" />
                            <TextArea fx:id="sex" editable="false" maxHeight="35" minHeight="35" prefHeight="35" styleClass="text-field" text="nil" />
                         </children>
                         <opaqueInsets>
@@ -122,7 +118,7 @@
                      </HBox>
                      <HBox maxHeight="35" minHeight="35" prefHeight="35">
                         <children>
-                           <Label maxHeight="35" minHeight="35" prefHeight="35" maxWidth="198.0" minWidth="125.0" prefWidth="450.0" styleClass="label-bright" text="Blood type:" />
+                           <Label maxHeight="35" maxWidth="198.0" minHeight="35" minWidth="125.0" prefHeight="35" prefWidth="450.0" styleClass="label-bright" text="Blood type:" />
                            <TextArea fx:id="bloodType" editable="false" maxHeight="35" minHeight="35" prefHeight="35" styleClass="text-field" text="nil" />
                         </children>
                         <opaqueInsets>
@@ -134,7 +130,7 @@
                      </HBox>
                      <HBox maxHeight="35" minHeight="35" prefHeight="35">
                         <children>
-                           <Label maxHeight="35" minHeight="35" prefHeight="35" maxWidth="198.0" minWidth="125.0" prefWidth="450.0" styleClass="label-bright" text="Allergies:" />
+                           <Label maxHeight="35" maxWidth="198.0" minHeight="35" minWidth="125.0" prefHeight="35" prefWidth="450.0" styleClass="label-bright" text="Allergies:" />
                            <TextArea fx:id="allergy" editable="false" maxHeight="35" minHeight="35" prefHeight="35" styleClass="text-field" text="nil" />
                         </children>
                         <opaqueInsets>
@@ -146,7 +142,7 @@
                      </HBox>
                      <HBox maxHeight="35" minHeight="35" prefHeight="35">
                         <children>
-                           <Label maxHeight="35" minHeight="35" prefHeight="35" minWidth="125.0" maxWidth="198.0" prefWidth="450.0" styleClass="label-bright" text="Address:" />
+                           <Label maxHeight="35" maxWidth="198.0" minHeight="35" minWidth="125.0" prefHeight="35" prefWidth="450.0" styleClass="label-bright" text="Address:" />
                            <TextArea fx:id="address" editable="false" maxHeight="35" minHeight="35" prefHeight="35" styleClass="text-field" text="nil" />
                         </children>
                         <opaqueInsets>
@@ -163,7 +159,7 @@
                      <Insets top="5.0" />
                   </VBox.margin>
                </Label>
-               <ListView fx:id="visitHistory" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: white;" VBox.vgrow="ALWAYS" />
+               <ListView fx:id="visitHistory" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 0.8;" VBox.vgrow="ALWAYS" />
             </children>
             <padding>
                <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />

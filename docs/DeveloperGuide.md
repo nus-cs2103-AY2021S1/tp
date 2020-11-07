@@ -90,7 +90,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CalendarDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -141,7 +141,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the CliniCal application data.
-* exposes an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes unmodifiable `ObservableList<Patient>` and `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -591,6 +591,47 @@ The following activity diagram summarizes the main steps taken to display the pa
         * Requires re-implementation of current codebase which might introduce subtle bugs.
         * Need to ensure that functionality of the `Profile` facade class is optimized. Our team assessed that the current 
           implementation is better as it is less prone to introduce new bugs to our existing codebase.
+
+### 3.7 Delete Appointment feature
+#### 3.7.1 Implementation
+
+This feature allows users to edit existing appointments. When an appointment is updated, the corresponding calendar GUI is updated via a listener in the `appointmentList`.
+
+This feature comprises the `DeleteAppointmentCommand` class. However, much of the logic lies within the `CalendarDisplay` class as it contains the logic for updating the GUI of the calendar. Given below is an example usage scenario and how the mechanism behaves at each step.
+
+<p align="center">
+    <img src="images/DeleteAppointmentSequenceDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 28. Component Interactions for DeleteAppointment Command</em>
+</p>
+
+Step 1. User inputs "deleteappt 1" command to delete the first appointment on the list. 
+
+Step 2. User input is parsed to obtain the appointment index to delete.
+
+Step 3. After successful parsing of user input, the `DeleteAppointmentCommand#execute(Model model)` method is called.
+
+Step 4. The `Model#deleteAppointment` method is then called which deletes the specified Appointment from the ObservableList.
+
+Step 5. The modification of the ObservableList causes an event to be generated and forwarded to CalendarDisplay, as CalendarDisplay had set a listener on the ObservableList.
+
+Step 6. CalendarDisplay creates a new `VCalendar` with the new list and then creates a new `ICalendarAgenda` with the created `VCalendar`, which is then set as the calendar GUI.
+
+Step 6. As a result of the successful deletion of the appointment object, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### 3.7.2 Design considerations
+
+* **Current Implementation:** A new `VCalendar` object and `ICalendarObject` is created when there is a change in the appointment list.
+    * Pros:
+        * Easy to implement and greatly reduces complexity of code.
+    * Cons:
+        * May take a greater number of CPU cycles to carry out as every appointment has to be processed when there is a single change in the appointment list.
+ * **Alternative Implementation:** Modify the `VEvent` objects stored in `ICalendarAgenda` when there is a change in the appointment list.
+    * Pros:
+        * More efficient use of CPU cycles, possibly better performance on lower end machines
+    * Cons:
+        * Requires an extreme increase in complexity of code, as the modification would be different for addition/deletion/edit of appointments.
+        * Increases coupling between `CalendarDisplay`, a UI element, and `Model`.
         
 ### 3.7 Visitation Log Feature
 
@@ -728,7 +769,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | doctor      | add profile picture to each patient's profile                    | can recognize the patient using the profile picture                                 |
 | `*`      | doctor      | color code patients                                              | know which patients are more at risk (e.g. high blood pressure)                     |
 
-*{More to be added}*
 
 ## **Appendix C: Use Cases**
 
@@ -911,7 +951,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should be able to schedule up to 100 patient appointments without a noticeable sluggishness in performance for typical usage.
 1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
 
 ## **Appendix E: Glossary**
 
@@ -942,8 +981,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+       
 
 ##### F.2 Adding a patient
 
@@ -954,8 +992,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `add`<br>
       Expected: No patient is added. Error details shown in the status message. Status bar remains the same.
-
-1. _{ more test cases …​ }_
+      
 
 ##### F.3 Deleting a patient
 
@@ -972,12 +1009,16 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ##### F.4 Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: The json file saved contains data for at least one patient.
+   
+   1. Test case: Corrupted json file<br>
+      Open up `data/clinical.json` in a text editor and change any field to an invalid value. For example, try including an alphabet in the phone number of a patient.
+      Expected: The application should start gracefully with an empty set of data, without crashing. The application will log an error to the console.
 
-1. _{ more test cases …​ }_
+## **Appendix G: Effort**
+
+All members of the team contributed equally to the project and the development guide. For specifics, check out the portfolio pages of the team members, found on [About Us](AboutUs.md).

@@ -146,8 +146,8 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-        resultDisplay.setFeedbackToUser("Welcome to CliniCal!\nTo get started, type help or add or addappt or "
-            + "addvisit");
+        resultDisplay.setFeedbackToUser("Welcome to CliniCal!\nTo get started, type help to find out how to "
+            + "use CliniCal.");
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCliniCalFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());

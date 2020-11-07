@@ -16,7 +16,7 @@ import seedu.address.model.appointment.exceptions.ConflictingAppointmentExceptio
  * A list of appointments that prevents time conflicts between its elements and does not allow nulls.
  * A time conflict between two appointments is checked using {@code Appointment#hasTimeConflict(Appointment)}.
  * As such, adding and updating of appointments uses Appointment#hasTimeConflict(Appointment) so as to ensure
- * that the appointment being added or updated is unique in terms of appointment time in the UniqueAppointmentList.
+ * that the appointment being added or updated is unique in terms of the appointment time in the UniqueAppointmentList.
  * However, the removal of an appointment uses Appointment#equals(Object) so as to ensure
  * that the appointment with exactly the same fields will be removed.
  * <p>

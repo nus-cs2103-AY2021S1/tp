@@ -170,7 +170,6 @@ public class Patient {
                 .append(getColorTag() + "\n")
                 .append("Allergies:  ");
         getAllergies().forEach(builder::append);
-        builder.append(", ");
         return builder.toString();
     }
 

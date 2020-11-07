@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/AY2021S1-CS2103T-W11-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W11-4/tp/actions)
 
-# CliniCal - Clinic Calendar
+![logo](docs/images/logo.png)
 
 ![Ui](docs/images/Ui.png)
 
@@ -15,3 +15,7 @@
 
 # Acknowledgements
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+Credits for some images used go to [twemoji](https://github.com/twitter/twemoji).
+
+The application logo was generated with [Wix Logo Maker](https://www.wix.com/logo/maker).
