@@ -58,10 +58,7 @@ public class ParserUtil {
         String trimmedQuantity = quantity.trim();
         try {
             int itemQuantity = Integer.parseInt(trimmedQuantity);
-            if (itemQuantity < 0) {
-                throw new ParseException(MESSAGE_INVALID_QUANTITY);
-            }
-            return Integer.parseInt(trimmedQuantity);
+            return itemQuantity;
         } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_QUANTITY);
         }

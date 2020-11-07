@@ -29,6 +29,7 @@ public class UpdateInventoryCommand extends Command {
     public static final String MESSAGE_UPDATE_INVENTORY_SUCCESS = "Updated Item quantity: %1$s";
     public static final String MESSAGE_NOT_UPDATED = "The change in quantity field must be provided.";
     public static final String MESSAGE_INVALID_UPDATE_OPERATION = "You cannot update this item by that quantity!";
+    public static final String MESSAGE_MISSING_QUANTITY = "The q/ parameter seems to be missing!";
 
     private final Index index;
     private final UpdateInventoryDescriptor updateInventoryDescriptor;
