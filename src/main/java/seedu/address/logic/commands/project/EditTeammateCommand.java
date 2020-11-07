@@ -77,7 +77,6 @@ public class EditTeammateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-        List<Participation> lastShownList = project.getTeammates();
 
         if (!project.hasParticipation(gitUserIndex.getGitUserName())) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
