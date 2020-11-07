@@ -21,7 +21,7 @@ public class DeleteExCommand extends Command {
 
     public static final String AC_SUGGESTION = COMMAND_WORD + " <index>";
 
-    public static final String MESSAGE_DELETE_EXERCISE_SUCCESS = "Deleted Exercise: %1$s";
+    public static final String MESSAGE_DELETE_EXERCISE_SUCCESS = "Deleted Exercise: \n%1$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the exercise identified by the index number used in the displayed exercise list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
