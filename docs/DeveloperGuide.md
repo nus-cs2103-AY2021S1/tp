@@ -703,7 +703,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  QuickCache shows a list of flashcards
 3.  User requests to delete a specific flashcard in the list
 4.  QuickCache deletes the flashcard
-5.  QuickCache updates flashcard save file (UC07)
+5.  QuickCache updates flashcard save file (UC08)
 
     Use case ends.
 
@@ -728,7 +728,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add a flashcard
 2.  QuickCache adds it to the list
-3.  QuickCache updates flashcard save file (UC07)
+3.  QuickCache updates flashcard save file (UC08)
 4.  User requests to list flashcards
 5.  QuickCache shows the list of flashcards including the recently added flashcard
 
@@ -757,7 +757,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add a flashcard
 2.  QuickCache adds it to the list
-3.  QuickCache updates flashcard save file (UC07)
+3.  QuickCache updates flashcard save file (UC08)
 4.  User requests to list flashcards
 5.  QuickCache shows the list of flashcards including the recently added flashcard
 
@@ -1070,7 +1070,7 @@ MSS:
 2.  QuickCache shows a list of flashcards
 3.  User request to edit a specific flashcard of the list
 4.  QuickCache edit the flashcard
-5.  QuickCache updates flashcard save file (UC07)
+5.  QuickCache updates flashcard save file (UC08)
 
     Use case ends.
 
