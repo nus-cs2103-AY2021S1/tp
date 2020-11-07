@@ -1,5 +1,6 @@
 package seedu.address.testutil.todolist;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -25,13 +26,15 @@ public class TaskBuilder {
     public static final List<String> DEFAULT_TAGS = new ArrayList<>(Arrays.asList(ARRAY_OF_TAGS));
     public static final String DEFAULT_PRIORITY = "HIGH";
     public static final String DEFAULT_DATE = "2020-10-10";
-    public static final String DEFAULT_STATUS = "Not Completed";
+    public static final String DEFAULT_STATUS = "NOT_COMPLETED";
+    public static final String DEFAULT_DATE_CREATED = "2020-10-01";
 
     private TaskName name;
     private Set<Tag> tags;
     private Priority priority;
     private Date date;
     private Status status;
+    private LocalDate dateCreated;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -43,6 +46,7 @@ public class TaskBuilder {
         priority = Priority.valueOf(DEFAULT_PRIORITY);
         date = new Date(DEFAULT_DATE);
         status = Status.valueOf(DEFAULT_STATUS);
+        dateCreated = LocalDate.parse(DEFAULT_DATE_CREATED);
     }
 
     /**
@@ -54,6 +58,7 @@ public class TaskBuilder {
         priority = taskToCopy.getPriority().orElse(null);
         date = taskToCopy.getDate().orElse(null);
         status = taskToCopy.getStatus().orElse(null);
+        dateCreated = taskToCopy.getDateCreated().orElse(null);
     }
 
     /**
@@ -97,6 +102,14 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code LocalDate dateCreated} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withDateCreated(String dateCreated) {
+        this.dateCreated = LocalDate.parse(dateCreated);
+        return this;
+    }
+
+    /**
      * Builds a task.
      *
      * @return a task
@@ -108,6 +121,7 @@ public class TaskBuilder {
         temp = temp.setPriority(priority);
         temp = temp.setDate(date);
         temp = temp.setStatus(status);
+        temp = temp.setDateCreated(dateCreated);
         return temp;
     }
 }

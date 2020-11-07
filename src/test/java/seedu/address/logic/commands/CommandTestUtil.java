@@ -93,6 +93,8 @@ public class CommandTestUtil {
     public static final String VALID_DATE2 = "2020-12-03";
     public static final String VALID_STATUS_COMPLETED = "COMPLETED";
     public static final String VALID_STATUS_NOT_COMPLETED = "NOT_COMPLETED";
+    public static final String VALID_DATE_CREATED_1 = "2020-11-01";
+    public static final String VALID_DATE_CREATED_2 = "2020-12-01";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
