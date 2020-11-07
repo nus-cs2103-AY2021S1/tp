@@ -86,7 +86,7 @@ public class StatsCommand extends Command {
             String statsWithTagsMessage = createStatsWithTagsMessage();
 
             // necessary to display all the remaining flashcards in the list
-            model.updateFilteredFlashcardList(flashcard -> true);
+            model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
 
             return new CommandResult(
                 String.format(MESSAGE_DISPLAY_STATISTICS_FLASHCARDS_BY_TAG_SUCCESS,

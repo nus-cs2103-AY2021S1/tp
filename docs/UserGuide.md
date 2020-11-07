@@ -284,11 +284,11 @@ To find flashcards, you can find them by specifying keywords within their questi
 1. Use the `list` command to first list all the flashcards.
 
 	![FindQuestionStep1](./images/FindQuestionStep1.png)
-	
+
 2. Enter the find command followed by `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the keyword `CS2103` in their question in the displayed list, you can enter `find q/CS2103`.
 
 	![FindQuestionStep2](./images/FindQuestionStep2.png)
-	
+
 3. Press enter and QuickCache will display all the flashcards with the keyword `CS2103` in their question.
 
 	![FindQuestionStep3](./images/FindQuestionStep3.png)
@@ -304,11 +304,11 @@ To find flashcards, you can find them by specifying keywords within their questi
 1. Use the `list` command to first list all the flashcards.
 
 	![FindTagsStep1](./images/FindTagsStep1.png)
-	
+
 2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. For example, if you want to find flashcards with the tag `Biology` in the displayed list, you can enter `find t/Biology`.
 
 	![FindTagsStep2](./images/FindTagsStep2.png)
-	
+
 3. Press enter and QuickCache will display all the flashcards with the tag `Biology`.
 
 	![FindTagsStep3](./images/FindTagsStep3.png)
@@ -327,11 +327,11 @@ To find flashcards, you can find them by specifying keywords within their questi
 1. Use the `list` command to first list all the flashcards.
 
 	![FindQuestionAndTagsStep1](./images/FindQuestionAndTagsStep1.png)
-	
+
 2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. Proceed to include `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the tag `General` and the keyword `University` in the question, you can enter `find t/General q/University`.
 
 	![FindQuestionAndTagsStep2](./images/FindQuestionAndTagsStep2.png)
-	
+
 3. Press enter and QuickCache will display all the flashcards with the tag `General ` and the keyword `University` in their question.
 
 	![FindQuestionAndTagsStep3](./images/FindQuestionAndTagsStep3.png)
@@ -360,7 +360,7 @@ You can delete a flashcard based on the index shown in the last displayed list.
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
 	![DeleteIndexStep1](./images/DeleteIndexStep1.png)
-	
+
 2. Using the indices of the displayed list, enter the delete command followed by the index of the flashcard you want to delete. For example, if you want to delete the 3rd flashcard in the displayed list, you can enter `delete 3`.
 
 	![DeleteIndexStep2](./images/DeleteIndexStep2.png)
@@ -368,7 +368,6 @@ You can delete a flashcard based on the index shown in the last displayed list.
 3. Press enter and QuickCache will delete the flashcard specified by the index.
 
 	![DeleteIndexStep3](./images/DeleteIndexStep3.png)
-
 
 You have successfully deleted a flashcard!
 
@@ -410,7 +409,7 @@ You can test yourself with a flashcard containing open-ended question by specify
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
     ![TestStep1](./images/TestStep1.png)
-    
+
 2. Using the indices of the displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the first flashcard in the displayed list with the answer `Singapore`, you can enter `test 1 ans/Singapore`.
 
     <div markdown="block" class="alert alert-info">
@@ -435,11 +434,11 @@ You can also test yourself a flashcard containing a multiple choice question by 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
     ![TestStep1](./images/TestStep1.png)
-    
+
 2. Using the indices of the displayed list, enter the `open` command followed by the index of the flashcard you want to see the options of. For example, if you want to see the options from the second flashcard in the displayed list, you can enter `open 2`.
 
     ![TestMCQStep2](./images/TestMCQStep2.png)
-    
+
 3. Using the indices of the previous displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the 1st option, you can enter `test 2 o/1`.
 
     <div markdown="block" class="alert alert-danger">

@@ -88,7 +88,7 @@ public class DeleteCommand extends Command {
             }
 
             // necessary to display all the remaining flashcards in the list
-            model.updateFilteredFlashcardList(flashcard -> true);
+            model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
 
             String deleteWithTagsMessage = createDeleteWithTagsMessage();
             return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, deleteWithTagsMessage));
