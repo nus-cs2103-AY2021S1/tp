@@ -2,6 +2,8 @@
 !include style.puml
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
+skinparam defaultFontSize 12
+scale 0.7
 
 title After command "unfav 1"
 
@@ -13,9 +15,9 @@ package States {
     class Flashcard3 as "__f3:Flashcard__"
 }
 
-Flashcard1 --o FlashcardDeckState1
-Flashcard2  --o FlashcardDeckState1
-Flashcard3  --o FlashcardDeckState1
+Flashcard1 <--o FlashcardDeckState1
+Flashcard2  <--o FlashcardDeckState1
+Flashcard3  <--o FlashcardDeckState1
 
 class Pointer as "Current State" #FFFFF
 Pointer -up-> FlashcardDeckState1

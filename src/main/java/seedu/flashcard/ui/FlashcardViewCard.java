@@ -28,7 +28,7 @@ public class FlashcardViewCard extends UiPart<Region> {
     private StackPane answerViewPlaceholder;
 
     /**
-     * Creates a {@code FlashcardListCard} with the given {@code Flashcard} and index to display.
+     * Creates a {@code FlashcardListCard} with the given {@code Flashcard} to display.
      */
     public FlashcardViewCard(Flashcard flashcard, boolean showAnswer) {
         super(FXML);

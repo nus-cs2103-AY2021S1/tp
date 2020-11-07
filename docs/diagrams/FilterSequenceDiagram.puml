@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("filter c/SDLC")
+[-> LogicManager : execute("filter c/SDLC r/3")
 activate LogicManager
 
-LogicManager -> FlashcardDeckParser : parseCommand("filter c/SDLC")
+LogicManager -> FlashcardDeckParser : parseCommand("filter c/SDLC r/3")
 activate FlashcardDeckParser
 
 create FilterCommandParser
@@ -26,7 +26,7 @@ activate FilterCommandParser
 FilterCommandParser --> FlashcardDeckParser
 deactivate FilterCommandParser
 
-FlashcardDeckParser -> FilterCommandParser : parse("c/ SDLC")
+FlashcardDeckParser -> FilterCommandParser : parse("c/SDLC r/3")
 activate FilterCommandParser
 
 create FilterCommand

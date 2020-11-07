@@ -15,7 +15,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts and lists flashcards according to criteria given by user.\n"
-            + "Can sort according to reviewed or success frequency of the flashcards in ascending or "
+            + "Can sort according to review frequency or success rate of the flashcards in ascending or "
             + "descending order.\n"
             + "Parameters: <success|reviewed> <-a|-d>\n"
             + "Example: " + COMMAND_WORD + " reviewed " + PREFIX_CRITERIA + "d";

@@ -10,7 +10,7 @@ import seedu.flashcard.commons.core.Messages;
 import seedu.flashcard.model.Model;
 import seedu.flashcard.model.flashcard.CategoryEqualsKeywordsPredicate;
 import seedu.flashcard.model.flashcard.FavouriteEqualsKeywordsPredicate;
-import seedu.flashcard.model.flashcard.MultipleFieldsEqualsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.MultipleFieldsEqualKeywordsPredicate;
 import seedu.flashcard.model.flashcard.RatingEqualsKeywordsPredicate;
 import seedu.flashcard.model.flashcard.TagsEqualKeywordsPredicate;
 
@@ -34,7 +34,7 @@ public class FilterCommand extends Command {
     private final RatingEqualsKeywordsPredicate ratingPredicate;
     private final FavouriteEqualsKeywordsPredicate favouritePredicate;
     private final TagsEqualKeywordsPredicate tagsPredicate;
-    private final MultipleFieldsEqualsKeywordsPredicate combinedPredicate;
+    private final MultipleFieldsEqualKeywordsPredicate combinedPredicate;
 
     /**
      * Creates a FilterCommand to filter according to specified predicates
@@ -47,7 +47,7 @@ public class FilterCommand extends Command {
         this.ratingPredicate = ratingPredicate;
         this.favouritePredicate = favouritePredicate;
         this.tagsPredicate = tagsPredicate;
-        this.combinedPredicate = new MultipleFieldsEqualsKeywordsPredicate(categoryPredicate,
+        this.combinedPredicate = new MultipleFieldsEqualKeywordsPredicate(categoryPredicate,
                 ratingPredicate, favouritePredicate, tagsPredicate);
     }
 

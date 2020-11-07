@@ -3,6 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+scale 0.75
 
 FlashcardDeck *-right-> "1" UniqueFlashcardList
 FlashcardDeck *-right-> "1" UniqueTagList

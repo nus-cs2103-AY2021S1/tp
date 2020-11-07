@@ -3,6 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+scale 0.5
 
 Package Model <<Rectangle>>{
 Interface ReadOnlyFlashcardDeck <<Interface>>
@@ -17,19 +18,7 @@ Class ReadOnlyUserPrefs
 
 Package Flashcard {
 Class Flashcard
-Class Question
-Class Answer
-Class Category
-Class Note
-Class Rating
-Class Diagram
-Class Statistics
 Class UniqueFlashcardList
-}
-
-Package Tag {
-Class Tag
-}
 }
 
 Class HiddenOutside #FFFFFF
@@ -44,22 +33,9 @@ ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 FlashcardDeck *--> "1" UniqueFlashcardList
-UniqueFlashcardList o--> "*" Flashcard
-Flashcard *--> Question
-Flashcard *--> Answer
-Flashcard *--> Category
-Flashcard *--> Note
-Flashcard *--> Rating
-Flashcard *--> Diagram
-Flashcard *--> Statistics
-Flashcard *--> "*" Tag
+UniqueFlashcardList o-left-> "*" Flashcard
 
-Rating -[hidden]right-> Diagram
-Diagram -[hidden]right-> Statistics
-Statistics -[hidden]right-> Question
-Question -[hidden]right-> Answer
-Answer -[hidden]right-> Category
-Category -[hidden]right-> Note
+ModelManager --> Flashcard : filtered list
+ModelManager --> Flashcard : sorted list
 
-ModelManager -->"1" Flashcard : filtered list
 @enduml

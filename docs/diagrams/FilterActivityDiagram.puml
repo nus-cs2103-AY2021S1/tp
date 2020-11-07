@@ -1,4 +1,5 @@
 @startuml
+scale 0.5
 start
 :User executes command;
 
@@ -6,8 +7,8 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([filter command executed])
-    :Parse command to obtain list of categories to filter by;
-    :Filter by list of categories;
+    :Parse command to obtain flashcard fields to filter by;
+    :Filter by respective flashcard fields;
     :Update the UI with new list of filtered flashcards;
 else ([else])
 endif

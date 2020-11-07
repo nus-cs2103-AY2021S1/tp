@@ -18,7 +18,7 @@ public class FlashcardAnswerCard extends UiPart<Region> {
     private Label note;
 
     /**
-     * Creates a {@code FlashcardAnswerCard} with the given {@code Flashcard} and index to display.
+     * Creates a {@code FlashcardAnswerCard} with the given {@code Flashcard} to display.
      */
     public FlashcardAnswerCard(Flashcard flashcard) {
         super(FXML);

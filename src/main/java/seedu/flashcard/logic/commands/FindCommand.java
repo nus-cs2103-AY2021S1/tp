@@ -23,7 +23,7 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all flashcards whose flashcards contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all flashcards which contain any of "
             + "the specified keywords (case-insensitive).\n"
             + "Parameters: KEYWORD [KEYWORD]...\n"
             + "Example: " + COMMAND_WORD + " oop";

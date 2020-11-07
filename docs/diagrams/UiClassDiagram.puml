@@ -10,17 +10,13 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
-Class StudyPanel
-Class QuizPanel
-Class ReviewPanel
 Class ResultDisplay
+Class CommandBox
 Class FlashcardListPanel
 Class FlashcardListCard
 Class FlashcardViewCard
-Class FlashcardQuestionCard
-Class FlashcardAnswerCard
-Class StatusBarFooter
-Class CommandBox
+Class StudyPanel
+
 }
 
 package Model <<Rectangle>> {
@@ -33,47 +29,32 @@ Class HiddenLogic #FFFFFF
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
-
 UiManager .left.|> Ui
+UiManager -right-> Logic
 UiManager -down-> MainWindow
-MainWindow --> HelpWindow
-MainWindow *-down-> CommandBox
+
+MainWindow -down-> FlashcardListPanel
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> FlashcardListPanel
-MainWindow *-down-> FlashcardViewCard
-MainWindow *-down-> StatusBarFooter
-MainWindow *-down-> ReviewPanel
-MainWindow *-down-> QuizPanel
+MainWindow *-down-> CommandBox
+FlashcardListPanel -down-> "*" FlashcardListCard
+MainWindow -down-> FlashcardViewCard
+MainWindow -down-> HelpWindow
+MainWindow .down> StudyPanel
+StudyPanel --> MainWindow
 
-ReviewPanel --|> StudyPanel
-QuizPanel --|> StudyPanel
-
-FlashcardListPanel -down-> FlashcardListCard
-FlashcardViewCard -down-> FlashcardQuestionCard
-FlashcardViewCard -down-> FlashcardAnswerCard
-
-MainWindow -left-|> UiPart
-
+HelpWindow --|> UiPart
 ResultDisplay --|> UiPart
-CommandBox --|> UiPart
 FlashcardListPanel --|> UiPart
-FlashcardListCard --|> UiPart
 FlashcardViewCard --|> UiPart
-FlashcardQuestionCard --|> UiPart
-FlashcardAnswerCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow -down-|> UiPart
+StudyPanel --|> UiPart
+CommandBox --|> UiPart
+MainWindow -down-|> UiPart
 
 FlashcardListCard ..> Model
-UiManager -right-> Logic
-MainWindow -left-> Logic
 
-QuizPanel -[hidden]left- ReviewPanel
-FlashcardListPanel -[hidden]left- FlashcardViewCard
-FlashcardViewCard -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
-MainWindow -[hidden]-|> UiPart
+CommandBox -[hidden]left-> ResultDisplay
+ResultDisplay -[hidden]left-> HelpWindow
+FlashcardListPanel -[hidden]left-> FlashcardViewCard
+
 @enduml
