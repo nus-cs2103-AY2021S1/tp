@@ -60,5 +60,5 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments): [\#178](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/178), 
   [\#179](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/179), 
   [\#185](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/185)
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/Lysire/ped/issues)
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/Lysire/ped/issues))
 
