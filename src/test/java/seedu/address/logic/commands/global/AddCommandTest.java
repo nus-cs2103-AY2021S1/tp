@@ -195,6 +195,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void resetProjectToBeDisplayedOnDashboard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateTaskToBeDisplayedOnDashboard(Task task) {
             throw new AssertionError("This method should not be called.");
         }
@@ -205,12 +210,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void resetTaskToBeDisplayedOnDashboard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateTeammateToBeDisplayedOnDashboard(Participation teammate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Optional<Participation> getTeammateToBeDisplayedOnDashboard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetTeammateToBeDisplayedOnDashboard() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -271,6 +286,11 @@ public class AddCommandTest {
 
         @Override
         public Optional<Person> getPersonToBeDisplayedOnDashboard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetPersonToBeDisplayedOnDashboard() {
             throw new AssertionError("This method should not be called.");
         }
     }

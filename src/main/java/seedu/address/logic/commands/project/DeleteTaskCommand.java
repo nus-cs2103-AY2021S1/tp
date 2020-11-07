@@ -48,6 +48,13 @@ public class DeleteTaskCommand extends Command {
         Task taskToDelete = lastShownTaskList.get(targetIndex.getZeroBased());
         project.deleteTask(taskToDelete);
 
+
+        if (model.getTaskToBeDisplayedOnDashboard().isPresent()
+                && model.getTaskToBeDisplayedOnDashboard().get().equals(taskToDelete)) {
+            model.resetTaskToBeDisplayedOnDashboard();
+            project.updateTaskOnView(null);
+        }
+
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 

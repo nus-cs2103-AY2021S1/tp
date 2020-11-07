@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -96,6 +97,47 @@ public class DeleteCommandTest {
 
         // different project -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+    }
+
+
+    /**
+     * Deletes a project is currently displayed.
+     */
+    @Test
+    public void execute_deletingProjectToBeDisplayed_resetProjectDashboard() {
+        Model newModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Index indexLastProject = Index.fromOneBased(newModel.getFilteredProjectList().size());
+        Project lastProject = newModel.getFilteredProjectList().get(indexLastProject.getZeroBased());
+
+        newModel.enter(lastProject);
+
+        try {
+            new DeleteCommand(indexLastProject).execute(newModel);
+        } catch (CommandException e) {
+            assertFalse(true);
+        }
+
+        assertTrue(newModel.getProjectToBeDisplayedOnDashboard().isEmpty());
+    }
+
+    /**
+     * Deletes a project is currently not displayed.
+     */
+    @Test
+    public void execute_deletingProjectNotToBeDisplayed_noChangesToProjectDashboard() {
+        Model newModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Index indexLastProject = Index.fromOneBased(newModel.getFilteredProjectList().size());
+        Project lastProject = newModel.getFilteredProjectList().get(indexLastProject.getZeroBased());
+
+        newModel.enter(lastProject);
+
+        try {
+            new DeleteCommand(INDEX_FIRST_PROJECT).execute(newModel);
+        } catch (CommandException e) {
+            assertFalse(true);
+        }
+
+        assertTrue(newModel.getProjectToBeDisplayedOnDashboard().isPresent());
     }
 
     /**
