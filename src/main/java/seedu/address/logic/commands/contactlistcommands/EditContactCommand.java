@@ -259,9 +259,4 @@ public class EditContactCommand extends Command {
 
 
     }
-
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

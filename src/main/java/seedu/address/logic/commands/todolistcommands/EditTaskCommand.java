@@ -145,8 +145,4 @@ public class EditTaskCommand extends Command {
             && editTaskDescriptor.equals(e.editTaskDescriptor);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

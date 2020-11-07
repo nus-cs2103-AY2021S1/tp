@@ -71,8 +71,4 @@ public class DeleteContactCommand extends Command {
                 && targetIndex.equals(((DeleteContactCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

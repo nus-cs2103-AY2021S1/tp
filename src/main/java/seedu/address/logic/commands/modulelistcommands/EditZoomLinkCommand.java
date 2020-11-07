@@ -110,8 +110,4 @@ public class EditZoomLinkCommand extends Command {
                 && zoomDescriptor.equals(e.zoomDescriptor);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

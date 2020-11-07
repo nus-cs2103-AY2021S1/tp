@@ -26,7 +26,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ContactListParser implements FeatureParser {
 
     /**
-     * Used for initial separation of command word and args.
+     * Used for initial separation of command word and arguments.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
@@ -60,13 +60,13 @@ public class ContactListParser implements FeatureParser {
             return new DeleteContactParser().parse(arguments);
 
         case ClearContactCommand.COMMAND_WORD:
-            return new ClearContactCommand();
+            return singleWordCommandsChecker(ClearContactCommand.COMMAND_WORD, arguments);
 
         case FindContactCommand.COMMAND_WORD:
             return new FindContactParser().parse(arguments);
 
         case ListContactCommand.COMMAND_WORD:
-            return new ListContactCommand();
+            return singleWordCommandsChecker(ListContactCommand.COMMAND_WORD, arguments);
 
         case ImportantContactCommand.COMMAND_WORD:
             return new ImportantContactParser().parse(arguments);
@@ -79,6 +79,23 @@ public class ContactListParser implements FeatureParser {
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    private Command singleWordCommandsChecker(String commandWord, String argument) throws ParseException {
+        if (!argument.equals("")) {
+            throw new ParseException("Invalid input format, extra string after the command word.");
+        }
+
+        switch (commandWord) {
+        case ClearContactCommand.COMMAND_WORD:
+            return new ClearContactCommand();
+
+        case ListContactCommand.COMMAND_WORD:
+            return new ListContactCommand();
+
+        default:
+            throw new ParseException("Invalid command");
         }
     }
 }

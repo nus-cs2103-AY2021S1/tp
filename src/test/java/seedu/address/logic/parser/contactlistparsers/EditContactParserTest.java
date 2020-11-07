@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
-import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
+import seedu.address.logic.commands.contactlistcommands.EditContactCommand.EditContactDescriptor;
 import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Telegram;

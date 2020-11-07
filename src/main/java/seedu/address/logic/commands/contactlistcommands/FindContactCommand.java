@@ -66,8 +66,4 @@ public class FindContactCommand extends Command {
                 && predicate.equals(((FindContactCommand) other).predicate)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }
