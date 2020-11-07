@@ -105,7 +105,7 @@ public class Project {
     }
 
     /**
-     * Deletes a task from the project
+     * Deletes a task from the project.
      *
      * @param task task to be deleted.
      * @return true if the task to be deleted is in the project, and false otherwise.

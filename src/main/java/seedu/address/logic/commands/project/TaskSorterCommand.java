@@ -30,10 +30,10 @@ public class TaskSorterCommand extends Command {
         + "Parameters: ("
         + PREFIX_ASCENDING_SORT + ")||("
         + PREFIX_DESCENDING_SORT + ")  ("
-        + PREFIX_TASK_DEADLINE + "DEADLINE)||("
-        + PREFIX_TASK_NAME + "TASK NAME)||("
-        + PREFIX_TASK_PROGRESS + "PROGRESS)||("
-        + PREFIX_TASK_IS_DONE + "DONE STATUS)\n"
+        + PREFIX_TASK_DEADLINE + ")||("
+        + PREFIX_TASK_NAME + ")||("
+        + PREFIX_TASK_PROGRESS + ")||("
+        + PREFIX_TASK_IS_DONE + ")\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_ASCENDING_SORT + " "
         + PREFIX_TASK_NAME;
@@ -43,7 +43,8 @@ public class TaskSorterCommand extends Command {
 
     /**
      * Creates a sort command with the given comparator.
-     * @param comparator the comparator used to sort tasks
+     *
+     * @param comparator the comparator used to sort tasks.
      */
     public TaskSorterCommand(Comparator<Task> comparator) {
         requireNonNull(comparator);
