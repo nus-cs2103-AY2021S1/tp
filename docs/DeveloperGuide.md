@@ -23,7 +23,7 @@ title: Developer Guide
             * [Aspect 2: Should we allow adding duplicate recipes](#3122-aspect-2)
         * [3.1.3 Design Consideration - **Add Ingredient**](#313-design-consideration-add-ingredient)
             * [Aspect 1: Concern while adding a new feature](#3131-aspect-1)<br>
-            * [Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity](#3132-aspect-2)<br>
+            * [Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantitys](#3132-aspect-2)<br>
 	    	* [Aspect 3: Should we allow adding duplicate ingredients and stacking quantities](#3133-aspect-3)
 	    <br><br>
     - [3.2. Eat Recipe Feature](#32-eat-recipe-feature)
@@ -38,7 +38,7 @@ title: Developer Guide
         * [3.3.3 Design Consideration - **List Ingredients**](#333-design-consideration-list-ingredient)
              * [Aspect: Concern while adding a new feature](#3331-aspect)
         * [3.3.4 Design Consideration - **List Consumptions**](#334-design-consideration-list-consumption)
-             * [Aspect 1: Concern while adding a new feature](#3341-aspect-1)
+             * [Aspect 1: Concern while adding a new feature](#3341-aspect-1)<br>
              * [Aspect 2: What information in the recipe is useful to display in the consumption list](#3342-aspect-2)
 	     <br><br>
     - [3.4. Delete Features](#34-delete-features)
