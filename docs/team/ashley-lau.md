@@ -57,7 +57,8 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the feature `add`.
     * Added documentation for the feature `print`.
-    * Check documentation for any mistakes and update them accordingly.
+    * Checked documentation for any mistakes and updated them accordingly.
+    * Standardised the format of user guide.
   * Developer Guide:
     * Added implementation details of the `add` feature.
     * Added implementation details of the `print` feature.

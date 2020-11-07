@@ -24,6 +24,10 @@ public class PrintCommandParser implements Parser<PrintCommand> {
 
     private static final Logger logger = LogsCenter.getLogger(PrintCommandParser.class);
 
+    private final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+
+    private final Prefix[] validPrefixesForPrint = { PREFIX_FILE_NAME};
+
     /**
      * Parses the given {@code String} of arguments in the context of the PrintCommand
      * and returns an PrintCommand object for execution.
@@ -31,8 +35,13 @@ public class PrintCommandParser implements Parser<PrintCommand> {
      */
     public PrintCommand parse(String args) throws ParseException {
         logger.log(Level.INFO, "Starting to parse print command");
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_FILE_NAME);
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
+
+        // Invalid prefixes used in Print command
+        if (ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForPrint)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrintCommand.MESSAGE_USAGE));
+        }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_FILE_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {

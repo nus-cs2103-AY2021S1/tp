@@ -53,7 +53,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete sn/ntuc1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/_ArchitectureSequenceDiagram_.png" width="574" />
 
 The sections below give more details of each component.
 
@@ -102,15 +102,11 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the stock book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the stock book data and the serial number data.
+* exposes an unmodifiable `ObservableList<Stock>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
 
 
 ### Storage component
@@ -1498,6 +1494,21 @@ The following activity diagram summarizes what happens when the print feature is
 
 ![Print Activity Diagram](images/PrintCommandActivityDiagram.png)
 
+#### Design Considerations
+
+##### Aspect: Acceptable file name
+
+* **Alternative 1 (current implementation):** File name can only be alphanumeric characters.
+  * Pros: Regex to be used to check for the input file name can be used across all operating systems.
+  Relatively simpler to implement too.
+  * Cons: Users could not use symbols for the file name.
+
+* **Alternative 2:** Allow different regex for different operating systems.
+  * Pros: Allows users to use symbols for the file name.
+  * Cons: Different operating systems have different requirements for the file name. The restricted
+  symbols for an operating system can be different from another, which leads to different performance
+  or behavior for the same input file name.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -1581,25 +1592,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given format is missing any field header.
 
-    * 1a1. Warenager shows an error message.
+    * 1a1. Warenager shows an error message with a new suggested input.
 
       Use case resumes at step 1.
 
 * 1b. The argument for any field header is empty.
 
-    * 1b1. Warenager shows an error message.
+    * 1b1. Warenager shows an error message with a new suggested input.
 
       Use case resumes at step 1.
 
 * 1c. The argument to the field header is invalid.
 
-    * 1c1. Warenager shows an error message.
+    * 1c1. Warenager shows an error message with a new suggested input.
 
       Use case resumes at step 1.
 
 * 1d. The given input has multiple required field headers.
 
-    * 1d1. Warenager shows an error message.
+    * 1d1. Warenager shows an error message with a new suggested input.
+
+      Use case resumes at step 1.
+      
+* 1e. The given command word is mistyped.
+
+    * 1e1. Warenager shows an error message with a new suggested input.
+
+      Use case resumes at step 1.
+
+* 1f. The stock already exist in the stock book.
+
+    * 1f1. Warenager shows an duplicate stock error message.
 
       Use case resumes at step 1.
 
@@ -2108,41 +2131,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1f1. Warenager shows an error message.
 
      Use case resumes at step 1.
-     
-#### Use case 15: Generating a csv file that contains all stocks
 
-**MSS**
 
-1.  User requests to print stocks in stock book.
-2.  Warenager generates a csv file containing all stocks.
- 
-    Use case ends.
- 
-**Extensions**
- 
-* 1a. The given input contains has the wrong format.
-
-    * 1a1. Warenager shows an error message and suggested command.
- 
-      Use case resumes at step 1.
- 
-* 1b. There is an error when creating the csv file.
- 
-    * 1b1. Warenager shows an error message.
- 
-      Use case resumes at step 1.
-
-#### Use case 16: Generating a csv file that contains all stocks sorted in desired order
-
- **MSS**
- 
- 1.  User sort stocks in stock book (Use case..) in their desired order.
- 2.  User request to generate csv file based on the existing stock book (Use case 15).
- 3.  Warenager generates a csv file containing all stocks.
- 
-     Use case ends.
-
-#### Use case 17: Using the help command
+#### Use case 15: Using the help command
 
 **MSS**
 
@@ -2159,7 +2150,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case 18: Suggestion feature
+#### Use case 16: Suggestion feature
 
 **MSS**
 
@@ -2188,7 +2179,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-#### Use case 19: Sort stocks by field and order
+#### Use case 17: Sort stocks by field and order
 
 **MSS**
 
@@ -2216,6 +2207,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2c1. Warenager will generate command suggesstion for the user (Use case 19).
 
     Use case ends.
+
+#### Use case 18: Generating a csv file that contains all stocks
+
+**MSS**
+
+1.  User requests to print stocks in stock book.
+2.  Warenager generates a csv file containing all stocks.
+ 
+    Use case ends.
+ 
+**Extensions**
+ 
+* 1a. The given input has the wrong format.
+
+    * 1a1. Warenager shows an error message with a new suggested input.
+ 
+      Use case resumes at step 1.
+      
+* 1b. The given argument to a field header is invalid.
+
+    * 1b1. Warenager shows an error message with a new suggested input.
+ 
+      Use case resumes at step 1.
+ 
+* 1c. There is an error when creating the csv file.
+ 
+    * 1c1. Warenager shows an error message.
+ 
+      Use case resumes at step 1.
+
+#### Use case 19: Generating a csv file that contains all stocks sorted in desired order
+
+ **MSS**
+ 
+ 1.  User sort stocks in stock book (Use case 17) in their desired order.
+ 2.  User request to generate csv file based on the existing stock book (Use case 19).
+ 3.  Warenager generates a csv file containing all stocks.
+ 
+     Use case ends.
 
 #### Use case 20: Clearing Warenager's data
 

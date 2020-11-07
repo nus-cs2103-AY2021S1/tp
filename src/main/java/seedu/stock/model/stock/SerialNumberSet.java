@@ -44,7 +44,7 @@ public class SerialNumberSet {
      */
     public static boolean isValidSerialNumberSet(Source source, AccumulatedQuantity accumulatedQuantity) {
         return isValidSource(source.value)
-                && isValidAccumulatedQuantity(accumulatedQuantity.getAccumulatedQuantity());
+                && isValidAccumulatedQuantity(accumulatedQuantity.getValue());
     }
     /**
      * Returns true if both serialNumberSet has the same source company.
