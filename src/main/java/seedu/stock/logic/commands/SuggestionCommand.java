@@ -1,9 +1,15 @@
 package seedu.stock.logic.commands;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 
 public class SuggestionCommand extends Command {
+
+    private static final Logger logger = LogsCenter.getLogger(SuggestionCommand.class);
 
     private String toBeDisplayed;
 
@@ -24,7 +30,9 @@ public class SuggestionCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.log(Level.INFO, "Starting to execute suggestion command");
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
+        logger.log(Level.INFO, "Finished suggesting successfully");
         throw new CommandException(toBeDisplayed);
     }
 
@@ -45,6 +53,11 @@ public class SuggestionCommand extends Command {
         return toBeDisplayed.equals(castedOther.toBeDisplayed);
     }
 
+    /**
+     * Returns the suggestion to be displayed to the user.
+     *
+     * @return The suggestion to be displayed to the user.
+     */
     public String getToBeDisplayed() {
         return toBeDisplayed;
     }
