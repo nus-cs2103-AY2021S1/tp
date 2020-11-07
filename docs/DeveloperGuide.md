@@ -296,9 +296,65 @@ Step 6: UntagCommand checks whether the index inputted is valid. Index is valid.
 Step 7: `Model#untagOrderItem()` is executed to remove all the tags that the given OrderItem has.
 
 Step 8: The tag "all no ice" is removed from the OrderItem at the first index.
- 
 
- 
+
+
+#### Preset Commands
+
+- There are two types of preset commands, `preset save` and `preset load`.
+- Preset save stores the current order in a file, with the given preset name under the specific vendor.
+- Preset load retrieves the preset with the name provided from the file, and loads it into the current order.
+- If the name given is invalid for preset commands, an error will be thrown.
+
+
+The following diagram summarises the sequence when the LoadPresetCommand is executed.
+
+![LoadPresetSequenceDiagram](images/LoadPresetCommandSequenceDiagram.png)
+
+Given below is an example usage scenario and how the LoadPresetCommand behaves at each step.
+
+Step 1: The user has selected a vendor with `vendor i`.
+
+Step 2: The user has added items with `add i qty`.
+
+Step 3: The user enters the command `load preset sample` to load the preset named sample.
+
+Step 4: `Storage#readPresetManager()` is executed to retrieve the list of presets, `allLists` from the json file.
+
+Step 5: The preset with the name `sample` for vendor `i` exists and is valid.
+
+Step 6:  The preset is converted into `orderItems`, an ArrayList of `OrderItem`.
+
+Step 7: The current order is set to `orderItems` by executing `setOrder(orderItems)`.
+
+
+
+The following diagram summarises the sequence when the SavePresetCommand is executed.
+
+![SavePresetSequenceDiagram](images/SavePresetCommandSequenceDiagram.png)
+
+Given below is an example usage scenario and how the SavePresetCommand behaves at each step.
+
+Step 1: The user has selected a vendor with `vendor i`.
+
+Step 2: The user has added items with `add i qty`.
+
+Step 3: The user enters the command `save preset sample` to load the preset named sample.
+
+Step 4: `Storage#readPresetManager()` is executed to retrieve the list of presets, `allLists` from the json file.
+
+Step 5: The preset with the name `sample` for vendor `i` does not exist
+
+Step 6:  The current order item list, `orderItemList`, is retrieved by executing `Model#getObservableOrderItemList()`.
+
+Step 7: `orderItemList` is converted to a preset `newPreset`.
+
+Step 7: `newPreset` is added to the vendor index `i` position of `allLists`.
+
+Step 8: The modified allLists is saved into a json file by executing `Storage#savePresetManager(allLists)`.
+
+
+
 ### Undo feature
 
 Changes made to the Order can be undone by using the `undo` command.
@@ -643,6 +699,7 @@ Precondition: <u>User has already selected a particular vendor</u>
       Use case ends.
       
       
+
 *{More to be added}*
 
 ### Non-Functional Requirements
