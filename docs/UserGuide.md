@@ -194,6 +194,17 @@ Format: `exit`
 
 ![Ui](images/screenshots/v1.3exit.png)
 
+### Clear FixMyAbs
+
+Clear all the data including all logs and all exercises stored by FixMyAbs
+
+Format: `clear`
+
+![Ui](images/screenshots/clear.png)
+
+Success:
+![Ui](images/screenshots/clear_success.png) 
+
 ### Saving the data
 
 Exercise log data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
