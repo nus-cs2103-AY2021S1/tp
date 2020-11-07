@@ -30,7 +30,11 @@ public class ListConsumptionCommand extends Command {
             totalCalories += consump.get(i).getRecipe().getCalories().value;
         }
         builder.append("Total Calories: ");
-        builder.append(totalCalories + " cal");
+        if (totalCalories < 0 || totalCalories > Integer.MAX_VALUE) {
+            builder.append("You have eaten too much. The maximum number of calories is" + Integer.MAX_VALUE);
+        } else {
+            builder.append(totalCalories + " cal");
+        }
         return new CommandResult(MESSAGE_SUCCESS + builder.toString(), COMMAND_WORD);
     }
 }
