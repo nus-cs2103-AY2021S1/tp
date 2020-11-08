@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,7 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.ExerciseTag;
-import seedu.address.model.exercise.Muscle;
+import seedu.address.model.exercise.MuscleTag;
 import seedu.address.model.exercise.Name;
 
 public class ParserUtilTest {
@@ -27,14 +26,15 @@ public class ParserUtilTest {
     private static final String INVALID_DESCRIPTION = " "; // description should not be empty
     private static final String INVALID_DATE = "2020-10-10"; // date of incorrect format
     private static final String INVALID_CALORIES = "abc"; // calories should be numbers
-    private static final String INVALID_MUSCLES = "abs,chest"; // abs should be ab
+    private static final String INVALID_MUSCLE = "#chest"; //no symbol allowed
     private static final String INVALID_TAG = "#gym"; //no symbol allowed
 
     private static final String VALID_NAME = "Push Up";
     private static final String VALID_DESCRIPTION = "Push Up Description";
     private static final String VALID_DATE = "10-10-2020";
     private static final String VALID_CALORIES = "100";
-    private static final String VALID_MUSCLES = "chest";
+    private static final String VALID_MUSCLE_1 = "chest";
+    private static final String VALID_MUSCLE_2 = "arm";
     private static final String VALID_TAG_1 = "gym";
     private static final String VALID_TAG_2 = "house";
 
@@ -143,22 +143,51 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseMusclesWorked_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseMusclesWorked(INVALID_MUSCLES));
+    public void parseMuscleTag_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMuscleTag(null));
     }
 
     @Test
-    public void parseMusclesWorked_validValueWithoutWhitespace_returnsMusclesWorkedDescription() throws Exception {
-        List<Muscle> expectedMusclesWorkedDescription = Muscle.stringToMuscleList(VALID_MUSCLES);
-        assertEquals(expectedMusclesWorkedDescription, ParserUtil.parseMusclesWorked(VALID_MUSCLES));
+    public void parseMuscleTag_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMuscleTag(INVALID_MUSCLE));
     }
 
     @Test
-    public void parseMusclesWorked_validValueWithWhitespace_returnsTrimmedMusclesWorkedDescription() throws Exception {
-        String musclesWithWhitespace = WHITESPACE + VALID_MUSCLES + WHITESPACE;
-        List<Muscle> expectedMusclesWorkedDescription = Muscle.stringToMuscleList(VALID_MUSCLES);
-        List<Muscle> parsedMusclesWorkedDescription = ParserUtil.parseMusclesWorked(musclesWithWhitespace);
-        assertEquals(expectedMusclesWorkedDescription, parsedMusclesWorkedDescription);
+    public void parseMuscleTag_validValueWithoutWhitespace_returnsMuscleTag() throws Exception {
+        MuscleTag expectedTag = new MuscleTag(VALID_MUSCLE_1);
+        assertEquals(expectedTag, ParserUtil.parseMuscleTag(VALID_MUSCLE_1));
+    }
+
+    @Test
+    public void parseMuscleTag_validValueWithWhitespace_returnsTrimmedMuscleTag() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_MUSCLE_1 + WHITESPACE;
+        MuscleTag expectedTag = new MuscleTag(VALID_MUSCLE_1);
+        assertEquals(expectedTag, ParserUtil.parseMuscleTag(tagWithWhitespace));
+    }
+
+    @Test
+    public void parseMuscleTags_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMuscleTags(null));
+    }
+
+    @Test
+    public void parseMuscleTags_collectionWithInvalidMuscleTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMuscleTags(
+                Arrays.asList(VALID_MUSCLE_1, INVALID_MUSCLE)));
+    }
+
+    @Test
+    public void parseMuscleTags_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseExerciseTags(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseMuscleTags_collectionWithValidMuscleTags_returnsMuscleTagSet() throws Exception {
+        Set<MuscleTag> actualMuscleTagSet = ParserUtil.parseMuscleTags(Arrays.asList(VALID_MUSCLE_1, VALID_MUSCLE_2));
+        Set<MuscleTag> expectedMuscleTagSet = new HashSet<MuscleTag>(
+                Arrays.asList(new MuscleTag(VALID_MUSCLE_1), new MuscleTag(VALID_MUSCLE_2)));
+
+        assertEquals(expectedMuscleTagSet, actualMuscleTagSet);
     }
 
     @Test

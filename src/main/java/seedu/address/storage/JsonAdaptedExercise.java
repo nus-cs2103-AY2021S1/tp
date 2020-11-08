@@ -15,7 +15,7 @@ import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.ExerciseTag;
-import seedu.address.model.exercise.Muscle;
+import seedu.address.model.exercise.MuscleTag;
 import seedu.address.model.exercise.Name;
 
 /**
@@ -29,22 +29,24 @@ class JsonAdaptedExercise {
     private final String description;
     private final String date;
     private final String calories;
-    private final String musclesWorked;
+    private final List<JsonAdaptedMuscleTag> musclesTagged = new ArrayList<>();
     private final List<JsonAdaptedExerciseTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedExercise} with the given person details.
+     * Constructs a {@code JsonAdaptedExercise} with the given exercise details.
      */
     @JsonCreator
-    public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("phone") String description,
-                               @JsonProperty("email") String date, @JsonProperty("address") String calories,
-                               @JsonProperty("musclesWorked") String musclesWorked,
-                               @JsonProperty("tagged") List<JsonAdaptedExerciseTag> tagged) {
+    public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("description") String description,
+                               @JsonProperty("date") String date, @JsonProperty("calories") String calories,
+                               @JsonProperty("muscleTags") List<JsonAdaptedMuscleTag> musclesTagged,
+                               @JsonProperty("tags") List<JsonAdaptedExerciseTag> tagged) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.calories = calories;
-        this.musclesWorked = musclesWorked;
+        if (musclesTagged != null) {
+            this.musclesTagged.addAll(musclesTagged);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -58,7 +60,9 @@ class JsonAdaptedExercise {
         description = source.getDescription().value;
         date = source.getDate().value;
         calories = source.getCalories().toString();
-        musclesWorked = source.getMusclesWorkedDescription();
+        musclesTagged.addAll(source.getMuscleTags().stream()
+                .map(JsonAdaptedMuscleTag::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getExerciseTags().stream()
                 .map(JsonAdaptedExerciseTag::new)
                 .collect(Collectors.toList()));
@@ -71,8 +75,13 @@ class JsonAdaptedExercise {
      */
     public Exercise toModelType() throws IllegalValueException {
         final List<ExerciseTag> exerciseTags = new ArrayList<>();
+        final List<MuscleTag> muscleTags = new ArrayList<>();
+
         for (JsonAdaptedExerciseTag tag : tagged) {
             exerciseTags.add(tag.toModelType());
+        }
+        for (JsonAdaptedMuscleTag tag : musclesTagged) {
+            muscleTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -109,17 +118,11 @@ class JsonAdaptedExercise {
             modelCalories = new Calories(calories);
         }
 
-        List<Muscle> musclesWorkedLst;
-        if (musclesWorked == null) {
-            musclesWorkedLst = null;
-        } else if (!Muscle.isValidMusclesWorked(musclesWorked)) {
-            throw new IllegalValueException(Muscle.MESSAGE_CONSTRAINTS);
-        } else {
-            musclesWorkedLst = Muscle.stringToMuscleList(musclesWorked);
-        }
+        final Set<MuscleTag> musclesWorkedTags = new HashSet<>(muscleTags);
 
         final Set<ExerciseTag> modelTags = new HashSet<>(exerciseTags);
-        return new Exercise(modelName, modelDescription, modelDate, modelCalories, musclesWorkedLst, modelTags);
+
+        return new Exercise(modelName, modelDescription, modelDate, modelCalories, musclesWorkedTags, modelTags);
     }
 }
 

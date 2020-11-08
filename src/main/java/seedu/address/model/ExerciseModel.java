@@ -83,6 +83,8 @@ public interface ExerciseModel {
 
     void addTemplate(Template template);
 
+    void resetTemplate();
+
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.
      * {@code target} must exist in the address book.

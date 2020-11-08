@@ -3,6 +3,8 @@ package seedu.address.model.exercise;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HOUSE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalExercise.PUSH_UP;
 import static seedu.address.testutil.TypicalExercise.SIT_UP;
@@ -16,6 +18,7 @@ import org.junit.jupiter.api.function.Executable;
 
 import seedu.address.model.exercise.exceptions.DuplicateExerciseException;
 import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
+import seedu.address.testutil.ExerciseBuilder;
 
 class UniqueExerciseListTest {
 
@@ -63,28 +66,27 @@ class UniqueExerciseListTest {
         assertThrows(ExerciseNotFoundException.class, () -> uniqueExerciseList.updateExercise(PUSH_UP, PUSH_UP));
     }
 
-    /*
+
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
+    public void setExercise_editedExerciseIsSameExercise_success() {
         uniqueExerciseList.add(PUSH_UP);
-        uniqueExerciseList.setPerson(PUSH_UP, PUSH_UP);
-        uniqueExerciseList expectedUniqueExerciseList = new uniqueExerciseList();
+        uniqueExerciseList.setExercise(PUSH_UP, PUSH_UP);
+        UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
         expectedUniqueExerciseList.add(PUSH_UP);
         assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
     }
 
-
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
+    public void setExercise_editedExerciseHasSameIdentity_success() {
         uniqueExerciseList.add(PUSH_UP);
-        Person editedPUSH_UP = new PersonBuilder(PUSH_UP).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Exercise editedPushUp = new ExerciseBuilder(PUSH_UP).withDescription(VALID_DESCRIPTION_PUSH_UP)
+                .withTags(VALID_TAG_HOUSE)
                 .build();
-        uniqueExerciseList.setPerson(PUSH_UP, editedPUSH_UP);
-        uniqueExerciseList expectedUniqueExerciseList = new uniqueExerciseList();
-        expectedUniqueExerciseList.add(editedPUSH_UP);
+        uniqueExerciseList.setExercise(PUSH_UP, editedPushUp);
+        UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
+        expectedUniqueExerciseList.add(editedPushUp);
         assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
     }
-    */
 
     @Test
     public void setExercise_editedExerciseHasDifferentIdentity_success() {
@@ -183,7 +185,8 @@ class UniqueExerciseListTest {
         uniqueExerciseList.add(PUSH_UP);
         uniqueExerciseList.updateExercise(PUSH_UP, SIT_UP);
         assertTrue(uniqueExerciseList.getCaloriesByDay().containsKey(PUSH_UP.getDate().value));
-        assertEquals(uniqueExerciseList.getCaloriesByDay().get(PUSH_UP.getDate().value), 0);
+        assertEquals(uniqueExerciseList.getCaloriesByDay().get(PUSH_UP.getDate().value),
+                Integer.parseInt(SIT_UP.getCalories().toString()));
         assertTrue(uniqueExerciseList.getCaloriesByDay().containsKey(SIT_UP.getDate().value));
         assertEquals(uniqueExerciseList.getCaloriesByDay().get(SIT_UP.getDate().value),
                 Integer.parseInt(SIT_UP.getCalories().toString()));

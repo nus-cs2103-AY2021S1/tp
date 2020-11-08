@@ -23,6 +23,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.UpdateCommand;
+import seedu.address.logic.commands.UpdateCommand.EditExerciseDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
@@ -71,10 +72,11 @@ public class ExerciseBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Exercise exercise = new ExerciseBuilder().build();
-        UpdateCommand.EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder(exercise).build();
+        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder(exercise).build();
         UpdateCommand command = (UpdateCommand) parser.parseCommand(
                 UpdateCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_EXERCISE.getOneBased() + " " + ExerciseUtil.getEditExerciseDescriptorDetails(descriptor));
+                + INDEX_FIRST_EXERCISE.getOneBased() + " "
+                + ExerciseUtil.getEditExerciseDescriptorDetails(descriptor));
         assertEquals(new UpdateCommand(INDEX_FIRST_EXERCISE, descriptor), command);
     }
 

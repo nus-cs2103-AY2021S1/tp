@@ -72,9 +72,9 @@ public class ExerciseMainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s exercise book and {@code userPrefs}. <br>
+     * The data from the sample exercise book will be used instead if {@code storage}'s exercise book is not found,
+     * or an empty exercise book will be used instead if errors occur when reading {@code storage}'s exercise book.
      */
     private ExerciseModel initModelManager(StorageForExercise storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyExerciseBook> exerciseBookOptional;
@@ -82,14 +82,14 @@ public class ExerciseMainApp extends Application {
         try {
             exerciseBookOptional = storage.readExerciseBook();
             if (!exerciseBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample ExerciseBook");
             }
             initialData = exerciseBookOptional.orElseGet(SampleDataUtil::getSampleExerciseBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty ExerciseBook");
             initialData = new ExerciseBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty ExerciseBook");
             initialData = new ExerciseBook();
         }
 
@@ -154,7 +154,7 @@ public class ExerciseMainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty ExerciseBook");
             initializedPrefs = new UserPrefs();
         }
 
@@ -176,7 +176,7 @@ public class ExerciseMainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Exercise Book ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

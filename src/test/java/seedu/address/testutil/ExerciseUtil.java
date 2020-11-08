@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -13,10 +13,10 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.UpdateCommand;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.ExerciseTag;
-import seedu.address.model.exercise.Muscle;
+import seedu.address.model.exercise.MuscleTag;
 
 /**
- * A utility class for Person.
+ * A utility class for Exercise.
  */
 public class ExerciseUtil {
 
@@ -36,7 +36,9 @@ public class ExerciseUtil {
         sb.append(PREFIX_DESCRIPTION + exercise.getDescription().toString() + " ");
         sb.append(PREFIX_DATE + exercise.getDate().toString() + " ");
         sb.append(PREFIX_CALORIES + exercise.getCalories().toString() + " ");
-        sb.append(PREFIX_MUSCLES + exercise.getMusclesWorkedDescription() + " ");
+        exercise.getMuscleTags().stream().forEach(
+            s -> sb.append(PREFIX_MUSCLE + s.muscleTagName + " ")
+        );
         exercise.getExerciseTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -54,8 +56,14 @@ public class ExerciseUtil {
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.toString()).append(" "));
         descriptor.getCalories().ifPresent(calories -> sb.append(PREFIX_CALORIES)
                 .append(calories.toString()).append(" "));
-        descriptor.getMusclesWorked().ifPresent(muscles -> sb.append(PREFIX_MUSCLES)
-                .append(Muscle.muscleListToString(muscles)).append(" "));
+        if (descriptor.getMuscleTags().isPresent()) {
+            Set<MuscleTag> muscleTags = descriptor.getMuscleTags().get();
+            if (muscleTags.isEmpty()) {
+                sb.append(PREFIX_MUSCLE).append(" ");
+            } else {
+                muscleTags.forEach(s -> sb.append(PREFIX_MUSCLE).append(s.muscleTagName).append(" "));
+            }
+        }
         if (descriptor.getTags().isPresent()) {
             Set<ExerciseTag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

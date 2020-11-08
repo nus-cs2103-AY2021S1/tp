@@ -4,9 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -19,24 +17,24 @@ public class Exercise {
     private final Date date;
 
     // Data fields
-    // FDs
-    // Name -> musclesWorked, calories (hence left out in equality checks)
+    // Functional dependencies:
+    // Name -> calories (hence left out in equality checks)
     private final Description description;
     private final Calories calories;
-    private final List<Muscle> musclesWorked;
+    private final Set<MuscleTag> muscleTags = new HashSet<>();
     private final Set<ExerciseTag> tags = new HashSet<>();
 
     /**
      * Every field except for calories must be present and not null.
      */
     public Exercise(Name name, Description description, Date date,
-                    Calories calories, List<Muscle> musclesWorked, Set<ExerciseTag> tags) {
-        requireAllNonNull(name, description, tags);
+                    Calories calories, Set<MuscleTag> muscleTags, Set<ExerciseTag> tags) {
+        requireAllNonNull(name, description, muscleTags, tags);
         this.name = name;
         this.description = description;
         this.date = date;
         this.calories = calories;
-        this.musclesWorked = musclesWorked;
+        this.muscleTags.addAll(muscleTags);
         this.tags.addAll(tags);
     }
 
@@ -56,16 +54,12 @@ public class Exercise {
         return calories;
     }
 
-    public Optional<List<Muscle>> getMusclesWorked() {
-        return Optional.ofNullable(musclesWorked);
-    }
-
-    public String getMusclesWorkedDescription() {
-        if (!getMusclesWorked().isPresent()) {
-            return null;
-        }
-
-        return Muscle.muscleListToString(getMusclesWorked().get());
+    /**
+     * Returns an immutable muscleTag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<MuscleTag> getMuscleTags() {
+        return Collections.unmodifiableSet(muscleTags);
     }
 
     /**
@@ -76,15 +70,15 @@ public class Exercise {
         return Collections.unmodifiableSet(tags);
     }
 
-
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, date, tags);
+        return Objects.hash(name, description, date, muscleTags, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+
         builder.append("Name: ")
                 .append(getName())
                 .append(" Description: ")
@@ -93,9 +87,11 @@ public class Exercise {
                 .append(getDate())
                 .append(" Calories: ")
                 .append(getCalories())
-                .append(" Muscles worked:")
-                .append(getMusclesWorkedDescription())
-                .append(" Tags: ");
+                .append(" Muscles worked:");
+
+        getMuscleTags().forEach(builder::append);
+
+        builder.append(" Tags: ");
 
         getExerciseTags().forEach(builder::append);
 
@@ -117,7 +113,8 @@ public class Exercise {
         return otherExercise.getName().equals(getName())
                 && otherExercise.getDescription().equals(getDescription())
                 && otherExercise.getDate().equals(getDate())
-                && otherExercise.getExerciseTags().equals(getExerciseTags());
+                && otherExercise.getExerciseTags().equals(getExerciseTags())
+                && otherExercise.getMuscleTags().equals(getMuscleTags());
     }
 
     /**

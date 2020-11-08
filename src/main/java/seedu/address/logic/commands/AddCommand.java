@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -23,16 +23,17 @@ public class AddCommand extends CommandForExercise {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + "[" + PREFIX_DATE + "DATE]"
+            + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_CALORIES + "CALORIES] "
-            + "[" + PREFIX_MUSCLES + "MUSCLES_WORKED] "
+            + "[" + PREFIX_MUSCLE + "MUSCLE]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "running "
             + PREFIX_DESCRIPTION + "10 mins "
             + PREFIX_DATE + "31-12-2020 "
             + PREFIX_CALORIES + "100 "
-            + PREFIX_MUSCLES + "chest,arm "
+            + PREFIX_MUSCLE + "chest "
+            + PREFIX_MUSCLE + "arm "
             + PREFIX_TAG + "home "
             + PREFIX_TAG + "gym";
 

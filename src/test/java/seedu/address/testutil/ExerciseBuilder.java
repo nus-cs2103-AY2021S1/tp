@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.exercise.Calories;
@@ -9,13 +8,13 @@ import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.ExerciseTag;
-import seedu.address.model.exercise.Muscle;
+import seedu.address.model.exercise.MuscleTag;
 import seedu.address.model.exercise.Name;
 import seedu.address.model.util.SampleDataUtil;
 
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Exercise objects.
  */
 public class ExerciseBuilder {
 
@@ -29,7 +28,7 @@ public class ExerciseBuilder {
     private Description description;
     private Date date;
     private Calories calories;
-    private List<Muscle> musclesWorked;
+    private Set<MuscleTag> muscleTags;
     private Set<ExerciseTag> tags;
 
     /**
@@ -40,7 +39,7 @@ public class ExerciseBuilder {
         description = new Description(DEFAULT_DESCRIPTION);
         date = new Date(DEFAULT_DATE);
         calories = new Calories(DEFAULT_CALORIES);
-        musclesWorked = Muscle.stringToMuscleList(DEFAULT_MUSCLES);
+        muscleTags = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -52,7 +51,7 @@ public class ExerciseBuilder {
         description = exerciseToCopy.getDescription();
         date = exerciseToCopy.getDate();
         calories = exerciseToCopy.getCalories();
-        musclesWorked = exerciseToCopy.getMusclesWorked().isPresent() ? exerciseToCopy.getMusclesWorked().get() : null;
+        muscleTags = new HashSet<>(exerciseToCopy.getMuscleTags());
         tags = new HashSet<>(exerciseToCopy.getExerciseTags());
     }
 
@@ -89,10 +88,11 @@ public class ExerciseBuilder {
     }
 
     /**
-     * Sets the {@code Muscles} of the {@code Exercise} that we are building.
+     * Parses the {@code muscleTags} into a {@code Set<MuscleTag>}
+     * and set it to the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withMusclesWorked(String musclesWorked) {
-        this.musclesWorked = Muscle.stringToMuscleList(musclesWorked);
+    public ExerciseBuilder withMuscleTags(String ... muscleTags) {
+        this.muscleTags = SampleDataUtil.getMuscleTagSet(muscleTags);
         return this;
     }
 
@@ -106,7 +106,7 @@ public class ExerciseBuilder {
 
 
     public Exercise build() {
-        return new Exercise(name, description, date, calories, musclesWorked, tags);
+        return new Exercise(name, description, date, calories, muscleTags, tags);
     }
 
 }

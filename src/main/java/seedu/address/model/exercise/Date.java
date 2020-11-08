@@ -5,10 +5,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 public class Date {
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should be in the format of DD-MM-YYYY";
+            "Dates should be a valid date in calendar and should be in the format of DD-MM-YYYY";
     private static final String DATE_FORMAT = "dd-MM-yyyy";
 
     public final String value;
@@ -44,7 +45,9 @@ public class Date {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        String dateFormatForValidation = "dd-MM-uuuu";
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(dateFormatForValidation)
+                .withResolverStyle(ResolverStyle.STRICT);
         try {
             timeFormatter.parse(test);
 

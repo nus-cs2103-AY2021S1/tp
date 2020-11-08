@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -17,7 +16,7 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.ExerciseTag;
-import seedu.address.model.exercise.Muscle;
+import seedu.address.model.exercise.MuscleTag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -92,21 +91,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String musclesWorked} into {@code MusclesWorked}.
+     * Parses a {@code String muscleTag} into a {@code MuscleTag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code musclesWorked} is invalid.
+     * @throws ParseException if the given {@code muscleTag} is invalid.
      */
-    public static List<Muscle> parseMusclesWorked(String musclesWorked) throws ParseException {
-        if (musclesWorked == null) {
-            return null;
+    public static MuscleTag parseMuscleTag(String muscleTag) throws ParseException {
+        requireNonNull(muscleTag);
+        String trimmedTag = muscleTag.trim();
+        if (!MuscleTag.isValidMuscleTagName(trimmedTag)) {
+            throw new ParseException(MuscleTag.MESSAGE_CONSTRAINTS);
         }
+        return new MuscleTag(trimmedTag);
+    }
 
-        String trimmedMusclesWorked = musclesWorked.trim();
-        if (!Muscle.isValidMusclesWorked(trimmedMusclesWorked)) {
-            throw new ParseException(Muscle.MESSAGE_CONSTRAINTS);
+    /**
+     * Parses {@code Collection<String> muscleTags} into a {@code Set<MuscleTag>}.
+     */
+    public static Set<MuscleTag> parseMuscleTags(Collection<String> muscleTags) throws ParseException {
+        requireNonNull(muscleTags);
+        final Set<MuscleTag> muscleTagSet = new HashSet<>();
+        for (String muscleTagName : muscleTags) {
+            muscleTagSet.add(parseMuscleTag(muscleTagName));
         }
-        return Muscle.stringToMuscleList(trimmedMusclesWorked);
+        return muscleTagSet;
     }
 
     /**
