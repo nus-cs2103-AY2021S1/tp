@@ -327,7 +327,7 @@ Format: `addl INDEX l/d/DATE [d/DATE] [l/d/DATE [d/DATE]]…​`
 </div>
 
 Examples:
-* `list s-` followed by `adll 2 l/d/20/10/2020` adds the leave record with the given date(s) to the 2nd person in the shown list.
+* `list s-` followed by `addl 2 l/d/20/10/2020` adds the leave record with the given date(s) to the 2nd person in the shown list.
 * `find s- Betsy` followed by `addl 1 l/d/20/10/2020` adds the leave to the 1st person in the results of the `find s-` command.
 * `addl 1 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`
 * `addl 2 l/d/10/10/2020 d/08/10/2020 l/d/09/09/2020`

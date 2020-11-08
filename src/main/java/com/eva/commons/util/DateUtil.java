@@ -76,7 +76,8 @@ public class DateUtil {
      */
     public static int getDaysBetween(LocalDate start, LocalDate end) {
         requireAllNonNull(start, end);
-        return Period.between(start, end).getDays() + 1;
+        List<LocalDate> datesBetween = getDatesBetween(start, end);
+        return datesBetween.size();
     }
 
     /**
