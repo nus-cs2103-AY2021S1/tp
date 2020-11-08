@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -105,7 +106,7 @@ public interface ExerciseModel {
      * Adds the given exercise.
      * {@code exercise} must not already exist in the address book.
      */
-    void addExercise(Exercise exercise);
+    Optional<Goal> addExercise(Exercise exercise);
 
 
     void addTemplate(Template template);

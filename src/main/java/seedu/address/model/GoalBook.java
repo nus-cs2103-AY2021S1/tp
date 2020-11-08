@@ -58,6 +58,11 @@ public class GoalBook implements ReadOnlyGoalBook {
         requireNonNull(goal);
         return goalMap.contains(goal);
     }
+    
+    public Goal getGoal (Date date) {
+        requireNonNull(date);
+        return goalMap.getGoal(date);
+    }
 
     /**
      * Adds a goal to the exercise book.

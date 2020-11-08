@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -121,10 +122,19 @@ public class ExerciseModelManager implements ExerciseModel {
 
 
     @Override
-    public void addExercise(Exercise exercise) {
+    public Optional<Goal> addExercise(Exercise exercise) {
         exerciseBook.addExercise(exercise);
         updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
+        if (goalBook.hasGoal(new Goal(exercise.getDate()))) {
+            Goal goal = goalBook.getGoal(exercise.getDate());
+            goalBook.removeGoal(goal);
+            goal.updateGoal(exercise.getCalories());
+            goalBook.addGoal(goal);
+            return Optional.of(goal);
+        }
+        return Optional.empty();
     }
+    
 
     @Override
     public void addTemplate(Template template) {

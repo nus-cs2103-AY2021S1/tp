@@ -8,10 +8,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Optional;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExerciseModel;
+import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Weight;
+import seedu.address.model.goal.Goal;
 
 /**
  * Adds an exercise to Calo.
@@ -39,6 +43,7 @@ public class AddCommand extends CommandForExercise {
             + PREFIX_TAG + "gym";
 
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s\n";
+    public static final String MESSAGE_GOAL = "Now you only have %s more calories to burn on %s";
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the exercise book";
 
     private final Exercise toAdd;
@@ -61,7 +66,12 @@ public class AddCommand extends CommandForExercise {
             throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
         }
 
-        model.addExercise(toAdd);
+        Optional<Goal> optionalGoal = model.addExercise(toAdd);
+        if (optionalGoal.isPresent()) {
+            Goal goal = optionalGoal.get();
+            return new CommandResult(String.format(MESSAGE_SUCCESS + MESSAGE_GOAL,toAdd,burntWeight.toString(),
+                    goal.getCalories(),goal.getDate()));
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd, burntWeight.toString()));
     }
 
