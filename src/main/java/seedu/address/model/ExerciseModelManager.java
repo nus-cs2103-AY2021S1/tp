@@ -128,7 +128,7 @@ public class ExerciseModelManager implements ExerciseModel {
         if (goalBook.hasGoal(new Goal(exercise.getDate()))) {
             Goal goal = goalBook.getGoal(exercise.getDate());
             goalBook.removeGoal(goal);
-            goal.updateGoal(exercise.getCalories());
+            goal = goal.updateGoal(exercise.getCalories());
             goalBook.addGoal(goal);
             return Optional.of(goal);
         }
