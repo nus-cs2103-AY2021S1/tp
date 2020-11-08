@@ -53,6 +53,22 @@ public class VendorCommandTest {
     }
 
     @Test
+    public void execute_sameIndex_success() {
+        Model model = TypicalModel.getModelManagerWithMenu();
+        Index first = Index.fromOneBased(1);
+        VendorCommand vendorCommand = new SwitchVendorCommand(first);
+
+        Model expectedModel = TypicalModel.getModelManagerWithMenu();
+        expectedModel.selectVendor(first.getZeroBased());
+        Vendor expectedVendor = expectedModel.getObservableVendorList().get(first.getZeroBased());
+        String expectedMessage = String.format(
+                SwitchVendorCommand.MESSAGE_SELECT_VENDOR_SAME,
+                expectedVendor.getName()
+        );
+        assertCommandSuccess(vendorCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndex_throwsCommandException() {
         Model model = TypicalModel.getModelManagerWithMenu();
         Index outOfBoundIndex = Index.fromOneBased(model.getObservableVendorList().size() + 1);
