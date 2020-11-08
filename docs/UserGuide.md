@@ -58,7 +58,7 @@ You can follow the steps below to get CliniCal up and running:
    <p align="center">
        <img src="images/Ui.png"/>
        <br>
-       <em style="color:#CC5500">GUI of CliniCal</em>
+       <em style="color:#CC5500">Figure 1. GUI of CliniCal</em>
    </p>
 
 1. If the GUI does not appear, you may try opening a command terminal in the home folder and enter `java -jar CliniCal.jar`.
@@ -89,7 +89,7 @@ CliniCal contains a Graphical User Interface (GUI) which serves to allow you to 
 <p align="center">
     <img src="images/mainLayout.png"/>
     <br>
-    <em style="color:#CC5500">Main GUI Layout</em>
+    <em style="color:#CC5500">Figure 2. Main GUI Layout</em>
 </p>
 
 The layout of the GUI is as follows:
@@ -107,7 +107,7 @@ If you wish to start afresh, enter the `clear` command to clear all entries from
 <p align="center">
     <img src="images/overviewLayout.png"/>
     <br>
-    <em style="color:#CC5500">Overview Tab Layout</em>
+    <em style="color:#CC5500">Figure 3. Overview Tab Layout</em>
 </p>
 
 This would be the home page of CliniCal, where the appointment list would be on the left, and the calendar view on the right.
@@ -136,7 +136,7 @@ This would be the home page of CliniCal, where the appointment list would be on 
 <p align="center">
     <img src="images/patientLayout.png"/>
     <br>
-    <em style="color:#CC5500">Patient Tab Layout</em>
+    <em style="color:#CC5500">Figure 4. Patient Tab Layout</em>
 </p>
 
 This tab shows you the patient database and the details of each patient, together with a summary of each visit.
@@ -152,7 +152,7 @@ This tab shows you the patient database and the details of each patient, togethe
 <p align="center">
     <img src="images/profileLayout.png"/>
     <br>
-    <em style="color:#CC5500">Profile Window Layout</em>
+    <em style="color:#CC5500">Figure 5. Profile Window Layout</em>
 </p>
 
 This window shows you the individual patient profile picture and personal details in an easy to read manner.
@@ -185,7 +185,7 @@ Access help page by referring to the link provided in the message pop-up.
 <p align="center">
     <img src="images/helpMessage.png"/>
     <br>
-    <em style="color:#CC5500">Example of Help Message</em>
+    <em style="color:#CC5500">Figure 6. Example of Help Message</em>
 </p>
 
 Format: `help`
@@ -203,7 +203,7 @@ View a list of past commands that you had used during the session.
 <p align="center">
     <img src="images/historyExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of History Command</em>
+    <em style="color:#CC5500">Figure 7. Example of History Command</em>
 </p>
 
 Format: `history`
@@ -215,7 +215,7 @@ Clear the command history.
 <p align="center">
     <img src="images/clearHistoryExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Clear History Command</em>
+    <em style="color:#CC5500">Figure 8. Example of Clear History Command</em>
 </p>
 
 Format: `clearhistory`
@@ -236,7 +236,7 @@ Revert your previous command which modified the patient database.
 <p align="center">
     <img src="images/undoExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Undo Command</em>
+    <em style="color:#CC5500">Figure 9. Example of Undo Command</em>
 </p>
 
 Format: `undo`
@@ -257,7 +257,7 @@ Redo the most recent command that you have undone.
 <p align="center">
     <img src="images/redoExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Redo Command</em>
+    <em style="color:#CC5500">Figure 10. Example of Redo Command</em>
 </p>
 
 Format: `redo`
@@ -282,7 +282,7 @@ Add a new patient to the patient database.
 <p align="center">
     <img src="images/addExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Add Patient Command</em>
+    <em style="color:#CC5500">Figure 11. Example of Add Patient Command</em>
 </p>
 
 Format: `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
@@ -321,7 +321,7 @@ If the person already has an existing profile picture, you can use this command 
 <p align="center">
     <img src="images/addProfileExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Add Profile Picture Command</em>
+    <em style="color:#CC5500">Figure 12. Example of Add Profile Picture Command</em>
 </p>
 
 Format: `addpicture INDEX f/FILE_PATH`
@@ -349,7 +349,7 @@ Edit an existing patient in the patient database.
 <p align="center">
     <img src="images/editExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Edit Patient Command</em>
+    <em style="color:#CC5500">Figure 13. Example of Edit Patient Command</em>
 </p>
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
@@ -368,7 +368,7 @@ Examples:
 <p align="center">
     <img src="images/colorTagExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Colour Coded Patient</em>
+    <em style="color:#CC5500">Figure 14. Example of Colour Coded Patient</em>
 </p>
 
 <div markdown="block" class="alert alert-info">
@@ -388,7 +388,7 @@ Delete a specified patient from the patient database.
 <p align="center">
     <img src="images/deleteExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Delete Patient Command</em>
+    <em style="color:#CC5500">Figure 15. Example of Delete Patient Command</em>
 </p>
 
 Format: `delete INDEX`
@@ -416,7 +416,7 @@ Clear all patient entries from the patient database.
 <p align="center">
     <img src="images/clearExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Clear Command</em>
+    <em style="color:#CC5500">Figure 16. Example of Clear Command</em>
 </p>
 
 Format: `clear`
@@ -443,7 +443,7 @@ Find patients whose names or NRIC contain any of the given keywords.
 <p align="center">
     <img src="images/findExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Find Command</em>
+    <em style="color:#CC5500">Figure 17. Example of Find Command</em>
 </p>
 
 Format: `find KEYWORDS`
@@ -473,7 +473,7 @@ View a list of all your patients in the patient database.
 <p align="center">
     <img src="images/listExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of List Command</em>
+    <em style="color:#CC5500">Figure 18. Example of List Command</em>
 </p>
 
 Format: `list`
@@ -492,7 +492,7 @@ Display the patient's profile in a separate window.
 <p align="center">
     <img src="images/profileExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Profile Window</em>
+    <em style="color:#CC5500">Figure 19. Example of Profile Window</em>
 </p>
 
 Format: `profile INDEX`
@@ -525,7 +525,7 @@ Display a new window to add a new visitation log for the specified patient.
 <p align="center">
     <img src="images/addVisitExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Add Visit Command</em>
+    <em style="color:#CC5500">Figure 20. Example of Add Visit Command</em>
 </p>
 
 Format: `addvisit INDEX [vd/VISIT_DATE]`
@@ -565,7 +565,7 @@ Display a new window to edit the visitation log for a specified patient.
 <p align="center">
     <img src="images/editVisitExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Edit Visit Command</em>
+    <em style="color:#CC5500">Figure 21. Example of Edit Visit Command</em>
 </p>
 
 Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
@@ -612,7 +612,7 @@ Delete the patient's visitation log.
 <p align="center">
     <img src="images/deleteVisitExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Delete Visit Command</em>
+    <em style="color:#CC5500">Figure 22. Example of Delete Visit Command</em>
 </p>
 
 Format: `deletevisit INDEX i/VISIT_INDEX`
@@ -638,7 +638,7 @@ Add a new appointment for the specified patient to the appointment database.
 <p align="center">
     <img src="images/addApptExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Add Appointment Command</em>
+    <em style="color:#CC5500">Figure 23. Example of Add Appointment Command</em>
 </p>
 
 Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
@@ -681,7 +681,7 @@ Edit the specified appointment in the appointment database.
 <p align="center">
     <img src="images/editApptExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Edit Appointment Command</em>
+    <em style="color:#CC5500">Figure 24. Example of Edit Appointment Command</em>
 </p>
 
 Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_TIME] [d/DURATION]`
@@ -730,7 +730,7 @@ Delete the specified appointment from the appointment database.
 <p align="center">
     <img src="images/deleteApptExample.png"/>
     <br>
-    <em style="color:#CC5500">Example of Delete Appointment Command</em>
+    <em style="color:#CC5500">Figure 25. Example of Delete Appointment Command</em>
 </p>
 
 Format: `deleteappt INDEX`

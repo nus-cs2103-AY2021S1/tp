@@ -61,6 +61,7 @@ Given below are my contributions to the project.
     * Added documentation for the features `history`, `clearhistory`, `up arrow arrow keys`, `addappt` and `deleteappt`. [\#59](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/59), [\#72](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/72), [\#161](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/161)
     * Did cosmetic tweaks to existing documentation: [\#177](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/177)
     * Added well-annotated screenshots: [\#263](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/263), [\#264](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/264)
+    * Added figure captions to all screenshots: [\#271](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/271)
   * Developer Guide:
     * Added glossary. [\#38](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/38)
     * Added implementation details and diagrams for `history`, `clearhistory` and `up down arrow keys` features. [\#100](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/100)
