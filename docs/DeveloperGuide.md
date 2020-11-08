@@ -595,138 +595,157 @@ _{More to be added}_
 
 ## **Appendix C - Use Cases**
 
-(For all use cases below, the **System** is the `Trackr` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Trackr` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Add a person**
+**Use case: UC01 - View all tutorial groups within a module**
+
+**Preconditions: User is in Module View**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Trackr shows a list of persons
-3.  User requests to add a specific person to the list
-4.  Trackr adds the person
-
+1. User keys in command to view the tutorial groups of a specific module.
+2. Trackr displays the list of tutorial groups and shows a confirmation message.
 Use case ends.
 
 **Extensions**
 
--   2a. Incorrect input format
-    -   2a1. Trackr shows an error message
-    Use Case resumes at 2
+- 1a. Trackr detects an error in the command parameter.
+    - 1a1. Trackr displays an error message and proper command format.
+    - 1a2. User enters a new parameter.
+    Steps 1a1-1a2 are repeated until the parameter entered are correct.
+    Use case resumes from step 2.
 
-**Use case: UC02 - Delete a person**
+**Use case: UC02 - View all students within a tutorial group of a module**
+
+**Preconditions: User is in Tutorial Group View**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Trackr shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  Trackr deletes the person
-
+1. User keys in command to view the students of a specific tutorial group.
+2. Trackr displays the list of students and shows a confirmation message.
 Use case ends.
 
 **Extensions**
 
--   2a. The list is empty.
+- 1a. Trackr detects an error in the command parameter.
+    - 1a1. Trackr displays an error message and proper command format.
+    - 1a2. User enters a new parameter.
+    Steps 1a1-1a2 are repeated until the parameter entered are correct.
+    Use case resumes from step 2.
 
-Use case ends.
+**Use case: UC03 - Add a student**
 
--   3a. The given index is invalid.
-
-    -   3a1. Trackr shows an error message.
-
-        Use case resumes at step 2.
-
-**Use case: UC03 - Loading a save file**
+**Preconditions: User is in Student View**
 
 **MSS**
 
-1. User launches the application
-2. Trackr attempts to read the save file
-3. Trackr successfully parses the save file and loads the lists of modules on it
-4. User can start using the application
-
-    Use case ends.
-
-**Extensions**
-
--   3a. The save file is corrupted / in the wrong format
-
-    -   3a1. Trackr shows an error message
-    -   3a2. Trackr starts a new save file and overwrites the existing one
-
-        Use case resumes at step 4.
-
--   3b. The save file does not exist
-
-    -   3b1. Trackr creates a new save file
-
-        Use case resumes at step 4.
-
-**Use case: UC04 - Search for a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  Trackr shows a list of persons
-3.  User requests to search for a specific person in the list
-4.  Trackr displays the person
-
+1. User requests to view all students within a tutorial group of a module (UC02).
+2. User enters the student data.
+3. Trackr adds the student to the displayed list.
+4. Trackr shows a message with the added student's details.
 Use case ends.
 
 **Extensions**
 
--   2a. The list is empty.
+- 2a. Trackr detects that the data entered is in the wrong format.
+    - 2a1. Trackr displays an error message and proper command format.
+    - 2a2. User enters new data.
+    Steps 2a1-2a2 are repeated until the data entered are correct.
+    Use Case resumes at 3.
 
-Use case ends.
+**Use case: UC04 - Delete a student**
 
--   3a. The given information is invalid.
-
-    -   3a1. Trackr shows an error message.
-
-    Use case resumes at 1.
-
-**Use case: UC05 - Add a checklist of task**
+**Preconditions: User is in Student View**
 
 **MSS**
 
-1.  User requests to list checklist of tasks
-2.  Trackr shows a list of tasks
-3.  User requests to add a specific task to the list
-4.  Trackr adds the task to the list
-
+1. User requests to view all students within a tutorial group of a module (UC02).
+2. User enters command to delete a specific student in the displayed list.
+3. Trackr deletes the student from the displayed list.
+4. Trackr shows a message with the deleted student's details.
 Use case ends.
 
 **Extensions**
 
--   2a. Incorrect input format
-    -   2a1. Trackr shows an error message
-    Use Case resumes at 2
+- 1a. The list is empty.
+Use case ends.
 
-**Use case: UC06 - Mark a task in the list as done**
+- 2a. Trackr detects an error in the command parameter.
+    - 2a1. Trackr displays an error message and proper command format.
+    - 2a2. User enters a new parameter.
+    Steps 2a1-2a2 are repeated until the parameter entered are correct.
+    Use case resumes from step 3.
+
+**Use case: UC05 - Loading a save file**
 
 **MSS**
 
-1.  User requests to list checklist of tasks
-2.  Trackr shows a list of tasks
-3.  User requests to mark a specific task as done
-4.  Trackr marks the task as done
-    Use case ends.
+1. User launches the application.
+2. Trackr attempts to read the save file.
+3. Trackr successfully parses the save file and loads the lists of modules on it.
+4. User can start using the application.
+Use case ends.
 
 **Extensions**
 
--   2a. Incorrect input format
-    -   2a1. Trackr shows an error message
-    Use Case resumes at 2
- 
+- 3a. The save file is corrupted or in the wrong format.
+    - 3a1. Trackr shows an error message.
+    - 3a2. Trackr starts a new save file and overwrites the existing one.
+    Use case resumes at step 4.
+
+- 3b. The save file does not exist.
+    - 3b1. Trackr creates a new save file.
+    Use case resumes at step 4.
+
+**Use case: UC06 - Search for a student**
+
+**Preconditions: User is in Student View**
+
+**MSS**
+
+1. User requests to view all students within a tutorial group of a module (UC02).
+2. User enters the find command with keyword(s) to search for a specific student in the list.
+3. Trackr displays a list of student(s) with name(s) that match the keyword(s).
+Use case ends.
+
+**Extensions**
+
+- 1a. The list is empty.
+Use case ends.
+
+**Use case: UC07 - Edit a student's details**
+
+**Preconditions: User is in Student View**
+
+**MSS**
+
+1. User requests to view all students within a tutorial group of a module (UC02).
+2. User enters the edit command with new student details for a specific student in the list.
+3. Trackr edits the student in the displayed list.
+4. Trackr shows a message with the edited student's details.
+Use case ends.
+
+**Extensions**
+
+- 1a. The list is empty.
+Use case ends.
+
+- 2a. Trackr detects an error in the command.
+    - 2a1. Trackr displays an error message and proper command format.
+    - 2a2. User enters new command.
+    Steps 2a1-2a2 are repeated until the parameter entered are correct.
+    Use case resumes from step 3.
+
 ---
 
 ## **Appendix D - Non-Functional Requirements**
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 student details without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The data should be stored locally so the user would not require the Internet to access his data.
+2.  Should be able to hold up to 1000 module, tutorial group and student details without a noticeable sluggishness in
+performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The data should be stored locally, so the user would not require the Internet to access his data.
 
 ---
 
