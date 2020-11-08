@@ -1026,7 +1026,7 @@ testers are expected to do more *exploratory* testing.
 
 ### 6.3 Add staff
 
-### 6.4 Add/del comment
+### 6.4 Adding/deleting a comment
 
 1. Adding a comment to a staff while all staffs are being shown in a list.
 
@@ -1106,7 +1106,33 @@ testers are expected to do more *exploratory* testing.
 
     1. Similar to (3) and (4), just that prerequisite is instead viewing applicant profile with command `view 1` on applicant list.
            
-### 6.5 Add/del leave
+### 6.5 Adding leave
+
+1. Adding a leave to a staff on staff list
+
+    1. Prerequisites: list all staffs using the `list s-` command. Multiple staffs in list.
+    
+    1. Test case: `addl 1 l/d/10/10/2020`
+       Expected: leave with date 10/10/2020 will be added to staff at index 1. Success message is shown.
+       
+    1. Test case: `addl 1 l/d/10/10/2020`
+       Expected: command rejected. Error message shown informing that this is a duplicate leave.
+       
+    1. Test case: `addl 1 l/d/02/02/2020 d/03/02/2020 l/d/09/02/2020`
+       Expected: leave with date range 02/02/2020 to 03/02/2020 and leave with date 09/02/2020 added to staff at index 1. Success message is shwon
+       
+    1. Test case: `addl 0 l/d/10/10/2020`
+       Expected: command rejected. Error message shown informing that index is invalid.
+       
+    1. Other incorrect commands to try: `addl x`, `addl`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous
+
+1. Adding a leave to a staff on staff profile
+    
+    1. Prerequisites: list all staffs using the `list s-` command. `view 1` to view the first staff.
+    
+    1. Test cases same as previous.
+    
 
 ### 6.6 Saving data
 
@@ -1128,7 +1154,7 @@ Eva generates a `data` directory to store databases and user preferences.
    Expected: Eva would not load staff database and leave staff list empty.
 
 
-### 6.7 Find staff and applicants
+### 6.7 Finding staffs and applicants
 
 1. Find an applicant with the given name.
 
