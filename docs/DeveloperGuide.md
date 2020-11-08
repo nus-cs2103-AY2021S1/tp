@@ -291,15 +291,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Student with lots of file                                      | tag my files with a easy to remember tag              | get file path                                                 |
 | `* * *`  | First time user                                                | use a help command                                    | start to remember how to use the command                      |
 | `* * *`  | Student who prefers to type                                    | use typing to interact with my file system            | use keyboard as much as possible                              |
-| `* * *`  | Student who is familiar with command line applications         | name my files                                         | access the file easily next time                              |
+| `* * *`  | Student who is familiar with command line applications         | tag my files                                          | access the file easily next time                              |
 | `* * *`  | CS student with many categories of files                       | categorise my files and folders                       | easily manage my files and search files based on categories   |
-| `* * *`  | First time user                                                | use help command                                      | start to remember how to use the command                      |
+| `* * *`  | Software engineer                                              | group my files together                               | open all files in the same group at once                      |
 | `* * *`  | Student with lots of files                                     | see a list of my tags                                 | find the tag that I created easily                            |
 | `* * *`  | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files                 |
 | `* *`    | CS student with a lot of project                               | hide private contact details                          | minimize chance of someone else seeing them by accident       |
 | `* *`    | Command line user                                              | use commands similar to Linux                         | use the similar Linux command without having to relearn       |
+| `* *`    | Careless CS student                                            | be able to undo my mistake                            | fix my mistake                                                |
 | `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                        |
-| `*`      | Intermediate user                                              | delete file                                           | not be distracted by it.                                      |
+| `*`      | Intermediate user                                              | delete tagged files                                   | not be distracted by it.                                      |
 
 
 
@@ -588,6 +589,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case ends.
         
 <br />
+
 
 ### Non-Functional Requirements
 

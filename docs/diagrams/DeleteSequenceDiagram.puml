@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("untag t/myTag")
+[-> LogicManager : execute("untag t>myTag")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("untag t/myTag")
+LogicManager -> AddressBookParser : parseCommand("untag t>myTag")
 activate AddressBookParser
 
 create UntagCommandParser
@@ -26,7 +26,7 @@ activate UntagCommandParser
 UntagCommandParser --> AddressBookParser
 deactivate UntagCommandParser
 
-AddressBookParser -> UntagCommandParser : parse("t/myTag")
+AddressBookParser -> UntagCommandParser : parse("t>myTag")
 activate UntagCommandParser
 
 create UntagCommand

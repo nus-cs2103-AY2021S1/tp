@@ -375,8 +375,9 @@ from command line to HelloFile to be as smooth as possible for our target users.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary
+
 Terminology | Definition
---------|------------------
+--------------|------------------
 **CLI** | Command Line Interface is a command line program that accepts text input to execute operating system functions
 **GUI** | Graphical User Interface is a form of user interface that allows users to interact with electronic devices through graphical icons, instead of text-based user interfaces.
 **Absolute path** | The complete address of a file location. Usually, the address consists of the root element and the complete directory list required to locate the file Example: `C:\Users\a.txt` (Windows), `/home/usr/b.txt` (Linux)).
