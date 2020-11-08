@@ -108,12 +108,12 @@ public class RemindCommandTest {
         Assignment secondAssignmentToRemind = model.getFilteredAssignmentList()
                 .get(INDEX_SECOND_ASSIGNMENT.getZeroBased());
 
-        assignmentsToRemind.add(secondAssignmentToRemind);
         assignmentsToRemind.add(firstAssignmentToRemind);
+        assignmentsToRemind.add(secondAssignmentToRemind);
 
         RemindCommand remindCommand = new RemindCommand(indexesToRemind);
 
-        String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENT_SUCCESS, assignmentsToRemind);
+        String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENTS_SUCCESS, assignmentsToRemind);
 
         ModelManager expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), firstAssignmentToRemind);

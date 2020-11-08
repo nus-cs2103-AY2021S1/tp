@@ -56,8 +56,6 @@ public class DoneCommand extends Command {
         List<Assignment> assignmentsToMarkDone = new ArrayList<>();
         List<Integer> assignmentsAlreadyMarkedDone = new ArrayList<>();
 
-        targetIndexes.sort(CommandLogic.INDEX_COMPARATOR);
-
         CommandLogic.checkForDuplicatedIndexes(targetIndexes);
         CommandLogic.checkForInvalidIndexes(targetIndexes, model, DoneCommand.MESSAGE_USAGE);
 
@@ -83,8 +81,6 @@ public class DoneCommand extends Command {
 
         if (hasException) {
             if (isMultipleIndexes && assignmentsAlreadyMarkedDone.size() > 1) {
-                // sort so that the numbers will appear in ascending order later
-                assignmentsAlreadyMarkedDone.sort(null);
                 throw new CommandException(String.format(MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENTS_AS_DONE,
                         assignmentsAlreadyMarkedDone));
             } else if (isMultipleIndexes) {
