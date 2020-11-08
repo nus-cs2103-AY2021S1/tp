@@ -292,7 +292,7 @@ public class UniqueRoomList implements Iterable<Room> {
             }
         }
     }
-    //@@author chiamyunqing
+    //@@author
 
     /**
      * Replaces the room {@code target} in the list with {@code editedRoom}.

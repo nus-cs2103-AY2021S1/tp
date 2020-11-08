@@ -64,7 +64,7 @@
         <StackPane fx:id="commandBoxPlaceholder" styleClass="main-pane-with-border" VBox.vgrow="NEVER">
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="200" styleClass="main-pane-with-border" VBox.vgrow="ALWAYS">
+        <StackPane fx:id="resultDisplayPlaceholder" minHeight="150" prefHeight="200" styleClass="main-pane-with-border" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin></StackPane>
