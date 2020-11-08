@@ -75,4 +75,12 @@ public class AnswerCommand extends Command {
         model.recordResponse(resp);
         return new CommandResult(String.format(MESSAGE_ANSWER_SUCCESS, this.index.getZeroBased(), this.answer));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AnswerCommand // instanceof handles nulls
+                && index.equals(((AnswerCommand) other).index)
+                && answer.equals(((AnswerCommand) other).answer));
+    }
 }
