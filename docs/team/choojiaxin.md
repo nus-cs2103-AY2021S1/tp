@@ -110,8 +110,7 @@ I contributed to the remind feature under Imeplementations and its Sequence diag
 [\#166](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/166),
 [\#182](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/182),
 [\#230](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/230),
-[\#241](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/241),
-[\#182](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/182)
+[\#241](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/241)
 
 
 * Reported bugs and suggestions for other teams in the class (examples: 
