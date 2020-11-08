@@ -39,10 +39,10 @@
     + [3.4.3 Recording attendance of a student: `attendance` (By: Vaishak)](#343-recording-attendance-of-a-student-attendance-by-vaishak)
         + [3.4.3.1 Adding an attendance record to a student: `attendance add`](#3431-adding-an-attendance-record-to-a-student-attendance-add)
         + [3.4.3.2 Deleting an attendance record for a student: `attendance delete`](#3432-deleting-an-attendance-record-for-a-student-attendance-delete)
-  * [3.6 Notebook feature (By: Choon Siong)](#36-notebook-feature-by-choon-siong)
-    + [3.6.1 Adding a note: `note add`](#361-adding-a-note-note-add)
-    + [3.6.2 Editing a note: `note edit`](#362-editing-a-note-note-edit)
-    + [3.6.3 Deleting a note: `note delete`](#363-deleting-a-note-note-delete)
+  * [3.5 Notebook feature (By: Choon Siong)](#35-notebook-feature-by-choon-siong)
+    + [3.5.1 Adding a note: `note add`](#351-adding-a-note-note-add)
+    + [3.5.2 Editing a note: `note edit`](#352-editing-a-note-note-edit)
+    + [3.5.3 Deleting a note: `note delete`](#353-deleting-a-note-note-delete)
 - [4. Command summary](#4-command-summary)
 - [5. Glossary](#5-glossary)
 - [6. FAQ](#6-faq)
@@ -177,22 +177,18 @@ By default, the administrative details of students are shown upon starting the a
 
 Format: `toggle`
 
-Expected Outcome:
+Example:
+* By default, you should see the administrative details of your students.
+    * If you have not entered the `toggle` command, you should see a screen similar to the one below.
 
-The following figures shows the before and after of entering the command `toggle`.
+    ![ToggleCommandExpectedOutcomeBeforeUG](images/ToggleCommandExpectedOutcomeBeforeUG.png)
+    
+    Figure __. Before entering command `toggle`.
 
-Before:
+    * After entering the `toggle` command, you will switch to displaying academic details of students as shown below.
 
-![ToggleCommandExpectedOutcomeBeforeUG](images/ToggleCommandExpectedOutcomeBeforeUG.png)
-
-Figure __. Before entering command `toggle`.
-
-After:
-
-![ToggleCommandExpectedOutcomeBeforeUG](images/ToggleCommandExpectedOutcomeAfterUG.png)
-
-Figure __. After entering command `toggle`.
-
+    ![ToggleCommandExpectedOutcomeAfterUG](images/ToggleCommandExpectedOutcomeAfterUG.png)
+    
 #### 3.2.3 Exiting the program: `exit`
 
 You can exit the program with the `exit` command. Any changes you have made to **Reeve** is automatically saved to your drive, so do not have to worry about losing data.
@@ -241,16 +237,16 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 </div>
 
 Examples:
-* `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`
-* `add n/John Doe p/98765432 s/Woodlands Secondary School y/s 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
+* Suppose you want to add a student without any additional details.
+    * You can use something like `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`.
+    * You should see a screen similar to the one shown below.
 
-Expected Outcome:
+    ![AddCommandExpectedOutcomeUG](images/AddCommandExpectedOutcomeUG.png)
+    
+    Figure __. After entering command `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`.
 
-The following figure shows the expected outcome after entering the command `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`.
-
-![AddCommandExpectedOutcomeUG](images/AddCommandExpectedOutcomeUG.png)
-
-Figure __. After entering command `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`.
+* Also, if you want to add a student with multiple additional details.
+    * You can use something like `add n/John Doe p/98765432 s/Woodlands Secondary School y/s 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 
 #### 3.3.2 Listing all students: `list`
 
@@ -365,8 +361,13 @@ General Format: `detail COMMAND_WORD STUDENT_INDEX PARAMETERS`
 
 * The `COMMAND_WORD` field accepts either `add`, `edit` or `delete`.
 * The command affects the student at the specified `STUDENT_INDEX`.
-* `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The format of `PARAMETERS` varies with each `COMMAND_WORD` as explained below.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+</div>
 
 #### 3.3.8.1 Adding a detail: `detail add`
 
@@ -431,10 +432,6 @@ To view schedule:
 
 1.  Type `schedule m/weekly d/02/11/2020` into the command box as shown in Figure __ . Press `Enter` to execute the command.
 
-    <div markdown="block" class="alert alert-info">
-    :warning: Do not input command word as "Schedule" with a capital "S". Reeve will not recognise the command word.
-    </div>
-
     ![Schedule Step 1](images/ScheduleStep1.png)
     Figure __ Shows the schedule command input keyed into the command box.
 
@@ -454,7 +451,7 @@ To view schedule:
     Figure __ Shows various component of your schedule.
 
 <div markdown="block" class="alert alert-info">
-:warning: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
+:information_source: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
 Viewing it this way would open up your schedule of the current week in the weekly format.
 You could use this as quick way to open up schedule for the current week.
 </div>
@@ -552,7 +549,8 @@ Example:
 #### 3.4.2 Recording exams of a student: `exam` (By: Hogan)
 
 You can add or delete an exam record to/from a specified student. You can then view the exam statistics of a student in the form of a
-score percentage to exam date line graph. 
+score percentage to exam date line graph. This helps you to keep track of your students academic progress allowing you to take note of those who are
+not doing too well. 
 
 General Format: `exam COMMAND_WORD_EXAM STUDENT_INDEX PARAMETERS`
 
@@ -591,20 +589,15 @@ Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 
 </div>
 
-Examples:
-* `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam with date 8 Dec 2020 and
-score 40/60 to the first student in **Reeve**.
+Example:
+* Suppose you want to add a exam record to a student to monitor his academic progress.
+    * You can use `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` to add a new exam record to the first student in the displayed student list on the main panel
+    with exam name `Mid Year 2020`, exam date `08/12/2020` and score `40/60` so that you can keep track of this particular exam record.
+    * You should see a screen similar to the one below after entering the above command.
 
-* `exam add 5 n/End of Year 2020 d/12/05/2020 s/67/100` adds the "End of Year 2020" exam with date 12 May 2020 and
-score 67/100 to the fifth student in **Reeve**.
-
-Expected Outcome:
-
-The following figure shows the expected outcome after entering the command `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`.
-
-![AddExamCommandExpectedOutcomeUG](images/AddExamCommandExpectedOutcomeUG.png)
-
-Figure __. After entering command `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`.
+    ![AddExamCommandExpectedOutcomeUG](images/AddExamCommandExpectedOutcomeUG.png)
+    
+    Figure __. After entering command `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`.
 
 ##### 3.4.2.2 Deleting an exam record for a student: `exam delete`
 
@@ -622,24 +615,20 @@ Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
 
 </div>
 
-Examples:
-* `exam delete 1 i/1` deletes the first exam from the first student in the displayed students list.
-* `exam delete 2 i/5` deletes the fifth exam from the second student in the displayed students list.
+Example:
+* Suppose you have an outdated exam record or an exam record with wrong details such as the exam date or score and you wish to remove this exam record.
+    * For instance, if your current list looks similar to the figure below.
 
-Expected Outcome:
+    ![DeleteExamExpectedOutcomeBefore](images/DeleteExamExpectedOutcomeBefore.png)
+    
+    Figure __. Before entering command `exam delete 1 i/1`.
 
-The following figures shows the before and after of entering the command `exam delete 1 i/1`.
+    * You can use `exam delete 1 i/1` to delete the first exam record on the first student in the displayed student list on the main panel. 
+    * You should see that you have successfully deleted the first exam record of the first student as shown below after entering the above command.
 
-Before:
-![DeleteExamExpectedOutcomeBefore](images/DeleteExamExpectedOutcomeBefore.png)
-
-Figure __. Before entering command `exam delete 1 i/1`.
-
-After:
-![DeleteExamExpectedOutcomeAfter](images/DeleteExamExpectedOutcomeAfter.png)
-
-Figure __. After entering command `exam delete 1 i/1`.
-
+    ![DeleteExamExpectedOutcomeAfter](images/DeleteExamExpectedOutcomeAfter.png)
+    
+    Figure __. After entering command `exam delete 1 i/1`.
 
 ##### 3.4.2.3 Viewing exam statistics of a student: `exam stats`
 
@@ -657,16 +646,13 @@ Format: `exam stats STUDENT_INDEX`
 </div>
 
 Examples:
-* `list` followed by `exam stats 2` views the exam statistics of the 2nd student in **Reeve**.
-* `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
+* Suppose you are trying to view the exam statistics of a particular student to view his academic progress so far in terms of his exam scores.
+    * You can use `exam stats 1` to view the exam statistics of the first student in the displayed student list on the main panel.
+    * You should see a screen similar to the one below when the above command is entered.
 
-Expected Outcome:
-
-The following figure shows the expected outcome after entering the command `exam stats 1`. 
-
-![ExamStatsCommandExpectedOutcomeUG](images/ExamStatsCommandExpectedOutcomeUG.png)
-
-Figure __. After entering command `exam stats 1`.
+    ![ExamStatsCommandExpectedOutcomeUG](images/ExamStatsCommandExpectedOutcomeUG.png)
+    
+    Figure __. After entering command `exam stats 1`.
 
 <div markdown="block" class="alert alert-info">
 
@@ -714,14 +700,14 @@ Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 Example:
 * `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
 
-### 3.6 Notebook feature (By: Choon Siong)
+### 3.5 Notebook feature (By: Choon Siong)
 
 You can store notes containing small amounts of information inside the notebook. This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve. You should see the notes on the bottom right hand side of Reeve similar to the display shown below.
 
 ![Location of notes panel](images/screenshots/Notes.png)
 
 
-#### 3.6.1 Adding a note `note add`
+#### 3.5.1 Adding a note `note add`
 
 You can add a note to the notebook for the information you want to store.
 
@@ -739,7 +725,7 @@ Example:
     ![Adding a note](images/screenshots/Adding a note.png)
 
 
-#### 3.6.2 Editing a note `note edit`
+#### 3.5.2 Editing a note `note edit`
 
 You can edit a note that is inside the notebook to update the information inside.
 
@@ -753,7 +739,7 @@ Example:
     * Assuming the previous note was the first note, you can use `note edit 1 d/review marking`
        to change the note to remind yourself to review the marking.
    
-#### 3.6.3 Deleting a note `note delete`
+#### 3.5.3 Deleting a note `note delete`
 
 You can delete a note from the notebook when the information is no longer needed.
 
