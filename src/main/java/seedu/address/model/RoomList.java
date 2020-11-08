@@ -148,7 +148,6 @@ public class RoomList implements ReadOnlyList<Room> {
         requireNonNull(patientName);
         rooms.clearRoom(patientName);
     }
-    //@@author chiamyunqing
 
     //@author LeeMingDe
     /**

@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 
-//@@author
+//@@author AB3
 /**
  * A class to access patient records data stored as a json file on the hard disk.
  */
