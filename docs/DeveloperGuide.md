@@ -20,12 +20,16 @@ by Team W12-2
     * [4.4 - Find Commands - `findMod`, `findTG` and `findStudent`](#section-44---find-commands---findmod-findtg-and-findstudent)
     * [4.5 - List Commands - `listMod`, `listTG` and `listStudent`](#section-45---list-commands---listmod-listtg-and-liststudent)
     * [4.6 - View Commands - `viewTG` and `viewStudent`](#section-46---view-commands---viewtg-and-viewstudent)
-    * [4.7 - Clear Command - `clear`](#section-47---clear-commands---clear)
-    * [4.8 - Exit Command - `exit`](#section-48---exit-commands---exit)
+    * [4.7 - Clear Command - `clear`](#section-47---clear-command---clear)
+    * [4.8 - Exit Command - `exit`](#section-48---exit-command---exit)
     * [4.9 - Data saving and loading](#section-49---data-saving-and-loading)
-
 * [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
-* [Section 6 - Appendix](#section-6---appendix)
+* [Appendix A - Product Scope]
+* [Appendix B - User Stories]
+* [Appendix C - Use Cases]
+* [Appendix D - Non-Functional Requirements]
+* [Appendix E - Glossary]
+* [Appendix F - Instructions for Manual Testing]
 
 ---
 
@@ -183,6 +187,14 @@ Trackr's three data type also share the same commands, which are:
 
 Since Trackr stores and manages its data recursively, the commands for Module, Tutorial Group and Student work similarly.
 
+#### Design Considerations:
+**Aspect: List to contain the models**
+- Alternative 1: Use a single generic `UniqueList` that contains the models.
+    - Pros: Code that is easier to maintain due to abstraction. 
+    - Cons: Harder to implement.
+- Alternative 2 (Current choice): Use a separate `UniqueList` for each model such as `UniqueModuleList`.
+    - Pros: Easier to implement.
+    - Cons: More repetitive code.
 
 ### Section 4.1 - Add Commands - `addMod`, `addTG` and `addStudent`
 
@@ -232,15 +244,6 @@ Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand
 > - `Model#addStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and `TutorialGroup`
 > and adds the `Student` to the `internalList` of the `UniqueStudentList`.
 
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
-
 ### Section 4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`
 
 #### Overview
@@ -287,15 +290,6 @@ Step 5. Once the `Module` has been deleted from the `internaList`, `DeleteModule
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be deleted from.
 > - `Model#deleteStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
 > `TutorialGroup` and deletes the `Student` from the `internalList` of the `UniqueStudentList`.
-
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
     
 ### Section 4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`
 
@@ -344,15 +338,6 @@ Step 5. Once the `Module` has been edited in the `internaList`, `EditModuleComma
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be edited from.
 > - `Model#setStudent(Student, Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
 > `TutorialGroup` and edits the `Student` in the `internalList` of the `UniqueStudentList`.
-
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
     
 ### Section 4.4 - Find Commands - `findMod`, `findTG` and `findStudent`
 
@@ -406,15 +391,6 @@ Step 5. `FindModuleCommand#execute(Model)` creates a `CommandResult` object and 
 > are `AttendanceBelowSpecifiedScorePredicate` and `ParticipationBelowSpecifiedScorePredicate` respectively. Like the
 > aforementioned find command for `Student`, `attendanceBelow` and `participationBelow` uses the 
 > `Model#updateFilteredStudentList` method to update the displaye list of students.
-
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
     
 ### Section 4.5 - List Commands - `listMod`, `listTG` and `listStudent`
 
@@ -460,15 +436,6 @@ Step 5. `ListModuleCommand#execute(Model)` creates a `CommandResult` object and 
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be listed from.
 > - `Model#updateFilteredStudentList(Predicate<Student>)` method then displays all the students within the target 
 > `Module` and `TutorialGroup`.
-
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
     
 ### Section 4.6 - View Commands - `viewTG` and `viewStudent`
 
@@ -509,16 +476,6 @@ to `LogicManager`.
 > - `Model#setViewToStudent(TutorialGroup)` method then displays all the students of the target `Module` and 
 > `TutorialGroup`.
 
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
-    
-
 ### Section 4.7 - Clear Command - `clear`
 
 #### Overview
@@ -532,15 +489,6 @@ The command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ClearCommand` of Trackr.
 
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
-
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
 
 ### Section 4.8 - Exit Command - `exit`
 
@@ -556,15 +504,6 @@ The command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ExitCommand` of Trackr.
 
 ![ExitCommandSequenceDiagram](images/ExitCommandSequenceDiagram.png)
-
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
 
 ### Section 4.9 - Data saving and loading
 
@@ -624,11 +563,8 @@ The following activity diagram summarizes how data from the Json file is read an
 -   [DevOps guide](DevOps.md)
 
 ---
-# **Section 6 - Appendix**
-## **Appendix: Requirements**
 
-### Product scope
-
+## **Appendix A - Product Scope**
 **Target user profile**:
 
 -   has a need to manage a significant number of students
@@ -639,7 +575,9 @@ The following activity diagram summarizes how data from the Json file is read an
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
-### User stories
+---
+
+## **Appendix B - User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -649,13 +587,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | TA                                    | add/delete modules                                                    |                                                                 |
 | `* * *`  | TA                                    | rename a module                                                       | correct any errors                                              |
 | `* * *`  | TA who needs to contact many students | search a person by name or module                                     | get their contact details                                       |
-| `* * *`  | TA managing many modules              | have a checklist of the things I want to do in each tutorial          | remember what I need to cover in each tutorial                  |
 | `* * *`  | TA                                    | save my data                                                          | continue where I left off                                       |
-| `* * *`  | TA                                    | update a checklist of task such as deleting or marking a task as done | know what to do and keep track of the tasks that have been done |
 
 _{More to be added}_
 
-### Use cases
+---
+
+## **Appendix C - Use Cases**
 
 (For all use cases below, the **System** is the `Trackr` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -780,17 +718,19 @@ Use case ends.
 -   2a. Incorrect input format
     -   2a1. Trackr shows an error message
     Use Case resumes at 2
+ 
+---
 
-### Non-Functional Requirements
+## **Appendix D - Non-Functional Requirements**
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 student details without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The data should be stored locally so the user would not require the Internet to access his data.
 
-_{More to be added}_
+---
 
-### Glossary
+## **Appendix E - Glossary**
 
 -   **Mainstream OS**: Windows, Linux, Unix, OS-X
 -   **Private contact detail**: A contact detail that is not meant to be shared with others
@@ -801,7 +741,7 @@ _{More to be added}_
 
 ---
 
-## **Appendix: Instructions for manual testing**
+## **Appendix F - Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
