@@ -110,9 +110,11 @@ refer to the more succinct name, synopsis, description and example sections to d
 
 ```
 NOTE:
-We have removed all apostrophes (') from our example commands, but that does not mean you can't use them.
-We have only done so because github (or something else) formats apostrophes to be different from the ones 
-on our keyboard, which affects our Inventoryinator's case-sensitive commands.
+We have removed all apostrophes (') from our example commands, 
+but that does not mean you can't use them.
+We have only done so because github (or something else) formats apostrophes
+to be different from the ones on our keyboard, which affects our 
+Inventoryinator's case-sensitive commands.
 Now, you can copy and paste our example commands without worry.
 :)
 ```
@@ -152,7 +154,9 @@ found at location <u>Bobs banana farm</u> and tags <u>delicious</u>, <u>consumab
 ```
 TIPS:
 Quantity should be an integer between 0 and 2,147,483,647.
+
 Item names are case-sensitive.
+
 Tags must be alphanumerical and cannot contain spaces.
 ```
 
@@ -189,9 +193,14 @@ This command adds a recipe to craft <u>Bobs anvil</u>, which takes 3 <u>blocks o
 ```
 TIPS:
 Item names are case-sensitive.
+
 You cannot edit recipes! Please be careful when typing in your quantities.
-To add a recipe that creates an item not yet in your inventory, you will need to add the item first.
-You CAN have 0 as a quantity for an item used, we like to call these items 'catalysts'.
+
+To add a recipe that creates an item not yet in your inventory, 
+you will need to add the item first.
+
+You CAN have 0 as a quantity for an item used, 
+we like to call these items 'catalysts'.
 ```
 
 ### Adding quantity to an item: `addq`
@@ -346,7 +355,9 @@ Deletes the <u>first recipe</u> of the item <u>Bobs 28th finger</u> from your in
 
 ```
 TIPS:
-To find the index of the recipe you wish to delete, use the view command on the product item.
+To find the index of the recipe you wish to delete, 
+use the view command on the product item.
+
 The input recipe index should not exceed 2,147,483,647.
 ```
 
@@ -437,7 +448,8 @@ View all details of the item with the name <u>Bobs bitten fingernail clipping</u
 
 ```
 TIPS:
-This command will only show an item that matches the search parameter exactly. (case-sensitive)
+This command will only show an item that matches 
+the search parameter exactly. (case-sensitive)
 ```
 
 ### Edit an item: `edit`
@@ -500,7 +512,8 @@ added to your inventory.
 
 ```
 TIPS:
-This command may craft more of the desired item than your input, if the recipe used creates 2 or more of the product.
+This command may craft more of the desired item than your input, 
+if the recipe used creates 2 or more of the product.
 ```
 
 ### Check if crafting an item is possible: `check`
