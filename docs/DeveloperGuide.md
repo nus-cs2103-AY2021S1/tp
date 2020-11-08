@@ -6,7 +6,7 @@ title: fitNUS - Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## **Introduction**
+## 1. Introduction
 
 fitNUS is tailored for **NUS students** that are interested in staying healthy and keeping fit. It is suitable for **all
 fitness levels** and is equipped with a **customisable timetable** for you to manage your time wisely and slot in your
@@ -15,15 +15,15 @@ workout routines with ease.
 This developer guide is for users who are interested in our design philosophy and for future developers of fitNUS.
 
 --------------------------------------------------------------------------------------------------------------------
-## **Setting up, getting started**
+## 2. Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 3. Design
 
-### Architecture
+### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -43,15 +43,15 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
+* [**`UI`**](#ui-component): Represents the UI of the App.
+* [**`Logic`**](#logic-component): Executes the command given by the user.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -59,13 +59,13 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `exercise_add e/Biceps`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -83,14 +83,14 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 3.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T09-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `FitNusBookParser` class to parse the user command.
+1. `Logic` uses the `FitNusParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a new Exercise into fitNUS).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -103,7 +103,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ExerciseDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 3.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -124,14 +124,14 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FitNus`, which `Person` references. This allows `FitNus` to only require one `Tag` object per unique `Tag`, instead of each `Lesson` or `Exercise` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `FitNus`, which `Lesson` and `Exercise references. This allows `FitNus` to only require one `Tag` object per unique `Tag`, instead of each `Lesson` or `Exercise` needing their own `Tag` object.<br>
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
 
 
-### Storage component
+### 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -141,17 +141,17 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the fitNUS data in json format and read it back.
 
-### Common classes
+### 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Create routine
+### 4.1 Create routine
 
 The feature to create a routine in fitNUS is implemented using `RoutineCreateCommand` class, which inherits from
 `Command` class. The argument is supplied after parsing the user input by the `RoutineCreateCommandParser` class.
@@ -195,7 +195,7 @@ Given below is the activity diagram a user will go through when creating a routi
 
 ![Routine create activity](./images/RoutineCreateActivityDiagram.png)
 
-#### Design Considerations
+#### 4.1.1 Design Considerations
 
 ##### Aspect: Whether to create a Routine and add exercises simultaneously in the same command
 
@@ -230,7 +230,7 @@ Alternative 1 was chosen to not support Tag for Routine. The UI has a lot of inf
   from the UI as of now, and adding Tag would only clutter up the RoutineListCard. A Routine can store many Exercise and
   this is the more important information to display, over Tag.
 
-### Add Routine to Timetable
+### 4.2 Add Routine to Timetable
 
 The `TimetableAddRoutineCommandParser` and `TimetableAddRoutineCommand` classes parse and execute the user input
 to add a routine to the timetable in fitNUS.
@@ -277,7 +277,7 @@ execute("timetable_add_routine r/Leg Workout D/Monday T/1600-1700") API call.
 
 ![TimetableAddRoutineSequenceDiagram](images/TimetableAddRoutineSequenceDiagram.png)
 
-### Find exercises
+### 4.3 Find exercises
 
 The find exercises feature is implemented using `FindExercisesCommandParser`, as well as the following command:
 * `FindExercisesCommand`, to be executed when the user inputs the command into fitNUS.
@@ -324,7 +324,7 @@ API call.
 
 ![FindExercisesSequenceDiagram](images/FindExercisesSequenceDiagram.png)
 
-### Delete lesson
+### 4.4 Delete lesson
 
 The delete lesson feature is implemented using `LessonDeleteCommandParser`, as well as the following command:
 * `LessonDeleteCommand`, to be executed when the user inputs the command into fitNUS.
@@ -332,6 +332,10 @@ The delete lesson feature is implemented using `LessonDeleteCommandParser`, as w
 `LessonDeleteCommandParser` takes in the user input and parses them to return a `LessonDeleteCommand` object. The
 `LessonDeleteCommand` class then executes the command by deleting the lesson from the respective `FilteredList` for
 lessons in `ModelManager`.
+
+Note that when a user deletes a lesson in fitNUS, fitNUS will automatically delete any corresponding slots that contain
+that lesson from the timetable. The same logic applies when the user deletes a routine. Similarly, when the user edits
+a lesson or routine, fitNUS automatically reflects this change in the corresponding timetable slot(s).
 
 Given below is an example usage scenario and how the delete lesson mechanism behaves at each step.
 
@@ -362,6 +366,25 @@ Within `execute`, `ModelManager`'s `updateFilteredLessonList` method is called. 
 **Step 6:**
 
 The GUI then lists the deleted lesson.
+
+#### 4.4.1 Design Considerations
+
+##### Aspect: Whether to automatically edit or delete the corresponding slot that contains the lesson when the user edits or deletes that lesson
+
+* **Alternative 1 (Current implementation)**: No, there should be a seperate command to add Exercise into Routine
+
+    * Pros: Better abstraction by seperating the logic of creating a Routine, and storing Exercise in Routine.
+    * Cons: User has to input another command.
+
+* **Alternative 2**: Yes, have a single command to create a Routine and add multiple Exercise to it at the same time.
+
+    * Pros: Saves time for user, typing one long chain.
+    * Cons: Increases coupling between Routine and Exercise.
+
+Alternative 1 was chosen for the command to add an Exercise to a Routine to be seperate. This is due to the fact that
+ we wanted to adhere to the Seperation of Concerns Principle. Even though, it comes at the cost of user's time, we
+  believe that the trade-off to gain lower coupling and prevent ripple effects across fitNUS.
+
 
 
 

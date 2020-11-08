@@ -19,11 +19,15 @@ StorageManager o--> FitNusStorage
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonFitNusStorage .left.|> FitNusStorage
 JsonFitNusStorage .down.> JsonSerializableFitNus
-JsonSerializableFitNus .right.> JsonAdaptedExercise
-JsonAdaptedExercise .up.> JsonAdaptedTag
-JsonSerializableFitNus .down.> JsonAdaptedRoutine
-JsonAdaptedRoutine .up.> JsonAdaptedExercise
-JsonSerializableFitNus .right.> JsonAdaptedLesson
-JsonAdaptedLesson .right.> JsonAdaptedTag
+
+JsonSerializableFitNus --> JsonAdaptedBody
+JsonSerializableFitNus --> JsonAdaptedCalorie
+JsonSerializableFitNus --> JsonAdaptedLesson
+JsonSerializableFitNus --> JsonAdaptedExercise
+JsonSerializableFitNus --> JsonAdaptedRoutine
+JsonSerializableFitNus --> JsonAdaptedSlot
+JsonAdaptedExercise --> JsonAdaptedTag
+JsonAdaptedRoutine --> JsonAdaptedExercise
+JsonAdaptedLesson --> JsonAdaptedTag
 
 @enduml
