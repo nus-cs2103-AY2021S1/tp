@@ -1,5 +1,5 @@
 @startuml
-!include style.puml
+!include ../style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
@@ -9,30 +9,40 @@ Interface UserPrefsStorage <<Interface>>
 Interface ModuleListStorage <<Interface>>
 Interface ContactListStorage <<Interface>>
 Interface TodoListStorage <<Interface>>
+Interface EventListStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonModuleListStorage
+Class JsonContactListStorage
+Class JsonTodoListStorage
+Class JsonEventListStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> ModuleListStorage
 StorageManager o--> ContactListStorage
 StorageManager o--> TodoListStorage
+StorageManager o--> EventListStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonModuleListStorage .up.|> ModuleListStorage
 JsonModuleListStorage .down.> JsonSerializableModuleList
-JsonSerializableModuleList .right.> JsonAdaptedModule
-JsonAdaptedModule .right.> JsonAdaptedTag
+JsonSerializableModuleList .down.> JsonAdaptedModule
+
 
 JsonContactListStorage .up.|> ContactListStorage
 JsonContactListStorage .down.> JsonSerializableContactList
 JsonSerializableContactList .down.> JsonAdaptedContact
-JsonAdaptedContact.> JsonAdaptedTag
+
 
 JsonTodoListStorage .up.|> TodoListStorage
 JsonTodoListStorage .down.> JsonSerializableTodoList
 JsonSerializableTodoList .down.> JsonAdaptedTask
-JsonAdaptedTask .left.> JsonAdaptedTag
+
+
+JsonEventListStorage .up.|> EventListStorage
+JsonEventListStorage .down.> JsonSerializableEventList
+JsonSerializableEventList .down.> JsonAdaptedEvent
+
 @enduml

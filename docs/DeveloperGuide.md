@@ -115,10 +115,20 @@ at a specified file location. When the program is started, it will attempt to re
 component will be converting data in json format into java objects.
 
 * can save `UserPref` objects in json format and read it back.
-* can save the module list data in json format and read it back.
-* can save the contact list data in json format and read it back.
-* can save the todo list data in json format and read it back.
+* can save the `ModuleList` data in json format and read it back.
+* can save the `ContactList` data in json format and read it back.
+* can save the `TodoList` data in json format and read it back.
+* can save the `EventList` data in json format and read it back.
 
+#### Json Adapted Objects
+Each of the higher level Json Adapted objects shown in the storage diagram above is dependent on other lower level Json
+Adapted objects related to their feature type.
+
+* `JsonAdaptedModule` is dependent on `JsonAdaptedTag`, `JsonAdaptedGradeTracker` and `JsonAdaptedZoomLink`.
+    * `JsonAdaptedGradeTracker` is dependent on `JsonAdaptedAssignment`
+* `JsonAdaptedContact` is dependent on `JsonAdaptedTag`, `JsonAdaptedGradeTracker` and `JsonAdaptedZoomLink`.
+* `JsonAdaptedTask` is dependent on `JsonAdaptedTag`.
+* `JsonAdaptedEvent` is dependent on `JsonAdaptedTag`.
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
@@ -127,14 +137,16 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 **API** :
 
 ## Module List
-![Structure of the Module List Component](images/ModuleListDiagram.png)
+![Structure of the Module List Component](images/Module/ModuleListClassDiagram.png)
 
 **Module package** : [`seedu.address.model.module`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/module)
 
 * Module is a container class that stores :
   * Name of a module
-  * Zoom link of a module
+  * HashMap of ModuleLesson and ZoomLink key value pairs
   * GradeTracker of a module
+  * ModularCredits of a module
+  * Tag(s) of a module
 * GradeTracker is a container class that stores:
   * Grade for a module
   * Assignments for a module
@@ -146,8 +158,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * Stores Modules in memory
 * Stores a UniqueModuleList
 * Duplicate Modules are not allowed
-
-## CAP Calculator
 
 ## Scheduler
 
