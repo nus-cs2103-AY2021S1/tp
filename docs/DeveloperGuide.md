@@ -215,11 +215,11 @@ TodoList will be explained more comprehensively in the [TodoList feature](#todol
 This section describes some noteworthy details on how certain features are implemented.
 
 
-## 3.1 Module list management feature
+## 3.1 Module list management features
 
-### 3.1.1 Module Tracker features
+### Basic Module Tracker features
 
-##### Add Module feature
+#### Add Module feature
 
 This feature creates and adds a new `Module` into the `ModuleList` if the contact does not already exist. 
 
@@ -240,17 +240,14 @@ Step 5. The `Model#addModule()` operation exposed in the `Model` interface is in
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a `Module` works:
-![AddModuleSequenceDiagram](images/Contact/AddContactSequenceDiagram.png)
+![AddModuleSequenceDiagram](images/Module/AddModuleSequenceDiagram.png)
 Figure 3.1.1.1 Sequence diagram for the execution of `AddModuleCommand`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddModuleCommand` and `AddModuleParser` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-
-The following activity diagram summarizes what happens when a user executes the `AddContactCommand`:
-![AddModuleCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
-Figure ?.? Activity diagram representing the execution of `AddContactCommand`
+The add completed module feature serves a very similar function — it calls `Model#addModule()` also but creates a `Module` that contains the "completed" tag by default instead.
 
 #### Delete Module Feature
 
@@ -267,7 +264,7 @@ After the user input has been parsed by `DeleteModuleParser`, `LogicManager` wil
 `DeleteModuleCommand#execute()`. This deletes the target `Module` by invoking the `Model#deleteModule()` method exposed in the `Model` interface.
 
 Given below is the sequence diagram of how the operation to delete a `Module` works:
-![DeleteModuleSequenceDiagram](images/Contact/DeleteContactCommandSequenceDiagram.png)
+![DeleteModuleSequenceDiagram](images/Module/DeleteModuleCommandSequenceDiagram.png)
 
 #### Design consideration:
 
@@ -309,7 +306,7 @@ Step 5. The `Model#setModule()` operation exposed in the `Model` interface is in
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to edit a `Module` works:
-![EditModuleSequenceDiagram](images/Contact/EditContactCommandSequenceDiagram.png)
+![EditModuleSequenceDiagram](images/Module/EditModuleCommandSequenceDiagram.png)
 
 
 #### Design consideration:
@@ -332,7 +329,7 @@ we were not restricted to reusing other commands. Less coupling between the clas
 less likely require changes to other classes.
 
 
-#### Find Contact Feature
+#### Find Module Feature
 
 The find `Module` feature is important since sieving through all modules to search for a specific `Module` can be 
 tedious and not user-friendly.
@@ -361,7 +358,7 @@ Step 5. The `Model#updateFilteredModuleList()` operation exposed in the `Model` 
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to find modules works:
-![FindModuleCommandSequenceDiagram](images/Contact/FindContactCommandSequenceDiagram.png)
+![FindModuleCommandSequenceDiagram](images/Module/FindModuleCommandSequenceDiagram.png)
 Fig ??
 
 #### Module list data archiving
@@ -387,7 +384,7 @@ The `unarchivemodule` command does the opposite — it calls `Model#unarchiv
 
 ### Module Assignment 
 
-### \[Proposed\] GradeTracker feature
+#### \[Proposed\] GradeTracker feature
 
 #### Proposed Implementation
 
@@ -416,9 +413,7 @@ to the rest of the project as the command is parsed and then executed.
 
 ### Cap Calculator
 
-#### Calculate CAP 
-
-##### Implementation
+#### Calculate CAP Feature
 
 The calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total
 grade points and modular credits, both stored internally `gradePoints` and `modularCredits` respectively. Additionally, it implements the following operations:
@@ -432,9 +427,9 @@ The following sequence diagram shows how the calculate cap operation works:
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-##### Design consideration:
+#### Design consideration:
 
-###### Aspect: Information used to calculate cap
+##### Aspect: Information used to calculate cap
 * Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
     * Pros : Easy to implement.
     * Cons : User has to manually input every module to be used as data for calculation.
@@ -445,9 +440,7 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
      * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
     * Cons : Will require additional storage.
     
-#### Calculate target CAP details
-
-##### Implementation
+#### Calculate target CAP details Feature
 
 The calculate CAP function is facilitated by `TargetCapCalculatorCommand`. It extends Command. Additionally, it implements the following operations:
 
@@ -460,7 +453,7 @@ The following sequence diagram shows how the target cap operation works:
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-## Zoom Link Management
+### Zoom Link Management
 
 As Cap 5 Buddy is designed to suit the needs of SoC students during the transition to online learning,
 it is crucial to design features which allows efficient management of zoom links which are widely used during
