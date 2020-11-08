@@ -1512,3 +1512,37 @@ testers are expected to do more *exploratory* testing.
     
     1. Other incorrect copy commands to try: `copy email`, `copy email n/x` (where x is a name not in the list of contacts), `copy phone t/y` (where y is a tag not in the list of contacts), `copy phone m/z` (where z is a module not in the list of modules)<br>
        Expected: Status message will be an error message.
+       
+### Autocomplete Feature
+
+1. Trigger Autocomplete Mode
+
+    1. Enter 'cn/' into command box.<br/>Expected: Text should turn orange
+        
+1. Generating Suggestions<br/>
+_Assuming you have a contact named "Alex Yeoh", else feel free to use any prefix you like given that the contact exists_
+    1. Type in "alex" and press `Tab`<br/>
+    Expected: Modduke should return a suggestion from your contact list. If there are multiple suggestions, suggestions should be offered alphabetically.
+
+1. Locking in a Suggestion
+    1. Press `Enter` to lock in your suggestion<br/>
+    Expected: 'cn/' should be removed. Text should change back to white.
+
+### Fuzzy Find Completion (Fzf) Feature
+
+1. Trigger Fzf Mode
+    1. In the command box, press `Ctrl` + `Space`<br/>
+    Expected: A menu should pop up given that user has atleast 1 entry in either Contact, Module or Meeting.
+    
+1. Generating Suggestions
+    1. Type some text<br/>
+    Expected: The menu should show suggestions that contain given text. If text enter by user is not empty but has no appropriate suggestions, menu should be hidden.
+    
+1. Navigating Suggestions
+    1. Use `Up` or `Down` arrow keys to navigate suggestions<br/>
+    Expected: User should be allowed to navigate suggestions.
+    
+1. Locking in a Suggestion
+    1. Press `Enter` to lock in your suggestion<br/>
+    Expected: Menu should be removed and the result should appear in command box.
+ 
