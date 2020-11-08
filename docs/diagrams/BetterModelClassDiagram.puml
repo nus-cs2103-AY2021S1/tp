@@ -5,15 +5,17 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 ExerciseBook *-right-> "1" UniqueExerciseList
-ExerciseBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniqueExerciseList
-UniqueTagList -[hidden]down- UniqueExerciseList
+ExerciseBook *-right-> "1" UniqueExerciseTagList
+ExerciseBook *-right-> "1" UniqueMuscleTagList
+UniqueExerciseTagList -[hidden]down- UniqueExerciseList
+UniqueMuscleTagList -[hidden]down- UniqueExerciseList
 
-UniqueTagList *-right-> "*" Tag
+UniqueExerciseTagList *-right-> "*" ExerciseTag
+UniqueMuscleTagList *-right-> "*"MuscleTag
 UniqueExerciseList o-right-> Exercise
 
-Exercise -up-> "*" ExerciseTag
-Exercise -up-> "*" MuscleTag
+Exercise o-up-> "*" ExerciseTag
+Exercise o-up-> "*" MuscleTag
 
 Exercise *--> Name
 Exercise *--> Date
