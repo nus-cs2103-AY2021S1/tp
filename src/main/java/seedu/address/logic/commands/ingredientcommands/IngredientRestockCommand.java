@@ -32,11 +32,13 @@ public class IngredientRestockCommand extends Command {
             + "Parameters: There are no parameters.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String AMOUNT_NEEDED_WHEN_RESTOCK = "    Amount needed to reach the minimum stock level: ";
+    public static final String AMOUNT_NEEDED_WHEN_RESTOCK = "    Amount needed to reach its pre-determined "
+            + "default level: ";
 
-    public static final String MESSAGE_SUCCESS = "Here is the list of all ingredients that should be restocked: \n";
+    public static final String MESSAGE_SUCCESS = "Here is a list of all ingredients that should be restocked: \n";
 
-    public static final String MESSAGE_NO_NEED_TO_RESTOCK = "All Ingredients has not fallen below restock levels.";
+    public static final String MESSAGE_NO_NEED_TO_RESTOCK = "All Ingredients' levels have not fallen below "
+            + "their pre-determined default levels.";
 
     private String ingredientList = "";
 
