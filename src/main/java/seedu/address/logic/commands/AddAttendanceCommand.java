@@ -21,7 +21,7 @@ public class AddAttendanceCommand extends AttendanceCommand {
 
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = AttendanceCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": adds an attendance record to the specified student.\n\n"
+            + ": Adds an attendance record to the specified student.\n\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_ATTENDANCE_DATE + "LESSON_DATE " + PREFIX_ATTENDANCE_STATUS + "ATTENDANCE_STATUS "
             + "[" + PREFIX_ATTENDANCE_FEEDBACK + "FEEDBACK]\n\n"
