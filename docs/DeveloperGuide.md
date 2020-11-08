@@ -370,7 +370,7 @@ Some important operations implemented here are:
 Returns a new `CommandResult` to be displayed to the user
 in the user interface.
 
-### BookmarkCommandParser
+#### BookmarkCommandParser
 
 `BookmarkCommandParser` class extends the `Parser` interface. `BookmarkCommandParser` class is tasked with
 parsing the user inputs and generating a new `BookmarkCommand`. The main logic of the bookmark feature is
@@ -385,7 +385,7 @@ with the given serialNumbers as argument if the user input is a valid `BookmarkC
 Some important operations implemented here are:
 * `BookmarkCommandParser#parse()` returns BookmarkCommand to be executed.
 
-### Example Usage Scenerio
+#### Example Usage Scenerio 
 
 Given Below is one example usage scenerio and explains how the add feature behaves at each step. It is assumed
 that the stock with serial number `fairprice1` exists in the stock book.
@@ -421,21 +421,21 @@ Step 10. Returns a new `CommandResult` containing the `MESSAGE_BOOKMARK_STOCK_SU
 
 Step 12. The updated stock message is displayed to the user.
 
-### Sequence Diagram
+#### Sequence Diagram
 
 The following sequence diagram shows how the update feature works in **Example 1**:
 
 ![BookmarkSequenceDiagram](images/BookmarkCommandSequenceDiagram.png)
 
-### Activity Diagram
+#### Activity Diagram
 
 The following activity diagram summarizes what happens when the bookmark feature is triggered:
 
 ![BookmarkActivityDiagram](images/BookmarkCommandActivityDiagram.png)
 
-### Design Consideration
+#### Design Consideration
 
-#### Aspect:How does a stock get bookmarked
+##### Aspect:How does a stock get bookmarked
 
 * Alternative 1(current implementation):make a temporary copy then replace original with copy
     * Pros: Eliminates the possibility of original data getting lost. If a bookmarking is unsuccessful then only the copy
@@ -462,7 +462,7 @@ Some important operations implemented here are:
 * `UnbookmarkCommand#execute()` Bookmarks the stock in the stockbook if the stock is bookmarked.
 Returns a new `CommandResult` to be displayed to the user in the user interface.
 
-### BookmarkCommandParser
+#### UnbookmarkCommandParser
 
 `UnbookmarkCommandParser` class extends the `Parser` interface. `UnbookmarkCommandParser` class is tasked with
 parsing the user inputs and generating a new `UnbookmarkCommand`. The main logic of the bookmark feature is
@@ -477,7 +477,7 @@ with the given serialNumbers as argument if the user input is a valid `Unbookmar
 Some important operations implemented here are:
 * `UnbookmarkCommandParser#parse()` returns BookmarkCommand to be executed.
 
-### Example Usage Scenerio
+#### Example Usage Scenerio 
 
 Given Below is one example usage scenerio and explains how the add feature behaves at each step. It is assumed
 that the stock with serial number `fairprice1` exists in the stock book and is already bookmarked.
@@ -513,7 +513,7 @@ Step 10. Returns a new `CommandResult` containing the `MESSAGE_UNBOOKMARK_STOCK_
 
 Step 12. The updated stock message is displayed to the user.
 
-### Sequence Diagram
+#### Sequence Diagram
 
 The following sequence diagram shows how the update feature works in **Example 1**:
 
@@ -525,9 +525,9 @@ The following activity diagram summarizes what happens when the bookmark feature
 
 ![BookmarkActivityDiagram](images/UnbookmarkCommandActivityDiagram.png)
 
-### Design Consideration
+#### Design Consideration
 
-#### Aspect:How does a stock get bookmarked
+##### Aspect:How does a stock get bookmarked
 
 * Alternative 1(current implementation):make a temporary copy then replace original with copy
     * Pros: Eliminates the possibility of original data getting lost. If a unbookmarking is unsuccessful then only the copy
@@ -2464,7 +2464,97 @@ unless specified otherwise.
     
       Use case resumes at step 2.
 
-#### Use case 10: Updating multiple stocks
+#### Use case 10: Bookmarking a stock.
+
+**MSS**
+
+1.  User requests to bookmark a stock.
+2.  Warenager bookmarks the stock with the given serial number.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given format is missing the prefix sn/.
+
+    * 2a1. Warenager shows an error message.
+
+      Use case ends.
+
+* 2b. The stock with the given serial number is not found.
+
+    * 2b1. Warenager shows an error message.
+
+      Use case ends.
+
+* 2c. The stock with the given serial number is already bookmarked.
+
+    * 2c1. Warenager shows an error message
+    
+      Use case ends.
+
+#### Use case 11: Bookmarking multiple stocks.
+
+**MSS**
+
+1.  User requests to bookmark a list of stocks.
+2.  Warenager bookmarks the stocks with the given serial numbers.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given format is missing the prefix sn/.
+
+    * 2a1. Warenager shows an error message.
+
+      Use case ends.
+
+* 2b. Some stocks with the given serial numbers are not found, while the rest are found.
+
+    * 2b1. Warenager bookmarks the stocks that can be found.
+    * 2b2. Warenager returns a summary message of which stocks cannot be found and which stocks are bookmarked.
+
+      Use case ends.
+
+* 2c. Some stocks with the given serial number is already bookmarked, while the rest are not.
+
+    * 2c1. Warenager bookmarks the stocks that are not bookmarked.
+    * 2c2. Warenager returns a summary message of which stock are bookmarked before, and which stocks 
+    are just bookmarked
+    
+      Use case ends.
+      
+#### Use case 12: Unbookmarking a stocks.
+
+**MSS**
+
+1.  User requests to unbookmark a stock.
+2.  Warenager unbookmarks the stock with the given serial number.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given format is missing the prefix sn/.
+
+    * 2a1. Warenager shows an error message.
+
+      Use case ends.
+
+* 2b. The stock with the given serial numbers is not found.
+
+    * 2b1. Warenager shows an error message.
+
+      Use case ends.
+
+* 2c. The stock with the given serial number is not bookmarked.
+
+    * 2c1. Warenager shows an error message.
+    
+      Use case ends.
+
+#### Use case 13: Updating multiple stocks
 
 **MSS**
 
@@ -2499,7 +2589,7 @@ unless specified otherwise.
     
       Use case resumes at step 2.
 
-#### Use case 11: Using the stats command
+#### Use case 14: Using the stats command
 
 **MSS**
 
@@ -2540,7 +2630,7 @@ unless specified otherwise.
 
      Use case resumes at step 1.
 
-#### Use case 12: Adding a note to a stock
+#### Use case 15: Adding a note to a stock
 
 **MSS**
 
@@ -2580,7 +2670,7 @@ unless specified otherwise.
 
      Use case resumes at step 1.
 
-#### Use case 13: Deleting a note from a stock
+#### Use case 16: Deleting a note from a stock
 
 **MSS**
 
@@ -2626,7 +2716,7 @@ unless specified otherwise.
 
      Use case resumes at step 1.
 
-#### Use case 14: Deleting all notes from a stock
+#### Use case 17: Deleting all notes from a stock
 
 **MSS**
 
@@ -2672,7 +2762,7 @@ unless specified otherwise.
 
      Use case resumes at step 1.
 
-#### Use case 15: Using the help command
+#### Use case 18: Using the help command
 
 **MSS**
 
@@ -2689,7 +2779,7 @@ unless specified otherwise.
 
      Use case resumes at step 1.
 
-#### Use case 16: Suggestion feature
+#### Use case 19: Suggestion feature
 
 **MSS**
 
@@ -2718,7 +2808,7 @@ unless specified otherwise.
 
     Use case resumes at step 3.
 
-#### Use case 17: Sort stocks by field and order
+#### Use case 20: Sort stocks by field and order
 
 **MSS**
 
@@ -2747,7 +2837,7 @@ unless specified otherwise.
 
     Use case ends.
 
-#### Use case 18: Generating a csv file that contains all stocks
+#### Use case 21: Generating a csv file that contains all stocks
 
 **MSS**
 
@@ -2776,7 +2866,7 @@ unless specified otherwise.
  
       Use case resumes at step 1.
 
-#### Use case 19: Generating a csv file that contains all stocks sorted in desired order
+#### Use case 22: Generating a csv file that contains all stocks sorted in desired order
 
  **MSS**
  
@@ -2786,7 +2876,7 @@ unless specified otherwise.
  
      Use case ends.
 
-#### Use case 20: Clearing Warenager's data
+#### Use case 23: Clearing Warenager's data
 
 **MSS**
 
@@ -2808,7 +2898,7 @@ unless specified otherwise.
 
       Use case resumes at step 1.
       
-#### Use case 21: Toggling tabs in Warenager.
+#### Use case 24: Toggling tabs in Warenager.
 
 **MSS**
 
@@ -2830,7 +2920,7 @@ unless specified otherwise.
 
       Use case resumes at step 1.
 
-#### Use case 22: Viewing details of a stock in Warenager
+#### Use case 25: Viewing details of a stock in Warenager
 
 **MSS**
 
@@ -2871,7 +2961,7 @@ unless specified otherwise.
 
      Use case resumes at step 1.
 
-#### Use case 23: Exit Warenager
+#### Use case 26: Exit Warenager
 
 **MSS**
 
