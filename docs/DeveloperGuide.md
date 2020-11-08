@@ -605,15 +605,19 @@ The following are the various design choices made regarding the feature and alte
 
 ### 6.5 Notebook feature
 
-This section describes the implementation of the notebook feature and the various commands relating to notebook. The following diagram show the internal structure of a note. (refer to [5.4 Model Component](#54-model-component) for higher-level details about the structure of the design)
+This section describes the implementation of the notebook feature and the various commands relating to notebook. The following diagram show the internal structure of a note. (refer to [5.4 Model Component](#54-model-component) for higher-level details about the design)
 
 ![NotesModelClassDiagram](images/NotesModelClassDiagram.png)
 
-The notebook feature comprises three commands:
+The notebook feature comprises three specific commands extending `NoteCommand`:
 
 * `AddNoteCommand` – Adds a note to the notebook.
 * `EditNoteCommand` – Edits a note in the notebook.
 * `DeleteNoteCommand` – Deletes a note from the notebook
+
+The following class diagram shows how the various commands relate to each other. (refer to [5.3 Logic Component](#54-logic-component) for higher-level details about the design)
+
+![NoteCommandClassDiagram](images/NoteCommandClassDiagram.png)
 
 #### 6.5.1 Add note command
 
