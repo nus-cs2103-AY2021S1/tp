@@ -555,14 +555,13 @@ You can follow these instructions:
 
 
 Outcome:
-1. The _Result Display_ will show that you edit the employee.
-
+1. The _Result Display_ will show that you edit the employee.=
 2. All active employees will be listed in the _Main View_.
 
-Before executing:
+Before executing:<br>
 ![BeforeEditCommandScreenshot](images/BeforeClearCommand.png)
 
-After executing:
+After executing:<br>
 ![EditCommandScreenshot](images/EdirCommandResult.png)
 
 
