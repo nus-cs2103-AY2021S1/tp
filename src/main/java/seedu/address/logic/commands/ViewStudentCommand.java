@@ -10,6 +10,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
+/**
+ * Changes the view from Tutorial Group View to Student View using the displayed index.
+ * All students in the tutorial group identified using its displayed index is shown.
+ */
 public class ViewStudentCommand extends Command {
     public static final String COMMAND_WORD = "viewStudent";
 

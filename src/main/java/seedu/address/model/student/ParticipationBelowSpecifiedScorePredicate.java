@@ -2,6 +2,9 @@ package seedu.address.model.student;
 
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Attendance}'s participation score is less than {@code specifiedScore}.
+ */
 public class ParticipationBelowSpecifiedScorePredicate implements Predicate<Student> {
     private final int specifiedScore;
 
