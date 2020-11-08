@@ -316,8 +316,7 @@ Using this command after you have used the `find` command, which displays a part
 
 To use this command, simply type in `sort` on the command line followed by either `name` or `NRIC` depending on how you want the patients to be sorted.
 
-Format: `sort name`<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; or `sort NRIC`
+Format: `sort name` or `sort NRIC`
 
 Examples:
 
