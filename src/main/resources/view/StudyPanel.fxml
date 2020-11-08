@@ -5,37 +5,38 @@
 
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:id ="studyModePane" styleClass="pane-with-no-border" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <padding>
-        <Insets bottom="10" left="10" right="10" top="10" />
-    </padding>
-    <rowConstraints>
-        <RowConstraints percentHeight="10.0"/>
-        <RowConstraints percentHeight="67.0"/>
-        <RowConstraints percentHeight="23.0"/>
-    </rowConstraints>
-    <columnConstraints>
-        <ColumnConstraints percentWidth="15.0"/>
-        <ColumnConstraints percentWidth="70.0"/>
-        <ColumnConstraints percentWidth="15.0"/>
-    </columnConstraints>
-    <VBox GridPane.vgrow="ALWAYS" alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="1">
+<VBox styleClass="pane-with-no-border" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox alignment="CENTER">
         <padding>
-            <Insets bottom="15" />
+            <Insets bottom="5" top="15" />
         </padding>
-        <ProgressBar fx:id="progressBar" prefWidth="400"></ProgressBar>
+        <ProgressBar fx:id="progressBar" prefWidth="400" minHeight="15" prefHeight="15" ></ProgressBar>
         <Label fx:id="progressLabel" styleClass="stats-display" ></Label>
     </VBox>
-
-    <VBox VBox.vgrow="ALWAYS" styleClass="pane-with-no-border" HBox.hgrow = "ALWAYS" GridPane.rowIndex="1" GridPane.columnIndex="1">
-        <StackPane  fx:id="questionPlaceholder"  VBox.vgrow="ALWAYS" />
+    <GridPane fx:id ="studyModePane" styleClass="pane-with-no-border" VBox.vgrow="ALWAYS">
         <padding>
-            <Insets bottom="5" />
+            <Insets bottom="10" left="10" right="10" top="10" />
         </padding>
-    </VBox>
+        <rowConstraints>
+            <RowConstraints percentHeight="75.0"/>
+            <RowConstraints percentHeight="25.0"/>
+        </rowConstraints>
+        <columnConstraints>
+            <ColumnConstraints percentWidth="15.0"/>
+            <ColumnConstraints percentWidth="70.0"/>
+            <ColumnConstraints percentWidth="15.0"/>
+        </columnConstraints>
 
-    <VBox VBox.vgrow="ALWAYS" styleClass="pane-with-no-border" HBox.hgrow = "ALWAYS"  GridPane.rowIndex="2" GridPane.columnIndex="1">
-        <StackPane fx:id="answerPlaceholder" VBox.vgrow="ALWAYS" >
-        </StackPane>
-    </VBox>
-</GridPane>
+        <VBox VBox.vgrow="ALWAYS" styleClass="pane-with-no-border" HBox.hgrow = "ALWAYS" GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <StackPane  fx:id="questionPlaceholder"  VBox.vgrow="ALWAYS" />
+            <padding>
+                <Insets bottom="5" />
+            </padding>
+        </VBox>
+
+        <VBox VBox.vgrow="ALWAYS" styleClass="pane-with-no-border" HBox.hgrow = "ALWAYS"  GridPane.rowIndex="1" GridPane.columnIndex="1">
+            <StackPane fx:id="answerPlaceholder" VBox.vgrow="ALWAYS" >
+            </StackPane>
+        </VBox>
+    </GridPane>
+</VBox>
