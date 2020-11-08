@@ -2,6 +2,7 @@ package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 
@@ -115,12 +116,91 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && showStockView == otherCommandResult.showStockView
+                && checkEqualStock(stockToView, otherCommandResult.stockToView)
+                && showStatistics == otherCommandResult.showStatistics
+                && checkEqualStatisticsData(statisticsData, otherCommandResult.statisticsData)
+                && checkEqualOtherStatisticsData(otherStatisticsDetails, otherCommandResult.otherStatisticsDetails)
+                && isSwitchTab == otherCommandResult.isSwitchTab;
+    }
+
+    /**
+     * Additional layer of equals method for stock as it might be null.
+     * @param thisStock The current stock object.
+     * @param otherStock The other stock object to be compared with.
+     * @return True if both are null, false if only one is null,
+     * else the resulting boolean value from stock comparator.
+     */
+    public boolean checkEqualStock(Stock thisStock, Stock otherStock) {
+        if (thisStock == null && otherStock == null) {
+            return true;
+        }
+        if (thisStock == null || otherStock == null) {
+            return false;
+        }
+        return thisStock.equals(otherStock);
+    }
+
+    /**
+     * Additional layer of equals method for data as it might be null.
+     * @param thisData The current data object.
+     * @param otherData The other data object to be compared with.
+     * @return True if both are null, false if only one is null,
+     * else the resulting boolean value from map comparator.
+     */
+    public boolean checkEqualStatisticsData(Map<String, Integer> thisData, Map<String, Integer> otherData) {
+        if (thisData == null && otherData == null) {
+            return true;
+        }
+        if (thisData == null || otherData == null) {
+            return false;
+        }
+        return thisData.equals(otherData);
+    }
+
+    /**
+     * Additional layer of equals method for data as it might be null.
+     * @param thisData The current data object.
+     * @param otherData The other data object to be compared with.
+     * @return True if both are null, false if only one is null or the array lengths are different,
+     * else compare each element in the array.
+     */
+    public boolean checkEqualOtherStatisticsData(String[] thisData, String[] otherData) {
+        if (thisData == null && otherData == null) {
+            return true;
+        }
+        if (thisData == null || otherData == null) {
+            return false;
+        }
+        if (thisData.length != otherData.length) {
+            return false;
+        }
+        for (int i = 0; i < thisData.length; i++) {
+            if (!thisData[i].equals(otherData[i])) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, statisticsData, showHelp, showStockView, stockToView,
+                                   showStatistics, otherStatisticsDetails, isSwitchTab, exit);
+    }
+
+    @Override
+    public String toString() {
+        return "feedbackToUser:" + feedbackToUser + "\n"
+                + "showHelp: " + showHelp + "\n"
+                + "exit: " + exit + "\n"
+                + "showStockView: " + showStockView + "\n"
+                + "stockToView: " + stockToView + "\n"
+                + "showStatistics: " + showStatistics + "\n"
+                + "statisticsData: " + statisticsData + "\n"
+                + "otherStatisticsDetails: " + Arrays.toString(otherStatisticsDetails) + "\n"
+                + "isSwitchTab: " + isSwitchTab;
     }
 
 }
