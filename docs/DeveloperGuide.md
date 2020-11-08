@@ -170,7 +170,7 @@ Step 3. The created tasks are then added to the `Planus#UniqueTaskList` via the 
 updated and the new calendar tasks are added to `Planus#Clendar` via the `Planus#addTaskToCalendar` method. Lastly, the newly added lesson is added to
 `Planus#UniqueLessonList` which finishes the state update. 
 
-The following sequence diagram describes what happens when `Planus` updates a newly added `lesson`:
+The following sequence diagram describes what happens when user adds a new `lesson`:
 
 ![AddLessonSequenceDiagram](images/AddLessonSequenceDiagram.png)
 
