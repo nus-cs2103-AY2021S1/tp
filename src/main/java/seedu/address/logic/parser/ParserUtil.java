@@ -351,6 +351,9 @@ public class ParserUtil {
         String convertedCriterion = criterionAllUpperCase;
 
         switch(criterionAllUpperCase) {
+        case("N"):
+            convertedCriterion = "NAME";
+            break;
         case("P"):
         case("PRIO"):
             convertedCriterion = "PRIORITY";
