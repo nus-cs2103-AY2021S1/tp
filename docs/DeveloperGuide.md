@@ -121,9 +121,9 @@ title: Developer Guide
     - [6.8 Deleting a recipe](#68-deleting-a-recipe)
     - [6.9 Deleting an ingredient](#69-deleting-an-ingredient)
     - [6.10 Deleting an eaten recipe](#610-deleting-an-eaten-recipe)
-    - [6.11 Getting edit recipe](#611-getting-edit-recipe)
+    - [6.11 Getting edit recipe](#611-getting-a-recipe-to-edit)
     - [6.12 Editing a recipe](#612-editing-a-recipe)
-    - [6.13 Getting edit ingredient](#613-getting-edit-ingredient)
+    - [6.13 Getting edit ingredient](#613-getting-ingredient-to-edit)
     - [6.14 Editing an ingredient](#614-editing-an-ingredient)
     - [6.15 Selecting a recipe](#615-selecting-a-recipe)
     - [6.16 Searching for recipes](#616-searching-for-recipes)
@@ -1570,7 +1570,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect `deleteC` commands to try: `deleteC`, `deleteC x`, … (where x is larger than the consumption list size or x is not a positive integer) <br>
        Expected: Similar to previous test case. <br><br>
 
-## 6.11 Getting edit recipe <a id="611-getting-edit-recipe"></a>
+
+## 6.11 Getting a recipe to edit <a id="611-getting-a-recipe-to-edit"></a>
 
 1. Getting details of recipe at a specific index before edit.
 
@@ -1581,6 +1582,7 @@ testers are expected to do more *exploratory* testing.
        
     1. Test case: `editR x` (x is invalid index) <br>
        Expected: An error message will be shown, as it is the same recipe. Your command in the command box will turn red. <br><br>
+       
        
 ## 6.12 Editing a recipe <a id="612-editing-a-recipe"></a>
 
@@ -1600,7 +1602,9 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect `editR` commands to try: `editR` (no fields specified) <br>
        Expected: Similar to previous test case. <br><br>
     
-## 6.13 Getting edit ingredient <a id="613-getting-edit-ingredient"></a>
+
+
+## 6.13 Getting an ingredient to edit <a id="613-getting-an-ingredient-to-edit"></a>
 
 1. Getting details of ingredient at a specific index before edit.
 
