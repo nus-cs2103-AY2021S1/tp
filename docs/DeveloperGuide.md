@@ -383,7 +383,10 @@ The `unarchivemodule` command does the opposite — it calls `Model#unarchiv
 
 
 ### Module Assignment 
-adequately assess the current grades the student currently has. With knowledge of the grades already achieved for the mdoule
+In order for CAP 5 Buddy to properly support the students study, information of the students grades assignments and results should be kept.
+This would allow the student to adequately assess the current grades that he or she currently has. With knowledge of the grades already achieved for the module
+CAP 5 Buddy can calculate the current percentage and results for the student so that the student can understand how close he or she
+is to their next grade.
 
 The section below provides details on the implementation of each assignment related function and design considerations of these features.
 
@@ -392,38 +395,57 @@ The section below provides details on the implementation of each assignment rela
 The model below shows the implementation of the `GradeTracker` that is stored under the `Module` class.
 Each `Module` can only have one `GradeTracker` which manages the assignments under that module.
 The `GradeTracker` stores a `UniqueAssignmentList` that ensures assignments within the list are not duplicates of each other.
+Each `Assignment` contains the following three fields: an `AssignmentName`, `AssignmentPercentage` and `AssignmentResult`.
+
+![Structure of the Grade Tracker Component](images/GradeTrackerDiagram.png)
 
 The list of all `GradeTracker` related features are:
 1. Add an Assignment: Adds a new assignment to the `GradeTracker`.
 2. Edit an Assignment: Edits a pre-existing assignment in the `GradeTracker`.
 3. Delete an Assignment: Deletes a pre-existing assignment in the `GradeTracker`.
-4. Add a Grade: Adds a grade for the overall 
+4. Add a Grade: Adds a grade for the overall module.
 
 #### Add assignment feature
 
 This feature creates and adds a new `Assignment` to the `GradeTracker` of a `Module`. This action
 is only allowed if the `Assignment` does not already exist in the `GradeTracker`.
-Each `Assignment` contains the following three fields: an `AssignmentName`, `AssignmentPercentage` and `AssignmentResult`.
-
-
-![Structure of the Grade Tracker Component](images/GradeTrackerDiagram.png)
-
 
 When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
 to the rest of the project as the command is parsed and then executed.
 
 ![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
 
+Given below is an example usage scenario and how the mechanism for adding an `Assignment` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `addassignment n/CS2100 a/Quiz 1 %/20 r/85` from `Ui`
+
+Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `AddAssignmentParser`
+
+Step 3. Additionally, `AddAssignmentParser` will call the `AddAssignmentParser#parse()` method to parse the command arguments
+
+Step 4. An `AddAssignmentCommand` is created and the command arguments are passed to it.
+
+Step 5.  `AddAssignmentCommand#execute` will be evoked by `LogicManager` to creates an `Assignment` using the parsed inputs, `Quiz 1` for `AssignmentName`, `20` for `AssignmentPercentage`
+and `85` for `AssignmentResult`. A `ModuleName` is also created using the input `CS2100`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`Module#addAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
 #### Design consideration:
 
-##### Aspect: Format to store the grade for a module
-* Alternative 1 : Grade stores CAP.
-    * Pros : Easier to integrate with Cap Calculator
-    * Cons : User has to manually input CAP and does not know the average from the assignments accumulated
+##### Aspect: Whether to directly store the assignments under module
+* Alternative 1 : Module stores assignments directly without any association class.
+    * Pros : Less work to be done.
+    * Cons : Less OOP.
     
-* Alternative 2 (current choice): Grade stores the raw score calculated from assignment
-    * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
-    * Cons : Requires separate CAP to be stored for Cap Calculator to access
+* Alternative 2 (current choice): Module stores a separate class that then stores the assignments
+    * Pros : More OOP and the assignments are less coupled to the Module.
+    * Cons : Takes more effort and complexity to recreate the unique object list within another layer(`Module`).
+    
+We implemented the second option despite its difficulty and complexity, taking more time to carry out as we felt
+that this feature was major enough to warrant the time and depth to implement.
 
 ### Cap Calculator
 
