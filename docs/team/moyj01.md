@@ -21,7 +21,6 @@ Given below are my contributions to the project.
   * What it does: allows the user to enter quiz mode.
   * Justification: This feature allows users to test themselves on their content knowledge and prepare for upcoming examination or quiz.
   * Highlights: This feature involves coding the backend logic of the quiz mode. It also involves monitoring the user attempts in quiz mode to update the flashcard's statistics.  
-
 <div style="page-break-after: always;"></div>
 
 * Added statistics command. [#106](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/106)
