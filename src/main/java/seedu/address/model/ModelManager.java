@@ -161,11 +161,8 @@ public class ModelManager implements Model {
     @Override
     public void setLesson(Lesson target, Lesson editedLesson) {
         requireAllNonNull(target, editedLesson);
-        Lesson[] tobeDeleted = new Lesson[1];
-        tobeDeleted[0] = target;
-        deleteLesson(tobeDeleted);
-        addLesson(target);
-        planus.setLesson(target, editedLesson);
+        deleteLesson(new Lesson[]{target});
+        addLesson(editedLesson);
     }
 
     @Override
