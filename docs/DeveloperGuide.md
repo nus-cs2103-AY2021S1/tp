@@ -6,7 +6,7 @@ title: Developer Guide
 ## Table of Contents <a id="toc"></a>
 1. [Overview](#1-overview)
     - [1.1. Introduction](#11-introduction)
-    - [1.2. Purpose](#12-Purpose)
+    - [1.2. Purpose](#12-purpose)
     - [1.3 Setting Up, Getting Started](#13-setting-up-getting-started)
 2. [Design](#2-design)
     - [2.1. Architecture](#21-architecture)
@@ -127,7 +127,7 @@ title: Developer Guide
     - [6.15 Selecting a recipe](#615-selecting-a-recipe)
     - [6.16 Searching for recipes](#616-searching-for-recipes)
     - [6.17 Searching for ingredients](#617-searching-for-ingredients)
-    - [6.18 Recommend](#618-recommend)
+    - [6.18 Recommending recipes](#618-recommend)
     - [6.19 Clearing recipes](#619-clearing-recipes)
     - [6.20 Clearing ingredients](#620-clearing-ingredients)
     - [6.21 Clearing eaten recipes](#621-clearing-eaten-recipes)
@@ -1573,7 +1573,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Wishful Shrinking’s recipe list is not empty.
     
     1. Test case: `editR 1` <br>
-       Expected: The result box will show all the details of the first recipe. <br><br>
+       Expected: The result box will show all the details of the first recipe.
+       
+    1. Test case: `editR x` (x is invalid index) <br>
+       Expected: An error message will be shown, as it is the same recipe. Your command in the command box will turn red. <br><br>
        
 ## 6.12 Editing a recipe <a id="612-editing-a-recipe"></a>
 
@@ -1581,10 +1584,10 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: Wishful Shrinking’s recipe list is not empty.
     
-    1. Test case: `editR` 1 n/bread i/flour <br>
+    1. Test case: `editR 1 n/bread i/flour` <br>
        Expected: The fields specified for the first recipe in the recipe list will be updated with bread for its name and flour for its ingredient. The result box will show the newly updated details of the recipe.
        
-    1. Test case: `editR 1` n/bread i/flour img/images/healthy1.jpg t/healthy <br>
+    1. Test case: `editR 1 n/bread i/flour img/images/healthy1.jpg t/healthy` <br>
        Expected: The fields specified for the first recipe in the recipe list will be updated with bread for its name and flour for its ingredient. The result box will show the newly updated details of the recipe. This test case differs with the previous test case in that it has the optional fields image and tags, which will also be updated with the new values.                                                                                                                                                                                                                                          
        
     1. Test case: `editR 1 x` (same name and quantity of the ingredient in fridge) <br>
@@ -1600,7 +1603,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Wishful Shrinking’s ingredient list is not empty.
     
     1. Test case: `editF 1` <br>
-       Expected: The result box will show all the details of the first ingredient. <br><br>
+       Expected: The result box will show all the details of the first ingredient. 
+       
+    1. Test case: `editF x` (x is invalid index) <br>
+       Expected: An error message will be shown, as it is the same ingredient. Your command in the command box will turn red. <br><br>
        
 
 ## 6.14 Editing an ingredient <a id="614-editing-an-ingredient"></a>
@@ -1609,7 +1615,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: Wishful Shrinking’s ingredient list is not empty.
     
-    1. Test case: `editF` 1 i/flour - 10g <br>
+    1. Test case: `editF 1 i/flour - 10g` <br>
        Expected: The name and quantity of the ingredient will be updated. The result box will show the newly updated details of the ingredient.
        
     1. Test case: `editF 1` <br>
@@ -1618,7 +1624,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `editF 1 x` (same name and quantity of the ingredient in fridge) <br>
        Expected: An error message will be shown, as it is the same ingredient. The result box will show that no edits are made. Your command in the command box will turn red.
 
-    1. Other incorrect `editF` commands to try: `editF` (no fields specified)
+    1. Other incorrect `editF` commands to try: `editF` (no fields specified) <br>
        Expected: Similar to previous test case. <br><br>
        
        
@@ -1667,7 +1673,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `searchF` takes in keywords to search for. The message will show the correct input format of the `searchF` command, and your command in the command box will turn red. <br><br>
       
       
-## 6.18 Recommend <a id="618-recommend"></a>
+## 6.18 Recommending recipes <a id="618-recommend"></a>
 
 1. Listing out all the recipes in Wishful Shrinking’s recipe list whose ingredients are all in the fridge.
 
@@ -1715,7 +1721,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `clearC` <br>
        Expected: All eaten recipes are cleared from the Wishful Shrinking's consumption list. The result box will show a message that indicates that all eaten recipes are cleared.
        
-    1. Test case: `clearR x` (where x is any additional arguments) <br>
+    1. Test case: `clearC x` (where x is any additional arguments) <br>
        Expected: An error message will be shown, as the `clearC` does not have any arguments. The message will show the correct input format of the `clearC` command, and your command in the command box will turn red. <br><br>
 
 
