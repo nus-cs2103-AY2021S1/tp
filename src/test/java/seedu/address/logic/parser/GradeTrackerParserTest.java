@@ -39,8 +39,8 @@ public class GradeTrackerParserTest {
     public void parseCommand_delete() throws Exception {
         Command command = parser.parseCommand(AssignmentUtil.getDeleteAssignmentCommand(Index.fromOneBased(1),
                         new ModuleName(VALID_MODULENAME_CS2103T)));
-        assertEquals(new DeleteAssignmentCommand(Index.fromOneBased(1), new ModuleName(VALID_MODULENAME_CS2103T))
-                , command);
+        assertEquals(new DeleteAssignmentCommand(Index.fromOneBased(1), new ModuleName(VALID_MODULENAME_CS2103T)),
+                command);
     }
 
     @Test
@@ -55,8 +55,8 @@ public class GradeTrackerParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test

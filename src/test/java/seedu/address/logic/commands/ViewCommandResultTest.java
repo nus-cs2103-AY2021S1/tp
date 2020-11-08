@@ -1,6 +1,16 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
@@ -9,12 +19,6 @@ import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ZoomDescriptorBuilder;
 import seedu.address.testutil.gradetracker.AssignmentBuilder;
 import seedu.address.ui.DisplayZoomLink;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ViewCommandResultTest {
 

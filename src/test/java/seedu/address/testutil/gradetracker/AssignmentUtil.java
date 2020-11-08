@@ -1,17 +1,16 @@
 package seedu.address.testutil.gradetracker;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_PERCENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_RESULT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.gradetrackercommands.AddAssignmentCommand;
 import seedu.address.logic.commands.gradetrackercommands.DeleteAssignmentCommand;
 import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand;
-import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
-import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
-import seedu.address.logic.parser.Prefix;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Assignment;
-
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Assignment.

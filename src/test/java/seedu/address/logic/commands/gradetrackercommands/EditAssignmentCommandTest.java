@@ -1,31 +1,40 @@
 package seedu.address.logic.commands.gradetrackercommands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2030;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalModules.CS2030_WITH_ASSIGNMENT;
+import static seedu.address.testutil.TypicalModules.getTypicalModulesWithAssignmentList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
-import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.logic.commands.modulelistcommands.UndoCommand;
-import seedu.address.model.*;
+import seedu.address.model.ContactList;
+import seedu.address.model.EventList;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ModuleList;
+import seedu.address.model.TodoList;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Assignment;
-import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleListBuilder;
 import seedu.address.testutil.gradetracker.AssignmentBuilder;
 import seedu.address.testutil.gradetracker.EditAssignmentDescriptorBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalModules.CS2030_WITH_ASSIGNMENT;
-import static seedu.address.testutil.TypicalModules.getTypicalModulesWithAssignmentList;
-import static seedu.address.testutil.gradetracker.TypicalAssignments.ORAL_PRESENTATION_2;
-
 public class EditAssignmentCommandTest {
-    private static Index FIRST_INDEX = Index.fromOneBased(1);
+    private static final Index FIRST_INDEX = Index.fromOneBased(1);
 
-    private static Index SECOND_INDEX = Index.fromOneBased(1);
+    private static final Index SECOND_INDEX = Index.fromOneBased(1);
 
     private Model model = new ModelManager(getTypicalModulesWithAssignmentList(), new ModuleList(),
             new ContactList(), new TodoList(), new EventList(), new UserPrefs());

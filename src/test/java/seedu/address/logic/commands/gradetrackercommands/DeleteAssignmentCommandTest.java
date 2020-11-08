@@ -1,10 +1,33 @@
 package seedu.address.logic.commands.gradetrackercommands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
+import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.model.*;
+import seedu.address.model.ContactList;
+import seedu.address.model.EventList;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ModuleList;
+import seedu.address.model.TodoList;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Assignment;
@@ -12,26 +35,22 @@ import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleListBuilder;
 import seedu.address.testutil.gradetracker.AssignmentBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_1;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
-import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
-
 public class DeleteAssignmentCommandTest {
     private static final Index INDEX_FIRST_ASSIGNMENT = Index.fromOneBased(1);
-    private static final Assignment assignmentQuiz1 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
+    private static final Assignment assignmentQuiz1 = new AssignmentBuilder()
+            .withAssignmentName(VALID_ASSIGNMENT_NAME_1)
             .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1)
             .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
 
-    private static final Assignment assignmentOralPresentation2 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_2)
+    private static final Assignment assignmentOralPresentation2 = new AssignmentBuilder()
+            .withAssignmentName(VALID_ASSIGNMENT_NAME_2)
             .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_2)
             .withAssignmentResult(VALID_ASSIGNMENT_RESULT_2).build();
 
     @Test
     public void constructor_nullModuleToDelete_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeleteAssignmentCommand(INDEX_FIRST_ASSIGNMENT, null));
+        assertThrows(NullPointerException.class, () -> new DeleteAssignmentCommand(INDEX_FIRST_ASSIGNMENT,
+                null));
     }
 
     @Test

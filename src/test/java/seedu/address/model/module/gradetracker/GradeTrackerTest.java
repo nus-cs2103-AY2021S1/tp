@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADEPOINT_4;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_1;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.gradetracker.TypicalAssignments.LAB_1;
 import static seedu.address.testutil.gradetracker.TypicalAssignments.QUIZ_2;
@@ -13,11 +15,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand;
-import seedu.address.logic.commands.gradetrackercommands.EditAssignmentDescriptor;
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.Grade;
 import seedu.address.model.module.grade.GradePoint;

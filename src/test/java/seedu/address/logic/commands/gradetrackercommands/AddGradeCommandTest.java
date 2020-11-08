@@ -1,19 +1,32 @@
 package seedu.address.logic.commands.gradetrackercommands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
+import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.model.*;
+import seedu.address.model.ContactList;
+import seedu.address.model.EventList;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ModuleList;
+import seedu.address.model.TodoList;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Grade;
 import seedu.address.testutil.ModuleBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
-import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
 
 public class AddGradeCommandTest {
 

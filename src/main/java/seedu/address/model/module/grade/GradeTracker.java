@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.grade.comparator.AssignmentNameComparator;
 
 /**

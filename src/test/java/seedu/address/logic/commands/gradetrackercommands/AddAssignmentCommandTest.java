@@ -1,7 +1,17 @@
 package seedu.address.logic.commands.gradetrackercommands;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2030;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
@@ -26,11 +36,13 @@ import seedu.address.testutil.gradetracker.AssignmentBuilder;
 
 public class AddAssignmentCommandTest {
 
-    private static final Assignment ASSIGNMENT_QUIZ_2 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
+    private static final Assignment ASSIGNMENT_QUIZ_2 = new AssignmentBuilder()
+            .withAssignmentName(VALID_ASSIGNMENT_NAME_1)
             .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1)
             .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
 
-    private static final Assignment ASSIGNMENT_ORAL_PRESENTATION_2 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_2)
+    private static final Assignment ASSIGNMENT_ORAL_PRESENTATION_2 = new AssignmentBuilder()
+            .withAssignmentName(VALID_ASSIGNMENT_NAME_2)
             .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_2)
             .withAssignmentResult(VALID_ASSIGNMENT_RESULT_2).build();
 
