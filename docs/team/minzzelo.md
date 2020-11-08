@@ -9,7 +9,7 @@ SWEe! is a desktop application used for managing CS2103T learning progress mainl
 
 Given below are my contributions to the project.
 
-**Code contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=minzzelo)
+**Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=minzzelo&tabRepo=AY2021S1-CS2103T-T17-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 **Enhancements implemented**:
 * Morph Person in AB3 into Flashcard, morphing related attributes of Person into Flashcard attributes [#25](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/25)
@@ -27,6 +27,8 @@ Given below are my contributions to the project.
 * Add documentation for `edit` command [#84](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/84)
 * Add documentation for `sort` command [#99](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/99)
 * Add documentation for `help` command [#153](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/153)
+
+<div style="page-break-after: always;"></div>
 
 **Contributions to DG**:
 * Set up DG with target user profile, value proposition, user stories, use case, non-functional requirements and glossary [#18](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/18)

@@ -49,6 +49,7 @@ Given below are my contributions to the project.
 * **Contributions to team-based tasks**:
   * Maintaining the issue-tracker
   * Refactor remaining test cases to remove instances of AB3 [#110](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/110)
+  * Added instructions for manual testing in DG [#201](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/201)
 
 **Review/mentoring contributions**:
   * Reported bugs to other teams: [Issue Tracker](https://github.com/tanzhuoyao-nus/ped/issues)
