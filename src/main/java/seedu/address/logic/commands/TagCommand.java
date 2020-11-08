@@ -55,7 +55,7 @@ public class TagCommand extends Command {
      *
      * @param model {@code Model} which the command should operate on.
      * @return A Command result of executing tag command.
-     * @throws CommandException
+     * @throws CommandException if tag name is duplicate or file is not present.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -66,21 +66,21 @@ public class TagCommand extends Command {
         }
 
         // Check if file is present
-        String path;
         boolean isAbsolutePath = Paths.get(toTag.getFileAddress().value).isAbsolute();
 
-        path = toTag.getFileAddress().value;
+        // Get correct file path string
+        String path = isAbsolutePath
+                ? toTag.getFileAddress().value
+                : Paths.get(model.getCurrentPath().getAddress().value, toTag.getFileAddress().value)
+                .normalize().toString();
 
-        if (!isAbsolutePath) {
-            path = Paths.get(model.getCurrentPath().getAddress().value, toTag.getFileAddress().value)
-                    .normalize().toString();
-        }
-
+        // Check if file is present
         if (!filePresent(path)) {
             throw new CommandException(
                     String.format(MESSAGE_FILE_NOT_FOUND, path));
         }
 
+        // Convert the tag to a tag with absolute path
         Tag absPathTag = toTag.toAbsolute(isAbsolutePath, model.getCurrentPath().getAddress());
 
         model.addTag(absPathTag);
