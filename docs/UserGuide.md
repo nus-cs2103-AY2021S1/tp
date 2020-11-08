@@ -423,10 +423,10 @@ Adds a property and its relevant details to the property list.
 💡 Property name refers to the generic brand name and can be the same for multiple properties, whereas address refers to the full address of the property and must be unique.  
 
 <div markdown="span" class="alert alert-info">
-:information_source: Note that the usage of the term `ENTITY` represents any of the following entities in PropertyFree:<br>`Property`, `Seller`, `Bidder`, `Bid` and `Meeting`
  <li>  :warning: The seller id must exist inside the seller list.  </li>
  <li>  :warning: Price must be greater than 0 and less or equals to 1 trillion. </li>
  <li>  :warning: Price will be truncated to 2 decimal place. </li>
+ <li>  :warning: PropertyName, Address and PropertyType can have a maximum of 100 characters. </li>
 </div>  
    
 Example:
