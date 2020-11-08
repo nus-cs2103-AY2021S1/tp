@@ -174,7 +174,7 @@ The following sequence diagram describes what happens when user adds a new `less
 
 ![AddLessonSequenceDiagram](images/AddLessonSequenceDiagram.png)
 
-The `task` created using `lesson#createRecurringTasks` are marked as `isLesson` and will not be displayed in the task list.
+The tasks created using `lesson#createRecurringTasks` are marked as `isLesson` and will not be displayed in the task list.
 This is achieved by filtering all tasks with `task#isLesson` set to `true`. The following code snippet is from `Model` class
 and shows how the task list is filtered:
 
@@ -227,13 +227,22 @@ The `StatisticsData` class contains the methods to store and retrieve informatio
 
 The following sequence diagram describes how statistics data is updated when user enters a command.
 
+
 ![StatsDataSequenceDiagram](images/StatsDataSequenceDiagram.png)
+
+When `StatisticsData` retrieves time of each task, it needs to distinguish between a `event` and a `deadline`. For an `event`,
+`StatisticsData` calculates the time between its start time and end time and add to the total time, while for a `deadline`,
+`StatisticsData` calculates the time used to complete it if it has been completed or skip it if it has not been completed. 
+The following activity diagram illustrates the steps:
+
+![TimeAnalysisActivityDiagram](images/TimeAnalysisActivityDiagram.png)
 
 #### Design consideration:
 
 ##### Aspect: How to track time spent on each task or lesson
 
 * **Alternative 1 (current choice)**: Allow user to input how much time he has spent on each deadline  with the `done` command and automatically calculating the time spent on each `event`/`lesson` by assuming the user has spent the amount of time between the start and end time of the `event`/`lesson`.
+
 
 The user enters the command `done index:duration` where `index` refers to the inedx of the deadline to be marked as done and `duration` refers to the time used to complete the deadline.
 
