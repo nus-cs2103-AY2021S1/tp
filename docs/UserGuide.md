@@ -432,7 +432,7 @@ Steps to find tomorrow's available manpower:
 Outcome:
 1. The _Result Display_ will show 3 information:
     
-    a. Tomorrow's day. (e.g. Today is FRIDAY.)
+    a. Tomorrow's day. (e.g. Tomorrow is FRIDAY.)
     
     b. Total number of employees who are available tomorrow.
     
@@ -481,7 +481,7 @@ _Employee Directory_ pane. For example, there are 2 employees listed in the curr
 **:information_source: Notes about Employee Directory:**<br>
 
 If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
- color label, named as `[Archived]`, in front of the name), command `c-active-list` needs to be used first to see a
+ color label, named as "[Archived]", in front of the name), command `c-active-list` needs to be used first to see a
   list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified
   by `INDEX`.<br>
 
@@ -518,7 +518,7 @@ Format: `c-archive-all`
 **:information_source: Notes about Employee Directory:**<br>
 
 If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
- color label, named as `[Archived]`, in front of their names), command `c-active-list` needs to be used first to see a
+ color label, named as "[Archived]", in front of their names), command `c-active-list` needs to be used first to see a
   list of all your employees. Then, `c-archive-all` can be used to archive all employees.<br>
 
 </div>
@@ -551,7 +551,7 @@ Format: `c-archive-list`
 
 **:information_source: Notes about displaying archived employees in tCheck:**<br>
 
-Archived employees will be shown with a red color label, named as `[Archived]`, in front of their names. You may
+Archived employees will be shown with a red color label, named as "[Archived]", in front of their names. You may
  refer to the screenshot below.<br>
 
 </div>
@@ -589,7 +589,7 @@ Employee Directory inside the _Main View_. For example, there are 2 employees li
 **:information_source: Notes about Employee Directory:**<br>
 
 If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
- red color label, named as `[Archived]`, in front of their names. While employees in the active/unarchived employee list
+ red color label, named as "[Archived]", in front of their names. While employees in the active/unarchived employee list
   don't have this red label.), command `c-archive-list` needs to be used first to see a list of all your archived
   employees. Then, `c-unarchive INDEX` can be used to unarchive a specified
    employee identified by `INDEX`.<br>
