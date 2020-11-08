@@ -763,12 +763,23 @@ testers are expected to do more *exploratory* testing.
     Success message will inform user how many exercises were successfully found.
     1. Test case: `exercise_find benc`<br>Expected: Exercise "Bench Press" will be the only Exercise listed in fitNUS.
     Success message will inform user how many exercises were successfully found.
-    1.Test case: `exercise_find benc`<br>
+    1. Test case: `exercise_find @`<br>Expected: No Exercise object will be found, because this is an invalid Name.
+   1. Other incorrect delete commands to try: `exercise_find `<br>
+      Expected: Error message thrown informing you of the correct command format. 
 1. Editing an existing Exercise
-
+    1..Prerequisites: There must be an Exercise existing in fitNUS to edit. There is one Exercise named "Squats".
+    1. Test case: `exercise_edit 1 e/Barbell Squats`<br>Expected: Exercise "Bench Press" will be renamed to "Barbell
+    Squats" and a success message will inform user of the new name.
+    1. Test case: `exercise_edit 1 e/Barbell Squats t/Heavy`<br>Expected: Exercise "Bench Press" will be renamed to "Barbell
+    Squats" with a tag saying "Heavy". A success message will inform user of the new name and tags.
+    1. Test case: `exercise_edit 10 e/Good Name`<br>Expected: Invalid index, no Exercise is edited and an error message
+    will be thrown, explaining the index is invalid.
+   1. Other incorrect delete commands to try: `exercise_edit 1 e/Bicep e/Tricep`, `exercise_edit 1 e/Bicep t/Tough
+    t/Hard`<br>
+      Expected: Error message thrown informing you of the correct command format.
 1. Listing all Exercise
-
-1. 
+    1. Test case: `exercise_list`: fitNUS will list out all the Exercise in the Exercise column. Success message will be
+    show.
 
 1. Adding a Routine
 

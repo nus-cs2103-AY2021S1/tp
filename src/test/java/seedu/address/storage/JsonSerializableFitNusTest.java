@@ -5,7 +5,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.FitNus;
 import seedu.address.model.calorie.Calorie;
-import seedu.address.model.calorie.DailyCalorie;
-import seedu.address.testutil.FitNusBuilder;
 import seedu.address.testutil.TypicalExercises;
 import seedu.address.testutil.TypicalLessons;
 import seedu.address.testutil.TypicalRoutines;

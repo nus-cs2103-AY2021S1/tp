@@ -1,4 +1,4 @@
-package seedu.address.model.routines;
+package seedu.address.model.routine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -20,8 +20,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
-import seedu.address.model.routine.Routine;
-import seedu.address.model.routine.UniqueRoutineList;
 import seedu.address.model.routine.exceptions.DuplicateRoutineException;
 import seedu.address.model.routine.exceptions.RoutineNotFoundException;
 import seedu.address.model.util.Name;
