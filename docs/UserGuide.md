@@ -68,13 +68,14 @@ Format: `help`
 
 ## 3.2. Add exercises : `add`
 
-Add an exercise to the application, with calories burnt, muscles worked and tags as optional.
+Add an exercise to the application, with date, calories burnt, muscles worked and tags as optional.
 
 ![add command message](images/addCommandMessage.png)
 
 Format: `add n/EXERCISE d/DESCRIPTION [at/DATE] [c/CALORIES] [m/MUSCLE]... [t/TAG]...`
 
 - The format for the DATE should be in the form of DD-MM-YYYY.
+- If DATE is not provided, the default date will be the current day.
 
 Examples:
 - `add n/running d/10 mins at/31-12-2020 c/100 m/chest m/arm t/home t/gym`
@@ -128,7 +129,7 @@ Finds an exercise that matches all the input fields.
 
 ![find command message](images/findCommandMessage.png)
 
-Format: `find [n/name] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`
+Format: `find [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`
 - For name, description, date, and calories, only exercises that exactly match the inputs will be listed. These fields are case-sensitive. e.g. Run will not match run.
 - For keywords, exercises whose names contain any of the keywords will be listed. Keyword is case-insensitive. e.g Squats will match squats.
 - in v1.3, find command does not support muscles and tags.
@@ -179,8 +180,8 @@ Recalls the most recent exercise with the specified name.
 
 ![recall command message](images/recallCommandMessage.png)
 
-Format: `recall NAME`
-- the name is case-sensitive. e.g. Push up will not match push up.
+Format: `recall EXERCISE`
+- the name of exercise is case-sensitive. e.g. Push up will not match push up.
 
 Example:
 - `recall run` finds the most recent exercise with the name "run".
@@ -188,7 +189,7 @@ Example:
 ## 3.12. Add templates : `create`
 Adds an exercise template.
 
-Format: `create n/NAME c/CALORIES`  
+Format: `create n/EXERCISE c/CALORIES`  
 
 Examples:<br>
 - `create n/pushup c/100` Creates the exercise template with the name push up, description half an hour and calories 100.
@@ -227,11 +228,11 @@ Examples:<br>
 | *Clear* | `clear`|
 | *Delete* | `delete INDEX`<br> e.g., `delete 2`     |                                                                                                                              |
 | *Update*   | `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]​ [m/MUSCLES_WORKED] [t/TAG]..`<br> e.g., `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest,arm t/home t/gym`                                           |
-| *Find*  | `find [n/name] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`<br> e.g., `find n/running`                                                                                                            |
+| *Find*  | `find [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`<br> e.g., `find n/running`                                                                                                            |
 | *List*   | `list`     |                                                                                                                                                           |
 | *Archive*   | `archive f/FILE_LOCATION`    <br> e.g.,`archive data\file_name.txt`                                                                                                                                                                    |
 | *Help* | `help`|
 | *Exit* | `exit`|
-| *Recall*   | `recall NAME`
-| *Create*   | `create n/NAME c/CALORIES` <br> e.g., `create n/pushup c/100`
-| *Addt*     | `addt temp/NAME at/DATE [c/CALORIES]` <br> e.g., `addt temp/pushup d/half an hour at/09-07-2020 c/260`
+| *Recall*   | `recall EXERCISE` <br> e.g.,`recall running`  
+| *Create*   | `create n/EXERCISE c/CALORIES` <br> e.g., `create n/pushup c/100`
+| *Addt*     | `addt temp/EXERCISE at/DATE [c/CALORIES]` <br> e.g., `addt temp/pushup d/half an hour at/09-07-2020 c/260`
