@@ -1126,7 +1126,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file<br>
       Expected: The most recent window size and location is retained.
 
 1. Exit Application
@@ -1164,75 +1164,75 @@ testers are expected to do more *exploratory* testing.
 1. Autocomplete command
    1. Prerequisites: None.
    
-   1. Test Case: Pressing the <kbd>tab</kbd> key.<br>
+   1. Test Case: Pressing the <kbd>tab</kbd> key<br>
       Expected: Command box remains empty.
    
-   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key.<br>
+   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key<br>
       Expected: `list` appears in the command box with the caret after the last char of the text.
 
 1. Autocomplete command target
    1. Prerequisites: None.
    
-   1. Test Case: Pressing the <kbd>tab</kbd> key.<br>
+   1. Test Case: Pressing the <kbd>tab</kbd> key<br>
       Expected: Command box remains empty.
    
-   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key, then `r` before pressing <kbd>tab</kbd>.<br>
+   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key, then `r` before pressing <kbd>tab</kbd><br>
       Expected: `list recipe ` appears in the command box with the caret after the last char of the text.
 
 1. Autocomplete user defined parameters without recipes and ingredients
    1. Prerequisites: No recipes in ChopChop. In this section, we will start off with `view recipe ` in the command box.
    
-   1. Test Case: Pressing the <kbd>tab</kbd> key.<br>
+   1. Test Case: Pressing the <kbd>tab</kbd> key<br>
       Expected: Command box remains empty.
    
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd>.<br>
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd><br>
       Expected: `view recipe ` remains in the command box with the caret 1 en space after the last char of the text.
       
 1. Autocomplete user defined parameters
    1. Prerequisites: Only 3 recipes `apple pie`, `apple slices` and `apple juice` starting with the letter `a` in ChopCHop. In this section, we will start off with `view recipe ` in the command box.
    
-   1. Test Case: Pressing the <kbd>tab</kbd> key.<br>
+   1. Test Case: Pressing the <kbd>tab</kbd> key<br>
       Expected: Command box remains empty.
    
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd>.<br>
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd><br>
       Expected: `view recipe apple pie ` appears in the command box with the caret 1 en space after the last char of the text.
       
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> twice.<br>
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> twice<br>
       Expected: `view recipe apple juice ` appears in the command box with the caret 1 en space after the last char of the text.
       
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> thrice.<br>
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> thrice<br>
       Expected: `view recipe apple slices ` appears in the command box with the caret 1 en space after the last char of the text.
       
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> four times.<br>
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> four times<br>
       Expected: `view recipe apple pie ` appears in the command box with the caret 1 en space after the last char of the text.
  
 #### B.1.4&ensp;Undo commands previously entered
 1. Undoing an undoable command
    1. Prerequisites: None.
    
-   1. Test Case: `add recipe duck rice` followed by `undo`.<br>
+   1. Test Case: `add recipe duck rice` followed by `undo`<br>
       Expected: The added recipe is removed.     
       
-   1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice.<br>
+   1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice<br>
       Expected: The added recipes are removed.              
       
 1. Undoing an command that cannot be undone
    1. Prerequisites: No commands entered since launch.
    
-   1. Test Case: `list recipe` followed by `undo`.<br>
+   1. Test Case: `list recipe` followed by `undo`<br>
       Expected: Nothing happens. An error is displayed in the command output box.     
 
 1. Undoing an command that cannot be undone with undoable commands entered before.
    1. Prerequisites: None.
    
-   1. Test Case: `add recipe duck rice` followed by `list recipe`, then `undo`.<br>
+   1. Test Case: `add recipe duck rice` followed by `list recipe`, then `undo`<br>
       Expected: The recipe `duck rice` is removed.          
 
 #### B.1.5&ensp;Redo commands previously undone
 1. Redoing an undone command
    1. Prerequisites: None.
    
-   1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`.<br>
+   1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`<br>
       Expected: The `duck rice` recipe removed by the `undo` command is added.
       
    1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice, then `redo` twice. <br>
@@ -1241,10 +1241,10 @@ testers are expected to do more *exploratory* testing.
 1. Redoing when there is no undo command executed prior
    1. Prerequisites: No undo command executed since launch, or all undoable commands have been redone.
    
-   1. Test Case: `add recipe duck rice` followed by `redo`.<br>
+   1. Test Case: `add recipe duck rice` followed by `redo`<br>
       Expected: Nothing happens. An error is displayed in the command output box.       
       
-   1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`, and then `redo`.<br>
+   1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`, and then `redo`<br>
       Expected: The `duck rice` recipe removed by the `undo` command is added after the first `redo`.  Nothing happens for the second redo. An error is displayed in the command output box.                
 
 #### B.1.6&ensp;Getting Help
@@ -1273,29 +1273,29 @@ All successful test cases in the section **Adding recipes** will result in the *
 
    1. Prerequisites: none.
    
-   1. Test Case: `add recipe Banana Smoothie  /ingredient Banana`.<br>
+   1. Test Case: `add recipe Banana Smoothie  /ingredient Banana`<br>
       Expected: The recipe `Banana Smoothie` is added to the recipe list. No steps and tags should be shown; the ingredient with quantity in brackets `Banana (1)` is shown.
     
-   1. Test Case: `add recipe Banana Smoothie  /ingredient Banana /qty 100g`.<br>
+   1. Test Case: `add recipe Banana Smoothie  /ingredient Banana /qty 100g`<br>
       Expected: The recipe `Banana Smoothie` is added to the recipe list. No steps and tags should be shown; the ingredient with quantity in brackets `Banana (100g)` is shown.
 
-   1. Test Case: `add recipe Banana Smoothie  /step Chop Bananas /step Add to blender`.<br>
+   1. Test Case: `add recipe Banana Smoothie  /step Chop Bananas /step Add to blender`<br>
       Expected: The recipe `Banana Smoothie` is added to the recipe list. No ingredients and tags should be shown; the steps `Chop Bananas` and `Add to blender` are shown.
 
-   1. Test Case: `add recipe Banana Smoothie  /tag Fruit /tag Favourites`.<br>
+   1. Test Case: `add recipe Banana Smoothie  /tag Fruit /tag Favourites`<br>
       Expected: The recipe `Banana Smoothie` is added to the recipe list. No ingredients and steps should be shown; the tags `Fruit` and `Favourites` are shown.
        
    1. Test case: 
-   ``````
-   add recipe Banana Smoothie 
-   /ingredient Banana /qty 2 
-   /ingredient milk /qty 200ml 
-   /step Chop the bananas and add to a blender with milk. 
-   /step Turn the blender on and blend until creamy and smooth.
-   /step Ready to serve.
-   /tag Summer Favourites /tag Fruit
-   ``````
-   Expected: The recipe `Banana Smoothie` is added to the recipe list.
+      ``````
+      add recipe Banana Smoothie 
+      /ingredient Banana /qty 2 
+      /ingredient milk /qty 200ml 
+      /step Chop the bananas and add to a blender with milk. 
+      /step Turn the blender on and blend until creamy and smooth.
+      /step Ready to serve.
+      /tag Summer Favourites /tag Fruit
+      ``````
+      Expected: The recipe `Banana Smoothie` is added to the recipe list.
 
 1. Adding a recipe without ingredients, steps and tags
    1. Prerequisites: None.
@@ -1322,16 +1322,16 @@ All successful test cases in the section **Deleting recipes** will result in the
 1. Deleting a recipe using recipe index in a filtered list
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
-   1. Test Case: `find recipe banana` followed by `delete recipe #1`.<br>
+   1. Test Case: `find recipe banana` followed by `delete recipe #1`<br>
       Expected: The recipe `Sweet Banana Salad` is deleted from the recipe list.
       
-   1. Test Case: `find recipe banana` followed by `delete recipe #1`, then `undo`, then `find recipe banana` before `delete recipe #1`.<br>
+   1. Test Case: `find recipe banana` followed by `delete recipe #1`, then `undo`, then `find recipe banana` before `delete recipe #1`<br>
       Expected: The recipe `Banana Smoothie` is deleted from the recipe list.
    
 1. Deleting a recipe using recipe name
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
 
-   1. Test Case: `delete recipe Apple Tart`.<br>
+   1. Test Case: `delete recipe Apple Tart`<br>
       Expected: The recipe `Apple Tart` is deleted from the recipe list.
       
    1. Test case: `delete recipe Salad`<br>
@@ -1345,34 +1345,34 @@ All successful test cases in the section **Deleting recipes** will result in the
 1. Editing a recipe using recipe index
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
 
-   1. Test Case: `edit recipe #1 /name Apple Tarts`.<br>
+   1. Test Case: `edit recipe #1 /name Apple Tarts`<br>
       Expected: The recipe `Apple Tart` is renamed to `Apple Tarts`.
 
 1. Editing a recipe using recipe index in a filtered list
     1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
-    1. Test Case: `find recipe banana`, followed by `edit recipe #1 /ingredient:add Raisins /qty 5`.<br>
+    1. Test Case: `find recipe banana`, followed by `edit recipe #1 /ingredient:add Raisins /qty 5`<br>
        Expected: The ingredient with quantity in brackets `Raisins (5)` is added to the recipe `Sweet Banana Salad`.
 
-    1. Test Case: `find recipe banana`, followed by `edit recipe #1 /ingredient:edit Banana /qty 3`.<br>
+    1. Test Case: `find recipe banana`, followed by `edit recipe #1 /ingredient:edit Banana /qty 3`<br>
        Expected: The ingredient with quantity in brackets `Banana (2)` is changed to `Banana (3)` in the recipe `Sweet Banana Salad`.   
 
-    1. Test Case: `find recipe banana`, followed by `edit recipe #1 /ingredient:delete Banana`.<br>
+    1. Test Case: `find recipe banana`, followed by `edit recipe #1 /ingredient:delete Banana`<br>
        Expected: The ingredient with quantity in brackets `Banana (2)` is removed from the recipe `Sweet Banana Salad`.
     
 1. Editing a recipe using recipe name
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
 
-   1. Test Case: `edit recipe Apple Tart /tag:add vegetarian`.<br>
+   1. Test Case: `edit recipe Apple Tart /tag:add vegetarian`<br>
       Expected: The tag `vegetarian` is added to the recipe `Apple Tart`.
        
-   1. Test Case: `edit recipe Apple Tart /step:delete:1`.<br>
+   1. Test Case: `edit recipe Apple Tart /step:delete:1`<br>
       Expected: The step `Cut the banana and put it into a bowl` is removed from the recipe `Apple Tart`.
       
-   1. Test Case: `edit recipe Apple Tart /step:add Mash the bananas`.<br>
+   1. Test Case: `edit recipe Apple Tart /step:add Mash the bananas`<br>
       Expected: The step `Mash the bananas` is added to the end of the existing steps of the recipe `Apple Tart`.      
  
-   1. Test Case: `edit recipe Apple Tart /step:edit:1 Put the bananas in a bowl`.<br> 
+   1. Test Case: `edit recipe Apple Tart /step:edit:1 Put the bananas in a bowl`<br> 
       Expected: The step `Cut the banana and put it into a bowl` is changed to `Put the bananas in a bowl` in the recipe `Apple Tart`.  
       
    1. Incorrect edit commands to try: `edit`, `edit recipe`, `edit recipe #1`<br>
@@ -1382,17 +1382,17 @@ All successful test cases in the section **Deleting recipes** will result in the
 1. Filtering recipes
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
-   1. Test Case: `filter recipe /name banana`.<br>
+   1. Test Case: `filter recipe /name banana` <br>
       Expected: The recipes `Sweet Banana Salad` and `Banana Smoothie` are to be displayed. 
       
-   1. Test Case: `filter recipe /tag fruit`.<br>
+   1. Test Case: `filter recipe /tag fruit` <br>
       Expected: The recipes `Apple Tart`, `Sweet Banana Salad` and `Banana Smoothie` are to be displayed.
-      
-   1. Test Case: `filter recipe /tag fruit`.<br>
-      Expected: The recipes `Apple Tart`, `Sweet Banana Salad` and `Banana Smoothie` are to be displayed. 
    
-   1. Test Case: `filter recipe /ingredient banana`.<br>
+   1. Test Case: `filter recipe /ingredient banana` <br>
       Expected: The recipes `Sweet Banana Salad` and `Banana Smoothie` are to be displayed.  
+      
+   1. Test Case: `filter recipe /name banana /ingredient banana /tag fruit /tag healthy` <br>
+         Expected: The recipes `Sweet Banana Salad` and `Banana Smoothie` are to be displayed.     
     
    1. Incorrect filter commands to try: `filter`, `filter recipe`, `filter recipe /name`, `...`(where any search term is empty) <br>
       Expected: No recipe is filtered. Error details shown in the Command Output box.   
@@ -1401,8 +1401,11 @@ All successful test cases in the section **Deleting recipes** will result in the
 1. Finding recipes
     1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
-    1. Test Case: `find recipe banana`.<br>  
+    1. Test Case: `find recipe banana`<br>  
        Expected: The recipes `Sweet Banana Salad` and `Banana Smoothie` are to be displayed. 
+       
+    1. Test Case: `find recipe banana apple`<br>  
+       Expected: The recipes `Apple Tart`, `Sweet Banana Salad`, `Banana Smoothie` are to be displayed.    
     
    1. Incorrect find commands to try: `find`, `find recipe` <br>
       Expected: No recipe is found. Error details shown in the Command Output box.   
@@ -1412,6 +1415,9 @@ All successful test cases in the section **Deleting recipes** will result in the
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
    
    1. Test case: `list recipe` <br>
+     Expected: All 6 recipes displayed in the Recipe View Panel.
+     
+   1. Test case: `list recipes` <br>
      Expected: All 6 recipes displayed in the Recipe View Panel.
    
    1. Other incorrect list commands to try: `list`, `list rec` <br>
@@ -1431,44 +1437,44 @@ having expiry dates in December 2020.
 </div>  
   
 #### B.2.7&ensp;Viewing recipes   
-1. Viewing a recipe using recipe index<br>
+1. Viewing a recipe using recipe index <br>
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
-   1. Test case: `view recipe #1`<br>
+   1. Test case: `view recipe #1` <br>
       Expected: The recipe **#1** `Apple Tart` is displayed.
 
 1. Viewing a recipe using recipe index in a filtered list
     1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
-    1. Test Case: `find recipe banana` followed by `view recipe #1`.<br>
+    1. Test Case: `find recipe banana` followed by `view recipe #1` <br>
        Expected: The recipe `Sweet Banana Salad` is displayed. 
    
 1. Viewing a recipe using recipe name
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
 
-   1. Test Case: `view recipe Apple Tart`.<br>
+   1. Test Case: `view recipe Apple Tart`<br>
       Expected: The recipe `Apple Tart` is displayed.
    
 #### B.2.8&ensp;Making recipes   
 1. Making a recipe using recipe index
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
 
-   1. Test Case: `make recipe #1`.<br>
+   1. Test Case: `make recipe #1` <br>
       Expected: The recipe `Apple Tart` is made.
 
-   1. Test case: `make recipe #1` twice.<br>
+   1. Test case: `make recipe #1` twice <br>
        Expected: On the second `make recipe #1`, an error is thrown as there are 2 apples missing.
 
 1. Making a recipe using recipe index in a filtered list
     1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
-    1. Test Case: `find recipe banana` followed by `make recipe #1`.<br>
+    1. Test Case: `find recipe banana` followed by `make recipe #1` <br>
        Expected: The recipe `Sweet Banana Salad` is made. The command output box shows details of the command.  
    
 1. Making a recipe using recipe name
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.  
 
-   1. Test Case: `make recipe Apple Tart`.<br>
+   1. Test Case: `make recipe Apple Tart` <br>
       Expected: The recipe `Apple Tart` is made. The command output box shows details of the command.
 
 
@@ -1476,148 +1482,210 @@ having expiry dates in December 2020.
 
 #### B.3.1&ensp;Adding ingredients
  
-1. Adding an ingredient without quantity, expiry date and tags.
-   1. Prerequisites: None.
+1. Adding a new ingredient without quantity, expiry date and tags.
+    1. Prerequisites: None.
 
     1. Test Case: `add ingredient duck` <br>  
-       Expected: The ingredient duck with quantity 1 is added to the ingredient list. No expiry date and tags should be shown when viewing the recipe. A confirmation message is displayed at the Command Output box.
+       Expected: The ingredient duck with quantity 1 is added to the ingredient list. No expiry date and tags should be shown when viewing the recipe. 
        
-1. Adding an ingredient
-   1. Prerequisites: None. 
+1. Adding a new ingredient
+
+    1. Prerequisites: None. 
    
     1. Test Case: `add ingredient duck /qty 2kg` <br>   
-       Expected: The ingredient duck with quantity 2kg is added to the ingredient list. No expiry date and tags should be shown when viewing the recipe. A confirmation message is displayed at the Command Output box.
+       Expected: The ingredient duck with quantity 2kg is added to the ingredient list. No expiry date and tags should be shown when viewing the recipe.
  
     1. Test Case: `add ingredient duck /qty 2ounce` <br>  
        Expected: An error is given in the command output box as the unit is not known.
 
     1. Test Case: `add ingredient duck /expiry 2021-12-12` <br>
-       Expected: The ingredient duck with quantity 1 and expiry date 2021-12-12 is added to the ingredient list. No tags should be shown when viewing the recipe. A confirmation message is displayed at the Command Output box.       
+       Expected: The ingredient duck with quantity 1 and expiry date 2021-12-12 is added to the ingredient list. No tags should be shown when viewing the recipe.        
        
     1. Test Case: `add ingredient duck /tag poultry` <br>
-       Expected: The ingredient duck with quantity 1 and tag poultry is added to the ingredient list. No expiry date should be shown when viewing the recipe. A confirmation message is displayed at the Command Output box.      
+       Expected: The ingredient duck with quantity 1 and tag poultry is added to the ingredient list. No expiry date should be shown when viewing the recipe.      
 
     1. Test Case: `add ingredient duck /expiry 2021-12-12 /tag poultry` <br>
-       Expected: The ingredient duck with quantity 1, expiry date 2021-12-12 and tag poultry is added to the ingredient list. A confirmation message is displayed at the Command Output box.    
+       Expected: The ingredient duck with quantity 1, expiry date 2021-12-12 and tag poultry is added to the ingredient list.  
        
     1. Test Case: `add ingredient duck /qty 2kg /expiry 2021-12-12 /tag poultry` <br>
-       Expected: The ingredient duck with quantity 2kg, expiry date 2021-12-12 and tag poultry is added to the ingredient list. A confirmation message is displayed at the Command Output box.
+       Expected: The ingredient duck with quantity 2kg, expiry date 2021-12-12 and tag poultry is added to the ingredient list.
        
-1. Updating quantity of an existing ingredient.
+    1. Test Case: `add ingredient duck /qty 2kg /expiry 2021-12-12 /tag poultry /expiry 2022-12-31` <br>
+       Expected: The ingredient duck with quantity 2kg, expiry date 2021-12-12 and tag poultry is added to the ingredient list.
+       
+1. Adding to the quantity of an existing ingredient
 
-   1. Prerequisites: the ingredient has been created.
+    1. Prerequisites: the ingredient has been added to the ingredient list.
    
-   1. Test case: `add ingredient Apple` <br>
-      Expected: Quantity of ingredient **Apple** increased by 1.
+    1. Test case: `add ingredient Apple` <br>
+       Expected: The quantity of the existing ingredient **Apple** increases by 1. The ingredient tile of Apple in the Ingredient Display Panel is updated.
    
-   1. Test case: `add ingredient Apple /qty 3` <br>
-   Expected: Quantity of ingredient **Apple** increases by 3.
+    1. Test case: `add ingredient Apple /qty 3` <br>
+       Expected: The quantity of the existing ingredient **Apple** increases by 3. The ingredient tile of Apple in the Ingredient Display Panel is updated.
    
-   1. Test case: `add ingredient Chocolate /qty 50mL` <br>
-      Expected: No ingredient is updated due to incompatible units. Error details shown in the Command Output box.
+    1. Test Case: `add ingredient Apple /qty 2ounce` <br>  
+       Expected: No ingredient is updated as the unit provided is unknown. Error details shown in the Command Output box.
+   
+    1. Test case: `add ingredient Chocolate /qty 50mL` <br>
+       Expected: No ingredient is updated due to incompatible units. Error details shown in the Command Output box.
       
-   1. Test case: `add ingredient Vinegar` <br>
-      Expected: Similar to previous.
-   
-   
+    1. Test case: `add ingredient Vinegar` <br>
+      Expected: Same as previous.
+
+1. Adding tags to an existing ingredient
+
+    1. Prerequisites: the ingredient has been added to the ingredient list, with or without any tag.
+    
+    1. Test case: `add ingredient Apple /qty 12 /tag Healthy /tag Sweet` <br>
+          Expected: New tags **Healthy** and **Sweet** are added to ingredient **Apple**'s current tag list, while the quantity of **Apple** increases by 12.
+
+1. Adding expiry date to an existing ingredient
+
+    1. Prerequisites: the ingredient has been added to the ingredient list, with or without and expiry date.
+    
+    1. Test case: `add ingredient Apple /qty 12 /expiry 2020-12-31 /expiry 2020-12-01` <br>
+      Expected: The earliest expiry date **2020-12-01** is added to ingredient **Apple**. The quantity of **Apple** increases by 12.
+      
+    1. Test case: `add ingredient Apple /qty 2 /expiry 2020-11-25` <br>
+      Expected: The current expiry date **2020-12-01** of ingredient **Apple** is replaced by the earlier new expiry date **2020-11-25**. The quantity of **Apple** increases by 2.
+      
+    1. Test case: `add ingredient Apple /qty 2 /expiry 2022-10-28` <br>
+      Expected: The current expiry date **2020-12-01** of ingredient **Apple** stays the same as it is earlier than the new date provided. The quantity of **Apple** still increases by 2.   
+      
 #### B.3.2&ensp;Deleting ingredients  
 
-1. Deleting an ingredient using ingredient index
-   1. Prerequisites: None. 
-   
-   1. Test case: `delete ingredient #2`<br>
-   Expected: Ingredient **#2** deleted. All current ingredients (after the deletion) shown in the Ingredient View Panel. A confirmation message is displayed at the Command Output box.
-    
-   1. Test case: `delete ingredient #2 /qty 2`<br>
-   Expected: Quantity of ingredient **#2** reduced by 2. Output display similar to previous. When its quantity decreases to 0, its Ingredient Tile disappears from the Ingredient View Panel.
-   
-   1. Test case: `delete ingredient #2 /qty 50mL` <br>
-   Expected: No ingredient is updated due to incompatible units. Error details shown in the Command Output box.
+All successful test cases in the section **Deleting ingredients** will result in the **Ingredient View Panel** being shown.
 
-1. Deleting an ingredient using ingredient index in a filtered list
-   1. Prerequisites: None. 
-   
-   1. Test case: Similar to previous. <br>
-      Expected: Similar to previous.
-   
-1. Deleting an ingredient using ingredient name
-   1. Prerequisites: None. 
-   
-   1. Test case: `delete ingredient Chocolate` <br>
-      Expected: Ingredient **Chocolate** deleted. Output display similar to previous.
-   
-   1. Test case: `delete ingredient Chocolate /qty 2`<br>
-   Expected: Quantity of ingredient **#2** reduced by 2. Output display similar to previous. When its quantity decreases to 0, its Ingredient Tile disappears from the Ingredient View Panel.
-   
-   1. Test case: `delete ingredient Chocolate /qty 50mL` <br>
-   Expected: No ingredient is updated due to incompatible units. Error details shown in the Command Output box.
+1. Deleting a ingredient using ingredient index
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop.
+    
+   1. Test case: `delete ingredient #10`<br>
+      Expected: The ingredient **#10** `Ginger Root` is deleted from the ingredient list. 
+    
+   1. Test case: `delete ingredient #20`<br>
+      Expected: No ingredient deleted as the ingredient with the given index does not exist. Error details shown in the Command Output box. 
       
-   1. Incorrect delete commands to try: `delete ingredient`, `delete Chocolate`, `delete Chocolate 3`<br>
-      Expected: No ingredient deleted. Error details shown in the Command Output box.
+   1. Test case: `delete ingredient #1 /qty 3`<br>
+      Expected: The quantity of ingredient **#1** decreases by 3 and becomes 5.
+      
+   1. Test case: `delete ingredient #1 /qty 8`<br>
+      Expected: The quantity of ingredient **#1** decreases by 8 and becomes 0. The ingredient disappears from the ingredient list.    
+      
+   1. Test case: `delete ingredient #1 /qty 10`<br>
+      Expected: No ingredient deleted as the quantity of ingredient **#1** in stock is not sufficient for the deletion. Error details shown in the Command Output box.    
+   
+   1. Test case: `delete ingredient #1 /qty 10mL`<br>   
+      Expected: No ingredient is updated due to incompatible units **Count** and **mL**. Error details shown in the Command Output box.
+      
+   1. Test case: `delete ingredient #1 /qty 10ounce`<br>   
+      Expected: No ingredient is updated as the unit provided is unknown. Error details shown in the Command Output box.
+
+1. Deleting a ingredient using ingredient index in a filtered list
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
+   
+   1. Test Case: `find ingredient Salt` followed by `delete ingredient #1`<br>
+      Expected: The ingredient `Salt` is deleted from the ingredient list.
+      
+   1. Test Case: `find ingredient Salt` followed by `delete ingredient #1`, then `undo`, then `find ingredient Salt` before `delete ingredient #1`<br>
+      Expected: The ingredient `Salt` is deleted from the ingredient list.
+      
+   1. Other test cases are similar to previous.
+   
+1. Deleting a ingredient using ingredient name
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
+
+   1. Test Case: `delete Pineapple Juice`<br>
+      Expected: The ingredient `Pineapple Juice` is deleted from the ingredient list.
+      
+   1. Test case: `delete ingredient Salad`<br>
+      Expected: No ingredient deleted as the ingredient with the given name does not exist. Error details shown in the Command Output box.
+      
+   1. Other test cases are similar to previous.
+   
+   1. Other incorrect delete commands to try: `delete`, `delete ingredient`<br>
+      Expected: No ingredient is deleted. Output display similar to previous.      
 
 #### B.3.3&ensp;Editing ingredients  
 1. Editing an ingredient using ingredient index
-   1. Prerequisites: None. 
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
    
-   1. Test case: `edit ingredient #2 /tag:add Sweet /tag:delete Dairy`<br>
-      Expected: Ingredient **#2** edited. Updated Ingredient Tile shown in the Ingredient View Panel. A confirmation message is displayed at the Command Output box.
+   1. Test case: `edit ingredient #1 /tag:add Sweet`<br>
+      Expected: The ingredient **#1** is edited. A new tag **Sweet** is added to its current tag list.
+      
+   1. Test case: `edit ingredient #1 /tag:delete low calorie`<br>
+      Expected: The ingredient **#1** is edited. The existing tag **Dairy** is removed from its current tag list.
     
    1. Incorrect edit commands to try: `edit`, `edit ingredient`, `edit ingredient #1`<br>
       Expected: No ingredient is edited. Error details shown in the Command Output box. 
       
 1. Editing an ingredient using ingredient index in a filtered list
-   1. Prerequisites: None. 
+
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
    
-   1. Test case: Similar to above.<br>
-      Expected: Similar to above.
+   1. Test Case: `find ingredient Flour`, followed by `edit ingredient #1 /tag:add kitchen /tag:delete carbohydrate`<br>
+      Expected: The new tag **Sweet** is added to ingredient **Flour**, while its existing tag **carbohydrate** is removed.
    
 1. Editing an ingredient using ingredient name
-   1. Prerequisites: None.
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
     
-   1. Test case: `edit ingredient Milk Chocolate /tag:add Sweet /tag:delete Dairy`<br>
-   Expected: Ingredient **Milk Chocolate** edited. Updated Ingredient Tile shown in the Ingredient View Panel. A confirmation message is displayed at the Command Output box.
+   1. Test case: `edit ingredient Flour /tag:add kitchen /tag:delete carbohydrate`<br>
+   Expected: The ingredient **Flour** is edited. A new tag **kitchen** is added while the tag **carbohydrate** is removed.
 
-   1. Incorrect edit commands to try out: `edit ingredient Milk Chocolate` <br>
-   Expected: No ingredient edited. Error details shown in the Command Output box.
+   1. Incorrect edit commands to try out: `edit ingredient Flour` <br>
+   Expected: No ingredient is edited. Error details shown in the Command Output box.
       
 #### B.3.4&ensp;Filtering ingredients 
-
 1. Filtering ingredients 
-   1. Prerequisites: None. 
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
+   
+   1. Test case: `filter ingredient /name sugar` <br>
+   Expected: The ingredients **Brown Sugar** and **Granulated Sugar** are to be displayed.
+   
+   1. Test case: `filter ingredient /expiry 2020-12-01` <br>
+      Expected: The ingredient **Butter**, **Cream** and **Egg** are to be displayed.
+      
+   1. Test case: `filter ingredient /tag bakery /tag sweet` <br>
+      Expected: The ingredients **Brown Sugar**, **Granulated Sugar**, **Honey** and **Vanilla Extract** are to be displayed.
 
    1. Test case: 
-   ``````
-   filter ingredient
-   /name choco /name syrup
-   /expiry 2021-12-10 /expiry 2022-01-01
-   /tag sweet /tag high calories
-   ``````
-      Expected: Ingredients matching all specified criteria, for instance, **Chocolate Syrup** displayed in the Ingredient View Panel.
+      ``````
+      filter ingredient
+      /name vanilla /name extract
+      /expiry 2021-12-10 /expiry 2020-12-31
+      /tag sweet /tag bakery
+      ``````
+      Expected: The ingredient **Vanilla Extract**, which matches all specified criteria, is to be displayed.
     
    1. Incorrect filter commands to try: `filter`, `filter ingredient`, `filter ingredient /name`, `...`(where any search term is empty) <br>
       Expected: No ingredient is filtered. Error details shown in the Command Output box.   
       
 #### B.3.5&ensp;Finding ingredients  
 1. Finding ingredients 
-   1. Prerequisites: None. 
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
+   
+   1. Test case: `find ingredient sugar`
+      Expected: The ingredients **Brown Sugar** and **Granulated Sugar** are to be displayed.
 
-   1. Test case: `find ingredient chocolate egg banana`
-      Expected: Ingredients whose names contain any of the keywords are displayed in the Ingredients View Panel. A confirmation message is displayed at the Command Output box.
+   1. Test case: `find ingredient sugar vanilla`
+      Expected: The ingredients **Brown Sugar**, **Granulated Sugar** and **Vanilla Extract** are to be displayed.
     
    1. Incorrect find commands to try: `find`, `find ingredient` <br>
       Expected: No ingredient is found. Error details shown in the Command Output box.   
          
 #### B.3.6&ensp;Listing ingredients 
 1. Listing ingredients 
-   1. Prerequisites: None. 
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
+   
+   1. Test case: `list ingredient` <br>
+     Expected: All ingredients are displayed in the Ingredient View Panel.
    
    1. Test case: `list ingredients` <br>
-     Expected: All recipes displayed in the Recipe View Panel. A confirmation message is displayed at the Command Output box.
+     Expected: All ingredients are displayed in the Ingredient View Panel.
    
    1. Test case: `list ingredients /name fruit` <br>
      Expected: Output display same as previous. `/name fruit` is ignored when the command is parsed.
    
-   1. Other incorrect list commands to try: `list`, `list ingredient` <br>
+   1. Other incorrect list commands to try: `list`, `list ingred` <br>
      Expected: No ingredient is listed. Error details shown in the Command Output box.   
  
 ### B.4&ensp;Viewing statistics
