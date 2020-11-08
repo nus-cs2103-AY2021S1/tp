@@ -744,8 +744,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`    | Second-time user      | find the emergency contacts of my employees quickly if they are injured | find the person to contact and know what action to take in the shortest time possible |
 | `* * *`    | Second-time user      | set all different ingredients levels to standard default amounts   | easily start using tCheck to track ingredients in my store |
 | `* * *`    | Second-time user      | set different ingredients levels to different default amounts   | be able to use tCheck to track my store's ingredients and their usage levels |
-| `* * *`    | Intermediate user      | find a specific ingredient consumption  | check an individual ingredient's level quickly   |
+| `* * *`    | Intermediate user      | input the number of each type of drinks sold into tCheck at the end of the day | obtain the amount of remaining ingredients without doing the calculation   |
 | `* * *`    | Intermediate user      | input the number of each type of drinks sold into tCheck at the end of the day  | obtain the amount of remaining ingredients without doing the calculation   |
+| `* * *`    | Intermediate user      | find a specific ingredient consumption  | check an individual ingredient's level quickly   |
+| `* * `    | Intermediate user      | see a ranking of the drinks sold | easily compare and identify the most popular drink in the shop so far   |
+| `* * `    | Intermediate user      | view the list of drinks sold for the day | check that I have input the correct number and see a visual overview of the sales of drinks   |
 | `* * `    | Store manager      | delete some of the employees' data who are no longer working at my shop | get them no longer tracked by tCheck   |
 | `* * `    | Store manager      | see all archived contact details | still find my former employees' contacts when needed |
 | `* * `    | Second-time user      | reset all ingredient levels to zero   | record new ingredient levels conveniently |
