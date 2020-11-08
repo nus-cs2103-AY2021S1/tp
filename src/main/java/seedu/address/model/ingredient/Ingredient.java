@@ -194,7 +194,7 @@ public class Ingredient {
                 break;
             }
         }
-        return digits.substring(index).trim();
+        return digits.substring(index);
     }
 
     private static String[] getDigitsAndUnitsFromQuantity(String quantity) {
