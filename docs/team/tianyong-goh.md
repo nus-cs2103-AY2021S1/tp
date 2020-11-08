@@ -23,11 +23,6 @@ Wishful Shrinking targets **office workers** who tend to neglect healthy eating.
  
 Given below are my contributions to the project:
 
-## Code contribution
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=tianyong-goh&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-<br><br>
-
-### New Feature
 
 * **New Feature 1**: Added the `Eat Recipe` command. (Pull Requests [\#51](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/51))
   * What it does: allows the user "eat" the recipe that is listed in the recipes' collection.
@@ -54,7 +49,15 @@ Given below are my contributions to the project:
   * Justification: This feature improves the product because it allows user to start a new Consumption List with a single command instead of repeatedly using `deleteC` feature.
 <br><br>
 
-### Enhancements
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=tianyong-goh&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+<br><br>
+
+* **Project management**:
+  * Produce shadowJar file for test and release `v1.2`.
+  * Setting up group meeting for discussion
+  * Remind team members to approve members' PRs
+<br><br>
+
 * **Enhancements to existing features**:
   * Refactored `Search Recipe` feature from `find` feature in *AddressBook Level 3* (Pull Requests [\#37](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/37))
   * Added Calories field into Recipe for `Eat Recipe` feature (Pull Requests [\#80](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/80))
@@ -64,7 +67,6 @@ Given below are my contributions to the project:
   * Added tests for `Search Recipe` feature and `Recommand` feature. (Pull Requests [\#116](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/116))
 <br><br>
 
-### Documentation
 * **Documentation**:
   * [User Guide](https://ay2021s1-cs2103t-w10-2.github.io/tp/UserGuide.html):
     * Transfer the user guide's draft from google document to UserGuide.md. (Pull Requests [\#31](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/31))
@@ -78,14 +80,6 @@ Given below are my contributions to the project:
     * Updated Class Diagrams(Model Component). (Pull Requests [#252](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/252))
 <br><br>
 
-### Project Management
-* **Project management**:
-  * Produce shadowJar file for test and release `v1.2`.
-  * Setting up group meeting for discussion
-  * Remind team members to approve members' PRs
-<br><br>
-
-## Community
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#172](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/172), [\#178](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/178), [\#24](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/24)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/TianYong-Goh/ped/issues/3), [2](https://github.com/TianYong-Goh/ped/issues/5), [3](https://github.com/TianYong-Goh/ped/issues/7))
