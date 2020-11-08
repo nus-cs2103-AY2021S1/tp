@@ -8,7 +8,7 @@ command in the command box;
 
 :TrackrParser parses the user input;
 
-:ClearCommand is excuted;
+:ClearCommand is executed;
 
 :All existing modules, tutorial groups
 and students are deleted from Trackr;

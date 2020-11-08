@@ -3,7 +3,7 @@
 
 start
 
-:User enters an viewTG
+:User enters a viewTG
 command in the command box;
 
 :TrackrParser parses the argument

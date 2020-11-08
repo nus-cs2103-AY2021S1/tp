@@ -3,7 +3,7 @@
 
 start
 
-:User enters an findMod
+:User enters a findMod
 command in the command box;
 
 :TrackrParser parses the argument
@@ -14,7 +14,7 @@ should further parse it;
 parses the user input;
 
 if () then ([valid command input format])
-    :Keyword to search for is indentified;
+    :Keyword to search for is identified;
     if () then ([Trackr is in Module View])
         :The module list displayed is updated to only
         show modules matching the keyword;

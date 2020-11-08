@@ -8,7 +8,7 @@ command in the command box;
 
 :TrackrParser parses the user input;
 
-:ExitCommand is excuted;
+:ExitCommand is executed;
 
 :Trackr window closes;
 
