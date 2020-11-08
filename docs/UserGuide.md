@@ -127,14 +127,14 @@ All pending deliveries related command have a suffix `-d`.
     Figure 2: Help Start Window
     <br>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 <a name="3-features"></a>
 ## 3. Features
 
 In this section, you can find the different available command features, general features 
 and upcoming features.
-
-<div style="page-break-after: always;"></div>
 
 ### 3.1 Command Features
 
@@ -165,6 +165,8 @@ Things to note for the commands:
   e.g. `[t/TAG]…​` can be used 
   1. once: `t/brother`
   1. or multiple times: `t/sibling t/brother t/family`
+  
+<div style="page-break-after: always;"></div>
 
 * Fields in the commands can be in any order.<br>
   e.g. a command with format `add-i n/NAME q/QUANTITY` can be used as
@@ -359,8 +361,6 @@ Examples:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
 There is no remove-d since a pending delivery does not have a quantity
 </div>
-
-<div style="page-break-after: always;"></div>
 
 <a name="edit"></a>
 #### 3.1.4 Editing an item or delivery: `edit-i` or `edit-d`
@@ -581,8 +581,6 @@ Example 1:
 Clears all entries from the Inventory/ Delivery book.
 
 Format: `clear-i` or `clear-d`
-
-<div style="page-break-after: always;"></div>
 
 #### 3.1.9 Undo last command: `undo`
 
