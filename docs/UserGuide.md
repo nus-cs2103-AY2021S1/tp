@@ -1233,9 +1233,7 @@ Examples:
 
 ### 5.6&ensp;Statistics Commands (Travis)
 
-Whenever you make a recipe or consume an ingredient, ChopChop saves a record of the usage. You can view these records with the commands below.
-
-The output of these statistics commands are shown in the [statistics box](#StatisticsBox) on the right side of ChopChop's interface.
+Whenever you make a recipe or consume an ingredient, ChopChop makes a record, which you can view with the commands below. The output of these statistics commands are shown in the [statistics box](#StatisticsBox) on the right side of ChopChop's interface.
 
 
 <a name="StatsRecipeTopCommand"></a>
@@ -1243,7 +1241,7 @@ The output of these statistics commands are shown in the [statistics box](#Stati
 
 This command shows a list of recipes that were made the most, in descending order (the recipe listed first was made the most number of times).
 
-Note that, even if a recipe was deleted (with `delete recipe`), its cooking records will still exist in ChopChop. To remove these statistics, you can use `stats recipe clear` to clear them for all recipes.
+Note that, even if a recipe was deleted (with [`delete recipe`](#DeleteRecipeCommand)), its cooking records will still exist in ChopChop. To remove these statistics, you can use [`stats recipe clear`](#StatsRecipeClearCommand) to clear them for all recipes.
 
 **Usage**: `stats recipe top`
 
@@ -1258,7 +1256,7 @@ Figure 17: <i>No pancakes were sacrificed for this picture</i>
 <a name="StatsRecipeRecentCommand"></a>
 #### 5.6.2&ensp;Listing Recent Recipes — **`stats`**`recipe recent`
 
-This command shows a list of the 10 recently made recipes, with the most recent one at the top of the list. As with the other statistics commands, deleting a recipe from ChopChop does not delete it from this list.
+This command shows a list of the 10 most recently-made recipes, with the most recent one at the top of the list. As with the other statistics commands, deleting a recipe from ChopChop does not delete it from this list.
 
 Note that this is also the view that is displayed by default when no statistics commands have been used yet.
 
@@ -1330,11 +1328,11 @@ This command clears the history of the recipes that you've made from ChopChop. I
 <a name="StatsIngredientRecentCommand"></a>
 #### 5.6.5&ensp;Listing Recent Ingredients — **`stats`**`ingredient recent`
 
-This command shows a list of the 10 most recently-used ingredients consumed by `make`-ing recipes. It is similar to the [`stats recipe recent`](#StatsRecipeRecentCommand) as discussed above, except it deals with ingredients.
+This command shows a list of the 10 most recently-used ingredients consumed by [`make`](#MakeRecipeCommand)-ing recipes. It is similar to the [`stats recipe recent`](#StatsRecipeRecentCommand) command as discussed above, except it deals with ingredients.
 
 **Usage**: `stats ingredient recent`
 
-For example, after just having made <i>Scrambled Eggs</i>, these will be the recently-used ingredients:
+For example, after having just made <i>Scrambled Eggs</i>, these will be the recently-used ingredients:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_ingredient_recent.png" width="45%" /> <br />
@@ -1658,7 +1656,7 @@ Quantities without a unit are assumed to be dimensionless 'counts'; for example,
 
 As mentioned above, ChopChop will combine ingredients when you `add` them, provided they have compatible units. Combining works as you would expect, and is rather flexible; adding `3 cups` of milk to an existing stock of `400ml` will yield `1.15l`.
 
-However, you cannot, for example, add `300g` of blueberries to `4` blueberries, as grams and counts are incompatible units.
+However you cannot, for example, add `300g` of blueberries to `4` blueberries, as grams and counts are incompatible units.
 
 
 
