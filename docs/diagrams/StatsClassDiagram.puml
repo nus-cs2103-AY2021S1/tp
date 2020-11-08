@@ -17,13 +17,15 @@ package Model {
 }
 
 package UI {
-    Class HiddenLogic #FFFFFF
+    Class StatsSummaryPanel
+    Class StatsSummaryCard
 }
 
 StatisticsData ..> Task
 StatisticsData ..> Lesson
-StatisticsData ..> Tag
+StatisticsData --> Tag
 Statistics ..> StatisticsData
 Statistics ..> ObservableList
-UI -left-> StatisticsData
+StatsSummaryCard --> StatisticsData
+StatsSummaryPanel --> StatisticsData
 @enduml
