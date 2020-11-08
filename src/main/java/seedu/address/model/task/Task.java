@@ -28,7 +28,7 @@ public class Task implements Comparable<Task> {
     public static final String PUBLISH_DATE_MESSAGE_CONSTRAINTS =
             "Publish date should only be in the format of dd-MM-yyyy.";
     public static final String PROGRESS_MESSAGE_CONSTRAINTS =
-            "Progress values should only contain integers between 0 and 100 inclusive, and it should not be blank.";
+            "Progress values should only contain values between 0 and 100 inclusive, and it should not be blank.";
     public static final String IS_DONE_MESSAGE_CONSTRAINTS =
             "Done status should only be \"true\" or \"false\".";
 
@@ -41,7 +41,7 @@ public class Task implements Comparable<Task> {
     private LocalDate publishDate;
 
     /**
-     * name, progress, and isDone should be present and not null. description and deadline can be null.
+     * name and progress should be present and not null. description and deadline can be null.
      */
     public Task(String taskName, String description, Deadline deadline, double progress) {
         requireAllNonNull(taskName, progress);
@@ -216,21 +216,8 @@ public class Task implements Comparable<Task> {
             return false;
         }
         Task task = (Task) o;
-        return Double.compare(task.getProgress(), getProgress()) == 0
-                && getTaskName().equals(task.getTaskName())
-                && (getDescription() == task.getDescription()
-                || (getDescription() != null && task.getDescription() != null)
-                && getDescription().equals(task.getDescription()))
+        return getTaskName().equals(task.getTaskName())
                 && Objects.equals(getDeadline(), task.getDeadline());
-        //        if (Double.compare(task.getProgress(), getProgress()) != 0) {
-        //            return false;
-        //        }
-        //        if (!getTaskName().equals(task.getTaskName())) {
-        //            return false;
-        //        }
-        //        if (!(getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))) {
-        //            return false;
-        //        }
     }
 
     @Override

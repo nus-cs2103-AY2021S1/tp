@@ -637,5 +637,4 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Teammate**: A person belonging to a project of the team leader's team.
-* **Participation**: The class of an object that handles the relations between a Project object and Person Object.
 * **Scope**: The confines of when certain commands will work.
