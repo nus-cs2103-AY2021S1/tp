@@ -9,6 +9,8 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
 
 Given below are my contributions to the project.
 
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=koonweee)
+
 * **New Feature**: Added the ability to append information to existing animal fields ([\#148](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/148))
   * What it does: Allows the user to add additional information to animal fields that are already populated.
   * Justification: For the fields FeedTime and MedicalCondition, there may be scenarios where additional information may need to be added at a later date.
@@ -18,8 +20,6 @@ Given below are my contributions to the project.
   * What it does: Allows the user to replace information in animal fields that are already populated.
   * Justification: Some fields should only contain a maximum of 1 value at a time (eg. Name, ID). Hence, a replace command makes sense here (instead of append).
   * Highlights: This enhancement is branched out from the original EditCommand in AddressBook3. It complements the AppendCommand that was also created.
-
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=koonweee)
 
 * **Enhancements to existing features**:
   * Refactor references to addressbook.json ([\#58](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/58))
