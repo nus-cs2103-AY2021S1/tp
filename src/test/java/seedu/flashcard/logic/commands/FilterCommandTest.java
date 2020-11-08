@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.flashcard.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
 import static seedu.flashcard.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.flashcard.logic.commands.FilterCommand.MESSAGE_NO_FLASHCARDS_MATCHING_FIELDS;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_1;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_2;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_3;
@@ -94,7 +95,7 @@ public class FilterCommandTest {
         MultipleFieldsEqualKeywordsPredicate combinedPredicate =
                 new MultipleFieldsEqualKeywordsPredicate(categoryPredicate, nullRatingPredicate,
                         nullFavouritePredicate, nullTagsPredicate);
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
+        String expectedMessage = MESSAGE_NO_FLASHCARDS_MATCHING_FIELDS;
         FilterCommand command = new FilterCommand(categoryPredicate, nullRatingPredicate, nullFavouritePredicate,
                 nullTagsPredicate);
         expectedModel.updateFilteredFlashcardList(combinedPredicate);
