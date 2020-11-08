@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2105;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.todolist.TypicalTasks.getTypicalTodoList;
@@ -70,13 +69,14 @@ public class EditTaskCommandTest {
         Task lastTask = model.getFilteredTodoList().get(indexLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task editedTask = taskInList.withName(VALID_NAME_LAB05)
+        Task editedTask = taskInList
+                .withName(VALID_NAME_LAB05)
                 .withPriority(VALID_PRIORITY_HIGH)
                 .withTags(VALID_TAG_CS2105).build();
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_LAB05)
-            .withPriority(VALID_PRIORITY_HIGH)
-            .withTags(VALID_TAG_CS2105).build();
+                .withPriority(VALID_PRIORITY_HIGH)
+                .withTags(VALID_TAG_CS2105).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -178,6 +178,102 @@ public class EditTaskCommandTest {
             new EditTaskDescriptorBuilder().withName(VALID_NAME_LAB07).build());
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    // ========================= Delete Operation Test ======================= //
+
+    @Test
+    public void execute_someFieldsSpecifiedAndDeletedUnfilteredList_success() {
+        Index indexLastTask = Index.fromOneBased(model.getFilteredTodoList().size());
+        Task lastTask = model.getFilteredTodoList().get(indexLastTask.getZeroBased());
+
+        TaskBuilder taskInList = new TaskBuilder(lastTask);
+        Task editedTask = taskInList
+                .withName(VALID_NAME_LAB05)
+                .withPriority(null)
+                .withTags(VALID_TAG_CS2105).build();
+
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+                .withName(VALID_NAME_LAB05)
+                .withPriority(null)
+                .withTags(VALID_TAG_CS2105)
+                .withIsPriorityDeleted(true).build();
+        EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
+
+        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+
+        Model expectedModel = new ModelManager(
+                new ModuleList(),
+                new ModuleList(),
+                new ContactList(),
+                getTypicalTodoList(),
+                new EventList(),
+                new UserPrefs());
+        expectedModel.setTask(lastTask, editedTask);
+
+        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_noFieldSpecifiedButDeletedUnfilteredList_success() {
+        Index indexLastTask = Index.fromOneBased(model.getFilteredTodoList().size());
+        Task lastTask = model.getFilteredTodoList().get(indexLastTask.getZeroBased());
+
+        TaskBuilder taskInList = new TaskBuilder(lastTask);
+        Task editedTask = taskInList.withTags()
+                .withPriority(null)
+                .build();
+
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+                .withName(null)
+                .withTags()
+                .withDate(null)
+                .withPriority(null)
+                .withIsPriorityDeleted(true)
+                .build();
+        EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
+
+        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+
+        Model expectedModel = new ModelManager(
+                new ModuleList(),
+                new ModuleList(),
+                new ContactList(),
+                getTypicalTodoList(),
+                new EventList(),
+                new UserPrefs());
+        expectedModel.setTask(lastTask, editedTask);
+
+        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_withSomeFieldsDeletedFilteredList_success() {
+        showTaskAtIndex(model, INDEX_FIRST_TASK);
+
+        Task taskInFilteredList = model.getFilteredTodoList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task editedTask = new TaskBuilder(taskInFilteredList)
+                .withName(VALID_NAME_LAB05)
+                .withDate(null).build();
+
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+                .withName(VALID_NAME_LAB05)
+                .withIsDateDeleted(true)
+                .build();
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, descriptor);
+
+        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+
+        Model expectedModel = new ModelManager(
+                new ModuleList(),
+                new ModuleList(),
+                new ContactList(),
+                getTypicalTodoList(),
+                new EventList(),
+                new UserPrefs());
+        expectedModel.setTask(model.getFilteredTodoList().get(0), editedTask);
+
+        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

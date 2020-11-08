@@ -41,7 +41,11 @@ public class EditTaskDescriptorBuilder {
      * Sets the {@code TaskName} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withName(String taskName) {
-        descriptor.setName(new TaskName(taskName));
+        if (taskName != null) {
+            descriptor.setName(new TaskName(taskName));
+        } else {
+            descriptor.setName(null);
+        }
         return this;
     }
 
@@ -59,7 +63,11 @@ public class EditTaskDescriptorBuilder {
      * Sets the {@code Priority} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withPriority(String priority) {
-        descriptor.setPriority(Priority.valueOf(priority));
+        if (priority != null) {
+            descriptor.setPriority(Priority.valueOf(priority));
+        } else {
+            descriptor.setPriority(null);
+        }
         return this;
     }
 
@@ -67,7 +75,27 @@ public class EditTaskDescriptorBuilder {
      * Sets the {@code Date} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withDate(String date) {
-        descriptor.setDate(new Date(date));
+        if (date != null) {
+            descriptor.setDate(new Date(date));
+        } else {
+            descriptor.setDate(null);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code isPriorityDeleted} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withIsPriorityDeleted(boolean bool) {
+        descriptor.setIsPriorityDeleted(true);
+        return this;
+    }
+
+    /**
+     * Sets the {@code isDateDeleted} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withIsDateDeleted(boolean bool) {
+        descriptor.setIsDateDeleted(true);
         return this;
     }
 

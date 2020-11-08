@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2105;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.todolistcommands.EditTaskDescriptor;
+import seedu.address.model.task.Task;
 
 public class EditTaskDescriptorTest {
 
@@ -48,5 +49,41 @@ public class EditTaskDescriptorTest {
         // different date -> returns false
         editedLab05 = new EditTaskDescriptorBuilder(DESC_LAB05).withDate(VALID_DATE2).build();
         assertFalse(DESC_LAB05.equals(editedLab05));
+    }
+
+    @Test
+    public void isAnyFieldEdited() {
+        Task task = new TaskBuilder().build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
+        // all field specified -> true
+        assertTrue(descriptor.isAnyFieldEdited());
+
+        // should not call withTags() since this the same as editing the tags
+        // use empty constructor for EditDescriptor to make tags null
+        descriptor = new EditTaskDescriptorBuilder().withName(null)
+                .withPriority(null).withDate(null)
+                .build();
+        // all field not specified -> false
+        assertFalse(descriptor.isAnyFieldEdited());
+
+        descriptor = new EditTaskDescriptorBuilder().withName(null)
+            .withTags().withPriority(null)
+            .withDate(null).build();
+        // tags are empty but specified -> true
+        assertTrue(descriptor.isAnyFieldEdited());
+
+        descriptor = new EditTaskDescriptorBuilder().withName(null)
+            .withPriority(null)
+            .withDate(null).withIsPriorityDeleted(true)
+            .build();
+        // no fields specified, only priority field is deleted -> true
+        assertTrue(descriptor.isAnyFieldEdited());
+
+        descriptor = new EditTaskDescriptorBuilder().withName(null)
+            .withPriority(null)
+            .withDate(null).withIsDateDeleted(true)
+            .build();
+        /// no fields specified, only date field is deleted -> true
+        assertTrue(descriptor.isAnyFieldEdited());
     }
 }
