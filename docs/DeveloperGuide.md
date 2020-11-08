@@ -1436,21 +1436,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Deleting a contact
-
-1. Deleting a contact while all contacts are being shown
-
-   1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
-
-   1. Test case: `contact delete Alex Yeoh`<br>
-      Expected: Contact Alex Yeoh is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `contact delete blah`<br>
-      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is a name not in the list of contacts)<br>
-      Expected: Similar to previous.
-
 ### Copying a contact's information
 
 1. Copying a contact while all contacts are being shown
@@ -1471,11 +1456,3 @@ testers are expected to do more *exploratory* testing.
     
     1. Other incorrect copy commands to try: `copy email`, `copy email n/x` (where x is a name not in the list of contacts), `copy phone t/y` (where y is a tag not in the list of contacts), `copy phone m/z` (where z is a module not in the list of modules)<br>
        Expected: Status message will be an error message.
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-
