@@ -15,7 +15,7 @@ import seedu.address.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyExerciseBook_success() throws FileNotFoundException {
+    public void execute_emptyExerciseBook_success() {
         ExerciseModel model = new ExerciseModelManager();
         ExerciseModel expectedModel = new ExerciseModelManager();
 

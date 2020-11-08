@@ -2,6 +2,7 @@ package seedu.address.model.exercise;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collections;
@@ -79,6 +80,11 @@ public class Template {
     public static void writeToFile(List<Template> lists) throws IOException {
         FileWriter fw = new FileWriter("data/template.txt");
         String textToAdd = "";
+
+        File file = new File("data/template.txt");
+        if (!file.exists()) {
+            new File("data/template.txt").mkdir();
+        }
 
         for (int i = 0; i < lists.size(); i++) {
             Template template = lists.get(i);
