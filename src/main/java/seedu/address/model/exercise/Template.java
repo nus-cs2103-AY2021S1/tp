@@ -81,11 +81,6 @@ public class Template {
         FileWriter fw = new FileWriter("data/template.txt");
         String textToAdd = "";
 
-        File file = new File("data/template.txt");
-        if (!file.exists()) {
-            new File("data/template.txt").mkdir();
-        }
-
         for (int i = 0; i < lists.size(); i++) {
             Template template = lists.get(i);
             textToAdd = textToAdd + template.parseToArgument() + System.lineSeparator();
