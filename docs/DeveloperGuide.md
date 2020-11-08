@@ -759,14 +759,12 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
-
    1. Double-click the jar file<br>
       Expected: Shows the GUI with no entries. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
@@ -780,6 +778,7 @@ testers are expected to do more *exploratory* testing.
 ### Features
 
 1. Adding an Exercise
+
    1. Prerequisites: Exercise named "Squats" must not already exist in fitNUS.
    1. Test case: `exercise_add e/Squats t/Leg`<br>
       Expected: Creates an Exercise called "Squats" that is tagged with "Leg" tag. Success message will be shown.
@@ -791,10 +790,11 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. Deleting an Exercise
+
    1. Prerequisites: Exercise indicated must already exist in fitNUS. In this case, there exist 1 Exercise.
    1. Test case: `exercise_delete 1`<br>
       Expected: First Exercise is deleted from the list. Successful message will be shown.
-   1. Test case: `routine_delete 0`<br>
+   1. Test case: `exercise_delete 0`<br>
       Expected: No Exercise is deleted. Error details shown in the status message. Status bar remains the same.
    1. Other incorrect delete commands to try: `exercise_delete`, `exercise_delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous. 
@@ -809,9 +809,10 @@ testers are expected to do more *exploratory* testing.
     Success message will inform user how many exercises were successfully found.
     1. Test case: `exercise_find @`<br>Expected: No Exercise object will be found, because this is an invalid Name.
     1. Other incorrect delete commands to try: `exercise_find `<br>
-      Expected: Error message thrown informing you of the correct command format. 
+       Expected: Error message thrown informing you of the correct command format. 
 
 1. Editing an existing Exercise
+
     1. Prerequisites: There must be an Exercise existing in fitNUS to edit. There is one Exercise named "Squats".
     1. Test case: `exercise_edit 1 e/Barbell Squats`<br>Expected: Exercise "Bench Press" will be renamed to "Barbell
     Squats" and a success message will inform user of the new name.
@@ -819,10 +820,12 @@ testers are expected to do more *exploratory* testing.
     Squats" with a tag saying "Heavy". A success message will inform user of the new name and tags.
     1. Test case: `exercise_edit 10 e/Good Name`<br>Expected: Invalid index, no Exercise is edited and an error message
     will be thrown, explaining the index is invalid.
-   1. Other incorrect delete commands to try: `exercise_edit 1 e/Bicep e/Tricep`, `exercise_edit 1 e/Bicep t/Tough
+    1. Other incorrect delete commands to try: `exercise_edit 1 e/Bicep e/Tricep`, `exercise_edit 1 e/Bicep t/Tough
     t/Hard`<br>
-      Expected: Error message thrown informing you of the correct command format.
+       Expected: Error message thrown informing you of the correct command format.
+
 1. Listing all Exercise
+
     1. Test case: `exercise_list`: fitNUS will list out all the Exercise in the Exercise column. Success message will be
     show.
 
@@ -830,64 +833,111 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `routine_create r/Leg Workout`<br>
       Expected: Creates a Routine called "Leg Workout"
-
    1. Other incorrect delete commands to try: `routine_create`, `routine_create r/EXISTING_ROUTINE`, `...`<br>
       Expected: Similar to previous.
 
 1. Deleting a Routine
 
    1. Prerequisites: Routine must already exist in fitNUS. In this case, the first Routine is the one to be deleted.
-
    1. Test case: `routine_delete 1`<br>
       Expected: First Routine is deleted from the list. Successful message will be shown.
-
    1. Test case: `routine_delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
    1. Other incorrect delete commands to try: `routine_delete`, `routine_delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+1. Adding an Exercise to a Routine
+
+   1. Prerequisites: Both the exercise and routine must already exist in fitNUS. In this case, only the Routine "Leg Workout" and Exercise "Squats" exist.
+   1. Test case: `routine_add_exercise r/Leg Workout e/Squats`<br>
+      Expected: Adds the Exercise "Squats" to the Routine "Leg Workout"
+   1. Test case: `routine_add_exercise r/Leg Workout e/Lunge`<br>
+      Expected: Throws an error message stating that the exercise does not exist in fitNUS.
+   1. Test case: `routine_add_exercise r/random e/Squats`<br>
+      Expected: Throws an error message stating that the routine does not exist in fitNUS.
+   1. Other incorrect delete commands to try: `routine_add_exercise`, `routine_add_exercise r/EXISTING_ROUTINE`, `...`<br>
+      Expected: Throws an error message stating that the format is incorrect.
+
+1. Deleting an Exercise from a Routine
+
+   1. Prerequisites: Both the exercise and routine must already exist in fitNUS, and the routine must contain the exercise.
+   In this case, only the Routine "Leg Workout" exists and contains the Exercise "Squats".
+   1. Test case: `routine_delete_exercise r/Leg Workout e/Squats`<br>
+      Expected: Deletes the Exercise "Squats" from the Routine "Leg Workout".
+   1. Test case: `routine_delete_exercise r/Leg Workout e/Lunge`<br>
+      Expected: Throws an error message stating that the exercise does not exist within the routine.
+   1. Test case: `routine_delete_exercise r/random e/Squats`<br>
+      Expected: Throws an error message stating that the routine does not exist in fitNUS.
+   1. Other incorrect delete commands to try: `routine_delete_exercise`, `routine_delete_exercise r/EXISTING_ROUTINE`, `...`<br>
+      Expected: Throws an error message stating that the format is incorrect.
+
+1. Adding a Routine to the Timetable
+
+   1. Prerequisites: The routine must already exist in fitNUS. In this case, only the Routine "Leg Workout" exists.
+   1. Test case: `timetable_add_routine r/Leg Workout D/monday T/1600-1800`<br>
+      Expected: Adds the Routine "Leg Workout" to the timetable on Monday, 1600-1800.
+      GUI shows the creation of this slot in the timetable.
+   1. Test case: `timetable_add_routine r/random D/monday T/1600-1800`<br>
+      Expected: Throws an error message stating that the routine does not exist in fitNUS.
+   1. Test case: `timetable_add_routine r/Leg Workout D/saturday T/1600-1800`<br>
+      Expected: Throws an error message stating that the day is invalid.
+   1. Test case: `timetable_add_routine r/Leg Workout D/monday T/100-1800`<br>
+      Expected: Throws an error message stating that the duration's format is invalid.
+   1. Suppose the timetable already exists a slot on Monday, 1600-1800.
+      Test case: `timetable_add_routine r/Leg Workout D/monday T/1600-1800`<br>
+      Expected: Throws an error message stating that the slot already exists in the timetable.
+   1. Other incorrect delete commands to try: `timetable_add_routine`, `timetable_add_routine r/EXISTING_ROUTINE`, `...`<br>
+      Expected: Throws an error message stating that the format is incorrect.
+
+1. Adding a Lesson to the Timetable
+
+   1. Prerequisites: The lesson must already exist in fitNUS. In this case, only the Lesson "CS2103T" exists.
+   1. Test case: `timetable_add_lesson n/CS2103T D/monday T/1600-1800`<br>
+      Expected: Adds the Lesson "CS2103T" to the timetable on Monday, 1600-1800.
+      GUI shows the creation of this slot in the timetable.
+   1. Test case: `timetable_add_lesson n/random D/monday T/1600-1800`<br>
+      Expected: Throws an error message stating that the lesson does not exist in fitNUS.
+   1. Test case: `timetable_add_lesson n/CS2103T D/saturday T/1600-1800`<br>
+      Expected: Throws an error message stating that the day is invalid.
+   1. Test case: `timetable_add_lesson n/CS2103T D/monday T/100-1800`<br>
+      Expected: Throws an error message stating that the duration's format is invalid.
+   1. Suppose the timetable already exists a slot on Monday, 1600-1800.
+      Test case: `timetable_add_lesson n/CS2103T D/monday T/1600-1800`<br>
+      Expected: Throws an error message stating that the slot already exists in the timetable.
+   1. Other incorrect delete commands to try: `timetable_add_lesson`, `timetable_add_lesson n/EXISTING_LESSON`, `...`<br>
+      Expected: Throws an error message stating that the format is incorrect.
+
+1. Deleting a Slot from the Timetable
+
+   1. Prerequisites: The Slot must already exist in the Timetable. In this case, only the Slot on Monday, 1600-1800 exists.
+   1. Test case: `timetable_delete_slot D/monday T/1600-1800`<br>
+      Expected: Deletes the slot on Monday, 1600-1800 from the timetable.
+      GUI shows the removal of this slot in the timetable.
+   1. Test case: `timetable_delete_slot D/saturday T/1600-1800`<br>
+      Expected: Throws an error message stating that the day is invalid.
+   1. Test case: `timetable_delete_slot D/monday T/100-1800`<br>
+      Expected: Throws an error message stating that the duration's format is invalid.
+   1. Suppose the slot now does not exist in the timetable.
+      Test case: `timetable_delete_slot D/monday T/1600-1800`<br>
+      Expected: Throws an error message stating that the slot does not exist in the timetable.
+   1. Other incorrect delete commands to try: `timetable_delete_slot`, `timetable_delete_slot D/monday`, `...`<br>
+      Expected: Throws an error message stating that the format is incorrect.
 
 1. Setting user weight
 
    1. Test case: `weight w/70`<br>
       Expected: Updates user's weight to 70kg. GUI will reflect this change as well. BMI on GUI will recalculate.
-
    1. Test case: `weight w/300`<br>
       Expected: Weight does not update or change on GUI. Error will be shown for an unrealistic weight for a user.
-
    1. Other incorrect delete commands to try: `weight w/0`, `weight w/-1`, `...`<br>
-      Expected: Similar to previous.
-
-1. Setting user height
-
-   1. Test case: `weight h/170`<br>
-      Expected: Updates user's height to 170cm. GUI will reflect this change as well. BMI on GUI will recalculate.
-
-   1. Test case: `weight w/370`<br>
-      Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
-
-   1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
-      Expected: Similar to previous.
-
-1. Setting user height
-
-   1. Test case: `weight h/170`<br>
-      Expected: Updates user's height to 170cm. GUI will reflect this change as well. BMI on GUI will recalculate.
-
-   1. Test case: `weight w/370`<br>
-      Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
-
-   1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
       Expected: Similar to previous.
 
 1. Setting user height
 
    1. Test case: `height h/170`<br>
       Expected: Updates user's height to 170cm. GUI will reflect this change as well. BMI on GUI will recalculate.
-
    1. Test case: `height w/370`<br>
       Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
-
    1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
       Expected: Similar to previous.
 
@@ -895,10 +945,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `calorie_add c/1500`<br>
       Expected: Increases calorie count for today by 1500. GUI will reflect this change as well in Calorie Graph.
-
    1. Test case: `calorie_add c/2147483648`<br>
       Expected: Error will be thrown because this value is bigger than what Java can handle. Calorie Graph and today's calorie count will not update.
-
    1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
 
@@ -906,10 +954,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `calorie_minus c/1500`<br>
       Expected: Decreases calorie count for today by 1500. GUI will reflect this change as well in Calorie Graph.
-
    1. Test case: `calorie_minus c/2147483648`<br>
       Expected: Error will be thrown because this value is bigger than what Java can handle. Calorie Graph and today's calorie count will not update.
-
    1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
 
@@ -945,6 +991,18 @@ We knew that we wanted to center fitNUS around Exercise. Intertwining of Exercis
 classes proved to be extremely challenging. Whenever an Exercise was edited or removed, relevant Routines will have to
 changed and similarly edited. We went through several iterations of refactoring these classes due to
 design issues as we learnt more about design principles in the course and defensive programming. 
+
+### 3. Timetable and Slot
+
+Implementing a Timetable in fitNUS that stores Routines and Lessons prove to be another challenging task.
+Since the Timetable has to be able to store both Routines and Lessons, we need to use a parent Activity class and
+this requires us to implement Routine and Lesson properly so that they can extend from the Activity class.
+Next, we need to think about how to store each Activity in the Timetable with no overlapping time slot.
+We decided it is best to use the Slot class to encapsulate each Activity, and the Day and Duration specified by the user.
+With the Day and Duration encapsulated, we can then check for any overlapping slots easily.
+A lot of meticulous thoughts are required to implement this feature properly due to its dependency with Routine and Lesson.
+Whenever a Routine or Lesson is edited or deleted, we need to ensure any corresponding Slots containing them have to be
+edited or deleted as well.
 
 ### 3. User Interface
 
