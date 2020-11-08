@@ -191,6 +191,8 @@ Examples:
 * `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
 
+![addStaff](images/ugimages/AddStaff.png)
+
 #### 3.3.3. Find a staff : `find s-`
 
 Shows a list of staffs whose name contains one of the given names.
@@ -199,6 +201,8 @@ Format `find FIND_TYPE- KEYWORD`
 
 Examples:
 * `find s- Doe`
+
+![findStaff](images/ugimages/FindStaff.png)
 
 #### 3.3.4. View : `view`
 
@@ -222,6 +226,8 @@ Format: `dels INDEX`
 Example:
 * `dels 1`
 
+![deleteStaff](images/ugimages/DeleteStaff.png)
+
 #### 3.3.6. Edit a staff: `edits`
 
 Edits general details of a staff from eva (excluding leave taken)
@@ -230,6 +236,8 @@ Format: `edits INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]
 
 Example:
 * `edits 1 n/John Doe p/99999999 a/John Street e/NEW@example.com`
+
+![editStaff](images/ugimages/EditStaff.png)
 
 
 #### 3.3.7. Record leave taken by staff: `addl`
@@ -273,7 +281,7 @@ Format: `dell INDEX d/DATE`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**
-If a leave record lasts from 08/11/2020 to 12/11/2020, any date keyed in that date range will cause the whole record to be deleted.<br>
+If a leave record has a date range that lasts from 08/11/2020 to 12/11/2020, any date keyed in that date range will cause the whole record to be deleted.<br>
 
 </div>
 
@@ -296,18 +304,22 @@ Format: `clear s-`
 
 ### 3.4. Applicant commands
 
-<div>
+<div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**
-- All commands under applicant can only be done on either applicant list or applicant profile except `adda`, 
- which can be done on anywhere
-- While in profiles, only details of the profile that is being viewed can be changed.
+:bulb: **Tip:**<br>
+
+* All commands under applicant can only be done on either applicant list or applicant profile except `adda`, 
+ which can be done on any panel. <br>
+ 
+* While in profiles, only details of the profile that is being viewed can be changed.
 
 </div>
 
 #### 3.4.1. List all applicants : `list a-`
 
 Shows a list of all applicants in Eva.
+
+![listApplicant](images/ugimages/ListApplicant.png)
 
 #### 3.4.2 Add an applicant: `adda`
 
@@ -327,6 +339,8 @@ Examples:
 * `adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
 * `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Developer`
 
+![addApplicant](images/ugimages/AddApplicant.png)
+
 #### 3.4.3. Find an applicant : `find a-`
 
 Shows a list of staffs whose name contains one of the given names.
@@ -335,6 +349,8 @@ Format `find FIND_TYPE- KEYWORD`
 
 Examples:
 * `find a- Doe`
+
+![findApplicant](images/ugimages/FindApplicant.png)
 
 #### 3.4.4. View : `view`
 
@@ -345,6 +361,8 @@ Format: `view INDEX`
 Example:
 * `view 1`
 
+![viewApplicant](images/ugimages/ViewApplicant.png)
+
 #### 3.4.5. Delete an applicant: `dela`
 
 Deletes an applicant with the specified index on the displayed list in Eva. 
@@ -354,6 +372,8 @@ Format: `dela INDEX`
 Example:
 * `dela 1`
 
+![deleteApplicant](images/ugimages/DeleteApplicant.png)
+
 #### 3.4.6. Edit an applicant: `edita`
 
 Edits general details of an applicant from eva (excluding application status)
@@ -362,10 +382,9 @@ Format: `edita INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
+:bulb: **Tip:** <br>
 
-* Edit of comment needs to be in required format: `c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE DESC/NEW_DESCRIPTION`
-
+* Edit of comment needs to be in required format: `c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE DESC/NEW_DESCRIPTION` <br>
 
 </div>
 
@@ -373,6 +392,7 @@ Example:
 * `edita 1 n/NEWNAME p/99999999 a/NEWADDRESS e/NEW@example.com`
 * `edita 1 id/ 10/10/2010`
 
+![editApplicant](images/ugimages/EditApplicant.png)
 
 #### 3.4.7. Add an application: `addapp`
 
@@ -382,18 +402,22 @@ Format: `addapp INDEX [filepath]`
 
  - An applicant should be created prior to the addition of its application.
 
-:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
 
-* You may find a resume text file generated in the data folder `data/resume.txt`, which is in the same directory as your jar file. This is the strict template to follow for resume files. 
+:bulb: **Tip:** <br>
 
-:bulb: **Tip:**
+* You may find a resume text file generated in the data folder `data/resume.txt`, 
+which is in the same directory as your jar file. This is the strict template to follow for resume files.<br>
 
-* You may use the sample resume by keying in `sample` as filepath.
+* You may use the sample resume by keying in `sample` as filepath.<br>
+
+</div>
 
 Example:
 * `addapp 1 data/resume.txt`
 * `addapp 1 sample`
 
+![addApplication](images/ugimages/AddApplication.png)
 
 #### 3.4.8. Delete an application: `delapp`
 
@@ -401,11 +425,16 @@ Deletes an application from an applicant with the specified index under Eva.
 
 Format: `delapp INDEX`
 
-:note: **Note:**
- * `delapp` replaces the current application of the target applicant with a blank application.
+<div markdown="span" class="alert alert-info">
+
+:note: **Note:** `delapp` replaces the current application of the target applicant with a blank application. <br>
+
+</div>
 
 Example:
 * `delapp 1`
+
+![deleteApplication](images/ugimages/DeleteApplication.png)
 
 #### 3.4.9. Set application status: `setas`
 Sets the application status of an applicant with the specified index on the displayed list in Eva.
@@ -421,7 +450,11 @@ Format: `setas INDEX as/NEW_APPLICATION_STATUS`
 Example:
 * `setas 1 as/received`
 
+![setApplicationStatus](images/ugimages/SetApplicationStatus.png)
+
 ### 3.4.10 Clear applicant database: `clear`
+
+![clearApplicantDatabase](images/ugimages/ClearApplicant.png)
 
 ### 3.5. Comment Commands
 
@@ -429,14 +462,19 @@ Commands to add, delete and edit comments on staff or applicants
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Important:**
+:info: **Important:** <br>
 
-* Comment Commands take index reference from which type of person user is viewing. 
-    * If user is viewing staff list or profile, comment commands takes index reference from staff list.
-    * If user is viewing applicant list or profile, comment commands takes index reference from applicant list.
-    * Comments are arranged according to date, then alphabetically if same date.
-    * Comments do not support the input `|`.
-    * Comment description can only be seen in profiles.
+* Comment Commands take index reference from which type of person user is viewing. <br>
+
+* If user is viewing staff list or profile, comment commands takes index reference from staff list.<br>
+
+* If user is viewing applicant list or profile, comment commands takes index reference from applicant list.<br>
+
+* Comments are arranged according to date, then alphabetically if same date.<br>
+
+* Comments do not support the input `|`.<br>
+
+* Comment description can only be seen in profiles.<br>
 
 </div>
  
@@ -449,6 +487,8 @@ Format: `addc INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
 Example:
 * `addc 1 c/ ti/Working Ethics d/10/10/2010 desc/Good`
 
+![addComment](images/ugimages/AddComment.png)
+
 #### 3.5.2 Delete comment from a staff/applicant: `delc`
 
 Deletes a comment from a staff/applicant under eva depending on which panel you are in
@@ -458,6 +498,8 @@ Format: `delc INDEX c/ ti/TITLE_OF_COMMENT_TO_DELETE`
 Example Scenario:
 * Comment to delete has Title: Working Ethics, Date: 10/10/2010, Description:Good, Staff index is 1
 * Command: `delc 1 c/ ti/Working Ethics`
+
+![deleteComment](images/ugimages/DeleteComment.png)
 
 #### 3.5.3. Edit comment on a staff: `editc`
 
@@ -469,6 +511,7 @@ Example Scenario:
 * Comment to change has Title: Working Ethics, Date: 10/10/2010, Description: Good, and staff index is 1
 * Command: `editc 1 c/ ti/Working Ethics d/10/10/2010 desc/Quite Bad`
 
+![editComment](images/ugimages/EditComment.png)
 
 ### 3.5. Script Engine
 
