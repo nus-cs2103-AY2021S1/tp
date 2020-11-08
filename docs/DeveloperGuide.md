@@ -152,7 +152,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Section 4 - Implementation**
 
-This section describes some noteworthy details on how certain features are implemented. 
+This section describes some noteworthy details on how certain features are implemented.
 
 ### Section 4.1 - Add feature
 #### Overview
