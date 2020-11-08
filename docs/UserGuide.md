@@ -184,7 +184,6 @@ Thus, tCheck will ignore all words come after the command word `help` and the co
 * Items with `...`​ after them can be used once or multiple times.<br>
   e.g. `sales A/NUM B/NUM C/NUM ...` can be used as `sales BSBM/100` or `sales BSBM/100 BSBBT/120`.
 
-
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -562,12 +561,12 @@ Before executing:<br>
 ![BeforeEditCommandScreenshot](images/BeforeClearCommand.png)
 
 After executing:<br>
-![EditCommandScreenshot](images/EdirCommandResult.png)
+![EditCommandScreenshot](images/EditCommandResult.png)
 
 
 #### 3.6 Locating employees by keywords: `c-find`
 
-Finds all active(unarchived) employees that contain the KEYWORD(s) in their names.
+Finds all active (unarchived) employees that contain the KEYWORD(s) in their names.
 
 Format: `c-find KEYWORD [MORE_KEYWORDS]`
 
