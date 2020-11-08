@@ -387,6 +387,8 @@ The proposed Edit Schedule mechanism is facilitated by `Addressbook`, similar to
 
 This operation is exposed in the `Model` interface as `Model#setSchedule()`.
 
+#### Implementation
+
 Similar to the Edit Session mechanism, the example usage scenario below shows how Edit Schedule mechanism behaves:
 
 The user executes `schedit c/1 s/1 us/2` command to edit the Schedule with the first Session and first Client in the address book. 
@@ -402,8 +404,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 </figure>
 
 #### Design consideration:
-
-##### Aspect: How edit schedule executes
 
 * **Alternative 1 (current choice):** Retrieve Schedule using Client and Session Index.
   * Pros: Clearer to retrieve.
