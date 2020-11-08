@@ -440,7 +440,7 @@ You can add both Routines and Lessons to your timetable to get an overview of yo
 Timetable and Homepage display by clicking on the corresponding tabs found at the top left of the interface.
 The following illustration shows a pre-filled view of the Timetable:
 
-![Timetable View](./images/timetable_vieww.png)
+![Timetable View](./images/timetable_view.png)
 
 Any changes made to existing routines or lessons that have already been added as a slot in the Timetable will be
 reflected automatically on the Timetable. In this subsection, we will explore the timetable feature and its related commands.
