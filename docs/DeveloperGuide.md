@@ -58,7 +58,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete sn/ntuc1`.
 
-<img src="images/_ArchitectureSequenceDiagram_.png" width="574" />
+![Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -189,7 +189,7 @@ Step 1. The user enters `add n/Apple s/Fairprice q/1000 l/Fruits section`.
 
 Step 2. The command word add is extracted out in `StockBookParser`, and matches the `COMMAND_WORD`for AddCommand class.
 
-Step 3. The remaining user input is the given to the AddCommandParser to determine if the user input contains the required fields.
+Step 3. The remaining user input is the given to the `AddCommandParser` to determine if the user input contains the required fields.
 
 Step 4. Inside `AddCommandParser#parse()` method, the remaining user input `n/Apple s/Fairprice q/1000 l/Fruits section`,
  will be subjected to checks by `AddCommandParser#arePrefixesPresent()` and `AddCommandParser#doesPrefixesAppearOnce()` methods. In this case,
@@ -855,7 +855,7 @@ subclasses that include:
 * `SourceContainsKeywordsPredicate`
 * `LocationContainsKeywordsPredicate`
 
-#### FindCommandParser
+#### FindCommandParser / FindExactCommandParser
 The `FindCommandParser` (as with the `FindExactCommandParser`) class
 implements the `Parser` interface.
 `FindCommandParser` class is tasked with parsing the user inputs
@@ -902,13 +902,13 @@ of the `FindCommand` into a composed `Predicate<Stock>`.
 `Find` feature requires the `Stock` to fulfill only one
 `FieldContainsKeywordsPredicate` in the list for `Stock`
 to be displayed. The mechanism used to combine the predicates
-into a composed Predicate<Stock> for `Find` is Java 8 Predicate method,
-Predicate.or().
+into a composed `Predicate<Stock>` for Find is Java 8 Predicate method,
+`Predicate.or()`.
 
 `FindExact` feature requires the `Stock` to fulfill all
 `FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed.
-The mechansim used to combine the predicates into a composed Predicate<Stock>
-for `FindExact` is Java 8 Predicate method, Predicate.and().
+The mechanism used to combine the predicates into a composed `Predicate<Stock>`
+for FindExact is Java 8 Predicate method, `Predicate.and()`.
 
 `FindUtil` implements the following important operations:
 
@@ -920,7 +920,7 @@ for `FindExact` is Java 8 Predicate method, Predicate.and().
 #### FieldContainsKeywordsPredicate
 
 `FieldContainsKeywordsPredicate` is an abstract class
-that implements the interface Predicate<Stock>.
+that implements the interface `Predicate<Stock>`.
 Its subclasses are `NameContainsKeywordsPredicate`,
 `LocationContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate`
 and `SourceContainsKeywordsPredicate`, which inherit and implement the method
@@ -937,8 +937,12 @@ and `SourceContainsKeywordsPredicate`, which inherit and implement the method
 * For all `FieldContainsKeywordsPredicate`, if keyword given is an
  empty string, method test() evaluates to false.
 
-Note: For any `FieldContainsKeywordsPredicate#test()` to return true,
+<div markdown="span" class="alert alert-info">:information_source: 
+
+For any `FieldContainsKeywordsPredicate#test()` to return true,
  field of `Stock` must contain ALL keywords in the list.
+
+</div>
 
 `FieldContainsKeywordsPredicate` implements the following important operations:
 * `FieldContainsKeywordsPredicate#test()` -
@@ -979,7 +983,7 @@ a composed `Predicate<Stock>` with the list of `FieldContainsKeywordsPredicate`
 Step 8. `LogicManager#execute()` then calls `FindCommand#execute()` method,
 with current `Model` as argument. Within this method call,
 `Model#updateFilteredStockList` method evaluates the composed
-Predicate<Stock> on all the stocks in the stock list.
+predicate on all the stocks in the stock list.
 
 Step 9. For each `FieldContainsKeywordsPredicate`, `FieldContainsKeywordsPredicate#test()`
 evaluates the predicate on the stock.
@@ -1560,10 +1564,10 @@ Step 9. The `DeleteCommand#execute()` checks for each **serial number** in the `
         and if it does, deletes it and stores in the list of `stocksDeleted`. Else, the serial number will be added in
         the list of `unknownSerialNumbers`. 
 
-Step 10. `DeleteCommand#execute()` then prints out the respective message, depending on the number of successful deletions of stocks.
-         If **all** of the serial numbers are **found**, it will inform the user which stocks that are deleted, which in this case, all.
+Step 10. `DeleteCommand#execute()` then prints out the respective message, depending on the number of successful deletions of stocks.<br>
+         If **all** of the serial numbers are **found**, it will inform the user which stocks that are deleted, which in this case, all.<br>
          If **some** of the serial numbers are **found**, it will inform the user that which stocks are deleted and which 
-         serial numbers are not found.
+         serial numbers are not found.<br>
          If **all** of the serial numbers **not found**, it will inform the user which of the serial numbers are not found, which
          in this case, all.
 
@@ -1910,6 +1914,24 @@ the same stock.
 The mechanism for print feature is facilitated by `PrintCommandParser`, `PrintCommand`, `FileUtil` and
 `Model`.
 
+#### PrintCommand
+
+`PrintCommand` class extends `Command` interface. `PrintCommand` class is tasked to create a csv file and
+ write all stocks in the stock book into this file. `PrintCommand` then creates a new `CommandResult`
+that represents the result of the execution of a `PrintCommand`.
+
+Some important operations implemented here are:
+
+* `PrintCommand#execute()`
+  Creates a CSV file and writes all stocks in the stock book into this file and returns a new `CommandResult`
+  to be displayed to the user in the user interface.
+* `PrintCommand#makeFileCreationTime()` <br>
+  Creates the file creation time of the CSV file.
+* `PrintCommand#makeTitleHeader()`
+  Creates the header for the CSV file.
+* `PrintCommand#printStock()`
+  Converts the stock into a string to be stored in the CSV file.
+  
 #### PrintCommandParser
 `PrintCommandParser` class extends `Parser` interface. `PrintCommandParser` class is tasked with parsing the
 user inputs and generate a new `PrintCommand`. The main logic of the print feature is encapsulated here.
@@ -1927,29 +1949,11 @@ Some important operations implemented here are:
 * `PrintCommandParser#doesPrefixesAppearOnce()` <br>
   Returns true if all required prefixes appear only once in the user input.
 
-#### PrintCommand
-
-`PrintCommand` class extends `Command` interface. `PrintCommand` class is tasked to create a csv file and
- write all stocks in the stock book into this file. `PrintCommand` then creates a new `CommandResult`
-that represents the result of the execution of a `PrintCommand`.
-
-Some important operations implemented here are:
-
-* `PrintCommand#execute()`
-  Creates a csv file and writes all stocks in the stock book into this file and returns a new `CommandResult`
-  to be displayed to the user in the user interface.
-* `PrintCommand#makeFileCreationTime()` <br>
-  Creates the file creation time of the csv file.
-* `PrintCommand#makeTitleHeader()`
-  Creates the header for the csv file.
-* `PrintCommand#printStock()`
-  Converts the stock into a string to be stored in the csv file.
-
 #### Example Usage Scenario
 
 Given below is an example usage scenario and how the print feature behaves at each step.
 
-**Example 1: Creating a csv file with valid file name**
+**Example 1: Creating a CSV file with valid file name**
 
 Step 1. The user enters `print fn/stocks`.
 
@@ -1972,10 +1976,10 @@ Step 7. `PrintCommand#execute()` then calls `FileUtil#createIfMissing()` method 
  in `[root directory of Warenager]/data/userinput.csv`.
  
 Step 8. `PrintCommand#execute()` then calls `PrintCommand#makeFileCreationTime()`, `PrintCommand#makeTitleHeader()` to create the
- file creation time and headers for the fields in stock and stores them in the csv file.
+ file creation time and headers for the fields in stock and stores them in the CSV file.
 
 Step 9. `PrintCommand#execute()` then calls `PrintCommand#printStock()` to get string of the stock to be stored in the csv file,
- and stores this string into the csv file. This step is repeated for all stocks in the stock book.
+ and stores this string into the CSV file. This step is repeated for all stocks in the stock book.
  
 Step 10. `PrintCommand#execute()` then returns a new `CommandResult` to be displayed to the user.
 
@@ -2798,12 +2802,12 @@ unless specified otherwise.
 
     Use case ends.
 
-#### Use case 21: Generating a csv file that contains all stocks
+#### Use case 21: Generating a CSV file that contains all stocks
 
 **MSS**
 
 1.  User requests to print stocks in stock book.
-2.  Warenager generates a csv file containing all stocks.
+2.  Warenager generates a CSV file containing all stocks.
  
     Use case ends.
  
@@ -2821,19 +2825,19 @@ unless specified otherwise.
  
       Use case resumes at step 1.
  
-* 1c. There is an error when creating the csv file.
+* 1c. There is an error when creating the CSV file.
  
     * 1c1. Warenager shows an error message.
  
       Use case resumes at step 1.
 
-#### Use case 22: Generating a csv file that contains all stocks sorted in desired order
+#### Use case 22: Generating a CSV file that contains all stocks sorted in desired order
 
  **MSS**
  
- 1.  User sort stocks in stock book (Use case 17) in their desired order.
- 2.  User request to generate csv file based on the existing stock book (Use case 19).
- 3.  Warenager generates a csv file containing all stocks.
+ 1.  User sort stocks in stock book (Use case 20) in their desired order.
+ 2.  User request to generate CSV file based on the existing stock book (Use case 21).
+ 3.  Warenager generates a CSV file containing all stocks.
  
      Use case ends.
 
@@ -2952,7 +2956,7 @@ unless specified otherwise.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Stock**: Item in the inventory.
-* **Field**: (name, serial number, quantity, location stored, source) of the stock in inventory
+* **Field**: Represents the Name, Serial Number, Quantity, Location stored, Source, Note of the stock in inventory
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -2984,7 +2988,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a stock into the inventory.
 
-   1. Test case: `n/Banana s/NUS q/9999 l/Fruit Section`<br>
+   1. Prerequisites: Stock does not exist in the list.
+
+   1. Test case: `add n/Banana s/NUS q/9999 l/Fruit Section`<br>
       Expected: Stock is added successfully.<br>
       Details of the added stock shown in the status message.
 
@@ -2995,8 +3001,12 @@ testers are expected to do more *exploratory* testing.
    1. Test case: ` add n/Banana s/NUS q/9999`<br>
       Expected: Stock is not added due to missing field headers.
       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+      
+   1. Test case: `add n/Banana s/NUS q/9999 l/Fruit Section ni/0`<br>
+         Expected: Stock is not added as there is an field header `ni/` that is not required in add command.<br>
+         Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
 
-   1. Other incorrect delete commands to try: `add`, `add sn/absdsa` <br>
+   1. Other incorrect add commands to try: `add`, `add sn/absdsa` <br>
       Expected: Similar to previous.
 
 ### Deleting stocks
@@ -3391,6 +3401,22 @@ testers are expected to do more *exploratory* testing.
           Expected: No stock viewed due to unknown / invalid command format.<br>
           Error details shown in the status message. Suggestion message will be shown too.
 
+### Printing of CSV file
+
+1. Generates a CSV file that contains all stocks.
+
+    1. Test case: `print fn/stock`<br>
+        Expected: A CSV file containing all stocks will be generated.<br>
+        Details of the successful printing is shown.
+      
+    1. Test case: `print fn/`<br>
+       Expected: Warenager does not generate a CSV file.<br>
+       Error details shown in the status message. Suggestion message will be shown too.
+
+    1. Other incorrect statistics commands to try: `prin`, `print sn/ntuc1`<br>
+       Expected: Similar to previous.
+
+
 ### Clearing data in Warenager
 
 1. Clear all the data in Warenager using `clear` command input.
@@ -3403,8 +3429,8 @@ testers are expected to do more *exploratory* testing.
        Expected: Warenager does not clear any data.<br>
        Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect statistics commands to try: `cle`, `clear sn/ntuc1`<br>
-      Expected: Similar to previous.
+    1. Other incorrect statistics commands to try: `cle`, `clear sn/ntuc1`<br>
+       Expected: Similar to previous.
       
 ### Saving data
 
@@ -3430,11 +3456,11 @@ testers are expected to do more *exploratory* testing.
 To our team, Warenager is a very challenging project and in terms of difficulty level, it ranks higher than AB3 itself.
 Warenager is a morph of AB3 and not only did we changed some existing features of AB3, we also augmented Warenager with
 new features that didn't exist before in AB3. Some of the features we added that are not available in AB3 are
-suggestion feature, statistics feature, note features, bookmark and highlight stocks, and sorting feature.
+suggestion feature, statistics feature, print feature, note features, bookmark and highlight stocks, and sorting feature.
 
 Our contributions to the project also justifies our claim about the difficulty level. Note that AB3 contains around 6
 KLoC. Compared to AB3, based on the [project's code contribution](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=T15-3&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship) in RepoSense,
-the total lines of code that we added or modified is around 24 KLoc, which is four times the amount of code in AB3.
+the total lines of code that we added or modified is around 25 KLoc, which is four times the amount of code in AB3.
 
 ### Challenges
 * Team meetings are held online because of COVID-19.
@@ -3454,11 +3480,13 @@ We can estimate that the effort required for creating Warenager is a lot more th
 scratch. As stated above, we did not only changed existing features of AB3, but also augmented new features not found
 on AB3 into Warenager. The new features we implemented has their own notable challenges.
 
-In terms of work and contribution, as stated above, our whopping 24 KLoC which is around four times the amount of code
+In terms of work and contribution, as stated above, our whopping 25 KLoC which is around four times the amount of code
 existing in AB3, justifies our claim that the effort to create Warenager is more than the effort to create AB3.
 
 ### Achievements
 * One of the top 10 groups in terms of code contribution in [RepoSense](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=totalCommits%20dsc&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship).
 * Created a new UI for Warenager that is significantly different from AB3's UI.
 * Implemented all features including the new features augmented to Warenager.
+* Implemented novelty features such as low stock, note, statistics, stockview, bookmark, sort, suggestion and print features which are vastly
+ different from AB3.
 * Finished every milestones on time.

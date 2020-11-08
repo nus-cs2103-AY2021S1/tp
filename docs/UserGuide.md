@@ -49,7 +49,7 @@ To get started using Warenager,
 
 The commands available in the current version of
 Warenager are: add, delete, update, find, findexact, note, notedelete,
-stockview, stats, sort, print, bookmark, unbookmark, list and help.
+stockview, stats, sort, print, bookmark, unbookmark, list, tab and help.
 Refer to the [Commands](#commands) section to for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -62,6 +62,7 @@ Term | Definition
 --------|------------------
 **Command Line Interface (CLI)** | A command-line interface processes commands to a computer program in the form of lines of text. 
 **Graphical User Interface (GUI)** | The graphical user interface is a form of user interface that allows users to interact with electronic devices through graphical icons.
+**Field** | Represents the Name, Serial Number, Quantity, Location stored, Source, Note of the stock in inventory
 **Prefixes** | The field code that are entered during user input, so that Warenager will know what to do. e.g. `q/`, `n/`, `s/`, `sn/`.
 **Parameters** | Parameters are additional fields to key in during user input and provided after a prefix. e.g. `<name>` in `n/<name>`.
 **CSV File** | Comma-Separated Values File. It contains data separated by commas.
@@ -104,9 +105,8 @@ Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Locati
 * **Suggesting** valid command formats when an invalid command is entered.
 * **Sorting** all stocks according to the field and order specified by the user.
 * **Storage** into CSV and JSON files.
-
-* Upon start up of the Warenager application, stocks are by default displayed
-in order of decreasing priority: low quantity stocks, bookmarked stocks, other stocks.
+* Upon start up of the Warenager application, stocks are by default displayed according to the order
+in `stockbook.json`.
 
 </div>
 
@@ -195,7 +195,7 @@ Action | Format, Examples
 **Find** | `find { [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>] }` <br> e.g. `find n/banana sn/SHENGSIONG`
 **FindExact** | `findexact { [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>] }` <br> e.g. `findexact n/banana sn/SHENGSIONG`
 **Note** | `note sn/<serial number> nt/<note>` <br> e.g. `note sn/shengsiong1 nt/chicken will expire soon`
-**NoteDelete** | `notedelete sn/<serial number> ni<note index>` <br> e.g. `notedelete sn/ntuc1 ni/1`
+**NoteDelete** | `notedelete sn/<serial number> ni/<note index>` <br> e.g. `notedelete sn/ntuc1 ni/1`
 **StockView** | `stockview sn/<serial number>` <br> e.g. `stockview sn/ntuc1`
 **Update** | `update sn/<serial number> [sn/<serial number>]... [iq/<increment value> `&#124;` nq/<new quantity>] [n/<name>] [l/<location>] [lq/<low quantity>]` <br> e.g. `update sn/Ntuc1 iq/+50 n/heineken` 
 **Statistics** | `stats st/<statistics type>` <br> e.g. `stats st/source-qd-ntuc`
@@ -329,7 +329,7 @@ list lt/<list type>
 
 ![list_bookmark](images/list/list_bookmark.png)
 
-**Step 2.** We can then list out all the stocks that are low in quantity using the command `list lt/low`.
+**Step 2.** You can then list out all the stocks that are low in quantity using the command `list lt/low`.
 
 **Before input**:
 
@@ -477,7 +477,9 @@ find s/ntuc l/singapore
 ```
 will match only Stock 1.
 
-<h4>Below is a guided example for finding stocks using the `find` command:</h4>
+<h4>Below is a guided example for finding stocks:
+</h4>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source:** 
@@ -528,7 +530,7 @@ Type `find n/` into the command box and enter. You will see that no stocks will 
 **After input:**
 ![find-step-4](images/find/find-step-5.png)
 
-Let's try finding with an **invalid prefix**: `/nt` for the `find` command.
+Let's try finding with an **invalid prefix**: `nt/` for the `find` command.
 
 Type `find nt/apple` into the command box and enter. 
 
@@ -604,7 +606,9 @@ findexact n/banana s/ntuc l/singapore
 ```
 will not match Stock 1 and Stock 2.
 
-<h4>Below is a guided example for finding stocks using the `findexact` command:</h4>
+<h4>Below is a guided example for finding stocks using findexact:
+</h4>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source:** The links provided are for reference if you do not know how to use the respective commands mentioned.
@@ -1159,6 +1163,17 @@ using the command `bookmark sn/giant1`. Below shows the desired outcome.
 
 ![bookmark_after](images/bookmark/bookmark.png)
 
+**Step 2.** You want to bookmark multiple stocks with serial numbers `fairprice1` and `ntuc1`. 
+You can bookmark the stock by using the command `bookmark sn/fairprice1 sn/ntuc1`. Below shows the desired outcome.
+
+**Before input:**
+
+![bookmark_multiple_before](images/bookmark/bookmark_multiple_before.png)
+
+**After input:**
+
+![bookmark_multiple](images/bookmark/bookmark_multiple.png)
+
 <div markdown="block" class="alert alert-warning" markdown="1">
 
 **:warning: Nonexistent Stocks**
@@ -1193,12 +1208,25 @@ using the command `bookmark sn/giant1`. Below shows the desired outcome.
 
 **Before input:**
 
-![GUI_component](images/bookmark/unbookmark_before.png)
+![unbookmark_before](images/bookmark/unbookmark_before.png)
 
 
 **After input:**
 
-![GUI_component](images/bookmark/unbookmark.png)
+![unbookmark_after](images/bookmark/unbookmark.png)
+
+**Step 2.** You want to unbookmark multiple stocks with serial numbers `giant1` and `cold storage1`.
+You can unbookmark the stock by using the command `bookmark sn/giant1 sn/cold storage1`. 
+Below shows the desired outcome.
+
+**Before input:**
+
+![unbookmark_multiple_before](images/bookmark/unbookmark_multiple_before.png)
+
+
+**After input:**
+
+![unbookmark_multiple](images/bookmark/unbookmark_multiple.png)
 
 <div markdown="block" class="alert alert-warning" markdown="1">
 
@@ -1215,8 +1243,6 @@ Unbookmarking a stock that is not bookmarked will also result in an error.
 Using the bookmark input `bookmark sn/fairprice1`,you should expect the following error:
 
 ![bookmark_already_bookmarked](images/bookmark/unbookmark_not.png)
-</div>
-
 </div>
 
 ### Sorting inventory: `sort`
@@ -1266,7 +1292,7 @@ the stock with quantity `2`, since `100` is greater than `2`.
 ![sort_step1](images/sort/sort_step1.png)
 
 **Step 2.** In the picture above, the stock is sorted by serial number in ascending order.
-Suppose that we now want to view the stocks by name in ascending order instead. <br>
+Suppose that you now want to view the stocks by name in ascending order instead. <br>
 A valid sort input would be `sort o/ascending by/name`. <br>
 
 **Before input:**
@@ -1279,7 +1305,7 @@ A valid sort input would be `sort o/ascending by/name`. <br>
 ![sort_step3](images/sort/sort_step3.png)
 
 **Step 3.** It is also possible to sort in descending order.
-Suppose that we now want to view the stocks by quantity in descending order. <br>
+Suppose that you now want to view the stocks by quantity in descending order. <br>
 A valid sort input would be `sort o/descending by/quantity`. <br>
 
 **Before input:**
@@ -1424,7 +1450,7 @@ can be found at Warenager's [Developer Guide](https://ay2021s1-cs2103t-t15-3.git
 
 ![suggestion_step1](images/suggestion/suggestion_step1.png)
 
-**Step 2.** Suppose now we want to add a new stock with the following description:
+**Step 2.** Suppose now you want to add a new stock with the following description:
 * name: eggplant
 * source: fairprice
 * quantity: 500
@@ -1433,7 +1459,7 @@ can be found at Warenager's [Developer Guide](https://ay2021s1-cs2103t-t15-3.git
 
 A valid input would be `add n/eggplant s/fairprice q/500 l/vegetable section lq/100`.
 
-But we make a mistake and instead entered `ad n/eggplant sn/fairprice q/500 l/vegetable section lq/100`
+But you make a mistake and instead entered `ad n/eggplant sn/fairprice q/500 l/vegetable section lq/100`
 
 **Before input:**
 
@@ -1444,8 +1470,8 @@ But we make a mistake and instead entered `ad n/eggplant sn/fairprice q/500 l/ve
 ![suggestion_step3](images/suggestion/suggestion_step3.png)
 
 **Step 3.** As shown above, the suggestion `add n/eggplant s/<source> q/500 l/vegetable section lq/100` is generated.
-Now we can amend our input according to the suggested format.
-We now enter a valid input `add n/eggplant s/fairprice q/500 l/vegetable section lq/100`.
+Now you can amend our input according to the suggested format.
+You now enter a valid input `add n/eggplant s/fairprice q/500 l/vegetable section lq/100`.
 
 **Before input:**
 
@@ -1457,12 +1483,12 @@ We now enter a valid input `add n/eggplant s/fairprice q/500 l/vegetable section
 
 As shown above, the stock has been successfully added.
 
-### Generates a CSV file that contains all stocks: `print`
+### Generating a CSV file that contains all stocks: `print`
 Generates a CSV file that contains all stocks.
 
 <div markdown="block" class="alert alert-info">
 
-Csv file will be named according to the input, and the file name
+CSV file will be named according to the input, and the file name
 can only contain alphanumeric characters. You may want to sort the stocks using `sort` command
 to sort the stock in their preferred order as mentioned [earlier](#sorting-inventory-sort) before converting it into the CSV file. The CSV file is saved
 to `[root directory]/data/userInput.csv` after successfully executing the command.
@@ -1510,7 +1536,10 @@ You will need to resize the columns and row of the excel sheet to see the full t
 
 **:warning: Warning before executing print command**<br>
 `print` writes over a CSV file of the same file name and is an irreversible process.
- Do backup the data it if might be needed again.
+ Do backup the data if might be needed again.<br>
+ 
+ Also note that you will not be able to generate a CSV file of file name `stocks` if
+ you have a CSV file with a file name of `stocks` currently opened in your browser.
 
 </div>
 
@@ -1602,6 +1631,7 @@ Data (all stocks in inventory in JSON) is automatically saved to
 * add
 * delete
 * note
+* notedelete
 * update
 * clear
 

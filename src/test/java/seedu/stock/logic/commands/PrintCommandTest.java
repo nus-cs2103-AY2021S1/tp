@@ -17,7 +17,7 @@ import seedu.stock.model.ModelManager;
 import seedu.stock.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code PrintCommand}.
+ * Contains integration tests (interaction with the Model) and unit test for {@code PrintCommand}.
  */
 public class PrintCommandTest {
     private Model model = new ModelManager(getTypicalStockBook(), new UserPrefsStub(),
