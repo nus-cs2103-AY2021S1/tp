@@ -124,6 +124,7 @@ public class ParserUtil {
         if (!Ingredient.isValidQuantity(quantity)) {
             throw new ParseException(Ingredient.QUANTITY_CONSTRAINTS);
         }
+        trimmedQuantity = Ingredient.removeLeadingZeroesFromNumber(trimmedQuantity);
         return trimmedQuantity;
     }
 

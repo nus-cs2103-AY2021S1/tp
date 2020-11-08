@@ -1,5 +1,6 @@
 package seedu.address.model.ingredient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -50,4 +51,5 @@ public class IngredientTest {
         assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake",
                 "1/0/12 cups"))); // More than one occurence of forward slash
     }
+
 }

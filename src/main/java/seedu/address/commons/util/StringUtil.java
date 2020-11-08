@@ -80,7 +80,9 @@ public class StringUtil {
                 String denominator = s.substring(indexOfDivide + 1);
                 value = Float.parseFloat(numerator) / Float.parseFloat(denominator);
             }
-            return value > 0 && !s.endsWith("."); // "3." is successfully parsed by Float#parseFloat(String)
+            return value > 0 && !s.endsWith(".") && !Float.isInfinite(value); // "3." is successfully parsed by
+            // Float#parseFloat
+            // (String)
         } catch (NumberFormatException e) {
             return false;
         }

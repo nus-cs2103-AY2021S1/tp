@@ -26,8 +26,7 @@ public class Ingredient {
                     + "2. Ingredient quantity should be in format -NUMBER STRING e.g. -54.0 kilograms or "
                     + "-STRING e.g. -a pinch where NUMBER only accept "
                     + "up to 10 numbers, including a single forward slash to represent fractions or a single "
-                    + "full stop to represent decimal numbers and STRING accepts alphabets. "
-                    + " or \n"
+                    + "full stop to represent decimal numbers and STRING accepts alphabets. \n"
                     + "3. Ingredient quantity should be a number greater than 0.";
     public static final String HYPHEN_CONSTRAINTS = "Each ingredient has an optional field quantity that is "
             + "separated by a spaced followed by a hyphen.";
@@ -140,6 +139,31 @@ public class Ingredient {
         return ((!digits.equals("") && StringUtil.isNonZeroUnsignedFloat(digits) && digits.length() < 11)
                 || digits.equals(""))
                 && units.matches(VALIDATION_REGEX_STRING);
+    }
+
+    public static String removeLeadingZeroesFromNumber(String quantity) {
+        String [] digitsAndUnits = getDigitsAndUnitsFromQuantity(quantity);
+        assert digitsAndUnits != null;
+        String digits = digitsAndUnits[0];
+        String units = digitsAndUnits[1];
+        int indexOfDecimalPoint = digits.indexOf(".");
+        int size = digits.length();
+        int index = 0;
+        for (int i = 0; i < size; i++) {
+            char c = digits.charAt(i);
+            if (c == '0') {
+                index++;
+            } else {
+                break;
+            }
+        }
+        if (index == 0) {
+          return quantity;
+        } else if (indexOfDecimalPoint != -1 && indexOfDecimalPoint == index) {
+            return digits.substring(index - 1).trim() + " " + units.trim();
+        } else {
+            return digits.substring(index).trim() + " " + units.trim();
+        }
     }
 
     private static String[] getDigitsAndUnitsFromQuantity(String quantity) {
