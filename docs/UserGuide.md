@@ -142,8 +142,9 @@ t/ | TAG | Recipe tag
 <br><br>
 
 # 3. GUI Layout <a id="3-gui-layout"></a>
+Contributed by: Hieu
 
-This section will explain the components of Wishful Shrinking's main window. <br><br>
+<br> This section will explain the components of Wishful Shrinking's main window. <br><br>
 
 The image below is a labeled diagram of each of Wishful Shrinking's components.<br><br>
    <img src="images/UiExplained.png" width="550" height="300">
@@ -207,7 +208,7 @@ are relevant only to Recipes.
 <br><br><br>
 
 ### 5.1.1 Adding a recipe: `addR` <a id="add-recipe"></a>
-Contributed by: Hieu, Jia Qi, Tian Yong, Caitlin
+Contributed by: Hieu, Jia Qi, Tian Yong, Caitlin, Olivia
 
 <br> Adds a recipe to Recipe List.
 
