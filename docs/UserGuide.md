@@ -267,6 +267,14 @@ The optional field low quantity will be set to 0 if not present in the input.
 
 </div>
 
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+**:warning:**
+You will not be able to add a stock into the stock book if it already exist in the stock book. In Warenager, two stocks are the
+same if they have the same `serial number`, or the same `name` and `source`.
+
+</div>
+
 <h4>Format</h4>
 
 ```
@@ -297,13 +305,40 @@ add n/Sprite s/Ntuc q/1000 l/Drinks section lq/5000
 You have now added the stock successfully into the stock book. The stock will be added to the bottom
  of the stock table as shown above.
  
-<div markdown="block" class="alert alert-warning" markdown="1">
+<div markdown="block" class="alert alert-warning">
 
-**:warning:**
-You will not be able to add a stock into the stock book if it already exist in the stock book. In Warenager, two stocks are the
-same if they have the same `serial number`, or the same `name` and `source`.
+**:warning: Below are some cases where `add` command does not work:**
+
+You should see an error message describing what went wrong and the correct format for the `add` command.
+
+Stocks that exist in Warenager cannot be added. Using the same input in the step 1,
+`add n/orange s/shengshiong q/1300 l/fruits section`, you should expect the following:
+
+![addStockExample3](images/addStockExample3.png)
+
+Invalid add command formats will also result in an error.<br>
+For example, the input `adds n/orange s/shengshiong q/1300 l/fruits section` will lead in an error as shown below
+as the keyword `add` is misspelt.
+
+![addStockExample4](images/addStockExample4.png)
+
+The input `add n/orange q/1300 l/fruits section` will lead in an error as shown below as the compulsory fields with `s/` is missing.
+
+![addStockExample5](images/addStockExample5.png)
+
+The input `add n/orange.big s/shengshiong q/1300 l/fruits section` will lead in an error as shown below as the name contains a symbol and thus is invalid. This is
+also true for inputs with no name like `add n/ s/shengshiong q/1300 l/fruits section`.
+
+![addStockExample6](images/addStockExample6.png)
+
+The `add n/apple s/shengshiong q/1300 l/fruits section ni/0` will lead in an error as shown below even though we have supplied all the required
+prefixes. This is because the prefix `ni/` is not allowed to add command, and it is not just limited to `ni/`. In add
+commands, only the prefix `/n`, `/s`, `/q`, `/l`, `/lq` are allowed.
+
+![addStockExample7](images/addStockExample7.png)
 
 </div>
+
 
 ### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
