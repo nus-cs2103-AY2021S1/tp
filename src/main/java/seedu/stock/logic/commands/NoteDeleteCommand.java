@@ -8,7 +8,10 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTIO
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.model.Model;
@@ -40,6 +43,7 @@ public class NoteDeleteCommand extends Command {
             "Stock with given serial number does not exists";
     private static final String MESSAGE_NOTE_INDEX_NOT_FOUND = "Note at index specified is not found.";
     private static final String MESSAGE_STOCK_HAS_NO_NOTE = "Stock specified has no note.";
+    private static final Logger logger = LogsCenter.getLogger(NoteDeleteCommand.class);
 
     private final SerialNumber serialNumber;
     private final NoteIndex noteIndex;
@@ -65,6 +69,7 @@ public class NoteDeleteCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException, SerialNumberNotFoundException {
+        logger.log(Level.INFO, "Starting to execute note delete command");
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownStocks = model.getFilteredStockList();
@@ -94,6 +99,7 @@ public class NoteDeleteCommand extends Command {
         Stock stockWithDeletedNote = createStockWithDeletedNote(stockToDeleteNote.get(), noteIndex);
         model.setStock(stockToDeleteNote.get(), stockWithDeletedNote);
 
+        logger.log(Level.INFO, "Finished deleting notes successfully");
         return new CommandResult(generateSuccessMessage(stockWithDeletedNote));
     }
 

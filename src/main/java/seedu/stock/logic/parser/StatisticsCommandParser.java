@@ -23,6 +23,7 @@ public class StatisticsCommandParser implements Parser<StatisticsCommand> {
 
     @Override
     public StatisticsCommand parse(String userInput) throws ParseException {
+        logger.log(Level.INFO, "Starting to parse statistics command");
         //invalid input if it does not start with "st/" as it is a confirmed invalid header.
         if (!userInput.trim().startsWith("st/")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatisticsCommand.MESSAGE_USAGE));
@@ -48,9 +49,11 @@ public class StatisticsCommandParser implements Parser<StatisticsCommand> {
         switch (type) {
 
         case SourceStatisticsCommand.STATISTICS_TYPE:
+            logger.log(Level.INFO, "Finished parsing statistics command successfully");
             return new SourceStatisticsCommand();
 
         case SourceQuantityDistributionStatisticsCommand.STATISTICS_TYPE:
+            logger.log(Level.INFO, "Finished parsing statistics command successfully");
             return new SourceQuantityDistributionStatisticsCommand(getSourceCompany(input));
 
         default:
