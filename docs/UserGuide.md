@@ -37,12 +37,12 @@
    --- 4.5.3 [Edit a student: `editStudent`](#453-edit-a-student-editstudent)<br>
    --- 4.5.4 [Find a student: `findStudent`](#454-find-a-student-findstudent)<br>
    4.6 [Attendance Features](#46-attendance-features)<br>
-   --- 4.6.1 [Add attendance: `addAttendance`]()<br>
-   --- 4.6.2 [Delete attendance: `deleteAttendance`]()<br>
-   --- 4.6.3 [View all attendance of a Student: `viewAttendance`]()<br>
-   --- 4.6.4 [Show Students who fall below an attendance score: `attendanceBelow`]()<br>
-   --- 4.6.5 [Edit a Student's participation: `editParticipation`]()<br>
-   --- 4.6.6 [Show Students who fall below a participation score: `participationBelow`]()<br>
+   --- 4.6.1 [Add attendance: `addAttendance`](#461-add-attendance-addattendance)<br>
+   --- 4.6.2 [Delete attendance: `deleteAttendance`](#462-delete-attendance-deleteattendance)<br>
+   --- 4.6.3 [View all attendance of a Student: `viewAttendance`](#463-view-all-attendance-of-a-student-viewattendance)<br>
+   --- 4.6.4 [Show Students who fall below an attendance score: `attendanceBelow`](#464-show-students-who-fall-below-an-attendance-score-attendancebelow)<br>
+   --- 4.6.5 [Edit a Student's participation: `editParticipation`](#465-edit-a-students-participation-editparticipation)<br>
+   --- 4.6.6 [Show Students who fall below a participation score: `participationBelow`](#466-show-students-who-fall-below-a-participation-score-participationbelow)<br>
 5. [FAQ](#5-faq)<br>
 6. [Command Summary](#6-command-summary)<br>
    6.1 [General Commands](#61-general-commands) <br>
@@ -504,7 +504,7 @@ Format: `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [id/STUDENT_ID] [t/TAG].
 
 Example:
 
-- Editing the phone number and email address of the first student to be _97654321_ and _jtan@u.nus.edu_.
+- Edits the phone number and email address of the first student to be _97654321_ and _jtan@u.nus.edu_.
 
     - `editStudent 1 p/97654321 e/jtan@u.nus.edu`
 
@@ -541,31 +541,49 @@ Expected Outcome:
 
 #### 4.6.1 Add Attendance: `addAttendance`
 
-Marks the attendance of a student as present for specific week(s).
+Adds the attendance of a student for specific week(s). Can also be seen as marking a student as 'present' for specific week(s).
 
-Format: `addAttendance INDEX (must be a positive integer) week/WEEK_NUMBER [week/WEEK_NUMBER]...`
+Format: `addAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...`
 > Note:
 > - `INDEX` refers to the index number shown in the Student view.
 > - `INDEX` must be a positive integer starting from 1.
 > - You can provide more than one WEEK_NUMBER to mark attendance for multiple weeks.
-- Marking attendance for weeks that have already been marked as present will not make any changes for those weeks.
+> - Marking attendance for weeks that have already been marked as 'present' will not make any changes for those weeks.
+Example:
+
+- Adds the attendance of the first student on the student list for `WEEK_NUMBER` _2_ and `WEEK_NUMBER` _3_.
+
+    - `addAttendance 1 week/2 week/3`
+
+Expected Outcome:
+
+![AddAttendanceCommand](images/AddAttendanceCommand.png)
 
 #### 4.6.2 Delete attendance: `deleteAttendance`
 
-Marks the attendance of a student as absent for specific week(s).
+Deletes the attendance of a student for specific week(s). Can also be seen as marking a student as 'absent' for specific week(s).
 
-Format: `deleteAttendance INDEX (must be a positive integer) week/WEEK_NUMBER [week/WEEK_NUMBER]...`
+Format: `deleteAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...`
 
 > Note:
->
 > - `INDEX` refers to the index number shown in the Student view.
 > - `INDEX` must be a positive integer starting from 1.
 > - You can provide more than one WEEK_NUMBER to mark attendance for multiple weeks.
-> - Marking attendance for weeks that have already been marked as absent will not make any changes for those weeks.
+> - Marking attendance for weeks that have already been marked as 'absent' will not make any changes for those weeks.
+
+Example:
+
+- Deletes the attendance of the first student on the student list for `WEEK_NUMBER` _6_.
+
+  - `deleteAttendance 1 week/6`
+
+Expected Outcome:
+
+![DeleteAttendanceCommand](images/DeleteAttendanceCommand.png)
 
 #### 4.6.3 View all attendance of a Student: `viewAttendance`
 
-Shows the attendance of Target student.
+Shows the attendance of target student by specifying the week(s) that the student has attended.
 
 Format: `viewAttendance INDEX`
 
@@ -573,25 +591,76 @@ Format: `viewAttendance INDEX`
 >
 > - `INDEX` refers to the index number shown in the Student view.
 > - `INDEX` must be a positive integer starting from 1.
-> - You can provide more than one WEEK_NUMBER to mark attendance for multiple weeks.
-> - Marking attendance for weeks that have already been marked as absent will not make any changes for those weeks.
 
-Example: `viewAttendance 1`
+Example:
+
+- Views the attendance of the first student on the student list.
+  - `viewAttendance 1`
 
 Expected Outcome:
 ![ViewAttendanceCommand](images/ViewAttendanceCommand.png)
 
 #### 4.6.4 Show Students who fall below an attendance score: `attendanceBelow`
 
-Marks the attendance of a student.
+Finds and lists all students in the current Student view whose attendance score falls below the provided score.
 
-#### 4.6.5 Add Attendance: `addAttendance`
+Format: `attendanceBelow UPPER_BOUND`
 
-Marks the attendance of a student.
+> Note:
+>
+> - This command finds students who has an attendance score below `UPPER_BOUND`.
+> - `UPPER_BOUND` must be a positive integer starting from 1.
+> - The students found will not include those whose attendance score is equal to `UPPER_BOUND`, only below, i.e. `UPPER_BOUND` is not inclusive.
+
+Example:
+
+- Shows all students who has an attendance score below 5.
+  - `attendanceBelow 5`
+
+Expected Outcome:
+![AttendanceBelowCommand](images/AttendanceBelowCommand.png)
+
+#### 4.6.5 Edit a Student's participation: `editParticipation`
+
+Edits the participation score of a student by adding to or deducting from their existing score by the provided score.
+
+Format: `editParticipation INDEX score/PARTICIPATION_SCORE`
+
+> Note:
+>
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - You can deduct score from a student by putting a negative number for `PARTICIPATION_SCORE` (e.g. Put -10 as `PARTICIPATION_SCORE` to deduct 10 score from a student)
+> - `PARTICIPATION_SCORE` must be a whole number ranging from -100 to 100, using 0 will have no effect on the existing score.
+> - Students can have a participation score from 0 to 100, adding or deducting score to one outside this range will cause the score to clip to the limits (e.g. Deducting 40 score from a student with a score of 30 will lead to the student having the score of 0 instead of -10)
+
+Example:
+
+- Adds 10 score to the first student on the student list.
+  - `editParticipation 1 10`
+
+Expected Outcome:
+![EditParticipationCommand](images/EditParticipationCommand.png)
 
 #### 4.6.6 Show Students who fall below a participation score: `participationBelow`
 
-Marks the attendance of a student.
+Finds and lists all students in the current Student view whose participation score falls below the provided score.
+
+Format: `participationBelow UPPER_BOUND`
+
+> Note:
+>
+> - This command finds students who has an participation score below `UPPER_BOUND`.
+> - `UPPER_BOUND` must be a positive integer starting from 1.
+> - The students found will not include those whose participation score is equal to `UPPER_BOUND`, only below, i.e. `UPPER_BOUND` is not inclusive.
+
+Example:
+
+- Shows all students who has a participation score below 35.
+  - `participationBelow 35`
+
+Expected Outcome:
+![AttendanceBelowCommand](images/AttendanceBelowCommand.png)
 
 
 ## 5. FAQ
