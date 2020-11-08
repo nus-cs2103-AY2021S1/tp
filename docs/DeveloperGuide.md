@@ -566,23 +566,24 @@ This feature requires the following classes:
 * `AddGradeParser`:
   * It implements `AddGradeParser#parse()` to validate and parse the module name and grade.
 * `AddGradeCommand`:
-  * It implements `DeleteAssignmentCommand#execute()` which will execute the deleting of the assignment at the corresponding
-  assignment `Index` in the corresponding `Module` identified by the parsed module name.
+  * It implements `AddGradeCommand#execute()` which will execute the overriding to the current grade for the module with the
+  module name.
 
-Given below is an example usage scenario and how the mechanism for deleting an `Assignment` behaves at each step:
+Given below is an example usage scenario and how the mechanism for adding a grade behaves at each step:
 
-Step 1. `LogicManager` receives the user input `deleteassignment 1 n/CS2100` from `Ui`
+Step 1. `LogicManager` receives the user input `addgrade n/CS2100 g/80` from `Ui`
 
-Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `DeleteAssignmentParser`
+Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `AddGradeParser`
 
-Step 3. Additionally, `DeleteAssignmentParser` will call the `DeleteAssignmentParser#parse()` method to parse the command arguments
+Step 3. Additionally, `AddGradeParser` will call the `AddGradeParser#parse()` method to parse the command arguments
 
-Step 4. An `DeleteAssignmentCommand` is created and the command arguments are passed to it.
+Step 4. An `AddGradeCommand` is created and the command arguments are passed to it.
 
-Step 5. `DeleteAssignmentCommand#execute()` will be evoked by `LogicManager` . A `ModuleName` is also created using the input `CS2100`.
+Step 5. `AddGradeCommand#execute()` will be evoked by `LogicManager` . A `ModuleName` is also created using the input `CS2100`
+and a `Grade` is created with the input `80`.
 
 Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
-`GradeTracker` deletes the `Assignment` at the `Index`.
+`GradeTracker` for that module replaces the `Grade` currently stored with the new `Grade`.
 
 Step 7. The `Model#setModule()` operation is run to update the model with the newly updated module.
 
@@ -590,18 +591,17 @@ Step 7. A `CommandResult` from the command execution is returned to `LogicManage
 
 #### Design consideration:
 
-##### Aspect: Format to accept the user input
-* Alternative 1 : Receive user input of as two indexes to simplify the command.
-    * Pros : The command becomes very short for the user to write. The implementation can also become very simple. 
-    * Cons : There might be confusion for the user to realise which index corresponds to the module and which index
-    corresponds to the assignment.
+##### Aspect: Whether to implement the ability for the assignments being added to update the grade
+* Alternative 1 : Grade is only updated with `AddGradeCommand`.
+    * Pros : The implementation becomes simpler and less coupling between assignment and grades. 
+    * Cons : The grade feature might not be as useful for the user.
     
-* Alternative 2 (current choice): Receive only the assignment to delete as an index and the name of the module as its module name.
-    * Pros : Better for clarity for the user to input exactly what they are asking to delete.
-    * Cons : The user will have to fully type out the name of the module to delete the assignment from.
+* Alternative 2 (current choice): `AddAssignmentCommand` and `EditAssignmentCommand` will update grade with the changes to the assignments.
+    * Pros : More relevant to the user and would be more helpful.
+    * Cons : The implementation will be significantly harder and increased coupling between assignments and grades.
     
-We implemented the second option as we believe that with oversimplifying the command could lead to it being extremely unintuitive.
-With this implementation, it will be as similar as possible to the other delete commands with only one extra input.
+We implemented the second option as the usefulness of the `Grade` feature increases significantly and the overall usefulness of
+`GradeTracker` would also increase as well.
 
 ### Cap Calculator
 
