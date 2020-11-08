@@ -172,7 +172,7 @@ public class FlashcardListRoot extends UiPart<Region> implements RootNode {
         return flashcardListPanel;
     }
     /**
-     * Executes the command and returns the result.
+     * Executes the valid commands in card-mode and returns the result.
      *
      * @see seedu.flashnotes.logic.Logic#execute(String)
      */

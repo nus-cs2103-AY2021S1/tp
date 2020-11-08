@@ -69,6 +69,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    /**
+     * Sets the new root node object for the MainWindow.
+     *
+     * @param rootNode The new root node to be rendered.
+     * @param commandResult Command Result which contains the right message for the user.
+     */
     public void setRootNode(RootNode rootNode, CommandResult commandResult) {
         this.rootNode = rootNode;
         Region root = rootNode.getFxmlLoader().getRoot();

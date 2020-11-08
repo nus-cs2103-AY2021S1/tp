@@ -172,7 +172,7 @@ public class DeckCardListRoot extends UiPart<Region> implements RootNode {
     }
 
     /**
-     * Executes the command and returns the result.
+     * Executes the valid command to Deck Mode and returns the result.
      *
      * @see seedu.flashnotes.logic.Logic#execute(String)
      */
