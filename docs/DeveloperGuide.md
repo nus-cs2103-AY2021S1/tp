@@ -134,7 +134,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Find by attributes feature
+### Find contacts by attributes feature
 
 #### Implementation
 
@@ -257,6 +257,14 @@ The following activity diagram summarizes what happens when a user executes a de
 The assign feature is facilitated by `AssignCommand` and `AssignCommandParser`.
 It uses an operation `AddressBook#assignInstructor()` which is exposed in the `Model` interface as `Model#assignInstructor()`.
 Then, the `assignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#assignInstructor()` will add the instructor to the module's set of instructors.
+
+The following sequence diagram shows how the assign operation works:
+
+![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an assign command:
+
+![AssignActivityDiagram](images/AssignActivityDiagram.png)
 
 #### Design consideration:
 
@@ -383,22 +391,32 @@ Expected : Error message saying "Module list is already empty".
 
 { more test cases ... }
 
-### \[Proposed\] Switch feature
+### Switch active semester feature
 
-#### Proposed Implementation
+#### Implementation
 
-The switch feature is facilitated by `AddressBook#switchActiveSemester()`.
-The `AddressBook` will store three module lists, one for Semester 1, one for Semester 2, and one to reference the active semester.
-All operations on `UniqueModuleList` will be done on the active semester. `AddressBook#switchActiveSemester()` toggles the active semester between Semester 1 and Semester 2.
+The switch feature is facilitated by `AddressBook#switchModuleList()` which is exposed in the `Model` interface as `Model#switchModuleList()`.
+
+AddressBook has two module lists, one for each semester, and one additional `UniqueModuleList` variable named `activeModules` that stores a reference to the active semester's module list. 
+`AddressBook#switchModuleList()` toggles which module list is referenced by `activeModules`.
+All `AddressBook` operations on `UniqueModuleList` are done on `activeModules`.
+
+The following sequence diagram shows how the switch operation works:
+
+![SwitchSequenceDiagram](images/SwitchSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a switch command:
+
+![SwitchActivityDiagram](images/SwitchActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Viewing a certain semester
+##### Aspect: Setting the active semester
 * **Alternative 1 (current choice):** There are two module lists and active semester references one of them.
-  * Pros: Less code to change, more difficult to test.
+  * Pros: Less code to change.
   * Cons: Can only manage the modules in the active semester.
 
-* **Alternative 2:** There is only one module list and there is a filter to only show modules of a particular semester.
+* **Alternative 2:** There is only one module list and there is a filter to select modules of a particular semester.
   * Pros: More efficient to list the modules of a certain instructor.
   * Cons: Need to add semester field to modules and commands, will have two copies of the same module if held in both semesters, more code to change.
 
@@ -932,13 +950,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a contact while all contacts are being shown
 
-   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+   1. Prerequisites: List all contacts using the `list` or `clist` command. Multiple contacts in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No contact is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -949,18 +967,65 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding a contact while all contacts are being shown
 
-   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+   1. Prerequisites: List all contacts using the `list` or `clist` command. Multiple contacts in the list.
 
    1. Test case: `find n/Alice d/Math`<br>
-      Expected: All contacts that has "Alice" in their name, and "Math" in their department is shown.
-      . Timestamp in the status bar is updated.
+      Expected: All contacts that has "Alice" in their name, and "Math" in their department are shown.
 
    1. Test case: `find n/`<br>
-      Expected: No contacts filtered. Error details shown in the status message. Status bar remains the same.
+      Expected: No contacts filtered. Error details shown in the status message.
 
    1. Other incorrect find commands to try: `find p/abcdef`, `find`, `find Alice`, `...`
       Expected: Similar to previous.
 
+1. _{ more test cases …​ }_
+
+### Assigning a contact to one or more modules
+
+1. Assigning a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts and modules in the active semester using the `list` command. Active semester only has modules with module codes `CS1010`, `CS2103`, `CS2100`. 
+   Contact on index `1` is not an instructor of any module, while contact on index `2` is an instructor of modules with module codes `CS2103` and `CS2100`.
+
+   1. Test case : `assign 1 m/CS1010`<br>
+      Expected: First contact is assigned to the CS1010 module. Name of contact shown in module card.
+      
+   1. Test case : `assign 1 m/CS2103 m/CS2100`<br>
+      Expected: First contact is assigned to both CS2103 and CS2100 modules. Name of contact shown in module cards.
+
+   1. Test case: `assign 2 m/CS2103 m/CS1010`<br>
+      Expected: No contacts assigned to any modules. Error details shown in the status message.
+      
+   1. Test case: `assign 0 m/CS2103 m/CS2100`<br>
+      Expected: No contacts assigned to any modules. Error details shown in the status message.
+   
+   1. Test case: `assign 1 m/CS3230`<br>
+      Expected: No contacts assigned to any modules. Error details shown in the status message.
+
+   1. Other incorrect assign commands to try: `assign m/cs2013`, `assign`, `assign x m/cs2103`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Assigning a contact while contacts are being filtered
+    
+   1. Prerequisites: Filter contacts by attributes using the `find` command. Other prerequisites are similar to previous.
+
+   1. Test cases similar to previous.  
+
+1. _{ more test cases …​ }_
+
+### Switching the active semester
+
+1. Prerequisites: Active semester is Semester 1.
+
+1. Test case: `switch`<br>
+   Expected: Active semester switched to Semester 2. Module list view updates to the active semester.
+
+1. Test case: `switch m/`<br>
+   Expected: Active semester unchanged. Error details shown in the status message.
+
+1. Other incorrect assign commands to try: `switch switch`
+   Expected: Similar to previous.
+         
 1. _{ more test cases …​ }_
 
 ### Saving data
