@@ -238,56 +238,76 @@ public class MainCatalogueParser {
             }
 
         case DeleteTeammateParticipationCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
+            switch (status) {
+            case PROJECT:
                 return new DeleteTeammateParticipationCommandParser().parse(arguments);
-            } else {
+            default:
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case AddTaskCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
+            switch (status) {
+            case PROJECT:
+            case TASK:
+            case TEAMMATE:
                 return new AddTaskCommandParser().parse(arguments);
-            } else {
-                throw new InvalidScopeException(Status.PROJECT, status);
-            }
-        case DeleteTaskCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
-                return new DeleteTaskCommandParser().parse(arguments);
-            } else {
-                throw new InvalidScopeException(Status.PROJECT, status);
-            }
-        case DeleteTeammateCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
-                return new DeleteTeammateCommandParser().parse(arguments);
-            } else {
+            default:
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
+        case DeleteTaskCommand.COMMAND_WORD:
+            switch (status) {
+            case PROJECT:
+                return new DeleteTaskCommandParser().parse(arguments);
+            default:
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        case DeleteTeammateCommand.COMMAND_WORD:
+            switch (status) {
+            case PERSON_LIST:
+                return new DeleteTeammateCommandParser().parse(arguments);
+            default:
+                throw new InvalidScopeException(Status.PERSON_LIST, status);
+            }
+
         case EditTaskCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
+            switch (status) {
+            case PROJECT:
+            case TEAMMATE:
+            case TASK:
                 return new EditTaskCommandParser().parse(arguments);
-            } else {
+            default:
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case EditTeammateCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
+            switch (status) {
+            case PROJECT:
+            case TEAMMATE:
+            case TASK:
                 return new EditTeammateCommandParser().parse(arguments);
-            } else {
+            default:
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case ViewTaskCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
+            switch (status) {
+            case PROJECT:
+            case TASK:
+            case TEAMMATE:
                 return new ViewTaskCommandParser().parse(arguments);
-            } else {
+            default:
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case ViewTeammateCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
+            switch (status) {
+            case PROJECT:
+            case TASK:
+            case TEAMMATE:
                 return new ViewTeammateCommandParser().parse(arguments);
-            } else {
+            default:
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
