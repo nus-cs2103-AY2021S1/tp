@@ -34,8 +34,8 @@ public class CommandTestUtil {
     public static final String ITEM_NAME_3 = "ITEM_NAME_3";
 
     public static final double EDGE_COST = 0;
-    public static final double COST_2 = 13.7;
     public static final double COST_1 = 27.5;
+    public static final double COST_2 = 13.7;
     public static final double NEGATIVE_COST = -35.5;
 
     public static final int QUANTITY_1 = 10;
