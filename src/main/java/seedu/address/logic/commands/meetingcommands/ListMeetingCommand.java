@@ -14,7 +14,7 @@ public class ListMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "list-m";
 
-    public static final String MESSAGE_SUCCESS = "Listed all meetings";
+    public static final String MESSAGE_SUCCESS = "Displaying full meeting list.";
 
     @Override
     public CommandResult execute(Model model) {

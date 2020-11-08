@@ -1,5 +1,9 @@
-
-## Introduction
+---
+layout: page
+title: Developer Guide
+---
+* Table of Contents
+{:toc}
 
 PropertyFree is adapted from AB3. It prefers leveraging on Command 
 Line Interface for those who are more comfortable with typing than with Graphical User Interface (GUI).
@@ -19,12 +23,21 @@ It is optimized for CLI users so that the bookkeeping can be done faster by typi
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the .jar file and run the file by running it via command line or by left clicking if your device is able to.
 
+Note that PropertyFree.jar should be run inside a folder.
+
 
    ![Ui](images/Ui.png)
 (Fig. 1: Initial display interface for PropertyFree.)
 
 
 ## Key Terms and Definitions
+
+### Client
+Clients of PropertyFree consists of both bidders and sellers.
+
+- ```Sellers``` are the owners of the properties listed in PropertyFree.
+- ```Bidders``` are the interested buyers who place a bid on a property.
+
 
 **Seller** - A seller is the owner of a property that wants to list their house for sale. It is assigned a unique Seller Id. 
 
@@ -52,9 +65,29 @@ and Bidder Id exists in the property list and bidder list.
 
 💡 VENUE indicates the venue of the meeting.
 
-💡 DATE indicates the meeting date of the meeting.
+💡 MEETINGDATE indicates the meeting date of the meeting.
 
-💡 PHONE_NUMBER indicates a local Singapore phone number (Maximum 10 digits including country code +65).
+💡 STARTTIME indicates the start time of the meeting.
+
+💡 ENDTIME indicates the end time of the meeting.
+
+💡 PHONE_NUMBER indicates the mobile phone number of the client.
+
+PropertyFree assumes that **all phone numbers are unique**, and as such will not allow duplicates of
+phone number. 
+
+Note that the ```Tag``` and ```Id``` for both ```bidder```
+and ```seller``` are created automatically and ***cannot be modified***.
+- ```Tag```: Visual identifier for clients
+- ```Id```: Unique ID assigned to each client for identification.
+
+💡 Note that the following applies for information of a client.
+
+1. The length of the name of any clients 
+that PropertyFree accepts is of **26 characters or lesser** (including spaces).
+2. Names are `CASE SENSITITVE` (i.e Dianne and dianne are recognised as two different names).
+2. The length of the phone number of any clients
+that PropertyFree accepts is of **10 numbers or lesser** and `+` should not be added.
 
 # Keyboard Navigation
 1. When the `CommandBox` is not in focused (i.e when cursor is not blinking):
@@ -63,25 +96,32 @@ and Bidder Id exists in the property list and bidder list.
 
 2. Next Month in `Calender`:
 
-        PRESS CONTROL
+        PRESS CTRL - Windows OS
+        or
+        PRESS CONTROL - Mac OS
         
 3. Previous Month in `Calendar`:
 
         PRESS ALT - Windows OS
         or
-        PRESS OPTIONS - Mac OS
+        PRESS OPTION - Mac OS
 
-Note that apart from `SHIFT` and `CONTROL`, there are `Calendar` navigation commands `next` and `prev` 
+Note that apart from `ALT / OPTION` and `CTRL / CONTROL`, there are `Calendar` navigation commands `next` and `prev` 
 (elaborated below) in the event that your computer or laptop keyboard layout does not allow you to access
-`SHIFT` or `CONTROL` easily. (or if you just prefer to type more)
+`ALT / OPTION` or `CTRL / CONTROL` easily. (or if you just prefer to type more)
 
 # Features
 
-> **Command format**
-> - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add-p n/PROPERTY_NAME`, `PROPERTY_NAME` is a parameter which can be used as `add-p n/Sunrise Residences`.
-> - Items in square brackets are optional. e.g. `edit-p [n/PROPERTY_NAME]` implies that `PROPERTY_NAME` is an optional parameter.
->- Items in <> brackets are for integer numbers only. e.g <INDEX_NUMBER> can be <5>.
-  
+**Command format**
+
+<div markdown="span" class="alert alert-info">
+:information_source: Note that the usage of the term `ENTITY` represents any of the following entities in PropertyFree:<br>`Property`, `Seller`, `Bidder`, `Bid` and `Meeting`
+ <li>  Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add-p n/PROPERTY_NAME`, `PROPERTY_NAME` is a parameter which can be used as `add-p n/Sunrise Residences`. </li>
+ <li>  Items in square brackets are optional. e.g. `edit-p [n/PROPERTY_NAME]` implies that `PROPERTY_NAME` is an optional parameter. </li>
+ <li> Items in brackets are for integer numbers only. e.g <INDEX_NUMBER> can be <5>. </li>
+</div>  
+
+
 ## Viewing help 
 
 - Command: `help`
@@ -95,23 +135,23 @@ Displays a link to this User Guide.
 
 | Command Format (Bidder)  | Example |
 | :--- | :--- |
-| add-b `n/BIDDER_NAME` `p/PHONE_NUMBER`  | add-b n/Marcus Duigan p/12345678  |
-| edit-b `<INDEX_NUMBER>` `[n/NEW_NAME]` `[p/NEW_PHONE_NUMBER]` | edit-b 1 n/Marcus Weagle Duigan p/987654321 |
+| add-b `n/BIDDER_NAME` `p/<PHONE_NUMBER>`  | add-b n/Marcus Duigan p/12345678  |
+| edit-b `<INDEX_NUMBER>` `[n/NAME]` `[p/<PHONE_NUMBER>]` | edit-b 1 n/Marcus Weagle Duigan p/987654321 |
 | find-b `[KEYWORDS]` | find-b duigan |
 | delete-b `<INDEX_NUMBER>` | delete-b 1 |
 | list-b | list-b |
 
 | Command Format (Seller)  | Example |
 | :--- | :--- |
-| add-s `n/SELLER_NAME` `p/PHONE_NUMBER`  | add-s n/Marcus Duigan p/12345678  |
-| edit-s `<INDEX_NUMBER>` `[n/NEW_NAME]` `[p/NEW_PHONE_NUMBER]` | edit-s 1 n/Marcus Weagle Duigan p/987654321 |
+| add-s `n/SELLER_NAME` `p/<PHONE_NUMBER>`  | add-s n/Marcus Duigan p/12345678  |
+| edit-s `<INDEX_NUMBER>` `[n/NAME]` `[p/<PHONE_NUMBER>]` | edit-s 1 n/Marcus Weagle Duigan p/987654321 |
 | find-s `[KEYWORDS]` | find-s duigan |
 | delete-s `<INDEX_NUMBER>` | delete-s 1 |
 | list-s | list-s |
 
 | Command Format (Property)  | Example |
 | :--- | :--- |
-| add-p `n/PROPERTY_NAME` `s/SELLER_ID` `ap/ASKING_PRICE` `t/TYPE` `a/ADDRESS` `r/IS_RENTAL`  | add-p n/Sunrise s/S1 ap/100 t/Landed a/99 Sunrise Street r/No  |
+| add-p `n/PROPERTY_NAME` `s/SELLER_ID` `ap/ASKING_PRICE` `t/PROPERTY_TYPE` `a/ADDRESS` `r/IS_RENTAL`  | add-p n/Sunrise s/S1 ap/100 t/Landed a/99 Sunrise Street r/No  |
 | edit-p `<INDEX_NUMBER>` `[n/NAME]` `[a/ADDRESS]` `[s/SELLER_ID]` `[ap/ASKING_PRICE]` `[t/PROPERTY_TYPE]` `[r/IS_RENTAL]`  | edit-p 1 n/Cove Residences a/23 Cove Street |
 | find-p `[p/PROPERTY_ID_KEYWORDS]` `[n/NAME_KEYWORDS]` `[a/ADDRESS_KEYWORDS]` `[s/SELLER_ID_KEYWORDS]` `[t/PROPERTY_TYPE_KEYWORDS]` `[ap/ASKING_PRICE_FILTER]` `[r/IS_RENTAL]` `[c/IS_CLOSED_DEAL]` | find-p n/Sunrise Cove a/Street Road |
 | delete-p `PROPERTY_ID` or delete-p `<INDEX_NUMBER>` | delete-p P23 or delete-p 5 |
@@ -120,46 +160,23 @@ Displays a link to this User Guide.
 | Command Format (Bid)  | Example |
 | :--- | :--- |
 | add-bid `b/PROPERTY_ID` `c/BIDDER_ID` `m/BID_AMOUNT`  | add-bid b/P1 c/B2 m/150000.20  |
-| edit-bid `<INDEX_NUMBER>` `[b/NEW_PROPERTY_ID]` `[c/NEW_BIDDER_ID]` `[m/NEW_BID_AMOUNT]` | edit-bid 1 b/ P99 c/ B12 m/1.20 |
+| edit-bid `<INDEX_NUMBER>` `[b/PROPERTY_ID]` `[c/BIDDER_ID]` `[m/BID_AMOUNT]` | edit-bid 1 b/ P99 c/ B12 m/1.20 |
 | find-bid `[KEYWORDS]` | find-bid P1 B2 $65000.00 |
 | delete-bid `<INDEX_NUMBER>` | delete-bid 1 |
 | list-bid | list-bid |
 
-| | Command Format (Meeting)  | Example |
-| :--- | :--- | :--- |
-| View | add-m q/v `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `d/<DATE> s/<STARTTIME> e/<ENDTIME>` | add-m q/v b/B12 p/P12 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00 |
-| Administrative | add-m q/a `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `d/<DATE> s/<STARTTIME> e/<ENDTIME>` | add-m q/a b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
-| Paperwork  |add-m q/p `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `d/<DATE> s/<STARTTIME> e/<ENDTIME>` | add-m q/p b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021 |
-| |edit-m `<INDEX>` `[b/BIDDER_ID]` `[p/PROPERTY_ID]` `[v/VENUE]` `[d/DATE] [s/<STARTTIME>] [e/<ENDTIME>]` | edit-m 2 v/eunos |
-| |delete-m `<INDEX_NUMBER>` | delete-m 3 |
-| | sort-m `o/ORDER` | sort-m o/asc |
-| | list-m | list-m |
+| Command Format (Meeting)  | Example |
+| :--- | :--- |
+| add-m `q/MEETING_TYPE` `b/<BIDDER_ID>` `p/<PROPERTY_ID>` `v/<VENUE>` `d/<DATE> s/<STARTTIME> e/<ENDTIME>` | add-m q/v b/B12 p/P12 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00 |
+| edit-m `<INDEX>` `[b/BIDDER_ID]` `[p/PROPERTY_ID]` `[v/VENUE]` `[d/DATE] [s/<STARTTIME>] [e/<ENDTIME>]` | edit-m 2 v/eunos |
+| delete-m `<INDEX_NUMBER>` | delete-m 3 |
+| sort-m `o/ORDER` | sort-m o/asc |
+| list-m | list-m |
 
 | Command Format (Calendar)  | Example |
 | :--- | :--- |
 | next  | next  |
 | prev | prev |
-
-# Client
-Clients of PropertyFree consists of both bidders and sellers.
-
-- ```Sellers``` are the owners of the properties listed in PropertyFree.
-- ```Bidders``` are the interested buyers who place a bid on a property.
-
-💡 Note that the ```Tag``` and ```Id``` for both ```bidder```
-and ```seller``` are created automatically and ***cannot be modified***.
-- ```Tag```: Visual identifier for clients
-- ```Id```: Unique ID assigned to each client for identification.
-
-💡 Note that the following applies for information a client.
-
-1. The length of the name of any clients 
-that PropertyFree accepts is of **26 characters or lesser** (including spaces).
-2. The length of the phone number of any clients
-that PropertyFree accepts is of **10 numbers or lesser**.
-
-PropertyFree assumes that **all phone numbers are unique**, and as such will not allow duplicates of
-phone number. 
 
 # Bidder Features
 
@@ -168,7 +185,7 @@ phone number.
 Adds a bidder to the bidder list.
 
 - Command: `add-b`
-- Format: `add-b n/BIDDER_NAME p/PHONE_NUMBER`
+- Format: `add-b n/BIDDER_NAME p/<PHONE_NUMBER>`
 
 Example:
 
@@ -188,7 +205,7 @@ Tag: bidder
 
 ## Searching for **Bidder**
 
-User can search for a list of bidders based on their name. The returned list will retain names that matched with the keywords supplied.
+User can search for a list of bidders based on their name . The returned list will retain names that matched with the keywords supplied.
 
 - Command: `find-b`
 - Format: **`find-b [KEYWORDS]`**
@@ -221,7 +238,7 @@ list-b
 Expected Output:
 
 ```
-Listed all bidder(s).
+Displaying full bidder list.
 ```
 
 ## Edit **of Bidder**
@@ -229,7 +246,7 @@ Listed all bidder(s).
 Edits the information of a bidder who is corresponding to the index in the list of bidders. Names, phone number and tags can be edited. 
 
 - Command: `edit-b`
-- Format: `edit-b <INDEX_NUMBER> [n/NEW_NAME] [p/NEW_PHONE_NUMER]`
+- Format: `edit-b <INDEX_NUMBER> [n/NAME] [p/PHONE_NUMER]`
 
 
 > - Edits the bidder at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed bidder list. The index must be a **positive integer** 1, 2, 3...
@@ -286,7 +303,7 @@ All related bids and meetings have been deleted.
 Adds a seller to the seller list.
 
 - Command: `add-s`
-- Format: `add-s n/SELLER_NAME p/PHONE_NUMBER`
+- Format: `add-s n/SELLER_NAME p/<PHONE_NUMBER>`
 
 Example:
 
@@ -339,7 +356,7 @@ list-s
 Expected Output:
 
 ```
-Listed all seller(s).
+Displaying full seller list.
 ```
 
 ## Edit **of Seller**
@@ -347,7 +364,7 @@ Listed all seller(s).
 Edits the information of a seller who is corresponding to the index in the list of sellers. Names, phone number and tags can be edited. 
 
 - Command: `edit-s`
-- Format: `edit-s <INDEX_NUMBER> [n/NEW_NAME] [p/NEW_PHONE_NUMER]`
+- Format: `edit-s <INDEX_NUMBER> [n/NAME] [p/PHONE_NUMER]`
 
 > - Edits the seller at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed seller list. The index must be a **positive integer** 1, 2, 3...
 
@@ -399,14 +416,19 @@ All related properties and meetings have been deleted.
 Adds a property and its relevant details to the property list.
 
 - Command:  `add-p`
-- Format: `add-p n/PROPERTY_NAME s/SELLER_ID ap/ASKING_PRICE t/TYPE a/ADDRESS r/IS_RENTAL`
+- Format: `add-p n/PROPERTY_NAME s/SELLER_ID ap/ASKING_PRICE t/PROPERTY_TYPE a/ADDRESS r/IS_RENTAL`
 
 💡 ```IS_RENTAL``` can be one of the following formats: Yes / yes / Y / y or No / no / N / n  
+
 💡 Property name refers to the generic brand name and can be the same for multiple properties, whereas address refers to the full address of the property and must be unique.  
 
-⚠️ : The seller id must exist inside the seller list.  
-⚠️ : Price must be greater than 0 and less or equals to 1 trillion.
-
+<div markdown="span" class="alert alert-info">
+:information_source: Note that the usage of the term `ENTITY` represents any of the following entities in PropertyFree:<br>`Property`, `Seller`, `Bidder`, `Bid` and `Meeting`
+ <li>  :warning: The seller id must exist inside the seller list.  </li>
+ <li>  :warning: Price must be greater than 0 and less or equals to 1 trillion. </li>
+ <li>  :warning: Price will be truncated to 2 decimal place. </li>
+</div>  
+   
 Example:
 
 ```
@@ -441,7 +463,7 @@ list-p
 Expected Output:
 
 ```
-Listed all properties.
+Displaying full property list.
 ```
 
 ## Editing a property
@@ -477,11 +499,11 @@ Seller id: S20
 ## Finding properties
 
 Find properties that satisfy all of the user's filters.  
-Format: `find-p [p/PROPERTY_ID_KEYWORDS] [n/NAME_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/SELLER_ID_KEYWORDS] [t/PROPERTY_TYPE_KEYWORDS] [ap/ASKING_PRICE_FILTER] [r/IS_RENTAL] [c/IS_CLOSED_DEAL]`
+Format: `find-p [p/PROPERTY_ID_KEYWORDS] [n/NAME_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/SELLER_ID_KEYWORDS] [t/PROPERTY_TYPE_KEYWORDS] [ap/ASKING_PRICE_FILTER] [r/IS_RENTAL]`
 
 |   |**Formats**|
 |---|---|
-|💡|Format for attributes that search by keywords (property name, address, seller id, property id, property type): keywords delimited by whitespace. <br>For example, `n/Sunrise Cove a/Street Road`<br><br> Format for asking price filter: `< / <= / == / > / >= PRICE`<br>For example, `ap/<= 100`<br><br>Format for is rental: `y / yes / n / no`<br><br>Format for is closed deal: `close` or `active`|
+|💡|Format for attributes that search by keywords (property name, address, seller id, property id, property type): keywords delimited by whitespace. <br>For example, `n/Sunrise Cove a/Street Road`<br><br> Format for asking price filter: `< / <= / == / > / >= PRICE`<br>For example, `ap/<= 100`<br><br>Format for is rental: `y / yes / n / no`<br><br>|
 
 > - The search is case insensitive for all attributes. e.g. `cove` will match `Cove`.
 > - For keywords-based search, the order of keywords does not matter. e.g. `Street Main` will match with `Main Street`.
@@ -585,7 +607,7 @@ list-bid
 Expected Output:
 
 ```
-Listed all bids
+Displaying full bid list.
 ```
 
 ## Deletion of Existing Bid
@@ -628,7 +650,7 @@ Will edit a bid based on the values given for each parameter.  The edited Bid is
 Example:
 
 ```
-edit-bid 1 b/ P99 c/ B12 m/1.20
+edit-bid 1 b/P99 c/B12 m/1.20
 ```
 
 Expected Output:
@@ -649,7 +671,8 @@ to property: P99
 
 ## Find a specific bid based on key words
 
-Will display all bids in the bid list that contains the keywords specified by the user
+Will display all bids in the bid list that contains the keywords specified by the user. If at least one attribute matches
+one keyword, the bid will be listed.
 
 - Command: `find-bid`
 - Format: `find-bid [KEYWORDS]`
@@ -693,9 +716,9 @@ attribute.
 | Meeting Type| `v` `a` `p` | Represents the three different meetings.|
 | Bidder ID| `B1` `B3` | The bidder has to exist to create the meeting. The letter "B" has to be capitalised.|
 | Property ID| `P1`  `P4` | The property has to exist to create the meeting. The letter "P" has to be capitalised.|
-| Venue| `Bedok Mall Starbucks` `Tampines St 3, BLK 222, #05-211`| Represents meeting venue. This does not have to be at the property itself.|
+| Venue| `Bedok Mall Starbucks` `Tampines St 3, BLK 222, #05-211`| Represents meeting venue. This does not have to be at the property itself. The length of the name of the venue can be as long as you want. |
 | Date| `12-12-2021` `12-08-2021`| Date has to be of the format `DD-MM-YYYY` and cannot be a past date.|
-| Start Time, End Time| `16:20` `14:20`| Time has to be of the format `HH:MM`. The meetings timings are allowed to clash each other and can be past midnight.|
+| Start Time, End Time| `16:20` `14:20`| Time has to be of the format `HH:MM`. The meetings timings are allowed to clash each other and can be past midnight. The timings area allowed to overflow(if 24:30 is keyed in the output will be 00:30).|
 
 💡 Note that we currently do not support conflicts between the start and end time of a meeting. 
 The user has to take into account if the start or end time that is added will overlap with any existing meetings in the meeting book.
@@ -704,7 +727,6 @@ Example:
 
 ```
 add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00 
-
 ```
 
 Expected Output:
@@ -768,7 +790,7 @@ list-m
 Expected Output:
 
 ```
-Listed all meetings
+Displaying full meeting list.
 ```
 
 ## Editing an Existing Meeting
@@ -907,6 +929,17 @@ Picture Example:
 | ![november](images/CalendarPictures/Calendar_November.png) | ![october](images/CalendarPictures/Calendar_October.png) |
 
 ---
+
+# Coming Soon
+
+1. Integration of `Meeting` with `CalendarView` where the dates stated in `MeetingBook`,
+will be highlighted in `CalenderView`.
+
+2. User would be able to mark if listed property is a closed deal or not.
+
+3. Check for clash of `Meeting` timings across the different timings that are listed.
+
+4. User will not be able to create a `Meeting` with a very long venue length.
 
 # Thank You For Using PropertyFree!
 
