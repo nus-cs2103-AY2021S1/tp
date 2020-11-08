@@ -1337,32 +1337,123 @@ testers are expected to do more *exploratory* testing.
 ### B.4&ensp;Viewing statistics
 
 #### B.4.1&ensp;Viewing recipes made in a given time frame 
-1. xx
-   1. xx
+1. View recipes with 3 recipes A, B and C (made in this order) that were made today and at least 1 minute apart from each other.
+    1. Prerequisites: Cleared previous usage records and made recipes A, B and C today and at least 1 minute apart from each other. For example Recipe A made 5 minutes ago, Recipe B made 4 minutes ago and Recipe C made 3 minutes ago.
+    1. Test case: `stats recipe made`
+        Expected: The stats box shows "Showing recipes made <today's date in yyyy-MM-dd>" and a list of recipes A, B and C.
+    1. Test case: `stats recipe made /before <date of Recipe B in yyyy-MM-dd HH:mm>`
+        Expected: The stats box shows "Showing recipes made before <date of Recipe B in yyyy-MM-dd HH:mm>" and a list of recipes with only Recipe A in it.
+    1. Test case: `stats recipe made /after <date of Recipe B in yyyy-MM-dd HH:mm>`
+        Expected: The stats box shows "Showing recipes made before <date of Recipe B in yyyy-MM-dd HH:mm>" and a list of recipes with only Recipe B and C in it.
+    1. Test case: `stats recipe made /after <date of Recipe A in yyyy-MM-dd HH:mm> /before <date of Recipe B in yyyy-MM-dd HH:mm>`. 
+        Expected: The stats box shows "Showing recipes made between <date of Recipe A in yyyy-MM-dd HH:mm> and <date of Recipe B in yyyy-MM-dd HH:mm>" and a list of recipes with only Recipe A in it.
+    1. Test case: `stats recipe made /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2. 
+        Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
+   
+1. View recipes made with no past recipe usage records
+    1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
+    1. Test case: `stats recipe made`
+        Expected: The stats box shows "No recipes were made on <today's date in yyyy-MM-dd>".
+    1. Test case: `stats recipe made /before <date in yyyy-MM-dd>`
+        Expected: The stats box shows "No recipes were made before <date in yyyy-MM-dd> 00:00".
+    1. Test case: `stats recipe made /after <date in yyyy-MM-dd>`
+        Expected: The stats box shows "No recipes were made before <date in yyyy-MM-dd> 00:00".
+    1. Test case: `stats recipe made /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is earlier than date2. 
+        Expected: The stats box shows "No recipes were made between <date1 in yyyy-MM-dd> 00:00 and <date2 in yyyy-MM-dd> 00:00".
+    1. Test case: `stats recipe made /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2. 
+        Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box shows "No recipes were made recently".
 
 #### B.4.2&ensp;Viewing recipes made most recently
-1. xx
-   1. xx
+1. View recipes with 3 recipes A, B and C were made in this order.
+    1. Prerequisites: Cleared previous usage records and made recipes A, B and C in this order.
+    1. Test case: `stats recipe recent`
+        Expected: The stats box shows "Here are your recently made recipes" and a list of recipes A, B and C.
+    1. Test case: execute other non-stats commands such as `list recipes`
+       Expected: The stats box shows "Showing recently made recipes" and a list of recipes A, B and C.
+       
+1. View recipes made recently with no past recipe usage records
+    1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
+    1. Test case: `stats recipe made`
+        Expected: The stats box shows "No recipes were made" with no lists shown below.
+    1. Test case: execute other non-stats commands such as `list recipes`
+        Expected: The stats box shows "No recipes were made" with no lists shown below.
    
 #### B.4.3&ensp;Viewing recipes made most frequently
-1. xx
-   1. xx
+1. View most made recipes with records of recipe made.
+    1. Prerequisites: Cleared previous usage records and made recipe A 3 times and recipe B once.
+    1. Test case: `stats recipe top`
+        Expected: The stats box shows "Here are your top recipes" and a list of recipes with first item as recipe A and the text below is "No. of times made: 3", and second item as recipe B and the text below is "No. of times made: 1".
+       
+1. View most made recipes with past recipe usage records
+    1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
+    1. Test case: `stats recipe top`
+        Expected: The stats box shows "No recipes were made recently"
 
-#### B.4.4&ensp;Clearing recipe statistics
-1. xx
-   1. xx
+#### B.4.4&ensp;Clearing recipe usages
+1. Clear records of recipe usages after making Recipes A, B and C.
+    1. Prerequisites: Made recipes A, B and C.
+    1. Test case: `stats recipe clear`
+        Expected: The command output box shows "Cleared recipe cooking history" and the stats box shows "No recipes were made recently".
+    1. Test case: `stats recipe clear` followed by `stats recipe recent`
+        Expected: The stats box shows "No recipes were made recently" with no lists shown below.
+    1. Test case: `stats recipe clear` followed by any other non-stats command such as `list recipes`
+        Expected: The stats box shows "No recipes were made recently" with no lists shown below.
+        
+1. Clear records of recipe usages when there are no records.
+    1. Prerequisites: No records of recipe usages.
+    1. Test case: `stats recipe clear`
+        Expected: The command output box shows "Cleared recipe cooking history" and the stats box shows "No recipes were made recently".
    
 #### B.4.5&ensp;Viewing ingredients used in a given time frame 
-1. xx
-   1. xx
+1. View ingredients with 3 ingredients A, B and C (used in this order) that were used today and at least 1 minute apart from each other. (To use an ingredient, add a recipe that requires the ingredient then make the recipe)
+    1. Prerequisites: Cleared previous usage records and used ingredients A, B and C today and at least 1 minute apart from each other. For example Ingredient A used 5 minutes ago, Ingredient B used 4 minutes ago and Ingredient C used 3 minutes ago.
+    1. Test case: `stats ingredient used`
+        Expected: The stats box shows "Showing ingredients used <today's date in yyyy-MM-dd>" and a list of ingredients A, B and C.
+    1. Test case: `stats ingredient used /before <date of Ingredient B in yyyy-MM-dd HH:mm>`
+        Expected: The stats box shows "Showing ingredients used before <date of Ingredient B in yyyy-MM-dd HH:mm>" and a list of ingredients with only Ingredient A in it.
+    1. Test case: `stats ingredient used /after <date of Ingredient B in yyyy-MM-dd HH:mm>`
+        Expected: The stats box shows "Showing ingredients used before <date of Ingredient B in yyyy-MM-dd HH:mm>" and a list of ingredients with only Ingredient B and C in it.
+    1. Test case: `stats ingredient used /after <date of Ingredient A in yyyy-MM-dd HH:mm> /before <date of Ingredient B in yyyy-MM-dd HH:mm>`. 
+        Expected: The stats box shows "Showing ingredients used between <date of Ingredient A in yyyy-MM-dd HH:mm> and <date of Ingredient B in yyyy-MM-dd HH:mm>" and a list of ingredients with only Ingredient A in it.
+    1. Test case: `stats ingredient used /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2. 
+        Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
+
+1. View ingredients used with no past ingredient usage records
+    1. Prerequisites: No ingredient usages saved. This can be done by executing `stats ingredient clear` which should clear all ingredient usages.
+    1. Test case: `stats ingredient used`
+        Expected: The stats box shows "No ingredients were used on <today's date in yyyy-MM-dd>".
+    1. Test case: `stats ingredient used /before <date in yyyy-MM-dd>`
+        Expected: The stats box shows "No ingredients were used before <date in yyyy-MM-dd> 00:00".
+    1. Test case: `stats ingredient used /after <date in yyyy-MM-dd>`
+        Expected: The stats box shows "No ingredients were used before <date in yyyy-MM-dd> 00:00".
+    1. Test case: `stats ingredient used /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is earlier than date2. 
+        Expected: The stats box shows "No ingredients were used between <date1 in yyyy-MM-dd> 00:00 and <date2 in yyyy-MM-dd> 00:00".
+    1. Test case: `stats ingredient used /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2. 
+        Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
    
 #### B.4.6&ensp;Viewing ingredients used most recently
-1. xx
-   1. xx
+1. View ingredients with 3 ingredients A, B and C were made in this order.
+    1. Prerequisites: Cleared previous usage records and made ingredients A, B and C in this order.
+    1. Test case: `stats ingredient recent`
+        Expected: The stats box shows "Here are your recently made ingredients" and a list of ingredients A, B and C.
+       
+1. View ingredients made recently with no past ingredient usage records
+    1. Prerequisites: No ingredient usages saved. This can be done by executing `stats ingredient clear` which should clear all ingredient usages.
+    1. Test case: `stats ingredient made`
+        Expected: The stats box shows "No ingredients were made" with no lists shown below.
    
-#### B.4.7&ensp;Clearing ingredient statistics
-1. xx
-   1. xx
+#### B.4.7&ensp;Clearing ingredient usages
+1. Clear records of ingredient usages after making Ingredients A, B and C.
+    1. Prerequisites: Made ingredients A, B and C.
+    1. Test case: `stats ingredient clear`
+        Expected: The command output box shows "Cleared ingredient usage history" and the stats box shows "No ingredients were used recently".
+    1. Test case: `stats ingredient clear` followed by `stats ingredient recent`
+        Expected: The stats box shows "No ingredients were used recently" with no lists shown below.
+        
+1. Clear records of ingredient usages when there are no records.
+    1. Prerequisites: No records of ingredient usages.
+    1. Test case: `stats ingredient clear`
+        Expected: The command output box shows "Cleared ingredient usage history". The stats box returns to default panel showing recently made recipes.
           
                    
 ## C&ensp;Effort
