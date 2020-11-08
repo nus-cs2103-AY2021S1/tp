@@ -840,14 +840,6 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
 ### Resetting all ingredients' levels to zero
 
 1. Resetting all ingredients' levels to zero when not all ingredients' levels are at zero
@@ -856,8 +848,16 @@ testers are expected to do more *exploratory* testing.
       Expected: All ingredients' levels are at zero. A success message is shown in the _Result Display_.
 
 
-1. Resetting all ingredients' levels to zero when all ingredients' levels are already at zero
+1. Resetting all ingredients' levels to zero when all ingredients' levels are already at zero 
 
    1. Test case: `i-reset-all`<br>
       Expected: All ingredients'levels are still at zero. A message is shown in the _Result Display_ explaining that 
       all ingredients' levels are already at zero, before resetting all ingredients' levels to zero.
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
