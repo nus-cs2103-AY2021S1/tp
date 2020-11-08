@@ -14,7 +14,7 @@ You can reach our supervisor at `damithc[at]comp.nus.edu.sg`
 
 <img src="images/dhafinrazaq.png" width="200px">
 
-[[github](https://github.com/dhafinrazaq)] [[Project Portfolio Page (PPP)](team/dhafinrazaq.md)]
+[[github](https://github.com/dhafinrazaq)] [[Project Portfolio Page (PPP)](team/dhafinrazaq)]
 
 #### Developer & Deliverables in-charge
 
@@ -50,9 +50,7 @@ You can reach our supervisor at `damithc[at]comp.nus.edu.sg`
 
 <img src="images/kelvinvin.png" width="200px">
 
-[[github](http://github.com/kelvinvin)]
-[[portfolio](https://github.com/kelvinvin?tab=repositories)]
-[[Project Portfolio Page (PPP)](team/kelvinvin.md)]
+[[github](http://github.com/kelvinvin)] [[Project Portfolio Page (PPP)](team/kelvinvin.md)]
 
 #### Developer & Documentation in-charge
 
