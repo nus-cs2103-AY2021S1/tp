@@ -7,7 +7,7 @@ title After command "delete 5 c/expense"
 
 package States <<rectangle>> {
     class State1 as "__aa1Copy:ActiveAccount__"
-    class State2 as "__aa2:ActiveAccountManager__"
+    class State2 as "__aa2:ActiveAccount__"
 }
 
 State1 -[hidden]right-> State2

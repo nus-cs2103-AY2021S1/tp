@@ -6,8 +6,8 @@ skinparam ClassBorderColor #000000
 title When Common Cents is initialized.
 
 package States <<rectangle>> {
-    class State1 as "__aa1:ActiveAccountManager__"
-    class State2 as "__aa1:ActiveAccountManager__"
+    class State1 as "__aa1:ActiveAccount__"
+    class State2 as "__aa1:ActiveAccount__"
 }
 
 State1 -[hidden]right-> State2

@@ -158,39 +158,36 @@ This feature allows the user to undo their previous entry-level commands.
 
 #### Implementation
 
-The undo mechanism is facilitated by `ActiveAccountManager`, which implements the interface `ActiveAccount`, and the `UndoCommand`, which extends `Command`. The `ActiveAccountManager` 
-stores its previous state as an `ActiveAccount` attribute when a entry command is executed. On the other hand, the `ActiveAccount` sets the attribute containing it previous 
-state as its current state when `UndoCommand` is executed. As such, it implements the following operations:
+The undo mechanism is facilitated by `UndoCommand`, which extends `Command` and is identified by `CommonCentsParser`. 
+The `UndoCommand` interacts with `ActiveAccount` using methods in `ActiveAccount`. As such, it implements the following operations:
 
-* `ActiveAccountManager#setPreviousState()` — Saves a copy of the current `ActiveAccountManager` state as an attribute in `ActiveAccountManager`.
-* `ActiveAccountManager#returnToPreviousState()` — Restores the previous `ActiveAccountManager` state from its attribute.
-
-These operations are exposed in the `ActiveAccount` interface as `ActiveAccount#setPreviousState()` and `ActiveAccount#returnToPreviousState()` respectively.
+* `ActiveAccount#setPreviousState()` — Saves a copy of the current `ActiveAccount` state as an attribute in `ActiveAccount`.
+* `ActiveAccount#returnToPreviousState()` — Restores the previous `ActiveAccount` state from its attribute.
 
 Given below is an example usage scenario and how the undo mechanism behaves at each step. Note that each step starts with an explanation followed by a diagram.
 
-* Step 1. When the user first runs _Common Cents_, `ActiveAccountManager` does not store any previous states as shown in the diagram below.
+* Step 1. When the user first runs _Common Cents_, `ActiveAccount` does not store any previous states as shown in the diagram below.
 
 ![UndoState0](images/UndoState0.png)
 
-* Step 2. The user executes `delete 5 c/expense` command to delete the 5th expense in the expense list in `ActiveAccountManager`. The `delete` command calls `ActiveAccountManager#setPreviousState()` initially, 
-causing a copy of the `ActiveAccountManager` state before the `delete 5 c/expense` command executes to be saved as an attribute. After this, the `delete 5 c/expense` command executes and the
-model is updated according to the modified `ActiveAccountManager`.
+* Step 2. The user executes `delete 5 c/expense` command to delete the 5th expense in the expense list in `ActiveAccount`. The `delete` command calls `ActiveAccount#setPreviousState()` initially, 
+causing a copy of the `ActiveAccount` state before the `delete 5 c/expense` command executes to be saved as an attribute. After this, the `delete 5 c/expense` command executes and the
+model is updated according to the modified `ActiveAccount`.
 
 ![UndoState1](images/UndoState1.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `ActiveAccountManager#setPreviousState()`, so the state will not be saved into its attribute.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `ActiveAccount#setPreviousState()`, so the state will not be saved into its attribute.
 
 </div>
 
-* Step 3. The user now decides that deleting the expense was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ActiveAccountManager#returnToPreviousState()`, 
-which will set data of the previous state attribute to the current `ActiveAccountManager`. 
+* Step 3. The user now decides that deleting the expense was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ActiveAccount#returnToPreviousState()`, 
+which will set data of the previous state attribute to the current `ActiveAccount`. 
 
 ![UndoState3](images/UndoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `ActiveAccountManager` does not have a previous state 
-(i.e The `previousState` attribute in `ActiveAccountManager` is empty) then there are no previous `ActiveAccountManager` states to restore. 
-The `undo` command uses `Model#hasNoPreviousState()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `ActiveAccount` does not have a previous state 
+(i.e The `previousState` attribute in `ActiveAccount` is empty) then there are no previous `ActiveAccount` states to restore. 
+The `undo` command uses `ActiveAccount#hasNoPreviousState()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -211,7 +208,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `ActiveAccountManager#setPreviousState()` is only called in `add`, `delete`, `edit`, and `clear` commands. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `ActiveAccount#setPreviousState()` is only called in `add`, `delete`, `edit`, and `clear` commands. 
 Hence, the `undo` command only works on the previously stated entry-level commands.
 
 </div>

@@ -7,7 +7,7 @@ title After command "undo"
 
 package States <<rectangle>> {
     class State1 as "__aa1Copy:ActiveAccount__"
-    class State2 as "__aa2Copy:ActiveAccountManager__"
+    class State2 as "__aa2Copy:ActiveAccount__"
 }
 
 hide State2
