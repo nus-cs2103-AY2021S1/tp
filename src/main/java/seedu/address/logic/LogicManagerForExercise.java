@@ -19,6 +19,7 @@ import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Template;
 import seedu.address.storage.StorageForExercise;
+import seedu.address.storage.StorageForGoal;
 
 /**
  * The main LogicManager of the app.
@@ -30,14 +31,16 @@ public class LogicManagerForExercise implements LogicForExercise {
 
     private final ExerciseModel model;
     private final StorageForExercise storage;
+    private final StorageForGoal goalStorage;
     private final ExerciseBookParser exerciseBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManagerForExercise(ExerciseModel model, StorageForExercise storage) {
+    public LogicManagerForExercise(ExerciseModel model, StorageForExercise storage, StorageForGoal goalStorage) {
         this.model = model;
         this.storage = storage;
+        this.goalStorage = goalStorage;
         exerciseBookParser = new ExerciseBookParser();
     }
 
@@ -57,6 +60,12 @@ public class LogicManagerForExercise implements LogicForExercise {
 
         try {
             storage.saveExerciseBook(model.getExerciseBook());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+
+        try {
+            goalStorage.saveGoalBook(model.getGoalBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

@@ -25,13 +25,13 @@ public class ClearCommandTest {
         ExerciseBookNoWritingStubs exerciseBook = new ExerciseBookNoWritingStubs();
         exerciseBook.resetData(getTypicalExerciseBook());
 
-        ExerciseModel model = new ExerciseModelManager(exerciseBook, new UserPrefs());
+        ExerciseModel model = new ExerciseModelManager(exerciseBook, null,  new UserPrefs());
 
         //Since the methods mutable the exercise book parsed into it
         ExerciseBookNoWritingStubs exerciseBook2 = new ExerciseBookNoWritingStubs();
         exerciseBook2.resetData(getTypicalExerciseBook());
 
-        ExerciseModel expectedModel = new ExerciseModelManager(exerciseBook2, new UserPrefs());
+        ExerciseModel expectedModel = new ExerciseModelManager(exerciseBook2, null, new UserPrefs());
         expectedModel.setExerciseBook(new ExerciseBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

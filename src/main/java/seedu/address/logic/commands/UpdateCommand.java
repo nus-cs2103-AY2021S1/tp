@@ -37,14 +37,14 @@ public class UpdateCommand extends CommandForExercise {
     public static final String COMMAND_WORD = "update";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the exercise "
-            + "by the index number used in the displayed exercise list.\n "
+            + "by the index number used in the displayed exercise list.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "EXERCISE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_CALORIES + "CALORIES] "
-            + "[" + PREFIX_MUSCLE + "MUSCLE_TAG]... "
+            + "[" + PREFIX_MUSCLE + "MUSCLE]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Push up "

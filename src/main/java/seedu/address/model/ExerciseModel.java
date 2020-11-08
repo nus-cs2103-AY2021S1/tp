@@ -3,12 +3,14 @@ package seedu.address.model;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Template;
+import seedu.address.model.goal.Goal;
 
 /**
  * The API of the Model component.
@@ -44,10 +46,10 @@ public interface ExerciseModel {
      */
     Path getExerciseBookFilePath();
 
-    /**
-     * Returns the HashMap that contains the amount of calories burnt per day.
-     */
+    Path getGoalBookFilePath();
+
     HashMap<String, Integer> getCaloriesByDay();
+
 
     /**
      * Sets the user prefs' exercise book file path.
@@ -55,19 +57,44 @@ public interface ExerciseModel {
     void setExerciseBookFilePath(Path exerciseBookFilePath);
 
     /**
+<<<<<<< HEAD
      * Replaces exercise book data with the data in {@code exerciseBook}.
+=======
+     * Sets the user prefs' goal book file path.
+     */
+    void setGoalBookFilePath(Path goalBookFilePath);
+
+    /**
+     * Replaces goal book data with the data in {@code goalBook}.
+>>>>>>> 73964788116bf5a1204853ef6458f89a192c3eae
      */
     void setExerciseBook(ReadOnlyExerciseBook exerciseBook);
 
+
     /**
-     * Returns the ExerciseBook
+     * Replaces goal book data with the data in {@code goalBook}.
+     */
+    void setGoalBook(ReadOnlyGoalBook goalBook);
+
+    /**
+      * Returns the ExerciseBook.
      */
     ReadOnlyExerciseBook getExerciseBook();
+
+    /**
+     * Returns the GoalBook.
+     */
+    ReadOnlyGoalBook getGoalBook();
 
     /**
      * Returns true if a Exercise with the same identity as {@code Exercise} exists in the exercise book.
      */
     boolean hasExercise(Exercise exercise);
+
+    /**
+     * Returns true if a goal with the same identity as {@code goal} exists in the goal book.
+     */
+    boolean hasGoal(Goal goal);
 
     /**
      * Deletes the given exercise.
@@ -76,10 +103,16 @@ public interface ExerciseModel {
     void deleteExercise(Exercise target);
 
     /**
+     * Deletes the given goal.
+     * The goal must exist in the exercise book.
+     */
+    void deleteGoal(Goal target);
+
+    /**
      * Adds the given exercise.
      * {@code exercise} must not already exist in the exercise book.
      */
-    void addExercise(Exercise exercise);
+    Optional<Goal> addExercise(Exercise exercise);
 
     /**
      * Adds the given template.
@@ -88,6 +121,13 @@ public interface ExerciseModel {
     void addTemplate(Template template);
 
     void resetAll() throws IOException;
+
+    /**
+     * Adds the given goal.
+     * {@code exercise} must not already exist in the address book.
+     */
+    void addGoal(Goal goal);
+
 
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.
@@ -101,6 +141,15 @@ public interface ExerciseModel {
      * Returns an unmodifiable view of the filtered Exercise list
      */
     ObservableList<Exercise> getFilteredExerciseList();
+
+    /**
+     * Replaces the given Exercise {@code target} with {@code editedExercise}.
+     * {@code target} must exist in the address book.
+     * The Exercise identity of {@code editedExercise} must not be the
+     * same as another existing Exercise in the exercise book.
+     */
+    void setGoal(Goal target, Goal editedGoal);
+
 
     /**
      * Updates the filter of the filtered Exercise list to filter by the given {@code predicate}.

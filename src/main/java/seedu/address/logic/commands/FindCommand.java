@@ -25,14 +25,13 @@ public class FindCommand extends CommandForExercise {
             + "Parameters: " + "[" + PREFIX_NAME + "EXERCISE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_CALORIES + "CALORIES]"
+            + "[" + PREFIX_CALORIES + "CALORIES] "
             + "[" + PREFIX_KEYWORD + "KEYWORDS...]\n"
-            + "Example: " + COMMAND_WORD
-            + PREFIX_NAME + "Push Up"
-            + PREFIX_DESCRIPTION + "30 times"
-            + PREFIX_DATE + "10-10-2020"
-            + PREFIX_CALORIES + "100"
-            + "(" + PREFIX_KEYWORD + "up)";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "Push Up "
+            + PREFIX_DESCRIPTION + "30 times "
+            + PREFIX_DATE + "10-10-2020 "
+            + PREFIX_CALORIES + "100 ";
 
     private final PropertiesMatchPredicateForExercise predicate;
 
