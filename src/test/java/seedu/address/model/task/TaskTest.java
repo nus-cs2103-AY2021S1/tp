@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_CREATED_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_CREATED_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB05;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_HIGH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_NORMAL;
@@ -171,10 +172,6 @@ public class TaskTest {
         editedLab01 = new TaskBuilder(LAB_01).withStatus(VALID_STATUS_COMPLETED).build();
         assertTrue(LAB_01.isSameTask(editedLab01));
 
-        // different date created -> returns true
-        editedLab01 = new TaskBuilder(LAB_01).withDateCreated(VALID_DATE_CREATED_1).build();
-        assertTrue(LAB_01.isSameTask(editedLab01));
-
         // ===================== 2 fields different ==================== //
 
         // different name and tags -> false
@@ -217,7 +214,7 @@ public class TaskTest {
         editedLab01 = new TaskBuilder(LAB_01)
                 .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_NORMAL)
                 .withDate(VALID_DATE1).withStatus(VALID_STATUS_COMPLETED)
-                .withDateCreated(VALID_DATE_CREATED_1).build();
+                .build();
         assertTrue(LAB_01.isSameTask(editedLab01));
 
         // same status, different fields -> returns false
@@ -226,8 +223,13 @@ public class TaskTest {
             .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_NORMAL)
             .withPriority(VALID_PRIORITY_NORMAL)
             .withDate(VALID_DATE1).withStatus(VALID_STATUS_COMPLETED)
-            .withDateCreated(VALID_DATE_CREATED_1).build();
+            .build();
         assertFalse(LAB_01.isSameTask(editedLab01));
+
+        // different date created -> returns true
+        Task firstLab01 = new TaskBuilder(LAB_01).withDateCreated(VALID_DATE_CREATED_1).build();
+        Task firstLab02 = new TaskBuilder(LAB_01).withDateCreated(VALID_DATE_CREATED_2).build();
+        assertTrue(firstLab01.isSameTask(firstLab02));
     }
 
     @Test
@@ -302,8 +304,9 @@ public class TaskTest {
         assertFalse(LAB_01.equals(editedLab01));
 
         // different date created -> returns false
-        editedLab01 = new TaskBuilder(LAB_01).withDateCreated(VALID_DATE_CREATED_1).build();
-        assertFalse(LAB_01.equals(editedLab01));
+        Task firstLab01 = new TaskBuilder(LAB_01).withDateCreated(VALID_DATE_CREATED_1).build();
+        Task firstLab02 = new TaskBuilder(LAB_01).withDateCreated(VALID_DATE_CREATED_2).build();
+        assertFalse(firstLab01.equals(firstLab02));
     }
 
     @Test

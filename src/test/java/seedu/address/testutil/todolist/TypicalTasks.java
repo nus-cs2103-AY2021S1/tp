@@ -95,6 +95,10 @@ public class TypicalTasks {
                 PROBLEM_SET_02, QUIZ_01, QUIZ_02));
     }
 
+    /**
+     * Returns an {@code TodoList} with all the typical tasks but with static dateCreated.
+     * The default dateCreated is 2020-11-02.
+     */
     public static TodoList getStaticTypicalTodoList() {
         TodoList tl = new TodoList();
         for (Task task : getStaticTypicalTasks()) {

@@ -111,6 +111,8 @@ public class TaskBuilder {
 
     /**
      * Sets the {@code LocalDate dateCreated} of the {@code Task} that we are building.
+     * This method should be used only when it is not dependent to the current date to ensure
+     * the testcases are not time-dependent.
      */
     public TaskBuilder withDateCreated(String dateCreated) {
         this.dateCreated = LocalDate.parse(dateCreated);
