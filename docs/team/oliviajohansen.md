@@ -52,7 +52,9 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Added support for quantity for ingredients (Pull requests [\#82](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/82))
-    * Justification: This feature allow users to better keep track of quantity of ingredients in the fridge.
+    * Justification: This feature allow users to better keep track of quantity of ingredients in the fridge. The
+     flexible format of quantity (fraction, decimal or integers followed by units or just a string) allows
+      users to save and adjust ingredient quantities precisely.
       
 * **Documentation**:
   * User Guide:
@@ -61,6 +63,8 @@ Given below are my contributions to the project.
     * Did cosmetic tweaks to User Guide and ensured phrasing used was consistent and accurate: [\#184](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/184)
   * Developer Guide:
     * Added implementation details of the `deleteF`, `addF`, `get editR`, `editR`, `get editF` and `editF` feature: [\#122](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/122) [\#127](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/127)
+    * Added overview and introduction [\#249](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/249)
+    * Did cosmetic tweaks to Developer Guide and ensured phrasing used was consistent and accurate: [\#258](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/258) [\#257](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/257/files)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#251](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/251)

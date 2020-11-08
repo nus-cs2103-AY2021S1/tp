@@ -23,7 +23,7 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
         * [5.1.3 Deleting a recipe : `deleteR`](#delete-recipe)
         * [5.1.4 Editing a recipe: `editR`](#edit-recipe)
         * [5.1.5 Getting a recipe to edit: `editR`](#get-edit-recipe)
-        * [5.1.6 Selecting a single recipe : `selectR`](#search-recipe)
+        * [5.1.6 Selecting a single recipe : `selectR`](#select-recipe)
         * [5.1.7 Closing the recipe drawer : `close`](#close-recipe)
         * [5.1.8 Searching for a recipe: `searchR`](#search-recipe)
         * [5.1.9 Recommending recipes : `recommend`](#recommend-recipe)
@@ -242,7 +242,7 @@ Multiple ingredients are separated by `,`.
     * URL (online image) e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-Image path provided should be given permission.
+Everyone should have permission to access the image path or online image URL you provide.
 </div> 
 
 * Here are the respective actions required by users depending on different usage of `IMAGE`:
@@ -252,7 +252,7 @@ Image path provided should be given permission.
   Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images/wishful<br>/data/myimage.png | Local image will be displayed
   Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg or jpeg or png | The image will be downloaded into data folder and displayed
   Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to table [below](#table) ) | img/images/healthy1.jpg | Sample image is displayed
-  Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
+  Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection when adding an online image <br><br> 4. Wishful Shrinking doesn't have permission to access the folder or website | Default image will be displayed
   No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
  
 * Here is the table <a id="table"></a> containing built-in **sample images** provided by Wishful Shrinking:
@@ -809,7 +809,7 @@ Term | Explanation
 
 # 8. Command summary <a id="8-command-summary"></a>
 
-## Recipe-Related Command <a id="81-recipe-related-commands"></a>
+## Recipe-Related Commands <a id="81-recipe-related-commands"></a>
 
 Features | Format, Examples
 --------|------------------
@@ -824,7 +824,7 @@ Features | Format, Examples
 **Recommend recipe** | `recommend`
 **Clear all recipes** | `clearR`
 
-## Fridge-Related Command <a id="82-ingredient-related-commands"></a>
+## Fridge-Related Commands <a id="82-ingredient-related-commands"></a>
 
 Features | Format, Examples
 --------|------------------
@@ -836,7 +836,7 @@ Features | Format, Examples
 **Search for ingredient in the Fridge** | `searchF KEYWORD [MORE_KEYWORDS]`<br> e.g. `searchF` avocado
 **Clear all ingredients from the Fridge** | `clearF`
 
-## Consumption-Related Command <a id="83-consumption-related-commands"></a>
+## Consumption-Related Commands <a id="83-consumption-related-commands"></a>
 
 Features | Format, Examples
 --------|------------------
@@ -845,7 +845,7 @@ Features | Format, Examples
 **Delete recipe eaten** | `deleteC INDEX`<br> e.g. `deleteC` 3
 **Clear all consumed recipes** | `clearC`
 
-## Miscellaneous Command <a id="84-miscellaneous-commands"></a>
+## Miscellaneous Commands <a id="84-miscellaneous-commands"></a>
 
 Features | Format, Examples
 --------|------------------
