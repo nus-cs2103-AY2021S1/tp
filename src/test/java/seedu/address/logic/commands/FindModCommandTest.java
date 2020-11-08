@@ -85,6 +85,24 @@ class FindModCommandTest {
     }
 
     @Test
+    public void execute_partialInstructorKeyword_noModuleFound() {
+        String expectedMessage = String.format(MESSAGE_MODULES_LISTED, 0);
+
+        // "m/ n/" parameters left out
+        ModuleCodeContainsKeywordsPredicate codePredicate = null;
+        ModuleNameContainsKeywordsPredicate namePredicate = null;
+        // CARL exists but "i/" does not allow partial keywords
+        ModuleInstructorsContainsKeywordsPredicate instructorPredicate = prepareInstructorPredicate("CAR");
+
+        List<Predicate<Module>> predicateList = Arrays.asList(codePredicate, namePredicate, instructorPredicate);
+        FindModCommand command = new FindModCommand(predicateList);
+        Predicate<Module> composedPredicate = getComposedPredicate(predicateList);
+        expectedModel.updateFilteredModuleList(composedPredicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredModuleList());
+    }
+
+    @Test
     public void execute_oneMatchingParameter_noModuleFound() {
         String expectedMessage = String.format(MESSAGE_MODULES_LISTED, 0);
         // CS2030 exists
@@ -155,6 +173,44 @@ class FindModCommandTest {
         expectedModel.updateFilteredModuleList(composedPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CS2030, CS2100, CS2103), model.getFilteredModuleList());
+    }
+
+    @Test
+    public void execute_codeAndNameMatchingPartialKeyword_oneModuleFound() {
+        String expectedMessage = String.format(MESSAGE_MODULES_LISTED, 1);
+
+        // All parameters exist
+        ModuleCodeContainsKeywordsPredicate codePredicate = prepareCodePredicate("CS2");
+        ModuleNameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Prog Metho");
+
+        // "i/" left out
+        ModuleInstructorsContainsKeywordsPredicate instructorPredicate = null;
+
+        List<Predicate<Module>> predicateList = Arrays.asList(codePredicate, namePredicate, instructorPredicate);
+        FindModCommand command = new FindModCommand(predicateList);
+        Predicate<Module> composedPredicate = getComposedPredicate(predicateList);
+        expectedModel.updateFilteredModuleList(composedPredicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(CS2030), model.getFilteredModuleList());
+    }
+
+    @Test
+    public void execute_nameAndInstructorMatchingMultipleKeywords_twoModuleFound() {
+        String expectedMessage = String.format(MESSAGE_MODULES_LISTED, 2);
+
+        // All parameters exist
+        ModuleNameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Programming computer");
+        ModuleInstructorsContainsKeywordsPredicate instructorPredicate = prepareInstructorPredicate("George Carl");
+
+        // "m/" left out
+        ModuleCodeContainsKeywordsPredicate codePredicate = null;
+
+        List<Predicate<Module>> predicateList = Arrays.asList(codePredicate, namePredicate, instructorPredicate);
+        FindModCommand command = new FindModCommand(predicateList);
+        Predicate<Module> composedPredicate = getComposedPredicate(predicateList);
+        expectedModel.updateFilteredModuleList(composedPredicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CS2030, CS2100), model.getFilteredModuleList().filtered(composedPredicate));
     }
 
 

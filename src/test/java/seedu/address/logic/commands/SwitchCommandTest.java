@@ -53,5 +53,4 @@ class SwitchCommandTest {
         // null -> returns false
         assertNotEquals(switchCommand, null);
     }
-
 }

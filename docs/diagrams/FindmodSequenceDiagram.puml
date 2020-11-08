@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindModCommandParser" as FindModCommandParser LOGIC_COLOR
+participant "f:FindModCommand" as FindModCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findmod m/CS2103 n/Software")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("findmod m/CS2103 n/Software")
+activate AddressBookParser
+
+create FindModCommandParser
+AddressBookParser -> FindModCommandParser
+activate FindModCommandParser
+
+FindModCommandParser --> AddressBookParser
+deactivate FindModCommandParser
+
+AddressBookParser -> FindModCommandParser : parse("m/CS2103 n/Software")
+activate FindModCommandParser
+
+create FindModCommand
+FindModCommandParser -> FindModCommand : {m -> hasCS2103(m), n -> hasSoftware(n)}
+activate FindModCommand
+FindModCommand --> FindModCommandParser : f
+deactivate FindModCommand
+
+FindModCommandParser --> AddressBookParser : f
+deactivate FindModCommandParser
+FindModCommandParser -[hidden]-> AddressBookParser
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> FindModCommand : execute()
+activate FindModCommand
+FindModCommand -> FindModCommand : getComposedPredicate()
+activate FindModCommand
+FindModCommand --> FindModCommand : p -> (hasCS2103(p) && hasSoftware(p))
+deactivate FindModCommand
+
+FindModCommand -> Model : updateFilteredModuleList(p -> (hasCS2103(p) && hasSoftware(p)))
+activate Model
+
+Model --> FindModCommand
+deactivate Model
+
+create CommandResult
+FindModCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindModCommand
+deactivate CommandResult
+
+FindModCommand --> LogicManager : result
+deactivate FindModCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

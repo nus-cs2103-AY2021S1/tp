@@ -30,4 +30,9 @@ public class CclearCommand extends Command {
 
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CclearCommand); // instanceof handles nulls
+    }
 }
