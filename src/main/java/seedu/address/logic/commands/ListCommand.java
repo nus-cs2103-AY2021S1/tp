@@ -12,7 +12,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "c-active-list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all employees in the employee directory pane.";
+    public static final String MESSAGE_SUCCESS = "Listed all employees in the Employee Directory.";
 
 
     @Override
