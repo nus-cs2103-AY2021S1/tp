@@ -16,6 +16,9 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 
+/**
+ * Encapsulates methods and information to delete a zoom link from a module.
+ */
 public class DeleteZoomLinkCommand extends ZoomLinkCommand {
 
     public static final String COMMAND_WORD = "deletezoom";

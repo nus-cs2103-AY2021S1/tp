@@ -1,11 +1,19 @@
 package seedu.address.logic.commands.modulelistcommands;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
 
+/**
+ * Represents a zoom link related command.
+ */
 public abstract class ZoomLinkCommand extends Command {
 
+
+    public abstract CommandResult execute(Model model) throws CommandException;
 
     /**
      * Stores the details of a {@code ZoomLink} and the {@code ModuleLesson} the link is mapped to.
