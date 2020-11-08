@@ -26,6 +26,11 @@ The architecture diagram given below shows the high-level design of the software
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
+NUStorage implements the following design patterns:
+
+* Model-View-Controller (MVC) for UI components, with Observer pattern between Model and View
+* Facade pattern for Logic, Model and Storage components
+* Command pattern for commands
 
 Given below is a quick overview of each of the components.
 
