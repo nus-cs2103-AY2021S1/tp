@@ -79,7 +79,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 
 [[github](https://github.com/Rahul0506)]
 
-[[portfolio](team/rahul.md)]
+[[portfolio](team/rahul0506.md)]
 
 * Role: Developer
 * Responsibilities:
