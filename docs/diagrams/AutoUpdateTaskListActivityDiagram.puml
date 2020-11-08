@@ -1,4 +1,6 @@
 @startuml
+!include style.puml
+
 (*)  --> "Open ProductiveNUS"
 --> ===B1===
 --> "Run JavaFX thread"
