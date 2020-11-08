@@ -481,6 +481,201 @@ Below is an Activity Diagram illustrating the flow of activities when the applic
 
                                ------------------------------Activity diagram illustrating multithreading (will add later)--------------------------------
 
+### \[Implemented\] Adding an assignment feature
+
+The user can add an assignment by providing keywords of the following fields:
+- Name of assignment
+- Module code of assignment
+- Deadline of assignment (contains both due time and due date)
+- Priority level (Optional)
+- Remind (Optional)
+
+It implements the following operations:
+- `add n/Lab 3 mod/CS2100 d/24-10-2020 2359` - Adds an assignment with name Lab 3, module code CS2100, due time 2359, and with due date 24-10-2020.
+- `add n/Lab 3 mod/CS2100 d/24-10-2020 2359 p/HIGH` - Adds a high priority assignment with name Lab 3, module code CS2100, due time 2359 and with due date 24-10-2020.  
+- `add n/Lab 3 mod/CS2100 d/24-10-2020 2359 p/MEDIUM remind` - Adds a medium priority assignment with name Lab 3, module code CS2100, due time 2359, due date 24-10-2020, and with reminders set.
+
+#### Reasons for Implementation
+
+Being able to add an assignment is essential for the user to manage his/her academic tasks. 
+As a student user, the following scenarios are likely:
+- The user wants to add an assignment with a certain priority level attach to it, so he/she knows how urgent the assignment is.
+- The user wants to add an assignment and wants the assignment to appear directly in his/her Reminders list right away since it's something important.
+- The user wants to add an assignment with a certain priority level and also wants the assignment to appear directly in his/her Reminders list right away.
+
+We decided to allow the user to include the priority level and remind tag if he/she wants to do so. We understand that not all users will 
+know the priority level of the assignment at the point he/she is adding the assignment and thus we made the priority level and remind keywords optional.
+
+#### Current Implementation
+
+##### Prefixes used in identifying keywords
+The use of prefixes before keywords facilitates the extraction of keywords from the user's input and allow keywords to be validated subsequently.
+
+The following prefixes are used to identify the type of keywords:
+- `/n` for Name keyword
+- `/mod` for Module code keyword
+- `/d` for Deadline keyword
+- `/p` for Priority keyword
+- `/remind` for Remind keyword 
+
+##### AddCommand Class
+The `AddCommand` class extends abstract class `Command` and is responsible for adding assignments based on the user's input keywords.
+It contains static `String` attributes of success and error messages to be displayed in the event of a valid and invalid user input.
+It also contains an `Assignment` attribute, `toAdd`. The constructor of `AddCommand` takes in an `Assignment` and `toAdd` is initialized to this value.
+
+It overrides the method `execute` to return a `CommandResult` object, which represents the result of the AddCommand execution.
+In the `execute` method, it checks whether the `toAdd` assignment already exist in `ProductiveNus` and throws a `CommandException` if it does.
+If the `ToAdd` assignment is unique, it calls the `addAssignment` method of a `Model` object, `model`, it takes in, and adds the assignment `toAdd`.
+
+##### AddCommandParser Class
+The `AddCommandParser` class implements `Parser<AddCommand>` and it is responsible for parsing the user's input arguments with the `parse` method to create a new `AddCommand` object.
+It contains a private method `ArePrefixesPresent` which checks for the presence of non-optional prefixes and keywords.
+If there are missing or invalid keywords, a `ParseException` will be thrown.
+
+The `parse` method takes in a String of user input, `args` and contains a `ArgumentMultimap` object, `argMultimap`.
+Regular expressions are used to identify whether optional keywords like `remind` and `/p` are present.
+The remind keyword is identified using `.*\bremind\b.*` while priority keyword is identified using `.*\bp/\b.*`.
+In the event that the remind keyword is present, `remind` will be removed from `args` before the parsing of the other keywords by `argMultimap`.
+The `tokenize` method of `ArgumentTokenizer` will be called. The keywords are parsed and return as `argMultimap`.
+The keywords are subsequently extracted from `argMultimap` to create a new `Assignment` object, `assignment`, which is used
+to return a new `AddCommand` object. 
+ 
+In the event that the keywords have an invalid format, such as the `Deadline` keyword not being in the required `dd-MM-yyyy HHmm` form for example,
+a `ParseException` will be thrown. 
+
+#### Usage Scenario
+The following is a usage scenario when a user wants to add an assignment with the name 'Lab', module 'CS2103', and deadline '10-10-2020 2359'.
+
+1. `execute ("add n/Lab mod/CS2103 d/10-10-2020 2359")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
+2. `parseCommand("add n/Lab mod/CS2103 d/10-10-2020 2359")` parses the String `"add n/Lab mod/CS2103 d/10-10-2020 2359"` and returns an initialized `AddCommandParser` object.
+3. `parseCommand("add n/Lab mod/CS2103 d/10-10-2020 2359")` calls the `parse` method in `AddCommandParser` which parses the user input into `Name`, `Time` and `ModuleCode`.
+ This is done by calling the methods `tokenize` followed by `getValue` of `ArgumentMultimap`.
+4. If user input is valid, a `Assignment` object will be created, and it will be used to return a `AddCommand` object.
+5. There is a return call to `LogicManager` which then calls the overridden `execute` method of `AddCommand`.
+6. The `execute` method then calls `hasAssignment` of `model` to check if the `toAdd` assignment is a duplicate.
+7. If the assignment is not a duplicate, the `execute` method of `AddCommand` will call the `addAssignment` method of the `Model` object.
+8. The `execute` method returns a `CommandResult` object.
+
+Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("add n/Lab mod/CS2103 d/10-10-2020 2359")` API call.
+
+   ![Sequence Diagram for AddCommand](images/AddSequenceDiagram.png)
+   <br/>*Figure X: Sequence Diagram for AddCommand*
+
+### \[Implemented\] Marking assignments as done and Setting reminders for assignments features
+
+Both features are implemented in a similar way, though the reasons for implementation differs.There are also some differences in the implementation, which will be pointed out along the way.
+
+##### Marking assignments as done and Setting reminders for assignments
+The user can mark one or multiple assignments as done at a time. Similarly, the user can also set reminders for one or multiple assignments at a time. 
+Reminded assignments will be displayed in the `Your Reminders` section in ProductiveNUS for easy referral.
+
+
+It implements the following operations:
+- `done 1` - Marks the 1st assignment in the displayed assignment list as done.
+- `done 1 2 3` - Marks the 1st, 2nd and 3rd assignments in the displayed assignment list as done.
+- `remind 2` - Set reminders for the 2nd assignment in the displayed assignment list and adds it to `Your reminders`.
+- `remind 1 2 3` - Set reminders for the 1st, 2nd and 3rd assignments in the displayed assignment list amd adds them to `Your reminders`.
+
+#### Reasons for Implementation
+
+##### Marking assignments as done
+User may find it convenient to mark assignments that he/she has completed as done. Without the done feature, it will be difficult for the user to keep track of uncompleted assignments.
+As a student user, the following scenarios are likely:
+- The user has completed an assignment and wants to indicate that the particular assignment in his/her assignment list has been completed.
+- The user has completed several assignments and wants to indicate that those assignments have been completed.
+ 
+We realised that users would have to delete completed assignments from their assignment list in order to keep track of their uncompleted assignments.
+At the same, we understand that users might forget about the completed assignments after deleting them and thus we decided to implement the done feature
+so users can easily find out what are their uncompleted assignments without deleting the completed ones.
+
+##### Setting reminders for assignments
+Users may find it convenient to display certain assignments in another section, apart from their main assignment list, so they can refer to those assignments easily.
+As a student user, the following scenarios are likely:
+- The user wants to display an assignment in another section of the GUI for his/her easy referral.
+- The user wants to display multiple assignments in another section of the GUI for his/her easy referral.
+
+We decided to create a `Your reminders` section in our GUI, allowing users to display only the assignments that have reminders set.
+
+#### Current Implementation
+
+##### DoneCommand Class and RemindCommand Class
+The `DoneCommand` and `RemindCommand` class extends abstract class `Command` and are responsible for marking assignments as done or setting reminders to assignments respectively, based on the user's input indexes.
+Both classes contain static `String` attributes of messages to be displayed to the user, and a `List<Index>` attribute, `targetIndexes`. Both constructors of `DoneCommand` and `RemindCommand` takes in a `List<Index>` argument and `targetIndexes` is initialized to this value.
+
+Both `DoneCommand` and `RemindCommand` classes overrides the method `execute` to return a `CommandResult` object, which represents the result of the DoneCommand and RemindCommand execution respectively.
+In the `execute` method, `targetIndexes` is first passed into the `checkForDuplicatedIndexes` method followed by the `checkForInvalidIndexes` method, where both methods are in `CommandLogic`.
+If there are duplicated or invalid indexes found, a `CommandException` will be thrown.
+Next, each of the `Index`, `targetIndex`, in `targetIndexes` will be used to obtain its corresponding assignment in the `FilteredAssignmentList` of the `Model` object, `model`, by calling the `get` method.
+
+The description below describes how each assignment obtained is validated and used to create a similar assignment before being added to another `List<Assignment`, which contains all the assignments with the updated details.
+
+*Verifying that the assignment is valid*
+For `RemindCommand`, it will check whether the assignment obtained has already been reminded by calling the `isReminded` method of `Assignment`.
+For `DoneCommand`, it will check whether the assignment obtained has already been marked as done by calling the `isMarkedDone` method of `Assignment`.
+There will also be another check for both classes to ensure that the assignment obtained exist in the `model` by calling the `hasAssignment` method of `model`.
+If the assignment obtained is invalid, a `CommandException` will be thrown after all assignments have been checked.
+
+*Creating an assignment*
+Next, the assignment obtained will be used to create an assignment with the updated details, `assignmentMarkedDone` or `remindedAssignment`, for `DoneCommand` and `RemindCommand` respectively.
+The assignment is created using a private method called `createRemindedAssignment`, in `RemindCommand` or `createAssignmentMarkedDone`, in `DoneCommand`.
+
+*Updating the model*
+`setAssignment` method of `model` will be called to replace the assignment with the created assignment, `assignmentMarkedDone` or `remindedAssignment`, for `DoneCommand` and `RemindCommand` respectively
+`updateFilteredAssignmentList` method of `model` will also be called to update the list shown to the user.
+
+The created assignment will be added to the `List<Assignment`, `assignmentsToRemind` or `assignmentsToMarkDone`, for `RemindCommand` and `DoneCommand` respectively.
+
+The above process repeats until all assignments corresponding to all indexes in `targetedIndexes` are accounted for.
+A new `CommandResult` containing `assignmentsToRemind` or `assignmentsToMarkDone` list will be returned for `RemindCommand` and `DoneCommand` respectively.
+
+##### DoneCommandParser Class and RemindCommandParser Class
+The `DoneCommandParser` class and `RemindCommandParser` class implements `Parser<DoneCommand>` and `Parser<RemindCommand>` respectively, which is responsible for parsing the user's input arguments.
+The user's arguments will be parsed using the `parse` method to create a new `DoneCommand` and `RemindCommand` object for `DoneCommandParser` and `RemindCommandParser` class respectively.
+It calls `parseIndexes` method from `ParserUtil` class to parse the string user input into multiple `Index` which is then stored in a `List<Index>` named `parsedIndexes`.
+ A `ParseException` is caught if the parsing is unsuccessful.
+ 
+#### Usage Scenario
+
+##### Marking assignments as done
+The following is a usage scenario when a user wants to mark the first and third assignment in his/her displayed assignment list as done.
+
+1. `execute ("done 1 3")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
+2. `parseCommand("done 1 3")` parses the String `"done 1 3"` and returns an initialized `DoneCommandParser` object.
+3. `parseCommand("done 1 3")` calls the `parse` method in `DoneCommandParser` which parses the user input into `List<Index>`.
+ This is done by calling the methods `parseIndexes` of `ParserUtil`.
+4. If the indexes are valid, a `DoneCommand` object will be returned, which takes in `parsedIndexes` of type `List<Index>` containing `Index` `1` and  `3`.
+5. There is a return call to `LogicManager` which then calls the overridden `execute` method of `DoneCommand`.
+6. The `execute` method calls method `getFilteredAssignmentList()` of `model` to obtain `List<Assignment>` `lastShownList`
+7. The static method `checkForDuplicatedIndexes` of `CommandLogic` is then called to check for duplicated indexes.
+8. The static method `checkForInvalidIndexes` of  the `CommandLogic` is then called to check for any indexes not found in the displayed assignment list.
+9. For each `Index` in `List<Index>`, the assignment in the displayed assignment list corresponding to that index, `assignmentToMarkDone` will be retrieved by calling the `get` method.
+10. For each assignment, a new assignment `assignmentMarkedDone` will be created by calling `createAssignmentMarkedDone` with `assignmentToMarkDone`.
+11. `setAssignment` method of `model` will be called to replace `assignmentToMarkDone` with `assignmentMarkedDone`.
+12. Next, `assignmentToMarkDone` will be added to `List<Assignment>`, `assignmentsToMarkDone`.
+13. The loop from step 8 - 11 terminates after 2 times in this case.
+14. The `execute` method returns a `CommandResult` object containing the `assignmentsToMarkDone` list. 
+
+Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("done 1 3")` API call.
+
+   ![Sequence Diagram for DoneCommand](images/DoneMultipleSequenceDiagram.png)
+   <br/>*Figure X: Sequence Diagram for DoneCommand*
+   
+##### Setting reminders to assignments
+The usage scenario of a user setting reminders for the first and third assignment in his/her displayed assignment list is similar to the Usage Scenario above.
+
+Here are the key differences:
+- In step 2, `parseCommand("remind 1 3")` will return an initialized `RemindCommandParser` object instead of `DoneCommandParser`
+- In step 4, a `RemindCommand` object will be returned instead of a `DoneCommand` object
+- In step 5, the `LogicManager` will call the overridden `execute` method of `RemindCommand`
+- In step 9, Instead of `AssignmentToMarkDone`, the assignment corresponding to each `Index` in `List<Index>` will be named as `AssignmentToRemind`.
+- In step 10, A new assignment, `remindedAssignment` will be created by calling `createRemindedAssignment` instead of `createAssignmentMarkedDone`.
+- In step 12, instead of `assignmentToMarkDone`, `remindedAssignment` will be added to `List<Assignment>`, `assignmentsToRemind`.
+- In step 14, the `CommandResult` object returned by `execute` contains the `assignmentsToRemind` list.
+
+Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("remind 1 3")` API call.
+
+   ![Sequence Diagram for RemindCommand](images/RemindMultipleSequenceDiagram.png)
+   <br/>*Figure X: Sequence Diagram for RemindCommand*
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
