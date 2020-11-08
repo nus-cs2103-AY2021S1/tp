@@ -70,7 +70,7 @@ public class OpenEndedQuestion implements Question {
 
     @Override
     public boolean checkAnswer(Answer answer) {
-        return this.answer.checkAnswer(answer);
+        return this.answer.checkAnswerIgnoreCase(answer);
     }
 
 
