@@ -110,3 +110,4 @@ The following describes the various other contributions that I have made to the 
 
 * **Tools**:
   * Learned how to use plantuml and taught my teammates accordingly
+  
