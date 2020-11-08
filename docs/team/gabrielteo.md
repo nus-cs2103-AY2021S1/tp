@@ -18,7 +18,7 @@ Given below are my contributions to the project.
     * What it does: The user is now able to schedule and store new appointments for patients.
     * Justification: This feature provides added functionality to keep track of appointment for patients.
     * Highlights: The implementation requires changes to the UI and some classes.
-  * Added the ability to `delete` an appointment from a patient. (Pull request [\#125]())
+  * Added the ability to `delete` an appointment from a patient. (Pull request [\#125](), [\#253]())
     * What it does: Allows the user to delete the specified appointment from a patient's list of appointments.
     * Justification: This feature allows the user to get rid of old appointments that have passed.
     * Highlights: The implementation does not require changes to existing commands.

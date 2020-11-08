@@ -41,7 +41,7 @@ public class ShowMrCommand extends Command {
 
         try {
             String url = model.getFilteredPatientList().get(0).getMedicalRecord().value;
-            if (!url.startsWith("https://") || !url.startsWith("http://")) {
+            if (!url.startsWith("https")) {
                 url = "https://" + url;
             }
             Desktop.getDesktop().browse(new URL(url).toURI());

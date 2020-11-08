@@ -51,7 +51,7 @@ public class EditApptCommandParser implements Parser<EditApptCommand> {
         Appointment oldAppointment = new Appointment();
 
         if (argMultimap.getValue(PREFIX_APPOINTMENT_OLD).isPresent()) {
-            oldAppointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT_OLD).get());
+            oldAppointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT_OLD).get(), false);
         }
         assert !oldAppointment.equals(new Appointment()) : "Appointment should not be empty!";
 
@@ -62,7 +62,7 @@ public class EditApptCommandParser implements Parser<EditApptCommand> {
         Appointment newAppointment = new Appointment();
 
         if (argMultimap.getValue(PREFIX_APPOINTMENT_NEW).isPresent()) {
-            newAppointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT_NEW).get());
+            newAppointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT_NEW).get(), false);
         }
 
         return new EditApptCommand(nric, oldAppointment, newAppointment);
