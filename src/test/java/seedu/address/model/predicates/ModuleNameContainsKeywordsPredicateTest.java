@@ -51,12 +51,12 @@ class ModuleNameContainsKeywordsPredicateTest {
                 new ModuleNameContainsKeywordsPredicate(Collections.singletonList("Software"));
         assertTrue(predicate.test(new ModuleBuilder().withName("Software Engineering").build()));
 
-        // Multiple keywords
-        predicate = new ModuleNameContainsKeywordsPredicate(Arrays.asList("Software", "Engineering", "Programming"));
-        assertTrue(predicate.test(new ModuleBuilder().withName("Software Engineering").build()));
-
         // One matching partial keyword
         predicate = new ModuleNameContainsKeywordsPredicate(Collections.singletonList("Soft"));
+        assertTrue(predicate.test(new ModuleBuilder().withName("Software Engineering").build()));
+
+        // full matching keywords
+        predicate = new ModuleNameContainsKeywordsPredicate(Arrays.asList("Software", "Engineering"));
         assertTrue(predicate.test(new ModuleBuilder().withName("Software Engineering").build()));
 
         // Multiple matching partial keywords
@@ -74,9 +74,9 @@ class ModuleNameContainsKeywordsPredicateTest {
 
     @Test
     public void test_codeDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
+        // Multiple keywords
         ModuleNameContainsKeywordsPredicate predicate =
-                new ModuleNameContainsKeywordsPredicate(Collections.emptyList());
+                new ModuleNameContainsKeywordsPredicate(Arrays.asList("Software", "Engineering", "Programming"));
         assertFalse(predicate.test(new ModuleBuilder().withName("Software Engineering").build()));
 
         // Non-matching keyword
@@ -86,5 +86,9 @@ class ModuleNameContainsKeywordsPredicateTest {
         // Keyword longer than the code
         predicate = new ModuleNameContainsKeywordsPredicate(Collections.singletonList("Softwares"));
         assertFalse(predicate.test(new ModuleBuilder().withName("Software Engineering").build()));
+
+        predicate = new ModuleNameContainsKeywordsPredicate(Arrays.asList("Software", "Engineerings"));
+        assertFalse(predicate.test(new ModuleBuilder().withName("Software Engineering").build()));
+
     }
 }

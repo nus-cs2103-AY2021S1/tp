@@ -229,9 +229,7 @@ Finds all modules in the active semester that match the given fields.
 Format : `findmod [m/MODULE_CODE] [n/MODULE_NAME] [i/INSTRUCTOR_NAME]`
 
 * `MODULE_CODE` parameter **does not** allow for multiple keywords. e.g. `cs1 cs2` would not be allowed.
-* `MODULE_NAME` and `INSTRUCTOR_NAME` parameters support search for multiple keywords. The keywords should be seperated by a spacing.
-* Partial words will be matched for `MODULE_CODE` and `MODULE_NAME` parameters. e.g. `data` will match `Database Systems`.
-* Full keywords would be required for `INSTRUCTOR_NAME` parameter. e.g. `John` will match `John Lennon` but `Joh` will not match.
+* Partial words will be matched for all parameters. e.g. `data` will match `Database Systems`.
 * The search is case-insensitive for all parameters. e.g. `cs50` will match `CS50`.
 * The order of the keywords do not matter. e.g. `Statistics and Probability` will match `Probability and Statistics`.
 * At least one of the optional fields must be provided.
@@ -240,11 +238,11 @@ Examples :
 
 * `findmod m/cs210` returns all modules with codes containing `CS210`.
 * `findmod n/programming` returns all modules with names containing `programming`.
-* `findmod n/software methodology` returns all the modules with names containing `software` **or** `methodology`.
+* `findmod n/software methodology` returns all the modules with names containing `software` **and** `methodology`.
 * `findmod m/CS2 n/security i/Alex` returns all modules with codes containing `CS2`, names containing `programming`,
 **and** instructors with names containing `Alex`.
 * `findmod m/CS2 n/Software Programming i/Damith` returns all modules with codes containing `CS2` **and**
-names containing `Software` **or** `Programming` **and** instructors with names `Damith`.
+names containing `Software` **and** `Programming` **and** instructors with names `Damith`.
 
 ### Instructor Assignment
 
