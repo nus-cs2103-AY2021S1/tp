@@ -94,6 +94,10 @@ public class MainWindow extends UiPart<Stage> {
     private JFXDrawer leftDrawer;
     private ScrollPane leftDrawerPane;
 
+    private boolean isShowRecipe = true;
+    private boolean isShowIngredient = false;
+    private boolean isShowCalories = false;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -332,17 +336,26 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isShowIngredient()) {
+            if (commandResult.isShowIngredient() && !isShowIngredient) {
+                isShowIngredient = true;
+                isShowRecipe = false;
+                isShowCalories = false;
                 listPanelPlaceholder.getChildren().clear();
                 fillIngredientPanel();
             }
 
-            if (commandResult.isShowRecipe()) {
+            if (commandResult.isShowRecipe() && !isShowRecipe) {
+                isShowIngredient = false;
+                isShowRecipe = true;
+                isShowCalories = false;
                 listPanelPlaceholder.getChildren().clear();
                 fillRecipePanel();
             }
 
-            if (commandResult.isShowConsumption()) {
+            if (commandResult.isShowConsumption() && !isShowCalories) {
+                isShowIngredient = false;
+                isShowRecipe = false;
+                isShowCalories = true;
                 listPanelPlaceholder.getChildren().clear();
                 fillConsumptionPanel();
             }
