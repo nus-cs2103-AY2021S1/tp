@@ -1,12 +1,10 @@
 package seedu.address.logic.parser.notes;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.notes.AddNoteCommand;
 import seedu.address.logic.commands.notes.DeleteNoteCommand;
 import seedu.address.logic.commands.notes.EditNoteCommand;
@@ -32,7 +30,7 @@ public class NotebookParser implements Parser<NoteCommand> {
     public NoteCommand parse(String userInput) throws ParseException {
         final Matcher matcher = BASIC_NOTE_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("noteCommandWord");
@@ -50,7 +48,7 @@ public class NotebookParser implements Parser<NoteCommand> {
             return new DeleteNoteCommandParser().parse(arguments);
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
         }
     }
 

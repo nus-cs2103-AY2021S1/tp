@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Score {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Scores should be in the form x/y, where x and y are both whole numbers and x is less than "
-                    + "or equal to y";
+            "Scores should be in the form x/y, where x and y are both non-negative numbers and x has to be less than "
+                    + "or equal to y.";
 
     public final double marksObtained;
     public final double totalMarks;
@@ -26,8 +26,8 @@ public class Score {
         requireNonNull(score);
         checkArgument(isValidExamScore(score), MESSAGE_CONSTRAINTS);
         String[] splitScore = score.split("/");
-        marksObtained = Double.parseDouble(splitScore[0]);
-        totalMarks = Double.parseDouble(splitScore[1]);
+        marksObtained = Math.round(Double.parseDouble(splitScore[0]) * 100.0) / 100.0;
+        totalMarks = Math.round(Double.parseDouble(splitScore[1]) * 100.0) / 100.0;
         examScore = marksObtained + "/" + totalMarks;
     }
 
@@ -63,7 +63,7 @@ public class Score {
      * @return score in terms of percentage.
      */
     public double getScorePercentage() {
-        return Math.round((marksObtained / totalMarks) * 1000) / 10.0;
+        return (Math.round((marksObtained / totalMarks) * 10000.0) / 100.0);
     }
 
     @Override

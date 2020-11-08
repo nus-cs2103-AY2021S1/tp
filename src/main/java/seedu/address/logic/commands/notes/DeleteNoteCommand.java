@@ -19,9 +19,9 @@ public class DeleteNoteCommand extends NoteCommand {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = NoteCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Deletes the note identified by the index number used in the displayed notebook.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the note identified by the index number used in the displayed notebook.\n\n"
+            + "Parameters: INDEX (must be a positive integer)\n\n"
+            + "Example: " + NoteCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted Note: %1$s";
 

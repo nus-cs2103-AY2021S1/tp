@@ -74,18 +74,20 @@ public class AttendanceTest {
     @Test
     public void toString_feedbackTest() {
         String outputDate = print(VALID_DATE);
-        String expected = outputDate + " (\u2713) " + FEEDBACK_INPUT;
+        String outputDateDesc = outputDate + " ";
+        String feedbackDesc = "[" + FEEDBACK_INPUT + "]";
+        String expected = "(\u2713) " + outputDateDesc + feedbackDesc;
         assertEquals(expected, VALID_ATTENDANCE.toString());
 
-        expected = outputDate + " (\u2718) " + FEEDBACK_INPUT;
+        expected = "(\u2718) " + outputDateDesc + feedbackDesc;
         Attendance test = new Attendance(VALID_DATE, false, VALID_FEEDBACK);
         assertEquals(expected, test.toString());
 
-        expected = outputDate + " (\u2713) ";
+        expected = "(\u2713) " + outputDateDesc;
         test = new Attendance(VALID_DATE, true);
         assertEquals(expected, test.toString());
 
-        expected = outputDate + " (\u2718) ";
+        expected = "(\u2718) " + outputDateDesc;
         test = new Attendance(VALID_DATE, false);
         assertEquals(expected, test.toString());
     }
