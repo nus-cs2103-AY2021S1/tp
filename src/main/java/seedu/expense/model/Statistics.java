@@ -29,7 +29,7 @@ public interface Statistics {
     Amount tallyBalance();
 
     /**
-     * Returns the appropriate budget bar label based on user commands.
+     * Returns the appropriate budget bar label to be displayed based on user commands.
      *
      * @return Label for budget bar as String.
      */
