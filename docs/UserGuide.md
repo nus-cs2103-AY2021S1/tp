@@ -321,7 +321,7 @@ Examples: `deletetask 2` deletes the second task shown in the displayed task lis
 
 ### 2.3.5 Filter tasks `filter`
 
-Filters tasks in the task list by various task attributes:
+Filter tasks in the task list by various task attributes:
   - by assignee's GitHub username - `ta/ASSIGNEE_GITHUB_USERNAME`
   - by task's name - `tn/KEYWORD [MORE_KEYWORDS]...`
   - by deadline (either specifying a deadline - `td/DEADLINE` or a time range for the deadline - `start/START_DATE end/END_DATE` )
@@ -346,7 +346,6 @@ Specifically:
    - Must provide at least one keyword
    - There can be multiple keywords
    - Keywords provided must be **complete words** and will only match **complete words** from the name of the task. e.g. `filter tn/dat` will not return the **Refine data flow** task
-
 3. `filter td/DEADLINE` finds all the tasks whose deadlines match the given `DEADLINE`
    - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
 4. `filter start/START_DATE end/END_DATE` finds all tasks whose deadlines are within the time range specified by the `START_DATE` and `END_DATE`
@@ -355,8 +354,6 @@ Specifically:
 5. `filter tp/TASK_PROGRESS` finds all tasks whose progress match the given `TASK_PROGRESS`
    - `TASK_PROGRESS` should only be integers between 0 and 100 inclusive, and it should not be blank
 6. `filter done/true` finds all completed (progress is 100) tasks and `filter done/false` finds all unfinished tasks
-
-
 
 Example: `filter tn/CS2103T` finds all the tasks whose task names contain the keyword `CS2103T`, and displays those tasks.
 
@@ -374,7 +371,7 @@ Example: `alltasks` displays all tasks in the task list.
 
 ### 2.3.7 Sort tasks `sort `
 
-Sorts tasks in the task list by various task's attributes in ascending/descending order:
+Sort tasks in the task list by various task's attributes in ascending/descending order:
 
   - by deadline - `td/`
   - by progress - `tp/`
