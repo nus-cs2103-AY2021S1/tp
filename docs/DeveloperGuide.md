@@ -836,12 +836,9 @@ The following activity diagram summarizes what happens when the suggestion featu
 
 ### Find and FindExact Features
 
-#### Description
 The Find and FindExact Features allow users to search for `Stock` items in the stockbook.
-
-There are two commands users can use:
-* `find` - Stock that matches ALL keywords of ANY field will be displayed.
-* `findexact` - Stock that matches ALL keywords of ALL fields will be displayed.
+The Find feature displays stocks that match ALL keywords of ANY field searched.
+The Find Exact feature displayes stocks that match ALL keywords of ALL fields searched.
 
 Find and FindExact features allow search for four fields:
 * Name
@@ -1057,21 +1054,7 @@ at least one of `a`, `this`, `is`, `banana`.)
 
 ### Note Feature
 
-#### Description
 The Note feature allows users to add and delete notes from a stock.
-
-There are two commands users can use:
-* `note` - Adds a note to the stock specified by the stock's serial number.
-Note: Multiple notes can be added to the stock.
-* `notedelete` - Deletes a note, specified by note index, from the stock specified by the stock's serial number.
-
-Prefixes used in the Note feature:
-
-Command       | Fields       | Prefixes
---------------| -------------| ---------------------------
-`note`        | Serial Number<br>Note | sn/<br>nt/
-`notedelete`  | Serial Number<br>Note Index | sn/<br>ni/
-
 
 #### Mechanism for Adding Notes
 The mechanism for adding notes is facilitated by classes `NoteCommand`, and `NoteCommandParser`.
@@ -1770,15 +1753,7 @@ The following activity diagram summarizes what happens when the sort feature is 
 
 ### Stock View Feature
 
-#### Description
 The Stock View feature allows users to view the details of a single stock under the `Stock View` tab. 
-
-The command that users can use is:
-* `stockview` - Displays the details of the stock, specified by its serial number, under the `Stock View` tab.
-
-Command       | Field        | Prefix
---------------| -------------| ---------------------------
-`stockview`   | Serial Number | sn/
 
 Details of the stock that are displayed are:
 * Name
