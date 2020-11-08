@@ -17,10 +17,10 @@ My team of five consists of  five Year 2 Computer Science students, all taking t
 
 This project was developed as part of the module CS2103T Software Engineering. We were tasked to develop a desktop application (Windows/macOS/Linux) with a Command Line Interface (that is, the program operates via text input from the user, called commands). Additionally, we were required to use an existing application, called AddressBook Level 3, as the starting point for building our application.
 
-My team decided to a create an application that helps students manage their flashcards, test themselves, and view their performance over time. To do so, we incorporated the existing people management features of AddressBook and used it as a starting point to build QuickCache. 
+My team decided to a create an application that helps students manage their flashcards, test themselves, and view their performance over time. To do so, we incorporated the existing people management features of AddressBook and used it as a starting point to build QuickCache.
 
 In total, QuickCache took a total of 10 weeks to complete.
- 
+
 ### 2. Summary of Contributions
 
 My primary role within the team was to manage the documentation and my responsibilities included: the formatting and structure of both
@@ -40,7 +40,7 @@ The design architecture was inspired by the original `AddressBook3` design.
 
   * What it does: Encapsulates a choice for a multiple choice question within a `Choice` class.
   * Justification: Following from 2.1, our team decided that it would be a better option to create choices and to encapsulate it within its
-own class instead. This would allow us to be better able to implement our `MultipleChoiceQuestion` class. 
+own class instead. This would allow us to be better able to implement our `MultipleChoiceQuestion` class.
 
 #### 2.3 Delete by Tag [enhancement]
 
@@ -50,14 +50,14 @@ own class instead. This would allow us to be better able to implement our `Multi
   or to merge together with the original delete by index command. After much deliberation, I decided to merge both functionalities together into
   the delete command. As a result, I had to tweak the `DeleteCommand` and `DeleteCommandParser` classes accordingly to ensure proper implementation of
   both features. I also had to design extensive tests to make sure that there wouldn't be any problems from this added enhancement.
-  
+ 
 #### 2.4 Find command [enhancement]
 
   * What it does: Allows the user to search for flashcards based on their tags
-  * Justification: The user would be using our tagging system to label flashcards according to their modules. Hence 
+  * Justification: The user would be using our tagging system to label flashcards according to their modules. Hence
   a search and filter system is needed to find these flashcards.
   * Highlights: Implementing this enhancement was pretty straight forward and the test cases were also pretty easy to consider.
-  
+
 #### 2.5 Improved the GUI
 
   * What it does: Improves the GUI
@@ -84,7 +84,7 @@ The following describes the various other contributions that I have made to the 
 
 * **Enhancements to existing features**:
   * Updated the GUI layout (Pull request [\#214](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/214))
-  * Wrote additional tests for existing features to increase test coverage 
+  * Wrote additional tests for existing features to increase test coverage
   (Pull requests [\#235](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/235),
    [\#234](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/234),
    [\#60](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/60))
@@ -92,7 +92,7 @@ The following describes the various other contributions that I have made to the 
 
 * **Documentation**:
 
-  * I was in charge of reviewing every pull request that was related to the documentations 
+  * I was in charge of reviewing every pull request that was related to the documentations
   (Examples: Pull requests [\#160](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/160),
    [\#229](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/229),
    [\#159](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/159) and many more...)
@@ -103,7 +103,7 @@ The following describes the various other contributions that I have made to the 
     * Wrote out the implementation for the `delete` feature (Pull request [\#131](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/131))
     * Helped to reformat and rewrite the entire features section of the DG (Pull request [\#245](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/245))
     * Ensured the accuracy and correctness of all UML diagrams
-    
+
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#69](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/69), [\#37](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/37))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2103T-T11-2/tp/issues/188), [2](https://github.com/AY2021S1-CS2103T-T11-2/tp/issues/187), [3](https://github.com/AY2021S1-CS2103T-T11-2/tp/issues/186))
