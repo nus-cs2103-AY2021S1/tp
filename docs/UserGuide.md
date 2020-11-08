@@ -13,9 +13,9 @@ this [link](https://ay2021s1-cs2103t-t12-3.github.io/tp/).
 * [Set-up](#set-up)
 * [Features](#features)
   * [1. General Features](#1-general-features)
-      * [1.1 Show all commands : `help`](#11-show-all-commands--help)
-      * [1.2 Clear the program : `clear`](#12-clear-the-program--clear)
-      * [1.3 Exit the program : `exit`](#13-exit-the-program--exit)
+    * [1.1 Show all commands : `help`](#11-show-all-commands--help)
+    * [1.2 Clear the program : `clear`](#12-clear-the-program--clear)
+    * [1.3 Exit the program : `exit`](#13-exit-the-program--exit)
   * [2. Create, Read, Update and Delete a Task](#2-create-read-update-and-delete-a-task)
     * [2.1 List all tasks : `list-task`](#21-list-all-tasks--list-task)
     * [2.2 Add a deadline: `deadline`](#22-add-a-deadline--deadline)
@@ -30,7 +30,7 @@ this [link](https://ay2021s1-cs2103t-t12-3.github.io/tp/).
     * [3.3. Edit a lesson: `edit-lesson`](#33-edit-a-lesson--edit-lesson)
     * [3.4. Find a lesson: `find-lesson`](#34-find-a-lesson--find-lesson)
     * [3.5. Delete a lesson: `delete-lesson`](#35-delete-a-lesson--delete-lesson)
-  * [4. Show Calendar View](#4-show-calendar-view)
+  * [4. Calendar View](#4-calendar-view)
   * [5. Data Analysis](#5-data-analysis)
 * [Glossary](#glossary)
 * [Input format summary](#input-format-summary)
@@ -634,7 +634,9 @@ for more information. Sample usage:
 
 <br>
 
-## 4. Show Calendar View
+## 4. Calendar View
+
+**Change to Calendar View**
 
 Users can change the application view to calendar view.
 
@@ -651,6 +653,20 @@ To change the view to calendar view,
 Calendar view displays:
 * Events
 * Lessons
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes**<br>
+
+* Boxes in grey are days not in the current month and therefore unclickable. However, it displays the lesson and event numbers for your information. 
+
+* Users can click on each box in the calendar view to view specific schedule in the day view on the right. 
+
+</div>
+
+**Change to Standard View**
+
+Users can change the application view back to standard view (displayed when the app starts) by issuing a `list-task` command or a `list-lesson` command. 
 
 <br>
 
