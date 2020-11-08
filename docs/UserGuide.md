@@ -232,7 +232,7 @@ You have successfully opened a flashcard!
 You can edit a flashcard that you have created previously.
 
 <div markdown="block" class="alert alert-danger">
-:exclamation: At least one field of the flashcard must be changed.
+:exclamation: At least one field of the flashcard must be changed!
 </div>
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
