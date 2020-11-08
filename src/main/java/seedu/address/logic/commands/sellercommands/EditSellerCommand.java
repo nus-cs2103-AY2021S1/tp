@@ -37,7 +37,9 @@ public class EditSellerCommand extends Command {
 
     public static final String MESSAGE_EDIT_SELLER_SUCCESS = "Edited Seller: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_SELLER = "This seller already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_SELLER =
+            "This seller already exists in the address book, "
+                    + "or that the phone number or name already exists in the book.";
 
     private final Index index;
     private final EditSellerDescriptor editSellerDescriptor;
