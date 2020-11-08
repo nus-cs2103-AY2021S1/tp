@@ -958,26 +958,30 @@ MSS:
 
 MSS:
 
-1. User requests to import data file
-2. QuickCache requests for the file location
-3. User specifies the file location
-4. QuickCache imports the file
+1. User specifies the file name containing the set of flashcards to import from
+2. QuickCache imports each flashcard from the file
 
     Use case ends.
 
 **Extensions:**
 
-* 3a. File not found.
+* 1a. File not found.
 
-  * 3a1. QuickCache shows an error message.
-
-    Use case ends.
-
-* 3b. Data file corrupted
-
-  * 3b1. QuickCache shows an error message.
+  * 1a1. QuickCache shows an error message.
 
     Use case ends.
+
+* 1b. Data file corrupted.
+
+  * 1b1. QuickCache shows an error message.
+
+    Use case ends.
+    
+* 2a. Duplicate flashcard found.
+
+  * 2a1. QuickCache ignores the duplicate flashcard.
+  
+    Use case resumes from step 3.
 
 
 **Use case: UC09 - Add tags during creation of a Flashcard**
@@ -1109,6 +1113,28 @@ MSS:
   * 4a1. QuickCache shows an error message.
 
     Use case resumes at step 3.
+
+
+**Use case: UC14 - Export flashcard data file**
+
+**Actor: User**
+
+MSS:
+
+1. User requests to list flashcards
+2. QuickCache shows a list of flashcards
+3. User specifies the file name to export the displayed list of flashcards
+4. QuickCache exports displayed the list of flashcards into the specified file
+
+    Use case ends.
+
+**Extensions:**
+
+* 3a. Invalid file name.
+
+  * 3a1. QuickCache shows an error message.
+
+    Use case ends.
 
 ****
 ### Non-Functional Requirements
