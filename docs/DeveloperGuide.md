@@ -506,6 +506,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | an overweight individual                   | track my caloric count                 | ensure that I am eating at a deficit
            |
 | `*`      | an student athlete                         | track my protein intake                | ensure that my diet promotes recovery
+           |
+| `*`      | a diabetic individual                      | find trends of sugary food with tags   | track what I ate that spikes my insulin level
+           |
+| `*`      | a careless user with typos                 | find food with wrong macro values      | correct inaccurate inputs
+           |
+| `*`      | a minimalistic user                        | find outdated food items               | clear them from the list
 
 ### 9.3 Use cases
 
