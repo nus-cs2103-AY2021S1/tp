@@ -13,6 +13,8 @@ Class HelpWindow
 Class ResultDisplay
 Class ExerciseListPanel
 Class ExerciseCard
+Class TemplateListPanel
+Class TemplateCard
 Class StatusBarFooter
 Class CommandBox
 Class CaloriesGraph
@@ -35,10 +37,12 @@ MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> ExerciseListPanel
+MainWindow *-down-> TemplateListPanel
 MainWindow *-down-> StatusBarFooter
 MainWindow *-down-> CaloriesGraph
 
 ExerciseListPanel -down-> ExerciseCard
+TemplateListPanel -down-> TemplateCard
 
 MainWindow -left-|> UiPart
 
@@ -46,6 +50,8 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 ExerciseListPanel --|> UiPart
 ExerciseCard --|> UiPart
+TemplateListPanel --|> UiPart
+TemplateCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
