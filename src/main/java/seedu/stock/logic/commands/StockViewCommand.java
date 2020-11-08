@@ -8,7 +8,6 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTIO
 import java.util.List;
 import java.util.Optional;
 
-import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.SerialNumber;
