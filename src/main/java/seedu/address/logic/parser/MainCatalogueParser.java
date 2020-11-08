@@ -130,9 +130,9 @@ public class MainCatalogueParser {
                 throw new ParseException(ClearCommand.MESSAGE_EXTRA_ARGS);
             }
             switch (status) {
-                case PROJECT:
-                case TASK:
-                case TEAMMATE:
+            case PROJECT:
+            case TASK:
+            case TEAMMATE:
                 throw new InvalidScopeException(Status.PERSON_LIST, status);
             default:
                 return new ListPersonsCommand();
