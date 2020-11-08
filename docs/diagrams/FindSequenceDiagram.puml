@@ -63,5 +63,4 @@ deactivate AddressBookParser
 LogicManager -> user : result
 deactivate LogicManager
 
-
 @enduml
