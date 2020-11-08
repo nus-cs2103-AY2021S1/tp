@@ -545,31 +545,42 @@ User data automatically saves when there is a change in data.
 <div style="page-break-after: always;"></div>
 #### Investigation Page Commands
 
-| Command               | Format                                                                            |
+| List Commands         | Format                                                                            |
 | --------------------- | ----------------------------------------------------------------------------------|
 |**list document**      | `list doc`                                                                        |
 |**list suspect**       | `list suspect`                                                                    |
 |**list victim**        | `list victim`                                                                     |
 |**list witness**       | `list witness`                                                                    |
+
+| Add Commands          | Format                                                                            |
+| --------------------- | ----------------------------------------------------------------------------------|
 |**add description**    | `add desc d:DESC`                                                                 |
 |**add document**       | `add doc n:TITLE r:FILE_NAME`                                                     |
 |**add suspect**        | `add suspect n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                        |
 |**add victim**         | `add victim n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                         |
 |**add witness**        | `add witness n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                        |
-|**open doc**           | `open doc DOC_NO`                                                                 |
+
+| Edit Commands         | Format                                                                            |
+| --------------------- | ----------------------------------------------------------------------------------|
 |**edit title**         | `edit title t:TITLE`                                                              |
 |**edit description**   | `edit desc d:DESC`                                                                |
 |**edit status**        | `edit status s:STATUS`                                                            |
-|**edit document**      | `edit doc DOC_NO [n:NAME] [r:REFERENCE]`                                         |
+|**edit document**      | `edit doc DOC_NO [n:NAME] [r:REFERENCE]`                                          |
 |**edit suspect**       | `edit suspect SUSPECT_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`      |
-<div style="page-break-after: always;"></div>
 |**edit victim**        | `edit victim VICTIM_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`        |
 |**edit witness**       | `edit witness WITNESS_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`      |
+
+| Delete Commands       | Format                                                                            |
+| --------------------- | ----------------------------------------------------------------------------------|
 |**delete description** | `delete desc`                                                                     |
 |**delete doc**         | `delete doc DOC_NO`                                                               |
 |**delete suspect**     | `delete suspect SUSPECT_NO`                                                       |
 |**delete victim**      | `delete victim VICTIM_NO`                                                         |
 |**delete witness**     | `delete witness WITNESS_NO`                                                       |
+
+| Other Commands        | Format                                                                            |
+| --------------------- | ----------------------------------------------------------------------------------|
+|**open doc**           | `open doc DOC_NO`                                                                 |
 |**return**             | `return`                                                                          |
 
 #### Both Pages
