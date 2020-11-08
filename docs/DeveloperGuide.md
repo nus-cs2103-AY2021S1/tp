@@ -1101,7 +1101,11 @@ and `Note` to add.
 The `SerialNumber` and `Note` is obtained from parsing the user input.
 Upon successful parsing, `NoteCommand` object generated will then be passed on to the `LogicManager` to be executed.
 
-If the user inputs do not contain all of the specified `Prefix` for `NoteCommand`, an error message will be shown and no `NoteCommand` object will be created.
+If the user inputs do not conform to the valid format specified for the `NoteCommand`,
+an exception is thrown and no `NoteCommand` object will be created.
+
+If the `Serial Number` of stock is not found in Warenager's data,
+an error message is shown to prompt the user that Warenager cannot find the `Serial Number` given.
 
 `NoteCommandParser` implements the following important operations:
 
@@ -1176,7 +1180,11 @@ and `NoteIndex` of the note to delete.
 The `SerialNumber` and `NoteIndex` is obtained from parsing the user input.
 Upon successful parsing, `NoteDeleteCommand` object generated will then be passed on to the `LogicManager` to be executed.
 
-If the user inputs do not contain all of the specified `Prefix` for `NoteDeleteCommand`, an error message will be shown and no `NoteDeleteCommand` object will be created.
+If the user inputs do not conform to the valid format specified for the `NoteDeleteCommand`,
+an exception is thrown and no `NoteDeleteCommand` object will be created.
+
+If the `Serial Number` of stock is not found in Warenager's data,
+an error message is shown to prompt the user that Warenager cannot find the `Serial Number` given.
 
 `NoteDeleteCommandParser` implements the following important operations:
 
