@@ -28,6 +28,9 @@ Given below are my contributions to the project.
   created to improve the code quality. 
   * Related Pull Requests: [\#152](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/152).
   
+<div style="page-break-after: always;"></div>
+
+  
 ### Features
 * **Added and wrote tests for the ability to find specific entries.**
   * What it does: allows the user to find specific entries/revenues that have a keyword or a list of keywords.
@@ -74,13 +77,13 @@ Given below are my contributions to the project.
 
 ### Documentation
 
-#### User Guide:
+#### User Guide
 * **Added `User Interface Overview` section and the relevant notations**: [#3](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#3-user-interface-overview) 
 * **Added links for the `Command summary` section**:  [#7](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#7-command-summary)  
 * **Added documentation for the `find` command**:  [#5.2.4](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#524-locating-entries-by-description-find)
 * **Added screenshots and notations for all sections.** 
 
-#### Developer Guide:
+#### Developer Guide
   * **Added details to `Storage` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#storage-component)
   * **Added details to `UI` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#ui-component)
   * **Added prefaces to all headers**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html)
