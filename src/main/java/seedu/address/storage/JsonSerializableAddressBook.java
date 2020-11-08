@@ -89,13 +89,13 @@ class JsonSerializableAddressBook {
             Email clientEmail = jsonAdaptedSchedule.getClientEmail();
             Client client = getClientWithEmail(clientEmail, addressBook);
             if (client == null) {
-                throw new IllegalValueException(CLIENT_NOT_FOUND);
+                throw new IllegalValueException(String.format(CLIENT_NOT_FOUND, clientEmail));
             }
 
             Interval sessionInterval = jsonAdaptedSchedule.getSessionInterval();
             Session session = getSessionWithInterval(sessionInterval, addressBook);
             if (session == null) {
-                throw new IllegalValueException(SESSION_NOT_FOUND);
+                throw new IllegalValueException(String.format(SESSION_NOT_FOUND, sessionInterval));
             }
 
             PaymentStatus paymentStatus = jsonAdaptedSchedule.getPaymentStatus();

@@ -203,11 +203,16 @@ Step 1. The user launches the application for the first time.
 The `AddressBook` will be initialized with the initial client, session and schedule list.
 
 Step 2. The user executes `sedit 1 g/coolgym` command to edit the first Session in the address book. 
-The `sedit` command calls `Model#setSession()`, causing changes to be made in the address book after the `sedit 1 g/coolgym` command executes.
+The `sedit` command calls `Model#setSession()`, causing changes to be made in the Session List after the `sedit 1 g/coolgym` command executes.
 
 The following sequence diagram shows how the Edit Session operation works:
 
-![EditSessionSequenceDiagram](images/EditSessionSequenceDiagram.png)
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/EditSessionSequenceDiagram.png" style="width: 25%; height: auto;"/>
+    </p>
+    <figcaption>Figure - Edit Session Sequence Diagram</figcaption>
+</figure>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -385,7 +390,7 @@ This operation is exposed in the `Model` interface as `Model#setSchedule()`.
 Similar to the Edit Session mechanism, the example usage scenario below shows how Edit Schedule mechanism behaves:
 
 The user executes `schedit c/1 s/1 us/2` command to edit the Schedule with the first Session and first Client in the address book. 
-The `schedit` command calls `Model#setSchedule()`, causing changes to be made in the address book after the `schedit c/1 s/1 us/2` command executes.
+The `schedit` command calls `Model#setSchedule()`, causing changes to be made in the address book after the `schedit c/1 s/1 us/2` command executes, meaning that the Schedule is now associated with the second Session.
 
 The following activity diagram summarizes what happens when a user executes a new `EditSchedule` command, with the assumption that the user inputs a valid command:
 
