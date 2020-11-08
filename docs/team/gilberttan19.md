@@ -47,27 +47,28 @@ The following describes the feature and enhancement I have already done in the p
 
 ### 2.2. Code contributed
  Given below is the link to the code that I have contributed.
- [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=gilberttan19)
+ * [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=gilberttan19)
+ * [Functional Code](https://github.com/AY2021S1-CS2103T-T13-2/tp/tree/master/src/main/java/quickcache)
+ * [Test Code](https://github.com/AY2021S1-CS2103T-T13-2/tp/tree/master/src/test/java/quickcache)
 
 ### 2.3. Other contribution
 
 Given below is other contributions that I have made to the project.
 * **Project management**:
-  * Managed releases `v1.2` - `v1.4` (4 releases) on GitHub
+  * Managed 30 issues on GitHub
+  * Helped in checking the code quality
 
 * **Enhancements to existing features**:
   * Wrote additional tests for existing features to increase coverage (Pull requests [\#203](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/203), [\#221](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/221)
   * Morph the Logic and Model of AddressBook to have a UniqueFlashcardList. (Pull requests [\#37](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/37))
-  
+  * Refactored remnant code from Person to Flashcard. (Pull requests [\#248](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/248))
+
 * **Documentation**:
   * User Guide:
     * Added the documentation for the features `delete`, `add`, `edit`, and `addmcq` (Pull requests [\#151](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/151 ),[\#152](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/152))
     * Added the preface for the quick start section. (Pull requests [\#141](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/141))
   * Developer Guide:
     * Added implementation details of the `delete`, `add`, `edit`, abd `addmcq` feature. (Pull requests [\#128](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/128), [\#229](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/229))
-
-* **Contribution to team based task**:
-  * Responsible for the code quality of QuickCache.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): (Pull requests [\#115](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/115), [\#85](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/85), [\#227](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/227))
