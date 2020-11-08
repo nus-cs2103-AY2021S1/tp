@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -42,7 +43,7 @@ public class DeleteMeetingCommandTest {
                 new MeetingBook(model.getMeetingBook()),
                 new ModuleBook(model.getModuleBook()),
                 new UserPrefs());
-        expectedModel.deleteMeeting(model.getFilteredMeetingList().get(1));
+        expectedModel.deleteMeeting(model.getFilteredMeetingList().get(0));
 
         assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
     }
@@ -71,6 +72,15 @@ public class DeleteMeetingCommandTest {
 
         assertThrows(CommandException.class, expectedMessage, () ->
                 deleteMeetingCommand.execute(model));
+    }
+
+    @Test
+    public void execute_deleteSelectedMeeting_updatesSelectedMeeting() throws CommandException {
+        Meeting selectedMeeting = model.getSelectedMeeting();
+        new DeleteMeetingCommand(selectedMeeting.getModule().getModuleName(), selectedMeeting.getMeetingName())
+                .execute(model);
+
+        assertNull(model.getSelectedMeeting());
     }
 
     @Test
