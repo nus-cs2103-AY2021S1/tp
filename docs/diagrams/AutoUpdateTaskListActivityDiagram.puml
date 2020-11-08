@@ -3,7 +3,6 @@
 --> ===B1===
 --> "Run JavaFX thread"
 --> "User enters command"
---> "Execute command"
 If "[exit command entered]" then
 --> [Yes] "Stop running JavaFX thread"
 --> ===B2===
