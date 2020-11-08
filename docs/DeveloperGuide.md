@@ -127,6 +127,9 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Case>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+The detailed class diagram for the investigation case package is shown below. 
+![Investigation Case Class Diagram](images/InvestigationCaseClassDiagram.png)
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -378,10 +381,120 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete case`, just save the case being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### \[Proposed\] Data archiving
+### Archiving cases
 
-_{Explain here how the data archiving feature will be implemented}_
+The `archiveStatus` field of each `Case` determines whether a case is archived or not archived.
+The `archiveStatus` is `ArchiveStatus.ARCHIVED` if archived, and `ArchiveStatus.DEFAULT` if not archived.
 
+#### Implementation: Archive case
+The `archive case` command allows the user to archive an investigation case listed in the `Main Page` of the `Home` section in the GUI.
+The specified case will be removed from the list in the `Home` section and added to the `Archive` section in the GUI.
+
+The `archive case` command mechanism is facilitated by `ArchiveCommand`. It extends the abstract class `Command` and contains
+a `Index` of the `Case` to be archived. It implements the `ArchiveCommand#execute()` operation as required in the abstract parent class.
+
+The Sequence Diagram below shows how the `ArchiveCommand` works.
+
+![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
+
+The user inputs the command `archive case 1` and the arguments are passed to the `Logic` component.
+
+`PivotParser` processes the provided input and passes the arguments to `ArchiveCommandParser` to be processed.
+If the command is of a valid format, a new `ArchiveCommand` will be created.
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** When the user provides invalid arguments, such as `archive c 1`, `OpenCommandParser` will raise an error and display the proper command format for the user.
+</div>
+
+Upon invoking `ArchiveCommand#execute()`, the class will extract the `Case` to be archived as specified by the `Index` provided.
+A new `Case` with the same details will be created, except the `archiveStatus` field which will be set as `ArchiveStatus.ARCHIVED`.
+The case to be archived will be deleted from the `model` and the new `Case` object will be added to the model. 
+Thus, we have ensured that the `Case` is effectively archived.
+
+The GUI will be updated correspondingly, with the archived case being removed from the `Home` section. The archived case will
+appear in the `Archive` section when users input `list archive`.
+
+#### Implementation: Unarchive case
+The `unarchive case` command allows the user to unarchive an investigation case listed in the `Main Page` of the `Archive` section in the GUI.
+The specified case will be removed from the list in the `Archive` section and added to the `Home` section in the GUI.
+
+The `archive case` command mechanism is facilitated by `UnarchiveCommand`. It extends the abstract class `Command` and contains
+a `Index` of the `Case` to be unarchived. It implements the `UnarchiveCommand#execute()` operation as required in the abstract parent class.
+
+The Sequence Diagram below shows how the `UnarchiveCommand` works.
+
+![UnarchiveSequenceDiagram](images/UnarchiveSequenceDiagram.png)
+
+The `unarchive case` command works in a similar manner to the `archive case` command, 
+except that it sets the newly created `Case` object's `archiveStatus` as `ArchiveStatus.DEFAULT` before
+adding it to the `model`.
+
+#### Implementation: List case and List archive
+The GUI is split into the `Home` section and the `Archive` section. 
+By using the commands `list case` and `list archive`, users can switch between the two sections and interact
+with the cases at that particular section. 
+
+The `list archive` command mechanism is facilitated by `ListArchiveCommand`. It extends the abstract class `ListCommand`. 
+It implements the `ListArchiveCommand#execute()` operation as required in the abstract parent class.
+
+The Sequence Diagram below shows how the `ListArchiveCommand` works.
+
+![ListArchiveSequenceDiagram](images/ListArchiveSequenceDiagram.png)
+
+Upon invoking `ListArchiveCommand#execute()`, the `StateManager` will be notified via the `StateManager#setArchivedSection()`
+method, which will update and store the program's state to be in the `Archive` section. 
+
+The filtered case list in model will also be updated with the predicate to show archived cases. 
+This predicate checks for the `archiveStatus` of cases, taking those that are `ArchiveStatus.ARCHIVED`. 
+With this update, the GUI will also be automatically updated, bringing the program to the `Archive` section
+and listing all archived cases. 
+
+To switch back to the `Home` section, users can input the `list case` command. The `list case` command works in a similar manner
+to the `list archive` command, but now, the filtered case list in `model` will be updated with the predicate to show all unarchived cases,
+and the `StateManager` will be notified that the program's state is the `Home` section now.
+
+#### Design consideration:
+
+##### Aspect: How to consider a case as archived, and list archived cases.
+
+* **Alternative 1 (current implementation):** Store as an enum field in `Case` and make use of appropriate predicates to show the 
+cases
+  * Pros: Easier to implement.
+  * Cons: Do not have two separate lists for archived and unarchived cases, which results in more checks needed for other 
+  functionalities like `find` command.
+
+* **Alternative 2:** Store archived cases and unarchived cases as two different lists in `Model`.
+  * Pros: More clarity in terms of which cases are being shown, hence other functionalities are
+  less likely to be affected from the implementation. This could result in less bugs.
+  * Cons: Difficult to implement this as we need to take into consideration the parsing of JSON files, 
+  and the creation of two lists on startup.
+
+--------------------------------------------------------------------------------------------------------------------
+## **Effort**
+The original AB3 is a one-layered implementation, where users can only interact with one list of items, such as adding and deleting items.
+
+In PIVOT, we adopt a two-layer approach, which increases the complexity of the project. 
+
+In the `Main Page`, users can interact with the list of `Cases` they see, such as adding and deleting a `Case`. 
+Then, they can open a specific `Case`, opening up the `Case Page` which shows the details of the `Case`. They can interact with that particular `Case`, such as adding `Documents`, `Suspects` etc.
+
+This approach required us to consider the design of the program carefully, so as to ensure that we are able to 
+successfully open the correct `Case`, and ensure that the program is at the correct state each time, so that 
+only valid commands can be used. This led to the decision of a `StateManager` class to handle the states of the program.
+
+Various new features are also implemented.
+
+The new `Open Document` feature allows users to easily open `Documents` that are stored in our program. The implementation of this feature
+meant that we had to create a `references` folder on start-up, as well as properly store the file paths of the `Documents`.
+The implementation of the feature had to be carefully designed, as we had to consider the different ways a user might use 
+the program and handle them properly such that the program will not crash (e.g. if the user deletes a document that they added to PIVOT).
+
+
+The `Archive` feature also required a careful consideration of the design alternatives, so as to show a different view in the GUI. 
+We also had to consider how this feature would affect the existing commands.
+
+Much thought and effort has been given to the design of this project, and enhancements have been made to the existing features as well.
+The new features added will also increase the effectiveness of the program.   
 
 --------------------------------------------------------------------------------------------------------------------
 
