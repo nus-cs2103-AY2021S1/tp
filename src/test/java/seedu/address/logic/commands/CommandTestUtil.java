@@ -33,6 +33,7 @@ import seedu.address.testutil.contact.EditContactDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    //========= Contact List ==================================================
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
@@ -41,8 +42,6 @@ public class CommandTestUtil {
     public static final String VALID_TELEGRAM_BOB = "@bobtele";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_TAG_CORE_MODULE = "Core";
-    public static final String VALID_TAG_UNGRADED_MODULE = "Ungraded";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -58,11 +57,14 @@ public class CommandTestUtil {
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "bobtele"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    //======= Module List =======================================================================
     public static final String VALID_MODULENAME_CS2030 = "CS2030";
     public static final String VALID_MODULENAME_CS2103T = "CS2103T";
     public static final String VALID_MODULENAME_ES2660 = "ES2660";
     public static final String INVALID_MODULENAME_CSA200 = "CSA200";
 
+    public static final String VALID_TAG_CORE_MODULE = "Core";
+    public static final String VALID_TAG_UNGRADED_MODULE = "Ungraded";
     public static final String VALID_MODULE_LESSON_LECTURE = "Lecture";
     public static final String VALID_MODULE_LESSON_TUTORIAL = "Tutorial";
     public static final String VALID_ZOOM_LINK_CS2103T = "https://nus-sg.zoom.us/CS2103t";
@@ -79,10 +81,15 @@ public class CommandTestUtil {
     public static final String VALID_TAG_LECTURE = "Lecture";
     public static final String VALID_TAG_TUTORIAL = "Tutorial";
 
-    public static final String NAME_DESC_CS2103T = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T;
-    public static final String ZOOMLINK_DESC_CS2103T = " " + PREFIX_ZOOM_LINK + VALID_ZOOM_LINK_CS2103T;
+    public static final String MODULE_LESSON_DESC_LECTURE = " " + PREFIX_NAME + VALID_MODULE_LESSON_LECTURE;
+    public static final String MODULE_LESSON_DESC_TUTORIAL = " " + PREFIX_NAME + VALID_MODULE_LESSON_TUTORIAL;
+    public static final String INVALID_MODULE_LESSON_DESC = " " + PREFIX_NAME + ".10()";
+    public static final String ZOOM_LINK_DESC_CS2103T = " " + PREFIX_ZOOM_LINK + VALID_ZOOM_LINK_CS2103T;
+    public static final String ZOOM_LINK_DESC_ES2660 = " " + PREFIX_ZOOM_LINK + VALID_ZOOM_LINK_ES2660;
+    public static final String INVALID_ZOOM_LINK_DESC = " " + PREFIX_ZOOM_LINK + "https://incorrectLink.zoom.us";
     public static final String NAME_DESC_ES2660 = " " + PREFIX_NAME + VALID_MODULENAME_ES2660;
-    public static final String ZOOMLINK_DESC_ES2660 = " " + PREFIX_ZOOM_LINK + VALID_ZOOM_LINK_ES2660;
+    public static final String NAME_DESC_CS2103T = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T;
+
 
     // ================================== TodoList ===================================== //
 
