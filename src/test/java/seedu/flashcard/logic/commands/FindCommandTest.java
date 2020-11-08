@@ -62,7 +62,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noFlashcardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
+        String expectedMessage = FindCommand.MESSAGE_NO_FLASHCARDS_MATCHING_KEYWORDS;
         List<String> keywords = prepareKeywords(" ");
         FindCommand command = new FindCommand(keywords);
 
