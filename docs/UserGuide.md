@@ -224,6 +224,8 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
  
 :bulb: **Tip:**
  - The details of each field can be provided in any order.
+ - In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
+
  
 Examples:
 * To add only the necessary fields <br>
@@ -277,7 +279,17 @@ Example:
 
 Edits general details of a staff from eva (excluding leave taken)
 
-Format: `edits INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]`
+Format: `edits INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG] [c/COMMENT]`
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**<br>
+
+* Only description of comments can be edited. Title and Date cannot be edited.
+
+* Please note that comments format is `c/ ti/TITLE_OF_COMMENT_TO_EDIT d/DATE_OF_COMMENT_TO_EDIT desc/NEW_DESCRIPTION_OF_COMMENT` 
+ 
+</div>
 
 Example:
 * `edits 1 n/John Doe p/99999999 a/John Street e/NEW@example.com`
@@ -393,6 +405,7 @@ Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG
  - The interview date has to be in DD/MM/YYYY format 
  - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature 
  [setting of application status](#349-set-application-status-setas) below
+ - :bulb: **Tip** In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
  - :bulb: **Tip:** The details of each field can be provided in any order. 
  - :bulb: **Tip** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
 <br>
@@ -456,10 +469,14 @@ Format: `edita INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:** <br>
+:bulb: **Tip:**<br>
 
-* Edit of comment needs to be in required format: `c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE DESC/NEW_DESCRIPTION` <br>
+* Only description of comments can be edited. Title and Date cannot be edited.
 
+* Please note that comments format is `c/ ti/TITLE_OF_COMMENT_TO_EDIT d/DATE_OF_COMMENT_TO_EDIT desc/NEW_DESCRIPTION_OF_COMMENT` 
+
+* In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
+ 
 </div>
 
 Example:
