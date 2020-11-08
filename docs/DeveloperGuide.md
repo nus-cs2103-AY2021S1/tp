@@ -2757,19 +2757,19 @@ unless specified otherwise.
 **Extensions**
 * 2a. The command word user provided is not valid.
 
-    * 2a1. Warenager calculates the most related command word to suggest.
+    * 2a1. Warenager prepares to suggest the closest valid command word along with all the valid compulsory prefixes.
 
     Use case resumes at step 3.
 
 * 2b. The command word provided is valid, but the prefixes are not.
 
-    * 2b1. Warenager prepares to suggest the command word along with only the valid prefixes.
+    * 2b1. Warenager prepares to suggest the command word along with all the valid compulsory prefixes.
 
     Use case resumes at step 3.
 
 * 2c. The command word provided is valid, but the some prefixes are missing.
 
-    * 2c1. Warenager prepares to suggest the command word along with only the missing prefixes.
+    * 2c1. Warenager prepares to suggest the command word along with all the valid compulsory prefixes.
 
     Use case resumes at step 3.
 
@@ -2796,7 +2796,7 @@ unless specified otherwise.
 
     Use case ends.
 
-* 2c. Both the order and field user provided is not valid.
+* 2c. Both the order and field user provided are not valid.
 
     * 2c1. Warenager will generate command suggesstion for the user (Use case 19).
 
