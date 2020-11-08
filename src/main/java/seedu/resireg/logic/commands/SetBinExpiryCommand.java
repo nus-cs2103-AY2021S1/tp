@@ -14,7 +14,7 @@ public class SetBinExpiryCommand extends Command {
 
     public static final String COMMAND_WORD = "set-bin-expiry";
 
-    public static final String MESSAGE_SUCCESS = "Bin items will now be stored for %1$s days";
+    public static final String MESSAGE_SUCCESS = "Bin items will now be stored for %1$s day(s)";
 
     public static final Help HELP = new Help(COMMAND_WORD,
         "Sets the number of days a bin item is stored.\n",
