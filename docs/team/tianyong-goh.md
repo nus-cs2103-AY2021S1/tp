@@ -47,17 +47,14 @@ Given below are my contributions to the project:
 * **New Feature 5**: Added `Clear Consumption` feature. (Pull Requests [\#170](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/170))
   * What it does: allows the user to clear their daily consumption in Consumption List.
   * Justification: This feature improves the product because it allows user to start a new Consumption List with a single command instead of repeatedly using `deleteC` feature.
-<br><br>
-
+<br>
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=tianyong-goh&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-<br><br>
-
+<br>
 * **Project management**:
   * Produce shadowJar file for test and release `v1.2`.
   * Setting up group meeting for discussion
   * Remind team members to approve members' PRs
-<br><br>
-
+<br>
 * **Enhancements to existing features**:
   * Refactored `Search Recipe` feature from `find` feature in *AddressBook Level 3* (Pull Requests [\#37](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/37))
   * Added Calories field into Recipe for `Eat Recipe` feature (Pull Requests [\#80](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/80))
@@ -65,8 +62,7 @@ Given below are my contributions to the project:
   * Refactored *Sample Test* in AddressBook Level 3 to fit the current Wishful Shrinking. (Pull Requests [\#111](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/111))
   * Resolved most the tests that failed when we commented out while refactoring feature from *AddressBook Level 3*. (Pull Requests [\#111](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/111))
   * Added tests for `Search Recipe` feature and `Recommand` feature. (Pull Requests [\#116](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/116))
-<br><br>
-
+<br>
 * **Documentation**:
   * [User Guide](https://ay2021s1-cs2103t-w10-2.github.io/tp/UserGuide.html):
     * Transfer the user guide's draft from google document to UserGuide.md. (Pull Requests [\#31](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/31))
@@ -83,8 +79,7 @@ Given below are my contributions to the project:
     * Added activity diagram for `clear` and `eat Recipe` features. (Pull Requests [#261](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/261))
     * Updated Class Diagrams(Model Component). (Pull Requests [#252](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/252))
     * Added break page for pdf converting purpose. (Pull Requests [#294](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/294))
-<br><br>
-
+<br>
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#172](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/172), [\#178](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/178), [\#24](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/24)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/TianYong-Goh/ped/issues/3), [2](https://github.com/TianYong-Goh/ped/issues/5), [3](https://github.com/TianYong-Goh/ped/issues/7))
