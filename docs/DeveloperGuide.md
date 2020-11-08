@@ -1508,13 +1508,44 @@ There are 2 ways to display statistics of flashcards – by index or by tags.
 
 1. Displaying statistics of a flashcard by index
 
-   1. Test Case 1: `stats 1`
+   1. Test Case 1: `stats 1`<br>
+      Expected: Display statistics of the first flashcard.
+
+   1. Test Case 2: `stats 0`<br>
+      Expected: No flashcard statistics. Error details shown in display.
+
+   1. Other incorrect `stats` commands to try: `stats`, `stats x` (where x is more than the last index in flashcard list), `stats Invalid`<br>
+      Expected: Error message will appear with instructions on how to use the `stats` command.
 
 1. Displaying statistics of flashcards through tags
 
+   1. Test Case 1: `stats t/MCQ`<br>
+      Expected: Display statistics of all flashcards containing tag `MCQ`.
 
+   1. Test Case 2: `stats t/MCQ t/CS2103`<br>
+      Expected: Display statistics of all flashcards containing tags `MCQ` and `CS2103`.
 
-### F.9 Sharing flashcards
+   1. Test Case 3: `stats t/`<br>
+      Expected: Error message will appear on display. Tags cannot be empty.
+
+### F.9 Clearing statistics in a flashcard
+
+1. Prerequisites: 
+
+   1. There is at least one flashcard stored in QuickCache.
+   
+   1. List flashcards using the `list` command to see the index of the flashcard.
+
+1. Test Case 1: `clearstats 1`<br>
+   Expected: Statistics for the first flashcard is cleared.
+
+1. Test Case 1: `clearstats 0`<br>
+   Expected: No flashcard statistics is cleared. Error details shown in display.
+
+1. Other incorrect `clearstats` commands to try: `clearstats`, `clearstats x` (where x is more than the last index in flashcard list), `clearstats Invalid`<br>
+   Expected: Error message will appear with instructions on how to use the `clearstats` command.
+
+### F.10 Sharing flashcards
 
 ### Saving data
 
