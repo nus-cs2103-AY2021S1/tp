@@ -180,7 +180,7 @@ The record in tCheck will be overwritten by the input that you provide. <br>
  </div>
 
 #### 1.2 Listing the number of drinks sold : `s-list`
-Shows a list of all types of drinks sold in the Sales Tracker.
+Shows a list of all types of drinks sold in the Sales Tracker inside the Main View.
 
 Format: `s-list`
 
@@ -327,24 +327,25 @@ Adds an employee to the Employee Directory.
 Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
 
 * In tCheck, you may add an employee to the Employee Directory. When you add an employee, you need to provide his/her name, phone number, emergency contact, and address.
-* Tag is optional.
+* Tag is optional. Tags names should be alphanumeric. White space, characters are not allowed to be used in tags names. 
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
-PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
+* PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
+</div>
 
 Example: 
-Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His emergency contact is 81234567. His address is Blk 123 ABC Road. His tag is Friday and PartTime. You can follow these instructions:
 
-Steps to add an employee:
+Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His emergency contact is 81234567. His address is Blk 123 ABC Road. Assume he is a part-time employee, and he only can work on Friday. So you want to indicate these two characteristics in tCheck. You can assign him two labels, "Friday" and "PartTime" so that you can use find-employees-by-tags features (refer to `c-tag-find` for more details) to find a group of employees by their tag(s).You can follow these instructions:
+
 1. Type `c-add n/John Doe p/98765432 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime` into the _Command Box_.
 1.  Press "Enter" to execute.
 
+
 Outcome:
 1. The _Result Display_ will show that you add a new employee.
-
-2. All active employees will be listed in the _Main View_.
+2. All active employees will be listed in the Employee Directory inside the _Main View_.
 
 ![AddEmployeeCommandScreenshot](images/AddEmployeeResult.png)
 
@@ -355,16 +356,17 @@ Lists all employees who are active.
 Format: `c-active-list`
 
 Example: 
-Let's say you want to see all active employees in your store, you can follow these instructions:
 
-Steps to list all active employees:
+All employees who are currently working in the shop are active/unarchived employees. They are stored in the active (unarchived) Employee Directory.
+Let's say you want to see all active (unarchived) employees in your store, you can follow these instructions:
+
 1. Type `c-active-list` into the _Command Box_.
-1.  Press "Enter" to execute.
+1. Press "Enter" to execute.
+
 
 Outcome:
-1. The _Result Display_ will show that all employees are listed.
-
-2. All active employees will be listed in the _Main View_.
+1. The _Result Display_ will show that all active (unarchived) employees are listed.
+2. All active employees will be listed in the Employee Directory inside the _Main View_.
 
 ![ActiveEmployeeListCommand](images/ActiveListResult.png)
 
@@ -406,12 +408,14 @@ Format: `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS
 * You can remove all the employee's tags by typing `t/` without specifying any tags after it.
 
 Example: 
+
 Let's say you want to edit an employee whose index is 1 in Employee Directory. His new phone number is 91234567. His new emergency contact is 81232744. 
 You can follow these instructions:
 
-Steps to add an employee:
+
 1. Type `c-edit 1 p/91234567 e/81232744` into the _Command Box_.
 1. Press "Enter" to execute.
+
 
 Outcome:
 1. The _Result Display_ will show that you edit the employee.
@@ -438,26 +442,18 @@ Format: `c-find KEYWORD [MORE_KEYWORDS]`
 * Employees matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
-**:information_source: Note:** <br>
-The search is case-insensitive. e.g. `hans` will match `Hans`.<br>
-The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.<br>
-Only the name is searched..<br>
-Only full words will be matched e.g. `Han` will not match `Hans`.<br>
-Employees matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.<br>
-
 Example: 
+
 Let's say you want to find employees whose name contains "John". 
 You can follow these instructions:
 
-Steps to add an employee:
 1. Type `c-find john` into the _Command Box_.
 1. Press "Enter" to execute.
 
+
 Outcome:
 1. The _Result Display_ will show how many employees' matching your find command
-
-2. Employees whose name contains "john" will be listed in the _Main View_.
+2. Employees whose name contains "john" will be listed in the Employee Directory inside the _Main View_.
 
 ![EmployeeFindCommandScreenshot](images/EmployeeFindResult.png)
 
@@ -509,15 +505,15 @@ Clears all entries from the Employee Directory.
 Format: `c-clear`
 
 Example:
+
 * Let's say you want to delete all employees in Employee Directory. You can follow these instructions:
 
-Step to delete all employees:
 1. Type `c-clear` into the _Command Box_.
 2. Press "Enter" to execute.
 
 
 Outcome:
-2. No employees will be listed in the Employee Directory inside the _Main View_.
+1. No employees will be listed in the Employee Directory inside the _Main View_.
 
 Before executing:<br>
 ![ListEmployeeScreenshot](images/BeforeClearCommand.png)
@@ -625,8 +621,8 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
-**List** | `c-active-list`, `c-archive-list`
+**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
+**List** | 1. **For all active (unarchived) employees:**  `c-active-list`<br>2. **For all archived employees:**  `c-archive-list`
 **List avalible manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG]`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
 **Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
