@@ -95,9 +95,9 @@ Table 1: Summary of symbols
 
 Symbol | Meaning
 :-----:|:-------
-`command` | A grey highlight indicates a command that can be executed by **Reeve**.
-:information_source: | Indicates important information.
-:bulb: | Indicates tips.
+`code` | Code snippets
+:information_source: | Important information
+:bulb: | Tips
 
 ## 4. **Getting Started**
 
@@ -113,7 +113,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W15-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W15-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -180,7 +180,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### 5.4 Model component
@@ -283,14 +284,13 @@ The following explains the design considerations of the `toggle` command.
     * Pros: Student list size does not slow down execution of command.
     * Cons: Double the work when executing commands such as `find` because there are now two lists to update, repeat of basic information such as student's name, phone, school and academic level, harder to implement.
     
-    
 #### 6.1.3 Exit Command
 
 The following describes the flow of how `ExitCommand` is performed.
 
 1. Upon successfully parsing the user input, the `ExitCommand#execute(Model model)` is called.
 2. A `CommandResult` with the `shouldExit` field set to true is returned and `MainWindow#handleExit()` is called.
-3. **Reeve** is then exited, and the window closes.
+3. **Reeve** shuts down.
 
 ### 6.2 Student administrative details features
 
@@ -401,7 +401,6 @@ The following activity diagram summarises the flow of events when `OverdueComman
 ![OverdueActivity](images/OverdueActivityDiagram.png)
 
 Figure 5.1.5.2. Activity diagram for `OverdueCommand` execution
-
 
 #### 6.2.6 Detail Commands
 
@@ -600,11 +599,11 @@ The following describes the flow of how `AddExamCommand` is performed.
 3. If the student exists, `AddExamCommand#execute(Model model)` checks if the student already has a similar exam recorded.
 4. A unique exam is defined solely by its `examName`. If a duplicate exam is found, a `CommandException` is thrown and the exam will not be added.
 5. If the exam is not a duplicate, `Student#getExams()` is called get the current list of exams of the specified student.
-6. The new exam is added into this current list and a new updated `Student` is created which is exactly the same characteristics of the specified student but with the updated exam list.
+6. The new exam is added into this current list and a new updated `Student` is created which has exactly the same characteristics as the specified student but with the updated exam list.
 7. `Model#setStudent(Student selectedStudent, Student updatedStudent)` is called to replace the student with the updated copy. A new `CommandResult` is returned with a success message showing the affected student and the exam added.
 8. The updated student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
-The sequence(insert image reference here) of how add exam operates is very similar to that of add question.
+The sequence(insert image reference here) of how add exam operates is very similar to that of add attendance.
 
 ##### 6.3.2.2 Delete exam command
 
@@ -624,7 +623,7 @@ The following describes the flow of how `DeleteExamCommand` is performed.
 
 </div><br>
 
-The sequence(insert image reference here) of how add exam operates is very similar to that of delete question.
+The sequence(insert image reference here) of how add exam operates is very similar to that of delete attendance.
 
 ##### 6.3.2.3 Exam Stats command
 
@@ -740,7 +739,11 @@ The following sequence diagram illustrates to execution of the `ScheduleViewComm
 
 Figure 6.4.2 Sequence diagram for `ScheduleCommand` execution
 
+<div markdown="block" class="alert alert-info">
+
 :information_source: Figure 6.4.1 and 6.4.2 illustrates the `ScheduleCommand` execution within the `Logic` and `Model` Component.
+
+</div>
 
 For the `Ui` component, a calendar using  [jfxtras-icalendarfx](https://jfxtras.org/doc/8.0/jfxtras-icalendarfx/index.html) will be updated with the `LessonEvent` after the `CommandResult` is returned.
 The `'LessonEvent` is provided to the `Ui` by the `LogicManager` through the `Model` component.
@@ -965,7 +968,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
    Use case ends.
 
-**UC00: Adding an additional detail to a student**
+**UC10: Adding an additional detail to a student**
 
 **MSS**
 
@@ -993,7 +996,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Editing an additional detail in a student**
+**UC11: Editing an additional detail in a student**
 
 **MSS**
 
@@ -1021,7 +1024,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Deleting an additional detail from a student**
+**UC12: Deleting an additional detail from a student**
 
 **MSS**
 
@@ -1049,7 +1052,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Adding a question to a student**
+**UC13: Adding a question to a student**
 
 **MSS**
 
@@ -1077,7 +1080,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Resolving a question from a student**
+**UC14: Resolving a question from a student**
 
 **MSS**
 
@@ -1116,7 +1119,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
       Use case resumes at step 2.
 
 
-**UC00: Deleting a question from a student**
+**UC15: Deleting a question from a student**
 
 **MSS**
 
@@ -1144,7 +1147,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Finding all students with overdue tuition fees**
+**UC16: Finding all students with overdue tuition fees**
 
 **MSS**
 
@@ -1165,7 +1168,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
     Use case ends.
 
-**UC00: Adding an exam record to a student**
+**UC17: Adding an exam record to a student**
 
 **MSS**
 
@@ -1193,7 +1196,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Deleting an exam record from a student**
+**UC18: Deleting an exam record from a student**
 
 **MSS**
 
@@ -1221,7 +1224,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Displaying exam statistics of a student**
+**UC19: Displaying exam statistics of a student**
 
 **MSS**
 
@@ -1243,7 +1246,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00**: View class schedule.
+**UC20**: View class schedule.
 
 **MSS**
 
@@ -1265,7 +1268,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
     
     Use case ends.
 
-**UC00: Adding an attendance record to a student**
+**UC21: Adding an attendance record to a student**
 
 **MSS**
 
@@ -1293,7 +1296,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Deleting an attendance record from a student**
+**UC22: Deleting an attendance record from a student**
 
 **MSS**
 
@@ -1335,14 +1338,15 @@ The following table provides the definitions of the various terms used in this D
 
 Term | Definition
 --------|------------------
-Mainstream OS | Refers to Windows, Linux, Unix, OS-X.
-Private contact detail | A contact detail that is not meant to be shared with others.
+Mainstream OS | Refers to Windows, Linux, Unix, OS-X
+Private contact detail | A contact detail that is not meant to be shared with others
 
 ## **Appendix F: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+:information_source: These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
