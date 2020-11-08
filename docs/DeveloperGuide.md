@@ -121,6 +121,7 @@ The `ActiveAccount`,
 * stores a `Account` object that represents the current Account that the user is managing.
 * stores an `ObservableList<Expense>` that can be `observed` e.g. the UI can be bounde to this list so that the UI automatically updates when the data in the list change.
 * stores an `ObservableList<Revenue>` that can be `observed` e.g. the UI can be bounde to this list so that the UI automatically updates when the data in the list change.
+* stores an `Optional<ActiveAccount>` that represents the previous state of the `ActiveAccount`.
 * does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Entry` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object.<br>
@@ -158,7 +159,7 @@ This feature allows the user to undo their previous entry-level commands.
 #### Implementation
 
 The undo mechanism is facilitated by `ActiveAccountManager` which implements the interface `ActiveAccount`. The `ActiveAccountManager` 
-stores its previous state as an `ActiveAccount` attribute when a entry command is executed. On the other hand, the `ActiveAccount` sets the previous 
+stores its previous state as an `ActiveAccount` attribute when a entry command is executed. On the other hand, the `ActiveAccount` sets the attribute containing it previous 
 state as its current state when the undo commands is executed. As such, it implements the following operations:
 
 * `ActiveAccountManager#setPreviousState()` — Saves a copy of the current `ActiveAccountManager` state as an attribute in `ActiveAccountManager`.
@@ -166,32 +167,26 @@ state as its current state when the undo commands is executed. As such, it imple
 
 These operations are exposed in the `ActiveAccount` interface as `ActiveAccount#setPreviousState()` and `ActiveAccount#returnToPreviousState()` respectively.
 
-Given below is an example usage scenario and how the undo mechanism behaves at each step.
+Given below is an example usage scenario and how the undo mechanism behaves at each step. Note that each step starts with an explanation followed by a diagram.
 
-Prelude. When the user first runs _Common Cents_, `ActiveAccountManager` does not store any previous states as shown in the diagram below.
+* Step 1. When the user first runs _Common Cents_, `ActiveAccountManager` does not store any previous states as shown in the diagram below.
 
 ![UndoState0](images/UndoState0.png)
 
-Step 1. The user executes `delete 5 c/expense` command to delete the 5th expense in the expense list in the Account in `ActiveAccountManager`. The `delete` command calls `ActiveAccountManager#setPreviousState()` initially, 
+* Step 2. The user executes `delete 5 c/expense` command to delete the 5th expense in the expense list in `ActiveAccountManager`. The `delete` command calls `ActiveAccountManager#setPreviousState()` initially, 
 causing a copy of the `ActiveAccountManager` state before the `delete 5 c/expense` command executes to be saved as an attribute. After this, the `delete 5 c/expense` command executes and the
-model is updated according to the modified account in ActiveAccount.
+model is updated according to the modified `ActiveAccountManager`.
 
 ![UndoState1](images/UndoState1.png)
-
-Step 3. The user executes `add c/expense …​` to add a new expense. The `add` command calls `ActiveAccountManager#setPreviousState()` initially, 
-causing a copy of the `ActiveAccountManager` state before the command executes to be saved as an attribute. After this, the `add c/expense …​` command executes and the
-model is updated according to the modified account in ActiveAccount.
-
-![UndoState2](images/UndoState2.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `ActiveAccountManager#setPreviousState()`, so the state will not be saved into its attribute.
 
 </div>
 
-Step 4. The user now decides that adding the expense was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ActiveAccountManager#returnToPreviousState()`, 
+* Step 3. The user now decides that deleting the expense was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ActiveAccountManager#returnToPreviousState()`, 
 which will set data of the previous state attribute to the current `ActiveAccountManager`. 
 
-![UndoState3](images/UndoState3.png)
+![UndoState3](images/UndoState2.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `ActiveAccountManager` does not have a previous state 
 (i.e The `previousState` attribute in `ActiveAccountManager` is empty) then there are no previous `ActiveAccountManager` states to restore. 
@@ -217,7 +212,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `ActiveAccountManager#setPreviousState()` is only called in `add`, `delete`, `edit`, and `clear` commands. 
-Hence, the `undo` command only works on the previously stated commands which interacts with entries.
+Hence, the `undo` command only works on the previously stated entry-level commands.
 
 </div>
 
@@ -236,10 +231,9 @@ Explanation why a certain design is chosen.
   * Pros: More commands can be undone, for instance commands dealing with accounts.
   * Cons: 
     * May have performance issues in terms of memory usage. 
-    * We must ensure that the implementation avoids unnecessary changes to Model or ActiveAccount that can result in errors.
+    * We must ensure that the implementation avoids unnecessary changes to Model or ActiveAccount that can result in bugs.
 
-* **Alternative 3:** Individual command knows how to undo/redo by
-  itself.
+* **Alternative 3:** Individual command knows how to undo by itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the entry being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 

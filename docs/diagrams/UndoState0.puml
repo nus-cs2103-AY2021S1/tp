@@ -8,14 +8,11 @@ title When Common Cents is initialized.
 package States <<rectangle>> {
     class State1 as "__aa1:ActiveAccountManager__"
     class State2 as "__aa1:ActiveAccountManager__"
-    class State3 as "__aa2:ActiveAccountManager__"
 }
 
 State1 -[hidden]right-> State2
-State2 -[hidden]right-> State3
 
 hide State2
-hide State3
 
 class Pointer as "Current State" #FFFFF
 
