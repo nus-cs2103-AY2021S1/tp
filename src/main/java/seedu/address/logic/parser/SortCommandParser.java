@@ -16,7 +16,7 @@ public class SortCommandParser implements Parser<SortCommand> {
     @Override
     public SortCommand parse(String args) throws ParseException {
         String cleanedArgs = args.replaceAll("( )+", " ");
-        String trimArgs = args.trim();
+        String trimArgs = cleanedArgs.trim();
         String[] argsArr = trimArgs.split(" ");
         ParserUtil.checkArgsLength(argsArr, SortCommand.COMMAND_WORD, SortCommand.MESSAGE_USAGE, 1, 2);
 

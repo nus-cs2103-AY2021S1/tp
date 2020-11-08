@@ -534,24 +534,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-2. SupperStrikers displays the list of vendors.
-3. User requests to choose a specified vendor.
-4. SupperStrikers displays the menu of the selected vendor.
-5. SupperStrikers creates a new empty order of the selected vendor.
+1. SupperStrikers displays the list of vendors.
+2. User requests to choose a specified vendor.
+3. SupperStrikers displays the menu of the selected vendor.
+4. SupperStrikers creates a new empty order of the selected vendor.
+
+  Use case ends.
 
 **Extensions**
 
-- 3a. The given index is invalid.
+- 2a. The given index is invalid.
 
-  - 3a1. SupperStrikers displays an error message.
+  - 2a1. SupperStrikers displays an error message.
 
-    Use Case resumes at step 2.
+    Use case resumes at step 2.
   
-- 3b. The user has already selected a different vendor.
+- 2b. The user has already selected a different vendor.
   
-  - 3b1. SupperStrikers clears the order of the current vendor.
+  - 2b1. SupperStrikers clears the order of the current vendor.
   
-  Use case resumes at step 4.
+    Use case resumes at step 3.
 
 
 
@@ -566,7 +568,7 @@ Precondition: <u>User has already selected a particular vendor</u>
 3. SupperStrikers displays the details of all vendors.
 4. SupperStrikers resets the current order to a new empty order.
 
-
+  Use case ends.
 
 **Use case: Viewing total**
 
@@ -575,20 +577,51 @@ Precondition: <u>User has already selected a particular vendor</u>
 1. User requests to see the total price of the current order.
 2. SupperStrikers displays the total price of the current order to the user.
 
+  Use case ends.
+
+**Extensions**
+
+- 1a. The order list is empty.
+
+  - 1a1. SupperStrikers displays an error message.
+  
+    Use case ends.
+
 **Use case: Clearing current order**
 
 **MSS**
 
 1. User requests to clear the current order.
 2. SupperStrikers clears the current order.
-3. SupperStrikers creates a new empty order of the selected order  .
+3. SupperStrikers creates a new empty order of the selected order.
+
+  Use case ends.
+
+**Extensions**
+
+- 1a. The order list is empty.
+
+  - 1a1. SupperStrikers displays an error message.
+  
+    Use case ends.
 
 **Use case: Submit order**
 
 **MSS**
 
 1. User requests to submit the current order.
-2. SupperStrikers displays a copy of the order in a submittable format to the user.
+2. SupperStrikers displays a copy of the order in a submittable format to the user and at the same time copies that text
+ to the user's clipboard.
+
+  Use case ends.
+
+**Extensions**
+
+- 1a. The order list is empty.
+
+  - 1a1. SupperStrikers displays an error message.
+  
+    Use case ends.
 
 **Use case: Add an item**
 
@@ -596,7 +629,9 @@ Precondition: <u>User has already selected a particular vendor</u>
 
 1. User requests to add a specified quantity of an item listed in the vendor menu.
 2. SupperStrikers adds the item along with the quantity specified into the current order.
-4. SupperStrikers displays the updated order with the newly added item.
+3. SupperStrikers displays the updated order with the newly added item.
+
+  Use case ends.
 
 **Extensions**
 
@@ -604,20 +639,25 @@ Precondition: <u>User has already selected a particular vendor</u>
 
   - 1a1. SupperStrikers shows an error message.
 
-    Use Case resumes at step 1.
+    Use case resumes at step 1.
 
-- 1b. The given quantity is negative.
+- 1b. The given quantity is invalid.
 
   - 1b1. SupperStrikers shows an error message.
 
-    Use Case resumes at step 1.
+    Use case resumes at step 1.
   
 - 1c. The quantity is not specified.
 
-  - 1c1. SupperStrikers adds the quantity of the item by 1.
+  - 1c1. SupperStrikers sets the quantity of the item to be added as 1.
 
+    Use case resumes at step 2.
+
+- 2a. The resultant quantity of the item exceeds 100.
+
+  - 2a1. SupperStrikers shows an error message.
+  
     Use case resumes at step 1.
-
 
 **Use case: Remove an item**
 
@@ -626,37 +666,33 @@ Precondition: <u>User has already selected a particular vendor</u>
 1.  User requests to remove a quantity of a specific item in the current order.
 2.  SupperStrikers decreases the quantity of the item by the quantity provided.
 
-    Use case ends.
+  Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+- 1a. The given index is invalid.
 
-  Use case ends.
+  - 1a1. SupperStrikers shows an error message.
 
-* 1b. The given index is invalid.
-
-    * 1b1. SupperStrikers shows an error message.
-
-      Use case ends.
+    Use case resumes at step 1.
     
-* 1c. The given quantity is invalid.
+- 1b. The given quantity is invalid.
   
-     * 1c1. SupperStrikers shows an error message.
+  - 1b1. SupperStrikers shows an error message.
 
-      Use case ends.
+    Use case resumes at step 1.
      
-* 1d. The given quantity is larger or equal to the quantity to the order item.
+- 1c. The given quantity is larger than the quantity to the order item.
 
-     * 1d1. SupperStrikers removes the order item at the specified index.
+  - 1c1. SupperStrikers shows an error message.
 
-      Use case ends.
+    Use case resumes at step 1.
 
-* 1e. The quantity is not specified.
+- 1d. The quantity is not specified.
 
-     - 1e1. SupperStrikers removes the order item at the specified index.
+  - 1d1. SupperStrikers removes the order item at the specified index along with all of its quantity.
 
-      Use case ends.
+    Use case ends.
 
 
 **Use case: Add a tag to an item**
@@ -666,26 +702,27 @@ Precondition: <u>User has already selected a particular vendor</u>
 1.  User requests to tag a specific item in the current order.
 2.  SupperStrikers adds tag to the item.
 
-    Use case ends.
+  Use case ends.
 
 **Extensions**
 
-* 1a. The order is empty.
+- 1a. The given index is invalid.
 
-  Use case ends.
+  - 1a1. SupperStrikers shows an error message.
 
-* 1b. The given index is invalid.
-
-    * 1b1. SupperStrikers shows an error message.
-
-      Use case ends.
+    Use case resumes at step 1.
     
-* 1c. The tag is not specified.
+- 1b. The tag is not specified.
 
-     - 1c1. SupperStrikers shows an error message.
+  - 1b1. SupperStrikers shows an error message.
 
-      Use case ends.
+    Use case resumes at step 1.
 
+- 1c. The tag already exists at the specified order item.
+
+  - 1c1. SupperStrikers shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Remove tags from an item**
 
@@ -694,93 +731,110 @@ Precondition: <u>User has already selected a particular vendor</u>
 1.  User requests to remove all tags from a specific item in the current order.
 2.  SupperStrikers removes all tags from the item.
 
-    Use case ends.
+  Use case ends.
 
 **Extensions**
 
-* 1a. The order is empty.
+- 1a. The given index is invalid.
 
-  Use case ends.
+  - 1a1. SupperStrikers shows an error message.
 
-* 1b. The given index is invalid.
-
-    * 1b1. SupperStrikers shows an error message.
-
-      Use case ends.
-      
+    Use case resumes at step 1.
       
 
-**Use case: Load Preset**
+**Use case: Load a Preset**
 
 **MSS**
 
 1. User requests to load preset of a specific name.
-
 2. SupperStrikers loads the saved presets from storage.
-
 3. SupperStrikers finds the preset with the same name under the current vendor.
-
 4. SupperStrikers loads the preset into the current order.
 
-   Use case ends.
-
-
+  Use case ends.
 
 **Extensions**
 
 - 1a. The name given is invalid.
-  Use case ends.
 
-- 2a. Error in loading presets.
+  - 1a1. SupperStrikers shows an error message.
 
-​	   Use case ends.
+    Use case resumes at step 1.
+
+- 1b. The name is not provided.
+
+  - 1b1. SupperStrikers instead displays the name of all saved presets for the current vendor.
+  
+    Use case ends.
 
 - 3a. There is no preset with the same name.
 
-  Use case ends.
+  - 3a1. SupperStrikers shows an error message.
+
+    Use case resumes at step 1.
 
 - 4a. The current order already contains order items.
 
-  The current order is replaced by the preset.
+  - 4a1. The current order is replaced by the preset.
 
-  Use case ends.
+    Use case ends.
 
-  
-
-**Use case: Save Preset**
+**Use case: Save a Preset**
 
 **MSS**
 
 1. User requests to save preset with a specific name.
-
-2. SupperStrikers loads the current presets from storage.
-
+2. SupperStrikers loads the saved presets from storage.
 3. SupperStrikers creates a new preset with the current order items.
-
-4. SupperStrikers adds the new preset into the current presets.
-
+4. SupperStrikers adds the new preset into the current list of saved presets for the current vendor.
 5. SupperStrikers saves the modified presets into storage.
 
-   Use case ends.
-
-
+  Use case ends.
 
 **Extensions**
 
 - 1a. The name given is invalid.
-  	  Use case ends.
 
-- 2a. Error in loading presets.
+  - 1a1. SupperStrikers shows an error message.
 
-​             Use case ends.
+    Use case resumes at step 1.
 
-- 4a. The current presets already has a preset with the same name
+- 1b. The name is not provided.
 
-  ​       The current preset is replaced by the new preset.
+  - 1b1. SupperStrikers gives the preset a default name of 'MyPreset'.
+  
+    Use case resumes at step 2.
 
-  ​       Use case resumes at step 5.
+- 4a. The preset that is trying to be saved has an identical name to an existing saved preset.
 
+  - 4a1. The preset that is trying to be saved replaces the old preset with the same name.
 
+    Use case resumes at step 5.
+
+**Use case: Delete a Preset**
+
+**MSS**
+
+1. User requests to delete a preset with a specific name.
+2. SupperStrikers loads the saved presets from storage.
+3. SupperStrikers removes the preset with the specified name from the list.
+4. SupperStrikers saves the modified presets into storage.
+
+  Use case ends.
+
+**Extensions**
+
+- 1a. The name given is invalid or is not provided.
+
+  - 1a1. SupperStrikers shows an error message.
+
+    Use case resumes at step 1.
+
+- 2a. The specified name is not found in the list of saved presets.
+
+  - 2a1. SupperStrikers shows an error message.
+
+    Use case resumes at step 1.
 
 *{More to be added}*
 
@@ -812,13 +866,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Open a command window. Run the java -version command to ensure you are using Java 11. If not, please install Java 11 to ensure you are able to safely launch the jar file.
+
+   3. Launch the jar file using the java -jar supperstrikers.jar command (do not use double-clicking).<br>
+       Expected: Shows the GUI with a set of sample vendors. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by using the java -jar supperstrikers.jar command.<br>
        Expected: The most recent window size and location is retained.
 
 2. _{ more test cases …​ }_
@@ -836,7 +893,6 @@ testers are expected to do more *exploratory* testing.
       Expected: No vendor is selected. The list of vendors is displayed again.
 
    4. Test case: `vendor 0`<br>
-
       Expected: No vendor is selected. Error details shown in status message. Status bar remains the same.
 
    5. Other incorrect delete commands to try: `vendor x`, `...` (where x is larger than the list size)<br>
@@ -848,16 +904,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding an item while an order is currently active
 
-   1. Prerequisites: Create a supper order using the `view` command.
+   1. Prerequisites: Has a vendor selected using the `vendor` command.
 
    2. Test case: `add 1 1`<br>
-      Expected: 1 order of the first item from the menu is added into the order. Details of the added order shown in the status message.
+      Expected: 1 order of the first item from the menu is added into the order. Details of the added order item shown in the status message.
 
    3. Test case: `add 1 0`<br>
       Expected: No item is added. Error details shown in the status message.
 
    4. Test case: `add 0 1`<br>
-
       Expected: No item is added. Error details shown in the status message.
 
    5. Other incorrect add commands to try: `add`, `add -1 -1`, `add x y`, `...` (where x is larger than the menu size)<br>
@@ -869,7 +924,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Removing an item while an order is currently active
 
-   1. Prerequisites: List all items using the `view` command. There is at least one item in the order.
+   1. Prerequisites: Has a vendor selected using the `vendor` command. There is at least one item in the order.
 
    2. Test case: `remove 1`<br>
       Expected: All the quantity of the first item is removed from the order. Details of the removed order shown in the status message.
@@ -891,6 +946,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Delete the data folder, preferences and config json file.
+   
+   2. Make sure you have the latest copy of the SupperStrikers.jar which can be obtained [here.](https://github.com/AY2021S1-CS2103-T16-1/tp/releases)
+   
+   3. Rerun the SupperStrikers.jar in an empty folder.
 
 2. _{ more test cases …​ }_
