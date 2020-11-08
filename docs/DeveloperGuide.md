@@ -945,8 +945,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `calorie_add c/1500`<br>
       Expected: Increases calorie count for today by 1500. GUI will reflect this change as well in Calorie Graph.
-   1. Test case: `calorie_add c/2147483648`<br>
-      Expected: Error will be thrown because this value is bigger than what Java can handle. Calorie Graph and today's calorie count will not update.
+   1. Test case: `calorie_add c/999999`<br>
+      Expected: Error will be thrown because this value not a realistic input. Calorie Graph and today's calorie count will not update.
    1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
 
@@ -954,8 +954,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `calorie_minus c/1500`<br>
       Expected: Decreases calorie count for today by 1500. GUI will reflect this change as well in Calorie Graph.
-   1. Test case: `calorie_minus c/2147483648`<br>
-      Expected: Error will be thrown because this value is bigger than what Java can handle. Calorie Graph and today's calorie count will not update.
+   1. Test case: `calorie_minus c/999999`<br>
+      Expected: Error will be thrown because this value is not a realistic input. Calorie Graph and today's calorie count will not update.
    1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
 
