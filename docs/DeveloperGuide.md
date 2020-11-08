@@ -58,7 +58,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete sn/ntuc1`.
 
-<img src="images/_ArchitectureSequenceDiagram_.png" width="574" />
+![Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -855,7 +855,7 @@ subclasses that include:
 * `SourceContainsKeywordsPredicate`
 * `LocationContainsKeywordsPredicate`
 
-#### FindCommandParser
+#### FindCommandParser / FindExactCommandParser
 The `FindCommandParser` (as with the `FindExactCommandParser`) class
 implements the `Parser` interface.
 `FindCommandParser` class is tasked with parsing the user inputs
@@ -902,13 +902,13 @@ of the `FindCommand` into a composed `Predicate<Stock>`.
 `Find` feature requires the `Stock` to fulfill only one
 `FieldContainsKeywordsPredicate` in the list for `Stock`
 to be displayed. The mechanism used to combine the predicates
-into a composed Predicate<Stock> for `Find` is Java 8 Predicate method,
-Predicate.or().
+into a composed `Predicate<Stock>` for Find is Java 8 Predicate method,
+`Predicate.or()`.
 
 `FindExact` feature requires the `Stock` to fulfill all
 `FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed.
-The mechansim used to combine the predicates into a composed Predicate<Stock>
-for `FindExact` is Java 8 Predicate method, Predicate.and().
+The mechanism used to combine the predicates into a composed `Predicate<Stock>`
+for FindExact is Java 8 Predicate method, `Predicate.and()`.
 
 `FindUtil` implements the following important operations:
 
@@ -920,7 +920,7 @@ for `FindExact` is Java 8 Predicate method, Predicate.and().
 #### FieldContainsKeywordsPredicate
 
 `FieldContainsKeywordsPredicate` is an abstract class
-that implements the interface Predicate<Stock>.
+that implements the interface `Predicate<Stock>`.
 Its subclasses are `NameContainsKeywordsPredicate`,
 `LocationContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate`
 and `SourceContainsKeywordsPredicate`, which inherit and implement the method
@@ -937,8 +937,12 @@ and `SourceContainsKeywordsPredicate`, which inherit and implement the method
 * For all `FieldContainsKeywordsPredicate`, if keyword given is an
  empty string, method test() evaluates to false.
 
-Note: For any `FieldContainsKeywordsPredicate#test()` to return true,
+<div markdown="span" class="alert alert-info">:information_source: 
+
+For any `FieldContainsKeywordsPredicate#test()` to return true,
  field of `Stock` must contain ALL keywords in the list.
+
+</div>
 
 `FieldContainsKeywordsPredicate` implements the following important operations:
 * `FieldContainsKeywordsPredicate#test()` -
@@ -979,7 +983,7 @@ a composed `Predicate<Stock>` with the list of `FieldContainsKeywordsPredicate`
 Step 8. `LogicManager#execute()` then calls `FindCommand#execute()` method,
 with current `Model` as argument. Within this method call,
 `Model#updateFilteredStockList` method evaluates the composed
-Predicate<Stock> on all the stocks in the stock list.
+predicate on all the stocks in the stock list.
 
 Step 9. For each `FieldContainsKeywordsPredicate`, `FieldContainsKeywordsPredicate#test()`
 evaluates the predicate on the stock.
@@ -2952,7 +2956,7 @@ unless specified otherwise.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Stock**: Item in the inventory.
-* **Field**: (name, serial number, quantity, location stored, source) of the stock in inventory
+* **Field**: Represents the Name, Serial Number, Quantity, Location stored, Source, Note of the stock in inventory
 
 --------------------------------------------------------------------------------------------------------------------
 
