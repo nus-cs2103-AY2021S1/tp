@@ -83,7 +83,6 @@ This section details the notations used to specify the command formats in the [c
   * E.g. `create_item i/iPad q/100` and `create_item q/100 i/iPad` are both accepted.
 * Range of valid inputs:
   * Paramters that expect an integer must be between `0` and `2147483647`.
-  
 
 </div>
 
@@ -125,7 +124,7 @@ This creates a new inventory record for the item `[ITEM_NAME]` of quantity `[QUA
 For the `[ITEM_COST]` parameter:
 
 * If given, then a finance record is created automatically with a total amount of `ITEM_COST * QUANTITY`.
-* If left empty, then an **empty** finance record is created with an amount of `0`. 
+* If left empty, then an **empty** finance record is created with an amount of `0`.
 
 __Example:__ `create_inventory i/iphone q/10 c/20`
 
@@ -520,7 +519,7 @@ __Result:__ Tabs switched.
 Undo or redo the previous command.
 
 __Format:__ `undo` or `redo`
-  
+
 __Example:__ `undo` or `redo`
 
 __Result:__ The previous command is undone / redone.
