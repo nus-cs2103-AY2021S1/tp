@@ -18,6 +18,7 @@ by Team W12-2
     * [4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`](#section-42---delete-commands---deletemod-deletetg-and-deletestudent)
     * [4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`](#section-43---edit-commands---editmod-edittg-and-editstudent)
     * [4.4 - Find Commands - `findMod`, `findTG` and `findStudent`](#section-44---find-commands---findmod-findtg-and-findstudent)
+    * [4.5 - List Commands - `listMod`, `listTG` and `listStudent`](#section-45---list-commands---listmod-listtg-and-liststudent)
 * [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
 * [Section 6 - Appendix](#section-6---appendix)
 
@@ -375,7 +376,7 @@ Step 5. `FindModuleCommand#execute(Model)` creates a `CommandResult` object and 
 `LogicManager`.
 
 > Note: There are some differences for the find commands of `TutorialGroup` and `Student` during Step 4. `TutorialGroup`
-> has its own predicate class called `TutorialContainsKeywordsPredicate` while `Student` has its own predicate class
+> also has its own predicate class called `TutorialContainsKeywordsPredicate` while `Student`'s predicate class is
 > called `NameContainsKeywordsPredicate`.
 >
 > For `TutorialGroup`:
@@ -389,8 +390,12 @@ Step 5. `FindModuleCommand#execute(Model)` creates a `CommandResult` object and 
 > - Within each `TutorialGroup`, there is a `UniqueStudentList`.
 > - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be searched from.
-> - `Model#setStudent(Student, Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
-> `TutorialGroup` and edits the `Student` in the `internalList` of the `UniqueStudentList`.
+> - `Model#updateFilteredStudentList(Predicate<Student>)` method then updates the displayed list of students.
+>
+> The commands `attendanceBelow` and `participationBelow` also follow similar implementations. Their predicate classes
+> are `AttendanceBelowSpecifiedScorePredicate` and `ParticipationBelowSpecifiedScorePredicate` respectively. Like the
+> aforementioned find command for `Student`, `attendanceBelow` and `participationBelow` uses the 
+> `Model#updateFilteredStudentList` method to update the displaye list of students.
 
 #### Design Considerations
 **Aspect: List to contain the models**
@@ -401,7 +406,7 @@ Step 5. `FindModuleCommand#execute(Model)` creates a `CommandResult` object and 
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.5 - List Commands (listMod, listTG, listStudent)
+### Section 4.5 - List Commands - `listMod`, `listTG` and `listStudent`
 #### Overview
 
 The List command in Trackr enables users to easily list all data. Users will be able to see all data after using the Find Commands.
@@ -413,6 +418,37 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ListModuleCommand` of Trackr.
 
 ![ListModSequenceDiagram](images/ListModuleCommandSequenceDiagram.png)
+
+Step 1. The user executes `listMod` to view all the modules in Trackr. The `listMod` command calls
+`LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `TrackrParser#parseCommand(String)`. This method creates a new
+`ListModuleCommand` object.
+
+Step 3. `LogicManager#execute(String)` calls the `ListModuleCommand#execute(Model)` method of the `ListModuleCommand`
+object.
+
+Step 4. Within `Model`, the method `Model#updateFilteredModuleList(Predicate<Module>)` is executed and this displays
+all the modules within Trackr.
+
+Step 5. `ListModuleCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned to
+`LogicManager`.
+
+> Note: There are some differences for the add commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be listed from.
+> - `Model#updateFilteredTutorialGroupList(Predicate<TutorialGroup>)` method then displays all the tutorial groups
+> within the target `Module`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is an `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be listed from.
+> - `Model#updateFilteredStudentList(Predicate<Student>)` method then displays all the students within the target 
+> `Module` and `TutorialGroup`.
 
 #### Design Considerations
 **Aspect: List to contain the models**
