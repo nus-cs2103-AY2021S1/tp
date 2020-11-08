@@ -1104,6 +1104,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
+(For all test cases below, a corresponding output will be displayed in the `Command Output Box`, unless specified otherwise)
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
@@ -1209,41 +1211,41 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: None.
    
    1. Test Case: `add recipe duck rice` followed by `undo`.<br>
-      Expected: The added recipe is removed. The command output box shows details of the undone command.        
+      Expected: The added recipe is removed.     
       
    1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice.<br>
-      Expected: The added recipes are removed. The command output box shows details of the second undone command.              
+      Expected: The added recipes are removed.              
       
 1. Undoing an command that cannot be undone
    1. Prerequisites: No commands entered since launch.
    
    1. Test Case: `list recipe` followed by `undo`.<br>
-      Expected: The command output box shows an error message.       
+      Expected: Nothing happens. An error is displayed in the command output box.     
 
 1. Undoing an command that cannot be undone with undoable commands entered before.
    1. Prerequisites: None.
    
    1. Test Case: `add recipe duck rice` followed by `list recipe`, then `undo`.<br>
-      Expected: The recipe `duck rice` is removed. The command output box shows details of the undone command.            
+      Expected: The recipe `duck rice` is removed.          
 
 #### B.1.5&ensp;Redo commands previously undone
 1. Redoing an undone command
    1. Prerequisites: None.
    
    1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`.<br>
-      Expected: The `duck rice` recipe removed by the `undo` command is added. The command output box shows details of the redone command.      
+      Expected: The `duck rice` recipe removed by the `undo` command is added.
       
    1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice, then `redo` twice. <br>
-      Expected: The `duck rice` and `duck soup` recipes removed by the `undo` commands are added. The command output box shows details of the second redone command. 
+      Expected: The `duck rice` and `duck soup` recipes removed by the `undo` commands are added.
       
 1. Redoing when there is no undo command executed prior
    1. Prerequisites: No undo command executed since launch, or all undoable commands have been redone.
    
    1. Test Case: `add recipe duck rice` followed by `redo`.<br>
-      Expected: The command output box shows an error message.      
+      Expected: Nothing happens. An error is displayed in the command output box.       
       
    1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`, and then `redo`.<br>
-      Expected: The `duck rice` recipe removed by the `undo` command is added after the first `redo`.  The command output box shows an error message after the second redo.             
+      Expected: The `duck rice` recipe removed by the `undo` command is added after the first `redo`.  Nothing happens for the second redo. An error is displayed in the command output box.                
 
 #### B.1.6&ensp;Getting Help
 
@@ -1252,22 +1254,37 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: none.
     
     1. Test case: `help`<br>
-    Expected: General help message displayed at the Command Output box.
+    Expected: General help message displayed at the command output box.
     
     1. Test case: `help add`, `help delete ingredient`<br>
-    Expected: Help message for the specified command displayed at the Command Output box.   
+    Expected: Help message for the specified command displayed at the command output box.   
     
     1. Incorrect help commands to try: `help 0`, `help recipe`, `...` <br>
-    Expected: No help message displayed. Error details shown in the Command Output box.
+    Expected: No help message displayed. Error details shown in the command output box.
      
       
 ### B.2&ensp;Managing Recipes
 
-#### B.2.1&ensp;Adding recipes  
+#### B.2.1&ensp;Adding recipes     
+
+All successful test cases in the section **Adding recipes** will result in the **Recipe Display** being shown.
+ 
 1. Adding a recipe
 
    1. Prerequisites: none.
+   
+   1. Test Case: `add recipe Banana Smoothie  /ingredient Banana`.<br>
+      Expected: The recipe `Banana Smoothie` is added to the recipe list. No steps and tags should be shown; the ingredient with quantity in brackets `Banana (1)` is shown.
+    
+   1. Test Case: `add recipe Banana Smoothie  /ingredient Banana /qty 100g`.<br>
+      Expected: The recipe `Banana Smoothie` is added to the recipe list. No steps and tags should be shown; the ingredient with quantity in brackets `Banana (100g)` is shown.
 
+   1. Test Case: `add recipe Banana Smoothie  /step Chop Bananas /step Add to blender`.<br>
+      Expected: The recipe `Banana Smoothie` is added to the recipe list. No ingredients and tags should be shown; the steps `Chop Bananas` and `Add to blender` are shown.
+
+   1. Test Case: `add recipe Banana Smoothie  /tag Fruit /tag Favourites`.<br>
+      Expected: The recipe `Banana Smoothie` is added to the recipe list. No ingredients and steps should be shown; the tags `Fruit` and `Favourites` are shown.
+       
    1. Test case: 
    ``````
    add recipe Banana Smoothie 
@@ -1276,9 +1293,9 @@ testers are expected to do more *exploratory* testing.
    /step Chop the bananas and add to a blender with milk. 
    /step Turn the blender on and blend until creamy and smooth.
    /step Ready to serve.
-   /tag Summer Favourites /tag fruit
+   /tag Summer Favourites /tag Fruit
    ``````
-   Expected: New recipe added. Details of the added recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+   Expected: The recipe `Banana Smoothie` is added to the recipe list.
 
 1. Adding a recipe without ingredients, steps and tags
    1. Prerequisites: None.
@@ -1290,157 +1307,169 @@ testers are expected to do more *exploratory* testing.
    Expected: No recipe is added. Error details shown in the Command Output box. 
    
 #### B.2.2&ensp;Deleting recipes  
+
+All successful test cases in the section **Deleting recipes** will result in the **Recipe View Panel** being shown.
+
 1. Deleting a recipe using recipe index
-   1. Prerequisites: None.
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
     
    1. Test case: `delete recipe #1`<br>
-      Expected: Recipe **#2** deleted. All current recipes (after the deletion) shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+      Expected: The recipe **#1** `Apple Tart` is deleted from the recipe list. 
     
-   1. Test case: `delete recipe #20` <br>
+   1. Test case: `delete recipe #20`<br>
       Expected: No recipe deleted as the recipe with the given index does not exist. Error details shown in the Command Output box. 
 
 1. Deleting a recipe using recipe index in a filtered list
-   1. Prerequisites: None.  
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
-   1. Test case: Similar to previous.
-      Expected: Similar to previous.
+   1. Test Case: `find recipe banana` followed by `delete recipe #1`.<br>
+      Expected: The recipe `Sweet Banana Salad` is deleted from the recipe list.
+      
+   1. Test Case: `find recipe banana` followed by `delete recipe #1`, then `undo`, then `find recipe banana` before `delete recipe #1`.<br>
+      Expected: The recipe `Banana Smoothie` is deleted from the recipe list.
    
 1. Deleting a recipe using recipe name
-   1. Prerequisites: None. 
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
+
+   1. Test Case: `delete recipe Apple Tart`.<br>
+      Expected: The recipe `Apple Tart` is deleted from the recipe list.
       
-   1. Test case: `delete recipe Fruit Mix`<br>
-      Expected: Recipe with the name **Pancakes** deleted. Output display similar to previous.
-      
-   1. Test case: ``delete recipe Salad`` <br>
+   1. Test case: `delete recipe Salad`<br>
       Expected: No recipe deleted as the recipe with the given name does not exist. Error details shown in the Command Output box.
    
    1. Other incorrect delete commands to try: `delete`, `delete recipe`<br>
       Expected: No recipe is deleted. Output display similar to previous.   
 
-#### B.2.3&ensp;Editing recipes  
-1. Editing a recipe using recipe index
+#### B.2.3&ensp;Editing recipes
 
-   1. Prerequisites: None. 
-   
-   1. Test case: 
-    ``````
-    edit recipe #3
-    /name Fruit Mix
-    /ingredient:edit Banana /qty 1
-    /ingredient:add Strawberry /qty 8
-    /ingredient:delete milk
-    /ingredient:add Yoghurt /qty 200ml 
-    /step:edit:1 Chop the bananas and strawberries and add to a blender with milk. 
-    /step:delete:3
-    /step:add:3 The fruit mix is now ready to serve.
-    /tag:add cooling /tag:delete fruit
-    ``````
-    Expected: Recipe **#3** edited. Details of the added recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
-  
+1. Editing a recipe using recipe index
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
+
+   1. Test Case: `edit recipe #1 /name Apple Tarts`.<br>
+      Expected: The recipe `Apple Tart` is renamed to `Apple Tarts`.
+
 1. Editing a recipe using recipe index in a filtered list
-   1. Prerequisites: None. 
+    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
-   1. Test case: Similar to above.<br>
-      Expected: Similar to above.
-   
+    1. Test Case: `find recipe banana`, followed by `edit recipe #1 /ingredient:add Raisins /qty 5`.<br>
+       Expected: The ingredient with quantity in brackets `Raisins (5)` is added to the recipe `Sweet Banana Salad`.
+
+    1. Test Case: `find recipe banana`, followed by `edit recipe #1 /ingredient:edit Banana /qty 3`.<br>
+       Expected: The ingredient with quantity in brackets `Banana (2)` is changed to `Banana (3)` in the recipe `Sweet Banana Salad`.   
+
+    1. Test Case: `find recipe banana`, followed by `edit recipe #1 /ingredient:delete Banana`.<br>
+       Expected: The ingredient with quantity in brackets `Banana (2)` is removed from the recipe `Sweet Banana Salad`.
+    
 1. Editing a recipe using recipe name
-   1. Prerequisites: None. 
-   
-   1. Test case: `edit recipe Fruit Mix /name Fruit Juice`<br>
-      Expected: Similar to above.
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
+
+   1. Test Case: `edit recipe Apple Tart /tag:add vegetarian`.<br>
+      Expected: The tag `vegetarian` is added to the recipe `Apple Tart`.
+       
+   1. Test Case: `edit recipe Apple Tart /step:delete:1`.<br>
+      Expected: The step `Cut the banana and put it into a bowl` is removed from the recipe `Apple Tart`.
+      
+   1. Test Case: `edit recipe Apple Tart /step:add Mash the bananas`.<br>
+      Expected: The step `Mash the bananas` is added to the end of the existing steps of the recipe `Apple Tart`.      
+ 
+   1. Test Case: `edit recipe Apple Tart /step:edit:1 Put the bananas in a bowl`.<br> 
+      Expected: The step `Cut the banana and put it into a bowl` is changed to `Put the bananas in a bowl` in the recipe `Apple Tart`.  
       
    1. Incorrect edit commands to try: `edit`, `edit recipe`, `edit recipe #1`<br>
       Expected: No recipe is edited. Error details shown in the Command Output box. 
       
 #### B.2.4&ensp;Filtering recipes  
 1. Filtering recipes
-   1. Prerequisites: None. 
-
-   1. Test case: 
-      ``````
-      filter recipe
-      /name fruit /name juice
-      /ingredient banana
-      /ingredient yoghurt
-      /tag cooling
-      ``````
-      Expected: Recipes matching all specified criteria displayed in the Recipe View Panel.
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
+   
+   1. Test Case: `filter recipe /name banana`.<br>
+      Expected: The recipes `Sweet Banana Salad` and `Banana Smoothie` are to be displayed. 
+      
+   1. Test Case: `filter recipe /tag fruit`.<br>
+      Expected: The recipes `Apple Tart`, `Sweet Banana Salad` and `Banana Smoothie` are to be displayed.
+      
+   1. Test Case: `filter recipe /tag fruit`.<br>
+      Expected: The recipes `Apple Tart`, `Sweet Banana Salad` and `Banana Smoothie` are to be displayed. 
+   
+   1. Test Case: `filter recipe /ingredient banana`.<br>
+      Expected: The recipes `Sweet Banana Salad` and `Banana Smoothie` are to be displayed.  
     
    1. Incorrect filter commands to try: `filter`, `filter recipe`, `filter recipe /name`, `...`(where any search term is empty) <br>
       Expected: No recipe is filtered. Error details shown in the Command Output box.   
       
 #### B.2.5&ensp;Finding recipes  
 1. Finding recipes
-   1. Prerequisites: None. 
-
-   1. Test case: `find recipe fruit mix juice`
-      Expected: Recipes whose names contain any of the keywords are displayed in the Recipe View Panel. A confirmation message is displayed at the Command Output box.
+    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
+   
+    1. Test Case: `find recipe banana`.<br>  
+       Expected: The recipes `Sweet Banana Salad` and `Banana Smoothie` are to be displayed. 
     
    1. Incorrect find commands to try: `find`, `find recipe` <br>
       Expected: No recipe is found. Error details shown in the Command Output box.   
          
 #### B.2.6&ensp;Listing recipes  
 1. Listing recipes
-   1. Prerequisites: None. 
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
    
    1. Test case: `list recipe` <br>
-     Expected: All recipes displayed in the Recipe View Panel. A confirmation message is displayed at the Command Output box.
-   
-   1. Test case: `list recipe /name fruit` <br>
-     Expected: Output display similar to previous. `/name fruit` is ignored when the command is parsed.
+     Expected: All 6 recipes displayed in the Recipe View Panel.
    
    1. Other incorrect list commands to try: `list`, `list rec` <br>
      Expected: No recipe is found. Error details shown in the Command Output box.   
-
-1. Listing filtered recipes
-   1. Prerequisites: None. 
    
 1. Listing recipe recommendations
-   1. Prerequisites: None. 
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
   
    1. Test case: `list recommendation` or `list recommendations`<br>
-     Expected: All recipes using ingredients in stock are listed. A confirmation message is displayed at the Command Output box. When there are insufficient ingredients or no matching recipe, no valid recommendation can be given.
+     Expected: All recipes with sufficient ingredients in stock are listed. 
     
    1. Incorrect list recommendation(s) commands to try: `list`, `list recipe recommendation`, `...` <br>
-     Expected: No recommendation listed. Error details or irrelevant output shown in the Command Output box.
+     Expected: No recommendation listed. Error details shown in the Command Output box.
+  
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The recommendations displayed might differ due to the sample ingredients of ChopChop
+having expiry dates in December 2020.
+</div>  
   
 #### B.2.7&ensp;Viewing recipes   
-1. Viewing a recipe using recipe index
-   1. Prerequisites: None. 
+1. Viewing a recipe using recipe index<br>
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
-   1. Test case: `view recipe #1` <br>
-      Expected: Details of recipe **#1** shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+   1. Test case: `view recipe #1`<br>
+      Expected: The recipe **#1** `Apple Tart` is displayed.
 
 1. Viewing a recipe using recipe index in a filtered list
-   1. Prerequisites: None. 
+    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
+   
+    1. Test Case: `find recipe banana` followed by `view recipe #1`.<br>
+       Expected: The recipe `Sweet Banana Salad` is displayed. 
    
 1. Viewing a recipe using recipe name
-   1. Prerequisites: None. 
-   
-   1. Test case: `view recipe Fruit Juice` <br>
-    Expected: Details of the recipe with name **Fruit Juice** shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
+
+   1. Test Case: `view recipe Apple Tart`.<br>
+      Expected: The recipe `Apple Tart` is displayed.
    
 #### B.2.8&ensp;Making recipes   
 1. Making a recipe using recipe index
-   1. Prerequisites: None. 
-   
-   1. Test case: `make recipe #1`<br>
-   Expected: Recipe **#1** made, if all ingredients needed are in stock. Details of the recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
 
-   1. Test case: `make recipe #2`<br>
-   Expected: No recipe made, as some ingredients are missing. Error details shown in the Command Output box.
+   1. Test Case: `make recipe #1`.<br>
+      Expected: The recipe `Apple Tart` is made.
+
+   1. Test case: `make recipe #1` twice.<br>
+       Expected: On the second `make recipe #1`, an error is thrown as there are 2 apples missing.
 
 1. Making a recipe using recipe index in a filtered list
-   1. Prerequisites: None. 
+    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
+   
+    1. Test Case: `find recipe banana` followed by `make recipe #1`.<br>
+       Expected: The recipe `Sweet Banana Salad` is made. The command output box shows details of the command.  
    
 1. Making a recipe using recipe name
-   1. Prerequisites: None. 
-   
-   1. Test case: `make recipe Fruit Juice`<br>
-      Expected: Recipe **Fruit Juice** made, if all ingredients needed are in stock. Details of the recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
-   
-   1. Test case: `make recipe Apple Tart`<br>
-      Expected: No recipe made, as some ingredients are missing. Error details shown in the Command Output box.
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.  
+
+   1. Test Case: `make recipe Apple Tart`.<br>
+      Expected: The recipe `Apple Tart` is made. The command output box shows details of the command.
 
 ### B.3&ensp;Managing Ingredients
 
