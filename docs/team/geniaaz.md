@@ -37,7 +37,7 @@ Given below are my contributions to the project.
     * Created NewTeammateCommand class to handle the logic
     * Created ParsePersonUtil class to handle the validating of variables passed in to NewTeammateCommand  
     
-* **New Feature** : Create new Command to edit Teammates  (Pull requests [\#123](https://github.com/AY2021S1-CS2103T-W10-3/tp/pul/123))
+* **New Feature** : Create new Command to edit Teammates  (Pull requests [\#123](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/123))
   * Changes made: 
     * EditTeammate now can change attributes of Teammates
 
@@ -49,17 +49,17 @@ Given below are my contributions to the project.
   * Changes made: 
     * Tests added to increase path coverage for Teammate classes
 
-* **New Feature** : Create new Command to delete Teammates  (Pull requests [\#185](https://github.com/AY2021S1-CS2103T-W10-3/tp/pul/185))
+* **New Feature** : Create new Command to delete Teammates  (Pull requests [\#185](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/185))
   * Changes made: 
     * EditTeammate now can change attributes of Teammates
     
 * **New Feature** : Create new Command to add an existing teammate to another project  (Pull requests
- [\#253](https://github.com/AY2021S1-CS2103T-W10-3/tp/pul/253))
+ [\#253](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/253))
   * Changes made: 
     * Existing teammates can now be added to projects.
     
 * **New Feature** : Create new Command to delete a teammate's participation in another project (Pull requests
- [\#254](https://github.com/AY2021S1-CS2103T-W10-3/tp/pul/254))
+ [\#254](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/254))
   * Changes made: 
     * Teammate participation in a project can now be deleted.
 
