@@ -66,12 +66,8 @@ public class InventoryRecordBuilder {
     /**
      * Sets the {@code datetime} of the {@code Inventory Record} that we are building.
      */
-    public InventoryRecordBuilder withDatetime(String dateTime) {
-        try {
-            this.dateTime = ParserUtil.parseDatetime(dateTime);
-        } catch (ParseException e) {
-            return this;
-        }
+    public InventoryRecordBuilder withQuantity(int quantity) {
+        this.quantity = quantity;
         return this;
     }
 
@@ -82,6 +78,14 @@ public class InventoryRecordBuilder {
      */
     public InventoryRecordBuilder withFinanceId(int financeId) {
         this.financeId = financeId;
+        return this;
+    }
+
+    /**
+     * sets the dateTime of current inventoryRecord to current datetime.
+     */
+    public InventoryRecordBuilder updateDateTime() {
+        this.dateTime = LocalDateTime.now();
         return this;
     }
 

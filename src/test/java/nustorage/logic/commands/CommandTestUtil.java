@@ -46,6 +46,7 @@ public class CommandTestUtil {
 
 
     public static final Integer INDEX_ONE = 1;
+    public static final Integer INDEX_TEN = 10;
     public static final String INDEX_ZERO_DESC = " 0";
     public static final String INDEX_ONE_DESC = " 1";
     public static final String INDEX_NEGATIVE_VALUE_DESC = " -30";
