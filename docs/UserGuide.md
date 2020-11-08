@@ -154,7 +154,7 @@ Here is an example with steps for you to follow:
 *Figure 5: The displayed message and the updated list*
 
 
-Examples:
+More examples:
 * `delete 1`
 * `delete 2 3 1`
 
@@ -252,6 +252,7 @@ This is the table of prefixes used:
 | `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
 | `mod/` | mod/MODULE_CODE | - `mod/ST2334` |
 | `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
+| `p/` | p/PRIORITY | - `p/HIGH` |
 
 <div markdown="block" class="alert alert-primary">
 
@@ -261,7 +262,7 @@ This is the table of prefixes used:
 </div>
 
 
-Here is an example with steps to follow:
+Here is an example with steps for you to follow:
 
 1) To find assignments from the modules CS2100 and ST2334, you can simply key in `find mod/CS2100 ST2334`. 
 
@@ -276,6 +277,9 @@ Here is an example with steps to follow:
 ![FindCommand2](images/FindCommandDiagram2.png)
 *Figure 11: The displayed message and the updated list*
 
+More examples:
+* `find n`
+* `delete 2 3 1`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -304,7 +308,7 @@ This is the table of prefixes used:
 | `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
 
 
-Here is an example with steps to follow:
+Here is an example with steps for you to follow:
 
 1) To edit the name of the assignment with the first index in the assignment list to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
 
