@@ -474,7 +474,7 @@ To add a lesson named "CS2101 Tutorial" which is under module "CS2101", and happ
 from 10 Aug 2020 to 10 Dec 2020, users can do the following:
 
 1) Type in the command box the following command:
-* `lesson title:CS2101 Tutorial tag:CS2101 desc:Most exciting lecture in NUS! day:Monday from:10:00 to:12:00 start:10-08-2020 end:10-12-2020`
+* `lesson title:CS2101 Tutorial tag:CS2101 desc:Most exciting tutorial in NUS! day:Monday from:10:00 to:12:00 start:10-08-2020 end:10-12-2020`
 
 2) This adds the corresponding lesson to PlaNus. You can see the added lesson in the lesson list, calendar view and 
 time analysis.
