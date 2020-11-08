@@ -836,12 +836,9 @@ The following activity diagram summarizes what happens when the suggestion featu
 
 ### Find and FindExact Features
 
-#### Description
 The Find and FindExact Features allow users to search for `Stock` items in the stockbook.
-
-There are two commands users can use:
-* `find` - Stock that matches ALL keywords of ANY field will be displayed.
-* `findexact` - Stock that matches ALL keywords of ALL fields will be displayed.
+The Find feature displays stocks that match ALL keywords of ANY field searched.
+The Find Exact feature displayes stocks that match ALL keywords of ALL fields searched.
 
 Find and FindExact features allow search for four fields:
 * Name
@@ -865,25 +862,11 @@ implements the `Parser` interface.
 to generate a `FindCommand` with a list of `FieldContainsKeywordsPredicate`.
 
 The list of `FieldContainsKeywordsPredicate` is obtained from parsing
-the user input, to produce either of the following predicates shown
-in the table below, for each `Prefix` and keywords pair.
-
-<div markdown="span" class="alert alert-info" markdown="1">:information_source:
-
-**Note:**
-The user input should contain at least one `Prefix` and keywords to search.
-The table below shows which `FieldContainsKeywordsPredicate`
-is generated for the specific `Prefix`.
-
-</div>
-
-Prefix             | FieldContainsKeywordsPredicate
--------------------| --------------------------------------
-n/<keywords>       | NameContainsKeywordsPredicate
-s/<keywords>       | SourceContainsKeywordsPredicate
-l/<keywords>       | LocationContainsKeywordsPredicate
-sn/<keywords>      | SerialNumberContainsKeywordsPredicate
-
+the user input, to produce either of the following predicates, for each `Prefix` and keywords pair.
+* NameContainsKeywordsPredicate - n/[keywords]
+* SourceContainsKeywordsPredicate - s/[keywords]
+* LocationContainsKeywordsPredicate - l/[keywords]
+* SerialNumberContainsKeywordsPredicate - sn/[keywords]
 
 `FindCommandParser` implements the following important operations:
 
@@ -1071,21 +1054,7 @@ at least one of `a`, `this`, `is`, `banana`.)
 
 ### Note Feature
 
-#### Description
 The Note feature allows users to add and delete notes from a stock.
-
-There are two commands users can use:
-* `note` - Adds a note to the stock specified by the stock's serial number.
-Note: Multiple notes can be added to the stock.
-* `notedelete` - Deletes a note, specified by note index, from the stock specified by the stock's serial number.
-
-Prefixes used in the Note feature:
-
-Command       | Fields       | Prefixes
---------------| -------------| ---------------------------
-`note`        | Serial Number<br>Note | sn/<br>nt/
-`notedelete`  | Serial Number<br>Note Index | sn/<br>ni/
-
 
 #### Mechanism for Adding Notes
 The mechanism for adding notes is facilitated by classes `NoteCommand`, and `NoteCommandParser`.
@@ -1784,15 +1753,7 @@ The following activity diagram summarizes what happens when the sort feature is 
 
 ### Stock View Feature
 
-#### Description
 The Stock View feature allows users to view the details of a single stock under the `Stock View` tab. 
-
-The command that users can use is:
-* `stockview` - Displays the details of the stock, specified by its serial number, under the `Stock View` tab.
-
-Command       | Field        | Prefix
---------------| -------------| ---------------------------
-`stockview`   | Serial Number | sn/
 
 Details of the stock that are displayed are:
 * Name
@@ -3023,7 +2984,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a stock into the inventory.
 
-   1. Test case: `n/Banana s/NUS q/9999 l/Fruit Section`<br>
+   1. Prerequisites: Stock does not exist in the list.
+
+   1. Test case: `add n/Banana s/NUS q/9999 l/Fruit Section`<br>
       Expected: Stock is added successfully.<br>
       Details of the added stock shown in the status message.
 
@@ -3034,8 +2997,12 @@ testers are expected to do more *exploratory* testing.
    1. Test case: ` add n/Banana s/NUS q/9999`<br>
       Expected: Stock is not added due to missing field headers.
       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+      
+   1. Test case: `add n/Banana s/NUS q/9999 l/Fruit Section ni/0`<br>
+         Expected: Stock is not added as there is an field header `ni/` that is not required in add command.<br>
+         Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
 
-   1. Other incorrect delete commands to try: `add`, `add sn/absdsa` <br>
+   1. Other incorrect add commands to try: `add`, `add sn/absdsa` <br>
       Expected: Similar to previous.
 
 ### Deleting stocks
@@ -3430,6 +3397,22 @@ testers are expected to do more *exploratory* testing.
           Expected: No stock viewed due to unknown / invalid command format.<br>
           Error details shown in the status message. Suggestion message will be shown too.
 
+### Print of CSV file
+
+1. Generates a CSV file that contains all stocks.
+
+    1. Test case: `print fn/stock`<br>
+        Expected: A CSV file containing all stocks will be generated.<br>
+        Details of the successful printing is shown.
+      
+    1. Test case: `print fn/`<br>
+       Expected: Warenager does not generate a CSV file.<br>
+       Error details shown in the status message. Suggestion message will be shown too.
+
+    1. Other incorrect statistics commands to try: `prin`, `print sn/ntuc1`<br>
+       Expected: Similar to previous.
+
+
 ### Clearing data in Warenager
 
 1. Clear all the data in Warenager using `clear` command input.
@@ -3442,8 +3425,8 @@ testers are expected to do more *exploratory* testing.
        Expected: Warenager does not clear any data.<br>
        Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect statistics commands to try: `cle`, `clear sn/ntuc1`<br>
-      Expected: Similar to previous.
+    1. Other incorrect statistics commands to try: `cle`, `clear sn/ntuc1`<br>
+       Expected: Similar to previous.
       
 ### Saving data
 
@@ -3469,11 +3452,11 @@ testers are expected to do more *exploratory* testing.
 To our team, Warenager is a very challenging project and in terms of difficulty level, it ranks higher than AB3 itself.
 Warenager is a morph of AB3 and not only did we changed some existing features of AB3, we also augmented Warenager with
 new features that didn't exist before in AB3. Some of the features we added that are not available in AB3 are
-suggestion feature, statistics feature, note features, bookmark and highlight stocks, and sorting feature.
+suggestion feature, statistics feature, print feature, note features, bookmark and highlight stocks, and sorting feature.
 
 Our contributions to the project also justifies our claim about the difficulty level. Note that AB3 contains around 6
 KLoC. Compared to AB3, based on the [project's code contribution](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=T15-3&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship) in RepoSense,
-the total lines of code that we added or modified is around 24 KLoc, which is four times the amount of code in AB3.
+the total lines of code that we added or modified is around 25 KLoc, which is four times the amount of code in AB3.
 
 ### Challenges
 * Team meetings are held online because of COVID-19.
@@ -3493,11 +3476,13 @@ We can estimate that the effort required for creating Warenager is a lot more th
 scratch. As stated above, we did not only changed existing features of AB3, but also augmented new features not found
 on AB3 into Warenager. The new features we implemented has their own notable challenges.
 
-In terms of work and contribution, as stated above, our whopping 24 KLoC which is around four times the amount of code
+In terms of work and contribution, as stated above, our whopping 25 KLoC which is around four times the amount of code
 existing in AB3, justifies our claim that the effort to create Warenager is more than the effort to create AB3.
 
 ### Achievements
 * One of the top 10 groups in terms of code contribution in [RepoSense](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=totalCommits%20dsc&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship).
 * Created a new UI for Warenager that is significantly different from AB3's UI.
 * Implemented all features including the new features augmented to Warenager.
+* Implemented novelty features such as low stock, note, statistics, stockview, bookmark, sort, suggestion and print features which are vastly
+ different from AB3.
 * Finished every milestones on time.
