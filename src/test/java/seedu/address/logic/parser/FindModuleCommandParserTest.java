@@ -14,7 +14,7 @@ import seedu.address.model.module.NameContainsKeywordsPredicate;
 
 public class FindModuleCommandParserTest {
 
-    private FindModuleCommandParser parser = new FindModuleCommandParser();
+    private FindModuleParser parser = new FindModuleParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
