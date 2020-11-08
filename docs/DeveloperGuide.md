@@ -76,17 +76,17 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<div style="page-break-after: always;"></div>
-
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-The sections below give more details of each component.
-
 <div style="page-break-after: always;"></div>
+
+The sections below give more details of each component.
 
 ### UI component
 
@@ -372,6 +372,8 @@ Step 2: The user executes `fav 1` command to favourite the 1st flashcard in the 
 `fav` command then calls `ModelManager#setFlashcard(f1, fav1)` to replace the current flashcard, `f1`,  with the favourited flashcard, `fav1`.
 
 ![FavUnfavState1](images/FavUnfavState1.png)
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the `fav` operation works:
 
