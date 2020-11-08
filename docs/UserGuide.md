@@ -23,6 +23,25 @@ Eva comes with a Command Line Interface (CLI) which is faster than a typical mou
 We hope that through our app, you and your company will be empowered and able to solve your basic HR needs.<br>
 This user guide will take you through the basics of Eva and help you get moving straightaway.
 
+There are 3 types of messages you can look out for that will further enhance your experience in using Eva with this user guide. <br>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**
+These notes are meant for additional information that will help you understand the segment better. 
+Do take note of these messages as you read the user guide
+</div> 
+
+<div markdown="block" class="alert alert-primary">
+:bulb: **Tip:**
+These tips will enable you to use Eva in a more efficient manner. So it will be beneficial for you to pay attention to these tips!
+</div>
+
+<div markdown="block" class="alert alert-danger">
+:exclamation: **Important!**<br>
+These messages are meant to alert you of certain consequences involved in the feature that might be important to you.
+</div>
+<br>
+
 ------------------------------------------------------------------------------------------------------------------------
 
 ## 2. Getting Started
@@ -213,9 +232,9 @@ This command enables you to add a staff record into Eva. A staff record can cont
  - Leaves 
  
 The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
-Without any of these fields, Eva will not accept your input. Tags and comments can be added with these commands as shown 
+Without any of these fields, Eva will not accept your input. Tags and comments can be added with this `adds` command as shown 
 in the examples. To manage leave records for each staff, please refer to the commands 
-[addl](#337-record-leave-taken-by-staff-addl) and [dell](#338-delete-leave-taken-by-staff-dell)
+[addl](#337-record-leave-taken-by-staff-addl) and [dell](#338-delete-leave-taken-by-staff-dell).
 
 Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
@@ -223,11 +242,15 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
  - A staff can have any number of comments (including 0) <br>
  - Each staff is uniquely identified by their name. In the event you wish to add 2 staff records with the same name,
    please ensure that both their phone number and email addresses are different
+
+<div markdown="block" class="alert alert-primary">
  
-:bulb: **Tip:**
+:bulb: **Tip:**<br>
+
  - The details of each field can be provided in any order.
  - In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
-
+ 
+ </div>
  
 Examples:
 * To add only the necessary fields <br>
@@ -385,7 +408,7 @@ Staff List.
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:information_source: **Note:**<br>
 
 * All commands under applicant can only be done on either applicant list or applicant profile except `adda`, 
  which can be done on any panel. <br>
@@ -420,17 +443,21 @@ in the examples. To manage application records for each applicant, please refer 
 
 Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
 
- - An applicant can have any number of tags (including 0) 
- - An applicant can have any number of comments (including 0) 
+ - An applicant can have any number of tags (including 0).
+ - An applicant can have any number of comments (including 0).
  - Each applicant is uniquely identified by their name. In the event you wish to add 2 applicant records with the same name,
-      please ensure that both their phone numbers and email addresses are different
- - The interview date has to be in DD/MM/YYYY format 
+      please ensure that both their phone numbers and email addresses are different.
+ - The interview date has to be in DD/MM/YYYY format.
  - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature 
- [setting of application status](#349-set-application-status-setas) below
- - :bulb: **Tip** In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
- - :bulb: **Tip:** The details of each field can be provided in any order. 
- - :bulb: **Tip** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
-<br>
+ [setting of application status](#349-set-application-status-setas) below.
+ 
+ 
+ <div markdown="block" class="alert alert-primary">
+ :bulb: **Tip:**
+ -  In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
+ -  The details of each field can be provided in any order. 
+ - The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. 
+</div>
 
 Examples:
 * To add an applicant without an interview date 
