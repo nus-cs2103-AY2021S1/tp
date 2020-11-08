@@ -1099,9 +1099,34 @@ There are 2 ways to delete flashcards – by index or by tags.
 
 The difficulty level for developing QuickCache was high because we chose to morph AB3 into a flashcard manager instead of evolving it into a more powerful contact management app. We also wanted QuickCache to support both Open Ended Questions and Multiple Choice Questions. Other than managing questions, we felt that it was also important for the user to be able to test him/herself within QuickCache, view his/her performance, as well as share flashcards with his/her friends.
 
-We faced a number of challenges in developing QuickCache. The biggest hurdle that we had to overcome was having to work together remotely for the entire project. This was also our first project module in SoC where we had to work together in a large group of five. In addition, we also had to optimize experience of the application for viewing flashcards - some flashcards contained choices and it was important that we had to reveal it to the user in a way that is intuitive to them. 
+We faced a number of challenges in developing QuickCache. The biggest hurdle that we had to overcome was having to work together remotely for the entire project. This was also our first project module in SoC where we had to work together in a large group of five. In addition, we also had to optimize experience of the application for viewing flashcards - some flashcards contained choices and it was important that we had to reveal it to the user in a way that is intuitive to them. As QuickCache supports different types of questions, we also had to implement additional entity types. To show statistics, it was important for us to maintain a state on each flashcard, even between sessions. To solve this, we created a statistics class and updated it everytime a question is tested.
 
-GUI
+In terms of effort compared to AB3, we felt that QuickCache took at least the same amount of effort, or twice that of AB3 to develop. You can refer to the table below to see the additions and extensions we made to the commands that AB3 came with.
 
-Teamwork
+| Commands | AB3 | QuickCache | Extensions |
+| --- | --- | --- | --- |
+ | add | Y | Y | Add supports both Multiple Choice and Open Ended questions |
+ | edit | Y | Y | |
+ | delete | Y | Y | Delete supports both specific flashcard index or bulk deletion by tags |
+ | list | Y | Y | |
+ | exit | Y | Y | |
+ | open | | Y | |
+ | clear | | Y | |
+ | test | | Y | |
+ | stats | | Y | Stats supports both specific flashcard index and aggregation by tags |
+ | clear stats | | Y | |
+ | import | | Y | |
+ | export | | Y | |
+
+We also overhauled the entire `Person` model, and created our own `Flashcard` model. 
+
+The following class diagram shows the structure of `Person`:
+
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
+The following class diagram shows the structure of `Flashcard`:
+
+![FlashcardClassDiagram](images/FlashcardClassDiagram.png)
+
+
 
