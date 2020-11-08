@@ -32,6 +32,9 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
     - [5.2 Fridge-related Commands](#52-fridge-related-commands)
         * [5.2.1 Adding an ingredient: `addF`](#add-ingredient)
         * [5.2.2 Listing all ingredients : `fridge`](#list-ingredient)
+        
+        <div style="page-break-after: always;"></div>
+        
         * [5.2.3 Deleting an ingredient : `deleteF`](#delete-ingredient)
         * [5.2.4 Editing an ingredient: `editF`](#edit-ingredient)
         * [5.2.5 Getting an ingredient to edit: `editF`](#get-edit-ingredient)
@@ -232,8 +235,8 @@ Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] 
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
- -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
-  single forward slash to represent fractions or a single full stop to represent decimal numbers and should be
+ -(NUMBER)(STRING) e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and trailing whitespaces and should be
    greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
@@ -337,6 +340,8 @@ Format: `deleteR INDEX`
     Deleting a recipe **will not** affect the recipes that have been eaten in the consumption list.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `recipes` followed by `deleteR 2` deletes the 2nd recipe in Recipe List.
 * `searchR n/salad` followed by `deleteR 1` deletes the 1st recipe in the result of the `searchR` command.
@@ -362,9 +367,9 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
- -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
-  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
-   be greater than 0. STRING accepts alphabets.
+ -(NUMBER)(STRING) e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and trailing whitespaces and should be
+   greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
@@ -380,16 +385,13 @@ Multiple ingredients are separated by `,`.
         format error.
     </div> 
 
+<div style="page-break-after: always;"></div>
+
 * Here are the respective actions required by users depending on different usage of `IMAGE`:
 
   Usage | Action | Example | Outcome
   ---------|-----------------------|---------|---------
   Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images/wishful<br>/data/myimage.png | Local image will be displayed
-  
-<div style="page-break-after: always;"></div>
-  
-  Usage | Action | Example | Outcome
-  ---------|-----------------------|---------|---------
   Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg or jpeg or png | The image will be downloaded into data folder and displayed
   Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to this [table](#table) ) | img/images/healthy1.jpg | Sample image is displayed
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
@@ -401,9 +403,6 @@ Multiple ingredients are separated by `,`.
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
     Specifying an empty tag prefix: `t/` will clear all tags if any of the specified recipe.
 </div> 
-
-
-<div style="page-break-after: always;"></div>
      
 * You are not allowed to edit a recipe into an already existing recipe in the Recipe List.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
@@ -427,6 +426,8 @@ Examples:
  salad and the ingredients to contain only an apple ingredient.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.1.5 Getting a recipe to edit: `editR` <a id="get-edit-recipe"></a>
 Contributed by: Olivia
 
@@ -448,6 +449,8 @@ Examples:
  command box.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.1.6 Selecting a single recipe : `selectR` <a id="select-recipe"></a>
 Contributed by: Hieu
 
@@ -465,6 +468,8 @@ Format: `selectR INDEX`
 Examples:
 * `selectR 1` shows the 1st recipe in full view in the left drawer.
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.1.7 Closing the recipe drawer : `close` <a id="close-recipe"></a>
 Contributed by: Hieu
@@ -537,6 +542,7 @@ Examples:
  all `lettuce`, `onion` and `tomato` in your Fridge.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
 
 ### 5.1.10 Clearing all recipes : `clearR` <a id="clear-recipe"></a>
 Contributed by: Tian Yong
@@ -550,6 +556,8 @@ Contributed by: Tian Yong
 Format: `clearR`
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ## 5.2 Fridge-related Commands <a id="52-fridge-related-commands"></a>
 
 The Fridge-related commands include [`addF`](#add-ingredient), [`fridge`](#list-ingredient), [`deleteF`](#delete-ingredient), 
@@ -557,8 +565,6 @@ The Fridge-related commands include [`addF`](#add-ingredient), [`fridge`](#list-
 `](#clear-ingredient). These are the
  commands in Wishful Shrinking that are relevant only to the Fridge.
 <br><br><br>
-
-<div style="page-break-after: always;"></div>
 
 ### 5.2.1 Adding an ingredient: `addF` <a id="add-ingredient"></a>
 Contributed by: Caitlin, Olivia
@@ -569,14 +575,17 @@ Contributed by: Caitlin, Olivia
 <img src="images/feature/ingredient/AddIngredientImage.png" width="550" height="300">
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
+
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
- -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
-  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
-   be greater than 0. STRING accepts alphabets.
+ -(NUMBER)(STRING) e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and trailing whitespaces and should be
+   greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.
@@ -592,6 +601,8 @@ Examples:
 * `addF i/banana -3/4 cups, green peas -200g, salmon fish`
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.2.2 Listing all ingredients : `fridge` <a id="list-ingredient"></a>
 Contributed by: Olivia
 
@@ -603,6 +614,8 @@ Contributed by: Olivia
 
 Format: `fridge`
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.2.3 Deleting an ingredient : `deleteF` <a id="delete-ingredient"></a>
 Contributed by: Olivia
@@ -623,6 +636,8 @@ Examples:
 * `searchF peanut` followed by `deleteF 1` deletes the 1st ingredient in the results of the `searchF` command.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.2.4 Editing an ingredient: `editF` <a id="edit-ingredient"></a>
 Contributed by: Olivia
 
@@ -637,11 +652,14 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 * Edits the ingredient at the specified `INDEX`.
 * The index refers to the index number shown in the recent displayed Ingredient List.
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole`.
+
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
- -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
-  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
-   be greater than 0. STRING accepts alphabets.
+ -(NUMBER)(STRING) e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and trailing whitespaces and should be
+   greater than 0. STRING accepts alphabets.
 </div>
 
 
@@ -655,6 +673,8 @@ Examples:
 * `editF 2 i/apple` will update the name of the second ingredient in the displayed Ingredient List to
  apple.
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.2.5 Getting an ingredient to edit: `editF` <a id="get-edit-ingredient"></a>
 Contributed by: Olivia
@@ -676,6 +696,8 @@ Examples:
 * `editF 1` followed by `Enter` will insert the information of the 1st ingredient in the displayed Ingredient List into the command box.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.2.6 Searching for an Ingredient: `searchF` <a id="search-ingredient"></a>
 Contributed by: Caitlin
 
@@ -692,8 +714,6 @@ Format: `searchF KEYWORD [ MORE KEYWORDS]`
 * The search is case-insensitive. e.g `peanut` will match `Peanut`.
 * The search will match partial keywords. e.g. `tomat` will match `tomato`.
 * The order of the keywords does not matter. e.g. Peanut Butter will match Butter with Peanut.
-
-<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
     Ingredient quantity is not taken into account when determining whether two ingredients matches.
@@ -718,6 +738,8 @@ Contributed by: Tian Yong
 
 Format: `clearF`
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ## 5.3 Consumption-related Commands <a id="53-consumption-related-commands"></a>
 
