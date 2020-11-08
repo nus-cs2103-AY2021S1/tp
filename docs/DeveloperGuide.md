@@ -1306,6 +1306,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add case t:Ang Murders`,`undo`, `add case t:Bishan Theft`, `redo` <br>
         Expected: The command `add case t:Ang Murders` is not redone. Error details shown in the result display. List of cases remains the same as after the `add case t:Bishan Theft` command is executed.
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a document
 
 1. Adding a document in a case
@@ -1332,6 +1334,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `open doc 0`<br>
      Expected: No document is opened. Error details shown in the result display.
+
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
