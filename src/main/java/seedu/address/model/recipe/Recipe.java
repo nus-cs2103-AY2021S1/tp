@@ -109,7 +109,10 @@ public class Recipe extends InventoryComponent {
         }
 
         return otherRecipe != null
-                && otherRecipe.getId() == getId();
+                && otherRecipe.getIngredients().equals(getIngredients())
+                && otherRecipe.getProductName().equals(getProductName())
+                && otherRecipe.getProductQuantity().equals(getProductQuantity())
+                && otherRecipe.description.equals(getDescription());
     }
 
     /**

@@ -14,10 +14,10 @@ import seedu.address.model.recipe.ProductQuantity;
 public class RecipeParserUtil {
     public static final String DEFAULT_DESCRIPTION = "None";
     public static final String DEFAULT_PRODUCT_QUANTITY = "1";
-    public static final ProductQuantity DEFAULT_QUANTITY_TYPED = new ProductQuantity(DEFAULT_PRODUCT_QUANTITY);
 
     private static final Pattern SPLIT_INGREDIENT_FORMAT = Pattern.compile("[^\\[]+\\[\\d+");
-    private static final String MESSAGE_INGREDIENT_FORMAT = "Ingredients should be listed as itemName[qty], ...";
+    private static final String MESSAGE_INGREDIENT_FORMAT = "Ingredients should be listed as itemName[qty], ..."
+            + "qty should be an integer between 0 and 2,147,483,647";
 
     /**
      * Parses a {@code String name} into a {@code String}.
@@ -45,7 +45,7 @@ public class RecipeParserUtil {
         String[] splitParts;
         for (String ingredient : splitIngredients) {
             splitParts = ingredient.trim().split("\\[");
-            ingredientPrecursors.add(new IngredientPrecursor(splitParts[0], Integer.parseInt(splitParts[1])));
+            ingredientPrecursors.add(new IngredientPrecursor(splitParts[0].trim(), Integer.parseInt(splitParts[1].trim())));
         }
         return ingredientPrecursors;
     }
