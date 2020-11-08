@@ -114,11 +114,14 @@ You can also find the records in the `data` folder where the `eva.jar` file is l
 
 </div>
 
-Here is a brief overview on how this document is arranged. The first section brings you through the different panels you
-will see in our application. After getting familiar with that, we will share some general system commands you can use at
-any point in time. In the third section, we will bring you through the features we have implemented for staff. Following
-which, you will be introduced to the features for managing applicant records. Finally, you will learn about features 
-that work for both applicants and staff. By then, you will definitely become a master in using Eva! So let's get started! 
+Here is a brief overview on how this document is arranged. The first section brings you through the 
+[different panels](#31-eva-gui) you will see in our application. After getting familiar with that, we will share some 
+[general system commands](#32-system-commands) you can use at any point in time. In the third section, 
+we will bring you through the [features we have implemented for staff](#33-staff-commands). 
+Following which, you will be introduced to the [features for managing applicant records](#34-applicant-commands). 
+Finally, you will learn about [how to add and delete comments to applicants and staff](#35-comment-commands) and 
+[our very own unique script engine](#35-script-engine). By then, you will definitely become a master in using Eva! 
+So let's get started! 
 
 ### 3.1. Eva GUI
 
@@ -525,7 +528,7 @@ Example:
 
 ![setApplicationStatus](images/ugimages/SetApplicationStatus.png)
 
-### 3.4.10 Clear applicant database: `clear`
+#### 3.4.10 Clear applicant database: `clear`
 
 In any case that you might want to remove all applicant records, you can always use this command.
 This command clears all applicant entries from the Eva database.
