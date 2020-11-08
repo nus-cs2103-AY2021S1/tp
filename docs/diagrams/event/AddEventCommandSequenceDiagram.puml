@@ -1,0 +1,95 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as logicManager LOGIC_COLOR
+participant ":ParserManager" as parserManager LOGIC_COLOR
+participant ":SchedulerParser" as schedulerParser LOGIC_COLOR
+participant ":AddEventParser" as addEventParser LOGIC_COLOR
+participant ":ArgumentTokenizer" as argumentTokenizer LOGIC_COLOR
+participant ":ArgumentMultiMap" as argumentMultiMap LOGIC_COLOR
+participant ":AddEventCommand" as addEventCommand LOGIC_COLOR
+end box
+
+[-> logicManager : "addevent n/CS2103T d/12-12-2020"
+activate logicManager LOGIC_COLOR
+
+create parserManager
+logicManager -> parserManager : "new ParserManager()"
+activate parserManager LOGIC_COLOR
+
+create schedulerParser
+parserManager -> schedulerParser : "new SchedulerParser()"
+activate schedulerParser LOGIC_COLOR
+
+schedulerParser -> parserManager
+deactivate schedulerParser LOGIC_COLOR
+
+parserManager -> logicManager
+deactivate parserManager LOGIC_COLOR
+
+logicManager -> parserManager : "select()"
+activate parserManager LOGIC_COLOR
+
+parserManager -> logicManager : :SchedulerParser
+deactivate parserManager LOGIC_COLOR
+
+logicManager -> schedulerParser : "parseCommand()"
+activate schedulerParser LOGIC_COLOR
+
+create addEventParser
+schedulerParser -> addEventParser : "new AddEventParser()"
+activate addEventParser LOGIC_COLOR
+
+addEventParser -> schedulerParser
+deactivate addEventParser
+
+schedulerParser -> addEventParser : "parse()"
+activate addEventParser LOGIC_COLOR
+
+create argumentTokenizer
+addEventParser -> argumentTokenizer : "new ArgumentTokenizer()"
+activate argumentTokenizer LOGIC_COLOR
+
+argumentTokenizer -> addEventParser
+deactivate argumentTokenizer
+
+addEventParser -> argumentTokenizer : "tokenize()"
+activate argumentTokenizer LOGIC_COLOR
+
+create argumentMultiMap
+argumentTokenizer -> argumentMultiMap : "new ArgumentMultiMap()"
+activate argumentMultiMap LOGIC_COLOR
+
+argumentMultiMap -> argumentTokenizer
+deactivate argumentMultiMap
+
+argumentTokenizer -> addEventParser : :argumentMultiMap
+deactivate argumentTokenizer
+
+create addEventCommand
+addEventParser -> addEventCommand : "new AddEventCommand()"
+activate addEventCommand LOGIC_COLOR
+
+addEventCommand -> addEventParser
+deactivate addEventCommand
+
+addEventParser -> schedulerParser
+deactivate addEventParser
+
+schedulerParser -> logicManager
+deactivate schedulerParser
+
+logicManager -> addEventCommand : "execute()"
+activate addEventCommand LOGIC_COLOR
+
+addEventCommand -> logicManager : :CommandResult
+deactivate addEventCommand
+
+[<- logicManager
+deactivate logicManager
+
+
+
+
+@enduml
