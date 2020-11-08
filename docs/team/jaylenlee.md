@@ -20,7 +20,9 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user can recover from adding the wrong category into the expense book and better manage their expenses if there is a certain category that they are no longer interested in or have no more need for.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The designing process too was challenging as there are many variables to be concerned with as budget and expense are both intricately linked with category.
   * Credits: N.A
-  
+
+<div style="page-break-after: always;"></div>
+
 * **New Component**: Added a class containing a list of unique tag.
   * What it does: contains a list of unique tags and allows tag list specified function.
   * Justification: This component improves the execution significantly because categories can now be parsed and loaded to be used by the expensebook.
