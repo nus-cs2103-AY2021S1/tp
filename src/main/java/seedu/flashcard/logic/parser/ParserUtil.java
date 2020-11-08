@@ -140,20 +140,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> ratings} into a {@code List<Category>}.
-     */
-    public static List<Rating> parseRatings(Collection<String> ratings) throws ParseException {
-        requireNonNull(ratings);
-        final Set<Rating> ratingSet = new HashSet<>();
-        for (String ratingValue : ratings) {
-            ratingSet.add(parseRating(ratingValue));
-        }
-        List<Rating> ratingList = new ArrayList<>();
-        ratingList.addAll(ratingSet);
-        return ratingList;
-    }
-
-    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -195,7 +181,7 @@ public class ParserUtil {
             throw new ParseException(Diagram.MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE);
         }
         if (!Diagram.isValidImageFileType(trimmedDiagramFilePath)) {
-            throw new ParseException(Diagram.MESSAGE_INVALID_DIAGRAM_FILE_TYPE);
+            throw new ParseException(Diagram.MESSAGE_INVALID_FILE_TYPE);
         }
         return new Diagram(trimmedDiagramFilePath);
     }

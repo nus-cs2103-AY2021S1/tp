@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import javax.imageio.ImageIO;
 
 
@@ -13,8 +15,11 @@ import javax.imageio.ImageIO;
 public class Diagram {
 
     public static final String MESSAGE_CONSTRAINTS = "Diagram can be defined by a valid relative or absolute path";
-    public static final String MESSAGE_INVALID_DIAGRAM_FILE_TYPE = "Invalid diagram file type";
+    public static final String MESSAGE_INVALID_FILE_TYPE = "Invalid file type. Diagram only supports the following "
+            + "image file types: jpg, png, jpeg, bmp, gif ";
     public static final String MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE = "Please ensure diagram file exists";
+    public static final List<String> SUPPORTED_IMAGE_FILE_TYPE_LIST =
+            Arrays.asList(new String[]{"jpg", "png", "jpeg", "bmp", "gif"});
 
     private String diagramFilePath;
 
@@ -35,7 +40,7 @@ public class Diagram {
         File file = new File(path);
         try {
             if (ImageIO.read(file) != null) {
-                return true;
+                return isAcceptedImageFileType(file);
             }
         } catch (IOException exception) {
             return false;
@@ -53,6 +58,19 @@ public class Diagram {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Returns true if the given file extension is a supported file extension.
+     */
+    public static boolean isAcceptedImageFileType(File file) {
+        String fileName = file.toString();
+        int index = fileName.lastIndexOf('.');
+        if (index > 0) {
+            String extension = fileName.substring(index + 1);
+            return SUPPORTED_IMAGE_FILE_TYPE_LIST.contains(extension);
+        }
+        return false;
     }
 
     @Override
