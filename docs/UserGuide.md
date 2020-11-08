@@ -100,7 +100,6 @@ Format: `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [m/MUS
 - When editing tags/muscles, the existing tags/muscles of the exercise will be removed i.e adding of tags/muscles is not cumulative.
 - You can remove all the exercise/muscle's tags by typing t/ or m/ respectively (without specifying any tags after it).
 
-Examples:
 - `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest m/arm t/home t/gym` Updates the exercise, the description, the date, calories burnt, muscles worked, and tags of the 1st exercise to be `push up`, `30`,  `09-07-2020`, `260`, `[chest, arm]`, and `[home, gym]` respectively.
 
 ## 3.4. Delete : `delete`
