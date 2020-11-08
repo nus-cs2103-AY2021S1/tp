@@ -12,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/amylzting.png" width="200px">
 
 [[github](https://github.com/amylzting)]
-[[portfolio](team/amy.md)]
+[[portfolio](team/amylzting.md)]
 
 * Role: Developer
 * Responsibilities: Documentation manager - Responsible for the quality of
