@@ -566,17 +566,17 @@ Figure 6.4.2 Sequence diagram for `ScheduleCommand` execution
 
 :information_source: Figure 6.4.1 and 6.4.2 illustrates the `ScheduleCommand` execution within the `Logic` and `Model` Component.
 
-For the `Ui` component, a calendar using **jfxtras** library will be updated with the `LessonEvent` after the `CommandResult` is returned.
+For the `Ui` component, a calendar using  [jfxtras-icalendarfx](https://jfxtras.org/doc/8.0/jfxtras-icalendarfx/index.html) will be updated with the `LessonEvent` after the `CommandResult` is returned.
 The `'LessonEvent` is provided to the `Ui` by the `LogicManager` through the `Model` component.
 The `Model` in turns gets the `LessonEvent` from the `Scheduler` which keeps a list of updated events.
 The calendar with `LessonEvent` is then displayed to the user through the interface. This is assuming that no exception arises.
 
-### 6.4.1 Design Consideration
+### Design Consideration
 
 The following are the various design choices made regarding the feature and alternatives that were considered prior to implementation.
 
 * Current Implementation:
-    * The current implementation creates `LessonEvent`s from the `studentList` update the to the `Ui` whenever the `ScheduleViewCommand` is called.
+    * The current implementation creates `LessonEvent` from the `studentList` and update to the `Ui` whenever the `ScheduleViewCommand` is called.
 
 * Alternatives Considered:
     * Creating a `Event` storage component that stores `LessonEvent` based on `Student`'s `ClassTime`.
@@ -978,6 +978,28 @@ Use cases also assume that whenever an invalid command is entered by the user, R
     * 3a1. Reeve displays an error message.
 
       Use case resumes at step 2.
+
+**UC00**: View class schedule.
+
+**MSS**
+
+1. User enters command to view schedule.
+2. Reeve shows the schedule of the user's classes.
+
+    Use case ends.
+    
+**Extensions**
+
+* 1a. User enters command in an incorrect format.
+    1a1. Reeve displays error message.
+    1a2. User corrects command input.
+    
+    Use case resumes at step 2.
+    
+* 1b. There are no student in Reeve.
+    1b1. Schedule is shown with no classes.
+    
+    Use case ends.
 
 
 ## **Appendix D: Non-Functional Requirements**
