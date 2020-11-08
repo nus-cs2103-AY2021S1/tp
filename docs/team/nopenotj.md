@@ -9,7 +9,7 @@ Modduke is a desktop app targeted towards NUS students. It allows them to easily
 
 Given below are my contributions to the project.
 
-* **New Feature**: Autocomplete TextField Module
+* **New Feature**: Autocomplete TextField Module (Pull Requests [\#143](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/143), [\#249](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/249), [\#265](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/265/files))
   * What it does: Allows users to generate suggestions for contact names, module names and meeting names.
   * Justification: This feature improves the product significantly because some of our commands require the full names of contacts, meetings or modules
   that may be laborious to type it all out. This feature saves the user time and effort.
@@ -19,7 +19,7 @@ Given below are my contributions to the project.
   was challenging especially when it came to dealing with edge cases. 
   * Credits: Took inspiration from the zsh autocomplete function.
 
-* **New Feature**: Fuzzy Find Completion TextField Module
+* **New Feature**: Fuzzy Find Completion TextField Module (Pull Requests [\#236](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/236))
   * What it does: Allows users to generate suggestions for any user input. This feature was made available in v1.4 and provide all the benefits of the Autocomplete module and more.
   * Justification: This feature improves the product significantly compared to the autocomplete function released in v1.3 because the command prefix for Autocomplete may be unintuitive to fill in for some users
   and also there was a lack of a GUI to show available suggestions. This feature greatly improves the UX.
