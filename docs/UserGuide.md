@@ -550,6 +550,14 @@ Expected Outcome:
 
 ### 4.6 Attendance Features
 
+> You should perform the following features while in the Student view.
+
+#### 4.6.1 Add Attendance: `addAttendance`
+
+Marks the attendance of a student.
+
+Format: `addAttendance INDEX (must be a positive integer) week/WEEK NUMBER [week/WEEK NUMBER]...`
+
 
 ## 5. FAQ
 __Q:__ Why did the command I input change colour from white to red? <br>
