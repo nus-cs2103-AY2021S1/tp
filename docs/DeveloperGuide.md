@@ -6,7 +6,7 @@ title: Developer Guide
 ## Table of Contents <a id="toc"></a>
 1. [Overview](#1-overview)
     - [1.1. Introduction](#11-introduction)
-    - [1.2. Purpose](#12-Purpose)
+    - [1.2. Purpose](#12-purpose)
     - [1.3 Setting Up, Getting Started](#13-setting-up-getting-started)
 2. [Design](#2-design)
     - [2.1. Architecture](#21-architecture)
@@ -127,7 +127,7 @@ title: Developer Guide
     - [6.15 Selecting a recipe](#615-selecting-a-recipe)
     - [6.16 Searching for recipes](#616-searching-for-recipes)
     - [6.17 Searching for ingredients](#617-searching-for-ingredients)
-    - [6.18 Recommend](#618-recommend)
+    - [6.18 Recommending recipes](#618-recommend)
     - [6.19 Clearing recipes](#619-clearing-recipes)
     - [6.20 Clearing ingredients](#620-clearing-ingredients)
     - [6.21 Clearing eaten recipes](#621-clearing-eaten-recipes)
@@ -1667,7 +1667,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `searchF` takes in keywords to search for. The message will show the correct input format of the `searchF` command, and your command in the command box will turn red. <br><br>
       
       
-## 6.18 Recommend <a id="618-recommend"></a>
+## 6.18 Recommending recipes <a id="618-recommend"></a>
 
 1. Listing out all the recipes in Wishful Shrinking’s recipe list whose ingredients are all in the fridge.
 
