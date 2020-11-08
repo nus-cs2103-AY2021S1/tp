@@ -7,8 +7,8 @@ title: Olivia Johansen's Project Portfolio Page
 
 Wishful Shrinking is a desktop application for managing your diet, keeping track of your on-hand ingredients, recipes, as well as the food you’ve eaten (along with their calories). While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-Given below are my contributions to the project. These enhancements affects existing commands and commands to be
- added in future. they required an in-depth analysis of design alternatives. The implementation too was challenging
+Given below are my contributions to the project. These enhancements affect existing commands and commands to be
+ added in future they required an in-depth analysis of design alternatives. The implementation too was challenging
   as it required changes to existing commands.
 
 * **New Feature**: Added the ability to list ingredients.
@@ -18,19 +18,20 @@ Given below are my contributions to the project. These enhancements affects exis
   
 * **New Feature**: Added the ability to delete an ingredient in the fridge.
   * What it does: allows the user to delete an ingredient in their fridge.
-  * Justification: This feature improves the product significantly because a user can now delete the ingredients to keep the fridge updated with their real-life fridge.
+  * Justification: This feature improves the product significantly as a user can delete the ingredients to
+   keep the fridge updated with their real-life fridge.
   * Credits: This feature was built off from the "delete contact" feature in AddressBook Level 3.  
 
 * **New Feature**: Added the ability to edit ingredients in the user's fridge.
   * What it does: allows the user to edit ingredients to their fridge.
-  * Justification: This feature improves the product significantly because a user can now edit ingredients in the fridge, saving them the hassle of having to delete then re-adding an ingredient.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: This feature was built off from the "edit" feature in AddressBook Level 3 and refactored to edit ingredients instead of contacts.
+  * Justification: This feature improves the product significantly as a user can edit ingredients in the
+   fridge, saving them the hassle of having to delete then re-adding an ingredient.
+  * Credits: This feature was built off from the "edit" feature in AddressBook Level 3.
 
 * **New Feature**: Added the ability to edit for a recipe in the recipe list.
   * What it does: allows the user to edit recipes to their recipe list.
   * Justification: This feature improves the product significantly because a user can now edit recipes in the recipe list, saving them the hassle of having to delete then re-adding an entire recipe.
-  * Credits: This feature was built off from the "edit" feature in AddressBook Level 3 and refactored to edit ingredients instead of contacts.
+  * Credits: This feature was built off from the "edit" feature in AddressBook Level 3.
 
 * **New Feature**: Added the ability to directly modify an existing ingredient or recipe.
   * What it does: allows the user to easily edit ingredients or recipes in their fridge or recipe list
@@ -56,7 +57,7 @@ Given below are my contributions to the project. These enhancements affects exis
     * Did cosmetic tweaks to User Guide and ensured phrasing used was consistent and accurate: [\#184](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/184)
   * Developer Guide:
     * Added implementation details of the `deleteF`, `addF`, `get editR`, `editR`, `get editF` and `editF` feature: [\#122](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/122) [\#127](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/127)
-    * Added overview and introduction [\#249](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/249)
+    * Added Overview and Introduction [\#249](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/249)
     * Did cosmetic tweaks to Developer Guide and ensured phrasing used was consistent and accurate: [\#258](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/258) [\#257](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/257/files)
 
 * **Community**:
