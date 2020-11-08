@@ -34,7 +34,7 @@ import seedu.address.testutil.ExerciseBuilder;
  */
 class UpdateCommandTest {
 
-    private ExerciseModel model = new ExerciseModelManager(getTypicalExerciseBook(), new UserPrefs());
+    private ExerciseModel model = new ExerciseModelManager(getTypicalExerciseBook(), null, new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -45,7 +45,7 @@ class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
+        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), null,
                 new UserPrefs());
         expectedModel.setExercise(model.getFilteredExerciseList().get(0), editedExercise);
 
@@ -69,7 +69,7 @@ class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
+        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), null,
                 new UserPrefs());
 
         expectedModel.setExercise(lastExercise, editedExercise);
@@ -85,7 +85,7 @@ class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
+        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), null,
                 new UserPrefs());
 
         assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);
@@ -102,7 +102,7 @@ class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
+        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), null,
                 new UserPrefs());
         expectedModel.setExercise(model.getFilteredExerciseList().get(0), editedExercise);
 

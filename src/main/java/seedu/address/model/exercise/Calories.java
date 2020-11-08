@@ -54,4 +54,15 @@ public class Calories {
         return value.hashCode();
     }
 
+    /**
+     * Subtracts a {@code Calories}.
+     *
+     * @param calories A valid input.
+     */
+    public Calories subtract(Calories calories) {
+        Integer currentCalories = Integer.parseInt(value);
+        Integer removedCalories = Integer.parseInt(calories.value);
+        return new Calories(String.valueOf(currentCalories - removedCalories));
+    }
+
 }

@@ -189,7 +189,8 @@ Example:
 ## 3.12. Add templates : `create`
 Adds an exercise template.
 
-Format: `create n/EXERCISE c/CALORIES`  
+
+Format: `create n/NAME d/DESCRIPTION c/CALORIES`
 
 Examples:<br>
 - `create n/pushup c/100` Creates the exercise template with the name push up, description half an hour and calories 100.
@@ -197,8 +198,13 @@ Examples:<br>
 ## 3.13. Add an exercise using template : `addt`
 Adds an exercise using template.
 
+<<<<<<< HEAD
 Format: `addt temp/NAME d/DESCRIPTION at/DATE [c/CALORIES]`  
 - The format for the DATE should be in the form of DD-MM-YYYY.     
+=======
+Format: `addt n/NAME at/DATE [c/CALORIES]`
+- The format for the DATE should be in the form of DD-MM-YYYY
+>>>>>>> v1.3_official
 
 - The user can input calorie value to overwrite the default calorie value defined by the template. If the user inputs no calories, then the exercise will have the default calorie value in the template.
 
