@@ -1141,7 +1141,7 @@ testers are expected to do more *exploratory* testing.
 
 ## C&ensp;Effort
 
-With 10 being the baseline of AB3, we estimate the effort required to deliver the current version of ChopChop at **16**.
+With 10 being the baseline of AB3, we estimate the effort required to deliver the current version of ChopChop at **20**.
 
 
 ### C.1&ensp;Major Implementation Efforts
@@ -1158,13 +1158,13 @@ In addition, a comprehensive set of tests were written for each command parser t
 
 
 #### C.1.3&ensp;Statistics and Recommendations
-csdf
+The statistics feature was developed in a depth-first approach. It spans across all major components in ChopChop.
 
 #### C.1.4&ensp;Automated GUI Testing
 dsdf
 
 #### C.1.5&ensp;Tab Completion
-To ensure ease of use and reduce typing tedium for potential users, PE testers, and ourselves during manual testing, tab completion was deemed to be an imoprtant aspect of the CLI-nature of ChopChop from the beginning, although it was only implemented in version 1.3.
+To ensure ease of use and reduce typing tedium for potential users, PE testers, and ourselves during manual testing, tab completion was deemed to be an important aspect of the CLI-nature of ChopChop from the beginning, although it was only implemented in version 1.3.
 
 Significant effort was undertaken to ensure that the completer works in all cases, including within the help command, and is able to provide contextually-appropriate completions (eg. providing ingredient names after `/ingredient`). Furthermore, this component is also comprehensively tested, with a near 100% code coverage as well.
 
@@ -1178,7 +1178,7 @@ fsdf
 These are components that are either straightforward extensions of existing AB3 features, or new features that were not extremely hard or intensive to implement.
 
 #### C.2.1&ensp;Storage and Model Updates
-asdf
+The structures of both Model and Storage components remain mostly similar. Additional classes are added to support saving of Entry, Usage and new data structures in-memory and in json format. Superclasses are used wherever possible to reduce code duplication. 
 
 #### C.2.2&ensp;Utility Classes
 A set of utility classes, namely `Pair`, `Result`, and `Either` were written to facilitate a functional programming style in various ChopChop components. These classes are comprehensively tested and well-documented as well.
