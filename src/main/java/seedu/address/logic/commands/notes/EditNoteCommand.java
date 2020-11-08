@@ -30,9 +30,8 @@ public class EditNoteCommand extends NoteCommand {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]\n\n"
-            + "Example: "
-            + NoteCommand.COMMAND_WORD + " " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Another title " + PREFIX_DESCRIPTION + "Another description";
+            + "Example: " + NoteCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 "
+            + PREFIX_DESCRIPTION + " mark exam papers";
 
     public static final String MESSAGE_EDIT_NOTE_SUCCESS = "Edited Note:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
