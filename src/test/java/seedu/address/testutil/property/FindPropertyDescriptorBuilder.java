@@ -5,11 +5,9 @@ import java.util.Arrays;
 import seedu.address.logic.commands.property.FindPropertyCommand.FindPropertyDescriptor;
 import seedu.address.model.price.PriceFilter;
 import seedu.address.model.property.AskingPricePredicate;
-import seedu.address.model.property.IsClosedDeal;
 import seedu.address.model.property.IsRental;
 import seedu.address.model.property.PropertyAddressContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyIdContainsKeywordsPredicate;
-import seedu.address.model.property.PropertyIsClosedDealPredicate;
 import seedu.address.model.property.PropertyIsRentalPredicate;
 import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyTypeContainsKeywordsPredicate;
@@ -93,16 +91,6 @@ public class FindPropertyDescriptorBuilder {
     public FindPropertyDescriptorBuilder withIsRentalPredicate(String isRental) {
         descriptor.setIsRentalPredicate(
                 new PropertyIsRentalPredicate(new IsRental(isRental))
-        );
-        return this;
-    }
-
-    /**
-     * Sets the {@code PropertyIsClosedDeal} of the {@code FindPropertyDescriptor} that we are building.
-     */
-    public FindPropertyDescriptorBuilder withIsClosedDealPredicate(String isClosedDeal) {
-        descriptor.setIsClosedDealPredicate(
-                new PropertyIsClosedDealPredicate(new IsClosedDeal(isClosedDeal))
         );
         return this;
     }

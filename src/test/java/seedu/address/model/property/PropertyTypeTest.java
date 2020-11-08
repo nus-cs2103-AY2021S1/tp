@@ -6,6 +6,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.property.PropertyCommandTestUtil;
+
 public class PropertyTypeTest {
 
     @Test
@@ -17,6 +19,8 @@ public class PropertyTypeTest {
     public void constructor_invalidPropertyType_throwsIllegalArgumentException() {
         String invalidPropertyType = "";
         assertThrows(IllegalArgumentException.class, () -> new PropertyType(invalidPropertyType));
+        assertThrows(IllegalArgumentException.class, () ->
+                new PropertyType(PropertyCommandTestUtil.getStringWithCharacters(PropertyType.MAX_LENGTH + 1)));
     }
 
     @Test
@@ -36,6 +40,8 @@ public class PropertyTypeTest {
         assertTrue(PropertyType.isValidPropertyType("bungalow 5 rooms")); // alphanumeric characters
         assertTrue(PropertyType.isValidPropertyType("Capital Rise")); // with capital letters
         assertTrue(PropertyType.isValidPropertyType("Sunrise Heights Block With Balconies 2nd")); // long names
+        assertTrue(PropertyType.isValidPropertyType(PropertyCommandTestUtil
+                .getStringWithCharacters(PropertyType.MAX_LENGTH)));
     }
 
     @Test
