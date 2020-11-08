@@ -58,9 +58,9 @@ public class RecipeTest {
                 .build();
         assertTrue(APPLE_PIE.isSameRecipe(editedApplePie));
 
-        // different id -> returns false
+        // different id -> returns true
         editedApplePie = new RecipeBuilder(APPLE_PIE).withId(VALID_RECIPE_ID_TWO).build();
-        assertFalse(APPLE_PIE.isSameRecipe(editedApplePie));
+        assertTrue(APPLE_PIE.isSameRecipe(editedApplePie));
     }
 
     /**
