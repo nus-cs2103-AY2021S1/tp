@@ -13,13 +13,13 @@ Given below are my contributions to the project.
   * What it does: Allows the user to edit a session’s details like a session’s gym name, exercise type, start time and duration.
   * Justification: This feature improves the product significantly because a client may have changes made to his/her workout session, therefore the app should provide a way to make changes to the session.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives.
-                It builds the foundation for edit features in FitEgo. The implementation too was challenging as it required changes to existing commands.
+                It builds the foundation for edit features in FitEgo. The implementation was challenging as it required changes to existing commands.
 
 * **New Feature**: Added the ability to edit a schedule created by the user.
   * What it does: Allows the user to edit a schedule’s details like a schedule’s updated session index, payment status, remark and weight.
   * Justification: This feature improves the product significantly because a user may have changes made to his schedules, therefore the app should provide a way to make update the changes to the schedule.
-  * Highlights: This enhancement was similar to the edit session feature, therefore I had less trouble trying to create this feature. 
-                However, the implementation too was slightly different form the edit session feature, therefore more time was required to create this feature.
+  * Highlights: This enhancement was similar to the edit session feature. However, the implementation was slightly different form the edit session feature and more variations of parameters were added to this feature. 
+                Much consideration was put into this implementation for ease of usage of this feature, therefore more time was required to create this feature.
   * Credits: {Credits to teammates Bennett and Dhafin for adding additional parameters that can be edited in the feature}
 
 <div style="page-break-after: always;"></div>
