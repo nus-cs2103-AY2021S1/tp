@@ -519,15 +519,17 @@ In designing this weight tracking feature, we had considered several alternative
 
 The View Session by period feature allows users to filter the Session List to show only those within the requested time period.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The Ui component RightSideBar comprises a ListView of 
- Session List and a title that reflects the latest filter on Session List resulting from ViewSessionCommand. 
- Session List's list and Ui-related operations are handled by <code>Model</code> and RightSideBar respectively.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The Ui component <code>RightSideBar</code> comprises a <code>ListView</code> of 
+ Session List and a title that reflects the latest filter on Session List resulting from <code>ViewSessionCommand</code>. 
+ Session List's list and Ui-related operations are handled by <code>Model</code> and <code>RightSideBar</code> respectively.
 </div>
 
 The View Session mechanism is facilitated by `ViewSessionCommand` which extends `Command`. The format of the 
 command is given by: 
 
 ```sview p/PERIOD```
+
+#### 3.8.1 Implementation
 
 When using this command, `PERIOD` should refer to either a variable period or fixed period
 that returns true after running `ViewSessionCommand#isValidPeriod`. Fixed periods are found in `ViewSessionCommand#PREDICATE_HASH_MAP`, whereas variable periods
@@ -582,22 +584,22 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 1. The `RightSideBar` retrieves the latest period "WEEK" from the command result and text. `Title` is set to "WEEK". It then retrieves the filtered Session List from `LogicManager` and updates the items in `SessionListView`.
 
-#### 3.8.1 Design Considerations
+#### 3.8.2 Design Considerations
 
 In designing this feature, we had to consider several alternative ways in which we can choose to handle viewing session by period.
 
 * **Alternative 1 (current choice):** Update title of `RightSideBar` based on command result.
     * Pros: Does not lower maintainability and requires the least changes to existing implementation and test code. 
-    * Cons: Violates Separation of Concerns principle as RightSideBar has to check whether command result is from ViewSessionCommand.
+    * Cons: Violates Separation of Concerns principle as `RightSideBar` has to check whether command result is from `ViewSessionCommand`.
     
 
 * **Alternative 2:** Using Observer pattern (Observer RightSideBar, Observable Command) to update title of `RightSideBar`.
-    * Pros: Reduces coupling between Ui and Logic.
+    * Pros: Reduces coupling between `Ui` and `Logic`.
     * Cons: 
-        1. `RightSideBar` would only be updated when ViewSessionCommand is run. 
-        If we set the default session view to Week when Logic is initialised, all sessions in existing test cases will need to start within 7 days of current date, which introduces additional complexity.
+        1. `RightSideBar` would only be updated when `ViewSessionCommand` is run. 
+        If we set the default session view to Week when `Logic` is initialised, all sessions in existing test cases will need to start within 7 days of current date, which introduces additional complexity.
         Hence, we would not customise `RightSideBar`'s default session view.
-        2. Violates YAGNI principle as making `Command` implement Observable interface requires addition of notify and add observer methods for all commands.
+        2. Violates YAGNI principle as making `Command` implement `Observable` interface requires addition of notify and add observer methods for all commands.
          This also increases chances of errors made in implementation.
 
 --------------------------------------------------------------------------------------------------------------------
