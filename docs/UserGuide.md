@@ -103,6 +103,20 @@ Format: `list`
 
 Example: `list`
 
+
+<div markdown="block" class="alert alert-info" id="command-format">
+
+**:information_source: Notes about long comments or exercise name:**<br>
+
+- To view information of comments or exercise names that are too long such as `1. Sits up, push up ...`, you can
+ hover over the `exercise name` of `log` or `exercise` to view more information.
+- The text of log / exercise will appear after 2 seconds.
+  
+ Example:
+ ![Ui](images/screenshots/v1.4hover.png)
+ 
+</div>
+
 ![Ui](images/screenshots/v1.4list_success.png)
 
 ### Editing a log : `edit`
@@ -252,7 +266,7 @@ Format: `clear`
 ![Ui](images/screenshots/v1.4clear.png)
 
 Success:
-![Ui](images/screenshots/v1.4clear_success.png) 
+![Ui](images/screenshots/v1.4clear_success.png)  
 
 ### Saving the data
 
