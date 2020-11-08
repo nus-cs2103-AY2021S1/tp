@@ -146,8 +146,11 @@ The following steps to set up Covigent are applicable to Windows, Mac OS X, and 
 1. You may move `covigent.jar` to any other folder. Your save data and preferences for Covigent will be saved to the same folder.
 
 1. Double-click on `covigent.jar` to start Covigent. Here is what you will see if everything goes right:
-
-///HERE
+<p align="center">
+        <img src="images/ug/f3_startingcovigent.png" width="400" height="300">
+        <br />
+        <i>Figure 3. Covigent after Starting Up</i>
+    </p>
 
 In case there are any problems during setup, please refer to [Section 7, "FAQ"](#7-faq) for instructions to resolve them.
 
@@ -407,8 +410,12 @@ Field | Description
        <i>Figure 18. <code>deletepatient</code> Command in Command Box</i>
     </p>
 1. Press Enter to run the command.
-1. The Result Box displays the success message shown in Figure 19 and the deleted patient can no longer be found in the list of patients in Covigent. The patient list now hovers back to the first patient in the list and the patient details panel shows the information of the first patient.
-   
+1. The Result Box displays the success message shown in Figure 19 and the deleted patient can no longer be found in the list of patients in Covigent. The patient list now hovers back to the first patient in the list and the patient details panel displays the information of the first patient.
+   <p align="center">
+        <img src="images/ug/f19_deletepatientsuccess.png" width="620" height="400">
+        <br />
+        <i>Figure 19. A Successful Execution of <code>deletepatient</code></i>
+    </p>
 1. If you do not see the success message as shown in Figure 19, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
