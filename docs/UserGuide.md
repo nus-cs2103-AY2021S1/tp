@@ -21,6 +21,7 @@ This guide will help you to get started with tCheck, and provide useful tips alo
         * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
         * [Commands - Manpower Management](#commands-manpower-management)
         * [Commands - General](#commands-general)
+        * [Other Features](#other-features)
     * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -669,19 +670,20 @@ Exits the program.
 
 Format: `exit`
 
-#### 4.3 Saving the data :
+### 5. Other Features <a name="other-feature"></a>
+#### 5.1 Saving the data :
 All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in the hard disk automatically after each
- command. There is no need to save manually by entering any command.
+ command. There is no need to save manually.
  
  
 <div markdown="block" class="alert alert-info">
 
  **:information_source: Notes about data files:**<br>
-User should not attempt to make any change in all data files.<br>
+User should not attempt to make any changes in all data files.<br>
 
 </div>
 
-#### 4.4 Calendar :
+#### 5.2 Calendar :
 
 tCheck also shows a current month's calendar when you start the application. You may use it for planning you work.
 
