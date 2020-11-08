@@ -492,7 +492,7 @@ public class ModelManager implements Model {
     public void deleteSeller(Seller target) {
         ArrayList<Property> propertiesToRemove = propertyBook.getPropertiesBySellerId((SellerId) target.getId());
         propertiesToRemove.forEach(this::deleteProperty);
-        propertyBook.removeAllPropertiesWithSellerId((SellerId) target.getId());
+        // propertyBook.removeAllPropertiesWithSellerId((SellerId) target.getId());
         sellerAddressBook.removeSeller(target);
     }
 

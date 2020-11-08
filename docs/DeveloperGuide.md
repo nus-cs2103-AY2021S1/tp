@@ -43,9 +43,9 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-p 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -93,7 +93,7 @@ Each panel will display the list of the entities corresponding to the name of th
         - Able to leverage on existing AB3 Ui implementation for representing `Person`
             
     - Cons:
-        - Requires user to click to switch tab, not CLI-centric (tackled below)
+        - Requires user to click to switch tab, not CLI-centric (tackled below)  
         
  2. Alternative 2: Maintain a single list on GUI and list only relevant entities based on certain actions such
  as commands.
@@ -147,7 +147,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-m 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete-m 1` Command](images/DeleteMeetingSD.jpg)
+![Interactions Inside the Logic Component for the `delete-m 1` Command](images/DeleteMeetingSD.png)
 
 
 ### Model component
@@ -175,7 +175,7 @@ The `Model`,
     
 * exposes an unmodifiable `ObservableList<ENTITY>` that can be 'observed' by the UI component.
 
-  *e.g. the UI is bounded to the 5 different lists so that 
+  *e.g. The UI is bounded to the 5 different lists so that 
   the UI automatically updates when the data in any of the lists are changed.*
 
 The following segment of the `Model` components further breaks down each `ENTITY` for a more elaborate 
@@ -192,11 +192,11 @@ abstract `ClientPerson` which in turn extends from abstract `Person`.
 
 ![Bidder and Seller Diagram](images/modelDiagram/BidderSellerModelDiagram.png)
 
-Note that the `CLIENTId` (BidderId / SellerId) design is elaborated in [Id] in the `Property` segment.
+Note that the `CLIENTId` (BidderId / SellerId) design is elaborated in `Id` in [the following segment](#ID).
 
 #### Design Considerations
 
- 1. Alternative 1 (current choice): Extending `Bidder` and `Seller` from `ClientPerson`, and `ClientPerson` from `Person`.
+ 1. Alternative 1 (current choice): Extending `Bidder` and `Seller` from `ClientPerson`, and `ClientPerson` from `Person`  
     - Pros: 
         - Neater segmentation of entities
         - Easier extensibility for additional entities who require an `Id`
@@ -214,27 +214,32 @@ Note that the `CLIENTId` (BidderId / SellerId) design is elaborated in [Id] in t
         
  3. Alternative 3 (current choice): Changing `Tag` from `Set<Tag>` in original AB3 implementation
     - Pros: 
-        - Lesser code complexity and fewer testing required for extension.
+        - Lesser code complexity and fewer testing required for extension  
         - Better suited for PropertyFree's purpose as a client management system where the purpose of the client is already 
         well specified without need for `Set<Tag>`
         - Improved UI by having `Tag` acting as a form of visual identifier, instead of complete removal of `Tag`
     - Cons: 
         - Refactoring from original AB3 implementation required substantial time
         
-        *`Tag` was kept in `Person` instead of `ClientPerson` to reduce refactoring required from AB3.*
+> *`Tag` was kept in `Person` instead of `ClientPerson` to reduce refactoring required from AB3.*
+
+{ End of Model Component section written by: Kor Ming Soon }
        
 #### ID
+
+{ Start of Id Model section written by: Dianne Loh and Kor Ming Soon }
+
 The follow class diagram depicts the design behind `Id` and the subclasses: `SellerId`, `BidderId` and `PropertyId`.
 
 ![Id Diagram](images/modelDiagram/IdModelDiagram.png)
 
-{ end of Model Component section written by: Kor Ming Soon }
+{ End of Id Model section written by: Dianne Loh and Kor Ming Soon }
 
 --- 
 
 ### Property 
 
-{ Start of Property Model section written by: Dianne Loh }
+{ Start of Property Model Component section written by: Dianne Loh }
 
 The following class diagram depicts `Property` and its related classes.  
 
@@ -250,24 +255,24 @@ The implementations of `PropertyType` and `Address` are similar as they both are
         - Easier extensibility for the classes to contain more specific attributes. For example, `Address` can be extended to contain more specific attributes, such as road name, block and postal code, etc.  
     - Cons: 
         - More code duplication (for now)
-2. Alternative 2: `PropertyType` and `Address` extends from a parent class or are of the same type.  
+2. Alternative 2: `PropertyType` and `Address` extends from a parent class.  
     - Pros:
         - Less code duplication (for now) 
     - Cons:
         - Less extensible 
         - Modifying the behaviour of one type will affect the other 
         
-{ End of Property Model section written by: Dianne Loh }
+{ End of Property Model Component section written by: Dianne Loh }
 
 ### Bid 
 
-{ start of Model Component section written by: Marcus Duigan Xing Yu }
+{ start of Bid Model Component section written by: Marcus Duigan Xing Yu }
 
 The following class diagram depicts how a `Bid` is created.
 
 ![Bid Diagram](images/modelDiagram/BidModelDiagram.png)
 
- ##### Design Considerations
+##### Design Considerations
 
  1. Alternative 1 (current choice): Do not give bids its own Bid Id.
     - Pros: 
@@ -292,44 +297,45 @@ The following class diagram depicts how a `Bid` is created.
         - Difficult to edit specific bids in terms of parameters
         - Difficult to find all bids related to a specific bidder
 
-{ end of Model Component section written by: Marcus Duigan Xing Yu }
-
-{ start of `model meeting` section written by: Harsha Vardhan  }
+{ end of Bid Model Component section written by: Marcus Duigan Xing Yu }
 
 ### Meeting 
+
+{ start of Meeting Model Component section written by: Harsha Vardhan  }
+
 The following class diagram depicts how the different types of meetings are being created. The `Admin`, `Paperwork` and `Viewing` meeting types extend from the
 abstract `Meeting`.  
 
 ![Meeting Diagram](images/meeting/MeetingModel.png)
 
-As seen from the diagram above there are three main types of Meetings: Admin, Paperwork and viewing. Each of the meeting
+As seen from the diagram above there are three subtypes of Meetings: Admin, Paperwork and viewing. Each of the meeting
 types then contain the attributes of `BidderId`, `PropertyId`, `Venue`, `MeetingDate`, `StartTime` and `EndTime`.
 
- ##### Design Considerations
+##### Design Considerations
 
- 1. Alternative 1 (current choice): Extending `Admin`, `Paperwork` and `Viewing` from  and abstract `Meeting`.
+ 1. Alternative 1 (current choice): Extending `Admin`, `Paperwork` and `Viewing` from  an abstract `Meeting`
     - Pros: 
-        - Neater segmentation of the different meeting types.
-        - Easier extensibility for additional other types of meeting in the future.
+        - Neater segmentation of the different meeting types
+        - Easier extensibility for additional other types of meeting in the future
     - Cons: 
-        - Increased code complexity.
+        - Increased code complexity
 
- 2. Alternative 2: Identifying the different meeting types through a flag that stores the type of the meeting as a string.
+ 2. Alternative 2: Identifying the different meeting types through a flag that stores the type of the meeting as a string
     - Pros: 
-        - Minimal code will be required as the same class can be used to instantiate the different meetings.
-        - Lesser code complexity.
-        - Less repetition of code.
+        - Minimal code will be required as the same class can be used to instantiate the different meetings
+        - Lesser code complexity
+        - Less repetition of code
     - Cons: 
-        - Prone to lots of errors if the flag keyed in is wrong.
+        - Less extensibility because it is difficult to include new methods for a specific type 
         
-{ end of `model meeting` section written by: Harsha Vardhan  }
+{ End of Meeting Model Component section written by: Harsha Vardhan  }
 
 ### Storage component
-{ start of `storage` section written by: Harsha Vardhan  }
+{ Start of Storage Component section written by: Harsha Vardhan  }
 
-![Structure of the Storage Component](images/storage/StorageDiagram.png)
+![Structure of the Storage Component](images/storage/StorageDiagram.png)  
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)  
 
 The `Storage` component,
 * implements all the the different storage types as shown in the diagram above.
@@ -341,7 +347,7 @@ The `Storage` component,
 The above shows the further implementations of each individual storage component.
 For the storage components,
 * the implementations across the different types of storage is similar.
-* the different JsonABCBookStorage is responsible for saving the datas in json format. For example, 
+* the different JsonENTITYBookStorage is responsible for saving the datas in json format. For example, 
 let's take a look at PropertyBookStorage. The JsonPropertyBookStorage will store all the data that is 
 associated with property in the file in json format. In the JsonAdaptedProperty, there will be all the attributes
 that are associated with property that will eventually be stored in json format. The other storage books do follow 
@@ -349,18 +355,18 @@ a similar implementation.
 
 #### Design Consideration
    
-   1. Alternative Implementation 1 (current choice): Have different storage for the different entities.
+   1. Alternative 1 (current choice): Have different storage for the different entities.
         - Pros: Easier to implement and do not require refactoring for the existing code base. The code can be reused 
         and extended easily for the various entities. It will be easier to debug and find mistakes as when something goes wrong with a 
         particular entity it will be easier to know which entity is affected.
         - Cons: There will be a lot of files with repetitive code. 
         
-   2. Alternative Implementation 2: Use the current AddressBookStorage and modify it to contain the different entities.
+   2. Alternative 2: Use the current AddressBookStorage and modify it to contain the different entities.
         - Pros: Everything will be in one single folder and it will be easier to access the code. There will not be multiple repeats of the same code
-        across the different files. There will not be heavy edits required to the existing code base.
+        across the different files. 
         - Cons: The code file might become huge and might become difficult to debug when there is an error.
 
-{ end of `storage` Component section written by: Harsha Vardhan  }
+{ End of Storage Component section written by: Harsha Vardhan  }
 
 
 ### Common classes
@@ -414,22 +420,24 @@ changes in the ENTITYBook and updates the GUI.
 
 ##### 1.1 Add Bid Command
 
-7. For Add-bid Command they have an additional step of checking whether the user inputs for bidder Id and property Id are valid before 
-adding to the Bidbook as seen in the diagram above.  
+![Add Command Sequence Diagram](images/AddBidCommandSequenceDiagram.png)
+
+7. For Add-bid Command and Add-Meeting Command they have an additional step of checking whether the user inputs for bidder Id and property Id are valid before 
+adding to the Bidbook or MeetingBook as seen in the diagram above.  
 
 8. For add-bid command, it also contains an auto-sort feature where it will call a sort-bid method which ensures the list is always sorted
 by property Id followed by Bid Amount. For further clarification, refer to section 4. Sort for a more in depth description.
 
-{ end of Add section written by: Marcus Duigan Xing Yu}
+{ End of Add section written by: Marcus Duigan Xing Yu}
 
 
-##### 1.2 Add Property  
+##### 1.2 Add Property Command  
 
 { start of Add Property section written by: Dianne Loh }
 
 The implementation of the Add Property feature includes an additional validity check to ensure that the seller id exists. Below is the sequence diagram for the `check validity` frame:  
 
-![Add Property Command Sequence Diagram](images/addCommandDiagram/addPropertyCommandSequenceDiagram.png)
+![Add Property Command Sequence Diagram](images/addCommandDiagram/AddPropertyCommandSequenceDiagram.png)
 
 If the check returns false, an `InvalidSellerIdException` is thrown.  
 
@@ -452,19 +460,17 @@ the `LogicManager` and thereafter parsed and identified in `AddressBookParser`.
 , the corresponding `EditENTITYCommandParser` object is formed. The user input then goes
 through another level of parsing in `EditENTITYCommandParser`.
 
-3. The `EditENTITYCommandParser` identifies the parameters corresponding to the user's input, and a new `EditXYZDescriptor` object is formed with the corresponding setXYZ method to be called.
-The `EditXYZDescriptor` will set the parameter as accordance with the user input. 
+3. The `EditENTITYCommandParser` identifies the parameters corresponding to the user's input, and a new `EditENTITYDescriptor` object is formed with the corresponding `setENTITY` method to be called.
+The `EditENTITYDescriptor` will set the parameter as accordance with the user input. 
 and  `EditENTITYCommand`
 
-4. After which, the `EditENTITYCommandParser` will create  a new `EditENTITYCommand` object from the result of the corresponding setXYZ method.
-
-The `EditENTITYCommand` is then encapsulated under `Command` and passed back into the `LogicManager`.
+4. After which, the `EditENTITYCommandParser` will create  a new `EditENTITYCommand` object from the result of the corresponding `setENTITY` method. The `EditENTITYCommand` is then encapsulated under `Command` and passed back into the `LogicManager`.
 
 5. The `EditENTITYCommand` calls `execute(model)`. The execution of the command then interacts
 with the `Model` component, and retrieves the unmodifiable view of `ObservableList<ENTITY>`.
 
-6. The `Model` accesses the relevant ENTITYBook and adds the object to the ENTITYBook. The `Ui` then "listens" to the 
-changes in the ENTITYBook and updates the GUI.
+6. The `Model` accesses the relevant `ENTITYBook` and adds the object to the `ENTITYBook`. The `Ui` then "listens" to the 
+changes in the `ENTITYBook` and updates the GUI.
 
 7. Finally, `EditENTITYCommand` is then encapsulated as a `CommandResult` and passed into the `LogicManager`.
 
@@ -473,13 +479,15 @@ changes in the ENTITYBook and updates the GUI.
 
 ##### 2.1 Edit Entity Validity Check
 
-1. Below is an example of how a meeting object to be edited will ensure that a valid property Id and bidder Id are supplied by the user, this is similar to the add command validity check from above:
+Below is an example of how a meeting object to be edited will ensure that a valid property Id and bidder Id are supplied by the user, this is similar to the add command validity check from above:
 
-![Validity Check Sequence Diagram](images/ValidityCheckSD.jpg)
+![Validity Check Sequence Diagram](images/AddBidCommandSequenceDiagram.png)
 
-2. The property Id and bidder Id are checked in their respective unique lists as seen before adding the new edited meeting to the meeting book.
+The property Id and bidder Id are checked in their respective unique books as seen before adding the new edited meeting to the meeting book.  
 
-{ end of Edit section written by: Christopher Mervyn}
+Edit Bid Command and Edit Property Command will also do the validity check as described in its [Add ENTITY section](#1-add).
+
+{ End of Edit section written by: Christopher Mervyn}
 
 
 #### 3. Find  
@@ -500,7 +508,7 @@ The `Find` command applies to **all entities** in PropertyFree. There are two im
 
 ![Find Command Sequence Diagram 1](images/findCommandDiagram/findCommandSequenceDiagram1.png)
 
-##### 3.2 Multiple-Predicate Implementation of `FindENTITYCommand` (for `Property` and `Meeting` only)  
+##### 3.2 Multi-Predicate Implementation of `FindENTITYCommand` (for `Property` and `Meeting` only)  
 This implementation differs from the One-Predicate implementation only in steps 3 and 4:  
 
 **Step 3**: The `FindENTITYCommandParser` creates a `FindENTITYDescriptor`.  For each prefix (eg `n/...`) in the input, the `FindENTITYCommandParser` parses the arguments into the relevant `ABCContainsKeywordsPredicate` and sets the `ABCContainsKeywordsPredicate` of the `FindENTITYDescriptor`. The `FindENTITYCommandParser` then creates a `FindENTITYCommand` with the `FindENTITYDescriptor`, which is returned to `LogicManager`.  
@@ -516,7 +524,8 @@ This implementation differs from the One-Predicate implementation only in steps 
 { End of Find section written by: Dianne Loh }
 
 #### 4. Sort 
-{ start of Sort section written by: Harsha Vardhan}
+{ Start of Sort section written by: Harsha Vardhan}  
+
 The `Sort` command applies to **Meeting** and **Bids** in PropertyFree. Both `SortMeetingCommand` and the `SortBidCommand`
 follow similar implementations with slight differences. The `SortBidCommand` is slightly different as it has an auto-sort
 feature when bids are added or edited. Below we will look into the implementation of the `SortMeetingCommand`.
@@ -614,8 +623,7 @@ changes in the ENTITYBook and updates the GUI.
 
 ##### 5.1 Delete Bidder Command
 
-> The `Logic` portion of the sequence diagram shown subsequently is truncated to give more focus on the `Model` as the
-> `Logic` implementation is similar to the above-mentioned. 
+<div markdown="span" class="alert alert-primary">The `Logic` portion of the sequence diagram shown subsequently is truncated to give more focus on the `Model` as the `Logic` implementation is similar to the above-mentioned. </div>  
 
 The `DeleteBidderCommand` deletes the `bidderToDelete` corresponding to to the index given in the user input.
 The command varies as other entities tied to the `bidderToDelete` by the `Id` will be deleted as well, namely:
@@ -662,7 +670,7 @@ containing the attribute of`sellerId`.
         - Unable to exploit polymorphism even though both `Bidder` and `Seller` have a degree of similarity between both
         - Increases code complexity in `AddressBookParser`
         
-{ end of Delete section written by: Kor Ming Soon }
+{ End of Delete section written by: Kor Ming Soon }
 
 ##### 5.3 Delete Property Command  
 
@@ -680,7 +688,7 @@ Upon deleting the property, all `Bid`s and `Meeting`s with the same `PropertyId`
 
 #### 6. List
 
-{ start of List section written by: Marcus Duigan Xing Yu }
+{ Start of List section written by: Marcus Duigan Xing Yu }
 
 The `List` command applies to **all entities** in PropertyFree. All entities follow the same
 implementation.
@@ -705,10 +713,10 @@ changes in the display for the ENTITYBook and updates the GUI.
 
 ![List Command Sequence Diagram](images/ListCommandSequenceDiagram.png)
 
-{ end of List section written by: Marcus Duigan Xing Yu }
+{ End of List section written by: Marcus Duigan Xing Yu }
 
 ### UI Navigation Implementation
-{ start of Ui implementation section written by: Kor Ming Soon }
+{ Start of Ui implementation section written by: Kor Ming Soon }
 
 This section explains the `Ui` implementation in PropertyFree. 
 
@@ -736,7 +744,7 @@ The following activity diagram depicts the user journey and how the GUI responds
 
 #### 2. Key-press UI Navigation
 
-> The term `focus` refers to the component of which the user is able to interact with at any given moment.
+<div markdown="span" class="alert alert-primary">The term `focus` refers to the component of which the user is able to interact with at any given moment.</div>  
 
 Upon launch, the PropertyFree will set the focus in the `CommandBox`'s text field. 
 This section highlights three simple key-press `Ui` navigation feature.
@@ -768,306 +776,7 @@ However, apart from passing the `MESSAGE_SUCCESS` to `ResultDisplay`, the `Comma
 and calls the `handleToNext()` or `handleToPrev()` method in `CalendarView` depending on the user command input.
 
  
- { end of Ui implementation section written by: Kor Ming Soon }
-
- 
- 
- 
- 
- 
-
- 
- 
- #### 1.2 **Find**: find bidder(s) and seller(s) based on their names - `find-b` or `find-s`
- 
-  `find` is supported by the `FindBidderCommand` and `FindSellerCommand`.
-  
-  Given below is the example usage scenario:
-  
-  **Step 1**. The user launches the PropertyFree application. 
-  
-  **Step 2**. After loading data from the storage to the application memory,
-  the list of `bidders` or `sellers` in the `BidderAddressBook` and `SellerAddressBook` can either contain existing bidders
-  or sellers, or is empty. However, as we are finding existing bidders or sellers, we will assumed that there are
-  bidders or sellers in the book.
-  
-  **Step 3**. The user then executes `find-b <KEYWORD>`. If the `<KEYWORD>` does not corresponding to any names
-   in the list of bidders and seller. PropertyFree will display an error message indicating that the search result is
-   empty.
-   
-  **Step 4**. If the `<KEYWORD>` matches any names (in part or whole), the list will then filter the bidders or sellers
-  whose name do not match the `<KEYWORD>`, and return a list of bidders or sellers whose name contains the `<KEYWORD>`.
-  
-   The following sequence diagram summarises as well how the components of Model and Logic interact during the execution
-   of the command:
-   
-   ![FindBidderSequenceDiagram](images/FindBidderSequenceDiagram.png)
- 
-   #### Design Consideration
-   
-   1. Alternative Implementation 1 (current choice): The bidder and sellers are stored in an 
-   `ObservableList<Bidder/Seller>`.
-        - Pros: Easier to implement and do not require refactoring for the existing code base
-        - Cons: The class (`Observable`) is deprecated since Java 9 due lack of functionality.
-        
-   2. Alternative Implementation 2: using of java.beans package instead of Observable
-        - Pros: to replace the deprecated `Observable` class since Java 9. Greater number of functions, such
-        as being able to keep track of what has changed.
-        - Cons: Will require heavy edits to the existing code base.
-
-### 2. Bid
-
- ### **Implementation**
-
- #### 2.1 **Delete**: delete a bid - `delete-bid`
-
- `delete` is supported by the `DeleteBidCommand`.
-
- Given below is the example usage scenario:
-
- **Step 1**. The user launches the PropertyFree application. 
-
- **Step 2**. After loading data from the storage to the application memory,
- the list of `bids` `BidBook` can either contain existing bids or is empty. However, as we are deleting existing bids, we will assume that there are
- bids in the book.
-
- **Step 3**. The user then executes `delete-bid <INDEX>`. If the `<INDEX>` is out of bound. PropertyFree will give a 
- display error message indicating that the index is wrong.
-
- **Step 4**. The application will then retrieve the corresponding bid, delete it, and return a new list without the
- corresponding bid.
-
- The following activity diagram summarises what happens when a user executes `delete-bid` command:
-
- ![DeleteBidActivityDiagram](images/bids/BidDeleteActivityDiagram.png)
-
- The following sequence diagram summarises as well how the components of Model and Logic interact during the execution
- of the command:
-
- ![DeleteBidSequenceDiagram](images/bids/DeleteBidSequenceDiagram.png)
-
- #### Design Considerations
-
- 1. Alternative 1 (current choice): Delete-bid command will delete a bid based on the index in the list.
-
-    - Pros: Users can easily distinguish which bid they wish to delete. 
-    - Cons: User will not be able to delete a large number at one go.
-
- 2. Alternative 2: Delete not based on index but by property.
-
-    - Pros: user can delete all the bids for a property once it is sold.
-    - Cons: It may delete the winning bid from the list which may be undesirable.
-    
-
- #### 2.2 **LIST**: display the list of bids - `list-bid`
-
- `list` is supported by the `ListBidCommand`.
-
- Given below is the example usage scenario:
-
- **Step 1**. The user launches the PropertyFree application. 
-
- **Step 2**. After loading data from the storage to the application memory,
- the list of `bids` `BidBook` can either contain existing bids, is empty, or not showing the entire list.
-
- **Step 3**. The user then executes `list-bid`.
-
- **Step 4**. The application will then return a full list of bids.
-
- The following sequence diagram summarises how the components of Model and Logic interact during the execution
- of the command:
-
- ![ListBidSequenceDiagram](images/bids/ListBidSequenceDiagram.png)
-
- #### Design Considerations
-
- 1. Alternative 1 (current choice): List-bid command will display all bids in the list based on when it was added.
-
-    - Pros: Users can easily see the entire list and know which bids were added first. 
-    - Cons: User will not be able easily see bids related to a certain property or bidder.
-
- 2. Alternative 2: List will also sort the list of bids based on property.
-
-    - Pros: user can see all the bids easily for a certain property.
-    - Cons: Chronological order of being added will not be seen.
-    
-    
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first meetingDate. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### Property Feature
-
-#### Add Property Feature 
-
-The Add Property feature adds a property with the user defined attributes, such as property name, address,
-seller id, property type, asking price and is-rental, into the property book.
-
-1. ```LogicManager``` executes the user input. 
-2. It calls ```AddressBookParser``` to parse the user input, which creates an ```AddPropertyCommandParser```, as 
-identified by the command word "add-p".
-3. The ```AddPropertyCommandParser``` creates a ```Property``` object, with attributes specified by the user.
-4. The ```AddPropertyCommandParser``` creates an ```AddPropertyCommand``` with the above property. The command
-is returned to the ```LogicManager```.
-5. The ```LogicManager``` calls ```AddPropertyCommand#execute()```, which adds the property to ```PropertyBook```
-via the ```Model``` interface.
-6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
-
-The following sequence diagram shows the process of executing an ```AddPropertyCommand```.
-![AddPropertySequenceDiagram](images/property/AddPropertySequenceDiagram.png)
-
-##### Property Id Management
-
-Each property is identified by a unique ```PropertyId``` in the form of a number prefixed by "P". As each property is
-added, the property id is auto-incremented. The following activity diagram shows how the property id is managed:
-
-![AddPropertyIdManagementActivityDiagram](images/property/AddPropertyIdManagementActivityDiagram.png)
-
-This process occurs inside the ```UniquePropertyList``` class.  
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Note 2: User-created properties always have the DEFAULT_ID. Users are not allowed to set or edit 
-```PropertyId```s to ensure the uniqueness of the property id. Only ```Property``` objects created 
-for testing purposes may have manually-added ```PropertyId```s, in which case, the ```PropertyId``` 
-will be retained. 
-
-
-### Meeting Feature
-
-#### Edit Meeting Feature
-
-The Edit Meeting feature edits an attribute of an exisiting meeting in the meeting book with the user defined attribute, such as the bidder id, property id, venue or meetingDate.
-
-1. ```LogicManager``` executes the user input. 
-2. It calls ```AddressBookParser``` to parse the user input, which creates an ```EditMeetingCommandParser```, as 
-identified by the command word "edit-m".
-3. The ```EditMeetingCommandParser``` creates a ```Meeting``` object, with the new attribute specified by the user and the attributes of the existing ```Meeting``` object.
-4. The ```EditMeetingCommandParser``` creates an ```EditMeetingCommand``` with the above meeting. The command
-is returned to the ```LogicManager```.
-5. The ```LogicManager``` calls ```EditMeetingCommand#execute()```, which adds the meeting to ```MeetingBook``` and removes the exisiting meeting from the ```MeetingBook```.
-via the ```Model``` interface.
-6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
-
-The following sequence diagram shows the process of executing an ```EditMeetingCommand```.
-![AddPropertySequenceDiagram](images/property/editMeeting.png)
-
-##### Meeting Type
-
-Each meeting has a specific type ```MeetingType``` of types paperwork, viewing or admin. The following activity diagram shows how the meeting object of the specific type is created:
-
-![AddPropertyIdManagementActivityDiagram](images/property/typeOfMeeting.png)
-
-This process occurs inside the ```AddMeetingCommand``` class where the meeting object is created and added to the MeetingBook.  
-
-
-</div>
-
-### Meeting Feature
-
-#### Find Meeting Feature
-The find meeting feature finds meetings with various different inputs. The user is able to find meetings based on 
-attributes such as venue, meetingDate, bidderId or the propertyId. The user simply has to use the relevant prefixes and add
-in a string that is contained in any of the meetings attributes and the fid feature will return you a list of the 
-meetings that contain them.
-
-1. ```LogicManager``` executes the user input. 
-2. It calls ```AddressBookParser``` to parse the user input, which creates an ```FindMeetingCommandParser```, as 
-identified by the command word "find-m".
-3. The ```FindMeetingCommandParser``` creates different predicate objects based on the inputs.
- if "/v" is used, ```VenueContainsKeywordsPredicate``` object will be created. If "/t" is used, ```TimeContainsKeywordsPredicate``` 
- object will be created. If "/b" is used, ```BidderIdContainsKeywordsPredicateobject``` will be created. If "/p" is used, 
- ```PropertyIdContainsKeywordsPredicate``` object will be created.
-4. The ```FindMeetingCommandParser``` creates an ```FindMeetingCommand``` with the above predicate. The command
-is returned to the ```LogicManager```.
-5. The ```LogicManager``` calls ```FindMeetingCommand#execute()```, which adds the list of meetings that satisfy the predicate
- into ```MeetiongBook``` via the ```Model``` interface.
-6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
-
-The following sequence diagram shows the process of executing an ```FindMeetingCommand```.
-![FineMeetingActivityDiagram](images/meeting/FindMeetingActivityDiagram.png)
-  
-#### Sort Meeting Feature
-
-
+{ End of Ui implementation section written by: Kor Ming Soon }
 
 --------------------------------------------------------------------------------------------------------------------
 
