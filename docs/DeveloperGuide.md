@@ -702,6 +702,7 @@ Use case ends.
 
  1.  User requests to find some Client based on keyword or text.
  2.  FitEgo displays the Client's whose name matches the keyword or text.
+ 
 Use case ends.
 
 **Extensions**
@@ -936,6 +937,7 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
+   
       Expected: The most recent window size and location is retained.
 
 <div markdown="span" class="alert alert-info"> 
