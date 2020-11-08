@@ -33,6 +33,8 @@ Given below are my contributions to the project.
   
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=florenciamartina&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=florenciamartina&tabRepo=AY2021S1-CS2103-T14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
+<div style="page-break-after: always;"></div>
+
 * **Enhancements to existing features**:
   * Updated all one-word commands to disallow arguments [\#180](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/180), [\#219](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/219)
   * Wrote additional tests for existing features to increase coverage (Pull requests [\#64](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/64), [\#114](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/114), [\#115](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/115), [\#135](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/135), [\#180](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/180))
