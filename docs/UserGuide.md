@@ -102,6 +102,9 @@ Action | Format
 **Find Item by Tag** | `findt` **\<string, ...\>**
 **List Items** | `listi`
 **List Recipes** | `listr`
+
+<div style="page-break-after: always;"></div>
+
 **View Detailed View of Item** | `view` **\<item name\>**
 **Clear Items** | `cleari`
 **Clear Recipes** | `clearr`
@@ -268,6 +271,8 @@ tags to, and the tags that you wish to add.
 
 **EXAMPLE:**
 - `addt` -n <u>Bobs 9th horse</u> -t <u>consumable</u>
+
+<div style="page-break-after: always;"></div>
 
 <img height="400" src="images/UG images/UG addt.png"/>
 
@@ -439,6 +444,8 @@ to search for items that have any tags in your search parameters.
 **EXAMPLE:**
 - `findt` <u>delic</u>, <u>yummy</u>
 
+<div style="page-break-after: always;"></div>
+
 <img height="400" src="images/UG images/UG findt.png"/>
 
 - Returns the items whose tags match/contain "delic" or "yummy", like: 
@@ -470,6 +477,8 @@ You will need to provide the item name of the item you wish to view.
 
 **EXAMPLE:**
 - `view` <u>Bobs bitten fingernail clipping</u>
+
+<div style="page-break-after: always;"></div>
 
 <img height="400" src="images/UG images/UG view.png"/>
 
@@ -639,6 +648,8 @@ not intend to.
 Reverses the effect of the previous command. This only
 considers commands that adds, removes, or changes an item or recipe.
 
+<div style="page-break-after: always;"></div>
+
 **EXAMPLE:**
 - `addq -n Apple -q 10` followed by `undo`
     - First command adds 10 <u>Apples</u>, `undo` removes the 10 <u>Apples</u>.
@@ -662,6 +673,8 @@ you executed the command. You should use this if you accidentally undid a comman
 **DESCRIPTION:**
 Reverses the effect of the previous undo command.
 
+<div style="page-break-after: always;"></div>
+
 **EXAMPLE:**
 - `addq -n Apple -q 10` followed by `undo` followed by `redo`
     - First command adds 10 <u>Apples</u>, `undo` removes the 10 <u>Apples</u>,
@@ -684,8 +697,6 @@ This command opens a dialog box with a link to this user guide. If you're here, 
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
-
-<div style="page-break-after: always;"></div>
 
 ### Exiting the program: `exit`
 This command allows you to close the application.
