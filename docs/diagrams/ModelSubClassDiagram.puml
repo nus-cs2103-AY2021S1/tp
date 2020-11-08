@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Item <<Rectangle>>{
+Class DetailedItem
+Class Item
+Class ItemPrecursor
+Class Quantity
+Class UniqueItemList
+}
+
+Package Recipe <<Rectangle>>{
+Class Ingredient
+Class IngredientList
+Class IngredientPrecursor
+Class PrintableRecipe
+Class ProductQuantity
+Class Recipe
+Class RecipePrecursor
+Class UniqueRecipeList
+}
+
+Package Tag <<Rectangle>>{
+Class T #FFFFFF
+Class Tag
+}
+
+Package Location <<Rectangle>>{
+Class L #FFFFFF
+Class Location
+}
+
+Class HiddenToItem #FFFFFF
+HiddenToItem .down.> UniqueItemList
+
+UniqueItemList o-right-> "*" Item
+Item *-down-> "1" Quantity
+Item *-down-> " *  " Location
+Item *-down-> "*" Tag
+
+ItemPrecursor .right.> Item
+ItemPrecursor *-down-> "1" Quantity
+ItemPrecursor *-down-> " * " Tag
+
+Quantity -[hidden]-> Tag
+Quantity -[hidden]-> Location
+
+DetailedItem -down-|> Item
+
+Class HiddenToRecipe #FFFFFF
+HiddenToRecipe .down.> UniqueRecipeList
+
+UniqueRecipeList o--> "*" Recipe
+Recipe *--> "1" IngredientList
+Recipe *--> "1" ProductQuantity
+RecipePrecursor ..> Recipe
+
+IngredientList o--> "*" Ingredient
+IngredientPrecursor ..> Ingredient
+
+PrintableRecipe --|> Recipe
+
+@enduml
