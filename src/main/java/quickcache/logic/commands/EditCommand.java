@@ -52,7 +52,7 @@ public class EditCommand extends Command {
             + PREFIX_QUESTION + "New Question "
             + PREFIX_ANSWER + "New Answer";
 
-    public static final String MESSAGE_EDIT_FLASHCARD_SUCCESS = "Edited Flashcard: %1$s";
+    public static final String MESSAGE_EDIT_FLASHCARD_SUCCESS = "Edited Flashcard:\n\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This Flashcard already exists in QuickCache.";
     public static final String MESSAGE_DIFFERENT_TYPE = "The question do not have choices";

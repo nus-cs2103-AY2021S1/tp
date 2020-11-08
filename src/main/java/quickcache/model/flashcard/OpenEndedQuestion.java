@@ -39,7 +39,7 @@ public class OpenEndedQuestion implements Question {
 
     @Override
     public String getFormatQuestion() {
-        return this.getValue();
+        return this.getValue() + "\n";
     }
 
     @Override
