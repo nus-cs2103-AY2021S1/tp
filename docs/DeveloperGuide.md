@@ -14,15 +14,16 @@ by Team W12-2
     * [3.5 - Storage Component](#section-35---storage-component)
     * [3.6 - Common Classes](#section-36---common-classes)
 * [Section 4 - Implementation](#section-4---implementation)
-    * [4.1 - Add Commands](#section-41---add-commands)
-    * [4.2 - Delete Commands](#section-42---delete-commands)
-    * [4.3 - Edit Commands](#section-43---edit-commands)
-    * [4.4 - Find Commands](#section-44---find-commands)
-    * [4.5 - List Commands](#section-45---list-commands)
-    * [4.6 - View Commands](#section-46---view-commands)
-    * [4.7 - Clear Command](#section-47---clear-command)
-    * [4.8 - Exit Command](#section-48---exit-command)
-    * [4.9 - Add Commands](#section-49---add-commands)
+    * [4.1 - Add Commands - `addMod`, `addTG` and `addStudent`](#section-41---add-commands---addmod-addtg-and-addstudent)
+    * [4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`](#section-42---delete-commands---deletemod-deletetg-and-deletestudent)
+    * [4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`](#section-43---edit-commands---editmod-edittg-and-editstudent)
+    * [4.4 - Find Commands - `findMod`, `findTG` and `findStudent`](#section-44---find-commands---findmod-findtg-and-findstudent)
+    * [4.5 - List Commands - `listMod`, `listTG` and `listStudent`](#section-45---list-commands---listmod-listtg-and-liststudent)
+    * [4.6 - View Commands - `viewTG` and `viewStudent`](#section-46---view-commands---viewtg-and-viewstudent)
+    * [4.7 - Clear Command - `clear`](#section-47---clear-commands---clear)
+    * [4.8 - Exit Command - `exit`](#section-48---exit-commands---exit)
+    * [4.9 - Data saving and loading](#section-49---data-saving-and-loading)
+
 * [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
 * [Section 6 - Appendix](#section-6---appendix)
 
@@ -182,7 +183,9 @@ Trackr's three data type also share the same commands, which are:
 
 Since Trackr stores and manages its data recursively, the commands for Module, Tutorial Group and Student work similarly.
 
-### Section 4.1 - Add Commands `addMod` `addTG` `addStudent`
+
+### Section 4.1 - Add Commands - `addMod`, `addTG` and `addStudent`
+
 #### Overview
 
 The Add command in Trackr enables users to easily add data types to the app. Users will be able to keep track of data they are
@@ -196,6 +199,39 @@ Given below is an example of the interaction between the Model and the `AddModul
 
 ![AddModuleSequenceDiagram](images/AddModSequenceDiagram.png)
 
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+Step 1. The user executes `addMod m/CS2103T` to add a module called CS2103T to Trackr. The `addMod` command calls
+`LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `AddModuleCommandParser#parse(String)`. This method creates a new
+`Module` object with the parsed arguments. An `AddModuleCommand` object is then initialised with this `Module` object.
+
+Step 3. `LogicManager#execute(String)` calls the `AddModuleCommand#execute(Model)` method of the `AddModuleCommand`
+object.
+
+Step 4. Within `Model`, the method `Model#addModule(Module)` is executed and this adds the `Module` to the
+`internalList` of `UniqueModuleList`.
+
+Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand#execute(Model)` creates a
+`CommandResult` object and the `CommandResult` is returned to `LogicManager`.
+
+> Note: There are some differences for the add commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be added to.
+> - `Model#addTutorialGroup(TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the target `Module`
+> and adds the `TutorialGroup` to the `internalList` of the `UniqueTutorialGroupList`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is an `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be added to.
+> - `Model#addStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and `TutorialGroup`
+> and adds the `Student` to the `internalList` of the `UniqueStudentList`.
+
 #### Design Considerations
 **Aspect: List to contain the models**
 - Option 1: Generic `UniqueList` that contains the models
@@ -204,7 +240,9 @@ Given below is an example of the interaction between the Model and the `AddModul
 - Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
     - Pros: Easier to implement
     - Cons: More repetitive code
-### Section 4.2 - Delete Commands `deleteMod` `deleteTG` `deleteStudent`
+
+### Section 4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`
+
 #### Overview
 
 The Delete command in Trackr enables users to easily delete data types from the app.
@@ -217,6 +255,39 @@ Given below is an example of the interaction between the Model and the `DeleteMo
 
 ![DeleteModuleSequenceDiagram](images/DeleteModuleSequenceDiagram.png)
 
+![DeleteCommandActivityDiagram](images/DeleteCommandActivityDiagram.png)
+
+Step 1. The user executes `deleteMod 1` to delete the first module in the displayed list. The `deleteMod` command calls
+`LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `DeleteModuleCommandParser#parse(String)`. This method creates a new
+`Index` object with the parsed arguments. A `DeleteModuleCommand` object is then initialised with this `Index` object.
+
+Step 3. `LogicManager#execute(String)` calls the `DeleteModuleCommand#execute(Model)` method of the
+`DeleteModuleCommand` object.
+
+Step 4. Within `Model`, the method `Model#deleteModule(Module)` is executed and this deletes the `Module` from the
+`internalList` of `UniqueModuleList`.
+
+Step 5. Once the `Module` has been deleted from the `internaList`, `DeleteModuleCommand#execute(Model)` creates an
+`CommandResult` object and the `CommandResult` is returned to `LogicManager`.
+
+> Note: There are some differences for the delete commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be deleted from.
+> - `Model#deleteTutorialGroup(TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the target
+> `Module` and deletes the `TutorialGroup` from the `internalList` of the `UniqueTutorialGroupList`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be deleted from.
+> - `Model#deleteStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
+> `TutorialGroup` and deletes the `Student` from the `internalList` of the `UniqueStudentList`.
+
 #### Design Considerations
 **Aspect: List to contain the models**
 - Option 1: Generic `UniqueList` that contains the models
@@ -226,7 +297,8 @@ Given below is an example of the interaction between the Model and the `DeleteMo
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.3 - Edit Commands `editMod` `editTG` `editStudent`
+### Section 4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`
+
 #### Overview
 
 The Edit command in Trackr enables users to easily edit data types. Users will be able to modify data.
@@ -239,6 +311,40 @@ Given below is an example of the interaction between the Model and the `EditModu
 
 ![EditModuleSequenceDiagram](images/EditModuleSequenceDiagram.png)
 
+![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
+
+Step 1. The user executes `editMod 1 m/CS2100` to edit the first module in the displayed list. The `editMod` command 
+calls `LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `EditModuleCommandParser#parse(String)`. This method creates a new
+`Index` and `EditModuleDescriptor` object with the parsed arguments. An `EditModuleCommand` object is then initialised
+with the `Index` and `EditModuleDescriptor` object.
+
+Step 3. `LogicManager#execute(String)` calls the `EditModuleCommand#execute(Model)` method of the `EditModuleCommand`
+object. The method creates a new `Module` object with the edited fields.
+
+Step 4. Within `Model`, the method `Model#setModule(Module, Module)` is executed and this replaces the current `Module`
+from the `internalList` of `UniqueModuleList` with the edited one.
+
+Step 5. Once the `Module` has been edited in the `internaList`, `EditModuleCommand#execute(Model)` creates an
+`CommandResult` object and the `CommandResult` is returned to `LogicManager`.
+
+> Note: There are some differences for the edit commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be edited from.
+> - `Model#setTutorialGroup(TutorialGroup, TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the
+> target `Module` and edits the `TutorialGroup` in the `internalList` of the `UniqueTutorialGroupList`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be edited from.
+> - `Model#setStudent(Student, Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
+> `TutorialGroup` and edits the `Student` in the `internalList` of the `UniqueStudentList`.
+
 #### Design Considerations
 **Aspect: List to contain the models**
 - Option 1: Generic `UniqueList` that contains the models
@@ -248,7 +354,8 @@ Given below is an example of the interaction between the Model and the `EditModu
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.4 - Find Commands `findMod` `findTG` `findStudent`
+### Section 4.4 - Find Commands - `findMod`, `findTG` and `findStudent`
+
 #### Overview
 
 The Find command in Trackr enables users to easily find data based on keywords. This will save their time whenever they want to 
@@ -262,6 +369,44 @@ Given below is an example of the interaction between the Model and the `FindModu
 
 ![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
 
+Step 1. The user executes `findMod cs2100` to find module(s) that contain the keyword _cs2100_. The `findMod` command 
+calls `LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `FindModuleCommandParser#parse(String)`. This method creates a new
+`ModuleContainsKeywordsPredicate` object with the parsed arguments. A `FindModuleCommand` object is then initialised
+with the `ModuleContainsKeywordsPredicate` object.
+
+Step 3. `LogicManager#execute(String)` calls the `FindModuleCommand#execute(Model)` method of the `FindModuleCommand`
+object.
+
+Step 4. Within `Model`, the method `Model#updateFilteredModuleList(Predicate<Module>)` is executed and this updates
+the displayed list of modules.
+
+Step 5. `FindModuleCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned to
+`LogicManager`.
+
+> Note: There are some differences for the find commands of `TutorialGroup` and `Student` during Step 4. `TutorialGroup`
+> also has its own predicate class called `TutorialContainsKeywordsPredicate` while `Student`'s predicate class is
+> called `NameContainsKeywordsPredicate`.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be searched from.
+> - `Model#updateFilteredTutorialGroupList(Predicate<TutorialGroup>)` method then updates the displayed list of
+> tutorial groups.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be searched from.
+> - `Model#updateFilteredStudentList(Predicate<Student>)` method then updates the displayed list of students.
+>
+> The commands `attendanceBelow` and `participationBelow` also follow similar implementations. Their predicate classes
+> are `AttendanceBelowSpecifiedScorePredicate` and `ParticipationBelowSpecifiedScorePredicate` respectively. Like the
+> aforementioned find command for `Student`, `attendanceBelow` and `participationBelow` uses the 
+> `Model#updateFilteredStudentList` method to update the displaye list of students.
+
 #### Design Considerations
 **Aspect: List to contain the models**
 - Option 1: Generic `UniqueList` that contains the models
@@ -271,7 +416,8 @@ Given below is an example of the interaction between the Model and the `FindModu
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.5 - List Commands `listMod` `listTG` `listStudent`
+### Section 4.5 - List Commands - `listMod`, `listTG` and `listStudent`
+
 #### Overview
 
 The List command in Trackr enables users to easily list all data. Users will be able to see all data after using the Find Commands.
@@ -284,6 +430,37 @@ Given below is an example of the interaction between the Model and the `ListModu
 
 ![ListModSequenceDiagram](images/ListModuleCommandSequenceDiagram.png)
 
+Step 1. The user executes `listMod` to view all the modules in Trackr. The `listMod` command calls
+`LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `TrackrParser#parseCommand(String)`. This method creates a new
+`ListModuleCommand` object.
+
+Step 3. `LogicManager#execute(String)` calls the `ListModuleCommand#execute(Model)` method of the `ListModuleCommand`
+object.
+
+Step 4. Within `Model`, the method `Model#updateFilteredModuleList(Predicate<Module>)` is executed and this displays
+all the modules within Trackr.
+
+Step 5. `ListModuleCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned to
+`LogicManager`.
+
+> Note: There are some differences for the list commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be listed from.
+> - `Model#updateFilteredTutorialGroupList(Predicate<TutorialGroup>)` method then displays all the tutorial groups
+> within the target `Module`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is an `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be listed from.
+> - `Model#updateFilteredStudentList(Predicate<Student>)` method then displays all the students within the target 
+> `Module` and `TutorialGroup`.
+
 #### Design Considerations
 **Aspect: List to contain the models**
 - Option 1: Generic `UniqueList` that contains the models
@@ -293,10 +470,11 @@ Given below is an example of the interaction between the Model and the `ListModu
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.6 - View Commands `viewTG` `viewStudent`
+### Section 4.6 - View Commands - `viewTG` and `viewStudent`
+
 #### Overview
 
-The Vieww command in Trackr enables users to easily navigate between the different views: Module View, Tutorial Group View and Student View.
+The View command in Trackr enables users to easily navigate between the different views: Module View, Tutorial Group View and Student View.
 
 #### Implementation
 Each View command for `TutorialGroup`, and `Student` is split into `ViewTutorialGroupCommand`, and `ViewStudentCommand`, respectively. Note that there
@@ -306,6 +484,31 @@ Given below is an example of the interaction between the Model and the `ViewTuto
 
 ![ViewTGSequenceDiagram](images/ViewTutorialGroupCommandSequenceDiagram.png)
 
+Step 1. The user executes `viewTG 1` to view the tutorial groups of the first module within the Module View. The
+`viewTG` command calls `LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `ViewTutorialGroupCommandParser#parse(String)`. This method creates a
+new `Index` object with the parsed arguments. A `ViewTutorialGroupCommand` object is then initialised with this `Index`
+object.
+
+Step 3. `LogicManager#execute(String)` calls the `ViewTutorialGroupCommand#execute(Model)` method of the
+`ViewTutorialGroupCommand` object.
+
+Step 4. Within `Model`, the method `Model#setViewToTutorialGroup(Module)` is executed and this displays all the tutorial
+groups of the target `Module`.
+
+Step 5. `ViewTutorialGroupCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned
+to `LogicManager`.
+
+> Note: There are some differences for the view command of `Student` during Step 4.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is an `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be viewed from.
+> - `Model#setViewToStudent(TutorialGroup)` method then displays all the students of the target `Module` and 
+> `TutorialGroup`.
+
 #### Design Considerations
 **Aspect: List to contain the models**
 - Option 1: Generic `UniqueList` that contains the models
@@ -315,7 +518,9 @@ Given below is an example of the interaction between the Model and the `ViewTuto
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.7 - Clear Command `clear`
+
+### Section 4.7 - Clear Command - `clear`
+
 #### Overview
 
 The Clear command in Trackr enables users to easily clears all data. Users will be able to erase all data in one simple command.
@@ -336,8 +541,9 @@ Given below is an example of the interaction between the Model and the `ClearCom
 - Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
     - Pros: Easier to implement
     - Cons: More repetitive code
-    
-### Section 4.8 - Exit Command `exit`
+
+### Section 4.8 - Exit Command - `exit`
+
 #### Overview
 
 The Exit command in Trackr enables users to easily exit the app. Users will be able to close the application. Data will be
