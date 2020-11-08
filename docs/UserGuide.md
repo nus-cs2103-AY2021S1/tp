@@ -309,6 +309,8 @@ Format: `edit title t:TITLE`
 Example: 
 - `edit title t:Murder case 29` updates the title of this case to “Murder case 29”.
 
+<div style="page-break-after: always;"></div>
+
 #### Edit description of the current case: `edit desc d:DESC`
 Edits the description of the current case if it has a description.
 You must add a description first.[(See Add Description)](#add-description-to-the-current-case-add-desc-ddesc)
@@ -349,7 +351,7 @@ name `Fire outbreak details` and reference `newFireDoc.pdf`.
 <br>
 This document `newFireDoc.pdf` must be manually added to the `references` folder provided and must be present before the document can be successfully updated.
 
-
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the restrictions for the fields of a person (suspect/victim/witness):**<br>
