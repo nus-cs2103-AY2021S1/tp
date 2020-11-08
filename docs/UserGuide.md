@@ -262,9 +262,7 @@ You have successfully edited a flashcard.
 <a name="listing-all-flashcards"></a>
 ### Listing all flashcards : `list`
 
-Shows a list of all flashcards currently created.
-
-Format: `list`
+If you want to see all the flashcards you have created, use the `list` command.
 
 <a name="finding-flashcards"></a>
 ### Finding flashcards
@@ -273,7 +271,7 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: You must have at least one find field provided.
+:information_source: You must provide at least one search parameter.
 
 </div>
 
@@ -630,8 +628,8 @@ for both Mac OS and Windows.
 
 4. Press enter and the flashcards within the file will be imported in your local QuickCache.
 
-    <div markdown="block" class="alert alert-danger">
-    :exclamation: Flashcards that has previously been imported and has not been modified will be ignored. Flashcards that already exists will not be imported as well.
+    <div markdown="block" class="alert alert-info">
+    :information_source: Flashcards that has previously been imported and has not been modified will be ignored. Flashcards that already exists will not be imported as well.
     </div>
 
     ![ImportStep4](./images/ImportStep4.png)
