@@ -970,9 +970,68 @@ Expected : Error message saying "Module list is already empty".
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Open the `FaculType.jar` file and do any type of modification on the contact or module list.
+   1. Inside the data folder edit the `addressbook.json` file and do any of the following:
+        1. Invalid person test cases
+            - Test case: invalid phone number <br>
+              Insert an alphabetical or special characters into the `phone` attribute in `persons`. <br>
+              Example: `987654321abcd`<br>
+              Expected: FaculType will restart with the placeholder contacts and modules, all previous information
+               will be deleted.
+            - Test case: invalid name <br>
+              Insert any special character into the `name` attribute in `persons`.<br>
+              Example: `Alex Yeoh**`<br>
+              Expected: Similar to previous.
+            - Test case: invalid email <br>
+              Modify the email to be in an invalid format.<br>
+              Example: `alexgmail`<br>
+              Expected: Similar to previous.
+            - Test case: invalid office <br>
+              Insert any special character into the `department` attribute in `persons`.<br>
+              Example: `Math??`<br>
+              Expected: Similar to previous.
+            - Test case: invalid tag <br>
+              Modify the tag to have more than one word.<br>
+              Example: `best friend`<br>
+              Expected: Similar to previous.
+        1. Invalid module test cases
+            - Test case: invalid module code <br>
+              Modify the `moduleCode` to have in `modules` to have more than one word or have a special character.<br>
+              Example: `CS123**` <br>
+              Expected: FaculType will restart with the placeholder contacts and modules, all previous information
+              will be deleted.
+            - Test case: invalid module name <br>
+              Insert any special character into the module name.<br>
+              Example: `Programming Meth***`<br>
+              Expected: Similar to previous.
+            - Test case: invalid instructor <br>
+              Do any of the above invalid person test cases into the `instructors` in any of the module in `modules`.<br>
+              Expected: Similar to previous.
+        1. Duplicate contacts<br>
+           Test case: copy and paste any contact in `persons`.<br>
+           Expected: Similar to previous.
+        1. Duplicate modules<br>
+           Test case: copy and paste any module in `modules`.<br>
+           Expected: Similar to previous.
+        1. Invalid JSON format<br>
+           Test case: delete `modules` or `persons` or erase any commas (`,`) or brackets (`{ }`).<br>
+           Expected: Similar to previous.
+
+1. Dealing with missing files.
+    
+   1. Test case: delete `config.json`<br>
+      Expected: FaculType will restart as usual.
+   
+   1. Test case: delete `preferences.json`<br>
+      Expected: Previous user preferences such as window size will be deleted and FaculType will restart with the
+       default GUI settings.
+       
+   1. Test case: delete `data/addressbook.json` <br>
+      Expected: All contact and module information will be deleted and FaculType will restart with the placeholder
+       contact and module information.
+   
 
 1. _{ more test cases …​ }_
 
