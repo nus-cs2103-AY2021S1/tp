@@ -21,7 +21,7 @@
             <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="moduleCode" styleClass="cell_big_label" text="\$moduleCode" wrapText="true" />
             </HBox>
-            <Label fx:id="moduleName" styleClass="cell_small_label" text="\$moduleName" wrapText="true"/>
+            <Label fx:id="moduleName" styleClass="cell_small_label" text="\$moduleName" wrapText="true" />
             <FlowPane fx:id="instructors" />
 
         </VBox>
