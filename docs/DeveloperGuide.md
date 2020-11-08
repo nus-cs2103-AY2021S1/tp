@@ -1266,17 +1266,16 @@ testers are expected to do more *exploratory* testing.
 	1. Prerequisites: List all cases using the `list case` command. Multiple cases in the list.
 	
 	1. Test case: `archive case 1`
-	<br><br><br>
         
-	Expected: First case is archived. Details of the archived case shown in the result display. Doing a `list archive` should show the archived case at the bottom of the list of archive cases.
+	Expected: First case is archived. Details of the archived case shown in the result display. 
+	Doing a `list archive` should show the archived case at the bottom of the list of archive cases.
 
   	1. Test case: `archive case 0`
-	<br><br><br>
         
-	Expected: No case is archived. <br> Error details shown in the result display. List of cases remains the same.
+	Expected: No case is archived. Error details shown in the result display. 
+	List of cases remains the same.
 
   	1. Other incorrect archive commands to try: `archive`, `archive case`, `archive case x` (where x is larger than the list size)
-	<br>
         
 	Expected: Similar to previous.
 
