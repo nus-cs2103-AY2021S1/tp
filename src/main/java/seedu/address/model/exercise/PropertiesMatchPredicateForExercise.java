@@ -27,10 +27,10 @@ public class PropertiesMatchPredicateForExercise implements Predicate<Exercise> 
         boolean result = true;
 
         if (name != null) {
-            result = name.equals(exercise.getName());
+            result = name.fullName.equalsIgnoreCase(exercise.getName().fullName);
         }
         if (description != null) {
-            result = result && (description.equals(exercise.getDescription()));
+            result = result && (description.value.equalsIgnoreCase(exercise.getDescription().value));
         }
         if (date != null) {
             result = result && (date.equals(exercise.getDate()));
@@ -39,7 +39,8 @@ public class PropertiesMatchPredicateForExercise implements Predicate<Exercise> 
             result = result && (calories.equals(exercise.getCalories()));
         }
         if (keywords != null) {
-            result = result && new NameContainsKeywordsPredicateForExercise(keywords).test(exercise);
+            result = result && (new NameContainsKeywordsPredicateForExercise(keywords).test(exercise)
+            || new DescriptionContainsKeywordsPredicateForExercise(keywords).test(exercise));
         }
 
         return result;
