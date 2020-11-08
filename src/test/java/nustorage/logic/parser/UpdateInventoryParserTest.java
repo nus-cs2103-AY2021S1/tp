@@ -3,7 +3,7 @@ package nustorage.logic.parser;
 import static nustorage.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static nustorage.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static nustorage.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static nustorage.logic.parser.ParserUtil.MESSAGE_INVALID_QUANTITY;
+import static nustorage.logic.parser.ParserUtil.MESSAGE_INVALID_CHANGE_IN_QUANTITY;
 import static nustorage.testutil.TypicalIndexes.INDEX_FIRST;
 import static nustorage.testutil.TypicalIndexes.INDEX_SECOND;
 import static nustorage.testutil.TypicalIndexes.INDEX_THIRD;
@@ -34,7 +34,7 @@ public class UpdateInventoryParserTest {
         assertParseFailure(parser, missingChangeInQuantity2, UpdateInventoryCommand.MESSAGE_MISSING_QUANTITY);
         assertParseFailure(parser, missingChangeInQuantity3,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateInventoryCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, missingChangeInQuantity4, MESSAGE_INVALID_QUANTITY);
+        assertParseFailure(parser, missingChangeInQuantity4, MESSAGE_INVALID_CHANGE_IN_QUANTITY);
     }
 
     @Test
@@ -89,9 +89,9 @@ public class UpdateInventoryParserTest {
         String invalidQuantity2 = "1 q/--30";
         String invalidQuantity3 = "1 q/*30";
 
-        assertParseFailure(parser, invalidQuantity1, MESSAGE_INVALID_QUANTITY);
-        assertParseFailure(parser, invalidQuantity2, MESSAGE_INVALID_QUANTITY);
-        assertParseFailure(parser, invalidQuantity3, MESSAGE_INVALID_QUANTITY);
+        assertParseFailure(parser, invalidQuantity1, MESSAGE_INVALID_CHANGE_IN_QUANTITY);
+        assertParseFailure(parser, invalidQuantity2, MESSAGE_INVALID_CHANGE_IN_QUANTITY);
+        assertParseFailure(parser, invalidQuantity3, MESSAGE_INVALID_CHANGE_IN_QUANTITY);
     }
 
     @Test
