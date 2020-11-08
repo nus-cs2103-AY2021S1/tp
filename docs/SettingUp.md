@@ -11,6 +11,7 @@
 ## Setting up the project in your computer
 
 <div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution</b>
+
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
 </div>
   
