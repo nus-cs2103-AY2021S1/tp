@@ -1654,7 +1654,105 @@ testers are expected to do more *exploratory* testing.
 
 ### Contact List
 
-####
+#### Adding a contact
+
+1. Adding a contact while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+  
+   1. Test case: `addcontact n/john e/john@gmail.com`
+      Expected: A contact with the name `john` and email `john@gmail.com` will be created. Details of the newly created contact are shown in the status message.
+   
+   1. Test case: `addcontact n/john e/john@gmail.com te/@johndoe`
+      Expected: A contact with the name `john`, email `john@gmail.com` and telegram `@johndoe` will be created. Details of the newly created contact are shown in the status message.
+
+   1. Test case: `addcontact n/john e/john@gmail.com t/tag1 t/tag2`
+      Expected: A contact with the name `john`, email `john@gmail.com` and tags `tag1` and `tag2` will be created. Details of the newly created contact are shown in the status message.
+
+   1. Test case: `addcontact n/*** e/john@gmail.com`
+      Expected: The contact will not be created. Error message for invalid contact name is shown in the status message.
+      
+   1. Test case: `addcontact n/john e/incorrectemail.com`
+      Expected: The contact will not be created. Error message for invalid contact email is shown in the status message.
+      
+   1. Test case: `addcontact n/john e/john@gmail.com te/john`
+      Expected: The contact will not be created. Error message for invalid contact telegram is shown in the status message.
+
+   1. Test case: `addcontact n/john e/john@gmail.com t/&^*`
+      Expected: The contact will not be created. Error message for invalid contact tag is shown in the status message.
+
+#### Deleting a contact
+
+1. Deleting a contact while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `deletecontact 1`
+      Expected: The first contact is deleted from the list. Details of the deleted contact shown in the status message.
+      
+   1. Test case: `deletecontact 0`
+      Expected: No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+   1. Test case: `delete x` where x is larger that the displayed contact list size
+      Expected:  No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+2. Deleting a contact while some contacts are being shown
+
+   1. Prerequisites: List out some contacts using the `findcontact` command. A few contacts in the list.
+
+   1. Test case: `deletecontact 1` (assuming there is at least one contact in the displayed contact list)
+      Expected: The first contact is deleted from the filtered contact list. Details of the deleted contact shown in the status message.
+
+   1. Test case: `deletecontact 0`
+      Expected: No contact is deleted. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
+   
+   1. Test case: `delete x` where `x` is larger that the displayed contact list size
+      Expected:  No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+#### Editing a contact
+
+1. Editing a contact while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `editcontact 1 n/john e/john@gmail.com`
+      Expected: The first contact in the displayed contact list will be edited with the name `john` and email `john@gmail.com`. 
+                Details of the newly edited contact are shown in the status message.
+   
+   1. Test case: `editcontact 1 te/@johndoe`
+      Expected: The first contact in the displayed contact list will be edited with the telegram `@johndoe`. 
+                Details of the newly edited contact are shown in the status message.             
+   
+   1. Test case: `editcontact 1 te/tag1`
+      Expected: The first contact in the displayed contact list will be edited with the tag `tag1`. 
+                Details of the newly edited contact are shown in the status message.
+
+   1. Test case: `editcontact 1 t/`
+      Expected: The first contact in the displayed contact list will be edited with all tags removed. 
+               Details of the newly edited contact are shown in the status message.
+
+   1. Test case: `editcontact 1 n/***`
+      Expected: The first contact will not be edited. Error message for invalid contact name is shown in the status message.
+     
+   1. Test case: `editcontact e/incorrectemail.com`
+      Expected: The first contact will not be edited. Error message for invalid contact email is shown in the status message.
+        
+   1. Test case: `editcontact 1 te/john`
+      Expected: The first contact will not be edited. Error message for invalid contact telegram is shown in the status message.
+  
+  1. Test case: `editcontact 1 t/&^*`
+     Expected: The first contact will not be edited. Error message for invalid contact tag is shown in the status message.
+
+  1. Test case: `editcontact 0 n/john`
+     Expected: No contact is edited. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
+     
+  1. Test case: `editcontact x n/john` where `x` is larger that the displayed contact list size
+     Expected: No contact is edited. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+#### Finding a contact
+
+
+
 
 ### Todo List
 
