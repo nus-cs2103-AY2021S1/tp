@@ -2,20 +2,10 @@
 layout: page
 title: User Guide
 ---
-
-<img src="images/tCheckLogo.png" width="200" height="200" />
-
-Welcome to the tCheck User Guide! Thank you for choosing tCheck, the most popular command-line milk tea shop management desktop application in the T-Sugar chain!
-
-tCheck offers an integrated system to efficiently manage a T-Sugar shop, by providing sales tracking, ingredient tracking and employees' contact management in one platform.
-
-This guide will help you to get started with tCheck, and provide useful tips along the way.
-
-
-
 * Table of Contents
-    * [About this document](#about-this-document)
+    * [Introduction](#introduction)
     * [Quick start](#quick-start)
+    * [About this document](#about-this-document)
     * [Features](#features)
         * [Commands - Sales Tracking](#commands-sales-tracking) 
         * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
@@ -23,23 +13,25 @@ This guide will help you to get started with tCheck, and provide useful tips alo
         * [Commands - General](#commands-general)
     * [Command summary](#command-summary)
 
+## Introduction <a name="introduction"></a>
+<img src="images/tCheckLogo.png" width="200" height="200" />
+
+Welcome to the User Guide of **tCheck**!
+ 
+Are you a bubble tea store manager (from T-Sugar) looking to reduce your time spent on administrative work in store
+management? Look no further, as tCheck can assist you with these tasks.
+
+tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of 
+the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is an
+application optimized for the Command Line Interface (CLI); this means that you use this application by typing
+commands into a _Command Box_. If you are a fast typist, then you will be able to update and retrieve the
+information in tCheck more efficiently, as opposed to using other applications that requires a mouse.
+
+This User Guide will help you get started with tCheck and learn how to use the features that tCheck provides.
+You can start from the [Quick Start](#quick-start) section to learn how to obtain tCheck to begin managing
+ your store more efficiently.
+
 --------------------------------------------------------------------------------------------------------------------
-## About this document  <a name="about-this-document"></a>
-This document introduces the features of tCheck. 
-
-The following are symbols and formatting used in this document:
-
-:bulb: 
-Tips are used to describe small features or techniques
-that may come in handy when using tCheck!
-
-
-:information_source: 
-Notes describe certain features or behaviour that may
-not be so obvious!
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Quick start <a name="quick-start"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -68,6 +60,7 @@ not be so obvious!
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
 #### 3.2.2. General Symbols and Syntax 
 
 The following table explains general symbols and syntax used in this User Guide.
@@ -114,6 +107,21 @@ The following points explain the format of a command.
     
 
 
+## About this document  <a name="about-this-document"></a>
+This document introduces the features of tCheck. 
+
+The following are symbols and formatting used in this document:
+
+:bulb: 
+Tips are used to describe small features or techniques
+that may come in handy when using tCheck!
+
+
+:information_source: 
+Notes describe certain features or behaviour that may
+not be so obvious!
+
+
 ## Features <a name="features"></a>
 
 <div markdown="block" class="alert alert-info">
@@ -136,12 +144,14 @@ The following points explain the format of a command.
 </div>
 
 ### 1. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
+The Sales Tracking features allows you to keep a record of the sales of the bubble tea drinks inside the
+Sales Tracker. You are able to view data related to sales tracking in the Sales Tracker inside the _Main View_.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about available drinks:**<br>
 
-Currently, there are 6 types of drinks that can be tracked by tCheck's sales tracker. The drinks and their respective
+Currently, there are 6 types of drinks that can be tracked by tCheck's Sales Tracker. The drinks and their respective
  abbreviations are shown as below:<br>
  
 * `BSBM`  : Brown Sugar Boba Milk<br>
@@ -160,29 +170,57 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's sales tra
 
 
 #### 1.1 Updating the number of drinks sold : `s-update`
-Updates the number of drinks sold for each drink type as given in the user input.
+Updates the number of drinks sold for each drink type as given in the user input. The previous records will
+be overwritten.
 
+Format: `s-update DRINK [MORE_DRINKS]`
+* where `DRINK` is formatted as `A/NUM`
+    * `A` refers to the drink's abbreviation.
+    * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
+less than or equal to 99999999.
+* The sales of at least one drink item should be recorded when using this command.
 
-Format: `s-update A/NUM B/NUM C/NUM`
-* `A`, `B`, `C` are abbreviations for the drink types.
-* `NUM` refers to the number of drinks sold. It should be a non-negative integer.
+Example: 
 
-Example:
-* `s-update BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
- Brown Sugar Boba Black Tea `BSBBT` to 120.
- 
- <div markdown="span" class="alert alert-primary">
- 
-:information_source: Note about the update: <br>
+Let's say you want to update the sales of Brown Sugar Boba Milk, `BSBM`, to 100 
+and Brown Sugar Boba Black Tea, `BSBBT`, to 120 in the Sales Tracker. You can follow these instructions:
 
-The record in tCheck will be overwritten by the input that you provide. <br>
- 
- </div>
+1. Type `s-update BSBM/100 BSBBT/120` into the _Command Box_.
+2. Press "Enter" to execute the command.
+
+Outcome:
+
+1. The _Result Display_ will show a success message.
+2. You can now see that tCheck has updated the sales of the two drinks in the Sales
+ Tracker inside the _Main View_. 
+
+![SalesUpdateCommandScreenshot](images/SalesUpdateCommandScreenshot.png)
+
+Figure x. A screenshot showing the outcome of an `s-update` command
 
 #### 1.2 Listing the number of drinks sold : `s-list`
-Shows a list of all types of drinks sold in the Sales Tracker inside the Main View.
+Shows a list of all types of drinks sold in the Sales Tracker. The list of drinks shown is 
+ordered in descending order (i.e. ranked from the most to least sales).
 
 Format: `s-list`
+
+Example: 
+
+Let's say you want to see an ordered list of drink sales that have been recorded with `s-update`.
+You can follow these instructions:
+
+1. Type `s-list` into the _Command Box_.
+2. Press "Enter" to execute the command.
+
+Outcome:
+
+1. The _Result Display_ will show a success message.
+2. The Sales Tracker inside the _Main View_ will show a list of the drinks sales in descending order, where the drink
+ with the most sales is on top.
+
+![SalesListCommandScreenshot](images/SalesListCommandScreenshot.png)
+
+Figure x. A screenshot showing the outcome of an `s-list` command
 
 #### 1.3 Finds the number of drinks by keywords : `s-find`
 
@@ -196,16 +234,16 @@ Format: `s-find KEYWORD [MORE_KEYWORDS]`
 * Drinks matching at least one keyword will be returned.
   e.g. `BSBBT BSBM` will return `BSBBT`, `BSBM`.
 
-Example: 
+Example:
+
 Let's say you want to find BSBBT and BSBM's sales data, you can follow these instructions:
 
-Steps to find sales data:
 1. Type `s-find BSBBT BSBM` into the _Command Box_.
-1.  Press "Enter" to execute.
+1. Press "Enter" to execute.
+
 
 Outcome:
 1. The _Result Display_ will show that how many drinks you find.
-
 2. All matching drink's sales data will be listed in the _Main View_.
 
 Before executing:<br>
@@ -214,11 +252,6 @@ Before executing:<br>
 After executing:<br>
 ![SalesFindCommandScreenshot](images/SalesFindResult.png)
 
-#### 1.4 Ranking the list of drinks sold : `s-rank`
-Shows a ranked list of all types of drinks sold in the Sales Tracker. The list of drinks
-is ranked from the most popular to least popular.
-  
-Format: `s-rank`
 
  
 ### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
@@ -603,6 +636,7 @@ Action | Format, Examples
 **List**| `s-list`
 **Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 **Rank**| `s-rank`
+
 
 
 ### Ingredients  Tracking

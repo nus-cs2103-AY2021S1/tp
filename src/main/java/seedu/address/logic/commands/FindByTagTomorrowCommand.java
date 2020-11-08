@@ -18,7 +18,7 @@ public class FindByTagTomorrowCommand extends Command {
     public static final String COMMAND_WORD = "c-tomorrow";
 
     public static final String MESSAGE_SUCCESS = "Tomorrow is %2$s."
-            + "\nThere are total %1$s employees working tomorrow."
+            + "\nThere are a total of %1$s employees available tomorrow."
             + "\nThey are listed below in the employee directory pane.";
     public static final String MESSAGE_NO_EMPLOYEE = "Tomorrow is %1$s."
             + "\nBased on the tCheck's employee directory, no employee is available tomorrow.";

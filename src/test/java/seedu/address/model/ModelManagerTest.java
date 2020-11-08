@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ACTIVE_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalSalesRecordEntries.getTypicalSalesBook;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -91,7 +92,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void overwrite_salesBookNew_initialisedAndUpdateSalesEntry() {
+    public void overwrite_emptySalesBook_initialiseSalesEntry() {
         HashMap<Drink, Integer> sales = new HashMap<>();
         sales.put(Drink.BSBM, 80);
         sales.put(Drink.BSBBT, 0);
@@ -108,7 +109,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void overwrite_salesBookInitialised_updateByOverwriteSalesEntry() {
+    public void overwrite_nonEmptySalesBook_overwriteSalesEntry() {
         HashMap<Drink, Integer> sales = new HashMap<>();
         sales.put(Drink.BSBM, 80);
         sales.put(Drink.BSBBT, 20);
@@ -134,16 +135,19 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredSalesRecordList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, ()
+            -> modelManager.getFilteredSalesRecordList().remove(0));
+    }
+
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         SalesBook salesBook = new SalesBook();
         IngredientBook ingredientBook = new IngredientBook();
-        HashMap<Drink, Integer> sales = new HashMap<>();
-        sales.put(Drink.BSBM, 80);
-        sales.put(Drink.BSBBT, 20);
-        salesBook.overwriteSales(sales);
-        SalesBook differentSalesBook = new SalesBook();
+        salesBook.resetData(getTypicalSalesBook());
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
@@ -167,7 +171,7 @@ public class ModelManagerTest {
                 ingredientBook, userPrefs)));
 
         // different salesBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentSalesBook,
+        assertFalse(modelManager.equals(new ModelManager(addressBook, new SalesBook(),
                 ingredientBook, userPrefs)));
 
         // different filteredList -> returns false
