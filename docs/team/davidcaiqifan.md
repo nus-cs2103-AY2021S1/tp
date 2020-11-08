@@ -47,29 +47,27 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Updated the side panel to display the module assignment list 
+  * Updated the side panel to display the module assignment list (Pull request [\#577]())
   * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
+  * Wrote additional tests for existing features (Pull requests [\#549](), [\#579](), [\#596](), [\#607](), [\#631](), 
+  [\#634](), [\#637](), [\#649](), [\#650]())
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `viewmodule` and `find` [\#72]()
-    * Added documentation for the features `archivemodule` and `unarchivemodule` [\#72]()
-    * Added documentation for the features `undo` and `redo` [\#72]()
-    * Added documentation for the features `listmodule` and `viewarchive` [\#72]()
-    * Added documentation for the features `calculatecap` and `targetcap` [\#72]()
-   
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `undo` and `redo` (Pull request [\#352]())
+    * Added documentation for the features `calculatecap` and `targetcap` (Pull request [\#447]())
+    * Added documentation for the feature `addcompletedmodule` (Pull request [\#463]())
+    * Added documentation for the features `archivemodule`, `unarchivemodule`, `listmodule` and `viewarchive` (Pull request [\#481]())
+    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: (Pull request [\#TBD]())
+    * Added documentation for the features `viewmodule` and `find` (Pull request [\#TBD]())
   * Developer Guide:
-    * Added design architecture details for the `Storage` component.
-    * Added implementation details of the `undo`, `redo` feature.
-    * Added implementation details of `calculatecap` feature.
+    * Added design architecture details for the `Storage` component. (Pull request [\#326]())
+    * Added implementation details of the `undo`, `redo` feature. (Pull request [\#TBD]())
+    * Added implementation details of `calculatecap` feature. (Pull request [\#299]())
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]() (these PR are just randomly chosen, will finalize later)
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
+  * PRs reviewed (with non-trivial review comments): (Pull requests [\#402](), [\#295]())
+  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3](), [TBD]())
 
-* **Tools**:
+* **Tools**:[TBD]()
   * Integrated a third party library (Natty) to the project ([\#42]())
   * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
