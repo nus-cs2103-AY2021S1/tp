@@ -63,7 +63,7 @@ public class FindCommand extends Command {
         }
         model.updateFilteredStudentList(consolidatedPredicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENTS_FOUND_OVERVIEW, model.getSortedStudentList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getSortedStudentList().size()));
     }
 
     @Override
