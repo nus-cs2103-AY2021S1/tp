@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Score {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Scores should be in the form x/y, where x and y are both non-negative numbers with at most 2 decimal places and x has to be less than "
+            "Scores should be in the form x/y, where x and y are both non-negative numbers and x has to be less than "
                     + "or equal to y.";
 
     public final double marksObtained;

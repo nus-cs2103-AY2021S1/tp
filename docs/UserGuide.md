@@ -109,6 +109,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 1. Refer to the [Features](#3-features) section below for details of each command.
 
 ### 2.2 Making sense of **Reeve**'s layout
+
 ![Reeve's Layout](images/ReeveLayout.png)
 
 1. **Menu**
@@ -162,8 +163,12 @@ If you are unsure of any of the commands, this command will direct you to the he
 Format: `help`
 
 Expected Outcome:
+
+The following figures shows the help window entering the command `help`.
+
 ![help message](images/helpMessage.png)
 
+Figure __. Help window.
 
 #### 3.2.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
@@ -183,10 +188,8 @@ Before:
 
 Figure __. Before entering command `toggle`.
 
-
 After:
 
-<<<<<<< Updated upstream
 ![ToggleCommandExpectedOutcomeBeforeUG](images/ToggleCommandExpectedOutcomeAfterUG.png)
 
 Figure __. After entering command `toggle`.
@@ -232,24 +235,11 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 
 <div markdown="block" class="alert alert-info">
 
-:warning: `LAST_PAYMENT_DATE` cannot be a future date (e.g. cannot be later than the current date)
-=======
+:information_source: `LAST_PAYMENT_DATE` **cannot** be a future date (i.e. cannot be later than the current date)
+
+</div>
+
 Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]`
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note:** The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
-
-</div>
-
-Example:
-* `add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214 
-t/1 1430-1630 f/25 d/12/12/2020`
-* `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 
-t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
->>>>>>> Stashed changes
-
-</div>
 
 Examples:
 * `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`
@@ -273,13 +263,6 @@ Format: `list`
 
 :information_source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
 
-<<<<<<< Updated upstream
-=======
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note:** The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
-
->>>>>>> Stashed changes
 </div>
 
 #### 3.3.3 Editing a student: `edit` (By: Vaishak)
@@ -514,12 +497,12 @@ Example:
 #### 3.4.2 Recording exams of a student: `exam` (By: Hogan)
 
 You can add or delete an exam record to/from a specified student. You can then view the exam statistics of a student in the form of a
-score percentage to date line graph. 
+score percentage to exam date line graph. 
 
 General Format: `exam COMMAND_WORD_EXAM STUDENT_INDEX PARAMETERS`
 
-* The `COMMAND_WORD_EXAM` field accepts either `add` or `delete`.
-* The command affects the student at the specified `STUDENT_INDEX`.
+* The `COMMAND_WORD_EXAM` field accepts either `add`, `delete` or `stats`.
+* The command can affect the student at the specified `STUDENT_INDEX`.
 * `STUDENT_INDEX` refers to the index number shown in the displayed students list.
 * The format of `PARAMETERS` varies with each command word as explained in the following subsections.
 
@@ -546,11 +529,13 @@ Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
     
 <div markdown="block" class="alert alert-info">
 
-<<<<<<< Updated upstream
-:information_source: You **cannot** add duplicates of an exam record to a student. Each exam record is uniquely identified the `EXAM_NAME`.
-=======
 :information_source: Scores and score percentages will be rounded off to two decimal places.
->>>>>>> Stashed changes
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:warning: You **cannot** add duplicates of an exam record to a student. Each exam record is uniquely identified by its `EXAM_NAME`.
 
 </div>
 
@@ -606,13 +591,8 @@ Figure __. After entering command `exam delete 1 i/1`.
 
 ##### 3.4.2.3 Viewing exam statistics of a student: `exam stats`
 
-<<<<<<< Updated upstream
-To gauge how any of your students are doing with their examinations, this command allows you to view a graphical
-representation of all recorded exams. The graph is a score-date line graph where score is based on the score percentage. 
-=======
 To gauge how one of your students are doing with their examinations, this command allows you to view a graphical
 representation of all recorded examinations in the form of a exam score percentage to exam date line graph. 
->>>>>>> Stashed changes
 
 Format: `exam stats STUDENT_INDEX`
 
@@ -627,7 +607,6 @@ Format: `exam stats STUDENT_INDEX`
 Examples:
 * `list` followed by `exam stats 2` views the exam statistics of the 2nd student in **Reeve**.
 * `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
-
 
 Expected Outcome:
 
@@ -755,8 +734,6 @@ The following table provides the definitions of the various terms used in this U
 
 Term | Definition
 --------|------------------
-Private Tutor | A person that teaches students in a 1 to 1 manner.
-Student | A person that is being taught by a private tutor.
 Basic Details | Details such as name, year, academic level and school of a student.
 Administrative Details | Details such as class venue, class time, tuition fee, last payment date and other details
 Academic Details | Details such as questions, exam records and attendance records
