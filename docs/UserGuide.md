@@ -77,7 +77,7 @@ Note how the app contains some sample data.<br>
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
-Here are some information you would need to know about the way to include  
+Here are some general information you would need to know about our commands as you read through the user guide.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -114,6 +114,12 @@ You can also find the records in the `data` folder where the `eva.jar` file is l
 
 </div>
 
+Here is a brief overview on how this document is arranged. The first section brings you through the different panels you
+will see in our application. After getting familiar with that, we will share some general system commands you can use at
+any point in time. In the third section, we will bring you through the features we have implemented for staff. Following
+which, you will be introduced to the features for managing applicant records. Finally, you will learn about features 
+that work for both applicants and staff. By then, you will definitely become a master in using Eva! So let's get started! 
+
 ### 3.1. Eva GUI
 
 Before we dive into the features, let us help you familiarize yourself with our GUI!
@@ -136,7 +142,7 @@ As of `v1.4`, Eva currently has four different application panels it can switch 
 
 ![applicantProfilePanel intro](images/ugimages/Intro4.png)
 
-These four panels form the core of our application to be sure to familiarize yourself with them!Once ready, move on to the [Commands](#32-system-commands)!
+These four panels form the core of our application to be sure to familiarize yourself with them! Once ready, move on to the [Commands](#32-system-commands)!
 
 
 ### 3.2. System Commands
