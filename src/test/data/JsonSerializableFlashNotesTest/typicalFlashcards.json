@@ -1,0 +1,48 @@
+{
+  "_comment": "FlashNotes save file which contains the same Flashcard values as in TypicalFlashcards#getTypicalFlashNotes()",
+  "flashcards" : [ {
+    "question" : "Who",
+    "answer" : "me",
+    "tag" : "friends"
+  }, {
+    "question" : "What",
+    "answer" : "idk",
+    "tag" : "owesMoney"
+  }, {
+    "question" : "Why",
+    "answer" : "because someone has to",
+    "tag" : "friends"
+  }, {
+    "question" : "How",
+    "answer" : "use your hands",
+    "tag" : "friends"
+  }, {
+    "question" : "When",
+    "answer" : "at 2pm",
+    "tag" : "Time"
+  }, {
+    "question" : "Where",
+    "answer" : "at home",
+    "tag" : "Place"
+  }, {
+    "question" : "How much",
+    "answer" : "300 apples",
+    "tag" : "Math"
+  } ],
+  "decks" : [ {
+    "deckName" : "friends",
+    "resultStatistic" : "3.3"
+  }, {
+    "deckName" : "owesMoney",
+    "resultStatistic" : "-1.0"
+  }, {
+    "deckName" : "Time",
+    "resultStatistic" : "0"
+  }, {
+    "deckName" : "Place",
+    "resultStatistic" : "100"
+  }, {
+    "deckName" : "Math",
+    "resultStatistic" : "75"
+  } ]
+}
