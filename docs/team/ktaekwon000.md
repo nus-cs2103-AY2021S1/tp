@@ -20,19 +20,21 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ktaekwon000&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ktaekwon000&tabRepo=AY2021S1-CS2103T-W11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements to existing features**:
-  * Updated the UI layout (Pull requests [\#82](), [\#230]())
-  * Wrote additional tests for additional features in the application (Pull requests [\#155]())
+  * Updated the UI layout. (Pull requests [\#82](), [\#230]())
+  * Wrote additional tests for additional features in the application. (Pull requests [\#155]())
+  * Implemented sorting of appointments, a critical feature of CliniCal. (Pull requests [\#135]() and [\#147]())
 
 * **Documentation**:
   * User Guide:
     * Made necessary edits to various sections. (Pull request [\#246]())
   * Developer Guide:
     * Added the introduction to the document and the guide to set up the repo for development. (Pull request [\#111]())
+    * Introduced a key functionality of the application, Appointments, into the Developer Guide. (Pull request [\#254]())
 
 * **Community**:
-  * Contributed to forum discussions (examples: [Forum activities](https://nus-cs2103-ay2021s1.github.io/dashboards/contents/forum-activities.html#16-kim-kwon-ktaekwon000-16-posts))
-  * Reported bugs and suggestions for other teams in the class (examples: [\#81](), [\#44]())
+  * Contributed actively to forum discussions. (examples: [Forum activities](https://nus-cs2103-ay2021s1.github.io/dashboards/contents/forum-activities.html#16-kim-kwon-ktaekwon000-16-posts))
+  * Reported bugs and suggestions for other teams in the class. (examples: [\#81](), [\#44]())
   * Some parts of the calendar feature I added was adopted by several other class mates ([ArchAngel Developer Guide](https://ay2021s1-cs2103t-w11-1.github.io/tp/DeveloperGuide.html#81-acknowledgments))
 
 * **Tools**:
-  * Integrated a third party library (jfxtras) to the project ([\#82]())
+  * Integrated third party libraries (jfxtras and commons-validator) to the project. (Pull requests [\#82]() and [\#250]())
