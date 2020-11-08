@@ -93,7 +93,6 @@ public interface Model {
      */
     void setSalesBookFilePath(Path salesBookFilePath);
 
-
     /**
      * Sets the user prefs' ingredient book file path.
      */
@@ -212,11 +211,11 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Updates the filter of the filtered sales list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered sales record list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredSalesList(Predicate<SalesRecordEntry> predicate);
+    void updateFilteredSalesRecordList(Predicate<SalesRecordEntry> predicate);
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
