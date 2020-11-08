@@ -1,16 +1,15 @@
 package seedu.address.model.event;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.contact.ContactContainsTagsPredicate;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
-import seedu.address.testutil.contact.ContactBuilder;
-import seedu.address.testutil.event.EventBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
+import seedu.address.testutil.event.EventBuilder;
 
 public class EventContainsTagsPredicateTest {
     @Test
