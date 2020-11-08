@@ -16,9 +16,9 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/josiah.md)]
 
 #### Developer and Team Lead
-* Responsible for overall project coordination
-* In charge of defining, assigning, and tracking project tasks
-* Ensure project deliverables are done on time and in the right format
+* Responsible for overall project coordination.
+* In charge of defining, assigning, and tracking project tasks.
+* Ensure project deliverables are done on time and in the right format.
 
 ### Francis Hodianto
 
