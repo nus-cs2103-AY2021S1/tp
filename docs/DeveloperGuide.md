@@ -256,7 +256,7 @@ The `UI` component works the same
 
 The design looks like:
 
-<img src="images/Ui-v1.3.png" width="500px">
+<img src="images/Ui.png" width="500px">
 
 ---
 
