@@ -27,7 +27,7 @@ Given below are my contributions to the project.
 
 <div style="page-break-after: always;"></div>
 
-* **New Feature**: Added a dynamic header on the right side panel. (Pull request [\#134](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/134), [\#138](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/138))
+* **New Feature**: Added a dynamic header on the right side panel. (Pull requests [\#134](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/134), [\#138](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/138))
   * What it does: Allows the user to have a better idea of the time period searched for when using the “Session View” function.
   * Justification: This feature improves the product significantly because a user can better identify which time period it is referring to.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of JavaFX.
