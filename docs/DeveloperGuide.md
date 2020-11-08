@@ -251,7 +251,7 @@ The following describes the flow of how `ToggleStudentCardCommand` is performed.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: By default, `StudentListPanel` uses `StudentAcademicCard`.
+:information_source: By default, `StudentListPanel` uses the `StudentAcademicCard`.
 
 </div><br>
 
@@ -261,6 +261,19 @@ The following sequence diagram shows how the `ToggleStudentCardCommand` executio
 
 Figure \___. Sequence diagram for `ToggleStudentCardCommand` execution
 
+The following explains the design considerations of the `toggle` command.
+
+**Aspect: How the GUI responds when toggle is executed**
+
+* **Alternative 1 (current choice)**: Switch between two types of student cards, student academic card and student admin card for the cards used in the student list panel.
+    * Pros: Easy to implement, reduces cluttering of information, allows for better focus on different information,.
+    * Cons: Can take a long time to execute finish or introduce unfinished toggling if student list is large.
+    
+* **Alternative 2**: Introduce two tabs, one for admin details and the other for academic details and toggling switches between these two tabs.
+    * Pros: Student list size does not slow down execution of command.
+    * Cons: Double the work when executing commands such as `find` because there are now two lists to update, repeat of basic information such as student's name, phone, school and academic level, harder to implement.
+    
+    
 #### 6.1.3 Exit Command
 
 ### 6.2 Student administrative details features
@@ -488,6 +501,8 @@ The structure of exam commands is as shown below:
 
 ![ExamCommandClass](images/ExamCommandClassDiagram.png)
 
+Figure \___. Class diagram of exam commands.
+
 ##### 6.3.2.1 Add exam command
 
 The following describes the flow of how `AddExamCommand` is performed.
@@ -539,13 +554,23 @@ The following sequence diagram shows how the exam stats operation works.
 
 Figure \___. Sequence diagram for `ExamStatsCommand` execution
 
-
 The following activity diagram summarises the flow of events when `ExamStatsCommand` is executed.
 
 ![ExamStatsActivityDiagram](images/ExamStatsActivityDiagram.png)
 
 Figure \___. Activity diagram for `ExamStatsCommand` execution
 
+The following explains the design considerations of the `exam stats` command.
+
+**Aspect: How the GUI responds when exam stats is executed**
+
+* **Alternative 1 (current choice)**: Open new window that displays exam statistics.
+    * Pros: Easy to implement, allows for comparison and reference with student data, allows for multiple students' exam statistics to be opened, easy for users to understand.
+    * Cons: Can be more taxing on processor if many windows are opened simultaneously 
+    
+* **Alternative 2**: Switch from the displayed student list panel to an exam statistics panel.
+    * Pros: Only one window open at all time.
+    * Cons: Unable to compare and reference with student data, harder to implement, can introduce confusion when trying to switch back to the student list panel.
 
 #### 6.3.3 Student attendance features
 
@@ -992,7 +1017,6 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-
 ## **Appendix D: Non-Functional Requirements**
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1019,7 +1043,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### F.1 Launch and Shutdown
+### F.1 Launching Reeve
 
 1. Initial launch
 
@@ -1027,33 +1051,96 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample students. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+       
+### F.2 General Features
 
-1. _{ more test cases …​ }_
+1. Opening help window.
 
-### F.2 Deleting a Student
+    1. Test case: `help` when no help window is opened.
+    <br>Expected: Expected: Help window opens.
+    
+    1. Test case: `help` when help window is already opened.
+    <br>Expected: Expected: Brings up already opened help window.
+    
+2. Toggling between student details.
 
-1. Deleting a student while all students are being shown
+    1. Test case: `toggle` when students display administrative details.
+    <br>Expected: Expected: Students switch to display academic details.
 
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    1. Test case: `toggle` when students display academic details.
+    <br>Expected: Expected: Students switch to display administrative details.    
+   
+3. Exiting Reeve.
+    1. Test case: `exit`.
+    <br>Expected: Reeve shuts down. 
+    
+### F.3 Student Administrative Features
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Adding a student with administrative details to the students list.
+    
+    1. Test case: `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`
+    <br>Expected: Expected: Student Brendan Tan has been added to the students list.
 
-   1. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/50/50/2020 a/Likes Algebra`
+    <br>Expected: Expected: No student is added as due to invalid payment date. Error details displayed in the result display.
+
+    1. Test case: `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School v/Blk 33 West Coast Rd #21-214 t/15 1430-1630 f/25 d/10/10/2020 a/Likes Algebra`
+    <br>Expected: Expected: No student is added as due to invalid class time. Error details displayed in the result display.
+
+2. Deleting a student while all students are being shown.
+
+   1. Prerequisites: At least one student in the students list.
+
+   1. Test case: `delete 1`
+   <br>Expected: First student is deleted from the students list. Details of the deleted student shown in the result display.
+
+   1. Test case: `delete 0`
+   <br>Expected: No student is deleted. Error details shown in the result display.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### F.4 Student Academic Features
 
-### F.3 Saving Data
+4. Adding an exam record to a student. 
+
+   1. Prerequisites: At least one student in the students list.
+   
+   1. Test case: `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
+   <br>Expected: Mid Year 2020 exam record is added to the exams list of the first student in the displayed students list.
+   
+   1. Test case: `exam add 1 n/Mid Year 2020 d/08/12/2020 s/50/10`
+   <br>Expected: No exam record is added due to invalid score as numerator is larger than denominator.
+   
+   1. Test case: `exam add 1 n/Mid Year 2020 d/30/30/2020 s/50/100`
+   <br>Expected: No exam record is added due to invalid exam date.
+   
+5. Deleting an exam record from a student.
+
+   1. Prerequisites: At least one student in the students list. At least one exam record in the student's exams list.
+   
+   1. Test case: `exam delete 1 i/1`
+   <br>Expected: First exam record of the exam list of the first student in the displayed students list is deleted. Details of deleted exam record shown in the result display.
+   
+   1. Test case: `exam delete 1 i/0`
+   <br>Expected: No exam is deleted due to invalid exam index. Error details shown in the result display.
+   
+6. Displaying exam statistics of a student
+
+   1. Prerequisites: At least one student in the students list.
+
+   1. Test case: `exam stats 1`
+   <br>Expected: Opens the exam statistics window of the first student in the displayed students list.
+   
+### F.5 Notes Feature
+
+### F.6 Saving Data
 
 1. Dealing with missing data files
 
