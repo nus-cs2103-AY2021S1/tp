@@ -1539,7 +1539,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Wishful Shrinking’s recipe list is not empty.
     
     1. Test case: `editR 1` <br>
-       Expected: The result box will show all the details of the first recipe. <br><br>
+       Expected: The result box will show all the details of the first recipe.
+       
+    1. Test case: `editR x` (x is invalid index) <br>
+       Expected: An error message will be shown, as it is the same recipe. Your command in the command box will turn red. <br><br>
        
 ### 6.12 Editing a recipe <a id="612-editing-a-recipe"></a>
 
@@ -1569,7 +1572,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The result box will show all the details of the first ingredient. 
        
     1. Test case: `editF x` (x is invalid index) <br>
-       Expected: An error message will be shown, as it is the same recipe. The result box will show that no edits are made. Your command in the command box will turn red. <br><br>
+       Expected: An error message will be shown, as it is the same ingredient. Your command in the command box will turn red. <br><br>
        
 
 ### 6.14 Editing an ingredient <a id="614-editing-an-ingredient"></a>
