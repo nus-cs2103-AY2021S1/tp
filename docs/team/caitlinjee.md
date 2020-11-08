@@ -11,17 +11,17 @@ Given below are my contributions to the project.
 
 * **New Feature 1**: Added the ability to get recommended recipes. (Pull requests [\#109](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/109))
   * What it does: allows users to get recipes whose ingredients are all present in their fridge.
-  * Justification: This feature improves the product significantly because a user can easily search for what recipes they are able to make, with the ingredient that are already present in their fridge.
+  * Justification: This feature improves the product significantly because a user can easily search for what recipes they are able to make, with the ingredients that are already present in their fridge.
   * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation too was challenging as it was a new command that was not very similar to existing commands.
 
 * **New Feature 2**: Added the ability to add ingredients to users' fridge. (Pull requests [\#41](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/41))
-  * What it does: allows users to add ingredients to their fridge in Wishful Shrinking.
-  * Justification: This feature improves the product significantly because users can save ingredients that they have into the fridge, which is essential in using the `recommend` feature.
+  * What it does: allows users to add ingredients to their fridge.
+  * Justification: This feature improves the product significantly because users can save ingredients that they have into the fridge, which is essential when using the `recommend` feature.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: This feature was refactored from the `add` feature in AddressBook Level 3.
 
 * **New Feature 3**: Added the ability to search for ingredients in the fridge. (Pull requests [\#47](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/47))
-  * What it does: allows users to search for an ingredient in the fridge by its name.
+  * What it does: allows users to search for ingredients in the fridge by name.
   * Justification: This feature improves the product significantly because a user can now easily search for an ingredient by its name to see whether it is present in the fridge.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: This feature was refactored from the `find` feature in AddressBook Level 3.
@@ -42,7 +42,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Added support for tags in recipes (Pull requests [\#85](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/85))
-    * Justification: This feature, which is refactored from the existing tag feature in Address Book 3, allows users to easily tag their favourite recipes to easily filter by them.
+    * Justification: This feature, which is refactored from the existing tag feature in Address Book 3, allows users to easily tag their favourite recipes.
   * Added the ability to search for a recipe in the recipe list by its ingredients or tags, in addition to name. (Pull requests [\#109](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/109))
     * Justification: This feature improves on the original `find` feature in AddressBook Level 3 as it now allows users to search for recipes not only by name, but also by ingredients and tags, making it easier for them to filter their recipes.
   * Wrote additional tests for existing features to increase test coverage from 63.5% to 67.5% (Pull requests [\#246](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/246)) 
