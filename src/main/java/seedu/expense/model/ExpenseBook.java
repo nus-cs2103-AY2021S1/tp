@@ -2,6 +2,7 @@ package seedu.expense.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -10,6 +11,8 @@ import javafx.collections.ObservableList;
 import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Amount;
+import seedu.expense.model.expense.Date;
+import seedu.expense.model.expense.Description;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.UniqueExpenseList;
 import seedu.expense.model.expense.exceptions.CategoryNotFoundException;
@@ -267,7 +270,28 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
         return tallyBudgets().subtract(tallyExpenses());
     }
 
+    @Override
+    public String getBudgetBarLabel() {
+        ArrayList<Tag> checkedTagList = new ArrayList<>();
+        tags.getTags().stream().map(tag -> getGenericExpenseWithTag(tag))
+                .filter(expense -> expenses.getFilteredList().getPredicate().test(expense))
+                .map(expense -> expense.getTag()).forEach(checkedTagList::add);
+
+        if (checkedTagList.size() > 1) {
+            return "Total";
+        } else if (checkedTagList.size() == 1) {
+            return checkedTagList.get(0).toString();
+        } else {
+            return "Default";
+        }
+    }
+
     //// util methods
+
+    private Expense getGenericExpenseWithTag(Tag tag) {
+        return new Expense(new Description(Description.CLASS_NAME), new Amount(0), new Date(),
+                null, tag);
+    }
 
     @Override
     public String toString() {
