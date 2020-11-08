@@ -88,7 +88,12 @@ Bamboo (v1.3) is a **simple desktop app for managing personal finance, optimized
     - Command: `resetAlias`
     - [API](#resetAlias)
 
-1. **Help command**
+1. **Graph Command**
+    - Opens a window that displays a pie chart representing categorical expenses.
+    - Command: `graph`
+    - [API](#graph)
+
+1. **Help Command**
     - Renders a help link to the commands in User Guide
     - Command: `help`
     - [API](#help)
@@ -285,6 +290,13 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     
     ![resetAlias_example](./images/ug_example/resetAlias_example.PNG)
     
+1. **Graph Command `graph`** <a name="graph"></a>
+    - Opens a window that displays a pie chart representing categorical expenses.
+    - Format: `graph`
+    - Example: `graph`
+    
+    ![graph_example](./images/ug_example/graph_example.PNG)
+    
 1. **Display Help `help`** <a name="help"></a>
     - Displays a help link to the User Guide, which comprehensively covers Bamboo's commands.
     - Format: `help`
@@ -344,4 +356,5 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 | **DeleteCat** | `deleteCat t/<category>` <br> e.g., `deleteCat t/Food`                                                                                                           |
 | **Alias**     | `alias <original_command> <new_command>` <br> e.g., `alias add spent`                                                                                            |
 | **resetAlias**| `resetAlias`                                                                                                                                                     |
+| **Graph**     | `graph`                                                                                                                                                     |
 | **Help**      | `help`                                                                                                                                                           |
