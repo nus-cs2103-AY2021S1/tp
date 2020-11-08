@@ -44,7 +44,14 @@ public class CommandTestUtil {
     public static final double DOUBLE_QUANTITY = 13.5;
     public static final int NEGATIVE_QUANTITY = -3;
 
+    public static final Integer INDEX_ONE = 1;
+    public static final Integer INDEX_TEN = 10;
+    public static final String INDEX_ZERO_DESC = " 0";
+    public static final String INDEX_ONE_DESC = " 1";
+    public static final String INDEX_NEGATIVE_VALUE_DESC = " -30";
+
     public static final String COST_DESC_1 = " " + PREFIX_ITEM_COST + EDGE_COST;
+    public static final String COST_DESC_2 = " " + PREFIX_ITEM_COST + COST_1;
     public static final String NEGATIVE_COST_DESC = " " + PREFIX_ITEM_COST + NEGATIVE_COST;
 
     public static final String ITEM_NAME_DESC_1 = " " + PREFIX_ITEM_DESCRIPTION + ITEM_NAME_1;
