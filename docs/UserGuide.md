@@ -276,7 +276,7 @@ Format: `edit INDEX [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESC
   - Deadline follows the format *DD-MM-YYYY hh:mm:ss*
   - Deadline can be set to be in the past (in case the user wants to log finished projects for the completeness of project management)
   - Repo URL must be a valid link
-  - Description can be anything, as long as it is not blank
+  - Anything can be filled in the description as long as it is not blank
   - Any number of tags can be added, separated by space " "
 
 Note: Please enter a valid repository URL. Taskmania is an offline application and can only check the validity of the
@@ -333,7 +333,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
    *Figure 15: The task 2 is edited*
 
-Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] `
+Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] [d/TASK_DESCRIPTION]`
   - Edits the task at the specified index
   - The index refers to the index number shown in the displayed task list
   - Any combination and any number of the subsequent fields above can be entered
@@ -342,6 +342,7 @@ Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] `
   - Task progress is a percentage value indicating how much of the task is done
   - Task deadline is indicated by a date and time with the format *DD-MM-YYYY hh:mm:ss* 
   - Deadline can be set to be in the past (in case the user wants to log finished tasks for the completeness of project management)
+  - Anything can be filled in the task description as long as it is not blank
 
 Example: `edittask 2 tn/Finish project` changes the name of task 2 in the list to Finish project.
 
