@@ -146,17 +146,15 @@ The `Model`,
 
 ### Storage component
 
-![//]: (TODO Diagram @Stephen)
-
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the inventory data in json format and read it back.
-* can save recipes data in json format and read it back. 
-* can save location data in json format and read it back.
+* can save the `ItemList` data in json format and read it back.
+* can save `RecipeList` data in json format and read it back.
+* can save `LocationList` data in json format and read it back.
 
 ### Common classes
 
@@ -196,15 +194,15 @@ The `Item` with name banana is denoted as `itemBanana`, and the original quantit
 
 ### View detailed item feature
 
-The view detailed item feature allows users to view the detailed information of a recorded item, as compared to the 
+The view detailed item feature allows users to view the detailed information of a recorded item, as compared to the
 default list display of all items which may truncate some information.
 
 #### Implementation
 
 During execution of view command, `LogicManager` detects that it is a view command, then has `InventoryParser` parse
 the item name that the user has input using `ViewDetailsCommandParser`. After parsing, `LogicManager` has the
-`Model` reset it's current filters for the lists of items and recipes. Then, `LogicManager` executes the 
-`ViewDetailsCommand`, which applies it's own filter to the list of items, such that only the exact item 
+`Model` reset it's current filters for the lists of items and recipes. Then, `LogicManager` executes the
+`ViewDetailsCommand`, which applies it's own filter to the list of items, such that only the exact item
 the user has requested remains, and also parses the recipes to find recipes that creates this item.
 
 After executing the view command, `LogicManager` sends feedback to `InventoryMainWindow` that the command has a 
@@ -220,8 +218,8 @@ This is the sequence diagram of view detailed item command:
 View detailed item was first implemented with the idea of changing GUI on demand, but we eventually realised due to
 AB3's abstraction, `Model` and `Logic` can't communicate directly, which means we could not change the GUI during
 execution of the command. It was only after looking at the `help` command that we discovered how AB3 used `LogicManager`
-to communicate with `MainWindow` by checking for a certain `help` flag in the `CommandResult` that 
-`LogicManager` returns. This information allows `CommandResult` to know when to make changes to the GUI. 
+to communicate with `MainWindow` by checking for a certain `help` flag in the `CommandResult` that
+`LogicManager` returns. This information allows `CommandResult` to know when to make changes to the GUI.
 At last, this discovery has led to us changing the implementation of `CommandResult` by adding more flags to support
 our new commands that will affect the GUI. Specifically, the check for whether to use a more detailed card to display
 items is through checking the `DisplayedInventoryType` of `CommandResult`.
@@ -229,8 +227,8 @@ items is through checking the `DisplayedInventoryType` of `CommandResult`.
 #### Alternative implementation
 
 One problem with the current implementation is that it is rather inconvenient to find the correct file to make changes,
-due to AB3's amount of abstraction. An alternative implementation is to create an association class between `Logic` 
-and `Model`, that allow for `Logic` to access `Model`'s `FilteredItemList` directly, which would greatly simplify 
+due to AB3's amount of abstraction. An alternative implementation is to create an association class between `Logic`
+and `Model`, that allow for `Logic` to access `Model`'s `FilteredItemList` directly, which would greatly simplify
 the sequence of command flow (as well as the sequence diagram). However, the amount of resources and effort required
 to implement such an association class, as well as the additional need for testing and debugging this new association
 class, might ironically lead to bigger time wastage than looking through each class involved in the execution of the
@@ -238,7 +236,7 @@ view command.
 
 ### Delete Item Feature
 
-`DeleteItemCommand` facilitates the deletion of an existing `Item`. This deletion cascades to impact any 
+`DeleteItemCommand` facilitates the deletion of an existing `Item`. This deletion cascades to impact any
 `Recipe` in the list of recipes that are associated with this item, as such, these matching `Recipe` are also deleted.
 
 This command was implemented to resolve the [userstory](), regarding "As a user I want to delete
@@ -246,8 +244,8 @@ This command was implemented to resolve the [userstory](), regarding "As a user 
 
 #### Implementation
 
-During the execution of an `DeleteItemCommand`, as referenced from the [architecture sequence diagram](#Architecture), 
-the input is accepted by the GUI, and passed into the `LogicManager` that calls `InventoryParser` to parse the command 
+During the execution of an `DeleteItemCommand`, as referenced from the [architecture sequence diagram](#Architecture),
+the input is accepted by the GUI, and passed into the `LogicManager` that calls `InventoryParser` to parse the command
 word and determines that command is a `DeleteItemCommand`. This also cleans the user input by removing the command word.
 
 Then `InventoryParser` calls the specific `DeleteItemCommandParser#parse(Input)` to read and parse the given field, in this case,
@@ -258,7 +256,7 @@ Then `InventoryParser` calls the specific `DeleteItemCommandParser#parse(Input)`
  
 This is where change is made into the stored `Model` within the `DeleteItemCommand`. `Model` is used as an abstraction of the internal
 details of cached storage.
- 
+
 First a query is made to the `Model` to check that the `Item` exists, and if so, deletes the item from the the `Model`.
 
 Then, a query is made for any `Recipe` in the `Item`, or has the `Item` as a product of the `Recipe` and this reference is
@@ -267,30 +265,29 @@ Then, a query is made for any `Recipe` in the `Item`, or has the `Item` as a pro
 Lastly, the deleted `Recipe` also cascade their `Recipe` deletion to any items that contain the `Recipe`.
 
 This concludes the **deletion routine**.
- 
-After successful deletion occurs, the resulting `CommandResult` with a success message is returned 
+
+After successful deletion occurs, the resulting `CommandResult` with a success message is returned
 successfully to the  `LogicManager` and then displayed on the GUI.
 
 The following sequence diagram details in depth how the `DeleteItemCommand` works:
 
 Initial user input is shown in full, but as the system transforms the input,
  inputs and returned values abstracted out into apt representations.
- 
+
 ![DeleteItemSequenceDiagram](images/commandseqdiagrams/DeleteItemSequenceDiagram.png)
 
 #### Alternative Implementation and Reasoning against its implementation
 
-One problem with the current implementation is that there is a deep coupling between 
+One problem with the current implementation is that there is a deep coupling between
 the internal structure of the `Model`, that is namely the `FilteredItemList` and `FilteredRecipeList`,
  with no direct methods manipulating these classes from the `ModelManager` facade design pattern itself.
 
-This causes some direct manipulation of non-neighbouring classes, which violates 
-[`Law of Demeter`](https://hackernoon.com/object-oriented-tricks-2-law-of-demeter-4ecc9becad85). 
+This causes some direct manipulation of non-neighbouring classes, which violates
+[`Law of Demeter`](https://hackernoon.com/object-oriented-tricks-2-law-of-demeter-4ecc9becad85).
 However, the facade design pattern applied to `ModelManager` also prevents excessive bloat and coupling.
 
 Hence refraining from this implementation reduces the size of the class significantly,
  improving readability of the code and preventing `ModelManager` from entailing extra responsibility.
-
 
 ### List item/recipe feature
 

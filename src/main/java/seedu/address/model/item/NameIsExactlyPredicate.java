@@ -11,7 +11,12 @@ import java.util.function.Predicate;
 public class NameIsExactlyPredicate implements Predicate<Item> {
     private final List<String> keywords;
 
+    /**
+     * Constructs NameIsExactlyPredicate predicate object to search through the InventoryList
+     * @param keywords contains string search terms to match to this.
+     */
     public NameIsExactlyPredicate(List<String> keywords) {
+        requireNonNull(keywords);
         this.keywords = keywords;
     }
 
@@ -23,6 +28,7 @@ public class NameIsExactlyPredicate implements Predicate<Item> {
 
     @Override
     public boolean test(Item item) {
+        requireNonNull(item);
         return keywords.stream()
                 .anyMatch(keyword -> keyword.equals(item.getName()));
     }

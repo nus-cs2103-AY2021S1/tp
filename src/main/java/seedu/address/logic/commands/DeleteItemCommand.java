@@ -5,7 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -26,7 +28,7 @@ public class DeleteItemCommand extends Command {
             + PREFIX_ITEM_NAME + "Iron ";
 
     public static final String MESSAGE_SUCCESS = "Item and Recipes of the item Deleted: %1$s";
-
+    private static final Logger logger = LogsCenter.getLogger(DeleteItemCommand.class);
     private final String productName;
 
     /**
@@ -51,6 +53,8 @@ public class DeleteItemCommand extends Command {
                 .findFirst()// Get the first (and only) item matching or else throw Error
                 .orElseThrow(()-> new CommandException(String.format(Messages.MESSAGE_NO_ITEM_FOUND, productName)));
 
+        assert (itemToDelete != null);
+
         model.deleteItem(itemToDelete);
         List<Recipe> recipeList = new ArrayList<>(model.getFilteredRecipeList());
 
@@ -61,7 +65,7 @@ public class DeleteItemCommand extends Command {
                 .asUnmodifiableObservableList()
                 .stream()
                 .noneMatch(z -> z.isItem(itemToDelete.getId())));
-
+        logger.info(itemToDelete.getName() + "and all constituting recipes are deleted.");
         // Cascade delete for the recipe in each item.
         for (Recipe r : recipeList) {
             for (Item i : model.getFilteredItemList()) {
