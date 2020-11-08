@@ -26,7 +26,7 @@
                             </Label>
                             <Label fx:id="patientName" alignment="TOP_LEFT" contentDisplay="CENTER" styleClass="patientName">
                                 <font>
-                                    <Font name="Consolas Bold" />
+                                    <Font name="Consolas Bold" size="11.0" />
                                 </font>
                             </Label>
                             <VBox>
@@ -98,11 +98,17 @@
                                             </Label>
                                             <Label fx:id="noAllergiesLabel">
                                             </Label>
-                                            <FlowPane id="allergies" fx:id="patientAllergies" hgap="5.0" prefWrapLength="700.0" vgap="3.0">
-                                                <VBox.margin>
-                                                    <Insets />
-                                                </VBox.margin>
-                                            </FlowPane>
+                                 <ScrollPane fitToHeight="true" maxHeight="74.0" vbarPolicy="NEVER">
+                                    <VBox.margin>
+                                       <Insets />
+                                    </VBox.margin>
+                                    <content>
+                                                  <FlowPane id="allergies" fx:id="patientAllergies" hgap="5.0" prefWrapLength="700.0" vgap="3.0">
+                                          <padding>
+                                             <Insets right="2.0" />
+                                          </padding></FlowPane>
+                                    </content>
+                                 </ScrollPane>
                                         </children>
                                     </FlowPane>
                                 </children>

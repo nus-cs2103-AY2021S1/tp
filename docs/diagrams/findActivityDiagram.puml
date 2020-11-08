@@ -1,0 +1,17 @@
+@startuml
+start
+:User inputs find command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid command])
+    :System parses the provided name and nric;
+    :System filters the patient list;
+    :Filtered list shown to the user;
+
+else ([else])
+    :Error message displayed to the user;
+endif
+stop
+@enduml

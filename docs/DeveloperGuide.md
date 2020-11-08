@@ -183,12 +183,16 @@ The sequence diagram below illustrates Logic and Model Components when the user 
 
 In the **Logic** Component, after user inputs `find Alex S0000002A`, these are the key methods:
 * `LogicManager#execute("find Alex S0000002A")` : The `LogicManager` takes in the command text string ("find Alex S0000002").
-* `HospifyParser#parseCommand("find")` : The `HospifyParser` parses the users input and recognizes the command word, "find", and a `FindCommand` is created.
+* `HospifyParser#parseCommand("find")` : The `HospifyParser` parses the users' input and recognizes the command word, "find", and a `FindCommand` is created.
 * `FindCommand#execute(model)` : The `FindCommand` uses the `updateFilteredPatientList` method of `Model` to update the displayed patients list and returns a `CommandResult` object which represents the result of a
 command execution.
 
 In the **Model** Component, the following key method is used:
 * `Model#updateFilteredPatientLis(predicate)` : `Model` uses this method to update the displayed patients list.
+
+The following activity diagram summarizes what happens when the user inputs a find command.
+![FindActivityDiagram](images/UML_Diagrams/findActivityDiagram.png)
+
 
 
 #### 4.1.2 Design Consideration
