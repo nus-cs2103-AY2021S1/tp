@@ -350,40 +350,46 @@ Explanation why a certain design is chosen.
         * Able to handle multiple arguments as input for Category (with prefix "c/") is optional.
     * Cons: Less convenience for the user. 
 
-### Get total revenue/expenses feature
+### Calculate net profits feature
 
 #### Implementation
-The get total expenses/revenues mechanism is facilitated by `GetTotalCommand`. It extends `Command` and is identified by `CommonCentsParser` and `GetTotalCommandParser`. The `GetTotalCommand` interacts with `Account` and the interaction is managed by `ActiveAccount`. As such, it implements the following operations:   
+The calculate net profits mechanism is facilitated by `GetProfitCommand`. It extends `Command` and is identified by `CommonCentsParser`. The `GetProfitCommand` interacts with `Account` and the interaction is managed by `ActiveAccount`. As such, it implements the following operations:   
 
+* `Account#getProfits()` — gets the net profit from the total expenses and revenues in the account
 * `Account#getTotalExpenses()` — gets the total sum of all the expenses in the account
 * `Account#getTotalRevenue()` — gets the total sum of all the revenues in the account
 
-The operation is exposed in the `ActiveAccount` interface as `ActiveAccount#getTotalExpenses()`.
+The operation is exposed in the `ActiveAccount` interface as `ActiveAccount#getProfits()`.
 
-Given below is an example usage scenario and how the get total expenses/revenues mechanism behaves at each step.
+Given below is an example usage scenario and how the calculate net profits mechanism behaves at each step.
 
-* Step 1. The user inputs the total command to get the total expenses/revenues in the current account in ActiveAccount. `CommonCentsParser` identifies the command word and calls `GetTotalCommandParser#parse(String args)` to parse the input into a valid `GetTotalCommand`.
+* Step 1. The user inputs the profit command to calculate the net profits in the current account in ActiveAccount. `CommonCentsParser` identifies the command word and calls a valid `GetProfitCommand`.
 
-* Step 2. `GetTotalCommand` starts to be executed. In the execution, the total sum of the expenses/revenues is first initialised to 0.00.
+* Step 2. `GetProfitCommand` starts to be executed. In the execution, `ActiveAccount#getProfits()` is called to calculate the net profits. 
+    * `Account#getTotalExpense()` and `Account#getTotalRevenue()` are called in `ActiveAccount#getProfits` to get the total expenses and total revenues. The net profit is then calculated by subtracting the difference.
 
-* Step 3. If the input category is an `Expense`, `ActiveAccount#getTotalExpenses()` is called to get the total sum of all the expenses in the account. Otherwise, if the input category is a `Revenue`, `ActiveAccount#getTotalRevenue()` is called to get the total sum of all the revenues in the account.
+The following sequence diagram shows how a calculate net profits operation works: 
 
-* Step 4. The total sum is updated. 
+![CalculateProfitSequenceDiagram](images/CalculateProfitSequenceDiagram.png)
 
-The following sequence diagram shows how a get total expenses/revenues operation works: 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**:
 
-![GetTotalSequenceDiagram](images/GetTotalSequenceDiagram.png)
+ * The lifeline for `GetProfitCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+ * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+   of the get profit command. 
+   
+</div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![GetTotalActivityDiagram](images/GetTotalActivityDiagram.png)
+![CalculateProfitActivityDiagram](images/CalculateProfitActivityDiagram.png)
 
 #### Design consideration
 Explanation why a certain design is chosen.
 
-##### Aspect: How get total expenses/revenues executes:
-* Alternative 1 (current choice): Calculates the total expenses/revenues in the by retrieving the expense/revenue list. 
-    * Pros: Easy to implement.
+##### Aspect: How calculate net profits executes:
+* Choice: Calculates the net profits by retrieving the expense and revenue lists from the account. 
+    * Pros: Easy to implement 
 
 ### \[Proposed\] Data archiving
 
