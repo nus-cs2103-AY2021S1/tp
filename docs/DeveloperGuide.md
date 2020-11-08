@@ -95,9 +95,12 @@ the result of the command execution and is passed back to the `Ui`,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteacc 1")` API call.
 
-![Interactions Inside the Logic Component for the `deleteacc 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deleteacc 1` Command](images/DeleteAccountSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteAccountCommandParser` and `DeleteAccountCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteAccountCommandParser`, `DeleteAccountCommand` and `CommandResultFactory` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
+
 </div>
 
 ### Model component
@@ -124,7 +127,9 @@ The `ActiveAccount`,
 * stores an `Optional<ActiveAccount>` that represents the previous state of the `ActiveAccount`.
 * does not depend on any of the other four components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Entry` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Entry` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -150,6 +155,59 @@ Classes used by multiple components are in the [`seedu.cc.commons`](https://gith
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+
+## Delete feature
+
+*(Written by Jordan Yoong)* <br>
+
+This feature allows the user to delete previously added entries.
+
+#### Implementation
+
+The Delete entries feature is facilitated by `DeleteCommand`. It extends `Command` and 
+is identified by `CommonCentsParser` and `DeleteCommandParser`. The DeleteCommand interacts 
+with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
+operations: 
+
+* `Account#deleteExpense(Expense expense)` — Executes delete logic for specified _Expense_ entry.
+* `Account#deleteRevenue(Revenue revenue)` — Executes delete logic for specified _Revenue_ entry.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+* Step 1: The user inputs the delete command to specify which entry to delete in the specified category
+of `ActiveAccount`. `CommandParser` identifies the command word `delete` and calls `DeleteCommandParser#parse(String args)`
+to parse the input into a valid `DeleteCommand`.
+
+* Step 2: `DeleteCommand` starts to be executed. In the execution:
+    * If the user input for category matches that of the _Expense_ keyword, the entry matching the 
+    specified index in the Expense List will be removed.
+    * If the user input for category matches that of the _Revenue_ keyword, the entry matching the 
+    specified index in the Revenue List will be removed.
+
+The following sequence diagram shows how a delete entry operation works:
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
+such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the find entries command.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+#### Design consideration
+Explanation why a certain design is chosen.
+
+##### Aspect: How find entries command is parsed
+* **Choice:** User needs to use prefixes before the keywords.
+    * Pros: 
+        * Easy to implement as the arguments can be tokenized in the event of inputs with multiple arguments.
+        * Allows Parser to filter out invalid commands
+    * Cons: Less convenience for the user. 
+
 
 ### Undo feature
 *(Written by Lim Zi Yang)* <br>
@@ -560,7 +618,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Editing an expense**
+**Use Case: UC05 - Editing an expense**
 
 **MSS**
 
@@ -580,7 +638,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Editing a revenue**
+**Use Case: UC06 - Editing a revenue**
 
 **MSS**
 
@@ -600,7 +658,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Clearing all expense entries**
+**Use Case: UC07 - Clearing all expense entries**
 
 **MSS**
 
@@ -620,7 +678,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Clearing all revenue entries**
+**Use Case: UC08 - Clearing all revenue entries**
 
 **MSS**
 
@@ -640,7 +698,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Undoing an add command**
+**Use Case: UC09 - Undoing an add command**
 
 **MSS**
 
@@ -651,7 +709,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Undoing a delete command**
+**Use Case: UC10 - Undoing a delete command**
 
 **MSS**
 
@@ -662,40 +720,40 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Undoing a edit command**
+**Use Case: UC11 - Undoing an edit command**
 
 **MSS**
 
-1.  User requests <u> edit an expense (UC)</u>.
+1.  User requests <u> edit an expense (UC05)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the edit command and displays success message.
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Undoing a clear all expenses command**
+**Use Case: UC12 - Undoing a clear all expenses command**
 
 **MSS**
 
-1.  User requests to <u> clear all expenses (UC)</u>.
+1.  User requests to <u> clear all expenses (UC07)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the clear expenses command and displays success message.
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Undoing a clear all revenues command**
+**Use Case: UC13 - Undoing a clear all revenues command**
 
 **MSS**
 
-1.  User requests to <u> clear all revenues (UC)</u>.
+1.  User requests to <u> clear all revenues (UC08)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the clear revenues command and displays success message.
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Finding specific expenses**
+**Use Case: UC14 - Finding specific expenses**
 
 **MSS**
 
@@ -727,7 +785,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Finding specific revenues**
+**Use Case: UC15 - Finding specific revenues**
 
 **MSS**
 
@@ -759,14 +817,14 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Finding specific entries (either expenses or revenues)**
+**Use Case: UC16 - Finding specific entries (either expenses or revenues)**
 
 **MSS**
 
 1. User requests to find some specific entries by giving keywords.
 2. Common Cents filters both expense and revenue lists to show the required entries and displays success message.
 
-    Use case ends.
+    Use case ends. 
 
 **Extensions**
 
@@ -791,7 +849,33 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Adding an account**
+**Use Case: UC17 - Calculate total profits**
+
+**MSS**
+
+1. User requests to calculate profits at current state.
+2. Common Cents calculates profits by finding the difference between revenues and expense and returns profit amount as a message.
+
+    Use case ends.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC18 - List all entries**
+
+**MSS**
+
+1. User requests to find some specific entries (UC16).
+2. User requests to list all entries.
+3. Commmon Cents displays all entries again before find command was used.
+
+    Use case ends.
+</div>
+
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC19 - Adding an account**
 
 **MSS**
 
@@ -817,7 +901,33 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Listing accounts**
+**Use Case: UC20 - Adding an account**
+
+**MSS**
+
+1. User request to add a new account.
+2. Common Cents adds account to account list and displays success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1b. The account to be added has the same name as an existing account in Common Cents.
+
+    * 1b1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC21 - Listing accounts**
 
 **MSS**
 
@@ -829,7 +939,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Delete a account**
+**Use Case: UC22 - Delete an account**
 
 **MSS**
 
@@ -841,27 +951,26 @@ This captures different scenarios of how a user will perform tasks while using _
 
 **Extensions**
 
-* 2a. The given command input is in invalid format.
-
-    * 2a1. Common cents shows an error message.
+* 1a. The given command input is in invalid format.
+    * 1a1. Common cCnts shows an error message.
 
       Use case resumes at step 2.
 
-* 2b. Common Cents only has one account.
-
-    * 2b1. Common Cents shows an error message.
+* 1b. Common Cents only has an account.
+    * 1b1. Common Cents shows an error message.
     
       Use case resumes at step 2.
     
-* 2c. User is currently managing the account to be deleted.
-    * 2c1. Common Cents shows an error message.
+* 1c. User is currently managing the account to be deleted.
+    * 1c1. Common Cents shows an error message.
           
       Use case resumes at step 2.
+
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Editing the account's name**
+**Use Case: UC23 - Editing the account's name**
 
 **MSS**
 
@@ -875,26 +984,26 @@ This captures different scenarios of how a user will perform tasks while using _
 
 * 2a. The given command input is in invalid format.
 
-    * 2a1. Common cents shows an error message.
+    * 2a1. Common Cents shows an error message.
 
       Use case resumes at step 2.
       
 * 2b. The new account name is the same as a name of an existing account.
 
-    * 2b1. Common cents shows an error message.
+    * 2b1. Common Cents shows an error message.
     
       Use case resumes at step 2.
       
 * 2c. The new account name is the same as the current name of the account.
 
-    * 2c1. Common cents shows an error message.
+    * 2c1. Common Cents shows an error message.
     
       Use case resumes at step 2.
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Switching to an account**
+**Use Case: UC24 - Switching to an account**
 
 **MSS**
 
@@ -908,20 +1017,20 @@ This captures different scenarios of how a user will perform tasks while using _
 
 * 2a. The given command input is in invalid format.
 
-    * 2a1. Common cents shows an error message.
+    * 2a1. Common Cents shows an error message.
 
       Use case resumes at step 2.
       
 * 2b. The user is already on the account to be switched.
 
-    * 2b1. Common cents shows an error message.
+    * 2b1. Common Cents shows an error message.
     
       Use case resumes at step 2.
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Exiting app**
+**Use Case: UC25 - Exiting app**
     
 **MSS**
 
