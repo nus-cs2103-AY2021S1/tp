@@ -55,7 +55,7 @@ You can reach us at the repoUrl `seer[at]comp.nus.edu.sg`
 [[portfolio](team/TCQian.md)]
 
 * Role: Project Member
-* Responsibilities: Developer
+* Responsibilities: GUI
 
 
 ### Lucas Tai
