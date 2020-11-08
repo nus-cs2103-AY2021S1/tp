@@ -20,36 +20,6 @@ with a single command. We hope by using our application, you can manage your fil
 make your life easier one file at a time, and free up your precious time to spend on things you truly enjoy.
 
 ## 2. Table of Contents
-* [1. Introduction](#1-introduction)
-* [2. Table of Contents](#2-table-of-contents)
-* [3. Getting Started](#3-getting-started)
-    * [3.1 Installation](#31-installation)
-    * [3.2 Quick Start](#32-quick-start)
-    * [3.3 User Interface](#33-user-interface)
-    * [3.4 Basic Workflow](#34-basic-workflow)
-* [4. Features](#4-features)
-    * [4.1 Adding a tag with filepath: `tag`](#41-adding-a-tag-with-filepath--tag)
-    * [4.2 Displaying information of a tagged file: `show`](#42-displaying-information-of-a-tagged-file--show)
-    * [4.3 Accessing a tagged file : `open`](#43-accessing-a-tagged-file--open)
-    * [4.4 Removing a tag: `untag`](#44-removing-a-tag--untag)
-    * [4.5 Renaming a tag: `retag`](#45-renaming-a-tag--retag)
-    * [4.6 Adding a label to a tag : `label`](#46-adding-a-label-to-a-tag--label)
-    * [4.7 Deleting multiple labels from a tag : `unlabel`](#47-deleting-multiple-labels-from-a-tag--unlabel)
-    * [4.8 Finding a tag: `tag`](#48-finding-a-tag--find)
-    * [4.9 Changing current directory: `cd`](#49changing-current-directory--cd)
-    * [4.10 Listing all tags: `list`](#410-listing-all-tags--ls)
-    * [4.11 Undoing command: `undo`](#411-undoing-command--undo)
-    * [4.12 Redoing command: `redo`](#412-redoing-command--redo)
-    * [4.13 Clearing all tags: `clear`](#413-clearing-all-tags--clear)
-    * [4.14 Exiting the application: `exit`](#414-exiting-the-application--exit)
-    * [4.15 Viewing the help: `help`](#415-viewing-help--help)
-* [5. Customisation](#5-customisation)
-    * [5.1 Changing themes](#51-changing-themes)
-    * [5.2 Changing view size](#52-changing-view-sizes)
-    * [5.3 Persistent customisation](#53-persistent-customisation)
-* [6. FAQ](#6-faq)
-* [7. Glossary](#7-glossary)
-* [8. Command Summary](#8-command-summary)
 * Table of Contents
 {:toc}
 
