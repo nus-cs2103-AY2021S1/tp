@@ -125,13 +125,14 @@ Lists out all the exercises that the user has keyed in.
 Format: `list`
 
 ## 3.6. Find exercises: `find`
-Finds an exercise that matches all the input fields.
+Finds exercises that match all the input fields.
 
 ![find command message](images/findCommandMessage.png)
 
 Format: `find [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`
 - For name, description, date, and calories, only exercises that exactly match the inputs will be listed. These fields are case-insensitive. e.g. `Run` will match `run`.
 - For keywords, exercises whose names or descriptions contain any of the keywords will be listed. Only full words will be matched e.g. `run` will not match `running`. Keyword is case-insensitive. e.g `Squats` will match `squats`.
+- If both name/description and keywords are provided, only exercises that match both inputs will be listed.
 - in v1.4, find command does not support muscles and tags.
 
 Example:
