@@ -47,29 +47,10 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
         }
 
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
-
-
-        /*if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editModuleDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editModuleDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }*/
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editModuleDescriptor::setTags);
-
-        /*if (!editModuleDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-        */
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editModuleDescriptor.setModuleName(ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        /*
-        if (argMultimap.getValue(PREFIX_ZOOM_LINK).isPresent()) {
-            editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get()));
-        }
-        */
         if (argMultimap.getValue(PREFIX_MODULAR_CREDITS).isPresent()) {
             editModuleDescriptor.setModularCredits(ParserUtil
                     .parseModularCredits(argMultimap.getValue(PREFIX_MODULAR_CREDITS).get()));
@@ -95,7 +76,10 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
         if (tags.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        if (tags.size() == 1 && tags.contains("")) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        Collection<String> tagSet = tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 }
