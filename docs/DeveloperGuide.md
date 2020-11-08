@@ -865,15 +865,11 @@ implements the `Parser` interface.
 to generate a `FindCommand` with a list of `FieldContainsKeywordsPredicate`.
 
 The list of `FieldContainsKeywordsPredicate` is obtained from parsing
-the user input, to produce either of the following predicates shown
-in the table below, for each `Prefix` and keywords pair.
-
-Prefix | FieldContainsKeywordsPredicate
---------------| ---------------
-n/\<keywords>  | NameContainsKeywordsPredicate
-s/\<keywords>  | SourceContainsKeywordsPredicate
-l/\<keywords>  | LocationContainsKeywordsPredicate
-sn/\<keywords> | SerialNumberContainsKeywordsPredicate
+the user input, to produce either of the following predicates, for each `Prefix` and keywords pair.
+* NameContainsKeywordsPredicate - n/[keywords]
+* SourceContainsKeywordsPredicate - s/[keywords]
+* LocationContainsKeywordsPredicate - l/[keywords]
+* SerialNumberContainsKeywordsPredicate - sn/[keywords]
 
 `FindCommandParser` implements the following important operations:
 
