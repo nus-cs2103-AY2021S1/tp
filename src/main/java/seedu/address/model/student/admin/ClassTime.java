@@ -16,8 +16,11 @@ import java.util.Objects;
  */
 public class ClassTime implements Comparable<ClassTime> {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Class Time should follow the following format: {int: day_of_week} {int: start_time}-{int: end_time}";
+    public static final String MESSAGE_CONSTRAINTS = "Class Time should follow the following format:\n"
+            + "DAY_OF_WEEK START_TIME-END_TIME (no space between time fields)\n"
+            + "DAY_OF_WEEK: Integer (positive) from 1-7 representing Mon-Sun\n"
+            + "START_TIME/END_TIME: Time in 24hr clock\n"
+            + "e.g 1 1200-1300: Monday, 12pm to 1pm";
     public static final String TIME_CONSTRAINTS = "End time should always be after Start time";
 
     /*
