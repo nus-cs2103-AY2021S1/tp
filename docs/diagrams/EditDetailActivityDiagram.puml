@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+
+start
+:User executes edit detail command;
+:Parses the command;
+if() then([command is valid])
+    if() then([student index is valid])
+        :Edit Detail in Student <$rake>;
+    else([student index is invalid])
+        :Display invalid student index error message;
+    endif
+else ([command is invalid - missing or invalid parameters])
+    :Display parse error message;
+endif
+stop
+
+partition "Activity: Edit Detail in Student" {
+    start
+    if() then([detail index is valid])
+            :Create student copy with updated detail;
+            :Replace student with modified copy;
+            :Display success message;
+    else([detail index is invalid])
+            :Display invalid detail index error message;
+    endif
+    stop
+}
+@enduml
