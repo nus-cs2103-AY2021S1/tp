@@ -250,10 +250,10 @@ This operation is exposed in the `ActiveAccount` interface as `ActiveAccount#set
 
 Given below is an example usage scenario and how the edit account mechanism behaves at each step.
 
-* Step 1: The user inputs the edit command to edit the current account in `ActiveAccount`. `CommonCentsParser` identifies
+* Step 1: The user inputs the edit account command to edit the current account in `ActiveAccount`. `CommonCentsParser` identifies
 the command word and calls `EditCommandParser#parse(String args)` to parse the input into a valid `EditAccountCommand`
 
-* Step 2: `EditAccountCommand` starts to be executed. In the execution, the current account, namely `previousAccount`
+* Step 2: `EditAccountCommand` starts to be executed. In its execution, the current account, namely `previousAccount`
 in `ActiveAccount` is retrieved.
 
 * Step 3: `ActiveAccount#setName(Name editedName)` is called with the edited name to replace the name of the current
@@ -268,7 +268,9 @@ The following sequence diagram shows how an edit account operation works:
 
 ![EditAccountSequenceDiagram](images/EditAccountSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
 
 * The lifeline for `EditAccountCommandParser` and `EditAccountCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
 * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
@@ -297,10 +299,9 @@ Explanation why a certain design is chosen.
   
 ##### Aspect: Mutability of account
 * **Choice:** Allowing name attribute of Account to be mutated by EditCommand.
-  * Rationale: Initially, we implemented the name attribute of Account to be immutable. However, we realize that it
-  is difficult to edit the name of the account if it is immutable. Hence, to overcome this obstacle, we decided
-  to make the name attribute mutable.
-  * Implications: Extra precaution needs to be implemented, for instance creating copies of account in methods that interacts
+  * Rationale: Initially,  the name attribute of Account was implemented to be immutable. However, it
+  is difficult to edit the name of the account if it is immutable. Hence, to overcome this obstacle,name attribute was made mutable.
+  * Implications: Extra precautions needed to be implemented, for instance creating copies of account in methods that interacts
   with the accounts to prevent unnecessary changes to accounts in account list. Hence, it resulted in more defensive coding 
   which resulted in more lines of code.
 
@@ -380,7 +381,9 @@ The following sequence diagram shows how a calculate net profits operation works
 
 ![CalculateProfitSequenceDiagram](images/CalculateProfitSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**:
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**:
 
  * The lifeline for `GetProfitCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
  * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
@@ -414,7 +417,7 @@ This section includes the guides for developers to reference.
 ## **Appendix: Requirements**
 This includes the different functional as well as non-functional requirements of _Common Cents_. 
 ### Product scope
-The problems _Common Cents_ aims to tackle.
+This section highlights the problems that _Common Cents_ solves by describing the target user profile and value proposition of the app.
 
 **Target user profile:**
 
@@ -466,8 +469,6 @@ Priorities are represented by the number of `*`
 | `* *` | user | have incentive every time I use the app (maybe a little game or puzzle) | be motivated to use it to track my spending more |
 | `* *` | user | have an app that caters specifically to different types of accounts (business or personal) | efficiently manage my expenses and revenues | 
 | `*` | user | be given tips and tricks on how to use the app to plan my spending | save my money effectively |
-
-*{More to be added}*
 
 ### Use cases 
 This captures different scenarios of how a user will perform tasks while using _Common Cents_. 
