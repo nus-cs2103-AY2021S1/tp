@@ -420,7 +420,7 @@ Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
 
 :information_source: `VIEW_MODE` can only be either **weekly** or **daily**.
  
-:bulb: The input for `VIEW_MODE` is case-insensitive. 
+:warning: The input for `VIEW_MODE` is case-insensitive. 
 
 :information_source: `DATE_TO_VIEW` must be in the format **dd/mm/yyyy**. For instance, `02/11/2020` refers to the date 2nd November 2020
 
@@ -460,7 +460,7 @@ To view schedule:
     Figure __ Shows various component of your schedule.
 
 <div markdown="block" class="alert alert-info">
-:bulb: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
+:warning: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
 Viewing it this way would open up your schedule of the current week in the weekly format.
 You could use this as quick way to open up schedule for the current week.
 
