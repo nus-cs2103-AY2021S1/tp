@@ -505,8 +505,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | admin staff with many patients in the App  | sort the database according to the patients’ last visit | locate a patient easily |
 | `*`      | admin staff                                | archive appointments and medical records | store away less relevant information about deceased patients or patients who have not visited the clinic for 5 years or more |
 
-*{More to be added}*
-
 ### 6.3 Use cases
 
 (For all use cases below, the **System** is `Hospify` and the **Actor** is the `admin`, unless specified otherwise)
