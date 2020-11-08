@@ -1311,7 +1311,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 1e1. Modduke shows an error message.
 
     Use case ends.
-    
+
 * 1f. New participants indicated are not in given module.
 
   * 1f1. Modduke shows an error message.
