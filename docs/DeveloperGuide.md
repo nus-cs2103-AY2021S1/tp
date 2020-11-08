@@ -584,14 +584,16 @@ Use case ends.
 
 ### 9.4 Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 food items without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The product should be for a single user i.e. (not a multi-user product).
-5. The data should be stored locally and should be in a human editable text file.
-6. The software should not depend on a private remote server.
-7. The size of the final compiled JAR file should be less than 100Mb.
-8. There should be CLI alternatives to every GUI input. (E.g. instead of clicking on a button I can type an equivalent command to achieve the same result.)
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. There should be CLI alternatives to every GUI input. (E.g. instead of clicking on a button I can type an equivalent command to achieve the same result.)
+1. Should be able to hold up to 1000 food items without a noticeable sluggishness in performance for typical usage.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. The data should be stored locally and should be in a human editable text file.
+1. The product should be for a single user i.e. (not a multi-user product).
+1. Each Command entered by the user should be processed within 1 second.
+1. All numeric values must be accurate to within 5 significant figures
+1. The size of the final compiled JAR file should be less than 100Mb.
+1. The software should not depend on a private remote server.
 
 
 ### 9.5 Glossary
