@@ -1,0 +1,31 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "s:ShowCommand" as ShowCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> ShowCommand : execute()
+activate ShowCommand
+
+ShowCommand -> Model : findFilteredTagList()
+activate Model
+
+Model --> ShowCommand : t
+deactivate Model
+
+create CommandResult
+ShowCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ShowCommand
+deactivate CommandResult
+
+[<--ShowCommand : result
+deactivate ShowCommand
+@enduml
