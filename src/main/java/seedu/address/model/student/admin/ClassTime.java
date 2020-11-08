@@ -22,8 +22,8 @@ public class ClassTime implements Comparable<ClassTime> {
     public static final String EXAMPLE = "Example: 1 1200-1400";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Class Time should follow the following format:"+ "\n"
-                    +"{int: DAY_OF_WEEK} {int: START_TIME}-{int: END_TIME}" + "\n"
+            "Class Time should follow the following format:" + "\n"
+                    + "{int: DAY_OF_WEEK} {int: START_TIME}-{int: END_TIME}" + "\n"
                     + DESCRIPTION + EXAMPLE;
 
     public static final String TIME_CONSTRAINTS = "Classes should not end before they start.";
