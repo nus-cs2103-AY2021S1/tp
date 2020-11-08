@@ -27,7 +27,7 @@
 This document serves as a developer guide for Calo App with sufficient and comprehensive overview of the software
 so that new developers, like you, will have a working knowledge of the application by the end of the guide.  
   
-Note that this guide only provide reasonable depth. By no means this guide serves as a replacement for the actual code. 
+Note that this guide only provide reasonable depth. By no meNans this guide serves as a replacement for the actual code. 
 
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Setting Up
@@ -373,8 +373,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Calories Graph**: the graph that displays the trends of the user's calories burnt in the past 6 days (including today)
 * **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories)
+* **Exercise Tag**: Additional Tag that you want to assign to the Exercise you just did.
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Muscle Tag**: the muscles that the exercise works out.
+* **Template**: a skeleton of the template without date, muscleTag and exerciseTag. It exists to ensure that the user key in exercises, that he does frequently, more quickly.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 10. Appendix E: Instructions for manual testing
