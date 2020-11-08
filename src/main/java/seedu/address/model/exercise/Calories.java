@@ -74,7 +74,7 @@ public class Calories {
      *
      * @param calories A valid input.
      */
-    public Calories subtract(Calories calories) {
+    public Calories subtract(Calories calories) throws CaloriesOverflow {
         Integer currentCalories = Integer.parseInt(value);
         Integer removedCalories = Integer.parseInt(calories.value);
         Integer newCalorie = currentCalories - removedCalories;

@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Template;
 import seedu.address.model.goal.Goal;
@@ -126,7 +127,7 @@ public interface ExerciseModel {
      * Adds the given exercise.
      * {@code exercise} must not already exist in the exercise book.
      */
-    Optional<Goal> addExercise(Exercise exercise);
+    Optional<Goal> addExercise(Exercise exercise) throws CaloriesOverflow;
 
     /**
      * Adds the given template.

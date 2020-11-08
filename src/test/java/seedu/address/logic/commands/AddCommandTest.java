@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.model.ExerciseBook;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.ReadOnlyExerciseBook;
@@ -109,7 +110,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Optional<Goal> addExercise(Exercise exercise) {
+        public Optional<Goal> addExercise(Exercise exercise) throws CaloriesOverflow {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -229,7 +230,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Optional<Goal> addExercise(Exercise exercise) {
+        public Optional<Goal> addExercise(Exercise exercise) throws CaloriesOverflow {
             requireNonNull(exercise);
             addCaloriesForDay(exercise);
             exercisesAdded.add(exercise);

@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalExercise.getTypicalExerciseBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.ExerciseModelManager;
 import seedu.address.model.UserPrefs;
@@ -26,13 +27,19 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newExercise_success() {
-        Exercise validExercise = new ExerciseBuilder().build();
+        try {
+            Exercise validExercise = new ExerciseBuilder().build();
 
-        ExerciseModel expectedModel = new ExerciseModelManager(model.getExerciseBook(), null, new UserPrefs());
-        expectedModel.addExercise(validExercise);
+            ExerciseModel expectedModel =
+                    new ExerciseModelManager(model.getExerciseBook(), null, new UserPrefs());
+            expectedModel.addExercise(validExercise);
 
-        assertCommandSuccess(new AddCommand(validExercise), model,
+            assertCommandSuccess(new AddCommand(validExercise), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validExercise), expectedModel);
+
+        } catch (CaloriesOverflow err) {
+            throw new AssertionError(err);
+        }
     }
 
 }
