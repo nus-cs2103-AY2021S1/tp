@@ -869,7 +869,7 @@ the user input, to produce either of the following predicates shown
 in the table below, for each `Prefix` and keywords pair.
 
 Prefix              | FieldContainsKeywordsPredicate
-------------------- | --------------------------------------
+----------------------------------- | --------------------------------------
 n/<keywords>        | NameContainsKeywordsPredicate
 s/<keywords>        | SourceContainsKeywordsPredicate
 l/<keywords>        | LocationContainsKeywordsPredicate
