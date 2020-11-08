@@ -12,9 +12,12 @@
 * [3.4. Common Class](#36-common-classes)
 
 4.[ Implementation](#4-implementation)  
-5.[ Documentation](#5-documentation-logging-testing-configuration-dev-ops)
-6.[ Appendix 1: Manual Testing ](#6-appendix-1-instructions-for-manual-testing)
-
+5.[ Documentation, Logging and Testing](#5-documentation-logging-testing-configuration-dev-ops)  
+6.[ Appendix A: Requirements](#6-appendix-a-requirements)  
+7.[ Appendix B: User Stories](#7-appendix-b-user-stories)  
+8.[ Appendix C: Use Cases](#8-appendix-c-use-cases)  
+9.[ Appendix D: Non-Functional Requirements](#9-appendix-d-non-functional-requirements)  
+10.[ Appendix E: Instructions For Manual Testing](#10-appendix-e-instructions-for-manual-testing)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -255,7 +258,7 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 6. Appendix A: Requirements
 
 ### Product scope
 
@@ -270,7 +273,7 @@ _{more aspects and alternatives to be added}_
 **Value proposition**: manage workouts faster than a typical mouse/GUI driven desktop/mobile app
 
 
-### User stories
+### 7. Appendix B: User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -285,7 +288,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 8. Appendix C: Use cases
 
 (For all use cases below, the **System** is the `Calo` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -363,7 +366,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   2.  Calo shows a list of exercises
       Use case ends.
 
-### Non-Functional Requirements
+### 9. Appendix D: Non-Functional Requirements
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 exercise items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -374,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories)
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Appendix 1: Instructions for manual testing
+## 10. Appendix E: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
