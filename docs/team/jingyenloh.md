@@ -5,7 +5,7 @@ title: Loh Jing Yen's Project Portfolio Page
 
 ## Project: ResiReg
 
-**ResiReg** is a desktop residential college management application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
+**ResiReg** is a desktop residential college management application used for managing a residential college such as Cinnamon College. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 
 Given below are my contributions to the project.
 
