@@ -13,7 +13,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/josiahkhoo.png" width="200px">
 
 [[github](https://github.com/josiahkhoo)]
-[[portfolio](team/josiah.md)]
+[[portfolio](team/josiahkhoo.md)]
 
 #### Developer and Team Lead
 * Responsible for overall project coordination.
@@ -37,7 +37,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/joshtyf.png" width="200px">
 
 [[github](http://github.com/joshtyf)]
-[[portfolio](team/joshua.md)]
+[[portfolio](team/joshtyf.md)]
 
 #### Developer and Documentation Lead
 * Responsible for the quality of various project documents (eg. README.md, UG, DG).
