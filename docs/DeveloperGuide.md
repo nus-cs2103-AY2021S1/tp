@@ -1094,3 +1094,14 @@ There are 2 ways to delete flashcards – by index or by tags.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases … }_
+
+## **Appendix: Effort** ##
+
+The difficulty level for developing QuickCache was high because we chose to morph AB3 into a flashcard manager instead of evolving it into a more powerful contact management app. We also wanted QuickCache to support both Open Ended Questions and Multiple Choice Questions. Other than managing questions, we felt that it was also important for the user to be able to test him/herself within QuickCache, view his/her performance, as well as share flashcards with his/her friends.
+
+We faced a number of challenges in developing QuickCache. The biggest hurdle that we had to overcome was having to work together remotely for the entire project. This was also our first project module in SoC where we had to work together in a large group of five. In addition, we also had to optimize experience of the application for viewing flashcards - some flashcards contained choices and it was important that we had to reveal it to the user in a way that is intuitive to them. 
+
+GUI
+
+Teamwork
+
