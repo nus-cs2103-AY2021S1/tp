@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -108,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addExercise(Exercise exercise) {
+        public Optional<Goal> addExercise(Exercise exercise) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -217,10 +218,11 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addExercise(Exercise exercise) {
+        public Optional<Goal> addExercise(Exercise exercise) {
             requireNonNull(exercise);
             addCaloriesForDay(exercise);
             exercisesAdded.add(exercise);
+            return Optional.of(new Goal(exercise.getDate()));
         }
 
         private void addCaloriesForDay(Exercise newEntry) {
