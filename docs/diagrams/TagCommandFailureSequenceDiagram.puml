@@ -31,7 +31,4 @@ deactivate command
 [<-[hidden]- command
 destroy command
 
-
-
-
 @enduml
