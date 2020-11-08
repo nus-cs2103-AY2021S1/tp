@@ -368,7 +368,7 @@ Field | Description
        <i>Figure 15. <code>addpatient</code> Command in Command Box</i>
     </p>
 1. Press Enter to run the command.
-1. The Result Box displays the sucess message shown in Figure 16. The patient details panel now reflects the information of the newly added patient and the newly added patient is selected in the patient list.
+1. The Result Box displays the sucess message shown in Figure 16. The Details Panel now reflects the information of the newly added patient and the patient is selected in the Patient List.
     <p align="center">
         <img src="images/ug/f16_addpatientsuccess.png" width="620" height="400">
         <br />
@@ -410,7 +410,7 @@ Field | Description
        <i>Figure 18. <code>deletepatient</code> Command in Command Box</i>
     </p>
 1. Press Enter to run the command.
-1. The Result Box displays the success message shown in Figure 19 and the deleted patient can no longer be found in the list of patients in Covigent. The patient list now hovers back to the first patient in the list and the patient details panel displays the information of the first patient.
+1. The Result Box displays the success message shown in Figure 19 and the deleted patient can no longer be found in the list of patients in Covigent. The Patient List now hovers back to the first patient in the list and the Details Panel displays the information of the first patient.
    <p align="center">
         <img src="images/ug/f19_deletepatientsuccess.png" width="620" height="400">
         <br />
