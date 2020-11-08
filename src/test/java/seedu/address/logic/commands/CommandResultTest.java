@@ -12,7 +12,7 @@ public class CommandResultTest {
     @Test
     public void commandResultUiComponent_success() {
         CommandResult commandResult = new CommandResult("", false, false, false);
-        assertTrue(commandResult.setNavigationTrue().isUiComponent());
+        assertTrue(commandResult.setNavigationTrue().isCalendarNavigation());
 
         // same values -> returns false
         assertFalse(commandResult.isShowHelp());
