@@ -197,7 +197,8 @@ public class ParserUtil {
     public static boolean areValidFlagValues(List<String> flagValueList, String... validFlagValues) {
         List<String> validFlagValueList = Arrays.asList(validFlagValues);
         boolean areAllValid = flagValueList.stream()
-                .allMatch(x -> validFlagValueList.stream().anyMatch(y -> y.equals(x)));
+                        .allMatch(flagValue -> validFlagValueList.stream()
+                                .anyMatch(validFlagValue -> validFlagValue.equals(flagValue)));
         return areAllValid;
     }
 }
