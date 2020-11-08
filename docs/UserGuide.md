@@ -76,42 +76,42 @@ This section will give you some useful information about the various command for
 <div markdown="block" class="alert alert-info">
 
 
-Words in UPPER_CASE are the parameters to be supplied by the user.
- * eg. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is my name?`
+* Words in UPPER_CASE are the parameters to be supplied by the user.<br>
+  eg. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is my name?`
 
-Items in angle brackets `<>` are either/or options. Each option is delineated by a `|` .
-  * eg. `<success|reviewed>` can be used as either `success` or `reviewed` but not both.
+* Items in angle brackets `<>` are either/or options. Each option is delineated by a `|` .<br>
+  eg. `<success|reviewed>` can be used as either `success` or `reviewed` but not both.
 
-Words in lower_case are to be specified exactly.
-  * eg. in `sort <success|reviewed>`, `success` and `reviewed` must be specified exactly.
+* Words in lower_case are to be specified exactly.<br>
+  eg. in `sort <success|reviewed>`, `success` and `reviewed` must be specified exactly.
 
-Items in square brackets are optional (zero or one instance).
-  *eg. `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name?` or as `q/What is my name? c/topic 1`
+* Items in square brackets are optional (zero or one instance).<br>
+  eg. `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name?` or as `q/What is my name? c/topic 1`
 
-Items in square brackets with trailing ellipsis are optional (zero, one or multiple instances).
-  * eg. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
-  `q/What is my name? t/topic1 t/fun`
-  * Multiple instances of the tag prefix is accepted, and the app will read every instance
-    in the input.
+* Items in square brackets with trailing ellipsis are optional (zero, one or multiple instances).<br>
+  eg. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
+  `q/What is my name? t/topic1 t/fun`<br>
+  Multiple instances of the tag prefix is accepted, and the app will read every instance
+    in the input.<br>
 
-Multiple instances of the same prefix/flag will not throw an error. However, the app will only read the **last instance** in the input (except for tags).
-  * eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category
-  * eg. `sort reviewed -a -a -d` will sort flashcards according to review frequency in **descending** order
-  * eg. `filter f/yes f/no` will filter and list flashcards that are not favourited.
+* Multiple instances of the same prefix/flag will not throw an error. However, the app will only read the **last instance** in the input (except for tags).<br>
+  eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category<br>
+  eg. `sort reviewed -a -a -d` will sort flashcards according to review frequency in **descending** order<br>
+  eg. `filter f/yes f/no` will filter and list flashcards that are not favourited.
   
-Parameters can be in any order.
-  * eg. Specifying `q/QUESTION a/ANSWER` or `a/ANSWER q/QUESTION` are both acceptable.
+* Parameters can be in any order.<br>
+  eg. Specifying `q/QUESTION a/ANSWER` or `a/ANSWER q/QUESTION` are both acceptable.
   
-All additional input after commands which do not have input fields such as `list`, `exit`, `clear`, `help`, `review`, `quiz` will be ignored.
-  * eg. `list` and `list 123` will have the same effect.
+* All additional input after commands which do not have input fields such as `list`, `exit`, `clear`, `help`, `review`, `quiz` will be ignored.<br>
+  eg. `list` and `list 123` will have the same effect.
 
-Flags such as `-a` and `-d` allow white spaces within them.
-  * eg. `sort success -   a` is valid and will sort flashcards by success rate in ascending order.
-  * eg. `view 1 -  a` is valid and will view the first flashcard in the displayed flashcard list with answer shown.
+* Flags such as `-a` and `-d` allow white spaces within them.<br>
+  eg. `sort success -   a` is valid and will sort flashcards by success rate in ascending order.<br>
+  eg. `view 1 -  a` is valid and will view the first flashcard in the displayed flashcard list with answer shown.
 
-Prefixes and flags are both case sensitive.
-  * eg. `q/` is not the same as `Q/`
-  * eg. `-a` is not the same as `-A`
+* Prefixes and flags are both case sensitive.<br>
+  eg. `q/` is not the same as `Q/`<br>
+  eg. `-a` is not the same as `-A`
 
 </div>
 
