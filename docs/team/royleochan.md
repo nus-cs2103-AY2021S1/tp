@@ -10,13 +10,13 @@ Modduke - Modduke is a desktop app targeted towards NUS students. It allows them
 Given below are my contributions to the project.
 
 * **New Feature**: Added the feature where users can manage agendas and notes for meetings in the meeting add and meeting view command. ([\#159](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/159))
-  * What it does: Allows the user to add and edit both agendas and notes for meetings where the data will persist and be saved in storage.
+  * What it does: Allows the user to add and edit both agendas and notes for meetings.
   * Justification: This feature improves the product significantly for a NUS student who have to manage information regarding project meetings or consultations for a module. For example, if a student has a consultation with a professor or ta, the student can add all the concepts he wishes to clarify as agendas for easy reference during the consultation. After the consultation, he can consolidate and add all the notes he took down during the consultation.
-  * Highlights: This enhancement required understanding across several architectural components of the code which includes the logic, model and storage.
+  * Highlights: This enhancement required understanding across several architectural components which includes the logic, model and storage.
 
 * **New Feature**: Added a meeting view command that allows users to view a selected meeting's full details. ([\#159](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/159), [\#163](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/163))
   * What it does: Allows the user to view all the details for the selected meeting. The user can toggle between viewing the meeting's agendas and the meeting's notes using the GUI's tab menu. Any updates to the meeting will also be immediately reflected and updated.
-  * Justification: This feature improves the product significantly because a NUS student can make reference to the meeting's agendas and notes during the meeting to stay on track throughout the meeting or before the meeting to prepare adequately for the meeting. This was a particularly challenging and large feature because the new GUI had to be built from scratch to incorporate Java FX's Tab pane. Furthermore, the user interface had to observe for any changes to the selected meeting such that it will get updated immediately. This includes several commands such as all the edit and delete commands for contact, module and meeting which can all affect the selected meeting's details.
+  * Justification: This feature improves the product significantly because a NUS student can make reference to the meeting's agendas and notes during the meeting to stay on track throughout the meeting or before the meeting to prepare adequately for the meeting. This was a challenging feature because the new GUI had to be built from scratch to incorporate Java FX's Tab pane. Furthermore, the user interface had to observe for any changes to the selected meeting such that it will get updated immediately.
   * Highlights: This enhancement affects existing commands and commands to be added in future. Hence, it required an in-depth analysis of design alternatives.
 
 * **New Feature**: Added a light command and dark command that allows users to switch between light and dark theme in Modduke. ([\#244](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/244))
