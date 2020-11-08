@@ -633,7 +633,7 @@ tCheck also shows a current month's calendar when you start the application. You
 
 <div markdown="span" class="alert alert-primary">
 
- **:information_source: Notes:**<br>
+ **:information_source: Notes about calendar view:**<br>
  * In the current version, tCheck can only show the calendar for the current month.<br>
  
  </div>
