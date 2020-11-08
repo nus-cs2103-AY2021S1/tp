@@ -10,18 +10,12 @@ having the benefits of a Graphical User Interface (GUI). If you are a CS Teachin
 TAskmaster can help you track your students' attendance and class participation faster than traditional GUI apps.
 
 This application consists of two major parts:
-1. A database of students. Each entry keeps track of the name of the student, 
-his unique NUSNET ID, Telegram handle, as well as email address. 
-The supported operations for this database of students are:
-    * Adding students
-    * Editing students
-    * Deleting students  
-2. Tutorial sessions. TAs can create and delete tutorial sessions. Every tutorial session 
-will have an list of student records for that particular session. Each student record consist of
-the student's name, NUSNET ID, attendance mark, as well as participation score.
-The supported operations for each sessions are:
-    * Assigning class participation score
-    * Marking attendance of students
+1. A database of students. Each entry keeps track of the name of the student, his unique NUSNET ID, Telegram handle, 
+as well as email address. This database supports adding, editing, and deleting students.
+2. Tutorial sessions. TAs can create and delete tutorial sessions. 
+Every tutorial session will have an list of student records for that particular session. 
+Each student record consist of the student’s name, NUSNET ID, attendance mark, as well as participation score. 
+Each session supports two operations: assigning class participation score and marking attendance of students.
 
 Given below are my contributions to the project.
 * **New Features**: 
@@ -29,25 +23,16 @@ Given below are my contributions to the project.
     * What it does: Allow students' participation to be scored in every class session.
     * Justification: This feature is essential to the product, 
     as the TA needs to keep track of how active the student has been participating in the class.
-    * Highlights: 
-        * The decision process in the implementation of the Participation Record has undergone through several
-        iterations, with changing specification over time. Having modified the Participation Record according to the 
-        ever-changing specification was challenging, as design choices affect the implementation of the corresponding 
-        command (see below), as well as tests and documentation. The full elaboration is in the Developer Guide.
-        * The choice to separate the Participation Record from the
-        Student Record also underwent thorough discussion and ultimately was a good decision, as it has allowed me to
-        change the Participation Record without touching other classes due to decoupling.
+    * Highlights (Full elaboration in the Developer Guide): 
+        * Modifying the Participation Record according to the ever-changing specification was challenging, because design choices need to be considered fully as it would affect tests and documentation.
+        * The choice to separate Participation Record from Student Record was done after much discussion, and resulted in beneficial effects such as decoupling.
   * Implemented the corresponding command to score the participation of the student in a session.
     * What it does: Allow TAs to score the participation of students in class.
     * Justification: This is a corresponding change to the above Participation Record, to allow end-users to
     change the Participation Record of the student.
     * Highlights:
-        * With the changes of the Participation Record, there needs to be changes made to the command and it took
-        several times to finalize the design of the Participation Record, causing an equivalent number of changes in the
-        newly-made Score Command.
-        * The extension to score all present students had required some creativity in using Java libraries (e.g. Streams)
-        to ensure that the command was made without any bugs. This has posed a significant difficulty in the development
-        of this feature, because of the sheer number of pitfalls that this command has.
+        * Challenges were had due to the number of changes to the design of the Participation Record, causing an equivalent number of changes in the newly-made Score Command.
+        * The possible pitfalls of this command has caused bug-catching to be hard to debug especially with the lack of step debugger in Streams.
   
   
 * **Code contributed**: 
