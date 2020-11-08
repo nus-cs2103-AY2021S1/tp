@@ -831,7 +831,21 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
   * 3a1. QuickCache shows an error message.
 
     Use case resumes at step 2.
+    
+**Use case: UC04 - Delete multiple flashcards**
 
+**Preconditions: User has QuickCache open.**
+
+**MSS**
+
+1.  User requests to list flashcards
+2.  QuickCache shows a list of flashcards
+3.  User requests to delete all flashcards with a specified tag
+4.  QuickCache deletes all flashcards that contains the specified tag
+5.  QuickCache updates flashcard save file (UC07)
+6. QuickCache displays a message indicating that all flashcards with the specified tag has been deleted
+
+    Use case ends.
 
 **Use case: UC04 - Create a flashcard with open ended question**
 
@@ -918,7 +932,7 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 
 * 3a. The given index is invalid.
 
-  * 3a1. AddressBook shows an error message.
+  * 3a1. QuickCache shows an error message.
 
     Use case resumes at step 2.
 
