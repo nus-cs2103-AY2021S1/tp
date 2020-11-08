@@ -22,7 +22,6 @@ import seedu.address.model.task.Task;
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
-
     // LABS
     public static final Task LAB_01 = new TaskBuilder().withName("Finish Lab01")
             .withTags("Lab", "CS2030").withPriority("HIGH").withDate("2020-11-05")
