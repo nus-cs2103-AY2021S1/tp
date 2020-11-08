@@ -40,6 +40,9 @@ deactivate SalesUpdateCommand
 SalesUpdateCommandParser --> tCheckParser : s
 deactivate SalesUpdateCommandParser
 
+SalesUpdateCommandParser -[hidden]-> LogicManager : result
+destroy SalesUpdateCommandParser
+
 tCheckParser --> LogicManager : s
 deactivate tCheckParser
 
@@ -61,6 +64,9 @@ deactivate CommandResult
 
 SalesUpdateCommand --> LogicManager : result
 deactivate SalesUpdateCommand
+
+SalesUpdateCommand -[hidden]-> LogicManager : result
+destroy SalesUpdateCommand
 
 [<--LogicManager
 deactivate LogicManager

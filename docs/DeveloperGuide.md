@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 tCheck allows users to record and update the sales information on the drink sold. The command to use this feature is:
 `s-update DRINK [MORE_DRINKS]` where:
-* `DRINK` is formatted as `A/NUM`, where
+* `DRINK` is formatted as `A/NUM`.
     * `A` refers to the drink's abbreviation.
     * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
 less than or equal to 99999999.
@@ -217,7 +217,9 @@ The following sequence diagram shows how the sales update operation works:
 
 ![SalesUpdateSequenceDiagram](images/SalesUpdateSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SalesUpdateCommand`
+ and the `SalesUpdateCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the
+  lifeline reaches the end of diagram.
 </div>
 
 The following activity diagram summarises what happens when a user executes the `s-update` command.
