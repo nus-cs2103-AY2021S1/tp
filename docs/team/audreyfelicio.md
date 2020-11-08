@@ -118,8 +118,8 @@ Given below are my contributions to the project.
 * **Project Management**:
   * Created meeting rooms via Zoom for regular team meeting every week.
   * Ensured meeting time is chosen such that everyone can attend.
-  * Ensured everyone attend the meeting on time.
-  * Managed releases `v1.1` - `v1.3` (4 releases) on GitHub.
+  * Ensured everyone attended the meeting on time.
+  * Managed releases `v1.1` - `v1.4` (5 releases) on GitHub.
 
 * **UI**:
   * Updated the table in help window and adjusted font. (Pull request [\#219](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/219))
