@@ -1105,18 +1105,18 @@ In terms of effort compared to AB3, we felt that QuickCache took at least the sa
 
 | Commands | AB3 | QuickCache | Extensions |
 | --- | --- | --- | --- |
- | add | Y | Y | Add supports both Multiple Choice and Open Ended questions |
- | edit | Y | Y | |
- | delete | Y | Y | Delete supports both specific flashcard index or bulk deletion by tags |
- | list | Y | Y | |
- | exit | Y | Y | |
- | open | | Y | |
- | clear | | Y | |
- | test | | Y | |
- | stats | | Y | Stats supports both specific flashcard index and aggregation by tags |
- | clear stats | | Y | |
- | import | | Y | |
- | export | | Y | |
+| add | Y | Y | Add supports both Multiple Choice and Open Ended questions |
+| edit | Y | Y | |
+| delete | Y | Y | Delete supports both specific flashcard index or bulk deletion by tags |
+| list | Y | Y | |
+| exit | Y | Y | |
+| open | | Y | |
+| clear | | Y | |
+| test | | Y | |
+| stats | | Y | Stats supports both specific flashcard index and aggregation by tags |
+| clear stats | | Y | |
+| import | | Y | |
+| export | | Y | |
 
 We also overhauled the entire `Person` model, and created our own `Flashcard` model. 
 
