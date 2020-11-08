@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added `--allocated` and `--vacant` flags to the `rooms` command
   * What it does: allows the user to optionally view only allocated or vacant rooms, versus the original command where it would display all the rooms.
-  * Justification: This allows the user more find grained viewing of the rooms, for when they only want to view rooms with students residing in them (e.g. for maintainence services), or when they only want to view vacant rooms (e.g. to see if last minute allocations are allowed for an Exchange student)
+  * Justification: This allows the user more fine grained viewing of the rooms, for when they only want to view rooms with students residing in them (e.g. for maintainence services), or when they only want to view vacant rooms (e.g. to see if last minute allocations are allowed for an Exchange student)
   * Highlights: Unlike most commands, these flags are exclusive, so the user cannot pass in both together.
 
 
