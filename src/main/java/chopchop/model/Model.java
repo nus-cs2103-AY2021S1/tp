@@ -1,6 +1,7 @@
 package chopchop.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -194,6 +195,10 @@ public interface Model {
 
     /** Sets the IngredientUsageList */
     void setIngredientUsageList(UsageList<IngredientUsage> rl);
+
+    List<Pair<String, String>> getRecipesMadeBetween(LocalDateTime after, LocalDateTime before);
+
+    List<Pair<String, String>> getIngredientsUsedBetween(LocalDateTime after, LocalDateTime before);
 
     List<Pair<String, String>> getRecentlyUsedRecipes(int n);
 

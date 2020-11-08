@@ -5,38 +5,56 @@ skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<interface>>
+Class StorageManager
+
 Interface UserPrefsStorage <<interface>>
 Interface RecipeBookStorage <<interface>>
 Interface IngredientBookStorage <<interface>>
 Interface UsageStorage <<interface>>
 
-
-Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonRecipeBookStorage
-Class JsonIngredientBookStorage
-Class JsonRecipeUsageStorage
-Class JsonIngredientUsageStorage
 
+Class JsonRecipeBookStorage
+Class JsonSerializableRecipeBook
+Class JsonAdaptedRecipe
+Class JsonAdaptedIngredientReference
+
+Class JsonIngredientBookStorage
+Class JsonSerializableIngredientBook
+Class JsonAdaptedIngredient
+Class JsonAdaptedIngredientSet
+
+Class JsonRecipeUsageStorage
+Class JsonSerializableRecipeUsageList
+Class JsonAdaptedRecipeUsage
+
+Class JsonIngredientUsageStorage
+Class JsonSerializableIngredientUsageList
+Class JsonAdaptedIngredientUsage
 
 StorageManager .left.|> Storage
-StorageManager o-up-> UserPrefsStorage
-StorageManager o-right-> RecipeBookStorage
+StorageManager o-right-> UserPrefsStorage
+StorageManager o-down-> RecipeBookStorage
 StorageManager o-down-> IngredientBookStorage
-StorageManager o-right-> UsageStorage
+StorageManager o-down-> UsageStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonRecipeBookStorage .left.|> RecipeBookStorage
-JsonRecipeBookStorage .up.> JsonSerializableRecipeBookStorage
-JsonSerializableRecipeBookStorage .right.> JsonSerializableRecipe
-JsonSerializableRecipe .right.> JsonAdaptedRecipe
-JsonAdaptedRecipe .down.> JsonAdaptedIngredientReference
-JsonIngredientBookStorage .left.|> IngredientBookStorage
-JsonIngredientBookStorage .down.> JsonSerializableIngredientBookStorage
-JsonRecipeUsageStorage .left.|> UsageStorage
-JsonIngredientUsageStorage .left.|> UsageStorage
-JsonSerializableIngredientBookStorage .right.> JsonSerializableIngredient
-JsonSerializableIngredient .right.> JsonAdaptedIngredient
-JsonAdaptedIngredient .up.> JsonAdaptedIngredientSet
-JsonAdaptedIngredient .right.> JsonAdaptedITagSet
+
+JsonRecipeBookStorage .up.|> RecipeBookStorage
+JsonRecipeBookStorage .down.> JsonSerializableRecipeBook
+JsonSerializableRecipeBook .down.> "*" JsonAdaptedRecipe
+JsonAdaptedRecipe .down.> "*" JsonAdaptedIngredientReference
+
+JsonIngredientBookStorage .up.|> IngredientBookStorage
+JsonIngredientBookStorage .down.> JsonSerializableIngredientBook
+JsonSerializableIngredientBook .down.> "*" JsonAdaptedIngredient
+JsonAdaptedIngredient .down.> JsonAdaptedIngredientSet
+
+JsonRecipeUsageStorage .up.|> UsageStorage
+JsonRecipeUsageStorage .down.> JsonSerializableRecipeUsageList
+JsonSerializableRecipeUsageList .down.> "*" JsonAdaptedRecipeUsage
+
+JsonIngredientUsageStorage .up.|> UsageStorage
+JsonIngredientUsageStorage .down.> JsonSerializableIngredientUsageList
+JsonSerializableIngredientUsageList .down.> "*" JsonAdaptedIngredientUsage
 @enduml

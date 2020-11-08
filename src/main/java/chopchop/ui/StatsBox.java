@@ -31,7 +31,6 @@ public class StatsBox extends UiPart<Region> {
 
     private static final String FXML = "StatsBox.fxml";
 
-    // MVC? what is that?
     private final Model model;
 
     @FXML

@@ -102,7 +102,7 @@ public class UsageList<T extends Usage> {
     }
 
     /**
-     * Returns a list of string output pairs that can be directly fed into listView.
+     * Returns a list of string output pairs that are within the time frame in descending chronological order.
      */
     public List<Pair<String, String>> getUsagesBetween(LocalDateTime after, LocalDateTime before) {
         if (after == null && before == null) {
@@ -126,6 +126,9 @@ public class UsageList<T extends Usage> {
 
     }
 
+    /**
+     * Returns a list of n string output pairs in descending chronological order.
+     */
     public List<Pair<String, String>> getRecentlyUsed(int n) {
         assert n >= 0;
 
@@ -143,6 +146,10 @@ public class UsageList<T extends Usage> {
         return output.stream().map(Usage::getListViewPair).collect(Collectors.toList());
     }
 
+    /**
+     * Returns a list of n string output pairs where first item is T's name and second is the number of usages,
+     * in descending chronological order.
+     */
     public List<Pair<String, String>> getMostUsed() {
         ArrayList<T> newLst = new ArrayList<>(this.usages);
         ArrayList<Pair<String, Integer>> outputLst = new ArrayList<>();
