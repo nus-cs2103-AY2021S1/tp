@@ -9,7 +9,7 @@ Wishful Shrinking is a desktop application for managing your diet, keeping track
 
 Given below are my contributions to the project. <br><br>
 
-* **New Feaetures added**:
+* **New Features added**:
   * **New Feature 1**: Added the ability to get recommended recipes. (Pull requests [\#109](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/109))
     * What it does: allows the user to get recipes that they can make based on their fridge, that is the recipes whose ingredients are all present in their fridge.
     * Justification: This feature improves the product significantly because a user can easily search for what recipes they are able to make, which the ingredient that are already present in their fridge.
