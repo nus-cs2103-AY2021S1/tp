@@ -14,13 +14,13 @@ title: Josiah's Project Portfolio Page
 	2. [About the project](#about-the-project)
 2. [Summary of contributions](#summary-of-contributions)
 	1. [Enhancements and new features added](#enhancements-and-new-features-added)
-		1. [Test a flashcard](#test-a-flashcard) 
+		1. [Test a flashcard](#test-a-flashcard)
 		2. [Export a set of flashcards](#export-a-set-of-flashcards)
 		3. [Import a set of flashcards](#import-a-set-of-flashcards)
 		4. [Display statistics of a set of flashcards by tag](#display-statistics-of-flashcards-by-tag)
 	2. [Code contributed](#code-contributed)
 	3. [Other contributions](#other-contributions)
-		1. [Project management](#project-management) 
+		1. [Project management](#project-management)
 		2. [Enhancements to existing features](#enhancements-to-existing-features)
 		3. [documentation](#documentation)
 			1. [User Guide](#user-guide)
@@ -48,8 +48,7 @@ My team of five consists of five Year 2 Computer Science students, all taking th
 
 This project was developed as part of the module CS2103T Software Engineering. We were tasked to develop a desktop application (Windows/macOS/Linux) with a Command Line Interface (that is, the program operates via text input from the user, called commands). Additionally, we were required to use an existing application, called AddressBook Level 3, as the starting point for building our application.
 
-My team decided to a create an application that helps students manage their flashcards, test themselves, and view their performance over time. To do so, we incorporated the existing people management features of AddressBook and used it as a starting point to build QuickCache. 
-
+My team decided to a create an application that helps students manage their flashcards, test themselves, and view their performance over time. To do so, we incorporated the existing people management features of AddressBook and used it as a starting point to build QuickCache.
 A screenshot of QuickCache is shown below:
 
 ![Ui](../images/Ui.png)
@@ -65,7 +64,7 @@ I served as Team Lead for the project, and my team responsibilities include:
 * Ensuring that project deliverables are done on time and are in the right format.
 
 My user-facing responsibilities include:
-* Creating features for users to test their created flashcards 
+* Creating features for users to test their created flashcards
 * Enabling the users to share their flashcards with one another.
 
 In the following sections, I will illustrate the above-mentioned enhancements in greter detail, along with the corresponding documentation that I have written fro them within the user and developer guides.
@@ -73,7 +72,7 @@ In the following sections, I will illustrate the above-mentioned enhancements in
 <a name="enhancements-and-new-features-added"></a>
 #### 2.1. Enhancements and new features added
 
-The following describes the enhancements and new features that I added to the project. 
+The following describes the enhancements and new features that I added to the project.
 
 <a name="test-a-flashcard"></a>
 #### 2.1.1 Test a flashcard (Feature)
@@ -159,7 +158,7 @@ The following describes the various other contributions that I have made to the 
 * Created initial mock up for our product (Pull request [\#34](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/34))
 * Added favicon and updated the site configs for the project's Github Page (Pull requests [\#52](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/52), [\#261](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/261))
 
-<a name="community"></a>    
+<a name="community"></a>
 #### 2.3.4 Community
 
 * PRs reviewed (with non-trivial review comments): [\#35](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/35), [\#37](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/37), [\#38](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/38), [\#50](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/50), [\#127](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/127), [\#129](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/129), [\#130](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/130), [\#151](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/151), [\#154](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/154), [\#169](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/169), [\#171](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/171)
@@ -170,7 +169,7 @@ The following describes the various other contributions that I have made to the 
 
 # Welcome to QuickCache User Guide
 
-**QuickCache** is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+**QuickCache** is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 If you are a student who can type fast and loves organizing your study materials, **QuickCache** can get your flashcard management tasks done faster than any traditional GUI appplication.
 
@@ -185,7 +184,7 @@ You can test yourself with a flashcard containing open-ended question by specify
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.s
 
     ![TestStep1](../images/TestStep1.png)
-    
+
 2. Using the indices of the displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the answer `a computer organization module`, you can enter `test 2 ans/a computer organization module`.
 
     <div markdown="block" class="alert alert-info">
@@ -196,7 +195,7 @@ You can test yourself with a flashcard containing open-ended question by specify
     </div>
 
     ![TestOpenStep2](../images/TestOpenStep2.png)
-    
+
 3. Press enter and QuickCache will tell you whether you got the question right.
 
     ![TestOpenStep3](../images/TestOpenStep3.png)
@@ -210,11 +209,11 @@ You can also test yourself a flashcard containing a multiple choice question by 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
     ![TestStep1](../images/TestStep1.png)
-    
+
 2. Using the indices of the displayed list, enter the `open` command followed by the index of the flashcard you want to see the options of. For example, if you want to see the options from the second flashcard in the displayed list, you can enter `open 1`.
 
     ![TestMCQStep2](../images/TestMCQStep2.png)
-    
+
 3. Using the indices of the previous displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the 2nd option, you can enter `test 1 o/2`.
 
     <div markdown="block" class="alert alert-danger">
@@ -222,11 +221,11 @@ You can also test yourself a flashcard containing a multiple choice question by 
     </div>
 
     ![TestMCQStep3](../images/TestMCQStep3.png)
-    
+
 4. Press enter and QuickCache will tell you whether you got the question right.
 
     ![TestMCQStep4](../images/TestMCQStep4.png)
-    
+
 You have successfully tested yourself on a multiple choice question!
 
 ### Displaying statistics <a name="displaying-statistics"></a>
@@ -242,7 +241,7 @@ Statistics include:
 
 #### Statistics by tags: `stats t/TAG1 TAG2` <a name="stats-by-tags"></a>
 
-You can also display the statistics of multiple flashcards in a Pie Chart by specifying tags. 
+You can also display the statistics of multiple flashcards in a Pie Chart by specifying tags.
 
 1. In the user input box, enter the stats command together with the tags that you want to use as the criteria. For example, if you want to display statistics for all flashcards with the tag `MCQ`, type `stats t/MCQ`.
 
@@ -267,46 +266,46 @@ You can export all flashcards from the last displayed list into a file named `FI
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
     ![ExportStep1](../images/ExportStep1.png)
-    
+
 2. In the user input box, enter the `export` command together with the `FILE_NAME` you would like to save the flashcards into. For example, if you would like the file to be named as `josiah-flashcard.json`, you can enter `export josiah-flashcard.json`.
 
     <div markdown="block" class="alert alert-info">
     :bulb: The filename specified includes the file format extension e.g. file.json
     </div>
-    
+
     ![ExportStep2](../images/ExportStep2.png)
-    
+
 3. Press enter and the file containing the flashcards will be exported into the `export` folder, located in the same directory as `QuickCache.jar`
 
     ![ExportStep3a](../images/ExportStep3a.png)
-    
+
     ![ExportStep3b](../images/ExportStep3b.png)
-    
+
     ![ExportStep3bW](../images/ExportStep3bW.png)
 
     ![ExportStep3c](../images/ExportStep3c.png)
-    
+
     ![ExportStep3cW](../images/ExportStep3cW.png)
-    
+
 
 Voila! You have successfully exported your flashcards into a file.
 
 #### Importing a set of flashcards : `import FILE_NAME` <a name="import"></a>
 
-You can import external flashcards into your local QuickCache as well. 
+You can import external flashcards into your local QuickCache as well.
 
 1. Create an `import` folder in the same directory as where `QuickCache.jar` is located.
 
     ![ImportStep1](../images/ImportStep1.png)
 
     ![ImportStep1W](../images/ImportStep1W.png)
-    
+
 2. Place the file that you want to import in the `import` folder.
 
     ![ImportStep2](../images/ImportStep2.png)
 
     ![ImportStep2W](../images/ImportStep2W.png)
-    
+
 3. In the user input box, enter the `import` command together with the name of the file you would like to import the flashcards from. For example, if the file to import from is named `joshua-flashcard.json`, you can enter `import joshua-flashcard.json`.
 
     <div markdown="block" class="alert alert-info">
@@ -314,7 +313,7 @@ You can import external flashcards into your local QuickCache as well.
     </div>
 
     ![ImportStep3](../images/ImportStep3.png)
-    
+
 4. Press enter and the flashcards within the file will be imported in your local QuickCache.
 
     ![ImportStep4](../images/ImportStep4.png)
@@ -329,7 +328,7 @@ Good job! You have successfully imported flashcards from an external file.
 #### Implementation
 
 The test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` stored within the flashcard. `Flashcard` implements the following methods.
-* `Flashcard#getFlashcardAfterTestSuccess()` — Returns a new `Flashcard` object with `Statistics:timesTested` and `Statistics:timesTestedCorrect` incremented by one. 
+* `Flashcard#getFlashcardAfterTestSuccess()` — Returns a new `Flashcard` object with `Statistics:timesTested` and `Statistics:timesTestedCorrect` incremented by one.
 * `Flashcard#getFlashcardAfterTestFailure()` — Returns a new `Flashcard` object with `Statistics:timesTested` incremented by one.
 
 Given below is an example usage scenario and how the test mechanism behaves at each step.
@@ -366,7 +365,7 @@ The following activity diagram summarizes what happens when a user executes a te
 
 * **Alternative 1 (current choice):** Increments a counter of `timesTestedCorrect` and `timesTested` in `Statistics`.
   * Pros: Easy to implement.
-  * Cons: Unable to keep track of useful information such as performance over time. 
+  * Cons: Unable to keep track of useful information such as performance over time.
 
 * **Alternative 2:** `Statistics` is made up of an `Array` of `test`, including information such as `timestamp`
   * Pros: Retrieval of useful statistics will be possible.
@@ -378,8 +377,7 @@ _{more aspects and alternatives to be added}_
 
 #### Implementation
 
-The export mechanism is facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be exported is passed to `Storage` to save to local data. 
-
+The export mechanism is facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be exported is passed to `Storage` to save to local data.
 Given below is an example usage scenario and how the export mechanism behaves at each step.
 
 Step 1. The user inputs the `find t/cs2100` command to find all `Flashcard` containing the tag `cs2100`. The `Model` updates its current filtered flashcard list.
@@ -402,7 +400,7 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ##### Aspect: How to output the export file
 
-* **Alternative 1 (current choice):** Predefined directory of `/export/` 
+* **Alternative 1 (current choice):** Predefined directory of `/export/`
   * Pros: Easy to implement.
   * Cons: The user will have to navigate to his `/export/` folder to retrieve output file.
 
@@ -441,7 +439,7 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ##### Aspect: How to import the input file
 
-* **Alternative 1 (current choice):** Predefined directory of `/import/` 
+* **Alternative 1 (current choice):** Predefined directory of `/import/`
   * Pros: Easy to implement.
   * Cons: The user will have to navigate to his `/import/` folder to a place the input file in it.
 
