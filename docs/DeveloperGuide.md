@@ -78,6 +78,7 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 ![Structure of the UI Components](images/UiComponentsClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -92,6 +93,8 @@ Upon invoking `open case 1`, the state changes and the `MainWindow` if notified 
 It then retrieves the information it requires and displays on its display panel.
 
 ![Structure of the Ui Component when updating state](images/UiStateSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
