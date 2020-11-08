@@ -13,7 +13,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 Given below are my contributions to the project.
 
 * **Model modification**: Created and managed Participation object. (Pull request: Pull request [\#18](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/18))
-  * What it means: an association class keeping track of who participates in what project.
+  * What it means: An association class keeping track of who participates in what project.
   * What changes made: 
     * created the class from scratch.
     * made relevant changes when needed to improve the model.
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
   * What changes made:
     * Created JsonAdaptedPerson, JsonAdaptedParticipation, JsonAdaptedTask and their related classes. [\#151](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/151)
     * Modified the rest of the classes under Storage Package to fit with the new data and classes.
-    * Implemented a new design for storing of data compared to AB3.
+    * Implemented a new design for storing of data compared to AB3. [\#182](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/182)
     * Added related test cases. 
   
 * **New Feature**: Created new command to add a new task [\#100](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/100)
@@ -42,11 +42,11 @@ Given below are my contributions to the project.
   * User Guide:
     * Came up with the content outline of the first draft of modified User Guide.
     * Added user guide for dashboard-related features, including project dashboard and task dashboard.
-    * Added the glossary of terms
+    * Added the glossary of terms [\#272](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/272)
   * Developer Guide:
     * Wrote the implementation of the design of the storage.
-    * Wrote the implementation of task feature.
-    * Added the glossary of terms.
+    * Wrote the implementation of task feature. [\#181](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/181)
+    * Added the glossary of terms [\#272](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/272)
 
 * **Community**:
   * Added all user stories of first draft to issue tracker
