@@ -210,10 +210,15 @@ It then gets the filepath of the `Tag` before safely deleting it. Then, a new `T
 changes the current directory of the HelloFile internal File Explorer. `CommandException` is thrown if the given directory 
 is invalid, cannot be found, or cannot be set as the current directory (*e.g. the given directory is not a folder*).
 
-CdCommand calls `setAddress` in `CurrentPath` to set the current directory to the absolute address parsed from the user input.
-Then, `CurrentPath` will update the list of children files `FileList` to fit the new current directory.
-Moreover, it also updates `javafx.scene.control.ListView` in `FileExplorer` as `ListView` is bound to the `FileList` of the children files 
-under the `CurrentPath`.
+This sequence diagram shows a successful execution of `CdCommand`.
+![FindSequenceDiagram](images/CdCommandSuccessSequenceDiagram.png)
+
+CdCommand gets the `CurrentPath` from `Model`, then it gets the new path to set using the current `CurrentPath`. 
+After that, `CdCommand` calls `setAddress` method in `CurrentPath` to set the current directory to the new address.
+Lastly, `CdCommand` returns a `CommandResult` which will be used as the feedback to the user.
+If `CdCommand` fails to get a valid new path, `CommandException` will be thrown to inform the user why the command failed.
+
+The UI components of Internal File Explorer will update themselves after a success execution of `CdCommand`.
 
 ### Find a specific tag: FindCommand
 
