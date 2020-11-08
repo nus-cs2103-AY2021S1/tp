@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kimberlyohq)
 
 * **Enhancements implemented**:
-    - Refactored `Person` to `Flashcard` and updated relevant test cases[#26](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/26)
+    - Refactored `Person` to `Flashcard` and updated relevant test cases [#26](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/26)
     -  Added the ability to favourite and unfavourite flashcards [#73](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/73) + [#92](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/92)
         * What it does: Allows the user to favourite and unfavourite flashcards via `fav` and `unfav` command
         * Justification: This feature improves the product significantly especially in terms of user experience as it allows users to favourite flashcards. This allow users to better customize the flashcards, providing greater room for filtering flashcards to refine their list of flashcards, which will be especially helpful in the future when they have a lot of flashcards.
@@ -22,7 +22,9 @@ Given below are my contributions to the project.
         * Justification: This feature improves the product significantly in terms of efficiency as it allows users to find flashcards easily.
         * Highlights: This enhancement affected the existing implementation of `find` command in AB3. This is because the `find` searches for the keywords in the entire flashcard, which includes `Flashcard`'s `Question`, `Answer`, `Category`, `Tags` and `Note` 
                       as compared to the previous implementation which only looks at `Person#Name`. Hence, `FindCommand` needed to be reimplemented to check for various fields.  Since the flashcard can contain special characters, the implementation also includes handling of special characters while searching for matching keywords in flashcard 
-          <div style="page-break-after: always;"></div>                   
+    
+    <div style="page-break-after: always;"></div>
+                       
     - Added test cases for `review` command - `ReviewCommandTest` [#40](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/40)
     - Added test cases for `quiz` command - `QuizCommandTest` [#253](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/253)
     - Added test cases for `StudyManager` - `StudyManagerTest`
