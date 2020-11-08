@@ -619,18 +619,17 @@ Use case ends.
     
 **Extensions**
 
-* 1a. The client is within the list.
+* 1a. The Client is within the list.
     
     * 1a1. FitEgo shows an error message.
 
       Use case ends.
       
-* 1b. The Session is missing some required details.
+* 1b. The Client is missing some required details.
 
     * 1b1. FitEgo shows an error message.
     
        Use case ends.
-       
 
 <br/>
 
