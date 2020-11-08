@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+## **Table of Contents**
 * Table of Contents
 {:toc}
 
@@ -109,12 +110,20 @@ The `Model`,
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-The `Storage` component,
+The `Storage` component converts java objects into json format and store it to the hard drive. 
+It is also used for converting data in json format to java objects when executing the app.
+
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The storage creates the UserPref and data with default value when the json files are missing/changed. During execution, The storage will update the address book data everytime the user executes a command. However, UserPref is only updated when the app is closed.
 </div>
+
+This diagram shows how the `AddressBook` is saved to json file after executing a command.
+![SaveSuccessSequence](images/SaveStorageSequenceDiagram.png)
+
+This diagram shows how the `AddressBook` is read from json file when executing the app.
+![ReadSuccessSequence](images/ReadStorageSequenceDiagram.png)
 
 ### Common classes
 
@@ -152,7 +161,7 @@ This diagram shows a successful execution of `TagCommand`, resulting in a new ta
 ![TagSuccessSequence](images/TagCommandSuccessSequenceDiagram.png)
 
 This diagram shows an unsuccessful execution of `TagCommand`, resulting in `CommandException` thrown.
-In this case, the file was not present.
+In this case, the file was not present.<br>
 ![TagFailureSequence](images/TagCommandFailureSequenceDiagram.png)
 
 `TagCommand` checks if the file address given is absolute or relative file path.
@@ -171,7 +180,7 @@ to be opened.
 After that, it opens the files located at the `Tag`'s `FileAddress` if the file is present and user has read permission.
 `CommandException` is thrown if tag is not present, the file cannot be found or no read permission.
 
-This sequence diagram shows a successful execution of `OpenCommand`.
+This sequence diagram shows a successful execution of `OpenCommand`. <br>
 ![OpenCommandSuccessExecution](images/OpenCommandSuccessSequenceDiagram.png)
 
 We implemented OpenCommand using `java.awt.Desktop`,
@@ -235,7 +244,7 @@ This is the sequence diagram of the FindCommand.<br>
 searches the list of Tags stored in `AddressBook` and shows the tag's file path in the `ResultDisplay`.
 `CommandException` is thrown if tag is not present.
 
-This diagram shows a successful execution of `ShowCommand` to show the information of the specified tag.
+This diagram shows a successful execution of `ShowCommand` to show the information of the specified tag.<br>
 ![ShowSuccessSequence](images/ShowCommandSequenceDiagram.png)
 
 ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` that extends from `java.util.function.predicate` to `ObservableList<Tag>` using `model.findFilteredTagList()`.
@@ -246,7 +255,7 @@ ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` t
 lists the Tags stored in `AddressBook` and shows them as `TagCard` which is contained in `TagListPanel`.
 ListCommand shouldn't take in any argument. A `CommandException` will be thrown if the user's input contains an argument.
 
-This diagram shows a successful execution of `ListCommand`.
+This diagram shows a successful execution of `ListCommand`.<br>
 ![ListSuccessSequence](images/ListCommandSequenceDiagram.png)
 
 ListCommand updates the `ObservableList<Tag>` by using `java.util.function.predicate`.
