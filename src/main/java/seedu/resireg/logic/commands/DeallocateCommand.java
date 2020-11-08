@@ -48,7 +48,7 @@ public class DeallocateCommand extends Command {
         List<Allocation> lastShownListAllocation = model.getFilteredAllocationList();
 
         if (studentIndex.getZeroBased() >= lastShownListStudent.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToDeallocate = lastShownListStudent.get(studentIndex.getZeroBased());

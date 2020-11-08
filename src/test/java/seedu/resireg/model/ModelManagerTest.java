@@ -18,7 +18,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.resireg.commons.core.GuiSettings;
+import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.NameContainsKeywordsPredicate;
+import seedu.resireg.model.student.Student;
 import seedu.resireg.testutil.ResiRegBuilder;
 import seedu.resireg.testutil.UserPrefsBuilder;
 
@@ -120,6 +122,15 @@ public class ModelManagerTest {
     }
 
     // Allocations (to be added)
+    @Test
+    public void isAllocated_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.isAllocated((Student) null));
+    }
+
+    @Test
+    public void isAllocated_nullRoom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.isAllocated((Room) null));
+    }
 
     // Command word aliases
     @Test

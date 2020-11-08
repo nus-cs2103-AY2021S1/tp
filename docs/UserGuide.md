@@ -8,7 +8,7 @@ title: User Guide
 
 ## Introduction
 
-**ResiReg** (**Res**idential **Reg**ulation) is a productivity app designed to help admin staff at Residential Colleges (RCs)\* in NUS with their daily tasks. ResiReg allows admin to allocate rooms to students, manage students records, generate billing and OHS reports, and export CSVs for easy reference and sharing.
+**ResiReg** (**Resi**dential **Reg**ulation) is a productivity app designed to help admin staff at Residential Colleges (RCs)\* in NUS with their daily tasks.
 
 **ResiReg** has the following main features:
 
@@ -19,9 +19,9 @@ title: User Guide
 **ResiReg** is optimised for OHS admin who are fast typists who are used to a Command Line Interface, and prefer typing over other means of input. It comes with:
 
 - A Command Line Interface (CLI) which allows you to access all **ResiReg** features by typing.
-- A Graphical User Interface (GUI) that displays the information you need in a grid format.
+- A Graphical User Interface (GUI) that displays the information you need.
 
-> **ResiReg** is currently a work in progress. Here is a mockup of its skeleton. Stay tuned for our progress!
+> **ResiReg** is always a work in progress (even after this semester!). Here is its current look. Stay tuned for our progress!
 > ![](images/Ui.png)
 
 ## About this Guide
@@ -205,13 +205,15 @@ Format: `archive`
 Shows a list of all students in ResiReg, optionally filtered by some parameters.
 
 Format: `students [n/<name>] [p/<phone>] [e/<email>] [f/<faculty] [i/<student_id>]`
+- `name` is matched case-insensitively and partially (i.e partial matches appear)
+- `phone`, `email`, `faculty` and `student_id` are matched exactly, and must satisfy constraints listed in the `add-student` command
 - If no parameters are given, all students are shown.
 - Students can be filtered by multiple criteria. See the section below for some examples.
 
 Examples:
 
 - `students` switches to the Students tab if it is not already selected, and shows the list of students on the right pane.
-- `students n/Alex` switches to the Students tab if it is not already selected, and shows the list of students with names containing "Alex" on the right pane.
+- `students n/alex` switches to the Students tab if it is not already selected, and shows the list of students matching the name "alex" case-insensitively, on the right pane.
 - `students n/Alex` switches to the Students tab if it is not already selected, and shows the list of students with names containing "Alex" on the right pane.
 - `students n/char f/LAW` switches to the Students tab if it is not already selected, and shows the list of students with names containing "char" and belonging to the "LAW" faculty on the right pane.
 
@@ -222,7 +224,7 @@ Examples:
 
 Adds a student to ResiReg. The following student details are stored: name, student ID, phone, email, faculty, and optionally, tags.
 
-Format: `add-student n/<student_name> i/<student_id> p/<8_digit_phone_no> e/<email> f/<faculty> [tag/<tag_name>]...`
+Format: `add-student n/<student_name> i/<student_id> p/<phone_no> e/<email> f/<faculty> [tag/<tag_name>]...`
 
 - The student ID must be a 8-digit alphanumeric string, starting with `EO` and ending with 6 digits. It must be unique (no two students in ResiReg can share the same student ID). Otherwise, an error message is displayed accordingly.
 - The phone number should be exactly 8 digits
@@ -251,8 +253,13 @@ Examples:
 
 - `add-student n/Jet New i/E0407889 p/82462157 e/jn@u.nus.edu f/SOC` successfully creates a new student named Jet New whose student ID is E0407889, phone number is 82462157,
   email is jn@u.nus.edu, and faculty is Computing (SOC).
-- `add student n/Jet New i/E0407889 e/jn@u.nus.edu` prompts the user with the following error message (because the faculty field is missing):
-  `Invalid command format! add-student: Adds a student to ResiReg. Parameters: n/NAME i/STUDENT_ID p/PHONE e/EMAIL f/FACULTY [tag/TAG]... Example: add-student n/John Doe s/E0123456 p/98765432 e/johndoe@u.nus.edu f/FASS`
+- `add-student n/Jet New i/E0407889 e/jn@u.nus.edu` prompts the user with the following error message (because the faculty field is missing):
+
+  `Invalid command format! add-student: Adds a student to ResiReg. `
+  `Parameters: n/NAME i/STUDENT_ID p/PHONE e/EMAIL f/FACULTY [tag/TAG]...`
+  `Example: add-student n/John Doe s/E0123456 p/98765432 e/`
+  `johndoe@u.nus.edu f/FASS`
+
 
 #### Editing a student : `edit-student`
 
@@ -280,15 +287,16 @@ Format: `delete-student <index>`
 
 - Deletes the student at the specified `index`, and moves the student to the bin.
 - The index refers to the index number shown in the displayed student list.
-- The index **must be a positive integer** 1, 2, 3, …​
+- The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 
 - `students` followed by `delete-student 2` deletes the 2nd student in ResiReg.
 - `students n/Roy` followed by `delete-student 1` deletes the 1st student (if any) in the results of the `students` command.
 
-<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
-If you delete a student erroneously, you should undo the command immediately. However, if you deleted the student a while ago, and wish to restore it, then you should use the restore command (see below).
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you delete a student erroneously, you should [undo](#undo-previous-command--undo)
+the command immediately. However, if you deleted the student a while ago, and wish to restore it, then you should use the [restore](#restoring-a-bin-item--restore)  command (see below).
 </div>
 
 ### General
@@ -302,6 +310,7 @@ Shows a list of all bin items in ResiReg.
 Format: `bin`
 
 - `bin` switches to the Bin tab if it is not already selected.
+- If additional text is supplied after `bin`, e.g. `bin ,` or `bin dn` no error message is shown. (rationale: to prevent user typos from interfering with clear intention of viewing the bin list)
 
 Examples: `bin`
 
@@ -327,17 +336,18 @@ The default time for which a bin item stays in the bin is <b>30 days</b>. Use th
 
 Format: `set-bin-expiry <number_of_days>​`
 
-- `<number_of_days>` **must be a positive integer** 1, 2, 3, …​
+- `number_of_days` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-- `set-bin-expiry 20` sets all bin items to be permanentely removed 20 days after their deletion.
+- `set-bin-expiry 20` sets all bin items to be permanently removed 20 days after their deletion.
 
 #### Listing all aliases : `aliases`
 
 Shows the list of aliases (an alias is a user-defined term that can be used interchangeably with a command word) and their corresponding command words currently in ResiReg.
 
 Format: `aliases​`
+- - If additional text is supplied after `aliases`, e.g. `aliases ,` or `aliases dn` no error message is shown. (rationale: to prevent user typos from interfering with clear intention of viewing the alias list)
 
 Example: `aliases`
 
@@ -347,8 +357,8 @@ Adds an alias for a command word to ResiReg.
 
 Format: `alias c/<command_word> a/<alias_term>​`
 
-- `<command_word>` must exactly match one of the command words listed by the `help` command.
-- `<alias_term>` cannot be an existing command word, or an existing alias.
+- `command_word` must exactly match one of the command words listed by the `help` command.
+- `alias_term` cannot be an existing command word, or an existing alias.
 
 Examples:
 
@@ -357,15 +367,15 @@ Examples:
 
 #### Deleting an alias : `dealias`
 
-Deletes an alias for a command word to ResiReg.
+Deletes an alias for a command word in ResiReg.
 
 Format: `dealias c/<command_word> a/<alias_term>​`
 
-- Both `<command_word>` and `<alias_term>` must exactly match one of the command word-alias pairs listed by the `aliases` command.
+- Both `command_word` and `alias_term` must exactly match one of the command word-alias pairs listed by the `aliases` command.
 
 Examples:
 
-- `dealias c/set-bin-expiry a/sb` removes the an alias `sb` for the `set-bin-expiry` command. Henceforth, typing `sb` will lead to an error message.
+- `dealias c/set-bin-expiry a/sb` removes the an alias `sb` for the `set-bin-expiry` command. Henceforth, typing `sb` will lead to an error message for `Unknown command`.
 
 #### Asking for help as a first time user : `help`
 
@@ -393,10 +403,10 @@ You can also refer to our user guide at: https://ay2021s1-cs2103-t16-3.github.io
 
 Shows the purpose, syntax, and parameters of a command if you need to use the command but are unsure of its syntax.
 
-Format: `help <command_word> or <alias>`
+Format: `help <command_word> or <alias_term>`
 
-- `<command_word>` if supplied, should exactly match one of the command words listed by the `help` command
-- `<alias>` if supplied, should exactly match one of the aliases listed by the `aliases` command
+- `command_word` if supplied, should exactly match one of the command words listed by the `help` command
+- `alias` if supplied, should exactly match one of the aliases listed by the `aliases` command
 
 Examples:
 
@@ -416,8 +426,7 @@ Clears all entries (students, rooms, allocations and bin items) from ResiReg.
 Format: `clear`
 
 #### Undo previous command : `undo`
-Restores the address book to the state before 
-the previous state modifying command was executed.
+Restores the address book to the previous state where a modifying command was executed.
 
 <div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>ctrl-z</kbd> keyboard combination
 in the command box will execute the command as well.
@@ -507,9 +516,9 @@ Just type in the `help` command!
 | _restore bin item_    | `restore <index>` e.g. `restore 2`                                                                                                                        |
 | _set bin expiry time_ | `set-bin-expiry <number_of_days>` e.g. `set-bin-expiry 30`                                                                                                |
 | _list aliases_        | `aliases`                                                                                                                                                 |
-| _add alias_           | `alias c/<command_word> a/<alias>` e.g. `alias c/rooms a/r`                                                                                               |
-| _delete alias_        | `dealias c/<command_word> a/<alias>` e.g. `alias c/rooms a/r`                                                                                             |
-| _help_                | `help [<command_word> or <alias>]`e.g.`help`or`help rooms`or`help r`                                                                                      |
+| _add alias_           | `alias c/<command_word> a/<alias_term>` e.g. `alias c/rooms a/r`                                                                                               |
+| _delete alias_        | `dealias c/<command_word> a/<alias_term>` e.g. `alias c/rooms a/r`                                                                                             |
+| _help_                | `help [<command_word> or <alias_term]`e.g.`help`or`help rooms`or`help r`                                                                                      |
 | _archive semester_    | `archive`                                                                                                                                                 |
 | _clear_               | `clear`                                                                                                                                                   |
 | _exit_                | `exit`                                                                                                                                                    |

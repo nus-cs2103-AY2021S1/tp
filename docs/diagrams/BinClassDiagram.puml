@@ -30,7 +30,7 @@ Binnable <|.. Student
 Binnable <|.. Room
 
 
-UniqueStudentList o----> Student
-UniqueRoomList o----> Room
+UniqueStudentList o----> "*" Student
+UniqueRoomList o----> "*" Room
 
 @enduml

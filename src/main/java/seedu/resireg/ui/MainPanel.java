@@ -11,6 +11,9 @@ import javafx.scene.layout.StackPane;
 import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.logic.Logic;
 import seedu.resireg.logic.commands.TabView;
+import seedu.resireg.ui.binitem.BinItemListPanel;
+import seedu.resireg.ui.room.RoomListPanel;
+import seedu.resireg.ui.student.StudentListPanel;
 
 /**
  * Represents the tabbed main panel for the {@code MainWindow}.

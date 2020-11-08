@@ -1,7 +1,7 @@
 package seedu.resireg.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.resireg.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.resireg.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.resireg.logic.commands.CommandTestUtil.FACULTY_DESC_AMY;
@@ -66,7 +66,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = DeleteCommand.COMMAND_WORD + " 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         assertHistoryCorrect(deleteCommand);
     }
 

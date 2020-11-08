@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.logic.CommandHistory;
+import seedu.resireg.logic.CommandWordEnum;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.alias.AliasUtils;
@@ -25,9 +26,14 @@ public class HelpCommand extends Command {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Cannot show help for %s: " + Messages.MESSAGE_UNKNOWN_COMMAND;
 
-    // weird getter system (rather than making these final static constants)
-    // is necessary due to cyclic dependency between CommandWordEnum and HelpCommand
-    // TODO explain this better
+    /*
+    These 2 variables are effectively lazily-loaded static constants.
+    They are not actual constants because they require CommandWordEnum, however there is a cyclic dependency between
+    CommandWordEnum and this class.
+
+    They are not instance attributes since they are somewhat expensive to compute, especially as the number
+    of commands increases.
+     */
     private static Map<String, Help> commandWordToHelpMap;
     private static String generalHelpMessage;
 
