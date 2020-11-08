@@ -74,8 +74,8 @@ public class PersonCard extends UiPart<Region> {
     }
 
     private void resizeLabel(Label label, double width) {
+        label.setMaxWidth(width * 0.4);
         label.setWrapText(true);
-        label.setMaxWidth(width * 0.9);
     }
 
     @Override
