@@ -39,8 +39,13 @@ Given below are my contributions to the project.
     [\#61](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/61)
 
 * **Documentation**:
-  * Added Design section of developer guide
+  * Developer Guide
     [\#112](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/112)
+    [\#214](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/214)
+    * Added Design section
+    * Added use cases
+    * Added non-functional requirements
+    * Added instructions for manual testing
 
 * **Testing**:
   * Added testing for all storage related classes
