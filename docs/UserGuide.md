@@ -241,7 +241,7 @@ Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENU
 <div markdown="block" class="alert alert-info">
 
 :information_source: If using this command after `find`, the edited student may no longer satisfy the search criteria depending on the field changed.
-In that case the student will be hidden from view and can be viewed again using `list` or `find`.<br><br>
+In that case the student will be hidden from view and can be viewed again using `list` or `find`.<br>
 
 E.g. `edit 1 n/Amy Choo` after `find n/Bob` will cause the student to be hidden since her name no longer contains "Bob".
 You can use `list` or `find` (e.g `find n/Amy`) to display her information again.
