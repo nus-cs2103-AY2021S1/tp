@@ -316,6 +316,7 @@ Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * To view the list of supported date formats, see *Appendix A*.
+* To edit tag, use tag and untag command instead.
 
 </div>
 
