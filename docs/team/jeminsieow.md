@@ -38,7 +38,7 @@ Given below are my contributions to the project.
         * Added use cases.
         * Added non-functional requirements.
         
-    * Other documents (Pull request [\#217](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/217)
+    * Other Documents (Pull request [\#217](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/217)
         * Updated README.
         * Updated Website.
     
