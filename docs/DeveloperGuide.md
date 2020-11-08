@@ -506,20 +506,22 @@ Use case ends.
 
 **Extensions**
 - 1a. The format of add method is invalid.
-    1a1. McGymmy shows an error message.<br>
+    - 1a1. McGymmy shows an error message.
     Use case ends.
 
 **Use case: UC03 Delete food**
 
 **MSS**
-1. User requests to list food (UC01).
+1. User requests to list food. (UC01)
 2. McGymmy shows a list of food.
 3. User request to delete a specific food on the list.
-4. McGymmy deletes the food.<br>
-Use case ends.
+4. McGymmy deletes the food.
+
+Use case ends
 
 **Extensions**
 - 2a. The list is empty.<br>
+
     Use case ends.
 
 - 3a. The given index is invalid.<br>
@@ -544,11 +546,10 @@ No extensions.
 3. User request to edit a specific food on the list.
 4. McGymmy updates the food.
 
-Use case ends
+Use case ends.
 
 **Extensions**
 - 2a. The list is empty<br>
-    
 Use case ends.
 
 - 3a. The given index is invalid.<br>
@@ -556,7 +557,7 @@ Use case ends.
    Use case resumes at step 2.
 
 - 3b. The format of edit method is invalid.
-   3b1. McGymmy shows an error message.<br>
+   - 3b1. McGymmy shows an error message.<br>
    Use case ends.
     
 **Use case: UC06 Tag food**
@@ -569,7 +570,7 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-- 2a. The list is empty<br>
+- 2a. The list is empty.<br>
    Use case ends.
     
 - 3a. The given index is invalid.<br>
@@ -590,8 +591,7 @@ Use case ends.
 1. User requests to list food (UC01).
 2. McGymmy shows a list of food.
 3. User request to remove tag from a specific food on the list.
-4. McGymmy removes the tag from the food.
-
+4. McGymmy removes the tag from the food.<br>
 Use case ends
 
 **Extensions**
@@ -699,24 +699,39 @@ Use case ends.
     - 2a1. McGymmy shows the error message from that command, and displays the commands that successfully executed, and the commands that have yet to execute.<br>
     Use case ends.
 
-**Use case: UC14 List all macro commands**
+**Use case: UC14 Undo the last command**
 
- - Similar to **UC04** except McGymmy lists *macros* instead of *commands*.
+**MSS**
 
-**Use case: UC15 Remove a macro**
+1. User requests to undo the last command.
+2. McGymmy successfully undo the last command.<br>
+Use case ends.
 
- - Similar to **UC03** except the user requests to list *macros* instead of *food items*, and requests to delete a *macro* instead of a *food item*.
+**Extensions**
+
+1a. McGymmy shows the error message that there is no command left to undo.<br>
+Use case ends.
+
+**Use case: UC15 List all macro commands**
+
+ - Similar to **UC04** except McGymmy lists *macros* instead of *commands*.<br>
+
+**Use case: UC16 Remove a macro**
+
+ - Similar to **UC03** except the user requests to list *macros* instead of *food items*, and requests to delete a *macro* instead of a *food item*.<br>
 
 ### 9.4 Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 food items without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The product should be for a single user i.e. (not a multi-user product).
-5. The data should be stored locally and should be in a human editable text file.
-6. The software should not depend on a private remote server.
-7. The size of the final compiled JAR file should be less than 100Mb.
-8. There should be CLI alternatives to every GUI input. (E.g. instead of clicking on a button I can type an equivalent command to achieve the same result.)
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. There should be CLI alternatives to every GUI input. (E.g. instead of clicking on a button I can type an equivalent command to achieve the same result.)
+1. Should be able to hold up to 1000 food items without a noticeable sluggishness in performance for typical usage.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. The data should be stored locally and should be in a human editable text file.
+1. The product should be for a single user i.e. (not a multi-user product).
+1. Each Command entered by the user should be processed within 1 second.
+1. All numeric values must be accurate to within 5 significant figures
+1. The size of the final compiled JAR file should be less than 100Mb.
+1. The software should not depend on a private remote server.
 
 
 ### 9.5 Glossary

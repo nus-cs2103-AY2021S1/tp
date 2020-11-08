@@ -448,7 +448,12 @@ commands by combining multiple commands together. This is a powerful tool that r
 repetitive long-winded command execution. The `macro` command specifically stores a new macro into
 your McGymmy system.
 
-*__WARNING:__* this is an advanced feature!
+<div markdown="block" class="alert alert-danger">
+
+
+:warning: *__WARNING:__* this is an advanced feature!
+
+</div>
 
 Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; [COMMAND_2 PARAMETERS_TO_COMMAND_2; ...]` <br>
 
@@ -466,13 +471,16 @@ Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; 
 
 * Using `undo` after creating a macro using this command will remove it.
 
+* Using `exit` in a macro will close McGymmy, and subsequent commands will be ignored. E.g. if `macro ex; add -n one; exit; add -n two` is executed,
+McGymmy will add a food item named `one` and then exit, but will not create a food item named `two`.
+
 * Read the examples below for more information.
 
 </div>
 
 Examples:
-* `macro addWith100cal p ; add -n \$ -c 100 -p \p`
-    * Example usage of this macro: `addWith100cal Banana -p 200`
+* `macro addWith100carbs p ; add -n \$ -c 100 -p \p`
+    * Example usage of this macro: `addWith100carbs Banana -p 200`
     * The following command will be executed by the macro: `add -n Banana -c 100 -p 200`
     * i.e. in `add -n \$ -c 100 -p \p`, `\$` and `\p` will be substituted with Banana and 200 respectively.
 
