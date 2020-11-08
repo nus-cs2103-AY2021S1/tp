@@ -31,85 +31,100 @@ import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
 import seedu.expense.model.tag.UniqueTagList;
 
-public class TopupCommandTest {
+public class ReduceCommandTest {
 
     @Test
     public void constructor_nullAmount_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TopupCommand(null));
+        assertThrows(NullPointerException.class, () -> new ReduceCommand(null));
     }
 
     @Test
-    void execute_nonNegativeAmountAddedToModel_success() throws Exception {
+    void execute_nonNegativeAmountReducedFromModel_success() throws Exception {
         ModelStub modelStub = new ModelStub();
-
         Amount validAmount0 = new Amount("0");
-        CommandResult commandResult0 = new TopupCommand(validAmount0).execute(modelStub);
-        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount0),
+        Amount validAmount1 = new Amount("1");
+        Amount validAmount2 = new Amount("2");
+        Amount validAmount3 = new Amount("3");
+        modelStub.topupBudget(validAmount3);
+
+        CommandResult commandResult0 = new ReduceCommand(validAmount0).execute(modelStub);
+        assertEquals(String.format(ReduceCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount3),
                 commandResult0.getFeedbackToUser());
+        assertEquals(validAmount3, modelStub.budgets.getAmount());
+
+        CommandResult commandResult1 = new ReduceCommand(validAmount1).execute(modelStub);
+        assertEquals(String.format(ReduceCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount2),
+                commandResult1.getFeedbackToUser());
+        assertEquals(validAmount2, modelStub.budgets.getAmount());
+
+        CommandResult commandResult2 = new ReduceCommand(validAmount2).execute(modelStub);
+        assertEquals(String.format(ReduceCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount0),
+                commandResult2.getFeedbackToUser());
         assertEquals(validAmount0, modelStub.budgets.getAmount());
 
-        Amount validAmount1 = new Amount("1");
-        CommandResult commandResult1 = new TopupCommand(validAmount1).execute(modelStub);
-        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount1),
-                commandResult1.getFeedbackToUser());
-        assertEquals(validAmount1, modelStub.budgets.getAmount());
+        CommandResult commandResult3 = new ReduceCommand(validAmount3).execute(modelStub);
+        assertEquals(String.format(ReduceCommand.MESSAGE_INSUFFICIENT_BUDGET, DEFAULT_TAG.tagName),
+                commandResult3.getFeedbackToUser());
+        assertEquals(validAmount0, modelStub.budgets.getAmount());
     }
 
     @Test
-    void execute_negativeAmountAddedToModel_throwsCommandException() {
+    void execute_negativeAmountReducedFromModel_throwsCommandException() {
         ModelStub modelStub = new ModelStub();
-        assertThrows(CommandException.class, () -> new TopupCommand(new Amount("-0.01")).execute(modelStub));
+        assertThrows(CommandException.class, () -> new ReduceCommand(new Amount("-0.01")).execute(modelStub));
     }
 
     @Test
-    void execute_validAmountAddedToCategoryBudget_success() throws Exception {
+    void execute_validAmountReducedFromCategoryBudget_success() throws Exception {
         ModelStub modelStub = new ModelStub();
         Tag validTag = new Tag(VALID_TAG_FOOD);
-        Amount validAmount = new Amount("1");
+        Amount validAmount1 = new Amount("1");
+        Amount validAmount2 = new Amount("2");
         modelStub.addCategory(validTag);
-        CommandResult commandResult = new TopupCommand(validAmount, validTag).execute(modelStub);
-        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, VALID_TAG_FOOD, validAmount),
+        modelStub.topupCategoryBudget(validTag, validAmount2);
+        CommandResult commandResult = new ReduceCommand(validAmount1, validTag).execute(modelStub);
+        assertEquals(String.format(ReduceCommand.MESSAGE_SUCCESS, VALID_TAG_FOOD, validAmount1),
                 commandResult.getFeedbackToUser());
-        assertEquals(validAmount, modelStub.budgets.getCategoryBudget(validTag).getAmount());
+        assertEquals(validAmount1, modelStub.budgets.getCategoryBudget(validTag).getAmount());
     }
 
     @Test
-    void execute_validAmountAddedToNonExistentCategoryBudget_throwsCommandException() {
+    void execute_validAmountReducedFromNonExistentCategoryBudget_throwsCommandException() {
         ModelStub modelStub = new ModelStub();
-        assertThrows(CommandException.class, () -> new TopupCommand(new Amount("1"),
+        assertThrows(CommandException.class, () -> new ReduceCommand(new Amount("1"),
                 new Tag(VALID_TAG_FOOD)).execute(modelStub));
     }
 
     @Test
     void equals() {
-        Amount toAddOne = new Amount("1");
-        Amount toAddTwo = new Amount("2");
-        TopupCommand topupCommandOne = new TopupCommand(toAddOne);
-        TopupCommand topupCommandTwo = new TopupCommand(toAddTwo);
+        Amount toReduceOne = new Amount("1");
+        Amount toReduceTwo = new Amount("2");
+        ReduceCommand reduceCommandOne = new ReduceCommand(toReduceOne);
+        ReduceCommand reduceCommandTwo = new ReduceCommand(toReduceTwo);
 
         Tag foodTag = new Tag(VALID_TAG_FOOD);
         Tag transportTag = new Tag(VALID_TAG_TRANSPORT);
-        TopupCommand topupFood = new TopupCommand(toAddOne, foodTag);
-        TopupCommand topupTransport = new TopupCommand(toAddOne, transportTag);
+        ReduceCommand reduceFood = new ReduceCommand(toReduceOne, foodTag);
+        ReduceCommand reduceTransport = new ReduceCommand(toReduceOne, transportTag);
 
         // same object -> returns true
-        assertTrue(topupCommandOne.equals(topupCommandOne));
+        assertTrue(reduceCommandOne.equals(reduceCommandOne));
 
         // same values -> returns true
-        TopupCommand topupOneCopy = new TopupCommand(toAddOne);
-        assertTrue(topupCommandOne.equals(topupOneCopy));
+        ReduceCommand reduceOneCopy = new ReduceCommand(toReduceOne);
+        assertTrue(reduceCommandOne.equals(reduceOneCopy));
 
         // different types -> returns false
-        assertFalse(topupCommandOne.equals(1));
+        assertFalse(reduceCommandOne.equals(1));
 
         // null -> returns false
-        assertFalse(topupCommandOne.equals(null));
+        assertFalse(reduceCommandOne.equals(null));
 
         // different amount -> returns false
-        assertFalse(topupCommandOne.equals(topupCommandTwo));
+        assertFalse(reduceCommandOne.equals(reduceCommandTwo));
 
-        // different categories -> return false
-        assertFalse(topupFood.equals(topupTransport));
+        // different categories -> returns false
+        assertFalse(reduceFood.equals(reduceTransport));
     }
 
     /**
@@ -232,12 +247,12 @@ public class TopupCommandTest {
 
         @Override
         public boolean categoryBudgetHasAmount(Tag category, Amount amount) {
-            throw new AssertionError("This method should not be called.");
+            return budgets.categoryBudgetHasAmount(category, amount);
         }
 
         @Override
         public void reduceCategoryBudget(Tag category, Amount amount) {
-            throw new AssertionError("This method should not be called.");
+            budgets.reduceCategoryBudget(category, amount);
         }
 
         @Override
