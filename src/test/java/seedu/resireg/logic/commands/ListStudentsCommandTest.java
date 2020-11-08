@@ -1,5 +1,8 @@
 package seedu.resireg.logic.commands;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.resireg.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertToggleCommandSuccess;
@@ -140,5 +143,44 @@ public class ListStudentsCommandTest {
         expectedModel.updateFilteredStudentList(filter.getStudentPredicate());
         assertToggleCommandSuccess(new ListStudentsCommand(filter), model,
                 history, ListStudentsCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.STUDENTS);
+    }
+
+    @Test
+    void testEquals() {
+        Command command = new ListStudentsCommand(filter);
+        // same object
+        assertEquals(command, command);
+
+        // not same class
+        assertNotEquals(command, new HelpCommand(""));
+
+        // equal student filter
+        ListStudentsCommand.StudentFilter otherFilter = new ListStudentsCommand.StudentFilter();
+        assertEquals(command, new ListStudentsCommand(otherFilter));
+        // filter equal with name
+        List<Name> names = List.of(new Name("name"));
+        filter.addValidNames(names);
+        otherFilter.addValidNames(names);
+        assertEquals(command, new ListStudentsCommand(otherFilter));
+        // filter equal with email
+        List<Email> emails = List.of(new Email("test@student.com"));
+        filter.addValidEmails(emails);
+        otherFilter.addValidEmails(emails);
+        assertEquals(command, new ListStudentsCommand(otherFilter));
+        // filter equal with phone
+        List<Phone> phones = List.of(new Phone("88888888"));
+        filter.addValidPhones(phones);
+        otherFilter.addValidPhones(phones);
+        assertEquals(command, new ListStudentsCommand(otherFilter));
+        // filter equal with faculty
+        List<Faculty> faculties = List.of(new Faculty("FASS"));
+        filter.addValidFaculties(faculties);
+        otherFilter.addValidFaculties(faculties);
+        assertEquals(command, new ListStudentsCommand(otherFilter));
+        // filter equal with student id
+        List<StudentId> studentIds = List.of(new StudentId("E0111111"));
+        filter.addValidStudentIds(studentIds);
+        otherFilter.addValidStudentIds(studentIds);
+        assertEquals(command, new ListStudentsCommand(otherFilter));
     }
 }
