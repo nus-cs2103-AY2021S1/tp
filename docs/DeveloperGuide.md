@@ -363,22 +363,30 @@ Given below is an example usage scenario and how the calculate net profits mecha
 * Step 1. The user inputs the profit command to calculate the net profits in the current account in ActiveAccount. `CommonCentsParser` identifies the command word and calls a valid `GetProfitCommand`.
 
 * Step 2. `GetProfitCommand` starts to be executed. In the execution, `ActiveAccount#getProfits()` is called to calculate the net profits. 
-    * `Account#getTotalExpense()` and `Account#getTotalRevenue()` are called in `Active#getProfits` to calculate the difference between the total expenses and total revenues.
+    * `Account#getTotalExpense()` and `Account#getTotalRevenue()` are called in `ActiveAccount#getProfits` to get the total expenses and total revenues. The net profit is then calculated by subtracting the difference.
 
 The following sequence diagram shows how a calculate net profits operation works: 
 
-![GetTotalSequenceDiagram](images/GetTotalSequenceDiagram.png)
+![CalculateProfitSequenceDiagram](images/CalculateProfitSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**:
+
+ * The lifeline for `GetProfitCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+ * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+   of the get profit command. 
+   
+</div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![GetTotalActivityDiagram](images/GetTotalActivityDiagram.png)
+![CalculateProfitActivityDiagram](images/CalculateProfitActivityDiagram.png)
 
 #### Design consideration
 Explanation why a certain design is chosen.
 
 ##### Aspect: How calculate net profits executes:
 * Choice: Calculates the net profits by retrieving the expense and revenue lists from the account. 
-    * Pros: Easy to implement.
+    * Pros: Easy to implement 
 
 ### \[Proposed\] Data archiving
 
