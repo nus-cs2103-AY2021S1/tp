@@ -2,10 +2,8 @@ package seedu.flashcard.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.flashcard.commons.core.index.Index;
@@ -88,20 +86,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> categories} into a {@code List<Category>}.
-     */
-    public static List<Category> parseCategories(Collection<String> categories) throws ParseException {
-        requireNonNull(categories);
-        final Set<Category> categorySet = new HashSet<>();
-        for (String categoryName : categories) {
-            categorySet.add(parseCategory(categoryName));
-        }
-        List<Category> categoryList = new ArrayList<>();
-        categoryList.addAll(categorySet);
-        return categoryList;
-    }
-
-    /**
      * Parses a {@code String isFavourite} into a {@code Boolean}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -137,20 +121,6 @@ public class ParserUtil {
             throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
         }
         return new Rating(trimmedRating);
-    }
-
-    /**
-     * Parses {@code Collection<String> ratings} into a {@code List<Category>}.
-     */
-    public static List<Rating> parseRatings(Collection<String> ratings) throws ParseException {
-        requireNonNull(ratings);
-        final Set<Rating> ratingSet = new HashSet<>();
-        for (String ratingValue : ratings) {
-            ratingSet.add(parseRating(ratingValue));
-        }
-        List<Rating> ratingList = new ArrayList<>();
-        ratingList.addAll(ratingSet);
-        return ratingList;
     }
 
     /**
