@@ -31,7 +31,7 @@ public class DeleteLeaveCommand extends Command {
             + ": Deletes specified leave of a staff identified by the index number and leave date "
             + "used in the displayed staff list\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + PREFIX_DATE + "10/10/2020"
+            + PREFIX_DATE + "10/10/2020\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Deleted Leave: %1$s from %2$s";
