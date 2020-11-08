@@ -469,7 +469,7 @@ Step 1: The user enters `startproject 2` for example to start project 1 from the
 
 ![MainscreenUi](images/MainscreenUi.png)
 
-   *Figure 23: What the app looks like after 'start 1' command*
+   *Figure 23: What the app looks like after 'start 2' command*
 
 Step 2: The user enters a New Teammate command such as `addteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon
 @gmail.com ma/13 Cupertino Loop`. The command text is passed into `LogicManager` (an implementation of Logic) which
@@ -486,13 +486,13 @@ Within the `AddTeammateCommand` class, an instance of `AddTeammateCommand` is cr
 LogicManager then calls the method `execute` of the NewTeammateCommand which stores the teammate into the respective project's participation list, and for the project to be stored in the teammate's participation list. While seeming to increase coupling, it however keeps both classes separate and would not break each other when something is changed.
 
 The diagram below summarises what is happening above with the help of a sequence diagram:
-![AddTeammateSequenceDiagramImagae](images/AddTeammateSequenceDiagram.png)
+![AddTeammateSequenceDiagramImage](images/AddTeammateSequenceDiagram.png)
 
    *Figure 24: Sequence Diagram of the 'addteammate' command*
 
 The diagram below gives a short overview on what happens when a user's input is received:
 
-![AddTeammateActivityDiagramImagae](images/AddTeammateActivityDiagram.png)
+![AddTeammateActivityDiagramImage](images/AddTeammateActivityDiagram.png)
 
    *Figure 25: Activity Diagram of the 'addteammate' command*
 
