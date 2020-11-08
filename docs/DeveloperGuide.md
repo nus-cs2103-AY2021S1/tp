@@ -3198,6 +3198,56 @@ testers are expected to do more *exploratory* testing.
        Expected: No stock updated due to stock `Flower13` not found.
        Error details shown in the status message. Suggestion message will be shown too.
 
+### Bookmarking Stocks
+1. Bookmarking a stock from the inventory.
+
+    1. Prerequisites: The stocks are not bookmarked before.
+    
+    1. Test case: `bookmark sn/ntuc1` <br> 
+       Expected: The stock with serialNumber `ntuc1` will be bookmarked.
+       Success message will be shown and stock with serialNumber `ntuc1` is being pushed to the top of the list.
+       
+    1. Test case: `bookmark asdg sn/ntuc1` <br>
+       Expected: Not stock bookmarked due to invalid format from input after command word not starting with `sn/`.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+       
+    1. Test case: `bookmark sn/ntuc999` <br> 
+       Expected: If there is no stock with serialNumber `ntuc999`, no stocks will be bookmarked, else same as previous.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+       
+    1. Test case: `bookmark sn` <br> 
+       Expected: No stock bookmarked due to empty input for field name`sn/`.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+    
+    1. Test case: `bookmark` <br>
+       Expected: No stock bookmarked due to missing field headers.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+
+### Unbookmarking Stocks
+1. Unbookmarking a stock from the inventory.
+
+    1. Prerequisites: The stocks are bookmarked before.
+    
+    1. Test case: `unbookmark sn/ntuc1` <br> 
+       Expected: The stock with serialNumber `ntuc1` will be unbookmarked.
+       Success message will be shown and stock with serialNumber `ntuc1` is being pushed to the top of the list.
+       
+    1. Test case: `unbookmark asdg sn/ntuc1` <br>
+       Expected: Not stock unbookmarked due to invalid format from input after command word not starting with `sn/`.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+       
+    1. Test case: `unbookmark sn/ntuc999` <br> 
+       Expected: If there is no stock with serialNumber `ntuc999`, no stocks will be unbookmarked, else same as previous.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+       
+    1. Test case: `unbookmark sn` <br> 
+       Expected: No stock unbookmarked due to empty input for field name`sn/`.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+    
+    1. Test case: `unbookmark` <br>
+       Expected: No stock unbookmarked due to missing field headers.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+
 ### Sorting stocks
 
 1. Sorting a stock from the inventory.
