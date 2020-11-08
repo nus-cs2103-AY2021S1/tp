@@ -29,10 +29,10 @@ import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 
 /**
- * Contains tests for AddTeammateCommandParser (interactions with AddPersonCommand)
+ * Contains tests for AddPersonCommandParser (interactions with AddPersonCommand)
  */
 public class AddPersonCommandParsertest {
-    private AddTeammateCommandParser parser = new AddTeammateCommandParser();
+    private AddPersonCommandParser parser = new AddPersonCommandParser();
 
     /**
      * Parses all fields

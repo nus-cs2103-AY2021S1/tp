@@ -221,7 +221,7 @@ public class MainCatalogueParser {
             }
 
         case AddPersonCommand.COMMAND_WORD:
-            return new AddTeammateCommandParser().parse(arguments);
+            return new AddPersonCommandParser().parse(arguments);
 
         case AddTeammateParticipationCommand.COMMAND_WORD:
             switch (status) {
