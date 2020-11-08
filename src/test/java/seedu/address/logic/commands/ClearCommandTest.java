@@ -26,6 +26,7 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
+        //@@author jerrylchong
         Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(), getTypicalModuleBook(),
             new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(),

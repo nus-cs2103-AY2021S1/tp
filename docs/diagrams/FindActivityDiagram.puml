@@ -1,4 +1,5 @@
 @startuml
+!pragma useVerticalIf on
 start
 :User inputs contact find command;
 :FindCommandParser checks input;

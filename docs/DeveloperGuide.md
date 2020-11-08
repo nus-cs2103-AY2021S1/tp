@@ -1064,8 +1064,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list contacts
 2.  Modduke shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  Modduke deletes the contact
+3.  User requests to delete contacts matching the given parameters in the list
+4.  Modduke deletes the contacts
 
  Use case ends.
 
@@ -1075,7 +1075,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-* 3a. The given name is invalid.
+* 3a. Any of the given parameters are invalid.
 
   * 3a1. Modduke shows an error message.
 
@@ -1110,8 +1110,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3b1. Modduke shows an error message.
 
     Use case resumes at step 2.
-
-
+    
 **UC04: View Contacts**
 
 **MSS**
@@ -1120,12 +1119,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Modduke shows a list of contacts
 
  Use case ends.
-
+ 
 **Extensions**
 
 * 2a. The list is empty.
 
     Use case ends.
+ 
+**UC0X: Find Contacts**
+
+Same as View Contacts Use Case except only contacts that match the given parameters are listed.
 
 **UC05: Tag a Contact**
 
@@ -1135,6 +1138,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Modduke shows a list of contacts
 3.  User requests to tag a specific contact in the list
 4.  Modduke tags the contact
+
+ Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given name is invalid.
+
+  * 3a1. Modduke shows an error message.
+
+    Use case resumes at step 2.
+
+* 3b. No tags are provided.
+
+  * 3b1. Modduke shows an error message.
+
+    Use case resumes at step 2.
+    
+**UC0X: Delete Tags of a Contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Modduke shows a list of contacts
+3.  User requests to delete tags of a specific contact in the list
+4.  Modduke deletes the specified tags of the contact
 
  Use case ends.
 
@@ -1165,15 +1197,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Modduke deletes all existing contacts.
 
  Use case ends.
-
-**UC07: Clear Contacts**
-
-**MSS**
-
-1.  User makes request to clear all contacts
-2.  Modduke clears all contacts
-
-    Use case ends.
+ 
 
 **UC08: Add Meeting**
 
@@ -1339,6 +1363,29 @@ Use case same as UC09: Delete Meeting
   * 1b1. Modduke shows an error message.
 
     Use case ends.
+    
+**UC11: Copy Contact Information**
+
+**MSS**
+
+1.  User makes request to copy information of contacts matching the given parameters
+2.  Modduke accepts request and copies information of contacts to the user's system clipboard
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. No contact matches the given parameters.
+
+  * 1a1. Modduke shows an error message.
+
+    Use case ends
+
+* 1b. No parameters are given.
+
+  * 1b1. Modduke shows an error message.
+
+    Use case ends.
 
 **UC12: Autocomplete Entity Name (Contact, Module, Meeting)**
 
@@ -1444,29 +1491,23 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Copying a contact's information
 
-### Deleting a contact
-
-1. Deleting a contact while all contacts are being shown
-
-   1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
-
-   1. Test case: `contact delete Alex Yeoh`<br>
-      Expected: Contact Alex Yeoh is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `contact delete blah`<br>
-      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is a name not in the list of contacts)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+1. Copying a contact while all contacts are being shown
+    
+    1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
+    
+    1. Test case: `copy phone n/Alex Yeoh`<br>
+       Expected: Clipboard should have phone number of Contact Alex Yeoh.
+    
+    1. Test case: `copy email t/colleagues`<br>
+       Expected: Clipboard should have email addresses of all Contacts with colleague tag.
+    
+    1. Test case: `copy email m/CS1100`<br>
+       Expected: Clipboard should have email addresses of all Contacts in the CS1100 Module.
+       
+    1. Test case: `copy email n/Alex Yeoh n/Bernice Yu t/prof m/CS1102`<br>
+       Expected: Clipboard should have email addresses of Contacts Alex Yeoh and Bernice Yu, all Contacts with the prof tag and all Contacts in the CS1102 Module.
+    
+    1. Other incorrect copy commands to try: `copy email`, `copy email n/x` (where x is a name not in the list of contacts), `copy phone t/y` (where y is a tag not in the list of contacts), `copy phone m/z` (where z is a module not in the list of modules)<br>
+       Expected: Status message will be an error message.

@@ -6,7 +6,6 @@ box Logic LOGIC_COLOR_T1
 participant ":AddTagCommandParser" as AddTagCommandParser LOGIC_COLOR
 participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
 participant "argMultimap:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
-participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant "tagPersonDescriptor: TagPersonDescriptor" as TagPersonDescriptor LOGIC_COLOR
 participant "c:AddTagCommand" as AddTagCommand LOGIC_COLOR
 end box
@@ -33,12 +32,6 @@ deactivate ArgumentMultimap
 
 ArgumentTokenizer --> AddTagCommandParser : argMultimap
 deactivate ArgumentTokenizer
-
-AddTagCommandParser -> ParserUtil : parseName("Alex Yeoh")
-activate ParserUtil
-
-ParserUtil --> AddTagCommandParser : name
-deactivate ParserUtil
 
 create TagPersonDescriptor
 AddTagCommandParser -> TagPersonDescriptor : TagPersonDescriptor()
