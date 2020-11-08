@@ -408,7 +408,7 @@ you can simply type `schedule m/weekly d/02/11/2020` to view them in a visual in
 
 To view schedule:
 
-1.  Type `schedule m/weekly d/02/11/2020` into the command box as shown in the figure below. Press `Enter` to execute the command.
+1.  Type `schedule m/weekly d/02/11/2020` into the command box as shown in figure __ . Press `Enter` to execute the command.
 
     <div markdown="block" class="alert alert-info">
     :exclamation: Do not input command word as "Schedule" with a capital "S". Reeve will not recognise the command word.
@@ -417,15 +417,16 @@ To view schedule:
     ![Schedule Step 1](images/ScheduleStep1.png)
     Figure __ Shows the schedule command input keyed into the command box.
 
-2.  The schedule panel, as labelled in the figure below, will appear with all your classes for the week of 2nd November 2020 populated.
+2.  The schedule panel, as labelled in figure __, will appear with all your classes for the week of 2nd November 2020 populated.
 
     ![Schedule Step 2](images/ScheduleStep2.png)
     Figure __ Shows the schedule panel in the weekly format.
 
 3.  You can easily view you classes for the week. The Date bar labelled in the figure below shows the day of the week as well as the date for your reference.
-    The Time bar in the figure shows the time in 24-hour format with 1-hour intervals. 
+    The Time bar in figure __ shows the time in 24-hour format with 1-hour intervals. 
     The Classes labelled in the figure below are colored brown to match the color of Reeve for a better visual experience.
     Furthermore, the name of the student that you are tutoring during that slot is labelled for you to identify classes easily.
+    The red bar in figure __ indicates your current time.
     With the date, time and name of student shown in one view, you could plan your classes without a hassle.
 
     ![Schedule Step 3](images/ScheduleStep3.png)
