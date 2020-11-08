@@ -478,26 +478,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a/an …​                              | I want to …​                        | So that I can…​                                                     |
 | -------- | ------------------------------------------ | -------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions                 | refer to instructions when I forget how to use the App                 |
+| `* * *`  | new user                                   | see usage instructions                 | refer to instructions when I forget how to use the App                  |
 | `* * *`  | user                                       | track what I am eating                 |                                                                        |
-| `* * *`  | user                                       | delete a food item                     | remove food items that I no longer care of                             |
+| `* * *`  | user                                       | delete a food item                     | remove food items that I no longer care of                              |
 | `* * *`  | user                                       | easily add food items/details          | keep track of my diet                                                  |
-| `* * *`  | organised user                             | easily filter my food items            | find food items based on criteria                                     |
+| `* * *`  | organised user                             | easily filter my food items            | find food items based on criteria                                      |
 | `* * *`  | user                                       | easily export my data                  | transfer my old data to a new computer or as backup                    |
-| `* * *`  | user                                       | easily load my data                    | restore the previous backups i have made                               |
+| `* * *`  | user                                       | easily load my data                    | restore the previous backups i have made                                |
 | `* * *`  | user                                       | undo my functions                      | fix my accidental mistakes in my commands                              |
 | `* *`    | frequent user                              | perform tasks on a group of food items |                                                                        |
-| `* *`    | organised user                             | be able to clear food items            | reduce excess clutter within the application                           |
-| `* *`    | expert user                                | create shortcuts for tasks             | do frequently performed tasks faster                                   |
+| `* *`    | organised user                             | be able to clear food items            | reduce excess clutter within the application                            |
+| `* *`    | expert user                                | create shortcuts for tasks             | do frequently performed tasks faster                                    |
 | `* *`    | expert user                                | easily view the shortcuts I created    | remember what they do if I forget                                      |
-| `* *`    | expert user                                | delete the shortcuts I created         | remove shortcuts I no longer use                                       |
-| `* *`    | user                                       | tag my items for identification        | so that I can find them easily                                         |
+| `* *`    | expert user                                | delete the shortcuts I created         | remove shortcuts I no longer use                                        |
+| `* *`    | user                                       | tag my items for identification        | so that I can find them easily                                          |
 | `* *`    | user                                       | untag my items                         | in case I made a mistake in tagging                                    |
-| `* *`    | user                                       | view detailed statistics               | better keep track of my diet                                          |
+| `* *`    | user                                       | view detailed statistics               | better keep track of my diet                                            |
 | `*`      | programmer                                 | make use of the CLI like design        | get used to CLI in the future                                          |
-| `*`      | programmer                                 | be able to customise the application   | improve my workflow and make it faster                                 |
-| `*`      | programmer                                 | automate repetitive tasks              | save time and energy                                                   |
-
+| `*`      | programmer                                 | be able to customise the application   | improve my workflow and make it faster                                  |
+| `*`      | programmer                                 | automate repetitive tasks              | save time and energy                                                    |
+| `*`      | programmer                                 | shorten my commands                    | remember them better
+           |
+| `*`      | dietician                                  | view my client's diet                  | ensure that they are eating healthily
+           |
+| `*`      | an underweight individual                  | track my caloric count                 | ensure that I am eating at a surplus
+           |
+| `*`      | an overweight individual                   | track my caloric count                 | ensure that I am eating at a deficit
+           |
+| `*`      | an student athlete                         | track my protein intake                | ensure that my diet promotes recovery
 
 ### 9.3 Use cases
 
