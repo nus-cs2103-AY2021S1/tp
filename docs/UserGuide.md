@@ -184,6 +184,7 @@ Figure __. Before entering command `toggle`.
 
 After:
 
+<<<<<<< Updated upstream
 ![ToggleCommandExpectedOutcomeBeforeUG](images/ToggleCommandExpectedOutcomeAfterUG.png)
 
 Figure __. After entering command `toggle`.
@@ -230,6 +231,21 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 <div markdown="block" class="alert alert-info">
 
 :warning: `LAST_PAYMENT_DATE` cannot be a future date (e.g. cannot be later than the current date)
+=======
+Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
+
+</div>
+
+Example:
+* `add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214 
+t/1 1430-1630 f/25 d/12/12/2020`
+* `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 
+t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
+>>>>>>> Stashed changes
 
 </div>
 
@@ -255,6 +271,13 @@ Format: `list`
 
 :information_source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
 
+<<<<<<< Updated upstream
+=======
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
+
+>>>>>>> Stashed changes
 </div>
 
 #### 3.3.3 Editing a student: `edit` (By: Vaishak)
