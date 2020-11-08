@@ -197,19 +197,22 @@ The following sequence diagram shows how the clear operation works:
 
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+</div>
+
 #### 7.1.2 Design Considerations
 
 ##### 7.1.2.1 Aspect: How clear executes
 
 * **Alternative 1 (Current Choice):** A refilter using predicate into a list and reupdate food items.
 
-    * Pros: No traversal issue and no issue when food definition changes
+    * Pros: No traversal issue and no issue when food definition changes. Good time and space complexity.
     * Cons: Hard to implement
 
 * **Alternative 2:** An enhanced for loop can be used to remove all occurences straight from the list.
 
-    * Pros: Cleaner code and smaller and time space complexity
-    * Cons: Code may break if food properties ever changes due to traversal error.
+    * Pros: Cleaner code.
+    * Cons: Code may break if food properties ever changes due to traversal error. Also, has larger time and space complexity.
 
 
 ### 7.2 Find feature
@@ -225,7 +228,7 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 Step 1. The user launches the application after having used it for a while.
 
-Step 2. The user wants to find what he ate for dinner on a certain date (eg. 21-10-2020).
+Step 2. The user wants to find food with apple in its name and fruit in its tag.
 
 Step 3. The user executes `find -n apple -t fruit`. The `find` command will check if the inputs are valid, and then parsed (similar to `delete`)
 before using these inputs to create conditional `Predicate<Food>` instances (eg. `NameContainsKeywordsPredicate`, `DatePredicate`). The predicates
