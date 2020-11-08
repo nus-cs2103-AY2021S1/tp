@@ -306,7 +306,7 @@ Examples:
 
 #### 3.4 Locating persons by keywords: `c-find`
 
-Finds all active(unarchived) contacts that contain the KEYWORD(s) in their names.
+Finds all active (unarchived) contacts that contain the KEYWORD(s) in their names.
 
 Format: `c-find KEYWORD [MORE_KEYWORDS] ...`
 
@@ -529,7 +529,7 @@ Format: `c-archive-all`
 
 **:information_source: Notes about Employee Directory:**<br>
 * All employees who are currently working in the shop are active/unarchived employees. They are stored in the active
-(unarchived) Employee Directory. You may refer to `c-active-list` to view the active(unarchived) Employee Directory
+(unarchived) Employee Directory. You may refer to `c-active-list` to view the active (unarchived) Employee Directory
 . <br>
 
 * All archived employees (refer to `c-archive` to see how to archive an employee) will be stored in the archived
@@ -614,7 +614,8 @@ Employee Directory inside the _Main View_. For example, there are 2 employees li
 
 **:information_source: Notes about Employee Directory:**<br>
 * All employees who are currently working in the shop are active/unarchived employees. They are stored in the active
-(unarchived) Employee Directory. You may refer to `c-active-list` to view the active(unarchived) Employee Directory.<br>
+(unarchived) Employee Directory. You may refer to `c-active-list` to view the active (unarchived) Employee Directory
+.<br>
 
 * All archived employees (refer to `c-archive` to see how to archive an employee) will be stored in the archived
  Employee Directory. You may refer to `c-archive-list` to view the archived Employee Directory.<br>
