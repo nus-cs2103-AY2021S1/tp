@@ -25,8 +25,12 @@ If this is your first time, here are some quick tips to get started.
 1. Copy the file to the folder you want to use as the _home folder_ for your **FitEgo** program.
 
 1. Double-click the file to start the app. The GUI similar to the figure below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-   <center>Figure 1 - Sample screenshot of our Ui</center>
+ <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <p>
+         <img src="images/Ui.png" style="width: 100%%; height: auto;"/>
+     </p>
+     <figcaption>Figure 1 - Sample screenshot of our Ui</figcaption>
+ </figure>
 
 1. Type the command in the command box and press "Enter" key to execute it. e.g. typing **`help`** and pressing "Enter" key will open the help window.<br>
   Some example commands you can try:
@@ -143,7 +147,7 @@ You can refer to the table and the figure below to familiarize yourself with the
      <p>
          <img src="images/AnnotatedUi.png" style="width: 100%%; height: auto;"/>
      </p>
-     <figcaption>Figure - Callouts of the various UI components</figcaption>
+     <figcaption>Figure 2 - Callouts of the various UI components</figcaption>
  </figure>
  
 <center> Table 1 - Functions of UI Components </center>
@@ -165,10 +169,12 @@ From the figure above, the GUI is made up of several components.
 :bulb: **Tip:**
 
 You can type into the Command Box and it will display the commands that start with your current input. <br/>
-<br>
-<center><img src="images/autocomplete_sample.png" alt="autocomplete"/>
-<br>
-Figure 3 - Sample of autocomplete command</center>
+ <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <p>
+         <img src="images/autocomplete_sample.png" style="width: 100%%; height: auto;"/>
+     </p>
+     <figcaption>Figure 3 - Sample of autocomplete command</figcaption>
+ </figure>
 For example, in the above figure, if you enter `c` and commands that starts with "c" is displayed. <br>
 For advanced users, you can use the "TAB" key and FitEgo will auto-complete the first suggestion into the command box, thus increasing your typing speed!   
 </div>
@@ -212,8 +218,12 @@ All main keywords are described in this section.
 
 You can return to the home page by using this command. 
 
-<center><img src="images/homepage.png" alt="homepage"/></center>
-<center> Figure 4 - Homepage View </center>
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <p>
+         <img src="images/homepage.png" style="width: 100%%; height: auto;"/>
+     </p>
+     <figcaption>Figure 4 - Homepage View</figcaption>
+</figure>
 
 The homepage will display the statistics of your program, today's schedule and quote of the day as shown in the figure above. 
 If you do not have any planned schedules for the day, it will display `There are no schedules assigned today!`.  
@@ -230,8 +240,12 @@ If your session spreads over more than 1 day, the schedule will still be display
 
 You can ask FitEgo to open a window with a link to the help page as shown in the figure below.
 
-<center><img src="images/helpMessage.png" alt="helpMessage"/></center>
-<center> Figure 5 - Help Window </center>
+ <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <p>
+         <img src="images/helpMessage.png" style="width: 100%%; height: auto;"/>
+     </p>
+     <figcaption> Figure 5 - Help Window </figcaption>
+ </figure>
 
 Format: `help`
 
@@ -246,8 +260,12 @@ Alternatively, you may press the "ESC" key to close this window.
 
 You can ask FitEgo to open a window to change user settings.
 
-<center><img src="images/settingsWindow.png" alt="settingsWindow"/></center>
-<center> Figure 6 - Settings Window </center>
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <p>
+         <img src="images/settingsWindow.png" style="width: 100%%; height: auto;"/>
+     </p>
+     <figcaption> Figure 6 - Settings Window </figcaption>
+ </figure>
 
 Format: `settings`
 
@@ -308,7 +326,7 @@ Client-related commands will interact with the Client List which is located on t
      <p>
          <img src="images/ClientPanel.png" style="width: 100%%; height: auto;"/>
      </p>
-     <figcaption>Figure - Sample of Client List</figcaption>
+     <figcaption>Figure 7 - Sample of Client List</figcaption>
  </figure>
 
 <div markdown="block" class="alert alert-info"> 
@@ -380,7 +398,7 @@ Examples:
     <p>
         <img src="images/cedit_sample.png" style="width: 100%; height: auto;"/>
     </p>
-    <figcaption>Figure - Result of executing <code>cedit 2 p/12345678 t/injured-thigh</code></figcaption>
+    <figcaption>Figure 8 - Result of executing <code>cedit 2 p/12345678 t/injured-thigh</code></figcaption>
 </figure>
 
 
@@ -402,9 +420,12 @@ Examples:
 * `cfind John` returns `john` and `John Doe`
 * `cfind alex david` returns `Alex Yeoh`, `David Li` as shown in the figure below <br>
 
-<center><img src="images/findAlexDavidResult.png" alt="result for 'find alex david'" width="400" height="400" /></center>
-<center> Figure 8 - Result of finding clients by name </center>
-
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <p>
+         <img src="images/findAlexDavidResult.png" style="width: 100%%; height: auto;"/>
+     </p>
+     <figcaption> Figure 9 - Result of finding clients by name </figcaption>
+</figure>
 
 ### 3.2.5 Deleting a Client : `cdel`
 
@@ -463,10 +484,12 @@ Examples:
 
 The result of these commands is shown in the figure below
 
-<center><img src="images/cview_sample.png" alt="result for 'cview 1'" width="100%"/></center>
-
-<center>Figure 9 - Client View with Schedules </center>
-
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <p>
+         <img src="images/cview_sample.png" style="width: 100%%; height: auto;"/>
+     </p>
+     <figcaption> Figure 10 - Client View with Schedules </figcaption>
+</figure>
 ---
 
 ## 3.3 Session-related Keywords 
@@ -485,8 +508,13 @@ Each session can be scheduled with multiple clients, to model a trainer instruct
 
 Session-related commands will interact with the Session List which is located on the [right of the UI](#2-ui-orientation). The figure below shows how it looks like.
 
-<center><img src="images/SessionPanel.png" alt="session_panel" width="250" height="450" /><br/>
-Figure 10 - Sample of Session List</center><br/>
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <p>
+         <img src="images/SessionPanel.png" style="width: 100%%; height: auto;"/>
+     </p>
+     <figcaption> Figure 11 - Sample of Session List </figcaption>
+</figure>
+
 The `ALL` at the top of this Session List panel represents the current period of session view. 
 
 <div markdown="span" class="alert alert-primary">
@@ -525,7 +553,7 @@ This helps to prevent you from accidentally agreeing to 2 sessions that overlaps
     <p>
         <img src="images/sadd_sample.png" style="width: 100%; height: auto;"/>
     </p>
-    <figcaption>Figure 11 - Result of executing <code>sadd g/New Gym ex/Endurance at/06/11/2020 0900 t/65</code></figcaption>
+    <figcaption>Figure 12 - Result of executing <code>sadd g/New Gym ex/Endurance at/06/11/2020 0900 t/65</code></figcaption>
 </figure>
 
 Examples:
@@ -549,9 +577,12 @@ Examples:
 *  `sedit 1 g/Machoman at/29/09/2020 1600 t/120` edits the gym of the first session to be `Machoman` and the start time and duration to be `29/09/2020 1600 with a duration of 120  minutes` while keeping all other fields the same
 *  `sedit 2 at/29/09/2020 1600 t/120` edits the start time and duration of the second session to be `29/09/2020 1600 with a duration of 120 minutes` while keeping all other fields the same
 
-
- <center> <img src="images/sedit_sample.png" alt="sedit command sample"/><br>
- Figure 12 - Result of executing <code>sedit 1 g/Machoman at/29/09/2020 1600 t/120</code></center><br/>
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <p>
+         <img src="images/sedit_sample.png" style="width: 100%%; height: auto;"/>
+     </p>
+     <figcaption> Figure 13 - Result of executing <code>sedit 1 g/Machoman at/29/09/2020 1600 t/120</code></figcaption>
+</figure>
 
 ### 3.3.3 Deleting a Session : `sdel`
 
@@ -612,9 +643,13 @@ Points to take note when viewing session from the Session List:
  | w / W | week |
  | m / M | month |
  | y / Y| year |
-  
-<center><img src="images/sview_sample.png" alt="result for 'sview p/+2w'"/><br>
-Figure 13 - Result of running <code>sview p/+2w</code> </center>
+
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <p>
+         <img src="images/sview_sample.png" style="width: 100%%; height: auto;"/>
+     </p>
+     <figcaption> Figure 14 - Result of running <code>sview p/+2w</code></figcaption>
+</figure>
 
 Examples:
  
@@ -667,12 +702,12 @@ The table below shows an example of schedules. The session at Machoman Gym is at
 
 To check if you have scheduled a session with a client, you can check if the session in the Session List contains the client's name. 
 
- <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
      <p>
          <img src="images/SchedulePanel.png" style="width: 100%%; height: auto;"/>
      </p>
-     <figcaption>Figure - Alternate sample of Session List</figcaption>
- </figure>
+     <figcaption> Figure 15 - Alternate sample of Session List </figcaption>
+</figure>
 
 The figure above shows the Session List, in which for each session, there is a list of clients attending the session. Clients who have paid for a session will have their name shown in <span style="color:green; font-weight: bold;">green</span>, while those who have not  will have their name shown in <span style="color:red; font-weight: bold;">red</span>.
 
@@ -696,7 +731,7 @@ Example:
      <p>
          <img src="images/schadd_sample.png" style="width: 100%%; height: auto;"/>
      </p>
-     <figcaption>Figure - Result of executing <code>schadd c/1 s/1</code></figcaption>
+     <figcaption>Figure 16 - Result of executing <code>schadd c/1 s/1</code></figcaption>
  </figure>
 
 ### 3.4.2 Editing a Schedule : `schedit`
@@ -723,9 +758,12 @@ Examples:
 *  `schedit c/1 s/1 w/70` edits the schedule containing client index 1 and session index 1 to a weight of 70kg while keeping all other fields the same
 * `schedit c/1 s/1 r/` clears the schedule containing client index 1 and session index 1 remarks while keeping all other fields the same
 
- <center> <img src="images/schedit_sample.png" alt="schedit command sample"/><br>
- Figure 16 - Result of executing <code>schedit c/1 s/2 us/1</code></center><br/>
-
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <p>
+         <img src="images/schedit_sample.png" style="width: 100%%; height: auto;"/>
+     </p>
+     <figcaption> Figure 17 - Result of executing <code>schedit c/1 s/2 us/1</code> </figcaption>
+</figure>
 
 ### 3.4.3 Deleting a Schedule : `schdel`
 
