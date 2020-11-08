@@ -652,6 +652,8 @@ tCheck also shows a current month's calendar when you start the application. You
  
  ![CalendarScreenshot](images/CalendarScreenshot.png)
  
+ Figure x. Screenshots showing the calendar in tCheck
+ 
 ## Command summary <a name="command-summary"></a>
 
 ### Sales Tracking
