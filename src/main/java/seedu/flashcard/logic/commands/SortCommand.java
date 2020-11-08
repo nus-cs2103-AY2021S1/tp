@@ -3,7 +3,6 @@ package seedu.flashcard.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CRITERIA;
 
-import seedu.flashcard.commons.core.Messages;
 import seedu.flashcard.model.Model;
 import seedu.flashcard.model.flashcard.SortCriteria;
 
