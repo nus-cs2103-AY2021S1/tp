@@ -2,7 +2,7 @@ package nustorage.logic.parser;
 
 import static nustorage.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static nustorage.logic.commands.CommandTestUtil.COST_1;
-import static nustorage.logic.commands.CommandTestUtil.COST_DESC_1;
+import static nustorage.logic.commands.CommandTestUtil.COST_DESC_2;
 import static nustorage.logic.commands.CommandTestUtil.DOUBLE_QUANTITY_DESC;
 import static nustorage.logic.commands.CommandTestUtil.INDEX_NEGATIVE_VALUE_DESC;
 import static nustorage.logic.commands.CommandTestUtil.INDEX_ONE;
@@ -39,22 +39,22 @@ public class EditInventoryCommandParserTest {
 
         // Basic check
         assertParseSuccess(parser, INDEX_ONE_DESC
-                        + ITEM_NAME_DESC_1 + QUANTITY_DESC_1 + COST_DESC_1,
+                        + ITEM_NAME_DESC_1 + QUANTITY_DESC_1 + COST_DESC_2,
                 new EditInventoryCommand(index, editInventoryDescriptor));
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE
-                        + INDEX_ONE_DESC + ITEM_NAME_DESC_1 + QUANTITY_DESC_1 + COST_DESC_1,
+                        + INDEX_ONE_DESC + ITEM_NAME_DESC_1 + QUANTITY_DESC_1 + COST_DESC_2,
                 new EditInventoryCommand(index, editInventoryDescriptor));
 
         // tags given in different positions
         assertParseSuccess(parser, INDEX_ONE_DESC
-                        + COST_DESC_1 + ITEM_NAME_DESC_1 + QUANTITY_DESC_1,
+                        + COST_DESC_2 + ITEM_NAME_DESC_1 + QUANTITY_DESC_1,
                 new EditInventoryCommand(index, editInventoryDescriptor));
 
         // whitespace and tags in different positions
         assertParseSuccess(parser, INDEX_ONE_DESC
-                        + PREAMBLE_WHITESPACE + COST_DESC_1 + ITEM_NAME_DESC_1
+                        + PREAMBLE_WHITESPACE + COST_DESC_2 + ITEM_NAME_DESC_1
                         + PREAMBLE_WHITESPACE + QUANTITY_DESC_1,
                 new EditInventoryCommand(index, editInventoryDescriptor));
     }
@@ -68,7 +68,7 @@ public class EditInventoryCommandParserTest {
         editInventoryDescriptorMissingItem.setUnitCost(COST_1);
         editInventoryDescriptorMissingItem.setQuantity(QUANTITY_1);
 
-        assertParseSuccess(parser, INDEX_ONE_DESC + QUANTITY_DESC_1 + COST_DESC_1,
+        assertParseSuccess(parser, INDEX_ONE_DESC + QUANTITY_DESC_1 + COST_DESC_2,
                 new EditInventoryCommand(index, editInventoryDescriptorMissingItem));
 
         // missing unit cost
@@ -86,7 +86,7 @@ public class EditInventoryCommandParserTest {
         editInventoryDescriptorMissingQuantity.setDescription(ITEM_NAME_1);
         editInventoryDescriptorMissingQuantity.setUnitCost(COST_1);
 
-        assertParseSuccess(parser, INDEX_ONE_DESC + ITEM_NAME_DESC_1 + COST_DESC_1,
+        assertParseSuccess(parser, INDEX_ONE_DESC + ITEM_NAME_DESC_1 + COST_DESC_2,
                 new EditInventoryCommand(index, editInventoryDescriptorMissingQuantity));
     }
 
@@ -95,7 +95,7 @@ public class EditInventoryCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 EditInventoryCommand.MESSAGE_USAGE);
         // missing Index
-        assertParseFailure(parser, ITEM_NAME_DESC_1 + QUANTITY_DESC_1 + COST_DESC_1, expectedMessage);
+        assertParseFailure(parser, ITEM_NAME_DESC_1 + QUANTITY_DESC_1 + COST_DESC_2, expectedMessage);
     }
 
     @Test
@@ -103,9 +103,9 @@ public class EditInventoryCommandParserTest {
 
         // Index zero and below
         assertParseFailure(parser, INDEX_ZERO_DESC
-                + ITEM_NAME_DESC_1 + QUANTITY_DESC_1 + COST_DESC_1, MESSAGE_INVALID_INDEX);
+                + ITEM_NAME_DESC_1 + QUANTITY_DESC_1 + COST_DESC_2, MESSAGE_INVALID_INDEX);
         assertParseFailure(parser, INDEX_NEGATIVE_VALUE_DESC
-                + ITEM_NAME_DESC_1 + QUANTITY_DESC_1 + COST_DESC_1, MESSAGE_INVALID_INDEX);
+                + ITEM_NAME_DESC_1 + QUANTITY_DESC_1 + COST_DESC_2, MESSAGE_INVALID_INDEX);
 
         // quantity not an integer
         assertParseFailure(parser, INDEX_ONE_DESC

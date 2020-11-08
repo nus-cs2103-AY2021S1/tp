@@ -51,6 +51,7 @@ public class CommandTestUtil {
     public static final String INDEX_NEGATIVE_VALUE_DESC = " -30";
 
     public static final String COST_DESC_1 = " " + PREFIX_ITEM_COST + EDGE_COST;
+    public static final String COST_DESC_2 = " " + PREFIX_ITEM_COST + COST_1;
     public static final String NEGATIVE_COST_DESC = " " + PREFIX_ITEM_COST + NEGATIVE_COST;
 
     public static final String ITEM_NAME_DESC_1 = " " + PREFIX_ITEM_DESCRIPTION + ITEM_NAME_1;
