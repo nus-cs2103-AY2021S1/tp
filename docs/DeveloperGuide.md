@@ -277,7 +277,7 @@ if the `EditFlashcardDescriptor` does not have the new information, the old cont
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
-Step 1. The user executes `edit 1 ans/answer` command to edit the answer field of the first flashcard. 
+Step 1. The user executes `edit 1 ans/answer` command to edit the answer field of the first flashcard.
 
 Step 2. `EditCommandParser#parse` will then parse the arguments provided. In this example, a new `Answer` object will be
 created after parsing.
@@ -360,7 +360,7 @@ It works by filtering for the flashcards in the `model` and deleting them one by
 
 Given below is an example usage scenario and how the Delete By Tag mechanism behaves at each step.
 
- Step 1. The user launches the application. 
+ Step 1. The user launches the application.
 
  Step 2. The user executes `delete t/MCQ` command to delete all flashcards with the tag `MCQ`.
 
@@ -396,7 +396,7 @@ The following sequence diagram shows how the Delete By Tag mechanism works:
 
 The Find mechanism searches for flashcards based on the specified tag or question keyword or both.
 Each filter will result in the creation of a `Predicate<Flashcard>`.
-A class called `FlashcardPredicate` will be introduced that collects all `Predicate<Flashcard>` into one class. 
+A class called `FlashcardPredicate` will be introduced that collects all `Predicate<Flashcard>` into one class.
 
 ##### Usage
 
