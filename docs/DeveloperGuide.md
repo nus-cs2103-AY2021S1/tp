@@ -174,6 +174,14 @@ The following sequence diagram describes what happens when user adds a new `less
 
 ![AddLessonSequenceDiagram](images/AddLessonSequenceDiagram.png)
 
+The `task` created using `lesson#createRecurringTasks` are marked as `isLesson` and will not be displayed in the task list.
+This is achieved by filtering all tasks with `task#isLesson` set to `true`. The following code snippet is from `Model` class
+and shows how the task list is filtered:
+
+```$xslt
+Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> !(task instanceof Event && task.isLesson());
+```
+
 #### Design consideration:
 
 ##### Aspect: How to store lessons in PlaNus

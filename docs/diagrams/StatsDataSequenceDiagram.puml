@@ -11,21 +11,29 @@ activate stats
 logic -> stats: generateStatistics(countStartDate, now)
 create std
 stats -> std
-activate std
 stats -> stats: updateTimeTakenForTasks(...)
 activate stats
 stats -> std: addTag(currentTag)
+activate std
 std --> stats
+deactivate std
 stats -> std: addTaskTime(currentTag, timeTakenForTask)
+activate std
 std --> stats
+deactivate std
 return
 stats -> stats: updateTimeTakenForLessons(...)
 
 activate stats
 stats -> std: addTag(currentTag)
+activate std
 std --> stats
+deactivate std
 stats -> std: addLessonTime(currentTag, timeTakenForLesson)
+activate std
 std --> stats
+deactivate std
 return
 stats --> logic
+deactivate stats
 @enduml
