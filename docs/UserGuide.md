@@ -603,10 +603,12 @@ Example:
 
 ### 3.6 Notebook feature (By: Choon Siong)
 
-You can store notes containing small amounts of information inside the notebook.
-This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve.
+You can store notes containing small amounts of information inside the notebook. This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve. You should see the notes on the bottom right hand side of Reeve similar to the display shown below.
 
-#### 3.6.1 Adding a note`note add`
+![Location of notes panel](images/screenshots/Notes.png)
+
+
+#### 3.6.1 Adding a note `note add`
 
 You can add a note to the notebook for the information you want to store.
 
@@ -617,7 +619,12 @@ Format: `note add t/TITLE d/DESCRIPTION`
 
 Example:
 * You have just collected a stack of practice papers from your students and want to do something else before marking them but are scared you might forget. 
+  
     * You can use `note add t/things to do d/mark practice papers` to add a new note with title `things to do` and description `mark practice papers` so that you can remind yourself later.
+     
+    * You should see a screen similar to the screen below when the above command is entered.
+    ![Adding a note](images/screenshots/Adding a note.png)
+
 
 #### 3.6.2 Editing a note `note edit`
 
@@ -631,8 +638,8 @@ Example:
 * You left a note to mark practice papers earlier and have just finished marking them. Now, before you take a break,
  you want to remind yourself to review the marking before you can give it back to your students.
     * Assuming the previous note was the first note, you can use `note edit 1 d/review marking`
-     to change the note to remind yourself to review the marking.
-     
+       to change the note to remind yourself to review the marking.
+   
 #### 3.6.3 Deleting a note `note delete`
 
 You can delete a note from the notebook when the information is no longer needed.
@@ -674,6 +681,9 @@ Action | Format, Examples
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
 **Schedule View** | `schedule m/VIEW_MODE d/DATE_TO_VIEW` <br> e.g. `schedule m/weekly d/2/11/2020`
 **Toggle View** | `toggle`
+**Add Note** | `note add t/TITLE d/DESCRIPTION`<br>e.g. `note add t/things to do d/buy coffee` 
+**Edit Note** | `note edit NOTE_INDEX [t/title] [d/DESCRIPTION]`<br>e.g. `note edit 1 d/mark practice papers` 
+**Delete Note** | `note delete NOTE_INDEX`<br>e.g. `note delete 1` 
 **Help** | `help`
 **Exit** | `exit`
 
