@@ -93,7 +93,8 @@ public interface ExerciseModel {
      * Return true if the new exercise that will replace the old exercise will cause Integer Overflow.
      * An overflow occurs when the calories burnt from all the exercises done for the
      * day is more than INTEGER.MAX_VALUE.
-     * @param e The new exercise to be added.
+     * @param oldE The exercise to be replaced.
+     * @param newE The exercise to be replace the oldE.
      */
     boolean checkOverflow(Exercise oldE, Exercise newE);
 
