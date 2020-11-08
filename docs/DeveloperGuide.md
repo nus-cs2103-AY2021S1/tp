@@ -110,12 +110,20 @@ The `Model`,
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-The `Storage` component,
+The `Storage` component converts java objects into json format and store it to the hard drive. 
+It is also used for converting data in json format to java objects when executing the app.
+
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The storage creates the UserPref and data with default value when the json files are missing/changed. During execution, The storage will update the address book data everytime the user executes a command. However, UserPref is only updated when the app is closed.
 </div>
+
+This diagram shows how the `AddressBook` is saved to json file after executing a command.
+![SaveSuccessSequence](images/SaveStorageSequenceDiagram.png)
+
+This diagram shows how the `AddressBook` is read from json file when executing the app.
+![ReadSuccessSequence](images/ReadStorageSequenceDiagram.png)
 
 ### Common classes
 
