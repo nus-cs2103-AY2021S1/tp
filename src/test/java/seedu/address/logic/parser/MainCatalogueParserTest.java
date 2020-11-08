@@ -32,6 +32,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.global.AddCommand;
+import seedu.address.logic.commands.global.AddPersonCommand;
 import seedu.address.logic.commands.global.ClearCommand;
 import seedu.address.logic.commands.global.DeleteCommand;
 import seedu.address.logic.commands.global.EditCommand;
@@ -44,12 +45,11 @@ import seedu.address.logic.commands.global.ListPersonsCommand;
 import seedu.address.logic.commands.global.ListProjectsCommand;
 import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
-import seedu.address.logic.commands.project.AddTeammateCommand;
 import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
+import seedu.address.logic.commands.project.DeletePersonCommand;
 import seedu.address.logic.commands.project.DeleteTaskCommand;
-import seedu.address.logic.commands.project.DeleteTeammateCommand;
 import seedu.address.logic.commands.project.DeleteTeammateParticipationCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
@@ -86,9 +86,9 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_addTeammate() throws Exception {
         Person teammate = new PersonBuilder().build();
-        AddTeammateCommand command =
-            (AddTeammateCommand) parser.parseCommand(PersonUtil.getAddTeammateCommand(teammate), Status.PROJECT);
-        assertEquals(new AddTeammateCommand(teammate), command);
+        AddPersonCommand command =
+            (AddPersonCommand) parser.parseCommand(PersonUtil.getAddTeammateCommand(teammate), Status.PROJECT);
+        assertEquals(new AddPersonCommand(teammate), command);
     }
 
     @Test
@@ -103,10 +103,10 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_deleteTeammate() throws Exception {
         GitUserIndex gitUserIndex = new GitUserIndex(VALID_TEAMMATE_GIT_USERNAME_A);
-        DeleteTeammateCommand command =
-            (DeleteTeammateCommand) parser.parseCommand(DeleteTeammateCommand.COMMAND_WORD + " "
+        DeletePersonCommand command =
+            (DeletePersonCommand) parser.parseCommand(DeletePersonCommand.COMMAND_WORD + " "
                 + VALID_TEAMMATE_GIT_USERNAME_A, Status.PERSON_LIST);
-        assertEquals(new DeleteTeammateCommand(gitUserIndex), command);
+        assertEquals(new DeletePersonCommand(gitUserIndex), command);
     }
 
     @Test
@@ -302,15 +302,6 @@ public class MainCatalogueParserTest {
             parser.parseCommand(
                 TaskSorterCommand.COMMAND_WORD + " " + PREFIX_ASCENDING_SORT + " " + PREFIX_TASK_NAME,
                 Status.PROJECT_LIST);
-            fail();
-        } catch (Exception e) {
-            assertEquals(new InvalidScopeException(Status.PROJECT, Status.PROJECT_LIST), e);
-        }
-
-
-        try {
-            parser.parseCommand(AddTeammateCommand.COMMAND_WORD + " "
-                + PersonUtil.getCommandInfo(ALICE), Status.PROJECT_LIST);
             fail();
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.PROJECT_LIST), e);

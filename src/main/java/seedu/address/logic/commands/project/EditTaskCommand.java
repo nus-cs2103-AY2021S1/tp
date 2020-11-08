@@ -12,6 +12,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -45,6 +47,7 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited TASK: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the current project.";
+    private static final Logger logger = Logger.getLogger("EditTaskCommandLogger");
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -88,6 +91,7 @@ public class EditTaskCommand extends Command {
                 && model.getTaskToBeDisplayedOnDashboard().get().equals(taskToEdit)) {
             model.enter(editedTask);
         }
+        logger.log(Level.INFO, "Task edited");
 
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }

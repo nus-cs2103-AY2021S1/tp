@@ -51,6 +51,8 @@ public class DeleteTeammateParticipationCommand extends Command {
 
         Participation participation = project.getParticipation(gitUserIndex.getGitUserNameString());
         Person personToDeleteParticipation = Person.getPersonFromList(gitUserIndex);
+        project.getTasks().forEach(t -> t.getAssignees()
+                .remove(personToDeleteParticipation.getGitUserName().fullGitUserName));
 
         project.removeParticipation(participation);
         model.deleteParticipation(participation);

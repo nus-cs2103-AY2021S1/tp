@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.project;
+package seedu.address.logic.commands.global;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_ADDRESS;
@@ -20,9 +20,9 @@ import seedu.address.model.project.Project;
 /**
  * Creates a new person within a project
  */
-public class AddTeammateCommand extends Command {
+public class AddPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "addteammate";
+    public static final String COMMAND_WORD = "addperson";
 
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new teammate as a part of this project"
@@ -43,7 +43,7 @@ public class AddTeammateCommand extends Command {
     /**
      * Creates an new teammate that is associated with the project
      */
-    public AddTeammateCommand(Person person) {
+    public AddPersonCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -57,15 +57,22 @@ public class AddTeammateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Project project = model.getProjectToBeDisplayedOnDashboard().get();
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
         model.addPerson(toAdd);
-        toAdd.addProject(project);
-        project.addParticipation(toAdd);
-        model.addParticipation(project.getParticipation(toAdd.getGitUserNameString()));
-        logger.log(Level.INFO, "New Teammate added");
+        switch (model.getStatus()) {
+        case PROJECT:
+        case TEAMMATE:
+        case TASK:
+            Project project = model.getProjectToBeDisplayedOnDashboard().get();
+            toAdd.addProject(project);
+            project.addParticipation(toAdd);
+            model.addParticipation(project.getParticipation(toAdd.getGitUserNameString()));
+            break;
+        default:
+        }
+        logger.log(Level.INFO, "New Person added");
 
         return new CommandResult(String.format(MESSAGE_NEW_TEAMMATE_SUCCESS, toAdd.getGitUserNameString()));
     }
@@ -73,7 +80,7 @@ public class AddTeammateCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddTeammateCommand // instanceof handles nulls
-            && toAdd.equals(((AddTeammateCommand) other).toAdd));
+            || (other instanceof AddPersonCommand // instanceof handles nulls
+            && toAdd.equals(((AddPersonCommand) other).toAdd));
     }
 }

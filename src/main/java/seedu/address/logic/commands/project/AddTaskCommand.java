@@ -5,6 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -31,6 +34,7 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "Project already contains %1$s";
+    private static final Logger logger = Logger.getLogger("NewTaskCommandLogger");
 
     private final Task toAdd;
 
@@ -49,6 +53,7 @@ public class AddTaskCommand extends Command {
         if (!project.addTask(toAdd)) {
             return new CommandResult(String.format(MESSAGE_DUPLICATE_TASK, toAdd));
         }
+        logger.log(Level.INFO, "New Task added");
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

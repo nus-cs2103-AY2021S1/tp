@@ -26,6 +26,8 @@ public class JsonSerializableMainCatalogueTest {
                 JsonSerializableMainCatalogue.class).get();
         MainCatalogue mainCatalogueFromFile = dataFromFile.toModelType();
         MainCatalogue typicalProjectsMainCatalogue = TypicalProjects.getTypicalMainCatalogue();
+        typicalProjectsMainCatalogue.getProjectList().forEach(p ->
+                p.getTasks().forEach(t -> t.getAssignees().clear()));
         assertEquals(mainCatalogueFromFile, typicalProjectsMainCatalogue);
     }
 

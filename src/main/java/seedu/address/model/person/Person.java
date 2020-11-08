@@ -172,6 +172,10 @@ public class Person {
                 new Participation(personName.toString(), p.getProjectName().toString()));
     }
 
+    public static void deletePersonFromList(Person person) {
+        allPeople.remove(person);
+    }
+
     public void addExistingParticipation(Participation p) {
         listOfParticipations.put(p.getProject().getProjectName(), p);
     }

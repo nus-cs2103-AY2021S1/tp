@@ -20,9 +20,9 @@ JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonMainCatalogueStorage .left.|> MainCatalogueStorage
 JsonMainCatalogueStorage .down.> JsonSerializableMainCatalogue
 JsonSerializableMainCatalogue .right.> JsonAdaptedProject
-JsonSerializableMainCatalogue .down.> JsonAdaptedPerson
+JsonSerializableMainCatalogue .left.> JsonAdaptedPerson
+JsonSerializableMainCatalogue .down.> JsonAdaptedParticipation
 JsonAdaptedProject .right.> JsonAdaptedTag
 JsonAdaptedProject .down.> JsonAdaptedTask
-JsonAdaptedParticipation .left.> JsonAdaptedTask
-JsonAdaptedProject .down.> JsonAdaptedParticipation
+JsonAdaptedParticipation .right.> JsonAdaptedTask
 @enduml
