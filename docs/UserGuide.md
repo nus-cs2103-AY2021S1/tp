@@ -159,9 +159,11 @@ This section serves to provide you a detailed explanation of the general feature
 
 If you are unsure of any of the commands, this command will direct you to the help page.
 
+Format: `help`
+
+Expected Outcome:
 ![help message](images/helpMessage.png)
 
-Format: `help`
 
 #### 3.2.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
@@ -511,7 +513,8 @@ Example:
 
 #### 3.4.2 Recording exams of a student: `exam` (By: Hogan)
 
-You can add or delete an exam record to/from a specified student.
+You can add or delete an exam record to/from a specified student. You can then view the exam statistics of a student in the form of a
+score percentage to date line graph. 
 
 General Format: `exam COMMAND_WORD_EXAM STUDENT_INDEX PARAMETERS`
 
@@ -538,12 +541,16 @@ Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
     * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020 or 2/3/2020).
 
 * The format of EXAM_SCORE is as follows:
-    * x/y where x and y are non-negative integers.
+    * x/y where x and y are non-negative numbers.
     * x has to be less than or equal to y (e.g. 30/50).
     
 <div markdown="block" class="alert alert-info">
 
+<<<<<<< Updated upstream
 :information_source: You **cannot** add duplicates of an exam record to a student. Each exam record is uniquely identified the `EXAM_NAME`.
+=======
+:information_source: Scores and score percentages will be rounded off to two decimal places.
+>>>>>>> Stashed changes
 
 </div>
 
@@ -599,8 +606,13 @@ Figure __. After entering command `exam delete 1 i/1`.
 
 ##### 3.4.2.3 Viewing exam statistics of a student: `exam stats`
 
+<<<<<<< Updated upstream
 To gauge how any of your students are doing with their examinations, this command allows you to view a graphical
 representation of all recorded exams. The graph is a score-date line graph where score is based on the score percentage. 
+=======
+To gauge how one of your students are doing with their examinations, this command allows you to view a graphical
+representation of all recorded examinations in the form of a exam score percentage to exam date line graph. 
+>>>>>>> Stashed changes
 
 Format: `exam stats STUDENT_INDEX`
 
