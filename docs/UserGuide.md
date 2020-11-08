@@ -257,7 +257,7 @@ Format: `exit`
 
 ![Ui](images/screenshots/v1.4exit.png)
 
-### Clearing FixMyAbs
+### Clearing FixMyAbs : `clear` 
 
 Clears all the data including all logs and all exercises stored in FixMyAbs.
 
