@@ -97,6 +97,8 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
+* stores a versioned address book which contains a list of past address books.
+* stores the current path of the inbuilt file explorer.
 * exposes an unmodifiable `ObservableList<Tag>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -142,15 +144,21 @@ serves as extra information of a tagged file.
 [TagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java) 
 adds a new `Tag` to `AddressBook` if the tag's `TagName` is not a duplicate and the tag's `FileAddress`
 is pointing to a valid file. 
+Moreover, TagCommand checks if the file is present before adding the tag to `Model`.
 
-Firstly, `TagCommand` checks if the file address given is absolute or relative file path.
+This diagram shows a successful execution of `TagCommand`, resulting in a new tag added to `Model`.
+![TagSuccessSequence](images/TagCommandSuccessSequenceDiagram.png)
+
+This diagram shows an unsuccessful execution of `TagCommand`, resulting in `CommandException` thrown.
+In this case, the file was not present.
+![TagFailureSequence](images/TagCommandFailureSequenceDiagram.png)
+
+`TagCommand` checks if the file address given is absolute or relative file path.
 If the address is relative, it converts the relative path to absolute address by concatenating the relative
 path to the current path stored in `Model`.
-
 We designed `TagCommand` this way so that the users can use our File Explorer interface to navigate to
 a folder, then tag files using relative file addresses.
 
-Lastly, TagCommand checks if the file is present using `java.io.File.exists()` before adding the tag to `Model`.
 
 ### Opening of Tags: OpenCommand
 
@@ -160,6 +168,9 @@ It filters the list of `Tags` stored in `AddressBook` by the `Tag` or `Label` su
 to be opened.
 After that, it opens the files located at the `Tag`'s `FileAddress` if the file is present and user has read permission.
 `CommandException` is thrown if tag is not present, the file cannot be found or no read permission.
+
+This sequence diagram shows a successful execution of `OpenCommand`.
+![OpenCommandSuccessExecution](images/OpenCommandSuccessSequenceDiagram.png)
 
 We implemented OpenCommand using `java.awt.Desktop`,
 which supports various desktop capabilities such as `open()`. `Desktop` ensures that our application can operation across
@@ -214,7 +225,10 @@ applies a `TagContainsCharPredicate` to the list of `FilteredTags` in `Model`. T
 searches the list of Tags stored in `AddressBook` and shows the tag's file path in the `ResultDisplay`.
 `CommandException` is thrown if tag is not present.
 
-ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` that extends from `java.util.function.predicate` to `ObservableList<Tag>`.
+This diagram shows a successful execution of `ShowCommand` to show the information of the specified tag.
+![ShowSuccessSequence](images/ShowCommandSequenceDiagram.png)
+
+ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` that extends from `java.util.function.predicate` to `ObservableList<Tag>` using `model.findFilteredTagList()`.
 
 ### Listing out all the tags: ListCommand
 
@@ -222,7 +236,24 @@ ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` t
 lists the Tags stored in `AddressBook` and shows them as `TagCard` which is contained in `TagListPanel`.
 ListCommand shouldn't take in any argument. A `CommandException` will be thrown if the user's input contains an argument.
 
+This diagram shows a successful execution of `ListCommand`.
+![ListSuccessSequence](images/ListCommandSequenceDiagram.png)
+
 ListCommand updates the `ObservableList<Tag>` by using `java.util.function.predicate`.
+
+### Deleting a tag's label: UnlabelCommand
+
+[UnlabelCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/UnlabelCommand.java)
+searches the list of Tags stored in `AddressBook` and deletes the specified labels. 
+The user can provide 1 or more labels to be deleted simultaneously. 
+If any of the input is invalid, this command will delete all the valid input from the specified `Tag` and show all the invalid input back to the user.
+
+This diagram shows a successful execution of `UnlabelCommand` using 1 label as the argument.
+![UnlabelSuccessSequence](images/UnlabelCommandSequenceDiagram.png)
+
+UnlabelCommand checks the existence of the specified `Tag` using `model.findFilteredTagList()`. 
+It takes the `Set<Label>` of the `Tag` and deletes all the labels that matches with user's input with the help of `java.util.stream`. 
+Then, a new `Tag` is created using the modified `Set<Label>` and added back to the `AddressBook` using `model.setTag()`.
 
 ### Internal File Explorer
 

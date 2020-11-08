@@ -19,12 +19,15 @@ By using our application, you can tag frequently used files/folders with a short
 with a single command. We hope by using our application, you can manage your files with ease. You can
 make your life easier one file at a time, and free up your precious time to spend on things you truly enjoy.
 
+## Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Getting Started
+As a first time user, you might be overwhelmed by the many features that *HelloFile* offers.
+The following subsections will explain to you how to install and start using HelloFile quickly.
 
 ### Installation
 1. Ensure you have [Java 11](https://www.java.com/en/download/) or above installed in your computer. 
@@ -47,19 +50,22 @@ This diagram shows our interface.
 
 ### Basic workflow
 1. Tag important files with the `tag` command for ease of access.<br>
-![Tag](images/screenshots/tag.PNG)
+![Tag](images/screenshots/tag.PNG) <br><br>
 2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.<br>
-![Open](images/screenshots/open.PNG)
+![Open](images/screenshots/open.PNG) <br><br>
 3. To find the location of tagged files, use the `show` command to get the file path of the file.<br>
-![Show](images/screenshots/show.PNG)
+![Show](images/screenshots/show.PNG) <br><br>
 4. If you have made a happy little accident, you can recover by using `undo` and `redo`.<br>
 ![Undo](images/screenshots/undo.PNG) <br>
-![Redo](images/screenshots/open.PNG) <br>
+![Redo](images/screenshots/open.PNG) <br><br>
 5. To exit the application, either close the application window, or use the `exit` command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+There are many file management features in *HelloFile*.
+We will explain them in detail in this section.
 
 <div markdown="block" class="alert alert-info">
 
@@ -97,46 +103,50 @@ Expressions without `...` at the end takes the last parameter as the argument wh
 ### Adding a tag with filepath : `tag`
 
 Tags a file with a unique tag name.<br>
-You can add a nickname to a file. Optionally, you can add some labels to the tag for categorisation.
-The `FILE_PATH` field can accept both absolute and relative file path from your current directory in HelloFile.
+You can add a nickname to a file. This makes you able to manage your files easily.
+
+Please take note of the following:
+* You can add any number of labels to the tag (including 0).
+* The `FILE_PATH` field can accept both absolute and relative file path from your current directory which is specified in the internal File Explorer of HelloFile.
+* You can tag a file without access permission.
 
 Format: `tag t>TAG_NAME f>FILE_PATH [l>LABEL]...`
 
 ![tag](images/screenshots/tag_command.png)
 
 Examples:
-* `tag t>Users f>C:\Users` (Adds a tag with tag name `Users`,absolute file path `C:\Users`, and no label)
-* `tag t>Users f>C:\Users l>Important` (Adds a tag with tag name `Users`, absolute file path `C:\Users`, and label name `Important`)
-* `tag t>Users f>.\Users` (Adds a tag with tag name `Users`, relative file path `Users`, and no label)
-* `tag t>Users f>.\Users l>folder l>readonly` (Adds a tag with tag name `Users`, relative file path `Users`, and multiple lables
-with label name `folder` and `readonly`)
+* `tag t>Users f>C:\Users` (Adds a tag with nickname `Users` using absolute path. The tag has no label and points to `C:\Users`)
+* `tag t>Users f>C:\Users l>Important` (Adds a tag with nickname `Users` using absolute path. The tag has a label `important` and points to`C:\Users`)
+* `tag t>Users f>.\Users` (Adds a tag with nickname `Users` using relative path. The tag has no label and points to a folder `Users` in the current directory)
+* `tag t>Users f>.\Users l>folder l>readonly` (Adds a tag with nickname `Users` using relative path. The tag has labels `folder` as well as `readonly` and points to a folder `Users` in the current directory)
 
 ### Displaying information of a tagged file : `show`
 
-Displays the information of the tagged file.<br>
+Displays the information of the specified tag.<br>
 You can see some basic information of a tagged file by using this command.
-It will show you the tag's file path and label information.
+It will show you the tag's file path and label information in case the UI can't show them in detail.
 
 Format: `show t>TAG_NAME`
 
 ![show](images/screenshots/show_command.png)
 
 Examples:
-* `show t>my_research` (show you the details of a tag name `my_research`)
-* `show t>file2020` (show you the details of a tag name `file2020`)
+* `show t>my_research` (show you the details of the tag with nickname `my_research`)
+* `show t>file2020` (show you the details of the tag with nickname `file2020`)
 
 ### Accessing a tagged file : `open`
 
-Opens the file specified by the unique tag name.<br>
+Opens the file specified by the unique tag's nickname or label.<br>
 You can open a file using its tag, with the default application in your operating system.
-Additionally, you can open all files with a specific label. This could potentially open many files.
+Additionally, you can open all files with the same label.
 
 Please take note of the following:
 * This command only accepts one tag or one label but not both.
 * Please ensure that you have read permission to the files that you want to open.
+
 <div markdown="block" class="alert alert-info">
 
-**:information_source: You can tag many files that you want to open at the same time with the same label, so you can open them at once.**
+**:information_source: You can tag many files that you want to open at the same time with the same label, so you can open them at once. However, note that this could potentially open many files.**
 
 </div>
 
@@ -150,8 +160,9 @@ Examples:
 
 ### Removing a tag : `untag`
 
-Removes the tag from the list of tags.<br>
-You can delete a tag by using this command.
+Removes the specified tag from the list of tags.<br>
+You can delete an unwanted tag by using this command in order to clean up the tag list. 
+Information about the tag will be completely deleted.
 
 Format: `untag t>TAG_NAME`
 
@@ -164,9 +175,9 @@ Examples:
 ### Renaming a tag : `retag`
 
 Renames a tag. <br>
-Changes the specified tag's nickname into the new one. 
-Note that this command can only change nickname.
-It can't change any other information.
+Changes the specified tag's nickname into the new one in order to make the tag's nickname more descriptive for the user. 
+Note that this command can only change nickname. It can't change any other information such as label and file path.
+Existing data will be carried over.
 
 Format: `retag o>OLD_TAG_NAME t>NEW_TAG_NAME`
 
@@ -178,8 +189,10 @@ Examples:
 
 ### Adding a label to a tag : `label`
 
-Adds one or more label to an existing tag.<br>
-You can use label to categorise tags.
+Adds one or more labels to an existing tag.<br>
+You can use label to categorise tags in order to make a tag to be more descriptive.
+Additionally, all tags with the same label can be opened simultaneously.
+
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Duplicated labels will only be added once.**
@@ -191,31 +204,31 @@ Format: `label t>TAG_NAME l>LABEL1 [l>LABEL2]...`
 ![label](images/screenshots/label_command.png)
 
 Examples:
-* `label t>file1 l>important` (Add a label of tag name `file1` with label name `important`) 
-* `label t>file2 l>important l>exam` (Add a label of tag name `file2` with multiple labels of label name `important` and `exam`)
+* `label t>file1 l>important` (Add a label `important` to an existing tag name `file1`) 
+* `label t>file2 l>important l>exam` (Add labels of label name `important` and `exam` to an existing tag name `file2`)
 
 ### Deleting multiple labels from a tag : `unlabel`
 
-Delete one or more label from a tag. <br>
+Deletes one or more labels from a tag. <br>
+This command lets you to uncategorized a certain tag.
 If some labels are invalid, all the other valid labels will be deleted from the tag, 
 and the invalid ones will be shown to the user.
 
-Format: ` unlabel t>TAG_NAME l>LABEL1 [l>LABEL2]...`
+Format: `unlabel t>TAG_NAME l>LABEL1 [l>LABEL2]...`
 
 ![unlabel](images/screenshots/unlabel_command.png)
 
 Examples:
-* `unlabel t>notes l>secret` (Deletes a label of label name `secret` that has tag name `notes`)
+* `unlabel t>notes l>secret` (Deletes a label of label name `secret` from tag name `notes`)
 * `unlabel t>file1 l>important l>exams` (Deletes labels of label name `important` and `exams` from tag name `file1`)
 
 ### Finding a tag : `find`
 
-Finds a tag by a keyword. 
+Finds a tag using one or more keywords. <br>
+This command lets you find a specific tag easily by providing one or more keywords.
+If any of the keyword matches the tag name and/or label partially, it will be listed in the *Tag Panel*.
 
-You can find tags using a keyword.
-If the keyword matches its name and/or label partially, it will also be found and listed in the *Tag Panel*.
-
-Format: `find KEYWORD`
+Format: `find KEYWORD...`
 
 Before executing command:
 ![before](images/screenshots/pre_find_command.png)
@@ -230,10 +243,13 @@ Examples:
 ### Changing current directory : `cd`
 
 Changes the current directory of the HelloFile internal File Explorer. <br>
+This command allows you to navigate through your folders and tag your files using relative file path.
+
 You can change the current directory in 3 ways:
-By using `f>` to go to a folder using an absolute path,
-by using `./` to go to a folder using a relative path,
-or using `../` to go to the parent folder.
+* Using `f>` to go to a folder using an absolute path
+* Using `./` to go to a folder using a relative path
+* Using `../` to go to the current folder's parent
+
 Alternative, you can click on the folder in the *File Explorer Panel* to navigate.
 
 Format 1: `cd f>ABSOLUTE_FILE_PATH`
@@ -251,7 +267,9 @@ Examples:
 
 ### Listing all tags : `ls`
 
-Lists all added tags.
+Lists all added tags. <br>
+Shows all the tags saved in HelloFile in the *Tag Panel*. This command is useful after you used
+`find` command to restore the full list. 
 
 Format: `ls`
 
@@ -265,6 +283,7 @@ After executing command:
 
 Undo a recently executed command.<br>
 You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear`, and `redo`.
+
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Command history will be deleted once the app is closed!**
@@ -334,25 +353,27 @@ Examples :
 --------------------------------------------------------------------------------------------------------------------
 
 ## Customisation
+*HelloFile* supports user customisation such as themes.
+You can choose a theme from our theme library, so that you can personalise *HelloFile* to your liking.
 
 ### Changing themes
-HelloFile comes in light and dark themes. To change the theme, navigate to the top left-hand corner of the application,
+HelloFile comes with many themes. To change the theme, navigate to the top left-hand corner of the application,
 and select `view`, followed by `theme`. A new pop up window will be shown with available themes along with a quick preview
- as illustrated below.
+as illustrated below.
 ![Fig. 1](images/screenshots/changing_themes.png)
 
 ![Fig. 2](images/screenshots/changing_themes2.png)
 
 ### Changing view sizes
 HelloFile allows you to resize the view of each sub components for a clearer view of tags and folders. You can simply
- drag each view to the size desired.
+drag each view to the size desired.
 ![Fig. 3. Resizing taskbar](images/screenshots/taskbar_resize.png)
 
 ![Fig. 4. Resizing filebar](images/screenshots/filebar_resize.png)
 
 ### Persistent customisation
-All of your customisation options are saved and persists even when you close the application. HelloFile remembers your choices
- so you can spend your time on more productive pursuits.
+Your customisation options (window size and theme) are saved and persist even when you close the application. HelloFile remembers your choices,
+so you can spend your time on more productive pursuits.
 
 --------------------------------------------------------------------------------------------------------------------
 
