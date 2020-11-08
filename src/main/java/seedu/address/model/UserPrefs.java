@@ -62,18 +62,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return orderManagerFilePath;
     }
 
-    public void setOrderManagerFilePath(Path orderManagerFilePath) {
-        requireNonNull(orderManagerFilePath);
-        this.vendorManagerFilePath = orderManagerFilePath;
-    }
-
     public Path getProfileManagerFilePath() {
         return profileManagerFilePath;
-    }
-
-    public void setProfileManagerFilePath(Path profileManagerFilePath) {
-        requireNonNull(profileManagerFilePath);
-        this.profileManagerFilePath = profileManagerFilePath;
     }
 
     @Override
@@ -88,7 +78,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && vendorManagerFilePath.equals(o.vendorManagerFilePath);
+                && vendorManagerFilePath.equals(o.vendorManagerFilePath)
+                && orderManagerFilePath.equals(o.orderManagerFilePath)
+                && profileManagerFilePath.equals(o.profileManagerFilePath);
     }
 
     @Override
