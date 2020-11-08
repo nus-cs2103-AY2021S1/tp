@@ -307,7 +307,7 @@ These operations are exposed in the `Model` interface as `Model#clearContacts()`
 
 The following sequence diagram shows how the cclear operation works:
 
-![UndoRedoState0](images/ClearContactsSequenceDiagram.png)
+![UndoRedoState0](images/CclearSequenceDiagram.png)
 
 ### Clear all modules feature
 
@@ -319,7 +319,7 @@ It implements the following operations:
 These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
 The following sequence diagram shows how the mclear operation works:
 
-![UndoRedoState0](images/MclearCommandSequenceDiagram.png)
+![UndoRedoState0](images/MclearSequenceDiagram.png)
 
 ### \[Proposed\] Switch feature
 
@@ -952,7 +952,7 @@ Expected : Error message saying "Module list is already empty".
     Contact on index `1` is an instructor of module with module code `CS2103` and `CS2100`, while contact on index `2` is an instructor of module with module code `CS2100` and `CS1010S`.
 
     1. Test case : `unassign 1 m/CS2103 m/CS2100`<br>
-    Expected : First contact is unassigned from both CS2103 and CS2100 modules. First contact is no longer an instructor of CS2103 nor CS2100 module.
+    Expected : First contact is unassigned from both CS2103 and CS2100 modules. First contact is no longer an instructor of CS2103 nor CS2100 module. Name of contact removed from module cards.
 
     1. Test case : `unassign 2 m/CS2103 m/CS2100`<br>
     Expected : No contact is unassigned from any modules because instructor on index `2` is not an instructor of module `CS2103`.
