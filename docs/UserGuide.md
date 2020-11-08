@@ -72,9 +72,9 @@ You can follow the steps below to get started with ZooKeep.
 
 1. Double-click the file to start the app. The GUI similar to *Figure 1* below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-<p align="center"><img src="images/Ui.png"/></p>
+    <p align="center"><img src="images/Ui.png"/></p>
 
-<p align="center"><i>Figure 1: GUI shown upon starting ZooKeep</i></p>
+    <p align="center"><i>Figure 1: GUI shown upon starting ZooKeep</i></p>
 
 1. Type the command you want in the command box and press Enter to execute it, e.g. typing **`help`** and pressing Enter will open the help window.
    <br> Here are some example commands you can try:
@@ -82,7 +82,7 @@ You can follow the steps below to get started with ZooKeep.
    * **`list`** : Lists all animals.
    * **`exit`** : Exits the app.
 
-1. You can refer to the features below for the details of each command. For the convenience of new users, the [Basic features](#basic-features) are listed first, followed by additional [Advanced features](#advanced-features) which may be useful for the user.
+1. You can refer to the features below for the details of each command. For the convenience of new users, the [basic features](#4-basic-features-malcolm) are listed first, followed by additional [advanced features](#5-advanced-features-zhi-yuan) which may be useful for the user.
 
 ## 4. Basic features (Malcolm)
 This section provides you with the most basic features to get you started with ZooKeep.
