@@ -22,7 +22,7 @@ import seedu.address.model.project.Project;
  */
 public class AddTeammateCommand extends Command {
 
-    public static final String COMMAND_WORD = "addteammate";
+    public static final String COMMAND_WORD = "addperson";
 
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new teammate as a part of this project"
