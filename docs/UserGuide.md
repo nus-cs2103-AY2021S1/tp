@@ -44,16 +44,12 @@ title: User Guide
 * Items in square brackets are optional.<br>
   E.g `add INDEX [QUANTITY]` can be used as `add 3 2` or as `add 3`.
   
-* **Friendly syntax** is supported! For any command, typing the short-form of the command will already be recognized, unless there is any ambiguity. 
+* **Friendly syntax** is supported! For any command, typing the prefix of the command will already be recognized, unless there is any ambiguity. 
 
   * E.g. `help` only requires the user to type `h` to be recognized, while `sort` will require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The commands
   will be explained below. To minimize confusion, the whole command will be shown instead of the prefix.)
   
 * Extra whitespaces in between arguments will be ignored.
-
-  E.g. `add 1 3` is interpreted as the same command as `add   1        3`.
-
-  E.g `tag 1 this  is    a      tag` is interpreted as the same command as `tag 1 this is a tag`.
 
 </div>
 
@@ -125,39 +121,37 @@ Format: `sort MODE [DIRECTION]`
 
 * `MODE` dictates which mode it will sort by, with format:
   * `n`: sorts by name
-  
   * `p`: sorts by price
-  
     
 * `DIRECTION` dictates which direction it will sort by, with format:
-  
   * `a`: sort in ascending order
   * `d`: sort in descending order
-  * `t`: toggles the direction, if previous sort was ascending, new direction is descending. If no direction was previously specified, sort in ascending order
-* If `DIRECTION` is not specified, it will be treated as a toggle, and ascending direction will be sorted as descending order and vice versa
+  * `t`: toggles the direction, if previous sort was ascending, new direction is descending. If no direction was previously specified, sort in ascending order.
+* If `DIRECTION` is not specified, it will be treated as a toggle, and ascending direction will be sorted as descending order and vice versa.
 
 Examples:
 * `sort n a`: sorts the menu by name in ascending direction.
 * `sort p`: sorts the menu by price in opposite direction as last sorted.
 
 
-### Find food item: `find`
+### Find menu item: `find`
 
-Finds and lists all food items containing any of the specified keywords in their name.
+Finds and lists all menu items containing any of the specified keywords in their name.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 - `KEYWORD` are NOT **case-sensitive**.
-- `KEYWORD` filters tags as well.
+- Tags will also be detected.
+- Note that keywords with spaces will be are treated as separate keywords (see example below). This is to avoid user mistake.
 
 Examples:
-* `find milo`: lists all food items containing the word 'milo' in their name.
-* `find milo dinosaur`: lists all food items containing the word 'milo' or 'dinosaur' in their name.
+* `find milo`: lists all menu items containing the word 'milo' in their name.
+* `find milo dinosaur`: lists all menu items containing the word 'milo' or 'dinosaur' in their name.
 
 
-### Filter food item by price: `price`
+### Filter menu item by price: `price`
 
-Filters all food item within a specified price range.
+Filters all menu item within a specified price range.
 
 Format: `price INEQUALITY PRICE`
 
@@ -169,13 +163,14 @@ Format: `price INEQUALITY PRICE`
 * `PRICE` must be a non-negative real number. Only up to 2 decimal places will be considered, anything from third decimal places onward will be ignored.
 
 Examples:
-* `price < 3`: lists all food items with price less than $3.
-* `price <= 2`: lists all food items with price less than or equal to $2.
-* `price > 4.123`: lists all food items with price greater than $4.12
+* `price < 3`: lists all menu items with price less than $3.
+* `price <= 2`: lists all menu items with price less than or equal to $2.
+* `price > 4.123`: lists all menu items with price greater than $4.12
+
 
 ## Order related commands
 
-### Adding a food item: `add`
+### Adding an order item: `add`
 
 Adds an order item for the user according to the index from the menu to the user's supper order.
 
@@ -199,10 +194,11 @@ Format: `remove INDEX [QUANTITY]`
 
 * `INDEX` refers to the index number shown in the displayed supper order list.
 * `INDEX` must be a positive integer and must not exceed the size of the supper order list.
-* `QUANTITY` can be specified to indicate the number of item to be deleted. Otherwise, it deletes all quantities of the item at the specified index.
+* `QUANTITY` can be specified to indicate the number of item to be deleted (has to be less than or equal to the current quantity). 
+* If `QUANTITY` is not specified, it removes all items of the specified index.
 
 Examples:
-* `remove 2`: remove all quantities of item at INDEX 2.
+* `remove 2`: remove all items at INDEX 2.
 * `remove 1 2`: remove item at INDEX 1, of quantity 2.
 
 
@@ -242,8 +238,6 @@ Removes everything from the order.
 
 Format: `clear`
 
-- Note that any arguments written after the `clear` command will be ignored.
-
 Example:
 
 - `clear`: clears all items on current order.
@@ -261,6 +255,7 @@ Format: `undo`
 Example:
 
 - `undo`: undoes previous command and returns order back to its previous state.
+
 
 ### Calculate total: `total`
 
@@ -283,7 +278,7 @@ Add delivery address and phone number for submission.
 
 Format: `profile PHONE ADDRESS`
 
-- `PHONE` represents your contact number and must be a valid phone number (First digit must start with a 6/8/9 and must be 8 digits long).
+- `PHONE` represents your contact number and must be a valid phone number (First digit must start with a 6/8/9 and must be exactly 8 digits long).
 
 - `ADDRESS` represents your delivery address.
 
@@ -305,6 +300,7 @@ Format: `submit`
 Example:
 
 - `submit`: returns a text form of the order
+
 
 ### Preset supper orders: `preset`
 
@@ -340,10 +336,10 @@ Examples:
 **A**: Overwrite your current data file with your old data file.
 
 **Q**: Why are some pictures missing on the menu?
-**A**: These are intended as an example of what is shown if vendors lack a picture for a food item.
+**A**: These are intended as an example of what is shown if vendors lack a picture for a menu item.
 
 **Q**: Why am I not allowed to add vendors or menu items?
-**A**: We realised that allowing users to add vendors or menu items from the command line is unfeasible, as each vendor will have many menu items and it would be extremely time consuming for the user. However, the user is able to manually add vendors or menu items in the json file, but the user must ensure that all details are included correctly.
+**A**: We realised that allowing users to add vendors or menu items from the command line is unfeasible, as each vendor will have many menu items, and it would be extremely time-consuming for the user. However, the user is able to manually add vendors or menu items in the json file, but the user must ensure that all details are included correctly.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -357,7 +353,7 @@ Action | Format
 **Vendor** | `vendor [INDEX]`
 **Menu**   | `menu`
 **Sort** | `sort MODE [DIRECTION]`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`
+**Find** | `find KEYWORD [MORE_KEYWORDS]...`
 **Price** | `price INEQUALITY PRICE`
 **Add** | `add INDEX [QUANTITY]`
 **Remove** | `remove INDEX [QUANTITY]`
@@ -369,4 +365,3 @@ Action | Format
 **Profile** | `profile PHONE ADDRESS`
 **Submit** | `submit`
 **Preset** | `preset MODE [NAME]`
-
