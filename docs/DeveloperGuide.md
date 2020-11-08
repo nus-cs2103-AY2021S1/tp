@@ -68,14 +68,14 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#26-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#22-ui-component): The UI of the App.
+* [**`Logic`**](#23-logic-component): The command executor.
+* [**`Model`**](#24-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#25-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -217,7 +217,7 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 and logging destinations.
 
 - The logging level can be controlled using the `logLevel` setting in the configuration file 
-(See [Section 3.2](#configuration), “Configuration”)
+(See [Section 3.2](#32-configuration), “Configuration”)
 - The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according 
 to the specified logging level
 - Currently log messages are output through both `Console` and to a `.log` file.
@@ -311,7 +311,7 @@ In the following sequence diagram, we trace the execution when the user decides 
 `sdel 1 f/` into FitEgo with the above application state, where the first Session in the Session List is the `enduranceTraining` Session. 
 For simplicity, we will refer to this command input as `commandText`. 
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure id="f14" style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
     <p>
         <img src="images/DeleteSessionSequenceDiagram.png"/>
     </p>
@@ -403,7 +403,7 @@ Now, consider two cases of Add Schedule command to be invoked.
 
 Here is what happens when `schadd c/2 s/1` is invoked.
 
-To some extent, the mechanism (on how it involves `LogicManager`, `AddressBookParser`, and saving the changes to `Storage`) is similar to that of [Delete Session](#delete-session-feature), as illustrated in [Delete Session](#delete-session-feature)'s sequence diagram. The main differences are on the method call `parseCommand()` and `DeleteSessionCommand#execute(model)`.
+To some extent, the mechanism (on how it involves `LogicManager`, `AddressBookParser`, and saving the changes to `Storage`) is similar to that of [Delete Session](#34-delete-session-feature), as illustrated in [its sequence diagram](#f14). The main differences are on the method call `parseCommand()` and `DeleteSessionCommand#execute(model)`.
 
 `parseCommand()` method call:
 Instead of using `DeleteSessionCommandParser`, it uses `AddScheduleCommandParser` to parse the argument `c/2 s/1` such that it returns an `AddScheduleCommand` object called `a` with Client index `2` and Session index `1`.
@@ -644,18 +644,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | trainer                                       | tag my client         | I know their allergy / injury history and can advise them an appropriate training / diet schedule |
 | `* * *`  | trainer                                       | create a Session               |                                                                        |
 | `* * *`  | trainer                                       | edit a session                 | change the details of a session                                        |
-| `* * *`  | trainer                                       | view a session's detail        | view at all of the session's details at a glance                       |
-| `* * *`  | busy fitness trainer                          | filter sessions by time        | view only the upcoming or other important sessions                             |
+| `* * *`  | busy fitness trainer                          | filter sessions by time        | view only the upcoming or other important sessions                     |
 | `* * *`  | trainer                                       | delete a session               | cancel all schedules if there is an urgent need                        |
 | `* * *`  | trainer                                       | add a new schedule             |                                                                        |
 | `* * *`  | trainer                                       | edit a schedule                | change the details of a schedule                                       |
 | `* * *`  | trainer                                       | view a schedule's detail       | view at all of the schedule's details at a glance                      |
 | `* * *`  | trainer                                       | delete a schedule              | remove schedule that are cancelled or completed                        |
-| `* *`    | trainer                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* *`    | international trainer                         | input and view weight in either kg or pound| save time on manual conversion                             |
+| `* *`    | fitness trainer                               | store clients' session feedback and weight| utilise previous sessions and plan exercises for upcoming sessions     |
 | `* *`    | forgetful fitness trainer                     | track clients' payments        | remind those who have not paid up                                      |
 | `* *`    | busy fitness trainer                          | query if a particular time slot is open     | add new clients to that time slot                         |
 | `* *`    | fitness trainer                               | track clients' weight over time| keep track of my clients progress over time                            |
-| `* *`    | fitness trainer                               | store clients' session feedback| utilise previous sessions and plan exercises for upcoming sessions     |
 | `*`      | trainer with many clients in the address book | sort clients by name           | locate a client easily                                                 |
 | `*`      | user                                          | change software background between light and dark mode | customise my experience                        |
 | `*`      | trainer focused on coaching pre-NS teen       | track client's date of birth   | adjust the fitness intensity depending on IPPT period                  |
