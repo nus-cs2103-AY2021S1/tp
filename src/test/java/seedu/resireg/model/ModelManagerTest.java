@@ -123,12 +123,12 @@ public class ModelManagerTest {
 
     // Allocations (to be added)
     @Test
-    public void isAllocated_nullStudent_thrwosNullPointerException() {
+    public void isAllocated_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.isAllocated((Student) null));
     }
 
     @Test
-    public void isAllocated_nullRoom_thrwosNullPointerException() {
+    public void isAllocated_nullRoom_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.isAllocated((Room) null));
     }
 
