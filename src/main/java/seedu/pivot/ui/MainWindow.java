@@ -195,6 +195,7 @@ public class MainWindow extends UiPart<Stage> {
 
         caseTabPane.setOnMouseClicked(event -> {
             Tab tab = caseTabPane.getSelectionModel().getSelectedItem();
+            logger.info("Tab pane clicked, setting tabState: " + tab.getText());
             if (tab.getText().equals(documentTab.getText())) {
                 UiStateManager.setTabState(TYPE_DOC);
             } else if (tab.getText().equals(suspectTab.getText())) {
