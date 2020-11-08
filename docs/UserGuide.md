@@ -130,9 +130,9 @@ Finds an exercise that matches all the input fields.
 ![find command message](images/findCommandMessage.png)
 
 Format: `find [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`
-- For name, description, date, and calories, only exercises that exactly match the inputs will be listed. These fields are case-sensitive. e.g. Run will not match run.
-- For keywords, exercises whose names contain any of the keywords will be listed. Keyword is case-insensitive. e.g Squats will match squats.
-- in v1.3, find command does not support muscles and tags.
+- For name, description, date, and calories, only exercises that exactly match the inputs will be listed. These fields are case-insensitive. e.g. `Run` will match `run`.
+- For keywords, exercises whose names or descriptions contain any of the keywords will be listed. Only full words will be matched e.g. `run` will not match `running`. Keyword is case-insensitive. e.g `Squats` will match `squats`.
+- in v1.4, find command does not support muscles and tags.
 
 Example:
 - find n/running
@@ -181,10 +181,11 @@ Recalls the most recent exercise with the specified name.
 ![recall command message](images/recallCommandMessage.png)
 
 Format: `recall EXERCISE`
-- the name of exercise is case-sensitive. e.g. Push up will not match push up.
+- the name of exercise is case-insensitive. e.g. `push up` will match `PUSH UP`.
+- Only exercises that are on or before the current day will be listed. Exercises with future dates will not be recalled.
 
 Example:
-- `recall run` finds the most recent exercise with the name "run".
+- `recall run` finds the most recent exercise with the name `run`.
 
 ## 3.12. Add templates : `create`
 Adds an exercise template.
