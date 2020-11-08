@@ -19,6 +19,7 @@ By using our application, you can tag frequently used files/folders with a short
 with a single command. We hope by using our application, you can manage your files with ease. You can
 make your life easier one file at a time, and free up your precious time to spend on things you truly enjoy.
 
+## Table of Contents
 * Table of Contents
 {:toc}
 
