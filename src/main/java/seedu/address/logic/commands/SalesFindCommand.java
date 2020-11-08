@@ -10,7 +10,7 @@ public class SalesFindCommand extends Command {
 
     public static final String COMMAND_WORD = "s-find";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the sales of the drinks as entered. \n"
-            + "Parameters: KEYWORDS, where KEYWORDS refer to the drink abbreviation. \n"
+            + "Parameters: KEYWORDS[MORE_KEYWORDS], where KEYWORDS refer to the drink abbreviation. \n"
             + "Example: " + COMMAND_WORD + " " + "BSBBT" + ", " + COMMAND_WORD + " " + "BSBM" + " "
             + "BSBGT";
 
