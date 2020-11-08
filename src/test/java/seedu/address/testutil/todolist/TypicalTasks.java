@@ -2,12 +2,20 @@ package seedu.address.testutil.todolist;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_LAB05;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_LAB07;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB05;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB07;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_HIGH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_LAB05;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_LAB07;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_NORMAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_COMPLETED;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_LAB05;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_LAB07;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LAB05;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LAB07;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,11 +71,13 @@ public class TypicalTasks {
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task LAB_05 = new TaskBuilder().withName(VALID_NAME_LAB05)
-            .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_HIGH).withDate(VALID_DATE1)
-            .withStatus(VALID_STATUS_COMPLETED).build();
+            .withTags(VALID_TAG_LAB05).withPriority(VALID_PRIORITY_LAB05)
+            .withDate(VALID_DATE_LAB05).withStatus(VALID_STATUS_LAB05)
+            .build();
     public static final Task LAB_07 = new TaskBuilder().withName(VALID_NAME_LAB07)
-            .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_NORMAL).withDate(VALID_DATE2)
-            .withStatus(VALID_STATUS_COMPLETED).build();
+            .withTags(VALID_TAG_LAB07).withPriority(VALID_PRIORITY_LAB07)
+            .withDate(VALID_DATE_LAB07).withStatus(VALID_STATUS_LAB07)
+            .build();
 
     public static final String KEYWORD_MATCHING_LAB_01 = "Finish Lab01"; // A keyword that matches LAB_01
 

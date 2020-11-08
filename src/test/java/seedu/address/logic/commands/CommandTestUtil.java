@@ -2,8 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
@@ -88,24 +90,55 @@ public class CommandTestUtil {
 
     // ================================== TodoList ===================================== //
 
-    public static final String VALID_NAME_LAB05 = "Finish Lab 5 Report";
-    public static final String VALID_NAME_LAB07 = "Finish Lab 7 Report";
     public static final String VALID_NAME_ASSIGNMENT01 = "Submit Assignment 1";
     public static final String VALID_PRIORITY_HIGH = "HIGH";
     public static final String VALID_PRIORITY_NORMAL = "NORMAL";
     public static final String VALID_TAG_CS2100 = "CS2100";
     public static final String VALID_TAG_CS2105 = "CS2105";
+    public static final String VALID_TAG_CS2030 = "CS2030";
+    public static final String VALID_TAG_LAB = "Lab";
     public static final String VALID_DATE1 = "2020-11-05";
     public static final String VALID_DATE2 = "2020-12-03";
     public static final String VALID_STATUS_COMPLETED = "COMPLETED";
     public static final String VALID_STATUS_NOT_COMPLETED = "NOT_COMPLETED";
     public static final String VALID_DATE_CREATED_1 = "2020-11-01";
     public static final String VALID_DATE_CREATED_2 = "2020-12-01";
-    public static final String NAME_DESC_LAB05 = "Submit Lab 5 Report";
-    public static final String NAME_DESC_LAB07 = "Submit Lab 7 Report";
+
+    // unnamed desc
+    public static final String TAG_DESC_CS2100 = " " + PREFIX_TAG + VALID_TAG_CS2100;
+    public static final String TAG_DESC_LAB = " " + PREFIX_TAG + VALID_TAG_LAB;
+
+    // invalid value
+    public static final String INVALID_TASK_NAME_DESC = " " + PREFIX_NAME + "Finish lab 5 report for next week lab";
+    public static final String INVALID_TASK_TAG_DESC = " " + PREFIX_TAG + "Lab CS2100";
+    public static final String INVALID_TASK_PRIORITY_DESC = " " + PREFIX_PRIORITY + "important";
+    public static final String INVALID_TASK_DATE_DESC = " " + PREFIX_DATE + "2020-02-30";
+
+    // LAB05 and LAB07DESC
+    public static final String VALID_NAME_LAB05 = "Finish Lab 5 Report";
+    public static final String VALID_NAME_LAB07 = "Finish Lab 7 Report";
+    public static final String VALID_TAG_LAB05 = "CS2100";
+    public static final String VALID_TAG_LAB07 = "CS2030";
+    public static final String VALID_PRIORITY_LAB05 = "HIGH";
+    public static final String VALID_PRIORITY_LAB07 = "NORMAL";
+    public static final String VALID_DATE_LAB05 = "2020-11-05";
+    public static final String VALID_DATE_LAB07 = "2020-12-03";
+    public static final String VALID_STATUS_LAB05 = "NOT_COMPLETED";
+    public static final String VALID_STATUS_LAB07 = "COMPLETED";
 
     public static final EditTaskDescriptor DESC_LAB05;
     public static final EditTaskDescriptor DESC_LAB07;
+
+    public static final String NAME_DESC_LAB05 = " " + PREFIX_NAME + VALID_NAME_LAB05;
+    public static final String NAME_DESC_LAB07 = " " + PREFIX_NAME + VALID_NAME_LAB07;
+    public static final String TAG_DESC_LAB05 = " " + PREFIX_TAG + VALID_TAG_LAB05;
+    public static final String TAG_DESC_LAB07 = " " + PREFIX_TAG + VALID_TAG_LAB07;
+    public static final String PRIORITY_DESC_LAB05 = " " + PREFIX_PRIORITY + VALID_PRIORITY_LAB05;
+    public static final String PRIORITY_DESC_LAB07 = " " + PREFIX_PRIORITY + VALID_PRIORITY_LAB07;
+    public static final String DATE_DESC_LAB05 = " " + PREFIX_DATE + VALID_DATE_LAB05;
+    public static final String DATE_DESC_LAB07 = " " + PREFIX_DATE + VALID_DATE_LAB07;
+
+    // =============================== PREAMBLE ========================================= //
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -150,13 +183,13 @@ public class CommandTestUtil {
                 .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .build();
-        DESC_LAB05 = new EditTaskDescriptorBuilder().withName(NAME_DESC_LAB05)
-                .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_HIGH)
-                .withDate(VALID_DATE1)
+        DESC_LAB05 = new EditTaskDescriptorBuilder().withName(VALID_NAME_LAB05)
+                .withTags(VALID_TAG_LAB05).withPriority(VALID_PRIORITY_LAB05)
+                .withDate(VALID_DATE_LAB05)
                 .build();
-        DESC_LAB07 = new EditTaskDescriptorBuilder().withName(NAME_DESC_LAB07)
-                .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_NORMAL)
-                .withDate(VALID_DATE2)
+        DESC_LAB07 = new EditTaskDescriptorBuilder().withName(VALID_NAME_LAB07)
+                .withTags(VALID_TAG_LAB07).withPriority(VALID_PRIORITY_LAB07)
+                .withDate(VALID_DATE_LAB07)
                 .build();
     }
     /**

@@ -46,7 +46,7 @@ public class TaskBuilder {
         priority = Priority.valueOf(DEFAULT_PRIORITY);
         date = new Date(DEFAULT_DATE);
         status = Status.valueOf(DEFAULT_STATUS);
-        dateCreated = LocalDate.parse(DEFAULT_DATE_CREATED);
+        dateCreated = LocalDate.now();
     }
 
     /**
