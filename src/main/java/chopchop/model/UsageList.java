@@ -89,6 +89,7 @@ public class UsageList<T extends Usage> {
         requireNonNull(lowerBound);
         return this.usages.stream()
             .filter(x-> x.isAfter(lowerBound))
+            .sorted(comparator)
             .collect(Collectors.toList());
     }
 
@@ -96,6 +97,7 @@ public class UsageList<T extends Usage> {
         requireNonNull(upperBound);
         return this.usages.stream()
             .filter(x-> x.isBefore(upperBound))
+            .sorted(comparator)
             .collect(Collectors.toList());
     }
 
@@ -107,12 +109,10 @@ public class UsageList<T extends Usage> {
             return new ArrayList<>();
         } else if (after != null && before == null) {
             return getUsagesAfter(after).stream()
-                .sorted(comparator)
                 .map(Usage::getListViewPair)
                 .collect(Collectors.toList());
         } else if (after == null) {
             return getUsagesBefore(before).stream()
-                .sorted(comparator)
                 .map(Usage::getListViewPair)
                 .collect(Collectors.toList());
         } else {
