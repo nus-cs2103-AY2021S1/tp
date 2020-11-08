@@ -143,10 +143,10 @@ Format: `tag t>TAG_NAME f>FILE_PATH [l>LABEL]...`
 ![tag](images/screenshots/tag_command.png)
 
 Examples:
-* `tag t>Users f>C:\Users` (Adds a tag with nickname `Users` using absolute path. The tag has no label and points to `C:\Users`)
-* `tag t>Users f>C:\Users l>Important` (Adds a tag with nickname `Users` using absolute path. The tag has a label `important` and points to`C:\Users`)
-* `tag t>Users f>.\Users` (Adds a tag with nickname `Users` using relative path. The tag has no label and points to a folder `Users` in the current directory)
-* `tag t>Users f>.\Users l>folder l>readonly` (Adds a tag with nickname `Users` using relative path. The tag has labels `folder` as well as `readonly` and points to a folder `Users` in the current directory)
+* `tag t>Tag1 f>C:\Users` (Adds a tag with nickname `Tag1` using absolute path. The tag has no label and points to `C:\Users`)
+* `tag t>Tag2 f>C:\Users l>Important` (Adds a tag with nickname `Tag2` using absolute path. The tag has a label `important` and points to`C:\Users`)
+* `tag t>Tag3 f>.\Users` (Adds a tag with nickname `Tag3` using relative path. The tag has no label and points to a folder `Users` in the current directory)
+* `tag t>Tag4 f>.\Users l>folder l>readonly` (Adds a tag with nickname `Tag4` using relative path. The tag has labels `folder` as well as `readonly` and points to a folder `Users` in the current directory)
 
 ### 4.2 Displaying information of a tagged file : `show`
 

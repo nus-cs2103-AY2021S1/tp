@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+
+box Storage STORAGE_COLOR_T1
+participant ":StorageManager" as StorageManager STORAGE_COLOR
+participant ":JsonAddressBookStorage" as JsonAddressBookStorage STORAGE_COLOR
+participant ":JsonSerializableAddressBook" as JsonSerializableAddressBook STORAGE_COLOR
+end box
+
+box Common COMMON_COLOR_T1
+participant ":FileUtil" as FileUtil COMMON_COLOR
+participant ":JsonUtil" as JsonUtil COMMON_COLOR
+end box
+
+[-> StorageManager : saveAddressBook(AB)
+activate StorageManager
+
+StorageManager -> JsonAddressBookStorage : getAddressBookFilePath()
+activate JsonAddressBookStorage
+
+JsonAddressBookStorage --> StorageManager : fp
+deactivate JsonAddressBookStorage
+
+StorageManager -> StorageManager : saveAddressBook(model, fp)
+activate StorageManager
+
+StorageManager -> JsonAddressBookStorage : saveAddressBook(model, fp)
+activate JsonAddressBookStorage
+
+JsonAddressBookStorage -> FileUtil : createIfMissing()
+activate FileUtil
+
+FileUtil --> JsonAddressBookStorage
+deactivate FileUtil
+
+create JsonSerializableAddressBook
+JsonAddressBookStorage -> JsonSerializableAddressBook
+activate JsonSerializableAddressBook
+
+JsonSerializableAddressBook --> JsonAddressBookStorage : JSAB
+deactivate JsonSerializableAddressBook
+
+JsonAddressBookStorage -> JsonUtil : saveJsonFile(JSAB, fp)
+activate JsonUtil
+
+JsonUtil --> JsonAddressBookStorage
+deactivate JsonUtil
+
+JsonAddressBookStorage --> StorageManager
+deactivate JsonAddressBookStorage
+
+StorageManager --> StorageManager
+deactivate StorageManager
+
+[<--StorageManager
+deactivate StorageManager
+
+
+@enduml
