@@ -13,6 +13,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/therizhao)]
 
+[[portfolio](./team/therizhao.md)]
+
 * Role: Team Lead
 * Responsibilities: UI
 
