@@ -49,7 +49,7 @@ To get started using Warenager,
 
 The commands available in the current version of
 Warenager are: add, delete, update, find, findexact, note, notedelete,
-stockview, stats, sort, print, bookmark, unbookmark, list, tab and help.
+stockview, stats, sort, print, bookmark, unbookmark, list, tab, help, clear, and exit.
 Refer to the [Commands](#commands) section to for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ Term | Definition
 --------|------------------
 **Command Line Interface (CLI)** | A command-line interface processes commands to a computer program in the form of lines of text. 
 **Graphical User Interface (GUI)** | The graphical user interface is a form of user interface that allows users to interact with electronic devices through graphical icons.
-**Field** | Represents the Name, Serial Number, Quantity, Location stored, Source, Note of the stock in inventory
+**Field** | Represents the Name, Serial Number, Quantity, Location stored, Source, Note of the stock in inventory.
 **Prefixes** | The field code that are entered during user input, so that Warenager will know what to do. e.g. `q/`, `n/`, `s/`, `sn/`.
 **Parameters** | Parameters are additional fields to key in during user input and provided after a prefix. e.g. `<name>` in `n/<name>`.
 **CSV File** | Comma-Separated Values File. It contains data separated by commas.
@@ -88,15 +88,15 @@ Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Locati
 (These stock details are presented in a drop down window.)
 
 * **Adding** stocks: Unique serial number is generated based on the stock item and source company.
-* **Deleting** stocks
-* **Updating** stock fields
+* **Deleting** stocks.
+* **Updating** stock fields.
 * **Searching** for stocks by
     * name of stock
     * serial number
     * source of stock
     * location stored in warehouse
-* Adding / Deleting **optional notes** to stocks
-* **Viewing** all details of a stock
+* Adding / Deleting **optional notes** to stocks.
+* **Viewing** all details of a stock.
 * **Bookmarking** stocks: e.g. often used stocks, search bookmark<item>.
 * **Print** to generate CSV file for printing of stock list.
 * **Clear** to clear **all** existing data in Warenager.
