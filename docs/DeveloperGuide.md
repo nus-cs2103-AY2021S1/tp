@@ -238,7 +238,7 @@ This section describes some key details on how general features are implemented.
 The following describes the flow of how `HelpCommand` is performed.
 
 1. Upon successfully parsing the user input, the `HelpCommand#execute(Model model)` is called.
-2. A `CommandResult` with the `showHelp` field set to true is returned and `MainWindow#handleHelp()` is called.
+2. A `CommandResult` with the `shouldShowHelp` field set to true is returned and `MainWindow#handleHelp()` is called.
 3. A Help display window will be opened showing a link to the User Guide. 
 
 <div markdown="block" class="alert alert-info">
@@ -268,6 +268,12 @@ The following sequence diagram shows how the `ToggleStudentCardCommand` executio
 Figure \___. Sequence diagram for `ToggleStudentCardCommand` execution
 
 #### 6.1.3 Exit Command
+
+The following describes the flow of how `ExitCommand` is performed.
+
+1. Upon successfully parsing the user input, the `ExitCommand#execute(Model model)` is called.
+2. A `CommandResult` with the `shouldExit` field set to true is returned and `MainWindow#handleExit()` is called.
+3. **Reeve** is then exited, and the window closes.
 
 ### 6.2 Student administrative details features
 
