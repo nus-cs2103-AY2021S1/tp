@@ -190,12 +190,11 @@ Finds all drinks where their abbreviated names match the KEYWORD(s).
 
 Format: `s-find KEYWORD [MORE_KEYWORDS]`
 
-**:information_source: Note:** <br>
-The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.<br>
-Only the drink's abbreviated name is searched.<br>
-Only full words will be matched e.g. `BSB` will not match `BSBBT`. <br>
-Drinks matching at least one keyword will be returned.
-  e.g. `BSBBT BSBM` will return `BSBBT`, `BSBM`.<br>
+* The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.
+* Only the drink's abbreviated name is searched.
+* Only full words will be matched e.g. `BSB` will not match `BSBBT`.
+* Drinks matching at least one keyword will be returned.
+  e.g. `BSBBT BSBM` will return `BSBBT`, `BSBM`.
 
 Example: 
 Let's say you want to find BSBBT and BSBM's sales data, you can follow these instructions:
@@ -209,10 +208,10 @@ Outcome:
 
 2. All matching drink's sales data will be listed in the _Main View_.
 
-Before executing:
+Before executing:<br>
 ![BeforeSalesFind](images/BeforeSalesFind.png)
 
-After executing:
+After executing:<br>
 ![SalesFindCommandScreenshot](images/SalesFindResult.png)
 
 #### 1.4 Ranking the list of drinks sold : `s-rank`
@@ -327,15 +326,13 @@ Adds an employee to the Employee Directory.
 
 Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]`
 
+* In tCheck, you may add an employee to the Employee Directory. When you add an employee, you need to provide his/her name, phone number, emergency contact, and address.
+* Tag is optional.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
-In tCheck, you may add an employee to the Employee Directory. When you add an employee, you need to provide
-his/her name, phone number, emergency contact, and address.<br>
-Tag is optional. <br>
 PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
-An employee can have any number of tags (including 0).<br>
 
 Example: 
 Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His emergency contact is 81234567. His address is Blk 123 ABC Road. His tag is Friday and PartTime. You can follow these instructions:
@@ -402,15 +399,11 @@ Edits the corresponding employee's information in the Employee Directory.
 
 Format: `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG]`
 
-    
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note:** <br>
-Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed Employee Directory. The index must be a positive integer 1, 2, 3, ...<br>
-At least one of the optional fields must be provided.<br>
-Existing values will be updated to the input values.<br>
-When editing tags, the existing tags of the employee will be removed i.e. adding of tags is not cumulative.<br>
-You can remove all the employee's tags by typing `t/` without specifying any tags after it.<br>
+* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed Employee Directory. The index must be a positive integer 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the employee will be removed i.e. adding of tags is not cumulative.
+* You can remove all the employee's tags by typing `t/` without specifying any tags after it.
 
 Example: 
 Let's say you want to edit an employee whose index is 1 in Employee Directory. His new phone number is 91234567. His new emergency contact is 81232744. 
@@ -526,10 +519,10 @@ Step to delete all employees:
 Outcome:
 2. No employees will be listed in the Employee Directory inside the _Main View_.
 
-Before executing:
+Before executing:<br>
 ![ListEmployeeScreenshot](images/BeforeClearCommand.png)
 
-After executing:
+After executing:<br>
 ![ClearEmployeeCommandScreenshot](images/ClearEmployeeResult.png)
 
 #### 3.10 Archiving an employee : `c-archive`
