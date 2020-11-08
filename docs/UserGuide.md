@@ -453,6 +453,7 @@ Format: `delete witness WITNESS_NO`
 
 Example: `delete witness 1`
 
+<div style="page-break-after: always;"></div>
 #### Open document in the current case: `open doc DOC_NO`
 
 Opens the specified document at index `DOC_NO` in the list. 
@@ -485,6 +486,7 @@ command, redo will not be able to be called.
 
 Format: `redo`
 
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about undo/redo:**<br>
@@ -517,7 +519,7 @@ User data automatically loads when user opens the app.
 User data automatically saves when there is a change in data.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
