@@ -1164,20 +1164,125 @@ The following activity diagram summarizes what happens when
  the Note feature (adding of note) is triggered:
 ![Note Feature Activity Diagram](images/NoteFeatureActivityDiagram.png)
 
+#### Mechanism for Deleting Notes
+The mechanism for deleting notes is facilitated by classes `NoteDeleteCommand`, `NoteDeleteCommandParser` and `NoteIndex`.
+
+#### NoteDeleteCommandParser
+The `NoteDeleteCommandParser` class implements the `Parser` interface. 
+`NoteDeleteCommandParser` class is tasked with parsing the user inputs
+to generate a `NoteDeleteCommand` with arguments `SerialNumber` of the stock
+and `NoteIndex` of the note to delete.
+
+The `SerialNumber` and `NoteIndex` is obtained from parsing the user input.
+Upon successful parsing, `NoteDeleteCommand` object generated will then be passed on to the `LogicManager` to be executed.
+
+If the user inputs do not contain all of the specified `Prefix` for `NoteDeleteCommand`, an error message will be shown and no `NoteDeleteCommand` object will be created.
+
+`NoteDeleteCommandParser` implements the following important operations:
+
+* `NoteDeleteCommandParser#parse()` -
+ Parses the user input to produce a `NoteDeleteCommand`.
+
+#### NoteDeleteCommand
+The `NoteDeleteCommand` class extends the `Command` abstract class. The `NoteDeleteCommand` class is tasked with creating a new `CommandResult` that represents the result of the execution of a `NoteDeleteCommand`. 
+
+The construction of a `NoteDeleteCommand` takes in a `Serial Number` of stock and a `NoteIndex` of note to delete.
+
+When a `NoteDeleteCommand` is executed, a `CommandResult` is constructed with the status message,
+showing the successful adding of the note to the stock.
+The execution of `NoteDeleteCommand` deletes the note from the stock and updates the stock list in `Model`
+with the stock with the deleted note.
+
+`NoteDeleteCommand` implements the following important operations:
+
+* `NoteDeleteCommand#execute()` -
+Executes the search and returns the result message of the search.
+
+#### NoteIndex
+The `NoteIndex` class represents the index of the note that is displayed in the Notes column
+under the `Data` tab of Warenager's UI. A `NoteIndex` of the note to be deleted from stock
+is generated in `NoteDeleteCommandParser` from the parsing of user input.
+
+`NoteIndex` implements the following important operations:
+
+* `NoteIndex#isValidNoteIndex() -
+ Checks the input and returns true if the given input is a valid note index
+* `NoteIndex#fromZeroBased() -
+ Creates a new NoteIndex using a zero-based index.
+* `NoteIndex#fromOneBased() - 
+ Creates a new NoteIndex using a one-based index.
+
+#### Example Usage Scenario (Deleting Note(s))
+Given below are some example usage scenarios and how
+ the note delete feature mechanism behaves at each step.
+
+**Example 1: Deleting a note at index 1 from a stock with Serial Number "ntuc1"**
+
+Step 1. The user enters `notedelete sn/ntuc1 ni/1`.
+
+Step 2. `MainWindow#executeCommand()` is called with the user input.
+Within this method, `LogicManager#execute()` is called with the
+user input to obtain a `CommandResult`.
+
+Step 3. The command word `notedelete` is extracted out in `StockBookParser`.
+The command word matches `COMMAND_WORD`: `notedelete` in the `NoteDeleteCommand` class.
+
+Step 4. The remaining user input is passed to the `NoteDeleteCommandParser` where within the
+`NoteDeleteCommandParser#parse()` method, the respective `ParserUtil#parseSerialNumber()` and
+`ParserUtil#parseNoteIndex` methods are called to generate a `Serial Number` of the stock
+and `NoteIndex` of the note to delete from the stock. 
+
+Step 5. The `NoteDeleteCommandParser#parse()` method then returns a `NoteDeleteCommand`,
+constructed with the `Serial Number` of stock and `NoteIndex` of the note to delete from the stock. 
+
+Step 6. `LogicManager#execute()` then calls `NoteDeleteCommand#execute()` method,
+with current `Model` as argument. Within this method call, `Stock#deleteNote()` deletes the note
+at the index specified by the `NoteIndex` from the stock,
+and the `Model` is updated with the stock with the deleted note.
+
+Step 7. The result of the note delete command is stored in the returning `CommandResult`object
+and displayed with `ResultDisplay`.
+
+Step 8. User views the new `StockListPanel` with the filtered stock list.
+
+**Example 2: Deleting ALL notes from a stock with Serial Number "ntuc1"**
+
+Step 1. The user enters `notedelete sn/ntuc1 ni/0`.
+
+Steps 2 to 5 are the same as `Example 1: Deleting a note at index 1 from a stock with Serial Number "ntuc1"` above.
+
+Step 6. `LogicManager#execute()` then calls `NoteDeleteCommand#execute()` method,
+with current `Model` as argument. Within this method call, `Stock#deleteNote()` deletes all the notes,
+specified by `NoteIndex` constructed with input "0", from the stock,
+and the `Model` is updated with the stock with the deleted note.
+
+Steps 7 and 8 are the same as `Example 1: Deleting a note at index 1 from a stock with Serial Number "ntuc1"` above.
+
+#### Sequence Diagram
+The following sequence diagram shows how the NoteDelete feature works for Example 1:
+![NoteDelete Feature Sequence Diagram](images/NoteDeleteFeatureSequenceDiagram.png)
+
+#### Activity Diagram
+The following activity diagram summarizes what happens when
+ the NoteDelete feature is triggered:
+![NoteDelete Feature Activity Diagram](images/NoteDeleteFeatureActivityDiagram.png)
+
 #### Design Consideration
+The below aspects are the design considerations for the Note feature in adding and deleting notes from stocks.
 
 ##### Aspect: Representation of notes for a stock
-* **Alternative 1 (current implementation):** A stock can have multiple notes and
+* **Alternative 1 (current implementation):** Multiple notes can be added to a stock and
 each note is indexed. <br>
 * Pros: Allows user to add multiple notes to stock while maintaining the ability to clearly
 differentiate between the different notes. With indexed notes, users are able to reference
-specific notes in command.
+specific notes in command and delete the specific note.
 * Cons: Users may not want the indexing, as it may seem like a priority ranking for the notes.
 
-* **Alternative 2:** A stock can have multiple notes and each note is denoted by bullet point. <br>
+* **Alternative 2:** Multiple notes can be added to a stock and each note is denoted by bullet point. <br>
 * Pros: Allows user to add multiple notes to stock while maintaining ability to clearly differentiate
 between the different notes.
-* Cons: Unable to reference a specific note in command.
+* Cons: Unable to reference a specific note in command and unable to clearly reference a certain note
+to be deleted, but will still be able to delete all notes.
 
 * **Alternative 3:** A stock can only have one note, but each time a note is added, it replaces
 the previous note. <br>
@@ -1186,17 +1291,19 @@ the previous note. <br>
 Each time the user wants to add on to a note, the user has to retype the entire note again with the
 added details.
 
-##### Aspect: Input format for note command.
+##### Aspect: Input format for note and notedelete commands.
 
 * **Alternative 1 (current implementation):** Duplicate prefixes cannot be present in user input.
-  * Pros: Removes ambiguity in choosing the corresponding arguments used in adding notes to stocks.
+  * Pros: Removes ambiguity in choosing the corresponding arguments used in adding notes to stocks or
+  deleting notes from stocks.
   * Cons: Users have to retype their command in the case where
   they forget which prefixes they have typed and input duplicate prefixes.
 
 * **Alternative 2:** Duplicate prefixes can be present in user input.
   * Pros: Only the argument corresponding to the last appearance of the prefix will be used.
   Allows users to input prefix and corresponding arguments to override the last occurrence of this prefix.
-  * Cons: Users may type 2 of the required prefixes accidentally and add a note to an unintended stock.
+  * Cons: Users may type 2 of the required prefixes accidentally and add a note to an unintended stock,
+  or delete an unintended note from the stock.
 
 ### Statistics Feature
 
