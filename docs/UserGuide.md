@@ -145,7 +145,7 @@ Format: `delete INDEX`
 
 Examples:
 * `clist` followed by `delete 2` deletes the 2nd contact in FaculType.
-* `find n/Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
+* `find n/Janson` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
 #### Editing a contact : `edit`
 

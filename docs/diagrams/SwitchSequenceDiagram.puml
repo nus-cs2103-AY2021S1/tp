@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "parser:OneWordCommandParser" as OneWordCommandParser LOGIC_COLOR
+participant "s:SwitchCommand" as SwitchCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("switch")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("switch")
+activate AddressBookParser
+
+create OneWordCommandParser
+AddressBookParser -> OneWordCommandParser
+activate OneWordCommandParser
+
+OneWordCommandParser --> AddressBookParser
+deactivate OneWordCommandParser
+
+AddressBookParser -> OneWordCommandParser : parse("")
+activate OneWordCommandParser
+
+create SwitchCommand
+
+OneWordCommandParser -> SwitchCommand
+activate SwitchCommand
+
+SwitchCommand  --> OneWordCommandParser
+deactivate SwitchCommand
+
+OneWordCommandParser --> AddressBookParser : s
+deactivate OneWordCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+OneWordCommandParser -[hidden]-> AddressBookParser
+destroy OneWordCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> SwitchCommand  : execute()
+activate SwitchCommand
+
+SwitchCommand  -> Model : switchModuleList()
+
+activate Model
+
+Model --> SwitchCommand
+
+deactivate Model
+
+create CommandResult
+SwitchCommand  -> CommandResult
+activate CommandResult
+
+CommandResult --> SwitchCommand
+deactivate CommandResult
+
+SwitchCommand  --> LogicManager : result
+deactivate SwitchCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
