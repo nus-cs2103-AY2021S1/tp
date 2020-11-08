@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import nustorage.logic.parser.ParserUtil;
-import nustorage.logic.parser.exceptions.ParseException;
 import nustorage.model.record.InventoryRecord;
 
 public class InventoryRecordBuilder {
@@ -68,21 +66,6 @@ public class InventoryRecordBuilder {
     }
 
     /**
-     * Sets the record's date time and returns the builder
-     * @param dateTime updated dateTime of the inventory record
-     * @return the updated InventoryRecordBuilder
-     * Sets the {@code datetime} of the {@code Inventory Record} that we are building.
-     */
-    public InventoryRecordBuilder withDatetime(String dateTime) {
-        try {
-            this.dateTime = ParserUtil.parseDatetime(dateTime);
-        } catch (ParseException e) {
-            return this;
-        }
-        return this;
-    }
-
-    /**
      * Sets the record's quantity and returns the builder
      * @param quantity updated quantity of the inventory record
      * @return the updated InventoryRecordBuilder
@@ -93,12 +76,10 @@ public class InventoryRecordBuilder {
     }
 
     /**
-     * sets a specific finance ID to the builder
-     * @param financeId the finance ID to be set
-     * @return the builder with the updated finance ID
+     * sets the dateTime of current inventoryRecord to current datetime.
      */
-    public InventoryRecordBuilder withFinanceId(int financeId) {
-        this.financeId = financeId;
+    public InventoryRecordBuilder updateDateTime() {
+        this.dateTime = LocalDateTime.now();
         return this;
     }
 
