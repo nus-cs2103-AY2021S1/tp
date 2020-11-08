@@ -534,7 +534,13 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-No extensions.
+<br>
+- 1a. User passes a command as argument into help command.
+    - 1a1. Help will show the argument to the command, and the usage of the command.<br>
+    Use case end.<br>
+- 1b. User passes an invalid command as argument into help command.<br>
+    - 1b1. McGymmy will throw an error.<br>
+    Use case ends.<br>
 
 **Use case: UC05 Edit food**
 
