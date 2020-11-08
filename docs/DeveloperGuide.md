@@ -152,7 +152,7 @@ This diagram shows a successful execution of `TagCommand`, resulting in a new ta
 ![TagSuccessSequence](images/TagCommandSuccessSequenceDiagram.png)
 
 This diagram shows an unsuccessful execution of `TagCommand`, resulting in `CommandException` thrown.
-In this case, the file was not present.
+In this case, the file was not present.<br>
 ![TagFailureSequence](images/TagCommandFailureSequenceDiagram.png)
 
 `TagCommand` checks if the file address given is absolute or relative file path.
@@ -171,7 +171,7 @@ to be opened.
 After that, it opens the files located at the `Tag`'s `FileAddress` if the file is present and user has read permission.
 `CommandException` is thrown if tag is not present, the file cannot be found or no read permission.
 
-This sequence diagram shows a successful execution of `OpenCommand`.
+This sequence diagram shows a successful execution of `OpenCommand`. <br>
 ![OpenCommandSuccessExecution](images/OpenCommandSuccessSequenceDiagram.png)
 
 We implemented OpenCommand using `java.awt.Desktop`,
@@ -230,7 +230,7 @@ This is the sequence diagram of the FindCommand.<br>
 searches the list of Tags stored in `AddressBook` and shows the tag's file path in the `ResultDisplay`.
 `CommandException` is thrown if tag is not present.
 
-This diagram shows a successful execution of `ShowCommand` to show the information of the specified tag.
+This diagram shows a successful execution of `ShowCommand` to show the information of the specified tag.<br>
 ![ShowSuccessSequence](images/ShowCommandSequenceDiagram.png)
 
 ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` that extends from `java.util.function.predicate` to `ObservableList<Tag>` using `model.findFilteredTagList()`.
@@ -241,7 +241,7 @@ ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` t
 lists the Tags stored in `AddressBook` and shows them as `TagCard` which is contained in `TagListPanel`.
 ListCommand shouldn't take in any argument. A `CommandException` will be thrown if the user's input contains an argument.
 
-This diagram shows a successful execution of `ListCommand`.
+This diagram shows a successful execution of `ListCommand`.<br>
 ![ListSuccessSequence](images/ListCommandSequenceDiagram.png)
 
 ListCommand updates the `ObservableList<Tag>` by using `java.util.function.predicate`.
