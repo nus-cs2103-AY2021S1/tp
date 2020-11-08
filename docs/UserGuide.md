@@ -118,7 +118,7 @@ Now, you can copy and paste our example commands without worry.
 ```
 
 ### Adding an item: `addi`
-###### (Implemented by: Zhengdao)
+(Implemented by: Zhengdao)
 
 This command allows you to add a new item to your inventory. Adding an item will cause Inventoryinator to start
 tracking your item. You will need to provide an item name. You can optionally provide the initial item quantity,
@@ -157,7 +157,7 @@ Tags must be alphanumerical and cannot contain spaces.
 ```
 
 ### Adding a new Recipe: `addr`
-###### (Implemented by: Rahul)
+(Implemented by: Rahul)
 
 This command allows you to add a new recipe to your inventory. Adding a recipe will cause Inventoryinator to link
 the recipe to its product item. This will allow you to use this recipe to craft the item using the `craft` command
@@ -195,7 +195,7 @@ You CAN have 0 as a quantity for an item used, we like to call these items 'cata
 ```
 
 ### Adding quantity to an item: `addq`
-###### (Implemented by: Jing Lin)
+(Implemented by: Jing Lin)
 
 This command allows you to increase or decrease the quantity of an item in your inventory by a specified amount.
 You cannot reduce the quantity of an item to below 0. You will need to provide the item name of the item you wish
@@ -226,7 +226,7 @@ Total quantity cannot exceed 2,147,483,647.
 ```
 
 ### Adding tags to an item: `addt`
-###### (Implemented by: Stephen)
+(Implemented by: Stephen)
 
 This command allows you to add tags to an item. You will need to provide the item name of the item you wish to add
 tags to, and the tags that you wish to add.
@@ -256,7 +256,7 @@ Your input must contain at least one tag that the item does not currently have.
 ```
 
 ### Listing all items: `listi`
-###### (Implemented by: Kheng Hun)
+(Implemented by: Kheng Hun)
 
 This command displays all items in your inventory. You will be able to view the item names, their quantities,
 descriptions and tags.
@@ -273,7 +273,7 @@ Lists all items that are in your inventory, and their quantities, descriptions a
 <img height="400" src="images/UG images/UG listi.png"/>
 
 ### Listing all recipes: `listr`
-###### (Implemented by: Kheng Hun)
+(Implemented by: Kheng Hun)
 
 This command displays all recipes in your inventory. You will be able to view the product names, amount of product
 produced by the recipe, and the items and their associated quantities required to craft the product. You
@@ -291,7 +291,7 @@ Lists all recipes, products, descriptions and their ingredients.
 <img height="400" src="images/UG images/UG listr.png"/>
 
 ### Deleting an item: `deli`
-###### (Implemented by: Stephen)
+(Implemented by: Stephen)
 
 This command allows you to delete an item in your inventory. This removes the item as well as all recipes that use
 or produce the item from your inventory. You will need to provide the item name of the item you wish to delete.
@@ -320,7 +320,7 @@ If you accidentally delete an item, you can always undo it!
 ```
 
 ### Deleting a Recipe: `delr`
-###### (Implemented by: Kheng Hun)
+(Implemented by: Kheng Hun)
 
 This command allows you to delete a recipe in your inventory. This removes the recipe from your inventory, and it
 will no longer be associated with any of its ingredients or product. You will need to provide the product name of the
@@ -351,7 +351,7 @@ The input recipe index should not exceed 2,147,483,647.
 ```
 
 ### Finding an item: `find`
-###### (Implemented by: Rahul)
+(Implemented by: Rahul)
 
 This command allows you to search for items in your inventory by item name. Entering multiple names will allow you
 to search for items that have an item name that matches or contains any string. Note that this command is
@@ -383,7 +383,7 @@ You can use `find .` to find all items in your inventory.
 ```
 
 ### Finding items by tags: `findt`
-###### (Implemented by: Stephen)
+(Implemented by: Stephen)
 
 This command allows you to search for items in your inventory by tag. Entering multiple tags will allow you
 to search for items that have any tags in your search parameters.
@@ -414,7 +414,7 @@ Search parameters must be alphanumerical and cannot contain spaces.
 ```
 
 ### View item `view`
-###### (Implemented by: Zhengdao)
+(Implemented by: Zhengdao)
 
 This command allows you to view more details of an item in your inventory, and the recipes that can craft this item.
 You will need to provide the item name of the item you wish to view.
@@ -441,7 +441,7 @@ This command will only show an item that matches the search parameter exactly. (
 ```
 
 ### Edit an item: `edit`
-###### (Implemented by: Kheng Hun)
+(Implemented by: Kheng Hun)
 
 This command allows you to edit an item in your inventory. You will need to provide the item name of the item you wish
 to edit as well as the fields you wish to edit.
@@ -471,7 +471,7 @@ Edits the item named <u>Iron Ore</u> to have quantity of <u>20</u>.
 Edits the item named <u>Iron Ore</u> to have quantity of <u>20</u> and description of <u>mined</u>.
 
 ### Craft an item: `craft`
-###### (Implemented by: Kheng Hun)
+(Implemented by: Kheng Hun)
 
 This command allows you to craft an item using a recipe in your inventory. You will need to provide the item name
 of the item being crafted, the quantity of the item you wish to craft, and optionally, the index of the recipe you wish
@@ -504,7 +504,7 @@ This command may craft more of the desired item than your input, if the recipe u
 ```
 
 ### Check if crafting an item is possible: `check`
-###### (Implemented by: Kheng Hun)
+(Implemented by: Kheng Hun)
 
 This command allows you to check if you have sufficient items in your inventory to craft a specified quantity of a
 desired item. You will need to provide the item name and quantity of the item you wish to check if you can craft.
@@ -529,7 +529,7 @@ Checks and displays if any recipe in the recipe list can craft 5 (or more) <u>Ir
 based on your current inventory.
 
 ### Clear all items: `cleari`
-###### (Implemented by: Zhengdao)
+(Implemented by: Zhengdao)
 
 This command allows you to clear all items and recipes in your inventory.
 
@@ -549,7 +549,7 @@ Deletes all items and recipes. Your inventory will be empty after executing this
 <img height="400" src="images/UG images/UG cleari.png"/>
 
 ### Clear all recipes: `clearr`
-###### (Implemented by: Zhengdao)
+(Implemented by: Zhengdao)
 
 This command allows you to clear all recipes in your inventory.
 
@@ -569,7 +569,7 @@ Deletes all recipes.
 <img height="400" src="images/UG images/UG clearr.png"/>
 
 ### Undo a command: `undo`
-###### (Implemented by: Jing Lin)
+(Implemented by: Jing Lin)
 
 This command allows you to undo the last command that affected any item or recipe. Your inventory will be reverted
 to how it was before you executed the command. You should use this if you accidentally executed a command you did
@@ -592,7 +592,7 @@ considers commands that adds, removes, or changes an item or recipe.
 <img height="400" src="images/UG images/UG undo.png"/>
 
 ### Redo a command: `redo`
-###### (Implemented by: Jing Lin)
+(Implemented by: Jing Lin)
 
 This command allows you to redo the last command that was undone. Your inventory will be set to how it was after
 you executed the command. You should use this if you accidentally undid a command you actually wanted to execute.
