@@ -730,14 +730,14 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `deadline title:Buy breakfast `<br>
       Expected: No deadline is added because not all compulsory field is filled. Status message shows invalid command format, and hint user for the correct command format.
 
-   1. Other incorrect delete commands to try: `deadline`, `deadline buy good`, `...` (where command is not in correct format)<br>
+   1. Other incorrect adding deadline commands to try: `deadline`, `deadline buy good`, `...` (where command is not in correct format)<br>
       Expected: Similar to previous.
 
 ### Adding a event
 
 1. Adding a event while all tasks are being shown
 
-   1. Prerequisites:  List all events using the `list-task` command. Multiple events in the task list.
+   1. Prerequisites:  List all events using the `list-task` command. Multiple events exists in the task list.
 
    1. Test case: `event title:Project meeting date:10-11-2020 from:09:00 to:12:30 tag:CS2103T`<br>
       Expected: a new event with title 'Project meeting' is added to the task list, a event card will be displayed with the detailed info about the event.
@@ -751,7 +751,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `event title:carer talk `<br>
       Expected: No event is added because not all compulsory field is filled. Status message shows invalid command format, and hint user for the correct command format.
 
-   1. Other incorrect delete commands to try: `event`, `carer talk`, `...` (where command is not in correct format)<br>
+   1. Other incorrect adding event commands to try: `event`, `carer talk`, `...` (where command is not in correct format)<br>
       Expected: Similar to previous.
 
 
@@ -759,7 +759,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a task while all tasks(more than 3 tasks) are being shown
 
-   1. Prerequisites: List all tasks using the `list-task` command. Multiple(more than 3 tasks) tasks in the list.
+   1. Prerequisites: List all tasks using the `list-task` command. Multiple(more than 3) tasks in the list.
 
    1. Test case: `delete-task 1 3`<br>
       Expected: First task and third task is deleted from the list. Title of the deleted tasks are shown in the status message.
@@ -772,6 +772,82 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete-task`, `delete-task x`, `...` (where x is larger than the list size or negative number)<br>
       Expected: Similar to previous.
+      
+### Adding a lesson
+
+1. Adding a lesson while all lessons are being shown
+
+   1. Prerequisites:  List all lessons using the `list-lesson` command.
+
+   1. Test case: `lesson title:Tutorial tag:CS2101 desc:Most exciting lecture in NUS! day:Monday from:12:00 to:14:00 start:10-08-2020 end:10-11-2020`<br>
+      Expected: a new lesson with title 'Tutorial' is added to the lesson list, a lesson card will be displayed with the detailed info about the lesson at the lesson list panel.
+
+   1. Test case: `lesson title:Tutorial tag:CS2101 desc:Most exciting lecture in NUS! day:Monday from:12:00 to:14:00 start:10-08-2020 end:10-11-2020`<br>
+      Expected: No lesson is added because a lesson with the same details already exists in the lesson list. Status message informs user that lesson already exists.
+
+   1. Test case: `lesson title:Another Tutorial tag:CS2101 desc:Most exciting lecture in NUS! day:Monday from:12:00 to:14:00 start:10-08-2020 end:10-11-2020`<br>
+      Expected: No event is added because the lesson time is overlapping with another existing event or lesson in PlaNus.
+      
+   1. Test case: `lesson title:lab `<br>
+      Expected: No lesson is added because not all compulsory field is filled. Status message shows invalid command format, and hint user for the correct command format.
+
+   1. Other incorrect adding lesson commands to try: `lesson`, `tutorial`, `...` (where command is not in correct format)<br>
+      Expected: Similar to previous.
+      
+### Editing a lesson
+
+1. Editing a lesson while all lessons are being shown
+
+   1. Prerequisites:  List all lessons using the `list-lesson` command. There is at least one lesson exist in the PlaNus.
+
+   1. Test case: `edit-lesson 1 title: new title`<br>
+      Expected: The title of the first lesson displayed in the lesson list will be updated to "new title".
+
+   1. Test case: `edit-lesson 1 title: new title title: new title`<br>
+      Expected: No lesson will be edited because same attribute (in this case "title") is not allow to be input more than 1 times.
+
+   1. Test case: `edit-lesson title: new title`<br>
+      Expected: No lesson will be edited because the command is not valid as the index of the lesson is missing.
+      
+   1. Other incorrect edit lesson commands to try: `edit-lesson`, `edit-lesson x`, `...` (where x is larger than the lesson list size or negative number)<br>
+      Expected: Similar to previous.
+      
+### Finding lesson
+
+1. Find lesson while all lesson are being shown
+
+   1. Prerequisites: List all lesson using the `list-lesson` command. Multiple lessons are in the list.
+
+   1. Test case: `find-lesson title:tutorial`<br>
+      Expected: lessons with title including "tutorial" will be displayed
+      
+   1. Test case: `find-lesson title:tutorial title:lab`<br>
+      Expected: lessons with title including either "tutorial" or "lab" will be displayed
+      
+   1. Test case: `find-lesson datetime:10-11-2020 12:00`<br>
+      Expected: lessons happening on 10-1102020 at 12:00 will be displayed.
+
+   1. Other incorrect delete commands to try: `delete-lesson`, `delete-lesson x`, `...` (where x is larger than the list size or negative number)<br>
+      Expected: Similar to previous.
+            
+### Deleting a lesson
+
+1. Deleting a lesson while all lesson(more than 3 lesson) are being shown
+
+   1. Prerequisites: List all lesson using the `list-lesson` command. Multiple(more than 3 ) lesson in the list.
+
+   1. Test case: `delete-lesson 1 3`<br>
+      Expected: First lesson and third lesson is deleted from the list. Title of the deleted lesson are shown in the status message.
+
+   1. Test case: `delete-lesson 1`<br>
+      Expected: First lesson is deleted from the list. Title of the lesson task shown in the status message.
+
+   1. Test case: `delete-lesson 0`<br>
+      Expected: No lesson is deleted. Error details shown in the status message. index is not a non-zero integer.
+
+   1. Other incorrect delete commands to try: `delete-lesson`, `delete-lesson x`, `...` (where x is larger than the list size or negative number)<br>
+      Expected: Similar to previous.
+      
       
 ### Exiting the program
 
