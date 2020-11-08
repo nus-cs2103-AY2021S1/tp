@@ -5,11 +5,6 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-Refer to the guide <<SettingUp#, here>>.
-
-Design
---------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -169,9 +164,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ![Structure of the Model Component](images/modelDiagram/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address//model/Model.java)
-    
-> Note that the usage of the term `ENTITY` in this section represents any of the following entities in PropertyFree:
-> `Property`, `Seller`, `Bidder`, `Bid` and `Meeting`.
+
+<div markdown="span" class="alert alert-info">:information_source: Note that the usage of the term `ENTITY` represents any of the following entities in PropertyFree:<br>`Property`, `Seller`, `Bidder`, `Bid` and `Meeting`
+</div>  
 
 The `Model`,
 
@@ -192,11 +187,12 @@ The `Model`,
   the UI automatically updates when the data in any of the lists are changed.*
 
 The following segment of the `Model` components further breaks down each `ENTITY` for a more elaborate 
-explanation of each entities' design.
-- Property
+explanation of each entities' design.  
 - Bidder and Seller
+- Property
 - Bid
 - Meeting  
+
 ---
 ### Bidder and Seller 
 The following class diagram depicts how the `Bidder` and `Seller` are created. The `Bidder` and `Seller` both extend from the
@@ -206,7 +202,7 @@ abstract `ClientPerson` which in turn extends from abstract `Person`.
 
 Note that the `CLIENTId` (BidderId / SellerId) design is elaborated in [Id] in the `Property` segment.
 
- ##### Design Considerations
+#### Design Considerations
 
  1. Alternative 1 (current choice): Extending `Bidder` and `Seller` from `ClientPerson`, and `ClientPerson` from `Person`.
     - Pros: 
@@ -245,6 +241,31 @@ The follow class diagram depicts the design behind `Id` and the subclasses: `Sel
 --- 
 
 ### Property 
+
+{ Start of Property Model section written by: Dianne Loh }
+
+The following class diagram depicts `Property` and its related classes.  
+
+![Property Class Diagram](images/modelDiagram/PropertyModelDiagram.png)
+
+#### Design Considerations
+
+The implementations of `PropertyType` and `Address` are similar as they both are wrapper classes of a String. This implementation is justified because of the following considerations:
+
+1. Alternative 1 (current choice): Implementing `PropertyType` and `Address` as separate classes.
+    - Pros:
+        - Better adherence to the separations of concerns principle by separating code related to `PropertyType` and `Address`
+        - Easier extensibility for the classes to contain more specific attributes. For example, `Address` can be extended to contain more specific attributes, such as road name, block and postal code, etc.  
+    - Cons: 
+        - More code duplication (for now)
+2. Alternative 2: `PropertyType` and `Address` extends from a parent class or are of the same type.  
+    - Pros:
+        - Less code duplication (for now) 
+    - Cons:
+        - Less extensible 
+        - Modifying the behaviour of one type will affect the other 
+        
+{ End of Property Model section written by: Dianne Loh }
 
 ### Bid 
 
@@ -375,7 +396,7 @@ Additional features apart from the above-mentioned feature includes:
 #### 1. Add
 { start of Add section written by: Marcus Duigan Xing Yu}
 
-The `Add` command applies to **all entities** in PropertyFree. Apart from `AddBidCommand`, `AddMeetingCommand` with slight differences in implementation (elaborated below), all other entities follow the same
+The `Add` command applies to **all entities** in PropertyFree. Apart from `AddBidCommand`, `AddMeetingCommand` and `AddPropertyCommand` with slight differences in implementation (elaborated below), all other entities follow the same
 implementation.
 
 1. When the `Add` command is executed by the user, the input it passed into
@@ -408,9 +429,58 @@ adding to the Bidbook as seen in the diagram above.
 by property Id followed by Bid Amount. For further clarification, refer to section 4. Sort for a more in depth description.
 
 { end of Add section written by: Marcus Duigan Xing Yu}
+
+##### 1.2 Add Property  
+
+{ start of Add Property section written by: Dianne Loh }
+
+The implementation of the Add Property feature includes an additional validity check to ensure that the seller id exists. Below is the sequence diagram for the `check validity` frame:  
+
+![Add Property Command Sequence Diagram](images/addCommandDiagram/addPropertyCommandSequenceDiagram.png)
+
+If the check returns false, an `InvalidSellerIdException` is thrown.  
+
+<div markdown="span" class="alert alert-primary">:information_source: Upon adding a property into the `UniquePropertyList`, the `PropertyId` of each property is automatically incremented according to the activity diagram below:
+</div>  
+
+![Add Property Id Management Activity Diagram](images/addCommandDiagram/addPropertyIdManagementActivityDiagram.png)
+
+{ End of Add Property section written by: Dianne Loh }
+
 #### 2. Edit
 
-#### 3. Find
+#### 3. Find  
+
+{ Start of Find section written by: Dianne Loh }  
+
+The `Find` command applies to **all entities** in PropertyFree. There are two implementations of `Find`:  
+1. One-Predicate Implementation (for `Bid`, `Bidder` and `Seller`)
+2. Multi-Predicate Implementation (for `Property` and `Meeting`)  
+
+##### 3.1 One-Predicate Implementation of `FindENTITYCommand` (for `Bid`, `Bidder` and `Seller` only)  
+1. When the `Find` command is executed by the user, the input is passed into `LogicManager` and then parsed in `AddressBookParser`.  
+2. Upon identifying the `COMMAND_WORD` `Find` and the entity from the input `find-ENTITY`, the relevant `FindENTITYCommandParser` is created.  
+3. The `FindENTITYCommandParser` parses the arguments into an `ABCContainsKeywordsPredicate`, where `ABC` represents an attribute, creates a `FindENTITYCommand` with the predicate and returns the command to the `LogicManager`.    
+4. The method `execute(model)` of `FindENTITYCommand` is called, which updates the `filteredENTITY` list in `ModelManager` by setting the predicate.  
+5. The GUI "listens" to the changes in the filtered list and updates its display.  
+7. Finally, a `CommandResult` is returned to `LogicManager` to display the feedback to the user.  
+
+![Find Command Sequence Diagram 1](images/findCommandDiagram/findCommandSequenceDiagram1.png)
+
+##### 3.2 Multiple-Predicate Implementation of `FindENTITYCommand` (for `Property` and `Meeting` only)  
+This implementation differs from the One-Predicate implementation only in steps 3 and 4:  
+
+**Step 3**: The `FindENTITYCommandParser` creates a `FindENTITYDescriptor`.  For each prefix (eg `n/...`) in the input, the `FindENTITYCommandParser` parses the arguments into the relevant `ABCContainsKeywordsPredicate` and sets the `ABCContainsKeywordsPredicate` of the `FindENTITYDescriptor`. The `FindENTITYCommandParser` then creates a `FindENTITYCommand` with the `FindENTITYDescriptor`, which is returned to `LogicManager`.  
+**Step 4**: `execute(model)` of `FindENTITYCommand` gets the composed predicate from `FindENTITYDescriptor` and passes the predicate to `ModelManager` to update the `FilteredENTITY` list.  
+
+![Find Command Sequence Diagram 2](images/findCommandDiagram/findCommandSequenceDiagram2.png)  
+
+<div markdown="span" class="alert alert-primary">:bulb: `AskingPricePredicate` is a special type of `Predicate` that tests if a `Property`'s `askingPrice` passes the `PriceFilter`, whose class diagram is as follows:
+</div>  
+
+![PriceFilter Class Diagram](images/findCommandDiagram/priceFilterClassDiagram.png)  
+
+{ End of Find section written by: Dianne Loh }
 
 #### 4. Sort 
 { start of Sort section written by: Harsha Vardhan}
@@ -542,7 +612,7 @@ containing the attribute of`sellerId`.
 
 ![Delete Seller Command Sequence Diagram](images/deleteCommandDiagram/deleteSellerCommandSequenceDiagram.png)
 
- ##### Design Considerations
+##### Design Considerations
  
   Due to time constraint we decided to forgo certain attributes and features which would have distinctly separated `Bidder`
   and `Seller` better (such as winning `bidder`). The implementation was designed with future extensions in mind. 
@@ -560,9 +630,20 @@ containing the attribute of`sellerId`.
         - Increases code complexity in `AddressBookParser`
         
 { end of Delete section written by: Kor Ming Soon }
-##### 5.3 Delete Property Command
+
+##### 5.3 Delete Property Command  
+
+{ Start of Delete Property section written by: Dianne Loh }  
+
+The `DeletePropertyCommand` can delete a property by either the index or property id. The `DeletePropertyCommandParser` will parse the user input into either an `Index` or `PropertyId` and create the `DeletePropertyCommand`. If the user is deleting the property by index, then `targetId` will be `null` and vice versa. The sequence diagram is shown below, starting from the creation of `DeletePropertyCommand`.  
+
 ![Delete Property Command Sequence Diagram](images/deleteCommandDiagram/deletePropertyCommandSequenceDiagram.png)
 
+Upon deleting the property, all `Bid`s and `Meeting`s with the same `PropertyId` as the property being deleted will be deleted as well, as seen in the `Cascade delete` sequence diagram below:  
+
+![Cascade Delete Property](images/deleteCommandDiagram/cascadeDeleteProperty.png)
+
+{ End of Delete Property section written by: Dianne Loh }  
 
 #### 6. List
 
