@@ -1428,15 +1428,26 @@ User can create two types of flashcards - containing open end question or multip
 
 ### F.5 Finding flashcards
 
+Users can fins flashcards both through keywords using the `q/` prefix and through tags using the `t/` prefix.
+
 1. Prerequisites: 
 
    1. For some test cases listed bellow to work, user should have the sample starting flashcards that was provided stored in QuickCache.
 
-1. Test Case 1: `edit 1 q/Edited quesiton ans/New answer`<br>
-   Expected: The flashcard with index 1 is edited with the specified parameters. The details of the question will be shown in the display window on the side.
+1. Test Case 1: `find q/Sample`<br>
+   Expected: Finds all flashcards containing the keyword `Sample` (not case sensative) in its question. Found flashcards will be listed out.
 
-1. Test Case 1: `edit 1 q/Edited quesiton ans/New answer`<br>
-   Expected: The flashcard with index 1 is edited with the specified parameters. The details of the question will be shown in the display window on the side.
+1. Test Case 2: `find q/Sample q/Singapore`<br>
+   Expected: Finds all flashcards containing the keyword `Sample` and `Singapore` (not case sensative) in its question. Found flashcards will be listed out.
+
+1. Test Case 3: `find t/OEQ`<br>
+   Expected: Finds all flashcards containing the tag `OEQ` (case sensative). Found flashcards will be listed out.
+
+1. Test Case 4: `find q/Sample t/OEQ t/General`<br>
+   Expected: Finds all flashcards containing the tags `OEQ` and `General` (case sensative) and keyword `Sample` (not case sensative) in its question. Found flashcards will be listed out.
+
+1. Other incorrect `find` commands to try: `find`, `find Something`, `find q/`, `find t/`<br>
+   Expected: Error message will appear with instructions on how to use the `find` command.
 
 ### F.6 Deleting flashcards
 
