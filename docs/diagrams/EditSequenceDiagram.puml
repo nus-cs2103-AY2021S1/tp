@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "<<class>>\n:ResiRegParser" as ResiRegParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit-student 1 p/82462157")
+activate LogicManager
+
+LogicManager -> Model : getCommandWordAliases()
+activate Model
+Model --> LogicManager
+deactivate Model
+
+LogicManager -> ResiRegParser : parseCommand("edit-student 1 p/82462157", \nparserMap)
+activate ResiRegParser
+
+ResiRegParser -> EditCommandParser : parse("1 p/82462157")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : e
+deactivate EditCommand
+
+EditCommandParser --> ResiRegParser : e
+deactivate EditCommandParser
+
+ResiRegParser --> LogicManager : e
+deactivate ResiRegParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : editStudent(studentToEdit, editedStudent)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommand -[hidden]-> ResiRegParser
+destroy EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
