@@ -335,7 +335,7 @@ Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
  Directory inside the _Main View_ (i.e. `OR` search).  For example, `c-tag-find Monday Friday` will find employees whose
   tags contain `Monday` or `Friday`.<br>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
@@ -373,7 +373,7 @@ Format: `c-today`
 * The application will automatically get today's day based on the computer's current date.<br>
 * Only full words will be matched (e.g. `Fri` will not match `Friday`).<br>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
@@ -416,7 +416,7 @@ Format: `c-tomorrow`
 * The application will automatically get tomorrow's day based on the computer's current date.<br>
 * Only full words will be marched (e.g. `Fri` will not match `Friday`).<br>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
@@ -481,7 +481,7 @@ Format: `c-archive INDEX`
 _Employee Directory_ pane. For example, there are 2 employees listed in the current Employee Directory inside the _Main
  View_. The `INDEX` should be less or equal to 2.<br>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about Employee Directory:**<br>
 
@@ -525,7 +525,7 @@ Archives all employees in the Employee Directory inside the _Main View_.
 
 Format: `c-archive-all`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about Employee Directory:**<br>
 * All employees who are currently working in the shop are active/unarchived employees. They are stored in the active
@@ -572,7 +572,7 @@ Shows a list of all archived employees in Employee Directory inside the _Main Vi
 
 Format: `c-archive-list`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about displaying archived employees in tCheck:**<br>
 
@@ -610,7 +610,7 @@ Format: `c-unarchive INDEX`
 Employee Directory inside the _Main View_. For example, there are 2 employees listed in the current Employee
  Directory inside the _Main View_. The `INDEX`should be less or equal to 2.<br>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about Employee Directory:**<br>
 * All employees who are currently working in the shop are active/unarchived employees. They are stored in the active
@@ -673,7 +673,7 @@ All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in
  command. There is no need to save manually by entering any command.
  
  
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
  **:information_source: Notes about data files:**<br>
 User should not attempt to make any change in all data files.<br>
