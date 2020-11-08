@@ -175,6 +175,8 @@ As mentioned earlier in [Features](#3-features), there is no need to manually sa
 
 ### 3.3. Staff commands
 
+Staff commands give you the ability to keep track of your staffs which help you make business and manpower decisions.
+
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**<br>
@@ -185,7 +187,6 @@ As mentioned earlier in [Features](#3-features), there is no need to manually sa
 
 </div>
 
-Staff commands give you the ability to keep track of your staffs which help you make business and manpower decisions.
 
 #### 3.3.1. List all staffs : `list`
 
@@ -199,7 +200,18 @@ Format: `list s-`
 
 #### 3.3.2. Add a staff: `adds`
 
-Adds a staff to Eva.
+This command enables you to add a staff record into Eva. A staff record can contain the details listed below:
+ - Name*
+ - Phone Number*
+ - Email*
+ - Address*
+ - Tags
+ - Comments
+ - Leaves <br>
+The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
+Without any of these fields, Eva will not accept you input. Tags and Comments can be added with these commands as shown 
+in the examples. To manage leave records for each staff, please refer to the commands 
+[addl](3.3.7.-record-leave-taken-by-staff-addl) and [dell](3.3.8.-Delete-leave-taken-by-staff-dell)
 
 Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
@@ -350,7 +362,7 @@ Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG
  - The interview date has to be in DD/MM/YYYY format <br>
  - The order of inputs does not matter
  - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature [setting 
- of application status]() below
+ of application status](3.4.9.-set-application-status-setas) below
  - :bulb: **Tip** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
 <br>
 

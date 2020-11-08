@@ -49,6 +49,6 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 <img src="images/nikhilalalalala.png" width="200px">
 
 [[github](http://github.com/Nikhilalalalala)]
-[[portfolio](team/Nikhilalalalala.md)]
+[[portfolio](team/nikhilalalalala.md)]
 
 * Role: Developer
