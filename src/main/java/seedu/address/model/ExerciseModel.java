@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Optional;
@@ -41,7 +42,7 @@ public interface ExerciseModel {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' exercise book file path.
      */
     Path getExerciseBookFilePath();
 
@@ -51,19 +52,24 @@ public interface ExerciseModel {
 
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' exercise book file path.
      */
-    void setExerciseBookFilePath(Path addressBookFilePath);
+    void setExerciseBookFilePath(Path exerciseBookFilePath);
 
     /**
+<<<<<<< HEAD
+     * Replaces exercise book data with the data in {@code exerciseBook}.
+=======
      * Sets the user prefs' goal book file path.
      */
     void setGoalBookFilePath(Path goalBookFilePath);
 
     /**
      * Replaces goal book data with the data in {@code goalBook}.
+>>>>>>> 73964788116bf5a1204853ef6458f89a192c3eae
      */
-    void setExerciseBook(ReadOnlyExerciseBook addressBook);
+    void setExerciseBook(ReadOnlyExerciseBook exerciseBook);
+
 
     /**
      * Replaces goal book data with the data in {@code goalBook}.
@@ -71,17 +77,17 @@ public interface ExerciseModel {
     void setGoalBook(ReadOnlyGoalBook goalBook);
 
     /**
-     * Returns the AddressBook
+      * Returns the ExerciseBook.
      */
     ReadOnlyExerciseBook getExerciseBook();
 
     /**
-     * Returns the AddressBook
+     * Returns the GoalBook.
      */
     ReadOnlyGoalBook getGoalBook();
 
     /**
-     * Returns true if a Exercise with the same identity as {@code Exercise} exists in the address book.
+     * Returns true if a Exercise with the same identity as {@code Exercise} exists in the exercise book.
      */
     boolean hasExercise(Exercise exercise);
 
@@ -92,7 +98,7 @@ public interface ExerciseModel {
 
     /**
      * Deletes the given exercise.
-     * The exercise must exist in the address book.
+     * The exercise must exist in the exercise book.
      */
     void deleteExercise(Exercise target);
 
@@ -104,14 +110,17 @@ public interface ExerciseModel {
 
     /**
      * Adds the given exercise.
-     * {@code exercise} must not already exist in the address book.
+     * {@code exercise} must not already exist in the exercise book.
      */
     Optional<Goal> addExercise(Exercise exercise);
 
-
+    /**
+     * Adds the given template.
+     * {@code template} must not already exist in the exericse book.
+     */
     void addTemplate(Template template);
 
-    void resetTemplate();
+    void resetAll() throws IOException;
 
     /**
      * Adds the given goal.
@@ -122,7 +131,7 @@ public interface ExerciseModel {
 
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the exercise book.
      * The Exercise identity of {@code editedExercise} must not be the
      * same as another existing Exercise in the exercise book.
      */

@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Optional;
@@ -44,6 +45,10 @@ public class ExerciseModelManager implements ExerciseModel {
         this.filteredExercises = new FilteredList<>(this.exerciseBook.getExerciseList());
         this.goalBook = new GoalBook(goalBook);
         this.filteredTemplates = new FilteredList<>(this.exerciseBook.getTemplateList());
+    }
+
+    public ExerciseModelManager(ReadOnlyExerciseBook exerciseBook) {
+        this(exerciseBook, new GoalBook(), new UserPrefs());
     }
 
     public ExerciseModelManager() {
@@ -142,10 +147,6 @@ public class ExerciseModelManager implements ExerciseModel {
         //updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
     }
 
-    @Override
-    public void resetTemplate() {
-        TemplateList.reset();
-    }
 
     @Override
     public void setExercise(Exercise target, Exercise editedExercise) {
@@ -220,6 +221,12 @@ public class ExerciseModelManager implements ExerciseModel {
     public void updateFilteredExerciseList(Predicate<Exercise> predicate) {
         requireNonNull(predicate);
         filteredExercises.setPredicate(predicate);
+    }
+
+    @Override
+    public void resetAll() throws IOException {
+        exerciseBook.resetAllData();
+        goalBook.resetData(new GoalBook());
     }
 
     @Override
