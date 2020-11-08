@@ -459,19 +459,24 @@ When extending ChopChop to include new commands, it is important to follow these
 
 
 
-<a name="ImplUsageList"></a>
+<a name="stats-feature"></a>
 ### 4.5&ensp; Statistics feature
 
 Main developer: trav1st
 
+<a name="stats-curr-impl"></a>
 #### 4.5.1&ensp; Current implementation
 
 The statistics feature keeps track of the recipes that were made and the ingredients that were consumed in the process. 
 The feature spans across the 4 components of the App.
 It is mainly supported by `UsageList` and `Usage` in the Model component. `UsageList` and `Usage` are similar to `EntryBook` and `Entry` respectively in terms of their purpose.
 
-![UndoRedoState0](images/UsageClassDiagram.png)
-Figure 8000. UML class diagram of classes for statistics in Model 
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UsageClassDiagram.png" style="width: 45%"> <br />
+Figure 999: <i>Usage component in Model</i>
+</div>
+
 The `Model` interface exposes various operations to support the addition, removal of usages and getting statistics from `UsageList`
 
 During the execution of `MakeRecipeCommand`, a `RecipeUsage` and `IngredientUsage`s are created and added to `recipeUsageList` and `ingredientUsageList` through operations in `Model` interface.
@@ -491,50 +496,55 @@ Finally, the `StatsBox` is updated based on the `CommandResult` returned after t
 
 This section details the design considerations of the statistics feature.
 
-
-<h4>Design Considerations</h4>
+<a name="stats-design-considerations"></a>
 
 Aspect 1: How the usages are tracked and saved.
+
 * Consideration 1: 
 Store the history of commands executed. The statistics of recipe and ingredient usages can be computed based on the commands executed.
 For example, currently there are 10 cabbages and the `make recipe salad` command was executed 3 times yesterday. Assuming salad requires 2 cabbages to make, 6 cabbages were used yesterday.
-
-Pros: 
-Requires less memory usage.
-Allows more statistics to be computed as all changes to the Model have to be done through the execution of a command.
-
-Cons: 
-Getting statistics for ingredient usage can be tricky as recipes can be deleted and edited. In the example above, exact ingredient consumptions have to be stored in addition to the `make recipe salad` text command.
-Violates Single Responsibility Principle and Separation of Concerns as the history of command is being used for statistics purpose in addition to `undo` which uses a non-persistent history of command.
+    * Pros: 
+        * Requires less memory usage.
+        * Allows more statistics to be computed as all changes to the Model have to be done through the execution of a command.
+    * Cons: 
+        * Getting statistics for ingredient usage can be tricky as recipes can be deleted and edited. In the example above, exact ingredient consumptions have to be stored in addition to the `make recipe salad` text command.
+        * Violates Single Responsibility Principle and Separation of Concerns as the history of command is being used for statistics purpose in addition to `undo` which uses a non-persistent history of command.
 
 * Consideration 2: 
 Store the relevant information such as name, and the date and time of which the recipe was made or ingredient was used in `Usage` which is then contained in `UsageList`.
-
-Pros: Easier to implement. Allows quick access to certain data such as latest recipe usages.
-Cons: Modifications to `Usage` and its associated classes may be required to support more statistics. 
+    * Pros: 
+        * Easier to implement. Allows quick access to certain data such as latest recipe usages.
+    * Cons:
+        * Modifications to `Usage` and its associated classes may be required to support more statistics. 
 
 Aspect 2: Responsibility of `UsageList`
-* Consideration 1: Make `getRecentlyUsed` and `getUsageBetween` return Pair of Strings
-Pros: Easier to implement
-Cons: Violates the Single Responsibility Principle
-* Consideration 2: Make `getRecentlyUsed` and `getUsageBetween` return intermediate values
-Pros: `UsageList` only needs to handle adding, removing and returning of `Usage`
-Cons: Additional processing is required in `ModelManager`
+* Consideration 1: 
+Make `getRecentlyUsed` and `getUsageBetween` return Pair of Strings
+    * Pros: 
+        * Easier to implement
+    * Cons: 
+        * Violates the Single Responsibility Principle
+* Consideration 2: 
+Make `getRecentlyUsed` and `getUsageBetween` return intermediate values
+    * Pros: 
+        * `UsageList` only needs to handle adding, removing and returning of `Usage`
+    * Cons: 
+        * Additional processing is required in `ModelManager`
 
 Aspect 3: GUI of statistics box
-* Consideration 1: Update the statistics box after every execution of command. 
-Pros: User will be shown recently made recipes list after they executed non-statistics commands (other than `stats recipe recent`). This makes the app feel more responsive as both `StatsBox` and `CommandOutput` panels are updated.
-Cons: Additional computation required to refresh `StatsBox`. The user might want to have previous stats command results stay in the statistics box for future reference. 
+* Consideration 1: 
+Update the statistics box after every execution of command. 
+    * Pros:
+        * User will be shown recently made recipes list after they executed non-statistics commands (other than `stats recipe recent`). This makes the app feel more responsive as both `StatsBox` and `CommandOutput` panels are updated.
+    * Cons:
+        * Additional computation required to refresh `StatsBox`. The user might want to have previous stats command results stay in the statistics box for future reference. 
 * Consideration 2: Notify and update statistics box with `CommandResult` in `MainWindow` only after the execution of statistics commands
-Pros: The statistics results remain in the statistics box even after the execution of other commands so the user does not have to execute the statistics command again to view the statistics.
-Cons: User will have to execute `stats recipe recent` to obtain the default view on statistics box again.
+    * Pros: 
+        * The statistics results remain in the statistics box even after the execution of other commands so the user does not have to execute the statistics command again to view the statistics.
+    * Cons:
+        * User will have to execute `stats recipe recent` to obtain the default view on statistics box again.
 
-<div style="text-align: center; padding-bottom: 2em">
-<img src="images/StatsRecipeTopSequenceDiagram.png"> <br />
-Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
-</div>
-
-
+<a name="stats-related-commands"></a>
 #### 4.5.3&ensp; Related commands 
 
 `StatsCommandParser` parses the Statistics commands and returns the corresponding Command object based on user's input.
@@ -542,7 +552,7 @@ For more information on the Parser, view
 7 statistics commands are `StatsRecipeTopCommand`, `StatsRecipeMadeCommand`, `StatsIngredientUsedCommand`, `StatsRecipeRecentCommand` and `StatsIngredientRecentCommand` which update the list in `StatsBox` as well as `StatsRecipeClearCommand` and `StatsIngredientClearCommand` which remove all `Usage` in their respective `UsageList`.
 All the statistics commands function in a similar way so we will go through just one of command in details below.
 
-<a name="ImplTopRecipes"></a>
+<a name="view-top-recipes"></a>
 ##### View top recipes command
 The view top recipes command allows the user to see the recipes that were made the most number of times based on the `Usage`s saved in `UsageList`.
 It is executed with `StatsRecipeTopCommand` by parsing `stats recipe top` as the user input.
@@ -562,8 +572,11 @@ Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </
 7. `StatsRecipeTopCommand` calls `getMostMadeRecipeList` of `Model` and a list of String pairs is returned. This list is encapsulated in `CommandResult` which is then returned to `Logic`.
 
 
-![UndoRedoState0](images/RecipetopCmdStatsBox.png)
-Figure 8000. GUI of statistics box after `stats recipe top` command is executed
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/RecipetopCmdStatsBox.png" style="width: 40%"> <br />
+Figure 8000. GUI of statistics box after `stats recipe top` command is executed</i>
+</div>
+
 
 ### 4.7&ensp;Undo/redo feature
 
