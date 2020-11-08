@@ -1455,19 +1455,27 @@ There are 2 ways to delete flashcards – by index or by tags.
 
 1. Deleting a flashcard by index
 
-   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
+   1. Prerequisites: List all flashcards using the `list` command. There is at least one flashcard stored in QuickCache.
 
-   1. Test case: `delete 1`<br>
+   1. Test Case 1: `delete 1`<br>
       Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No flashcard is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test Case 2: `delete 0`<br>
+      Expected: No flashcard is deleted. Error details shown in the display.
 
-   1. Test case: `delete t/MCQ`<br>
+1. Deleting flashcards through tags
+
+   1. Test Case 1: `delete t/MCQ`<br>
       Expected: All flashcards with the tag `MCQ` is deleted
 
    1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete 1 t/MCQ` <br>
       Expected: Error message will appear with instructions on how to use the delete command.
+
+1. Clearing all flashcards
+
+   1. Test Case 1: `clear`
+      Expected: All flashcards deleted from QuickCache.
+
 
 ### F.7 Testing a flashcard
 
