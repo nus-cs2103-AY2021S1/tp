@@ -32,11 +32,11 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Added support for `instructions` field for `add recipe` and `edit recipe` (Pull request [\#173](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/173))
     * Justification: Allows users to customise the recipe added by including single or multiple instructions.
-    * Highlights: This enhancement affects existing commands, AddRecipeCommand and EditRecipeCommand. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+    * Highlights: This enhancement affects existing commands, `addR` and `editR`. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
   * Added support for optional field, `recipe image` for `add recipe` and `edit recipe` (Pull request [\#179](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/179))
     * Justification: Allows users to customise the recipe added by including a recipe image in different formats (local storage and online resource) for different conditions (i.e. presence of WIFI). Default image will be displayed instead if the image input is invalid or not specified.
-    * Highlights: This enhancement affects existing commands, AddRecipeCommand and EditRecipeCommand. It required an in-depth analysis of design alternatives and research on image path The implementation too was challenging as it required changes to existing command and have to handle different cases.
+    * Highlights: This enhancement affects existing commands, `addR` and `editR` It required an in-depth analysis of design alternatives and research on image path The implementation too was challenging as it required changes to existing command and have to handle different cases.
   
   * Update tests for existing features (Pull request [\#262](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/262))
   
