@@ -960,10 +960,15 @@ from your previous machine to your new machine.
 ### 5.5 Glossary
 
 * **API**: Application Programming Interface
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command-Line Interface
+* **FXML**: Extensible Markup Language-based user interface markup language utilised in JavaFX
 * **GUI**: Graphical User Interface
-* **json**: JavaScript Object Notation, a file format
+* **Json**: JavaScript Object Notation, a file format
+* **JavaFX**: The standard GUI library for Java
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **PlantUML**: An open-source tool allowing users to create UML diagrams from a plain text language
+* **YAGNI**: You Aren't Gonna Need It! Principle: Do not add code simply because ‘you might need it in the future’.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
