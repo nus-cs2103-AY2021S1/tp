@@ -573,6 +573,10 @@ The following sequence diagram shows how the stats operation works:
 
 ![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes stats command on a specified flashcard:
+
+![StatsActivityDiagram](images/StatsActivityDiagram.png)
+
 #### Design Considerations:
 
 * **Current choice:** Passes the `Statistics` object to the GUI in `Feedback` which is an attribute of `CommandResult`.
@@ -617,9 +621,13 @@ The following sequence diagram shows how the parser operation works:
 
 ![ClearStatsSequenceDiagram](images/ClearStatsParserSequenceDiagram.png)
 
-The following sequence diagram shows how the Clearstats operation works:
+The following sequence diagram shows how the clearstats operation works:
 
 ![ClearStatsSequenceDiagram](images/ClearStatsSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes clearstats command on a specified flashcard:
+
+![ClearStatsActivityDiagram](images/ClearStatsActivityDiagram.png)
 
 #### Design Considerations:
 
