@@ -114,9 +114,10 @@ title: Developer Guide
     - [7.2 Ingredient](#72-ingredient)
     - [7.3 Consumption](#73-consumption)
 8. [Appendix E: Effort](#8-effort)
+
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. **Overview** <a id="1-overview"></a>
+# 1. **Overview** <a id="1-overview"></a>
 Welcome to the Wishful Shrinking Developer Guide! In this section, you will be given an overview of what Wishful
  Shrinking is about and what you can get out of reading this document. <br><br>
  
@@ -144,9 +145,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. **Design** <a id="2-design"></a>
+# 2. **Design** <a id="2-design"></a>
 
-### 2.1 Architecture <a id="21-architecture"></a>
+## 2.1 Architecture <a id="21-architecture"></a>
 
 The ***Architecture Diagram*** given below explains the high-level design of the App.
 <img src="images/ArchitectureDiagram.png" width="450" />
@@ -180,7 +181,7 @@ The *Sequence Diagram* below shows how the **architecture components interact wi
 <br><br>
 The sections below give more details on each component.<br><br>
 
-### 2.2 UI Component <a id="22-ui-component"></a>
+## 2.2 UI Component <a id="22-ui-component"></a>
 
 The **UI Component** class diagram is given below.
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -198,7 +199,7 @@ The `UI` component:
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.<br><br>
 
-### 2.3 Logic Component <a id="23-logic-component"></a>
+## 2.3 Logic Component <a id="23-logic-component"></a>
                                                                                                                    
 The **Logic Component** class diagram is given below.                                                              
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -214,7 +215,7 @@ The `Logic` component defines its API in the `Logic.java` interface and exposes 
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions (e.g. displaying help to the user)<br><br>
 
-### 2.4 Model Component <a id="24-model-component"></a>
+## 2.4 Model Component <a id="24-model-component"></a>
 
 The **Model Component** class diagram is given below.
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -238,7 +239,7 @@ The `Model` component:
 * Does not depend on any of the other three components: UI, Logic, and Storage. <br><br>
 
 
-### 2.5 Storage Component <a id="25-storage-component"></a>
+## 2.5 Storage Component <a id="25-storage-component"></a>
 
 The **Storage Component** class diagram is given below.
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -249,13 +250,13 @@ The `Storage` component:
 * Can save `UserPref` objects in json format and read it back.
 * Can save the Wishful Shrinking data in json format and read it back. <br><br>
 
-### 2.6 Common Classes <a id="26-common-classes"></a>
+## 2.6 Common Classes <a id="26-common-classes"></a>
 
 Classes used by multiple components are in the `seedu.address.commons` package. <br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. **Implementation** <a id="3-implementation"></a>
+# 3. **Implementation** <a id="3-implementation"></a>
 
 This section describes some noteworthy details on the implementation of certain features.
 
@@ -273,11 +274,11 @@ All lifeline with the destroy marker (X) should end with the mark (X) but due to
 - Similar use case extensions are grouped to avoid repetitiveness  
 </div>                 
                                                    
-### 3.1 Add Features <a id="31-add-features"></a>
+## 3.1 Add Features <a id="31-add-features"></a>
 Add features - `Add Recipe` and `Add Ingredient` allows users to add recipes and ingredients into the recipe
  list or ingredient list respectively. <br><br>
 
-#### 3.1.1 Implementation <a id="311-implementation"></a>
+### 3.1.1 Implementation <a id="311-implementation"></a>
 Command and Parser makes use of Substitutability:
 * `AddRecipeCommand` and  `AddIngredientCommand` extends `Command`
 * `AddRecipeCommandParser` implements `Parser<AddRecipeCommand>`
@@ -293,7 +294,7 @@ or when an ingredient is added: <br>
 
 ![AddSequenceDiagram](images/implementation/sequenceDiagrams/AddSequence.png)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
 
 :bell: **Note** 
 
@@ -322,11 +323,11 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After the successfully adding the recipe or ingredient, a `CommandResult` object is instantiated and
  returned to `LogicManager`. <br><br>
 
-#### 3.1.2 Design Consideration - **Add Recipe**: <a id="312-design-consideration-add-recipe"></a>
-##### Aspect 1: Concern while adding a new feature <a id="3121-aspect-1"></a>
+### 3.1.2 Design Consideration - **Add Recipe**: <a id="312-design-consideration-add-recipe"></a>
+#### Aspect 1: Concern while adding a new feature <a id="3121-aspect-1"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-##### Aspect 2: Should we allow adding duplicate recipes <a id="3122-aspect-2"></a>
+#### Aspect 2: Should we allow adding duplicate recipes <a id="3122-aspect-2"></a>
 * **Alternative 1 (*current choice*):** Restricted to unique recipes.
   * Pros: Storage will contain unique recipes.
   * Cons: A uniqueness check must be done when the user adds recipe, which could make the app run slower.
@@ -335,11 +336,11 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Pros: Users will not be restricted to adding unique recipes.
   * Cons: Storage will be cluttered with duplicate recipes. <br><br>
 
-#### 3.1.3 Design Considerations - **Add Ingredient**: <a id="313-design-consideration-add-ingredient"></a>
-##### Aspect 1: Concern while adding a new feature <a id="3131-aspect-1"></a>
+### 3.1.3 Design Considerations - **Add Ingredient**: <a id="313-design-consideration-add-ingredient"></a>
+#### Aspect 1: Concern while adding a new feature <a id="3131-aspect-1"></a>
 * Workflow must be consistent with add recipe command. <br><br>
 
-##### Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity <a id="3132-aspect-2"></a>
+#### Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity <a id="3132-aspect-2"></a>
 * **Alternative 1 (*current choice*):** Add a quantity field in the Ingredient class as well as a
  IngredientParser class that parses the user input ingredients into an arraylist of Ingredient objects
   * Pros: Easy to implement.
@@ -349,7 +350,7 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Pros: Easy to implement as command format is consistent.
   * Cons: Quantity may be irrelevant and outdated if it is compulsory for all. <br><br>
 
-##### Aspect 3: Should we allow adding duplicate ingredients and stacking quantities <a id="3133-aspect-3"></a>
+#### Aspect 3: Should we allow adding duplicate ingredients and stacking quantities <a id="3133-aspect-3"></a>
 * **Alternative 1 (*current choice*):** Restricted to unique ingredients.
   * Pros: Storage will contain unique ingredients.
   * Cons: A uniqueness check must be done when the user adds ingredients, which could make the app run slower.
@@ -359,12 +360,12 @@ Given below is an example usage scenario and how the mechanism behaves:
    making it easier for them to change each ingredient's quantity.
   * Cons: Storage will be cluttered with duplicate ingredients, harder to implement. <br><br>
 
-### 3.2 Eat Recipe Feature <a id="32-eat-recipe-feature"></a>
+## 3.2 Eat Recipe Feature <a id="32-eat-recipe-feature"></a>
 
 Eat Recipe feature allows the user to record their daily consumption. This feature will work with list consumption 
 feature to output the total calories that the user has eaten.  <br><br>
 
-#### 3.2.1 Implementation <a id="321-implementation"></a>
+### 3.2.1 Implementation <a id="321-implementation"></a>
 Command and Parser makes use of Substitutability:
 * `EatRecipeCommand` extends `Command`
 * `EatRecipeCommandParser` implements `Parser<EatRecipeCommand>` <br><br>
@@ -383,8 +384,8 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 1. After successfully adding the recipe into the consumption list, a `CommandResult` object is instantiated and returned to `LogicManager`. <br><br>
 
-#### 3.2.2 Design Consideration: <a id="322-design-consideration"></a>
-##### Aspect: What fields to extract from the eaten recipes to save in the Consumption List <a id="3221-aspect"></a>
+### 3.2.2 Design Consideration: <a id="322-design-consideration"></a>
+#### Aspect: What fields to extract from the eaten recipes to save in the Consumption List <a id="3221-aspect"></a>
 * **Alternative 1 (*current choice*):** Saves all the information from each recipe.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
@@ -394,12 +395,12 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Cons: Not future proof as we need to restructure the whole command if want to show additional information from
    the recipe. <br><br>
 
-### 3.3 List Features <a id="33-list-features"></a>
+## 3.3 List Features <a id="33-list-features"></a>
 List features - `List Recipes`, `List Ingredients` and `List Consumption` allows the user to list out all the items
  that are saved in the recipe list, ingredient list or consumption list respectively.
 The List Consumption feature will also calculate and show the total calories consumed so far.  <br><br>
 
-#### 3.3.1 Implementation <a id="331-implementation"></a>
+### 3.3.1 Implementation <a id="331-implementation"></a>
 Command and Parser make use of Substitutability:
 * `ListRecipeCommand`, `ListIngredientCommand` and `ListConsumptionCommand` extends `Command` <br><br>
 
@@ -437,19 +438,19 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After successfully getting the consumption list, a `CommandResult` object is instantiated and returned to
  `LogicManager`. <br><br>
 
-#### 3.3.2 Design Consideration - **List Recipes**: <a id="332-design-consideration-list-recipe"></a>
-##### Aspect: Concern while adding a new feature <a id="3321-aspect"></a>
+### 3.3.2 Design Consideration - **List Recipes**: <a id="332-design-consideration-list-recipe"></a>
+#### Aspect: Concern while adding a new feature <a id="3321-aspect"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-#### 3.3.3 Design Consideration - **List Ingredients**: <a id="333-design-consideration-list-ingredient"></a>
-##### Aspect: Concern while adding a new feature <a id="3331-aspect"></a>
+### 3.3.3 Design Consideration - **List Ingredients**: <a id="333-design-consideration-list-ingredient"></a>
+#### Aspect: Concern while adding a new feature <a id="3331-aspect"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-#### 3.3.4 Design Consideration - **List Consumption**: <a id="334-design-consideration-list-consumption"></a>
-##### Aspect 1: Concern while adding a new feature <a id="3341-aspect-1"></a>
+### 3.3.4 Design Consideration - **List Consumption**: <a id="334-design-consideration-list-consumption"></a>
+#### Aspect 1: Concern while adding a new feature <a id="3341-aspect-1"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-##### Aspect 2: What information in the recipe is useful to display in the consumption list <a id="3342-aspect-2"></a>
+#### Aspect 2: What information in the recipe is useful to display in the consumption list <a id="3342-aspect-2"></a>
 * **Alternative 1 (*current choice*):** Listing each recipe with its image, name and calories.
   * Pros: Cleaner UI.
   * Cons: Other details that are not used become extra data in memory.
@@ -458,11 +459,11 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Pros: All the data saved is being used. 
   * Cons: Shows too much irrelevant information. <br><br>
 
-### 3.4 Delete Features <a id="34-delete-features"></a>
+## 3.4 Delete Features <a id="34-delete-features"></a>
 Delete features - `Delete Recipe`, `Delete Ingredient` and `Delete Consumption` allows the users to delete saved items 
 in the recipe list, ingredient list or consumption list respectively. <br><br>
 
-#### 3.4.1 Implementation <a id="341-implementation"></a>
+### 3.4.1 Implementation <a id="341-implementation"></a>
 Command and Parser makes use of Substitutability:
 * `DeleteRecipeCommand`, `DeleteIngredientCommand` and `DeleteConsumptionCommand` extends `Command`
 * `DeleteRecipeCommandParser` implements `Parser<DeleteRecipeCommand>`
@@ -504,11 +505,11 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 1. After the successfully deleting the item, a `CommandResult` object is instantiated and returned to `LogicManager`. <br><br>
 
-#### 3.4.2 Design Consideration - **Delete Recipe**: <a id="342-design-consideration-delete-recipe"></a>
-##### Aspect 1: Concern while adding a new feature <a id="3421-aspect-1"></a>
+### 3.4.2 Design Consideration - **Delete Recipe**: <a id="342-design-consideration-delete-recipe"></a>
+#### Aspect 1: Concern while adding a new feature <a id="3421-aspect-1"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-##### Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present) <a id="3422-aspect-2"></a>
+#### Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present) <a id="3422-aspect-2"></a>
 * **Alternative 1 (*current choice*):** Store a copy of the recipe in the consumption list so that it is not deleted if the recipe is deleted from the recipe list.
     * Pros: Recipes consumed will be accurate.                                       
     * Cons: Use additional memory space.  <br><br>
@@ -517,19 +518,19 @@ Given below is an example usage scenario and how the mechanism behaves:
     * Pros: No unknown recipe being saved in Wishful Shrinking.                                      
     * Cons: User could not accurately track their calories intake.  <br><br>
 
-#### 3.4.3 Design Consideration - **Delete Ingredient**: <a id="343-design-consideration-delete-ingredient"></a>
-##### Aspect: Concern while adding a new feature <a id="3431-aspect"></a>
+### 3.4.3 Design Consideration - **Delete Ingredient**: <a id="343-design-consideration-delete-ingredient"></a>
+#### Aspect: Concern while adding a new feature <a id="3431-aspect"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-#### 3.4.4 Design Consideration - **Delete Consumption**: <a id="344-design-consideration-delete-consumption"></a>
-##### Aspect: Concern while adding a new feature <a id="3441-aspect"></a>
+### 3.4.4 Design Consideration - **Delete Consumption**: <a id="344-design-consideration-delete-consumption"></a>
+#### Aspect: Concern while adding a new feature <a id="3441-aspect"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-### 3.5 Edit Features <a id="35-edit-features"></a>
+## 3.5 Edit Features <a id="35-edit-features"></a>
 Edit features - `Edit Recipe` and `Edit Ingredient` allows users to edit an existing recipe or ingredient in
  the recipe list or ingredient list respectively. <br><br>
 
-#### 3.5.1 Implementation <a id="351-implementation"></a>
+### 3.5.1 Implementation <a id="351-implementation"></a>
 Command and Parser make use of Substitutability:
 * `EditRecipeCommand` and `EditIngredientCommand` extends `Command`
 * `EditRecipeCommandParser` implements `Parser<EditRecipeCommand>`
@@ -548,7 +549,7 @@ The following sequence diagram shows how edit operation generally works when a r
 
 ![EditSequence](images/implementation/sequenceDiagrams/EditSequence.png)
 
-<div markdown="block" class="alert alert-info" style="overflow:auto">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
 :bell: **Note**                                                                                               
                                                                                                               
 These are condensed diagrams. Several terms in the sequence and activity diagram above have been substituted by a common
@@ -576,11 +577,11 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 1. After the successfully editing the recipe, a `CommandResult` object is instantiated and returned to `LogicManager`. <br><br>
 
-#### 3.5.2 Design Considerations - **Edit Recipe** <a id="352-design-consideration-edit-recipe"></a>
-##### Aspect 1: Concern while adding a new feature <a id="3521-aspect-1"></a>
+### 3.5.2 Design Considerations - **Edit Recipe** <a id="352-design-consideration-edit-recipe"></a>
+#### Aspect 1: Concern while adding a new feature <a id="3521-aspect-1"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-##### Aspect 2: How to provide users with more ease while editing a recipe <a id="3522-aspect-2"></a>
+#### Aspect 2: How to provide users with more ease while editing a recipe <a id="3522-aspect-2"></a>
 * **Alternative 1 (current choice):** User can directly edit on the existing recipe, after getting its command in the command box
   * Pros: Easy for users to edit a recipe.
   * Cons: Involves another command to set the command box to show the information of the recipe that the user wishes to edit. 
@@ -590,11 +591,11 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Pros: Easy to implement.
   * Cons: Not user friendly. <br><br>
 
-#### 3.5.3 Design Considerations - **Edit Ingredient** <a id="353-design-consideration-edit-ingredient"></a>
-##### Aspect 1: Concern while adding a new feature <a id="3531-aspect-1"></a>
+### 3.5.3 Design Considerations - **Edit Ingredient** <a id="353-design-consideration-edit-ingredient"></a>
+#### Aspect 1: Concern while adding a new feature <a id="3531-aspect-1"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-##### Aspect 2: How to provide users with more ease while editing an ingredient <a id="3532-aspect-2"></a>
+#### Aspect 2: How to provide users with more ease while editing an ingredient <a id="3532-aspect-2"></a>
 * **Alternative 1 (current choice):** User can directly edit the existing ingredient, after getting its command in the command box
   * Pros: Easy for users to edit an ingredient.
   * Cons: Involves another command to set the command box to show the information of the ingredient that the user wishes to edit.
@@ -604,11 +605,11 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Pros: Easy to implement.
   * Cons: Not user friendly. <br><br>
 
-### 3.6 Get Edit features <a id="36-get-edit-features"></a>
+## 3.6 Get Edit features <a id="36-get-edit-features"></a>
 Get Edit features - `Get Edit Recipe` and `Get Edit Ingredient` allows users to get the command of an existing
  recipe or ingredient to edit. <br><br>
 
-#### 3.6.1 Implementation <a id="361-implementation"></a>
+### 3.6.1 Implementation <a id="361-implementation"></a>
 Command and Parser make use of Substitutability:
 * `GetEditRecipeCommand` and `GetEditIngredientCommand` extends `Command`
 * `GetEditRecipeCommandParser` implements `Parser<GetEditRecipeCommand>`
@@ -622,7 +623,7 @@ The following sequence diagram shows how get edit operation works when `execute(
 
 ![GetEditSequence](images/implementation/sequenceDiagrams/GetEditSequence.png)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
 
 :bell: **Note**                                                                                               
                                                                                                               
@@ -649,18 +650,18 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After the successfully editing the recipe or ingredient, a `CommandResult` object is instantiated and
  returned to `LogicManager`. <br><br>
 
-#### 3.6.2 Design Considerations - **Get Edit Recipe** <a id="362-design-consideration-get-edit-recipe"></a>
-##### Aspect: Concern while adding a new feature <a id="3621-aspect"></a>
+### 3.6.2 Design Considerations - **Get Edit Recipe** <a id="362-design-consideration-get-edit-recipe"></a>
+#### Aspect: Concern while adding a new feature <a id="3621-aspect"></a>
 * Workflow must be consistent with other get edit commands. <br><br>
 
-#### 3.6.3 Design Considerations - **Get Edit Ingredient** <a id="363-design-consideration-get-edit-ingredient"></a>
-##### Aspect: Concern while adding a new feature <a id="3631-aspect"></a>
+### 3.6.3 Design Considerations - **Get Edit Ingredient** <a id="363-design-consideration-get-edit-ingredient"></a>
+#### Aspect: Concern while adding a new feature <a id="3631-aspect"></a>
 * Workflow must be consistent with other get edit commands. <br><br>
 
-### 3.7 Select Recipe Feature <a id="37-select-recipe-features"></a>
+## 3.7 Select Recipe Feature <a id="37-select-recipe-features"></a>
 Select Recipe feature allows users to select and view a recipe's information from the recipe list. <br><br>
 
-#### 3.7.1 Implementation <a id="371-implementation"></a>
+### 3.7.1 Implementation <a id="371-implementation"></a>
 Command and Parser make use of Substitutability:
 * `SelectRecipeCommand` extends `Command`
 * `SelectRecipeCommandParser` implements `Parser<SelectRecipeCommand>` <br><br>
@@ -680,11 +681,11 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After successfully getting the recipe from the recipe list, a `CommandResult` object is instantiated and returned to
  `LogicManager`. <br><br>
 
-#### 3.7.2 Design Considerations <a id="372-design-consideration"></a>
-##### Aspect: Concern while adding a new feature <a id="3721-aspect"></a>
+### 3.7.2 Design Considerations <a id="372-design-consideration"></a>
+#### Aspect: Concern while adding a new feature <a id="3721-aspect"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-### 3.8 Search Features <a id="38-search-features"></a>
+## 3.8 Search Features <a id="38-search-features"></a>
 Search features - `Search Recipe` and `Search Ingredient` allows users to search for recipes or ingrdients in the
  recipe list or ingredient list respectively. 
  
@@ -693,7 +694,7 @@ Search features - `Search Recipe` and `Search Ingredient` allows users to search
 </div>
  <br><br>
 
-#### 3.8.1 Implementation <a id="381-implementation"></a>
+### 3.8.1 Implementation <a id="381-implementation"></a>
 Command and Parser make use of Substitutability:
 * `SearchRecipeCommand` and `SearchIngredientCommand` extends `Command`
 * `SearchRecipeCommandParser` implements `Parser<SearchRecipeCommand>`
@@ -710,7 +711,7 @@ The following sequence diagram shows how the search operation generally works wh
 
 ![SearchSequence](images/implementation/sequenceDiagrams/SearchSequence.png)
 
-<div markdown="block" class="alert alert-info" style="overflow:auto">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
 
 :bell: **Note**                                                                                                   
                                                                                                                   
@@ -736,11 +737,11 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 1. After the successfully searching the recipes or ingredients, a `CommandResult` object is instantiated and returned to `LogicManager`. <br><br>
 
-#### 3.8.2 Design Considerations - **Search Recipe** <a id="382-design-consideration-search-recipe"></a>
-##### Aspect 1: Concern while adding a new feature <a id="3821-aspect-1"></a>
+### 3.8.2 Design Considerations - **Search Recipe** <a id="382-design-consideration-search-recipe"></a>
+#### Aspect 1: Concern while adding a new feature <a id="3821-aspect-1"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-##### Aspect 2: How do we successfully search and filter the recipes based on the user's search  <a id="3822-aspect-2"></a>
+#### Aspect 2: How do we successfully search and filter the recipes based on the user's search  <a id="3822-aspect-2"></a>
 * **Alternative 1 (*current choice*):** User can only search for recipes based on one field (name, tag or
  ingredient) at a time
   * Pros: Easy to implement.
@@ -750,13 +751,13 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Pros: Harder to implement.
   * Cons: Users can filter the recipes by two or three fields at once, making the search filter more helpful and efficient. <br><br>
 
-#### 3.8.3 Design Considerations - **Search Ingredient** <a id="383-design-consideration-search-ingredient"></a>
-##### Aspect: Concern while adding a new feature <a id="3831-aspect"></a>
+### 3.8.3 Design Considerations - **Search Ingredient** <a id="383-design-consideration-search-ingredient"></a>
+#### Aspect: Concern while adding a new feature <a id="3831-aspect"></a>
 * Workflow must be consistent with other searching commands e.g. search recipe. <br><br>
 
-### 3.9 Recommend feature <a id="39-recommend-feature"></a>
+## 3.9 Recommend feature <a id="39-recommend-feature"></a>
 
-#### 3.9.1 Implementation <a id="391-implementation"></a>
+### 3.9.1 Implementation <a id="391-implementation"></a>
 Recommend feature allows users to get the list of recipes whose ingredients matches the ingredients in their fridge.  <br><br>
 
 Substitutability is used in Command:
@@ -780,8 +781,8 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 1. After the successfully recommending recipes, a `CommandResult` object is instantiated and returned to `LogicManager`. <br><br>
 
-#### 3.9.2 Design Considerations <a id="392-design-consideration"></a>
-##### Aspect 1: How do we quickly and accurately compare ingredients between each recipe and the user's fridge <a id="3921-aspect-1"></a>
+### 3.9.2 Design Considerations <a id="392-design-consideration"></a>
+#### Aspect 1: How do we quickly and accurately compare ingredients between each recipe and the user's fridge <a id="3921-aspect-1"></a>
 * **Alternative 1 (*current choice*):** Compare the exact ingredients in each recipe to the user's ingredients in the fridge
   * Pros: Easy to implement
   * Cons: Ingredients might not match if the spellings are different, or if the ingredient have similar names e.g.
@@ -792,7 +793,7 @@ Given below is an example usage scenario and how the mechanism behaves at each s
     * Pros: Faster and accurate.
     * Cons: Hard to implement. <br><br>
  
-##### Aspect 2: Should we take an ingredient's quantity into account when recommending recipes  <a id="3922-aspect-2"></a>
+#### Aspect 2: Should we take an ingredient's quantity into account when recommending recipes  <a id="3922-aspect-2"></a>
 * **Alternative 1 (*current choice*):** Recommending recipes will not take ingredients' quantites into account
   * Pros: Easy to implement.
   * Cons: The quantity of ingredients in the user's fridge might be less than the quantities in the recipe.
@@ -802,11 +803,11 @@ Given below is an example usage scenario and how the mechanism behaves at each s
   * Pros: Harder to implement, user might not have input their ingredient's quantities.
   * Cons: Recommended recipes will be more accurate.  <br><br>
 
-### 3.10 Clear Features <a id="310-clear-features"></a>
+## 3.10 Clear Features <a id="310-clear-features"></a>
 Clear features - `Clear Recipes`, `Clear Ingredients` and `Clear Consumption` allows user to clear all the items
  that have been saved in the recipe list, ingredient list or consumption list respectively. <br><br> 
 
-#### 3.10.1 Implementation <a id="3101-implementation"></a>
+### 3.10.1 Implementation <a id="3101-implementation"></a>
 Command and Parser make use of Substitutability:
 * `ClearRecipeCommand`, `ClearIngredientCommand` and `ClearConsumptionCommand` extends `Command` <br><br>
 
@@ -818,7 +819,7 @@ The following sequence diagram shows how clear operation works when `execute(cle
 
 ![ClearSequenceDiagram](images/implementation/sequenceDiagrams/ClearSequence.png)
 
-<div markdown="block" class="alert alert-info" style="overflow:auto">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
 
 :bell: **Note**                                                                                                    
                                                                                                                    
@@ -841,22 +842,22 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After successfully clearing the specified list, a `CommandResult` object is instantiated and returned to
  `LogicManager`. <br><br>
 
-#### 3.10.2 Design Consideration - **Clear Recipes**: <a id="3102-design-consideration-clear-recipes"></a>
-##### Aspect: Concern while adding a feature <a id="31021-aspect"></a>
+### 3.10.2 Design Consideration - **Clear Recipes**: <a id="3102-design-consideration-clear-recipes"></a>
+#### Aspect: Concern while adding a feature <a id="31021-aspect"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-#### 3.10.3 Design Consideration - **Clear Ingredients**: <a id="3103-design-consideration-clear-ingredients"></a>
-##### Aspect: Concern while adding a new feature <a id="31031-aspect"></a>
+### 3.10.3 Design Consideration - **Clear Ingredients**: <a id="3103-design-consideration-clear-ingredients"></a>
+#### Aspect: Concern while adding a new feature <a id="31031-aspect"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-#### 3.10.4 Design Consideration - **Clear Consumption**: <a id="3104-design-consideration-clear-consumption"></a>
-##### Aspect: Concern while adding a new feature <a id="31041-aspect"></a>
+### 3.10.4 Design Consideration - **Clear Consumption**: <a id="3104-design-consideration-clear-consumption"></a>
+#### Aspect: Concern while adding a new feature <a id="31041-aspect"></a>
 * Workflow must be consistent with other commands. <br><br>
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. **Documentation, Logging, Testing, Configuration, Dev-ops** <a id="4-documentation-logging-testing-configuration-dev-ops"></a>
+# 4. **Documentation, Logging, Testing, Configuration, Dev-ops** <a id="4-documentation-logging-testing-configuration-dev-ops"></a>
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -866,9 +867,9 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. **Appendix A: *Requirements*** <a id="5-appendix-requirements"></a>
+# 5. **Appendix A: *Requirements*** <a id="5-appendix-requirements"></a>
 
-### 5.1 Product Scope <a id="51-product-scope"></a>
+## 5.1 Product Scope <a id="51-product-scope"></a>
 
 **Target user profile**:
 
@@ -882,7 +883,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 **Value proposition**: manage diet better and faster than mobile or GUI apps <br><br>
 
 
-### 5.2 User Stories <a id="52-user-stories"></a>
+## 5.2 User Stories <a id="52-user-stories"></a>
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -922,7 +923,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | *        | Expert user       | likes convenience                                             | be able to export the recipes in the app to another device             | refer to the data from another device and share it with others                        |
 | *        | Expert user       | is a developer                                                | customize the app to my own preferences                                | contribute and extend the app further                                                 |
 
-### 5.3 Use Cases <a id="53-use-cases"></a>
+## 5.3 Use Cases <a id="53-use-cases"></a>
 For all use cases below, the **System** is the `Wishful Shrinking` and the **Actor** is the `User`, unless specified otherwise.
 
 <div markdown="block" class="alert alert-info">
@@ -932,15 +933,15 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 These are common extensions that can apply to some commands. Let x be the step the extension begins at.
 
 **Invalid Index Extension** applicable to `delete`, `list`, `edit`, `select` commands 
-* xa. The given index is not a positive integer that is greater than 0 or not a valid index in the item list.
-    * xa1. Wishful Shrinking shows an error message.
-    * xa2. User enters new index.
-        Steps xa1-(x+1)a2 are repeated until the index entered is valid.
-      Use case resumes at step x+1.
+* *X*a. The given index is not a positive integer that is greater than 0 or not a valid index in the item list.
+    * *X*a1. Wishful Shrinking shows an error message.
+    * *X*a2. User enters new index.
+        Step *X*a1 to Step (*X*+1)a2 are repeated until the index entered is valid.
+      Use case resumes at step *X*+1.
 
 </div>
 
-#### 5.3.1 Recipe-Related Use Cases <a id="531-recipe-related-use-cases"></a>
+### 5.3.1 Recipe-Related Use Cases <a id="531-recipe-related-use-cases"></a>
 
 **Use case: Add a recipe**
 
@@ -993,7 +994,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
+      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
 </div>
 
  <br><br>
@@ -1017,7 +1018,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
+      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
 </div>
 
  <br><br>
@@ -1041,7 +1042,7 @@ These are common extensions that can apply to some commands. Let x be the step t
     Use case resumes from step 2.
    
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
+      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 1
 </div> 
 
  <br><br>
@@ -1086,7 +1087,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 **Extensions**
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-  :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
+  :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 1
 </div>
 <br><br>
      
@@ -1107,7 +1108,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
      Use case ends. <br><br>
      
-#### 5.3.2 Fridge-Related Use Cases <a id="532-fridges-ingredient-related-use-cases"></a>
+### 5.3.2 Fridge-Related Use Cases <a id="532-fridges-ingredient-related-use-cases"></a>
 **Use case: Add ingredients**
 
 **MSS**
@@ -1159,7 +1160,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-     :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
+     :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
 </div>
  <br><br>
 	  
@@ -1181,7 +1182,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
+      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
 </div>
  <br><br>
 	  
@@ -1204,7 +1205,7 @@ These are common extensions that can apply to some commands. Let x be the step t
     Use case resumes from step 2.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 1
+      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 1
 </div>
  <br><br>
   
@@ -1235,7 +1236,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
      Use case ends. <br><br>
 
-#### 5.3.3 Consumption-Related Use Cases <a id="533-consumption-related-use-cases"></a>
+### 5.3.3 Consumption-Related Use Cases <a id="533-consumption-related-use-cases"></a>
 **Use case: Eat Recipe**
 
 **MSS**
@@ -1254,7 +1255,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-  :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
+  :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
 </div>
  <br><br>
       
@@ -1292,7 +1293,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-  :bell: **Note** Invalid Index Extension is applicable where beginning step x = step 3
+  :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
 </div>
  <br><br>
 
@@ -1306,7 +1307,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 
      Use case ends. <br><br>
 
-#### 5.3.4 Other Use Cases <a id="534-other-use-cases"></a>
+### 5.3.4 Other Use Cases <a id="534-other-use-cases"></a>
 **Use case: View help**
 
 **MSS**
@@ -1326,7 +1327,7 @@ These are common extensions that can apply to some commands. Let x be the step t
      Use case ends. <br><br>     
      
 
-### 5.4 Non-Functional Requirements <a id="54-non-function-requirements"></a>
+## 5.4 Non-Functional Requirements <a id="54-non-function-requirements"></a>
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 1.  Should be able to hold up to 1000 recipes and ingredients without a noticeable sluggishness in performance for typical usage.
@@ -1337,7 +1338,7 @@ These are common extensions that can apply to some commands. Let x be the step t
 1.  The application uses local database.
 1.  The local database will be immediately updated after each updating command. <br><br>
 
-### 5.5 Glossary <a id="55-glossary"></a>
+## 5.5 Glossary <a id="55-glossary"></a>
 
 Term | Explanation
 --------|------------------
@@ -1350,7 +1351,7 @@ Term | Explanation
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. **Appendix B: *Instructions for Manual Testing*** <a id="6-appendix-instructions-for-manual-testing"></a>
+# 6. **Appendix B: *Instructions for Manual Testing*** <a id="6-appendix-instructions-for-manual-testing"></a>
 
 Given below are instructions to test the app manually.
 
@@ -1359,7 +1360,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 6.1 Launch and Shutdown <a id="61-launch-and-shutdown"></a>
+## 6.1 Launch and Shutdown <a id="61-launch-and-shutdown"></a>
 
 1. Initial launch
 
@@ -1375,7 +1376,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained. <br><br>
 
-### 6.2 Adding a recipe
+## 6.2 Adding a recipe
 
 1. Adding a recipe with all required fields into Wishful Shrinking’s recipe list.
 
@@ -1391,7 +1392,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as the non-optional field instruction is omitted. The message will show the correct input format of the `addR` command, and your command in the command box will turn red. <br><br>
        
 
-### 6.3 Adding an ingredient
+## 6.3 Adding an ingredient
 
 1. Adding an ingredient into Wishful Shrinking’s ingredient list.
 
@@ -1407,7 +1408,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as the quantity is invalid. The message will show the correct input format of the `addF` command, and your command in the command box will turn red. <br><br>
        
        
-### 6.4 Eating a recipe
+## 6.4 Eating a recipe
 
 1. Eating a recipe at a specific index in the recipe list and adding it into Wishful Shrinking’s consumption list.
 
@@ -1423,7 +1424,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous test case. <br><br>
 
 
-### 6.5 Listing Recipes
+## 6.5 Listing Recipes
 
 1. Listing out all the recipes in Wishful Shrinking’s recipe list.
 
@@ -1436,7 +1437,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `recipes` does not have any arguments. The message will show the correct input format of the `recipes` command, and your command in the command box will turn red. <br><br>
 
 
-### 6.6 Listing Ingredients
+## 6.6 Listing Ingredients
 
 1. Listing out all the ingredients in Wishful Shrinking’s ingredient list.
 
@@ -1449,7 +1450,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `fridge` does not have any arguments. The message will show the correct input format of the `fridge` command, and your command in the command box will turn red. <br><br>
 
 
-### 6.7 Listing Consumption
+## 6.7 Listing Consumption
 
 1. Listing out all the recipes eaten in Wishful Shrinking’s consumption list.
 
@@ -1462,7 +1463,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `calories` does not have any arguments. The message will show the correct input format of the `calories` command, and your command in the command box will turn red. <br><br>
        
 
-### 6.15 Selecting a recipe
+## 6.15 Selecting a recipe
 
 1. Selecting a recipe at a specific index in the recipe list to view its full information.
 
@@ -1478,7 +1479,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous test case. <br><br>
 
 
-### 6.16 Searching for Recipes
+## 6.16 Searching for Recipes
 
 1. Searching for recipes in Wishful Shrinking’s recipe list by their ingredients, name or tags.
 
@@ -1494,7 +1495,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `searchR` does not search by the calorie field. The message will show the correct input format of the `searchR` command, and your command in the command box will turn red. <br><br>
        
        
-### 6.17 Searching for Ingredients
+## 6.17 Searching for Ingredients
 
 1. Searching for ingredients in Wishful Shrinking’s ingredient list by names.
 
@@ -1507,7 +1508,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `searchF` takes in keywords to search for. The message will show the correct input format of the `searchF` command, and your command in the command box will turn red. <br><br>
       
       
-### 6.18 Recommend
+## 6.18 Recommend
 
 1. Listing out all the recipes in Wishful Shrinking’s recipe list whose ingredients are all in the fridge.
 
@@ -1521,7 +1522,7 @@ testers are expected to do more *exploratory* testing.
 
 
 
-### 6.2 Deleting a Recipe <a id="62-deleting-a-recipe"></a>
+## 6.2 Deleting a Recipe <a id="62-deleting-a-recipe"></a>
 
 1. Deleting a recipe while all recipes are being shown
 
@@ -1537,7 +1538,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous. <br><br>
 
 
-### 6.3 Saving Data <a id="63-saving-data"></a>
+## 6.3 Saving Data <a id="63-saving-data"></a>
 
 1. Dealing with missing/corrupted data files
 
@@ -1554,18 +1555,18 @@ testers are expected to do more *exploratory* testing.
       Expected: If WishfulShrinking.json file cannot be found, the app will create the data file populated with
        sample recipes. <br><br>
 
-## 7. **Appendix C: *Model Component*** <a id="7-model-component"></a>
+# 7. **Appendix C: *Model Component*** <a id="7-model-component"></a>
 
-### 7.1 Recipe <a id="71-recipe"></a>
+## 7.1 Recipe <a id="71-recipe"></a>
 ![Recipe in Model Component](images/ModelClass_Recipe.png)
 
-### 7.2 Ingredient <a id="72-ingredient"></a>
+## 7.2 Ingredient <a id="72-ingredient"></a>
 ![Ingredient in Model Component](images/ModelClass_Ingredient.png)
 
-### 7.3 Consumption <a id="73-consumption"></a>
+## 7.3 Consumption <a id="73-consumption"></a>
 ![Consumption in Model Component](images/ModelClass_Consumption.png)
 
-## 8. **Appendix E: *Effort*** <a id="8-effort"></a>
+# 8. **Appendix E: *Effort*** <a id="8-effort"></a>
 
 | Term             | Scope/ Measured by                                                                                                                                                                                                                                                        |
 |------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1580,4 +1581,4 @@ testers are expected to do more *exploratory* testing.
 | Data Fetching                          | No online data fetching                                                                                                                                                                          | Difficulty: 5/5 <br> Effort: 5/5 <br>  Allows users to download images from the internet and save locally if they are connected to the internet. Otherwise the app displays a default image and users can update it later. <br>  An  asynchronous HTTP request is sent whenever the user adds an image. The response will then be read as byte stream and written to a local image file. <br>                                                                                                                                                                                                                                  |
 | UI                                     | Simple UI                                                                                                                                                                                        | Difficulty: 5/5  <br> Effort: 5/5  <br>  Extensive additions of responsive and helpful UI components such as drawer, text area and cards. <br>  To make the UI responsive, a lot of event listeners and bindings were implemented to connect all components together. This way all components will be updated if one of them changes in size.  <br>  We have done extensive research on JFoenix library in order to use its components. <br>                                                                                                                                                                                   |
 
-Achievements: After having spent a lot of time doing research on the home cooking market as well as recipe structures, we created a software solution for busy office workers who want to eat home-cooked meals. We have successfully applied the real world interactions between home cooking related objects to our OOP solution. 
+**Achievements**: After having spent a lot of time doing research on the home cooking market as well as recipe structures, we created a software solution for busy office workers who want to eat home-cooked meals. We have successfully applied the real world interactions between home cooking related objects to our OOP solution. 
