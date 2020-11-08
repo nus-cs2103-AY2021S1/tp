@@ -279,6 +279,8 @@ The following activity diagram shows a successful delete document operation at a
    file
    - Cons: User will only know that the file doesn't exist when he opens it
 
+<div style="page-break-after: always;"></div>
+
 * **Alternative 2:** A reference object must be both valid and exists to be created.
      - Pros: A document is only created when we know there is a valid and existing `Reference`. Easier for testing.
      - Cons: The program cannot load if there is a missing file (due to external user deletion) which was previously
