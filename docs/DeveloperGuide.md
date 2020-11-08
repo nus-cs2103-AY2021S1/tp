@@ -336,28 +336,19 @@ The following activity diagram summarizes the scoping features when a user execu
 
 #### Implementation
 
-The implementation of the task feature involves adding new tasks created in the 'Project' class and storing them with a JsonAdaptedTask class which is contained by the JsonAdaptedProject class.
+The implementation of the task feature involves adding new tasks created in the `Project` class and storing them with a `JsonAdaptedTask` class which is contained by the `JsonAdaptedProject` class.
 
-Tasks can also be assigned to a person. The task is then added to the assignee's associated Participation object.
-
-The new task command has to be prefixed with 'addtask' and include **all** of the following fields:
+The new task command has to be prefixed with 'addtask' and include **some** of the following fields:
  - `tn/` prefix followed by the name of the Task
  - `tp/` prefix followed by the percentage of the task that has been finished
- - `done/` prefix followed by the status of the task, whether it is finished
- - `td/` prefix followed by the deadline of the task
-
-The task can also be edited with the command 'edittask' and include **any** of the following fields:
-  - `tn/` prefix followed by the name of the Task
-  - `tp/` prefix followed by the percentage of the task that has been finished
-  - `done/` prefix followed by the status of the task, whether it is finished
-  - `d/` prefix followed by a description of the task
-  - `td/` prefix followed by the deadline of the task
+ - `d/` prefix followed by a description of the task (Optional)
+ - `td/` prefix followed by the deadline of the task (Optional)
 
  *The system validates each field upon entry by the user, and failing the validation, will display to the user that the command failed, and requesting the user to try again.*
 
 Given below is an example usage scenario and how the add task and edit task mechanism behaves at each step.
 
-After entering the project scope of a chosen project, the user enters the command to add a new task such as "addtask n/Create Person class tp/25 done/false td/9-11-2020 00:00:00".
+After entering the project scope of a chosen project, the user enters the command to add a new task such as "addtask n/Create Person class tp/25 td/9-11-2020 00:00:00".
 The command text is passed into `LogicManager` (an implementation of Logic) which passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is `addtask`. A new instance of `AddTaskCommandParser` class is then created which proceeds to parse the various fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
 
 If the fields are all valid, a new `Task` object would be created and passed into the `AddTaskCommand` class. 
@@ -370,8 +361,138 @@ The diagram below summarises the events above with the help of a sequence diagra
 ![AddTaskSequenceDiagramImage](images/AddTaskSequenceDiagram.png)
 
    *Figure 18: Sequence Diagram of the 'addtask' command*
+   
+The diagram below gives a short overview on what happens when a user's input is received:
 
+![AddTaskActivityDiagramImage](images/AddTaskActivityDiagram.png)
 
+   *Figure 19: Activity Diagram of the 'addtask' command*
+   
+#### Design consideration:
+
+##### Aspect: Whether Task can be instantiated without filling up all attributes
+
+* **Alternative 1:** All fields must be filled up
+  * Pros: No ambiguity about a task, every information of task is standardised.
+  * Cons: The user may not know every aspect of a task such as the description, for example.
+
+* **Alternative 2 (current choice):** Only some fields have to be filled up, such as name and progress.
+  * Pros: Task can be created without knowing all information of a task.
+  * Cons: Missing description and deadline of a task is confusing the assignees as editing is not feasible after too many tasks are created.
+  
+##### Aspect: Whether all tasks in a project is special without duplication allowed
+* **Alternative 1:** All tasks are not special
+  * Pros: The name of a task might be general such as `Enhance GUI` to keep it short and simple rather than be specific such as `Changing the color of GUI, Resize the MainWindow, and ..` which is more likely to be task description
+  * Cons: The user may be confused by the list of tasks with same name without know its description
+
+* **Alternative 2 (current choice):** Task is not allowed to be created with the same name and deadline as the existing task
+  * Pros: No repeated names of tasks are shown in the list
+  * Cons: Tasks with same description might be making no sense
+
+### Edit Task feature
+
+#### Implementation
+
+The implementation of the task feature involves editing existing tasks created in the `Project` class and storing them with a `JsonAdaptedTask` class which is contained by the `JsonAdaptedProject` class.
+
+The edit task command has to be prefixed with 'edittask' and include **any** of the following fields:
+  - `tn/` prefix followed by the name of the Task
+  - `tp/` prefix followed by the percentage of the task that has been finished
+  - `d/` prefix followed by a description of the task
+  - `td/` prefix followed by the deadline of the task
+
+ *The system validates each field upon entry by the user, and failing the validation, will display to the user that the command failed, and requesting the user to try again.*
+
+Given below is an example usage scenario and how the edit task mechanism behaves at each step.
+
+After entering the project scope of a chosen project, the user enters the command to edit an existing task such as "edittask 1 td/30-11-2020 00:00:00".
+The command text is passed into `LogicManager` (an implementation of Logic) which passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is `edittask`. A new instance of `EditTaskCommandParser` class is then created which proceeds to parse the various fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
+
+If the fields are all valid, a existing `Task` object and a `EditTaskDescriptor` created would be passed into the `EditTaskCommand` class. 
+
+Within the `EditTaskCommand` class, an instance of `EditTaskCommand` is created, along with an instance of the task edited in the same class and this instance of `Command` is passed back to `LogicManager`.
+
+LogicManager then calls the method `execute` of the `EditTaskCommand` which update the edited task into the respective project's task list.
+
+The diagram below summarises the events above with the help of a sequence diagram:
+![EditTaskSequenceDiagramImage](images/EditTaskSequenceDiagram.png)
+
+   *Figure 19: Sequence Diagram of the 'edittask' command*
+   
+The diagram below gives a short overview on what happens when a user's input is received:
+
+![AddTaskActivityDiagramImage](images/EditTaskActivityDiagram.png)
+
+   *Figure 20: Activity Diagram of the 'edittask' command*
+
+### Delete Task feature
+
+#### Implementation
+
+The implementation of the task feature involves deleting existing tasks in the `Project` class and storing them with a `JsonAdaptedTask` class which is contained by the `JsonAdaptedProject` class.
+
+Tasks can also be assigned to a person. The task is then added to the assignee's associated Participation object.
+
+The task can be deleted with the command 'deletetask' and include **INDEX** of an existing task in the task list.
+
+ *The system validates each field upon entry by the user, and failing the validation, will display to the user that the command failed, and requesting the user to try again.*
+
+Given below is an example usage scenario and how the delete task mechanism behaves at each step.
+
+After entering the project scope of a chosen project, the user enters the command to delete an existing task such as "edittask 1".
+The command text is passed into `LogicManager` (an implementation of Logic) which passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is `edittask`. A new instance of `DeleteTaskCommandParser` class is then created which proceeds to parse the various fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
+
+If the fields are all valid, the `INDEX` of an existing `Task` object would be passed into the `DeleteTaskCommand` class. 
+
+Within the `DeleteTaskCommand` class, an instance of `DeleteTaskCommand` is created, along with an instance of the task to be deleted in the same class and this instance of `Command` is passed back to `LogicManager`.
+
+LogicManager then calls the method `execute` of the `DeleteTaskCommand` which delete the task from the respective project's task list.
+
+The diagram below summarises the events above with the help of a sequence diagram:
+![DeleteTaskSequenceDiagramImage](images/DeleteTaskSequenceDiagram.png)
+
+   *Figure 21: Sequence Diagram of the 'deletetask' command*
+   
+The diagram below gives a short overview on what happens when a user's input is received:
+
+![DeleteTaskActivityDiagramImage](images/DeleteTaskActivityDiagram.png)
+
+   *Figure 22: Activity Diagram of the 'deletetask' command*
+
+### Assign feature
+
+#### Implementation
+
+The implementation of the task feature involves assigning existing tasks in the `Project` class and storing them with a `JsonAdaptedTask` class which is contained by the `JsonAdaptedProject` class. 
+
+The task is then added to the assignee's associated Participation object.
+
+The assign task command has to be prefixed with 'assign' and include a **INDEX** and a **GitHubUserName**.
+
+ *The system validates each field upon entry by the user, and failing the validation, will display to the user that the command failed, and requesting the user to try again.*
+
+Given below is an example usage scenario and how the assign task mechanism behaves at each step.
+
+After entering the project scope of a chosen project, the user enters the command to assign an existing task such as "assign 1 LucasTai98".
+The command text is passed into `LogicManager` (an implementation of Logic) which passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is `assign`. A new instance of `AssignCommandParser` class is then created which proceeds to parse the various fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
+
+If the fields are all valid, a new `Task` object would be created and passed into the `AddTaskCommand` class. 
+
+Within the `AssignCommand` class, an instance of `AssignCommand` is created, along with an instance of the task to be assign and a github user name in the same class,  this instance of `Command` is passed back to `LogicManager`.
+
+LogicManager then calls the method `execute` of the `AssignCommand` which stores the task into the respective project's task list.
+
+The diagram below summarises the events above with the help of a sequence diagram:
+![AssignSequenceDiagramImage](images/AssignSequenceDiagram.png)
+
+   *Figure 23: Sequence Diagram of the 'assign' command*
+   
+The diagram below gives a short overview on what happens when a user's input is received:
+
+![AssignActivityDiagramImage](images/AssignActivityDiagram.png)
+
+   *Figure 24: Activity Diagram of the 'assign' command*
+ 
 ### Filtering feature
 
 #### Implementation
@@ -398,7 +519,7 @@ Step 1. The user uses `startproject` to open a project called "Taskmania". Suppo
 
 ![FilterStep1](images/FilterStep1.png)
 
-   *Figure 19: Object Diagram of the project 'Taskmania'*
+   *Figure 25: Object Diagram of the project 'Taskmania'*
 
 Step 2. The user executes `filter ta/T-Fang` command to find all tasks that assigned to a "Tian Fang" whose Github username is "T-Fang". the command is eventually passed to `TaskFilterCommandParser` and the parser will identify the type of the filtering condition using the prefix entered and create the corresponding task predicate. In this case, `ta/` indicates that a predicate that filter tasks by their assignees' Github usernames should be created. 
 
@@ -406,7 +527,7 @@ Step 3. The `LogicManager` executes the `TaskFilterCommand` returned by the pars
 
 ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
 
-   *Figure 20: Sequence Diagram of the 'filter' command*
+   *Figure 26: Sequence Diagram of the 'filter' command*
 
 Step 4. After seeing tasks that have been assign to "Tian Fang", the user wants to take a look at other tasks in "Taskmania". The user executes `alltasks` to see all the tasks in "Taskmania". the `MainCatalogueParser` parses the command and creates a `AllTasksCommand`. 
 
@@ -414,8 +535,7 @@ Step 5.  The `LogicManager` executes the`AllTasksCommand` returned. The `AllTask
 
 ![AllTasksSequenceDiagram](images/AllTasksSequenceDiagram.png)
 
-   *Figure 21: Sequence Diagram of the 'alltasks' command*
-
+   *Figure 27: Sequence Diagram of the 'alltasks' command*
 
 In the example above, the users can also filter the task list in different ways and the `taskFilter` predicate in "Taskmania" will be updated correspondingly:
 
@@ -429,7 +549,7 @@ The following activity diagram summarizes what happens when a user executes a ta
 
 ![TaskFilterActivityDiagram](images/TaskFilterActivityDiagram.png)
 
-   *Figure 22: Activity Diagram of the filter command*
+   *Figure 28: Activity Diagram of the filter command*
 
 #### Design consideration:
 
@@ -479,7 +599,7 @@ Step 1: The user enters `startproject 2` for example to start project 1 from the
 
 ![MainscreenUi](images/MainscreenUi.png)
 
-   *Figure 23: What the app looks like after 'start 2' command*
+   *Figure 29: What the app looks like after 'start 2' command*
 
 Step 2: The user enters a New Teammate command such as `addteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon
 @gmail.com ma/13 Cupertino Loop`. The command text is passed into `LogicManager` (an implementation of Logic) which
@@ -498,13 +618,13 @@ LogicManager then calls the method `execute` of the NewTeammateCommand which sto
 The diagram below summarises what is happening above with the help of a sequence diagram:
 ![AddTeammateSequenceDiagramImage](images/AddTeammateSequenceDiagram.png)
 
-   *Figure 24: Sequence Diagram of the 'addteammate' command*
+   *Figure 30: Sequence Diagram of the 'addteammate' command*
 
 The diagram below gives a short overview on what happens when a user's input is received:
 
 ![AddTeammateActivityDiagramImage](images/AddTeammateActivityDiagram.png)
 
-   *Figure 25: Activity Diagram of the 'addteammate' command*
+   *Figure 31: Activity Diagram of the 'addteammate' command*
 
 #### Design consideration:
 
