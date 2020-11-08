@@ -35,6 +35,9 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
         * [5.2.3 Deleting an ingredient : `deleteF`](#delete-ingredient)
         * [5.2.4 Editing an ingredient: `editF`](#edit-ingredient)
         * [5.2.5 Getting an ingredient to edit: `editF`](#get-edit-ingredient)
+        
+        <div style="page-break-after: always;"></div>
+        
         * [5.2.6 Searching for an Ingredient: `searchF`](#search-ingredient)
         * [5.2.7 Clearing all ingredients : `clearF`](#clear-ingredient)
         <br><br>
@@ -557,6 +560,8 @@ Contributed by: Tian Yong
 Format: `clearR`
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ## 5.2 Fridge-related Commands <a id="52-fridge-related-commands"></a>
 
 The Fridge-related commands include [`addF`](#add-ingredient), [`fridge`](#list-ingredient), [`deleteF`](#delete-ingredient), 
@@ -579,6 +584,9 @@ Contributed by: Caitlin, Olivia
 Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
+
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
@@ -598,6 +606,8 @@ Examples:
 * `addF i/tomato -1 kg`
 * `addF i/banana -3/4 cups, green peas -200g, salmon fish`
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.2.2 Listing all ingredients : `fridge` <a id="list-ingredient"></a>
 Contributed by: Olivia
