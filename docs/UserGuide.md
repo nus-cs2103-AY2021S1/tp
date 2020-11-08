@@ -156,7 +156,9 @@ The image below is a labeled diagram of each of Wishful Shrinking's components.<
    <br><br><br>
    
    Below is a brief explanation on each of the components:
-   
+
+<div style="page-break-after: always;"></div>
+
 Component | Explanation
 --------|------------------
 **Recipe/Fridge/Consumption tabs** | These are the tabs for recipe-related commands, fridge-related commands and consumption-related commands. The coloured tab shows which tab you are currently in. <br><br> By default, you will be in the **Recipes** tab whenever you start up Wishful Shrinking. When you execute a command, you will automatically be switched to the related tab. <br><br> In the image above, the user is currently in the Recipes tab. 
@@ -164,7 +166,7 @@ Component | Explanation
  **Command Result** | The Command Result box will show the result of your input into the Command Box.
  **Command Box** | Here is where you will type all your commands.
 
---------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 # 4. Quick start <a id="4-quick-start"></a>
@@ -196,7 +198,6 @@ Component | Explanation
 6. Refer to the [next section](#5-command) for details of each command.
 <br><br>
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## 5. Commands <a id="5-commands"></a>
@@ -244,6 +245,8 @@ Multiple ingredients are separated by `,`.
        names or both, they are not considered duplicate recipes.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 * `CALORIES` **must be a positive integer** e.g. 150, 200...
 * `IMAGE` can be in two formats:
     * Local path e.g. images/healthy1.jpg 
@@ -257,6 +260,8 @@ Multiple ingredients are separated by `,`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Everyone should have permission to access the image path or online image URL you provide.
 </div> 
+
+<div style="page-break-after: always;"></div>
 
 * Here are the respective actions required by users depending on different usage of `IMAGE`:
 
@@ -514,6 +519,8 @@ Contributed by: Tian Yong
 Format: `clearR`
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ## 5.2 Fridge-related Commands <a id="52-fridge-related-commands"></a>
 
 The Fridge-related commands include [`addF`](#add-ingredient), [`fridge`](#list-ingredient), [`deleteF`](#delete-ingredient), 
@@ -678,6 +685,8 @@ Contributed by: Tian Yong
 Format: `clearF`
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ## 5.3 Consumption-related Commands <a id="53-consumption-related-commands"></a>
 
 The Consumption-related commands include [`eatR`](#eat-consumption), [`calories`](#list-consumption), [`deleteC`](#delete-consumption), 
@@ -788,7 +797,6 @@ Wishful Shrinking's data is saved in the hard disk automatically after any comma
 
 [Back to table of contents](#toc)
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 # 6. FAQ <a id="6-faq"></a>
