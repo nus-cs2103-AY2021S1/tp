@@ -31,7 +31,6 @@ import seedu.address.logic.commands.modulelistcommands.EditZoomLinkCommand;
 import seedu.address.logic.commands.modulelistcommands.RedoCommand;
 import seedu.address.logic.commands.modulelistcommands.UnarchiveModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.UndoCommand;
-import seedu.address.logic.commands.modulelistcommands.ZoomLinkCommand.ZoomDescriptor;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
