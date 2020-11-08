@@ -8,7 +8,7 @@ import seedu.flashcard.logic.commands.FindCommand;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommand object.
  */
 public class FindCommandParser implements Parser<FindCommand> {
 

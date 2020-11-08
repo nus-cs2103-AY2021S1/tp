@@ -6,6 +6,9 @@ import seedu.flashcard.commons.core.index.Index;
 import seedu.flashcard.logic.commands.UnfavCommand;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new UnfavCommand object.
+ */
 public class UnfavCommandParser implements Parser<UnfavCommand> {
     @Override
     public UnfavCommand parse(String args) throws ParseException {
