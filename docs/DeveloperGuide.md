@@ -214,6 +214,9 @@ applies a `TagContainsCharPredicate` to the list of `FilteredTags` in `Model`. T
 searches the list of Tags stored in `AddressBook` and shows the tag's file path in the `ResultDisplay`.
 `CommandException` is thrown if tag is not present.
 
+This diagram shows a successful execution of `ShowCommand` to show the information of the specified tag.
+![ShowSuccessSequence](images/ShowCommandSequenceDiagram.png)
+
 ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` that extends from `java.util.function.predicate` to `ObservableList<Tag>` using `model.findFilteredTagList()`.
 
 ### Listing out all the tags: ListCommand
@@ -221,6 +224,9 @@ ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` t
 [ListCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ListCommand.java)
 lists the Tags stored in `AddressBook` and shows them as `TagCard` which is contained in `TagListPanel`.
 ListCommand shouldn't take in any argument. A `CommandException` will be thrown if the user's input contains an argument.
+
+This diagram shows a successful execution of `ListCommand`.
+![ListSuccessSequence](images/ListCommandSequenceDiagram.png)
 
 ListCommand updates the `ObservableList<Tag>` by using `java.util.function.predicate`.
 
@@ -230,6 +236,9 @@ ListCommand updates the `ObservableList<Tag>` by using `java.util.function.predi
 searches the list of Tags stored in `AddressBook` and deletes the specified labels. 
 The user can provide 1 or more labels to be deleted simultaneously. 
 If any of the input is invalid, this command will delete all the valid input from the specified `Tag` and show all the invalid input back to the user.
+
+This diagram shows a successful execution of `UnlabelCommand` using 1 label as the argument.
+![UnlabelSuccessSequence](images/UnlabelCommandSequenceDiagram.png)
 
 UnlabelCommand checks the existence of the specified `Tag` using `model.findFilteredTagList()`. 
 It takes the `Set<Label>` of the `Tag` and deletes all the labels that matches with user's input with the help of `java.util.stream`. 

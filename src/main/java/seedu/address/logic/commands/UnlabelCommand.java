@@ -70,21 +70,9 @@ public class UnlabelCommand extends Command {
 
         // Get the tag
         Tag tagToChange = tagList.get(0);
-        FileAddress fileAddress = tagToChange.getFileAddress();
 
-        // Deletes all the matching labels
-        Set<Label> editedLabel = tagToChange.getLabels().stream()
-                .filter(label -> {
-                    if (labels.stream().anyMatch(label::equals)) {
-                        labels.remove(label);
-                        return false;
-                    }
-
-                    return true;
-                })
-                .collect(Collectors.toSet());
-
-        Tag newTag = new Tag(tagName, fileAddress, editedLabel);
+        // Modified the tag's label
+        Tag newTag = modifyTagLabel(tagToChange);
 
         // Changes the old tag to the edited tag
         model.setTag(tagToChange, newTag);
@@ -103,6 +91,21 @@ public class UnlabelCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTag));
 
+    }
+
+    public Tag modifyTagLabel(Tag tagToChange) {
+        Set<Label> editedLabel = tagToChange.getLabels().stream()
+                .filter(label -> {
+                    if (labels.stream().anyMatch(label::equals)) {
+                        labels.remove(label);
+                        return false;
+                    }
+
+                    return true;
+                })
+                .collect(Collectors.toSet());
+
+        return new Tag(tagToChange.getTagName(), tagToChange.getFileAddress(), editedLabel);
     }
 
     @Override
