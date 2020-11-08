@@ -880,12 +880,12 @@ is generated for the specific `Prefix`.
 
 </div>
 
-Prefix       | FieldContainsKeywordsPredicate
--------------| --------------------------------------
-n/<keywords> | NameContainsKeywordsPredicate
-s/<keywords> | SourceContainsKeywordsPredicate
-l/<keywords> | LocationContainsKeywordsPredicate
-sn/<keywords>| SerialNumberContainsKeywordsPredicate
+Prefix             | FieldContainsKeywordsPredicate
+-------------------| --------------------------------------
+n/<keywords>       | NameContainsKeywordsPredicate
+s/<keywords>       | SourceContainsKeywordsPredicate
+l/<keywords>       | LocationContainsKeywordsPredicate
+sn/<keywords>      | SerialNumberContainsKeywordsPredicate
 
 `FindCommandParser` implements the following important operations:
 
@@ -920,7 +920,7 @@ of the `FindCommand` into a composed `Predicate<Stock>`.
 
 `Find` feature requires the `Stock` to fulfill only one
 `FieldContainsKeywordsPredicate` in the list for `Stock`
-to be displayed. The mechansim used to combine the predicates
+to be displayed. The mechanism used to combine the predicates
 into a composed Predicate<Stock> for `Find` is Java 8 Predicate method,
 Predicate.or().
 
@@ -1660,6 +1660,168 @@ The following activity diagram summarizes what happens when the sort feature is 
 * **Alternative 2:** only allow ascending order.
   * Pros: A shorter command format for user to type in. Only need to specify the field to be sorted.
   * Cons: Gives less flexibility to the user. Less variation in behaviors.
+
+### Stock View Feature
+
+#### Description
+The Stock View feature allows users to view the details of a single stock under the `Stock View` tab. 
+
+The command that users can use is:
+* `stockview` - Displays the details of the stock, specified by its serial number, under the `Stock View` tab.
+
+Command       | Field        | Prefix
+--------------| -------------| ---------------------------
+`stockview`   | Serial Number | sn/
+
+Details of the stock that are displayed are:
+* Name
+* Serial Number
+* Source
+* Quantity (Quantity left, Low quantity)
+* Location stored in warehouse
+* Notes
+
+#### Mechanism
+The backend mechanism for viewing a stock is facilitated by classes `StockViewCommand`, `StockViewCommandParser`.
+
+The frontend mechanism for viewing a stock is mainly facilitated by these classes:
+* the controller class `StockViewCard` for StockViewCard.fxml
+* the controller class `StockViewWindow` for StockViewWindow.fxml
+
+The choice of display is JavaFX `ListView` in `StockViewWindow` of the details of stock, where graphics are displayed
+using containers `StockViewCard` for each field of stock.
+
+#### StockViewCommandParser
+The `StockViewCommandParser` class implements the `Parser` interface. 
+`StockViewCommandParser` class is tasked with parsing the user inputs
+to generate a `StockViewCommand` with the `SerialNumber` of the stock.
+
+The `SerialNumber` is obtained from parsing the user input.
+Upon successful parsing, `StockViewCommand` object generated will then be passed on to the `LogicManager` to be executed.
+
+If the user inputs do not conform to the valid format specified for the `StockViewCommand`,
+an exception is thrown and no `StockViewCommand` object will be created.
+
+If the `Serial Number` of stock is not found in Warenager's data,
+an error message is shown to prompt the user that Warenager cannot find the `Serial Number` given.
+
+`StockViewCommandParser` implements the following important operations:
+
+* `StockViewCommandParser#parse()` -
+ Parses the user input to produce a `StockViewCommand`.
+
+#### StockViewCommand
+The `StockViewCommand` class extends the `Command` abstract class. The `StockViewCommand` class is tasked with creating a new `CommandResult` that represents the result of the execution of a `StockViewCommand`. 
+
+The construction of a `StockViewCommand` takes in a `Serial Number` of stock to be viewed.
+
+When a `StockViewCommand` is executed, a `CommandResult` is constructed with the status message,
+showing the successful viewing of the stock.
+Upon successful execution of `StockViewCommand`, Warenager will jump to the `Stock View` tab, where the details of
+the stock is displayed.
+This command does not change the `Model`.
+
+`StockViewCommand` implements the following important operations:
+
+* `StockViewCommand#execute()` -
+Executes the search and returns the result message of the search.
+
+#### StockViewWindow
+
+The `StockViewWindow` class is the controller class for StockViewWindow.fxml. The `StockViewWindow` is tasked with
+creating a new `StockViewCard` for each detail of the stock.
+
+If there is a stock currently being viewed, `MainWindow#updateStockView()` will generate a new `StockViewWindow`
+with the updated details of the stock.
+
+It is to note that the `StockViewWindow` also implements a `StockViewCell` class which extends `ListCell`, where the
+graphics of the details of the Stock are displayed using the `StockViewCard`. Within `StockViewCell`, the method `StockViewCell#updateItem()` is implemented, which sets the graphics displayed by `StockViewCell`.
+
+`StockViewWindow` implements the following important operations:
+
+* `StockViewWindow#getStockToView()` -
+ Returns the Stock to be viewed from the updated stock list.
+
+* `StockViewWindow#upperCaseFirstCharacter()` -
+ Upper cases the first character of the string representation of the detail of the Stock
+ to the format to be displayed in Stock View tab.
+
+#### StockViewCard
+An UI component that displays information of a field of a `Stock`.
+A field is either: Name, Serial Number, Source, Quantity, Location stored in warehouse,
+or Notes represented as String.
+
+The `StockViewCard` is used in the setting of graphics in `StockViewCell` in `StockViewWindow`.
+
+#### Example Usage Scenario
+Given below are some example usage scenarios and how the stock view feature mechanism behaves
+at each step.
+
+**Example 1: Viewing a stock with Serial Number "ntuc1"**
+
+Step 1. The user enters `stockview sn/ntuc1`.
+
+Step 2. `MainWindow#executeCommand()` is called with the user input.
+Within this method, `LogicManager#execute()` is called with the
+user input to obtain a `CommandResult`.
+
+Step 3. The command word `stockview` is extracted out in `StockBookParser`.
+The command word matches `COMMAND_WORD`: `stockview` in the `StockViewCommand` class.
+
+Step 4. The remaining user input is passed to the `StockViewCommandParser` where within the
+`StockViewCommandParser#parse()` method, the `ParserUtil#parseSerialNumber()`  method is called
+to return a valid `Serial Number` of the stock. 
+
+Step 5. The `StockViewCommandParser#parse()` method then returns a `StockViewCommand`,
+constructed with the `Serial Number` of stock. 
+
+Step 6. When `MainWindow#fillInnerParts()` is called by `UIManager#start()`, `MainWindow#executeCommand()` is called.
+The `LogicManager#execute()` then calls `StockViewCommand#execute()` method. 
+The result of the stock view command and the `Stock` to view, is stored in the
+returning `CommandResult`object and displayed with `ResultDisplay`. 
+
+Step 7. Within `MainWindow#executeCommand()`, `MainWindow#handleStockView()` is called. Within this method call, `MainWindow#updateStockView()` which creates a `StockViewWindow` and update the details of the Stock
+to be displayed in the **Stock View** tab.
+
+Step 8. Warenagerr jumps to the **Stock View** tab, where the details of the Stock are displayed.
+
+#### Sequence Diagram
+The following sequence diagram shows how the Logic of Stock View feature works for Example 1:
+![Stock View Feature Logic Sequence Diagram](images/StockViewFeatureLogicSequenceDiagram.png)
+
+The following sequence diagram shows how the UI of Stock View feature works for Example 1:
+![Stock View Feature UI Sequence Diagram](images/StockViewFeatureUISequenceDiagram.png)
+
+#### Activity Diagram
+The following activity diagram summarizes what happens when the Stock View feature is triggered:
+![Stock View Feature Activity Diagram](images/StockViewFeatureActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: Retention of information in the Stock View tab
+* **Alternative 1 (current implementation):** When user clicks away from the Stock View tab, information
+of the stock that was viewed is retained in the Stock View tab. <br>
+ * Pros: User is able to click back to the Stock View tab to re-view the information that was viewed before.
+User does not have to retype the command to view the same stock.
+ * Cons: User may want to clean away the Stock View tab after viewing. 
+
+* **Alternative 2:** When user clicks away from the Stock View tab, the information displayed in the
+Stock View tab is cleared.
+ * Pros: User is able to have a cleaned Stock View tab, after leaving the Stock View tab.
+ * Cons: User is unable to refer back to the information that was viewed previously and would have to retype the command.
+ 
+##### Aspect: Updating of information of stock of the stock viewed
+* **Alternative 1 (current implementation):** For any updates to the stock that is being viewed,
+the information displayed under 'Stock View' tab is automatically updated. <br>
+ * Pros: When user clicks back to the 'Stock View' tab after updating, adding notes or deleting notes
+from the stock that was viewed, the stock's information displayed in the Stock View tab is updated.
+ * Cons: User may want to view the information that was before the update.
+ 
+* **Alternative 2:** For any updates to the stock that is being viewed,
+the information displayed under 'Stock View' tab is not updated. <br>
+ * Pros: User is able to see the information before the update.
+ * Cons: If user wants to view the information after the update, user has to retype the command to view
+the same stock.
 
 ### Print Feature
 
