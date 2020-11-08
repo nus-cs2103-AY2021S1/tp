@@ -17,6 +17,20 @@
     -fx-opacity: 1;
 }
 
+.label-section-dark {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.label-title {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
 .label-header {
     -fx-font-size: 32pt;
     -fx-font-family: "Segoe UI Light";
@@ -29,14 +43,32 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
-.tab-pane {
-    -fx-padding: 0 0 0 1;
+.tab-pane > .tab-header-area > .headers-region > .tab:top {
+    -fx-border-color: #4d4d4d;
+    -fx-background-color: #515658;
 }
 
-.tab-pane .tab-header-area {
-    -fx-padding: 0 0 0 0;
-    -fx-min-height: 0;
-    -fx-max-height: 0;
+.tab-pane > .tab-header-area > .headers-region > .tab:selected:top {
+    -fx-border-color: white #4d4d4d #4d4d4d #4d4d4d;
+    -fx-border-width: 3 1 1 1;
+    -fx-background-color: #3c3e3f;
+}
+
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}
+
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}
+
+
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color:transparent;
 }
 
 .table-view {
@@ -77,6 +109,11 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: transparent transparent transparent #4d4d4d;
+}
+
+.split-pane:vertical .split-pane-divider {
     -fx-background-color: derive(#1d1d1d, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }

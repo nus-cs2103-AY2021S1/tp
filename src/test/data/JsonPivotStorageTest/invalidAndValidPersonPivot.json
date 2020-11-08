@@ -1,0 +1,11 @@
+{
+  "persons": [ {
+    "title": "Valid Person",
+    "description": "",
+    "suspects": []
+  }, {
+    "title": "Person With Invalid Description Field",
+    "description": "@!",
+    "suspects": []
+  } ]
+}

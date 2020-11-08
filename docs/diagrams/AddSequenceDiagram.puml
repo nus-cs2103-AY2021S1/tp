@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PivotParser" as PivotParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":AddCaseCommandParser" as AddCaseCommandParser LOGIC_COLOR
+participant ":AddCaseCommand" as AddCaseCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add case t:Stolen TV")
+activate LogicManager
+
+LogicManager -> PivotParser : parseCommand("add case t:Stolen TV")
+activate PivotParser
+
+create AddCommandParser
+PivotParser -> AddCommandParser
+activate AddCommandParser
+
+create AddCaseCommandParser
+AddCommandParser --> AddCaseCommandParser
+activate AddCaseCommandParser
+
+AddCaseCommandParser --> AddCommandParser
+deactivate AddCaseCommandParser
+
+AddCommandParser --> AddCaseCommandParser : parse("t:Stolen TV")
+activate AddCaseCommandParser
+
+create AddCaseCommand
+AddCaseCommandParser --> AddCaseCommand
+activate AddCaseCommand
+
+AddCaseCommand --> AddCaseCommandParser
+deactivate AddCaseCommand
+
+AddCaseCommandParser --> AddCommandParser
+deactivate AddCaseCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCaseCommandParser -[hidden]-> AddCommandParser
+destroy AddCaseCommandParser
+
+AddCommandParser --> PivotParser
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> PivotParser
+destroy AddCommandParser
+
+PivotParser --> LogicManager
+deactivate PivotParser
+
+LogicManager -> AddCaseCommand : execute()
+activate AddCaseCommand
+
+AddCaseCommand -> Model : addCase(case)
+activate Model
+
+Model --> AddCaseCommand
+deactivate Model
+
+create CommandResult
+AddCaseCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCaseCommand
+deactivate CommandResult
+
+AddCaseCommand --> LogicManager : result
+deactivate AddCaseCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

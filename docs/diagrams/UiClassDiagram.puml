@@ -10,11 +10,13 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
-Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
-Class StatusBarFooter
-Class CommandBox
+Class Index
+Class ArchiveStatus
+Class TabStatus
+
+package UIComponents <<Rectangle>> {
+}
+
 }
 
 package Model <<Rectangle>> {
@@ -25,36 +27,42 @@ package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
 }
 
+package State <<Rectangle>> {
+Class HiddenState #FFFFFF
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
-MainWindow --> HelpWindow
-MainWindow *-down-> CommandBox
-MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
-MainWindow *-down-> StatusBarFooter
 
-PersonListPanel -down-> PersonCard
+UiManager -right-> Logic
+MainWindow -right-> Logic
 
 MainWindow -left-|> UiPart
 
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow -down-|> UiPart
+TabStatus -[hidden]left- ArchiveStatus
+ArchiveStatus -[hidden]left- Index
+Index -[hidden]left- HelpWindow
+HelpWindow -[hidden]left- UIComponents
 
-PersonCard ..> Model
-UiManager -right-> Logic
-MainWindow -left-> Logic
+MainWindow --> HelpWindow
+HelpWindow --|> UiPart
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+MainWindow *-left-> UIComponents
+UIComponents --|> UiPart
 
 MainWindow -[hidden]-|> UiPart
+
+MainWindow --> Index
+MainWindow --> ArchiveStatus
+MainWindow --> TabStatus
+
+Index .down.> State
+ArchiveStatus .down.> State
+TabStatus .down.> State
+
+UIComponents .down.> Model
+
 @enduml
