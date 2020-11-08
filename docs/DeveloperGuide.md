@@ -123,7 +123,7 @@ This is the general flow of events when a command is executed:
 
 For example, this is a sequence diagram showing the deletion of a recipe:
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/seq_delete_recipe.png" style="width: 95%" /> <br />
+<img src="images/dg/DeleteSequenceDiagram.png" style="width: 95%" /> <br />
 Figure 5: <i>A sequence diagram showing the execution of <code>delete recipe #1</code> in the Logic component</i>
 </div>
 
@@ -480,7 +480,7 @@ It is mainly supported by `UsageList` and `Usage` in the Model component. `Usage
 Figure 999: <i>Usage component in Model</i>
 </div>
 
-The `Model` interface exposes various operations to support the addition, removal of usages and getting statistics from `UsageList`
+The `Model` interface exposes various operations to support the addition and removal of usages, and getting statistics from `UsageList`.
 
 During the execution of `MakeRecipeCommand`, a `RecipeUsage` and `IngredientUsage`s are created and added to `recipeUsageList` and `ingredientUsageList` through operations in `Model` interface.
 Since `MakeRecipeCommand` is undoable, these usages are removed from the lists upon undoing the command.
@@ -492,7 +492,7 @@ The process is demonstrated below by the code snippet of `MakeRecipeCommand#undo
         model.removeRecipeUsage(this.recipe);
 ```
 
-After changes to `Model` were made, the `Storage` component saves the usage lists in json format.
+After changes to `Model` were made, the `Storage` component saves the `UsageList`s in json format.
 Finally, the `StatsBox` is updated based on the `CommandResult` returned after the execution of each command.
 
 #### 4.5.2&ensp;Design considerations
@@ -505,62 +505,67 @@ Aspect 1: How the usages are tracked and saved.
 
 * Consideration 1:
 Store the history of commands executed. The statistics of recipe and ingredient usages can be computed based on the commands executed.
-For example, currently there are 10 cabbages and the `make recipe salad` command was executed 3 times yesterday. Assuming salad requires 2 cabbages to make, 6 cabbages were used yesterday.
+For example, currently there are 10 cabbages and the `make recipe salad` command was executed 3 times yesterday. Assuming salad required 2 cabbages to make, 6 cabbages were used yesterday.
     * Pros:
         * Requires less memory usage.
-        * Allows more statistics to be computed as all changes to the Model have to be done through the execution of a command.
+        * Allows more statistics to be computed as all changes to `Model` have to be done through the execution of a command.
     * Cons:
-        * Getting statistics for ingredient usage can be tricky as recipes can be deleted and edited. In the example above, exact ingredient consumptions have to be stored in addition to the `make recipe salad` text command.
-        * Violates Single Responsibility Principle and Separation of Concerns as the history of command is being used for statistics purpose in addition to `undo` which uses a non-persistent history of command.
+        * Getting statistics for ingredient usage can be tricky as recipes can be deleted and edited. In the example above, to compute the number of cabbages used, exact ingredient consumptions have to be stored in addition to the `make recipe salad` text command.
+        * Violates Single Responsibility Principle and Separation of Concerns as the history of command is being used for statistics purposes in addition to the `undo` feature which uses a non-persistent history of command.
 
-* Consideration 2:
-Store the relevant information such as name, and the date and time of which the recipe was made or ingredient was used in `Usage` which is then contained in `UsageList`.
-    * Pros:
-        * Easier to implement. Allows quick access to certain data such as latest recipe usages.
-    * Cons:
-        * Modifications to `Usage` and its associated classes may be required to support more statistics.
-
-Aspect 2: Responsibility of `UsageList`
-* Consideration 1:
-Make `getRecentlyUsed` and `getUsageBetween` return Pair of Strings
+* **Consideration 2(chosen)**:
+Store the relevant information such as name, and the date and time of which the recipe was made or ingredient was used in `Usage` which is then stored in `UsageList`.
     * Pros:
         * Easier to implement
+        * Allows quick access to certain data such as latest recipe usages.
     * Cons:
-        * Violates the Single Responsibility Principle
-* Consideration 2:
-Make `getRecentlyUsed` and `getUsageBetween` return intermediate values
-    * Pros:
-        * `UsageList` only needs to handle adding, removing and returning of `Usage`
-    * Cons:
-        * Additional processing is required in `ModelManager`
+        * Modifications to `Usage` and its associated classes may be required to support computation of more kinds of statistics.
 
-Aspect 3: GUI of statistics box
-* Consideration 1:
+Aspect 2: Responsibility of `UsageList`.
+* **Consideration 1(chosen)**:
+Make `getRecentlyUsed` and `getUsageBetween` return a Pair of Strings.
+    * Pros:
+        * Easier to implement.
+    * Cons:
+        * Violates the Single Responsibility Principle.
+* Consideration 2:
+Make `getRecentlyUsed` and `getUsageBetween` return intermediate values.
+    * Pros:
+        * `UsageList` only needs to handle adding, removing and returning of `Usage`.
+    * Cons:
+        * Additional processing is required in `ModelManager`.
+
+Aspect 3: GUI of statistics box.
+* **Consideration 1(chosen)**:
 Update the statistics box after every execution of command.
     * Pros:
-        * User will be shown recently made recipes list after they executed non-statistics commands (other than `stats recipe recent`). This makes the app feel more responsive as both `StatsBox` and `CommandOutput` panels are updated.
+        * The user will be shown recently made recipes list after they executed non-statistics commands (other than `stats recipe recent`). This makes the app feel more responsive as both `StatsBox` and `CommandOutput` panels are updated.
     * Cons:
-        * Additional computation required to refresh `StatsBox`. The user might want to have previous stats command results stay in the statistics box for future reference.
-* Consideration 2: Notify and update statistics box with `CommandResult` in `MainWindow` only after the execution of statistics commands
+        * Additional computation required to refresh `StatsBox`.
+        * The user might want to have previous stats command results stay in the statistics box for future reference.
+* Consideration 2: Notify and update statistics box with `CommandResult` in `MainWindow` only after the execution of statistics commands.
     * Pros:
         * The statistics results remain in the statistics box even after the execution of other commands so the user does not have to execute the statistics command again to view the statistics.
     * Cons:
-        * User will have to execute `stats recipe recent` to obtain the default view on statistics box again.
+        * The user will have to execute `stats recipe recent` to obtain the default view on statistics box again.
 
 <a name="stats-related-commands"></a>
 #### 4.5.3&ensp;Related commands
 
-`StatsCommandParser` parses the Statistics commands and returns the corresponding Command object based on user's input.
-For more information on the Parser, view
-7 statistics commands are `StatsRecipeTopCommand`, `StatsRecipeMadeCommand`, `StatsIngredientUsedCommand`, `StatsRecipeRecentCommand` and `StatsIngredientRecentCommand` which update the list in `StatsBox` as well as `StatsRecipeClearCommand` and `StatsIngredientClearCommand` which remove all `Usage` in their respective `UsageList`.
-All the statistics commands function in a similar way so we will go through just one of command in details below.
+`StatsCommandParser` parses the Statistics commands and returns the corresponding `Command object` based on user's input.
+For more information on the Parser, view [4.1 Command Parser](#41command-parser). 
+
+
+The7 supported statistics commands are `StatsRecipeTopCommand`, `StatsRecipeMadeCommand`, `StatsIngredientUsedCommand`, `StatsRecipeRecentCommand` and `StatsIngredientRecentCommand` which update the `recipeList` in `StatsBox`, as well as `StatsRecipeClearCommand` and `StatsIngredientClearCommand` which remove all `Usage` in their respective `UsageList`.
+All the statistics commands function in a similar way so we will go through just one of commands in details below.
 
 <a name="view-top-recipes"></a>
-##### View top recipes command
-The view top recipes command allows the user to see the recipes that were made the most number of times based on the `Usage`s saved in `UsageList`.
-It is executed with `StatsRecipeTopCommand` by parsing `stats recipe top` as the user input.
+<h4>View top recipes command</h4>
 
-The sequence diagram below shows the sequence of interactions between `Model` where the UsageList is contained in and the `Logic` components after the user executes StatsRecipeTopCommand with the user input `stats recipe top`.
+The view top recipes command allows the user to see the recipes that were made the most number of times based on the `Usage` saved in `UsageList`.
+It is executed with an object of `StatsRecipeTopCommand` which is created after parsing `stats recipe top` as the user command.
+
+The sequence diagram below shows the sequence of interactions between the `Model` and the `Logic` components after the user command `stats recipe top` is executed.
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/StatsRecipeTopSequenceDiagram.png"> <br />
 Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
@@ -569,11 +574,10 @@ Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </
 1. `Logic` uses `CommandParser` to parse the user input.
 2. `CommandParser` calls on the static method `parseStatsCommand` of `StatsCommandParser` class.
 3. `StatsCommandParser` then calls on methods `getCommandTarget` and `parseRecipeStatsCommand` to determine which command object should be instantiated.
-4. An instance of `StatsRecipeTopCommand` is instantiated. by `StatsCommandParser`.
-5. This instance is returned to the `Logic`.
-6. `Logic` calls the `execute` method of `StatsRecipeTopCommand`
-7. `StatsRecipeTopCommand` calls `getMostMadeRecipeList` of `Model` and a list of String pairs is returned. This list is encapsulated in `CommandResult` which is then returned to `Logic`.
-
+4. A `StatsRecipeTopCommand` object is instantiated by `StatsCommandParser`.
+5. This object is passed back to and executed by the `LogicManager`.
+6. `StatsRecipeTopCommand` calls `getMostMadeRecipeList` of `Model` and the result of which is encapsulated in `CommandResult`.
+7. This `CommandResult` object is passed back to `LogicManager`. Additionally, the object then updates `StatsBox` to display a list of top recipes and a confirmation message as shown below. (this interaction is not shown in this sequence diagram).
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/RecipeTopCmdStatsBox.png" style="width: 40%"> <br />
@@ -1716,38 +1720,129 @@ having expiry dates in December 2020.
 
 ### B.4&ensp;Viewing statistics
 
-#### B.4.1&ensp;Viewing recipes made in a given time frame
-1. xx
-   1. xx
+#### B.4.1&ensp;Viewing recipes made in a given time frame 
+1. View recipes with 3 recipes A, B and C (made in this order) that were made today and at least 1 minute apart from each other.
+    1. Prerequisites: Cleared previous usage records and made recipes A, B and C today and at least 1 minute apart from each other. For example Recipe A made 5 minutes ago, Recipe B made 4 minutes ago and Recipe C made 3 minutes ago.
+    1. Test case: `stats recipe made`
+        Expected: The stats box shows "Showing recipes made <today's date in yyyy-MM-dd>" and a list of recipes A, B and C.
+    1. Test case: `stats recipe made /before <date of Recipe B in yyyy-MM-dd HH:mm>`
+        Expected: The stats box shows "Showing recipes made before <date of Recipe B in yyyy-MM-dd HH:mm>" and a list of recipes with only Recipe A in it.
+    1. Test case: `stats recipe made /after <date of Recipe B in yyyy-MM-dd HH:mm>`
+        Expected: The stats box shows "Showing recipes made before <date of Recipe B in yyyy-MM-dd HH:mm>" and a list of recipes with only Recipe B and C in it.
+    1. Test case: `stats recipe made /after <date of Recipe A in yyyy-MM-dd HH:mm> /before <date of Recipe B in yyyy-MM-dd HH:mm>`. 
+        Expected: The stats box shows "Showing recipes made between <date of Recipe A in yyyy-MM-dd HH:mm> and <date of Recipe B in yyyy-MM-dd HH:mm>" and a list of recipes with only Recipe A in it.
+    1. Test case: `stats recipe made /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2. 
+        Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
+   
+1. View recipes made with no past recipe usage records
+    1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
+    1. Test case: `stats recipe made`
+        Expected: The stats box shows "No recipes were made on <today's date in yyyy-MM-dd>".
+    1. Test case: `stats recipe made /before <date in yyyy-MM-dd>`
+        Expected: The stats box shows "No recipes were made before <date in yyyy-MM-dd> 00:00".
+    1. Test case: `stats recipe made /after <date in yyyy-MM-dd>`
+        Expected: The stats box shows "No recipes were made before <date in yyyy-MM-dd> 00:00".
+    1. Test case: `stats recipe made /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is earlier than date2. 
+        Expected: The stats box shows "No recipes were made between <date1 in yyyy-MM-dd> 00:00 and <date2 in yyyy-MM-dd> 00:00".
+    1. Test case: `stats recipe made /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2. 
+        Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box shows "No recipes were made recently".
 
 #### B.4.2&ensp;Viewing recipes made most recently
-1. xx
-   1. xx
-
+1. View recipes with 3 recipes A, B and C were made in this order.
+    1. Prerequisites: Cleared previous usage records and made recipes A, B and C in this order.
+    1. Test case: `stats recipe recent`
+        Expected: The stats box shows "Here are your recently made recipes" and a list of recipes A, B and C.
+    1. Test case: execute other non-stats commands such as `list recipes`
+       Expected: The stats box shows "Showing recently made recipes" and a list of recipes A, B and C.
+       
+1. View recipes made recently with no past recipe usage records
+    1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
+    1. Test case: `stats recipe made`
+        Expected: The stats box shows "No recipes were made" with no lists shown below.
+    1. Test case: execute other non-stats commands such as `list recipes`
+        Expected: The stats box shows "No recipes were made" with no lists shown below.
+   
 #### B.4.3&ensp;Viewing recipes made most frequently
-1. xx
-   1. xx
+1. View most made recipes with records of recipe made.
+    1. Prerequisites: Cleared previous usage records and made recipe A 3 times and recipe B once.
+    1. Test case: `stats recipe top`
+        Expected: The stats box shows "Here are your top recipes" and a list of recipes with first item as recipe A and the text below is "No. of times made: 3", and second item as recipe B and the text below is "No. of times made: 1".
+       
+1. View most made recipes with past recipe usage records
+    1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
+    1. Test case: `stats recipe top`
+        Expected: The stats box shows "No recipes were made recently"
 
-#### B.4.4&ensp;Clearing recipe statistics
-1. xx
-   1. xx
+#### B.4.4&ensp;Clearing recipe usages
+1. Clear records of recipe usages after making Recipes A, B and C.
+    1. Prerequisites: Made recipes A, B and C.
+    1. Test case: `stats recipe clear`
+        Expected: The command output box shows "Cleared recipe cooking history" and the stats box shows "No recipes were made recently".
+    1. Test case: `stats recipe clear` followed by `stats recipe recent`
+        Expected: The stats box shows "No recipes were made recently" with no lists shown below.
+    1. Test case: `stats recipe clear` followed by any other non-stats command such as `list recipes`
+        Expected: The stats box shows "No recipes were made recently" with no lists shown below.
+        
+1. Clear records of recipe usages when there are no records.
+    1. Prerequisites: No records of recipe usages.
+    1. Test case: `stats recipe clear`
+        Expected: The command output box shows "Cleared recipe cooking history" and the stats box shows "No recipes were made recently".
+   
+#### B.4.5&ensp;Viewing ingredients used in a given time frame 
+1. View ingredients with 3 ingredients A, B and C (used in this order) that were used today and at least 1 minute apart from each other. (To use an ingredient, add a recipe that requires the ingredient then make the recipe)
+    1. Prerequisites: Cleared previous usage records and used ingredients A, B and C today and at least 1 minute apart from each other. For example Ingredient A used 5 minutes ago, Ingredient B used 4 minutes ago and Ingredient C used 3 minutes ago.
+    1. Test case: `stats ingredient used`
+        Expected: The stats box shows "Showing ingredients used <today's date in yyyy-MM-dd>" and a list of ingredients A, B and C.
+    1. Test case: `stats ingredient used /before <date of Ingredient B in yyyy-MM-dd HH:mm>`
+        Expected: The stats box shows "Showing ingredients used before <date of Ingredient B in yyyy-MM-dd HH:mm>" and a list of ingredients with only Ingredient A in it.
+    1. Test case: `stats ingredient used /after <date of Ingredient B in yyyy-MM-dd HH:mm>`
+        Expected: The stats box shows "Showing ingredients used before <date of Ingredient B in yyyy-MM-dd HH:mm>" and a list of ingredients with only Ingredient B and C in it.
+    1. Test case: `stats ingredient used /after <date of Ingredient A in yyyy-MM-dd HH:mm> /before <date of Ingredient B in yyyy-MM-dd HH:mm>`. 
+        Expected: The stats box shows "Showing ingredients used between <date of Ingredient A in yyyy-MM-dd HH:mm> and <date of Ingredient B in yyyy-MM-dd HH:mm>" and a list of ingredients with only Ingredient A in it.
+    1. Test case: `stats ingredient used /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2. 
+        Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
 
-#### B.4.5&ensp;Viewing ingredients used in a given time frame
-1. xx
-   1. xx
-
+1. View ingredients used with no past ingredient usage records
+    1. Prerequisites: No ingredient usages saved. This can be done by executing `stats ingredient clear` which should clear all ingredient usages.
+    1. Test case: `stats ingredient used`
+        Expected: The stats box shows "No ingredients were used on <today's date in yyyy-MM-dd>".
+    1. Test case: `stats ingredient used /before <date in yyyy-MM-dd>`
+        Expected: The stats box shows "No ingredients were used before <date in yyyy-MM-dd> 00:00".
+    1. Test case: `stats ingredient used /after <date in yyyy-MM-dd>`
+        Expected: The stats box shows "No ingredients were used before <date in yyyy-MM-dd> 00:00".
+    1. Test case: `stats ingredient used /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is earlier than date2. 
+        Expected: The stats box shows "No ingredients were used between <date1 in yyyy-MM-dd> 00:00 and <date2 in yyyy-MM-dd> 00:00".
+    1. Test case: `stats ingredient used /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2. 
+        Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
+   
 #### B.4.6&ensp;Viewing ingredients used most recently
-1. xx
-   1. xx
-
-#### B.4.7&ensp;Clearing ingredient statistics
-1. xx
-   1. xx
-
+1. View ingredients with 3 ingredients A, B and C were made in this order.
+    1. Prerequisites: Cleared previous usage records and made ingredients A, B and C in this order.
+    1. Test case: `stats ingredient recent`
+        Expected: The stats box shows "Here are your recently made ingredients" and a list of ingredients A, B and C.
+       
+1. View ingredients made recently with no past ingredient usage records
+    1. Prerequisites: No ingredient usages saved. This can be done by executing `stats ingredient clear` which should clear all ingredient usages.
+    1. Test case: `stats ingredient made`
+        Expected: The stats box shows "No ingredients were made" with no lists shown below.
+   
+#### B.4.7&ensp;Clearing ingredient usages
+1. Clear records of ingredient usages after making Ingredients A, B and C.
+    1. Prerequisites: Made ingredients A, B and C.
+    1. Test case: `stats ingredient clear`
+        Expected: The command output box shows "Cleared ingredient usage history" and the stats box shows "No ingredients were used recently".
+    1. Test case: `stats ingredient clear` followed by `stats ingredient recent`
+        Expected: The stats box shows "No ingredients were used recently" with no lists shown below.
+        
+1. Clear records of ingredient usages when there are no records.
+    1. Prerequisites: No records of ingredient usages.
+    1. Test case: `stats ingredient clear`
+        Expected: The command output box shows "Cleared ingredient usage history". The stats box returns to default panel showing recently made recipes.
+          
 
 ## C&ensp;Effort
 
-With 10 being the baseline of AB3, we estimate the effort required to deliver the current version of ChopChop at **20**.
+With 10 being the baseline of AB3, we estimate the effort required to deliver the current version of ChopChop at **18**.
 
 
 ### C.1&ensp;Major Implementation Efforts
@@ -1766,7 +1861,7 @@ In addition, a comprehensive set of tests were written for each command parser t
 
 
 #### C.1.3&ensp;Statistics and Recommendations
-The statistics feature was developed in a depth-first approach. It spans across all major components in ChopChop.
+The development of the statistics feature follows a depth-first approach because it requires additional classes and operations across all major components in ChopChop.
 
 #### C.1.4&ensp;Automated GUI Testing
 To ensure that our ChopChop GUI conform to its expected behaviour, we implemented Unit tests that test the individual components components comprehensively.
