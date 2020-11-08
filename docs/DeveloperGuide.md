@@ -1912,6 +1912,61 @@ testers are expected to do more *exploratory* testing.
 
 ### Module List
 
+#### Deleting a module
+
+1. Deleting a module while all modules are being shown
+
+   1. Prerequisites: List all un-archived modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `deletemodule 1`<br>
+      Expected: First module is deleted from the list. Details of the deleted module shown in the status message.
+
+   1. Test case: `deletemodule 0`<br>
+      Expected: No module is deleted. Error details shown in the status message.
+
+   1. Other incorrect delete module commands to try: `deletemodule`, `deletemodule x`, `...` (where x is larger than the module list size)<br>
+      Expected: Similar to previous.
+      
+#### Archiving a module
+ 
+ 1. Archiving a module while all modules are being shown
+ 
+    1. Prerequisites: List all modules using the `listmodule` command. Multiple modules in the list.
+ 
+    1. Test case: `archivemodule 1`<br>
+       Expected: First module is archived. Details of the deleted module shown in the status message.
+ 
+    1. Test case: `archivemodule 0`<br>
+       Expected: No module is archived. Error details shown in the status message.
+ 
+    1. Other incorrect archive module commands to try: `archivemodule`, `archivemodule x`, `...` (where x is larger than the module list size)<br>
+       Expected: Similar to previous.
+       
+ * Similar test procedures can be used to test the un-archive module feature. This can be done by using the keyword `unarchivemodule`
+   instead of `archivemodule`.
+   
+   * Prerequisites : List all archived modules using the `viewarchive` command. Multiple modules in the list.
+   
+#### Calculate CAP
+ 
+ 1. Calculate CAP
+ 
+    1. Prerequisites: There must be at least one module tagged as completed and containing grade point information.
+ 
+    1. Test case: `calculatecap`<br>
+       Expected: CAP is calculated. Details of the calculated CAP shown in the status message.
+       
+#### Calculate target CAP details
+
+1. Target Cap
+
+   1. Prerequisites: There must be at least one module tagged as completed and containing grade point information.
+
+   1. Test case: `targetcap 5`<br>
+      Expected: Target CAP details are calculated. Target CAP details shown in the status message.    
+   
+ 
+      
 
 ### Contact List
 
@@ -1920,6 +1975,40 @@ testers are expected to do more *exploratory* testing.
 
 
 ### Event List
+
+### Common Features
+
+#### Undo a command
+ 
+ 1. There is an undoable command
+ 
+    1. Prerequisites: A command that modifies the storage has been entered is since the application started.
+ 
+    1. Test case: `undo`<br>
+       Expected: Most recent undoable command is undone. Undo command success message shown in the status message.
+ 
+ 2. There is no undoable command      
+ 
+    1. Prerequisites: The application is freshly started with no commands entered yet.
+     
+    1. Test case: `undo`<br>
+       Expected: No command is undone. Error details shown in the status message.
+         
+#### Redo a command
+ 
+ 1. There is a redoable command
+ 
+    1. Prerequisites: A command has been redone. Commands that modify the storage have not been entered since. (e.g deletemodule)
+ 
+    1. Test case: `redo`<br>
+       Expected: Most recent undoable command is undone. Redo command success message shown in the status message.
+ 
+ 2. There is no redoable command      
+ 
+    1. Prerequisites: The application is freshly started with no commands entered yet.
+     
+    1. Test case: `redo`<br>
+       Expected: No command is redone. Error details shown in the status message.
 
 ### Saving data
 
