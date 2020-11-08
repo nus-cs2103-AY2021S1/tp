@@ -134,7 +134,9 @@ Format: `s-update DRINK [MORE_DRINKS]`
 less than or equal to 99999999.
 * The sales of at least one drink item should be recorded when using this command.
 
-Example: Let's say you want to update the sales of Brown Sugar Boba Milk, `BSBM`, to 100 
+Example: 
+
+Let's say you want to update the sales of Brown Sugar Boba Milk, `BSBM`, to 100 
 and Brown Sugar Boba Black Tea, `BSBBT`, to 120 in the Sales Tracker. You can follow these instructions:
 
 1. Type `s-update BSBM/100 BSBBT/120` into the _Command Box_.
@@ -156,7 +158,9 @@ ordered in descending order (i.e. ranked from the most to least sales).
 
 Format: `s-list`
 
-Example: Let's say you want to see an ordered list of drink sales that have been recorded with `s-update`.
+Example: 
+
+Let's say you want to see an ordered list of drink sales that have been recorded with `s-update`.
 You can follow these instructions:
 
 1. Type `s-list` into the _Command Box_.
