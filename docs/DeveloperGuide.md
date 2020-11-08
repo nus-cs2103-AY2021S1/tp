@@ -125,7 +125,7 @@ The `ActiveAccount`,
 * stores an `ObservableList<Expense>` that can be `observed` e.g. the UI can be bounde to this list so that the UI automatically updates when the data in the list change.
 * stores an `ObservableList<Revenue>` that can be `observed` e.g. the UI can be bounde to this list so that the UI automatically updates when the data in the list change.
 * stores an `Optional<ActiveAccount>` that represents the previous state of the `ActiveAccount`.
-* does not depend on any of the other three components.
+* does not depend on any of the other four components.
 
 <div markdown="span" class="alert alert-info">
 
