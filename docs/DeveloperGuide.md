@@ -601,6 +601,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SupperStrikers` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Display user instructions**
+
+**MSS**
+
+1. User requests to see the user instructions.
+2. SupperStrikers displays the link to the user guide.
+
+  Use case ends.
+
+**Use case: Exit the program**
+
+**MSS**
+
+1. User requests to exit the program.
+2. SupperStrikers terminates and closes.
+
+  Use case ends.
+
 **Use case: Showing and selecting a particular vendor**
 
 **MSS**
