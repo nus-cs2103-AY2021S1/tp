@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.label.Label;
-import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
 import seedu.address.model.tag.TagNameEqualsKeywordPredicate;
@@ -90,10 +89,9 @@ public class UnlabelCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTag));
-
     }
 
-    public Tag modifyTagLabel(Tag tagToChange) {
+    private Tag modifyTagLabel(Tag tagToChange) {
         Set<Label> editedLabel = tagToChange.getLabels().stream()
                 .filter(label -> {
                     if (labels.stream().anyMatch(label::equals)) {
