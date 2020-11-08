@@ -136,7 +136,7 @@ Input Field | Restrictions and how to specify
 `a/ANSWER`      | This is the answer on the flashcard.<br>`ANSWER` has no character limit or restrictions (eg. can have spaces).<br>Cannot be empty.
 `c/CATEGORY`    | This is the category of the flashcard.<br>`CATEGORY` must be alphanumeric and have a maximum of 50 characters. It can consist of multiple words but there should only be 1 space between words.<br>Cannot be empty.
 `r/RATING`      | This is the star rating of the flashcard.<br>`RATING` must be a number between 1 and 5 inclusive.<br>Can be empty.
-`d/DIAGRAM`     | This is the diagram of the flashcard (associated with a question in the view pane).<br>`DIAGRAM` must be a valid relative or absolute path to a file. <br>Currently only supports file path **without** spaces.<br>Only supports the following image file types: jpg, png, jpeg, bmp, gif<br>Can be empty.
+`d/DIAGRAM`     | This is the diagram of the flashcard (associated with a question in the view pane).<br>`DIAGRAM` must be a valid relative or absolute path to a file. <br>Currently only supports file path **without** spaces.eg. <br>image/umlDiagram.png is supported but image/u mlDiagram.png is not supported <br>Only supports the following image file types: jpg, png, jpeg, bmp, gif<br>Can be empty.
 `n/NOTE`        | This is the notes of the flashcard (associated with an answer in the view pane).<br>`NOTE` has no character limit or restrictions.<br>Can be empty.
 `t/TAG`         | These are tags of the flashcard. A flashcard can have more than one tag.<br>`TAG` must be alphanumeric and have a maximum of 50 characters.<br>Must **only** be one word.<br>Cannot be empty.
 `INDEX`         | `INDEX` refers to the index number shown in the displayed flashcard list.<br>Every visible flashcard on the display list has an `INDEX`.<br>`INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
@@ -175,7 +175,7 @@ Root folder containing the jar file        |  Image directory
 :-------------------------:|:-------------------------:
 ![filedirectory](images/ug/ug_add_step1.png) |  ![filedirectory](images/ug/ug_add_step1.1.PNG)
 
-**Step 2**: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png`. Remember to include the file extension in `DIAGRAM`
+**Step 2**: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png` and press Enter. Remember to include the file extension in `DIAGRAM`
 
 ![filedirectory](images/ug/ug_add_step2.png)
 
@@ -226,7 +226,7 @@ Examples:
 
 ![filedirectory](images/ug/ug_edit_step1.PNG)
 
-**Step 2**: We want to edit the category of the flashcard to Trivial and rating to 1. Type the command `edit 2 c/Trivial r/1`
+**Step 2**: We want to edit the category of the flashcard to Trivial and rating to 1. Type the command `edit 2 c/Trivial r/1` and press Enter.
 
 ![filedirectory](images/ug/ug_edit_step2.PNG)
 
@@ -263,7 +263,7 @@ Examples:
 
 **Steps for filtering for a flashcard based on category and tag**:
 
-**Step 1**: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded`
+**Step 1**: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded` and press Enter.
 
 ![filedirectory](images/ug/ug_filter_step1.PNG)
 
@@ -281,7 +281,7 @@ Format: `fav INDEX`
 * `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
-* `list` followed by `fav 2` favourites the 2nd flashcard in the displayed list.
+* `list` followed by `fav 2` favourites the 2nd flashcard in the displayed flashcard list.
 
 ### Unfavourite a flashcard  : `unfav`
 
@@ -293,7 +293,7 @@ Format: `unfav INDEX`
 * `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
-* `list` followed by `unfav 2` unfavourites the 2nd flashcard in the displayed list.
+* `list` followed by `unfav 2` unfavourites the 2nd flashcard in the displayed flashcard list.
 
 ### Find flashcards : `find`
 
@@ -350,7 +350,7 @@ The review and success frequency of a flashcard is <b>not affected</b> by review
 
 **Steps for entering review mode**:
 
-**Step 1**: We want to enter review mode to review our flashcards. Type the command `review`
+**Step 1**: We want to enter review mode to review our flashcards. Type the command `review` and press Enter.
 
 ![filedirectory](images/ug/ug_review_step1.PNG)
 
@@ -387,7 +387,7 @@ The quiz mode works in conjunction with the [statistics](#view-the-statistics-of
 
 **Steps for entering quiz mode**:
 
-**Step 1**: We want to enter quiz mode to test ourselves on the current list of flashcards. Type the command `quiz`
+**Step 1**: We want to enter quiz mode to test ourselves on the current list of flashcards. Type the command `quiz` and press Enter.
 
 ![filedirectory](images/ug/ug_quiz_step1.PNG)
 
@@ -435,8 +435,8 @@ Format: `view INDEX [-a]`
 * If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
 Examples:
-* `view 1` shows the 1st flashcard (in the displayed list) on the view pane without answer and notes.
-* `view 1 -a` shows the 1st flashcard (in the displayed list) on the view pane with answer and notes.
+* `view 1` shows the 1st flashcard (in the displayed flashcard list) on the view pane without answer and notes.
+* `view 1 -a` shows the 1st flashcard (in the displayed flashcard list) on the view pane with answer and notes.
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
@@ -445,7 +445,7 @@ flashcard was not modified/deleted.
 
 **Steps for viewing a specific flashcard**:
 
-**Step 1**: Locate the flashcard you wish to view. In this example, we want to view the flashcard at index 3. Type the command `view 3`
+**Step 1**: Locate the flashcard you wish to view. In this example, we want to view the flashcard at index 3. Type the command `view 3` and press Enter.
 
 ![filedirectory](images/ug/ug_view_step1.PNG)
 
@@ -453,7 +453,8 @@ flashcard was not modified/deleted.
 
 ![filedirectory](images/ug/ug_view_step2.PNG)
 
-**Step 3**: To view the answer and notes (if applicable) of the flashcard on the view pane. Type the command `view 3 -a`
+**Step 3**: To view the answer and notes (if applicable) of the flashcard on the view pane. Type the command `view 3 -a` and press Enter.
+
 
 ![filedirectory](images/ug/ug_view_step3.PNG)
 
@@ -471,7 +472,7 @@ Format: `stats INDEX`
 * `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Example:
-* `stats 1` shows the statistics of the 1st flashcard (in the displayed list) on the view pane.
+* `stats 1` shows the statistics of the 1st flashcard (in the displayed flashcard list) on the view pane.
 
 The statistics feature works in conjunction with the [quiz](#quiz-flashcards-quiz) feature.
 
@@ -488,7 +489,7 @@ flashcard was not modified/deleted.
 
 **Steps for viewing the statistics of a specific flashcard**:
 
-**Step 1**: Locate the flashcard you wish to view the statistics of. In this example, we want to view the statistics of the flashcard at index 1. Type the command `stats 1`
+**Step 1**: Locate the flashcard you wish to view the statistics of. In this example, we want to view the statistics of the flashcard at index 1. Type the command `stats 1` and press Enter.
 
 ![filedirectory](images/ug/ug_stats_step1.PNG)
 
