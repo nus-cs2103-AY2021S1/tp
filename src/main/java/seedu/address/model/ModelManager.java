@@ -22,29 +22,37 @@ import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the Cap 5 Buddy data.
  */
 public class ModelManager implements Model {
+
     public static final String MESSAGE_NO_UNDO_HISTORY = "There are no commands to undo";
     public static final String MESSAGE_NO_REDO_HISTORY = "There are no commands to redo";
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+
+    //=== Module List Model =====================================================
     private final ModuleList moduleListDisplay;
     private final ModuleList moduleList;
     private final ModuleList archivedModuleList;
     private final VersionedModuleList versionedModuleList;
     private final VersionedModuleList versionedArchivedModuleList;
+
+    //=== Contact List Model ==============================================
     private final ContactList contactList;
     private final VersionedContactList versionedContactList;
+    private final FilteredList<Contact> filteredContacts;
+    private final SortedList<Contact> sortedContacts;
+
+    //=== TodoList Model ==================================================
     private final TodoList todoList;
     private final EventList eventList;
     private final VersionedEventList versionedEventList;
     private final VersionedTodoList versionedTodoList;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModulesDisplay;
-    private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Event> filteredEvents;
-    private final SortedList<Contact> sortedContacts;
     private final SortedList<Task> sortedTasks;
     private int accessPointer;
     private final List<CommandType> accessSequence;
@@ -126,6 +134,17 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setModuleListFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getContactListFilePath() {
+        return userPrefs.getContactListFilePath();
+    }
+
+    @Override
+    public void setContactListFilePath(Path contactListFilePath) {
+        requireNonNull(contactListFilePath);
+        userPrefs.setContactListFilePath(contactListFilePath);
     }
 
     //=========== Module List ================================================================================
@@ -311,13 +330,24 @@ public class ModelManager implements Model {
     public void setContact(Contact target, Contact editedContact) {
         requireAllNonNull(target, editedContact);
 
-        contactList.setContact(target, editedContact);
+        contactList.setContacts(target, editedContact);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Contact> getFilteredContactList() {
+        return filteredContacts;
     }
 
     @Override
-    public Path getContactListFilePath() {
-        return userPrefs.getContactListFilePath();
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
+        requireNonNull(predicate);
+        filteredContacts.setPredicate(predicate);
     }
+
 
     @Override
     public void commitContactList() {
@@ -464,20 +494,6 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModulesDisplay.setPredicate(predicate);
-    }
-    /**
-     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Contact> getFilteredContactList() {
-        return filteredContacts;
-    }
-
-    @Override
-    public void updateFilteredContactList(Predicate<Contact> predicate) {
-        requireNonNull(predicate);
-        filteredContacts.setPredicate(predicate);
     }
 
     /**

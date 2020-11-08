@@ -30,8 +30,8 @@ public class ContactContainsTagsPredicate implements Predicate<Contact> {
     @Override
     public boolean test(Contact contact) {
         requireNonNull(contact);
-        boolean isContactTagPresent = !contact.getTags().isEmpty();
-        if (isContactTagPresent) {
+        boolean ContactTagIsPresent = !contact.getTags().isEmpty();
+        if (ContactTagIsPresent) {
             Set<Tag> taskTags = contact.getTags();
             return tags.stream()
                     .anyMatch(taskTags::contains);

@@ -113,7 +113,9 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to archived modulelist data file: " + filePath);
         archivedModuleListStorage.saveModuleList(moduleList, filePath);
     }
+
     // ================ ContactList methods ==============================
+
     @Override
     public Path getContactListFilePath() {
         return contactListStorage.getContactListFilePath();
@@ -126,7 +128,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyContactList> readContactList(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
+        logger.fine("Attempting to read data from contact list file: " + filePath);
         return contactListStorage.readContactList(filePath);
     }
 
@@ -137,11 +139,12 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveContactList(ReadOnlyContactList contactList, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.fine("Attempting to write to contact list data file: " + filePath);
         contactListStorage.saveContactList(contactList, filePath);
     }
 
     // ================ TodoList methods ==============================
+
     @Override
     public Path getTodoListFilePath() {
         return todoListStorage.getTodoListFilePath();

@@ -20,8 +20,9 @@ public interface ContactListStorage {
     /**
      * Returns ContactList data as a {@link ReadOnlyContactList}.
      * Returns {@code Optional.empty()} if storage file is not found.
-     * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     *
+     * @throws DataConversionException If the data in storage is not in the expected format.
+     * @throws IOException If there was any problem when reading from the storage.
      */
     Optional<ReadOnlyContactList> readContactList() throws DataConversionException, IOException;
 
@@ -32,6 +33,7 @@ public interface ContactListStorage {
 
     /**
      * Saves the given {@link ReadOnlyContactList} to the storage.
+     *
      * @param contactList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

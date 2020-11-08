@@ -9,12 +9,13 @@ import java.util.function.Predicate;
  */
 public class TaskMatchesPriorityPredicate implements Predicate<Task> {
 
+    /** Priority object to test for matching tasks. */
     private final Priority searchPriority;
 
     /**
-     * Creates and initialises a TaskMatchesPriorityPredicate object.
+     * Creates and initialises a TaskMatchesPriorityPredicate object to test for matching tasks.
      *
-     * @param searchPriority Priority provided by users to search for matching tasks.
+     * @param searchPriority Priority provided by users to find matching tasks.
      */
     public TaskMatchesPriorityPredicate(Priority searchPriority) {
         requireNonNull(searchPriority);
@@ -24,8 +25,8 @@ public class TaskMatchesPriorityPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         requireNonNull(task);
-        boolean isTaskPriorityPresent = task.getPriority().isPresent();
-        if (isTaskPriorityPresent) {
+        boolean TaskPriorityIsPresent = task.getPriority().isPresent();
+        if (TaskPriorityIsPresent) {
             return task.hasSamePriority(searchPriority);
         }
         return false;

@@ -52,7 +52,7 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(module.getName().fullName);
         module.getAllLinks().forEach((key, link) -> zoomLinks.getChildren().add(new Label(key + " Link : "
-                + link.getLink())));
+                + link.toString())));
         modularCredits.setText(module.getModularCredits().toString());
         module.getGradeTracker().getAssignments().stream()
                 .sorted(Comparator.comparing(assignment -> assignment.getAssignmentName().get().assignmentName))

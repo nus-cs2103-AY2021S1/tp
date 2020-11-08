@@ -9,12 +9,13 @@ import java.util.function.Predicate;
  */
 public class TaskMatchesDatePredicate implements Predicate<Task> {
 
+    /** Date object used to test for matching tasks. */
     private final Date searchDate;
 
     /**
-     * Creates and initialises a new TaskMatchesDatePredicate object.
+     * Creates and initialises a new TaskMatchesDatePredicate object to test for matching tasks.
      *
-     * @param searchDate Date provided by the user to search for matching tasks.
+     * @param searchDate Date provided by the user to find matching tasks.
      */
     public TaskMatchesDatePredicate(Date searchDate) {
         requireNonNull(searchDate);
@@ -24,8 +25,8 @@ public class TaskMatchesDatePredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         requireNonNull(task);
-        boolean isTaskDatePresent = task.getDate().isPresent();
-        if (isTaskDatePresent) {
+        boolean TaskDateIsPresent = task.getDate().isPresent();
+        if (TaskDateIsPresent) {
             return task.hasSameDate(this.searchDate);
         }
         return false;

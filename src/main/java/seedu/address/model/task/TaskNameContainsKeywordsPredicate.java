@@ -8,16 +8,17 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Task}'s {@code Name} matches any of the search keywords provided by the user.
+ * Tests that a {@code Task}'s {@code TaskName} matches any of the search keywords provided by the user.
  */
 public class TaskNameContainsKeywordsPredicate implements Predicate<Task> {
 
+    /** List of keywords to test for matching tasks. */
     private final List<String> keywords;
 
     /**
-     * Creates and initialises a NameContainsKeywordsPredicate object with a list of keywords.
+     * Creates and initialises a TaskNameContainsKeywordsPredicate object to test for matching tasks.
      *
-     * @param keywords List of keywords.
+     * @param keywords List of keywords provided by the user.
      */
     public TaskNameContainsKeywordsPredicate(List<String> keywords) {
         assert !keywords.isEmpty() : "At least one search keyword must be present";

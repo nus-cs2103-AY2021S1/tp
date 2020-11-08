@@ -101,7 +101,6 @@ public class JsonAdaptedContact {
         if (!Telegram.isValidTelegram(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
         }
-
         final Telegram modelTelegram = new Telegram(telegram);
 
         return new Contact(modelName, modelEmail, modelTelegram, modelTags, isImportant);

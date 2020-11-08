@@ -27,7 +27,9 @@ public class ContactList implements ReadOnlyContactList {
         contacts = new UniqueContactList();
     }
 
-    public ContactList() {}
+    public ContactList() {
+
+    }
 
     /**
      * Creates a Contact list using the Contacts in the {@code toBeCopied}
@@ -37,17 +39,25 @@ public class ContactList implements ReadOnlyContactList {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    //// contact list overwrite operations
+
+    /**
+     * Replaces the contents of the contact list with {@code contacts}.
+     * {@code contacts} must not contain duplicate contacts.
+     */
+    public void setContacts(List<Contact> contacts) {
+        this.contacts.setContacts(contacts);
+    }
 
     /**
      * * Resets the existing data of this {@code ContactList} with {@code newData}.
      */
     public void resetData(ReadOnlyContactList newData) {
         requireNonNull(newData);
-        setContact(newData.getContactList());
+        setContacts(newData.getContactList());
     }
 
-    //// person-level operations
+    //// contact-level operations
 
     /**
      * Returns true if a contact with the same identity as {@code contact} exists in the contact list.
@@ -65,28 +75,21 @@ public class ContactList implements ReadOnlyContactList {
         requireNonNull(m);
         contacts.add(m);
     }
-    /**
-     * Replaces the contents of the contact list with {@code contact}.
-     * {@code contact} must not contain duplicate contact.
-     */
-    public void setContact(List<Contact> contacts) {
-        this.contacts.setContacts(contacts);
-    }
 
     /**
      * Replaces the given contact {@code target} in the list with {@code editedContact}.
-     * {@code target} must exist in the contactlist.
+     * {@code target} must exist in the contact list.
      * The contact identity of {@code editedContact} must not be the same as another
-     * contact existing in the contactlist.
+     * existing contact in the contact list.
      */
-    public void setContact(Contact target, Contact editedContact) {
+    public void setContacts(Contact target, Contact editedContact) {
         requireNonNull(editedContact);
         contacts.setContact(target, editedContact);
     }
 
     /**
      * Removes {@code key} from this {@code ContactList}.
-     * {@code key} must exist in the contactlist.
+     * {@code key} must exist in the contact list.
      */
     public void removeContact(Contact key) {
         contacts.remove(key);

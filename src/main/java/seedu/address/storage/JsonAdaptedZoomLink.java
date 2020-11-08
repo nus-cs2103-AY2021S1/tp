@@ -31,7 +31,7 @@ public class JsonAdaptedZoomLink {
      */
     public JsonAdaptedZoomLink(String key, ZoomLink source) {
         this.lesson = key;
-        link = source.getLink();
+        link = source.toString();
     }
 
     public String getLesson() {

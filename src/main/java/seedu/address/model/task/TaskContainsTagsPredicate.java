@@ -8,32 +8,30 @@ import java.util.function.Predicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Tests that a {@code Task}'s {@code Tag} matches any of the search tags provided by the user.
+ * Tests that a {@code Task}'s {@code Set<Tag>} matches any of the search tags provided by the user.
  */
 public class TaskContainsTagsPredicate implements Predicate<Task> {
 
-    /**
-     * Tags provided by the user to search for tasks containing a matching tag.
-     */
-    private final Set<Tag> searchTags;
+    /** Tags provided by the user to search for tasks containing at least one matching tag. */
+    private final Set<Tag> tags;
 
     /**
-     * Creates and initialises a new TagContainsKeywordsPredicate.
+     * Creates and initialises a new TaskContainsTagsPredicate object to test for matching tasks.
      *
-     * @param searchTags Set of search tags provided by the user.
+     * @param tags Set of search tags provided by the user.
      */
-    public TaskContainsTagsPredicate(Set<Tag> searchTags) {
-        assert !searchTags.isEmpty() : "At least one search tag must be present";
-        this.searchTags = searchTags;
+    public TaskContainsTagsPredicate(Set<Tag> tags) {
+        assert !tags.isEmpty() : "At least one search tag must be present";
+        this.tags = tags;
     }
 
     @Override
     public boolean test(Task task) {
         requireNonNull(task);
-        boolean isTaskTagPresent = task.getTags().isPresent();
-        if (isTaskTagPresent) {
+        boolean TaskTagIsPresent = task.getTags().isPresent();
+        if (TaskTagIsPresent) {
             Set<Tag> taskTags = task.getTags().get();
-            return searchTags.stream()
+            return tags.stream()
                     .anyMatch(tag -> taskTags.contains(tag));
         }
         return false;
@@ -43,6 +41,6 @@ public class TaskContainsTagsPredicate implements Predicate<Task> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskContainsTagsPredicate // instanceof handles nulls
-                && searchTags.equals(((TaskContainsTagsPredicate) other).searchTags)); // state check
+                && tags.equals(((TaskContainsTagsPredicate) other).tags)); // state check
     }
 }

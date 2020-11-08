@@ -16,7 +16,8 @@ import seedu.address.model.task.Task;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+
+    /** {@code Predicate} for {@code Contact} that always evaluate to true. */
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
 
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
@@ -176,11 +177,21 @@ public interface Model {
     // ============================ ContactList ==================================================
 
     /**
-     * Replaces contact list data with the data in {@code contactlist}.
+     * Returns the user pref's contact list file path.
+     */
+    Path getContactListFilePath();
+
+    /**
+     * Sets the user prefs' contact list file path.
+     */
+    void setContactListFilePath(Path contactListFilePath);
+
+    /**
+     * Replaces contact list data with the data in {@code contactList}.
      */
     void setContactList(ReadOnlyContactList contactList);
 
-    /** Returns the ContactList */
+    /** Returns the ContactList. */
     ReadOnlyContactList getContactList();
 
     /**
@@ -208,7 +219,7 @@ public interface Model {
      */
     void setContact(Contact target, Contact editedContact);
 
-    /** Returns an unmodifiable view of the filtered contact list */
+    /** Returns an unmodifiable view of the filtered contact list. */
     ObservableList<Contact> getFilteredContactList();
 
     /**
@@ -225,12 +236,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateSortedContactList(Comparator<Contact> comparator);
-
-    /**
-     * Returns the file path of the contact list.
-     * @return Path contact list file path.
-     */
-    public Path getContactListFilePath();
 
     /**
      * Saves the current contact list state in history.

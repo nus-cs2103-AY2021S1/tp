@@ -101,7 +101,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getContactListFilePath() {
-        return this.model.getModuleListFilePath();
+        return this.model.getContactListFilePath();
     }
 
     @Override
