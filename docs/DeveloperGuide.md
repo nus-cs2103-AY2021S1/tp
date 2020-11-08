@@ -188,7 +188,11 @@ Predicate<Person> composedPredicate = predicate1.and(predicate2);
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-Coming soon.
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -408,6 +412,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. System gives corresponding error message.
 
       Use case ends.
+      
+**UC08 - User clears client list**
+
+**MSS**
+
+1. User chooses to clear the active client list and archived client list.
+2. System gives success message.
+
+    Use case ends.  
+    
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+  
+**UC09 - User quits app**
+
+**MSS**
+
+1. User chooses to quit app.
+2. System exits app and closes the interface.
+  
+  Use case ends.
+      
+
+
 
       
 ### Non-Functional Requirements
@@ -454,6 +485,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Re-launch the app by using the `java -jar` command.<br>
       Expected: The most recent window size and location is retained.
+
       
       
  ### Listing all active clients

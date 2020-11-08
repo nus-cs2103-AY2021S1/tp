@@ -5,52 +5,73 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyClientList <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class ClientList
+Class ReadOnlyClientList
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Package Person {
-Class Person
+Class Person {
+isArchived
+}
 Class Address
 Class Email
 Class Name
 Class Phone
 Class UniquePersonList
+Class Note
+Class Priority
 }
 
-Package Tag {
-Class Tag
+Package ClientSource {
+Class ClientSource
+}
+
+Package Policy {
+Class Policy
+Class PolicyName
+Class PolicyDescription
+Class PolicyList
 }
 }
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ClientList .up.|> ReadOnlyClientList
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" ClientList
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
+ClientList *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
 Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Person *--> "0..1" Phone
+Person *--> "0..1" Email
+Person *--> "0..1" Address
+Person *--> "*" ClientSource
+Person *--> "0..1" Policy
+Person *--> "0..1" Note
+Person *--> Priority
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager -->"1" Person : filtered list
+
+ModelManager o--> "1" PolicyList
+PolicyList o--> "*" Policy
+Policy *--> PolicyName
+Policy *--> PolicyDescription
+
 @enduml
