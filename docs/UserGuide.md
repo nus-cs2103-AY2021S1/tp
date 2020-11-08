@@ -491,7 +491,7 @@ Just type in the `help` command!
 
 | Action                | Format, Examples                                                                                                                                          |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _list rooms_          | `rooms [--allocated or --vacant] [fl/<floor>]... [n/<room_number>]... [t/<room_type>]...` e.g.`rooms` or `rooms --allocated fl/11` |
+| _list rooms_          | `rooms [--allocated or --vacant] [fl/<floor>] [n/<room_number>] [t/<room_type>]` e.g.`rooms` or `rooms --allocated fl/11`                                 |
 | _add room_            | `add-room fl/<floor> n/<room_number> t/<room_type> [tag/<tag_name>]...` e.g.`add-room fl/11 n/101 t/CN` |
 | _edit room_           | `edit-room <index> [fl/<floor>] [n/<room_number>] [t/<room_type>] [tag/<tag_name>]...` e.g.`edit-room 1 n/100`                        |
 | _delete room_         | `delete-room <index>` e.g.`delete-room 1`                        |

@@ -34,9 +34,9 @@ public class ListRoomsCommand extends Command {
             "Lists all rooms within the system, optionally filtered by some criteria.",
             "Parameters: "
             + "[--" + COMMAND_VACANT_FLAG + " | --" + COMMAND_ALLOCATED_FLAG + "] "
-            + "[" + PREFIX_ROOM_FLOOR + "FLOOR]... "
-            + "[" + PREFIX_ROOM_NUMBER + "ROOM_NUMBER]... "
-            + "[" + PREFIX_ROOM_TYPE + "ROOM_TYPE]...\n"
+            + "[" + PREFIX_ROOM_FLOOR + "FLOOR] "
+            + "[" + PREFIX_ROOM_NUMBER + "ROOM_NUMBER] "
+            + "[" + PREFIX_ROOM_TYPE + "ROOM_TYPE]\n"
             + "Example: " + COMMAND_WORD
             + " --" + COMMAND_VACANT_FLAG + " " + PREFIX_ROOM_FLOOR + "10 " + PREFIX_ROOM_FLOOR + "11");
 
