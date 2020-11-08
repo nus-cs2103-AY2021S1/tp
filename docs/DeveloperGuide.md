@@ -465,7 +465,7 @@ When extending ChopChop to include new commands, it is important to follow these
 <a name="stats-feature"></a>
 ### 4.5&ensp;Statistics feature
 
-Main developer: trav1st
+Main developer: **trav1st**
 
 <a name="stats-curr-impl"></a>
 #### 4.5.1&ensp;Current implementation
@@ -556,7 +556,7 @@ For more information on the Parser, view
 All the statistics commands function in a similar way so we will go through just one of command in details below.
 
 <a name="view-top-recipes"></a>
-##### View top recipes command
+<h5>View top recipes command</h5>
 The view top recipes command allows the user to see the recipes that were made the most number of times based on the `Usage`s saved in `UsageList`.
 It is executed with `StatsRecipeTopCommand` by parsing `stats recipe top` as the user input.
 
@@ -1677,7 +1677,7 @@ having expiry dates in December 2020.
 
 ## C&ensp;Effort
 
-With 10 being the baseline of AB3, we estimate the effort required to deliver the current version of ChopChop at **20**.
+With 10 being the baseline of AB3, we estimate the effort required to deliver the current version of ChopChop at **18**.
 
 
 ### C.1&ensp;Major Implementation Efforts
@@ -1696,7 +1696,7 @@ In addition, a comprehensive set of tests were written for each command parser t
 
 
 #### C.1.3&ensp;Statistics and Recommendations
-The statistics feature was developed in a depth-first approach. It spans across all major components in ChopChop.
+The development of the statistics feature follows a depth-first approach because it requires additional classes and operations across all major components in ChopChop.
 
 #### C.1.4&ensp;Automated GUI Testing
 To ensure that our ChopChop GUI conform to its expected behaviour, we implemented Unit tests that test the individual components components comprehensively.
