@@ -3,8 +3,11 @@ package seedu.flashcard.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.flashcard.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
 import static seedu.flashcard.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.flashcard.logic.commands.SortCommand.MESSAGE_SORTED_REVIEWED_ASCENDING;
+import static seedu.flashcard.logic.commands.SortCommand.MESSAGE_SORTED_REVIEWED_DESCENDING;
+import static seedu.flashcard.logic.commands.SortCommand.MESSAGE_SORTED_SUCCESS_ASCENDING;
+import static seedu.flashcard.logic.commands.SortCommand.MESSAGE_SORTED_SUCCESS_DESCENDING;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_4;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_5;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_6;
@@ -51,7 +54,7 @@ public class SortCommandTest {
 
     @Test
     public void execute_reviewedAscending_success() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        String expectedMessage = MESSAGE_SORTED_REVIEWED_ASCENDING;
         SortCommand sortCommand = new SortCommand(SortCriteria.REVIEWED_ASCENDING);
         expectedModel.sortFilteredFlashcardList(SortCriteria.REVIEWED_ASCENDING);
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
@@ -60,7 +63,7 @@ public class SortCommandTest {
 
     @Test
     public void execute_reviewedDescending_success() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        String expectedMessage = MESSAGE_SORTED_REVIEWED_DESCENDING;
         SortCommand sortCommand = new SortCommand(SortCriteria.REVIEWED_DESCENDING);
         expectedModel.sortFilteredFlashcardList(SortCriteria.REVIEWED_DESCENDING);
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
@@ -69,7 +72,7 @@ public class SortCommandTest {
 
     @Test
     public void execute_successAscending_success() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        String expectedMessage = MESSAGE_SORTED_SUCCESS_ASCENDING;
         SortCommand sortCommand = new SortCommand(SortCriteria.SUCCESS_RATE_ASCENDING);
         expectedModel.sortFilteredFlashcardList(SortCriteria.SUCCESS_RATE_ASCENDING);
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
@@ -78,7 +81,7 @@ public class SortCommandTest {
 
     @Test
     public void execute_successDescending_success() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        String expectedMessage = MESSAGE_SORTED_SUCCESS_DESCENDING;
         SortCommand sortCommand = new SortCommand(SortCriteria.SUCCESS_RATE_DESCENDING);
         expectedModel.sortFilteredFlashcardList(SortCriteria.SUCCESS_RATE_DESCENDING);
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);

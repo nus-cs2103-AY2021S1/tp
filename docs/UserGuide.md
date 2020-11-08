@@ -106,6 +106,7 @@ This section will give you some useful information about the various command for
 * Multiple instances of the same prefix/flag will not throw an error. However, the app will only read the **last instance** in the input (except for tags).
   * eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category
   * eg. `sort reviewed -a -a -d` will sort flashcards according to review frequency in **descending** order
+  * eg. `filter f/yes f/no` will filter and list flashcards that are not favourited.
 
 <br>
   
@@ -116,6 +117,18 @@ This section will give you some useful information about the various command for
   
 * All additional input after commands which do not have input fields such as `list`, `exit`, `clear`, `help`, `review`, `quiz` will be ignored.
   * eg. `list` and `list 123` will have the same effect.
+
+<br>
+
+* Flags such as `-a` and `-d` allow white spaces within them.
+  * eg. `sort success -   a` is valid and will sort flashcards by success rate in ascending order.
+  * eg. `view 1 -  a` is valid and will view the first flashcard in the displayed flashcard list with answer shown.
+
+<br>
+
+* Prefixes and flags are both case sensitive.
+  * eg. `q/` is not the same as `Q/`
+  * eg. `-a` is not the same as `-A`
 
 </div>
 
@@ -260,6 +273,8 @@ Examples:
 *  `filter c/SDLC` filters and lists all flashcards belonging to the SDLC category.
 *  `filter t/examinable t/study` filters and lists all flashcards that have both an “examinable” tag and a “study” tag.
 *  `filter r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
+*  `filter f/no f/yes c/General` filters and lists all favourited flashcards that belong to the General category.
+    (only last instance of f/ is read)
 
 **Steps for filtering for a flashcard based on category and tag**:
 
@@ -414,12 +429,14 @@ Format: `sort <success|reviewed> <-a|-d>`
 * Specifying `-d` means sorting by the criteria in descending order.
 
 Examples: 
-* `sort reviewed -a` shows a list of all flashcards sorted according to review frequency in ascending order
-* `sort reviewed -d` shows a list of all flashcards sorted according to review frequency in descending order
-* `sort success -a` shows a list of all flashcards sorted according to success rate in ascending order
-* `sort success -d` shows a list of all flashcards sorted according to success rate in descending order
+* `sort reviewed -a` shows a list of current flashcards sorted according to review frequency in ascending order
+* `sort reviewed -d` shows a list of current flashcards sorted according to review frequency in descending order
+* `sort success -a` shows a list of current flashcards sorted according to success rate in ascending order
+* `sort success -d` shows a list of current flashcards sorted according to success rate in descending order
 
-<div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequencies of a flashcard are only affected by quiz mode.
+<div markdown="span" class="alert alert-primary">:memo: Note: The review frequency of a flashcard refers to the number of times you review in <b>quiz mode</b>, and the success rate refers to the rate at which you get the question correct in <b>quiz mode</b>.
+</div>
+<div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequencies of a flashcard are <b>only affected by quiz mode</b>, not review mode. So you can think of review mode as a trial that <b>does not affect</b> the statistics of the flashcard.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: Note: Sorting results in a permanent change in the ordering of the flashcards. This means your list of flashcards will follow the sorted order even after you relaunch the app.
 </div>
@@ -510,6 +527,10 @@ Flashcards data are saved in the hard disk automatically after any command that 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+
+**Q**: What does it mean if some action is **not supported**?<br>
+**A**: It means that our app is not intended to allow said action to work although it may work under certain circumstances.
+If you still want to perform the action, do take note that you may face unintended or unexplained behaviour.
 
 **Q**: What is the difference between review mode and quiz mode?<br>
 **A**: Review mode is like a sandbox mode where you can move back and forth between flashcards. In quiz mode, you can only go forward. Also, quiz mode asks you for feedback and keeps track of statistics but review mode doesn't.
