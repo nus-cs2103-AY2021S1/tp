@@ -219,7 +219,7 @@ mark INDEX a/ATTENDANCE_TYPE
 ```
 - Marks the attendance at the specified `INDEX` number shown in the displayed student record list.
 - The `INDEX` **must be a positive integer** that exists in said list.
-- Alternatively, the `INDEX` can be replaced with `all` to mark all students in the student list.
+- Alternatively, the `INDEX` can be replaced with `all` to mark all students in the student record list.
 - The `ATTENDANCE_TYPE` must either be `present` or `absent`.
 
 Example Usage:
