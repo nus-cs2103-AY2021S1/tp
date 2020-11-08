@@ -91,6 +91,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     * Update UG with proper contents page (Pull request [\#304](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/304)).
   * Developer Guide:
     * Adapted first draft for target user profile, value proposition, and user stories to the format that fit in Developer Guide.
+    * Added Logging of data into Implementation
     * Added glossaries in the first draft (Pull request [\#44](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/44)).
     * Modify Architecture and AddTeamamte sections in DG (Pull request [\#44](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/278)).
     * Modify DG to include DeleteTeammate feature explanation (Pull request ([\#345](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/345)).
