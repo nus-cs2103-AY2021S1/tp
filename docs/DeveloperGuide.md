@@ -219,7 +219,7 @@ It then gets the filepath of the `Tag` before safely deleting it. Then, a new `T
 changes the current directory of the HelloFile internal File Explorer. `CommandException` is thrown if the given directory 
 is invalid, cannot be found, or cannot be set as the current directory (*e.g. the given directory is not a folder*).
 
-This sequence diagram shows a successful execution of `CdCommand`.
+This sequence diagram shows a successful execution of `CdCommand`.<br>
 ![FindSequenceDiagram](images/CdCommandSuccessSequenceDiagram.png)
 
 CdCommand gets the `CurrentPath` from `Model`, then it gets the new path to set using the current `CurrentPath`. 
@@ -291,7 +291,7 @@ Model
 The model class `CurrentPath` saves the current directory of the explorer, and keeps a `FileList` that contains the children files under 
 that directory.
 
-This is the class diagram for CurrentPath.
+This is the class diagram for CurrentPath.<br>
 ![UnlabelSuccessSequence](images/CurrentPathClassDiagram.png)
 
 UI
