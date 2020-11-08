@@ -16,7 +16,7 @@ title: User Guide
 - Manage records of rooms.
 - Manage allocations of students to rooms in the College.
 
-**ResiReg** is optimised for OHS admin who are fast typists who are used to MS Excel, and prefer typing over other means of input. It comes with:
+**ResiReg** is optimised for OHS admin who are fast typists who are used to a Command Line Interface, and prefer typing over other means of input. It comes with:
 
 - A Command Line Interface (CLI) which allows you to access all **ResiReg** features by typing.
 - A Graphical User Interface (GUI) that displays the information you need.
@@ -47,7 +47,7 @@ You may refer to [Quick Start](#quick-start) for a short tutorial on how to run 
    - `exit`: exits the app.
 7. Refer to “Features” for details of all the commands.
 
-## Command Format
+## Features
 
 <div markdown="block" class="alert alert-info">
 This section explains the format of commands in this User Guide.
@@ -500,7 +500,7 @@ Just type in the `help` command!
 
 | Action                | Format, Examples                                                                                                                                          |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _list rooms_          | `rooms [--allocated or --vacant] [fl/<floor>]... [n/<room_number>]... [t/<room_type>]...` e.g.`rooms` or `rooms --allocated fl/11` |
+| _list rooms_          | `rooms [--allocated or --vacant] [fl/<floor>] [n/<room_number>] [t/<room_type>]` e.g.`rooms` or `rooms --allocated fl/11`                                 |
 | _add room_            | `add-room fl/<floor> n/<room_number> t/<room_type> [tag/<tag_name>]...` e.g.`add-room fl/11 n/101 t/CN` |
 | _edit room_           | `edit-room <index> [fl/<floor>] [n/<room_number>] [t/<room_type>] [tag/<tag_name>]...` e.g.`edit-room 1 n/100`                        |
 | _delete room_         | `delete-room <index>` e.g.`delete-room 1`                        |

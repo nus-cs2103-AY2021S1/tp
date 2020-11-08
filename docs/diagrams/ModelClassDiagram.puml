@@ -56,5 +56,9 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 ResiReg *--> "1" Semester
 
-ModelManager -->"1" Student : filtered list
+ModelManager -->"*" Student : filtered list
+ModelManager -->"*" Room : filtered list
+ModelManager -->"*" BinItem : filtered list
+ModelManager -->"*" Allocation : filtered list
+
 @enduml
