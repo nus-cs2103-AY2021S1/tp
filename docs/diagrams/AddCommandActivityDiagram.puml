@@ -1,8 +1,8 @@
 @startuml
 start
-:user inputs add command: add;
+:user inputs add command: add info;
 :Logic executes add command;
-:AddCommandParser parses the command: add;
+:AddCommandParser parses the command: add info;
 
 if () then ([non-optional fields are specified completely])
 :execute AddCommand;

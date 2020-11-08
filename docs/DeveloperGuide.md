@@ -370,8 +370,8 @@ Given below is an example usage scenario and how the mechanism behaves:
 #### Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity <a id="3132-aspect-2"></a>
 * **Alternative 1 (*current choice*):** Add a quantity field in the Ingredient class as well as a
  IngredientParser class that parses the user input ingredients into an arraylist of Ingredient objects
-  * Pros: Easy to implement.
-  * Cons: The parser may confuse ingredients that have prefixes that Wishful Shrinking uses to identify fields in the names, eg "-" or ",". <br><br>
+  * Pros: User has more options on what ingredient information to store in Wishful Shrinking.
+  * Cons: More work to implement. <br><br>
 
 * **Alternative 2:** Make ingredient's quantity field compulsory
   * Pros: Easy to implement as command format is consistent.
@@ -385,7 +385,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 * **Alternative 2:** Allows duplicate ingredients and stacking of quantities.
   * Pros: Users will not be restricted to adding unique ingredients. If they add duplicate ingredients with quantities, the quantities will stack,
    making it easier for them to change each ingredient's quantity.
-  * Cons: Storage will be cluttered with duplicate ingredients, harder to implement. <br><br>
+  * Cons: If quantities for duplicate ingredients are in different units, they will not stack, so storage will be cluttered with duplicate ingredients. <br><br>
 
 ## 3.2 Eat Recipe Feature <a id="32-eat-recipe-feature"></a>
 
