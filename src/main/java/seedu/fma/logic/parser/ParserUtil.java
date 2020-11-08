@@ -48,6 +48,7 @@ public class ParserUtil {
      */
     public static Exercise parseExercise(String exerciseName, ReadOnlyLogBook logBook) throws ParseException {
         Name name = parseName(exerciseName);
+
         try {
             return logBook.getExercise(name);
         } catch (ExerciseNotFoundException e) {
@@ -102,12 +103,14 @@ public class ParserUtil {
         requireNonNull(name);
         // remove leading and trailing spaces
         String parsedName = name.trim();
-        // convert to Sentence case
-        parsedName = parsedName.substring(0, 1).toUpperCase() + parsedName.substring(1).toLowerCase();
 
         if (!Name.isValidName(parsedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
+
+        // convert to Sentence case
+        parsedName = parsedName.substring(0, 1).toUpperCase() + parsedName.substring(1).toLowerCase();
+
         return new Name(parsedName);
     }
 
