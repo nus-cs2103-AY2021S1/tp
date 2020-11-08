@@ -23,6 +23,25 @@ Eva comes with a Command Line Interface (CLI) which is faster than a typical mou
 We hope that through our app, you and your company will be empowered and able to solve your basic HR needs.<br>
 This user guide will take you through the basics of Eva and help you get moving straightaway.
 
+There are 3 types of messages you can look out for that will further enhance your experience in using Eva with this user guide. <br>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**
+These notes are meant for additional information that will help you understand the segment better. 
+Do take note of these messages as you read the user guide
+</div> 
+
+<div markdown="block" class="alert alert-primary">
+:bulb: **Tip:**
+These tips will enable you to use Eva in a more efficient manner. So it will be beneficial for you to pay attention to these tips!
+</div>
+
+<div markdown="block" class="alert alert-danger">
+:exclamation: **Important!**<br>
+These messages are meant to alert you of certain consequences involved in the feature that might be important to you.
+</div>
+<br>
+
 ------------------------------------------------------------------------------------------------------------------------
 
 ## 2. Getting Started
@@ -90,18 +109,19 @@ Here are some general information you would need to know about our commands as y
 
 <div markdown="span" class="alert alert-info">
 
+
 In Eva, you can store information about staff and applicants. Information includes details like name, phone number 
 and more. As such, in order to store these details in a neat and tidy manner, be sure to follow these guidelines
 on storing these details:
 
-|   Field    | Constraints   |      Example      |
-|-----------|--------------------|------|
-| **Name**  | can contain only alphanumeric characters and has a character limit of 70 characters.  |  `John Doe`    |
-| **Phone**  | can only contain numbers, and must be between 8 and 20 digits long.     |  `6590018978`    |
-| **Email**  | should be of the format local-part@domain where the local-part should contain alpha numeric characters or special characters which includes ( !#$%&'*+/=?`{&#124;}~^.-_ ) excluding the parentheses. The domain name should have at least 2 characters and contain only alphanumeric with a period or a hyphen for the characters in between if needed. |  `john_doe@email.com`    |
-| **Tag**  | can only contain alphanumeric characters.       |  `hardworking`    |
-| **Date**  | must be in the format `DD/MM/YYYY`            |  6th of July 2020 represented as `06/07/2020`<br> Note: Eva automatically corrects wrong dates like 30/02/2020 and 31/11/2020 to 29/02/2020 and 30/11/2020 respectively.  |
-      
+| Field       | Constraints                                                                                                                                                                                                                                                                                                                                             | Example                                                                                                                                                                 |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**    | can contain only alphanumeric characters and has a character limit of 70 characters.                                                                                                                                                                                                                                                                    | `John Doe`                                                                                                                                                              |
+| **Phone**   | can only contain numbers, and must be between 8 and 20 digits long.                                                                                                                                                                                                                                                                                     | `6590018978`                                                                                                                                                            |
+| **Email**   | should be of the format local-part@domain where the local-part should contain alphanumeric characters or special characters which includes ( !#$%&'*+/=?`{&#124;}~^.-_ ) excluding the parentheses.The domain name should have at least 2 characters and contain only alphanumeric with a period or a hyphen for   the characters in between if needed. | `john_doe@email.com`                                                                                                                                                    |
+| **Tag**     | can only contain alphanumeric characters.                                                                                                                                                                                                                                                                                                               | `hardworking`                                                                                                                                                           |
+| **Date**    | must be in the format `DD/MM/YYYY`
+
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -226,9 +246,9 @@ This command enables you to add a staff record into Eva. A staff record can cont
  - Leaves 
  
 The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
-Without any of these fields, Eva will not accept your input. Tags and comments can be added with these commands as shown 
+Without any of these fields, Eva will not accept your input. Tags and comments can be added with this `adds` command as shown 
 in the examples. To manage leave records for each staff, please refer to the commands 
-[addl](#337-record-leave-taken-by-staff-addl) and [dell](#338-delete-leave-taken-by-staff-dell)
+[`addl`](#337-record-leave-taken-by-staff-addl) and [`dell`](#338-delete-leave-taken-by-staff-dell).
 
 Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
@@ -246,7 +266,6 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
  - In the case of multiple similar prefixes, the argument of the last prefix will be used (excluding tags and comments).<br>
  
 </div>
-
  
 Examples:
 * To add only the necessary fields <br>
@@ -291,7 +310,7 @@ Deletes a staff from Eva.
 
 <div markdown="block" class="alert alert-danger">
 
-:exclamation: **Please take note that this action is irreversible.**
+:exclamation: **Important!: Please take note that this action is irreversible.**
 
 </div>
 <br>
@@ -363,7 +382,7 @@ This command removes the record of leave taken by staff, specified by the date g
 
 <div markdown="block" class="alert alert-danger">
 
-:exclamation: **Please take note that this action is irreversible.**
+:exclamation: **Important: Please take note that this action is irreversible.**
 
 </div>
 <br>
@@ -389,9 +408,10 @@ Examples:
 In any case that you might want to remove all staff records, you can always use this command. <br>
 This command clears all staff entries from the Eva database. 
 
+
 <div markdown="block" class="alert alert-danger">
 
-:exclamation: **Please take note that this action is irreversible.**
+:exclamation: **Important: Please take note that this action is irreversible.**
 
 </div>
 <br>
@@ -407,7 +427,7 @@ Staff List.
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+:information_source: **Note:**<br>
 
 * All commands under applicant can only be done on either applicant list or applicant profile except `adda`, 
  which can be done on any panel. <br>
@@ -436,23 +456,29 @@ This command enables you to add an applicant record into Eva. An applicant recor
  - Application
  
 The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
-Without any of these fields, Eva will not accept your input. Tags and comments can be added with these commands as shown 
-in the examples. To manage application records for each applicant, please refer to the commands 
-[addapp](#347-add-an-application-addapp) and [delapp](#348-delete-an-application-delapp)
+Without any of these fields, Eva will not accept your input. Tags, comments, interview date can be added with this `adda` 
+command as shown in the examples. To manage application records for each applicant, please refer to the commands 
+[`addapp`](#347-add-an-application-addapp) and [`delapp`](#348-delete-an-application-delapp). To manage the application status,
+please refer to the command [`setas`](#349-set-application-status-setas).
 
 Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
 
- - An applicant can have any number of tags (including 0) 
- - An applicant can have any number of comments (including 0) 
+ - An applicant can have any number of tags (including 0).
+ - An applicant can have any number of comments (including 0).
  - Each applicant is uniquely identified by their name. In the event you wish to add 2 applicant records with the same name,
-      please ensure that both their phone numbers and email addresses are different
- - The interview date has to be in DD/MM/YYYY format 
+      please ensure that both their phone numbers and email addresses are different.
+ - The interview date has to be in DD/MM/YYYY format.
+ - If you provide 2 interview dates, although optional, the later date will be recorded.
  - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature 
- [setting of application status](#349-set-application-status-setas) below
- - :bulb: **Tip** In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
- - :bulb: **Tip:** The details of each field can be provided in any order. 
- - :bulb: **Tip** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
-<br>
+ [setting of application status](#349-set-application-status-setas) below.
+ 
+ 
+ <div markdown="block" class="alert alert-primary">
+ :bulb: **Tip:**
+ -  In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
+ -  The details of each field can be provided in any order. 
+ - The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. 
+</div>
 
 Examples:
 * To add an applicant without an interview date 
@@ -496,7 +522,7 @@ applicant you see on Applicant List, you can remove that applicant's record.
 
 <div markdown="block" class="alert alert-danger">
 
-:exclamation: **Please take note that this action is irreversible.**
+:exclamation: **Important: Please take note that this action is irreversible.**
 
 </div>
 <br>
@@ -560,9 +586,10 @@ Example:
 
 Deletes an application from an applicant with the specified index under Eva.
 
+
 <div markdown="block" class="alert alert-danger">
 
-:exclamation: **Please take note that this action is irreversible.**
+:exclamation: **Important: Please take note that this action is irreversible.**
 
 </div>
 <br>
@@ -603,9 +630,10 @@ Example:
 In any case that you might want to remove all applicant records, you can always use this command.
 This command clears all applicant entries from the Eva database.
 
+
 <div markdown="block" class="alert alert-danger">
 
-:exclamation: **Please take note that this action is irreversible.**
+:exclamation: **Important: Please take note that this action is irreversible.**
 
 </div>
 <br>
@@ -624,7 +652,7 @@ Commands to add, delete and edit comments on staff or applicants
 
 <div markdown="block" class="alert alert-primary">
 
-**:information_source: Important:** <br>
+**:information_source: Note:** <br>
 
 * Comment Commands take index reference from which type of person user is viewing. <br>
 

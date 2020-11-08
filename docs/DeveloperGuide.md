@@ -144,9 +144,21 @@ Classes used by multiple components are in the `com.eva.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 3.1 Staff Management System
+###3.1 Overview of Staff and Applicants
 
-#### 3.1.1 Leave System
+The class diagram below shows how applicant and staff are related to each other and the various classes they are 
+associated to. The following sections will elaborate more on the applicant and staff management sections.
+<br>
+
+ <img src="images/ApplicantStaffClassDiagram.png" width="900" />
+
+### 3.2 Staff Management System
+
+Each staff record has the details of name, phone, email, address, leaves, tags, comments. 
+The details name, phone, email, address are mandatory.
+A staff record also contains `Leave`. More about how this is implemented is elaborated [here](#311-leave-system).
+
+#### 3.2.1 Leave System
 
 The current leave recording system is facilitated by the `ModelManager`. It contains a filtered list of all staffs, `filteredStaffs` and
 implements the following operations:
@@ -163,7 +175,7 @@ Step 1. While looking at the staff list, the command: `addl 1 l/d/10/10/2020` is
 The `addl` command calls 
 
 
-#### 3.1.2 Design consideration:
+#### 3.2.2 Design consideration:
 
 ##### Aspect: How undo & redo executes
 
@@ -176,15 +188,21 @@ The `addl` command calls
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
   
-### 3.2. Applicant Management System
+### 3.3. Applicant Management System
 
-Nikhila to update
+Each applicant record has the details of name, phone, email, address, interview date, application status and application. 
+The details name, phone, email, address are mandatory. The interview date is wrapped inside a Java
+[`optional`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html). 
+We have designed it to be as such so that the user can input the interview date at a later time or leave that detail in all cases.
+Application Status is a field that contains one of the `PossibleApplicationStatus` which is an enumeration of all possible application statuses namely,
+receieved, processing, accepted, rejected.
+An application also contains a `Application`. More about how this is implemented is elaborated [here](#321-application-system).
 
-#### 3.2.1 Application System:
+#### 3.3.1 Application System:
 
 Royce to update
 
-#### 3.2.2 Design consideration:
+#### 3.3.2 Design consideration:
 
 ##### Aspect: How undo & redo executes
 
@@ -1006,25 +1024,19 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double clicking the jar file.<br>
         Expected: App launches into most recently viewed list.
 
-### 6.2 Deleting a person
-
-1. Deleting a person while all persons are being shown.
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-
 ### 6.3 Add staff
+
+1. Adding a staff record
+    
+    1. Test case: `adds n/Kristina p/90000020 e/email@email.com a/somewhere c/ ti/Title d/10/10/2010 desc/Description`
+       Expected: New staff record is added with the given details.
+       
+    1. Test case: `adds n/Christina p/90000020 a/somewhere c/ ti/Title d/10/10/2010 desc/Description`
+       Expected: No staff is added because essential email field is missing.
+       
+    1. Test case: `adds n/Kristina p/90000020 e/email@email.com a/somewhere c/ ti/Title d/10/10/2010 desc/Description`
+       Expected: No staff is added as this record has the same name as the one entered in test case 1.
+
 
 ### 6.4 Adding/deleting a comment
 
@@ -1177,3 +1189,4 @@ Eva generates a `data` directory to store databases and user preferences.
     1. Test case: `find Joe`<br>
        Expected: An error message as well as command usage shows up to inform the user of wrong command format.
 
+These test cases are not exhaustive and you can create more as you learn more about how the product works and is implemented.
