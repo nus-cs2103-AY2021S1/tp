@@ -62,8 +62,8 @@ public class EditCommand extends Command {
     private final EditFlashcardDescriptor editFlashcardDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editFlashcardDescriptor details to edit the person with
+     * @param index of the flashcard in the filtered flashcard list to edit
+     * @param editFlashcardDescriptor details to edit the flashcard with
      */
     public EditCommand(Index index, EditFlashcardDescriptor editFlashcardDescriptor) {
         requireNonNull(index);
@@ -159,8 +159,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the flashcard with. Each non-empty field value will replace the
+     * corresponding field value of the flashcard.
      */
     public static class EditFlashcardDescriptor {
         private Answer answer;
@@ -243,7 +243,7 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable String array.
+         * Returns an optional of Choice array.
          * Returns {@code Optional#empty()} if {@code choices} is null.
          */
         public Optional<Choice[]> getChoices() {

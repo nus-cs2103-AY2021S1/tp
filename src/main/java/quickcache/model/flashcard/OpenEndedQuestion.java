@@ -4,6 +4,7 @@ import java.util.Optional;
 
 /**
  * Represents an open ended question.
+ * Question will be stored as {@code String}.
  */
 public class OpenEndedQuestion implements Question {
 

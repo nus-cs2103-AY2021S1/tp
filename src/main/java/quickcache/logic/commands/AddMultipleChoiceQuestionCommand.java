@@ -13,7 +13,7 @@ import quickcache.model.flashcard.Flashcard;
 
 
 /**
- * Adds a MCQ to the QuickCache.
+ * Adds a Multiple choice question to the QuickCache.
  */
 public class AddMultipleChoiceQuestionCommand extends Command {
 
@@ -33,7 +33,7 @@ public class AddMultipleChoiceQuestionCommand extends Command {
     private final Flashcard toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Flashcard}
+     * Creates an AddMultipleChoiceQuestionCommand to add the specified {@code Flashcard}
      */
     public AddMultipleChoiceQuestionCommand(Flashcard flashcard) {
         requireNonNull(flashcard);

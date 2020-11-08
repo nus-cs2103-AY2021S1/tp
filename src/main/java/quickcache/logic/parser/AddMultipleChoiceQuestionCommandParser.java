@@ -22,7 +22,7 @@ import quickcache.model.flashcard.Question;
 import quickcache.model.flashcard.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddMultipleChoiceQuestionCommand object
  */
 public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipleChoiceQuestionCommand> {
 
@@ -35,8 +35,8 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddMultipleChoiceQuestionCommand
+     * and returns an AddMultipleChoiceQuestionCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
