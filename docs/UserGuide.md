@@ -54,6 +54,8 @@ and Bidder Id exists in the property list and bidder list.
 
 💡 DATE indicates the meeting date of the meeting.
 
+💡 PHONE_NUMBER indicates a local Singapore phone number (Maximum 10 digits including country code +65).
+
 # Keyboard Navigation
 1. When the `CommandBox` is not in focused (i.e when cursor is not blinking):
 
@@ -61,11 +63,13 @@ and Bidder Id exists in the property list and bidder list.
 
 2. Next Month in `Calender`:
 
-        PRESS SHIFT
+        PRESS CONTROL
         
 3. Previous Month in `Calendar`:
 
-        PRESS CONTROL
+        PRESS ALT - Windows OS
+        or
+        PRESS OPTIONS - Mac OS
 
 Note that apart from `SHIFT` and `CONTROL`, there are `Calendar` navigation commands `next` and `prev` 
 (elaborated below) in the event that your computer or laptop keyboard layout does not allow you to access
