@@ -358,6 +358,7 @@ Outcome:
 2. Employees who are can work on `Monday` or `Friday` will be listed in the Employee Directory inside the _Main View_.
 
 ![FindByTagCommandScreenshot](images/FindByTagCommandScreenshot.png)
+
 Figure x. A screenshot showing the outcome of an `c-tag-find monday friday` command
 
 #### 3.6 Locating all employees who are available to work today: `c-today`
@@ -398,6 +399,7 @@ Outcome:
 2. The available manpower for today will be listed in the Employee Directory inside the _Main View_.
 
 ![FindByTagTodayCommandScreenshot](images/FindByTagTodayCommandScreenshot.png)
+
 Figure x. A screenshot showing the outcome of an `c-today` command
 
 #### 3.7 Locating all employees who are available to work tomorrow: `c-tomorrow`
@@ -438,6 +440,7 @@ Outcome:
 2. The available manpower for tomorrow will be listed in the Employee Directory inside the _Main View_.
 
 ![FindByTagTomorrowCommandScreenshot](images/FindByTagTomorrowCommandScreenshot.png)
+
 Figure x. A screenshot showing the outcome of an `c-tomorrow` command
 
 #### 3.8 Deleting a person : `c-delete`
@@ -501,10 +504,12 @@ Outcome:
 
 Before executing:<br>
 ![BeforeArchiveCommandScreenshot](images/BeforeArchiveCommandScreenshot.png)
+
 Figure x. Screenshot showing the view before executing `c-archive 1` command
 
 After executing:<br>
 ![AfterArchiveCommandScreenshot](images/AfterArchiveCommandScreenshot.png)
+
 Figure x. Screenshot showing the outcome of an `c-archive 1` command
 
 #### 3.11 Archiving all employees : `c-archive-all`
@@ -546,10 +551,12 @@ Outcome:
 
 Before executing:<br>
 ![BeforeArchiveAllCommandScreenshot](images/BeforeArchiveAllCommandScreenshot.png)
+
 Figure x. Screenshot showing the view before executing `c-archive-all` command
 
 After executing:<br>
 ![AfterArchiveAllCommandScreenshot](images/AfterArchiveAllCommandScreenshot.png)
+
 Figure x. Screenshot showing the outcome of an `c-archive-all` command
 
 #### 3.12 Listing all archived employees : `c-archive-list`
@@ -580,6 +587,7 @@ Outcome:
 2. All archived employees will be listed in Employee Directory inside the _Main View_.
 
 ![ArchiveListCommandScreenshot](images/ArchiveListCommandScreenshot.png)
+
 Figure x. A screenshot showing the outcome of an `c-archive-list` command
 
 #### 3.13 Unarchiving an employee : `c-unarchive`
@@ -629,10 +637,12 @@ Outcome:
 
 Before executing:<br>
 ![BeforeUnarchiveCommandScreenshot](images/BeforeUnarchiveCommandScreenshot.png)
+
 Figure x. Screenshot showing the view before executing `c-unarchive 1` command
 
 After executing:<br>
 ![AfterUnarchiveCommandScreenshot](images/AfterUnarchiveCommandScreenshot.png)
+
 Figure x. Screenshot showing the outcome of an `c-unarchive 1` command
 
 ### 4. Commands - General <a name="commands-general"></a>
