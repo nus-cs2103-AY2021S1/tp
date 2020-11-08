@@ -5,6 +5,8 @@ title: Gilbert's Project Portfolio Page
 
 ## Gilbert Tan - Project Portfolio for QuickCache (tP)
 
+--
+
 ### 1.Introduction
 
 This document serves as a project portfolio for QuickCache, and outlines my contributions to the project, including the features that I have implemented.
@@ -26,6 +28,7 @@ In total, QuickCache took a total of 10 weeks to complete.
 I am in charge of code quality in the team, and I am responsible for creating features such as adding flashcard with both open ended and multiple choice question, editing the flashcard and deleting the flashcard.
 
 Given below are my contributions to the project in greater detail with the documentation for the features that I have already written in developer guide and user guide.
+
 #### 2.1. Enhancements and new features added
 The following describes the feature and enhancement I have already done in the project.
 
@@ -47,28 +50,32 @@ The following describes the feature and enhancement I have already done in the p
 
 ### 2.2. Code contributed
  Given below is the link to the code that I have contributed.
- [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=gilberttan19)
+ * [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=gilberttan19)
+ * [Functional Code](https://github.com/AY2021S1-CS2103T-T13-2/tp/tree/master/src/main/java/quickcache)
+ * [Test Code](https://github.com/AY2021S1-CS2103T-T13-2/tp/tree/master/src/test/java/quickcache)
 
 ### 2.3. Other contribution
 
 Given below is other contributions that I have made to the project.
-* **Project management**:
-  * Managed releases `v1.2` - `v1.4` (4 releases) on GitHub
 
-* **Enhancements to existing features**:
+#### 2.3.1 Project management
+  * Managed 30 issues on GitHub
+  * Helped in checking the code quality
+
+#### 2.3.2 Enhancements to existing features
   * Wrote additional tests for existing features to increase coverage (Pull requests [\#203](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/203), [\#221](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/221)
   * Morph the Logic and Model of AddressBook to have a UniqueFlashcardList. (Pull requests [\#37](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/37))
-  
-* **Documentation**:
-  * User Guide:
-    * Added the documentation for the features `delete`, `add`, `edit`, and `addmcq` (Pull requests [\#151](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/151 ),[\#152](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/152))
-    * Added the preface for the quick start section. (Pull requests [\#141](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/141))
-  * Developer Guide:
-    * Added implementation details of the `delete`, `add`, `edit`, abd `addmcq` feature. (Pull requests [\#128](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/128), [\#229](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/229))
+  * Refactored remnant code from Person to Flashcard. (Pull requests [\#248](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/248))
 
-* **Contribution to team based task**:
-  * Responsible for the code quality of QuickCache.
+#### 2.3.3 Documentation
 
-* **Community**:
+##### 2.3.3.1 User Guide
+  * Added the documentation for the features `delete`, `add`, `edit`, and `addmcq` (Pull requests [\#151](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/151 ),[\#152](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/152))
+  * Added the preface for the quick start section. (Pull requests [\#141](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/141))
+
+##### 2.3.3.2 Developer Guide
+  * Added implementation details of the `delete`, `add`, `edit`, abd `addmcq` feature. (Pull requests [\#128](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/128), [\#229](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/229))
+
+#### 2.3.4 Community
   * PRs reviewed (with non-trivial review comments): (Pull requests [\#115](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/115), [\#85](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/85), [\#227](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/227))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/GilbertTan19/ped/issues/1), [2](https://github.com/GilbertTan19/ped/issues/2), [3](https://github.com/GilbertTan19/ped/issues/3))

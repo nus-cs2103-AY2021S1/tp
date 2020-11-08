@@ -1178,6 +1178,7 @@ MSS:
 **Use case: UC15 - Edit a flashcard**
 
 **Actor: User**
+
 **Preconditions: User has QuickCache open.**
 
 **MSS**
@@ -1237,7 +1238,7 @@ MSS:
 
     Use case resumes at step 1.
 
-**Use case: UC117 - Export flashcard data file**
+**Use case: UC17 - Export flashcard data file**
 
 **Actor: User**
 
