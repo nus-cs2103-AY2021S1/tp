@@ -29,7 +29,7 @@ If this is your first time, here are some quick tips to get started.
      <p>
          <img src="images/Ui.png" style="width: 100%%; height: auto;"/>
      </p>
-     <figcaption>Figure 1 - Sample screenshot of our Ui</figcaption>
+     <figcaption> Figure 1 - Sample screenshot of our Ui</figcaption>
  </figure>
 
 1. Type the command in the command box and press "Enter" key to execute it. e.g. typing **`help`** and pressing "Enter" key will open the help window.<br>
@@ -147,7 +147,7 @@ You can refer to the table and the figure below to familiarize yourself with the
      <p>
          <img src="images/AnnotatedUi.png" style="width: 100%%; height: auto;"/>
      </p>
-     <figcaption>Figure 2 - Callouts of the various UI components</figcaption>
+     <figcaption> Figure 2 - Callouts of the various UI components</figcaption>
  </figure>
  
 <center> Table 1 - Functions of UI Components </center>
@@ -173,7 +173,7 @@ You can type into the Command Box and it will display the commands that start wi
      <p>
          <img src="images/autocomplete_sample.png" style="width: 100%%; height: auto;"/>
      </p>
-     <figcaption>Figure 3 - Sample of autocomplete command</figcaption>
+     <figcaption> Figure 3 - Sample of autocomplete command</figcaption>
  </figure>
 For example, in the above figure, if you enter `c` and commands that starts with "c" is displayed. <br>
 For advanced users, you can use the "TAB" key and FitEgo will auto-complete the first suggestion into the command box, thus increasing your typing speed!   
@@ -222,7 +222,7 @@ You can return to the home page by using this command.
      <p>
          <img src="images/homepage.png" style="width: 100%%; height: auto;"/>
      </p>
-     <figcaption>Figure 4 - Homepage View</figcaption>
+     <figcaption> Figure 4 - Homepage View</figcaption>
 </figure>
 
 The homepage will display the statistics of your program, today's schedule and quote of the day as shown in the figure above. 
@@ -326,7 +326,7 @@ Client-related commands will interact with the Client List which is located on t
      <p>
          <img src="images/ClientPanel.png" style="width: 100%%; height: auto;"/>
      </p>
-     <figcaption>Figure 7 - Sample of Client List</figcaption>
+     <figcaption> Figure 7 - Sample of Client List</figcaption>
  </figure>
 
 <div markdown="block" class="alert alert-info"> 
@@ -398,7 +398,7 @@ Examples:
     <p>
         <img src="images/cedit_sample.png" style="width: 100%; height: auto;"/>
     </p>
-    <figcaption>Figure 8 - Result of executing <code>cedit 2 p/12345678 t/injured-thigh</code></figcaption>
+    <figcaption> Figure 8 - Result of executing <code>cedit 2 p/12345678 t/injured-thigh</code></figcaption>
 </figure>
 
 
@@ -553,7 +553,7 @@ This helps to prevent you from accidentally agreeing to 2 sessions that overlaps
     <p>
         <img src="images/sadd_sample.png" style="width: 100%; height: auto;"/>
     </p>
-    <figcaption>Figure 12 - Result of executing <code>sadd g/New Gym ex/Endurance at/06/11/2020 0900 t/65</code></figcaption>
+    <figcaption> Figure 12 - Result of executing <code>sadd g/New Gym ex/Endurance at/06/11/2020 0900 t/65</code></figcaption>
 </figure>
 
 Examples:
@@ -731,7 +731,7 @@ Example:
      <p>
          <img src="images/schadd_sample.png" style="width: 100%%; height: auto;"/>
      </p>
-     <figcaption>Figure 16 - Result of executing <code>schadd c/1 s/1</code></figcaption>
+     <figcaption> Figure 16 - Result of executing <code>schadd c/1 s/1</code></figcaption>
  </figure>
 
 ### 3.4.2 Editing a Schedule : `schedit`
