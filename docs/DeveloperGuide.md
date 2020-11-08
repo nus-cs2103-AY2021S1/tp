@@ -218,7 +218,7 @@ Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand
 > and adds the `TutorialGroup` to the `internalList` of the `UniqueTutorialGroupList`.
 >
 > For `Student`:
-> - With each `TutorialGroup`, there is an `UniqueStudentList`.
+> - Within each `TutorialGroup`, there is an `UniqueStudentList`.
 > - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be added to.
 > - `Model#addStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and `TutorialGroup`
@@ -273,7 +273,7 @@ Step 5. Once the `Module` has been deleted from the `internaList`, `DeleteModule
 > `Module` and deletes the `TutorialGroup` from the `internalList` of the `UniqueTutorialGroupList`.
 >
 > For `Student`:
-> - With each `TutorialGroup`, there is a `UniqueStudentList`.
+> - Within each `TutorialGroup`, there is a `UniqueStudentList`.
 > - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be deleted from.
 > - `Model#deleteStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
@@ -316,7 +316,7 @@ object. The method creates a new `Module` object with the edited fields.
 Step 4. Within `Model`, the method `Model#setModule(Module, Module)` is executed and this replaces the current `Module`
 from the `internalList` of `UniqueModuleList` with the edited one.
 
-Step 5. Once the `Module` has been edited in the `internaList`, `DeleteModuleCommand#execute(Model)` creates an
+Step 5. Once the `Module` has been edited in the `internaList`, `EditModuleCommand#execute(Model)` creates an
 `CommandResult` object and the `CommandResult` is returned to `LogicManager`.
 
 > Note: There are some differences for the edit commands of `TutorialGroup` and `Student` during Step 4.
@@ -329,7 +329,7 @@ Step 5. Once the `Module` has been edited in the `internaList`, `DeleteModuleCom
 > target `Module` and edits the `TutorialGroup` in the `internalList` of the `UniqueTutorialGroupList`.
 >
 > For `Student`:
-> - With each `TutorialGroup`, there is a `UniqueStudentList`.
+> - Within each `TutorialGroup`, there is a `UniqueStudentList`.
 > - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be edited from.
 > - `Model#setStudent(Student, Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
@@ -357,6 +357,40 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `FindModuleCommand` of Trackr.
 
 ![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
+
+Step 1. The user executes `findMod cs2100` to find module(s) that contain the keyword _cs2100_. The `findMod` command 
+calls `LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `FindModuleCommandParser#parse(String)`. This method creates a new
+`ModuleContainsKeywordsPredicate` object with the parsed arguments. A `FindModuleCommand` object is then initialised
+with the `ModuleContainsKeywordsPredicate` object.
+
+Step 3. `LogicManager#execute(String)` calls the `FindModuleCommand#execute(Model)` method of the `FindModuleCommand`
+object.
+
+Step 4. Within `Model`, the method `Model#updateFilteredModuleList(Predicate<Module>)` is executed and this updates
+the displayed list of modules.
+
+Step 5. `FindModuleCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned to
+`LogicManager`.
+
+> Note: There are some differences for the find commands of `TutorialGroup` and `Student` during Step 4. `TutorialGroup`
+> has its own predicate class called `TutorialContainsKeywordsPredicate` while `Student` has its own predicate class
+> called `NameContainsKeywordsPredicate`.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be searched from.
+> - `Model#updateFilteredTutorialGroupList(Predicate<TutorialGroup>)` method then updates the displayed list of
+> tutorial groups.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be searched from.
+> - `Model#setStudent(Student, Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
+> `TutorialGroup` and edits the `Student` in the `internalList` of the `UniqueStudentList`.
 
 #### Design Considerations
 **Aspect: List to contain the models**
