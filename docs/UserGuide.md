@@ -8,15 +8,14 @@ title: User Guide
   <img id="cover-page-logo" src="images/logo.png"/>
 </div>
 
-
-
 <h2>Table of Contents</h2>
 * Table of Contents
 {:toc}
 
-<!-- <style>body {text-align: justify}</style> -->
 
----------------
+<!-- what a 0-head solution. -->
+<div style="page-break-after: always;"></div>
+
 ## 1&ensp;Introduction
 
 ChopChop is a food recipe management system, which aims to help users manage their recipes and ingredients in an easy and effective manner. It is a *desktop app*, optimised for use through typing textual commands; for fast typists, ChopChop will be able to manage your recipes more efficiently than other applications. Even so, it also features a graphical user interface (GUI) to display ingredients and recipes in an interactive manner.
@@ -96,12 +95,13 @@ For a more in-depth look at how ChopChop handles quantities, see [this section](
 ### 3.3&ensp;Name Constraints
 Recipe and ingredient names have the same constraints, of which there is only one — they cannot consist <i>only</i> of a `#` followed by digits, to diambiguate them from numbered references (for the tech savvy, the regular expression is `#[0-9]+`).
 
+
 Here are some examples of names that are valid and invalid:
 
 | name     | valid    |
 |----------|----------|
-| `#1`     | &#x274C; |
-| `#1234`  | &#x274C; |
+| `#1`     | &#x2718; |
+| `#1234`  | &#x2718; |
 | `#`      | &#x2714; |
 | `#asdf`  | &#x2714; |
 | `#1a`    | &#x2714; |
@@ -111,6 +111,8 @@ Here are some examples of names that are valid and invalid:
 
 
 --------------------------------
+
+
 ## 4&ensp;Navigating the User Interface
 
 ChopChop's UI design allows users to view all of the information you need in three main tabs. However, that might lead to a slightly steeper learning curve. Hence, this section aims to give you a breakdown of the GUI's various components.
@@ -254,6 +256,8 @@ ChopChop provides two buttons here — `File` and `Help`. Click the `exit` optio
 
 
 -----------
+
+
 <a name="Commands"></a>
 ## 5&ensp;Commands
 
@@ -358,9 +362,10 @@ The same thing applies to commands; <code>f <kbd>tab</kbd></code> would cycle be
 
 
 
-<br/><br/>
-<hr/>
 <br/>
+<hr/>
+
+
 
 <a name="GroupGeneralCommands"></a>
 ### 5.3&ensp;General Commands
@@ -403,6 +408,9 @@ Examples:
 This command quits ChopChop. You can rest assured that your data is automatically saved whenever a command is executed, so you do not need to save it manually before quitting.
 
 **Usage**: `quit`
+
+
+
 
 
 
@@ -497,9 +505,9 @@ Figure 5.2: <i>The recommendations view</i>
 
 
 
-<br/><br/>
-<hr/>
 <br/>
+<hr/>
+
 
 <a name="GroupRecipeCommands"></a>
 ### 5.4&ensp;Recipe Commands
@@ -1005,9 +1013,9 @@ Furthermore, if the recipe used ingredients having incompatible units with exist
 
 
 
-<br/><br/>
-<hr/>
 <br/>
+<hr/>
+
 
 <a name="GroupIngredientCommands"></a>
 ### 5.5&ensp;Ingredient Commands
@@ -1280,9 +1288,9 @@ Examples:
 
 
 
-<br/><br/>
-<hr/>
 <br/>
+<hr/>
+
 <a name="GroupStatsCommands"></a>
 
 ### 5.6&ensp;Statistics Commands
@@ -1511,7 +1519,7 @@ filter ingredient
   [/expiry &lt;expiry-date&gt;]
   [/tag &lt;tag-keywords&gt;...]...
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#FilterRecipeCommand">filter recipe</a></td>
     <td>Searches for recipes by one or more filtering criteria</td>
@@ -1522,7 +1530,7 @@ filter recipe
   [/ingredient
     &lt;ingr-keywords&gt;...]...
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#FindIngredientCommand">find ingredient</a></td>
     <td>Searches for ingredients by their name</td>
@@ -1530,7 +1538,7 @@ filter recipe
 find ingredient &lt;keyword&gt;
   [&lt;keyword&gt;]...
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#FindRecipeCommand">find recipe</a></td>
     <td>Searches for recipes by their name</td>
@@ -1538,7 +1546,7 @@ find ingredient &lt;keyword&gt;
 find recipe &lt;keyword&gt;
   [&lt;keyword&gt;]...
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#HelpCommand">help</a></td>
     <td>Shows help in general, or help for specific commands</td>
@@ -1546,21 +1554,21 @@ find recipe &lt;keyword&gt;
 help [&lt;command-name&gt;
   [&lt;command-target&gt;]]
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#ListIngredientCommand">list ingredient</a></td>
     <td>Shows the main ingredient list, and clears any search filters</td>
     <td><pre>
 list ingredients
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#ListRecipeCommand">list recipe</a></td>
     <td>Shows the main recipe list, and clears any search filters</td>
     <td><pre>
 list recipes
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#MakeRecipeCommand">make recipe</a></td>
     <td>Makes a recipe, consuming ingredients and recording statistics</td>
@@ -1574,14 +1582,14 @@ make recipe &lt;#REF&gt;
     <td><pre>
 quit
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#RedoCommand">redo</a></td>
     <td>Redoes a command that was previously undone</td>
     <td><pre>
 redo
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#StatsRecipeClearCommand">stats recipe clear</a></td>
     <td>Clear cooked recipe history</td>
@@ -1597,21 +1605,21 @@ stats recipe made
   [/after &lt;date-time&gt;]
   [/before &lt;date-time&gt;]
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#StatsRecipeRecentCommand">stats recipe recent</a></td>
     <td>Shows recently made recipes</td>
     <td><pre>
 stats recipe recent
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#StatsRecipeTopCommand">stats recipe top</a></td>
     <td>Shows the top recipes</td>
     <td><pre>
 stats recipe top
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#StatsIngredientClearCommand">stats ingredient clear</a></td>
     <td>Clear ingredient usage history</td>
@@ -1625,7 +1633,7 @@ stats ingredient clear
     <td><pre>
 stats ingredient recent
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#StatsIngredientUsedCommand">stats ingredient used</a></td>
     <td>Shows ingredients used within a given time frame</td>
@@ -1634,21 +1642,21 @@ stats ingredient used
   [/after &lt;date-time&gt;]
   [/before &lt;date-time&gt;]
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#UndoCommand">undo</a></td>
     <td>Undoes a command that was previously executed</td>
     <td><pre>
 undo
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr><tr>
     <td><a href="#ViewRecipeCommand">view</a></td>
     <td>Opens the detailed view for a recipe</td>
     <td><pre>
 view recipe &lt;#REF&gt;
 </pre></td>
-    <td>&#x274C;</td>
+    <td>&#x2718;</td>
   </tr>
 </tbody></table>
 
