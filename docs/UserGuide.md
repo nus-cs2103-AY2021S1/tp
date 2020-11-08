@@ -36,7 +36,7 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
         * [5.2.4 Editing an ingredient: `editF`](#edit-ingredient)
         * [5.2.5 Getting an ingredient to edit: `editF`](#get-edit-ingredient)
         * [5.2.6 Searching for an Ingredient: `searchF`](#search-ingredient)
-        * [5.2.7 Clearing all ingredients : `clearF`](#clear-ingredient) 
+        * [5.2.7 Clearing all ingredients : `clearF`](#clear-ingredient)
         <br><br>
     - [5.3 Consumption-related Commands](#53-consumption-related-commands)
         * [5.3.1 Eating a recipe : `eatR`](#eat-consumption)
@@ -311,6 +311,8 @@ Contributed by: Jia Qi
 Format: `recipes`
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.1.3 Deleting a recipe : `deleteR` <a id="delete-recipe"></a>
 Contributed by: Jia Qi
 
@@ -350,6 +352,9 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 * Edits the recipe at the specified `INDEX`.
 * The index refers to the index number shown in the recent displayed Recipe List.
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
+
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
@@ -464,6 +469,8 @@ Format: `close`
 * This command closes the left drawer that is opened after you select a recipe.
 * Nothing will happen if you use this command when the left drawer is not open.
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.1.8 Searching for a recipe: `searchR` <a id="search-recipe"></a>
 Contributed by: Caitlin
@@ -700,8 +707,6 @@ Contributed by: Tian Yong
 Format: `clearF`
 <br><br><br>
 
-<div style="page-break-after: always;"></div>
-
 ## 5.3 Consumption-related Commands <a id="53-consumption-related-commands"></a>
 
 The Consumption-related commands include [`eatR`](#eat-consumption), [`calories`](#list-consumption), [`deleteC`](#delete-consumption), 
@@ -873,12 +878,12 @@ Features | Format, Examples
 **Edit recipe** | `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] [instr/INSTRUCTION[. MORE INSTRUCTIONS]] [t/TAG]...` <br> e.g. `editR` 2 n/Apple salad i/apple
 **Get edit recipe info** | `editR INDEX`<br> e.g. `editR 2`
 **Select recipe** | `selectR INDEX`<br> e.g. `selectR 3`
-**Close recipe drawer**| `close`
 
 <div style="page-break-after: always;"></div>
 
 Features | Format, Examples
 --------|------------------
+**Close recipe drawer**| `close`
 **Search for recipe** | `searchR [i/INGREDIENT [ MORE INGREDIENTS]] [n/NAME [ MORE NAMES]] [t/TAG [ MORE TAGS]]`<br> e.g. `searchR` i/lettuce tomato, `searchR` n/salad, `searchR` t/healthy
 **Recommend recipe** | `recommend`
 **Clear all recipes** | `clearR`
