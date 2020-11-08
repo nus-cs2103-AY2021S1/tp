@@ -316,7 +316,7 @@ public class SortTaskCommandTest {
         expectedModel.setTodoList(getTypicalTodoList());
 
         String expectedMessage = SortTaskCommand.MESSAGE_SUCCESS;
-        Comparator<Task> comparator = new TaskComparatorByName();
+        Comparator<Task> comparator = new TaskComparatorByName().reversed();
         SortTaskCommand command = new SortTaskCommand(comparator);
 
         expectedModel.updateFilteredTodoList(t -> t.getStatus().get().equals(Status.COMPLETED));
