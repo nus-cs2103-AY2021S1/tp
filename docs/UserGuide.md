@@ -427,6 +427,8 @@ Examples:
  salad and the ingredients to contain only an apple ingredient.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.1.5 Getting a recipe to edit: `editR` <a id="get-edit-recipe"></a>
 Contributed by: Olivia
 
@@ -448,6 +450,8 @@ Examples:
  command box.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.1.6 Selecting a single recipe : `selectR` <a id="select-recipe"></a>
 Contributed by: Hieu
 
@@ -465,6 +469,8 @@ Format: `selectR INDEX`
 Examples:
 * `selectR 1` shows the 1st recipe in full view in the left drawer.
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.1.7 Closing the recipe drawer : `close` <a id="close-recipe"></a>
 Contributed by: Hieu
