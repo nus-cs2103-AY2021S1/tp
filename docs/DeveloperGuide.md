@@ -989,6 +989,62 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   * 1b1. Reeve displays an empty list.
 
     Use case ends.
+    
+**UC00: Adding an exam record to a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to add an exam record to a specific student in the list.
+4. Reeve updates the specified student in the list with the newly added exam record.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student index.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User inputs an exam record in an invalid format.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+**UC00: Deleting an exam record from a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to delete a specific exam record from a specific student in the list.
+4. Reeve updates the specified student in the list with the removed question.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User provides input with an invalid exam record.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
 
 **UC00: Displaying exam statistics of a student**
 
