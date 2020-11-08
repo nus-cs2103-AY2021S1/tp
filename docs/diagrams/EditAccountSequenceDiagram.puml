@@ -51,7 +51,7 @@ activate ActiveAccount
 ActiveAccount --> EditAccountCommand
 deactivate ActiveAccount
 
-EditAccountCommand -> Model: setAccount()
+EditAccountCommand -> Model: setAccount(previousAccount, newAccount)
 activate Model
 
 Model --> EditAccountCommand

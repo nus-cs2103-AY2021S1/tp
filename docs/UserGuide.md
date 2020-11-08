@@ -47,6 +47,8 @@ Note how the app contains some sample expenses and revenues if you have not used
 --------------------------------------------------------------------------------------------------------------------
 [comment]: <> (Copy the blocks below and edit your message)
 # 2. How to identify notations
+*(Written by Lim Zi Yang)* <br>
+
 These blocks are a few examples of notations that will be used in this document. Each block and icon 
 has a different meaning so do look out for them under our features.
 
@@ -478,6 +480,8 @@ The `profit` function will show deficits as a negative number if the total expen
 
 ### 5.2.8 Undoing Entry-level commands: `undo`
 
+*(Written by Lim Zi Yang)* <br>
+
 You can use this command to return to the state of the entry prior to the previous command.
 
  
@@ -521,9 +525,12 @@ before you exit the app!
 </div>
 
 ## 5.3 Account-level Commands
+
 Account-Level commands involve managing the different accounts in the app. 
 
 ### 5.3.1 Adding new account: `newacc`
+
+*(Written by Lim Zi Yang)* <br>
 
 You can create a new account to manage a different set of entries with this command. 
 
@@ -551,6 +558,8 @@ You can create a new account to manage a different set of entries with this comm
 </div>
 
 ### 5.3.2 Deleting an account: `deleteacc`
+
+*(Written by Lim Zi Yang)* <br>
 
 You can remove an account by using this command. This command is useful for clearing accounts you are no longer using.
 
@@ -595,6 +604,8 @@ irreversible action and cannot be undone. Do delete your account with caution!
 
 ### 5.3.3 Editing the name of the current account: `editacc`
 
+*(Written by Lim Zi Yang)* <br>
+
 You can edit the name of the current account you are on using this command.
 
 **Format:** `editacc n/NAME`
@@ -623,6 +634,8 @@ and edit the name from there.
 
 ### 5.3.4 Listing accounts you have: `listacc`
 
+*(Written by Lim Zi Yang)* <br>
+
 You can check the accounts you have in the app by using this command. Each account will be numbered with an index and 
 displayed as their names.
 
@@ -640,6 +653,8 @@ displayed as their names.
 <p align="center"> <sub> <b>Figure 5.3-4</b>: All the accounts are listed in the Result Display </sub> </p>
 
 ### 5.3.5 Switching accounts: `switchacc`
+
+*(Written by Lim Zi Yang)* <br>
 
 You can use this command to switch to the desired account. This is useful if you want to manage entries in the 
 desired account or edit the name of the desired account.

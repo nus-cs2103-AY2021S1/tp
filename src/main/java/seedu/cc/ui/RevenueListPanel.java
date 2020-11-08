@@ -13,6 +13,7 @@ import seedu.cc.model.account.entry.Revenue;
 
 public class RevenueListPanel extends UiPart<Region> {
     private static final String FXML = "RevenueListPanel.fxml";
+    private static final String REVENUE_STRING = "Revenues";
     private final Logger logger = LogsCenter.getLogger(RevenueListPanel.class);
 
     @FXML
@@ -26,7 +27,7 @@ public class RevenueListPanel extends UiPart<Region> {
      */
     public RevenueListPanel(ObservableList<Revenue> revenues) {
         super(FXML);
-        revenueLabel.setText("Revenues");
+        revenueLabel.setText(REVENUE_STRING);
         revenueListView.setItems(revenues);
         revenueListView.setCellFactory(listView -> new RevenueListViewCell());
     }
