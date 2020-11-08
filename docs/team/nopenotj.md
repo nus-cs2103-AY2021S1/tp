@@ -9,7 +9,7 @@ Modduke is a desktop app targeted towards NUS students. It allows them to easily
 
 Given below are my contributions to the project.
 
-* **New Feature**: Autocomplete TextField Module (Pull Requests [\#143](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/143), [\#249](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/249), [\#265](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/265/files))
+* **New Feature**: Autocomplete TextField Module (Pull Requests [\#143](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/143), [\#249](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/249), [\#265](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/265))
   * What it does: Allows users to generate suggestions for contact names, module names and meeting names.
   * Justification: This feature improves the product significantly because some of our commands require the full names of contacts, meetings or modules
   that may be laborious to type it all out. This feature saves the user time and effort.
