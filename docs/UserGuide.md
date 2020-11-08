@@ -1462,7 +1462,7 @@ Generates a CSV file that contains all stocks.
 
 <div markdown="block" class="alert alert-info">
 
-Csv file will be named according to the input, and the file name
+CSV file will be named according to the input, and the file name
 can only contain alphanumeric characters. You may want to sort the stocks using `sort` command
 to sort the stock in their preferred order as mentioned [earlier](#sorting-inventory-sort) before converting it into the CSV file. The CSV file is saved
 to `[root directory]/data/userInput.csv` after successfully executing the command.
@@ -1510,7 +1510,10 @@ You will need to resize the columns and row of the excel sheet to see the full t
 
 **:warning: Warning before executing print command**<br>
 `print` writes over a CSV file of the same file name and is an irreversible process.
- Do backup the data it if might be needed again.
+ Do backup the data if might be needed again.<br>
+ 
+ Also note that you will not be able to generate a CSV file of file name `stocks` if
+ you have a CSV file with a file name of `stocks` currently opened in your browser.
 
 </div>
 
