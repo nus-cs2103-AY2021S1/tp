@@ -439,7 +439,10 @@ and `85` for `AssignmentResult`. A `ModuleName` is also created using the input 
 Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
 `Module#addAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
 
-Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+Step 7. The `Model#setModule()` operation exposed in the Model interface is invoked to replace the original module
+with the updated module containing the assignemnt. 
+
+Step 8. A `CommandResult` from the command execution is returned to `LogicManager`
 
 #### Design consideration:
 
@@ -476,7 +479,7 @@ Given below is an example usage scenario and how the mechanism for editing an `A
 
 Step 1. `LogicManager` receives the user input `editassignment 1 n/CS2100 a/Quiz 1` from `Ui`
 
-Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `EditAssignmentParser`
+Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create an `EditAssignmentParser`
 
 Step 3. Additionally, `EditAssignmentParser` will call the `EditAssignmentParser#parse()` method to parse the command arguments
 
@@ -486,23 +489,119 @@ Step 5. `EditAssignmentCommand#execute()` will be evoked by `LogicManager` to cr
 using the parsed inputs, `Quiz 1` for `AssignmentName`. A `ModuleName` is also created using the input `CS2100`.
 
 Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
-`Module#setAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
+`GradeTracker` replaces the `Assignment` with a new one created using the `EditAssignmentDescriptor`.
 
 Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
 
 #### Design consideration:
 
-##### Aspect: Whether to directly store the assignments under module
-* Alternative 1 : Module stores assignments directly without any association class.
-    * Pros : Less work to be done.
-    * Cons : Less OOP.
+##### Aspect: Whether to receive the user inputs as an index or as the assignment name
+* Alternative 1 : Receive user input of assignment to edit as an assignment name.
+    * Pros : The user is less prone to typing in the wrong commands and selecting the wrong assignment to edit.
+    * Cons : Tougher to implement as need to identify not just which module in the module list is the one being targeted,
+but now also which assignment in the grade tracker of that module is being targeted.
     
-* Alternative 2 (current choice): Module stores a separate class that then stores the assignments
-    * Pros : More OOP and the assignments are less coupled to the Module.
-    * Cons : Takes more effort and complexity to recreate the unique object list within another layer(`Module`).
+* Alternative 2 (current choice): Receive user input of assignment to edit as an index.
+    * Pros : Easier to implement and shorter commands needed to type out for the user.
+    * Cons : The user will need to observe the GUI more carefully in order to not make mistakes.
     
-We implemented the second option despite its difficulty and complexity, taking more time to carry out as we felt
-that this feature was major enough to warrant the time and depth to implement.
+We implemented the second option as we believe that with a clean enough GUI, the user will not be as likely to
+make mistakes in selecting the right assignment to edit.
+
+####Delete Assignment Feature
+
+This feature allows `assignments` within a `GradeTracker` to be deleted. The assignment to be deleted is identified
+by the module name that stores the gradetracker it is under and the index of the assignment. The grade tracker of the module to act on must
+currently have a valid assignment to target.
+
+This feature requires the following classes:
+
+* `DeleteAssignmentParser`:
+  * It implements `DeleteAssignmentParser#parse()` to validate and parse the assignment `Index` and module name.
+* `DeleteAssignmentCommand`:
+  * It implements `DeleteAssignmentCommand#execute()` which will execute the deleting of the assignment at the corresponding
+  assignment `Index` in the corresponding `Module` identified by the parsed module name.
+
+Given below is an example usage scenario and how the mechanism for deleting an `Assignment` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `deleteassignment 1 n/CS2100` from `Ui`
+
+Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `DeleteAssignmentParser`
+
+Step 3. Additionally, `DeleteAssignmentParser` will call the `DeleteAssignmentParser#parse()` method to parse the command arguments
+
+Step 4. An `DeleteAssignmentCommand` is created and the command arguments are passed to it.
+
+Step 5. `DeleteAssignmentCommand#execute()` will be evoked by `LogicManager` . A `ModuleName` is also created using the input `CS2100`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`GradeTracker` deletes the `Assignment` at the `Index`.
+
+Step 7. The `Model#setModule()` operation is run to update the model with the newly updated module.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+#### Design consideration:
+
+##### Aspect: Format to accept the user input
+* Alternative 1 : Receive user input of as two indexes to simplify the command.
+    * Pros : The command becomes very short for the user to write. The implementation can also become very simple. 
+    * Cons : There might be confusion for the user to realise which index corresponds to the module and which index
+    corresponds to the assignment.
+    
+* Alternative 2 (current choice): Receive only the assignment to delete as an index and the name of the module as its module name.
+    * Pros : Better for clarity for the user to input exactly what they are asking to delete.
+    * Cons : The user will have to fully type out the name of the module to delete the assignment from.
+    
+We implemented the second option as we believe that with oversimplifying the command could lead to it being extremely unintuitive.
+With this implementation, it will be as similar as possible to the other delete commands with only one extra input.
+
+####Add Grade Feature
+
+This feature allows a `Grade` to be stored in a `GradeTracker`. The `Grade` is the aggregated score from the assignments
+in the grade tracker of that module. The `Grade` can also be set to override the current assignment aggregated `Grade`.
+
+This feature requires the following classes:
+
+* `AddGradeParser`:
+  * It implements `AddGradeParser#parse()` to validate and parse the module name and grade.
+* `AddGradeCommand`:
+  * It implements `DeleteAssignmentCommand#execute()` which will execute the deleting of the assignment at the corresponding
+  assignment `Index` in the corresponding `Module` identified by the parsed module name.
+
+Given below is an example usage scenario and how the mechanism for deleting an `Assignment` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `deleteassignment 1 n/CS2100` from `Ui`
+
+Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `DeleteAssignmentParser`
+
+Step 3. Additionally, `DeleteAssignmentParser` will call the `DeleteAssignmentParser#parse()` method to parse the command arguments
+
+Step 4. An `DeleteAssignmentCommand` is created and the command arguments are passed to it.
+
+Step 5. `DeleteAssignmentCommand#execute()` will be evoked by `LogicManager` . A `ModuleName` is also created using the input `CS2100`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`GradeTracker` deletes the `Assignment` at the `Index`.
+
+Step 7. The `Model#setModule()` operation is run to update the model with the newly updated module.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+#### Design consideration:
+
+##### Aspect: Format to accept the user input
+* Alternative 1 : Receive user input of as two indexes to simplify the command.
+    * Pros : The command becomes very short for the user to write. The implementation can also become very simple. 
+    * Cons : There might be confusion for the user to realise which index corresponds to the module and which index
+    corresponds to the assignment.
+    
+* Alternative 2 (current choice): Receive only the assignment to delete as an index and the name of the module as its module name.
+    * Pros : Better for clarity for the user to input exactly what they are asking to delete.
+    * Cons : The user will have to fully type out the name of the module to delete the assignment from.
+    
+We implemented the second option as we believe that with oversimplifying the command could lead to it being extremely unintuitive.
+With this implementation, it will be as similar as possible to the other delete commands with only one extra input.
 
 ### Cap Calculator
 
