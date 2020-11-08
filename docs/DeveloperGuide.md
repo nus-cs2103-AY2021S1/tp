@@ -142,6 +142,7 @@ title: Developer Guide
 8. [Appendix E: Effort](#8-effort)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 1. **Overview** <a id="1-overview"></a>
 Welcome to the Wishful Shrinking Developer Guide! In this section, you will be given an overview of what Wishful
@@ -170,6 +171,7 @@ This developer guide provides in-depth documentation on how Wishful Shrinking is
 Refer to the guide [_Setting up and getting started_](SettingUp.md).<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 2. **Design** <a id="2-design"></a>
 
@@ -281,6 +283,7 @@ The `Storage` component:
 Classes used by multiple components are in the `seedu.address.commons` package. <br><br>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 3. **Implementation** <a id="3-implementation"></a>
 
@@ -924,6 +927,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 4. **Documentation, Logging, Testing, Configuration, Dev-ops** <a id="4-documentation-logging-testing-configuration-dev-ops"></a>
 
@@ -934,6 +938,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 * [DevOps guide](DevOps.md) <br><br>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 5. **Appendix A: *Requirements*** <a id="5-appendix-requirements"></a>
 
@@ -1411,6 +1416,7 @@ Term | Explanation
 **Mainstream OS** | Windows, Linux, Unix, OS-X.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 6. **Appendix B: *Instructions for Manual Testing*** <a id="6-appendix-instructions-for-manual-testing"></a>
 
@@ -1749,6 +1755,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: delete WishfulShrinking.json data file. <br>
       Expected: If WishfulShrinking.json file cannot be found, the app will create the data file populated with
        sample recipes. <br><br>
+       
+<div style="page-break-after: always;"></div>
 
 # 7. **Appendix C: *Model Component*** <a id="7-model-component"></a>
 
@@ -1760,6 +1768,8 @@ testers are expected to do more *exploratory* testing.
 
 ## 7.3 Consumption <a id="73-consumption"></a>
 ![Consumption in Model Component](images/ModelClass_Consumption.png)
+
+<div style="page-break-after: always;"></div>
 
 # 8. **Appendix E: *Effort*** <a id="8-effort"></a>
 
