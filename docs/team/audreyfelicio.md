@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Audrey's Project Portfolio Page
+title: Audrey Felicio Anwar's Project Portfolio Page
 ---
 
 ## Project: Warenager
@@ -58,20 +58,25 @@ Given below are my contributions to the project.
     that to make sure the suggestion generated is correct and hence a lot of parameter checking is needed in generating
     the suggestion message.
 
+
 * **Git & Repository**:
   * Created the team repository by forking from `nus-cs2103-AY2021S1/tp`.
   * Set up the team repository as specified by the `CS2103T` module requirements.
-  * Used GitHub Projects feature to create kanban boards to track user stories.
+  * Used GitHub Projects feature to create kanban boards to track user stories. ([Link](https://github.com/AY2021S1-CS2103T-T15-3/tp/projects/1))
   * Manager and maintainer of project repository.
   * Provided help to team members about Git, GitHub, and forking workflow.
+  * Setup codecov for the team to track coverage for tests (Pull request [\#69](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/69))
+  * Managed the issue tracker: [Link to issues created](https://github.com/AY2021S1-CS2103T-T15-3/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Aaudreyfelicio)
 
-* **Reviews & Merging**:
-  * Head reviewer for Pull Requests.
-  * Split review tasks to team members.
-  * Ensured no pull requests was merged before thorough review was conducted.
-  * Ensured every merge pass the GitHub action checks.
-  * Head merger for Pull Requests.
-  * Tests other team member's code and determine functional flaws if any.
+* **Community**
+    * **Reviews & Merging**:
+      * PRs reviewed (with non-trivial review comments): [\#62](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/62), [\#64](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/64), [\#156](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/156), [\#213](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/213), [\#256](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/256)
+      * All PRs reviewed: [Link to PRs reviewed](https://github.com/AY2021S1-CS2103T-T15-3/tp/pulls?page=2&q=is%3Apr+reviewed-by%3Aaudreyfelicio+is%3Aclosed)
+    
+    * **Bugs & Forums**:
+      * Fixed bugs in update feature (Pull request [\#258](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/258))
+      * Fixed bugs in suggestion feature (Pull request [\#261](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/261))
+      * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AudreyFelicio/ped/issues/1), [2](https://github.com/AudreyFelicio/ped/issues/2), [3](https://github.com/AudreyFelicio/ped/issues/3), [4](https://github.com/AudreyFelicio/ped/issues/4), [5](https://github.com/AudreyFelicio/ped/issues/5), [6](https://github.com/AudreyFelicio/ped/issues/6), [7](https://github.com/AudreyFelicio/ped/issues/7), [8](https://github.com/AudreyFelicio/ped/issues/8), [9](https://github.com/AudreyFelicio/ped/issues/9), [10](https://github.com/AudreyFelicio/ped/issues/10))
 
 * **Testing**:
   * Created unit tests for `update` feature (update command parser, update command).
