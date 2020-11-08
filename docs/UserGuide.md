@@ -332,7 +332,7 @@ also true for inputs with no name like `add n/ s/shengshiong q/1300 l/fruits sec
 ![addStockExample6](images/addStockExample6.png)
 
 The `add n/apple s/shengshiong q/1300 l/fruits section ni/0` will lead in an error as shown below even though we have supplied all the required
-prefixes. This is because the prefix `ni/` is not allowed to add command, and it is not just limited to `ni/`. In add
+prefixes. This is because the prefix `ni/` is not allowed in add commands, and it is not just limited to `ni/`. In add
 commands, only the prefix `/n`, `/s`, `/q`, `/l`, `/lq` are allowed.
 
 ![addStockExample7](images/addStockExample7.png)
