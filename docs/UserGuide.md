@@ -822,7 +822,8 @@ User should not attempt to make any changes in all data files.<br>
 
 #### 5.2 Calendar :
 
-tCheck also shows a current month's calendar when you start the application. You may use it for planning you work.
+tCheck also shows the calendar for the current month when you start the application. You may use it for planning your
+ work.
 
  
  Example:
