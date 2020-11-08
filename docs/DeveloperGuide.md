@@ -645,15 +645,14 @@ The following is a usage scenario when a user wants to mark the first and third 
  This is done by calling the methods `parseIndexes` of `ParserUtil`.
 4. If the indexes are valid, a `DoneCommand` object will be returned, which takes in `parsedIndexes` of type `List<Index>` containing `Index` `1` and  `3`.
 5. There is a return call to `LogicManager` which then calls the overridden `execute` method of `DoneCommand`.
-6. The `execute` method calls method `getFilteredAssignmentList()` of `model` to obtain `List<Assignment>` `lastShownList`
-7. The static method `checkForDuplicatedIndexes` of `CommandLogic` is then called to check for duplicated indexes.
-8. The static method `checkForInvalidIndexes` of  the `CommandLogic` is then called to check for any indexes not found in the displayed assignment list.
-9. For each `Index` in `List<Index>`, the assignment in the displayed assignment list corresponding to that index, `assignmentToMarkDone` will be retrieved by calling the `get` method.
-10. For each assignment, a new assignment `assignmentMarkedDone` will be created by calling `createAssignmentMarkedDone` with `assignmentToMarkDone`.
-11. `setAssignment` method of `model` will be called to replace `assignmentToMarkDone` with `assignmentMarkedDone`.
-12. Next, `assignmentToMarkDone` will be added to `List<Assignment>`, `assignmentsToMarkDone`.
-13. The loop from step 8 - 11 terminates after 2 times in this case.
-14. The `execute` method returns a `CommandResult` object containing the `assignmentsToMarkDone` list. 
+6. The static method `checkForDuplicatedIndexes` of `CommandLogic` is called to check for duplicated indexes.
+7. The static method `checkForInvalidIndexes` of  the `CommandLogic` is then called to check for any indexes not found in the displayed assignment list.
+8. For each `Index` in `List<Index>`, the assignment in the displayed assignment list corresponding to that index, `assignmentToMarkDone` will be retrieved by calling the `get` method.
+9. For each assignment, a new assignment `assignmentMarkedDone` will be created by calling `createAssignmentMarkedDone` with `assignmentToMarkDone`.
+10. `setAssignment` method of `model` will be called to replace `assignmentToMarkDone` with `assignmentMarkedDone`.
+11. Next, `assignmentToMarkDone` will be added to `List<Assignment>`, `assignmentsToMarkDone`.
+12. Since there are only 2 indexes, the loop from step 8 - 11 terminates after 2 times.
+13. The `execute` method returns a `CommandResult` object containing the `assignmentsToMarkDone` list. 
 
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("done 1 3")` API call.
 
@@ -661,16 +660,16 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
    <br/>*Figure X: Sequence Diagram for DoneCommand*
    
 ##### Setting reminders to assignments
-The usage scenario of a user setting reminders for the first and third assignment in his/her displayed assignment list is similar to the Usage Scenario above.
+The usage scenario of a user setting reminders for the first and third assignment in his/her displayed assignment list is similar to the usage scenario above.
 
-Here are the key differences:
+Here are the differences:
 - In step 2, `parseCommand("remind 1 3")` will return an initialized `RemindCommandParser` object instead of `DoneCommandParser`
 - In step 4, a `RemindCommand` object will be returned instead of a `DoneCommand` object
 - In step 5, the `LogicManager` will call the overridden `execute` method of `RemindCommand`
-- In step 9, Instead of `AssignmentToMarkDone`, the assignment corresponding to each `Index` in `List<Index>` will be named as `AssignmentToRemind`.
-- In step 10, A new assignment, `remindedAssignment` will be created by calling `createRemindedAssignment` instead of `createAssignmentMarkedDone`.
-- In step 12, instead of `assignmentToMarkDone`, `remindedAssignment` will be added to `List<Assignment>`, `assignmentsToRemind`.
-- In step 14, the `CommandResult` object returned by `execute` contains the `assignmentsToRemind` list.
+- In step 8, Instead of `AssignmentToMarkDone`, the assignment corresponding to each `Index` in `List<Index>` will be named as `AssignmentToRemind`.
+- In step 9, A new assignment, `remindedAssignment` will be created by calling `createRemindedAssignment` instead of `createAssignmentMarkedDone`.
+- In step 11, instead of `assignmentToMarkDone`, `remindedAssignment` will be added to `List<Assignment>`, `assignmentsToRemind`.
+- In step 13, the `CommandResult` object returned by `execute` contains the `assignmentsToRemind` list.
 
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("remind 1 3")` API call.
 

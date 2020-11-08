@@ -52,11 +52,6 @@ deactivate ProductiveNusParser
 LogicManager -> RemindCommand : execute()
 activate RemindCommand
 
-RemindCommand -> Model : getFilteredAssignmentList()
-activate Model
-Model --> RemindCommand
-deactivate Model
-
 RemindCommand -> CommandLogic : checkForDuplicatedIndexes([1 3])
 activate CommandLogic
 
@@ -72,15 +67,10 @@ deactivate CommandLogic
 
 
 loop 2 times
-    RemindCommand -> Model : get(Index)
+    RemindCommand -> Model : get
     activate Model
     Model --> RemindCommand : assignmentToRemind
     deactivate Model
-
-    RemindCommand -> RemindCommand : createRemindedAssignment(assignmentToMarkDone)
-    Activate RemindCommand
-    RemindCommand -> RemindCommand : remindedAssignment
-    deactivate RemindCommand
 
     RemindCommand -> Model : setAssignment(assignmentToRemind, remindedAssignment)
     activate Model
