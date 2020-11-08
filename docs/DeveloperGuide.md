@@ -1108,6 +1108,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
 
@@ -1200,6 +1202,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 Cases without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The system should not take above 2 seconds to execute any command.
+
+<div style="page-break-after: always;"></div>
 
 ### Glossary
 
