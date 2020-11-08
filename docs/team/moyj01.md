@@ -13,10 +13,10 @@ Given below are my contributions to the project.
 **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=moyj01&tabRepo=AY2021S1-CS2103T-T17-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 **Enhancements implemented**: 
-* Added the ability to add diagram to the question of a flashcard. [#80](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/80), [#249](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/249)
+* Added the ability to add a diagram to the question of a flashcard. [#80](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/80), [#249](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/249)
   * What it does: allows the user to attach a diagram to the question of a flashcard
-  * Justification: This feature allows users who are visual learners to attach diagram to the question of a flashcard to aid them in their learning.
-  * Highlights: This enhancement involves incorporating an image into the application, ensuring that the file exist and its file type is supported by the application as well as making sure it has read permission. Modification were also made to the `add` command and `edit` command to allow diagram to be added and edited.
+  * Justification: This feature allows users who are visual learners to attach a diagram to the question of a flashcard to aid them in their learning.
+  * Highlights: This enhancement involves incorporating an image into the application, ensuring that the file exists and its file type is supported by the application as well as making sure it has read permission. Modifications were also made to the `add` command and `edit` command to allow the diagram to be added and edited.
 * Added the ability to quiz flashcards. [#96](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/96)
   * What it does: allows the user to enter quiz mode.
   * Justification: This feature allows users to test themselves on their content knowledge and prepare for upcoming examination or quiz.
