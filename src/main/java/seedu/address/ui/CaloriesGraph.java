@@ -37,10 +37,9 @@ public class CaloriesGraph extends UiPart<Region> {
     /**
      * Generates the graph based on this HashMap that is assigned during initialisation.
      */
-    @SuppressWarnings("unchecked")
     public void generateGraph() {
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
+        CategoryAxis xAxis = new CategoryAxis(); //CategoryAxis --> Axis<String>
+        NumberAxis yAxis = new NumberAxis(); //NumberAxis --> Axis<Number>
         LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
         Series<String, Number> series = new Series<String, Number>();
         String[] dates = generatePastDates();
