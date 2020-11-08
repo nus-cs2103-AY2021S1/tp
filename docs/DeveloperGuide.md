@@ -176,17 +176,27 @@ There are many other logging levels available in the Level class, however these 
 #### Implementation
 
 The scoping mechanism is facilitated by an `enum` class `Status` in `MainCatalogue`. Possible values of `Status` are `PROJECT_LIST`, `PERSON_LIST`, `PROJECT`, `PERSON`, `TASK`, and `TEAMMATE`.
-The possible values of `Status` form a hierarchy structure as follows. 
+The possible values of `Status` corresponds to a UI status as follows:
 
+Scope | Left panel | Middle panel | Right panel
+--------|------------------|-------|----------
+`PROJECT_LIST` | project list | empty | empty
+`PERSON_LIST` | person list | empty | empty
+`PROJECT` | project list | project dashboard | empty
+`PERSON` | person list | person dashboard | empty
+`TASK` | project list | project dashboard | task dashboard
+`TEAMMATE` | project list | project dashboard | teammate dashboard
+
+As per in the description above, can understand the scopes using the hierarchy as follows:
 * global
-  * `PROJECT_LIST`
-    * `PROJECT`
-      * `TASK`
-      * `TEAMMATE`
-  * `PERSON_LIST`
-    * `PERSON`
-
-A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT` scope, it is also in the `PROJECT_LIST` scope. However, it is not necessarily in `TASK` scope because `TASK` is a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
+    * `PROJECT_LIST` 
+      * `PROJECT`
+        * `TASK` 
+        * `TEAMMATE`
+    * `PERSON_LIST`
+      * `PERSON`
+      
+In most cases a command that is valid in a parent scope would be valid in any descendant scopes, but there may be some exceptions.
 
 The `Status` of `MainCatalogue` is open to be accessed in other `Model` components by a public getter. The `MainCatalogue` has a field `project` which is an `Optional` object of `Project`. 
 This is a pointer to the project that is expected to be the focus for the application if it is in the `PROJECT` or lower status. Similarly, there is a pointer in each `Project` to keep the task of focus if the application is in `TASK` status.
