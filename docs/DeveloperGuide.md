@@ -11,7 +11,7 @@ title: Developer Guide
 
 ### 1.1 Purpose
 
-This document details the architecture and software design of the software application CliniCal, which is implemented as part of our CS2103T project. This document is updated when the design and implementation of the software is modified after every milestone. Each milestone will include a version of this document, and the current milestone of this project is `v1.3`.
+This document details the architecture and software design of the software application CliniCal, which is implemented as part of our CS2103T project. This document is updated when the design and implementation of the software is modified after every milestone. Each milestone will include a version of this document, and the current milestone of this project is `v1.4`.
 
 ### 1.2 Audience
 
@@ -329,7 +329,7 @@ This feature comprises the `AddProfilePictureCommand` class. Given below is an e
     <em style="color:#CC5500">Figure 18. Logic Component Interactions for AddProfilePicture Command</em>
 </p>
 
-Step 1. User inputs "addpicture 1 f/data/images/png" command to add profile picture to the first patient. 
+Step 1. User inputs "addpicture 1 f/data/images.png" command to add profile picture to the first patient. 
 
 Step 2. User input is parsed to obtain the patient index and file path of the desired profile picture.
 
@@ -943,6 +943,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. CliniCal shows an error message.
 
     Use case resumes at step 1.
+    
+##### Use case: UC11 - Add appointment
+
+**MSS**
+
+1. User requests to add appointment for a particular patient by keying in the patient index, appointment date, time and duration.
+2. CliniCal shows a message that the appointment is successfully added and displays the updated appointment list and calendar in the overview tab.
+
+      Use case ends.    
+      
+**Extensions**
+      
+* 1a. The given command is invalid.
+    * 1a1. CliniCal shows an error message.
+      
+    Use case resumes at step 1.
 
 ## **Appendix D: Non-Functional Requirements**
 
@@ -1016,9 +1032,89 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: The json file saved contains data for at least one patient.
    
    1. Test case: Corrupted json file<br>
-      Open up `data/clinical.json` in a text editor and change any field to an invalid value. For example, try including an alphabet in the phone number of a patient.
+      Open up `data/clinical.json` in a text editor and change any field to an invalid value. For example, try including an alphabet in the phone number of a patient.<br>
       Expected: The application should start gracefully with an empty set of data, without crashing. The application will log an error to the console.
 
+
+##### F.5 Displaying patient's profile
+
+1. Displaying patient's profile window
+
+   1. Prerequisites: List all patients using the list command. Multiple patients in the list.
+   
+   1. Test case: `profile 2`<br>
+       Expected: A separate window that displays details of the second patient will appear. Relevant patient records, as well as
+       past visitation logs will be shown.
+   
+   1. Test case: `profile -1`<br>
+       Expected: Error message will be shown as an invalid patient index is given.
+   
+   1. Other incorrect commands to try: `profile 0`, `profile one`, `profile 90000` (assuming 90000 is larger than size of patient list)<br>
+       Expected: Error message will be shown as an invalid command is given.
+       
+##### F.6 Adding profile picture
+
+1. Adding profile picture to patient's profile
+
+   1. Prerequisites: List all patients using the list command. Multiple patients in the list.
+   
+   1. Test case: `addpicture 1 f/downloads/profile_picture.png`<br>
+       Expected: Patient's profile picture will be updated with the desired profile picture.
+       
+   1. Test case: `addpicture 0 f/downloads/profile_picture.png`<br>
+       Expected: Error message will be shown as invalid patient index is given.
+       
+   1. Test case: `addpicture 1 f/downloads/profile_picture`<br>
+       Expected: Error message will be shown as invalid filepath is given.
+       
+   1. Other incorrect commands to try: `addpicture -1 f/downloads/profile_picture`, `addpicture 1 f/downloads/profile_picture.gif`<br>
+       Expected: Error message will be shown as an invalid command is given.
+
+##### F.7 Adding visitation log
+
+1. Adding new visitation log for a patient
+
+   1. Prerequisites: List all patients using the list command. Multiple patients in the list.
+   
+   1. Test case: `addvisit 1`<br>
+       Expected: A separate window displaying the three fields (Diagnosis, Prescription, Comments) required for a visitation log will appear.
+       After inputting the relevant details, saving the visitation log will result in a success message being shown in the main window.
+       
+   1. Test case: `addvisit 1 vd/31/07/2020`<br>
+       Expected: Similar to previous scenario.
+       
+   1. Test case: `addvisit 1 vd/35/12/2020`<br>
+       Expected: Error message will be shown as an invalid date is given.
+       
+   1. Other incorrect commands to try: `addvisit 1 vd/test`, `addvisit 90000 vd/test` (assuming 90000 is larger than size of patient list)<br>
+       Expected: Error message will be shown as an invalid command is given.
+       
+##### F.8 Adding an appointment
+
+1. Adding a new appointment to the appointment list and calendar
+
+   1. Test case: `addappt 1 st/11/11/2020 12:00 d/60`<br>
+      Expected: An appointment containing the details of the first patient, appointment date, starting and ending time will be added to the appointment list and reflected in the calendar.
+
+   1. Test case: `addappt`<br>
+      Expected: No appointment is added. Error details shown in the status message. Status bar remains the same.
+      
+   1. Other incorrect add appointment commands to try: `addappt x st/11/11/2020 12:00 d/60` (where x is larger than the list size), `addappt 0 st/11/11/2020 12:00 d/60`, `addappt 0 st/42/42/2020 25:00 d/2147483647`<br>
+      Expected: Similar to previous.  
+      
+##### F.9 Deleting an appointment
+
+1. Deleting an appointment in the appointment list and calendar
+
+   1. Test case: `deleteappt 1`<br>
+      Expected: First appointment is deleted from the list and removed from calendar. Details of the deleted appointment shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `deleteappt 0`<br>
+      Expected: No appointment is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `deleteappt`, `deleteappt x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.       
+       
 ## **Appendix G: Effort**
 
 All members of the team contributed equally to the project and the development guide. For specifics, check out the portfolio pages of the team members, found on [About Us](AboutUs.md).
