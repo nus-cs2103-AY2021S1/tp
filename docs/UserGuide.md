@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Developer Guide
+title: User Guide
 ---
 * Table of Contents
 {:toc}
@@ -115,10 +115,9 @@ Note that apart from `ALT / OPTION` and `CTRL / CONTROL`, there are `Calendar` n
 **Command format**
 
 <div markdown="span" class="alert alert-info">
-:information_source: Note that the usage of the term `ENTITY` represents any of the following entities in PropertyFree:<br>`Property`, `Seller`, `Bidder`, `Bid` and `Meeting`
- <li>  Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add-p n/PROPERTY_NAME`, `PROPERTY_NAME` is a parameter which can be used as `add-p n/Sunrise Residences`. </li>
- <li>  Items in square brackets are optional. e.g. `edit-p [n/PROPERTY_NAME]` implies that `PROPERTY_NAME` is an optional parameter. </li>
- <li> Items in brackets are for integer numbers only. e.g <INDEX_NUMBER> can be <5>. </li>
+ <li>  Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add-p n/PROPERTY_NAME`, `PROPERTY_NAME` is a parameter which can be used as `add-p n/Sunrise Residences`. </li>  
+ <li>  Items in square brackets are optional. e.g. `edit-p [n/PROPERTY_NAME]` implies that `PROPERTY_NAME` is an optional parameter. </li>  
+ <li> Items in brackets are for integer numbers only. e.g <INDEX_NUMBER> can be <5>. </li>  
 </div>  
 
 
@@ -423,10 +422,10 @@ Adds a property and its relevant details to the property list.
 💡 Property name refers to the generic brand name and can be the same for multiple properties, whereas address refers to the full address of the property and must be unique.  
 
 <div markdown="span" class="alert alert-info">
-:information_source: Note that the usage of the term `ENTITY` represents any of the following entities in PropertyFree:<br>`Property`, `Seller`, `Bidder`, `Bid` and `Meeting`
- <li>  :warning: The seller id must exist inside the seller list.  </li>
- <li>  :warning: Price must be greater than 0 and less or equals to 1 trillion. </li>
- <li>  :warning: Price will be truncated to 2 decimal place. </li>
+ :warning: The seller id must exist inside the seller list.<br>
+ :warning: Price must be greater than 0 and less or equals to 1 trillion.<br>
+ :warning: Price will be truncated to 2 decimal place.<br>
+ :warning: PropertyName, Address and PropertyType can have a maximum of 100 characters.
 </div>  
    
 Example:

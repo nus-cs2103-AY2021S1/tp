@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.property.PropertyCommandTestUtil.ANCH
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.EDIT_DESC_ANCHORVALE;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.FIND_DESC_ANCHORVALE;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.INVALID_PROPERTY_ASKING_PRICE;
-import static seedu.address.logic.commands.property.PropertyCommandTestUtil.INVALID_PROPERTY_IS_CLOSED_DEAL;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.INVALID_PROPERTY_IS_RENTAL;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.INVALID_PROPERTY_NAME;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.INVALID_PROPERTY_PROPERTY_TYPE;
@@ -435,10 +434,6 @@ public class AddressBookParserTest {
         assertThrows(ParseException.class, () -> parser.parseCommand(getValidFindPropertyCommand()
                         .withIsRental(INVALID_PROPERTY_IS_RENTAL).build()));
 
-        // invalid is closed deal
-        assertThrows(ParseException.class, () -> parser.parseCommand(getValidFindPropertyCommand()
-                        .withIsClosedDeal(INVALID_PROPERTY_IS_CLOSED_DEAL)
-                        .build()));
     }
 
     @Test

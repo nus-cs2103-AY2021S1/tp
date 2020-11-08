@@ -226,24 +226,6 @@ public class PropertyBookTest {
     }
 
     @Test
-    public void removeAllPropertiesWithSellerId_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> propertyBook.removeAllPropertiesWithSellerId(null));
-    }
-
-    @Test
-    public void removeAllPropertiesWithSellerId_success() {
-        propertyBook.removeAllPropertiesWithSellerId(PROPERTY_A.getSellerId());
-        assertEquals(new PropertyBook(), propertyBook);
-        propertyBook.addProperty(PROPERTY_A);
-        propertyBook.addProperty(new PropertyBuilder(PROPERTY_B)
-                .withSellerId(PROPERTY_A.getSellerId().toString())
-                .build());
-        propertyBook.removeAllPropertiesWithSellerId(PROPERTY_A.getSellerId());
-        assertEquals(new PropertyBook(), propertyBook);
-    }
-
-
-    @Test
     public void getPropertyById_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> propertyBook.getPropertyById(null));
     }

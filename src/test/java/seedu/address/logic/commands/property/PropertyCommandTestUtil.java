@@ -108,6 +108,12 @@ public class PropertyCommandTestUtil {
     public static final PropertyBuilder ANCHORVALE_BUILDER;
     public static final FindPropertyCommand.FindPropertyDescriptor FIND_DESC_ANCHORVALE;
 
+    public static String getStringWithCharacters(int n) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("a".repeat(n));
+        return builder.toString();
+    }
+
     static {
         EDIT_DESC_ANCHORVALE = new EditPropertyDescriptorBuilder()
                 .withPropertyName(VALID_PROPERTY_NAME_ANCHORVALE)
@@ -132,7 +138,6 @@ public class PropertyCommandTestUtil {
                 .withPropertyTypePredicate(VALID_PROPERTY_PROPERTY_TYPE_ANCHORVALE)
                 .withAskingPricePredicate(VALID_PROPERTY_PRICE_FILTER_ANCHORVALE)
                 .withIsRentalPredicate(VALID_PROPERTY_IS_RENTAL_ANCHORVALE)
-                .withIsClosedDealPredicate(VALID_PROPERTY_IS_CLOSED_DEAL_ANCHORVALE)
                 .withPropertyIdPredicate(VALID_PROPERTY_PROPERTY_ID_ANCHORVALE)
                 .build();
         ANCHORVALE_BUILDER = new PropertyBuilder()

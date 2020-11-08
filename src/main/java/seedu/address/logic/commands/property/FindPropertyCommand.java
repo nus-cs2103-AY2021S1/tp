@@ -3,7 +3,6 @@ package seedu.address.logic.commands.property;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_ASKING_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_IS_CLOSED_DEAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_IS_RENTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PROPERTY_ID;
@@ -23,7 +22,6 @@ import seedu.address.model.property.AskingPricePredicate;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyAddressContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyIdContainsKeywordsPredicate;
-import seedu.address.model.property.PropertyIsClosedDealPredicate;
 import seedu.address.model.property.PropertyIsRentalPredicate;
 import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyTypeContainsKeywordsPredicate;
@@ -47,7 +45,6 @@ public class FindPropertyCommand extends Command {
             + "[" + PREFIX_PROPERTY_ASKING_PRICE + "== / <= / >= / < / > ASKING PRICE] "
             + "[" + PREFIX_PROPERTY_TYPE + "TYPE] "
             + "[" + PREFIX_PROPERTY_IS_RENTAL + "YES / NO]\n"
-            + "[" + PREFIX_PROPERTY_IS_CLOSED_DEAL + "Closed / Active]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROPERTY_ASKING_PRICE + "< 500 "
             + PREFIX_PROPERTY_IS_RENTAL + "Yes";
@@ -90,7 +87,6 @@ public class FindPropertyCommand extends Command {
         private AskingPricePredicate askingPricePredicate;
         private PropertyIsRentalPredicate isRentalPredicate;
         private PropertyIdContainsKeywordsPredicate propertyIdPredicate;
-        private PropertyIsClosedDealPredicate isClosedDealPredicate;
 
         public FindPropertyDescriptor() {
         }
@@ -100,7 +96,7 @@ public class FindPropertyCommand extends Command {
          */
         public boolean isAnyFieldFound() {
             return CollectionUtil.isAnyNonNull(propertyNamePredicate, addressPredicate, sellerIdPredicate,
-                    propertyTypePredicate, askingPricePredicate, isRentalPredicate, isClosedDealPredicate,
+                    propertyTypePredicate, askingPricePredicate, isRentalPredicate,
                     propertyIdPredicate);
         }
 
@@ -163,14 +159,6 @@ public class FindPropertyCommand extends Command {
             return Optional.ofNullable(propertyIdPredicate);
         }
 
-        public void setIsClosedDealPredicate(PropertyIsClosedDealPredicate isClosedDealPredicate) {
-            this.isClosedDealPredicate = isClosedDealPredicate;
-        }
-
-        public Optional<Predicate<Property>> getIsClosedDealPredicate() {
-            return Optional.ofNullable(isClosedDealPredicate);
-        }
-
         public Predicate<Property> getComposedPredicate() {
             Stream<Optional<Predicate<Property>>> predicateStream = Stream.of(
                     getPropertyIdPredicate(),
@@ -179,8 +167,7 @@ public class FindPropertyCommand extends Command {
                     getPropertyTypeContainsKeywordsPredicate(),
                     getAskingPricePredicate(),
                     getSellerIdContainsKeywordsPredicate(),
-                    getIsRentalPredicate(),
-                    getIsClosedDealPredicate()
+                    getIsRentalPredicate()
             );
             return predicateStream.filter(Optional::isPresent)
                     .map(Optional::get)
@@ -209,8 +196,7 @@ public class FindPropertyCommand extends Command {
                     && getAskingPricePredicate().equals(e.getAskingPricePredicate())
                     && getSellerIdContainsKeywordsPredicate().equals(e.getSellerIdContainsKeywordsPredicate())
                     && getIsRentalPredicate().equals(e.getIsRentalPredicate())
-                    && getPropertyIdPredicate().equals(e.getPropertyIdPredicate())
-                    && getIsClosedDealPredicate().equals(e.getIsClosedDealPredicate());
+                    && getPropertyIdPredicate().equals(e.getPropertyIdPredicate());
         }
     }
 }
