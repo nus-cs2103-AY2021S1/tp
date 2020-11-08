@@ -48,8 +48,8 @@ import seedu.address.logic.commands.project.AddTeammateCommand;
 import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
+import seedu.address.logic.commands.project.DeletePersonCommand;
 import seedu.address.logic.commands.project.DeleteTaskCommand;
-import seedu.address.logic.commands.project.DeleteTeammateCommand;
 import seedu.address.logic.commands.project.DeleteTeammateParticipationCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
@@ -103,10 +103,10 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_deleteTeammate() throws Exception {
         GitUserIndex gitUserIndex = new GitUserIndex(VALID_TEAMMATE_GIT_USERNAME_A);
-        DeleteTeammateCommand command =
-            (DeleteTeammateCommand) parser.parseCommand(DeleteTeammateCommand.COMMAND_WORD + " "
+        DeletePersonCommand command =
+            (DeletePersonCommand) parser.parseCommand(DeletePersonCommand.COMMAND_WORD + " "
                 + VALID_TEAMMATE_GIT_USERNAME_A, Status.PERSON_LIST);
-        assertEquals(new DeleteTeammateCommand(gitUserIndex), command);
+        assertEquals(new DeletePersonCommand(gitUserIndex), command);
     }
 
     @Test

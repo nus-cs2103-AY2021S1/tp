@@ -10,14 +10,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.participation.Participation;
 import seedu.address.model.person.Person;
-import seedu.address.model.project.Project;
 
 /**
  * Deletes a project identified using it's displayed index from the main catalogue.
  */
-public class DeleteTeammateCommand extends Command {
+public class DeletePersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteteammate";
+    public static final String COMMAND_WORD = "deleteperson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the teammate identified by the Git Username in the current project.\n"
@@ -28,7 +27,7 @@ public class DeleteTeammateCommand extends Command {
 
     private final GitUserIndex gitUserIndex;
 
-    public DeleteTeammateCommand(GitUserIndex gitUserIndex) {
+    public DeletePersonCommand(GitUserIndex gitUserIndex) {
         this.gitUserIndex = gitUserIndex;
     }
 
@@ -42,24 +41,14 @@ public class DeleteTeammateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Project project = model.getProjectToBeDisplayedOnDashboard().get();
 
-        if (!project.hasParticipation(gitUserIndex.getGitUserNameString())) {
+        if (!Person.isPresent(gitUserIndex)) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
         }
-
-        Participation participation = project.getParticipation(gitUserIndex.getGitUserNameString());
         Person personToDelete = Person.getPersonFromList(gitUserIndex);
-
         Participation.deleteAllParticipationOf(model, personToDelete);
-
+        Person.deletePersonFromList(personToDelete);
         model.deletePerson(personToDelete);
-
-        if (model.getTeammateToBeDisplayedOnDashboard().isPresent()
-                && model.getTeammateToBeDisplayedOnDashboard().get().equals(participation)) {
-            model.resetTeammateToBeDisplayedOnDashboard();
-            project.updateTeammateOnView(null);
-        }
 
         return new CommandResult(String.format(MESSAGE_DELETE_TEAMMATE_SUCCESS, personToDelete));
     }
@@ -68,7 +57,7 @@ public class DeleteTeammateCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteTeammateCommand) // instanceof handles nulls
-                && gitUserIndex.equals(((DeleteTeammateCommand) other).gitUserIndex); // state check
+                || (other instanceof DeletePersonCommand) // instanceof handles nulls
+                && gitUserIndex.equals(((DeletePersonCommand) other).gitUserIndex); // state check
     }
 }
