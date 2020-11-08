@@ -26,10 +26,9 @@ activate UnassignCommandParser
 UnassignCommandParser --> AddressBookParser
 deactivate UnassignCommandParser
 
-AddressBookParser -> UnassignCommandParser : parse("1")
+AddressBookParser -> UnassignCommandParser : parse("1 m/CS2103")
 activate UnassignCommandParser
 
-AddressBookParser -> UnassignCommandParser : parse("m/CS2103")
 
 create UnassignCommand
 
