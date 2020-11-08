@@ -3,6 +3,7 @@ package seedu.address.logic.commands.appointmentcommand;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_NEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_OLD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
@@ -37,10 +38,12 @@ public class EditApptCommand extends Command {
             + "by the Nric of the patient. \n"
             + "Parameters: [NRIC] "
             + "[" + PREFIX_APPOINTMENT_OLD + "OLD APPOINTMENT TIME] "
-            + "[" + PREFIX_APPOINTMENT_NEW + "NEW APPOINTMENT TIME] \n"
+            + "[" + PREFIX_APPOINTMENT_NEW + "NEW APPOINTMENT TIME] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
             + "Example: " + COMMAND_WORD + " S1234567A "
             + PREFIX_APPOINTMENT_OLD + "28/09/2022 20:00 "
-            + PREFIX_APPOINTMENT_NEW + "30/09/2022 15:00";
+            + PREFIX_APPOINTMENT_NEW + "30/09/2022 15:00 "
+            + PREFIX_DESCRIPTION + "Revisit";
 
     public static final String MESSAGE_EDIT_APPT_SUCCESS = "Edited appointment successfully!";
     public static final String MESSAGE_MISSING_APPOINTMENT =
@@ -86,9 +89,15 @@ public class EditApptCommand extends Command {
         }
 
         Set<Appointment> appointments = patientToEditAppt.getModifiableAppointments();
-        Appointment appointmentToAdd = newAppointment.setDescription(appointments.stream()
-                .filter(appt -> appt.equals(oldAppointment))
-                .collect(Collectors.toList()).get(0).getAppointmentDescription());
+        Appointment appointmentToAdd = newAppointment;
+        if (oldAppointment.getAppointmentDescription().isEmpty()) {
+            appointmentToAdd = newAppointment.setDescription(appointments.stream()
+                    .filter(appt -> appt.equals(oldAppointment))
+                    .collect(Collectors.toList()).get(0).getAppointmentDescription());
+        } else {
+            appointmentToAdd = newAppointment.setDescription(oldAppointment.getAppointmentDescription());
+        }
+
         appointments.remove(oldAppointment);
         appointments.add(appointmentToAdd);
         Patient newPatient = createNewPatient(patientToEditAppt, appointments);
