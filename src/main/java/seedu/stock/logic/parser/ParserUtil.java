@@ -310,4 +310,33 @@ public class ParserUtil {
                 argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Returns true if duplicate prefixes are present when parsing command.
+     * @param argumentMultimap map of prefix to keywords entered by user
+     * @param prefixes prefixes to parse
+     * @return boolean true if duplicate prefix is present
+     */
+    public static boolean isDuplicatePrefixPresent(
+            ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+
+        // Check for duplicate prefixes
+        for (Prefix prefix: prefixes) {
+            if (argumentMultimap.getAllValues(prefix).size() >= 2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if all prefixes specified does not contain an empty {@code Optional} value
+     * in the given {@code ArgumentMultimap}.
+     * @param argumentMultimap map of prefix to keywords entered by user
+     * @param prefixes prefixes to parse
+     * @return boolean true if all prefixes specified is present
+     */
+    public static boolean areAllPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
 }
