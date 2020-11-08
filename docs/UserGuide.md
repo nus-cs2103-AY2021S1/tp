@@ -85,9 +85,9 @@ The following table explains technical terms used in this user guide.
 
 | Technical Term | What it means |
 | ---------------| --------------|
-| Command Word | The first word of a command. tCheck uses this command word to decide what king of actions it should perform |
-| Prefix |It is the input that follows behind a prefix, used to distinguish different kinds of parameters |
-| Parameter | Values given for specific operations. |
+| Prefix | The first word of a command. tCheck uses this command word to decide what kinds of actions it should perform |
+| Command Word | It is the input that follows behind a prefix. It is used to distinguish different kinds of parameters |
+| Parameter | Values given for specific operations |
 
 **Example:** <br>
 `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]`
