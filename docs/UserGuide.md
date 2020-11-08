@@ -1346,6 +1346,12 @@ Furthermore, for every valid prefixes (both compulsory and optional) that the us
 Warenager will check if the parameter supplied for each of those valid prefixes are also valid.
 For parameters that are deemed to be invalid, Warenager will display the parameter's default description.
 
+An exception for the previous rule above is when the prefix's parameter value is fixed by Warenager. The only prefixes
+that fit this category are `lt/` since there are only three valid fixed values, `st/` since there are only
+two valid fixed value types. `by/` since there are only five valid fixed values, and `o/` since there are only
+two valid orders. For these prefixes, if the parameters are deemed to be invalid, Warenager will display
+a valid value closest (by minimum edit distance) to the current user input.
+
 Lastly, for every compulsory prefixes that is required for the suggested command, but were
 not supplied by the user, Warenager will add them to the suggestion message along with
 their parameter's default description.
@@ -1354,9 +1360,11 @@ Every optional prefix that is valid for the suggested command if not entered by 
 will not be suggested by Warenager.
 
 For example, consider the case where user has entered an invalid command
+
 `ad n/apple s/ q/1000 sn/fairprice1`
 
 The command Warenager will then suggest will be
+
 `add n/apple s/<source> q/1000 l/<location>`
 
 Explanation:
@@ -1374,6 +1382,23 @@ Explanation:
 * Lastly, Warenager will notice that the compulsory prefix `l/` is missing and hence the suggestion
   message generated is `l/<location>`.
 * The prefix `lq/` is not generated since it is an optional prefix and not supplied by the user.
+
+Another example when the user entered an invalid list command
+
+`list lt/unbookmark`
+
+The command Warenager will then suggest will be
+
+`list lt/bookmark`
+
+Explanation:
+* Since the command word is a valid command word, Warenager will conclude that
+  the command word intended was `list`.
+* Warenager will now check for compulsory prefixes with respect to the infered command `list`.
+  The only compulsory prefix is `lt/` and its parameter value is supplied by the user, but the parameter value 
+  is unrecognized by Warenager. Since the prefix `lt/` parameter value is fixed by Warenager, Warenager will
+  compute the closest valid value to `unbookmark` and the closest valid value is `bookmark`.
+  Hence, the suggestion message generated is `lt/bookmark`.
 
 </div>
 

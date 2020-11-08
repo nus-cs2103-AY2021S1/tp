@@ -23,11 +23,15 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
+the [diagrams](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/docs/diagrams/) folder.
+Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
+to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/Main.java)
+and [`MainApp`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -45,7 +49,8 @@ Each of the four components,
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `Logic` component (see the class diagram given below) defines its API in the
+`Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
@@ -65,11 +70,13 @@ The sections below give more details of each component.
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts i.e. 
-`CommandBox`, `ResultDisplay`, `StockCardPanel`, `StatusBarFooter`, `Tabs`
+`CommandBox`, `ResultDisplay`, `StockListPanel`, `StatusBarFooter`, `Tabs`
 etc. 
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 1. The user enters a command into  the CommandBox.
 1. The `UI` component then executes the user commands using the `Logic` component.
@@ -102,12 +109,11 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the stock book data and the serial number data.
-* exposes an unmodifiable `ObservableList<Stock>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the stock book data.
+* stores the serial number sets book data (i.e. the data of all the serial numbers generated in Warenager)
+* exposes an unmodifiable `ObservableList<Stock>` that can be 'observed'
+e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
-
-
 
 ### Storage component
 
@@ -840,7 +846,7 @@ There are two commands users can use:
 Find and FindExact features allow search for four fields:
 
 Field         | Prefix
---------------| -------
+-------| -------
 Name          |   n/
 Source        |   s/
 Serial Number |   sn/
@@ -865,12 +871,17 @@ The list of `FieldContainsKeywordsPredicate` is obtained from parsing
 the user input, to produce either of the following predicates shown
 in the table below, for each `Prefix` and keywords pair.
 
-(Note that the user input should contain at least one `Prefix` and keywords to search.
+<div markdown="span" class="alert alert-info">:information_source: 
+
+**Note:**
+The user input should contain at least one `Prefix` and keywords to search.
 The table below shows which `FieldContainsKeywordsPredicate`
-is generate for the specific `Prefix`.)
+is generated for the specific `Prefix`.
+
+</div>
 
 Prefix       | FieldContainsKeywordsPredicate
--------------| -------------------------
+-------------| --------------------------------------
 n/<keywords> | NameContainsKeywordsPredicate
 s/<keywords> | SourceContainsKeywordsPredicate
 l/<keywords> | LocationContainsKeywordsPredicate
@@ -1059,6 +1070,248 @@ at least one of `a`, `this`, `is`, `banana`.)
   * Pros: Only the argument corresponding to the last appearance of the prefix will be used.
   Allows users to input prefix and corresponding arguments to override the last occurrence of this prefix.
   * Cons: Users may type 2 of the required prefixes accidentally and search for unintended stocks.
+
+### Note Feature
+
+#### Description
+The Note feature allows users to add and delete notes from a stock. 
+
+There are two commands users can use:
+* `note` - Adds a note to the stock specified by the stock's serial number.
+Note: Multiple notes can be added to the stock.
+* `notedelete` - Deletes a note, specified by note index, from the stock specified by the stock's serial number.
+
+Prefixes used in the Note feature:
+
+Command       | Fields       | Prefixes
+--------------| -------------| ---------------------------
+`note`        | Serial Number<br>Note | sn/<br>nt/
+`notedelete`  | Serial Number<br>Note Index | sn/<br>ni/  
+
+
+#### Mechanism for Adding Notes
+The mechanism for adding notes is facilitated by classes `NoteCommand`, and `NoteCommandParser`.
+
+#### NoteCommandParser
+The `NoteCommandParser` class implements the `Parser` interface. 
+`NoteCommandParser` class is tasked with parsing the user inputs
+to generate a `NoteCommand` with arguments `SerialNumber` of the stock
+and `Note` to add.
+
+The `SerialNumber` and `Note` is obtained from parsing the user input.
+Upon successful parsing, `NoteCommand` object generated will then be passed on to the `LogicManager` to be executed.
+
+If the user inputs do not conform to the valid format specified for the `NoteCommand`,
+an exception is thrown and no `NoteCommand` object will be created.
+
+If the `Serial Number` of stock is not found in Warenager's data,
+an error message is shown to prompt the user that Warenager cannot find the `Serial Number` given.
+
+`NoteCommandParser` implements the following important operations:
+
+* `NoteCommandParser#parse()` -
+ Parses the user input to produce a `NoteCommand`.
+
+#### NoteCommand
+The `NoteCommand` class extends the `Command` abstract class. The `NoteCommand` class is tasked with creating a new `CommandResult` that represents the result of the execution of a `NoteCommand`. 
+
+The construction of a `NoteCommand` takes in a `Serial Number` of stock and a `Note` to add to the stock.
+
+When a `NoteCommand` is executed, a `CommandResult` is constructed with the status message,
+showing the successful adding of the note to the stock.
+The execution of `NoteCommand` adds the note to the stock and updates the stock list in `Model`
+with the stock with the added note.
+
+`NoteCommand` implements the following important operations:
+
+* `NoteCommand#execute()` -
+Executes the search and returns the result message of the search.
+
+#### Example Usage Scenario (Adding Note)
+Given below are some example usage scenarios and how
+ the adding note feature mechanism behaves at each step.
+
+**Example 1: Adding a note to a stock with Serial Number "ntuc1"**
+
+Step 1. The user enters `note sn/ntuc1 nt/Bought from ntuc.`.
+
+Step 2. `MainWindow#executeCommand()` is called with the user input.
+Within this method, `LogicManager#execute()` is called with the
+user input to obtain a `CommandResult`.
+
+Step 3. The command word `note` is extracted out in `StockBookParser`.
+The command word matches `COMMAND_WORD`: `note` in the `NoteCommand` class.
+
+Step 4. The remaining user input is passed to the `NoteCommandParser` where within the
+`NoteCommandParser#parse()` method, the respective `ParserUtil#parseSerialNumber()` and
+`ParserUtil#parseNote` methods are called to generate a `Serial Number` of the stock
+and `Note` to add to stock. 
+
+Step 5. The `NoteCommandParser#parse()` method then returns a `NoteCommand`,
+constructed with the `Serial Number` of stock and `Note` to add to stock. 
+
+Step 6. `LogicManager#execute()` then calls `NoteCommand#execute()` method,
+with current `Model` as argument. Within this method call, `Stock#addNote()` adds the note to the stock,
+and the `Model` is updated with the stock with the added note.
+
+Step 7. The result of the note command is stored in the returning `CommandResult`object
+and displayed with `ResultDisplay`.
+
+Step 8. User views the new `StockListPanel` with the filtered stock list.
+
+#### Sequence Diagram
+The following sequence diagram shows how the Note feature (adding of note) works for Example 1:
+![Note Feature Sequence Diagram](images/NoteFeatureSequenceDiagram.png)
+
+#### Activity Diagram
+The following activity diagram summarizes what happens when
+ the Note feature (adding of note) is triggered:
+![Note Feature Activity Diagram](images/NoteFeatureActivityDiagram.png)
+
+#### Mechanism for Deleting Notes
+The mechanism for deleting notes is facilitated by classes `NoteDeleteCommand`, `NoteDeleteCommandParser` and `NoteIndex`.
+
+#### NoteDeleteCommandParser
+The `NoteDeleteCommandParser` class implements the `Parser` interface. 
+`NoteDeleteCommandParser` class is tasked with parsing the user inputs
+to generate a `NoteDeleteCommand` with arguments `SerialNumber` of the stock
+and `NoteIndex` of the note to delete.
+
+The `SerialNumber` and `NoteIndex` is obtained from parsing the user input.
+Upon successful parsing, `NoteDeleteCommand` object generated will then be passed on to the `LogicManager` to be executed.
+
+If the user inputs do not conform to the valid format specified for the `NoteDeleteCommand`,
+an exception is thrown and no `NoteDeleteCommand` object will be created.
+
+If the `Serial Number` of stock is not found in Warenager's data,
+an error message is shown to prompt the user that Warenager cannot find the `Serial Number` given.
+
+`NoteDeleteCommandParser` implements the following important operations:
+
+* `NoteDeleteCommandParser#parse()` -
+ Parses the user input to produce a `NoteDeleteCommand`.
+
+#### NoteDeleteCommand
+The `NoteDeleteCommand` class extends the `Command` abstract class. The `NoteDeleteCommand` class is tasked with creating a new `CommandResult` that represents the result of the execution of a `NoteDeleteCommand`. 
+
+The construction of a `NoteDeleteCommand` takes in a `Serial Number` of stock and a `NoteIndex` of note to delete.
+
+When a `NoteDeleteCommand` is executed, a `CommandResult` is constructed with the status message,
+showing the successful adding of the note to the stock.
+The execution of `NoteDeleteCommand` deletes the note from the stock and updates the stock list in `Model`
+with the stock with the deleted note.
+
+`NoteDeleteCommand` implements the following important operations:
+
+* `NoteDeleteCommand#execute()` -
+Executes the search and returns the result message of the search.
+
+#### NoteIndex
+The `NoteIndex` class represents the index of the note that is displayed in the Notes column
+under the `Data` tab of Warenager's UI. A `NoteIndex` of the note to be deleted from stock
+is generated in `NoteDeleteCommandParser` from the parsing of user input.
+
+`NoteIndex` implements the following important operations:
+
+* `NoteIndex#isValidNoteIndex() -
+ Checks the input and returns true if the given input is a valid note index
+* `NoteIndex#fromZeroBased() -
+ Creates a new NoteIndex using a zero-based index.
+* `NoteIndex#fromOneBased() - 
+ Creates a new NoteIndex using a one-based index.
+
+#### Example Usage Scenario (Deleting Note(s))
+Given below are some example usage scenarios and how
+ the note delete feature mechanism behaves at each step.
+
+**Example 1: Deleting a note at index 1 from a stock with Serial Number "ntuc1"**
+
+Step 1. The user enters `notedelete sn/ntuc1 ni/1`.
+
+Step 2. `MainWindow#executeCommand()` is called with the user input.
+Within this method, `LogicManager#execute()` is called with the
+user input to obtain a `CommandResult`.
+
+Step 3. The command word `notedelete` is extracted out in `StockBookParser`.
+The command word matches `COMMAND_WORD`: `notedelete` in the `NoteDeleteCommand` class.
+
+Step 4. The remaining user input is passed to the `NoteDeleteCommandParser` where within the
+`NoteDeleteCommandParser#parse()` method, the respective `ParserUtil#parseSerialNumber()` and
+`ParserUtil#parseNoteIndex` methods are called to generate a `Serial Number` of the stock
+and `NoteIndex` of the note to delete from the stock. 
+
+Step 5. The `NoteDeleteCommandParser#parse()` method then returns a `NoteDeleteCommand`,
+constructed with the `Serial Number` of stock and `NoteIndex` of the note to delete from the stock. 
+
+Step 6. `LogicManager#execute()` then calls `NoteDeleteCommand#execute()` method,
+with current `Model` as argument. Within this method call, `Stock#deleteNote()` deletes the note
+at the index specified by the `NoteIndex` from the stock,
+and the `Model` is updated with the stock with the deleted note.
+
+Step 7. The result of the note delete command is stored in the returning `CommandResult`object
+and displayed with `ResultDisplay`.
+
+Step 8. User views the new `StockListPanel` with the filtered stock list.
+
+**Example 2: Deleting ALL notes from a stock with Serial Number "ntuc1"**
+
+Step 1. The user enters `notedelete sn/ntuc1 ni/0`.
+
+Steps 2 to 5 are the same as `Example 1: Deleting a note at index 1 from a stock with Serial Number "ntuc1"` above.
+
+Step 6. `LogicManager#execute()` then calls `NoteDeleteCommand#execute()` method,
+with current `Model` as argument. Within this method call, `Stock#deleteNote()` deletes all the notes,
+specified by `NoteIndex` constructed with input "0", from the stock,
+and the `Model` is updated with the stock with the deleted note.
+
+Steps 7 and 8 are the same as `Example 1: Deleting a note at index 1 from a stock with Serial Number "ntuc1"` above.
+
+#### Sequence Diagram
+The following sequence diagram shows how the NoteDelete feature works for Example 1:
+![NoteDelete Feature Sequence Diagram](images/NoteDeleteFeatureSequenceDiagram.png)
+
+#### Activity Diagram
+The following activity diagram summarizes what happens when
+ the NoteDelete feature is triggered:
+![NoteDelete Feature Activity Diagram](images/NoteDeleteFeatureActivityDiagram.png)
+
+#### Design Consideration
+The below aspects are the design considerations for the Note feature in adding and deleting notes from stocks.
+
+##### Aspect: Representation of notes for a stock
+* **Alternative 1 (current implementation):** Multiple notes can be added to a stock and
+each note is indexed. <br>
+* Pros: Allows user to add multiple notes to stock while maintaining the ability to clearly
+differentiate between the different notes. With indexed notes, users are able to reference
+specific notes in command and delete the specific note.
+* Cons: Users may not want the indexing, as it may seem like a priority ranking for the notes.
+
+* **Alternative 2:** Multiple notes can be added to a stock and each note is denoted by bullet point. <br>
+* Pros: Allows user to add multiple notes to stock while maintaining ability to clearly differentiate
+between the different notes.
+* Cons: Unable to reference a specific note in command and unable to clearly reference a certain note
+to be deleted, but will still be able to delete all notes.
+
+* **Alternative 3:** A stock can only have one note, but each time a note is added, it replaces
+the previous note. <br>
+* Pros: Allows user to quickly replace notes with just one command.
+* Cons: Users are unable to add multiple notes to the same stock and differentiate between the notes.
+Each time the user wants to add on to a note, the user has to retype the entire note again with the
+added details.
+
+##### Aspect: Input format for note and notedelete commands.
+
+* **Alternative 1 (current implementation):** Duplicate prefixes cannot be present in user input.
+  * Pros: Removes ambiguity in choosing the corresponding arguments used in adding notes to stocks or
+  deleting notes from stocks.
+  * Cons: Users have to retype their command in the case where
+  they forget which prefixes they have typed and input duplicate prefixes.
+
+* **Alternative 2:** Duplicate prefixes can be present in user input.
+  * Pros: Only the argument corresponding to the last appearance of the prefix will be used.
+  Allows users to input prefix and corresponding arguments to override the last occurrence of this prefix.
+  * Cons: Users may type 2 of the required prefixes accidentally and add a note to an unintended stock,
+  or delete an unintended note from the stock.
 
 ### Statistics Feature
 
@@ -1534,9 +1787,8 @@ The following activity diagram summarizes what happens when the print feature is
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: Allows users to manage stocks faster than a typical mouse/GUI driven app.
-Includes higher level features such as ability to bookmark mostly used products and highlights stocks
+Includes higher level features such as ability to bookmark important stocks and highlights stocks
 that are low in quantity to improve user experience.
-
 
 ### User stories
 
@@ -1550,17 +1802,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | warehouse manager                                           | to be able to search for stocks easily                                               | I can refer to them quickly                                            |
 | `* * *`  | admin                                                       | to print out all the stocks in the inventory                                         | I can keep records of the inventory                                    |
 | `* * *`  | warehouse manager                                           | to be able to view all the stocks there are in the warehouse clearly                 | I can make decisions better                                            |
-| `* * *`  | forgetful manager                                           | to list the features and the way to use them                                         | I can refer to this feature when I forget how to use certain features  |
+| `* * *`  | forgetful warehouse manager                                 | to list the features and the way to use them                                         | I can refer to this feature when I forget how to use certain features  |
 | `* * *`  | multi-device user                                           | to transport data from one device to another                                         | I will not have to key in items one by one again                       |
 | `* * *`  | tech-savvy warehouse manager                                | to easily type shorter commands                                                      | I am able to execute functions quickly                                 |
 | `* * *`  | collaborative user                                          | my inventory to be able to be shared with my collaborators                           | my collaborators can only read and find data                           |
 | `* * *`  | tech savvy warehouse manager                                | to be able to change the information of my existing stock in the application         | I can keep my existing inventories updated                             |
-| `*`      | major shareholder                                           | to easily understand how inventory count works                                       | I can determine if the investment is worthy                            |
-| `* * *`  | manager                                                     | to be able to gather the statistics (eg. profit) of the items in inventory           | I can report the profitability of products                             |
-| `* * *`  | forgetful manager                                           | to add optional notes at certain stocks                                              | I can be reminded of important information                             |
-| `* * *`  | busy manager                                                | to be able to see or highlight low stocks at a glance                                | I can replenish them in time                                           |
-| `*`      | busy manager                                                | to automate the calculation of how much stock to restock based on the current stocks | I do not need to spend time manually calculating                       |
-| `* * *`  | tech savvy warehouse manager                                | to be able to bookmark certain items in the warehouse                                | I can access and augment their information easily                      |
+| `* *`    | major shareholder                                           | to easily understand how inventory count works                                       | I can determine if the investment is worthy                            |
+| `* *`    | warehouse manager                                           | to be able to gather the statistics (eg. profit) of the items in inventory           | I can report the profitability of products                             |
+| `* *`    | forgetful warehouse manager                                 | to add optional notes at certain stocks                                              | I can be reminded of important information                             |
+| `* *`    | busy manager                                                | to be able to see or highlight low stocks at a glance                                | I can replenish them in time                                           |
+| `* *`    | busy manager                                                | to automate the calculation of how much stock to restock based on the current stocks | I do not need to spend time manually calculating                       |
+| `* *`    | tech savvy warehouse manager                                | to be able to bookmark certain items in the warehouse                                | I can access and augment their information easily                      |
 | `* * *`  | beginner user                                               | have an easy-to-understand interface                                                 |                                                                        |
 | `* * *`  | multi-OS user                                               | to run the application on popular operating systems in the market                    |                                                                        |
 | `* * *`  | tech savvy warehouse manager                                | to have a smooth flowing platform                                                    | I can track my inventories easily (Good UX)                            |
@@ -1574,10 +1826,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | warehouse manager                                           | to be able to easily teach my subordinates how to use the software                   | they can cover my role when I am not around                            |
 | `* * *`  | user                                                        | to sort my inventory by the fields I want                                            | I can view my stocks easier                                            |
 
-
 ### Use cases
 
-(For all use cases below, the **System** is the `Warenager` and the **Actor** is the `user`, unless specified otherwise)
+<div markdown="span" class="alert alert-info">:information_source: 
+
+**Note:**
+For all use cases below, the **System** is the `Warenager` and the **Actor** is the `user`,
+unless specified otherwise.
+
+</div>
 
 #### Use case 1: Adding a stock
 
@@ -2094,7 +2351,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Warenager deletes all notes from the stock.
 
     Use case ends.
-    
+
 **Extensions**
 * 1a. The given input has an additional header.
 
@@ -2131,7 +2388,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1f1. Warenager shows an error message.
 
      Use case resumes at step 1.
-
 
 #### Use case 15: Using the help command
 
@@ -2290,8 +2546,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Warenager shows an error message and tells user to use the proper format, giving a suggestion.
 
       Use case resumes at step 1.
-      
-#### Use case 22: Exit Warenager
+
+#### Use case 22: Viewing details of a stock in Warenager
+
+**MSS**
+
+1.  User requests to view details of a stock in Warenager.
+2.  Warenager toggles to the Stock View tab.
+3.  Warenager displays the details of the stock.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given input has an additional header.
+
+    * 1a1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+
+    * 1b1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+
+    * 1c1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1d. The given input is empty.
+
+    * 1d1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1e. The stock cannot be found based on given input.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+#### Use case 23: Exit Warenager
 
 **MSS**
 
@@ -2317,12 +2614,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5.  Should be easy to pickup so that a user of managerial role can quickly teach their employees should he/she be absent.
 6.  Should have an easy-to-understand interface, for beginner users to use the application comfortably.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Stock**: Item in the inventory.
 * **Field**: (name, serial number, quantity, location stored, source) of the stock in inventory
 
@@ -2477,9 +2771,9 @@ testers are expected to do more *exploratory* testing.
       Status message shows success of command.
 
    1. Test case: `findexact n/umbrella l/section 3`<br>
-         Expected: All stocks with field name containing "umbrella" AND field location containing "section" and "3"
-         are displayed from the inventory.
-         Status message shows success of command.
+      Expected: All stocks with field name containing "umbrella" AND field location containing "section" and "3"
+      are displayed from the inventory.
+      Status message shows success of command.
    
    1. Test case: `findexact 1111111`<br>
       Expected: No stock found due to invalid format from missing field header
@@ -2502,11 +2796,11 @@ testers are expected to do more *exploratory* testing.
       Expected: No stock found due to empty input for field name.
       Error details shown in the status message. Suggestion message will be shown too.
 
-### Updating a stock
+### Updating stocks
 
 1. Updating a stock from the inventory.
 
-    1. Prerequisites: Multiple stocks in the list. Stocks exists in inventory.
+    1. Prerequisites: Multiple stocks in the list. `Flower11` and `Flower12` stocks exists in inventory.
 
     1. Test case: `update sn/FLower11 iq/+50`<br>
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50.
@@ -2520,23 +2814,79 @@ testers are expected to do more *exploratory* testing.
        Expected: The stock with serial number Flower11 will have a new quantity 2103.
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/Flower11 n/Rose`
+    1. Test case: `update sn/Flower11 n/Rose` <br>
        Expected: The stock with serial number Flower11 will have a new name Rose.
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/Flower11 l/Vase 3`
+    1. Test case: `update sn/Flower11 l/Vase 3` <br>
        Expected: The stock with serial number Flower11 will have a new location Vase 3.
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3`
+    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3` <br>
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50, a new name Rose,
        and a new location Vase3
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3`
+    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3` <br>
        Expected: The stock with serial number Flower11 and Flower12 will have an increase of quantity by 50, a new name Rose,
        and a new location Vase3.
        Details of the updated stock is shown in the status message.
+     
+    1. Test case: `update` <br>
+       Expected: No stock updated due to invalid command format.
+       Error details shown in the status message. Suggestion message will be shown too.
+    
+    1. Test case: `update sn/Flower13` <br>
+       Expected: No stock updated due to stock not found.
+       Error details shown in the status message. Suggestion message will be shown too.
+    
+    1. Test case: `update sn/Flower11 sn/Flower13 n/Rose` <br>
+       Expected: No stock updated due to stock `Flower13` not found.
+       Error details shown in the status message. Suggestion message will be shown too.
+
+### Sorting stocks
+
+1. Sorting a stock from the inventory.
+
+    1. Prerequisites: Multiple stocks in the list.
+
+    1. Test case: `sort o/ascending by/name`<br>
+       Expected: The stocks in inventory will be sorted lexicographically by name in ascending order.
+       Success message will be shown.
+       
+    1. Test case: `sort o/ascending by/quantity`<br>
+       Expected: The stocks in inventory will be sorted numerically by quantity in ascending order.
+       Success message will be shown.
+    
+    1. Test case: `sort o/descending by/serialnumber`<br>
+       Expected: The stocks in inventory will be sorted lexicographically by serial number in descending order.
+       Success message will be shown.
+    
+    1. Test case: `sort o/descending by/lowquantity`<br>
+       Expected: The stocks in inventory will not be sorted since `lowquantity` is an invalid field.
+       Error details shown in the status message. Suggestion message will be shown too.
+       
+    1. Test case: `sort o/random by/location`<br>
+       Expected: The stocks in inventory will not be sorted since `random` is an invalid order.
+       Error details shown in the status message. Suggestion message will be shown too.
+
+### Suggestion message
+
+1. Generates suggestion message for invalid commands.
+
+    1. Prerequisites: An invalid command format is entered.
+
+    1. Test case: `sor o/ascending by/name`<br>
+       Expected: Unknown command error will be shown, along with the suggestion `sort o/ascending by/name` and
+       `sort` command message usage.
+       
+    1. Test case: `add n/apple s/fairprice q/1000 lq/100`<br>
+       Expected: Invalid command format error will be shown, along with the suggestion 
+       `add n/apple s/fairprice q/1000 l/<location> lq/100` and `add` command message usage.
+    
+    1. Test case: `fin n/apple`<br>
+       Expected: Unknown command error will be shown, along with the suggestion `find n/apple`
+       and `find` command message usage.
 
 ### Generate statistics
 
@@ -2574,8 +2924,8 @@ testers are expected to do more *exploratory* testing.
 1. Adding a note to a stock.
 
     1. Test case: `note sn/ntuc1 nt/first note`
-    Expected: Note is added to the stock with serial number ntuc1 and displayed in the notes column for the stock.
-    Details of the stock with successful note added is shown in status message.
+       Expected: Note is added to the stock with serial number ntuc1 and displayed in the notes column for the stock.
+       Details of the stock with successful note added is shown in status message.
    
    1. Test case: `note 1111111`<br>
       Expected: No note added due to invalid format from missing field headers sn/ and nt/.
@@ -2583,7 +2933,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `note sn/umbrella1 sn/company1 nt/first note`<br>
       Expected: No note added due to invalid format from duplicate field header of sn/.
-      Error details shown in the status message. Status bar remains the same.
+      Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `note`<br>
       Expected: No note added due to missing field headers.
@@ -2595,6 +2945,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `note sn/ntuc1 nt/`<br>
       Expected: No note added due to empty input for field note.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Other incorrect stock view commands to try: `not`.
+      Expected: No note added due to unknown command.
       Error details shown in the status message. Suggestion message will be shown too.
 
 ### Deleting a note from stock
@@ -2635,7 +2989,11 @@ testers are expected to do more *exploratory* testing.
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `notedelete sn/ntuc1 ni/`<br>
-      Expected: No note delete due to empty input for field note index.
+      Expected: No note deleted due to empty input for field note index.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Other incorrect note delete commands to try: `notedel`.
+      Expected: No note deleted due to unknown command.
       Error details shown in the status message. Suggestion message will be shown too.
 
 ### Toggling between tabs in Warenager
@@ -2654,8 +3012,40 @@ testers are expected to do more *exploratory* testing.
        already at the tab.
        Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect statistics commands to try: `ta`, `tab sn/ntuc1`
+   1. Other incorrect statistics commands to try: `ta`, `tab sn/ntuc1`.
       Expected: Similar to previous.
+
+### Viewing details of a stock.
+
+1. Viewing details of a stock.
+
+    1. Test case: `stockview sn/ntuc1`
+        Expected: Warenager toggles to the Stock View tab, the details of the stock
+        with serial number ntuc1 is shown.
+        
+    1. Test case: `stockview sn/ntuc1 sn/ntuc2`
+            Expected: No stock viewed as duplicate field serial number is entered.
+            Error details shown in the status message. Suggestion message will be shown too.
+
+    1. Test case: `stockview sn/ntuc`.
+        Expected: No stock viewed as serial number given is not a valid serial number.
+        Error details shown in the status message. Suggestion message will be shown too.
+
+    1. Test case: `stockview sn/`.
+        Expected: No stock viewed due to invalid command format of empty input for field note index.
+        Error details shown in the status message. Suggestion message will be shown too.
+
+    1. Test case: `stockview`.
+        Expected: No stock viewed due to invalid command format of missing header in input.
+        Error details shown in the status message. Suggestion message will be shown too.
+
+    1. Test case: `stockview q/1111`<br>
+        Expected: No stock viewed due to invalid field header q/.
+        Error details shown in the status message. Suggestion message will be shown too.
+          
+    1. Other incorrect stock view commands to try: `stock`, `stockview 1111`.
+          Expected: No stock viewed due to unknown / invalid command format.
+          Error details shown in the status message. Suggestion message will be shown too.
 
 ### Clearing data in Warenager
 
@@ -2666,7 +3056,7 @@ testers are expected to do more *exploratory* testing.
         Details of the successful clearing is shown.
       
     1. Test case: `clear all`<br>
-       Expected: Warenager do not clear any data.
+       Expected: Warenager does not clear any data.
        Error details shown in the status message. Suggestion message will be shown too.
 
    1. Other incorrect statistics commands to try: `cle`, `clear sn/ntuc1`
@@ -2688,7 +3078,43 @@ testers are expected to do more *exploratory* testing.
               
     1. While not in a Warenager session, corrupt the json files under `/data` directory. Then start Warenager.
        Expected: Warenager senses the corrupted files, replaces them with empty content and functions as per normal.
-        
-                
-        
 
+## **Appendix: Effort**
+
+### Difficulty Level
+
+To our team, Warenager is a very challenging project and in terms of difficulty level, it ranks higher than AB3 itself.
+Warenager is a morph of AB3 and not only did we changed some existing features of AB3, we also augmented Warenager with
+new features that didn't exist before in AB3. Some of the features we added that are not available in AB3 are
+suggestion feature, statistics feature, note features, bookmark and highlight stocks, and sorting feature.
+
+Our contributions to the project also justifies our claim about the difficulty level. Note that AB3 contains around 6
+KLoC. Compared to AB3, based on the [project's code contribution](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=T15-3&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship) in RepoSense,
+the total lines of code that we added or modified is around 24 KLoc, which is four times the amount of code in AB3.
+
+### Challenges
+* Team meetings are held online because of COVID-19.
+* Division of tasks sometimes not too effective since some tasks may depends on other tasks.
+* New features added to Warenager are challenging to implement.
+* Standardizing documentation.
+* Adhering to internal deadlines set, especially for hard to implement features.
+* Fixing bugs, especially those reported by other teams.
+* Adhering as best as we could, to the coding style of `CS2103T`.
+* Adhering to the forking workflow from the start of the project until the end.
+* Internal testing of product, to ensure Warenager will work properly.
+* Changing the UI of AB3 to fit Warenager.
+
+### Effort Required
+
+We can estimate that the effort required for creating Warenager is a lot more than what is required to build AB3 from
+scratch. As stated above, we did not only changed existing features of AB3, but also augmented new features not found
+on AB3 into Warenager. The new features we implemented has their own notable challenges.
+
+In terms of work and contribution, as stated above, our whopping 24 KLoC which is around four times the amount of code
+existing in AB3, justifies our claim that the effort to create Warenager is more than the effort to create AB3.
+
+### Achievements
+* One of the top 10 groups in terms of code contribution in [RepoSense](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=totalCommits%20dsc&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship).
+* Created a new UI for Warenager that is significantly different from AB3's UI.
+* Implemented all features including the new features augmented to Warenager.
+* Finished every milestones on time.

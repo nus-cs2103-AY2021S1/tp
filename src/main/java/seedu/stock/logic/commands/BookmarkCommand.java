@@ -7,8 +7,11 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTIO
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.commons.util.SortUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
@@ -37,6 +40,7 @@ public class BookmarkCommand extends Command {
             + ": %1$s";
     public static final String MESSAGE_ALREADY_BOOKMARKED = "Stock with given serial number is already bookmarked"
             + ": %1$s";
+    private static final Logger logger = LogsCenter.getLogger(BookmarkCommand.class);
 
     private final Set<SerialNumber> targetSerialNumbers;
 
@@ -52,6 +56,7 @@ public class BookmarkCommand extends Command {
      * @throws CommandException If there are any errors.
      */
     public CommandResult execute(Model model) throws CommandException {
+        logger.log(Level.INFO, "Starting to execute bookmark command");
         requireNonNull(model);
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownStocks = model.getFilteredStockList();
@@ -115,6 +120,7 @@ public class BookmarkCommand extends Command {
 
             model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
+            logger.log(Level.INFO, "Finished bookmarking stocks successfully");
             return new CommandResult(String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks)));
         } else if (notUpdatedStocks.size() > 0 && stocksNotFound.size() > 0) {
             String result = String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
@@ -126,6 +132,7 @@ public class BookmarkCommand extends Command {
 
             model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
+            logger.log(Level.INFO, "Finished bookmarking stocks successfully");
             return new CommandResult(result);
         } else if (stocksNotFound.size() == 0 && notUpdatedStocks.size() > 0) {
             String result = String.format(MESSAGE_ALREADY_BOOKMARKED , stocksAsString(notUpdatedStocks))
@@ -133,6 +140,7 @@ public class BookmarkCommand extends Command {
 
             model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
+            logger.log(Level.INFO, "Finished bookmarking stocks successfully");
             return new CommandResult(result);
         } else {
             String result = String.format(MESSAGE_ALREADY_BOOKMARKED , stocksAsString(notUpdatedStocks))
@@ -141,6 +149,7 @@ public class BookmarkCommand extends Command {
 
             model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
+            logger.log(Level.INFO, "Finished bookmarking stocks successfully");
             return new CommandResult(result);
         }
 
@@ -190,6 +199,13 @@ public class BookmarkCommand extends Command {
         serialNumbersAsString += "\n";
 
         return serialNumbersAsString;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof BookmarkCommand // instanceof handles nulls
+                && targetSerialNumbers.equals(((BookmarkCommand) other).targetSerialNumbers)); // state check
     }
 
 

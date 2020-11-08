@@ -65,6 +65,7 @@ public class NoteCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws SerialNumberNotFoundException {
+        logger.log(Level.INFO, "Starting to execute note command");
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> allStocks = model.getFilteredStockList();

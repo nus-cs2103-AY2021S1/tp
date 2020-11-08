@@ -21,14 +21,14 @@ public class StockViewWindow extends UiPart<Region> {
     private ListView<String> stockView;
 
     /**
-     * Default constructor for Statistics Window tab.
+     * Default constructor for Stock View tab.
      */
     public StockViewWindow() {
         super(FXML);
     }
 
     /**
-     * Creates a {@code StockListPanel} with the given {@code ObservableList}.
+     * Creates a {@code StockViewWindow} with the given {@code ObservableList}.
      */
     public StockViewWindow(ObservableList<String> fieldList) {
         super(FXML);
@@ -39,7 +39,8 @@ public class StockViewWindow extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Stock} using a {@code StockCard}.
+     * Custom {@code ListCell} that displays the graphics of a details of a stock
+     * using a {@code StockViewCard}.
      */
     class StockViewCell extends ListCell<String> {
         @Override
@@ -49,15 +50,19 @@ public class StockViewWindow extends UiPart<Region> {
             if (empty || field == null) {
                 setGraphic(null);
                 setText(null);
+
             } else {
                 String[] headerBody = field.split(": ", 2);
                 String header = headerBody[0];
                 String body = headerBody[1];
 
+                // Serial number is displayed in all uppercase
                 if (header.equals("Serial Number")) {
                     body = body.toUpperCase();
                 } else {
-                    body = upperFirst(body);
+                    // the rest of the details are displayed with first character upper cased
+                    // and the rest lowered
+                    body = upperCaseFirstCharacter(body);
                 }
 
                 setGraphic(new StockViewCard(body, header).getRoot());
@@ -65,11 +70,8 @@ public class StockViewWindow extends UiPart<Region> {
         }
     }
 
-    public boolean isUsedBefore() {
-        return this.serialNumberOfStock != null;
-    }
-
     public Optional<Stock> getStockToView(ObservableList<Stock> stockList) {
+        assert stockList != null;
 
         String serialNumberString = serialNumberOfStock;
         Optional<Stock> stockToView = Optional.empty();
@@ -81,16 +83,16 @@ public class StockViewWindow extends UiPart<Region> {
                 break;
             }
         }
+
         return stockToView;
     }
 
-
     /**
      * Returns the input string with the first letter being upper-cased
-     * @param toChange
+     * @param toChange the string to change
      * @return input string with first letter being upper-cased
      */
-    public String upperFirst(String toChange) {
+    public String upperCaseFirstCharacter(String toChange) {
 
         String upperCased = "";
         if (toChange != null && !toChange.isEmpty()) {
@@ -101,6 +103,5 @@ public class StockViewWindow extends UiPart<Region> {
 
         return upperCased;
     }
-
 
 }

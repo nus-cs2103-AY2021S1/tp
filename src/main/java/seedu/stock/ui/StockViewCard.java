@@ -6,7 +6,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
- * An UI component that displays information of a {@code Stock}.
+ * An UI component that displays information of a field of a {@code Stock}.
+ * A field is either: Name, Serial Number, Source, Quantity, Location stored
+ * in warehouse, or Notes represented as String.
  */
 public class StockViewCard extends UiPart<Region> {
 
@@ -16,8 +18,6 @@ public class StockViewCard extends UiPart<Region> {
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
     public final String field;
@@ -27,16 +27,16 @@ public class StockViewCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label noteText;
+    private Label fieldText;
 
     /**
-     * Creates a {@code StockViewCard} with the given {@code String} and index to display.
+     * Creates a {@code StockViewCard} with the given {@code String} and header to display.
      */
     public StockViewCard(String field, String header) {
         super(FXML);
         this.field = field;
         id.setText(header + ": ");
-        noteText.setText(field);
+        fieldText.setText(field);
     }
 
     @Override

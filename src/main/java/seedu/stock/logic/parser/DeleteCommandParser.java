@@ -1,6 +1,7 @@
 package seedu.stock.logic.parser;
 
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.stock.commons.core.LogsCenter;
@@ -22,7 +23,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
+        logger.log(Level.INFO, "Starting to parse delete command");
         Set<SerialNumber> serialNumberSet = ParserUtil.parseSerialNumbers(args);
+        logger.log(Level.INFO, "Finished parsing delete command successfully");
         return new DeleteCommand(serialNumberSet);
     }
 
