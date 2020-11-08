@@ -78,8 +78,7 @@ This section will give you some useful information about the various command for
 * Words in UPPER_CASE are the parameters to be supplied by the user.<br>
   * eg. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is my name?`
 
-<br>
-  
+
 * Items in angle brackets `<>` are either/or options. Each option is delineated by a `|` . 
   * eg. `<success|reviewed>` can be used as either `success` or `reviewed` but not both.
 
