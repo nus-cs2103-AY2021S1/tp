@@ -250,9 +250,9 @@ This is the table of prefixes used:
 | Prefix | Syntax | Example |
 |-|-|-|
 | `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
-| `mod/` | mod/MODULE_CODE | - `mod/ST2334` |
-| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
-| `p/` | p/PRIORITY | - `p/HIGH` |
+| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | - `mod/ST2334` |
+| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
+| `p/` | p/PRIORITY_OF_ASSIGNMENT | - `p/HIGH` |
 
 <div markdown="block" class="alert alert-primary">
 
