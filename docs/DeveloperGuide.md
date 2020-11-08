@@ -359,28 +359,25 @@ The `ListCommand` class extends abstract class `Command` and it is responsible f
 It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, if `numberOfDays` is empty, a predicate `PREDICATE_SHOW_ALL_ASSIGNMENT` is passed into the `updatedFilteredAssignmentList` method of a `Model` object, `model`. If `numberOfDays` is not empty, `showLimitedAssignments` method with return type `Predicate<Assignment>` is passed into the `updatedFilteredAssignmentList` method. This method uses lambda expressions to filter assignments with deadlines that fall within the number of days window inputted by the user.
 
 ##### Design Considerations
-As the list command allows for users to enter an optional index, we decided that there should be overloaded constructors for this command, one being empty and the other populated with the parameter `Index`. We decided to use `Optional<Index>` as the type for `numberOfDays` attribute in `ListCommand` class so that it can be initialized ...
+As the list command allows for users to enter an optional index, we decided that there should be overloaded constructors for this command, one being empty and the other populated with the parameter `Index`. We decided to use `Optional<Index>` as the type for `numberOfDays` attribute in `ListCommand` class because the user input might or might not have an input argument. 
 
 The following are design considerations we had and its comparisons:
 
 **Consideration 1**: Use of a single constructor which takes in `Index` parameter and pass an `Index` with zero base value 0 into the constructor when all assignments are to be listed.
 
 Pros: 
-* Straightforward way of coding when only one type of constructor is used
+* Straightforward way of coding when only one type of constructor is used.
 
 Cons: 
-* Bad OOP design
-* It is also not an intuitive way for developers to understand the code in a single glance.
+* It is not an intuitive way for developers to understand the code in a single glance.
 
 **Consideration 2**: Use of overloaded constructors and `Optional<Index>` for `numberOfDays` attribute in `ListCommand` class
 
 Pros: 
-* Good OOP design
-* Provides flexibility in giving definitions to methods
 * Removes ambiguity and have clearer semantics
  
 Cons: 
-* Optional requires a bit different thinking. For example `null` has to get replaced with `Optional.empty()`.
+* Optional requires a different thinking. For example `null` has to get replaced with `Optional.empty()`.
 
 
 #### Usage scenario
