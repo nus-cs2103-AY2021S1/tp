@@ -11,6 +11,7 @@ Interface ReadOnlyAddressBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class AddressBook
+Class VersionedAddressBook
 Class ReadOnlyAddressBook
 Class Model
 Class ModelManager
@@ -29,15 +30,17 @@ Class Label
 HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
+VersionedAddressBook --|> AddressBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" VersionedAddressBook
 ModelManager o-left-> "1" UserPrefs
 ModelManager o-right-> "1" CurrentPath
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueTagList
+VersionedAddressBook *--> "*" ReadOnlyAddressBook
 UniqueTagList o--> "*" Tag
 Tag *--> "1" TagName
 Tag *--> "1" FileAddress
