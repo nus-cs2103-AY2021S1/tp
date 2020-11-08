@@ -521,6 +521,50 @@ The diagram below gives a short overview on what happens when a user's input is 
   * Cons: If the gitUserName is very different from the teammate's actual name, it may be difficult for the user
   to remember, as is often the case for gitUserNames.
 
+### Delete Teammate feature
+
+#### Implementation
+
+The implementation of DeleteTeammate involves both the deleting of the teammate in memory through the use of
+ `Participation`, deleting from all projects the teammate is a part of, as well as deleting the Teammate in the JSON
+  file on the harddisk using the `Storage` class.
+
+The DeleteTeammate created is removed in the following places:
+ - global static variable `allPeople` in the Person class 
+ - within the project it added to, in the associated Participations.
+ 
+The Delete Teammate command has to be prefixed with `deleteteammate` and include the following field:
+ - `mg/` prefix followed by the teammate's Github User Name
+
+*The field above is validated upon entry by the user, and failing the validation, will display to the user that the
+  command failed, and request the user to try again.*
+
+Delete Teammate is also performed in the scope of `ListPersons`.
+
+Given below is an example usage scenario and how the `DeleteTeammate` mechanism behaves at each step:
+
+Step 1: The user enters `listpersons` for example to list all persons from the mainscreen.The user is greeted with the
+ projects list on the left, and the description of the project in the centre.
+
+![MainscreenUi](images/MainscreenUi.png)
+
+   *Figure 23: What the app looks like after 'start 1' command*
+
+Step 2: The user enters a New Teammate command such as `addteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon
+@gmail.com ma/13 Cupertino Loop`. The command text is passed into `LogicManager` (an implementation of Logic) which
+ passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is
+  `addteammate`. A new instance of `TeammateCommandParser` class is then created which proceeds to parse the various
+   fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
+
+If the fields are all valid, a new `Person` object would be created in the same class and passed into the
+ `AddTeammateCommand` class. 
+
+Within the `AddTeammateCommand` class, an instance of `AddTeammateCommand` is created, along with an instance of the
+ teammate created in the same class and this instance of `Command` is passed back to `LogicManager`.
+
+LogicManager then calls the method `execute` of the NewTeammateCommand which stores the teammate into the respective project's participation list, and for the project to be stored in the teammate's participation list. While seeming to increase coupling, it however keeps both classes separate and would not brea
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Extension Suggestions**
