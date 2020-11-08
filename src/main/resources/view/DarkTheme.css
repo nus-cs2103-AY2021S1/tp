@@ -510,3 +510,7 @@
 .line {
     -fx-stroke: white;
 }
+
+#hyperlink {
+    -fx-text-fill: white;
+}
