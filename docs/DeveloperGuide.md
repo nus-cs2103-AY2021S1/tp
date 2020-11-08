@@ -1430,9 +1430,7 @@ User can create two types of flashcards - containing open end question or multip
 
 Users can fins flashcards both through keywords using the `q/` prefix and through tags using the `t/` prefix.
 
-1. Prerequisites: 
-
-   1. For some test cases listed bellow to work, user should have the sample starting flashcards that was provided stored in QuickCache.
+1. Prerequisites: For some test cases listed bellow to work, user should have the sample starting flashcards that was provided stored in QuickCache.
 
 1. Test Case 1: `find q/Sample`<br>
    Expected: Finds all flashcards containing the keyword `Sample` (not case sensative) in its question. Found flashcards will be listed out.
@@ -1453,9 +1451,9 @@ Users can fins flashcards both through keywords using the `q/` prefix and throug
 
 There are 2 ways to delete flashcards – by index or by tags.
 
-1. Deleting a flashcard by index
+1. Prerequisites: List all flashcards using the `list` command. There is at least one flashcard stored in QuickCache.
 
-   1. Prerequisites: List all flashcards using the `list` command. There is at least one flashcard stored in QuickCache.
+1. Deleting a flashcard by index
 
    1. Test Case 1: `delete 1`<br>
       Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message.
@@ -1468,7 +1466,7 @@ There are 2 ways to delete flashcards – by index or by tags.
    1. Test Case 1: `delete t/MCQ`<br>
       Expected: All flashcards with the tag `MCQ` is deleted
 
-   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete 1 t/MCQ` <br>
+   1. Other incorrect `delete` commands to try: `delete`, `delete x` (where x is larger than the list size), `delete 1 t/MCQ` <br>
       Expected: Error message will appear with instructions on how to use the delete command.
 
 1. Clearing all flashcards
@@ -1476,10 +1474,44 @@ There are 2 ways to delete flashcards – by index or by tags.
    1. Test Case 1: `clear`
       Expected: All flashcards deleted from QuickCache.
 
-
 ### F.7 Testing a flashcard
 
+1. Prerequisites: List all flashcards using the `list` command. There is at least one flashcard stored in QuickCache.
+
+1. Testing flashcard containing open ended question
+
+   1. Test Case 1: `test 1 ans/Singapore`<br>
+      Expected: Checks if answer provided matches with the answer stored in the open ended question within the first flashcard. Users starting off with the sample questions will expect test to be correct. Flashcard statistics will be updated.<br>
+      :information_source: Answers are not case sensitive.
+
+   1. Test Case 2: `test 1 ans/`<br>
+      Expected: Error message will appear as answer cannot be blank. Flashcard statistics will not be updated.
+
+1. Testing flashcard containing multiple choice question
+
+   1. Test Case 1: `test 2 o/2`<br>
+      Expected: Checks if option provided matches with the option stored in the multiple choice question within the second flashcard. Users starting off with the sample questions will expect test to be correct. Flashcard statistics will be updated.<br>
+      :information_source: Answers are not case sensitive.
+
+   1. Test Case 2: `test 1 o/`<br>
+      Expected: Error message will appear as option cannot be blank. Flashcard statistics will not be updated.
+
+   1. Other incorrect `test` commands to try: `test`, `test x ans/...` (where x is 0 or larger than the list size)<br>
+      Expected: Error message will appear with instructions on how to use the test command.
+
 ### F.8 Displaying statistics
+
+There are 2 ways to display statistics of flashcards – by index or by tags.
+
+1. Prerequisites: For some test cases listed bellow to work, user should have the sample starting flashcards that was provided stored in QuickCache.
+
+1. Displaying statistics of a flashcard by index
+
+   1. Test Case 1: `stats 1`
+
+1. Displaying statistics of flashcards through tags
+
+
 
 ### F.9 Sharing flashcards
 
