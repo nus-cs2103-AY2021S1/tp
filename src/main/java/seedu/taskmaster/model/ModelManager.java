@@ -21,6 +21,7 @@ import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.record.StudentRecordEqualsPredicate;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionName;
+import seedu.taskmaster.model.session.exceptions.EmptySessionException;
 import seedu.taskmaster.model.session.exceptions.NoSessionException;
 import seedu.taskmaster.model.session.exceptions.NoSessionSelectedException;
 import seedu.taskmaster.model.student.NusnetId;
@@ -320,8 +321,15 @@ public class ModelManager implements Model {
 
     @Override
     public void showRandomStudent(Random random) {
-        StudentRecord randomRecord = taskmaster.getRandomStudentRecord(random);
-        updateFilteredStudentRecordList(new StudentRecordEqualsPredicate(randomRecord));
+        FilteredList<StudentRecord> temp = new FilteredList<>(taskmaster.getStudentRecordList());
+        temp.setPredicate(PREDICATE_SHOW_ALL_PRESENT_STUDENT_RECORDS);
+        try {
+            int index = random.nextInt(temp.size());
+            StudentRecord randomRecord = temp.get(index);
+            updateFilteredStudentRecordList(new StudentRecordEqualsPredicate(randomRecord));
+        } catch (IllegalArgumentException e) {
+            throw new EmptySessionException();
+        }
     }
 
     @Override

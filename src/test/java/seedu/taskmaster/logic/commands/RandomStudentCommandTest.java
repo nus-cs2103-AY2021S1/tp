@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.ModelManager;
 import seedu.taskmaster.model.UserPrefs;
+import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionDateTime;
 import seedu.taskmaster.model.session.SessionName;
@@ -68,12 +69,14 @@ public class RandomStudentCommandTest {
 
         Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         model.addSession(existingSession);
+        model.markAllStudentRecords(existingSession.getStudentRecords(), AttendanceType.PRESENT);
 
         RandomStudentCommand randomStudentCommand = new RandomStudentCommand(new Random(seed));
 
-        String expectedMessage = "Listed student";
+        String expectedMessage = RandomStudentCommand.MESSAGE_SUCCESS;
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         expectedModel.addSession(existingSession);
+        expectedModel.markAllStudentRecords(existingSession.getStudentRecords(), AttendanceType.PRESENT);
         expectedModel.showRandomStudent(new Random(seed));
 
         assertCommandSuccess(randomStudentCommand, model, expectedMessage, expectedModel);

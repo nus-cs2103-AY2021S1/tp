@@ -28,6 +28,10 @@ public interface Model {
     /** {@code Predicate} that always evaluates to true */
     Predicate<StudentRecord> PREDICATE_SHOW_ALL_STUDENT_RECORDS = unused -> true;
 
+    /** {@code Predicate} that shows present students */
+    Predicate<StudentRecord> PREDICATE_SHOW_ALL_PRESENT_STUDENT_RECORDS = studentRecord ->
+            studentRecord.getAttendanceType().equals(AttendanceType.PRESENT);
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
