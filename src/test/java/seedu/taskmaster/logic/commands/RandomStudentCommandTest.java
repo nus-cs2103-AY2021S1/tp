@@ -69,14 +69,14 @@ public class RandomStudentCommandTest {
 
         Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         model.addSession(existingSession);
-        model.markAllStudentRecords(existingSession.getStudentRecords(), AttendanceType.PRESENT);
+        model.markAllStudents(AttendanceType.PRESENT);
 
         RandomStudentCommand randomStudentCommand = new RandomStudentCommand(new Random(seed));
 
         String expectedMessage = RandomStudentCommand.MESSAGE_SUCCESS;
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         expectedModel.addSession(existingSession);
-        expectedModel.markAllStudentRecords(existingSession.getStudentRecords(), AttendanceType.PRESENT);
+        expectedModel.markAllStudents(AttendanceType.PRESENT);
         expectedModel.showRandomStudent(new Random(seed));
 
         assertCommandSuccess(randomStudentCommand, model, expectedMessage, expectedModel);

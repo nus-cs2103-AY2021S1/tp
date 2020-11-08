@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -141,7 +140,7 @@ public class ModelManager implements Model {
         requireNonNull(sessionName);
 
         if (taskmaster.inSession() && sessionName.equals(taskmaster.currentSessionName())) {
-            filteredStudentRecords.setPredicate(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
+            updateFilteredStudentRecordList(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
         } else {
             /*
              * Note that the implementation of this method requires that the filteredStudentRecords field is updated
@@ -226,34 +225,20 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void scoreAllStudents(List<StudentRecord> students, double score) {
-        List<NusnetId> nusnetIds = students
-                .stream()
-                .filter(s -> s.getAttendanceType() == AttendanceType.PRESENT)
-                .map(StudentRecord::getNusnetId)
-                .collect(Collectors.toList());
-
-        taskmaster.scoreAllStudents(nusnetIds, score);
+    public void scoreAllStudents(double score) {
+        taskmaster.scoreAllStudents(score);
+        updateFilteredStudentRecordList(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
     }
 
     @Override
-    public void markAllStudentRecords(List<StudentRecord> studentRecords, AttendanceType attendanceType) {
-        List<NusnetId> nusnetIds = studentRecords
-                .stream()
-                .map(StudentRecord::getNusnetId)
-                .collect(Collectors.toList());
-
-        taskmaster.markAllStudentRecords(nusnetIds, attendanceType);
+    public void markAllStudents(AttendanceType attendanceType) {
+        taskmaster.markAllStudentRecords(attendanceType);
+        updateFilteredStudentRecordList(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
     }
 
     @Override
     public void clearAttendance() {
         taskmaster.clearAttendance();
-    }
-
-    @Override
-    public void updateStudentRecords(List<StudentRecord> studentRecords) {
-        taskmaster.updateStudentRecords(studentRecords);
     }
 
     //=========== Filtered Student List Accessors =============================================================

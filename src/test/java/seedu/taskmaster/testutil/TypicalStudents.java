@@ -133,9 +133,8 @@ public class TypicalStudents {
                 new SessionName("Typical session 2"),
                 new SessionDateTime(LocalDateTime.of(2020, 1, 1, 12, 0)),
                 getTypicalStudents());
-        modifiedSession.markAllStudentAttendances(getTypicalNusnetIds(), AttendanceType.PRESENT);
-        modifiedSession.scoreAllParticipation(
-                getTypicalStudents().stream().map(Student::getNusnetId).collect(Collectors.toList()), 5);
+        modifiedSession.markAllStudentAttendances(AttendanceType.PRESENT);
+        modifiedSession.scoreAllParticipation(5);
         modifiedSession.scoreStudentParticipation(ALICE.getNusnetId(), 4);
         modifiedSession.scoreStudentParticipation(CARL.getNusnetId(), 4);
 
@@ -209,7 +208,7 @@ public class TypicalStudents {
      * Marks all students in a typical session as present.
      */
     public static void markAllAsPresentInTypicalSession(Session typicalSession) {
-        typicalSession.markAllStudentAttendances(getTypicalNusnetIds(), AttendanceType.PRESENT);
+        typicalSession.markAllStudentAttendances(AttendanceType.PRESENT);
     }
 
     /**
