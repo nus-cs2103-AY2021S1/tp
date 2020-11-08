@@ -9,7 +9,7 @@ This User Guide is co-written by Josiah, Joshua, Gilbert, Francis and Xingjian. 
 
 --------------------------------------------------------------------------------------------------------------------
 
-##Table of Contents
+## Table of Contents
 
 <link rel="stylesheet" href="UserGuide.css">
 
