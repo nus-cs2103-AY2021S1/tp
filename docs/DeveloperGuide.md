@@ -302,6 +302,7 @@ Explanation why a certain design is chosen.
   which resulted in more lines of code.
 
 ### Find entries feature 
+*(Written by Le Hue Man)*
 This feature allows the user to find specific existing entries using a given keyword.
   
 #### Implementation
@@ -314,9 +315,6 @@ operations:
 list that has the given keywords as predicate.
 * `Account#updateFilteredRevenueList(Predicate<Revenue> predicate)` — Updates the revenue 
 list that has the given keywords as predicate. 
-
-The operations are exposed in the `ActiveAccount` interface as `ActiveAccount` interface as 
-`ActiveAccount#setName()`.
 
 Given below is an example usage scenario and how the find entries mechanism behaves 
 at each step.
@@ -913,7 +911,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
 **MSS**
 
-1.  User requests <u> list all the account (UC)</u>.
+1.  User requests <u> list all the account (UC) </u>.
 2.  User requests to switch to another account.
 3.  Common Cents switches to another account and displays success message.
 
