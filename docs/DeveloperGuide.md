@@ -352,7 +352,7 @@ Explanation why a certain design is chosen.
     * Pros: 
         * Easy to implement as the arguments can be tokenized in the event of inputs with multiple arguments.
         * Able to handle multiple arguments as input for Category (with prefix "c/") is optional.
-    * Cons: Less convenience for the user as more needs to be typed (at least 3 characters). 
+    * Cons: Less convenience for the user. 
 
 ### Calculate net profits feature
 
