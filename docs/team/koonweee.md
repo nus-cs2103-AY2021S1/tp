@@ -34,7 +34,7 @@ Given below are my contributions to the project.
     * Updated order of commands in summary ([\#155](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/155))
     * Updated constraints for replace and append commands ([\#289](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/289))
   * Developer Guide:
-    * Added use cases ([\#34](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/84))
+    * Added use cases ([\#34](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/34))
     * Added implementation details for feeding times feature ([\#143](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/143))
     * Updated storage section description and UML diagram ([\#223](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/223))
     * Updated logic section description and UML diagram ([\#263](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/263))
