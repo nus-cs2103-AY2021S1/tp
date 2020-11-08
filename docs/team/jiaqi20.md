@@ -24,7 +24,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jiaqi20&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zFR=false&zA=jiaqi20&zR=AY2021S1-CS2103T-W10-2%2Ftp%5Bmaster%5D&zACS=265.00439466969095&zS=2020-08-14&zFS=&zU=2020-11-03&zMG=false&zFTF=commit&zFGS=groupByRepos&until=2020-11-07)
 
 * **Project management**:
-  * Set deadline for milestone on GitHub
+  * Managed release `v1.4` (1 release) on GitHub
   * Set up group meeting via zoom for discussion
   * Check dashboard to ensure consistent team progress
   * Refactored code to add and support recipe related features (Instruction, RecipeImage field)
