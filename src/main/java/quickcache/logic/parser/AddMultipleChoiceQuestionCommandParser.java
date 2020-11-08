@@ -2,6 +2,7 @@ package quickcache.logic.parser;
 
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_ANSWERS;
+import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_DIFFICULTIES;
 import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_QUESTIONS;
 import static quickcache.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static quickcache.logic.parser.CliSyntax.PREFIX_CHOICE;
@@ -21,7 +22,7 @@ import quickcache.model.flashcard.Question;
 import quickcache.model.flashcard.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddMultipleChoiceQuestionCommand object
  */
 public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipleChoiceQuestionCommand> {
 
@@ -34,8 +35,8 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddMultipleChoiceQuestionCommand
+     * and returns an AddMultipleChoiceQuestionCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -63,6 +64,10 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
                 questionInString, argMultimap.getValue(PREFIX_ANSWER).get(), choicesList);
 
         if (arePrefixesPresent(argMultimap, PREFIX_DIFFICULTY)) {
+
+            if (argMultimap.getAllValues(PREFIX_DIFFICULTY).size() > 1) {
+                throw new ParseException(MESSAGE_TOO_MANY_DIFFICULTIES);
+            }
             Difficulty difficulty = ParserUtil.parseDifficulty(argMultimap.getValue(PREFIX_DIFFICULTY).get());
             Flashcard flashcard = new Flashcard(question, tagList, difficulty);
             return new AddMultipleChoiceQuestionCommand(flashcard);

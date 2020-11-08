@@ -38,7 +38,7 @@ class JsonAdaptedQuickCache {
     private final Statistics statistics;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedPerson} with the given flashcard details.
      */
     @JsonCreator
     public JsonAdaptedQuickCache(@JsonProperty("type") String type,
@@ -92,9 +92,9 @@ class JsonAdaptedQuickCache {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Flashcard} object.
+     * Converts this Jackson-friendly adapted flashcard object into the model's {@code Flashcard} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted flashcard.
      */
     public Flashcard toModelType() throws IllegalValueException {
         final List<Tag> flashcardTags = new ArrayList<>();

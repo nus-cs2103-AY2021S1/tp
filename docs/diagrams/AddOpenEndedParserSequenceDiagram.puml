@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+group Parse AddOpenEndedQuestionCommand
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
+participant ":AddOpenEndedQuestionCommandParser" as AddOpenEndedQuestionCommandParser LOGIC_COLOR
+participant "t:AddOpenEndedQuestionCommand" as AddOpenEndedQuestionCommand LOGIC_COLOR
+end box
+
+activate LogicManager
+
+LogicManager -> QuickCacheParser : parseCommand("add q/question ans/answer")
+activate QuickCacheParser
+
+create AddOpenEndedQuestionCommandParser
+QuickCacheParser -> AddOpenEndedQuestionCommandParser
+activate AddOpenEndedQuestionCommandParser
+
+AddOpenEndedQuestionCommandParser -> QuickCacheParser
+deactivate AddOpenEndedQuestionCommandParser
+
+QuickCacheParser -> AddOpenEndedQuestionCommandParser : parse("q/question ans/answer")
+activate AddOpenEndedQuestionCommandParser
+
+create AddOpenEndedQuestionCommand
+AddOpenEndedQuestionCommandParser -> AddOpenEndedQuestionCommand
+activate AddOpenEndedQuestionCommand
+
+AddOpenEndedQuestionCommand --> AddOpenEndedQuestionCommandParser : t
+deactivate AddOpenEndedQuestionCommand
+
+AddOpenEndedQuestionCommandParser -> QuickCacheParser : t
+deactivate AddOpenEndedQuestionCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddOpenEndedQuestionCommandParser -[hidden]-> QuickCacheParser
+destroy AddOpenEndedQuestionCommandParser
+
+QuickCacheParser --> LogicManager : t
+deactivate QuickCacheParser
+end
+@enduml

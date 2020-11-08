@@ -10,7 +10,7 @@ import quickcache.logic.commands.TestCommand;
 import quickcache.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditCommand object.
+ * Parses input arguments and creates a new TestCommand object.
  */
 public class TestCommandParser implements Parser<TestCommand> {
 

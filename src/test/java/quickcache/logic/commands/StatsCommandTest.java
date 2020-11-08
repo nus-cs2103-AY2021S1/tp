@@ -75,6 +75,8 @@ public class StatsCommandTest {
 
         Statistics expectedStatistics = getStatisticsFromFlashcardList(flashcardList);
 
+        expectedModel.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
+
         assertCommandSuccess(statsCommand, model, expectedMessage, expectedModel, expectedStatistics);
     }
 
@@ -95,6 +97,8 @@ public class StatsCommandTest {
         List<Flashcard> flashcardList = expectedModel.getFilteredFlashcardList();
 
         Statistics expectedStatistics = getStatisticsFromFlashcardList(flashcardList);
+
+        expectedModel.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
 
         assertCommandSuccess(statsCommand, model, expectedMessage, expectedModel, expectedStatistics);
     }

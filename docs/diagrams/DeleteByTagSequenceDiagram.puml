@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("delete t/tag")
+activate LogicManager
+
+ref over LogicManager,DeleteCommand : Parse DeleteByTagCommand
+
+LogicManager -> DeleteCommand : execute()
+activate DeleteCommand
+
+DeleteCommand -> Model : updateFilteredFlashcardList(pred)
+activate Model
+return
+
+DeleteCommand -> Model : getFilteredFlashcardList()
+activate Model
+
+Model --> DeleteCommand : lastShownList
+deactivate Model
+
+loop over each flashcard in lastShownList
+DeleteCommand -> Model : deleteFlashcard(flashcard)
+activate Model
+
+return
+
+end
+
+DeleteCommand -> LogicManager
+deactivate DeleteCommand
+
+DeleteCommand -[hidden]-> LogicManager
+destroy DeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

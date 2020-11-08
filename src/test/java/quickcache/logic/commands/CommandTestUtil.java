@@ -32,6 +32,7 @@ public class CommandTestUtil {
     public static final String VALID_ANSWER_TWO = "2";
     public static final String VALID_ANSWER_THREE = "3";
     public static final String VALID_DIFFICULTY_LOW = "LOW";
+    public static final String VALID_DIFFICULTY_HIGH = "HIGH";
     public static final String VALID_OPTION_ONE = "1";
     public static final String VALID_OPTION_TWO = "2";
     public static final String VALID_OPTION_THREE = "3";
@@ -58,6 +59,7 @@ public class CommandTestUtil {
     public static final String CHOICE_DESC_CHOICE3 = " " + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE3;
     public static final String CHOICE_DESC_CHOICE4 = " " + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE4;
     public static final String DIFFICULTY_DESC_LOW = " " + CliSyntax.PREFIX_DIFFICULTY + VALID_DIFFICULTY_LOW;
+    public static final String DIFFICULTY_DESC_HIGH = " " + CliSyntax.PREFIX_DIFFICULTY + VALID_DIFFICULTY_HIGH;
     public static final String OPTION_DESC_ONE = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_ONE;
     public static final String OPTION_DESC_TWO = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_TWO;
     public static final String OPTION_DESC_THREE = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_THREE;

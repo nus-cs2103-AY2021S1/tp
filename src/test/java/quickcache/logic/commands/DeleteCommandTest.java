@@ -93,12 +93,13 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, "with tags [test]");
 
         ModelManager expectedModel = new ModelManager(model.getQuickCache(), new UserPrefs());
-        expectedModel.updateFilteredFlashcardList(flashcardPredicate);
+        expectedModel.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
         expectedModel.deleteFlashcard(TypicalFlashcards.RANDOM8);
         expectedModel.deleteFlashcard(TypicalFlashcards.RANDOM9);
 
         CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
         model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
+
         assertEquals(Arrays.asList(
                 TypicalFlashcards.RANDOM1,
                 TypicalFlashcards.RANDOM2,
@@ -121,7 +122,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, "with tags [invalid]");
 
         ModelManager expectedModel = new ModelManager(model.getQuickCache(), new UserPrefs());
-        expectedModel.updateFilteredFlashcardList(flashcardPredicate);
+        expectedModel.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
 
         CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
         model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
