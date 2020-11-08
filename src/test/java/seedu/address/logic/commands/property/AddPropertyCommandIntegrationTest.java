@@ -16,7 +16,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.exceptions.InvalidSellerIdException;
 import seedu.address.testutil.property.PropertyBuilder;
 
 /**
@@ -60,4 +62,14 @@ public class AddPropertyCommandIntegrationTest {
                 AddPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
     }
 
+    @Test
+    public void execute_invalidSellerId_throwsInvalidSellerIdException() {
+        SellerId sellerId = new SellerId(model.getSellerAddressBook().getSellerList().size() + 1);
+        Property invalidProperty = new PropertyBuilder()
+                .withPropertyId(DEFAULT_PROPERTY_ID.toString())
+                .withSellerId(sellerId.toString())
+                .build();
+        assertCommandFailure(new AddPropertyCommand(invalidProperty), model,
+                new InvalidSellerIdException().getMessage());
+    }
 }

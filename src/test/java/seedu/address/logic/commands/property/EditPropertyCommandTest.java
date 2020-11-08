@@ -27,7 +27,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.exceptions.InvalidSellerIdException;
 import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.testutil.property.EditPropertyDescriptorBuilder;
 import seedu.address.testutil.property.PropertyBuilder;
@@ -168,6 +170,14 @@ public class EditPropertyCommandTest {
                 new EditPropertyDescriptorBuilder().withPropertyName(VALID_PROPERTY_NAME_BEDOK).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidSellerId_failure() {
+        SellerId sellerId = new SellerId(model.getSellerAddressBook().getSellerList().size() + 1);
+        EditPropertyCommand editCommand = new EditPropertyCommand(INDEX_FIRST_PROPERTY,
+                new EditPropertyDescriptorBuilder().withSellerId(sellerId.toString()).build());
+        assertCommandFailure(editCommand, model, new InvalidSellerIdException().getMessage());
     }
 
     @Test

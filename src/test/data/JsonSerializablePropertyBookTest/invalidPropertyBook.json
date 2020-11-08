@@ -1,0 +1,12 @@
+{
+  "properties" : [ {
+    "propertyId" : "B1",
+    "propertyName" : "Sunrise Condo",
+    "address" : "Block 123",
+    "sellerId" : "S1",
+    "propertyType" : "Condo",
+    "askingPrice" : "100.0",
+    "isRental" : "No",
+    "isClosedDeal" : "Active"
+  } ]
+}
