@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.Planus;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.event.Event;
@@ -22,7 +23,7 @@ import seedu.address.model.task.event.Event;
 /**
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
-public class TypicalTasks {
+public class TypicalPlanus {
 
     public static final Deadline DEADLINE1 = new DeadlineBuilder().withTitle("Submit Developer Guide")
             .withDescription("Submit through luminus")
@@ -60,12 +61,35 @@ public class TypicalTasks {
             .withStartDateTime(VALID_START_DATETIME_EXPERIMENT).withEndDateTime(VALID_END_DATETIME_EXPERIMENT)
             .withDescription(VALID_DESC_EXPERIMENT).withTag(VALID_TAG_EXPERIMENT).build();
 
-    private TypicalTasks() {} // prevents instantiation
+    // build test lessons
+    public static final Lesson LESSON1 = new LessonBuilder().withTitle("Tutorial").withDescription("fun")
+            .withDayOfWeek(1).withStartDate("08-08-2020").withEndDate("12-12-2020").withStartTime("14:00")
+            .withEndTime("16:00").withTag("CS2103T").build();
+    public static final Lesson LESSON2 = new LessonBuilder().withTitle("Lecture").withDescription("fun")
+            .withDayOfWeek(2).withStartDate("09-09-2020").withEndDate("11-11-2020").withStartTime("16:00")
+            .withEndTime("18:00").withTag("CS2040").build();
+    public static final Lesson LESSON3 = new LessonBuilder().build();
+
+    private TypicalPlanus() {} // prevents instantiation
 
     /**
-     * Returns an {@code Planus} with all the typical tasks.
+     * Returns an {@code Planus} with all the typical tasks and lessons.
      */
     public static Planus getTypicalPlanus() {
+        Planus planus = new Planus();
+        for (Task task : getTypicalTasks()) {
+            planus.addTask(task);
+        }
+        for (Lesson lesson : getTypicalLessons()) {
+            planus.addLesson(lesson);
+        }
+        return planus;
+    }
+
+    /**
+     * Returns an {@code Planus} with all the typical tasks only.
+     */
+    public static Planus getTypicalTaskOnlyPlanus() {
         Planus planus = new Planus();
         for (Task task : getTypicalTasks()) {
             planus.addTask(task);
@@ -75,5 +99,9 @@ public class TypicalTasks {
 
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(DEADLINE1, DEADLINE2, DEADLINE3, DEADLINE4, EVENT1, EVENT2, EVENT3));
+    }
+
+    public static List<Lesson> getTypicalLessons() {
+        return new ArrayList<>(Arrays.asList(LESSON1, LESSON2, LESSON3));
     }
 }

@@ -31,7 +31,7 @@ public class EventCommand extends Command {
             + "[" + PREFIX_TAG + "TAG] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "career talk "
-            + PREFIX_DATE + "01-01-2020 "
+            + PREFIX_DATE + "07-11-2020 "
             + PREFIX_START_TIME + "17:00 "
             + PREFIX_END_TIME + "19:00 "
             + PREFIX_DESCRIPTION + "ByteDance online sharing session ";

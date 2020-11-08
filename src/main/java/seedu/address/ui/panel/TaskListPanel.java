@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.panel;
 
 import java.util.logging.Logger;
 
@@ -11,6 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.event.Event;
+import seedu.address.ui.UiPart;
 import seedu.address.ui.card.DeadlineCard;
 import seedu.address.ui.card.EventCard;
 
@@ -18,7 +19,7 @@ import seedu.address.ui.card.EventCard;
  * Panel containing the list of tasks.
  */
 public class TaskListPanel extends UiPart<Region> {
-    private static final String FXML = "TaskListPanel.fxml";
+    private static final String FXML = "panel/TaskListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML

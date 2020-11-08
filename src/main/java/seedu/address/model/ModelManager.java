@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -141,11 +140,6 @@ public class ModelManager implements Model {
 
     @Override
     public void addLesson(Lesson lesson) {
-        ArrayList<Task> tasksToAdd = lesson.createRecurringTasks();
-        tasksToAdd.forEach(task -> {
-            addTask(task);
-            addTaskToCalendar(task);
-        });
         planus.addLesson(lesson);
         updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
     }

@@ -23,15 +23,21 @@ public class DeleteTaskCommandParserTest {
     private DeleteTaskCommandParser parser = new DeleteTaskCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteTaskCommand() {
         Index[] indexes = {INDEX_FIRST_MODEL};
         assertParseSuccess(parser, "1", new DeleteTaskCommand(indexes));
     }
 
     @Test
-    public void parse_manyValidArgs_returnsDeleteCommand() {
+    public void parse_manyValidArgs_returnsDeleteTaskCommand() {
         Index[] indexes = {INDEX_FIRST_MODEL, INDEX_SECOND_MODEL};
         assertParseSuccess(parser, "1 2", new DeleteTaskCommand(indexes));
+    }
+
+    @Test
+    public void parse_invalidIndexAmongManyValidArgs_returnsDeleteTaskCommand() {
+        assertParseFailure(parser, "1 -1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ParserUtil.MESSAGE_INVALID_INDEX, DeleteTaskCommand.MESSAGE_USAGE));
     }
 
     @Test

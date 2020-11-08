@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2103T;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.EVENT1;
-import static seedu.address.testutil.TypicalTasks.EVENT2;
+import static seedu.address.testutil.TypicalPlanus.EVENT1;
+import static seedu.address.testutil.TypicalPlanus.EVENT2;
 
 import java.util.Collections;
 import java.util.List;

@@ -87,6 +87,10 @@ public class Event extends Task implements TimeSlot {
         return this.startDateTime.getValue().toLocalDate();
     }
     @Override
+    public LocalDateTime getStartTime() {
+        return startDateTime.getValue();
+    }
+    @Override
     public boolean isSameTask(Task otherTask) {
         if (otherTask instanceof Event) {
             return isSameEvent((Event) otherTask);
@@ -172,7 +176,13 @@ public class Event extends Task implements TimeSlot {
      */
     @Override
     public int compareTo(Task otherTask) {
+        if (otherTask == this) {
+            return 0;
+        }
         if (otherTask instanceof Event) {
+            if (otherTask.equals(this)) {
+                return 0;
+            }
             if (this.isEnded() == ((Event) otherTask).isEnded()) {
                 return getEndDateTimeValue().compareTo(((Event) otherTask).getEndDateTimeValue());
             }

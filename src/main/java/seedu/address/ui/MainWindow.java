@@ -17,6 +17,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.MultipleAttributesException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.panel.DisplayPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,10 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private TaskListPanel taskListPanel;
-    private LessonListPanel lessonListPanel;
-    private CalendarPanel calendarPanel;
-    private DataAnalysisPanel dataAnalysisPanel;
+    private DisplayPanel displayPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -46,16 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane taskListPanelPlaceholder;
-
-    @FXML
-    private StackPane lessonListPanelPlaceholder;
-
-    @FXML
-    private StackPane dataAnalysisPanelPlaceholder;
-
-    @FXML
-    private StackPane calendarPanelPlaceholder;
+    private StackPane displayPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -123,18 +112,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-
-        lessonListPanel = new LessonListPanel(logic.getFilteredLessonList());
-        lessonListPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
-
-        calendarPanel = new CalendarPanel(logic.getFilteredCalendarList());
-        calendarPanelPlaceholder.getChildren().add(calendarPanel.getRoot());
-
-        dataAnalysisPanel = new DataAnalysisPanel(logic.getStatisticsData());
-        dataAnalysisPanelPlaceholder.getChildren().add(dataAnalysisPanel.getRoot());
+        displayPanel = new DisplayPanel(logic);
+        displayPanelPlaceholder.getChildren().add(displayPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -150,8 +129,8 @@ public class MainWindow extends UiPart<Stage> {
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
-        primaryStage.setHeight(guiSettings.getWindowHeight());
-        primaryStage.setWidth(guiSettings.getWindowWidth());
+        primaryStage.setHeight(primaryStage.getMinHeight());
+        primaryStage.setWidth(primaryStage.getMinWidth());
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
@@ -182,16 +161,17 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        displayPanel.endThread();
         helpWindow.hide();
         primaryStage.hide();
     }
 
-    public TaskListPanel getTaskListPanel() {
-        return taskListPanel;
+    private void handleShowLists() {
+        displayPanel.showLists();
     }
 
-    private void updateDataAnalysisPanel() {
-        dataAnalysisPanel.updateStats(logic.getStatisticsData());
+    private void handleShowCalendar() {
+        displayPanel.showCalendar();
     }
 
     /**
@@ -205,7 +185,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            updateDataAnalysisPanel();
+            displayPanel.updateStats(logic.getStatisticsData());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -213,6 +193,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowLists()) {
+                handleShowLists();
+            }
+
+            if (commandResult.isShowCalendar()) {
+                handleShowCalendar();
             }
 
             return commandResult;

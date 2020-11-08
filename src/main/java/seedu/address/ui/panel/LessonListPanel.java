@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.panel;
 
 import java.util.logging.Logger;
 
@@ -9,13 +9,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.ui.UiPart;
 import seedu.address.ui.card.LessonCard;
 
 /**
  * Panel containing the list of lessons.
  */
 public class LessonListPanel extends UiPart<Region> {
-    private static final String FXML = "LessonListPanel.fxml";
+    private static final String FXML = "panel/LessonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(LessonListPanel.class);
 
     @FXML

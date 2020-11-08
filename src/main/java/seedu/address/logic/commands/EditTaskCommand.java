@@ -54,7 +54,7 @@ public class EditTaskCommand extends Command {
             + "[" + PREFIX_END_TIME + "EVENT END TIME (for event only)] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DATE_TIME + "02-02-2020 12:00 "
+            + PREFIX_DATE_TIME + "20-11-2020 12:00 "
             + PREFIX_DESCRIPTION + "something new";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
