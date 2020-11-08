@@ -3,24 +3,27 @@ layout: page
 title: Hwang Yong Kang's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: ProductiveNUS
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+ProductiveNUS is a desktop application targeted at Computing students of National University of Singapore (NUS) to help them manage and schedule their academic tasks efficiently. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to import NUSMods timetable into ProductiveNUS.
+  * What it does: Allows the user to import their NUSMods lesson information into ProductiveNUS.
+  * Justification: This feature improves the product significantly because a user can conveniently refer to their timetable on ProductiveNUS instead of having to got to NUSMods. Other commands such as Schedule also works best if the user can import their weekly timetable.
+  * Highlights: This enhancement retrieves data from the NUSMods API. A new model class Lesson is also implemented to support the import command.
+  * Credits: Code implemented is adapted from [Baldeung link](https://www.baeldung.com/java-http-request) and [NUSMods API](https://api.nusmods.com/v2/).
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added the set/remove priorities in ProductiveNUS.
+  * What it does: Allows the user to set the priority level of their assignments in ProductiveNUS, which is displayed as a coloured tag in the assignment card.
+  * Justification: This feature improves the user's experience as it is easier for them to spot assignments that are of greater importance so as to better plan their schedule.
+  * Highlights: This enhancement is compatible with the Find feature, where users are able to list assignments of a specific priority tag.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=hyngkng)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
