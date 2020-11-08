@@ -14,15 +14,17 @@ Class JsonUserPrefsStorage
 Class JsonAddressBookStorage
 Class JsonIngredientBookStorage
 
+
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> AddressBookStorage
 StorageManager o-down-> IngredientBookStorage
 
+
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
+JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
+JsonSerializableAddressBookStorage ..> JsonSerializablePerson
 JsonSerializablePerson .right.> JsonAdaptedTag
 JsonIngredientBookStorage .up.|> IngredientBookStorage
 JsonIngredientBookStorage .down.> JsonSerializableIngredientBookStorage

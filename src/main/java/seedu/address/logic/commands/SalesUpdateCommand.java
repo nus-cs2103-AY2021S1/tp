@@ -51,7 +51,7 @@ public class SalesUpdateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.overwrite(sales);
-        model.updateFilteredSalesList(Model.PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
+        model.updateFilteredSalesRecordList(Model.PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
