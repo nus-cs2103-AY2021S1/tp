@@ -536,23 +536,109 @@ Use case ends.
 **Extensions**
 No extensions.
 
-**Use case: UC05 Update food**
+**Use case: UC05 Edit food**
 
 **MSS**
 1. User requests to list food (UC01).
 2. McGymmy shows a list of food.
-3. User request to update a specific food on the list.
-4. McGymmy updates the food.<br>
-Use case ends.
+3. User request to edit a specific food on the list.
+4. McGymmy updates the food.
+
+Use case ends
 
 **Extensions**
-- 2a. The list is empty.<br>
-    Use case ends.
+- 2a. The list is empty<br>
+    
+Use case ends.
+
 - 3a. The given index is invalid.<br>
    - 3a1. McGymmy shows an error message.<br>
    Use case resumes at step 2.
 
-**Use case: UC06 Import a McGymmy data file**
+- 3b. The format of edit method is invalid.
+   3b1. McGymmy shows an error message.<br>
+   Use case ends.
+    
+**Use case: UC06 Tag food**
+
+**MSS**
+1. User requests to list food (UC01).
+2. McGymmy shows a list of food.
+3. User request to tag a specific food on the list.
+4. McGymmy updates the food with the given tag.<br>
+Use case ends.
+
+**Extensions**
+- 2a. The list is empty<br>
+   Use case ends.
+    
+- 3a. The given index is invalid.<br>
+   - 3a1. McGymmy shows an error message.<br>
+   Use case resumes at step 2.
+
+- 3b. The given tag already exists for the selected food.<br>
+   - 3a1. McGymmy shows an error message.<br>
+   Use case resumes at step 2.
+
+- 3c. The format of tag method is invalid.
+   - 3c1. McGymmy shows an error message.<br>
+   Use case ends.
+    
+**Use case: UC07 Untag food**
+
+**MSS**
+1. User requests to list food (UC01).
+2. McGymmy shows a list of food.
+3. User request to remove tag from a specific food on the list.
+4. McGymmy removes the tag from the food.
+
+Use case ends
+
+**Extensions**
+- 2a. The list is empty.<br>
+   Use case ends.
+
+- 3a. The given index is invalid.<br>
+   - 3a1. McGymmy shows an error message.<br>
+   Use case resumes at step 2.
+
+- 3b. The given tag does not exist for the selected food.<br>
+   - 3a1. McGymmy shows an error message.<br>
+   Use case resumes at step 2.
+
+- 3c. The format of untag method is invalid.
+   - 3c1. McGymmy shows an error message.<br>
+   Use case ends.
+    
+**Use case: UC08 Find**
+
+**MSS**
+1. User requests to find (filter) food items based on certain criteria.
+2. McGymmy shows an updated list based on the filter criteria.
+
+Use case ends.
+
+**Extensions**
+- 1a. The format of find method is invalid.
+   - 1a1. McGymmy shows an error message.
+
+Use case ends.
+    
+**Use case: UC09 Clear**
+
+**MSS**
+1. User filters list (UC06).
+2. User requests to clear the displayed list.
+3. McGymmy deletes all food items in the current displayed list.
+
+Use case ends.
+
+**Extensions**
+- 1a. The list is empty.<br>
+    
+Use case ends.
+
+**Use case: UC10 Import a McGymmy data file**
 
 **MSS**
 
@@ -568,7 +654,7 @@ Use case ends.
     - 1b1. McGymmy shows an error message.<br>
     Use case ends.
     
-**Use case: UC07 Export a McGymmy data file**
+**Use case: UC11 Export a McGymmy data file**
 
 **MSS**
 
@@ -581,7 +667,7 @@ Use case ends.
     - 1a1. McGymmy shows an error message.<br>
     Use case ends.
     
-**Use case: UC08 Add a macro command**
+**Use case: UC12 Add a macro command**
 
 **MSS**
 
@@ -592,16 +678,16 @@ Use case ends.
 **Extensions**
 
  - 1a. The format of the macro is invalid.
-    - 1a1. McGymmy shows an error message.<br>
-    Use case ends.
+   - 1a1. McGymmy shows an error message.<br>
+   Use case ends.
     
-**Use case: UC09 Execute a macro command**
+**Use case: UC13 Execute a macro command**
 
 **MSS**
 
-1. User executes a macro command
-2. McGymmy executes the commands in the macro command as if the user entered them one by one<br>
-Use case ends
+1. User executes a macro command.
+2. McGymmy executes the commands in the macro command as if the user entered them one by one.<br>
+Use case ends.
 
 **Extensions**
 
@@ -613,11 +699,11 @@ Use case ends
     - 2a1. McGymmy shows the error message from that command, and displays the commands that successfully executed, and the commands that have yet to execute.<br>
     Use case ends.
 
-**Use case: UC10 List all macro commands**
+**Use case: UC14 List all macro commands**
 
  - Similar to **UC04** except McGymmy lists *macros* instead of *commands*.
 
-**Use case: UC11 Remove a macro**
+**Use case: UC15 Remove a macro**
 
  - Similar to **UC03** except the user requests to list *macros* instead of *food items*, and requests to delete a *macro* instead of a *food item*.
 
