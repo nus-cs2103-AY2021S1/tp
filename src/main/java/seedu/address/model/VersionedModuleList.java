@@ -9,8 +9,8 @@ import seedu.address.model.exceptions.VersionedListException;
  * Class that stores versioned history and future of a module list used for undo/redo functions
  */
 public class VersionedModuleList extends ModuleList {
-    private static final String MESSAGE_NO_REDO_HISTORY = "There are no Module List commands to redo";
-    private static final String MESSAGE_NO_UNDO_HISTORY = "There are no Module List commands to undo";
+    public static final String MESSAGE_NO_REDO_HISTORY = "There are no Module List commands to redo";
+    public static final String MESSAGE_NO_UNDO_HISTORY = "There are no Module List commands to undo";
     private List<ReadOnlyModuleList> moduleListStateList = new ArrayList<>();
     private int currentStatePointer;
     /**
@@ -64,14 +64,12 @@ public class VersionedModuleList extends ModuleList {
         this.currentStatePointer += 1;
         super.resetData(moduleListStateList.get(currentStatePointer));
     }
-
     /**
      * Returns true if state pointer is at 0.
      */
     public boolean isIndexZero() {
         return currentStatePointer == 0;
     }
-
     /**
      * Returns true if state pointer greater than the size of the eventList state list
      */

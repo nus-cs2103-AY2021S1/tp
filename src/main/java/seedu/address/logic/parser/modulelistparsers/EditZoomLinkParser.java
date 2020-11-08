@@ -55,8 +55,8 @@ public class EditZoomLinkParser implements Parser<EditZoomLinkCommand> {
         }
         ZoomDescriptor zoomDescriptor = new ZoomDescriptor();
 
-        zoomDescriptor.setModuleLesson(ParserUtil.parseModuleLesson(argMultimap.getValue(PREFIX_NAME).get()));
         zoomDescriptor.setZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get()));
+        zoomDescriptor.setModuleLesson(ParserUtil.parseModuleLesson(argMultimap.getValue(PREFIX_NAME).get()));
 
         return new EditZoomLinkCommand(index, zoomDescriptor);
     }

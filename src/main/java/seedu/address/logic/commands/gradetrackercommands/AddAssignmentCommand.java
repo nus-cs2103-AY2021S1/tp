@@ -87,11 +87,6 @@ public class AddAssignmentCommand extends Command {
     }
 
     @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    @Override
     public boolean equals(Object other) {
         // short circuit if same object
         if (other == this) {

@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -73,10 +74,6 @@ public class EditEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, updatedEvent));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -103,7 +100,7 @@ public class EditEventCommand extends Command {
         if (!descriptor.getTime().get().equals(new EventTime())) {
             updatedTime = descriptor.getTime().get();
         }
-        return new Event(updatedName, updatedTime);
+        return new Event(updatedName, updatedTime, updatedTags);
     }
 
     /**
@@ -120,6 +117,7 @@ public class EditEventCommand extends Command {
         public EditEventDescriptor() {
             this.eventName = new EventName();
             this.eventTime = new EventTime();
+            this.tags = new HashSet<>();
         }
 
         /**

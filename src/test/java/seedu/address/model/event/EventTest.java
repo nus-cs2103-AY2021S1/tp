@@ -8,37 +8,42 @@ import static seedu.address.testutil.event.EventUtil.VALID_DATE;
 import static seedu.address.testutil.event.EventUtil.VALID_EVENT;
 import static seedu.address.testutil.event.EventUtil.VALID_NAME;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.event.EventUtil;
 
 public class EventTest {
+    private Set<Tag> tags = new HashSet<Tag>();
 
     @Test
     public void constructor_success() {
-        Event event = new Event(VALID_NAME, VALID_DATE);
+        Event event = new Event(VALID_NAME, VALID_DATE, tags);
         assertEquals(event, VALID_EVENT);
     }
 
     @Test
     public void constructorMissing_name_failure() {
-        assertThrows(AssertionError.class, () -> new Event(null, VALID_DATE));
+        assertThrows(AssertionError.class, () -> new Event(null, VALID_DATE, tags));
     }
 
     @Test
     public void constructorMissing_date_failure() {
-        assertThrows(NullPointerException.class, () -> new Event(VALID_NAME, null));
+        assertThrows(NullPointerException.class, () -> new Event(VALID_NAME, null, tags));
     }
 
     @Test
     public void getEventName() {
-        Event event = new Event(VALID_NAME, VALID_DATE);
+        Event event = new Event(VALID_NAME, VALID_DATE, tags);
         assertEquals(VALID_NAME, event.getName());
     }
 
     @Test
     public void getEventTime() {
-        Event event = new Event(VALID_NAME, VALID_DATE);
+        Event event = new Event(VALID_NAME, VALID_DATE, tags);
         assertEquals(VALID_DATE, event.getTime());
     }
 
@@ -49,15 +54,15 @@ public class EventTest {
 
     @Test
     public void isSameEvent_success() {
-        Event event1 = new Event(VALID_NAME, VALID_DATE);
-        Event event2 = new Event(VALID_NAME, VALID_DATE);
+        Event event1 = new Event(VALID_NAME, VALID_DATE, tags);
+        Event event2 = new Event(VALID_NAME, VALID_DATE, tags);
         assertTrue(event1.isSameEvent(event2));
     }
 
     @Test
     public void isSameEvent_failure() {
-        Event event1 = new Event(VALID_NAME, VALID_DATE);
-        Event event2 = new Event(EventUtil.makeEventName("ES2660"), VALID_DATE);
+        Event event1 = new Event(VALID_NAME, VALID_DATE, tags);
+        Event event2 = new Event(EventUtil.makeEventName("ES2660"), VALID_DATE, tags);
         assertFalse(event1.isSameEvent(event2));
     }
 }

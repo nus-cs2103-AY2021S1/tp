@@ -55,8 +55,4 @@ public class ImportantContactCommand extends Command {
             && targetIndex.equals(((ImportantContactCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

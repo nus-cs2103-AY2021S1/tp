@@ -47,6 +47,7 @@ public class AddCompletedModuleCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
         model.addModule(toAdd);
+        model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
@@ -55,11 +56,6 @@ public class AddCompletedModuleCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddCompletedModuleCommand // instanceof handles nulls
                 && toAdd.equals(((AddCompletedModuleCommand) other).toAdd));
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 
     @Override

@@ -161,8 +161,4 @@ public class EditAssignmentCommand extends Command {
                 && editAssignmentDescriptor.equals(e.editAssignmentDescriptor);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

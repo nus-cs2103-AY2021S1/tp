@@ -62,8 +62,4 @@ public class FindTaskCommand extends Command {
                 && predicate.equals(((FindTaskCommand) other).predicate)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

@@ -103,14 +103,4 @@ public class AddZoomLinkCommand extends Command {
                 && descriptor.equals(command.descriptor);
     }
 
-    /**
-     * Indicates if the application session has ended.
-     *
-     * @return False since the sessions has not been terminated.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
 }

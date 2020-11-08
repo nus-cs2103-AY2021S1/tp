@@ -17,11 +17,4 @@ public abstract class Command {
      */
     public abstract CommandResult execute(Model model) throws CommandException;
 
-    /**
-     * Indicates if the application session has ended.
-     *
-     * @return True if the session has been terminated, false otherwise.
-     */
-    public abstract boolean isExit();
-
 }

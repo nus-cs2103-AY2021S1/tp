@@ -54,8 +54,4 @@ public class ResetContactCommand extends Command {
             && targetIndex.equals(((ResetContactCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

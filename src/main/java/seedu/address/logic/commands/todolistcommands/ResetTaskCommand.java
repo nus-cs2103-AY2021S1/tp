@@ -56,8 +56,4 @@ public class ResetTaskCommand extends Command {
             && targetIndex.equals(((ResetTaskCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

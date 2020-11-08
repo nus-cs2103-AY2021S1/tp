@@ -2,7 +2,10 @@ package seedu.address.storage;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,19 +24,20 @@ public class JsonAdaptedEvent {
 
     private final String name;
     private final String dateTime;
-    // private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedEvent} with the given Event details.
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name,
-                            @JsonProperty("date") String dateTime) {
+                            @JsonProperty("date") String dateTime,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.dateTime = dateTime;
-        // if (tagged != null) {
-        //     this.tagged.addAll(tagged);
-        // }
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -42,9 +46,9 @@ public class JsonAdaptedEvent {
     public JsonAdaptedEvent(Event source) {
         name = source.getName().getName();
         dateTime = source.getTime().getStart().toString();
-        //tagged.addAll(source.getTags().stream()
-        //        .map(JsonAdaptedTag::new)
-        //        .collect(Collectors.toList()));
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -54,9 +58,9 @@ public class JsonAdaptedEvent {
      */
     public Event toModelType() throws IllegalValueException {
         final List<Tag> eventTags = new ArrayList<>();
-        // for (JsonAdaptedTag tag : tagged) {
-        //     eventTags.add(tag.toModelType());
-        // }
+        for (JsonAdaptedTag tag : tagged) {
+            eventTags.add(tag.toModelType());
+        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -77,8 +81,8 @@ public class JsonAdaptedEvent {
         final LocalDateTime time = LocalDateTime.parse(dateTime);
         final EventTime eventTime = new EventTime(time);
 
-        // final Set<Tag> modelTags = new HashSet<>(eventTags);
+        final Set<Tag> modelTags = new HashSet<>(eventTags);
         // TODO: Implement tags in event
-        return new Event(eventName, eventTime);
+        return new Event(eventName, eventTime, modelTags);
     }
 }

@@ -67,11 +67,6 @@ public class ViewModuleCommand extends Command {
     }
 
     @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    @Override
     public boolean equals(Object other) {
         if (this == other) {
             return true;

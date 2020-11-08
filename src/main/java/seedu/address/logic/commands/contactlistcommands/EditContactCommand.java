@@ -137,8 +137,4 @@ public class EditContactCommand extends Command {
                 && editContactDescriptor.equals(e.editContactDescriptor);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

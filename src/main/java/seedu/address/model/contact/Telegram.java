@@ -22,18 +22,18 @@ public class Telegram {
     public static final String USERNAME_REGEX = "[a-zA-Z0-9_]{5,}";
     public static final String VALIDATION_REGEX = "@" + USERNAME_REGEX;
 
-    /** String containing the telegram username. */
-    public final String telegramUsername;
+    /** String containing the telegram of a contact. */
+    private final String telegram;
 
     /**
      * Creates and initialises a new Telegram object.
      *
-     * @param telegramUsername Telegram username.
+     * @param telegram Telegram username.
      */
-    public Telegram(String telegramUsername) {
-        requireNonNull(telegramUsername);
-        checkArgument(isValidTelegram(telegramUsername), MESSAGE_CONSTRAINTS);
-        this.telegramUsername = telegramUsername;
+    public Telegram(String telegram) {
+        requireNonNull(telegram);
+        checkArgument(isValidTelegram(telegram), MESSAGE_CONSTRAINTS);
+        this.telegram = telegram;
     }
 
     /**
@@ -45,19 +45,19 @@ public class Telegram {
 
     @Override
     public String toString() {
-        return this.telegramUsername;
+        return this.telegram;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Telegram // instanceof handles nulls
-                && this.telegramUsername.equals(((Telegram) other).telegramUsername)); // state check
+                && this.telegram.equals(((Telegram) other).telegram)); // state check
     }
 
     @Override
     public int hashCode() {
-        return this.telegramUsername.hashCode();
+        return this.telegram.hashCode();
     }
 
 }

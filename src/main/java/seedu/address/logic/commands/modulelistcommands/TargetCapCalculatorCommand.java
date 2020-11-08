@@ -123,8 +123,4 @@ public class TargetCapCalculatorCommand extends Command {
                 && targetCap == (((TargetCapCalculatorCommand) other).targetCap));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }
