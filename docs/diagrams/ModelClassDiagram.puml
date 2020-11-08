@@ -24,6 +24,11 @@ Class a1 as "Amount"
 Class t1 as "Tag"
 }
 
+Package Tag {
+Class UniqueTagList
+Class Tag
+}
+
 Package Budget {
 Class UniqueCategoryBudgetList
 Class CategoryBudget
@@ -61,6 +66,9 @@ CategoryBudget *--> t2
 
 ExpenseBook *--> "1" AliasMap
 
+ExpenseBook *--> "1" UniqueTagList
+UniqueTagList -->"1" Tag : filtered list
+UniqueTagList o--> "*" Tag
 
 Description -[hidden]right-> a1
 a1 -[hidden]right-> Date
