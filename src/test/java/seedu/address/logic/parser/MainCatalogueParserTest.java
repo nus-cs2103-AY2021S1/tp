@@ -97,7 +97,7 @@ public class MainCatalogueParserTest {
         GitUserIndex gitUserIndex = new GitUserIndex(VALID_TEAMMATE_GIT_USERNAME_A);
         DeleteTeammateCommand command =
             (DeleteTeammateCommand) parser.parseCommand(DeleteTeammateCommand.COMMAND_WORD + " "
-                + VALID_TEAMMATE_GIT_USERNAME_A, Status.PROJECT);
+                + VALID_TEAMMATE_GIT_USERNAME_A, Status.PERSON_LIST);
         assertEquals(new DeleteTeammateCommand(gitUserIndex), command);
     }
 
