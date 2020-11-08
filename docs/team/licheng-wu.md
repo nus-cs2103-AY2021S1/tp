@@ -45,6 +45,13 @@ wholesome user experience.
   This organizes the UI and makes it more convenient for users to find their next activity for the day.
   * Highlights: The implementation of multiple tabs required a solid understanding of how AB3 uses FXML to display the GUI. Furthermore,
   did independent research to learn how tabs work in FXML, as well as how to integrate tabs into the current GUI.
+  
+* **New Feature**: Implemented the Timetable display on GUI
+  * What it does: Allows the user view his timetable easily, with all lessons and routines on separate days and slots.
+  * Justification: This allows the user to easily view his schedule for the week. All his routines and lessons are grouped 
+  based on the day, and arranged based on the time. This ease of viewing greatly improves user-experience .
+  * Highlights: The implementation required additional thinking to filter and sort the routines and lessons chronologically,
+  instead on based on when the user adds the activity to the timetable.
 
 * **Code contributed**: You can view my code contributions to fitNUS [here](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=licheng-wu&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
 
@@ -53,8 +60,6 @@ wholesome user experience.
 
 * **Enhancements to existing features**:
   * Updated the GUI to display exercises, routines and lessons added into 3 columns for ease of viewing.
-  * Updated the GUI to display routines and lessons inside timeslots in a weekly timetable. The timeslots
-  are sorted by the time each activity occurs.
 
 ## Contributions to the team-based tasks:
 
