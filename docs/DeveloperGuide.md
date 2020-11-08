@@ -1,25 +1,30 @@
-# Calgo Developer Guide
+# Calo Developer Guide
 
 ## Table of Contents
-1.[About This Guide](#1-about-this-guide)  
-2.[Setting Up](#2-setting-up)  
-3.[Design](#3-design)  
-* [3.1. Architecture](#31-architecture)
+1.[ About This Guide](#1-about-this-guide)  
+2.[ Setting Up](#2-setting-up)  
+3.[ Design](#3-design)  
+* [3.1. Architecture](#31-architecture)  
 * [3.2. Ui Component](#32-ui-component)
 * [3.3. Logic Component](#33-logic-component)
 * [3.4. Model Component](#34-model-component)
 * [3.4. Storage Component](#35-storage-component)
 * [3.4. Common Class](#36-common-classes)
 
+4.[ Implementation](#4-implementation)  
+5.[ Documentation](#5-documentation-logging-testing-configuration-dev-ops)
+6.[ Appendix 1: Manual Testing ](#6-appendix-1-instructions-for-manual-testing)
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. About This Guide
 
-This document servers as a developer guide for Calo App with sufficient and comprehensive overview of the software
+This document serves as a developer guide for Calo App with sufficient and comprehensive overview of the software
 so that new developers, like you, will have a working knowledge of the application by the end of the guide.  
   
-Note that this guide only provide reasonable depth. By no means this guide servers as a replacement for the actual code. 
+Note that this guide only provide reasonable depth. By no means this guide serves as a replacement for the actual code. 
 
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Setting Up
@@ -145,7 +150,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -240,7 +245,7 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -369,7 +374,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories)
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 6. Appendix 1: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 

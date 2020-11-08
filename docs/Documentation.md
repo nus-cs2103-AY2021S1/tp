@@ -1,7 +1,12 @@
----
-layout: page
-title: Documentation guide
----
+#Calo Documentation Guide
+
+###Tools Used For Documentation
+
+
+**Styling of Page**  
+
+Each of the page is documented in `.md` file, a product of [**Jekyll**](https://jekyllrb.com/).
+We choose to use it because 
 
 **Setting up and maintaining the project website:**
 
