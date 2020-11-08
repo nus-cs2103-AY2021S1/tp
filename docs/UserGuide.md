@@ -385,7 +385,7 @@ Figure X Appointments window with appointments of patient
 </div>
 
 <div markdown="span" class="alert alert-info">
-**:information_source: Notes:** `showAppt` takes in only **ONE** NRIC of the patient to show.
+**:information_source: Note:** `showAppt` takes in only **ONE** NRIC of the patient to show.
 </div>
 
 ### Adding an Appointment: `addAppt` (by Gabriel Teo Yu Xiang)
@@ -453,6 +453,7 @@ i.e. you can choose whether or not to edit the description
 * The `Appointment` to edit must be an existing appointment of the patient.
 * `NRIC` represents the `NRIC` of the patient whose `Appointment` you are editing.
 * `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
+* `DESCRIPTION` represents the description of the new `Appointment` to be changed to.
 
 Examples:
 * `editAppt S0000001A oldappt/28/09/2022 20:00 newappt/30/09/2022 15:00`
