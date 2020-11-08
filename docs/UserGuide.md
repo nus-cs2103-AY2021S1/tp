@@ -303,7 +303,7 @@ You have now added the stock successfully into the stock book. The stock will be
 You will not be able to add a stock into the stock book if it already exist in the stock book. In Warenager, two stocks are the
 same if they have the same `serial number`, or the same `name` and `source`.
 
-<div>
+</div>
 
 ### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
