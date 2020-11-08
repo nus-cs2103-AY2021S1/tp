@@ -79,13 +79,13 @@ This section introduces ...
 
 ## Commands
 
-This section introduces the various commands used in Nuudle.
+The command is the main way to schedule appointment for a patient with Nuudle.
 
-[general commands](#general-commands), [patient management](#patient-management), [command summary](#command-summary)
+This section provides information about the commands on [general commands](#general-commands), [patient management](#patient-management), [command summary](#command-summary) accordingly.
 
 ### Command format
 
-This section introduces the ...
+This section emphasises on the common format across all command input.
 
 
 <div markdown="block" class="alert alert-info">
@@ -96,13 +96,30 @@ This section introduces the ...
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/hypertension` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* Indexes must be a **positive integer**: 1, 2, 3, ...
+
+* Date and time can be written in the following formats:
+
+Date Formats | Time Formats | Natural Date | Natural Time
+:---------------:|:----------------:|:----------------:|:----------------:
+02/12/2020 | 2300 | Today | Morning (8AM)
+02-12-2020 | 11:00PM | Tomorrow | Noon (12PM)
+12/02/2020 | 11.00PM | Yesterday | Evening (7PM)
+12-02-2020 | 11PM | Upcoming day<br>of the week | Night (10PM)
+2020/12/02 | | | Midnight (11:59PM)
+2020-12-02 |
+02-Dec-2020 |
+02-December-2020 |
+
+Click here to [FAQ](#faq)
 
 </div>
 
@@ -369,7 +386,13 @@ Examples:
 * `find n/John` returns patients whose name contains `john`.
 * `find n/alex p/99998888 i/S1234567I` returns patients whose name contains `Alex`, or whose phone number is `99998888`, or whose NRIC number is `S1234567I`.<br>
 
-![FindCommand](images/FindCommand.png)
+Step by step illustration:<br>
+Suppose you want to find a patient named as `alex` or with a phone number of `99998888`, or with NRIC number of `S1234567I`, you can:
+1. Enter `find n/alex p/99998888 i/S1234567I`.<br>
+![FindCommand1](images/Find1.png)
+
+2. The number of patients found and the number of appointments of these patients are displayed in the result box, and the corresponding patient and appointment details are displayed in the patient and appointment book respectively.<br>
+![FindCommand2](images/Find2.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -393,7 +416,13 @@ Examples:
 * `assign 1 d/Sunday t/2pm dur/40` books an appointment of 40 minutes on the upcoming Sunday, 2am for the 1st patient in the list.
 * `assign 3 d/02-03-2021 t/1130` books an appointment of 60 minutes on 02/03/2021, 11:30am for the 3rd patient in the list.
 
-![AssignCommand](images/AssignCommand.png)
+Step-by-step illustration:<br>
+Suppose `Alex Yeoh`, the first patient in the list calls to book an appointment on `02 Jan 2021` at `1130`, you can:
+1. Enter `assign 1 d/02 Jan 2021 t/1130` in the command box.<br>
+![AssignCommand1](images/Assign1.png)
+
+2. The information of the added appointment is displayed in the result box.<br>
+![AssignCommand2](images/Assign2.png)
 
 #### Reschedules an appointment for a patient : `change`
 
@@ -476,7 +505,13 @@ Example:
 * `view` shows the list of all upcoming appointments in chronological order.
 * `view d/4-Aug-2020` shows the list of appointments happening on 04/08/2020.
 
-![AssignCommand](images/ViewCommand.png)
+Step by step illustration:<br>
+Suppose you want to check all the appointments on `05 nov 2021`, you can:
+1. Enter `view d/05 Nov 2021`.<br>
+![ViewCommand1](images/View1.png)
+
+2. The number of appointments on that date are displayed in the result box and the appointment details are displayed in the appointment book.<br>
+![ViewCommand2](images/View2.png)
 
 #### Listing available time slots by date : `avail`
 
@@ -524,19 +559,35 @@ Action | Format, Examples
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Nuudle home folder.
 
 **Q**: What are the acceptable date time format?<br>
-**A**: Nuudle supports multiple date time formats as well as natural date time language :
-
-Date Formats | Time Formats | Natural Date | Natural Time
-:---------------:|:----------------:|:----------------:|:----------------:
-02/12/2020 | 2300 | Today | Morning (8AM)
-02-12-2020 | 11:00PM | Tomorrow | Noon (12PM)
-12/02/2020 | 11.00PM | Yesterday | Evening (7PM)
-12-02-2020 | 11PM | Upcoming day<br>of the week | Night (10PM)
-2020/12/02 | | | Midnight (11:59PM)
-2020-12-02 |
-02-Dec-2020 |
-02-December-2020 |
+**A**: Nuudle supports multiple date time formats as well as natural date time language. The details can be found [here](#command-format)
 
 **Q**: My data was accidentally deleted and I can't undo it. How do I restore my data?<br>
 **A**: Look for the `data` folder in the home directory of Nuudle and then look for a `backup` folder. Copy the 2 data files in the `backup` folder and paste them into the previous folder (`data`).
 The previous session's data will then be restored by overwriting the current data files with the backup data files.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## Glossary
+
+This glossary provides definitions for the special terms used in the user guide.
+
+**Index:** The number on the left side of the corresponding entry in the patient or appointment book.
+
+**Tag:** A word or phrase that labels a patient.
+
+**GUI:** A acronym that stands for Graphic User Interface.
+
+**Command:** The text typed in by the user as an instruction for Nuudle.
+
+**Case-insensitive:** The treatment of uppercase and lowercase letters in the same way.
+
+**Patient book:** A list that contains all the patients.
+
+**Appointment book**: A list that contains all the appointments of the patients.
+
+**Operating Hours**: The working period of the clinic. This is set from 8:00am to 10:00pm by default.
+
+
+--------------------------------------------------------------------------------------------------------------------
