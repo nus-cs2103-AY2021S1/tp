@@ -118,12 +118,13 @@ The case below follows the same execution above. However, the AddCommandParser f
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](hhttps://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the PIVOT data.
+* stores the history of PIVOT states.
 * exposes an unmodifiable `ObservableList<Case>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -281,53 +282,90 @@ default file paths.
 
 ### Undo/Redo feature
 
-The undo/redo feature is facilitated by `VersionedPivot`. It extends `Pivot` with an undo/redo history, 
-stored internally as an `pivotStateList` and `currentStatePointer`. It also stores the corresponding commands 
-for each state in the `pivotStateList` as `commands`. Additionally, it implements the following operations:
+Commands that are able to be undone/redone will implement an interface `Undoable`, with the method `Undoable#getPage())`.
+When a main page command is being undone/redone, PIVOT will return to the main page. The method `Undoable#getPage())`
+informs the caller whether the command is a main page command or a case page command.
+
+The undo/redo feature is facilitated by `VersionedPivot`. It has an undo/redo history of `PivotState` objects,
+stored internally as a `pivotStateList`, and a `currentStatePointer`.
+`VersionedPivot` also keeps track of the command that is to be undone/redone as `commandResult`, and the corresponding
+command message as `commandMessageResult`. Both `commandResult` and `commandMessageResult` will be retrieved from
+the `PivotState` objects stored in `pivotStateList`.
+
+`PivotState` stores the current `ReadOnlyPivot` as a `pivotState`, the corresponding `command` that led to that
+`pivotState`, as well as the `commandMessage` displayed to the user when the command was called.
+`VersionedPivot` will only interact with the Commands via the `Undoable` interface.
+
+Additionally, `VersionedPivot` implements the following operations:
 
 * `VersionedPivot#canUndo()` — Indicates whether the current state can be undone.
 * `VersionedPivot#canRedo()` — Indicates whether the current state can be redone.
-* `VersionedPivot#commit(ReadOnlyPivot pivot, String command)` — Saves the current Pivot state as well as the 
-corresponding command that was called in its history.
+* `VersionedPivot#commit(String commandMessage, Undoable command)` — Saves the current Pivot state, the 
+corresponding command that was called and its command message in its history.
 * `VersionePivot#undo()` — Restores the previous Pivot state from its history.
 * `VersionedPivot#redo()` — Restores a previously undone Pivot state from its history.
 * `VersionedPivot#purgeStates()` — Purges the all the states after the current pointer.
+* `VersionedPivot#updateRedoUndoResult()` — Updates the `command` that is being undone/redone and the corresponding
+`commandMessage`.
+* `VersionedPivot#isMainPageCommand()` — Indicates whether the current command stored in `commandResult` is
+a main page command by using the method `Undoable#getPage())` of `commandResult`.
 
-These operations are exposed in the `Model` interface as `Model#canUndoPivot()`,`Model#canRedoPivot()`, 
-`Model#commitPivot(String command)`, `Model#undoPivot()` and `Model#redoPivot()` respectively.
+These operations are exposed in the `Model` interface as `Model#canUndoPivot()`,`Model#canRedoPivot()`,
+`Model#commitPivot(String commandMessage, Undoable command)`, `Model#undoPivot()`, `Model#redoPivot()`,
+`Model#getCommandMessage()` and `Model#isMainPageCommand()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedPivot` will be initialized with the initial Pivot state,
-and the `currentStatePointer` pointing to that single Pivot state.
+Step 1. The user launches the application for the first time. The `VersionedPivot` will be initialized with the initial `PivotState`,
+and the `currentStatePointer` pointing to that single `PivotState`.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete case 5` command to delete the 5th case in Pivot. The `delete` command calls `Model#commitPivot(String command)`, 
-causing the modified state of Pivot and the command message displayed to the user after the `delete case 5` command executes to be saved in 
-`pivotStateList` and `commands` respectively. The `currentStatePointer` is shifted to the newly inserted Pivot state.
+Step 2. The user executes `delete case 5` command to delete the 5th case in Pivot. The `delete case` command calls
+`Model#commitPivot(String commandMessage, Undoable command)`. This will create a new `PivotState` object with
+the modified state of Pivot, the delete case command and its command message. This `PivotState` object will then be saved in
+`pivotStateList`. The `currentStatePointer` is shifted to the newly inserted `PivotState` object.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add case t:Lost Wallet …​` to add a new case. The `add case` command also calls `Model#commitPivot(String command)`, 
-causing another modified Pivot state and its corresponding command message to be saved into `pivotStateList` and `commands`.
+Step 3. The user executes `add case t:Lost Wallet …​` to add a new case. The `add case` command also calls
+`Model#commitPivot(String commandMessage, Undoable command)`. This creates another `PivotState` object with the
+modified Pivot, the add case command and its corresponding command message.
+The `PivotState` object is saved into `pivotStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitPivot(String command)`, 
-so the Pivot state and the corresponding command message will not be saved into `pivotStateList` and `commands`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call
+`Model#commitPivot(String commandMessage, Undoable command)`, so a new `PivotState` object will not be created and will not be
+be saved into `pivotStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the case was a mistake, and decides to undo that action by executing the `undo` command. 
-The `undo` command will call `Model#undoPivot()`, which will retrieve the corresponding command message at the current state from `commands`
-to be displayed to the user the exact command that is being undone. The `currentStatePointer` will also be shifted once to the left, 
-pointing it to the previous Pivot state, and restores Pivot to that state.
+Step 4. The user then decides to open the newly added case and executes the command `open case 6` (assuming that the
+newly added case is the 6th case in the list). Commands that do not modify Pivot, such as `open case` commands, will
+not call `Model#commitPivot(String commandMessage, Undoable command)`. Thus, the `pivotStateList` remains unchanged.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
+Step 5. The user now decides that adding the case was a mistake, and decides to undo that action by executing the `undo` command.
+The `undo` command will call `Model#undoPivot()`, which will update `commandResult` to the command being undone, and
+`commandMessageResult` to the corresponding message to display to the user the exact command that is being undone.
+The `currentStatePointer` will also be shifted once to the left, pointing it to the previous `PivotState` object, and
+restores PIVOT to that state.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command to be undone is a main
+page command, we revert PIVOT back to the main page. The `undo` command uses `Model#isMainPageCommand()` to check if this
+is the case. If so, it will use `StateManager#resetState()` to return PIVOT to the main page. This is done because the
+list of cases in the main page changes as a result of the undo, which may affect the case page that is open currently.
+For instance, undo might result in the currently open case being removed from PIVOT (like in the above sequence of commands),
+and since the case that is open will no longer exist, it is necessary for PIVOT to return to the main page.
+
+</div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the
-initial Pivot state, then there are no previous Pivot states to restore. The `undo` command uses `Model#canUndoPivotk()` to check if this
+initial Pivot state, then there are no previous Pivot states to restore. The `undo` command uses `Model#canUndoPivot()` to check if this
 is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 </div>
@@ -342,23 +380,26 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoPivot()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores Pivot to that state. The corresponding command message
-at this new current state will be retrieved from `commands` to be displayed to the user the exact command that is being redone.
+to the right, pointing to the previously undone state, and restores Pivot to that state. `commandResult` will be updated to
+the command being redone, and `commandMessageResult` will be updated to the corresponding message in order to display to the
+user the exact command that is being redone.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Similar to undo, if the command to be redone
+is a main page command, we revert PIVOT back to the main page. The `redo` command uses `Model#isMainPageCommand()` to check
+if this is the case. If so, it will use `StateManager#resetState()` to return PIVOT to the main page.
+
+</div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index
-`pivotStateList.size() - 1`, pointing to the latest Pivot state, then there are no undone Pivot states to restore.
+`pivotStateList.size() - 1`, pointing to the latest `PivotState` object, then there are no undone `PivotState` objects to restore.
 The `redo` command uses `Model#canRedoPivot()` to check if this is the case. If so, it will return an error to the user
 rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify Pivot, such as `list`, will
-usually not call `Model#commitPivot(String command)`. Thus, the `pivotStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitPivot(String command)`. Since the `currentStatePointer` is not
-pointing at the end of the `pivotStateList`, all Pivot states after the `currentStatePointer` will be purged. Reason: It
+Step 6. The user executes `open case 1`, followed by `edit title t:Robbery`. The edit title command calls
+Model#commitPivot(String commandMessage, Undoable command)`. Since the `currentStatePointer` is not pointing at the end
+of the `pivotStateList`, all `PivotState` objects after the `currentStatePointer` will be purged. Reason: It
 no longer makes sense to redo the `add case t:Lost Wallet …​` command. This is the behavior that most modern desktop
 applications follow.
 
