@@ -65,6 +65,8 @@ public class UniquePatientList implements Iterable<Patient> {
             throw new DuplicatePatientException();
         }
         internalList.add(toAdd);
+        int index = internalList.indexOf(toAdd);
+        internalList.set(index, toAdd); //creates a change for listener
     }
 
     /**

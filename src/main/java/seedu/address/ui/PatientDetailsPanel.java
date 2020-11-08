@@ -19,7 +19,6 @@ import seedu.address.model.patient.Patient;
 public class PatientDetailsPanel extends UiPart<Region> {
 
     private static final String FXML = "PatientDetailsPanel.fxml";
-    public final Patient patient;
     private Image imagePatient = new Image(getClass().getResourceAsStream("/images/patient_icon.png"));
     private final Logger logger = LogsCenter.getLogger(PatientDetailsPanel.class);
 
@@ -38,20 +37,14 @@ public class PatientDetailsPanel extends UiPart<Region> {
     @FXML
     private Label comment;
 
-    /**
-     * Creates a {@code PatientDetailsPanel} with the given {@code Patient}.
-     */
-    public PatientDetailsPanel(Patient patient) {
+    public PatientDetailsPanel() {
         super(FXML);
-        this.patient = patient;
-        setPatientDetails();
-        logger.log(Level.INFO, "Displayed patient details successfully.");
     }
 
     /**
      * Sets the details of the patient.
      */
-    private void setPatientDetails() {
+    public void setPatientDetails(Patient patient) {
         //sets up the image
         ImageView imageView = new ImageView(imagePatient);
         imageView.setFitHeight(30);
@@ -65,20 +58,27 @@ public class PatientDetailsPanel extends UiPart<Region> {
         phone.setText("Phone number: " + patient.getPhone().toString());
         age.setText("Age: " + patient.getAge().toString());
         comment.setText("Comment: " + patient.getComment().toString());
+
+        logger.log(Level.INFO, "Displayed patient details successfully.");
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-        // instanceof handles nulls
-        if (!(other instanceof PatientDetailsPanel)) {
-            return false;
-        }
-        // state check
-        PatientDetailsPanel panel = (PatientDetailsPanel) other;
-        return patient.equals(panel.patient);
+    /**
+     * Sets the details for an empty patient records.
+     */
+    public void setNoPatientDetails() {
+        //sets up the image
+        ImageView imageView = new ImageView(imagePatient);
+        imageView.setFitHeight(30);
+        imageView.setFitWidth(30);
+        name.setGraphic(imageView);
+        //fill in the details
+        name.setText("NO PATIENT PRESENT");
+        patientHeader.setUnderline(true);
+        temperature.setText("Temperature: -");
+        periodOfStay.setText("Period of stay: -");
+        phone.setText("Phone number: -");
+        age.setText("Age: -");
+        comment.setText("Comment: -");
+        logger.log(Level.INFO, "Set no patient details successfully.");
     }
 }

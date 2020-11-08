@@ -15,7 +15,6 @@ import seedu.address.storage.rooms.JsonSerializableRoomList;
 import seedu.address.testutil.TypicalRooms;
 
 
-//@@author
 class JsonSerializableRoomListTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableRoomListTest");
     private static final Path TYPICAL_ROOM_LIST = TEST_DATA_FOLDER.resolve("typicalRoomsInRoomList.json");
