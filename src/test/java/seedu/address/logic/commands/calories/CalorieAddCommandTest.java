@@ -34,18 +34,6 @@ public class CalorieAddCommandTest {
     }
 
     @Test
-    public void execute_invalidCalorieInput_throwsCommandException() {
-        CalorieAddCommand command = new CalorieAddCommand(new Calorie(2147483647));
-        ModelStub modelStub = new ModelStubWithDailyCalorie(
-                new DailyCalorie(LocalDate.of(2020, 11, 3)));
-
-        //To tip the integer value to be too large
-        modelStub.addCalories(new Calorie(1));
-
-        assertThrows(CommandException.class,
-                CalorieAddCommand.MESSAGE_FAILURE, () -> command.execute(modelStub));
-    }
-    @Test
     public void equals() {
         CalorieAddCommand firstCommand = new CalorieAddCommand(new Calorie(10));
         CalorieAddCommand secondCommand = new CalorieAddCommand(new Calorie(20));
