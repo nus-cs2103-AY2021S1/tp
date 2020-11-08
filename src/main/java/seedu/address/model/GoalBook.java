@@ -33,15 +33,15 @@ public class GoalBook implements ReadOnlyGoalBook {
     //// map overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the goal list with {@code goals}.
+     * {@code goals} must not contain duplicate goals.
      */
     public void setGoals(Map<Date, Goal> goals) {
         this.goalMap.setGoals(goals);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ExerciseBook} with {@code newData}.
      */
     public void resetData(ReadOnlyGoalBook newData) {
         requireNonNull(newData);
@@ -75,7 +75,7 @@ public class GoalBook implements ReadOnlyGoalBook {
     /**
      * Replaces the given goal {@code target} in the list with {@code editedGoal}.
      * {@code target} must exist in the exercise book.
-     * The person identity of {@code editedGoal} must not be the same as another existing goal in the goal book.
+     * The goal identity of {@code editedGoal} must not be the same as another existing goal in the goal book.
      */
     public void setGoal(Goal target, Goal editedGoal) {
         requireNonNull(editedGoal);

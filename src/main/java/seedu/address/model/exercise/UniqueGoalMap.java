@@ -28,7 +28,7 @@ public class UniqueGoalMap {
 
     /**
      * Returns the goal based on date
-      * @param date
+      * @param date the date for the goal
      * @return Goal
      * */
     public Goal getGoal (Date date) {
@@ -89,13 +89,13 @@ public class UniqueGoalMap {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code goals}.
+     * {@code goals} must not contain duplicate goals.
      */
 
     public void setGoals(Map<Date, Goal> goals) {
         requireAllNonNull(goals);
-
+        internalMap.clear();
         for (Map.Entry<Date, Goal> entry : goals.entrySet()) {
             internalMap.put(entry.getKey(), entry.getValue());
         }

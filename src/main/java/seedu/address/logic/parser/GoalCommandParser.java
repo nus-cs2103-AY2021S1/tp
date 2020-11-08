@@ -30,7 +30,7 @@ public class GoalCommandParser implements ExerciseParser<GoalCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_CALORIES, PREFIX_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CALORIES, PREFIX_DATE)
-            /*|| !argMultimap.getPreamble().isEmpty()*/) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GoalCommand.MESSAGE_USAGE));
         }
 
