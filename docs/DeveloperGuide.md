@@ -7,20 +7,20 @@ Welcome to FitEgo! This document will serve as a developer guide to the all-in-o
 
 Made with **fitness instructors** in mind, **FitEgo** is a **desktop program** that helps them **manage their clients and schedules**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **FitEgo** can get your client management tasks done faster than traditional GUI apps.
 
-## Table of Contents
+<h1>Table of Contents</h1>
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 1 **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-### How to interpret notations
+### 1.1 How to interpret notations
 
 Below are a few examples of the common notations in this document in which the different backgrounds and icons represent different meanings.
 
@@ -45,11 +45,16 @@ Additional information.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 2 **Design**
 
-### Architecture
+### 2.1 Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/ArchitectureDiagram.png" width="450" />
+    </p>
+    <figcaption>Figure 1 - Architecture Diagram</figcaption>
+</figure>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -79,19 +84,34 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/LogicClassDiagram.png"/>
+    </p>
+    <figcaption>Figure 2 - Logic Component Class Diagram</figcaption>
+</figure>
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `cdel 1`.
 
-![Architecture Sequence Diagram of the Logic Component](images/ArchitectureSequenceDiagram.png)
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/ArchitectureSequenceDiagram.png"/>
+    </p>
+    <figcaption>Figure 3 - Architecture Sequence Diagram</figcaption>
+</figure>
 
 The sections below give more details of each component.
 
-### UI component
+### 2.2 UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/UiClassDiagram.png"/>
+    </p>
+    <figcaption>Figure 4 - UI Component Class Diagram</figcaption>
+</figure>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -105,9 +125,14 @@ The `UI` component interacts with these external API:
 * `Logic` : Performs the Execution of user's commands.
 * `Model` : Listens for changes to data so that the UI can be updated with the modified data.
 
-### Logic component
+### 2.3 Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/LogicClassDiagram.png"/>
+    </p>
+    <figcaption>Figure 5 - Logic Component Class Diagram</figcaption>
+</figure>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -120,18 +145,33 @@ The `UI` component interacts with these external API:
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("cdel 1")` API call.
 
-![Interactions Inside the Logic Component for the `cdel 1` Command](images/DeleteClientSequenceDiagram.png)
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/DeleteClientSequenceDiagram.png"/>
+    </p>
+    <figcaption>Figure 6 - Logic Component - Delete Client Sequence Diagram</figcaption>
+</figure>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` and `DeleteClientCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 2.4 Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/ModelClassDiagram.png"/>
+    </p>
+    <figcaption>Figure 7 - Model Component Class Diagram</figcaption>
+</figure>
 
 The figure above gives the overall architecture of the Model component.
 
-![Structure of the Model Component - continued](images/ModelClassDiagram2.png)
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/ModelClassDiagram2.png"/>
+    </p>
+    <figcaption>Figure 8 - Model Component Class Diagram - continued</figcaption>
+</figure>
 
 The figure above gives a more detailed class diagram for each of the Client, Session and Schedule packages.
 
@@ -146,9 +186,14 @@ The `Model`,
 
 
 
-### Storage component
+### 2.5 Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/StorageClassDiagram.png"/>
+    </p>
+    <figcaption>Figure 9 - Storage Component Class Diagram</figcaption>
+</figure>
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -156,17 +201,17 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
-### Common classes
+### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 3 **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Logging
+### 3.1 Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels 
 and logging destinations.
@@ -186,12 +231,12 @@ to the specified logging level
 e.g. print the actual list instead of just its size
 
 
-### Configuration
+### 3.2 Configuration
 
 Certain properties of the application can be controlled(e.g. user prefs file location, logging level), 
 through the configuration file (default: `config.json`)
 
-### Edit Session feature
+### 3.3 Edit Session feature
 
 The proposed Edit Session mechanism is facilitated by `Addressbook`.
 
@@ -209,9 +254,9 @@ The following sequence diagram shows how the Edit Session operation works:
 
 <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
     <p>
-        <img src="images/EditSessionSequenceDiagram.png" style="width: 25%; height: auto;"/>
+        <img src="images/EditSessionSequenceDiagram.png"/>
     </p>
-    <figcaption>Figure - Edit Session Sequence Diagram</figcaption>
+    <figcaption>Figure 10 - Edit Session Sequence Diagram</figcaption>
 </figure>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -222,16 +267,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
     <p>
-        <img src="images/EditSessionActivityDiagram.png" style="width: 25%; height: auto;"/>
+        <img src="images/EditSessionActivityDiagram.png"/>
     </p>
-    <figcaption>Figure - Edit Session Activity Diagram</figcaption>
+    <figcaption>Figure 11 - Edit Session Activity Diagram</figcaption>
 </figure>
 
-### Delete Session feature
+### 3.4 Delete Session feature
 
 The Delete Session feature allows user to cancel a Session, and delete all Schedules associated to the Session.
 
-#### Implementation
+#### 3.4.1 Implementation
 
 The Delete Session mechanism is facilitated by `DeleteSessionCommand` which extends `Command`. The format of the 
 command is given by: 
@@ -247,28 +292,38 @@ and `Model#hasAnyScheduleAssociatedWithSession`.
 The following activity diagram summarizes what happens when a user executes a new `DeleteSession` command, with the assumption that the user inputs a valid command.
 
 <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
-     <p>
-         <img src="images/DeleteSessionActivityDiagram.png" style="width: 50%; height: auto;"/>
-     </p>
-     <figcaption>Figure - Delete Session Activity Diagram</figcaption>
- </figure>
- 
+    <p>
+        <img src="images/DeleteSessionActivityDiagram.png" style="width: 50%; height: auto;"/>
+    </p>
+    <figcaption>Figure 12 - Delete Session Activity Diagram</figcaption>
+</figure>
+
 The following diagram shows a possible application state in FitEgo. 
 
 <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
     <p>
         <img src="images/tracing/DeleteSessionObjectDiagram.png" style="width: 80%; height: auto;"/>
     </p>
-    <figcaption>Figure - A possible application state</figcaption>
+    <figcaption>Figure 13 - A possible application state</figcaption>
 </figure>
 
 In the following sequence diagram, we trace the execution when the user decides to enter the Delete Session command 
 `sdel 1 f/` into FitEgo with the above scenario, where the first Session in the Session List is the `enduranceTraining` Session. 
 For simplicity, we will refer to this command input as `commandText`. 
 
-![DeleteSessionSequenceDiagram](images/tracing/DeleteSessionSequenceDiagram.png)
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/DeleteSessionSequenceDiagram.png"/>
+    </p>
+    <figcaption>Figure 14 - Delete Session Sequence Diagram</figcaption>
+</figure>
 
-![DeleteSessionParseArgsRef](images/tracing/DeleteSessionParseArgsRef.png)
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/DeleteSessionParseArgsRef.png"/>
+    </p>
+    <figcaption>Figure 15 - Delete Session Parse Args Ref Sequence Diagram</figcaption>
+</figure>
  
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteSessionCommand` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -284,7 +339,7 @@ whether there exist any `Schedule` associated to the Session. As there are curre
 is set to true, the model will remove them from `AddressBook`. It will then create a `CommandResult` to relay feedback 
 message back to the UI and return control back to `LogicManager`. It will persist these changes by saving it to the storage.
 
-#### Design Considerations
+#### 3.4.2 Design Considerations
 
 In designing this feature, we had to consider several alternative ways in which we can choose to handle session deletion.
 
@@ -311,12 +366,12 @@ In designing this feature, we had to consider several alternative ways in which 
     - Cons: A Schedule might have invalid Session, breaking data integrity.
 
 
-### Add Schedule feature
+### 3.5 Add Schedule feature
 
 The Add Schedule feature allows user to create a Schedule associated with a Client and a Session. 
 In other words, it allows user to schedule a Client to a Session.
 
-#### Implementation
+#### 3.5.1 Implementation
 
 The Add Schedule mechanism is facilitated by `AddScheduleCommand` which extends `Command`. The format of the 
 command is given by: 
@@ -331,10 +386,10 @@ The following activity diagram summarizes the decision making process when a use
      <p>
          <img src="images/AddScheduleActivityDiagram.png" style="width: 70%; height: auto;"/>
      </p>
-     <figcaption>Figure - Add Schedule activity diagram</figcaption>
+     <figcaption>Figure 16 - Add Schedule Activity Diagram</figcaption>
  </figure>
 
-#### Command Usage Examples
+#### 3.5.2 Command Usage Examples
 
 Assume the current state of the displayed Client List, displayed Session List, and Schedules (all Schedules in FitEgo) are as illustrated in the following simplified object diagram:
 
@@ -342,7 +397,7 @@ Assume the current state of the displayed Client List, displayed Session List, a
      <p>
          <img src="images/OverlappingScheduleObjectDiagram0.png" style="width: 95%; height: auto;"/>
      </p>
-     <figcaption>Figure - Sample current state of Add Schedule</figcaption>
+     <figcaption>Figure 17 - Sample current state of Add Schedule</figcaption>
  </figure>
 
 Now, consider two cases of Add Schedule command to be invoked.
@@ -362,7 +417,7 @@ Instead of using `DeleteSessionCommandParser`, it uses `AddScheduleCommandParser
      <p>
          <img src="images/AddScheduleExecuteRef.png" style="width: 95%; height: auto;"/>
      </p>
-     <figcaption>Figure - Sequence diagram snippet for <code>AddScheduleCommand#execute(model)</code></figcaption>
+     <figcaption>Figure 18 - Sequence diagram snippet for <code>AddScheduleCommand#execute(model)</code></figcaption>
  </figure>
  
 As shown in the figure above, first it gets the Client and Session from the filtered (displayed) lists. Then, it checks for existing identical Schedule (Schedule that consists of the same Client and Session) using `hasAnyScheduleAssociatedWithClientAndSession()`. 
@@ -374,14 +429,14 @@ Thus, `schadd c/2 s/1` will add a Schedule associated with Andy (the second Clie
      <p>
          <img src="images/OverlappingScheduleObjectDiagram1.png" style="width: 95%; height: auto;"/>
      </p>
-     <figcaption>Figure - Result of invoking <code>schadd c/2 s/1</code></figcaption>
+     <figcaption>Figure 19 - Result of invoking <code>schadd c/2 s/1</code></figcaption>
  </figure>
 
 **Case 2:** `schadd c/1 s/1`
 
 On the other hand, invoking `schadd c/1 s/1` will result in an error shown to the user as an identical Schedule already exists. Here, John is already scheduled to the endurance training Session from 12/12/2020 1400 - 1600.
 
-### Edit Schedule feature
+### 3.6 Edit Schedule feature
 
 The proposed Edit Schedule mechanism is facilitated by `Addressbook`, similar to the Edit Session Command.
 
@@ -400,10 +455,10 @@ The following activity diagram summarizes what happens when a user executes a ne
     <p>
         <img src="images/EditScheduleActivityDiagram.png" style="width: 25%; height: auto;"/>
     </p>
-    <figcaption>Figure - Edit Schedule Activity Diagram</figcaption>
+    <figcaption>Figure 20 - Edit Schedule Activity Diagram</figcaption>
 </figure>
 
-#### Design consideration:
+#### 3.6.1 Design consideration:
 
 * **Alternative 1 (current choice):** Retrieve Schedule using Client and Session Index.
   * Pros: Clearer to retrieve.
@@ -415,7 +470,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: Implementation is more confusing as User there's a conflict between Index and user-typed String index.
 
 
-### View Client's Weight feature
+### 3.7 View Client's Weight feature
 
 The viewing of client's weight feature allows the user to check in on a Client's progress after multiple Sessions.
 This data is important because it allows the user to check the effectiveness of his training schedule and customise the training 
@@ -423,7 +478,7 @@ based on the remarks and weight progress.
 
 Viewing of Client's Weight is accessible when the user calls `cview [INDEX]` followed by activating the `Weight` tab pane. 
 
-#### Implementation
+#### 3.7.1 Implementation
 
 The recording of weight is stored in `Schedule` class. This is because we believe that trainer would optionally take a weight measurement
 at the start of every session. Thus, to get the weight change over time, a list of schedules related to the `Client` has to be extracted. 
@@ -434,7 +489,7 @@ In the following sequence diagram, we trace the execution starting from when the
     <p>
         <img src="images/ClientViewWeightSequenceDiagram.png" alt="ClientViewWeightSequenceDiagram" style="align-content: center" />
     </p>
-    <figcaption>Figure - Client View Weight Generate Sequence Diagram</figcaption>
+    <figcaption>Figure 21 - Client View Weight Generate Sequence Diagram</figcaption>
 </figure>
 
 <div markdown="block" class="alert alert-info"> 
@@ -449,7 +504,7 @@ is a CommandResult object, within which, contains a Supplier which returns a Pan
 As shown in the "alt" frame, the chart is added into the tab pane if there are associated schedule and the weight (if present within the `Schedule` object)
 will be added into the line chart. Otherwise, the `Weight` tab will be removed instead of showing an empty chart.  
 
-#### Design Considerations
+#### 3.7.2 Design Considerations
 In designing this weight tracking feature, we had considered several alternative ways in which we can store and retreive the weight. 
 
 * **Alternative 1 (current choice):** Stores the `Weight` within the `Schedule` object
@@ -460,7 +515,7 @@ In designing this weight tracking feature, we had considered several alternative
   * Pros: Do not require a schedule in order to track weight. 
   * Cons: Lesser information about the weight (schedule's exercise, remarks, time, etc) is stored.  
 
-### View Session by period feature
+### 3.8 View Session by period feature
 
 The View Session by period feature allows users to filter the Session List to show only those within the requested time period.
 
@@ -484,7 +539,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     <p>
         <img src="images/ViewSessionActivityDiagram.png" style="height: auto;"/>
     </p>
-    <figcaption>Figure - View Session Activity Diagram</figcaption>
+    <figcaption>Figure 22 - View Session Activity Diagram</figcaption>
 </figure>
 
 In the following sequence diagram, we trace the execution when the user decides to enter the View Session command 
@@ -494,14 +549,14 @@ In the following sequence diagram, we trace the execution when the user decides 
     <p>
         <img src="images/ViewSessionSequenceDiagram.png" alt="ViewSessionSequenceDiagram" style="align-content: center" />
     </p>
-    <figcaption>Figure - View Session Sequence Diagram</figcaption>
+    <figcaption>Figure 23 - View Session Sequence Diagram</figcaption>
 </figure>
 
 <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
     <p>
         <img src="images/ViewSessionParserRef.png" alt="ViewSessionParserRef" style="align-content: center" />
     </p>
-    <figcaption>Figure - View Session Parser Ref Sequence Diagram</figcaption>
+    <figcaption>Figure 24 - View Session Parser Ref Sequence Diagram</figcaption>
 </figure>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ViewSessionCommandParser` and `ViewSessionCommand` 
@@ -522,12 +577,12 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
     <p>
         <img src="images/ViewSessionUpdateRightSideBarRef.png" alt="ViewSessionUpdateRightSideBarRefSequenceDiagram" style="align-content: center" />
     </p>
-    <figcaption>Figure - View Session Update RightSideBar Ref Sequence Diagram</figcaption>
+    <figcaption>Figure 25 - View Session Update RightSideBar Ref Sequence Diagram</figcaption>
     </figure>
 
 1. The `RightSideBar` retrieves the latest period "WEEK" from the command result and text. `Title` is set to "WEEK". It then retrieves the filtered Session List from `LogicManager` and updates the items in `SessionListView`.
 
-#### Design Considerations
+#### 3.8.1 Design Considerations
 
 In designing this feature, we had to consider several alternative ways in which we can choose to handle viewing session by period.
 
@@ -547,7 +602,7 @@ In designing this feature, we had to consider several alternative ways in which 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 4 **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -557,9 +612,9 @@ In designing this feature, we had to consider several alternative ways in which 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 5 **Appendix: Requirements**
 
-### Product scope
+### 5.1 Product scope
 
 **Target user profile**:
 * is a fitness instructor who has trouble managing a significant number of clients and sessions
@@ -575,7 +630,7 @@ He can spend more time on his clients/his routine rather than manually using alt
 administrative matters.
 
 
-### User stories
+### 5.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -607,7 +662,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | trainer focused on coaching pre-NS teen       | track client's date of birth   | adjust the fitness intensity depending on IPPT period                  |
 
 
-### Use cases
+### 5.3 Use cases
 
 (For all use cases below, the **System** is the `FitEgo` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -701,6 +756,7 @@ Use case ends.
 
  1.  User requests to find some Client based on keyword or text.
  2.  FitEgo displays the Client's whose name matches the keyword or text.
+ 
 Use case ends.
 
 **Extensions**
@@ -889,7 +945,7 @@ Use case ends.
 	
       Use case ends.
 
-### Non-Functional Requirements
+### 5.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 clients and sessions without a noticeable sluggishness in performance for typical usage (respond to commands within 2 seconds).
@@ -903,7 +959,7 @@ Use case ends.
 10.  The user should be able to use the application on different machines just by moving the data file
 from your previous machine to your new machine.
 
-### Glossary
+### 5.5 Glossary
 
 * **API**: Application Programming Interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -913,7 +969,7 @@ from your previous machine to your new machine.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 6 **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -922,7 +978,7 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 </div>
 
-### Launch and shutdown
+### 6.1 Launch and shutdown
 
 1. Initial launch
 
@@ -935,6 +991,7 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
+   
       Expected: The most recent window size and location is retained.
 
 <div markdown="span" class="alert alert-info"> 
@@ -943,7 +1000,7 @@ testers are expected to do more *exploratory* testing.
 Otherwise, the expected outcome: No changes are made. Error details shown in the status message.
 </div>
 
-### Adding a Client
+### 6.2 Adding a Client
 
 1. Adding a Client while all Clients are being shown
 
@@ -951,7 +1008,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       Expected: First contact is added to the list. Details of the added contact shown in the status message.
 
 
-### Adding a Session
+### 6.3 Adding a Session
 
 1. Adding a Session while all Clients are being shown.
 
@@ -963,7 +1020,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
         `sadd g/machoman ex/endurance at/29/09/2020 1600 t/0` (invalid duration) <br>
        Expected: Session is not added. Error details are shown in the status message.
 
-### Editing a Session
+### 6.4 Editing a Session
 
 1. Editing a Session while all Sessions are being shown.
 
@@ -972,14 +1029,14 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
    1. Test case: `sedit 1 g/Machoman at/29/09/2020 1600 t/120`<br>
       Expected: First Session's gym location and timing is edited. Details of the edited Session is shown in the status message.
       
-### Deleting a Session
+### 6.5 Deleting a Session
 
 1. Deleting a Session while all Sessions are being shown.
 
    1. Test case: `sdel 1 f/` <br>
        Expected: The 1st Session in the Session List will be deleted alongside all Schedules associated to the Session. Details of the deleted Session is shown in the status message.
 
-### Viewing Sessions within Period
+### 6.6 Viewing Sessions within Period
 
 1. Viewing Sessions within Period while the Session List is non-empty.
 
@@ -992,7 +1049,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
    1. Other incorrect View Session commands to try: `sview`, `sview p/+2s` (where unit of time is not d/m/y), `...` <br>
       Expected: View of Session List is unchanged. Error details shown in the status message.
       
-### Adding a Schedule
+### 6.7 Adding a Schedule
 
 1. Adding a Schedule while all Clients and Sessions are being shown.
 
@@ -1003,7 +1060,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       Details of the added Schedule is shown in the status message.
       
 
-### Editing a Schedule
+### 6.8 Editing a Schedule
 
 1. Editing a Schedule while all Schedules are being shown.
 
@@ -1014,7 +1071,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       Details of the edited Schedule is shown in the status message.
 
 
-### Deleting a Schedule
+### 6.9 Deleting a Schedule
 
 1. Deleting a Schedule while all Clients and Sessions are being shown.
 
@@ -1024,7 +1081,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       Expected: Delete the Schedule associated with first Client in the Client List and first Session in the Session List.
       Details of the deleted Schedule is shown in the status message.
 
-### Saving data
+### 6.10 Saving data
 
 1. Dealing with missing/corrupted data files
 
@@ -1036,3 +1093,6 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       resulting interval does not exist inside the Session List.
       Expected: Similar to previous.
 
+---
+
+<center>~End of Developer Guide~</center>

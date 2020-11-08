@@ -1,6 +1,8 @@
 @startuml
 !include ../style.puml
 
+skinparam defaultFontSize 24
+
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
@@ -32,25 +34,21 @@ activate DeleteSessionCommand
 DeleteSessionCommand -> Model : getFilteredSessionList()
 activate Model
 
-Model --> DeleteSessionCommand : filteredSessions
 deactivate Model
 
 DeleteSessionCommand -> Model: hasAnyScheduleAssociatedWithSession(Session)
 activate Model
 
-Model --> DeleteSessionCommand
 deactivate Model
 
 DeleteSessionCommand -> Model: deleteSessionAssociatedSchedules(Session)
 activate Model
 
-Model --> DeleteSessionCommand
 deactivate Model
 
 DeleteSessionCommand -> Model: deleteSession(Session)
 activate Model
 
-Model --> DeleteSessionCommand
 deactivate Model
 
 create CommandResult
@@ -68,13 +66,11 @@ destroy DeleteSessionCommand
 LogicManager --> Model: getAddressBook()
 activate Model
 
-Model --> LogicManager
 deactivate Model
 
 LogicManager --> Storage : saveAddressBook(addressBook)
 activate Storage
 
-Storage --> LogicManager
 deactivate Storage
 
 [<--LogicManager : result

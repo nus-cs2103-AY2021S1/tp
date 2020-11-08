@@ -1,6 +1,6 @@
 ---
 layout: page
-title: kelvinvin's Project Portfolio Page
+title: Kelvin Wong's Project Portfolio Page
 ---
 
 ## Project: FitEgo
