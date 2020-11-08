@@ -666,8 +666,6 @@ Contributed by: Tian Yong
 
 <br>  The image below is what Wishful Shrinking looks like after you have cleared all ingredients in the Fridge <br><br>
 
-<br>  The image below is what Wishful Shrinking looks like after you have cleared all ingredients in the Fridge. <br><br>
-
 <img src="images/feature/ingredient/ClearFridgeImage.png" width="550" height="300">
 <br><br><br>
 
