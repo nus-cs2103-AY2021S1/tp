@@ -2,6 +2,8 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -62,9 +64,12 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     /**
      * Reset all the data inside ExerciseBook.
      */
-    public void resetAllData() {
+    public void resetAllData() throws IOException {
         exercises.resetAll();
         TemplateList.reset();
+        //@@author Royxuzeng
+        Template.writeToFile(new ArrayList<>());
+        //@@author Royxuzeng
     }
 
     //// exercise-level operations

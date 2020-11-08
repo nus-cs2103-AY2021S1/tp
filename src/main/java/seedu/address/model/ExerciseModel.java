@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.function.Predicate;
@@ -86,7 +87,7 @@ public interface ExerciseModel {
      */
     void addTemplate(Template template);
 
-    void resetAll();
+    void resetAll() throws IOException;
 
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.
