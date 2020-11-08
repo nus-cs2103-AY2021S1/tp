@@ -1099,7 +1099,7 @@ There are 2 ways to delete flashcards – by index or by tags.
 
 The difficulty level for developing QuickCache was high because we chose to morph AB3 into a flashcard manager instead of evolving it into a more powerful contact management app. We also wanted QuickCache to support both Open Ended Questions and Multiple Choice Questions. Other than managing questions, we felt that it was also important for the user to be able to test him/herself within QuickCache, view his/her performance, as well as share flashcards with his/her friends.
 
-We faced a number of challenges in developing QuickCache. 
+We faced a number of challenges in developing QuickCache:
 1. The biggest hurdle that we had to overcome was having to work together remotely for the entire project. This was also our first project module in SoC where we had to work together in a large group of five.
 2. In addition, we also had to optimize experience of the application for viewing flashcards - some flashcards contained choices and to display statistics of flashcards. It was important that we had to reveal it to the user in a way that is intuitive to them. Since AB3's GUI was designed to only show one possible window (the list of people stored in it), we had to examine the GUI code, understand how it works and made sure the data given from the command result of `OpenCommand`, `TestCommand`, etc. can be displayed.
 3. As QuickCache supports different types of questions, we also had to implement additional entity types and made us of the `Question` interface so that our flashcard can support different type of questions.
@@ -1133,4 +1133,3 @@ The following class diagram shows the structure of `Flashcard`:
 ![FlashcardClassDiagram](images/FlashcardClassDiagram.png)
 
 Overall, we are proud of coming up with a complete product amidst the work from the other modules that we have and our individual commitments. We put in a lot of hard work into our documentation as well to make sure QuickCache is as easy to use for the end-user (the student) as possible. We have also improved the test coverage and achieved a codecov of 73%.
-
