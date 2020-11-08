@@ -9,7 +9,6 @@ Interface Ui <<Interface>>
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
-Class HelpWindow
 Class CommandOutput
 Class RecipeViewPanel
 Class RecipeCard
@@ -17,8 +16,11 @@ Class CommandBox
 Class IngredientViewPanel
 Class IngredientCard
 Class DisplayController
-Class PinBox
+Class DisplayNavigator
+Class StatsBox
 Class RecipeDisplay
+Class RecommendationViewPanel
+Class RecommendationCard
 }
 
 package Model <<Rectangle>> {
@@ -34,17 +36,19 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
-MainWindow --> HelpWindow
 MainWindow *-down-> CommandOutput
-MainWindow *-down-> PinBox
+MainWindow *-down-> StatsBox
 MainWindow *-down-> DisplayController
 DisplayController -down-> RecipeViewPanel
 DisplayController -down-> IngredientViewPanel
 DisplayController -down-> RecipeDisplay
-DisplayController *-down-> CommandBox
+MainWindow *-down-> CommandBox
+DisplayController *-down-> RecommendationViewPanel
+DisplayNavigator -right-> DisplayController
 
 RecipeViewPanel *-down-> RecipeCard
 IngredientViewPanel *-down-> IngredientCard
+RecommendationViewPanel *-down-> RecommendationCard
 
 MainWindow -left-|> UiPart
 
@@ -52,22 +56,26 @@ CommandOutput --|> UiPart
 CommandBox --|> UiPart
 RecipeViewPanel --|> UiPart
 RecipeCard --|> UiPart
-PinBox --|> UiPart
+StatsBox --|> UiPart
 DisplayController --|> UiPart
 IngredientCard --|> UiPart
-HelpWindow --|> UiPart
 RecipeDisplay --|> UiPart
 IngredientViewPanel --|> UiPart
+RecommendationViewPanel --|> UiPart
+RecommendationCard --|> UiPart
 
 RecipeCard ..> Model
 IngredientCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-CommandBox -[hidden]left- CommandOutput
-CommandOutput -[hidden]left- PinBox
-PinBox -[hidden]left- HelpWindow
-RecipeDisplay -[hidden]left- CommandBox
+
+CommandBox -right[hidden]- CommandOutput
+CommandOutput -right[hidden]- StatsBox
+StatsBox -right[hidden]- DisplayController
+
+RecipeDisplay -right[hidden]- RecommendationViewPanel
+
 
 
 
