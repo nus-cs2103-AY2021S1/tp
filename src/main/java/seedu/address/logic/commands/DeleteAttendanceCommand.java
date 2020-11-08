@@ -22,10 +22,10 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
 
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = AttendanceCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": deletes an Attendance from the student identified "
-            + "by the date of the lesson. \n"
-            + "Parameters: STUDENT_INDEX (must be a positive integer) "
-            + PREFIX_ATTENDANCE_DATE + "LESSON_DATE\n"
+            + ": Deletes the attendance record from the specified student "
+            + "matching the given lesson date. \n\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + PREFIX_ATTENDANCE_DATE + "LESSON_DATE\n\n"
             + "Example: " + AttendanceCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
             + PREFIX_ATTENDANCE_DATE + "14/02/2020";
 

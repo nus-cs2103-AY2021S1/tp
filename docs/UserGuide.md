@@ -39,7 +39,10 @@
     + [3.4.3 Recording attendance of a student: `attendance` (By: Vaishak)](#343-recording-attendance-of-a-student-attendance-by-vaishak)
         + [3.4.3.1 Adding an attendance record to a student: `attendance add`](#3431-adding-an-attendance-record-to-a-student-attendance-add)
         + [3.4.3.2 Deleting an attendance record for a student: `attendance delete`](#3432-deleting-an-attendance-record-for-a-student-attendance-delete)
-  * [3.6 Notes Feature (By: Choon Siong)](#36-notes-feature-by-choon-siong)
+  * [3.6 Notebook feature (By: Choon Siong)](#36-notebook-feature-by-choon-siong)
+    + [3.6.1 Adding a note: `note add`](#361-adding-a-note)
+    + [3.6.2 Editing a note: `note edit`](#362-editing-a-note)
+    + [3.6.3 Deleting a note: `note delete`](#363-deleting-a-note)
 - [4. Command summary](#4-command-summary)
 - [5. Glossary](#5-glossary)
 - [6. FAQ](#6-faq)
@@ -72,10 +75,10 @@ Table 1: Summary of symbols
 
 Symbol | Meaning
 :-----:|:-------
-`command` | A grey highlight indicates a command that can be executed by **Reeve**.
-:information_source: | Indicates important information.
-:bulb: | Indicates tips.
-:exclamation: | Indicates a warning
+`command` | a command that can be executed by **Reeve**.
+:information_source: | Important information. 
+:bulb: | Tips.
+:warning: | Warnings
 
 ## 2. Quick start
 
@@ -158,9 +161,15 @@ This section serves to provide you a detailed explanation of the general feature
 
 If you are unsure of any of the commands, this command will direct you to the help page.
 
+Format: `help`
+
+Expected Outcome:
+
+The following figures shows the help window entering the command `help`.
+
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Figure __. Help window.
 
 #### 3.2.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
@@ -170,6 +179,21 @@ By default, the administrative details of students are shown upon starting the a
 
 Format: `toggle`
 
+Expected Outcome:
+
+The following figures shows the before and after of entering the command `toggle`.
+
+Before:
+
+![ToggleCommandExpectedOutcomeBeforeUG](images/ToggleCommandExpectedOutcomeBeforeUG.png)
+
+Figure __. Before entering command `toggle`.
+
+After:
+
+![ToggleCommandExpectedOutcomeBeforeUG](images/ToggleCommandExpectedOutcomeAfterUG.png)
+
+Figure __. After entering command `toggle`.
 
 #### 3.2.3 Exiting the program: `exit`
 
@@ -184,25 +208,22 @@ Thereafter, you will be able to view, edit find or delete these students.
 
 #### 3.3.1 Adding a student: `add` (By: Hogan)
 
-You can add a student together with his/her individual administrative details into **Reeve's** student list.
+You can add a student together with his/her administrative details into **Reeve's** student list. 
 
 Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [d/LAST_PAYMENT_DATE] [a/ADDITIONAL_DETAILS]…​`
 
 * `FEE` defaults to $0.00 if not included.
 * `LAST_PAYMENT_DATE` defaults to today's date if not included.
-
 * The format of `CLASS_TIME` is as follows:
     * `DAY_OF_WEEK START_TIME-END_TIME`
-    * `DAY_OF_WEEK` is any number from 1 to 7, where 1 refers to Monday while 7 refers to Sunday.
-    * `START_TIME` and `END_TIME` follows the 24-hr clock format (e.g. 1pm refers to 1300).
-
+    * `DAY_OF_WEEK` is any integer from 1 to 7, where 1 refers to Monday while 7 refers to Sunday.
+    * `START_TIME` and `END_TIME` follows the 24-hr clock format (e.g. 1300 refers to 1pm).
 * The format of `LAST_PAYMENT_DATE` is as follows:
     * `d/m/yyyy or dd/mm/yyyy` (e.g. both 03/02/2020 and 3/2/2020 are acceptable).
-
 * The format of `YEAR` is as follows:
     * `TYPE_OF_SCHOOL LEVEL` (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
-    * `TYPE_OF_SCHOOL` can be primary(pri, p), secondary(sec, s) or jc.
-    * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
+    * `TYPE_OF_SCHOOL` accepts Primary (Pri/P), Secondary (Sec/S) or JC (J), and is case-insensitive.
+    * `LEVEL` has to be valid for the `TYPE_OF_SCHOOL` (i.e. Primary 1 - Primary 6, Secondary 1 - Secondary 5, JC 1 - JC 2)
 
 <div markdown="block" class="alert alert-info">
 
@@ -210,12 +231,25 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: `LAST_PAYMENT_DATE` **cannot** be a future date (i.e. cannot be later than the current date)
+
+</div>
+
+Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]`
 
 Examples:
-* `add n/Alex p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214
-t/1 1430-1630 f/25 d/12/12/2020`
-* `add n/John Doe p/98765432 s/Woodlands Secondary School y/s 2 v/347 Woodlands Ave 3, Singapore 730347
-t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
+* `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`
+* `add n/John Doe p/98765432 s/Woodlands Secondary School y/s 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
+
+Expected Outcome:
+
+The following figure shows the expected outcome after entering the command `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`.
+
+![AddCommandExpectedOutcomeUG](images/AddCommandExpectedOutcomeUG.png)
+
+Figure __. After entering command `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`.
 
 #### 3.3.2 Listing all students: `list`
 
@@ -233,19 +267,15 @@ Format: `list`
 
 Edits an existing student in **Reeve**.
 
-Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] `
+Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/LAST_PAYMENT_DATE] `
 
 * Edits the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Start time has to be before end time.
+* The format of `CLASS_TIME`, `YEAR` and `LAST_PAYMENT_DATE` follows that as stated in [3.3.1 Adding a student](#331-adding-a-student-add-by-hogan).
 
 <div markdown="block" class="alert alert-info">
-
-:information_source: The format of TIME is {int: Day_of_week} {int: Start_time}-{int: End_time}<br>
-Day_of_week refers to an Integer value from 1 - 7, with 1, 3 and 7 representing Monday, Wednesday and Sunday respectively.<br>
-Start_time and End_time refer to time values in 24hr format (1200-1700)<br>
-E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.
 
 :information_source: If using this command after `find`, the edited student may no longer satisfy the search criteria depending on the field changed.
 In that case the student will be hidden from view and can be viewed again using `list` or `find`.<br>
@@ -264,17 +294,13 @@ Finds students who satisfy the given search criteria.
 
 Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 
+* The search is case-insensitive. e.g `hans` will match `Hans`
 * At least one of the optional fields must be provided.
 * The order of the optional fields do not matter. e.g `n/Hans s/River Valley` is the same as `s/River Valley n/Hans`
 * For the name criteria, only students with a name that contains **any full keyword** specified will be matched.
 * For the school criteria, only students with a school that contains **all keywords** specified will be matched.
 * For the year criteria, only students with the **same year** will be matched. (See below for more elaboration for format of year)
 * Only students matching all criteria specified will be returned (i.e `AND` search).
-
-* The format of `YEAR` is as follows:
-    * `TYPE_OF_SCHOOL LEVEL` (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
-    * `TYPE_OF_SCHOOL` can be primary(pri, p), secondary(sec, s) or jc. 
-    * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
 
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
@@ -285,12 +311,12 @@ Examples:
 
 #### 3.3.5 Deleting a student: `delete`
 
-You can delete a specified student from **Reeve**.
+You can delete a specified student from **Reeve** to allow you to get rid of any unwanted student data.
 
 Format: `delete STUDENT_INDEX`
 
 * Deletes the student at the specified `STUDENT_INDEX`.
-* The index refers to the index number shown in the displayed students list.
+* `STUDENT_INDEX` refers to the index number shown in the displayed students list.
 
 <div markdown="block" class="alert alert-info">
 
@@ -304,20 +330,21 @@ Examples:
 
 #### 3.3.6 Sorting the list of students: `sort` (By: Choon Siong)
 
-Sorts the list of students by a specified comparison means. The comparison means must be their name, class time or year.
+You can sort your student list by a specified means of comparison. The means of comparison must be the student's name, class time or year.
+This is useful in situations where you want to look at your student list differently for various reasons. 
 
 Format: `sort COMPARISON_MEANS`
 
-* The valid options for the sorting method `COMPARISON_MEANS` are `name`, `classTime` or `year`.
-* Only one option for the sorting method can be specified.
-* The sorting method is case sensitive when being specified
-* Sorting methods:
-	* `name`: Sorts students by their name in alphabetical order. This is case insensitive.
-	* `classTime`: Sorts students by the the time of their class first by the day than the time.
-	* `year` Sorts students by the school year they are in with `Primary` type years coming before `Secondary` type coming before `JC` type.
+* The valid options for `COMPARISON_MEANS` are `name`, `classTime` or `year`.
+* Only one option for the means of comparison can be specified.
+* The means of comparison is case-sensitive when being specified
+* means of comparison:
+	* `name`: Sorts students by their name in case-insensitive alphabetical order. This is useful when you want to search through your student list easily.
+	* `classTime`: Sorts students by the day of their class followed by its time. This is useful when you want to look at your student list in order of upcoming classes.
+	* `year` Sorts students by their year with `Primary 1` coming first and `JC 2` last. This is useful when you want to group students by their year.
 
 Examples:
-* `sort year` to sort students by their year
+* `sort name` to sort students by their name in alphabetical order
 
 #### 3.3.7 Finding students with overdue fees: `overdue` (By: Ying Gao)
 
@@ -522,29 +549,48 @@ Example:
 
 #### 3.4.2 Recording exams of a student: `exam` (By: Hogan)
 
-You can add or delete an exam record to/from a specified student.
+You can add or delete an exam record to/from a specified student. You can then view the exam statistics of a student in the form of a
+score percentage to exam date line graph. 
 
 General Format: `exam COMMAND_WORD_EXAM STUDENT_INDEX PARAMETERS`
 
-* The `COMMAND_WORD_EXAM` field accepts either `add` or `delete`.
-* The command affects the student at the specified `STUDENT_INDEX`.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The format of `PARAMETERS` varies with each command word as explained below.
+* The `COMMAND_WORD_EXAM` field accepts either `add`, `delete` or `stats`.
+* The command can affect the student at the specified `STUDENT_INDEX`.
+* `STUDENT_INDEX` refers to the index number shown in the displayed students list.
+* The format of `PARAMETERS` varies with each command word as explained in the following subsections.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+</div>
 
 ##### 3.4.2.1 Adding an exam record to a student: `exam add`
 
-You can add an exam record to a specified student in **Reeve**.
+You can add an exam record to a specified student in **Reeve** to keep track of your students' academic progress.
 
 Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 
-* Adds the given exam to the student at the specified `STUDENT_INDEX`.
+* Adds the given exam record to the student at the specified `STUDENT_INDEX`.
 
 * The format of EXAM_DATE is as follows:
-    * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
+    * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020 or 2/3/2020).
 
 * The format of EXAM_SCORE is as follows:
-    * x/y where x and y are non-negative integers.
+    * x/y where x and y are non-negative numbers.
     * x has to be less than or equal to y (e.g. 30/50).
+    
+<div markdown="block" class="alert alert-info">
+
+:information_source: Scores and score percentages will be rounded off to two decimal places.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: You **cannot** add duplicates of an exam record to a student. Each exam record is uniquely identified by its `EXAM_NAME`.
+
+</div>
 
 Examples:
 * `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam with date 8 Dec 2020 and
@@ -553,34 +599,75 @@ score 40/60 to the first student in **Reeve**.
 * `exam add 5 n/End of Year 2020 d/12/05/2020 s/67/100` adds the "End of Year 2020" exam with date 12 May 2020 and
 score 67/100 to the fifth student in **Reeve**.
 
+Expected Outcome:
+
+The following figure shows the expected outcome after entering the command `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`.
+
+![AddExamCommandExpectedOutcomeUG](images/AddExamCommandExpectedOutcomeUG.png)
+
+Figure __. After entering command `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`.
+
 ##### 3.4.2.2 Deleting an exam record for a student: `exam delete`
 
-You can delete a specific exam record from a specified student in **Reeve**.
+You can delete a specific exam record from a specified student in **Reeve** to remove any unwanted exam record data.
 
 Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
 
-* Deletes the exam at `EXAM_INDEX` in the specified student's exam list.
-* The specified student is chosen based on `STUDENT_INDEX` of **Reeve**.
-* The `STUDENT_INDEX` refers to the index number shown in the displayed students list.
+* Deletes the exam at `EXAM_INDEX` in the specified student's exam records list.
+* The specified exam record is chosen based on `EXAM_INDEX`. 
+* The `EXAM_INDEX` refers to the index number shown in the displayed student's exam records list.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `EXAM_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+</div>
 
 Examples:
 * `exam delete 1 i/1` deletes the first exam from the first student in the displayed students list.
 * `exam delete 2 i/5` deletes the fifth exam from the second student in the displayed students list.
 
+Expected Outcome:
+
+The following figures shows the before and after of entering the command `exam delete 1 i/1`.
+
+Before:
+![DeleteExamExpectedOutcomeBefore](images/DeleteExamExpectedOutcomeBefore.png)
+
+Figure __. Before entering command `exam delete 1 i/1`.
+
+After:
+![DeleteExamExpectedOutcomeAfter](images/DeleteExamExpectedOutcomeAfter.png)
+
+Figure __. After entering command `exam delete 1 i/1`.
+
+
 ##### 3.4.2.3 Viewing exam statistics of a student: `exam stats`
 
 To gauge how one of your students are doing with their examinations, this command allows you to view a graphical
-representation of all recorded examinations.
+representation of all recorded examinations in the form of a exam score percentage to exam date line graph. 
 
 Format: `exam stats STUDENT_INDEX`
 
 * Views exam statistics of the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed students list.
-* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Exam records are arranged in order of increasing date.
+
+</div>
 
 Examples:
 * `list` followed by `exam stats 2` views the exam statistics of the 2nd student in **Reeve**.
 * `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
+
+Expected Outcome:
+
+The following figure shows the expected outcome after entering the command `exam stats 1`. 
+
+![ExamStatsCommandExpectedOutcomeUG](images/ExamStatsCommandExpectedOutcomeUG.png)
+
+Figure __. After entering command `exam stats 1`.
 
 <div markdown="block" class="alert alert-info">
 
@@ -636,8 +723,58 @@ Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 Example:
 * `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
 
-### 3.6 Notes Feature (By: Choon Siong)
+### 3.6 Notebook feature (By: Choon Siong)
 
+You can store notes containing small amounts of information inside the notebook. This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve. You should see the notes on the bottom right hand side of Reeve similar to the display shown below.
+
+![Location of notes panel](images/screenshots/Notes.png)
+
+
+#### 3.6.1 Adding a note `note add`
+
+You can add a note to the notebook for the information you want to store.
+
+Format: `note add t/TITLE d/DESCRIPTION`
+
+* `TITLE` is any string of up to 15 characters.
+* `DESCRIPTION` is any string of up to 80 characters.
+
+Example:
+* You have just collected a stack of practice papers from your students and want to do something else before marking them but are scared you might forget. 
+  
+    * You can use `note add t/things to do d/mark practice papers` to add a new note with title `things to do` and description `mark practice papers` so that you can remind yourself later.
+     
+    * You should see a screen similar to the screen below when the above command is entered.
+    ![Adding a note](images/screenshots/Adding a note.png)
+
+
+#### 3.6.2 Editing a note `note edit`
+
+You can edit a note that is inside the notebook to update the information inside.
+
+Format: `note edit NOTE_INDEX [t/TITLE] [d/DESCRIPTION]`
+
+* Edits the note at the specified `NOTE_INDEX`
+
+Example:
+* You left a note to mark practice papers earlier and have just finished marking them. Now, before you take a break,
+ you want to remind yourself to review the marking before you can give it back to your students.
+    * Assuming the previous note was the first note, you can use `note edit 1 d/review marking`
+       to change the note to remind yourself to review the marking.
+   
+#### 3.6.3 Deleting a note `note delete`
+
+You can delete a note from the notebook when the information is no longer needed.
+
+Format: `note delete NOTE_INDEX`
+
+* Deletes the note at the specified `NOTE_INDEX`
+
+Example:
+* Your first note was to remind yourself to grab a cup of coffee. Now that you have bought your cup of coffee, the note is no longer needed.
+    * You can use `note delete 1` to delete the note.
+
+>>>>>>> master
 ## 4. Command summary
 
 This following table (Table 2) provides a summary of all the commands in **Reeve**.
@@ -667,6 +804,9 @@ Action | Format, Examples
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
 **Schedule View** | `schedule m/VIEW_MODE d/DATE_TO_VIEW` <br> e.g. `schedule m/weekly d/2/11/2020`
 **Toggle View** | `toggle`
+**Add Note** | `note add t/TITLE d/DESCRIPTION`<br>e.g. `note add t/things to do d/buy coffee` 
+**Edit Note** | `note edit NOTE_INDEX [t/title] [d/DESCRIPTION]`<br>e.g. `note edit 1 d/mark practice papers` 
+**Delete Note** | `note delete NOTE_INDEX`<br>e.g. `note delete 1` 
 **Help** | `help`
 **Exit** | `exit`
 
@@ -676,8 +816,11 @@ The following table provides the definitions of the various terms used in this U
 
 Term | Definition
 --------|------------------
+Basic Details | Details such as name, year, academic level and school of a student.
+Administrative Details | Details such as class venue, class time, tuition fee, last payment date and other details
+Academic Details | Details such as questions, exam records and attendance records
 Detail | Any miscellaneous information regarding a student.
-Exam Record | A record of an exam detailing its name, date and the student's score.
+Exam Record | A record of an exam which includes its name, date and the student's score.
 
 ## 6. FAQ
 This section provides the answers to Frequently Asked Questions (FAQ) by users.
@@ -688,14 +831,22 @@ Install the app in the other computer and overwrite the empty data file it creat
 2. Do I have to manually save my data?<br>
 Reeve automatically saves data in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-3. How do I view the full details of my student?
+3. How do I view the full details of my student?<br>
 Type `toggle` and press `Enter`, your student's full details will be displayed.
 To hide the full details of students, type `toggle` and press `Enter` again.
 
-4. Where can I find the file that contains my student's data?
+4. Where can I find the file that contains my student's data?<br>
 Your student's data file can be found in the same file as the application.
 
-5. How can I set the application window to a fix size whenever I open it?
+5. How can I set the application window to a fix size whenever I open it?<br>
 Reeve automatically save your preferred window size when you close it.
 Hence, you could adjust the window size to your preferred one before closing Reeve.
 Reeve will automatically open according to this size.
+
+6. I forgot what are the various commands and their format, where can I find the list of commands?<br>
+Simply enter the `help` command and you will be directed the list of commands.
+
+7. I accidentally deleted all my data, is there a way to recover my past data?<br>
+Unfortunately, **Reeve** currently does not support a backup feature and is unable to recover any deleted data. The backup feature will be coming soon. 
+In the meantime, we advice you to refrain from accidentally clearing all data, you could perhaps create a backup `json` from time to time. 
+
