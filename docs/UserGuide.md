@@ -1,5 +1,3 @@
-# CS2103-W14-1: PropertyFree User Guide
-
 
 ## Introduction
 
@@ -56,7 +54,7 @@ and Bidder Id exists in the property list and bidder list.
 
 💡 DATE indicates the meeting date of the meeting.
 
-#Keyboard Navigation
+# Keyboard Navigation
 1. When the `CommandBox` is not in focused (i.e when cursor is not blinking):
 
         PRESS ENTER 
@@ -901,6 +899,6 @@ Picture Example:
 
 ---
 
-#Thank You For Using PropertyFree!
+# Thank You For Using PropertyFree!
 
 
