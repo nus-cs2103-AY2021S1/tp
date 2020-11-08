@@ -16,7 +16,7 @@ title: User Guide
 - Manage records of rooms.
 - Manage allocations of students to rooms in the College.
 
-**ResiReg** is optimised for OHS admin who are fast typists who are used to MS Excel, and prefer typing over other means of input. It comes with:
+**ResiReg** is optimised for OHS admin who are fast typists who are used to a Command Line Interface, and prefer typing over other means of input. It comes with:
 
 - A Command Line Interface (CLI) which allows you to access all **ResiReg** features by typing.
 - A Graphical User Interface (GUI) that displays the information you need in a grid format.
