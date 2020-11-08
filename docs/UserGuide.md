@@ -50,8 +50,6 @@ make your life easier one file at a time, and free up your precious time to spen
 * [6. FAQ](#faq)
 * [7. Glossary](#glossary)
 * [8. Command Summary](#command-summary)
-* Table of Contents
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
