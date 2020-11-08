@@ -29,42 +29,59 @@ ___
 ## My Contributions to PropertyFree
 
 * **Find Meeting Feature**: Added the ability to find meetings based on certain attributes.
-  * What it does: allows the user to find meetings based on various parameters and also allows the user to find based on multiple features also.
+  * What it does: Allows the user to find meetings based on various parameters and also allows the user to find based on multiple features also.
   * Justification: This feature improves the product significantly because a user might want to find the meeting with ease rather then filtering through the list manually.
   * Highlights: The implementation of this command was challenging as I had to make sure that users are able to find based on multiple number of attributes in different order.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 * **Delete Meeting Feature**: Added the ability to delete meetings.
-  * What it does: allows the user to delete meetings based on the id of the meeting.
+  * What it does: Allows the user to delete meetings based on the id of the meeting.
   * Justification: This feature allows the user to remove meetings that have been cancelled or the user feels is not necessary anymore.
-  * Highlights: The implementation was rather straight forward however, there was soem issues faced with zero indexing.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+  * Highlights: The implementation was rather straight forward however, there was some issues faced with zero indexing.
 
+* **List Meeting Feature**: Added the ability to list meetings.
+  * What it does: Allows the user to list all the meetings that have been made.
+  * Justification: This feature allows the user see the list of all the meetings that have been made so that he is able to see his schedule and add another meeting.
+  * Highlights: The implementation was rather straight forward.
+  
+* **Meeting Attributes**: Added the different types of meeting along with the attributes for the meeting.
+  * What it does: Allows the user to add the different types of meeting.
+  * Justification: This feature allows the user to make the different meetings with the different attributes.
+  * Highlights: It was rather challenging at first on whether to use a flag system to differentiate the meetings or to use
+  an abstract class. After trail and error, we realised it was better to use the abstract class method and we stuck to it.
+ 
+* **Design**: Lead the basic overall design for the meeting entity.  
+    * What: Made the basic framework in model, storage and logic for meeting so that the other commands could be easily added.
 
+* **Test**: Made the Junit tests for meeting and meeting commands.  
+    * What: Implemented the various tests for all the MeetingCommand files and also for the meeting files under model.
+    
+* **Meeting Display**: Added the javafx files for meeting which then displays the meetings on the GUI.
+  * What it does: Allows the user see the different meetings on the GUI.
+  * Justification: This feature allows the user to view the meetings on the GUI..
+  * Highlights: There was a bit of a challenge here in debugging as there was instance of wrong names being used. Implementation
+  was fairly straightforward.
+  
+* **Meeting Storage**: Added the storage files for the meeting and also the tests that are associated with it.
+  * What it does: Stores the different types of meetings that are generated.
+ 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=harsha&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=munharsha&tabRepo=AY2021S1-CS2103-W14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Managed the deadlines for the different weekly tasks and made sure that the tasks are done by then.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `add-m`, `find-m`, `sort-m` and `list-m` 
+    * Did cosmetic tweaks to the UG by adding in more tables to make it more readable.
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `sort` feature.
+    * Helped with the formatting and the standardisation of the overall document.
+    * Added implementation details of the `storage` feature.
+    * Added user stories.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments)
+  * Reported bugs and suggestions for other teams in the class
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
 
-* _{you can add/remove categories in the list above}_
+
