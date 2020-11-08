@@ -69,7 +69,7 @@ Given below is other contributions that I have made to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added the documentation for the features `delete`, `add`, `edit`, and `addmcq` (Pull requests [\#151](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/151 ),[\#152](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/152))
+    * Added the documentation for the features `delete`, `add`, `edit`, and `addmcq` (Pull requests [\#152](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/152). [\#137](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/137))
     * Added the preface for the quick start section. (Pull requests [\#141](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/141))
 
   * Developer Guide:
