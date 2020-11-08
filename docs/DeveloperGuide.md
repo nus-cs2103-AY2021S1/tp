@@ -1547,17 +1547,35 @@ There are 2 ways to display statistics of flashcards – by index or by tags.
 
 ### F.10 Sharing flashcards
 
-### Saving data
+User can choose to import or export their data
 
-1. Dealing with missing/corrupted data files
+1. Export data
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: Data file present within QuickCache.
+   
+   1. Test case 1: `export my-flashcard.json`<br>
+      Expected: File containing the flashcards will be exported into the export folder, located in the same directory as QuickCache.jar.
+
+1. Import data
+
+   1. Prerequisites: Create an import folder in the same directory as where QuickCache.jar is located. Place the file that you want to import in the import folder. For testing purposes, we will name this file as `my-flashcard.json`.
+   
+   1. Test case 1: `import my-flashcard.json`<br>
+      Expected: Flashcards within the file will be imported in your local QuickCache.<br>
+      :information_source: Flashcards that has previously been imported and has not been modified will be ignored. Flashcards that already exists will not be imported as well.
+
+
+### F.11 Saving data
+
+1. Dealing with missing data file
+
+   1. Users can simulate missing data file by deleting the json file in the data folder in the same directory as where QuickCache.jar.<br>
+      Expected: Upon restart, QuickCache will create a new data file in the data folder containing the sample flashcards for the user.
 
 1. Dealing with corrupted data files
 
-   1. Before the application is open, corrupt some of the text files by deleting parts of it.
-
-1. _{ more test cases … }_
+   1. Users can simulate corrupted data file by deleting parts of the json file in the data folder in the same directory as where QuickCache.jar.<br>
+      Expected: Upon restart, QuickCache will create a new empty data file in the data folder.
 
 ## **Appendix: Effort** ##
 
