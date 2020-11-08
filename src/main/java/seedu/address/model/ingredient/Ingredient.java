@@ -139,9 +139,9 @@ public class Ingredient {
         String units = digitsAndUnits[1];
         boolean isGreaterThanZero = StringUtil.isNonZeroUnsignedFloat(digits);
         boolean isWithinMaxLength = digits.length() <= maxLengthOfDigits;
-        return ((!digits.equals("") && isGreaterThanZero && isWithinMaxLength)
-                || digits.equals(""))
-                && units.matches(VALIDATION_REGEX_STRING);
+        boolean isDigitValid = digits.equals("") || (isGreaterThanZero && isWithinMaxLength);
+
+        return isDigitValid && units.matches(VALIDATION_REGEX_STRING);
     }
 
     /**
@@ -182,7 +182,6 @@ public class Ingredient {
         for (int i = 0; i < quantity.length(); i++) {
             char c = quantity.charAt(i);
             boolean isStringFormat = !Character.isDigit(c) && !Character.isWhitespace(c) && c != '.' && c != '/';
-            boolean isNumberFormat = Character.isDigit(c) || Character.isWhitespace(c) || c == '.' || c == '/';
 
             if (hasEncounteredUnits) {
                 //Digit in STRING area
@@ -199,10 +198,8 @@ public class Ingredient {
             } else if (isStringFormat) {
                 hasEncounteredUnits = true;
                 units.append(c);
-            } else if (isNumberFormat) {
+            } else { //is NUMBER format
                 value.append(c);
-            } else {
-                return null;
             }
         }
         return new String[]{value.toString().trim(), units.toString().trim()};
