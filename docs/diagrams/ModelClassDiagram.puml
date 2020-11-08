@@ -44,7 +44,10 @@ Class StartDateTime
 
 Package Lesson {
 Class Lesson
-Class Time
+Class StartTime
+Class EndTime
+Class StartDate
+Class EndDate
 Class UniqueLessonList
 }
 
@@ -70,16 +73,16 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 Planus *--> "1" UniqueTaskList
 UniqueTaskList o--> "*" Task
-Task *--> Title
+Task *--right> Title
 Task *--> Description
 Task *--> Tag
 
-Event --|> Task
+Event --up|> Task
 Event .up.|> TimeSlot
 Event *--> EndDateTime
 Event *--> StartDateTime
 
-Deadline --|> Task
+Deadline --up|> Task
 Deadline *--> DeadlineDateTime
 Deadline *--> DoneDateTime
 Deadline *--> Status
@@ -91,7 +94,10 @@ UniqueLessonList o--> "*" Lesson
 Lesson *--> Title
 Lesson *--> Description
 Lesson *--> Tag
-Lesson *--> Time
+Lesson *--> StartTime
+Lesson *--> EndTime
+Lesson *--> StartDate
+Lesson *--> EndDate
 
 Planus *.left.> "1" Calendar
 

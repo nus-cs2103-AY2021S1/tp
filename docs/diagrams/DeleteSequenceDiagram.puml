@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PlanusParser" as PlanusParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":DeleteTaskCommandParser" as DeleteTaskCommandParser LOGIC_COLOR
+participant "d:DeleteTaskCommand" as DeleteTaskCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -16,53 +16,53 @@ end box
 [-> LogicManager : execute("delete 1")
 activate LogicManager
 
-LogicManager -> PlanusParser : parseCommand("delete 1")
+LogicManager -> PlanusParser : parseCommand("delete-task 1")
 activate PlanusParser
 
-create DeleteCommandParser
-PlanusParser -> DeleteCommandParser
-activate DeleteCommandParser
+create DeleteTaskCommandParser
+PlanusParser -> DeleteTaskCommandParser
+activate DeleteTaskCommandParser
 
-DeleteCommandParser --> PlanusParser
-deactivate DeleteCommandParser
+DeleteTaskCommandParser --> PlanusParser
+deactivate DeleteTaskCommandParser
 
-PlanusParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+PlanusParser -> DeleteTaskCommandParser : parse("1")
+activate DeleteTaskCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeleteTaskCommand
+DeleteTaskCommandParser -> DeleteTaskCommand
+activate DeleteTaskCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+DeleteTaskCommand --> DeleteTaskCommandParser : d
+deactivate DeleteTaskCommand
 
-DeleteCommandParser --> PlanusParser : d
-deactivate DeleteCommandParser
+DeleteTaskCommandParser --> PlanusParser : d
+deactivate DeleteTaskCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> PlanusParser
-destroy DeleteCommandParser
+DeleteTaskCommandParser -[hidden]-> PlanusParser
+destroy DeleteTaskCommandParser
 
 PlanusParser --> LogicManager : d
 deactivate PlanusParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> DeleteTaskCommand : execute()
+activate DeleteTaskCommand
 
-DeleteCommand -> Model : deleteTask(1)
+DeleteTaskCommand -> Model : deleteTask(1)
 activate Model
 
-Model --> DeleteCommand
+Model --> DeleteTaskCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteTaskCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteTaskCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeleteTaskCommand --> LogicManager : result
+deactivate DeleteTaskCommand
 
 [<--LogicManager
 deactivate LogicManager

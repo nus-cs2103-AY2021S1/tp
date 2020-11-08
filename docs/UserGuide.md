@@ -101,7 +101,7 @@ Shows the user a link to the user guide.
 Format: `help`
 
 1. Type in `help` into the command box.
-2. A success message and a pop-up window with a link to the user guide will appear.
+2. A success message will appear in the message box. A pop-up window with some sample commands and  a link to the user guide will appear.
 
 ![help message](images/HelpMessage.png)
 
@@ -115,10 +115,8 @@ Users can clear all the tasks in the PlaNus.
 Format: `clear`
 
 1. Type in `clear` into the command box.
-
-![clear message](images/ClearMessage.png)
-
 <br>
+
 2. All the tasks and lessons in PlaNus will be cleared.
 <br>
 
@@ -133,8 +131,6 @@ Users can exit PlaNus.
 Format: `exit`
 
 1. Type `exit` into the command box.
-
-    ![exit message](images/ExitMessage.png)
 
 2. The application window will automatically close.
 
