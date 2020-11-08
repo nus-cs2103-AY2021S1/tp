@@ -627,10 +627,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 3.
 
 
-
 **Use case: Showing list of all vendors**
 
-Precondition: <u>User has already selected a particular vendor</u> 
+Precondition: User has already selected a particular vendor 
 
 **MSS**
 
@@ -641,7 +640,55 @@ Precondition: <u>User has already selected a particular vendor</u>
 
   Use case ends.
 
+**Use case: Display current menu**
+
+Precondition: User has already selected a particular vendor 
+
+**MSS**
+
+1. User requests to see the current default menu for his selected vendor.
+2. SupperStrikers displays the default menu to the user.
+
+  Use case ends.
+
+**Use case: Find a keyword**
+
+Precondition: User has already selected a particular vendor 
+
+**MSS**
+
+1. User requests to search for specified keyword(s) in the menu.
+2. SupperStrikers filter out the current menu using the specified keyword(s).
+3. SupperStrikers displays the matching menu items that contains the keyword(s) to the user.
+
+  Use case ends.
+
+**Use case: Filter menu item by price**
+
+Precondition: User has already selected a particular vendor 
+
+**MSS**
+
+1. User requests to see menu items that satisfy a specified price range.
+2. SupperStrikers filter out the current menu using the specified price range.
+3. SupperStrikers displays the matching menu items that satisfy the price range to the user.
+
+  Use case ends.
+
+**Use case: Sort menu items**
+
+Precondition: User has already selected a particular vendor 
+
+**MSS**
+
+1. User requests to sort the menu items by price or name.
+2. SupperStrikers sorts the current menu.
+
+  Use case ends.
+
 **Use case: Viewing total**
+
+Precondition: User has already selected a particular vendor 
 
 **MSS**
 
@@ -658,7 +705,10 @@ Precondition: <u>User has already selected a particular vendor</u>
   
     Use case ends.
 
+
 **Use case: Clearing current order**
+
+Precondition: User has already selected a particular vendor 
 
 **MSS**
 
@@ -676,7 +726,34 @@ Precondition: <u>User has already selected a particular vendor</u>
   
     Use case ends.
 
+
+**Use case: Set a profile**
+
+**MSS**
+
+1. User requests to set his profile which includes his phone number and address.
+2. SupperStrikers creates a new profile that has the user's inputted details.
+3. SupperStrikers saves the created profile into storage.
+
+  Use case ends.
+
+**Extensions**
+
+- 1a. The user's details are invalid.
+
+  - 1a1. SupperStrikers displays an error message.
+  
+    Use case resumes at step 1.
+
+- 3a. The user has an existing profile.
+
+  - 3a1. SupperStrikers overwrite the existing profile with the newly created profile.
+  
+    Use case ends.
+
 **Use case: Submit order**
+
+Precondition: User has already selected a particular vendor and User has created a profile
 
 **MSS**
 
@@ -695,6 +772,8 @@ Precondition: <u>User has already selected a particular vendor</u>
     Use case ends.
 
 **Use case: Add an item**
+
+Precondition: User has already selected a particular vendor 
 
 **MSS**
 
@@ -732,6 +811,8 @@ Precondition: <u>User has already selected a particular vendor</u>
 
 **Use case: Remove an item**
 
+Precondition: User has already selected a particular vendor 
+
 **MSS**
 
 1.  User requests to remove a quantity of a specific item in the current order.
@@ -768,6 +849,8 @@ Precondition: <u>User has already selected a particular vendor</u>
 
 **Use case: Add a tag to an item**
 
+Precondition: User has already selected a particular vendor 
+
 **MSS**
 
 1.  User requests to tag a specific item in the current order.
@@ -797,6 +880,8 @@ Precondition: <u>User has already selected a particular vendor</u>
 
 **Use case: Remove tags from an item**
 
+Precondition: User has already selected a particular vendor 
+
 **MSS**
 
 1.  User requests to remove all tags from a specific item in the current order.
@@ -814,6 +899,8 @@ Precondition: <u>User has already selected a particular vendor</u>
       
 
 **Use case: Load a Preset**
+
+Precondition: User has already selected a particular vendor 
 
 **MSS**
 
@@ -852,6 +939,8 @@ Precondition: <u>User has already selected a particular vendor</u>
 
 **Use case: Save a Preset**
 
+Precondition: User has already selected a particular vendor 
+
 **MSS**
 
 1. User requests to save preset with a specific name.
@@ -884,6 +973,8 @@ Precondition: <u>User has already selected a particular vendor</u>
 
 **Use case: Delete a Preset**
 
+Precondition: User has already selected a particular vendor 
+
 **MSS**
 
 1. User requests to delete a preset with a specific name.
@@ -906,6 +997,25 @@ Precondition: <u>User has already selected a particular vendor</u>
   - 2a1. SupperStrikers shows an error message.
 
     Use case resumes at step 1.
+
+**Use case: Undo changes to an order**
+
+Precondition: User has already selected a particular vendor
+
+**MSS**
+
+1.  User requests to undo a change from his current order.
+2.  SupperStrikers reverts his order back to an older history of his order.
+
+  Use case ends.
+
+**Extensions**
+
+- 1a. The user is at the oldest history of his order.
+
+  - 1a1. SupperStrikers shows an error message.
+
+    Use case ends.
 
 *{More to be added}*
 
