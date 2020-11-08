@@ -34,6 +34,7 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -48,6 +49,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/flashcard/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/flashcard/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -67,6 +70,8 @@ Each of the four components,
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
@@ -75,9 +80,13 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
+<div style="page-break-after: always;"></div>
+
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -95,6 +104,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -108,6 +119,8 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
@@ -117,6 +130,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 :information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -130,6 +145,8 @@ The `Model`,
 * stores the flashcard deck data.
 * exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">
 
@@ -147,6 +164,8 @@ The `Model`,
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -162,6 +181,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.flashcard.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -187,6 +208,8 @@ It implements the following operations:
 * `AddCommand#execute()` - Add the flashcard to the `ModelManager` and `FlashcardDeck`
 * `AddCommandParser#parse(String args)` - Conduct input validation and parse user’s input
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the `add` operation works:
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
@@ -206,6 +229,8 @@ Step 5: `AddCommand` then add a flashcard to the flashcard deck by calling `Mode
 
 Step 6: A `CommandResult` is generated and Model updates the `filteredFlashcardList` by adding the flashcard which is then updated in the UI.
 
+<div style="page-break-after: always;"></div>
+
 ### \[Implemented\] Review feature
 
 #### Current Implementation
@@ -222,6 +247,8 @@ The review feature also involves the UI via `ReviewPanel` which will handle user
 * `StudyManager#getNextFlashcard` - increments `currentIndex` by 1 and returns the associated flashcard
 
 The following class diagrams show how the relationship between the different UI components involved in review, and `StudyManager`.
+
+<div style="page-break-after: always;"></div>
 
 ![ReviewClassDiagram](images/ReviewClassDiagram.png)
 
@@ -241,9 +268,13 @@ UI is determined by the various `StudyManager` operations and the state as menti
 Step 5. If user presses `q`, `StudyPanel#exitStudyMode` is called which in turn calls `MainWindow#exitReviewMode`, 
 which places the application back in normal command mode.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram gives an overview of how the application enters review mode:
 
 ![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarises the control path in review mode set up by `ReviewPanel` and `StudyManager`:
 
@@ -260,6 +291,8 @@ The following activity diagram summarises the control path in review mode set up
 * **Alternative 2:** Handle review mode through the command textbox.
   * Pros: Allows for better abstraction through separation of UI and logic.
   * Cons: Poorer user experience as reviewing will be slow since user has to type in command one by one.
+
+<div style="page-break-after: always;"></div>
 
 ### \[Implemented\] Sort feature
 
@@ -281,6 +314,8 @@ Step 2. The user executes `quiz` command to quiz the flashcard deck. The user qu
 
 Step 3. The user executes `sort reviewed -d`. The command gets parsed to retrieve the appropriate `SortCriteria`. The `sort` command calls `Model#sortFilteredFlashcardList` with this `SortCriteria`, causing the flashcards to be sorted by review frequency, in descending order.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
@@ -290,6 +325,8 @@ The following sequence diagram shows how the sort operation works:
 :information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -306,6 +343,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Using a data structure (e.g. HashMap) to store statistics.
   * Pros: Will use more memory, since the HashMap will have to be committed to local storage too.
   * Cons: We must ensure that the any changes/updates to a flashcard will be reflected in the HashMap.
+
+<div style="page-break-after: always;"></div>
 
 ### \[Implemented\] Favourite/Unfavourite feature 
 
@@ -325,6 +364,8 @@ Step 1: The user launches the application
 
 ![FavUnfavState0](images/FavUnfavState0.png)
 
+<div style="page-break-after: always;"></div>
+
 Step 2: The user executes `fav 1` command to favourite the 1st flashcard in the displayed flashcard deck. `fav` command calls 
 `Flashcard#isFavourite()` method to check whether the flashcard at index 1, `f1`,  has been favourited. If the flashcard is not favourited, 
 `fav` command calls `FavCommand#createFavouriteFlashcard(f1)` to create a new flashcard, `fav1`,  by duplicating the existing data fields and set the `isFavourite` attribute to `true`.
@@ -335,6 +376,8 @@ Step 2: The user executes `fav 1` command to favourite the 1st flashcard in the 
 The following sequence diagram shows how the `fav` operation works:
 
 ![FavouriteSequenceDiagram](images/FavouriteSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 Step 3: The user executes `unfav 1` command to unfavourite the 1st flashcard in the displayed flashcard deck. `unfav` command calls 
 `Flashcard#isFavourite()` method to check whether the flashcard at index 1, `fav1`,  has been favourited. `fav1` is favourited in step 2, hence, 
@@ -347,6 +390,7 @@ The following activity diagram summarizes what happens when a user executes a fa
 
 ![FavouriteUnfavouriteActivityDiagram.png](images/FavouriteUnfavouriteActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 #### Design consideration:
 
@@ -360,6 +404,7 @@ The following activity diagram summarizes what happens when a user executes a fa
   * Pros: Easy to implement as there is no need to create a new flashcard every time the state is changed.
   * Cons: Flashcard would not be immutable
 
+<div style="page-break-after: always;"></div>
 
 ### \[Implemented\] Filter feature
 
@@ -389,6 +434,8 @@ Given below is an example usage scenario and how the filter mechanism behaves at
 
 Step 1. The user launches the application.
 
+<div style="page-break-after: always;"></div>
+
 Step 2: The user executes `filter c/SDLC r/3` command to filter and display all the flashcards in the flashcard deck
 belonging to SDLC category and have a rating of 3. `LogicManager` calls   `FlashcardDeckParser#parseCommand(String args))` and   
 `FilterCommandParser#parse(String args)` to ultimately return a `FilterCommand` object.
@@ -404,6 +451,8 @@ in the UI.
 The following sequence diagram shows how the filter operation works:
 
  ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+ 
+ <div style="page-break-after: always;"></div>
  
  The following activity diagram shows how the `filter` command works when a user executes it:
  
@@ -421,6 +470,8 @@ The following sequence diagram shows how the filter operation works:
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -449,6 +500,7 @@ The following sequence diagram shows how the filter operation works:
 * Filter the list of flashcards by various fields
 * Sort the list of flashcards according to most/least reviewed
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -478,6 +530,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | busy student                               | filter flashcards by different fields                                    | refine list of flashcards and only display the relevant flashcards I am interested in       |
 | `* * `   | busy student                               | sort flashcards according to review frequency                            | focus on flashcards that are least reviewed                                                 |
 | `* * `   | busy student                               | sort flashcards according to success rate                                | focus on flashcards that are often incorrectly answered                                     |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -525,6 +579,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
+<div style="page-break-after: always;"></div>
+
 #### Use case: UC03 - Delete a flashcard
 
 **MSS**
@@ -566,6 +622,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 #### Use case: UC05 - Favourite a flashcard
 
@@ -602,6 +659,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+
+<div style="page-break-after: always;"></div>
 
 #### Use case: UC07 - Clear all flashcards
 
@@ -648,6 +707,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 #### Use case: UC10 - Sort flashcards
 
@@ -676,7 +736,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
     
-    
+<div style="page-break-after: always;"></div>
+
 #### Use case: UC12 - Review flashcards
 
 **MSS**
@@ -712,6 +773,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
         Use case ends.
 
+
+<div style="page-break-after: always;"></div>
 
 #### Use case: UC13 - Quiz flashcards
 
@@ -759,6 +822,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 #### Use case: UC15 - View the statistics of a flashcard
 
@@ -788,6 +852,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -808,6 +873,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **CLI**: Command Line Interface
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -842,6 +908,8 @@ testers are expected to do more *exploratory* testing.
    ii. Test case: `exit` <br>
        Expected: The application exits and the window closes itself automatically.
    
+<div style="page-break-after: always;"></div>
+
 ### Adding a flashcard
 
 1. Adding a flashcard when in main window of application
@@ -880,6 +948,8 @@ testers are expected to do more *exploratory* testing.
    iv. Test case (missing index): `delete` <br>
       Expected: Similar to test case iii.
       
+<div style="page-break-after: always;"></div>
+
 ### Listing flashcards
 
 1. Listing all flashcards in the flashcard deck
@@ -920,6 +990,8 @@ testers are expected to do more *exploratory* testing.
 
 </div>
     
+<div style="page-break-after: always;"></div>
+
 ### Clearing all flashcards
 
 1. Clearing all flashcards in the flashcard deck
@@ -956,6 +1028,8 @@ testers are expected to do more *exploratory* testing.
 
 </div>
     
+<div style="page-break-after: always;"></div>
+
 ### Favouriting a flashcard
 
 1. Favouriting a flashcard in the flashcard deck
@@ -991,6 +1065,8 @@ testers are expected to do more *exploratory* testing.
 
     iv. Test case (missing index): `unfav` <br>
         Expected: Similar to test case iii.
+
+<div style="page-break-after: always;"></div>
 
 ### Finding flashcards
 
@@ -1032,6 +1108,9 @@ testers are expected to do more *exploratory* testing.
         Expected: Main window of application switches to display flashcard list. Result display will output a success
         message: `Exited Review mode`
         
+        
+<div style="page-break-after: always;"></div>
+
 ### Quizzing flashcards
 
 1. Entering quiz mode in the application
@@ -1087,6 +1166,8 @@ testers are expected to do more *exploratory* testing.
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
         
+<div style="page-break-after: always;"></div>
+
 ### Viewing a flashcard
 
 1. Viewing a flashcard
@@ -1123,6 +1204,7 @@ testers are expected to do more *exploratory* testing.
         
         
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
 
@@ -1143,6 +1225,8 @@ This section documents the effort in morphing AB3 to SWEe! .
   * We had to handle keyboard input outside of the command box in these 2 features which is a functionality not present in AB3.
   * We had to design a new pattern to activate these 2 commands and execute them (read [Review implementation](#implemented-review-feature)).
   * Creation of an entirely new logic component `StudyManager` to handle the logic of these 2 features.
+
+<div style="page-break-after: always;"></div>
 
 **`View` and `Stats` feature**
 * The main challenge in these 2 features was to create a new UI.
