@@ -18,7 +18,7 @@ public class CommandResult {
     private final boolean exit;
 
     /** Commands for Ui navigation purposes **/
-    private boolean isUiNavigation;
+    private boolean isCalendarNavigation;
 
     /** The tab should automatically change. */
     private EntityType entityType;
@@ -46,11 +46,11 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields including isUiNavigation.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isUiNavigation) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isCalendarNavigation) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.isUiNavigation = isUiNavigation;
+        this.isCalendarNavigation = isCalendarNavigation;
     }
 
     /**
@@ -89,8 +89,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isUiComponent() {
-        return this.isUiNavigation;
+    public boolean isCalendarNavigation() {
+        return this.isCalendarNavigation;
     }
 
     @Override
