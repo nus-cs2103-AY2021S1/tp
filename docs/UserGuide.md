@@ -261,7 +261,9 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. The Ingredient Tracker inside the _Main View_ will show the list of ingredients.
 
-{Example outcome screenshot to be added later}
+![IngredientListCommandScreenshot](images/IngredientListCommandScreenshot.png)
+
+Figure x. A screenshot showing the outcome of an `i-list` command
 
 #### 2.5 Finding ingredients by keywords : `i-find`
 Finds all ingredients that contain the KEYWORD(s) in their names.
@@ -283,11 +285,13 @@ You can follow these instructions:
 
 Outcome:
 
-1. The _Result Display_ will show a success message.
+1. The _Result Display_ will show a message stating the number of ingredients found and listed.
 2. The Ingredient Tracker inside the _Main View_ will show the ingredient `Black Tea`, the ingredient `Green Tea` and 
 the ingredient `Brown Sugar`.
 
-{Example outcome screenshot to be added later}
+![IngredientFindCommandScreenshot](images/IngredientFindCommandScreenshot.png)
+
+Figure x. A screenshot showing the outcome of an `i-find` command
 
 #### 2.6 Resetting all ingredients' levels to zero : `i-reset-all`
 Resets all types of ingredients' levels to zero in tCheck.
@@ -307,7 +311,7 @@ Outcome:
 
 ![IngredientResetAllCommandScreenshot](images/IngredientResetAllCommandScreenshot.png)
 
-Figure x. A screenshot showing the outcome of an `i-resert-all` command
+Figure x. A screenshot showing the outcome of an `i-reset-all` command
 
 #### 2.7 Listing all ingredients that user should restock : `i-restock`
 Lists the ingredient's levels of all ingredient types that fall below their pre-determined default levels and require the user to 
