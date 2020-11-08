@@ -155,7 +155,15 @@ public class Ingredient {
         String digits = digitsAndUnits[0];
         String units = digitsAndUnits[1];
         int indexOfDecimalPoint = digits.indexOf(".");
+        int indexOfDivide = digits.indexOf("/");
         int size = digits.length();
+        if (indexOfDivide != -1) {
+            String numerator = digits.substring(0, indexOfDivide);
+            String denominator = digits.substring(indexOfDivide + 1);
+            String trimmedDigits =
+                    removeLeadingZeroesFromInteger(numerator) + "/" + removeLeadingZeroesFromInteger(denominator);
+            return trimmedDigits + " " + units;
+        }
         int index = 0;
         for (int i = 0; i < size; i++) {
             char c = digits.charAt(i);
@@ -169,10 +177,24 @@ public class Ingredient {
         if (index == 0) {
             return quantity;
         } else if (hasZeroOnLeftOfDecimalPoint) {
-            return digits.substring(index - 1).trim() + " " + units.trim();
+            return digits.substring(index - 1) + " " + units;
         } else {
-            return digits.substring(index).trim() + " " + units.trim();
+            return digits.substring(index) + " " + units;
         }
+    }
+
+    private static String removeLeadingZeroesFromInteger(String digits) {
+        int size = digits.length();
+        int index = 0;
+        for (int i = 0; i < size; i++) {
+            char c = digits.charAt(i);
+            if (c == '0') {
+                index++;
+            } else {
+                break;
+            }
+        }
+        return digits.substring(index);
     }
 
     private static String[] getDigitsAndUnitsFromQuantity(String quantity) {
