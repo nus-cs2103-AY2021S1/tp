@@ -16,7 +16,7 @@ Given below are my contributions to the project.
         * What it does: It serves as a base to allow the user to create, edit, and delete exercises.
         * Justification: This feature allows the user to create their own exercises which is more user friendly.
         * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required using the current date and time in recording the Logs. This led to challenging design decisions in allowing JUnit tests to run well.
-    * Added the ability to delete exercises (Pull request [\#84](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/84))
+    * Added delete exercises feature (Pull request [\#84](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/84))
         * What it does: allows the user to delete exercises from the exercise list one at a time.
         * Justification: This feature improves usability, as user will be able to remove unwanted exercises, making the list more relevant to them.
 
@@ -27,6 +27,8 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added description of FixMyAbs (Pull request [\#175](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/175)
+        * Added screenshots of v1.4 application.
+        
     * Developer Guide (Pull request [\#15](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/15), [\#23](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/23), [\#30](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/30)):
         * Added implementation details and diagrams for the `add` feature. 
         * Added implementation details and diagrams for the `addex` feature.
@@ -35,6 +37,10 @@ Given below are my contributions to the project.
         * Added value proposition.
         * Added use cases.
         * Added non-functional requirements.
+        
+    * Other Documents (Pull request [\#217](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/217)
+        * Updated README.
+        * Updated Website.
     
 * **Testing**:
     * Wrote tests for all command parsers (Pull request [\#64](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/64))
