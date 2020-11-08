@@ -844,13 +844,10 @@ There are two commands users can use:
 * `findexact` - Stock that matches ALL keywords of ALL fields will be displayed.
 
 Find and FindExact features allow search for four fields:
-
-Field         | Prefix
--------| -------
-Name          |   n/
-Source        |   s/
-Serial Number |   sn/
-Location      |   l/
+* Name
+* Serial Number
+* Source
+* Location stored in warehouse
 
 #### Mechanism
 The mechanism for the Find feature is facilitated by classes `FindCommand`(or `FindExactCommand`),
@@ -1204,11 +1201,11 @@ is generated in `NoteDeleteCommandParser` from the parsing of user input.
 
 `NoteIndex` implements the following important operations:
 
-* `NoteIndex#isValidNoteIndex() -
+* `NoteIndex#isValidNoteIndex()` -
  Checks the input and returns true if the given input is a valid note index
-* `NoteIndex#fromZeroBased() -
+* `NoteIndex#fromZeroBased()` -
  Creates a new NoteIndex using a zero-based index.
-* `NoteIndex#fromOneBased() - 
+* `NoteIndex#fromOneBased()` - 
  Creates a new NoteIndex using a one-based index.
 
 #### Example Usage Scenario (Deleting Note(s))
