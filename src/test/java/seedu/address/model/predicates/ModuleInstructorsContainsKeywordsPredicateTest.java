@@ -53,35 +53,29 @@ class ModuleInstructorsContainsKeywordsPredicateTest {
                 new ModuleInstructorsContainsKeywordsPredicate(Collections.singletonList("BENSON"));
         assertTrue(predicate.test(new ModuleBuilder().withInstructors(ALICE, BENSON, CARL).build()));
 
-        // Multiple matching keywords
-        predicate = new ModuleInstructorsContainsKeywordsPredicate(Arrays.asList("BENSON", "CARL"));
-        assertTrue(predicate.test(new ModuleBuilder().withInstructors(ALICE, BENSON, CARL).build()));
-
-        // Multiple keywords, only one matching
-        predicate = new ModuleInstructorsContainsKeywordsPredicate(Arrays.asList("HITLER", "STALIN", "BENSON"));
+        // full name keyword
+        predicate = new ModuleInstructorsContainsKeywordsPredicate(Arrays.asList("BENSON", "MEIER"));
         assertTrue(predicate.test(new ModuleBuilder().withInstructors(ALICE, BENSON, CARL).build()));
 
         // Mixed-case keyword
         predicate = new ModuleInstructorsContainsKeywordsPredicate(Collections.singletonList("BeNSoN"));
         assertTrue(predicate.test(new ModuleBuilder().withInstructors(ALICE, BENSON, CARL).build()));
+
+        predicate = new ModuleInstructorsContainsKeywordsPredicate(Arrays.asList("meIEr", "bENsOn"));
+        assertTrue(predicate.test(new ModuleBuilder().withInstructors(ALICE, BENSON, CARL).build()));
     }
 
     @Test
     public void test_moduleInstructorsDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        ModuleInstructorsContainsKeywordsPredicate predicate =
-                new ModuleInstructorsContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new ModuleBuilder().withInstructors(ALICE, BENSON, CARL).build()));
-
         // Non-matching keywords
-        predicate = new ModuleInstructorsContainsKeywordsPredicate(Arrays.asList("HITLER", "STALIN"));
-        assertFalse(predicate.test(new ModuleBuilder().withInstructors(ALICE, BENSON, CARL).build()));
-
-        // Partial keyword
-        predicate = new ModuleInstructorsContainsKeywordsPredicate(Collections.singletonList("BEN"));
+        ModuleInstructorsContainsKeywordsPredicate predicate =
+                new ModuleInstructorsContainsKeywordsPredicate(Arrays.asList("HITLER", "STALIN"));
         assertFalse(predicate.test(new ModuleBuilder().withInstructors(ALICE, BENSON, CARL).build()));
 
         // Keyword longer than the code
+        predicate = new ModuleInstructorsContainsKeywordsPredicate(Arrays.asList("ALICE", "PAULINE", "HITLER"));
+        assertFalse(predicate.test(new ModuleBuilder().withInstructors(ALICE, BENSON, CARL).build()));
+
         predicate = new ModuleInstructorsContainsKeywordsPredicate(Collections.singletonList("ALICES"));
         assertFalse(predicate.test(new ModuleBuilder().withInstructors(ALICE, BENSON, CARL).build()));
     }
