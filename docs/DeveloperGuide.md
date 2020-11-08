@@ -345,7 +345,11 @@ These operations are exposed in the `Model` interface as `Model#clearContacts()`
 
 The following sequence diagram shows how the cclear operation works:
 
-![UndoRedoState0](images/ClearContactsSequenceDiagram.png)
+![CclearSequenceDiagram](images/ClearContactsSequenceDiagram.png)
+
+The follow activity diagram summarizes what happens when a user executes a Cclearcommand:
+
+![CclearActivityDiagram](images/CclearActivityDiagram.png)
 
 Clearing all contacts from the contact list
 
@@ -369,7 +373,11 @@ It implements the following operations:
 These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
 The following sequence diagram shows how the mclear operation works:
 
-![UndoRedoState0](images/MclearCommandSequenceDiagram.png)
+![MclearSequenceDiagram](images/MclearCommandSequenceDiagram.png)
+
+The follow activity diagram summarizes what happens when a user executes a Mclearcommand:
+
+![MclearActivityDiagram](images/MclearAcitivityDiagram.png)
 
 Clearing all modules from the module list
 
@@ -716,7 +724,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *   3a. The user's keywords are invalid.
 
     * 3a1. FaculType shows an error message.
- 
+
       Use case resumes at step 2.
 
 **Use case: Find module(s)**
