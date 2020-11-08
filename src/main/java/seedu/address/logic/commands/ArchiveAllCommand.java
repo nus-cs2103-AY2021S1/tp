@@ -17,7 +17,7 @@ public class ArchiveAllCommand extends Command {
             + ": Archives all employees in the displayed Employee Directory.\n";
 
     public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived all employees in the displayed"
-            + "Employee Directory ";
+            + " Employee Directory ";
 
     public static final String MESSAGE_NOTHING_TO_ARCHIVE = "There is no employee in the current displayed Employee"
             + "Directory";
