@@ -493,35 +493,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC01 List food**
 
 **MSS**
-1. User requests to list food (UC01)
-2. McGymmy shows a list of food that user has added (UC02)
-Use case ends
+1. User requests to list food. (UC01)
+2. McGymmy shows a list of food that user has added. (UC02)
+
+Use case ends.
 
 **Use case: UC02 Add food**
 
 **MSS**
-1. User requests to add food into the list
-2. McGymmy adds the food item into the list
+1. User requests to add food into the list.
+2. McGymmy adds the food item into the list.
 
 Use case ends.
 
 **Extensions**
-- 1a. The format of add method is invalid
-    1a1. McGymmy shows an error message
+- 1a. The format of add method is invalid.
+    - 1a1. McGymmy shows an error message.
     Use case ends.
 
 **Use case: UC03 Delete food**
 
 **MSS**
-1. User requests to list food (UC01)
-2. McGymmy shows a list of food
-3. User request to delete a specific food on the list
-4. McGymmy deletes the food
+1. User requests to list food. (UC01)
+2. McGymmy shows a list of food.
+3. User request to delete a specific food on the list.
+4. McGymmy deletes the food.
 
 Use case ends
 
 **Extensions**
-- 2a. The list is empty<br>
+- 2a. The list is empty.<br>
 
     Use case ends.
 
@@ -533,39 +534,39 @@ Use case ends
 **Use case: UC04 Help**
 
 **MSS**
-1. User requests help
-2. McGymmy shows all commands and examples of command usages
+1. User requests help.
+2. McGymmy shows all commands and examples of command usages.
 
-Use case ends
+Use case ends.
 
 **Extensions**
-No extensions
+No extensions.
 
 **Use case: UC05 Update food**
 
 **MSS**
-1. User requests to list food (UC01)
-2. McGymmy shows a list of food
-3. User request to update a specific food on the list
-4. McGymmy updates the food
+1. User requests to list food. (UC01)
+2. McGymmy shows a list of food.
+3. User request to update a specific food on the list.
+4. McGymmy updates the food.
 
-Use case ends
+Use case ends.
 
 **Extensions**
-- 2a. The list is empty<br>
+- 2a. The list is empty.<br>
     Use case ends.
 - 3a. The given index is invalid.<br>
-   - 3a1. McGymmy shows an error message
+   - 3a1. McGymmy shows an error message.
     Use case resumes at step 2.
 
 **Use case: UC06 Add a macro command**
 
 **MSS**
 
-1. User creates a macro to execute two 'add' commands in sequence
-2. McGymmy adds the macro to the list of available commands
-3. User uses the newly added macro command
-4. McGymmy executes the two commands consecutively
+1. User creates a macro to execute two 'add' commands in sequence.
+2. McGymmy adds the macro to the list of available commands.
+3. User uses the newly added macro command.
+4. McGymmy executes the two commands consecutively.
 
 Use case ends
 
@@ -578,6 +579,21 @@ Use case ends.
 
  - 4a. One of the executed commands encounter an error.
     - 4a1. McGymmy shows the error message from that command, and displays the commands that successfully executed, and the commands that have yet to execute.
+
+Use case ends.
+
+**Use case: UC07 Undo the last command**
+
+**MSS**
+
+1. User requests to undo the last command.
+2. McGymmy successfully undo the last command.
+
+Use case ends.
+
+**Extensions**
+
+1a. McGymmy shows the error message that there is no command left to undo.
 
 Use case ends.
 
