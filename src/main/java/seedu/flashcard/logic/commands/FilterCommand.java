@@ -30,6 +30,9 @@ public class FilterCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + " SDLC " + PREFIX_RATING + " 2 "
             + PREFIX_FAV + " yes " + PREFIX_TAG + " exam";
 
+    public static final String MESSAGE_NO_FLASHCARDS_MATCHING_FIELDS = "There are no flashcards that match any of "
+            + "the specified field(s).";
+
     private final CategoryEqualsKeywordsPredicate categoryPredicate;
     private final RatingEqualsKeywordsPredicate ratingPredicate;
     private final FavouriteEqualsKeywordsPredicate favouritePredicate;
@@ -55,16 +58,25 @@ public class FilterCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredFlashcardList(combinedPredicate);
+
+        if (model.getFilteredFlashcardList().size() == 0) {
+            return new CommandResult(MESSAGE_NO_FLASHCARDS_MATCHING_FIELDS);
+        }
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FilterCommand // instanceof handles nulls
+        boolean isEqualsToOther = other instanceof FilterCommand // instanceof handles nulls
                 && categoryPredicate.equals(((FilterCommand) other).categoryPredicate)
                 && ratingPredicate.equals(((FilterCommand) other).ratingPredicate)
-                && favouritePredicate.equals(((FilterCommand) other).favouritePredicate)); // state check
+                && favouritePredicate.equals(((FilterCommand) other).favouritePredicate)
+                && tagsPredicate.equals(((FilterCommand) other).tagsPredicate)
+                && combinedPredicate.equals((((FilterCommand) other).combinedPredicate)); // state check
+
+        return other == this // short circuit if same object
+                || isEqualsToOther;
     }
 }
