@@ -21,9 +21,9 @@ public class RecommendPredicate implements RecipeContainsKeywordsPredicate {
     @Override
     public boolean test(Recipe recipe) {
         List<String> ingredients =
-                recipe.getIngredient().stream().map(x -> x.getValue().replaceAll("\\s+", ""))
+                recipe.getIngredient().stream().map(ingredient -> ingredient.getValue().replaceAll("\\s+", ""))
                         .collect(toList());
-        String str = keywords.stream().map(Object::toString).map(x -> x.replaceAll("\\s+", ""))
+        String str = keywords.stream().map(Object::toString).map(keyword -> keyword.replaceAll("\\s+", ""))
                 .collect(Collectors.joining(" "));
 
         if (keywords.isEmpty()) {

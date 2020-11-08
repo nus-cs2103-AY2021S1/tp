@@ -17,7 +17,7 @@ import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.RecommendPredicate;
 
 /**
- * Lists all recipes in the recipe collection with the user's ingredients to the user.
+ * Lists all recipes in the recipe collection that can be made with the user's ingredients to the user.
  */
 public class RecommendCommand extends Command {
 
