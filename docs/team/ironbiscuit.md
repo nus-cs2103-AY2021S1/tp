@@ -27,9 +27,9 @@ I was responsible for implementing the following features of NUStorage:
 
 ### Documentation
 
-*I have contributed to the Logic Section of the user guide, adding screen shots of our application as well as explaining in detail the use of the commands as well as how to use them.
+* I have contributed to the Logic Section of the user guide, adding screen shots of our application as well as explaining in detail the use of the commands as well as how to use them.
 
-*I have contributed to the implementation component of the developer guide, adding detailed explanations as to how our classes interact with each other and including sequence diagrams to aid in these explanations.
+* I have contributed to the implementation component of the developer guide, adding detailed explanations as to how our classes interact with each other and including sequence diagrams to aid in these explanations.
 
 ### Contributions to Team Based Task
 
