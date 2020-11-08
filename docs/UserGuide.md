@@ -420,7 +420,7 @@ This command undoes the last undoable command. Undoable commands are commands th
 
 **Usage**: `undo`
 
-The most common scenario to undo a command is when accidentally deleting something; for example, suppoes you wanted to delete the <i>Salted Water</i> recipe, but you accidentally deleted the <i>Scrambled Eggs</i> recipe instead:
+The most common scenario to undo a command is when accidentally deleting something; for example, suppose you wanted to delete the <i>Salted Water</i> recipe, but you accidentally deleted the <i>Scrambled Eggs</i> recipe instead:
 
 <a name="Figure-3-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
