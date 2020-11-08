@@ -53,7 +53,7 @@ Tests were also added for `ListCommand` and `ListCommandParser`.
 [\#126](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/126/files)
 [\#249](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/249)
 
-I enhanced the find command by allowing users to find assignments by its name, module code, deadline or priority and multiple keywords is supported. This command was rather tedious to implement as there were many factors and aspects to consider. The prefixes found in the user's input has to be identified and the respective parse methods should be called. There were also many exceptions and invalid inputs to account for, such as having more than one prefix, inputting an empty command and whether there is a preamble before the prefix and after the `find` command. Since we decided to allow users to find assignments based on date or time of deadline to make it easier for them to find assignments (The user might not be able to remember the full deadline of assignment, and inputting an incorrect date or time will lead to inefficient searches), the keywords after the prefix for deadline have to be individually identified (whether it is in date or time format) with Regular Expressions before the String keyword can be parsed. 
+I enhanced the find command by allowing users to find assignments by its name, module code, deadline or priority and multiple keywords is supported. This command was rather tedious to implement as there were many factors and aspects to consider. The prefixes found in the user's input have to be identified and the respective parse methods should be called. There were also many exceptions and invalid inputs to account for, such as having more than one prefix, inputting an empty command and whether there is a preamble before the prefix and after the `find` command. Since we decided to allow users to find assignments based on date or time of deadline to make it easier for them to find assignments (The user might not be able to remember the full deadline of assignment, and inputting an incorrect date or time will lead to inefficient searches), the keywords after the prefix for deadline have to be individually identified (whether it is in date or time format) with Regular Expressions before the String keyword can be parsed. 
 
 Tests were also added for `FindCommand` and `FindCommandParser`.
 
@@ -66,36 +66,34 @@ I enhanced the delete command to support multiple deletions of assignments in a 
 Tests were also added for `DeleteCommand` and `DeleteCommandParser`.
 
 ### My Contributions to User Guide 
-[\#127](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/127/files)
-[\#148](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/148/files)
-[\#161](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/161/files)
-[\#173](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/173/files)
-[\#175](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/175/files)
-[\#176](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/176/files)
-[\#235](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/235/files)
 
-I contributed to the introduction of the User Guide and added documentation for list, find, delete and edit under features. I also added the About segment description, GUI terminologies and diagrams.
+I contributed to the introduction of the User Guide and added documentation for list, find, delete and edit under features. I also added the About segment description, GUI terminologies and diagrams. [\#127](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/127/files)
+                                                                                                                                                                                                        [\#148](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/148/files)
+                                                                                                                                                                                                        [\#161](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/161/files)
+                                                                                                                                                                                                        [\#173](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/173/files)
+                                                                                                                                                                                                        [\#175](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/175/files)
+                                                                                                                                                                                                        [\#176](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/176/files)
+                                                                                                                                                                                                        [\#235](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/235/files)
 
 ### My Contributions to Developer Guide
-[\#53](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/53/files)
-[\#131](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/131)
-[\#160](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/160/files)
-[\#255](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/255/files)
 
-I contributed to list, find and delete features under Implementations and its UML diagrams. I also updated the description and contributed to the diagram for `Model` and added in the Introduction segment of the Developer Guide. I also contributed to the Appendix section (User stories, target user profile etc.).
+I contributed to list, find and delete features under Implementations and its UML diagrams. I also updated the description and contributed to the diagram for `Model` and added in the Introduction segment of the Developer Guide. I also contributed to the Appendix section (User stories, target user profile etc.).[\#53](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/53/files)
+                                                                                                                                                                                                                                                                                                                        [\#131](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/131)
+                                                                                                                                                                                                                                                                                                                        [\#160](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/160/files)
+                                                                                                                                                                                                                                                                                                                        [\#255](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/255/files)
+  [\#273](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/273)                                                                                                                                                                                                                                                                                                                  
 
 ### My Contributions to team-based tasks
-[\#57](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/57/files)
-[\#69](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/69/files)
-[\#70](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/70/files)
 
 * I had set up the Github team org/repo and I manage the github settings for our team.
 * I maintained the issue tracker and I assigned and added relevant tags for issues.
-* I released some versions of ProductiveNUS before the deadline
+* I released v1.2 of ProductiveNUS before the deadline [v1.2 release](https://github.com/AY2021S1-CS2103T-F11-3/tp/releases/tag/v1.2)
 * I updated parts of the User/Developer Guide that are not specific to a feature
 * I contributed to team meeting notes that were taken down during our weekly team discussions
 * I sent summaries of what was discussed during our team meeting into our chat group to remind everyone of our individual/team responsibilities and deadlines 
-* I contributed to the README file for ProductiveNUS. 
+* I contributed to the README file for ProductiveNUS. [\#57](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/57/files)
+                                                      [\#69](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/69/files)
+                                                      [\#70](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/70/files)
 
 ### Review contributions:
 * PRs reviewed (with non-trivial review comments): [\#253](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/253)
