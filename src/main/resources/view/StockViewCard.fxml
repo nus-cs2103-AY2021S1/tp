@@ -24,7 +24,7 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="noteText" text="\$first" styleClass="cell_small_label" wrapText="true"/>
+                <Label fx:id="fieldText" text="\$first" styleClass="cell_small_label" wrapText="true"/>
             </HBox>
         </VBox>
     </GridPane>

@@ -12,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/amylzting.png" width="200px">
 
 [[github](https://github.com/amylzting)]
-[[portfolio](team/amy.md)]
+[[portfolio](team/amylzting.md)]
 
 * Role: Developer
 * Responsibilities: Documentation manager - Responsible for the quality of
@@ -23,7 +23,7 @@ project documents, Coding standards, format of deliverables
 <img src="images/kc-98.png" width="200px">
 
 [[github](https://github.com/kc-98)]
-[[portfolio](team/kaichao.md)]
+[[portfolio](team/kc-98.md)]
 
 * Role: Developer
 * Responsibilities: Team Leader, Overall code quality, Testing
@@ -56,7 +56,7 @@ project documents, Coding standards, format of deliverables
 <img src="images/limzeweidennis.png" width="200px">
 
 [[github](https://github.com/LimZeWeiDennis)]
-[[portfolio](team/dennis.md)]
+[[portfolio](team/limzeweidennis.md)]
 
 * Role: Developer
 * Responsibilities: Deadline and Deliverables manager - in charge of making sure that

@@ -48,7 +48,7 @@ public class TypicalStocks {
             .withSerialNumber("bengawansolo1")
             .withSource("bengawansolo").withQuantity("123")
             .withLocation("tart section, subsection a")
-            .withNotes("Fresh from PineappleLand.", "Wednesday")
+            .withNotes("Fresh from PineappleLand.")
             .build();
 
     public static final Note FIRST_NOTE_APPLE = APPLE.getNotes().get(0);

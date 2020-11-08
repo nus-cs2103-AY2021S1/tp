@@ -12,6 +12,10 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE_DESCRIPTION;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
@@ -40,6 +44,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New stock added: %1$s";
     public static final String MESSAGE_DUPLICATE_STOCK = "This stock already exists in the stock book";
+    private static final Logger logger = LogsCenter.getLogger(AddCommand.class);
 
     public final Stock toAdd;
 
@@ -53,6 +58,7 @@ public class AddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.log(Level.INFO, "Starting to execute add command");
         requireNonNull(model);
 
         if (model.hasStock(toAdd)) {
@@ -60,6 +66,7 @@ public class AddCommand extends Command {
         } else {
             toAdd.setSerialNumber(model.generateNextSerialNumber(toAdd.getSource()));
             model.addStock(toAdd);
+            logger.log(Level.INFO, "Finished adding stock successfully");
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
     }

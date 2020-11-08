@@ -1,13 +1,16 @@
 package seedu.stock.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTION;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.SerialNumber;
@@ -28,11 +31,12 @@ public class StockViewCommand extends Command {
 
     public static final String MESSAGE_NOTE_DISPLAY_SUCCESS = "Viewing Stock: %1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists.";
+    private static final Logger logger = LogsCenter.getLogger(StockViewCommand.class);
 
     private final SerialNumber serialNumber;
 
     /**
-     * Constructs a NoteViewCommand.
+     * Constructs a StockViewCommand.
      * @param serialNumber of the stock in the stock book
      */
     public StockViewCommand(SerialNumber serialNumber) {
@@ -42,21 +46,41 @@ public class StockViewCommand extends Command {
     }
 
     /**
-     * Executes the note view command and returns the result.
+     * Executes the stock view command and returns the result.
      *
      * @param model {@code Model} which the command should operate on.
      * @return The result of successful execution.
-     * @throws CommandException If there are any errors.
+     * @throws SerialNumberNotFoundException If there are any errors.
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException, SerialNumberNotFoundException {
+    public CommandResult execute(Model model) throws SerialNumberNotFoundException {
+        logger.log(Level.INFO, "Starting to execute stock view command");
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
-        List<Stock> lastShownStocks = model.getFilteredStockList();
+        List<Stock> stockList = model.getFilteredStockList();
+
+        Stock stockToView = getStockFromSerialNumber(serialNumber, stockList);
+
+        logger.log(Level.INFO, "Finished displaying stock successfully");
+        return new CommandResult(generateSuccessMessage(stockToView), null,
+                false, true, stockToView, false, null, false, false);
+    }
+
+    /**
+     * Returns a Stock found from the list of Stock using the given the Serial Number
+     * @param serialNumber Serial Number of the Stock
+     * @param stockList list of Stock
+     * @throws SerialNumberNotFoundException if serial number is not found
+     */
+    private static Stock getStockFromSerialNumber(SerialNumber serialNumber, List<Stock> stockList)
+            throws SerialNumberNotFoundException {
+        requireNonNull(serialNumber);
+        requireNonNull(stockList);
 
         Optional<Stock> stockToViewNotes = Optional.empty();
+
         // Find the stock to add note to
-        for (Stock currentStock : lastShownStocks) {
+        for (Stock currentStock : stockList) {
             String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
             if (currentStockSerialNumber.equals(serialNumber.getSerialNumberAsString())) {
                 stockToViewNotes = Optional.of(currentStock);
@@ -68,8 +92,7 @@ public class StockViewCommand extends Command {
             throw new SerialNumberNotFoundException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
         }
 
-        return new CommandResult(generateSuccessMessage(stockToViewNotes.get()), null,
-                false, true, stockToViewNotes.get(), false, null, false, false);
+        return stockToViewNotes.get();
     }
 
     /**

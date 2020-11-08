@@ -73,7 +73,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private PieChart mainPie;
+    private PieChart defaultStockViewPie;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -193,7 +193,7 @@ public class MainWindow extends UiPart<Stage> {
             fieldList.addAll(nameString, serialNumberString, sourceString, quantityString,
                     location, notes);
 
-            stockViewWindowPlaceholder.getChildren().remove(mainPie);
+            stockViewWindowPlaceholder.getChildren().remove(defaultStockViewPie);
             stockViewWindow = new StockViewWindow(fieldList);
             stockViewWindowPlaceholder.getChildren().add(stockViewWindow.getRoot());
 
@@ -292,7 +292,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowStockView()) {
-                Stock stockToView = commandResult.getStockToShowNotes();
+                Stock stockToView = commandResult.getStockToView();
                 handleStockView(Optional.of(stockToView));
             } else {
                 // stock view window used before
