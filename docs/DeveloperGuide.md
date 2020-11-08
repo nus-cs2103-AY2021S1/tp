@@ -1159,15 +1159,6 @@ and displayed with `ResultDisplay`.
 
 Step 8. User views the new `StockListPanel` with the filtered stock list.
 
-#### Sequence Diagram
-The following sequence diagram shows how the Note feature (adding of note) works for Example 1:
-![Note Feature Sequence Diagram](images/NoteFeatureSequenceDiagram.png)
-
-#### Activity Diagram
-The following activity diagram summarizes what happens when
- the Note feature (adding of note) is triggered:
-![Note Feature Activity Diagram](images/NoteFeatureActivityDiagram.png)
-
 #### Mechanism for Deleting Notes
 The mechanism for deleting notes is facilitated by classes `NoteDeleteCommand`, `NoteDeleteCommandParser` and `NoteIndex`.
 
@@ -1267,13 +1258,19 @@ and the `Model` is updated with the stock with the deleted note.
 Steps 7 and 8 are the same as `Example 1: Deleting a note at index 1 from a stock with Serial Number "ntuc1"` above.
 
 #### Sequence Diagram
-The following sequence diagram shows how the NoteDelete feature works for Example 1:
-![NoteDelete Feature Sequence Diagram](images/NoteDeleteFeatureSequenceDiagram.png)
+The following sequence diagram shows how the Note feature (adding of note) works for Example 1:
+![Note Feature Sequence Diagram](images/NoteFeatureSequenceDiagram.png)
+
+Sequence diagram for deleting note(s) will not be shown as it is similar to that of the adding of note,
+with the replacement of certain methods meant for the adding of note to those meant for the deleting of note.
 
 #### Activity Diagram
 The following activity diagram summarizes what happens when
- the NoteDelete feature is triggered:
-![NoteDelete Feature Activity Diagram](images/NoteDeleteFeatureActivityDiagram.png)
+ the Note feature (adding of note) is triggered:
+![Note Feature Activity Diagram](images/NoteFeatureActivityDiagram.png)
+
+Activity diagram for deleting note(s) will not be shown as it is similar to that of the adding of note,
+with the replacement of adding to deleting.
 
 #### Design Consideration
 The below aspects are the design considerations for the Note feature in adding and deleting notes from stocks.

@@ -1,5 +1,6 @@
 package seedu.stock.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_DESCRIPTION;
@@ -69,26 +70,43 @@ public class NoteCommand extends Command {
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> allStocks = model.getFilteredStockList();
 
-        Optional<Stock> stockToAddNote = Optional.empty();
+        Stock stockToAddNote = getStockFromSerialNumber(serialNumber, allStocks);
+
+        Stock stockWithAddedNote = createStockWithAddedNote(stockToAddNote, note);
+        model.setStock(stockToAddNote, stockWithAddedNote);
+
+        logger.log(Level.INFO, "Valid serial number and note input with note added to stock.");
+        return new CommandResult(generateSuccessMessage(stockWithAddedNote));
+    }
+
+    /**
+     * Returns a Stock found from the list of Stock using the given the Serial Number
+     * @param serialNumber Serial Number of the Stock
+     * @param stockList list of Stock
+     * @throws SerialNumberNotFoundException if serial number is not found
+     */
+    private static Stock getStockFromSerialNumber(SerialNumber serialNumber, List<Stock> stockList)
+            throws SerialNumberNotFoundException {
+        requireNonNull(serialNumber);
+        requireNonNull(stockList);
+
+        Optional<Stock> stockToViewNotes = Optional.empty();
+
         // Find the stock to add note to
-        for (Stock currentStock : allStocks) {
+        for (Stock currentStock : stockList) {
             String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
             if (currentStockSerialNumber.equals(serialNumber.getSerialNumberAsString())) {
-                stockToAddNote = Optional.of(currentStock);
+                stockToViewNotes = Optional.of(currentStock);
                 break;
             }
         }
 
-        if (stockToAddNote.isEmpty()) {
+        if (stockToViewNotes.isEmpty()) {
             logger.log(Level.WARNING, "Valid serial number input but serial number not found.");
             throw new SerialNumberNotFoundException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
         }
 
-        Stock stockWithAddedNote = createStockWithAddedNote(stockToAddNote.get(), note);
-        model.setStock(stockToAddNote.get(), stockWithAddedNote);
-
-        logger.log(Level.INFO, "Valid serial number and note input with note added to stock.");
-        return new CommandResult(generateSuccessMessage(stockWithAddedNote));
+        return stockToViewNotes.get();
     }
 
     /**
