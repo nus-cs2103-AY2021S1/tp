@@ -570,7 +570,7 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ (Peh Jun Siang)
+## FAQ (by Peh Jun Siang)
 
 In this section, we will be looking at some of the frequently asked questions from our users.
 
@@ -653,20 +653,28 @@ In this section, we have summarised all the commands and their formats into a ta
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME ic/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho ic/S1234567A p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME ic/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS mr/MEDICAL_RECORD_URL [t/TAG]…​` <br> e.g., `add n/James Ho ic/S1234567A p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 mr/www.samplerecord/100 t/shellfish`
+**Add Appointment** | `addAppt NRIC appt/DATE TIME [d/DESCRIPTION]` <br> e.g., `addAppt S1234567A appt/30/12/2020 18:00 d/foot surgery`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`<br> `delete NRIC`<br> e.g., `delete S1234567A`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ic/NRIC] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com ic/S1234567A`
-**Find** | `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`<br> e.g., `find James Jake`<br> e.g., `find Curry Davis Heskey S1234567A`
-**List** | `list`
-**Help** | `help`
 **Count** | `count`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`<br> `delete NRIC`<br> e.g., `delete S1234567A`
+**Delete Appointment** | `deleteAppt NRIC appt/DATE TIME` <br> e.g., `deleteAppt S1234567A appt/30/12/2020 18:00`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ic/NRIC] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com ic/S1234567A`
+**Edit Appointment** | `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME` <br> e.g., `editAppt S1234567A oldappt/30/12/2020 18:00 newappt/27/11/2020 20:30`
+**Exit** | `exit`
+**Find** | `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`<br> e.g., `find James Jake`<br> e.g., `find Curry Davis Heskey S1234567A`
+**Help** | `help`
+**List** | `list`
+**Show Appointment** | `showAppt NRIC` or double click on patient <br> e.g., `showAppt S1234567A`
+**Show Medical Record** | `showMr NRIC` or double click `MR URL` button to copy the url and paste onto web browser manually <br> e.g., `showMr S1234567A`
+**Sort** | `sort name` or `sort NRIC` 
+
 
 * Valid email format
 
     * Emails should be of the format local-part@domain.topleveldomain
-    * The local-part (upper limit of 64 characters) only contains alphanumeric characters or special characters including !#$%&'*+/=?`{}~^.-
-    * The domain should be between 2 and 256 characters long (inclusive), start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any
+    * The local-part (upper limit of 64 characters) only contains alphanumeric characters or special characters including !#$%&'*+/=?`{}~^.- and the vertical line symbol
+    * The domain should be between 2 and 255 characters long (inclusive), start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any
     * The top level domain should be between 2 and 6 (inclusive) characters long and only contain alphabets<br>
     
 * Valid URL format
