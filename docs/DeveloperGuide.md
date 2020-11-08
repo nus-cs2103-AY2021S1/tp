@@ -427,11 +427,11 @@ The following activity diagram summarizes what happens when a user executes a ta
 
 * **Alternative 1 (current choice):** Assignee's Github username
   * Pros: Avoid viewing tasks of another person with the same personName. (Github username is unique)
-  * Cons: The user might not always remember the GitHub usernames of team members.
+  * Cons: The user might not always remember the GitHub usernames of teammates.
 
 * **Alternative 2:** Assignee's personName
-  * Pros: More intuitive when there are no team members with the same name.
-  * Cons: If two team members have the same name, the task filter by their name will display tasks that have been assigned to any of them.
+  * Pros: More intuitive when there are no teammates with the same name.
+  * Cons: If two teammates have the same name, the task filter by their name will display tasks that have been assigned to any of them.
 
 ##### Aspect: Whether to clear filter when user re-enters the project
 
@@ -613,12 +613,12 @@ It is possible to allow the users to create custom attributes for projects and p
 
 **Target user profile**: team leaders who are managing software projects:
 
-* has a growing number of projects and team members to manage
+* has a growing number of projects and teammates to manage
 * prefers desktop apps over mobile apps 
 * can type fast and prefers typing to mouse interactions
 * is tech-savvy and reasonably comfortable using CLI apps
 
-**Value proposition**: manage projects, team members, and tasks on a unified platform as opposed to scattered on
+**Value proposition**: manage projects, teammates, and tasks on a unified platform as opposed to scattered on
  different messaging platforms
 
 ### User stories
@@ -628,13 +628,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                 | I want to …​                | So that I can …​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | project team leader                        | see tasks assigned to members  | better know the progress of my team                                    |
-| `* * *`  | project team leader                        | add a project                  |                      |
-| `* *`  | project team leader                        | view projects of a member      | assess a specific member's workload |
-| `* *`    | project team leader                | view a dashboard of my project   | see at a glance what needs to be done for a project               |
-| `* * *`      | forgetful user | add in members' information           | keep track of my members' contact information                                                 |
-| `* * *`    | fast typing user               | use a Command line type Interface   | have higher efficiency when managing my team's workload               |
+| `* *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | project team leader | add a new teammate |                      |  
+| `* * *`  | project team leader | edit a teammate |  change details of a teammate                     |  
+| `* * *`  | project team leader | add a teammate to another project | have a teammate in multiple projects |
+| `* * *`  | project team leader | remove a teammate from a project | remove a teammate when he leaves a project   |
+| `* * *`  | project team leader | delete a teammate | remove a teammate who has left my team entirely |
+| `* * *`  | project team leader   | add a project                  |                      |
+| `* *`  | project team leader  | view projects of a teammate      | assess a specific teammate's workload |
+| `* *` | project team leader   | view a dashboard of tasks my project   | see at a glance what needs to be done for a project  |
+| `* * *`| forgetful user | add in teammate's information           | keep track of my teammate's contact information                                                 |
+| `* * *`    | fast typing user  | use a Command line type Interface | have higher efficiency when managing my team's workload |
 
 ### Use cases
 
@@ -678,18 +682,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
    User case resumes at 1.
 
-#### System: Team Members Tracking System (TMTS)
+#### System: Teammates Tracking System (TMTS)
 
-**Use Case: UC3 - Add A Team Member**
+**Use Case: UC3 - Add A Teammate**
 
 **Actor:** User
 
 **MSS:**
 
-1. User creates a new team member profile.
-2. TMTS asks for the details of the team member such as `personName`, `phone`, `email`, and `gitUserName`.
+1. User creates a new teammate's profile.
+2. TMTS asks for the details of the teammates such as `personName`, `phone`, `email`, and `gitUserName`.
 3. User keys in the details.
-4. TMTS stores the team member's profile into the data file.
+4. TMTS stores the teammate's profile into the data file.
 
    Use case ends.
 
@@ -700,15 +704,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
    Use case resumes at 3.
 
-**Use Case: UC4 - Edit An Existing Team Member**
+**Use Case: UC4 - Edit An Existing Teammates**
 
 **Actor:** User
 
 **MSS:**
 
-1. User chooses to edit a team member's profile.
-2. PTS asks for the `gitUserName` of the team member whose profile is to be edited.
-3. User keys in the `gitUserName` of the team member.
+1. User chooses to edit a teammate's profile.
+2. PTS asks for the `gitUserName` of the teammate whose profile is to be edited.
+3. User keys in the `gitUserName` of the teammate.
 4. Same as <u>UC3</u> 2-4.
 
    Use case ends.
@@ -787,8 +791,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. PMS stores the task's profile into the data file.
 5. User <u>UC6: finds the task</u> just added.
 6. PMS shows a filtered list of task including the new task added.
-7. User requests to assign the task to a team member.
-8. PMS associates the task with the team member and stores in the data file.
+7. User requests to assign the task to a teammate.
+8. PMS associates the task with the teammate and stores in the data file.
 9. Repeat 7-8 until all assignees have been added.
 
    Use case ends.
@@ -808,12 +812,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case resumes at 7.
 
- * 7a. The input task index is invalid or the team member is not found in the project.
+ * 7a. The input task index is invalid or the teammate is not found in the project.
    * 7a1. PMS shows an error message.
 
    Use case resumes at 7.
 
- * 7b. The task has already been associated with the team member.
+ * 7b. The task has already been associated with the teammate.
    * 7b1. PMS shows an error message.
 
    Use case resumes at 9.
@@ -868,14 +872,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  The application should work on any _mainstream OS_ (tested on Windows, Mac, Linux) as long as it has Java `11` or above installed.
-1.  The application should be able to hold up to 30 projects and 150 members without a noticeable drop in performance.
+1.  The application should be able to hold up to 30 projects and 150 teammates without a noticeable drop in performance.
 1.  The application can function without an internet connection.
 1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
 should be able to accomplish most of the tasks faster using commands than using the mouse.
 1.  There are checks for the inputs the user gives, and corresponding tips are presented if the input format is incorrect.
 1.  There are `help` commands to tell the user what command does what.
 1.  Information is presented in a pleasing way.
-1.  New user can learn the software easily and quickly (so that other team members can help organize or add tasks if they want to)
+1.  New user can learn the software easily and quickly (so that other teammates can help organize or add tasks if they want to)
 1.  Tests are written for important components, and every working prototype must pass all the test first.
 1.  Code is written in an easy-to-maintain manner (e.g. no extremely long function).
 
@@ -931,7 +935,36 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding a Teammate 
+
+1. Adding a teammate into a project while in a project scope
+   1. Prerequisites: Have a valid project created, and start with `startproject 1`. 
+
+   1. Test case: `addteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road `<br>
+      Expected: A new teammmate is added to project 1.  "New Teammate added: LucasTai98" message is returned to the
+       user.
+
+   1. Test case: `addteammate`<br>
+      Expected: No teammate added to the project. Error details about incorrect format shown to user.
+      .
+
+   1. Other incorrect delete commands to try: `addteammate mn/%&`, `add teammate ...`,  where the input is incomplete
+    or the command is incorrect. <br> Expected: Similar to previous.
+    
+### Deleting a Teammate from listpersons scope
+
+1. Deleting a teammate while in listpersons view
+   1. Prerequisites: Have a valid teammate created as described just above, and enter listpersons scope with
+    `listpersons`. 
+
+   1. Test case: `deleteteammate LucasTai98 `<br>
+      Expected: A teammate is deleted. Teammate is deleted and all participations in projects are deleted as well
+      . Message is returned to the user to tell the user deletion was a success.
+   1. Test case: `deleteteammate 2`<br>
+      Expected: No teammate is deleted. Error details about incorrect format shown to user.
+
+   1. Other incorrect delete commands to try: `deleteteammate`, `delete teammate ...`,  where the input is incomplete
+    or the command is incorrect. <br> Expected: Similar to previous.
 
 ### Saving data
 
