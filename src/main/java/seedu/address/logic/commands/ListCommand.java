@@ -26,7 +26,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_INDEX_NOT_IN_RANGE = "Index should only be from 1 to 50.";
 
-    private final Index numberOfDays;
+    private Index numberOfDays = Index.fromZeroBased(0);
 
     /**
      * Constructor of List Command which takes in an Index.
@@ -37,12 +37,17 @@ public class ListCommand extends Command {
         this.numberOfDays = numberOfDays;
     }
 
+    public ListCommand() {
+        
+    }
+
     private Predicate<Assignment> showLimitedAssignments() {
         return assignment -> {
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Time.TIME_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);
             String dateAndTimeToParse = assignment.getDeadline().value;
             LocalDateTime currentDateAndTime = LocalDateTime.now();
+            assert numberOfDays != null;
             LocalDateTime lastDateAndTime = currentDateAndTime.plusDays(numberOfDays.getZeroBased());
             LocalDateTime parsedDateAndTime = LocalDateTime.parse(dateAndTimeToParse, inputFormat);
 
