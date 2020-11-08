@@ -817,7 +817,7 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
     	
     	Use case resumes from step 2.
       	
-* 2b. tCheck detects an empty employee directory.
+* 2b. tCheck detects an empty Employee Directory.
 
    	    * 2b1. tCheck shows a warning message.
 
