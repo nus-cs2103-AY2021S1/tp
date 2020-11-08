@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "<<class>>\n:ResiRegParser" as ResiRegParser LOGIC_COLOR
+participant ":AddRoomCommandParser" as AddRoomCommandParser LOGIC_COLOR
+participant "a:AddRoomCommand" as AddRoomCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\n"add-room fl/11 n/100 t/NN")
+activate LogicManager
+
+LogicManager -> Model : getCommandWordAliases()
+activate Model
+Model --> LogicManager
+deactivate Model
+
+LogicManager -> ResiRegParser : parseCommand(\n"add-room fl/11 n/100 t/NN", \nparserMap)
+activate ResiRegParser
+
+ResiRegParser -> AddRoomCommandParser : parse("fl/11 n/100 t/NN")
+activate AddRoomCommandParser
+
+create AddRoomCommand
+AddRoomCommandParser -> AddRoomCommand : AddRoomCommand(room)
+activate AddRoomCommand
+
+AddRoomCommand --> AddRoomCommandParser : a
+deactivate AddRoomCommand
+
+AddRoomCommandParser --> ResiRegParser : a
+deactivate AddRoomCommandParser
+
+ResiRegParser --> LogicManager : a
+deactivate ResiRegParser
+
+LogicManager -> AddRoomCommand : execute()
+activate AddRoomCommand
+
+AddRoomCommand -> Model : addRoom(room)
+activate Model
+
+Model --> AddRoomCommand
+deactivate Model
+
+AddRoomCommand -> Model : saveStateResiReg()
+activate Model
+
+Model --> AddRoomCommand
+deactivate Model
+
+create CommandResult
+AddRoomCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddRoomCommand
+deactivate CommandResult
+
+AddRoomCommand --> LogicManager : r
+deactivate AddRoomCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddRoomCommand -[hidden]-> ResiRegParser
+destroy AddRoomCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

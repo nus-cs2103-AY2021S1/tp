@@ -120,9 +120,9 @@ Notes:
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("edit-student 1 p/82462157")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add-room fl/11 n/100 t/NN")` API call.
 
-![Interactions Inside the Logic Component for the `edit-student` Command](images/EditSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add-room fl/11 n/100 t/NN` Command](images/AddRoomSequenceDiagram.png)
 
 ### Model component
 
@@ -467,9 +467,9 @@ The sequence diagram below summarizes these steps. Self calls have been omitted 
 ![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
 
 
-###### Design considerations
+#### Design considerations
 
-**Aspect: where to store the mapping of command words to Help**
+##### Aspect: where to store the mapping of command words to Help
 
 Having started with [AddressBook 3's implementation](https://github.com/se-edu/addressbook-level3/blob/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java) of the `AddressBookParser` (renamed `ResiRegParser` in our project), which stored the mapping from each command word to its respective CommandParser, the requirements of the HelpCommand was a major reason why we chose to shift the mapping into the `CommandWordEnum` instead.
 
