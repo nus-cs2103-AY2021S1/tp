@@ -316,17 +316,22 @@ Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**
-PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.
+In tCheck, you may add an employee to the Employee Directory. When you add an employee, you need to provide
+his/her name, phone number, emergency contact, and address. Tag is optional. <br>
+PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
+An employee can have any number of tags (including 0).<br>
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+Example: 
+Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His emergency contact is 81234567. His address is Blk 123 ABC Road. His tag is Friday and PartTime. You can follow these instructions:
 
-**Tip:**
-An employee can have any number of tags (including 0)
-</div>
+Steps to add an employee:
+1. Type `c-add n/John Doe p/98765432 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime` into the _Command Box_.
+1.  Press "Enter" to execute.
 
-Examples:
-* `c-add n/John Doe p/98765432 e/81234567 a/Blk 123 ABC Road`.
-* `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road t/Friday t/PartTime`.
+Outcome:
+1. The _Result Display_ will show that you add a new employee.
+
+2. All active employees will be listed in the _Main View_.
 
 #### 3.2 Listing all employees : `c-list`
 
