@@ -34,7 +34,7 @@ Given below are my contributions to the project.
 
 **Contribution to UG**:
 * Added documentation for `stats` and `quiz` feature [#104](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/104), [#105](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/105), [#166](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/166)
-* Added additional details about diagram in `add` feature [#87]((https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/87))
+* Added additional details about diagram in `add` feature [#87](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/87)
 * Edited grammar and language of the document [#166](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/166), [#169](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/169)
 * Added step by step instructions with images to features and annotated diagrams [#169](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/169), [#215](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/215), [#239](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/239), [#276](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/276)
   
