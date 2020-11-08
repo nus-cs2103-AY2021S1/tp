@@ -20,6 +20,8 @@ by Team W12-2
     * [4.4 - Find Commands - `findMod`, `findTG` and `findStudent`](#section-44---find-commands---findmod-findtg-and-findstudent)
     * [4.5 - List Commands - `listMod`, `listTG` and `listStudent`](#section-45---list-commands---listmod-listtg-and-liststudent)
     * [4.6 - View Commands - `viewTG` and `viewStudent`](#section-46---view-commands---viewtg-and-viewstudent)
+    * [4.7 - Clear Commands - `clear`](#section-47---clear-commands---clear)
+    * [4.8 - Exit Commands - `exit`](#section-48---exit-commands---exit)
 * [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
 * [Section 6 - Appendix](#section-6---appendix)
 
@@ -507,7 +509,7 @@ to `LogicManager`.
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.7 - Clear Commands (clear)
+### Section 4.7 - Clear Commands - `clear`
 #### Overview
 
 The Clear command in Trackr enables users to easily clears all data. Users will be able to erase all data in one simple command.
@@ -529,7 +531,7 @@ Given below is an example of the interaction between the Model and the `ClearCom
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.8 - Exit Commands (exit)
+### Section 4.8 - Exit Commands - `exit`
 #### Overview
 
 The Exit command in Trackr enables users to easily exit the app. Users will be able to close the application. Data will be
@@ -551,6 +553,7 @@ Given below is an example of the interaction between the Model and the `ExitComm
 - Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
     - Pros: Easier to implement
     - Cons: More repetitive code
+
 ### Section 4.2 - \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
