@@ -21,8 +21,8 @@ import seedu.stock.model.stock.Stock;
 import seedu.stock.testutil.StockBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code BookmarkCommand}.
  */
 public class BookmarkCommandTest {
     private Model model = new ModelManager(getTypicalStockBook(), new UserPrefs(),
