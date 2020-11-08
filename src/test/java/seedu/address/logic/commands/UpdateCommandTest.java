@@ -35,7 +35,7 @@ import seedu.address.testutil.ExerciseBuilder;
  */
 class UpdateCommandTest {
 
-    private ExerciseModel model = new ExerciseModelManager(getTypicalExerciseBook(), new UserPrefs());
+    private ExerciseModel model = new ExerciseModelManager(getTypicalExerciseBook(), null, new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -47,7 +47,8 @@ class UpdateCommandTest {
         String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
         ExerciseModel expectedModel =
-                new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), new UserPrefs());
+                new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), null, new UserPrefs());
+
         expectedModel.setExercise(model.getFilteredExerciseList().get(0), editedExercise);
 
         assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);
@@ -71,8 +72,8 @@ class UpdateCommandTest {
                     .withTags(VALID_TAG_GYM).build();
             UpdateCommand updateExerciseCommand = new UpdateCommand(indexLastExercise, descriptor);
             String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
-            ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
-                    new UserPrefs());
+            ExerciseModel expectedModel =
+                    new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), null, new UserPrefs());
             expectedModel.setExercise(lastExercise, editedExercise);
             assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);
         } catch (CaloriesOverflow err) {
@@ -89,7 +90,7 @@ class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
+        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), null,
                 new UserPrefs());
 
         assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);
@@ -106,7 +107,7 @@ class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
+        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), null,
                 new UserPrefs());
         expectedModel.setExercise(model.getFilteredExerciseList().get(0), editedExercise);
 
@@ -116,10 +117,8 @@ class UpdateCommandTest {
     @Test
     public void execute_duplicateExerciseUnfilteredList_failure() {
         Exercise firstExercise = model.getFilteredExerciseList().get(INDEX_FIRST_EXERCISE.getZeroBased());
-        UpdateCommand.EditExerciseDescriptor descriptor =
-                                                      new EditExerciseDescriptorBuilder(firstExercise).build();
-        UpdateCommand updateExerciseCommand =
-              new UpdateCommand(INDEX_SECOND_EXERCISE, descriptor);
+        UpdateCommand.EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder(firstExercise).build();
+        UpdateCommand updateExerciseCommand = new UpdateCommand(INDEX_SECOND_EXERCISE, descriptor);
 
         assertCommandFailure(updateExerciseCommand, model, UpdateCommand.MESSAGE_DUPLICATE_EXERCISE);
     }

@@ -4,18 +4,21 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+ExerciseBook *-right-> "1" UniqueExerciseList
+ExerciseBook *-right-> "1" UniqueExerciseTagList
+ExerciseBook *-right-> "1" UniqueMuscleTagList
+UniqueExerciseTagList -[hidden]down- UniqueExerciseList
+UniqueMuscleTagList -[hidden]down- UniqueExerciseList
 
-UniqueTagList *-right-> "*" Tag
-UniquePersonList o-right-> Person
+UniqueExerciseTagList *-right-> "*" ExerciseTag
+UniqueMuscleTagList *-right-> "*"MuscleTag
+UniqueExerciseList o-right-> Exercise
 
-Person -up-> "*" Tag
+Exercise o-up-> "*" ExerciseTag
+Exercise o-up-> "*" MuscleTag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Exercise *--> Name
+Exercise *--> Date
+Exercise *--> Description
+Exercise *--> Calories
 @enduml

@@ -2,6 +2,8 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,11 +15,11 @@ import seedu.address.model.exercise.UniqueExerciseList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameexercise comparison)
  */
 public class ExerciseBook implements ReadOnlyExerciseBook {
 
-    private final UniqueExerciseList exercises;
+    protected final UniqueExerciseList exercises;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -34,7 +36,7 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an ExerciseBook using the Exercises in the {@code toBeCopied}
      */
     public ExerciseBook(ReadOnlyExerciseBook toBeCopied) {
         this();
@@ -44,8 +46,8 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the exercise list with {@code exercise}.
+     * {@code exercise} must not contain duplicate exercise.
      */
     public void setExercises(List<Exercise> exercises) {
         this.exercises.setExercises(exercises);
@@ -56,14 +58,24 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
      */
     public void resetData(ReadOnlyExerciseBook newData) {
         requireNonNull(newData);
-
         setExercises(newData.getExerciseList());
     }
 
-    //// person-level operations
+    /**
+     * Reset all the data inside ExerciseBook.
+     */
+    public void resetAllData() throws IOException {
+        exercises.resetAll();
+        TemplateList.reset();
+        //@@author Royxuzeng
+        Template.writeToFile(new ArrayList<>());
+        //@@author Royxuzeng
+    }
+
+    // exercise-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an Exercise with the same identity as {@code Exercise} exists in the exercise book.
      */
     public boolean hasExercise(Exercise exercise) {
         requireNonNull(exercise);
@@ -71,8 +83,8 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a exercise to the exercise book.
+     * The exercise must not already exist in the exercise book.
      */
     public void addExercise(Exercise p) {
         exercises.add(p);
@@ -127,9 +139,10 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given exercise {@code target} in the list with {@code editedExercise}.
+     * {@code target} must exist in the exercise book.
+     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise in the exercise
+     * book.
      */
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireNonNull(editedExercise);
@@ -137,8 +150,8 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ExerciseBook}.
+     * {@code key} must exist in the exercise book.
      */
     public void removeExercise(Exercise key) {
         exercises.remove(key);

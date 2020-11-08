@@ -42,25 +42,25 @@ public class CaloriesGraph extends UiPart<Region> {
         NumberAxis yAxis = new NumberAxis(); //NumberAxis --> Axis<Number>
         LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
         Series<String, Number> series = new Series<String, Number>();
-        String[] dates = generatePastDates();
+        String[] dates = generateDisplayDates();
         String date;
         Integer calories;
         for (int i = 0; i < DAY_TO_DISPLAY; i++) {
-            //Get X,Y cordinates for a point which corresponds to
+            //Get X,Y co ordinates for a point which corresponds to
             //the date, and the amount of calories burnt on that date
             date = dates[i];
             calories = dayCalories.get(date);
             if (Objects.isNull(calories)) {
                 calories = 0;
             }
-            series.getData().add(new Data(date, calories));
+            series.getData().add(new Data<String, Number>(date, calories));
         }
         lineChart.getData().add(series);
         pane.getChildren().clear();
         pane.getChildren().add(lineChart);
     }
 
-    private String[] generatePastDates() {
+    private String[] generateDisplayDates() {
         String[] dates = new String[DAY_TO_DISPLAY];
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");

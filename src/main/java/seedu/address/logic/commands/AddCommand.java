@@ -8,11 +8,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Optional;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Weight;
+import seedu.address.model.goal.Goal;
 
 /**
  * Adds an exercise to Calo.
@@ -24,9 +28,9 @@ public class AddCommand extends CommandForExercise {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + "[" + PREFIX_DATE + "DATE]"
+            + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_CALORIES + "CALORIES] "
-            + "[" + PREFIX_MUSCLE + "MUSCLE_TAG]... "
+            + "[" + PREFIX_MUSCLE + "MUSCLE]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "running "
@@ -35,13 +39,16 @@ public class AddCommand extends CommandForExercise {
             + PREFIX_CALORIES + "100 "
             + PREFIX_MUSCLE + "chest "
             + PREFIX_MUSCLE + "arm "
-            + PREFIX_TAG + "home "
-            + PREFIX_TAG + "gym";
-    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
+            + PREFIX_TAG + "home";
+
+    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s\n";
+    public static final String MESSAGE_WEIGHT = "You have burnt %.5s kg\n";
+    public static final String MESSAGE_GOAL = "Congratulations! Now you only have %s more calories to burn on %s!";
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the exercise book";
 
 
     private final Exercise toAdd;
+    private final Weight burntWeight;
 
     /**
      * Creates an AddCommand to add the specified {@code Exercise}
@@ -49,12 +56,12 @@ public class AddCommand extends CommandForExercise {
     public AddCommand(Exercise exercise) {
         requireNonNull(exercise);
         toAdd = exercise;
+        this.burntWeight = new Weight(toAdd.getCalories());
     }
 
     @Override
     public CommandResult execute(ExerciseModel model) throws CommandException, ParseException {
         requireNonNull(model);
-
         if (model.hasExercise(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
         }
@@ -63,8 +70,16 @@ public class AddCommand extends CommandForExercise {
             throw new CaloriesOverflow();
         }
 
-        model.addExercise(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        Optional<Goal> optionalGoal = model.addExercise(toAdd);
+        if (optionalGoal.isPresent()) {
+            Goal goal = optionalGoal.get();
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)
+                    + String.format(MESSAGE_WEIGHT, burntWeight.getWeight())
+                    + String.format(MESSAGE_GOAL, goal.getCalories(), goal.getDate()));
+        }
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)
+                + String.format(MESSAGE_WEIGHT, burntWeight.toString()));
     }
 
     @Override

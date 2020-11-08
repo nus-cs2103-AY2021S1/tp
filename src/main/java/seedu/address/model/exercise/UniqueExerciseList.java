@@ -211,4 +211,16 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         caloriesByDay.put(stringDate, newCalories);
     }
 
+    public void setCaloriesByDay(HashMap<String, Integer> newEntry) {
+        caloriesByDay.clear();
+        caloriesByDay.putAll(newEntry);
+    }
+
+    /**
+     * Reset the exercise book so that everything is empty.
+     */
+    public void resetAll() {
+        internalList.clear();
+        caloriesByDay.clear();
+    }
 }
