@@ -15,7 +15,6 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.module.Module;
 
-// TODO better JavaDocs
 public class JsonModuleListStorage implements ModuleListStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonModuleListStorage.class);
@@ -39,6 +38,7 @@ public class JsonModuleListStorage implements ModuleListStorage {
     /**
      * Reads the module list in the specified filePath.
      * @param filePath The filePath containing the moduleList to be read.
+     * @return An optional containing the ReadOnlyTrackr based on the read module list.
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyTrackr<Module>> readModuleList(Path filePath) throws DataConversionException {
