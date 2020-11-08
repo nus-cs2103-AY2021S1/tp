@@ -20,9 +20,10 @@ by Team W12-2
     * [4.4 - Find Commands - `findMod`, `findTG` and `findStudent`](#section-44---find-commands---findmod-findtg-and-findstudent)
     * [4.5 - List Commands - `listMod`, `listTG` and `listStudent`](#section-45---list-commands---listmod-listtg-and-liststudent)
     * [4.6 - View Commands - `viewTG` and `viewStudent`](#section-46---view-commands---viewtg-and-viewstudent)
-    * [4.7 - Clear Commands - `clear`](#section-47---clear-commands---clear)
-    * [4.8 - Exit Commands - `exit`](#section-48---exit-commands---exit)
+    * [4.7 - Clear Command - `clear`](#section-47---clear-commands---clear)
+    * [4.8 - Exit Command - `exit`](#section-48---exit-commands---exit)
     * [4.9 - Data saving and loading](#section-49---data-saving-and-loading)
+
 * [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
 * [Section 6 - Appendix](#section-6---appendix)
 
@@ -182,7 +183,9 @@ Trackr's three data type also share the same commands, which are:
 
 Since Trackr stores and manages its data recursively, the commands for Module, Tutorial Group and Student work similarly.
 
+
 ### Section 4.1 - Add Commands - `addMod`, `addTG` and `addStudent`
+
 #### Overview
 
 The Add command in Trackr enables users to easily add data types to the app. Users will be able to keep track of data they are
@@ -239,6 +242,7 @@ Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand
     - Cons: More repetitive code
 
 ### Section 4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`
+
 #### Overview
 
 The Delete command in Trackr enables users to easily delete data types from the app.
@@ -294,6 +298,7 @@ Step 5. Once the `Module` has been deleted from the `internaList`, `DeleteModule
     - Cons: More repetitive code
     
 ### Section 4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`
+
 #### Overview
 
 The Edit command in Trackr enables users to easily edit data types. Users will be able to modify data.
@@ -350,6 +355,7 @@ Step 5. Once the `Module` has been edited in the `internaList`, `EditModuleComma
     - Cons: More repetitive code
     
 ### Section 4.4 - Find Commands - `findMod`, `findTG` and `findStudent`
+
 #### Overview
 
 The Find command in Trackr enables users to easily find data based on keywords. This will save their time whenever they want to 
@@ -411,6 +417,7 @@ Step 5. `FindModuleCommand#execute(Model)` creates a `CommandResult` object and 
     - Cons: More repetitive code
     
 ### Section 4.5 - List Commands - `listMod`, `listTG` and `listStudent`
+
 #### Overview
 
 The List command in Trackr enables users to easily list all data. Users will be able to see all data after using the Find Commands.
@@ -464,6 +471,7 @@ Step 5. `ListModuleCommand#execute(Model)` creates a `CommandResult` object and 
     - Cons: More repetitive code
     
 ### Section 4.6 - View Commands - `viewTG` and `viewStudent`
+
 #### Overview
 
 The View command in Trackr enables users to easily navigate between the different views: Module View, Tutorial Group View and Student View.
@@ -510,7 +518,9 @@ to `LogicManager`.
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.7 - Clear Commands - `clear`
+
+### Section 4.7 - Clear Command - `clear`
+
 #### Overview
 
 The Clear command in Trackr enables users to easily clears all data. Users will be able to erase all data in one simple command.
@@ -531,8 +541,9 @@ Given below is an example of the interaction between the Model and the `ClearCom
 - Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
     - Pros: Easier to implement
     - Cons: More repetitive code
-    
-### Section 4.8 - Exit Commands - `exit`
+
+### Section 4.8 - Exit Command - `exit`
+
 #### Overview
 
 The Exit command in Trackr enables users to easily exit the app. Users will be able to close the application. Data will be
@@ -784,7 +795,9 @@ _{More to be added}_
 -   **Mainstream OS**: Windows, Linux, Unix, OS-X
 -   **Private contact detail**: A contact detail that is not meant to be shared with others
 -   **TA**: Teaching Assistant
--   **Modules**: University courses that students are enrolled in
+-   **Modules**: University courses that Teaching Assistants teach
+-   **Tutorial Groups**: Small groups of Students within each Module that Teaching Assistants are responsible for
+-   **Students**: Students who are enrolled in a specific Module and a specific Tutorial Group under a specific Teaching Assistant
 
 ---
 
@@ -803,31 +816,133 @@ testers are expected to do more *exploratory* testing.
 
 1. Download the jar file and copy into an empty folder
 
-1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
+1. Double-click the jar file or run `java -jar Trackr.jar` in Terminal. <br> 
+Expected: Shows the GUI with a sample Module CS2103T. The window size may not be optimum.
 
 1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-1. Re-launch the app by double-clicking the jar file.<br>
+1. Window preferences should be automatically saved.
+
+1. Close the app by clicking the close button located at the top left corner or run `exit` in Trackr.
+
+1. Re-launch the jar file.<br>
    Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a Module
 
-1. Deleting a person while all persons are being shown
+1. Adding a module while all modules are being shown.
 
-1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Prerequisites: Navigate to the Module view using `prevView` or `listMod`. List all modules using the `listMod` command.
 
-1. Test case: `delete 1`<br>
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Test case: `addMod m/CS3243`<br>
+   Expected: New module with code CS3243 will be added to the bottom of the list. Details of the added Module is shown in the status message.
 
-1. Test case: `delete 0`<br>
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Test case: `addMod m/CS3243` (Attempting to add Module with the same code) <br>
+   Expected: No new module is added. An error message indicating the existence of duplicates is shown in the status message.
 
-1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-   Expected: Similar to previous.
+1. Test case: `addMod` (No parameters) <br>
+   Expected: Invalid command format error message is shown in the status message, along with an example command that works.
+   
+1. Test case: `addMod m/CS@` or `addMod m/` (Non-alphanumeric characters or blank module code) <br>
+   Expected: An error message indicating that module code can only be alphanumeric characters and should not be blank is shown in the status message.
+   
+1. _{ more test cases …​ }_
+   
+### Deleting a Module
+
+1. Deleting a module while all modules are being shown.
+
+1. Prerequisites: Navigate to the Module view using `prevView` or `listMod`. List all modules using the `listMod` command.
+
+1. Test case: `deleteMod 1` <br>
+   Expected: First module is deleted from the list. Details of the deleted module shown in the status message.
+
+1. Test case: `deleteMod 0` or `deleteMod`(Index 0 or no index specified) <br>
+   Expected: No module is deleted. Error details shown in the status message.
+
+1. Test case: `deleteMod [insert an index that does not exist]` (Index does not exist) <br>
+   Expected: No module is deleted. An error message indicating that the index is invalid is shown in the status message.
+   
+1. Test case: `deleteMod a` or `deleteMod 1.5` (Non-integer index)
+   Expected: No module is deleted. Error details shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Editing a Tutorial Group
+
+1. Editing a tutorial group while all tutorial groups are being shown.
+
+1. Prerequisites: Navigate to the Tutorial Group view using `prevView` or `viewTG MODULE_INDEX`. List all tutorial groups using the `listTG` command. 
+Add a tutorial group using the command `addTG tg/T03 day/MON start/11:00 end/13:00`.
+
+1. Test case: `editTG 1 tg/T18` <br>
+   Expected: The tutorial group code of the first tutorial group is modified to be _T18_. Details of the edited tutorial group shown in the status message.
+
+1. Test case: `editTG 1`(No specified field to be edited) <br>
+   Expected: No tutorial group is modified. Error details shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Finding a Tutorial Group
+
+1. Finding a tutorial group while all tutorial groups are being shown.
+
+1. Prerequisites: Navigate to the Tutorial Group view using `prevView` or `viewTG MODULE_INDEX`. List all tutorial groups using the `listTG` command. 
+Add two tutorial groups using the commands `addTG tg/T03 day/MON start/11:00 end/13:00` and `addTG tg/B03 day/MON start/11:00 end/13:00`.
+
+1. Test case: `findTG b` <br>
+   Expected: The list is filtered to only show the tutorial group whose code contains the letter _b_. The number of matching tutorial groups is shown in the status message.
+
+1. Test case: `findTG`(No specified keyword) <br>
+   Expected: The list is not filtered. Error details shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Listing all Tutorial Groups
+
+1. Listing all tutorial groups while not all tutorial groups are being shown.
+
+1. Prerequisites: Navigate to the Tutorial Group view using `prevView` or `viewTG MODULE_INDEX`. List all tutorial groups using the `listTG` command. 
+Filter the list shown using the `findTG b` command. This should make the list to only show the tutorial groups whose code match the letter _b_.
+
+1. Test case: `listTG` <br>
+   Expected: The list is restored to show all tutorial groups. A message indicating that all tutorial groups are shown is shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Viewing the Students of a Tutorial Group
+
+1. Viewing all students of a tutorial group.
+
+1. Prerequisites: Navigate to the Tutorial Group view using `prevView` or `viewTG MODULE_INDEX`. List all tutorial groups using the `listTG` command. 
+Add a tutorial group using the command `addTG tg/T03 day/MON start/11:00 end/13:00`.
+
+1. Test case: `viewStudent 1` <br>
+   Expected: The view is changed from Tutorial Group view to Student view. The list shown is restored to show all students of the first tutorial group. A message indicating that all students are shown is shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Clearing Trackr
+
+1. Clearing all data in Trackr.
+
+1. Prerequisites: List all modules using the `listMod` command. 
+
+1. Test case: `clear` <br>
+   Expected: The view is changed to Module view. The list shown is cleared. A message indicating that Trackr has been cleared is shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Exiting Trackr
+
+1. Exiting Trackr and saving all data.
+
+1. Prerequisites: List all modules using the `listMod` command. 
+
+1. Test case: `exit` <br>
+   Expected: Trackr will close by itself. The list shown is cleared. All data is saved automatically. When Trackr is re-launched, the same data will load.
 
 1. _{ more test cases …​ }_
 
@@ -835,6 +950,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Simulating a corrupted file. <br>
+    - Go to tp -> data -> modulelist.json.
+    - Change "moduleId" in line 3 to be "moduleeeeId"
+    - Close Trackr
+    - Re-launch Trackr
+    Expected: Trackr will start fresh. All data will be deleted when a command is executed.
+
+1. Suggestion: When data is missing unexpectedly, go over to modulelist.json and copy paste the file to another document. Check if each of the field is named correctly.
 
 1. _{ more test cases …​ }_
