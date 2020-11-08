@@ -9,7 +9,7 @@ SWEe! is a desktop application used for managing CS2103T learning progress mainl
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kimberlyohq)
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kimberlyohq&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements implemented**:
     - Refactored `Person` to `Flashcard` and updated relevant test cases [#26](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/26)
