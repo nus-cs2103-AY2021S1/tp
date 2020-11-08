@@ -110,6 +110,16 @@ public class SortTaskParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
 
+        // empty input
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            SortTaskCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, " ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            SortTaskCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            SortTaskCommand.MESSAGE_USAGE));
+
         // invalid input that only has one word
         assertParseFailure(parser, "a", Criterion.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "pr", Criterion.MESSAGE_CONSTRAINTS);
@@ -117,6 +127,8 @@ public class SortTaskParserTest {
         assertParseFailure(parser, "na", Criterion.MESSAGE_CONSTRAINTS);
 
         // invalid input that has more than one word
+
+        // invalid [r]
         assertParseFailure(parser, "a na", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 SortTaskCommand.MESSAGE_USAGE));
 
@@ -128,5 +140,14 @@ public class SortTaskParserTest {
 
         assertParseFailure(parser, "n date", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 SortTaskCommand.MESSAGE_USAGE));
+
+        // invalid criterion
+        assertParseFailure(parser, "r pri", String.format(Criterion.MESSAGE_CONSTRAINTS));
+
+        assertParseFailure(parser, "r prior", String.format(Criterion.MESSAGE_CONSTRAINTS));
+
+        assertParseFailure(parser, "r datee", String.format(Criterion.MESSAGE_CONSTRAINTS));
+
+        assertParseFailure(parser, "r nameee", String.format(Criterion.MESSAGE_CONSTRAINTS));
     }
 }
