@@ -1171,7 +1171,7 @@ MSS:
 
     Use case resumes at step 1.
 
-**Use case: UC116 - Export flashcard data file**
+**Use case: UC16 - Export flashcard data file**
 
 **Actor: User**
 
