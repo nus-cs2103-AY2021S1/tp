@@ -2,6 +2,7 @@ package quickcache.logic.parser;
 
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_ANSWERS;
+import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_DIFFICULTIES;
 import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_QUESTIONS;
 import static quickcache.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static quickcache.logic.parser.CliSyntax.PREFIX_CHOICE;
@@ -63,6 +64,10 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
                 questionInString, argMultimap.getValue(PREFIX_ANSWER).get(), choicesList);
 
         if (arePrefixesPresent(argMultimap, PREFIX_DIFFICULTY)) {
+
+            if (argMultimap.getAllValues(PREFIX_DIFFICULTY).size() > 1) {
+                throw new ParseException(MESSAGE_TOO_MANY_DIFFICULTIES);
+            }
             Difficulty difficulty = ParserUtil.parseDifficulty(argMultimap.getValue(PREFIX_DIFFICULTY).get());
             Flashcard flashcard = new Flashcard(question, tagList, difficulty);
             return new AddMultipleChoiceQuestionCommand(flashcard);

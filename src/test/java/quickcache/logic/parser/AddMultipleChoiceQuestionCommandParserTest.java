@@ -2,10 +2,13 @@ package quickcache.logic.parser;
 
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_ANSWERS;
+import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_DIFFICULTIES;
 import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_QUESTIONS;
 import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_ONE;
 import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.CHOICE_DESC;
+import static quickcache.logic.commands.CommandTestUtil.DIFFICULTY_DESC_HIGH;
+import static quickcache.logic.commands.CommandTestUtil.DIFFICULTY_DESC_LOW;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
 import static quickcache.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -52,11 +55,19 @@ public class AddMultipleChoiceQuestionCommandParserTest {
     }
 
     @Test
-    public void parse_mutipleAnswersPresent_failure() {
+    public void parse_multipleAnswersPresent_failure() {
         // multiple answers - not accepted
         CommandParserTestUtil.assertParseFailure(parser,
                 QUESTION_DESC_ONE + ANSWER_DESC_TWO + ANSWER_DESC_ONE + CHOICE_DESC,
                 MESSAGE_TOO_MANY_ANSWERS);
+    }
+
+    @Test
+    public void parse_multipleDifficultiesPresent_failure() {
+        // multiple difficulties - not accepted
+        CommandParserTestUtil.assertParseFailure(parser,
+                QUESTION_DESC_ONE + ANSWER_DESC_ONE + CHOICE_DESC + DIFFICULTY_DESC_LOW + DIFFICULTY_DESC_HIGH,
+                MESSAGE_TOO_MANY_DIFFICULTIES);
     }
 
     @Test
