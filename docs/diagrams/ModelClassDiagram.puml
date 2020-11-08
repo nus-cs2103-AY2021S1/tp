@@ -26,11 +26,9 @@ Class UniqueExerciseList
 Package ExerciseTag {
 Class ExerciseTag
 }
-}
 
 Package MuscleTag {
 Class MuscleTag
-}
 }
 
 Class HiddenOutside #FFFFFF
