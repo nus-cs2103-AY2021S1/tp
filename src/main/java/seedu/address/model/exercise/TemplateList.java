@@ -97,7 +97,7 @@ public class TemplateList {
     /**
      * Empty the content of TemplateList.
      */
-    public static void reset() throws IOException{
+    public static void reset() throws IOException {
         list.clear();
         observableList.clear();
         Template.writeToFile(list);
