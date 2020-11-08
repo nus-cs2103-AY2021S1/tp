@@ -439,6 +439,8 @@ The proposed Edit Schedule mechanism is facilitated by `Addressbook`, similar to
 
 This operation is exposed in the `Model` interface as `Model#setSchedule()`.
 
+#### 3.6.1 Implementation
+
 Similar to the Edit Session mechanism, the example usage scenario below shows how Edit Schedule mechanism behaves:
 
 The user executes `schedit c/1 s/1 us/2` command to edit the Schedule with the first Session and first Client in the address book. 
@@ -453,9 +455,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     <figcaption>Figure 20 - Edit Schedule Activity Diagram</figcaption>
 </figure>
 
-#### 3.6.1 Design consideration:
-
-##### 3.6.1.1 Aspect: How edit schedule executes
+#### 3.6.2 Design consideration:
 
 * **Alternative 1 (current choice):** Retrieve Schedule using Client and Session Index.
   * Pros: Clearer to retrieve.
@@ -675,18 +675,17 @@ Use case ends.
     
 **Extensions**
 
-* 1a. The client is within the list.
+* 1a. The Client is within the list.
     
     * 1a1. FitEgo shows an error message.
 
       Use case ends.
       
-* 1b. The Session is missing some required details.
+* 1b. The Client is missing some required details.
 
     * 1b1. FitEgo shows an error message.
     
        Use case ends.
-       
 
 <br/>
 
