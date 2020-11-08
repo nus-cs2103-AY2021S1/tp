@@ -4,14 +4,12 @@
 ![Ui](docs/images/Ui.png)
 
 ## Project scope
-  
-* ProductiveNUS is a desktop application that provides an accessible platform for 
-NUS computing students to manage and keep track of their 
-academic tasks at hand.  
+* ProductiveNUS is a desktop application that provides an accessible platform for NUS computing students to manage and keep track of their academic tasks at hand.  
 
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) 
-  than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
+ * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) 
+ than what students usually write in beginner-level SE modules, without being overwhelmingly big.
+ * It comes with a **reasonable level of user and developer documentation**.
+ 
 ## Motivation
 * As a NUS Computing Student, you would probably have had **difficulties managing your
 academic schedule**. You might often feel overwhelmed due to 
@@ -38,7 +36,6 @@ tasks still remain uncompleted. You might have been spinning your wheels.
 | 4   | Poor time manager | delete assignments                    | remove assignments that I have completed  or added wrongly                |
 | 5   | Poor time manager | view lessons and assignments together | view all the assignments I have to complete amidst  my lessons            |
 
-
 ## Current features supported
 * Importing timetable from NUSMods
 * Adding assignments to ProductiveNUS
@@ -55,5 +52,5 @@ tasks still remain uncompleted. You might have been spinning your wheels.
 * [About Us](https://ay2021s1-cs2103t-f11-3.github.io/tp/AboutUs.html)
 
 ## Acknowledgements
-
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="800" onCloseRequest="#handleExit" title="ProductiveNUS" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="1000" onCloseRequest="#handleExit" title="ProductiveNUS" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -69,7 +69,7 @@
                 </padding>
               </VBox>
             </VBox>
-            <GridPane styleClass="grid-with-vgap" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <GridPane styleClass="grid-with-vgap" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" GridPane.hgrow="ALWAYS">
               <columnConstraints>
                 <ColumnConstraints />
               </columnConstraints>
@@ -78,7 +78,7 @@
                 <RowConstraints percentHeight="60.0" />
               </rowConstraints>
               <children>
-                <VBox fx:id="reminderList" minWidth="170" prefWidth="340" styleClass="black-pane-with-big-round-border">
+                <VBox fx:id="reminderList" minWidth="170" prefWidth="340" GridPane.hgrow="ALWAYS" styleClass="black-pane-with-big-round-border">
                   <VBox alignment="CENTER">
                     <padding>
                       <Insets bottom="20" left="10" right="10" top="10" />
@@ -90,7 +90,7 @@
                     <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
                 </VBox>
-                <VBox fx:id="taskList" minWidth="170" prefWidth="340" styleClass="black-pane-with-big-round-border" GridPane.rowIndex = "1">
+                <VBox fx:id="taskList" minWidth="170" prefWidth="340" GridPane.hgrow="ALWAYS" styleClass="black-pane-with-big-round-border" GridPane.rowIndex = "1">
                   <VBox alignment="CENTER">
                     <padding>
                       <Insets bottom="20" left="10" right="10" top="10" />
@@ -109,8 +109,6 @@
                   <RowConstraints />
                </rowConstraints>
         </GridPane>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

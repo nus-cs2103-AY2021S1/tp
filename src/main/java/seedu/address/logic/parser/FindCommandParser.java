@@ -33,14 +33,14 @@ public class FindCommandParser implements Parser<FindCommand> {
         return countPrefixesPresent > 1;
     }
 
-    private static FindCommand findByName(String[] keywords) throws ParseException {
+    private FindCommand findByName(String[] keywords) throws ParseException {
         for (String keyword : keywords) {
             ParserUtil.parseName(keyword);
         }
         return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
-    private static FindCommand findByModuleCode(String[] keywords) throws ParseException {
+    private FindCommand findByModuleCode(String[] keywords) throws ParseException {
         for (String keyword : keywords) {
             ParserUtil.parseModuleCode(keyword);
         }
@@ -71,7 +71,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
     }
 
-    private static FindCommand findByDeadline(String[] keywords) throws ParseException {
+    private FindCommand findByDeadline(String[] keywords) throws ParseException {
         requireNonNull(keywords);
         for (String keyword : keywords) {
             boolean isDateFormat = keyword.matches("^\\d{2}-\\d{2}-\\d{4}$");
@@ -89,14 +89,14 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(new DeadlineContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
-    private static FindCommand findByPriority(String[] keywords) throws ParseException {
+    private FindCommand findByPriority(String[] keywords) throws ParseException {
         for (String keyword : keywords) {
             ParserUtil.parsePriority(keyword);
         }
         return new FindCommand(new PriorityContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
-    private static String[] getKeywords(Prefix prefix, ArgumentMultimap argMultimap) {
+    private String[] getKeywords(Prefix prefix, ArgumentMultimap argMultimap) {
         assert argMultimap.getValue(prefix).isPresent();
         return argMultimap.getValue(prefix).get().split("\\s+");
     }

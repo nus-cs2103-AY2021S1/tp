@@ -16,8 +16,6 @@ import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.PriorityContainsKeywordsPredicate;
 import seedu.address.model.task.ModuleCode;
 
-
-
 public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
