@@ -718,7 +718,7 @@ attribute.
 | Property ID| `P1`  `P4` | The property has to exist to create the meeting. The letter "P" has to be capitalised.|
 | Venue| `Bedok Mall Starbucks` `Tampines St 3, BLK 222, #05-211`| Represents meeting venue. This does not have to be at the property itself. The length of the name of the venue can be as long as you want. |
 | Date| `12-12-2021` `12-08-2021`| Date has to be of the format `DD-MM-YYYY` and cannot be a past date.|
-| Start Time, End Time| `16:20` `14:20`| Time has to be of the format `HH:MM`. The meetings timings are allowed to clash each other and can be past midnight.|
+| Start Time, End Time| `16:20` `14:20`| Time has to be of the format `HH:MM`. The meetings timings are allowed to clash each other and can be past midnight. The timings area allowed to overflow(if 24:30 is keyed in the output will be 00:30).|
 
 💡 Note that we currently do not support conflicts between the start and end time of a meeting. 
 The user has to take into account if the start or end time that is added will overlap with any existing meetings in the meeting book.
