@@ -338,8 +338,8 @@ Format: `delete INDEX`
 * `INDEX` **must be a positive number** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 9`. Deletes the 9th patient in the patient database.
-* `find Betsy` followed by `delete 1`. Deletes the 1st patient in the results of the `find` command.
+* `list` followed by `delete 9` deletes the 9th patient in the patient database.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 <div markdown="block" class="alert alert-info">
 
