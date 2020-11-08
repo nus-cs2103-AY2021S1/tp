@@ -48,12 +48,10 @@ public class ExerciseCard extends UiPart<Region> {
         calories.setText(exercise.getCaloriesPerRep().toString());
 
         // Add hover tool tip when exercise name is too long
-        if (exercise.getName().value.length() > 40) {
-            Tooltip nameToolTip = new Tooltip(exercise.toString());
-            nameToolTip.setFont(Font.font("Segoe UI", 12));
-            name.setTooltip(nameToolTip);
-            nameToolTip.setShowDelay(Duration.seconds(1));
-        }
+        Tooltip nameToolTip = new Tooltip(exercise.toString());
+        nameToolTip.setFont(Font.font("Segoe UI", 12));
+        name.setTooltip(nameToolTip);
+        nameToolTip.setShowDelay(Duration.seconds(2));
     }
 
     @Override

@@ -55,13 +55,11 @@ public class LogCard extends UiPart<Region> {
 
         comments.setText("Comments: " + log.getComment().value);
 
-        // Add hover tool tip when comment is too long
-        if (log.getComment().value.length() > 40) {
-            Tooltip commentToolTip = new Tooltip(log.toString());
-            comments.setFont(Font.font("Segoe UI", 12));
-            comments.setTooltip(commentToolTip);
-            commentToolTip.setShowDelay(Duration.seconds(1));
-        }
+        // Add hover tool tip when exercise name is too long
+        Tooltip exerciseNameToolTip = new Tooltip(log.toString());
+        exerciseNameToolTip.setFont(Font.font("Segoe UI", 12));
+        exercise.setTooltip(exerciseNameToolTip);
+        exerciseNameToolTip.setShowDelay(Duration.seconds(2));
     }
 
     @Override

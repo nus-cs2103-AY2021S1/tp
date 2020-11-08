@@ -18,6 +18,12 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user may not remember the command
    clearly and the user can refer the suggested commands.
    
+* **New Feature**: Added tooltip feature.
+     * What it does: allows the user to view information of exercises and logs which are too long to be displayed on
+      the screen.
+     * Justification: This feature improves the product significantly because the user can view the information of
+      exercises and logs fully.
+      
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=Jillzyt&tabRepo=AY2021S1-CS2103-F10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
@@ -29,6 +35,9 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Updated AboutUs.md documentation for the team
+    * Updated command summary
+    * Check UG thoroughly and created significant issues such as [\#180](https://github.com/AY2021S1-CS2103-F10-3/tp
+    /pull/180)
   * Developer Guide:
     * Added implementation details of the `Better user interface` feature.
     * Added implementation details of the `onFocus command suggestion list` feature.
