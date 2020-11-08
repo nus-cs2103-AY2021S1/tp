@@ -309,10 +309,7 @@ public class MainApp extends Application {
     }
 
     /**
-     *
-     * @param moduleList
-     * @param archivedModuleList
-     * @return
+     * Returns true if two module lists do not have duplicate modules
      */
     private boolean hasDuplicateModules(ReadOnlyModuleList moduleList, ReadOnlyModuleList archivedModuleList) {
         for (int i = 0; i < moduleList.getModuleList().size(); i++) {
