@@ -14,7 +14,7 @@ public class ArchiveListCommand extends Command {
 
     public static final String COMMAND_WORD = "c-archive-list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all archived employees.";
+    public static final String MESSAGE_SUCCESS = "Listed all archived employees in Employee Directory.";
 
     @Override
     public CommandResult execute(Model model) {
