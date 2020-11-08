@@ -26,7 +26,7 @@ Given below are my contributions to the project.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: This feature was refactored from the `find` feature in AddressBook Level 3.
 
-* **New Feature 4**: Added the ability to delete a consumed recipe in the consumption list. (Pull requests [\#78](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/78))
+* **New Feature 4**: Added the ability to delete a consumed recipe in the consumption list. (Pull requests [\#78](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/78)) <br><br>
   * What it does: allows users to delete a consumed recipe from the consumption list.
   * Justification: This feature improves the product significantly because a user can now delete the recipes that they do not want anymore from the consumption list.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.

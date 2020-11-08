@@ -285,6 +285,11 @@ Everyone should have permission to access the image path or online image URL you
      --------|--------------|--------|-------------
      <img src="images/healthy1.png" width="150" height="100"> | images/healthy1.jpg | <img src="images/healthy4.png" width="150" height="100"> | images/healthy4.jpg
      <img src="images/healthy2.png" width="150" height="100"> | images/healthy2.jpg | <img src="images/healthy5.png" width="150" height="100"> | images/healthy5.jpg
+
+<div style="page-break-after: always;"></div>
+
+Image | File Path | Image | File Path
+     --------|--------------|--------|-------------
      <img src="images/healthy3.png" width="150" height="100"> | images/healthy3.jpg | <img src="images/healthy6.png" width="150" height="100"> | images/healthy6.jpg
 
 * `INSTRUCTION` will take in a series of instruction text and Wishful Shrinking will automatically separate each
@@ -380,6 +385,11 @@ Multiple ingredients are separated by `,`.
   Usage | Action | Example | Outcome
   ---------|-----------------------|---------|---------
   Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images/wishful<br>/data/myimage.png | Local image will be displayed
+  
+<div style="page-break-after: always;"></div>
+  
+  Usage | Action | Example | Outcome
+  ---------|-----------------------|---------|---------
   Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg or jpeg or png | The image will be downloaded into data folder and displayed
   Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to this [table](#table) ) | img/images/healthy1.jpg | Sample image is displayed
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
@@ -391,6 +401,9 @@ Multiple ingredients are separated by `,`.
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
     Specifying an empty tag prefix: `t/` will clear all tags if any of the specified recipe.
 </div> 
+
+
+<div style="page-break-after: always;"></div>
      
 * You are not allowed to edit a recipe into an already existing recipe in the Recipe List.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
@@ -524,6 +537,7 @@ Examples:
  all `lettuce`, `onion` and `tomato` in your Fridge.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
 
 ### 5.1.10 Clearing all recipes : `clearR` <a id="clear-recipe"></a>
 Contributed by: Tian Yong
@@ -545,6 +559,8 @@ The Fridge-related commands include [`addF`](#add-ingredient), [`fridge`](#list-
  commands in Wishful Shrinking that are relevant only to the Fridge.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.2.1 Adding an ingredient: `addF` <a id="add-ingredient"></a>
 Contributed by: Caitlin, Olivia
 
@@ -553,8 +569,6 @@ Contributed by: Caitlin, Olivia
 <br>  The image below is what Wishful Shrinking looks like after you have added an ingredient to the Fridge. <br><br>
 <img src="images/feature/ingredient/AddIngredientImage.png" width="550" height="300">
 <br><br><br>
-
-<div style="page-break-after: always;"></div>
 
 Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
@@ -607,6 +621,9 @@ Format: `deleteF INDEX`
 
 Examples:
 * `fridge` followed by `deleteF 4` deletes the 4th ingredient in the Fridge.
+
+<div style="page-break-after: always;"></div>
+
 * `searchF peanut` followed by `deleteF 1` deletes the 1st ingredient in the results of the `searchF` command.
 <br><br><br>
 
@@ -624,6 +641,9 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 * Edits the ingredient at the specified `INDEX`.
 * The index refers to the index number shown in the recent displayed Ingredient List.
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole`.
+
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
