@@ -628,8 +628,8 @@ Contributed by: Caitlin
 
 <br> Finds ingredients in the Fridge that contain any of the given keywords.
 
-<br>  The image below is what Wishful Shrinking looks like after you have searched for ingredients in the Fridge
- <br><br>
+<br>  The image below is what Wishful Shrinking looks like after you have searched for ingredients in the Fridge <br><br>
+
 <img src="images/feature/ingredient/SearchIngredientImage.png" width="550" height="300">
 <br><br><br>
 
@@ -655,9 +655,8 @@ Contributed by: Tian Yong
 
 <br> Clears all the ingredients in the Fridge.
 
-<br>  The image below is what Wishful Shrinking looks like after you have cleared all ingredients in the Fridge
-. <br
-><br>
+<br>  The image below is what Wishful Shrinking looks like after you have cleared all ingredients in the Fridge <br><br>
+
 <img src="images/feature/ingredient/ClearFridgeImage.png" width="550" height="300">
 <br><br><br>
 
