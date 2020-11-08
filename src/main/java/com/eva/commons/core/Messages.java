@@ -9,6 +9,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d person(s) listed!";
+    public static final String MESSAGE_STAFFS_LISTED_OVERVIEW = "%1$d staff(s) listed!";
+    public static final String MESSAGE_APPLICANTS_LISTED_OVERVIEW = "%1$d applicant(s) listed!";
     public static final String MESSAGE_INVALID_COMMAND_AT_PANEL = "You cannot perform this command here! \n%1$s";
     public static final String MESSAGE_INVALID_APPLICANT_DISPLAYED_INDEX = "The applicant index provided is invalid";
 }
