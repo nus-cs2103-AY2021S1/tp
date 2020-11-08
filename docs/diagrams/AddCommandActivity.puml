@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+
+start
+
+:User enters an Add Module
+command in the command box;
+
+:TrackrParser parses the argument
+to determine which command parser
+should further parse it;
+
+:AddModuleCommandParser
+parses the user input;
+
+if () then ([valid command input format])
+        if () then ([Trackr is in Module View])
+            if () then ([else])
+                :Module is successfully
+                added to Model;
+            else ([Module to be added already exists])
+                :throws CommandException with
+                duplicate module error message;
+            endif
+        else ([else])
+            :throws CommandException with
+            not in module view error message;
+        endif
+else ([else])
+    :throws ParseException
+    with command usage
+    direction;
+endif
+:returns feedback to user;
+
+stop
+@enduml

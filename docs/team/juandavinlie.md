@@ -6,8 +6,8 @@ title: Juan Davin Lie's Project Portfolio Page
 ## Project: Trackr
 
 ### Project Overview
-Trackr is an application that is made specially for Teaching Assistants(TAs) to manage and analyze their student records. 
-It takes in user input in the form of Command Line Interface(CLI) and automatically stores it in an organized manner. 
+Trackr is an application that is made specially for Teaching Assistants(TAs) to manage and analyze their student records.
+It takes in user input in the form of Command Line Interface(CLI) and automatically stores it in an organized manner.
 Not only for storage, Trackr can also be used by TAs to do analytics on their students' performances thus making it 
 easier for them to cater to their students' needs. It currently has over 10kLoC
 
