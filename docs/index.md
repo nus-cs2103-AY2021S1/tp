@@ -8,7 +8,7 @@ title: ResiReg
 
 ![Ui](images/Ui.png)
 
-**ResiReg** (**Res**idential **Reg**ulation) is a productivity app designed to help admin staff at Residential Colleges (RCs)\* in NUS with their daily tasks. ResiReg allows admin to allocate rooms to students, manage students records, generate billing and OHS reports, and export CSVs for easy reference and sharing.
+**ResiReg** (**Resi**dential **Reg**ulation) is a productivity app designed to help admin staff at Residential Colleges (RCs) in NUS with their daily tasks. 
 
 **ResiReg** has the following main features:
 

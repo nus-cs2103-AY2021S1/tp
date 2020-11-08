@@ -1,4 +1,4 @@
-package seedu.resireg.ui;
+package seedu.resireg.ui.student;
 
 import java.util.logging.Logger;
 
@@ -11,6 +11,7 @@ import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.ui.UiPart;
 
 /**
  * Panel containing the list of students.
