@@ -815,32 +815,6 @@ This captures different scenarios of how a user will perform tasks while using _
 
 <div markdown="block" class="alert alert-success">
 
-**Use Case: UC - Adding an account**
-
-**MSS**
-
-1. User request to add a new account.
-2. Common Cents adds account to account list and displays success message
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given command input is in invalid format.
-
-    * 1a1. Common Cents shows an error message.
-
-      Use case resumes at step 1.
-      
-* 1b. The account to be added has the same name as an existing account in Common Cents.
-
-    * 1b1. Common Cents shows an error message.
-
-      Use case resumes at step 1.
-</div>
-
-<div markdown="block" class="alert alert-success">
-
 **Use Case: UC - Listing accounts**
 
 **MSS**
@@ -871,7 +845,7 @@ This captures different scenarios of how a user will perform tasks while using _
 
       Use case resumes at step 2.
 
-* 2b. Common Cents only has an account.
+* 2b. Common Cents only has one account.
 
     * 2b1. Common Cents shows an error message.
     
@@ -966,7 +940,6 @@ This specifies criteria that can be used to judge the operation of _Common Cents
 4.  Should be able to perform simple arithmetic with up to 1000 entries without a significant drop in performance
 5.  Should be able to understand the layout of product without much reference to the user guide
 6.  Should be able to hold up to 100 accounts without taking up excess memory
-*{More to be added}*
 
 ### Glossary
 Definitions of certain terms used in this Developer Guide.
