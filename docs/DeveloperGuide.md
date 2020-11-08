@@ -481,16 +481,16 @@ Step 1: The user enters `startproject 2` for example to start project 1 from the
 
    *Figure 23: What the app looks like after 'start 2' command*
 
-Step 2: The user enters a New Teammate command such as `addteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon
+Step 2: The user enters a AddPerson command such as `addteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon
 @gmail.com ma/13 Cupertino Loop`. The command text is passed into `LogicManager` (an implementation of Logic) which
  passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is
-  `addteammate`. A new instance of `TeammateCommandParser` class is then created which proceeds to parse the various
+  `addperson`. A new instance of `TeammateCommandParser` class is then created which proceeds to parse the various
    fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
 
 If the fields are all valid, a new `Person` object would be created in the same class and passed into the
- `AddTeammateCommand` class. 
+ `AddPersonCommand` class. 
 
-Within the `AddTeammateCommand` class, an instance of `AddTeammateCommand` is created, along with an instance of the
+Within the `AddTeammateCommand` class, an instance of `AddPersonCommand` is created, along with an instance of the
  teammate created in the same class and this instance of `Command` is passed back to `LogicManager`.
 
 LogicManager then calls the method `execute` of the NewTeammateCommand which stores the teammate into the respective
@@ -498,13 +498,13 @@ LogicManager then calls the method `execute` of the NewTeammateCommand which sto
  While seeming to increase coupling, it however keeps both classes separate and would not break each other when something is changed.
 
 The diagram below summarises what is happening above with the help of a sequence diagram:
-![AddTeammateSequenceDiagramImage](images/AddTeammateSequenceDiagram.png)
+![AddPersonSequenceDiagramImage](images/AddPersonSequenceDiagram.png)
 
    *Figure 24: Sequence Diagram of the 'addteammate' command*
 
 The diagram below gives a short overview on what happens when a user's input is received:
 
-![AddTeammateActivityDiagramImage](images/AddTeammateActivityDiagram.png)
+![AddPersonActivityDiagramImage](images/AddPersonActivityDiagram.png)
 
    *Figure 25: Activity Diagram of the 'addteammate' command*
 
