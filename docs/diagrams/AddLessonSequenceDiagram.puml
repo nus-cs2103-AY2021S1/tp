@@ -24,5 +24,8 @@ return
 planus -> planus: addTaskToCalendar(task)
 return
 end
+return
+model -> model: updateFilteredLessonList(...)
+return
 
 @enduml
