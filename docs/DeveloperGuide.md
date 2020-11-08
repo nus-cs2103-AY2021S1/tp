@@ -1377,3 +1377,32 @@ testers are expected to do more *exploratory* testing.
        
     1. Test case: `detail delete`
            Expected: Similar to previous.
+
+1. Adding attendance to a student.
+
+    1. Prerequisite: List all students using `list` command. Multiple students present.
+
+    1. Test case: `attendance add 1 d/12/02/2020 a/present`
+       Expected: New attendance that matches the input date and status is added to the first student.
+
+    1. Test case: `attendance add 1 d/12/02/2020 a/present f/attentive`
+       Expected: New attendance that matches the input date, status and feedback is added to the first student.
+
+    1. Test case: `attendance add 1 d/12/02/2020 a/pre`
+       Expected: No attendance added. Error details shown in status message. List stays the same.
+
+    1. Test case: `attendance add 1 d/12/02 a/present`
+       Expected: Similar to previous.
+
+1. Deleting attendance record from a student.
+
+    1. Prerequisite: List all students using `list` command. Multiple students present. Student to be edited has at least one attendance record.
+       
+    1. Test case: `attendance delete 1 d/12/02/2020`
+       Expected: Attendance record that has the input date in the first student is deleted.
+           
+    1. Test case: `attendance delete 1 d/12/02`
+       Expected: No attendance deleted. Error details shown in status message.
+
+    1. Test case: `attendance delete d/12/02/2020`
+       Expected: Similar to previous.
