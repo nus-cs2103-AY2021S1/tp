@@ -52,7 +52,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1 c/expense`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -67,7 +67,7 @@ The UI component represents elements directly interacting with the user.
 
 **API:** The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AccountListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/Ui.java)
 
@@ -97,21 +97,30 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `deleteacc 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteAccountCommandParser`, `DeleteAccountCommand` and `CommandResultFactory` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteAccountCommandParser` and `DeleteAccountCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
 </div>
 
 ### Model component
-The model component stores the relevant data for _Common Cents_.<br>
+The model component stores the relevant data for _Common Cents_. The model component consist of two key aspects, the `Model` and the `ActiveAccount`<br>
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/model/Model.java), [`ActiveAccount.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/model/account/ActiveAccount.java)
 
 The `Model`,
 
+* Responsible for managing the data of Accounts
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the CommonCents data.
 * stores an unmodifiable list of Accounts.
+* does not depend on any of the other three components.
+
+The `ActiveAccount`,
+
+* Responsible for managing the data of the currently active Account
+* stores a `Account` object that represents the current Account that the user is managing.
+* stores an `ObservableList<Expense>` that can be `observed` e.g. the UI can be bounde to this list so that the UI automatically updates when the data in the list change.
+* stores an `ObservableList<Revenue>` that can be `observed` e.g. the UI can be bounde to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Entry` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object.<br>
@@ -133,7 +142,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.cc.commons` package.
+Classes used by multiple components are in the [`seedu.cc.commons`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/commons) package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1098,10 +1107,10 @@ Basic instructions to test entry-level commands of _Common Cents_.
 ### Account-level commands
 Basic instructions to test account-level commands of _Common Cents_.
 1. Adding a new unique account
-   1. Prerequisite: Ensure no accounts in Common Cents has the name `New Account`.
+   1. Prerequisite: Ensure no accounts in _Common Cents_ has the name `New Account`.
 
    1. Test case: `newacc n/New Account`<br>
-      Expected: New account is added to Common Cents. (use `listacc` command to check) First expense entry is deleted from the expense list. 
+      Expected: New account is added to _Common Cents_. (use `listacc` command to check) First expense entry is deleted from the expense list. 
       Details of the added account is shown in the status message.
    
    1. Test case: `newacc n/`<br>
@@ -1129,7 +1138,7 @@ Basic instructions to test saving and loading of user data of _Common Cents_.
 1. Dealing with missing/corrupted data files
 
    1. Prerequisite: Remove commonCents.json in data folder in the home folder.
-   1. Launch Common Cent via CLI
+   1. Launch _Common Cents_ via CLI
        1. Expected: CLI displays log stating that data file is not found and a sample data is loaded. Common Cents
        launches with two accounts, `Default Account 1` and `Default Account 2` and each account has sample expenses and revenues.
 
