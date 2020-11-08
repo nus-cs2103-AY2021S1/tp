@@ -36,7 +36,8 @@ public class ListCommandTest {
             String dateAndTimeToParse = assignment.getDeadline().value;
             LocalDateTime currentDateAndTime = LocalDateTime.now();
             assert index.isPresent();
-            long inputNumberOfDays = Optional.of(index.get().getZeroBased()).get();
+            int zeroBaseValue = index.get().getZeroBased();
+            long inputNumberOfDays = Optional.of(zeroBaseValue).get();
             LocalDateTime lastDateAndTime = currentDateAndTime.plusDays(inputNumberOfDays);
             LocalDateTime parsedDateAndTime = LocalDateTime.parse(dateAndTimeToParse, inputFormat);
 

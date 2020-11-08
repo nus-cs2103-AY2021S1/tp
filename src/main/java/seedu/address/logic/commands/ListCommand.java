@@ -16,7 +16,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.task.Time;
 
 /**
- * Lists all tasks in ProductiveNUS to the user.
+ * Lists assignments in ProductiveNUS to the user.
  */
 public class ListCommand extends Command {
 
@@ -49,7 +49,8 @@ public class ListCommand extends Command {
             String dateAndTimeToParse = assignment.getDeadline().value;
             LocalDateTime currentDateAndTime = LocalDateTime.now();
             assert numberOfDays.isPresent();
-            long inputNumberOfDays = Optional.of(numberOfDays.get().getZeroBased()).get();
+            int zeroBaseValue = numberOfDays.get().getZeroBased();
+            long inputNumberOfDays = Optional.of(zeroBaseValue).get();
             LocalDateTime lastDateAndTime = currentDateAndTime.plusDays(inputNumberOfDays);
             LocalDateTime parsedDateAndTime = LocalDateTime.parse(dateAndTimeToParse, inputFormat);
 
