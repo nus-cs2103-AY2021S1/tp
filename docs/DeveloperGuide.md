@@ -121,12 +121,12 @@ The `SalesRecordEntry` sub-component,
 * stores the sales book data
 * exposes an unmodifiable `ObservableList<SalesRecordEntry>` that can be 'observed'. The UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The text in the middle of the
+<div markdown="block" class="alert alert-info">:information_source: **Note:** The text in the middle of the
  association arrows represents the role of the class at the arrow head. However, due to a limitation of
  PlantUML, where there cannot be two textboxes at the arrow head, the role has been placed in the middle of the arrow.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -217,7 +217,7 @@ The following sequence diagram shows how the sales update operation works:
 
 ![SalesUpdateSequenceDiagram](images/SalesUpdateSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SalesUpdateCommand`
+<div markdown="block" class="alert alert-info">:information_source: **Note:** The lifeline for `SalesUpdateCommand`
  and the `SalesUpdateCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the
   lifeline reaches the end of diagram.
 </div>
