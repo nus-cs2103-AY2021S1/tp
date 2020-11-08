@@ -266,9 +266,11 @@ The keywords are stored in a `List<String>` that is passed into the constructor 
 ##### FindCommandParser Class
 The `FindCommandParser` class implements `Parser<FindCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `FindCommand` object. It contains private methods which checks for the presence of multiple prefixes and invalid keywords, which will throw a `ParseException` if detected.
 
-Its `parse` method takes in a string of user input. If there are no multiple prefixes found and user input is not empty, it would then check for the type of prefix present as well as whether there is a preamble before the prefix and after the `find` input command. This ensures that there are no invalid command formats used by the user. 
+Its `parse` method takes in a string of user input. If there are no multiple prefixes found and user input is not empty, it would then check for the type of prefix present as well as whether there is a preamble before the prefix and after the `find` input command. This ensures that there are no invalid command formats used by the user. An example of a preamble in the user input would be `find hi n/Lab 3`, whereby "hi" makes it an invalid command format.
 
-If no invalid command format is detected, each keyword in the string of keywords are parsed in a for loop. For name, module code and priority keywords, parsing is done via its parse method in `ParserUtil` to ensure that each keyword is valid. These parse methods are `parseName`, `parseModuleCode` and `parsePriority` respectively and they throw `ParseExceptions` in the event of invalid input. For date or time keywords, Regular expressions are used to identify its format, with date format being identified with `^\\d{2}-\\d{2}-\\d{4}$` and time format being identified with `^\\d{4}$`. Once the date and time keywords inputted by the user are identified, date keywords are parsed into `LocalDate` and time keywords are parsed into `LocalTime`. A `ParseException` will be thrown if a `DateTimeException` is caught in the event of failed parsing of date with `DateTimeFormatter` pattern `dd_MM-uuuu` or time with the `DateTimeFormatter` pattern `HHmm`.
+If no invalid command format is detected, each keyword in the `List<String>` of keywords are parsed in a for loop. For name, module code and priority keywords, parsing is done via its parse method in `ParserUtil` to ensure that each keyword is valid. These parse methods are `parseName`, `parseModuleCode` and `parsePriority` respectively and they throw `ParseExceptions` in the event of invalid input. 
+
+For date or time keywords, Regular expressions are used to identify its format, with date format being identified with `^\\d{2}-\\d{2}-\\d{4}$` and time format being identified with `^\\d{4}$`. Once the date and time keywords inputted by the user are identified, date keywords are parsed into `LocalDate` and time keywords are parsed into `LocalTime`. A `ParseException` will be thrown if a `DateTimeException` is caught in the event of failed parsing of date with `DateTimeFormatter` pattern `dd_MM-uuuu` or time with the `DateTimeFormatter` pattern `HHmm`.
 
 ##### FindCommand Class
 The `FindCommand` class extends abstract class `Command` and it is responsible for finding assignments based on the user's input keywords. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and a `Predicate<Assignment>` attribute, `predicate`. The constructor of `FindCommand` takes in a `Predicate<Assignment>` depending on the prefix or keywords in the user's input and its attribute `predicate` is initialized to this value.
@@ -335,7 +337,7 @@ deadlines within a 1 to 50 days from the current date and time, with the number 
 
 It implements the following operations:
 * `list` - Lists all assignments
-* `list 2` - List all assignments with deadline within 2 days (48 hours) from the current date (and time).
+* `list 2` - Lists all assignments with deadline within 2 days (48 hours) from the current date (and time).
 For example, if the current date and time is 22/10/2020 1200, assignments with deadlines from this date and time to
 24/10/2020 1200 will be displayed.
 
@@ -347,18 +349,35 @@ whereas finding assignments by date or time will only display assignments due on
 #### Current Implementation
 
 ##### ListCommandParser Class
-The `ListCommandParser` class implements `Parser<ListCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `ListCommand` object. Regular Expressions are used to identify the presence of an input argument in `args`, which takes into account all characters and even special characters. If no argument index is found in `args`, a `ListCommand` object which takes in an `Index` of zero base 0 is returned and this 0 value will identify the command as listing all assignments.
+The `ListCommandParser` class implements `Parser<ListCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `ListCommand` object. Regular Expressions are used to identify the presence of an input argument in `args`, which takes into account all characters and even special characters. If no argument index is found in `args`, a `ListCommand` object with an empty constructor is returned, which will identify the command as list all assignments.
 
-If input argument is found, it is then checked with Regular Expressions whether the argument is in the range 1 to 50 inclusive. If so, the string `args` is parsed into an `Index` which is then passed in as the argument to `ListCommand` that is returned.
+If input argument is found, it is then checked with Regular Expressions whether the argument is in the range 1 to 50 inclusive. If it is within range, the string `args` is parsed into an `Index` which is then passed in as the argument to the parameterized constructor of `ListCommand` object that is returned.
 
 ##### ListCommand Class
-The `ListCommand` class extends abstract class `Command` and it is responsible for listing assignments based on the user's input command. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and an `Index` attribute, `numberOfDays`. The constructor of ListCommand takes in an `Index` and its attribute `numberOfDays` is initialized to this value.
+The `ListCommand` class extends abstract class `Command` and it is responsible for listing assignments based on the user's input command. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and an `Optional<Index>` attribute, `numberOfDays`. There are overloaded constructors for `ListCommand`, one being empty and the other taking in an `Index` parameter. Within the empty constructor, the `numberOfDays` attribute will be initialized with an empty Optional instance and within the parameterized constructor, `numberOfDays` attribute will be initialized with the Optional of its parameter.
 
-It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, if the zero base value of `numberOfDays` is 0, a predicate `PREDICATE_SHOW_ALL_ASSIGNMENT` is passed into 
-the `updatedFilteredAssignmentList` method of a `Model` object, `model`. If the zero base value is not 0, `showLimitedAssignments` method with return type `Predicate<Assignment>` is passed into the `updatedFilteredAssignmentList` method. This method uses lambda expressions to filter assignments with deadlines that fall within the number of days window inputted by the user.
+It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, if `numberOfDays` is empty, a predicate `PREDICATE_SHOW_ALL_ASSIGNMENT` is passed into the `updatedFilteredAssignmentList` method of a `Model` object, `model`. If `numberOfDays` is not empty, `showLimitedAssignments` method with return type `Predicate<Assignment>` is passed into the `updatedFilteredAssignmentList` method. This method uses lambda expressions to filter assignments with deadlines that fall within the number of days window inputted by the user.
 
 ##### Design Considerations
+As the list command allows for users to enter an optional index, we decided that there should be overloaded constructors for this command, one being empty and the other populated with the parameter `Index`. We decided to use `Optional<Index>` as the type for `numberOfDays` attribute in `ListCommand` class because the user input might or might not have an input argument. 
 
+The following are design considerations we had and its comparisons:
+
+**Consideration 1**: Use of a single constructor which takes in `Index` parameter and pass an `Index` with zero base value 0 into the constructor when all assignments are to be listed.
+
+Pros: 
+* Straightforward way of coding when only one type of constructor is used.
+
+Cons: 
+* It is not an intuitive way for developers to understand the code in a single glance.
+
+**Consideration 2**: Use of overloaded constructors and `Optional<Index>` for `numberOfDays` attribute in `ListCommand` class
+
+Pros: 
+* Removes ambiguity and have clearer semantics
+ 
+Cons: 
+* Optional requires a different thinking. For example `null` has to get replaced with `Optional.empty()`.
 
 
 #### Usage scenario
@@ -368,15 +387,12 @@ The following is a usage scenario of when the user wants to list assignments tha
  1. `parseCommand("list 3")` parses the String `"list 3"` and returns an initialized `ListCommandParser` object. 
  1. `parseCommand("List 3")` calls the `parse` method in `ListCommandParser` to return a `ListCommand` object.
  1. There is return call to `LogicManager` which then calls the overridden `execute` method of `ListCommand`.
- 1. The `execute` method of `ListCommand` will call the `updateFilteredAssignmentList` method of the object `model`, which takes in `showLimitedAssignments` predicate.
- 1. If `getZeroBased` value of `Index` attribute `numberOfDays` is 0, it would take in `PREDICATE_SHOW_ALL_ASSIGNMENT`. Else, it would take in `showLimitedAssignments` to return assignments that passes this predicate.
+ 1. The `execute` method of `ListCommand` will call the `updateFilteredAssignmentList` method of the `Model` object, `model`, which takes in `showLimitedAssignments` method of return type `Predicate<Assignment>`.
+ 1. The `getFilteredAssignmentList` method of `model` is called so that the number of assignments in the list can be retrieved by calling `size` method from Java `List` API on the list obtained from the getter method. 
  1. The `execute()` method returns a `CommandResult` object.
  
  Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(list 3)` API call.
-
-
-DIAGRAM
-
+![Interactions Inside the Logic Component for the `list 3` Command](images/ListSequenceDiagram.png)
 
 
 ### Delete multiple assignments feature
@@ -403,10 +419,12 @@ The `DeleteCommandParser` class implements `Parser<DeleteCommand>` and it is res
 To delete an assignment, it calls the `deleteAssignment` method of `model`.
 
 When deleting multiple assignments, it calls this method repeatedly with a for loop as shown in the following sequence diagram under "Usage Scenario".
+
 Since the index of assignments in the list will update after each delete in the loop, we sorted the list from the largest index to the smallest, and implemented deleting of assignments from the largest index in the list to maintain order.
 
 #### Usage Scenario
-The following is a usage scenario of when the user wants to delete the first and second assignment in his displayed assignment list.
+The following is a usage scenario of when the user wants to delete the first and second assignment in his displayed assignment list:
+
 1. `execute("delete 1 2")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
  1. `parseCommand("delete 1 2")` parses the String `"delete 1 2"` and returns an initialized `DeleteCommandParser` object. 
  1. `parseCommand("delete 1 2")` calls the `parse` method in `DeleteCommandParser` which parses the user input into `List<Index>`. This is by calling the static method `parseIndexes()` of `ParserUtil`.
@@ -418,6 +436,8 @@ The following is a usage scenario of when the user wants to delete the first and
  1. The `execute()` method returns a `CommandResult` object.
  
  Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(delete 1 2)` API call.
+ ![Interactions Inside the Logic Component for the `delete 1 2` Command](images/DeleteSequenceDiagram.png)
+ 
  
 ### Unremind, Unprioritize and Undone
 
@@ -708,22 +728,121 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting one assignment while all assignments are being shown
 
-   1. Prerequisites: List all assingments using the `list` command. Multiple assignments in the list.
+   Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
+      Expected: First assignment is deleted from the list. Details of the deleted assignment shown in the Message Box.
+      
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
+      Expected: No assignment is deleted. Error details shown in the Message Box.
+   
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
       
+1. Deleting multiple assignments while all assignments are being shown 
+    
+   Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
+   
+   1. Test case: `delete 1 2 3`<br>
+      Expected: First, second and third assignment is deleted from the list. Details of the deleted assignments shown in the Message Box.
+            
+   1. Test case: `delete 2 1`<br>
+      Expected: First and second assignment is deleted from the list. Details of the deleted assignments shown in the Message Box.
+   
+   1. Test case: `delete a % ^`<br>
+      Expected: No assignment is deleted. Error details shown in the Message Box.            
+  
+      
 1. Deleting one assignment while some assignments are being shown
-1. Deleting multiple assignments while all assignments are being shown
+
+    Prerequisites: List some assignments using the `list x` command to obtain a filtered list with at least 1 assignment (where x is number of days from current date and time such that only some assignments are shown).
+    
+    1. Test case: `delete 1`<br>
+          Expected: First assignment is deleted from the list. Details of the deleted assignment shown in the Message Box.
+          
+    1. Test case: `delete -1`<br>
+          Expected: No assignment is deleted. Error details shown in the Message Box.
+
+
 1. Deleting multiple assignments while some assignments are being shown
 
-1. _{ more test cases …​ }_
+    Prerequisites: List some assignments using the `list x` command to obtain a filtered list with at least 3 assignments (where x is number of days from current date and time such that only some assignments are shown).
+
+    1. Test case: `delete 1 2 3`<br>
+                Expected: First, second and third assignment is deleted from the list. Details of the deleted assignments shown in the Message Box.
+                           
+
+### Listing assignments
+
+1. List all assignments.
+
+   1. Test case: `list`<br>
+      Expected: All assignments are listed. Message with number of assignments listed is displayed in Message Box.
+      
+   1. Test case: `list 0`<br>
+      Expected: Error details shown in the Message Box.
+      
+1. List assignments with deadlines that fall within current date and time and x number of days later
+   
+   1. Test case: `list 7`<br>
+      Expected: Assignments with deadlines that fall within current date and time and 7 days later is displayed. Message with number of assignments listed is displayed in Message Box.
+            
+   1. Test case: `list 100`<br>
+     Expected: Error details shown in the Message Box.
+   
+   1. Test case: `list a`<br>
+      Expected: Error details shown in the Message Box.           
+ 
+### Finding assignments
+
+1. Finding assignments by name
+
+   Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
+
+   1. Test case: `find n/Lab`<br>
+      Expected: Assignments with the name "Lab" is displayed. Message with number of assignments listed is displayed in Message Box.
+      
+   1. Test case: `find n/Lab Tutorial`<br>
+      Expected: Assignments with the name "Lab" or "Tutorial" is displayed. Message with number of assignments listed is displayed in Message Box.
+      
+1. Finding assignments by module code
+    
+   Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
+   
+   1. Test case: `find mod/CS2100`<br>
+      Expected: Assignments with the module code "CS2100" is displayed. Message with number of assignments listed is displayed in Message Box.
+            
+   1. Test case: `find mod/CS2100 CS2103T`<br>
+      Expected: Assignments with the module code "CS2100" or "CS2103T" is displayed. Message with number of assignments listed is displayed in Message Box.
+   
+   1. Test case: `find mod/CS43`<br>
+         Expected: Error details shown in the Message Box.     
+  
+1. Finding assignments by date or time
+
+   Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
+    
+    1. Test case: `find d/1200`<br>
+       Expected: Assignments with due time "1200" is displayed. Message with number of assignments listed is displayed in Message Box.
+          
+    1. Test case: `find d/13-10-2020`<br>
+       Expected: Assignments with due date "13-10-2020" is displayed. Message with number of assignments listed is displayed in Message Box.
+          
+    1. Test case: `find d/13-10-2020 1200`<br>
+       Expected: Assignments with due date "13-10-2020" or due time "1200" is displayed. Message with number of assignments listed is displayed in Message Box.
+
+1. Finding assignments by priority
+
+    Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
+
+    1. Test case: `find p/high`<br>
+       Expected: Assignments of HIGH priority is displayed. Message with number of assignments listed is displayed in Message Box.
+              
+    1. Test case: `find p/LOW`<br>
+       Expected: Assignments of LOW priority is displayed. Message with number of assignments listed is displayed in Message Box.
+              
+    1. Test case: `find p/high medium`<br>
+      Expected: Assignments HIGH or MEDIUM priority is displayed. Message with number of assignments listed is displayed in Message Box.
 
 ### Setting reminders for assignments
 
@@ -740,7 +859,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. Setting reminders for one assignment while some assignments are being shown
-   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date such that only some assignments are shown). Multiple assignments in the list. `Your reminders` is empty.
+   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date and time such that only some assignments are shown). Multiple assignments in the list. `Your reminders` is empty.
    
    1. Test case: `remind 1` <br>
       Expected: Similar to `remind 1` test case when all assignments are shown.
