@@ -220,7 +220,7 @@ changes the current directory of the HelloFile internal File Explorer. `CommandE
 is invalid, cannot be found, or cannot be set as the current directory (*e.g. the given directory is not a folder*).
 
 This sequence diagram shows a successful execution of `CdCommand`.<br>
-![FindSequenceDiagram](images/CdCommandSuccessSequenceDiagram.png)
+![CdCommandSuccessExecution](images/CdCommandSuccessSequenceDiagram.png)
 
 CdCommand gets the `CurrentPath` from `Model`, then it gets the new path to set using the current `CurrentPath`. 
 After that, `CdCommand` calls `setAddress` method in `CurrentPath` to set the current directory to the new address.
@@ -292,7 +292,7 @@ The model class `CurrentPath` saves the current directory of the explorer, and k
 that directory.
 
 This is the class diagram for CurrentPath.<br>
-![UnlabelSuccessSequence](images/CurrentPathClassDiagram.png)
+![CurrentPath](images/CurrentPathClassDiagram.png)
 
 UI
 
