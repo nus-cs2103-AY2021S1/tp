@@ -45,7 +45,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `untag t/tag123`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `untag t>tag123`.
 
 ![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
@@ -80,7 +80,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("untag t/tag123")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("untag t>tag123")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -131,7 +131,9 @@ This section describes some noteworthy details on how we implement certain featu
 is a class that stores tags. It contains a compulsory `TagName`, a `FileAddress` and an optional `Label`. `TagName` must 
 contain at least 1 alphanumeric word, and must be unique. `FileAddress` must contain a valid file path
 (i.e passing a file path like `C:\Windows\..` is valid for Windows and `./home/...` is valid for Linux).`FileAddress` 
-can take in a relative path or absolute path.
+can take in a relative path or absolute path.<br>
+This is the class diagram for Tag <br>
+![TagClassDiagram](images/TagClassDiagram.png)
 
 ### Data Structure: Label
 [Label](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/label/Label.java)
@@ -218,6 +220,9 @@ under the `CurrentPath`.
 [FindCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindCommand.java)
 applies a `TagContainsCharPredicate` to the list of `FilteredTags` in `Model`. This effectively searches for tags.
 `TagContainsCharPredicate` matches any tag with `TagName` or any `Label` that contains the keyword given.
+
+This is the sequence diagram of the FindCommand.<br>  
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 ### Showing a tag's file path: ShowCommand
 
