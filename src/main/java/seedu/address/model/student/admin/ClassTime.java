@@ -16,9 +16,17 @@ import java.util.Objects;
  */
 public class ClassTime implements Comparable<ClassTime> {
 
+    public static final String DESCRIPTION = "DAY_OF_WEEK: 1-7 representing Mon-Sun" + "\n"
+            + "START_TIME/END_TIME : Lesson time in 24 hour clock format" + "\n";
+
+    public static final String EXAMPLE = "Example: 1 1200-1400";
+
     public static final String MESSAGE_CONSTRAINTS =
-            "Class Time should follow the following format: {int: day_of_week} {int: start_time}-{int: end_time}";
-    public static final String TIME_CONSTRAINTS = "Invalid Class Time! \nEnd time should always be after Start time";
+            "Class Time should follow the following format:"+ "\n"
+                    +"{int: DAY_OF_WEEK} {int: START_TIME}-{int: END_TIME}" + "\n"
+                    + DESCRIPTION + EXAMPLE;
+
+    public static final String TIME_CONSTRAINTS = "Classes should not end before they start.";
 
     /*
      * The first character of the address must not be a whitespace,
