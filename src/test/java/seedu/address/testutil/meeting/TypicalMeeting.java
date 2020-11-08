@@ -39,8 +39,8 @@ public class TypicalMeeting {
      */
     public static MeetingBook getTypicalMeetingAddressBook() {
         MeetingBook ab = new MeetingBook();
-        for (Meeting bidder : getTypicalMeetings()) {
-            ab.addMeeting(bidder);
+        for (Meeting meeting : getTypicalMeetings()) {
+            ab.addMeeting(meeting);
         }
         return ab;
     }
