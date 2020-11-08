@@ -236,12 +236,13 @@ Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENU
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Start time has to be before end time.
-* The format of `CLASS_TIME`, `YEAR` and `LAST_PAYMENT_DATE` follows that as stated in [3.3.1 Adding a student](#331-adding-a-student-add-by-hogan).
+* The format of `CLASS_TIME`, `YEAR` and `LAST_PAYMENT_DATE` follows that as stated in [the Adding Student Section](#331-adding-a-student-add-by-hogan).
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: If using this command after `find`, the edited student may no longer satisfy the search criteria depending on the field changed.
-In that case the student will be hidden from view and can be viewed again using `list` or `find`.<br>
+In that case the student will be hidden from view and can be viewed again using `list` or `find`.<br><br>
+
 E.g. `edit 1 n/Amy Choo` after `find n/Bob` will cause the student to be hidden since her name no longer contains "Bob".
 You can use `list` or `find` (e.g `find n/Amy`) to display her information again.
 
@@ -534,15 +535,9 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS [f/FEEDB
 
 * Adds the given attendance record to the student at the specified `STUDENT_INDEX`.
 * There can only be one attendance record for every `LESSON_DATE`.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: The format of `LESSON_DATE` is as follows:
-* dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
-
-:information_source: `ATTENDANCE_STATUS` can only be either "present" or "absent".
-
-</div>
+* The format of LESSON_DATE is as follows:
+    * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
+* `ATTENDANCE_STATUS` can only be either "present" or "absent".
 
 Examples:
 * `attendance add 1 d/31/10/2020 a/absent` adds to the 1st student in **Reeve** a new attendance record for a
@@ -558,7 +553,6 @@ Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 
 * Deletes the attendance record with the given `ATTENDANCE_DATE` in the specified student.
 * The specified student is chosen based on `STUDENT_INDEX` of **Reeve**.
-* The `STUDENT_INDEX` refers to the index number shown in the displayed students list.
 
 Example:
 * `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
@@ -614,7 +608,7 @@ Action | Format, Examples
 **Add Exam** | `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`<br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
 **Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX`<br> e.g. `exam delete 2 i/5`
 **Exam Stats** | `exam stats STUDENT_INDEX`<br> e.g. `exam stats 1`
-**Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
+**Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 a/present f/attentive`
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
 **Schedule View** | `schedule m/VIEW_MODE d/DATE_TO_VIEW` <br> e.g. `schedule m/weekly d/2/11/2020`
 **Toggle View** | `toggle`
