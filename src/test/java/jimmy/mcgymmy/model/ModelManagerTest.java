@@ -95,7 +95,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasFood_personNotInMcGymmy_returnsFalse() {
+    public void hasFood_foodNotInMcGymmy_returnsFalse() {
         assertFalse(modelManager.hasFood(getChickenRice()));
     }
 
