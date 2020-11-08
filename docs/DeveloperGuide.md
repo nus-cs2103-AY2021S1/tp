@@ -949,10 +949,10 @@ testers are expected to do more *exploratory* testing.
     iv. Test case (missing flashcard field input): `filter` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
-        
+     
 <div markdown="span" class="alert alert-info">
-   
-:information_source: **Note:** Filtering of flashcards can also be tested on other fields such as `FAVOURITE` and `TAG`. 
+
+:information_source: **Note:** Filtering of flashcards can also be tested on other fields such as `FAVOURITE` and `TAG`.
 
 </div>
     
