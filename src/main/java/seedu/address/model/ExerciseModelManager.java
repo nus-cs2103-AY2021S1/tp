@@ -226,6 +226,7 @@ public class ExerciseModelManager implements ExerciseModel {
     @Override
     public void resetAll() throws IOException {
         exerciseBook.resetAllData();
+        goalBook.resetData(new GoalBook());
     }
 
     @Override
