@@ -8,13 +8,15 @@ title: Zhang Wanlin's Project Portfolio Page
 Nuudle is a **desktop app for managing patient records and clinic appointments, optimized for use
 via a Command Line Interface**(CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, Nuudle can get your patient and appointment management tasks done faster than traditional GUI apps.
-It is written in Java, and has about 20 kLoC.
+It is written in Java, and has about 19kLoC, of which I contributed 2kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
-    * Assign feature which allows users to assign an appointment to a patient.
-    * View feature which allows users to view all appointment on a specific date.
+* **New Feature**: Added an assign feature that allows users to assign an appointment to a patient.([\#85](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/85), [\#107](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/107))
+    * **Justification**: This feature makes up the signature of the product because it allows the nurse to easily assign an appointment to a patient, which is a must for a medical appointment scheduling application.
+    
+* **New Feature**: Added a view feature which allows users to view all appointment on a specific date.([\#91](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/91))
+    * **Justification**: This feature improves the product significantly since it allows the nurse to view all the appointments on a certain day without scanning through the appointment book.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=zhangwanlin98&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=ZhangWanlin98&tabRepo=AY2021S1-CS2103T-T12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
@@ -29,9 +31,9 @@ Given below are my contributions to the project.
     * Added documentation for the features `list`, `edit`and `find` [\#47](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/47)
 
   * Developer Guide:
-    * Added the details of Use Cases. ([\#48](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/48))
-    * Updated and maintained the Architecture and Model features, and the corresponding UML diagrams. ([\116](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/116))
-    * Added implementation details on the Assign feature, with appropriate UML diagrams. ([\116](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/116))
+    * Authored `Use Cases` segment. ([\#48](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/48))
+    * Updated and maintained the Architecture and Model features, and the corresponding UML diagrams. ([\#116](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/116))
+    * Added implementation details on the Assign feature, with appropriate UML diagrams. ([\#116](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/116))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
