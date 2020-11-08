@@ -74,7 +74,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed and approved [[Link]](https://github.com/AY2021S1-CS2103-F09-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Atheodoreleebrant)
-  , as well as reported bugs and suggested features in the team repository [[Link]](https://github.com/AY2021S1-CS2103-F09-1/tp/issues?q=is%3Aissue+author%3A%40me+is%3Aclosed)
+  , as well as reported bugs and suggested features in the team repository [[Link]](https://github.com/AY2021S1-CS2103-F09-1/tp/issues?q=is%3Aissue+author:theodoreleebrant+is%3Aclosed)
   .
   * Contributed to forum discussions 
   (examples: [(Question) 1](https://github.com/nus-cs2103-AY2021S1/forum/issues/12), 
