@@ -5,17 +5,19 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.ReadOnlyList;
+import seedu.address.model.room.Room;
+
 //@@author itssodium
 public interface RoomRecordsStorage {
 
     Path getRoomsOccupied();
 
-    Optional<ReadOnlyRoomList> readOnlyRoomOccupancy() throws DataConversionException;
+    Optional<ReadOnlyList<Room>> readOnlyRoomOccupancy() throws DataConversionException;
 
-    Optional<ReadOnlyRoomList> readOnlyRoomOccupancy(Path filePath) throws DataConversionException;
+    Optional<ReadOnlyList<Room>> readOnlyRoomOccupancy(Path filePath) throws DataConversionException;
 
-    void saveOccupiedRooms(ReadOnlyRoomList roomList) throws IOException;
+    void saveOccupiedRooms(ReadOnlyList<Room> roomList) throws IOException;
 
-    void saveOccupiedRooms(ReadOnlyRoomList roomList, Path fileRoomsOccupied) throws IOException;
+    void saveOccupiedRooms(ReadOnlyList<Room> roomList, Path fileRoomsOccupied) throws IOException;
 }

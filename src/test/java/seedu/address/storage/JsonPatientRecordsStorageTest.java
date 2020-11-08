@@ -17,8 +17,11 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.PatientRecords;
-import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyList;
+import seedu.address.model.patient.Patient;
 
+
+//@@author
 public class JsonPatientRecordsStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonPatientRecordsStorageTest");
 
@@ -30,7 +33,7 @@ public class JsonPatientRecordsStorageTest {
         assertThrows(NullPointerException.class, () -> readCovigentApp(null));
     }
 
-    private java.util.Optional<ReadOnlyPatientRecords> readCovigentApp(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyList<Patient>> readCovigentApp(String filePath) throws Exception {
         return new JsonPatientRecordsStorage(Paths.get(filePath))
                 .readPatientRecords(addToTestDataPathIfNotNull(filePath));
     }
@@ -69,7 +72,7 @@ public class JsonPatientRecordsStorageTest {
 
         // Save in new file and read back
         jsonPatientRecordsStorage.savePatientRecords(original, filePath);
-        ReadOnlyPatientRecords readBack = jsonPatientRecordsStorage.readPatientRecords(filePath).get();
+        ReadOnlyList<Patient> readBack = jsonPatientRecordsStorage.readPatientRecords(filePath).get();
         assertEquals(original, new PatientRecords(readBack));
 
         // Modify data, overwrite exiting file, and read back
@@ -95,7 +98,7 @@ public class JsonPatientRecordsStorageTest {
     /**
      * Saves {@code covigentApp} at the specified {@code filePath}.
      */
-    private void saveCovigentApp(ReadOnlyPatientRecords covigentApp, String filePath) {
+    private void saveCovigentApp(ReadOnlyList<Patient> covigentApp, String filePath) {
         try {
             new JsonPatientRecordsStorage(Paths.get(filePath))
                     .savePatientRecords(covigentApp, addToTestDataPathIfNotNull(filePath));

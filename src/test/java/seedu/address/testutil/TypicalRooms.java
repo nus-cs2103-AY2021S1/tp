@@ -22,6 +22,12 @@ public class TypicalRooms {
     public static final Integer ROOM_NUMBER_7 = 7;
     public static final Integer ROOM_NUMBER_8 = 8;
     public static final Integer ROOM_NUMBER_11 = 11;
+    public static final Integer ROOM_NUMBER_16 = 16;
+    public static final Integer ROOM_NUMBER_17 = 17;
+    public static final Room ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_1 = new RoomBuilder()
+            .withIsOccupied(false).withPatient(null).withRoomNumber(ROOM_NUMBER_16).build();
+    public static final Room ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_2 = new RoomBuilder()
+            .withIsOccupied(false).withPatient(null).withRoomNumber(ROOM_NUMBER_17).build();
     public static final Room ROOM_NO_PATIENT_NO_TASK = new RoomBuilder()
             .withIsOccupied(false).withPatient(null).build();
     public static final Room ROOM_NO_PATIENT_TASK_RESTOCK_SUPPLY = new RoomBuilder()
@@ -43,10 +49,10 @@ public class TypicalRooms {
 
     public static RoomList getTypicalRoomList() {
         RoomList roomList = new RoomList();
+        roomList.addRooms(15);
         for (Room room : getTypicalRooms()) {
             roomList.setRoom(room);
         }
-        roomList.addRooms(15);
         return roomList;
     }
 

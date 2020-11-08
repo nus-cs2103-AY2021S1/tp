@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
 
+//@@author w-yeehong
 /**
  * Adds a {@code Task} to a {@code Room}.
  */
@@ -60,7 +61,6 @@ public class AddTaskCommand extends Command {
                 new CommandException(Messages.MESSAGE_INVALID_ROOM_NUMBER));
         assert room != null : "Target room should never be null.";
 
-        model.addTask(taskToAdd);
         model.addTaskToRoom(taskToAdd, room);
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS,
                 roomNumber, taskToAdd));

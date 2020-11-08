@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import seedu.address.commons.util.DateTimeUtil;
 
+//@@author w-yeehong
 /**
  * Represents the date-time when a Task is due.
  * Guarantees: immutable; is an optional attribute of task;
@@ -120,7 +121,32 @@ public class DateTimeDue implements Comparable<DateTimeDue> {
 
     @Override
     public int compareTo(DateTimeDue other) {
-        return value.get().isBefore(other.getValue().get())
-                || value.get().isEqual(other.getValue().get()) ? 1 : 0;
+        // empty vs other empty -> returns 0
+        if (value.isEmpty() && other.value.isEmpty()) {
+            return 0;
+        }
+
+        // empty vs other not empty -> returns -1
+        if (value.isEmpty() && other.value.isPresent()) {
+            return -1;
+        }
+
+        // not empty vs other empty -> returns 1
+        if (value.isPresent() && other.value.isEmpty()) {
+            return 1;
+        }
+
+        // not empty vs not empty -> returns 1 if date comes after, 0 if same date, -1 if date comes before
+        assert (value.isPresent() && other.value.isPresent()) : "Both date-time values are present here.";
+        LocalDateTime dueAt = value.get();
+        LocalDateTime otherDueAt = other.value.get();
+
+        if (dueAt.isEqual(otherDueAt)) {
+            return 0;
+        } else if (dueAt.isAfter(otherDueAt)) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }

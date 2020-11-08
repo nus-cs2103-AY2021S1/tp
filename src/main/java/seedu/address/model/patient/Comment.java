@@ -12,10 +12,12 @@ public class Comment {
 
     /**
      * Constructs a {@code Comment}.
+     *
      * @param comment A comment that is represented by any string.
      */
     public Comment(String comment) {
         requireNonNull(comment);
+        assert(comment.length() != 0);
         value = comment;
     }
 

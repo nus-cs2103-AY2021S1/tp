@@ -12,6 +12,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+//@@author w-yeehong
 /**
  * Parses input arguments and creates a new DeleteTaskCommand object.
  */
@@ -31,8 +32,8 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
         }
 
-        int roomNumber = ParserUtil.parsePositiveInteger(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
-        Index taskNumber = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK_NUMBER).get());
+        int roomNumber = ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
+        Index taskNumber = ParserUtil.parseTaskIndex(argMultimap.getValue(PREFIX_TASK_NUMBER).get());
 
         return new DeleteTaskCommand(roomNumber, taskNumber);
     }

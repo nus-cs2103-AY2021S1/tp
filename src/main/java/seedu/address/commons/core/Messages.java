@@ -21,8 +21,6 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_ROOM_NUMBER = "The room number provided "
             + "cannot be found in Covigent.";
-    public static final String NUMBER_OF_ROOMS_GIVEN_IN_DIGITS = "Please give the number of digits in numbers\n"
-            + "Example: addRooms 200";
     public static final String MESSAGE_PATIENT_ALREADY_ASSIGNED = "Patient has already been assigned a room.\nPlease"
             + " clear patient from the room first.";
     public static final String MESSAGE_PATIENT_NO_ROOM = "Patient is not assigned to any room yet.";

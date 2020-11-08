@@ -45,10 +45,10 @@ public class JsonAdaptedRoom {
     public JsonAdaptedRoom(Room source) {
         this.roomNumber = source.getRoomNumber();
         this.isOccupied = source.isOccupied();
-        if (source.getPatient() != null) {
-            this.patient = new JsonAdaptedPatient(source.getPatient());
+        if (source.getPatient().isPresent()) {
+            this.patient = new JsonAdaptedPatient(source.getPatient().get());
         }
-        this.tasks = new JsonSerializableTaskList(source.getTaskList());
+        this.tasks = new JsonSerializableTaskList(source.getReadOnlyList());
     }
 
     /**
@@ -63,16 +63,10 @@ public class JsonAdaptedRoom {
         if (this.patient == null && isOccupied) {
             throw new IllegalValueException(PATIENT_ABSENT_IS_OCCUPIED_TRUE);
         }
-        if (patient != null) {
-            try {
-                patient.toModelType();
-            } catch (IllegalValueException i) {
-                throw new IllegalValueException(PATIENT_WRONG_FORMAT);
-            }
+        if (patient != null && isPatientInWrongFormat()) {
+            throw new IllegalValueException(PATIENT_WRONG_FORMAT);
         }
-        try {
-            tasks.toModelType();
-        } catch (IllegalValueException i) {
+        if (isTaskNotInCorrectFormat()) {
             throw new IllegalValueException(DATE_WRONG_FORMAT_IN_TASKS);
         }
         if (this.patient == null) {
@@ -81,4 +75,21 @@ public class JsonAdaptedRoom {
         return new Room(roomNumber, isOccupied, Optional.of(patient.toModelType()), tasks.toModelType());
     }
 
+    private boolean isPatientInWrongFormat() {
+        try {
+            patient.toModelType();
+            return false;
+        } catch (IllegalValueException i) {
+            return true;
+        }
+    }
+
+    private boolean isTaskNotInCorrectFormat() {
+        try {
+            tasks.toModelType();
+            return false;
+        } catch (IllegalValueException i) {
+            return true;
+        }
+    }
 }

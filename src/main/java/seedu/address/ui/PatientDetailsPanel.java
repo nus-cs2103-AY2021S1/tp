@@ -11,6 +11,8 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Patient;
 
+//@@author chiamyunqing -reused
+//Reused code from RoomDetailsPanel class
 /**
  * Panel containing the details of the patient.
  */
@@ -48,7 +50,6 @@ public class PatientDetailsPanel extends UiPart<Region> {
 
     /**
      * Sets the details of the patient.
-     *
      */
     private void setPatientDetails() {
         //sets up the image

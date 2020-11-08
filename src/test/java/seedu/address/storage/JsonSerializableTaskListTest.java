@@ -8,8 +8,8 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.task.TaskList;
-import seedu.address.testutil.TypicalTasks;
+import seedu.address.model.room.RoomTasks;
+import seedu.address.testutil.TypicalRoomTasks;
 
 class JsonSerializableTaskListTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTaskListTest");
@@ -19,8 +19,8 @@ class JsonSerializableTaskListTest {
     public void toModelType_typicalRoomFile_success() throws Exception {
         JsonSerializableTaskList dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASk_LIST,
                 JsonSerializableTaskList.class).get();
-        TaskList covigentAppFromFile = dataFromFile.toModelType();
-        TaskList typicalRoomList = TypicalTasks.getTypicalTaskList();
-        assertEquals(covigentAppFromFile, typicalRoomList);
+        RoomTasks covigentAppFromFile = dataFromFile.toModelType();
+        RoomTasks typicalRoomTasks = TypicalRoomTasks.getTypicalRoomTasks();
+        assertEquals(covigentAppFromFile, typicalRoomTasks);
     }
 }

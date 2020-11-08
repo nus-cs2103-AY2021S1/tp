@@ -10,9 +10,11 @@ public class DueDatePredicate implements Predicate<Task> {
 
     /**
      * Constructs a {@code DueDatePredicate}.
+     *
      * @param duedate The start of temperature range.
      */
     public DueDatePredicate(DateTimeDue duedate) {
+        assert duedate.value.isPresent();
         this.duedate = duedate;
     }
 
@@ -25,9 +27,14 @@ public class DueDatePredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) {
-        if (task.getDueAt().compareTo(duedate) == 1) {
+        if (task.getDueAt().value.isEmpty()) {
+            return false;
+        }
+
+        if (duedate.compareTo(task.getDueAt()) >= 0) {
             return true;
         }
+
         return false;
     }
 }

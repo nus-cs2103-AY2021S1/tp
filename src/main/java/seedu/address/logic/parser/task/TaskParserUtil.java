@@ -16,10 +16,15 @@ public class TaskParserUtil {
     /**
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given description is invalid.
      */
-    public static Description parseDescription(String description) {
+    public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
         return new Description(trimmedDescription);
     }
 
@@ -27,6 +32,8 @@ public class TaskParserUtil {
      * Parses a {@code Optional<String> optionalDueAt} into a {@code DateTimeDue}.
      * {@code optionalDueAt} can be empty but must not be null.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given date-time string is invalid.
      */
     public static DateTimeDue parseDateTimeDue(Optional<String> optionalDueAt) throws ParseException {
         requireNonNull(optionalDueAt);

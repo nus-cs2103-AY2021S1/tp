@@ -15,10 +15,11 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.PatientRecords;
-import seedu.address.model.ReadOnlyPatientRecords;
-import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.room.Room;
 
 public class StorageManagerTest {
 
@@ -32,10 +33,8 @@ public class StorageManagerTest {
         JsonPatientRecordsStorage covigentAppStorage = new JsonPatientRecordsStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonRoomOccupancyStorage roomOccupancyStorage = new JsonRoomOccupancyStorage(getTempFilePath("ro"));
-        JsonTaskStorage taskOccupancyStorage = new JsonTaskStorage(getTempFilePath("tk"));
-        //files nr short for numberOfRooms and ro is short form for roomsOccupied.
-        storageManager =
-                new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
+        //files ro is short form for roomsOccupied.
+        storageManager = new StorageManager(covigentAppStorage, roomOccupancyStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -65,7 +64,7 @@ public class StorageManagerTest {
          */
         PatientRecords original = getTypicalPatientRecords();
         storageManager.savePatientRecords(original);
-        ReadOnlyPatientRecords retrieved = storageManager.readPatientRecords().get();
+        ReadOnlyList<Patient> retrieved = storageManager.readPatientRecords().get();
         assertEquals(original, new PatientRecords(retrieved));
     }
 
@@ -78,7 +77,7 @@ public class StorageManagerTest {
     public void saveRoomOccupancyStorage() throws IOException, DataConversionException {
         RoomList original = getTypicalRoomList();
         storageManager.saveRoomList(original);
-        ReadOnlyRoomList readOnlyRoomList = storageManager.readRoomOccupancyStorage().get();
+        ReadOnlyList<Room> readOnlyRoomList = storageManager.readRoomOccupancyStorage().get();
         assertEquals(original, readOnlyRoomList);
     }
 }

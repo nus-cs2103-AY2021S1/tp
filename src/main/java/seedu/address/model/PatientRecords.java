@@ -14,7 +14,7 @@ import seedu.address.model.patient.UniquePatientList;
  * Wraps all data at the app level
  * Duplicate patients are not allowed (by .isSamePatient comparison)
  */
-public class PatientRecords implements ReadOnlyPatientRecords {
+public class PatientRecords implements ReadOnlyList<Patient> {
 
     private final UniquePatientList patients;
 
@@ -34,7 +34,7 @@ public class PatientRecords implements ReadOnlyPatientRecords {
     /**
      * Creates an CovigentApp using the Patients in the {@code toBeCopied}
      */
-    public PatientRecords(ReadOnlyPatientRecords toBeCopied) {
+    public PatientRecords(ReadOnlyList<Patient> toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -52,10 +52,10 @@ public class PatientRecords implements ReadOnlyPatientRecords {
     /**
      * Resets the existing data of this {@code PatientRecords} with {@code newData}.
      */
-    public void resetData(ReadOnlyPatientRecords newData) {
+    public void resetData(ReadOnlyList<Patient> newData) {
         requireNonNull(newData);
 
-        setPatients(newData.getPatientList());
+        setPatients(newData.getReadOnlyList());
     }
 
     //// patient-level operations
@@ -78,7 +78,8 @@ public class PatientRecords implements ReadOnlyPatientRecords {
         requireNonNull(name);
         return patients.getPatientWithName(name);
     }
-    //@@author chiamyunqing
+
+    //@@author
 
     /**
      * Adds a patient to the address book.
@@ -117,7 +118,7 @@ public class PatientRecords implements ReadOnlyPatientRecords {
     }
 
     @Override
-    public ObservableList<Patient> getPatientList() {
+    public ObservableList<Patient> getReadOnlyList() {
         return patients.asUnmodifiableObservableList();
     }
 

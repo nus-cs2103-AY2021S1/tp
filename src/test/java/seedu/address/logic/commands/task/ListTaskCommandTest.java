@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.task;
 
-import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 import static seedu.address.testutil.command.GeneralCommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,10 +21,9 @@ public class ListTaskCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(new PatientRecords(),
-                new UserPrefs(), new RoomList(), getTypicalTaskList());
+        model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
         expectedModel =
-                new ModelManager(new PatientRecords(), new UserPrefs(), new RoomList(), model.getModifiableTaskList());
+                new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
     }
 
     @Test

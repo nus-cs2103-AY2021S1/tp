@@ -1,10 +1,10 @@
 package seedu.address.logic.parser.room;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.NUMBER_OF_ROOMS_GIVEN_IN_DIGITS;
 import static seedu.address.logic.commands.room.InitRoomCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.room.InitRoomCommandParser.NUMBER_OF_ROOMS_GIVEN_IN_DIGITS;
 
 import org.junit.jupiter.api.Test;
 

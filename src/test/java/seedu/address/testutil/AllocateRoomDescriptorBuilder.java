@@ -5,6 +5,9 @@ import seedu.address.logic.commands.room.AllocateRoomCommand.AllocateRoomDescrip
 import seedu.address.model.patient.Name;
 import seedu.address.model.room.Room;
 
+/**
+ * A utility class to help with building AllocateRoomDescriptor objects.
+ */
 public class AllocateRoomDescriptorBuilder {
 
     private AllocateRoomDescriptor descriptor;
@@ -24,7 +27,7 @@ public class AllocateRoomDescriptorBuilder {
         descriptor = new AllocateRoomDescriptor();
         descriptor.setRoomNumber(room.getRoomNumber());
         descriptor.setOccupied(room.isOccupied());
-        descriptor.setPatientName(room.getPatient().getName());
+        descriptor.setPatientName(room.getPatient().get().getName());
     }
 
     /**

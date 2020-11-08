@@ -1,43 +1,56 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.room.RoomCliSyntax;
+import seedu.address.logic.parser.task.TaskCliSyntax;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_NUMBER = "Please only enter positive numbers.";
+    public static final String MESSAGE_INVALID_UNSIGNED_INT = "Please ensure that the value "
+            + "for the field \"%1$s\" is a number between 1 and " + Integer.MAX_VALUE + "."
+            + "\nYour current input: %2$s";
+
+    //@author LeeMingDe
+    /**
+     * Parses {@code roomNumber} into an {@code Integer} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the specified room number is invalid (not non-zero unsigned integer).
+     */
+    public static Integer parseRoomNumber(String roomNumber) throws ParseException {
+        requireNonNull(roomNumber);
+        String trimmedRoomNumber = roomNumber.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedRoomNumber)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_UNSIGNED_INT,
+                    RoomCliSyntax.PREFIX_ROOM_NUMBER, roomNumber));
+        }
+        return Integer.parseInt(trimmedRoomNumber);
+    }
+    //@author LeeMingDe
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * Parses {@code taskIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the specified task index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
-        String trimmedIndex = oneBasedIndex.trim();
+    public static Index parseTaskIndex(String taskIndex) throws ParseException {
+        requireNonNull(taskIndex);
+        String trimmedIndex = taskIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(String.format(MESSAGE_INVALID_UNSIGNED_INT,
+                    TaskCliSyntax.PREFIX_TASK_NUMBER, taskIndex));
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses {@code integer} into an {@code Integer} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified integer is invalid (not non-zero unsigned integer).
-     */
-    public static Integer parsePositiveInteger(String integer) throws ParseException {
-        String trimmedInteger = integer.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedInteger)) {
-            throw new ParseException(MESSAGE_INVALID_NUMBER);
-        }
-        return Integer.parseInt(trimmedInteger);
     }
 
     /**

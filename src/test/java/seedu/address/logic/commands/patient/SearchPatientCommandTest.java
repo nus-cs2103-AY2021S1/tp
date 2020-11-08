@@ -24,7 +24,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.TemperatureRangePredicate;
-import seedu.address.model.task.TaskList;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.SearchPatientDescriptorBuilder;
 
@@ -33,7 +32,7 @@ import seedu.address.testutil.SearchPatientDescriptorBuilder;
  */
 public class SearchPatientCommandTest {
 
-    private Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+    private Model model = new ModelManager(getTypicalPatientRecords(), new RoomList(), new UserPrefs());
 
     @Test
     public void execute_searchPatientName_success() {
@@ -46,8 +45,8 @@ public class SearchPatientCommandTest {
         model.updateFilteredPatientList(predicate);
         String expectedMessage = String.format(MESSAGE_SEARCH_PATIENT_LIST_SUCCESS, patient);
 
-        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()), new UserPrefs(),
-                new RoomList(), new TaskList());
+        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()),
+                new RoomList(), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), patient);
 
         expectedModel.updateFilteredPatientList(predicate);
@@ -67,8 +66,8 @@ public class SearchPatientCommandTest {
         String expectedMessage =
                 String.format(MESSAGE_SEARCH_PATIENT_LIST_SUCCESS);
 
-        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()), new UserPrefs(),
-                new RoomList(), new TaskList());
+        Model expectedModel = new ModelManager(new PatientRecords(model.getPatientRecords()),
+                new RoomList(), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), patient);
         expectedModel.updateFilteredPatientList(predicate);
 
@@ -88,7 +87,7 @@ public class SearchPatientCommandTest {
 
     @Test
     void execute_searchPatientTemperatureRange_throwsCommandException() {
-        Model model = new ModelManager(getTypicalPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+        Model model = new ModelManager(getTypicalPatientRecords(), new RoomList(), new UserPrefs());
         TemperatureRangePredicate predicate = new TemperatureRangePredicate(36.9, 37.0);
         Patient patient = new PatientBuilder().withTemperature("36.0").build();
         SearchPatientDescriptor descriptor =

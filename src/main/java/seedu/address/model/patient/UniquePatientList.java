@@ -53,8 +53,8 @@ public class UniquePatientList implements Iterable<Patient> {
         }
         return Optional.empty();
     }
-    //@@author chiamyunqing
 
+    //@@author
     /**
      * Adds a patient to the list.
      * The patient must not already exist in the list.

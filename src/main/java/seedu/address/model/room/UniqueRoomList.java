@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.room;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -7,21 +7,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.stream.IntStream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Name;
-import seedu.address.model.room.ComparableRoom;
-import seedu.address.model.room.Room;
 import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.exceptions.TaskNotFoundException;
-
-
 
 public class UniqueRoomList implements Iterable<Room> {
 
@@ -39,29 +34,34 @@ public class UniqueRoomList implements Iterable<Room> {
     /**
      * Resets the existing data of this {@code RoomList} with {@code newData}.
      */
-    public void resetData(ReadOnlyRoomList readOnlyRoomList) {
+    public void resetData(ReadOnlyList<Room> readOnlyRoomList) {
         requireAllNonNull(readOnlyRoomList);
 
-        ObservableList<Room> roomLists = readOnlyRoomList.getRoomObservableList();
+        ObservableList<Room> roomLists = readOnlyRoomList.getReadOnlyList();
         rooms.addAll(roomLists);
         internalList.addAll(roomLists);
     }
 
+    /**
+     * Used it test cases to set rooms with a higher room number which can be more than number of rooms existing
+     * in hotel
+     * @param room is the room to be input into data
+     */
     public void setRoom(Room room) {
         int roomNumber = room.getRoomNumber();
         if (room.getRoomNumber() > internalList.size()) {
             for (int i = internalList.size(); i < roomNumber - 1; i++) {
-                Room roomToAdd = new Room(i + 1);
+                Index index = Index.fromOneBased(i);
+                Room roomToAdd = new Room(index.getOneBased());
                 internalList.add(roomToAdd);
                 rooms.add(room);
             }
-            rooms.add(room);
-            internalList.add(room);
         } else {
-            Room currRoom = internalList.get(roomNumber - 1);
-            internalList.remove(roomNumber - 1);
+            Index index = Index.fromOneBased(roomNumber);
+            Room currRoom = internalList.get(index.getZeroBased());
+            internalList.remove(index.getZeroBased());
             rooms.remove(currRoom);
-            internalList.add(roomNumber, room);
+            internalList.add(index.getZeroBased(), room);
             rooms.add(room);
         }
     }
@@ -85,10 +85,10 @@ public class UniqueRoomList implements Iterable<Room> {
 
     /**
      * Adds this room to the RoomList
+     *
      * @param room is added to RoomList
      */
     public void addRooms(Room room) {
-        this.numOfRooms++;
         rooms.add(room);
         internalList.add(room);
     }
@@ -106,32 +106,51 @@ public class UniqueRoomList implements Iterable<Room> {
     private void addRooms() {
         if (numOfRooms <= 0) {
             return;
-        }
-        if (numOfRooms > internalList.size()) {
-            for (int i = internalList.size(); i < numOfRooms; i++) {
-                Room room = new Room(i + 1);
-                rooms.add(room);
-                internalList.add(room);
-            }
+        } else if (numOfRooms > internalList.size()) {
+            setRoomsInHotel_increaseInNumberOfRooms();
         } else if (numOfRooms < internalList.size()) {
-            List<Room> occupiedRooms = occupiedRooms();
-            List<Room> unoccupiedRooms = unOccupiedRooms();
-            if (occupiedRooms.size() == 0) {
-
-            } else {
-                combinedStream(occupiedRooms, unoccupiedRooms);
-            }
-            rooms = new PriorityQueue<>(new ComparableRoom());
-            for (int i = 0; i < numOfRooms; i++) {
-                Room room = internalList.get(i);
-                rooms.add(room);
-            }
-
-            int size = internalList.size();
-            for (int i = numOfRooms; i < size; i++) {
-                internalList.remove(numOfRooms);
-            }
+            setRoomsInHotel_decreaseInNumberOfRooms();
+        } else {
+            //would not reach this block, exists to improve code quality
         }
+    }
+
+    private void setRoomsInHotel_increaseInNumberOfRooms() {
+        ArrayList<Room> roomArrayList = new ArrayList<>(internalList);
+        PriorityQueue<Room> rooms = new PriorityQueue<>(new ComparableRoom());
+
+        this.rooms = new PriorityQueue<>(new ComparableRoom()); //remove all the rooms in the PQ
+        for (int i = internalList.size(); i < numOfRooms; i++) {
+            Room room = new Room(i + 1);
+            rooms.add(room);
+            roomArrayList.add(room);
+        }
+        this.rooms.addAll(rooms);
+        internalList.setAll(roomArrayList);
+    }
+
+    private void setRoomsInHotel_decreaseInNumberOfRooms() {
+        ArrayList<Room> roomArrayList = new ArrayList<>(internalList);
+        PriorityQueue<Room> rooms = new PriorityQueue<>(new ComparableRoom());
+
+        List<Room> occupiedRooms = occupiedRooms();
+        List<Room> unoccupiedRooms = unOccupiedRooms();
+        if (occupiedRooms.size() == 0) {
+
+        } else {
+            combinedStream(occupiedRooms, unoccupiedRooms);
+        }
+        this.rooms = new PriorityQueue<>(new ComparableRoom()); //remove all the rooms in the PQ
+        for (int i = 0; i < numOfRooms; i++) {
+            Room room = internalList.get(i);
+            rooms.add(room);
+        }
+        int size = internalList.size();
+        for (int i = numOfRooms; i < size; i++) {
+            roomArrayList.remove(numOfRooms);
+        }
+        this.rooms.addAll(rooms);
+        internalList.setAll(roomArrayList);
     }
 
     /**
@@ -166,23 +185,19 @@ public class UniqueRoomList implements Iterable<Room> {
             Room empty = unoccupiedRooms.get(0);
             unoccupiedRooms.remove(0);
             empty.setOccupied(true);
-            empty.setPatient(room.getPatient());
-            empty.addTask(room.getTaskList());
+            empty.setPatient(room.getPatient().get());
+            empty.addTasks(room.getReadOnlyTasks());
         }
     }
 
-    public void setInitNumOfRooms(int numOfRooms) {
-        this.numOfRooms = numOfRooms;
-    }
-
     public boolean hasSpaceForRooms() {
-        return numOfOccupiedRooms() <= numOfEmptyRooms();
+        return getNumOfExcessOccupiedRooms() <= numOfEmptyRooms();
     }
 
     /**
      * Gives the number of rooms that are occupied in the hotel facility beyond shrinkage
      */
-    public int numOfOccupiedRooms() {
+    public int getNumOfExcessOccupiedRooms() {
         return (int) IntStream.rangeClosed(numOfRooms, internalList.size() - 1)
                 .mapToObj(x -> internalList.get(x)).filter(Room::isOccupied).count();
     }
@@ -196,60 +211,6 @@ public class UniqueRoomList implements Iterable<Room> {
     }
 
     /**
-     * Adds a task to a room.
-     * The room must exist in the {@code RoomList}.
-     *
-     * @param task The task to add.
-     * @param room The room to which the task should be added.
-     * @throws RoomNotFoundException if {@code room} is not in {@code RoomList}.
-     */
-    public void addTaskToRoom(Task task, Room room) {
-        requireAllNonNull(task, room);
-
-        int index = internalList.indexOf(room);
-        if (index == -1) {
-            throw new RoomNotFoundException();
-        }
-
-        room.addTask(task);
-        internalList.set(index, room);
-    }
-
-    /**
-     * Deletes a task from a room.
-     * The room must exist in the {@code RoomList}.
-     * The task must exist in the {@code TaskList} of the room.
-     *
-     * @param task The task to delete.
-     * @param room The room to which the task should be deleted.
-     * @throws RoomNotFoundException if {@code room} is not in {@code RoomList}.
-     * @throws TaskNotFoundException if {@code task} is not in {@code room}.
-     */
-    public void deleteTaskFromRoom(Task task, Room room) {
-        requireAllNonNull(task, room);
-
-        int index = internalList.indexOf(room);
-        if (index == -1) {
-            throw new RoomNotFoundException();
-        }
-
-        room.deleteTask(task);
-        internalList.set(index, room);
-    }
-
-    public void setTaskToRoom(Task target, Task editedTask, Room room) {
-        requireAllNonNull(target, editedTask, room);
-
-        int index = internalList.indexOf(room);
-        if (index == -1) {
-            throw new RoomNotFoundException();
-        }
-
-        room.setTask(target, editedTask);
-        internalList.set(index, room);
-    }
-
-    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Room> asUnmodifiableObservableList() {
@@ -258,9 +219,16 @@ public class UniqueRoomList implements Iterable<Room> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueRoomList // instanceof handles nulls
-                && internalList.equals(((UniqueRoomList) other).internalList));
+        if (other == this) {
+            return true;
+        }
+
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+
+        return equals(new PriorityQueue<>(rooms), new PriorityQueue<>(((UniqueRoomList) other).rooms))
+                && internalList.equals(((UniqueRoomList) other).internalList);
     }
 
     /**
@@ -280,6 +248,7 @@ public class UniqueRoomList implements Iterable<Room> {
             return true;
         }
     }
+
     /**
      * Returns true if the list contains an equivalent room as the given argument.
      */
@@ -290,6 +259,7 @@ public class UniqueRoomList implements Iterable<Room> {
 
     /**
      * Clears the room which contains the patient with the given name.
+     *
      * @param patientName to clear the room from.
      */
     public void clearRoom(Name patientName) {
@@ -298,7 +268,7 @@ public class UniqueRoomList implements Iterable<Room> {
             if (!internalList.get(i - 1).isOccupied()) {
                 continue;
             }
-            Name patientNameInRoom = internalList.get(i - 1).getPatient().getName();
+            Name patientNameInRoom = internalList.get(i - 1).getPatient().get().getName();
             if (patientName.equals(patientNameInRoom)) {
                 Room roomToClear = internalList.get(i - 1);
                 setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber()));
@@ -328,6 +298,7 @@ public class UniqueRoomList implements Iterable<Room> {
         rooms.add(editedRoom);
         internalList.set(index, editedRoom);
     }
+
     @Override
     public int hashCode() {
         int result = Objects.hash(numOfRooms, rooms, internalList);
@@ -335,21 +306,12 @@ public class UniqueRoomList implements Iterable<Room> {
         return result;
     }
 
-    public void setNumOfRooms(int numOfRooms) {
+    public void setPreferredNumOfRooms(int numOfRooms) {
         this.numOfRooms = numOfRooms;
     }
 
     public void setRooms(PriorityQueue<Room> rooms) {
         this.rooms = rooms;
-    }
-
-    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
-        for (Room room : internalList) {
-            if (roomNumber == room.getRoomNumber()) {
-                return Optional.of(room);
-            }
-        }
-        return Optional.empty();
     }
 
 }

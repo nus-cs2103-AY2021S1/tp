@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.room.Room;
 import seedu.address.model.task.Task;
 
+//@@author w-yeehong
 /**
  * Deletes a {@code Task} from a {@code Room}.
  * The {@code Room} is identified by its room number.
@@ -68,7 +69,6 @@ public class DeleteTaskCommand extends Command {
                 new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX));
         assert taskToDelete != null : "The task to delete should never be null.";
 
-        model.deleteTask(taskToDelete);
         model.deleteTaskFromRoom(taskToDelete, room);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
                 taskIndex.getOneBased(), roomNumber, taskToDelete));

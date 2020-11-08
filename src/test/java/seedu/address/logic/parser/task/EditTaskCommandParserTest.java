@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.command.GeneralCommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.testutil.command.GeneralCommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_ROOM_NUMBER;
 import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_ROOM_NUMBER_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_EIGHT_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
@@ -16,6 +17,7 @@ import static seedu.address.testutil.command.TaskCommandTestUtil.DESCRIPTION_DES
 import static seedu.address.testutil.command.TaskCommandTestUtil.DESCRIPTION_DESC_REMIND_PATIENT;
 import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DATETIME_DUE_FORMAT_DESC;
 import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DATETIME_DUE_VALUE_DESC;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_TASK_NUMBER;
 import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_TASK_NUMBER_DESC;
 import static seedu.address.testutil.command.TaskCommandTestUtil.TASK_NUMBER_DESC_ONE;
 import static seedu.address.testutil.command.TaskCommandTestUtil.TASK_NUMBER_DESC_TWO;
@@ -29,6 +31,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.task.EditTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.room.RoomCliSyntax;
 import seedu.address.model.task.DateTimeDue;
 import seedu.address.model.task.Description;
 
@@ -114,15 +117,18 @@ public class EditTaskCommandParserTest {
 
         // invalid room number
         assertParseFailure(parser, INVALID_ROOM_NUMBER_DESC + TASK_NUMBER_DESC_ONE,
-                ParserUtil.MESSAGE_INVALID_NUMBER);
+                String.format(ParserUtil.MESSAGE_INVALID_UNSIGNED_INT, RoomCliSyntax.PREFIX_ROOM_NUMBER,
+                INVALID_ROOM_NUMBER));
 
         // invalid task number
         assertParseFailure(parser, ROOM_NUMBER_SEVEN_DESC + INVALID_TASK_NUMBER_DESC,
-                ParserUtil.MESSAGE_INVALID_INDEX);
+                String.format(ParserUtil.MESSAGE_INVALID_UNSIGNED_INT, TaskCliSyntax.PREFIX_TASK_NUMBER,
+                INVALID_TASK_NUMBER));
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, ROOM_NUMBER_SEVEN_DESC + INVALID_TASK_NUMBER_DESC + DESCRIPTION_DESC_REMIND_PATIENT
-                + INVALID_DATETIME_DUE_VALUE_DESC, ParserUtil.MESSAGE_INVALID_INDEX);
+                + INVALID_DATETIME_DUE_VALUE_DESC, String.format(ParserUtil.MESSAGE_INVALID_UNSIGNED_INT,
+                TaskCliSyntax.PREFIX_TASK_NUMBER, INVALID_TASK_NUMBER));
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE

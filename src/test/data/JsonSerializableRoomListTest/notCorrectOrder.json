@@ -1,0 +1,25 @@
+{
+  "rooms" : [
+    {
+      "roomNumber" : 1,
+      "isOccupied" : false,
+      "patient" : null,
+      "tasks" : {
+        "tasks" : [ ]
+      }
+    },{
+      "roomNumber" : 3,
+      "isOccupied" : false,
+      "patient" : null,
+      "tasks" : {
+        "tasks" : [ ]
+      }
+    },{
+      "roomNumber" : 5,
+      "isOccupied" : false,
+      "patient" : null,
+      "tasks" : {
+        "tasks" : [ ]
+      }
+    }
+]}

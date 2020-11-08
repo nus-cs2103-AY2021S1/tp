@@ -3,11 +3,11 @@ package seedu.address.logic.parser.room;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER;
 import static seedu.address.testutil.command.PatientCommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.testutil.command.PatientCommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.testutil.command.PatientCommandTestUtil.TEMP_DESC_AMY;
 import static seedu.address.testutil.command.PatientCommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_NON_NUMBER_ROOM_NUMBER;
 import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_NON_NUMBER_ROOM_NUMBER_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_DESC_ONE;
 import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_NAME_AMY_DESC;
@@ -16,6 +16,7 @@ import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMB
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.room.SearchRoomCommand;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.patient.Name;
 import seedu.address.testutil.SearchRoomDescriptorBuilder;
 
@@ -47,7 +48,9 @@ public class SearchRoomCommandParserTest {
         //invalid patient name prefix
         assertParseFailure(parser, INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
         //invalid room number prefix
-        assertParseFailure(parser, INVALID_NON_NUMBER_ROOM_NUMBER_DESC, MESSAGE_INVALID_NUMBER);
+        assertParseFailure(parser, INVALID_NON_NUMBER_ROOM_NUMBER_DESC,
+                String.format(ParserUtil.MESSAGE_INVALID_UNSIGNED_INT, RoomCliSyntax.PREFIX_ROOM_NUMBER,
+                INVALID_NON_NUMBER_ROOM_NUMBER));
     }
 
     @Test

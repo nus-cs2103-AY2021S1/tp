@@ -299,7 +299,7 @@ We will illustrate the progress of one of the above commands for simplicity.
 The activity diagram below illustrates the `findEmptyRoom`.
 
 ![ActivityDiagramForRoomFeature](images/ActivityDiagramForRoomFeature.png)
- 
+
  The Sequence Diagram for `initRooms` is shown below.
  ![SequenceDiagramForSequenceDiagram](images/Room_SequenceDiagram.png)
 

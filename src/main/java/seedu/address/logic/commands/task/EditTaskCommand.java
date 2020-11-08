@@ -21,6 +21,7 @@ import seedu.address.model.task.DateTimeDue;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
+//@@author w-yeehong
 /**
  * Edits and replaces a {@code Task} in a {code Room}.
  * The {@code Room} is identified by its index in the {@code RoomList}
@@ -86,9 +87,7 @@ public class EditTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_TASK_NOT_EDITED);
         }
 
-        model.setTask(taskToEdit, editedTask);
         model.setTaskToRoom(taskToEdit, editedTask, room);
-        model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,
                 taskIndex.getOneBased(), roomNumber, editedTask));
     }

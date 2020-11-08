@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
 import static seedu.address.testutil.command.GeneralCommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.testutil.command.GeneralCommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_ROOM_NUMBER;
 import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_ROOM_NUMBER_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_DESC_ONE;
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_EIGHT_DESC;
@@ -24,6 +25,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.room.RoomCliSyntax;
 import seedu.address.model.task.DateTimeDue;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
@@ -88,11 +90,13 @@ public class AddTaskCommandParserTest {
 
         // invalid room number
         assertParseFailure(parser, DESCRIPTION_DESC_REMIND_PATIENT + INVALID_ROOM_NUMBER_DESC
-                + DESCRIPTION_DESC_REMIND_PATIENT, ParserUtil.MESSAGE_INVALID_NUMBER);
+                + DESCRIPTION_DESC_REMIND_PATIENT, String.format(ParserUtil.MESSAGE_INVALID_UNSIGNED_INT,
+                RoomCliSyntax.PREFIX_ROOM_NUMBER, INVALID_ROOM_NUMBER));
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, DESCRIPTION_DESC_REMIND_PATIENT + INVALID_ROOM_NUMBER_DESC
-                + INVALID_DATETIME_DUE_VALUE_DESC, ParserUtil.MESSAGE_INVALID_NUMBER);
+                + INVALID_DATETIME_DUE_VALUE_DESC, String.format(ParserUtil.MESSAGE_INVALID_UNSIGNED_INT,
+                RoomCliSyntax.PREFIX_ROOM_NUMBER, INVALID_ROOM_NUMBER));
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + DESCRIPTION_DESC_REMIND_PATIENT

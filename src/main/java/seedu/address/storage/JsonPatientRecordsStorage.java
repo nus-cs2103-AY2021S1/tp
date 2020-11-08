@@ -12,8 +12,10 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyList;
+import seedu.address.model.patient.Patient;
 
+//@@author
 /**
  * A class to access patient records data stored as a json file on the hard disk.
  */
@@ -32,7 +34,7 @@ public class JsonPatientRecordsStorage implements PatientRecordsStorage {
     }
 
     @Override
-    public Optional<ReadOnlyPatientRecords> readPatientRecords()
+    public Optional<ReadOnlyList<Patient>> readPatientRecords()
             throws DataConversionException {
         return readPatientRecords(filePath);
     }
@@ -43,7 +45,7 @@ public class JsonPatientRecordsStorage implements PatientRecordsStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyPatientRecords> readPatientRecords(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyList<Patient>> readPatientRecords(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializablePatientRecords> jsonPatientRecords = JsonUtil.readJsonFile(
@@ -61,16 +63,16 @@ public class JsonPatientRecordsStorage implements PatientRecordsStorage {
     }
 
     @Override
-    public void savePatientRecords(ReadOnlyPatientRecords patientRecords) throws IOException {
+    public void savePatientRecords(ReadOnlyList<Patient> patientRecords) throws IOException {
         savePatientRecords(patientRecords, filePath);
     }
 
     /**
-     * Similar to {@link #savePatientRecords(ReadOnlyPatientRecords)}.
+     * Similar to {@code #savePatientRecords(ReadOnlyList<Patient>)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void savePatientRecords(ReadOnlyPatientRecords patientRecords, Path filePath) throws IOException {
+    public void savePatientRecords(ReadOnlyList<Patient> patientRecords, Path filePath) throws IOException {
         requireNonNull(patientRecords);
         requireNonNull(filePath);
 

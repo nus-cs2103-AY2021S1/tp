@@ -6,63 +6,66 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 
 <!--emulates room details panel -->
 
-<ScrollPane fitToWidth="true" styleClass="patient-details-panel" stylesheets="@../css/PatientDetailsPanel.css"
-            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1">
-    <content>
+<ScrollPane fitToWidth="true" styleClass="patient-details-panel" stylesheets="@../css/PatientDetailsPanel.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <content>
+    <VBox>
+      <children>
         <VBox prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label id="nameOfPatient" fx:id="name" text="\$name">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets bottom="15.0" left="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label id="detailsHeader" fx:id="patientHeader" text="Patient Details:">
-                  <padding>
-                     <Insets bottom="15.0" left="10.0" top="10.0" />
-                  </padding>
-                  </Label>
-                  <Label fx:id="temperature" text="\$temperature">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="periodOfStay" text="\$periodOfStay">
-                     <padding>
-                        <Insets left="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="phone" text="\$phone">
-                     <padding>
-                        <Insets left="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="age" text="\$age">
-                     <padding>
-                        <Insets left="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="comment" text="\$comment">
-                     <padding>
-                        <Insets left="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </VBox>
-         </children>
+          <children>
+            <Label id="nameOfPatient" fx:id="name" text="\$name" wrapText="true" minHeight="-Infinity">
+              <opaqueInsets>
+                <Insets />
+              </opaqueInsets>
+              <padding>
+                <Insets bottom="15.0" left="10.0" top="10.0" />
+              </padding>
+            </Label>
+            <Label id="detailsHeader" fx:id="patientHeader" text="Patient Details:">
+              <padding>
+                <Insets bottom="15.0" left="10.0" top="10.0" />
+              </padding>
+            </Label>
+            <Label fx:id="temperature" text="\$temperature">
+              <VBox.margin>
+                <Insets />
+              </VBox.margin>
+              <padding>
+                <Insets left="10.0" />
+              </padding>
+            </Label>
+            <Label fx:id="periodOfStay" text="\$periodOfStay">
+              <padding>
+                <Insets left="10.0" top="10.0" />
+              </padding>
+            </Label>
+            <Label fx:id="phone" text="\$phone" wrapText="true" minHeight="-Infinity">
+              <padding>
+                <Insets left="10.0" top="10.0" />
+              </padding>
+            </Label>
+            <Label fx:id="age" text="\$age">
+              <padding>
+                <Insets left="10.0" top="10.0" />
+              </padding>
+            </Label>
+            <Label fx:id="comment" text="\$comment" wrapText="true" minHeight="-Infinity">
+              <padding>
+                <Insets left="10.0" top="10.0" />
+              </padding>
+            </Label>
+          </children>
         </VBox>
-    </content>
-    <effect>
-        <DropShadow />
-    </effect>
+      </children>
+    </VBox>
+  </content>
+  <effect>
+    <DropShadow>
+      <color>
+        <Color opacity="0.3199999928474426" />
+      </color></DropShadow>
+  </effect>
 </ScrollPane>

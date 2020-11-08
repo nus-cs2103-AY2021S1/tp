@@ -18,17 +18,15 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PatientRecords;
-import seedu.address.model.ReadOnlyPatientRecords;
-import seedu.address.model.ReadOnlyRoomList;
-import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.task.TaskList;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.room.Room;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.JsonPatientRecordsStorage;
 import seedu.address.storage.JsonRoomOccupancyStorage;
-import seedu.address.storage.JsonTaskStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.PatientRecordsStorage;
 import seedu.address.storage.Storage;
@@ -66,10 +64,7 @@ public class MainApp extends Application {
                 new JsonPatientRecordsStorage(userPrefs.getCovigentAppFilePath());
         JsonRoomOccupancyStorage roomOccupancyStorage = new JsonRoomOccupancyStorage(
                 userPrefs.getRoomsOccupiedFilePath());
-        JsonTaskStorage taskOccupancyStorage = new JsonTaskStorage(
-                userPrefs.getTaskOccupiedFilePath());
-        storage = new StorageManager(patientRecordsStorage,
-                userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
+        storage = new StorageManager(patientRecordsStorage, roomOccupancyStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -88,23 +83,10 @@ public class MainApp extends Application {
      * address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPatientRecords> patientRecordsOptional;
-        ReadOnlyPatientRecords initialData;
-        Optional<ReadOnlyRoomList> readOnlyRoomOccupancy;
-        ReadOnlyRoomList initialRoomList;
-        Optional<ReadOnlyTaskList> readOnlyTaskOccupancy;
-        ReadOnlyTaskList initialTaskList;
-        try {
-            readOnlyTaskOccupancy = storage.readTaskStorage();
-            initialTaskList = readOnlyTaskOccupancy.orElseGet(SampleDataUtil::getSampleTaskList);
-        } catch (DataConversionException e) {
-            logger.warning(
-                    "Room Data file not in the correct format. Will be starting with an empty CovigentApp");
-            initialTaskList = new TaskList();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty CovigentApp");
-            initialTaskList = new TaskList();
-        }
+        Optional<ReadOnlyList<Patient>> patientRecordsOptional;
+        ReadOnlyList<Patient> initialData;
+        Optional<ReadOnlyList<Room>> readOnlyRoomOccupancy;
+        ReadOnlyList<Room> initialRoomList;
 
         try {
             readOnlyRoomOccupancy = storage.readRoomOccupancyStorage();
@@ -132,7 +114,7 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty CovigentApp");
             initialData = new PatientRecords();
         }
-        return new ModelManager(initialData, userPrefs, initialRoomList, initialTaskList);
+        return new ModelManager(initialData, initialRoomList, userPrefs);
     }
 
     private void initLogging(Config config) {

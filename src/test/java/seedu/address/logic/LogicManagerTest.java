@@ -25,11 +25,10 @@ import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.task.TaskList;
 import seedu.address.storage.JsonPatientRecordsStorage;
 import seedu.address.storage.JsonRoomOccupancyStorage;
 import seedu.address.storage.JsonTaskStorage;
@@ -56,7 +55,7 @@ public class LogicManagerTest {
         JsonTaskStorage taskOccupancyStorage =
                 new JsonTaskStorage((temporaryFolder.resolve("task")));
         StorageManager storage =
-                new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
+                new StorageManager(covigentAppStorage, roomOccupancyStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -87,10 +86,8 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonRoomOccupancyStorage roomOccupancyStorage =
                 new JsonRoomOccupancyStorage(temporaryFolder.resolve("roomsOccupied"));
-        JsonTaskStorage taskOccupancyStorage =
-                new JsonTaskStorage(temporaryFolder.resolve("task"));
         StorageManager storage =
-                new StorageManager(covigentAppStorage, userPrefsStorage, roomOccupancyStorage, taskOccupancyStorage);
+                new StorageManager(covigentAppStorage, roomOccupancyStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -147,7 +144,7 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
         Model expectedModel =
-                new ModelManager(model.getPatientRecords(), new UserPrefs(), new RoomList(), new TaskList());
+                new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -173,7 +170,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void savePatientRecords(ReadOnlyPatientRecords patientRecords, Path filePath) throws IOException {
+        public void savePatientRecords(ReadOnlyList<Patient> patientRecords, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

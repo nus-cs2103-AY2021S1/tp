@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+//@@author w-yeehong
 /**
  * Represents a Task that can be assigned to a room.
  * Guarantees: details are present and not null, field values are validated, immutable.

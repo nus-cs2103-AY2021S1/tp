@@ -5,10 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
+import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_TASK_INDEX_ONE;
 
 import java.util.Optional;
 
@@ -19,48 +17,63 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ParserUtilTest {
 
     @Test
-    public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+    public void parseRoomNumber_nullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRoomNumber(null));
     }
 
     @Test
-    public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () ->
-                ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+    public void parseRoomNumber_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRoomNumber("10 a"));
     }
 
     @Test
-    public void parseIndex_validInput_success() throws Exception {
+    public void parseRoomNumber_negativeInteger_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRoomNumber("-1"));
+    }
+
+    @Test
+    public void parseRoomNumber_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseRoomNumber(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseRoomNumber_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PATIENT, ParserUtil.parseIndex("1"));
+        assertEquals(1, ParserUtil.parseRoomNumber("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PATIENT, ParserUtil.parseIndex("  1  "));
+        assertEquals(1, ParserUtil.parseRoomNumber("  1  "));
     }
 
     @Test
-    public void parsePositiveInteger_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePositiveInteger("10 a"));
+    public void parseTaskIndex_nullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTaskIndex(null));
     }
 
     @Test
-    public void parsePositiveInteger_negativeInteger_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_NUMBER, () ->
-                ParserUtil.parsePositiveInteger("-1"));
+    public void parseTaskIndex_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTaskIndex("10 a"));
     }
 
     @Test
-    public void parsePositiveInteger_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_NUMBER, () ->
-                ParserUtil.parsePositiveInteger(Long.toString(Integer.MAX_VALUE + 1)));
+    public void parseTaskIndex_negativeInteger_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTaskIndex("-1"));
     }
 
     @Test
-    public void parsePositiveInteger_validInput_success() throws Exception {
+    public void parseTaskIndex_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseTaskIndex(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseTaskIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(1, ParserUtil.parsePositiveInteger("1"));
+        assertEquals(VALID_TASK_INDEX_ONE, ParserUtil.parseTaskIndex("1"));
+
         // Leading and trailing whitespaces
-        assertEquals(1, ParserUtil.parsePositiveInteger("  1  "));
+        assertEquals(VALID_TASK_INDEX_ONE, ParserUtil.parseTaskIndex("  1  "));
     }
 
     @Test

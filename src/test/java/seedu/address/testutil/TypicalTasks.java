@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
 
 /**
  * A utility class containing a list of {@code Task} objects to be used in tests.
@@ -38,13 +37,6 @@ public class TypicalTasks {
 
     private TypicalTasks() {} // prevents instantiation
 
-    public static TaskList getTypicalTaskList() {
-        TaskList taskList = new TaskList();
-        for (Task task : getTypicalTasks()) {
-            taskList.add(task);
-        }
-        return taskList;
-    }
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(REMIND_PATIENT, RESTOCK_SUPPLY, CALL_EMBASSY));
     }

@@ -31,17 +31,22 @@ class RoomListTest {
         assertEquals(0, roomList.getNumOfRooms());
     }
 
+    //@@author w-yeehong
     @Test
-    public void getRoomWithRoomNumber_roomNotInList_returnsEmptyOptional() {
+    public void getRoomWithRoomNumber_roomNotInList() {
         RoomList roomList = new RoomList();
 
-        // Positive room number
-        Optional<Room> optionalRoom = roomList.getRoomWithRoomNumber(20);
-        assertTrue(optionalRoom.isEmpty());
+        // EP for room number: [MIN_INT...0], [1...MAX_INT]
 
-        // Negative room number
-        optionalRoom = roomList.getRoomWithRoomNumber(-20);
-        assertTrue(optionalRoom.isEmpty());
+        // EP [1...MAX_INT] -> returns empty optional
+        Optional<Room> validRoom = roomList.getRoomWithRoomNumber(1);
+        assertTrue(validRoom.isEmpty());
+
+        // EP [MIN_INT...0] -> throws AssertionError
+        assertThrows(AssertionError.class, () -> roomList.getRoomWithRoomNumber(0));
+
+        // EP [MIN_INT...0] -> throws AssertionError
+        assertThrows(AssertionError.class, () -> roomList.getRoomWithRoomNumber(-1));
     }
 
     @Test
@@ -51,6 +56,5 @@ class RoomListTest {
         Optional<Room> optionalRoom = roomList.getRoomWithRoomNumber(7);
         assertTrue(optionalRoom.map(room -> room.getRoomNumber() == 7).orElse(false));
     }
-
-
+    //@@author w-yeehong
 }

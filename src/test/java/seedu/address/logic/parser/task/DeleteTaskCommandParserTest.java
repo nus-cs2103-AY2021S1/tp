@@ -5,10 +5,12 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.command.GeneralCommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.testutil.command.GeneralCommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_ROOM_NUMBER;
 import static seedu.address.testutil.command.RoomCommandTestUtil.INVALID_ROOM_NUMBER_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_EIGHT_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_TASK_NUMBER;
 import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_TASK_NUMBER_DESC;
 import static seedu.address.testutil.command.TaskCommandTestUtil.TASK_NUMBER_DESC_ONE;
 import static seedu.address.testutil.command.TaskCommandTestUtil.TASK_NUMBER_DESC_TWO;
@@ -18,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.task.DeleteTaskCommand;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.room.RoomCliSyntax;
 
 public class DeleteTaskCommandParserTest {
 
@@ -53,11 +56,13 @@ public class DeleteTaskCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid room number
         assertParseFailure(parser, INVALID_ROOM_NUMBER_DESC + TASK_NUMBER_DESC_ONE,
-                ParserUtil.MESSAGE_INVALID_NUMBER);
+                String.format(ParserUtil.MESSAGE_INVALID_UNSIGNED_INT, RoomCliSyntax.PREFIX_ROOM_NUMBER,
+                INVALID_ROOM_NUMBER));
 
         // invalid task number
         assertParseFailure(parser, ROOM_NUMBER_SEVEN_DESC + INVALID_TASK_NUMBER_DESC,
-                ParserUtil.MESSAGE_INVALID_INDEX);
+                String.format(ParserUtil.MESSAGE_INVALID_UNSIGNED_INT, TaskCliSyntax.PREFIX_TASK_NUMBER,
+                INVALID_TASK_NUMBER));
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE,

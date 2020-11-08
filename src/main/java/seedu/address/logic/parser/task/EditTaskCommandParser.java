@@ -18,6 +18,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+//@@author w-yeehong
 /**
  * Parses input arguments and creates a new EditTaskCommand object.
  */
@@ -42,8 +43,8 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         }
 
         // Compulsory fields
-        int roomNumber = ParserUtil.parsePositiveInteger(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
-        Index taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK_NUMBER).get());
+        int roomNumber = ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
+        Index taskIndex = ParserUtil.parseTaskIndex(argMultimap.getValue(PREFIX_TASK_NUMBER).get());
 
         // Optional fields
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();

@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+//@@author w-yeehong
 public class DateTimeDueTest {
 
     @Test
@@ -75,5 +76,32 @@ public class DateTimeDueTest {
         assertTrue(DateTimeDue.isValidDateTimeDue("05/01/2020")); // dd/MM/yyyy HHmm
         assertTrue(DateTimeDue.isValidDateTimeDue("5/1/2020 2359")); // d/M/yyyy HHmm
         assertTrue(DateTimeDue.isValidDateTimeDue("05/01/2020 2359")); // dd/MM/yyyy HHmm
+    }
+
+    @Test
+    public void compareTo() {
+        DateTimeDue emptyDateTime = new DateTimeDue(Optional.empty());
+        DateTimeDue validDateTime = new DateTimeDue(Optional.of("20200101 0000"));
+
+        // EP for date-time: [empty vs empty], [empty vs not empty], [not empty vs empty]
+        //          [1st date same as 2nd date], [1st date before 2nd date], [1st date after 2nd date]
+
+        // EP [empty vs empty] -> returns 0
+        assertEquals(0, emptyDateTime.compareTo(new DateTimeDue(Optional.empty())));
+
+        // EP [empty vs not empty] -> returns -1
+        assertEquals(-1, emptyDateTime.compareTo(validDateTime));
+
+        // EP [not empty vs empty] -> returns 1
+        assertEquals(1, validDateTime.compareTo(emptyDateTime));
+
+        // EP [1st date same as 2nd date] -> returns 0
+        assertEquals(0, validDateTime.compareTo(new DateTimeDue(Optional.of("20200101 0000"))));
+
+        // EP [1st date before 2nd date] -> returns -1
+        assertEquals(-1, validDateTime.compareTo(new DateTimeDue(Optional.of("20200101 0001"))));
+
+        // EP [1st date after 2nd date] -> returns 1
+        assertEquals(1, validDateTime.compareTo(new DateTimeDue(Optional.of("20191231 2359"))));
     }
 }

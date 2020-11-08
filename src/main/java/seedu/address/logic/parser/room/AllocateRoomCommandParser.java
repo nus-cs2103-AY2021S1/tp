@@ -32,9 +32,9 @@ public class AllocateRoomCommandParser implements Parser<AllocateRoomCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME);
 
         Integer roomToBeAllocated;
-
+        boolean toRemove = false;
         try {
-            roomToBeAllocated = ParserUtil.parsePositiveInteger(argMultimap.getPreamble().trim());
+            roomToBeAllocated = ParserUtil.parseRoomNumber(argMultimap.getPreamble().trim());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateRoomCommand.MESSAGE_USAGE));
         }
@@ -50,7 +50,8 @@ public class AllocateRoomCommandParser implements Parser<AllocateRoomCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String patientFieldInput = argMultimap.getValue(PREFIX_NAME).get();
             if (patientFieldInput.equals(INPUT_REMOVE_PATIENT)) {
-                allocateRoomDescriptor.setOccupied(false); //empty the room
+                toRemove = true; //empty the room
+                allocateRoomDescriptor.setOccupied(false);
             } else {
                 allocateRoomDescriptor.setPatientName(PatientParserUtil.parseName(patientFieldInput));
             }
@@ -60,6 +61,6 @@ public class AllocateRoomCommandParser implements Parser<AllocateRoomCommand> {
             throw new ParseException(AllocateRoomCommand.MESSAGE_USAGE);
         }
 
-        return new AllocateRoomCommand(roomToBeAllocated, allocateRoomDescriptor);
+        return new AllocateRoomCommand(roomToBeAllocated, allocateRoomDescriptor, toRemove);
     }
 }

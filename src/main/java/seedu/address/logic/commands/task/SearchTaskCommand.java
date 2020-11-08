@@ -51,20 +51,23 @@ public class SearchTaskCommand extends Command {
         requireNonNull(model);
         List<Room> rooms = model.getRoomListObservableList();
         ArrayList<Task> taskListWithDesirableResult = new ArrayList<>();
+        datePredicate = new DueDatePredicate(duedate);
+
         for (Room room : rooms) {
-            tasks = room.getTaskList().asUnmodifiableObservableList();
+            tasks = room.getReadOnlyTasks();
             for (Task task : tasks) {
-                if (task.getDueAt().compareTo(duedate) == 1) {
+                if (datePredicate.test(task)) {
                     taskListWithDesirableResult.add(task);
+                    break;
                 }
             }
         }
 
         if (taskListWithDesirableResult.size() < 1) {
+            model.updateFilteredTaskList(datePredicate);
             throw new CommandException(MESSAGE_TASK_NOT_FOUND);
         }
         assert taskListWithDesirableResult.size() >= 1;
-        datePredicate = new DueDatePredicate(duedate);
         model.updateFilteredTaskList(datePredicate);
         return new CommandResult(String.format(MESSAGE_SEARCH_TASK_SUCCESS));
     }

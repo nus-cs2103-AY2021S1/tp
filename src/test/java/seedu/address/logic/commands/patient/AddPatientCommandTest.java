@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.PatientRecords;
-import seedu.address.model.ReadOnlyPatientRecords;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.stubs.ModelStub;
@@ -111,7 +111,7 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public ReadOnlyPatientRecords getPatientRecords() {
+        public ReadOnlyList<Patient> getPatientRecords() {
             return new PatientRecords();
         }
 

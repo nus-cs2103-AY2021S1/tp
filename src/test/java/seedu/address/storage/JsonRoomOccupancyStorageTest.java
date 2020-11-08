@@ -3,19 +3,22 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRooms.ROOM_NO_PATIENT_NO_TASK;
+import static seedu.address.testutil.TypicalRooms.ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_1;
+import static seedu.address.testutil.TypicalRooms.ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_2;
 import static seedu.address.testutil.TypicalRooms.getTypicalRoomList;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyRoomList;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.RoomList;
+import seedu.address.model.room.Room;
 
 class JsonRoomOccupancyStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
@@ -28,7 +31,7 @@ class JsonRoomOccupancyStorageTest {
     public void readRoomList_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> readRoomList(null));
     }
-    private java.util.Optional<ReadOnlyRoomList> readRoomList(String filePath) throws Exception {
+    private Optional<ReadOnlyList<Room>> readRoomList(String filePath) throws Exception {
         return new JsonRoomOccupancyStorage(Paths.get(filePath))
                 .readOnlyRoomOccupancy(addToTestDataPathIfNotNull(filePath));
     }
@@ -80,18 +83,18 @@ class JsonRoomOccupancyStorageTest {
 
         // Save in new file and read back
         jsonRoomOccupancyStorage.saveOccupiedRooms(original, filePath);
-        ReadOnlyRoomList readBack = jsonRoomOccupancyStorage.readOnlyRoomOccupancy(filePath).get();
+        ReadOnlyList<Room> readBack = jsonRoomOccupancyStorage.readOnlyRoomOccupancy(filePath).get();
         RoomList roomList = new RoomList(readBack);
         assertEquals(original, roomList);
 
         // Modify data, overwrite exiting file, and read back
-        original.addRooms(ROOM_NO_PATIENT_NO_TASK);
+        original.addRooms(ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_1);
         jsonRoomOccupancyStorage.saveOccupiedRooms(original, filePath);
         readBack = jsonRoomOccupancyStorage.readOnlyRoomOccupancy(filePath).get();
         assertEquals(original, new RoomList(readBack));
 
         // Save and read without specifying file path
-        original.addRooms(ROOM_NO_PATIENT_NO_TASK);
+        original.addRooms(ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_2);
         jsonRoomOccupancyStorage.saveOccupiedRooms(original); // file path not specified
         readBack = jsonRoomOccupancyStorage.readOnlyRoomOccupancy().get(); // file path not specified
         assertEquals(original, new RoomList(readBack));

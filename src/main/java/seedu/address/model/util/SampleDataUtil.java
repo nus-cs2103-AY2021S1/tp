@@ -1,9 +1,7 @@
 package seedu.address.model.util;
 
 import seedu.address.model.PatientRecords;
-import seedu.address.model.ReadOnlyPatientRecords;
-import seedu.address.model.ReadOnlyRoomList;
-import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.RoomList;
 import seedu.address.model.patient.Age;
 import seedu.address.model.patient.Name;
@@ -12,8 +10,8 @@ import seedu.address.model.patient.PeriodOfStay;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Temperature;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTasks;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
 
 /**
  * Contains utility methods for populating {@code CovigentApp} with sample data.
@@ -34,7 +32,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyPatientRecords getSampleCovigentApp() {
+    public static ReadOnlyList<Patient> getSampleCovigentApp() {
         PatientRecords sampleAb = new PatientRecords();
         for (Patient samplePatient : getSamplePatient()) {
             sampleAb.addPatient(samplePatient);
@@ -51,7 +49,7 @@ public class SampleDataUtil {
         return new Task[] {};
     }
 
-    public static ReadOnlyRoomList getSampleRoomList() {
+    public static ReadOnlyList<Room> getSampleRoomList() {
         RoomList roomList = new RoomList();
         for (Room room : getSampleRoom()) {
             roomList.addRooms(room);
@@ -59,11 +57,11 @@ public class SampleDataUtil {
         return roomList;
     }
 
-    public static ReadOnlyTaskList getSampleTaskList() {
-        TaskList taskList = new TaskList();
+    public static ReadOnlyList<Task> getSampleRoomTasks() {
+        RoomTasks roomTasks = new RoomTasks();
         for (Task task : getSampleTask()) {
-            taskList.add(task);
+            roomTasks.addTask(task);
         }
-        return taskList;
+        return roomTasks;
     }
 }

@@ -722,10 +722,15 @@ _Written by: Yun Qing_
 
 #### 5.3.5 List the Current Rooms: `listroom`
 
-You can use this command to list all the rooms in the hotel together with information of whether the room is occupied or not.
+You can use this command to list all the rooms in the hotel together with information of whether the room is occupied or not, provided there is at least one room defined
 
 Format: `listroom` All the rooms in Covigent.
 
+**Example(s):**
+1. `listroom` all the rooms will be listed
+2. `listroom abdcfbhfr` all rooms will be listed
+3. `listroom 21232198` all rooms will be listed
+4. `listroom 123ebhbh11` all rooms will be listed
 **:information_source: Important Information:** <br />
 * If there are no rooms, then no rooms will be mentioned and informs user to initialize rooms using the `initroom` command.
 * You need at least one room for this command to work.<br />
@@ -759,6 +764,12 @@ _Written by: Noorul Azlina_
 You can use this command to find the room with the lowest room number that is free for use.
 
 Format: `findemptyroom` The unoccupied room in Covigent with the lowest room number will be displayed on UI.
+
+**Example(s)**:
+1. `findemptyroom` gives room with the lowest room number
+2. `findemptyroom 238405` gives room with the lowest room number
+3. `findemptyroom ahfbhrf` gives room with the lowest room number
+4. `findemptyroom hsbf835dfj` gives room with the lowest room number
 
 **:information_source: Important Information:** <br />
 * If there are no empty rooms then an error message informing hotel staff is mentioned.
