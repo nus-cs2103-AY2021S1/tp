@@ -138,12 +138,13 @@ Format: `delete INDEX [MORE_INDEXES]`
 
 You can delete **one or more** assignments from your assignment list by specifying the `INDEX` of assignments you want to delete as shown in your list.
 
-Here is an example with steps to follow:
+Here is an example with steps for you to follow:
 
-1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the Command Box as per their indexes that are labelled in the figure.
+1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the Command Box which corresponds to their indexes in the assignment list.
 
 ![DeleteCommand1](images/DeleteCommandDiagram1.png)
 *Figure 4: User input and location of assignment indexes*
+
 
 2) You have successfully deleted both assignments from the assignment list, and they are no longer displayed.
 
@@ -152,6 +153,7 @@ Here is an example with steps to follow:
 ![DeleteCommand2](images/DeleteCommandDiagram2.png)
 *Figure 5: The displayed message and the updated list*
 
+
 Examples:
 * `delete 1`
 * `delete 2 3 1`
@@ -159,9 +161,9 @@ Examples:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* At least one index must be **present**. For example, `delete` without any index will not work.
+* At least one index must be **present**. For example, `delete` without any index is invalid.
 * The indexes **must be found in your assignment list**.
-* The indexes **must not be duplicated**. For example, `delete 3 3` will not work.
+* The indexes **must not be duplicated**. For example, `delete 3 3` is invalid.
 </div>
 
 ### Importing your timetable : `import`
@@ -198,12 +200,12 @@ Example:
 
 Format: `list [NUMBER_OF_DAYS]`
 
-You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date and time and `NUMBER_OF_DAYS` later. The index must be a number from 1 to 50.
+You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date and time and `NUMBER_OF_DAYS` later. `NUMBER_OF_DAYS` must be an index **from 1 to 50**.
 
 <div markdown="span" class="alert alert-success">
 
 **:bulb: Tip:**
-You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
+You can use the `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
 </div>
 
 Here is an example with steps for you to follow: 
@@ -219,6 +221,7 @@ Here is an example with steps for you to follow:
 
 ![ListCommand2](images/ListCommandDiagram2.png)
 *Figure 9: The displayed message and the updated list*
+
 
 More examples: 
 - `list`
@@ -239,7 +242,7 @@ You can find your assignments based on keywords you enter. The types of keywords
 <div markdown="span" class="alert alert-success">
 
 **:bulb: Tip:**
-You can find assignments with multiple keywords of the same type to widen your search!
+If your assignment list is really long, the `find` command comes in handy as it  filters the list based on assignments u want to see!
 </div>
 
 This is the table of prefixes used:
@@ -257,12 +260,14 @@ This is the table of prefixes used:
 * Keywords used with prefixes `n/`,`mod/` and `p/` are **case-insensitive**.
 </div>
 
+
 Here is an example with steps to follow:
 
 1) To find assignments from the modules CS2100 and ST2334, you can simply key in `find mod/CS2100 ST2334`. 
 
 ![FindCommand1](images/FindCommandDiagram1.png)
 *Figure 10: `find mod/CS2100 ST2334` inputted by user*
+
 
 2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
 
@@ -275,7 +280,7 @@ Here is an example with steps to follow:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* You can only **find assignments with keywords of the same prefix**. For example, `find n/Assignment d/23-10-2020` will not work.
+* You can only **find assignments with keywords of the same prefix**. For example, `find n/Assignment d/23-10-2020` is invalid.
 </div>
 
 ### Editing your assignment : `edit`
@@ -308,7 +313,7 @@ Here is an example with steps to follow:
 
 2) The assignment name will be changed to "Statistics Lab".
 
-3) A message that indicates details of the new edited assignment is displayed in the Message Box.
+3) A message that indicates details of the edited assignment is displayed in the Message Box.
 
 ![EditCommand2](images/EditCommand2.png)
 *Figure 13: The displayed message and the edited assignment*
@@ -316,8 +321,7 @@ Here is an example with steps to follow:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* **One** `INDEX` and **at least one** `PREFIX/EDITTED_FIELD` must be present. For example, `edit` will not work.
-* `DATE_OR_TIME_OF_ASSIGNMENT` has date in the format **dd-MM-yyyy** and time in the format **HHmm** (24 hour).
+* **One** `INDEX` and **at least one** `PREFIX/EDITTED_FIELD` must be present. For example, `edit` is invalid.
 </div>
 
 ### Setting reminders for assignments : `remind`
