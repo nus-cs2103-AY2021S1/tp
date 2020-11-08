@@ -99,7 +99,7 @@ The UI Component defines what the user will see and interact with while using Tr
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The `UI` Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class. The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -112,10 +112,10 @@ The `UI` component,
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
-The `Logic` component contains the `TrackrParser` object that creates `Parser` objects for each `Command` based on the user input taken from the `UI` component. The `Parser` object will break down the user input to obtain the arguments, and either create the corresponding `Command` object or throw an exception in the case of invalid inputs for the arguments. The `Logic` component also contains the `Model` component which allows for execution of the created `Command`.
-
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+
+The `Logic` component contains the `TrackrParser` object that creates `Parser` objects for each `Command` based on the user input taken from the `UI` component. The `Parser` object will break down the user input to obtain the arguments, and either create the corresponding `Command` object or throw an exception in the case of invalid inputs for the arguments. The `Logic` component also contains the `Model` component which allows for execution of the created `Command`.
 
 1. `Logic` uses the `TrackrParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -134,9 +134,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-The `Model` component contains the `Trackr` object, that handles the main type of data in the app, which is in the form of a list of `Module` objects. The `Module` object contains a list of `TutorialGroup` objects, and the `TutorialGroup` objects contains a list of `Student` objects. The `ModelManager` class exposes the methods which allows for the manipulation of this data (e.g. Editing a `Module` object's `ModuleId` object, deleting a `TutorialGroup` object, adding participation score for a `Student` object).
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+The `Model` component contains the `Trackr` object, that handles the main type of data in the app, which is in the form of a list of `Module` objects. The `Module` object contains a list of `TutorialGroup` objects, and the `TutorialGroup` objects contains a list of `Student` objects. The `ModelManager` class exposes the methods which allows for the manipulation of this data (e.g. Editing a `Module` object's `ModuleId` object, deleting a `TutorialGroup` object, adding participation score for a `Student` object).
 
 The `Model` component,
 
@@ -152,18 +152,23 @@ The `Model` component,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The `Storage` component contains the `JsonModuleListStorage` object, which contains the `JsonSerializableModuleListStorage` which serves as the JSON version of a Trackr object; the main data type in the app. The methods `readModuleList()` and `saveModuleList()` convert the JSON objects to and from their native object types respectively (e.g. Converting a `JsonAdaptedTutorialGroup` object into a `TutorialGroup` object).
 
 The `Storage` component,
 
 -   can save `UserPref` objects in json format and read it back.
--   can save the module list data in json format and read it back.
+-   can save the `Trackr` data in json format and read it back.
 
 ### Section 4.6 - Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.addressbook.commons` package, the package contains 2 sub packages, which are:
+
+- core: Contains software settings and information, also contains loggers for debugging purposes.
+- util: Contains utilities for other classes to use. Utilities can perform tasks such as parse strings or convert objects to and from Json format.
+
+
 
 ---
 
@@ -296,7 +301,7 @@ Step 5. Once the `Module` has been deleted from the `internaList`, `DeleteModule
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be deleted from.
 > - `Model#deleteStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
 > `TutorialGroup` and deletes the `Student` from the `internalList` of the `UniqueStudentList`.
-    
+
 ### Section 5.3 - Edit Commands - `editMod`, `editTG` and `editStudent`
 
 #### Overview
@@ -344,7 +349,7 @@ Step 5. Once the `Module` has been edited in the `internaList`, `EditModuleComma
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be edited from.
 > - `Model#setStudent(Student, Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
 > `TutorialGroup` and edits the `Student` in the `internalList` of the `UniqueStudentList`.
-    
+
 ### Section 5.4 - Find Commands - `findMod`, `findTG` and `findStudent`
 
 #### Overview
@@ -397,7 +402,7 @@ Step 5. `FindModuleCommand#execute(Model)` creates a `CommandResult` object and 
 > are `AttendanceBelowSpecifiedScorePredicate` and `ParticipationBelowSpecifiedScorePredicate` respectively. Like the
 > aforementioned find command for `Student`, `attendanceBelow` and `participationBelow` uses the 
 > `Model#updateFilteredStudentList` method to update the displaye list of students.
-    
+
 ### Section 5.5 - List Commands - `listMod`, `listTG` and `listStudent`
 
 #### Overview
@@ -442,7 +447,7 @@ Step 5. `ListModuleCommand#execute(Model)` creates a `CommandResult` object and 
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be listed from.
 > - `Model#updateFilteredStudentList(Predicate<Student>)` method then displays all the students within the target 
 > `Module` and `TutorialGroup`.
-    
+
 ### Section 5.6 - View Commands - `viewTG` and `viewStudent`
 
 #### Overview
