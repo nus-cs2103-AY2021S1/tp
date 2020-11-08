@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Modduke is a **desktop app targeted towards NUS students. It allows them to easily manage their contacts, modules and meetings during the semester.** The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Modduke is a **desktop app targeted towards NUS students handling multiple projects. It allows them to easily manage their contacts, modules and meetings during the semester.** The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 13 kLoC.
 
 * Table of Contents
 {:toc}
@@ -51,7 +51,7 @@ Modduke is a **desktop app targeted towards NUS students. It allows them to easi
   e.g `n/CONTACT_NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `t/TAG…​` can be used as `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/CONTACT_NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/CONTACT_NAME` is also acceptable.
@@ -61,7 +61,8 @@ Modduke is a **desktop app targeted towards NUS students. It allows them to easi
 * The `CONTACT_NAME` parameter refers to the full name of the contact.
 
 * There are 2 special tags `prof` and `ta`. Contacts with either of these tags will be classified as professor or ta
- respectively. Users are not allowed to tag a contact as both `prof` and `ta`.
+ respectively. Users are not allowed to tag a contact as both `prof` and `ta`. Hence, if your professor is also your ta, only the
+ `prof` tag should be used.
 
 </div>
 
@@ -182,7 +183,8 @@ Edits an existing contact in Modduke.
 
 Format: `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]`
 
-Note: At least one optional field must be provided
+Note(s): 
+* At least one optional field must be provided
 
 Examples:
 *  `contact edit John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of John Doe to be `91234567` and `johndoe@example.com` respectively.
@@ -235,7 +237,7 @@ Example(s):
 
 Deletes the given tags from a contact.
 
-Format: `tag delete CONTACT_NAME t/TAG_NAMES...`
+Format: `tag delete CONTACT_NAME t/TAG_NAME...`
 
 Note(s)
 * Only 1 contact name can be used at a time but multiple tags can be deleted.
@@ -393,7 +395,7 @@ Copies email address of contacts with the given criteria to your clipboard.
 Format: `copy email [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 
 Note(s):
-* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields.
 * At least one of the optional fields must be provided.
 
 Example(s):
@@ -407,7 +409,7 @@ Copies phone numbers of contacts with the given criteria to your clipboard.
 Format: `copy phone [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 
 Note(s):
-* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields.
 * At least one of the optional fields must be provided.
 
 Example(s):
@@ -420,7 +422,7 @@ Displays the timeline in a new window.
 
 Format: `timeline`
 
-![Timeline Example](images/TimelineExample.gif)
+![Timeline Window](images/TimelineWindow.gif)
 
 Note(s):
 * Meetings are displayed in chronological order, with the earliest meeting on the left side of the window
@@ -489,3 +491,7 @@ Action | Format, Examples
 **Copy Email** | `copy email [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy email m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
 **Copy Phone** | `copy phone [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy phone m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
 **Display Timeline** | `timeline`
+**Display Help** | `help`
+**Switch to Light Theme** | `light`
+**Switch to Dark Theme** | `dark`
+

@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME;
@@ -20,6 +21,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
@@ -64,7 +66,7 @@ public class EditMeetingCommandTest {
                 new MeetingBook(model.getMeetingBook()),
                 new ModuleBook(model.getModuleBook()),
                 new UserPrefs());
-        expectedModel.setMeeting(model.getFilteredMeetingList().get(1), editedMeeting);
+        expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
 
         assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
     }
@@ -164,5 +166,19 @@ public class EditMeetingCommandTest {
                 EditMeetingCommand.MESSAGE_NONEXISTENT_PERSON, BENSON.getName().toString(), CS2102.getModuleName());
 
         assertCommandFailure(editMeetingCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_editSelectedMeeting_updatesSelectedMeeting() throws CommandException {
+        Meeting selectedMeeting = model.getSelectedMeeting();
+        EditMeetingCommand.EditMeetingDescriptor descriptor =
+                new EditMeetingDescriptorBuilder(selectedMeeting).withMeetingName("Blah").withDate(VALID_DATE).build();
+
+        new EditMeetingCommand(selectedMeeting.getModule().getModuleName(), selectedMeeting.getMeetingName(),
+                descriptor).execute(model);
+
+        Meeting expectedMeeting = new MeetingBuilder(selectedMeeting).withName("Blah").withDate(VALID_DATE).build();
+
+        assertEquals(model.getSelectedMeeting(), expectedMeeting);
     }
 }

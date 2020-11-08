@@ -93,6 +93,9 @@ public class Meeting {
         return meetingName.equals(otherMeetingName);
     }
 
+    /**
+     * Returns a string representation of the meeting with surrounding square brackets.
+     */
     public String getBracketNotation() {
         return "[" + this.module.getModuleName() + "] " + this.meetingName;
     }
