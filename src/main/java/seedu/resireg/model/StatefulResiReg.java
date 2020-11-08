@@ -6,6 +6,10 @@ import java.util.List;
 import seedu.resireg.model.exceptions.NoRedoableStateException;
 import seedu.resireg.model.exceptions.NoUndoableStateException;
 
+/*
+ * Code for StatefulResiReg is modified from addressbook-level4, which can be found at
+ * https://github.com/se-edu/addressbook-level4.
+ */
 /**
  * {@code ResiReg} that keeps track of its own history.
  */
