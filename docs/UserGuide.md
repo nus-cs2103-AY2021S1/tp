@@ -148,13 +148,12 @@ Format: `price INEQUALITY PRICE`
   * `<=`: Less than or Equal to
   * `>`: Strictly greater than
   * `>=`: Greater than or Equal to
-* `PRICE` must be a non-negative real number.
-* Note that decimal places of `PRICE` are taken into account when filtering. However, the message shown will only be to 2 decimal places.
+* `PRICE` must be a non-negative real number. Only up to 2 decimal places will be considered, anything from third decimal places onward will be ignored.
 
 Examples:
 * `price < 3`: lists all food items with price less than $3.
-* `price <= 2`: lists all food items with price less than or equals to $2.
-* `price > 4`: lists all food items with price greater than $4
+* `price <= 2`: lists all food items with price less than or equal to $2.
+* `price > 4.123`: lists all food items with price greater than $4.12
 
 ## Order related commands
 

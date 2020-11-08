@@ -13,7 +13,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY = "The order item quantity "
             + "provided is invalid";
     public static final String MESSAGE_INVALID_PRICE = "%s is not a non-negative unsigned real number.";
-    public static final String MESSAGE_PRICE_GREATER_THAN_LIMIT = "%s is too large a price for any item in the menu.";
+    public static final String MESSAGE_PRICE_GREATER_THAN_LIMIT = "$%.2f is too large of a price!";
     public static final String MESSAGE_INVALID_INEQUALITY = "%s is not a valid inequality sign. It must be either "
             + "\"<\", \"<=\", \">\", or \">=\" (without quotes). See User Guide for more info.";
 

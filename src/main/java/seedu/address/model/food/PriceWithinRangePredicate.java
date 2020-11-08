@@ -19,7 +19,7 @@ public class PriceWithinRangePredicate implements Predicate<MenuItem> {
         if (price < 0) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_PRICE, price));
         }
-        if (price > 100) {
+        if (price > 1000) {
             throw new ParseException(String.format(Messages.MESSAGE_PRICE_GREATER_THAN_LIMIT, price));
         }
         this.price = price;
