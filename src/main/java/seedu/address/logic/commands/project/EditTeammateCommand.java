@@ -77,16 +77,22 @@ public class EditTeammateCommand extends Command {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
 
-        if (!project.hasParticipation(gitUserIndex.getGitUserName())) {
+        if (!project.hasParticipation(gitUserIndex.getGitUserNameString())) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
         }
-        Participation participation = project.getParticipation(gitUserIndex.getGitUserName());
+        Participation participation = project.getParticipation(gitUserIndex.getGitUserNameString());
 
         Person oldTeammate = Person.getPersonFromList(gitUserIndex);
         Person editedTeammate = createEditedTeammate(participation, editTeammateDescriptor);
         Person.setPerson(editedTeammate);
         model.deletePerson(oldTeammate);
         model.addPerson(editedTeammate);
+
+        if (model.getTeammateToBeDisplayedOnDashboard().isPresent()
+                && model.getTeammateToBeDisplayedOnDashboard().get().equals(participation)) {
+            participation.setPerson(editedTeammate);
+            model.enter(participation);
+        }
 
         return new CommandResult(String.format(MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate));
     }

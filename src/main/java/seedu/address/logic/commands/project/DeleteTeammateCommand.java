@@ -47,16 +47,22 @@ public class DeleteTeammateCommand extends Command {
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
         List<Participation> lastShownList = project.getTeammates();
 
-        if (!project.hasParticipation(gitUserIndex.getGitUserName())) {
+        if (!project.hasParticipation(gitUserIndex.getGitUserNameString())) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
         }
 
-        Participation participation = project.getParticipation(gitUserIndex.getGitUserName());
+        Participation participation = project.getParticipation(gitUserIndex.getGitUserNameString());
         Person personToDelete = Person.getPersonFromList(gitUserIndex);
 
-        project.removeParticipation(participation);
+        Project.deleteAllParticipationOf(participation);
         model.deleteParticipation(participation);
         model.deletePerson(personToDelete);
+
+        if (model.getTeammateToBeDisplayedOnDashboard().isPresent()
+                && model.getTeammateToBeDisplayedOnDashboard().get().equals(participation)) {
+            model.resetTeammateToBeDisplayedOnDashboard();
+            project.updateTeammateOnView(null);
+        }
 
         return new CommandResult(String.format(MESSAGE_DELETE_TEAMMATE_SUCCESS, personToDelete));
     }

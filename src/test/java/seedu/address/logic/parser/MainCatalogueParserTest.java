@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.global.AddCommand;
 import seedu.address.logic.commands.global.ClearCommand;
 import seedu.address.logic.commands.global.DeleteCommand;
@@ -39,9 +40,12 @@ import seedu.address.logic.commands.global.ListProjectsCommand;
 import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AddTeammateCommand;
+import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.DeleteTaskCommand;
+import seedu.address.logic.commands.project.DeleteTeammateCommand;
+import seedu.address.logic.commands.project.DeleteTeammateParticipationCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.commands.project.TaskSorterCommand;
@@ -50,9 +54,11 @@ import seedu.address.logic.commands.project.ViewTeammateCommand;
 import seedu.address.logic.parser.exceptions.InvalidScopeException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Status;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.ProjectUtil;
@@ -70,10 +76,43 @@ public class MainCatalogueParserTest {
     }
 
     @Test
+    public void parseCommand_addTeammate() throws Exception {
+        Person teammate = new PersonBuilder().build();
+        AddTeammateCommand command =
+            (AddTeammateCommand) parser.parseCommand(PersonUtil.getAddTeammateCommand(teammate), Status.PROJECT);
+        assertEquals(new AddTeammateCommand(teammate), command);
+    }
+
+    @Test
+    public void parseCommand_addPart() throws Exception {
+        GitUserIndex gitUserIndex = new GitUserIndex(VALID_TEAMMATE_GIT_USERNAME_A);
+        AddTeammateParticipationCommand command =
+            (AddTeammateParticipationCommand) parser.parseCommand(AddTeammateParticipationCommand.COMMAND_WORD
+                + " " + VALID_TEAMMATE_GIT_USERNAME_A, Status.PROJECT);
+        assertEquals(new AddTeammateParticipationCommand(gitUserIndex), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTeammate() throws Exception {
+        GitUserIndex gitUserIndex = new GitUserIndex(VALID_TEAMMATE_GIT_USERNAME_A);
+        DeleteTeammateCommand command =
+            (DeleteTeammateCommand) parser.parseCommand(DeleteTeammateCommand.COMMAND_WORD + " "
+                + VALID_TEAMMATE_GIT_USERNAME_A, Status.PROJECT);
+        assertEquals(new DeleteTeammateCommand(gitUserIndex), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTeammateParticipation() throws Exception {
+        GitUserIndex gitUserIndex = new GitUserIndex(VALID_TEAMMATE_GIT_USERNAME_A);
+        DeleteTeammateParticipationCommand command =
+            (DeleteTeammateParticipationCommand) parser.parseCommand(DeleteTeammateParticipationCommand
+                .COMMAND_WORD + " " + VALID_TEAMMATE_GIT_USERNAME_A, Status.PROJECT);
+        assertEquals(new DeleteTeammateParticipationCommand(gitUserIndex), command);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD, Status.PROJECT_LIST) instanceof ClearCommand);
-        assertTrue(parser
-            .parseCommand(ClearCommand.COMMAND_WORD + " 3", Status.PROJECT_LIST) instanceof ClearCommand);
     }
 
     @Test
@@ -96,11 +135,7 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD, Status.PROJECT_LIST) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3",
-            Status.PROJECT_LIST) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD, Status.PROJECT) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3",
-            Status.PROJECT) instanceof ExitCommand);
     }
 
     @Test
@@ -115,27 +150,19 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD, Status.PROJECT_LIST) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3",
-            Status.PROJECT_LIST) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD, Status.PROJECT) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3",
-            Status.PROJECT) instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_listProjects() throws Exception {
         assertTrue(parser.parseCommand(ListProjectsCommand.COMMAND_WORD, Status.PROJECT_LIST)
             instanceof ListProjectsCommand);
-        assertTrue(parser.parseCommand(ListProjectsCommand.COMMAND_WORD + " 3",
-            Status.PROJECT_LIST) instanceof ListProjectsCommand);
     }
 
     @Test
     public void parseCommand_listPersons() throws Exception {
         assertTrue(parser.parseCommand(ListPersonsCommand.COMMAND_WORD, Status.PERSON_LIST)
             instanceof ListPersonsCommand);
-        assertTrue(parser.parseCommand(ListPersonsCommand.COMMAND_WORD + " 1",
-            Status.PERSON_LIST) instanceof ListPersonsCommand);
     }
 
     @Test
@@ -149,8 +176,6 @@ public class MainCatalogueParserTest {
     public void parseCommand_leave() throws Exception {
         assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD,
             Status.PROJECT) instanceof LeaveCommand);
-        assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD + " 3",
-            Status.TEAMMATE) instanceof LeaveCommand);
     }
 
     @Test

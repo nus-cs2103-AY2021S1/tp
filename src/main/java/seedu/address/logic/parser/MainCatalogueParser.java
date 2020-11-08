@@ -92,6 +92,9 @@ public class MainCatalogueParser {
             }
 
         case ClearCommand.COMMAND_WORD:
+            if (!arguments.isEmpty()) {
+                throw new ParseException(ClearCommand.MESSAGE_EXTRA_ARGS);
+            }
             switch (status) {
             case PROJECT_LIST:
                 return new ClearCommand();
@@ -109,6 +112,9 @@ public class MainCatalogueParser {
             }
 
         case ListProjectsCommand.COMMAND_WORD:
+            if (!arguments.isEmpty()) {
+                throw new ParseException(ClearCommand.MESSAGE_EXTRA_ARGS);
+            }
             switch (status) {
             case PERSON:
                 throw new InvalidScopeException(Status.PROJECT_LIST, status);
@@ -117,6 +123,9 @@ public class MainCatalogueParser {
             }
 
         case ListPersonsCommand.COMMAND_WORD:
+            if (!arguments.isEmpty()) {
+                throw new ParseException(ClearCommand.MESSAGE_EXTRA_ARGS);
+            }
             switch (status) {
             case PROJECT:
             case TASK:
@@ -127,10 +136,18 @@ public class MainCatalogueParser {
             }
 
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            if (!arguments.isEmpty()) {
+                throw new ParseException(ExitCommand.MESSAGE_EXTRA_ARGS);
+            } else {
+                return new ExitCommand();
+            }
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            if (!arguments.isEmpty()) {
+                throw new ParseException(HelpCommand.MESSAGE_EXTRA_ARGS);
+            } else {
+                return new HelpCommand();
+            }
 
         case StartProjectCommand.COMMAND_WORD:
             switch (status) {
@@ -151,7 +168,11 @@ public class MainCatalogueParser {
             }
 
         case LeaveCommand.COMMAND_WORD:
-            return new LeaveCommand();
+            if (!arguments.isEmpty()) {
+                throw new ParseException(LeaveCommand.MESSAGE_EXTRA_ARGS);
+            } else {
+                return new LeaveCommand();
+            }
 
         case AssignCommand.COMMAND_WORD:
             switch (status) {
@@ -164,6 +185,9 @@ public class MainCatalogueParser {
             }
 
         case AllTasksCommand.COMMAND_WORD:
+            if (!arguments.isEmpty()) {
+                throw new ParseException(ClearCommand.MESSAGE_EXTRA_ARGS);
+            }
             switch (status) {
             case PROJECT:
             case TASK:

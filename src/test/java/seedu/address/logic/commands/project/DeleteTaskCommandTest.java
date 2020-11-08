@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,7 +26,7 @@ import seedu.address.testutil.ProjectBuilder;
 class DeleteTaskCommandTest {
     private Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
     private Project project = model.getFilteredProjectList()
-        .get(INDEX_FIRST_PROJECT.getZeroBased()).addParticipation(ALICE);
+            .get(INDEX_FIRST_PROJECT.getZeroBased()).addParticipation(ALICE);
     // now inside the first project, there is a participant Alice
     private Participation aliceParticipation = project.getParticipation(ALICE.getGitUserNameString());
 
@@ -69,7 +70,7 @@ class DeleteTaskCommandTest {
         Task taskToDelete = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         // Update the task filter inside the project so that the taskToDelete is the only task shown
         project.updateTaskFilter(task -> task.getTaskName().contains(taskToDelete.getTaskName()));
-        Index outOfBoundIndex = INDEX_SECOND_TASK;
+        Index outOfBoundIndex = Index.fromOneBased(project.getFilteredSortedTaskList().size() + 1);
         // ensures that outOfBoundIndex is still in bounds of the whole task list
         assertTrue(outOfBoundIndex.getZeroBased() < project.getTasks().size());
 
@@ -103,6 +104,52 @@ class DeleteTaskCommandTest {
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
     }
 
+    /**
+     * Deletes a task that is currently displayed.
+     */
+    @Test
+    public void execute_deletingTaskToBeDisplayed_resetTaskDashboard() {
+        Model newModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Project project = newModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+
+        project.updateTaskFilter(task -> true);
+        Task taskToDelete = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+
+        newModel.enter(project);
+        newModel.enter(taskToDelete);
+
+        try {
+            new DeleteTaskCommand(INDEX_FIRST_TASK).execute(newModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of the command should not fail.", ce);
+        }
+
+        assertTrue(newModel.getTaskToBeDisplayedOnDashboard().isEmpty()
+                && newModel.getProjectToBeDisplayedOnDashboard().get().getTaskOnView().isEmpty());
+    }
+
+    /**
+     * Deletes a task that is currently not displayed.
+     */
+    @Test
+    public void execute_deletingTaskNotToBeDisplayed_noChangesToTaskDashboard() {
+        Model newModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Project project = newModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+
+        project.updateTaskFilter(task -> true);
+        Task task = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+
+        newModel.enter(project);
+        newModel.enter(task);
+
+        try {
+            new DeleteTaskCommand(INDEX_SECOND_TASK).execute(newModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of the command should not fail.", ce);
+        }
+
+        assertTrue(newModel.getTaskToBeDisplayedOnDashboard().isPresent());
+    }
 
     @Test
     public void equals() {

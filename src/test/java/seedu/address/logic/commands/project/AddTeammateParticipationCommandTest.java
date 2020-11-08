@@ -14,11 +14,11 @@ import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.exceptions.DuplicateParticipationException;
 
 public class AddTeammateParticipationCommandTest {
 
@@ -54,7 +54,7 @@ public class AddTeammateParticipationCommandTest {
         AddTeammateParticipationCommand addTeammateParticipationCommand =
             new AddTeammateParticipationCommand(GIT_USERINDEX_FIRST_TEAMMATE);
 
-        assertThrows(DuplicateParticipationException.class, () -> addTeammateParticipationCommand.execute(model));
+        assertThrows(CommandException.class, () -> addTeammateParticipationCommand.execute(model));
     }
 
     @Test

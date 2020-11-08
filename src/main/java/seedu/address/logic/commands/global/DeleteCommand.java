@@ -46,6 +46,14 @@ public class DeleteCommand extends Command {
 
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteProject(projectToDelete);
+
+
+        if (model.getProjectToBeDisplayedOnDashboard().isPresent()
+                && projectToDelete.isSameProject(model.getProjectToBeDisplayedOnDashboard().get())) {
+            model.resetProjectToBeDisplayedOnDashboard();
+            model.resetTaskToBeDisplayedOnDashboard();
+            model.resetTeammateToBeDisplayedOnDashboard();
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
     }
 
