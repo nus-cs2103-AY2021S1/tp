@@ -23,7 +23,7 @@ If you are unmotivated for a workout, FixMyAbs will be your partner in helping y
 1. Copy the file to the folder you want to use as the home folder for your FixMyAbs.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/screenshots/v1.3homescreen.png)
+   ![Ui](images/screenshots/v1.4homescreen.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -68,7 +68,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-![Ui](images/screenshots/v1.3help_success.png)
+![Ui](images/screenshots/v1.4help_success.png)
 
 ### Adding a log: `add`
 
@@ -90,12 +90,12 @@ Examples:
  abs were hurt`.
 
 
-![Ui](images/screenshots/v1.3add.png)
+![Ui](images/screenshots/v1.4add.png)
 
 Success:
-![Ui](images/screenshots/v1.3add_success.png)
+![Ui](images/screenshots/v1.4add_success.png)
 
-### Listing logs : `list`
+### Listing all logs : `list`
 
 Shows a list of all logs logged by the user in the application.
 
@@ -103,7 +103,7 @@ Format: `list`
 
 Example: `list`
 
-![Ui](images/screenshots/v1.3list_success.png)
+![Ui](images/screenshots/v1.4list_success.png)
 
 ### Editing a log : `edit`
 
@@ -123,10 +123,10 @@ Examples:
 - `edit 2 c/no abs were hurt` Edits the log at index 2, with a comment of `no abs were hurt`.
 - `edit 1 r/20 c/no abs were hurt` Edits the log at index 1, with reps of `20` and a comment of `no abs were hurt`.
 
-![Ui](images/screenshots/v1.3edit.png)
+![Ui](images/screenshots/v1.4edit.png)
 
 Success:
-![Ui](images/screenshots/v1.3edit_success.png)
+![Ui](images/screenshots/v1.4edit_success.png)
 
 ### Deleting a log : `delete`
 
@@ -135,16 +135,16 @@ Deletes the specified log.
 Format: `delete <index>`
 
 - Deletes the log at the specified `<index>`.
-- The index refers to the index number shown in the list of logs.
+- The index refers to the index number shown in the current list of logs.
 - The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 - `delete 2` Deletes the 2nd log.
 
-![Ui](images/screenshots/v1.3delete.png)
+![Ui](images/screenshots/v1.4delete.png)
 
 Success:
-![Ui](images/screenshots/v1.3delete_success.png)
+![Ui](images/screenshots/v1.4delete_success.png)
 
 ### Finding a log : `find`
 
@@ -156,10 +156,10 @@ Examples:
 - `find abs` Find log(s) which contain(s) the word `abs`.
 - `find Oct` Find log(s) which contain(s) the word `Oct`.
 
-![Ui](images/screenshots/v1.3find.png)
+![Ui](images/screenshots/v1.4find.png)
 
 Success:
-![Ui](images/screenshots/v1.3find_success.png)
+![Ui](images/screenshots/v1.4find_success.png)
 
 ### Adding an exercise: `addex`
 
@@ -177,10 +177,10 @@ Examples:
 - `addex e/Sit ups c/20` Adds an exercise with name`Sit ups` and 20 calories per rep.
 - `addex e/Jumping jacks c/50` Adds an exercise with name`Jumping jacks`and 50 calories per rep.
 
-![Ui](images/screenshots/v1.3addex.png)
+![Ui](images/screenshots/v1.4addex.png)
 
 Success:
-![Ui](images/screenshots/v1.3addex_success.png)
+![Ui](images/screenshots/v1.4addex_success.png)
 
 ### Editing an exercise: `editex`
 
@@ -194,7 +194,7 @@ Format: `editex <index> [e/exercise] [c/calories per rep]`
 * Existing values will be updated to the input values.
 
 Constraints:
-- calories must be within range 1-1000 inclusive
+- Calories must be within range 1-1000 inclusive
 
 Examples:
 - `editex 2 e/Sit ups` Edits an exercise at index `2` with name `Sit ups`.
@@ -202,10 +202,10 @@ Examples:
 - `editex 3 e/Sit ups c/50` Edits an exercise at index `3` with name `Sit ups` and 50 calories per rep.
 
 
-![Ui](images/screenshots/editex.png)
+![Ui](images/screenshots/v1.4editex.png)
 
 Success:
-![Ui](images/screenshots/editex_success.png)
+![Ui](images/screenshots/v1.4editex_success.png)
 
 ### Deleting an exercise : `deleteex`
 
@@ -220,10 +220,10 @@ Format: `deleteex <index>`
 Examples:
 - `deleteex 1` deletes the 1st exercise in the exercise list.
 
-![Ui](images/screenshots/deleteex.png)
+![Ui](images/screenshots/v1.4deleteex.png)
 
 Success:
-![Ui](images/screenshots/deleteex_success.png)
+![Ui](images/screenshots/v1.4deleteex_success.png)
 
 
 ### Exiting the program : `exit`
@@ -232,18 +232,18 @@ Exits the program.
 
 Format: `exit`
 
-![Ui](images/screenshots/v1.3exit.png)
+![Ui](images/screenshots/v1.4exit.png)
 
 ### Clear FixMyAbs
 
-Clear all the data including all logs and all exercises stored by FixMyAbs
+Clear all the data including all logs and all exercises stored in FixMyAbs.
 
 Format: `clear`
 
-![Ui](images/screenshots/clear.png)
+![Ui](images/screenshots/v1.4clear.png)
 
 Success:
-![Ui](images/screenshots/clear_success.png) 
+![Ui](images/screenshots/v1.4clear_success.png) 
 
 ### Saving the data
 
@@ -265,11 +265,11 @@ Exercise log data are saved in the hard disk automatically after any command tha
 | **Add Log**    | `add e/<exercise name> r/<reps> c/[comment]`  | e.g. `add e/Sit ups r/30 c/Send help`, `add e/Sit ups r/30 c/`       |
 | **Delete Log** | `delete <index>`                          | e.g. `delete 3`                      |
 | **Edit Log**   | `edit <index> [r/reps] [c/comment]`       | e.g.`edit 1 r/20 c/no abs were hurt`, `edit 1 r/20`, `edit 1 c/no abs were hurt` |
-| **List Logs**   | `list`                                    |
+| **List Logs**   | `list`                                    | e.g. `list`
 | **Add exercise**   | `addex e/<exercise name> c/<calories per rep>` | e.g. `addex e/Lunges c/5` |
 | **Edit exercise**   | `editex <index> [e/exercise name] [c/calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6`, `editex 1 e/One-legged Lunges`, `editex 1 c/6` |
 | **Delete exercise**   | `deleteex <index>` | e.g. `deleteex 1` |
-| **Clear**  | `clear`                                   |                   |
-| **Find**   | `find <keywords in logs>`                         | e.g.`find pushups`                   |
-| **Help**   | `help`                         | e.g.`help`                   |
-| **Exit**   | `exit`                                    |
+| **Clear**  | `clear`                                   | e.g. `clear`                   |
+| **Find**   | `find <keywords in logs>`                         | e.g. `find pushups`                   |
+| **Help**   | `help`                         | e.g. `help`                   |
+| **Exit**   | `exit`                                    | e.g. `exit`

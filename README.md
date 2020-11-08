@@ -2,21 +2,17 @@
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-F10-3/tp/actions)
 
-![Ui](docs/images/screenshots/v1.3homescreen.png)
+![Ui](docs/images/screenshots/v1.4homescreen.png)
 
-## What?
+# FixMyAbs
 
-* FixMyAbs is a workout tracker that helps lazy programmers transform their rotund belly into toned six packs.
-* This project is done as part of NUS CS2103 Software Engineering Project.
-* It is a work in progress, the application will be completed some time before November
+FixMyAbs is a workout tracker that helps lazy programmers transform their round belly into toned six packs. If you are unmotivated for a workout, FixMyAbs will be your partner in helping you to change your life. 😎
 
-## How?
 
-* This is a brownfield project built from a very boring application called AddressBook.
-* It is written in OOP fashion, following the strict guidelines of "Clean Code"
-* It has [user and developer documentation](ay2021s1-cs2103-f10-3.github.io/tp)
+For more information, check out the [FixMyAbs Website](ay2021s1-cs2103-f10-3.github.io/tp).
 
-## Disclaimer
+
+### Disclaimer
 
 * While we make outlandish promises, there is no guarantee that six packs will form after you have downloaded this application
 * The formation of six packs requires hard work on your side
