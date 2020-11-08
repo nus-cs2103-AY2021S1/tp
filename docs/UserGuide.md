@@ -28,10 +28,10 @@
    --- 4.3.3 [Edit a module: `editMod`](#433-edit-a-module-editmod)<br>
    --- 4.3.4 [Find a module: `findMod`](#434-find-a-module-findmod)<br>
    4.4 [Tutorial Group Features](#44-tutorial-group-features)<br>
-   --- 4.4.1 [Add a tutorial group to a module: `addTG`](#441-add-a-tutorial-group-to-a-module-addtg)<br>
-   --- 4.4.2 [Find a tutorial group: `findTG`](#442-find-a-tutorial-group-findtg)<br>
-   --- 4.4.3 [Delete a tutorial group from a module: `deleteTG`](#443-delete-a-tutorial-group-from-a-module-deletetg)<br>
-   --- 4.4.4 [Edit a Tutorial Group: `editTG`](#444-edit-a-tutorial-group-edittg)<br>
+   --- 4.4.1 [Add a tutorial group: `addTG`](#441-add-a-tutorial-group-to-a-module-addtg)<br>
+   --- 4.4.3 [Delete a tutorial group: `deleteTG`](#442-delete-a-tutorial-group-from-a-module-deletetg)<br>
+   --- 4.4.4 [Edit a Tutorial Group: `editTG`](#443-edit-a-tutorial-group-edittg)<br>
+   --- 4.4.2 [Find a tutorial group: `findTG`](#444-find-a-tutorial-group-findtg)<br>
    4.5 [Student Features](#45-student-features)<br>
    --- 4.5.1 [Add a student: `addStudent`](#451-add-a-student-addstudent)<br>
    --- 4.5.2 [Delete a student: `deleteStudent`](#452-delete-a-student-deletestudent)<br>
@@ -291,8 +291,9 @@ Adds a module to the module list.
 Format: `addMod m/MODULE_CODE`
 
 > Note:
-> - Modules should not share the same code.
+> - Modules should not share the same `MODULE_CODE`.
 > - It is recommended to use the exact code of the module.
+> - `MODULE_CODE` should not be blank and only contain alphanumeric characters.
 
 Example:
 
@@ -332,13 +333,11 @@ Format: `editMod INDEX m/MODULE_CODE`
 > Note:
 > - `INDEX` refers to the index number shown in the Module view.
 > - `INDEX` must be a positive integer starting from 1.
-> - New module code must be provided.
-> - Existing values will be updated to the given values.
-> - New module code should not already exist.
+> - New `MODULE_CODE` should not already exist.
 
 Example:
 
-- Editing the module code of the first module to be _CS2020_.
+- Edits the module code of the first module to be _CS2020_.
 
     - `editMod 1 m/CS2020`
 
@@ -348,14 +347,15 @@ Expected Outcome:
 
 #### 4.3.4 Find a module: `findMod`
 
-Finds and lists all modules in the current Module view whose field contains any of the given keywords.
+Finds and lists all modules in the current Module view whose module code contains any of the given keywords.
 
 Format: `findMod KEYWORD`
 
 > Note:
+> - `KEYWORD` should not be blank.
 > - `KEYWORD` is not case-sensitive (e.g. _cs2100_ will match _CS2100_).
-> - `KEYWORD` can be a substring (e.g. _CS20_ will match _CS2020_).
-> - The search will look for matches in the module's code. 
+> - The search will look for matches, including partial match, in the module's code (e.g. _cs2_ will match _CS2100_,
+however, _cs23_ will not match _CS2100_).
 > - If no module matching the keyword is found, the Module view will be empty.
 
 Example:
@@ -371,54 +371,79 @@ Expected Outcome:
 
 ### 4.4 Tutorial Group Features
 
-#### 4.4.1 Add a Tutorial Group to a Module: `addTG`
-You can add a Tutorial Group to the Module you are viewing using this command.
+> You should perform the following features while in the Tutorial Group view.
 
-> - You can only use this command when you are viewing Tutorial Groups of the Module you intend to add the Tutorial Group to.
-> - This command can also be used after the findTG command while displaying only Tutorial Groups you searched for.
-> - Refer to 4.2.1 - View all Tutorial Groups in a Module
+#### 4.4.1 Add a tutorial group: `addTG`
+Adds a tutorial group to the tutorial group list.
 
-Format: `addTG tg/TG_CODE day/MON/TUE/WED/THU/FRI start/HH:MM end/HH:MM`
+Format: `addTG tg/TG_CODE day/DAY_OF_WEEK start/START_TIME end/END_TIME`
 
-Example: `addTG tg/T03 day/MON start/08:00 end/10:00`
+> Note:
+> - Tutorial groups should not share the same `TG_CODE` within the same module.
+> - It is recommended to use the exact code of the tutorial group.
+> - `TG_CODE`, `DAY_OF_WEEK`, `START_TIME` and `END_TIME` should not be blank.
+> - `TG_CODE` should only contain alphanumeric characters.
+> - `DAY_OF_WEEK` should only be one of MON/TUE/WED/THU/FRI.
+> - `START_TIME` and `END_TIME` should be in the form of HH:MM.
 
-#### 4.4.2 Find a Tutorial Group: `findTG`
-If you need to quickly find a Tutorial from a list of Tutorials, use this command.
+Example: 
+- Adds a tutorial group _T03_ that takes place every _MON_ from _08:00_ to _10:00_ to the tutorial group list.
+    - `addTG tg/T03 day/MON start/08:00 end/10:00`
 
-> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
-> - Refer to 4.2.1 - View all Tutorial Groups in a Module
+Expected Outcome:
 
-Format: `findTG TARGET_TG_CODE`
-Where TARGET_TG_CODE is the code of the Tutorial Group you want to search for.
+#### 4.4.2 Delete a tutorial group: `deleteTG`
+Deletes a tutorial group based on the given `INDEX`
 
-Example: `findTG B014`
-To search for a Tutorial Group with code B014
+Format: `deleteTG INDEX`
 
+> Note:
+> - `INDEX` refers to the index number shown in the Tutorial Group view.
+> - `INDEX` must be a positive integer starting from 1.
+> - Deleting a tutorial group is irreversible.
 
-#### 4.4.3 Delete a Tutorial Group from a Module: `deleteTG`
-You can use this command to delete a Tutorial Group you have previously added to a Module.
-> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
-> - Refer to 4.2.1 - View all Tutorial Groups in a Module
+Example:
 
-Format: `deleteTG TG_INDEX`
-Where TG_INDEX is the index of the Tutorial Group you want to delete.
+- Deletes a tutorial group at index _1_ in the tutorial group list.
+    - `deleteTG 1`
 
-Example: `deleteTG 2`
-To delete Tutorial Group with the index 2 in the currently displayed list.
+Expected Outcome:
 
-#### 4.4.4 Edit a Tutorial Group: `editTG`
-You can use this command to edit a Tutorial Group you have previously added to a Module.
-> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
-> - Refer to 4.2.1 - View all Tutorial Groups in a Module
+#### 4.4.3 Edit a Tutorial Group: `editTG`
+Edits a module with the provided details.
 
-Format: `editTG TG_INDEX tg/TG_CODE day/MON/TUE/WED/THU/FRI start/HH:MM end/HH:MM`
-Where TG_INDEX is the index of the Tutorial Group you want to edit.
-You must enter all arguments regardless of which field you would like to edit.
+Format: `editTG INDEX [tg/TG_CODE] [day/DAY_OF_WEEK] [start/START_TIME] [end/END_TIME]`
 
-Example: `editTG 3 tg/T04 day/TUE start/08:00 end/10:00`
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - At least one of the optional fields must be provided.
+> - Existing values will be updated to the given values.
 
+Example:
 
-These are the commands you can use to manage the different `Tutorial Groups` you teach. Now we look at how you can manage your `Students`.
+- Edits the third tutorial group to be _T04_, takes place every _TUE_ from _08:00_ to _10:00_.
+
+    - `editTG 3 tg/T04 day/TUE start/08:00 end/10:00`
+
+Expected Outcome:
+
+#### 4.4.4 Find a tutorial group: `findTG`
+Finds and lists all tutorial groups in the current Tutorial Group view whose tutorial group code contains any of the given keywords.
+
+Format: `findTG KEYWORD`
+
+> Note:
+> - `KEYWORD` should not be blank.
+> - `KEYWORD` is not case-sensitive (e.g. _t05_ will match _T05_).
+> - The search will look for matches, including partial match, in the tutorial group's code (e.g. _t_ will match _T05_,
+however, _t5_ will not match _T05_).
+> - If no tutorial group matching the keyword is found, the Tutorial Group view will be empty.
+
+Example: 
+- Finds a tutorial group with `KEYWORD` _b14_.
+
+    - `findTG b14`
 
 ### 4.5 Student Features
 
@@ -428,13 +453,15 @@ These are the commands you can use to manage the different `Tutorial Groups` you
 
 Adds a student with your provided details.
 
-Format: `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...`
+Format: `addStudent n/NAME p/PHONE e/EMAIL id/STUDENT_ID [t/TAG]...`
 
 > Note:
-> - Students should not share the same student ID within the same tutorial group.
-> - Phone numbers should only contain numbers, and it should be at least 3 digits long.
-> - Student IDs begin and end with a capital letter and should have 7 digits (e.g. A1243567X).
-> - A student can have any number of tags, including 0.
+> - Students should not share the same `STUDENT_ID` within the same tutorial group.
+> - `NAME` should not be blank and only contain alphanumeric characters.
+> - `PHONE` should only contain numbers, and it should be at least 3 digits long.
+> - `EMAIL` should be in the form local-part@domain.
+> - `STUDENT_ID` begin and end with a capital letter and should have 7 digits (e.g. A1243567X).
+> - A student can have any number of `TAG`, including 0.
 
 Example:
 
@@ -459,7 +486,7 @@ Format: `deleteStudent INDEX`
 
 Example:
 
-- Deletes the second student in the Student view.
+- Deletes the second student in the student list.
 
     - `deleteStudent 2`
 
@@ -471,7 +498,7 @@ Expected Outcome:
 
 Edits a student at the given `INDEX` with the provided details.
 
-Format: `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...`
+Format: `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...`
 
 > Note:
 > - `INDEX` refers to the index number shown in the Student view.
@@ -498,6 +525,7 @@ Finds and lists all students in the current Student view whose name contains any
 Format: `findStudent KEYWORD [KEYWORD]...`
 
 > Note:
+> - `KEYWORD` should not be blank.
 > - `KEYWORD` is not case-sensitive (e.g. _john_ will match _John_).
 > - The search will look for matches, including partial match, in the student's name (e.g. _jo_ will match _John_,
 however, _jhn_ will not match _John_).
