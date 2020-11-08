@@ -31,7 +31,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/licheng-wu.png" width="200px">
 
 [[github](https://github.com/Licheng-Wu)]
-[[portfolio](team/wu-licheng.md)]
+[[portfolio](team/licheng-wu.md)]
 
 * Role: Developer
 * Responsibilities: Testing

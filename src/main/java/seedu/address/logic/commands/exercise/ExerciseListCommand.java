@@ -1,8 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.exercise;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXERCISES;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
@@ -19,5 +21,10 @@ public class ExerciseListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ExerciseListCommand;
     }
 }

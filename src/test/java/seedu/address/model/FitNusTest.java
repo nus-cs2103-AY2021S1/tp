@@ -11,6 +11,9 @@ import static seedu.address.testutil.TypicalLessons.GES1028;
 import static seedu.address.testutil.TypicalLessons.getTypicalFitNus;
 import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 import static seedu.address.testutil.TypicalRoutines.UPPER_BODY;
+import static seedu.address.testutil.TypicalSlots.LEG_DAY_WEDNESDAY_1600_1800;
+import static seedu.address.testutil.TypicalSlots.LEG_DAY_WEDNESDAY_1630_1730;
+import static seedu.address.testutil.TypicalSlots.MA1101R_THURSDAY_1600_1800;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,6 +38,8 @@ import seedu.address.model.lesson.exceptions.DuplicateLessonException;
 import seedu.address.model.routine.Routine;
 import seedu.address.model.routine.exceptions.DuplicateRoutineException;
 import seedu.address.model.timetable.Slot;
+import seedu.address.model.timetable.exceptions.DuplicateSlotException;
+import seedu.address.model.timetable.exceptions.SlotOverlapDurationException;
 import seedu.address.model.util.Name;
 import seedu.address.testutil.LessonBuilder;
 
@@ -215,7 +220,7 @@ public class FitNusTest {
     }
 
     @Test
-    public void hasRoutine_missingRoutine_throwsNullPointerException() {
+    public void hasRoutine_missingRoutine_returnsFalse() {
         assertFalse(fitNus.hasRoutine(LEG_DAY));
     }
 
@@ -302,7 +307,7 @@ public class FitNusTest {
     }
 
     @Test
-    public void retrieveRoutine_sucess() {
+    public void retrieveRoutine_success() {
         fitNus.addRoutine(LEG_DAY);
 
         assertEquals(fitNus.retrieveRoutine(LEG_DAY), LEG_DAY);
@@ -313,6 +318,90 @@ public class FitNusTest {
         fitNus.addRoutine(LEG_DAY);
 
         assertNotEquals(fitNus.retrieveRoutine(LEG_DAY), UPPER_BODY);
+    }
+
+    // Timetable tests
+
+    @Test
+    public void resetData_withDuplicateSlots_throwsDuplicateSlotException() {
+        // Two slots with the same identity fields
+        List<Slot> slots = Arrays.asList(LEG_DAY_WEDNESDAY_1600_1800, LEG_DAY_WEDNESDAY_1600_1800);
+        FitNusSlotsStub newData = new FitNusSlotsStub(slots);
+
+        assertThrows(DuplicateSlotException.class, () -> fitNus.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withOverlappingSlots_throwsSlotOverlapDurationException() {
+        // Two slots with overlapping durations
+        List<Slot> slots = Arrays.asList(LEG_DAY_WEDNESDAY_1600_1800, LEG_DAY_WEDNESDAY_1630_1730);
+        FitNusSlotsStub newData = new FitNusSlotsStub(slots);
+
+        assertThrows(SlotOverlapDurationException.class, () -> fitNus.resetData(newData));
+    }
+
+    @Test
+    public void hasSlot_nullSlot_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> fitNus.hasSlot(null));
+    }
+
+    @Test
+    public void hasSlot_slotNotInTimetable_returnsFalse() {
+        assertFalse(fitNus.hasSlot(LEG_DAY_WEDNESDAY_1600_1800));
+    }
+
+    @Test
+    public void hasSlot_slotInFitNus_returnsTrue() {
+        fitNus.addSlotToTimetable(LEG_DAY_WEDNESDAY_1600_1800);
+        assertTrue(fitNus.hasSlot(LEG_DAY_WEDNESDAY_1600_1800));
+    }
+
+    @Test
+    public void hasOverlappingDurationInSlot_nullSlot_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> fitNus.hasOverlappingDurationInSlot(null));
+    }
+
+    @Test
+    public void hasOverlappingDurationInSlot_noOverlap_returnsFalse() {
+        fitNus.addSlotToTimetable(LEG_DAY_WEDNESDAY_1600_1800);
+        assertFalse(fitNus.hasOverlappingDurationInSlot(MA1101R_THURSDAY_1600_1800));
+    }
+
+    @Test
+    public void hasOverlappingDurationInSlot_overlap_returnsTrue() {
+        fitNus.addSlotToTimetable(LEG_DAY_WEDNESDAY_1600_1800);
+        assertTrue(fitNus.hasOverlappingDurationInSlot(LEG_DAY_WEDNESDAY_1630_1730));
+    }
+
+    @Test
+    public void getSlotList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> fitNus.getSlotList().remove(0));
+    }
+
+    @Test
+    public void addSlotToTimetable_validSlot_success() {
+        fitNus.addSlotToTimetable(LEG_DAY_WEDNESDAY_1600_1800);
+        assertEquals(LEG_DAY_WEDNESDAY_1600_1800, fitNus.getSlotList().get(0));
+    }
+
+    @Test
+    public void addSlotToTimetable_duplicateSlot_throwsDuplicateSlotException() {
+        fitNus.addSlotToTimetable(LEG_DAY_WEDNESDAY_1600_1800);
+        assertThrows(DuplicateSlotException.class, () -> fitNus.addSlotToTimetable(LEG_DAY_WEDNESDAY_1600_1800));
+    }
+
+    @Test
+    public void addSlotToTimetable_overlapSlot_throwsSlotOverlapDurationException() {
+        fitNus.addSlotToTimetable(LEG_DAY_WEDNESDAY_1600_1800);
+        assertThrows(SlotOverlapDurationException.class, () -> fitNus.addSlotToTimetable(LEG_DAY_WEDNESDAY_1630_1730));
+    }
+
+    @Test
+    public void removeSlotFromTimetable_validSlot_success() {
+        fitNus.addSlotToTimetable(LEG_DAY_WEDNESDAY_1600_1800);
+        assertEquals(LEG_DAY_WEDNESDAY_1600_1800, fitNus.getSlotList().get(0));
+        fitNus.removeSlotFromTimetable(LEG_DAY_WEDNESDAY_1600_1800);
+        assertTrue(fitNus.getSlotList().isEmpty());
     }
 
     /**
@@ -374,6 +463,52 @@ public class FitNusTest {
 
         FitNusRoutinesStub(Collection<Routine> routines) {
             this.routines.setAll(routines);
+        }
+
+        @Override
+        public ObservableList<Exercise> getExerciseList() {
+            return exercises;
+        }
+
+        @Override
+        public ObservableList<Routine> getRoutineList() {
+            return routines;
+        }
+
+        @Override
+        public ObservableList<Lesson> getLessonList() {
+            return lessons;
+        }
+
+        @Override
+        public ObservableList<Slot> getSlotList() {
+            return slots;
+        }
+
+        @Override
+        public ObservableList<DailyCalorie> getDailyCalorieList() {
+            return calorieLog;
+        }
+
+        @Override
+        public ObservableList<Body> getBody() {
+            return body;
+        }
+    }
+
+    /**
+     * A stub ReadOnlyFitNus whose slot list can violate interface constraints.
+     */
+    private static class FitNusSlotsStub implements ReadOnlyFitNus {
+        private final ObservableList<Exercise> exercises = FXCollections.observableArrayList();
+        private final ObservableList<Lesson> lessons = FXCollections.observableArrayList();
+        private final ObservableList<Routine> routines = FXCollections.observableArrayList();
+        private final ObservableList<Slot> slots = FXCollections.observableArrayList();
+        private final ObservableList<DailyCalorie> calorieLog = FXCollections.observableArrayList();
+        private final ObservableList<Body> body = FXCollections.observableArrayList();
+
+        FitNusSlotsStub(Collection<Slot> slots) {
+            this.slots.setAll(slots);
         }
 
         @Override
