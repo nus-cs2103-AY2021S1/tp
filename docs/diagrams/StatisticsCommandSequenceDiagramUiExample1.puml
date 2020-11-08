@@ -8,6 +8,9 @@ participant ":StatisticsWindow" as StatisticsWindow UI_COLOR_T3
 participant ":CommandBox" as CommandBox UI_COLOR_T3
 end box
 
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
 
 [-> UiManager : start()
 activate UiManager
@@ -15,16 +18,22 @@ activate UiManager
 UiManager -> MainWindow : fillInnerParts()
 activate MainWindow
 
-MainWindow -> MainWindow : executeCommand(commandText)
+MainWindow -> MainWindow : executeCommand(...)
 activate MainWindow
 
-MainWindow -> MainWindow : handleStatistics(statisticsData, otherStatisticsDetails)
+MainWindow -> LogicManager : execute(...)
+activate LogicManager
+
+LogicManager -> MainWindow
+deactivate LogicManager
+
+MainWindow -> MainWindow : handleStatistics(...)
 activate MainWindow
 
-MainWindow --> StatisticsWindow : updateData(statisticsData, otherStatisticsDetails)
+MainWindow --> StatisticsWindow : updateData(...)
 activate StatisticsWindow
 
-StatisticsWindow --> StatisticsWindow : updateDataForSourceStatistics(statisticsData)
+StatisticsWindow --> StatisticsWindow : updateDataForSourceStatistics(...)
 activate StatisticsWindow
 
 StatisticsWindow --> StatisticsWindow

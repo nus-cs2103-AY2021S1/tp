@@ -23,7 +23,7 @@ project documents, Coding standards, format of deliverables
 <img src="images/kc-98.png" width="200px">
 
 [[github](https://github.com/kc-98)]
-[[portfolio](team/kaichao.md)]
+[[portfolio](team/kc-98.md)]
 
 * Role: Developer
 * Responsibilities: Team Leader, Overall code quality, Testing
