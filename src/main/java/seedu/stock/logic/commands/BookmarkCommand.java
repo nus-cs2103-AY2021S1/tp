@@ -192,5 +192,12 @@ public class BookmarkCommand extends Command {
         return serialNumbersAsString;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof BookmarkCommand // instanceof handles nulls
+                && targetSerialNumbers.equals(((BookmarkCommand) other).targetSerialNumbers)); // state check
+    }
+
 
 }
