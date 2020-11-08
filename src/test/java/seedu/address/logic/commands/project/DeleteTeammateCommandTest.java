@@ -2,7 +2,6 @@ package seedu.address.logic.commands.project;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_FIRST_TEAMMATE;
 import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_SECOND_TEAMMATE;
@@ -56,6 +55,15 @@ public class DeleteTeammateCommandTest {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         DeleteTeammateCommand deleteTeammateCommand = new DeleteTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE);
+        assertThrows(CommandException.class, () -> deleteTeammateCommand.execute(model)); //
+    }
+
+    @Test
+    public void execute_InvalidIndexValidPersonNotAddedToList_throwsCommandException() {
+        Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        model.enter(project);
+        DeleteTeammateCommand deleteTeammateCommand = new DeleteTeammateCommand(GIT_USERINDEX_SECOND_TEAMMATE);
         assertThrows(CommandException.class, () -> deleteTeammateCommand.execute(model)); //
     }
 
