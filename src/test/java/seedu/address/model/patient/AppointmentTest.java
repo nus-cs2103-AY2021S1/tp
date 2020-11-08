@@ -37,35 +37,35 @@ public class AppointmentTest {
     @Test
     public void isValidAppointment() {
         // null appointment
-        assertThrows(NullPointerException.class, () -> Appointment.isValidAppointment(null));
+        assertThrows(NullPointerException.class, () -> Appointment.isValidDateTime(null));
 
         // blank appointment
-        assertFalse(Appointment.isValidAppointment("")); // empty string
-        assertFalse(Appointment.isValidAppointment(" ")); // spaces only
+        assertFalse(Appointment.isValidDateTime("")); // empty string
+        assertFalse(Appointment.isValidDateTime(" ")); // spaces only
 
         // missing parts
-        assertFalse(Appointment.isValidAppointment("25/12/2025")); // missing timing
-        assertFalse(Appointment.isValidAppointment("20:00")); // missing date
+        assertFalse(Appointment.isValidDateTime("25/12/2025")); // missing timing
+        assertFalse(Appointment.isValidDateTime("20:00")); // missing date
 
         //wrong format
-        assertFalse(Appointment.isValidAppointment("25-12-2025 20:00"));
-        assertFalse(Appointment.isValidAppointment("25-12-2025 20/00"));
+        assertFalse(Appointment.isValidDateTime("25-12-2025 20:00"));
+        assertFalse(Appointment.isValidDateTime("25-12-2025 20/00"));
 
         //invalid parts
-        assertFalse(Appointment.isValidAppointment("25/12/2025 20-00"));
-        assertFalse(Appointment.isValidAppointment("25/12/2025 20:00-"));
-        assertFalse(Appointment.isValidAppointment("25/12-2025 20:00"));
+        assertFalse(Appointment.isValidDateTime("25/12/2025 20-00"));
+        assertFalse(Appointment.isValidDateTime("25/12/2025 20:00-"));
+        assertFalse(Appointment.isValidDateTime("25/12-2025 20:00"));
 
         //date not exist
-        assertFalse(Appointment.isValidAppointment("32/3/2025 20:00"));
-        assertFalse(Appointment.isValidAppointment("27/2/2025 20:61"));
-        assertFalse(Appointment.isValidAppointment("32/2/2020 20:00"));
+        assertFalse(Appointment.isValidDateTime("32/3/2025 20:00"));
+        assertFalse(Appointment.isValidDateTime("27/2/2025 20:61"));
+        assertFalse(Appointment.isValidDateTime("32/2/2020 20:00"));
 
         //valid inputs
-        assertTrue(Appointment.isValidAppointment("25/12/2025 20:00"));
-        assertTrue(Appointment.isValidAppointment("1/10/2027 20:01"));
-        assertTrue(Appointment.isValidAppointment("1/1/2027 20:59"));
-        assertTrue(Appointment.isValidAppointment("1/10/1000 20:01"));
+        assertTrue(Appointment.isValidDateTime("25/12/2025 20:00"));
+        assertTrue(Appointment.isValidDateTime("1/10/2027 20:01"));
+        assertTrue(Appointment.isValidDateTime("1/1/2027 20:59"));
+        assertTrue(Appointment.isValidDateTime("1/10/1000 20:01"));
     }
 
     @Test
