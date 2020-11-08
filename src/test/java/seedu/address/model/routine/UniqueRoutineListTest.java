@@ -2,22 +2,27 @@ package seedu.address.model.routine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalExercises.BENCH_PRESS;
+import static seedu.address.testutil.TypicalExercises.SQUATS;
 import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 import static seedu.address.testutil.TypicalRoutines.UPPER_BODY;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Routine;
-import seedu.address.model.person.UniqueRoutineList;
-import seedu.address.model.person.exceptions.DuplicateRoutineException;
-import seedu.address.model.person.exceptions.RoutineNotFoundException;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
+import seedu.address.model.routine.exceptions.DuplicateRoutineException;
+import seedu.address.model.routine.exceptions.RoutineNotFoundException;
+import seedu.address.model.util.Name;
 
 public class UniqueRoutineListTest {
 
@@ -166,5 +171,100 @@ public class UniqueRoutineListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> uniqueRoutineList
                 .asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void addExercise() {
+        UniqueRoutineList uniqueRoutineList = new UniqueRoutineList();
+        Routine legDay = new Routine(new Name("Leg Day"));
+        assertThrows(RoutineNotFoundException.class, () -> uniqueRoutineList.addExercise(LEG_DAY, SQUATS));
+        uniqueRoutineList.add(legDay);
+        uniqueRoutineList.addExercise(legDay, SQUATS);
+
+        Iterator<Routine> iterator = uniqueRoutineList.iterator();
+
+        assertTrue(iterator.next().hasExercise(SQUATS));
+    }
+
+    @Test
+    public void testCheckSize() {
+        assertEquals(uniqueRoutineList.checkSize(), 0);
+        uniqueRoutineList.add(LEG_DAY);
+        assertEquals(uniqueRoutineList.checkSize(), 1);
+    }
+
+    @Test
+    public void testIterator() {
+        uniqueRoutineList.add(LEG_DAY);
+        uniqueRoutineList.add(UPPER_BODY);
+
+        Iterator<Routine> iterator = uniqueRoutineList.iterator();
+
+        Routine routine = iterator.next();
+        assertEquals(routine, LEG_DAY);
+
+        Routine routine1 = iterator.next();
+        assertEquals(routine1, UPPER_BODY);
+    }
+
+    @Test
+    public void testHashCode() {
+        UniqueRoutineList uniqueRoutineList1 = new UniqueRoutineList();
+        uniqueRoutineList1.add(UPPER_BODY);
+        assertEquals(uniqueRoutineList.hashCode(), uniqueRoutineList.hashCode());
+        assertNotEquals(uniqueRoutineList.hashCode(), uniqueRoutineList1.hashCode());
+    }
+
+    @Test
+    public void testRetrieveRoutine() {
+        uniqueRoutineList.add(UPPER_BODY);
+        uniqueRoutineList.add(LEG_DAY);
+
+        assertEquals(uniqueRoutineList.retrieveRoutine(UPPER_BODY), UPPER_BODY);
+        assertNotEquals(uniqueRoutineList.retrieveRoutine(UPPER_BODY), LEG_DAY);
+    }
+
+    @Test
+    public void testDelete() {
+        uniqueRoutineList.add(UPPER_BODY);
+
+        assertThrows(RoutineNotFoundException.class, () -> uniqueRoutineList.deleteExerciseFromRoutine(
+                LEG_DAY, BENCH_PRESS
+        ));
+
+        assertThrows(ExerciseNotFoundException.class, () -> uniqueRoutineList.deleteExerciseFromRoutine(
+                UPPER_BODY, BENCH_PRESS
+        ));
+
+        uniqueRoutineList.addExercise(UPPER_BODY, BENCH_PRESS);
+        assertTrue(UPPER_BODY.hasExercise(BENCH_PRESS));
+
+        uniqueRoutineList.deleteExerciseFromRoutine(UPPER_BODY, BENCH_PRESS);
+        assertFalse(UPPER_BODY.hasExercise(BENCH_PRESS));
+
+        uniqueRoutineList.addExercise(UPPER_BODY, BENCH_PRESS);
+        uniqueRoutineList.add(LEG_DAY);
+        uniqueRoutineList.addExercise(LEG_DAY, BENCH_PRESS);
+
+        uniqueRoutineList.deleteExercise(BENCH_PRESS);
+        assertFalse(UPPER_BODY.hasExercise(BENCH_PRESS));
+        assertFalse(LEG_DAY.hasExercise(BENCH_PRESS));
+    }
+
+    @Test
+    public void testSetExercise() {
+        uniqueRoutineList.add(UPPER_BODY);
+        uniqueRoutineList.add(LEG_DAY);
+        uniqueRoutineList.addExercise(UPPER_BODY, BENCH_PRESS);
+        uniqueRoutineList.addExercise(LEG_DAY, BENCH_PRESS);
+
+        Exercise newExercise = new Exercise(new Name("Bench"), new HashSet<>());
+
+        uniqueRoutineList.setExercise(BENCH_PRESS, newExercise);
+
+        for (Routine routine : uniqueRoutineList) {
+            assertTrue(routine.hasExercise(newExercise));
+            assertFalse(routine.hasExercise(BENCH_PRESS));
+        }
     }
 }

@@ -6,7 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.person.RoutineNameContainsKeywordsPredicate;
+import seedu.address.model.routine.RoutineNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all routines in fitNUS whose name contains any of the argument keywords.
@@ -16,10 +16,10 @@ public class RoutineFindCommand extends Command {
 
     public static final String COMMAND_WORD = "routine_find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all routines whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all routines whose names contain ALL of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " Lower";
+            + "Example: " + COMMAND_WORD + " Lower body";
 
     private final RoutineNameContainsKeywordsPredicate predicate;
 

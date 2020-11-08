@@ -10,22 +10,22 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Lesson;
-import seedu.address.model.person.Name;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.Name;
 
 /**
  * Jackson-friendly version of {@link Lesson}.
  */
 class JsonAdaptedLesson {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Exercise's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Lesson's %s field is missing!";
 
     private final String name;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedLesson} with the given person details.
+     * Constructs a {@code JsonAdaptedLesson} with the given lesson details.
      */
     @JsonCreator
     public JsonAdaptedLesson(@JsonProperty("name") String name,
@@ -68,5 +68,4 @@ class JsonAdaptedLesson {
         final Set<Tag> modelTags = new HashSet<>(lessonTags);
         return new Lesson(modelName, modelTags);
     }
-
 }

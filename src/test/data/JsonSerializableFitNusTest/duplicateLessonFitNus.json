@@ -1,0 +1,16 @@
+{
+  "exercises" : [ ],
+  "lessons" : [ {
+    "name": "CS2100",
+    "tagged": [ "core" ]
+  }, {
+    "name": "CS2100"
+  } ],
+  "routines" : [ ],
+  "slots" : [ ],
+  "dailyCalories" : [ ],
+  "body" : {
+    "height" : 160.0,
+    "weight" : 45.0
+  }
+}

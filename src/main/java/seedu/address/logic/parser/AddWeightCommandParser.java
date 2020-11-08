@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddWeightCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Weight;
+import seedu.address.model.body.Weight;
 
-public class AddWeightCommandParser {
+public class AddWeightCommandParser implements Parser<AddWeightCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddWeightCommand
@@ -23,6 +23,8 @@ public class AddWeightCommandParser {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_WEIGHT)
                 || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWeightCommand.MESSAGE_USAGE));
+        } else if (argMultimap.getAllValues(PREFIX_WEIGHT).size() != 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWeightCommand.MESSAGE_USAGE));
         }
 

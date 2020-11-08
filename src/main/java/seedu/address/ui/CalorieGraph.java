@@ -11,7 +11,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.DailyCalorie;
+import seedu.address.model.calorie.DailyCalorie;
 
 
 public class CalorieGraph extends UiPart<Region> {

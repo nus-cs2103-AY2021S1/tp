@@ -9,7 +9,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Routine;
+import seedu.address.model.routine.Routine;
 
 /**
  * Views all exercises for a specified routine in fitNUS.
@@ -52,6 +52,7 @@ public class RoutineViewCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof RoutineViewCommand); // instanceof handles nulls
+                || (other instanceof RoutineViewCommand
+                && this.toView.equals(((RoutineViewCommand) other).toView)); // instanceof handles nulls
     }
 }

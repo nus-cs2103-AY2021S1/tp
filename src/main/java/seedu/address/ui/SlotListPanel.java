@@ -9,7 +9,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Slot;
+import seedu.address.model.timetable.Slot;
 
 /**
  * Panel containing the list of slots.

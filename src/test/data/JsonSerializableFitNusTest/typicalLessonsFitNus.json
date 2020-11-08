@@ -1,0 +1,33 @@
+{
+  "_comment": "fitNUS saves file which contains the same Lesson values as in TypicalLessons#getTypicalFitNus()",
+  "exercises" : [ ],
+  "lessons" : [ {
+    "name" : "GES1028",
+    "tagged" : [ "auditorium" ]
+  }, {
+    "name" : "GEH1030",
+    "tagged" : [ "music", "auditorium" ]
+  }, {
+    "name" : "GET1011",
+    "tagged" : [ ]
+  }, {
+    "name" : "GER1000",
+    "tagged" : [ "auditorium" ]
+  }, {
+    "name" : "GEQ1000",
+    "tagged" : [ ]
+  }, {
+    "name" : "IS1103",
+    "tagged" : [ ]
+  }, {
+    "name" : "PC1141",
+    "tagged" : [ ]
+  } ],
+  "routines" : [ ],
+  "slots" : [ ],
+  "dailyCalories" : [ ],
+  "body" : {
+    "height" : 160.0,
+    "weight" : 45.0
+  }
+}

@@ -73,7 +73,7 @@ public class HelpCommand extends Command {
             + "Format: exercise_edit INDEX (must be a positive integer) [e/EXERCISE] [t/TAG]...\n"
             + separator;
     public static final String EXERCISE_FIND_MESSAGE = "exercise_find:\n"
-            + "Finds all exercises whose names contain any of the specified keywords (case-insensitive) and displays\n"
+            + "Finds all exercises whose names contain all of the specified keywords (case-insensitive) and displays\n"
             + "them as a list with index numbers.\n"
             + "Format: exercise_find KEYWORD [MORE_KEYWORDS]...\n"
             + separator;
@@ -90,7 +90,7 @@ public class HelpCommand extends Command {
             + "Format: routine_delete INDEX (must be a positive integer)\n"
             + separator;
     public static final String ROUTINE_FIND_MESSAGE = "routine_find:\n"
-            + "Finds all routines whose names contain any of the specified keywords (case-insensitive) and displays\n"
+            + "Finds all routines whose names contain all of the specified keywords (case-insensitive) and displays\n"
             + "them as a list with index numbers.\n"
             + "Format: routine_find KEYWORD [MORE_KEYWORDS]...\n"
             + separator;
@@ -106,9 +106,9 @@ public class HelpCommand extends Command {
             + "Deletes the exercise from the specified routine.\n"
             + "Format: routine_delete_exercise r/ROUTINE e/EXERCISE\n"
             + separator;
-    public static final String ROUTINE_VIEW_EXERCISE_MESSAGE = "routine_view_exercise:\n"
+    public static final String ROUTINE_VIEW_MESSAGE = "routine_view:\n"
             + "Views all exercises contained in a routine in fitNUS.\n"
-            + "Format: routine_view_exercise INDEX (must be a positive integer)\n"
+            + "Format: routine_view INDEX (must be a positive integer)\n"
             + separator;
     public static final String LESSON_ADD_MESSAGE = "lesson_add:\n"
             + "Adds a lesson to fitNUS.\n"
@@ -164,7 +164,7 @@ public class HelpCommand extends Command {
             + ROUTINE_LIST_MESSAGE
             + ROUTINE_ADD_EXERCISE_MESSAGE
             + ROUTINE_DELETE_EXERCISE_MESSAGE
-            + ROUTINE_VIEW_EXERCISE_MESSAGE
+            + ROUTINE_VIEW_MESSAGE
             + LESSON_ADD_MESSAGE
             + LESSON_DELETE_MESSAGE
             + LESSON_EDIT_MESSAGE
@@ -221,7 +221,7 @@ public class HelpCommand extends Command {
         privateMap.put("routine_list", ROUTINE_LIST_MESSAGE);
         privateMap.put("routine_add_exercise", ROUTINE_ADD_EXERCISE_MESSAGE);
         privateMap.put("routine_delete_exercise", ROUTINE_DELETE_EXERCISE_MESSAGE);
-        privateMap.put("routine_view_exercise", ROUTINE_VIEW_EXERCISE_MESSAGE);
+        privateMap.put("routine_view_exercise", ROUTINE_VIEW_MESSAGE);
         privateMap.put("lesson_add", LESSON_ADD_MESSAGE);
         privateMap.put("lesson_delete", LESSON_DELETE_MESSAGE);
         privateMap.put("lesson_edit", LESSON_EDIT_MESSAGE);

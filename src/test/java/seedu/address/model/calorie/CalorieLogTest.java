@@ -2,20 +2,21 @@ package seedu.address.model.calorie;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.CalorieLog;
-import seedu.address.model.person.DailyCalorie;
-import seedu.address.model.person.exceptions.DailyCalorieNotFoundException;
-import seedu.address.model.person.exceptions.DuplicateDailyCalorieException;
+import seedu.address.model.calorie.exceptions.DailyCalorieNotFoundException;
+import seedu.address.model.calorie.exceptions.DuplicateDailyCalorieException;
 
 public class CalorieLogTest {
 
@@ -186,4 +187,103 @@ public class CalorieLogTest {
                 .asUnmodifiableObservableList().remove(0));
     }
 
+    @Test
+    public void containsTest() {
+        assertFalse(l1.contains(d1));
+        l1.add(d1);
+        assertTrue(l1.contains(d1));
+        assertFalse(l1.contains(d3));
+    }
+
+    @Test
+    public void addCaloriesTest() {
+        CalorieLog l3 = new CalorieLog();
+        assertEquals(l3.getCalories(), 0);
+        Calorie calorie1000 = new Calorie(1000);
+        l3.addCalories(calorie1000);
+        assertEquals(l3.getCalories(), 1000);
+        l3.addCalories(calorie1000);
+        assertEquals(l3.getCalories(), 2000);
+
+        DailyCalorie test = new DailyCalorie(LocalDate.of(2020, 10, 5));
+        DailyCalorie test1 = new DailyCalorie(LocalDate.of(2020, 10, 6));
+        DailyCalorie test2 = new DailyCalorie(LocalDate.of(2020, 10, 7));
+        DailyCalorie test3 = new DailyCalorie(LocalDate.of(2020, 10, 8));
+        DailyCalorie test4 = new DailyCalorie(LocalDate.of(2020, 10, 9));
+        DailyCalorie test5 = new DailyCalorie(LocalDate.of(2020, 10, 10));
+        DailyCalorie test6 = new DailyCalorie(LocalDate.of(2020, 10, 11));
+
+        CalorieLog l4 = new CalorieLog();
+        l4.add(test);
+        l4.add(test1);
+        l4.add(test2);
+        l4.add(test3);
+        l4.add(test4);
+        l4.add(test5);
+        l4.add(test6);
+
+        l4.addCalories(calorie1000);
+        assertFalse(l4.contains(test));
+    }
+
+    @Test
+    public void minusCaloriesTest() {
+        Calorie calorie1000 = new Calorie(1000);
+        l1.addCalories(calorie1000);
+        l2.addCalories(calorie1000);
+        l1.minusCalories(new Calorie(10));
+        assertFalse(l1.getCalories() == l2.getCalories());
+
+        DailyCalorie test = new DailyCalorie(LocalDate.of(2020, 10, 5));
+        DailyCalorie test1 = new DailyCalorie(LocalDate.of(2020, 10, 6));
+        DailyCalorie test2 = new DailyCalorie(LocalDate.of(2020, 10, 7));
+        DailyCalorie test3 = new DailyCalorie(LocalDate.of(2020, 10, 8));
+        DailyCalorie test4 = new DailyCalorie(LocalDate.of(2020, 10, 9));
+        DailyCalorie test5 = new DailyCalorie(LocalDate.of(2020, 10, 10));
+        DailyCalorie test6 = new DailyCalorie(LocalDate.of(2020, 10, 11));
+
+        CalorieLog l4 = new CalorieLog();
+        l4.add(test);
+        l4.add(test1);
+        l4.add(test2);
+        l4.add(test3);
+        l4.add(test4);
+        l4.add(test5);
+        l4.add(test6);
+
+        assertThrows(DailyCalorieNotFoundException.class, () -> l4.minusCalories(calorie1000));
+    }
+
+    @Test
+    public void setCalorieLogTest() {
+        List<DailyCalorie> testList = new ArrayList<DailyCalorie>();
+        CalorieLog l = new CalorieLog();
+        testList.add(d1);
+        testList.add(d3);
+
+        assertTrue(l.equals(l2));
+
+        l.setCalorieLog(testList);
+        assertFalse(l.equals(l2));
+
+        Iterator iterator = l.iterator();
+
+        assertTrue(iterator.next().equals(d1));
+        assertTrue(iterator.next().equals(d3));
+
+        testList.add(d1);
+        assertThrows(DuplicateDailyCalorieException.class, () -> l.setCalorieLog(testList));
+    }
+
+    @Test
+    public void miscellaneous() {
+        List<DailyCalorie> testList = new ArrayList<DailyCalorie>();
+        testList.add(d1);
+        testList.add(d3);
+
+        assertEquals(l1.hashCode(), l2.hashCode());
+        l1.setCalorieLog(testList);
+        assertNotEquals(l1.hashCode(), l2.hashCode());
+
+    }
 }

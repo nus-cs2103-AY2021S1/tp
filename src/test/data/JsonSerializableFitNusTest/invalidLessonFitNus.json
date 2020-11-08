@@ -1,0 +1,13 @@
+{
+  "exercises" : [ ],
+  "lessons" : [ {
+    "name": "CS20!0"
+  } ],
+  "routines" : [ ],
+  "slots" : [ ],
+  "dailyCalories" : [ ],
+  "body" : {
+    "height" : 160.0,
+    "weight" : 45.0
+  }
+}

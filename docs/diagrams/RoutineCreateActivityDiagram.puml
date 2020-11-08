@@ -1,0 +1,28 @@
+@startuml
+(*)  --> "User starts fitNUS"
+--> "User types `routine_create r/Chest Workout` into fitNUS"
+--> "FitNusParser receives the input"
+--> [fitNUS calls RoutineCreateCommandParser to parse the argument]"RoutineCreateCommandParser checks validitiy of input"
+If "Is input is invalid?\ne.g. Routine prefix missing\nor more than 1 of it" then
+--> [Invalid input]ParseException is thrown
+-->(*)
+else
+--> [Valid input]ParserUtil parses user input using Routine prefix
+
+if "Format of Name\nis invalid?" then
+--> [Invalid input]ParseException is thrown
+
+else
+--> RoutineCreateCommandParser returns a RoutineCreateCommand
+--> RoutineCreateCommand checks Model if Routine already exists
+
+if Does Routine already exists in Model? then
+-->[Exists]Command Exception is thrown
+-->(*)
+
+else
+-->[Does not exists] Add Routine to Model, updating the UI
+
+--> Command is executed
+--> (*)
+@enduml

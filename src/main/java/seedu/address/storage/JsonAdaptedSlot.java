@@ -11,15 +11,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Activity;
-import seedu.address.model.person.Day;
-import seedu.address.model.person.Duration;
-import seedu.address.model.person.Exercise;
-import seedu.address.model.person.Lesson;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Routine;
-import seedu.address.model.person.Slot;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.routine.Routine;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.timetable.Activity;
+import seedu.address.model.timetable.Day;
+import seedu.address.model.timetable.Duration;
+import seedu.address.model.timetable.Slot;
+import seedu.address.model.util.Name;
 
 /**
  * Jackson-friendly version of {@link Slot}.
@@ -90,7 +90,7 @@ public class JsonAdaptedSlot {
     /**
      * Converts this Jackson-friendly adapted slot object into the model's {@code Slot} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted exercise.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted slot.
      */
     public Slot toModelType() throws IllegalValueException {
 

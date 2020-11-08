@@ -10,17 +10,16 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.FitNusParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyFitNus;
-import seedu.address.model.person.Body;
-import seedu.address.model.person.DailyCalorie;
-import seedu.address.model.person.Exercise;
-import seedu.address.model.person.Lesson;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Routine;
-import seedu.address.model.person.Slot;
+import seedu.address.model.body.Body;
+import seedu.address.model.calorie.DailyCalorie;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.routine.Routine;
+import seedu.address.model.timetable.Slot;
 import seedu.address.storage.Storage;
 
 /**
@@ -32,7 +31,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final FitNusParser fitNusParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -40,7 +39,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        fitNusParser = new FitNusParser();
     }
 
     @Override
@@ -48,11 +47,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = fitNusParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveFitNus(model.getAddressBook());
+            storage.saveFitNus(model.getFitNus());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -61,13 +60,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyFitNus getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyFitNus getFitNus() {
+        return model.getFitNus();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public Path getFitNusFilePath() {
+        return model.getFitNusFilePath();
+    }
+
+    @Override
+    public GuiSettings getGuiSettings() {
+        return model.getGuiSettings();
+    }
+
+    @Override
+    public void setGuiSettings(GuiSettings guiSettings) {
+        model.setGuiSettings(guiSettings);
     }
 
     @Override
@@ -103,20 +112,5 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Body> getFilteredBody() {
         return model.getFilteredBody();
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
-    }
-
-    @Override
-    public GuiSettings getGuiSettings() {
-        return model.getGuiSettings();
-    }
-
-    @Override
-    public void setGuiSettings(GuiSettings guiSettings) {
-        model.setGuiSettings(guiSettings);
     }
 }

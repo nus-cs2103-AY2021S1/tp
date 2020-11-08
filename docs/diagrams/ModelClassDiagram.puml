@@ -27,6 +27,17 @@ Class Name
 Class UniqueRoutineList
 }
 
+Package Body {
+Class Body
+Class Height
+Class Weight
+}
+
+Package Calorie {
+Class CalorieLog
+Class DailyCalorie
+}
+
 Package Lesson {
 Class Lesson
 Class Name
@@ -60,4 +71,10 @@ FitNus *--> "1" UniqueRoutineList
 UniqueRoutineList o--> "*" Routine
 Routine --> "*" Exercise
 ModelManager -->"1" Exercise : filtered list
+
+FitNus *--> "1" Body
+
+FitNus *--> "1" CalorieLog
+
+
 @enduml

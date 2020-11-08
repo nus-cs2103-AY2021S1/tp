@@ -40,13 +40,13 @@ Call Outs | Red boxes will be drawn up around areas of interest to alert you `[c
 
 Check out the list below to get started on using this User Guide.
 
-* If this is your first time using fitNUS, refer to the [Quick Start](#3.-quick-start) for step-by-step instructions on how
+* If this is your first time using fitNUS, refer to the [Quick Start](#3-quick-start) for step-by-step instructions on how
 to download and set up fitNUS on your Computer.
 
-* If you want to explore the different features of fitNUS, go to the [Commands](#4.-commands) section.
+* If you want to explore the different features of fitNUS, go to the [Commands](#4-commands) section.
 
 * If you are familiar with fitNUS or want to do a quick lookup of all the available commands, go to the
-[Command Summary](#5.-command-summary) section.
+[Command Summary](#5-command-summary) section.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. Quick Start
@@ -57,7 +57,7 @@ to download and set up fitNUS on your Computer.
 
 1. Copy the file to the folder you want to use as the _home folder_ for your fitNUS.
 
-1. Double-click the file to start the app. The GUI similar to the one [above](#1.-introduction) should appear in a few seconds.
+1. Double-click the file to start the app. The GUI similar to the one [above](#1-introduction) should appear in a few seconds.
 Note how the app contains some sample data.<br>
 
 1. Type your desired command in the command box and press *Enter* to execute it. To verify that fitNUS is working for you,
@@ -76,9 +76,9 @@ here are some sample commands you can try:
 1. Now that fitNUS is running as expected, you can kick-start your fitness journey and achieve your goals!
 Experience first-hand the convenience that fitNUS brings to your life by exploring the various commands yourself.
 
-   * Learn more about the specific details of each command [here](#4.-commands).
+   * Learn more about the specific details of each command [here](#4-commands).
 
-   * A complete summary of all commands is available [here](#5.-command-summary) in table format.
+   * A complete summary of all commands is available [here](#5-command-summary) in table format.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 4. Commands
@@ -95,7 +95,7 @@ information about it from the tags under it.
 
 Creates a new exercise in fitNUS with the given exercise name.
 
-Format: `exercise_add e/EXERCISE [t/TAG]`
+Format: `exercise_add e/EXERCISE [t/TAG]...`
 
 Example:
 * `exercise_add e/Pull Ups t/Body` Creates a new exercise with the name "Pull Ups" and tag "Body".
@@ -134,7 +134,7 @@ Note that the first exercise is now "Pull Ups" and no longer "Bench Press".
 Edits the details of the exercise identified by the index number used in the displayed exercise list.
 Existing values will be overwritten by the input values.
 
-Format: `exercise_edit INDEX [e/EXERCISE] [t/TAG]`
+Format: `exercise_edit INDEX [e/EXERCISE] [t/TAG]...`
 
 Example:
 * `exercise_edit 3 e/Squats t/Lower` Edits the exercise at index 3 in the list to the name "Squats" and tag "Lower".
@@ -151,20 +151,20 @@ Note that the third exercise is now "Squats" and no longer "Lunges".
 
 #### 4.1.4 Find exercise : `exercise_find`
 
-Finds all exercises in fitNUS whose names contain any of the specified keywords.
+Finds all exercises in fitNUS whose names contain all of the specified keywords.
 
-Format: `exercise_find KEYWORD [MORE_KEYWORDS]`
+Format: `exercise_find KEYWORD [MORE_KEYWORDS]...`
 
 Example:
 * `exercise_find bench` Lists all exercises with names containing "bench" keyword.
 
-**Before finding exercises with "bench":**
+**Before finding exercises with "bench" keyword:**
 
 Note that fitNUS currently displays 3 exercises.
 
 ![Exercise Find Before](./images/exercise_find_before.png)
 
-**After finding exercises with "bench":**
+**After finding exercises with "bench" keyword:**
 
 Note that fitNUS now lists only 1 exercise and displays a success message for you.
 
@@ -238,20 +238,20 @@ Note that fitNUS now displays only 2 routines, and the third routine "Full Body 
 
 #### 4.2.3 Find routine : `routine_find`
 
-Finds all routines in fitNUS whose names contain any of the specified keywords.
+Finds all routines in fitNUS whose names contain all of the specified keywords.
 
-Format: `routine_find KEYWORD [MORE_KEYWORDS]`
+Format: `routine_find KEYWORD [MORE_KEYWORDS]...`
 
 Example:
-* `routine_find upper body` Lists all routines with names containing "upper body" keyword.
+* `routine_find upper body` Lists all routines with names containing "upper" and "body" keywords.
 
-**Before finding routines with "upper body":**
+**Before finding routines with "upper" and "body" keywords:**
 
 Note that fitNUS currently displays 2 routines.
 
 ![Routine Find Before](./images/routine_find_before.png)
 
-**After finding routines with "upper body":**
+**After finding routines with "upper" and "body" keywords:**
 
 Note that fitNUS now lists only 1 routine and displays a success message for you.
 
@@ -332,13 +332,13 @@ Example:
 
 Note that fitNUS currently displays 2 routines.
 
-![Routine View Exercise Before](./images/routine_view_exercise_before.png)
+![Routine View Before](./images/routine_view_before.png)
 
 **After viewing the second routine:**
 
 Note how you can only see the routine that was at the second index which is "Leg Workout".
 
-![Routine View Exercise_After](./images/routine_view_exercise_after.png)
+![Routine View After](./images/routine_view_after.png)
 
 ### 4.3 Lesson
 
@@ -349,11 +349,11 @@ of your time and never forget another training session.
 
 Creates a new lesson in fitNUS with the given lesson name.
 
-Format: `lesson_add n/LESSON [t/TAG]`
+Format: `lesson_add n/LESSON [t/TAG]...`
 
 Example:
-* `lesson_add n/CS2100 t/lab t/homework` Creates a new lesson with the name "CS2100"
-and tags "lab" and "homework".
+* `lesson_add n/CS2100 t/priority t/homework` Creates a new lesson with the name "CS2100"
+and tags "priority" and "homework".
 
 **Before adding a lesson:**
 
@@ -389,18 +389,18 @@ Note that the first lesson is now "CS2100" and no longer "CS2103T".
 Edits the details of the lesson identified by the index number used in the displayed lesson list.
 Existing values will be overwritten by the input values.
 
-Format: `lesson_edit INDEX [n/LESSON] [t/TAG]`
+Format: `lesson_edit INDEX [n/LESSON] [t/TAG]...`
 
 Example:
-* `lesson_edit 3 n/GEQ1000 t/tutorial` Edits the lesson at index 3 in the list to the name "GEQ1000" and tag "tutorial".
+* `lesson_edit 3 n/CS2103T t/core` Edits the lesson at index 3 in the list to the name "CS2103T" and tag "core".
 
 **Before editing the third lesson:**
 
 ![Lesson Edit Before](./images/lesson_edit_before.png)
 
-**Successful outcome of editing the third lesson to "GEQ1000":**
+**Successful outcome of editing the third lesson to "CS2103T":**
 
-Note that the third lesson is now "GEQ1000" and no longer "GER1000".
+Note that the third lesson is now "CS2103T" and no longer "GER1000".
 
 ![Lesson Edit After](./images/lesson_edit_after.png)
 
@@ -408,18 +408,18 @@ Note that the third lesson is now "GEQ1000" and no longer "GER1000".
 
 Finds all lessons in fitNUS whose names contain any of the specified keywords.
 
-Format: `lesson_find KEYWORD [MORE_KEYWORDS]`
+Format: `lesson_find KEYWORD [MORE_KEYWORDS]...`
 
 Example:
-* `lesson_find cs2` Lists all lessons with names containing "cs2" keyword.
+* `lesson_find CS GER` Lists all lessons with names containing "CS" or "GER" keywords.
 
-**Before finding lessons with "cs2":**
+**Before finding lessons with "CS" or "GER" keywords:**
 
 Note that fitNUS currently displays 3 lessons.
 
 ![Lesson Find Before](./images/lesson_find_before.png)
 
-**After finding lessons with "cs2":**
+**After finding lessons with "CS" or "GER" keywords:**
 
 Note that fitNUS now lists 2 lessons and displays a success message for you.
 
@@ -650,10 +650,10 @@ _{explain the feature here}_
 
 Action | Format | Examples
 --------|-------|-----------
-**Create Exercise** | `exercise_add e/EXERCISE [t/TAG]` | `exercise_add e/Bench Press t/Upper`
+**Create Exercise** | `exercise_add e/EXERCISE [t/TAG]...` | `exercise_add e/Bench Press t/Upper`
 **Delete Exercise** | `exercise_delete INDEX` | `exercise_delete 1`
-**Edit Exercise** | `exercise_edit INDEX [e/EXERCISE] [t/TAG]` | `exercise_edit 3 e/Squats t/Lower`
-**Find Exercise** | `exercise_find KEYWORD [MORE_KEYWORDS]` | `exercise_find Bench`
+**Edit Exercise** | `exercise_edit INDEX [e/EXERCISE] [t/TAG]...` | `exercise_edit 3 e/Squats t/Lower`
+**Find Exercise** | `exercise_find KEYWORD [MORE_KEYWORDS]...` | `exercise_find Bench`
 **List Exercise** | `exercise_list` | `exercise_list`
 
 ### 5.2 Routine
@@ -662,20 +662,20 @@ Action | Format | Examples
 --------|-------|-----------
 **Create Routine** | `routine_create r/ROUTINE` | `routine_create r/Leg Day Session`
 **Delete Routine** | `routine_delete INDEX` | `routine delete 5`
-**Find Routine** | `routine_find KEYWORD [MORE_KEYWORDS]` | `routine_find Leg Day`
+**Find Routine** | `routine_find KEYWORD [MORE_KEYWORDS]...` | `routine_find upper body`
 **List Routine** | `routine list` | `routine_list`
 **Add Exercise to Routine** | `routine_add_exercise r/ROUTINE e/EXERCISE` | `routine_add_exercise r/Leg Day Session e/Squats`
 **Delete Exercise from Routine** | `routine_delete_exercise r/ROUTINE e/EXERCISE` | `routine_delete_exercise r/Leg Day Session e/Squats`
-**View Routine details** | `routine_view_exercise INDEX` | `routine_view_exercise 2`
+**View Routine details** | `routine_view INDEX` | `routine_view 2`
 
 ### 5.3 Lesson
 
 Action | Format | Examples
 --------|-------|-----------
-**Create Lesson** | `lesson_add n/LESSON [t/TAG]` | `lesson_add n/CS2100 t/lecture t/consult`
+**Create Lesson** | `lesson_add n/LESSON [t/TAG]...` | `lesson_add n/CS2100 t/priority t/homework`
 **Delete Lesson** | `lesson_delete INDEX` | `lesson_delete 1`
-**Edit Lesson** | `lesson_edit INDEX [n/LESSON] [t/TAG]` | `lesson_edit 3 n/CS2103T t/webcasted`
-**Find Lesson** | `lesson_find KEYWORD [MORE_KEYWORDS]` | `lesson_find CS21`
+**Edit Lesson** | `lesson_edit INDEX [n/LESSON] [t/TAG]...` | `lesson_edit 3 n/CS2103T t/core`
+**Find Lesson** | `lesson_find KEYWORD [MORE_KEYWORDS]...` | `lesson_find CS GER`
 **List Lesson** | `lesson_list` | `lesson_list`
 
 ### 5.4 Timetable
@@ -691,8 +691,8 @@ Action | Format | Examples
 
 Action | Format | Examples
 --------|-------|-----------
-**Add or edit Height** | `height h/HEIGHT` | `height h/170`
-**Add or edit Weight** | `weight w/WEIGHT` | `weight w/70`
+**Add or edit Height** | `height h/HEIGHT` | `height h/170.5`
+**Add or edit Weight** | `weight w/WEIGHT` | `weight w/72.8`
 **View BMI** | `bmi` | `bmi`
 
 ### 5.6 Calorie

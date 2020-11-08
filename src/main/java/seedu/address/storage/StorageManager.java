@@ -17,15 +17,15 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private FitNusStorage fitNusStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code FitNusStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(FitNusStorage fitNusStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.fitNusStorage = fitNusStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -50,30 +50,29 @@ public class StorageManager implements Storage {
     // ================ fitNUS methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getFitNusFilePath() {
+        return fitNusStorage.getFitNusFilePath();
     }
 
     @Override
     public Optional<ReadOnlyFitNus> readFitNus() throws DataConversionException, IOException {
-        return readFitNus(addressBookStorage.getAddressBookFilePath());
+        return readFitNus(fitNusStorage.getFitNusFilePath());
     }
 
     @Override
     public Optional<ReadOnlyFitNus> readFitNus(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readFitNus(filePath);
+        return fitNusStorage.readFitNus(filePath);
     }
 
     @Override
-    public void saveFitNus(ReadOnlyFitNus addressBook) throws IOException {
-        saveFitNus(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveFitNus(ReadOnlyFitNus fitNus) throws IOException {
+        saveFitNus(fitNus, fitNusStorage.getFitNusFilePath());
     }
 
     @Override
-    public void saveFitNus(ReadOnlyFitNus addressBook, Path filePath) throws IOException {
+    public void saveFitNus(ReadOnlyFitNus fitNus, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveFitNus(addressBook, filePath);
+        fitNusStorage.saveFitNus(fitNus, filePath);
     }
-
 }
