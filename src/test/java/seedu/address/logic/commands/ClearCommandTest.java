@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalExercise.getTypicalExerciseBook;
 
-import java.io.FileNotFoundException;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.ExerciseBook;
