@@ -17,8 +17,8 @@ public class PriceWithinRangePredicateTest {
         Inequality inequality = Inequality.get("<=");
         assertThrows(ParseException.class, () -> new PriceWithinRangePredicate(inequality, -0.1));
         assertThrows(ParseException.class, () -> new PriceWithinRangePredicate(inequality, -1.3));
-        assertThrows(ParseException.class, () -> new PriceWithinRangePredicate(inequality, 101));
-        assertThrows(ParseException.class, () -> new PriceWithinRangePredicate(inequality, 1000));
+        assertThrows(ParseException.class, () -> new PriceWithinRangePredicate(inequality, 1000.01));
+        assertThrows(ParseException.class, () -> new PriceWithinRangePredicate(inequality, 10000));
     }
 
     @Test
