@@ -13,8 +13,8 @@ public class ListAttemptsCommand extends PerformanceCommand {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists all attempts \n"
-            + "Example: " + COMMAND_WORD;
+            + ": Lists all attempts in Performance interface \n"
+            + "Example: " + COMMAND_WORD + "(case sensitive, 'list xx' is not allowed)";
 
     public static final String MESSAGE_LIST_ATTEMPTS_SUCCESS = "Listing all past attempts";
 

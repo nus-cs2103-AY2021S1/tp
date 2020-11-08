@@ -1,37 +1,37 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "FlashcardBook save file which contains the same Flashcard values as in TypicalFlashcard#getTypicalFlashcardBook()",
   "flashcards" : [ {
-    "title" : "Alice Pauline",
+    "title" : "Bubble Sort",
     "definition" : "<DEFINITION PLACEHOLDER> 1",
     "priority": "",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "difficult" ]
   }, {
-    "title" : "Benson Meier",
+    "title" : "Heaping",
     "definition" : "<DEFINITION PLACEHOLDER> 2",
     "priority": "",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "midterm", "final" ]
   }, {
-    "title" : "Carl Kurz",
+    "title" : "Binary Tree",
     "definition" : "<DEFINITION PLACEHOLDER> 3",
     "priority": "",
     "tagged" : [ ]
   }, {
-    "title" : "Daniel Meier",
+    "title" : "Quick Sort",
     "definition" : "<DEFINITION PLACEHOLDER> 4",
     "priority": "",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "difficult" ]
   }, {
-    "title" : "Elle Meyer",
+    "title" : "Merge Sort",
     "definition" : "<DEFINITION PLACEHOLDER> 5",
     "priority": "",
     "tagged" : [ ]
   }, {
-    "title" : "Fiona Kunz",
+    "title" : "Insertion Sort",
     "definition" : "<DEFINITION PLACEHOLDER> 6",
     "priority": "",
     "tagged" : [ ]
   }, {
-    "title" : "George Best",
+    "title" : "Selection Sort",
     "definition" : "<DEFINITION PLACEHOLDER> 7",
     "priority": "",
     "tagged" : [ ]

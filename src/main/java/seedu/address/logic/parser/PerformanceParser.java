@@ -42,9 +42,11 @@ public class PerformanceParser {
         case ViewAttemptCommand.COMMAND_WORD:
             return new ViewAttemptCommandParser().parse(arguments);
         case ListAttemptsCommand.COMMAND_WORD:
-            return new ListAttemptsCommand();
+            return new ListAttemptsCommandParser().parse(arguments);
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND + "\nMaybe you have used commands from Flashcard or "
+                + "Quiz interfaces, which are not allowed in Performance interface.\n"
+                + "Type 'help' to see the list of supported command lines from user guide.");
         }
     }
 }

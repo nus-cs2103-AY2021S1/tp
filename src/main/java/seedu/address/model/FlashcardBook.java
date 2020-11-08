@@ -12,7 +12,7 @@ import seedu.address.model.person.UniqueFlashcardList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameFlashcard comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class FlashcardBook implements ReadOnlyFlashcardBook {
 
     private final UniqueFlashcardList flashcards;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         flashcards = new UniqueFlashcardList();
     }
 
-    public AddressBook() {}
+    public FlashcardBook() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public FlashcardBook(ReadOnlyFlashcardBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyFlashcardBook newData) {
         requireNonNull(newData);
 
         setFlashcards(newData.getFlashcardList());
@@ -125,8 +125,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && flashcards.equals(((AddressBook) other).flashcards));
+                || (other instanceof FlashcardBook // instanceof handles nulls
+                && flashcards.equals(((FlashcardBook) other).flashcards));
     }
 
     @Override

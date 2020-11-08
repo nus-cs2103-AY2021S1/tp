@@ -25,7 +25,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.sortFilteredPersonList(sortOrder);
+        model.sortFilteredFlashcardList(sortOrder);
         return new CommandResult("Flashcards sorted.");
     }
 }

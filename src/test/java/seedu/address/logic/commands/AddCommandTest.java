@@ -17,9 +17,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.FlashcardBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyFlashcardBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Flashcard;
 import seedu.address.model.quiz.Attempt;
@@ -104,12 +104,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getFlashcardBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setFlashcardBookFilePath(Path flashcardBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -119,12 +119,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setFlashcardBook(ReadOnlyFlashcardBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void sortFilteredPersonList(String sortOrder) {
+        public void sortFilteredFlashcardList(String sortOrder) {
             throw new AssertionError("This method could not be called.");
         }
 
@@ -184,7 +184,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyFlashcardBook getFlashcardBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -209,12 +209,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Flashcard> getFilteredPersonList() {
+        public ObservableList<Flashcard> getFilteredFlashcardList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Flashcard> predicate) {
+        public void updateFilteredFlashcardList(Predicate<Flashcard> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -266,8 +266,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyFlashcardBook getFlashcardBook() {
+            return new FlashcardBook();
         }
     }
 

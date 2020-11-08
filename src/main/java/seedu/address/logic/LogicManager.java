@@ -17,7 +17,7 @@ import seedu.address.logic.parser.PerformanceParser;
 import seedu.address.logic.parser.QuizParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyFlashcardBook;
 import seedu.address.model.person.Flashcard;
 import seedu.address.model.quiz.Attempt;
 import seedu.address.model.quiz.Question;
@@ -64,7 +64,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook()); // write to Json file here
+            storage.saveFlashcardBook(model.getFlashcardBook()); // write to Json file here
             if (model.getIsQuizMode()) {
                 model.savePerformance();
             }
@@ -85,13 +85,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyFlashcardBook getAddressBook() {
+        return model.getFlashcardBook();
     }
 
     @Override
     public ObservableList<Flashcard> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+        return model.getFilteredFlashcardList();
     }
     @Override
     public ObservableList<Question> getQuizList() {
@@ -108,7 +108,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getFlashcardBookFilePath();
     }
 
     @Override

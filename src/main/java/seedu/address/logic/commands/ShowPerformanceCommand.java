@@ -10,9 +10,10 @@ public class ShowPerformanceCommand extends Command {
     public static final String COMMAND_WORD = "performance";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows user's past quiz attempts.\n"
-            + "Example: " + COMMAND_WORD;
+            + "Example: " + COMMAND_WORD + " (case sensitive, 'performance xx' is not allowed)";
 
-    public static final String SHOWING_PERFORMANCE_MESSAGE = "Opened performance window.";
+    public static final String SHOWING_PERFORMANCE_MESSAGE = "Opened performance window.\n"
+        + "Only Performance interface commands are workable in the new performance window.";
 
     @Override
     public CommandResult execute(Model model) {

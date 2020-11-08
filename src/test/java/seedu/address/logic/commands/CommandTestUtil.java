@@ -12,7 +12,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.FlashcardBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Flashcard;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -23,19 +23,19 @@ import seedu.address.testutil.EditFlashcardDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_DEFINITION_AMY = "<definition placeholder 1>";
-    public static final String VALID_DEFINITION_BOB = "<definition placeholder 2>";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
-    public static final String NAME_DESC_AMY = " " + PREFIX_TITLE + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_TITLE + VALID_NAME_BOB;
-    public static final String DEFINITION_DESC_AMY = " " + PREFIX_DEFINITION + VALID_DEFINITION_AMY;
-    public static final String DEFINITION_DESC_BOB = " " + PREFIX_DEFINITION + VALID_DEFINITION_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String INVALID_NAME_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in names
+    public static final String VALID_NAME_BUBBLE_SORT = "bubble sort"; //different flashcard name from Bubble Sort
+    public static final String VALID_NAME_HEAPING = "heaping";
+    public static final String VALID_DEFINITION_BUBBLE_SORT = "<definition placeholder 1>";
+    public static final String VALID_DEFINITION_HEAPING = "<definition placeholder 2>";
+    public static final String VALID_TAG_DIFFICULT = "difficult";
+    public static final String VALID_TAG_FINAL = "final";
+    public static final String NAME_DESC_BUBBLE_SORT = " " + PREFIX_TITLE + VALID_NAME_BUBBLE_SORT;
+    public static final String NAME_DESC_HEAPING = " " + PREFIX_TITLE + VALID_NAME_HEAPING;
+    public static final String DEFINITION_DESC_BUBBLE_SORT = " " + PREFIX_DEFINITION + VALID_DEFINITION_BUBBLE_SORT;
+    public static final String DEFINITION_DESC_HEAPING = " " + PREFIX_DEFINITION + VALID_DEFINITION_HEAPING;
+    public static final String TAG_DESC_FINAL = " " + PREFIX_TAG + VALID_TAG_FINAL;
+    public static final String TAG_DESC_DIFFICULT = " " + PREFIX_TAG + VALID_TAG_DIFFICULT;
+    public static final String INVALID_NAME_DESC = " " + PREFIX_TITLE + "Bubble&Sort"; // '&' not allowed in names
     public static final String INVALID_DEFINITION_DESC = " "
             + PREFIX_DEFINITION; // empty string not allowed for addresses>>>>>>> upstream/branch-v1.2
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -43,16 +43,16 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditFlashcardDescriptor DESC_AMY;
-    public static final EditCommand.EditFlashcardDescriptor DESC_BOB;
+    public static final EditCommand.EditFlashcardDescriptor DESC_BUBBLE_SORT;
+    public static final EditCommand.EditFlashcardDescriptor DESC_HEAPING;
 
     static {
-        DESC_AMY = new EditFlashcardDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDefinition(VALID_DEFINITION_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditFlashcardDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withDefinition(VALID_DEFINITION_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_BUBBLE_SORT = new EditFlashcardDescriptorBuilder().withName(VALID_NAME_BUBBLE_SORT)
+                .withDefinition(VALID_DEFINITION_BUBBLE_SORT)
+                .withTags(VALID_TAG_FINAL).build();
+        DESC_HEAPING = new EditFlashcardDescriptorBuilder().withName(VALID_NAME_HEAPING)
+                .withDefinition(VALID_DEFINITION_HEAPING)
+                .withTags(VALID_TAG_DIFFICULT, VALID_TAG_FINAL).build();
     }
 
     /**
@@ -90,24 +90,24 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Flashcard> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        FlashcardBook expectedFlashcardBook = new FlashcardBook(actualModel.getFlashcardBook());
+        List<Flashcard> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFlashcardList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFlashcardBook, actualModel.getFlashcardBook());
+        assertEquals(expectedFilteredList, actualModel.getFilteredFlashcardList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the flashcard at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
-        Flashcard flashcard = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredFlashcardList().size());
+        Flashcard flashcard = model.getFilteredFlashcardList().get(targetIndex.getZeroBased());
         final String[] splitName = flashcard.getTitle().fullTitle.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(splitName[0]));
+        model.updateFilteredFlashcardList(new NameContainsKeywordsPredicate(splitName[0]));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredFlashcardList().size());
     }
 
 }

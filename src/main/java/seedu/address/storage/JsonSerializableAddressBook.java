@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.FlashcardBook;
+import seedu.address.model.ReadOnlyFlashcardBook;
 import seedu.address.model.person.Flashcard;
 
 /**
@@ -32,11 +32,11 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyFlashcardBook} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableAddressBook(ReadOnlyFlashcardBook source) {
         flashcards.addAll(source.getFlashcardList().stream().map(JsonAdaptedFlashcard::new)
                 .collect(Collectors.toList()));
     }
@@ -46,16 +46,16 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public FlashcardBook toModelType() throws IllegalValueException {
+        FlashcardBook flashcardBook = new FlashcardBook();
         for (JsonAdaptedFlashcard jsonAdaptedPerson : flashcards) {
             Flashcard flashcard = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasFlashcard(flashcard)) {
+            if (flashcardBook.hasFlashcard(flashcard)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_FLASHCARD);
             }
-            addressBook.addFlashcard(flashcard);
+            flashcardBook.addFlashcard(flashcard);
         }
-        return addressBook;
+        return flashcardBook;
     }
 
 }

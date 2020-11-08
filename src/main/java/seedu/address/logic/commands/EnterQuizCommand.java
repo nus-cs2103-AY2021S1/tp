@@ -6,8 +6,10 @@ import seedu.address.model.Model;
 
 public class EnterQuizCommand extends Command {
     public static final String COMMAND_WORD = "enter";
-    public static final String MESSAGE_USAGE = "Please type 'enter quiz' fully";
-    public static final String MESSAGE_ENTER_ACKNOWLEDGEMENT = "Switching from flashcard mode to quiz mode.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " quiz : Enters quiz interface \n"
+        + "Example: " + COMMAND_WORD + " quiz (case sensitive)";
+    public static final String MESSAGE_ENTER_ACKNOWLEDGEMENT = "Switching from flashcard mode to quiz mode.\n"
+        + "Only Quiz interface commands are workable.";
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

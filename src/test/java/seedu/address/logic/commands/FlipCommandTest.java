@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,16 +24,16 @@ import seedu.address.model.person.Flashcard;
  */
 public class FlipCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFlashcardBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Flashcard flashcardToFlip = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        FlipCommand flipCommand = new FlipCommand(INDEX_FIRST_PERSON);
+        Flashcard flashcardToFlip = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
+        FlipCommand flipCommand = new FlipCommand(INDEX_FIRST_FLASHCARD);
 
         String expectedMessage = flipCommand.generateSuccessMessage(flashcardToFlip);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getFlashcardBook(), new UserPrefs());
         expectedModel.flipFlashcard(flashcardToFlip);
 
         assertCommandSuccess(flipCommand, model, expectedMessage, expectedModel);
@@ -41,22 +41,22 @@ public class FlipCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
         FlipCommand flipCommand = new FlipCommand(outOfBoundIndex);
 
-        assertCommandFailure(flipCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(flipCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST_FLASHCARD);
 
-        Flashcard flashcardToFlip = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        FlipCommand flipCommand = new FlipCommand(INDEX_FIRST_PERSON);
+        Flashcard flashcardToFlip = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
+        FlipCommand flipCommand = new FlipCommand(INDEX_FIRST_FLASHCARD);
 
         String expectedMessage = flipCommand.generateSuccessMessage(flashcardToFlip);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getFlashcardBook(), new UserPrefs());
         expectedModel.flipFlashcard(flashcardToFlip);
 
         assertCommandSuccess(flipCommand, model, expectedMessage, expectedModel);
@@ -64,27 +64,27 @@ public class FlipCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST_FLASHCARD);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_FLASHCARD;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getFlashcardList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getFlashcardBook().getFlashcardList().size());
 
         FlipCommand flipCommand = new FlipCommand(outOfBoundIndex);
 
-        assertCommandFailure(flipCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(flipCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        FlipCommand flipFirstCommand = new FlipCommand(INDEX_FIRST_PERSON);
-        FlipCommand flipSecondCommand = new FlipCommand(INDEX_SECOND_PERSON);
+        FlipCommand flipFirstCommand = new FlipCommand(INDEX_FIRST_FLASHCARD);
+        FlipCommand flipSecondCommand = new FlipCommand(INDEX_SECOND_FLASHCARD);
 
         // same object -> returns true
         assertTrue(flipFirstCommand.equals(flipFirstCommand));
 
         // same values -> returns true
-        FlipCommand flipFirstCommandCopy = new FlipCommand(INDEX_FIRST_PERSON);
+        FlipCommand flipFirstCommandCopy = new FlipCommand(INDEX_FIRST_FLASHCARD);
         assertTrue(flipFirstCommand.equals(flipFirstCommandCopy));
 
         // different types -> returns false

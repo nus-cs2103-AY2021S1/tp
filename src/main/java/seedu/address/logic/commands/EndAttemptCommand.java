@@ -8,7 +8,8 @@ import seedu.address.model.Model;
 public class EndAttemptCommand extends Command {
 
     public static final String COMMAND_WORD = "end";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "end attempt: Ends a quiz attempt.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "end attempt: Ends a quiz attempt. \n"
+        + "Example: " + COMMAND_WORD + " attempt" + " (case sensitive)";
     public static final String MESSAGE_ATTEMPT_ACKNOWLEDGEMENT = "Attempt ended! \n"
                                                                 + "You can view your results at Performance";
     public static final String MESSAGE_EMPTY_ATTEMPT = "Attempt will not be saved to Performance because it is empty.";
