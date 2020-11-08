@@ -357,6 +357,15 @@ Format: `overdue`
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
 
+Expected Outcome:
+
+The following figure shows the expected result after entering the command `overdue`.
+
+![OverdueExpectedOutcome](images/OverdueExpectedOutcome.png)
+
+Figure ___. Outcome of entering command `overdue`.
+
+
 #### 3.3.8 Managing details for a student: `detail` (By: Vaishak)
 
 You can add, edit or delete a detail for a specified student.
@@ -508,6 +517,14 @@ Format: `question add STUDENT_INDEX t/QUESTION_TEXT`
 Example:
 * `question add 1 t/How do birds fly?` records "How do birds fly?" as a question from the 1st student in **Reeve**.
 
+Expected Outcome:
+
+The following figure shows the result of recording "How do I pass CS2101?" as a new question from Bernice Yu.
+
+![QuestionAddExpectedOutcome](images/QuestionAddExpectedOutcome.png)
+
+Figure ___. Expected outcome of entering `question add` command.
+
 ##### 3.4.1.2 Resolving a question: `question solve`
 
 After finding the solution to the question, you can mark the student's question as resolved.
@@ -532,6 +549,14 @@ Format: `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION_TEXT`
 Example:
 * `question solve 1 i/1 t/Read a book.` marks the 1st question of the 1st student in **Reeve** as answered.
 
+Expected Outcome:
+
+The following figure shows the result of resolving Bernice's second question.
+
+![QuestionSolveExpectedOutcome](images/QuestionSolveExpectedOutcome.png)
+
+Figure ___. Expected outcome of entering `question solve` command.
+
 ##### 3.4.1.3 Deleting a question: `question delete`
 
 If you do not need a student's question anymore, you can delete it.
@@ -548,6 +573,14 @@ Format: `question delete STUDENT_INDEX i/QUESTION_INDEX`
 
 Example:
 * `question delete 1 i/1` deletes the 1st question of the 1st student in **Reeve**.
+
+Expected Outcome:
+
+The following figure shows the result of deleting Bernice's second question.
+
+![QuestionDeleteExpectedOutcome](images/QuestionDeleteExpectedOutcome.png)
+
+Figure ___. Expected outcome of entering `question delete` command.
 
 #### 3.4.2 Recording exams of a student: `exam` (By: Hogan)
 
