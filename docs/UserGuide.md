@@ -386,7 +386,7 @@ Multiple ingredients are separated by `,`.
     Modifying a recipe **will not** affect the recipes that have been eaten in the consumption list.
 </div>
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
-    Specified fields will permanently override existing values with the new values- the edit is not cumulative
+    Specified fields will override existing values with the new values- the edit is not cumulative
     . Typing `editR INDEX` and then hitting `Enter` will insert the information of the recipe at the specified
      `INDEX` into the command box, letting you directly modify the existing recipe. 
 </div> 
@@ -399,7 +399,8 @@ Examples:
 ### 5.1.5 Getting a recipe to edit: `editR` <a id="get-edit-recipe"></a>
 Contributed by: Olivia
 
-<br> Insert the editR command concatenated with the information of the specified recipe into the command box for editing purposes.
+<br> Inserts the editR command concatenated with the information of the specified recipe into the command box
+ for editing purposes.
 
 <br>  The image below is what Wishful Shrinking looks like after you have gotten a recipe to edit. <br><br>
 <img src="images/feature/recipe/EditRecipeGetImage.png" width="550" height="300">
@@ -604,15 +605,12 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
   single forward slash to represent fractions or a single full stop to represent decimal numbers and should
    be greater than 0. STRING accepts alphabets.
 </div>
-<div markdown="span" class="alert alert-primary">:memo: **Note:**
-Multiple ingredients are separated by a `,`.
-</div> 
 
-* All fields are optional, but **at least** the ingredient index and one of the fields must be present to edit
- an ingredient.
+
+* **At least** the ingredient index and ingredient name must be present to edit an ingredient.
 * You are not allowed to edit an ingredient into an already existing ingredient in the Fridge.
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
-    Specified fields will permanently override existing values with the new values- the edit is not cumulative. Typing `editF INDEX` and then hitting `Enter` will insert the information of the ingredient at the specified `INDEX` into the command box, letting you directly modify the existing ingredient.
+    Specified fields will override existing values with the new values- the edit is not cumulative. Typing `editF INDEX` and then hitting `Enter` will insert the information of the ingredient at the specified `INDEX` into the command box, letting you directly modify the existing ingredient.
 </div> 
 
 Examples:
@@ -623,7 +621,8 @@ Examples:
 ### 5.2.5 Getting an ingredient to edit: `editF` <a id="get-edit-ingredient"></a>
 Contributed by: Olivia
 
-<br> Insert the editF command concatenated with the information of the specified ingredient into the command box for editing purposes. <br>  
+<br> Inserts the editF command concatenated with the information of the specified ingredient into the command
+ box for editing purposes. <br>  
 
 The image below is what Wishful Shrinking looks like after you have gotten an ingredient in the Fridge to edit. <br><br>
 

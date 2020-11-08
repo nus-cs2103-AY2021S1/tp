@@ -1009,7 +1009,7 @@ These are common extensions that can apply to some commands. Let *X* be the step
 * *X*a. The given index is not a positive integer that is greater than 0 or not a valid index in the item list.
     * *X*a1. Wishful Shrinking shows an error message and requests for new data.
     * *X*a2. User enters new index. 
-        Step *X*a1 to Step (*X*)a2 are repeated until the index entered is valid.
+        Step *X*a1 to Step *X*a2 are repeated until the index entered is valid.
         
       Use case resumes at step *X*+1.
 
