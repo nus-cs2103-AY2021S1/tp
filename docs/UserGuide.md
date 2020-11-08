@@ -106,6 +106,7 @@ This section will give you some useful information about the various command for
 * Multiple instances of the same prefix/flag will not throw an error. However, the app will only read the **last instance** in the input (except for tags).
   * eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category
   * eg. `sort reviewed -a -a -d` will sort flashcards according to review frequency in **descending** order
+  * eg. `filter f/yes f/no` will filter and list flashcards that are not favourited.
 
 <br>
   
@@ -272,6 +273,8 @@ Examples:
 *  `filter c/SDLC` filters and lists all flashcards belonging to the SDLC category.
 *  `filter t/examinable t/study` filters and lists all flashcards that have both an “examinable” tag and a “study” tag.
 *  `filter r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
+*  `filter f/no f/yes c/General` filters and lists all favourited flashcards that belong to the General category.
+    (only last instance of f/ is read)
 
 **Steps for filtering for a flashcard based on category and tag**:
 
