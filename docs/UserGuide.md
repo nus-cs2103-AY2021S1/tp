@@ -230,7 +230,7 @@ Examples:
 `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * To add a comment along with the necessary fields <br>
 `adds n/Kristina Ryan e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678
-c/ ti/Behaviour d/20/12/2020 desc/Very enthusiastic in meetings`
+ c/ ti/Behaviour d/20/12/2020 desc/Very enthusiastic in meetings`
 * To add a tag along with the necessary fields <br>
 `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
 
