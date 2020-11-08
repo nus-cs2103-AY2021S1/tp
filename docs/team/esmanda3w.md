@@ -2,7 +2,6 @@
 layout: page
 title: Wong Wen Wei Esmanda's Project Portfolio Page
 ---
-<div style="page-break-after: always;">
 
 ## Project: PIVOT (Police Investigation Virtual Organisational Tool)
 PIVOT is a desktop application to assist the police investigators in keeping track of their investigations and relevant information. 
@@ -26,7 +25,7 @@ Given below are my contributions to the project.
   * Justification: This feature is highly pertinent as our application aims to help users better manage relevant information about investigations.
     With the feature, users are able to keep track of the list of suspects of a case, with all its relevant details.
 
-</div>
+<br>
 
 * **New Feature**: Added the ability to edit the fields of suspects/witnesses/victims in a specified case. (Pull Request [\#167](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/167))
   * What it does: Allows the user to be able to edit multiple fields of a suspect/witness/victim at one time.
