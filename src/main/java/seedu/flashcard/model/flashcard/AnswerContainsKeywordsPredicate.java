@@ -18,8 +18,9 @@ public class AnswerContainsKeywordsPredicate implements Predicate<Flashcard> {
         String flashcardAnswer = flashcard.getAnswer().toString().toLowerCase();
 
         return keywords.stream()
+                .map(keyword -> keyword.toLowerCase())
                 .anyMatch(keyword ->
-                        flashcardAnswer.contains(keyword.toLowerCase()));
+                        flashcardAnswer.contains(keyword));
     }
 
     @Override

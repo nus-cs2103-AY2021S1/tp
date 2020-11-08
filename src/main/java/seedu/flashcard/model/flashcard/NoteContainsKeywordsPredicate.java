@@ -22,8 +22,9 @@ public class NoteContainsKeywordsPredicate implements Predicate<Flashcard> {
         }
 
         return keywords.stream()
+                .map(keyword -> keyword.toLowerCase())
                 .anyMatch(keyword ->
-                        flashcardNote.contains(keyword.toLowerCase()));
+                        flashcardNote.contains(keyword));
     }
 
     @Override
