@@ -32,6 +32,7 @@
             * [6.3.1.1 Add question command](#6311-add-question-command)
             * [6.3.1.2 Solve question command](#6312-solve-question-command)
             * [6.3.1.3 Delete question command](#6313-delete-question-command)
+            * [6.3.1.4 Design considerations](#6314-design-considerations)
         * [6.3.2 Exam Commands](#632-exam-commands)
             * [6.3.2.1 Add exam command](#6321-add-exam-command)
             * [6.3.2.2 Delete exam command](#6322-delete-exam-command)
@@ -52,9 +53,12 @@
 - [Appendix D: Non-Functional Requirements](#appendix-d-non-functional-requirements)
 - [Appendix E: Glossary](#appendix-e-glossary)
 - [Appendix F: Instructions for Manual Testing](#appendix-f-instructions-for-manual-testing)
-    * [F.1 Launch and Shutdown](#f1-launch-and-shutdown)
-    * [F.2 Deleting a Student](#f2-deleting-a-student)
-    * [F.3 Saving Data](#f3-saving-data)
+    * [F.1 Launch and Shutdown](#f1-launching-reeve)
+    * [F.2 General Features](#f2-general-features)
+    * [F.3 Administrative Features](#f3-student-administrative-features)
+    * [F.4 Academic Features](#f4-student-academic-features)
+    * [F.5 Notes Features](#f5-notes-feature)
+    * [F.6 Saving Data](#f6-saving-data)
 
 
 ## 1. Introduction
@@ -1395,7 +1399,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School v/Blk 33 West Coast Rd #21-214 t/15 1430-1630 f/25 d/10/10/2020 a/Likes Algebra`
     <br>Expected: Expected: No student is added as due to invalid class time. Error details displayed in the result display.
 
-2. Deleting a student while all students are being shown.
+1. Deleting a student while all students are being shown.
 
    1. Prerequisites: At least one student in the students list.
 
@@ -1407,78 +1411,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-### F.4 Student Academic Features
-
-4. Adding an exam record to a student. 
-
-   1. Prerequisites: At least one student in the students list.
-   
-   1. Test case: `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
-   <br>Expected: Mid Year 2020 exam record is added to the exams list of the first student in the displayed students list.
-   
-   1. Test case: `exam add 1 n/Mid Year 2020 d/08/12/2020 s/50/10`
-   <br>Expected: No exam record is added due to invalid score as numerator is larger than denominator.
-   
-   1. Test case: `exam add 1 n/Mid Year 2020 d/30/30/2020 s/50/100`
-   <br>Expected: No exam record is added due to invalid exam date.
-   
-5. Deleting an exam record from a student.
-
-   1. Prerequisites: At least one student in the students list. At least one exam record in the student's exams list.
-   
-   1. Test case: `exam delete 1 i/1`
-   <br>Expected: First exam record of the exam list of the first student in the displayed students list is deleted. Details of deleted exam record shown in the result display.
-   
-   1. Test case: `exam delete 1 i/0`
-   <br>Expected: No exam is deleted due to invalid exam index. Error details shown in the result display.
-   
-6. Displaying exam statistics of a student
-
-   1. Prerequisites: At least one student in the students list.
-
-   1. Test case: `exam stats 1`
-   <br>Expected: Opens the exam statistics window of the first student in the displayed students list.
-   
-### F.5 Notes Feature
-
-### F.6 Saving Data
-
-1. Dealing with missing data files
-
-   1. Test case: `data/addressbook.json` missing or deleted<br>
-      Expected: Reeve initialises with sample student data, notebook data is intact.
-
-   1. Test case: `data/notebook.json` missing or deleted<br>
-      Expected: Reeve initialises with sample notebook data, student data is intact.
-
-1. Dealing with corrupted data files (Student data)
-
-   1. Prerequisite: Ensure `data/addressbook.json` is present. Modify the data using `edit` or `delete` to create `data/addressbook.json` if absent.
-
-   1. Test case: delete a random field from a random student in `addressbook.json`<br>
-      Expected: Reeve initialises with an empty student list.
-
-   1. Test case: duplicate a student's record again in `addressbook.json`<br>
-      Expected: Similar to previous.
-
-   1. Test case: invalid data in `addressbook.json` (e.g add special characters to the "name" field) <br>
-      Expected: Similar to previous.
-
-1. Dealing with corrupted data files (Notebook data)
-
-   1. Prerequisite: Ensure `data/notebook.json` is present. Modify the data using note commands to create `data/notebook.json` if absent.
-
-   1. Test case: "description" field has more than 80 characters<br>
-      Expected: Reeve initialises with an empty notebook.
-
-   1. Test case: "title" field has more than 15 characters<br>
-      Expected: Reeve initialises with an empty notebook.
-
-   1. Test case: duplicate note in `notebook.json`<br>
-      Expected: Similar to previous.
-
-### F.4 Finding students with overdue fees
 
 1. Finding students with overdue fees (i.e last payment date is more than one month ago) while all students are shown.
 
@@ -1494,7 +1426,56 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `overdue`<br>
       Expected: All students except those whose payment date is within one month from the current date are displayed again. The number of students found is displayed.
 
-### F.5 Managing questions from students
+1. Viewing schedule of classes
+
+    1. Prerequisites: There are students stored in Reeve currently with non-overlapping class times.
+
+    1. Test case: `schedule m/weekly d/02/11/2020`
+       Expected: Shows the schedule of classes in the whole week of 02/11/2020.
+
+    1. Test case: `schedule m/daily d/02/11/2020`
+       Expected: Shows the schedule of classes in the day of 02/11/2020.
+
+    1. Test case: `schedule m/dAiLy d/02/11/2020`
+       Expected: Shows the schedule successfully as the case letters of the view mode does not matter.
+
+    1. Test case: `schedule m/day d/02/11/2020`
+       Expected: Displays error message indicating invalid view mode.
+
+    1. Test case: `schedule m/weekly d/02-11-2020`
+       Expected: Displays error message indicating invalid date format.
+
+### F.4 Student Academic Features
+
+1. Adding an exam record to a student. 
+
+   1. Prerequisites: At least one student in the students list.
+   
+   1. Test case: `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
+   <br>Expected: Mid Year 2020 exam record is added to the exams list of the first student in the displayed students list.
+   
+   1. Test case: `exam add 1 n/Mid Year 2020 d/08/12/2020 s/50/10`
+   <br>Expected: No exam record is added due to invalid score as numerator is larger than denominator.
+   
+   1. Test case: `exam add 1 n/Mid Year 2020 d/30/30/2020 s/50/100`
+   <br>Expected: No exam record is added due to invalid exam date.
+   
+1. Deleting an exam record from a student.
+
+   1. Prerequisites: At least one student in the students list. At least one exam record in the student's exams list.
+   
+   1. Test case: `exam delete 1 i/1`
+   <br>Expected: First exam record of the exam list of the first student in the displayed students list is deleted. Details of deleted exam record shown in the result display.
+   
+   1. Test case: `exam delete 1 i/0`
+   <br>Expected: No exam is deleted due to invalid exam index. Error details shown in the result display.
+   
+1. Displaying exam statistics of a student
+
+   1. Prerequisites: At least one student in the students list.
+
+   1. Test case: `exam stats 1`
+   <br>Expected: Opens the exam statistics window of the first student in the displayed students list.
 
 1. Adding questions to a student.
 
@@ -1541,35 +1522,9 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `question delete 1 i/0`
        Expected: Similar to previous.
-<<<<<<< HEAD
        
     1. Test case: `question delete 1 i/QUESTION_INDEX`
        Expected: Question at `QUESTION_INDEX` is removed. Details of deleted question included in status message.
-
-### F.00 Schedule
-
-1. Viewing schedule of classes
-
-    1. Prerequisites: There are students stored in Reeve currently with non-overlapping class times.
-    
-    1. Test case: `schedule m/weekly d/02/11/2020`
-       Expected: Shows the schedule of classes in the whole week of 02/11/2020.
-       
-    1. Test case: `schedule m/daily d/02/11/2020`
-       Expected: Shows the schedule of classes in the day of 02/11/2020.
-       
-    1. Test case: `schedule m/dAiLy d/02/11/2020`
-       Expected: Shows the schedule successfully as the case letters of the view mode does not matter.
-    
-    1. Test case: `schedule m/day d/02/11/2020`
-       Expected: Displays error message indicating invalid view mode.
-       
-    1. Test case: `schedule m/weekly d/02-11-2020`
-       Expected: Displays error message indicating invalid date format.
-
-1. _{ more test cases …​ }_
-
-### F.0 Managing additional details in students
 
 1. Adding details to a student.
 
@@ -1605,7 +1560,6 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `detail edit i/1 t/DETAIL_TEXT`
        Expected: Similar to previous.
-       
 
 1. Deleting details from a student.
 
@@ -1651,4 +1605,41 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `attendance delete d/12/02/2020`
        Expected: Similar to previous.
->>>>>>> master
+
+### F.5 Notes Feature
+
+### F.6 Saving Data
+
+1. Dealing with missing data files
+
+   1. Test case: `data/addressbook.json` missing or deleted<br>
+      Expected: Reeve initialises with sample student data, notebook data is intact.
+
+   1. Test case: `data/notebook.json` missing or deleted<br>
+      Expected: Reeve initialises with sample notebook data, student data is intact.
+
+1. Dealing with corrupted data files (Student data)
+
+   1. Prerequisite: Ensure `data/addressbook.json` is present. Modify the data using `edit` or `delete` to create `data/addressbook.json` if absent.
+
+   1. Test case: delete a random field from a random student in `addressbook.json`<br>
+      Expected: Reeve initialises with an empty student list.
+
+   1. Test case: duplicate a student's record again in `addressbook.json`<br>
+      Expected: Similar to previous.
+
+   1. Test case: invalid data in `addressbook.json` (e.g add special characters to the "name" field) <br>
+      Expected: Similar to previous.
+
+1. Dealing with corrupted data files (Notebook data)
+
+   1. Prerequisite: Ensure `data/notebook.json` is present. Modify the data using note commands to create `data/notebook.json` if absent.
+
+   1. Test case: "description" field has more than 80 characters<br>
+      Expected: Reeve initialises with an empty notebook.
+
+   1. Test case: "title" field has more than 15 characters<br>
+      Expected: Reeve initialises with an empty notebook.
+
+   1. Test case: duplicate note in `notebook.json`<br>
+      Expected: Similar to previous.
