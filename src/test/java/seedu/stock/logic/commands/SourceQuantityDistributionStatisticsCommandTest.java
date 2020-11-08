@@ -7,6 +7,9 @@ import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumbe
 import static seedu.stock.testutil.TypicalStocks.RESERVED_NON_EXISTENCE_SOURCE;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.stock.model.Model;
@@ -25,11 +28,18 @@ public class SourceQuantityDistributionStatisticsCommandTest {
         SourceQuantityDistributionStatisticsCommand sourceQuantityDistributionStatisticsCommand =
                 new SourceQuantityDistributionStatisticsCommand(existentSource);
 
-        String expectedMessage = SourceQuantityDistributionStatisticsCommand.MESSAGE_SUCCESS;
+        //expected data
+        Map<String, Integer> statisticsData = new HashMap<>();
+        statisticsData.put("almond milk", 2000);
+        String[] otherStatisticsData = new String[]{"source-qd-", "cold storage"};
+
+        CommandResult expectedResult = new CommandResult(SourceQuantityDistributionStatisticsCommand.MESSAGE_SUCCESS,
+                statisticsData, false, false, null, true,
+                otherStatisticsData, false, false);
 
         Model expectedModel = model;
 
-        assertCommandSuccess(sourceQuantityDistributionStatisticsCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(sourceQuantityDistributionStatisticsCommand, model, expectedResult, expectedModel);
     }
 
     @Test

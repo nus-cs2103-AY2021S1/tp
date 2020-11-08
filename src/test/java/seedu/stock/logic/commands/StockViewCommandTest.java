@@ -48,10 +48,14 @@ public class StockViewCommandTest {
 
         String expectedMessage = String.format(StockViewCommand.MESSAGE_NOTE_DISPLAY_SUCCESS, firstStock);
 
+        CommandResult expectedResult = new CommandResult(expectedMessage,
+                null, false, true, firstStock, false,
+                null, false, false);
+
         Model expectedModel = new ModelManager(getTypicalStockBook(), new UserPrefs(),
                 getTypicalSerialNumberSetsBook());
 
-        assertCommandSuccess(stockViewCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(stockViewCommand, model, expectedResult, expectedModel);
     }
 
     @Test
@@ -62,12 +66,17 @@ public class StockViewCommandTest {
         Stock firstStock = model.getFilteredStockList().get(INDEX_FIRST_STOCK.getZeroBased());
 
         String expectedMessage = String.format(StockViewCommand.MESSAGE_NOTE_DISPLAY_SUCCESS, firstStock);
+
+        CommandResult expectedResult = new CommandResult(expectedMessage,
+                null, false, true, firstStock, false,
+                null, false, false);
+
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
 
         StockViewCommand stockViewCommand = new StockViewCommand(SERIAL_NUMBER_FIRST_STOCK);
 
-        assertCommandSuccess(stockViewCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(stockViewCommand, model, expectedResult, expectedModel);
     }
 
     @Test
@@ -95,12 +104,16 @@ public class StockViewCommandTest {
         String expectedMessage = String.format(StockViewCommand.MESSAGE_NOTE_DISPLAY_SUCCESS,
                 secondStock);
 
+        CommandResult expectedResult = new CommandResult(expectedMessage,
+                null, false, true, secondStock, false,
+                null, false, false);
+
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
 
         StockViewCommand stockViewCommand = new StockViewCommand(serialNumberNotInFilteredList);
 
-        assertCommandSuccess(stockViewCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(stockViewCommand, model, expectedResult, expectedModel);
     }
 
     @Test
