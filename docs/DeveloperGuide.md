@@ -1116,7 +1116,7 @@ In terms of effort compared to AB3, we felt that QuickCache took at least the sa
 | Commands | AB3 | QuickCache | Extensions |
 | --- | --- | --- | --- |
 | add | Y | Y | Add supports both Multiple Choice and Open Ended questions |
-| edit | Y | Y | |
+| edit | Y | Y | Edit supports both Multiple Choice and Open Ended questions |
 | delete | Y | Y | Delete supports both specific flashcard index or bulk deletion by tags |
 | list | Y | Y | |
 | exit | Y | Y | |
