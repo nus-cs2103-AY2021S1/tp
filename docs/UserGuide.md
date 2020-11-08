@@ -236,7 +236,7 @@ Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
-  single forward slash to represent fractions or a single full stop to represent decimal numbers and should be
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and whitespaces and should be
    greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
@@ -366,7 +366,7 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
-  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and whitespaces and should
    be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
@@ -570,8 +570,6 @@ The Fridge-related commands include [`addF`](#add-ingredient), [`fridge`](#list-
  commands in Wishful Shrinking that are relevant only to the Fridge.
 <br><br><br>
 
-<div style="page-break-after: always;"></div>
-
 ### 5.2.1 Adding an ingredient: `addF` <a id="add-ingredient"></a>
 Contributed by: Caitlin, Olivia
 
@@ -581,16 +579,16 @@ Contributed by: Caitlin, Olivia
 <img src="images/feature/ingredient/AddIngredientImage.png" width="550" height="300">
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
-  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and whitespaces and should
    be greater than 0. STRING accepts alphabets.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
@@ -606,8 +604,6 @@ Examples:
 * `addF i/tomato -1 kg`
 * `addF i/banana -3/4 cups, green peas -200g, salmon fish`
 <br><br><br>
-
-<div style="page-break-after: always;"></div>
 
 ### 5.2.2 Listing all ingredients : `fridge` <a id="list-ingredient"></a>
 Contributed by: Olivia
@@ -663,7 +659,7 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
-  single forward slash to represent fractions or a single full stop to represent decimal numbers and should
+  single forward slash to represent fractions or a single full stop to represent decimal numbers and whitespaces and should
    be greater than 0. STRING accepts alphabets.
 </div>
 
