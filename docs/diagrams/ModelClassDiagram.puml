@@ -36,6 +36,7 @@ Class Name
 Class Phone
 Class StudentId
 Class UniqueStudentList
+Class Attendance
 }
 
 
@@ -56,21 +57,22 @@ ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 Trackr *--> "1" UniqueModuleList
-UniqueModuleList o--> "*" Module
+UniqueModuleList o-right-> "*" Module
 Module *--> ModuleId
 
-Module *--> "1" UniqueTutorialGroupList
-UniqueTutorialGroupList o--> "*" TutorialGroup
+Module *-right-> "1" UniqueTutorialGroupList
+UniqueTutorialGroupList o-right-> "*" TutorialGroup
 TutorialGroup *--> TutorialGroupId
 TutorialGroup *--> DayOfWeek
 TutorialGroup *--> "2" TimeOfDay
 
-TutorialGroup *--> "1" UniqueStudentList
-UniqueStudentList o--> "*" Student
+TutorialGroup *-right-> "1" UniqueStudentList
+UniqueStudentList o-right-> "*" Student
 Student *--> Name
 Student *--> Phone
 Student *--> Email
 Student *--> StudentId
+Student *--> Attendance
 Student *--> "*" Tag
 
 Name -[hidden]right-> Phone
