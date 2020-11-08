@@ -12,7 +12,7 @@ title: User Guide
         * [Commands - Manpower Management](#commands-manpower-management)
         * [Commands - General](#commands-general)
         * [Other Features](#other-features)
-        * [FAQ](#FAQ)
+    * [FAQ](#FAQ)
     * [Command summary](#command-summary)
 
 
