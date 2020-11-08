@@ -9,5 +9,9 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "moduleListFilePath" : "data\\modulelist.json",
+  "archivedModuleListFilePath" : "data\\archive\\archivedmodulelist.json",
+  "contactListFilePath" : "data\\contactlist.json",
+  "todoListFilePath" : "data\\todolist.json",
+  "eventListFilePath" : "data\\eventlist.json"
 }
