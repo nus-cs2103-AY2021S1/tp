@@ -1442,35 +1442,47 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `make recipe Apple Tart`<br>
       Expected: No recipe made, as some ingredients are missing. Error details shown in the Command Output box.
 
+
 ### B.3&ensp;Managing Ingredients
 
-#### B.3.1&ensp;Adding ingredients  
-1. Adding an ingredient.
-   1. Prerequisites: None.
-   
-   1. Test case: 
-   ``````
-   add ingredient Vinegar 
-   /qty 550ml
-   /expiry 2021-07-05
-   /tag kitchen /tag sour
-   ``````
-   Expected: New ingredient added. Details of the added ingredient shown in the Ingredient View Panel. A confirmation message is displayed at the Command Output box.
-
+#### B.3.1&ensp;Adding ingredients
+ 
 1. Adding an ingredient without quantity, expiry date and tags.
+   1. Prerequisites: None.
+
+    1. Test Case: `add ingredient duck` <br>  
+       Expected: The ingredient duck with quantity 1 is added to the ingredient list. No expiry date and tags should be shown when viewing the recipe. A confirmation message is displayed at the Command Output box.
+       
+1. Adding an ingredient
    1. Prerequisites: None. 
    
-   1. Test case: `add ingredient Chocolate` <br>
-   Expected: Similar to previous.
-   
+    1. Test Case: `add ingredient duck /qty 2kg` <br>   
+       Expected: The ingredient duck with quantity 2kg is added to the ingredient list. No expiry date and tags should be shown when viewing the recipe. A confirmation message is displayed at the Command Output box.
+ 
+    1. Test Case: `add ingredient duck /qty 2ounce` <br>  
+       Expected: An error is given in the command output box as the unit is not known.
+
+    1. Test Case: `add ingredient duck /expiry 2021-12-12` <br>
+       Expected: The ingredient duck with quantity 1 and expiry date 2021-12-12 is added to the ingredient list. No tags should be shown when viewing the recipe. A confirmation message is displayed at the Command Output box.       
+       
+    1. Test Case: `add ingredient duck /tag poultry` <br>
+       Expected: The ingredient duck with quantity 1 and tag poultry is added to the ingredient list. No expiry date should be shown when viewing the recipe. A confirmation message is displayed at the Command Output box.      
+
+    1. Test Case: `add ingredient duck /expiry 2021-12-12 /tag poultry` <br>
+       Expected: The ingredient duck with quantity 1, expiry date 2021-12-12 and tag poultry is added to the ingredient list. A confirmation message is displayed at the Command Output box.    
+       
+    1. Test Case: `add ingredient duck /qty 2kg /expiry 2021-12-12 /tag poultry` <br>
+       Expected: The ingredient duck with quantity 2kg, expiry date 2021-12-12 and tag poultry is added to the ingredient list. A confirmation message is displayed at the Command Output box.
+       
 1. Updating quantity of an existing ingredient.
+
    1. Prerequisites: the ingredient has been created.
    
    1. Test case: `add ingredient Apple` <br>
-      Expected: Quantity of Apple increased by 1. A confirmation message is displayed at the Command Output box.
+      Expected: Quantity of ingredient **Apple** increased by 1.
    
    1. Test case: `add ingredient Apple /qty 3` <br>
-   Expected: Quantity of Apple increased by 3. A confirmation message is displayed at the Command Output box.
+   Expected: Quantity of ingredient **Apple** increases by 3.
    
    1. Test case: `add ingredient Chocolate /qty 50mL` <br>
       Expected: No ingredient is updated due to incompatible units. Error details shown in the Command Output box.
@@ -1478,7 +1490,9 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `add ingredient Vinegar` <br>
       Expected: Similar to previous.
    
+   
 #### B.3.2&ensp;Deleting ingredients  
+
 1. Deleting an ingredient using ingredient index
    1. Prerequisites: None. 
    
@@ -1486,7 +1500,10 @@ testers are expected to do more *exploratory* testing.
    Expected: Ingredient **#2** deleted. All current ingredients (after the deletion) shown in the Ingredient View Panel. A confirmation message is displayed at the Command Output box.
     
    1. Test case: `delete ingredient #2 /qty 2`<br>
-   Expected: Quantity of ngredient **#2** reduced by 2. Output display similar to previous. When its quantity decreases to 0, its Ingredient Tile disappears from the Ingredient View Panel.
+   Expected: Quantity of ingredient **#2** reduced by 2. Output display similar to previous. When its quantity decreases to 0, its Ingredient Tile disappears from the Ingredient View Panel.
+   
+   1. Test case: `delete ingredient #2 /qty 50mL` <br>
+   Expected: No ingredient is updated due to incompatible units. Error details shown in the Command Output box.
 
 1. Deleting an ingredient using ingredient index in a filtered list
    1. Prerequisites: None. 
@@ -1499,6 +1516,12 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: `delete ingredient Chocolate` <br>
       Expected: Ingredient **Chocolate** deleted. Output display similar to previous.
+   
+   1. Test case: `delete ingredient Chocolate /qty 2`<br>
+   Expected: Quantity of ingredient **#2** reduced by 2. Output display similar to previous. When its quantity decreases to 0, its Ingredient Tile disappears from the Ingredient View Panel.
+   
+   1. Test case: `delete ingredient Chocolate /qty 50mL` <br>
+   Expected: No ingredient is updated due to incompatible units. Error details shown in the Command Output box.
       
    1. Incorrect delete commands to try: `delete ingredient`, `delete Chocolate`, `delete Chocolate 3`<br>
       Expected: No ingredient deleted. Error details shown in the Command Output box.
@@ -1508,21 +1531,65 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: None. 
    
    1. Test case: `edit ingredient #2 /tag:add Sweet /tag:delete Dairy`<br>
-      Expected: Ingredient **#2** edited. 
-
+      Expected: Ingredient **#2** edited. Updated Ingredient Tile shown in the Ingredient View Panel. A confirmation message is displayed at the Command Output box.
+    
+   1. Incorrect edit commands to try: `edit`, `edit ingredient`, `edit ingredient #1`<br>
+      Expected: No ingredient is edited. Error details shown in the Command Output box. 
+      
 1. Editing an ingredient using ingredient index in a filtered list
    1. Prerequisites: None. 
    
+   1. Test case: Similar to above.<br>
+      Expected: Similar to above.
+   
 1. Editing an ingredient using ingredient name
+   1. Prerequisites: None.
+    
+   1. Test case: `edit ingredient Milk Chocolate /tag:add Sweet /tag:delete Dairy`<br>
+   Expected: Ingredient **Milk Chocolate** edited. Updated Ingredient Tile shown in the Ingredient View Panel. A confirmation message is displayed at the Command Output box.
+
+   1. Incorrect edit commands to try out: `edit ingredient Milk Chocolate` <br>
+   Expected: No ingredient edited. Error details shown in the Command Output box.
+      
+#### B.3.4&ensp;Filtering ingredients 
+
+1. Filtering ingredients 
    1. Prerequisites: None. 
 
-#### B.3.4&ensp;Listing ingredients  
-1. Listing ingredients
+   1. Test case: 
+   ``````
+   filter ingredient
+   /name choco /name syrup
+   /expiry 2021-12-10 /expiry 2022-01-01
+   /tag sweet /tag high calories
+   ``````
+      Expected: Ingredients matching all specified criteria, for instance, **Chocolate Syrup** displayed in the Ingredient View Panel.
+    
+   1. Incorrect filter commands to try: `filter`, `filter ingredient`, `filter ingredient /name`, `...`(where any search term is empty) <br>
+      Expected: No ingredient is filtered. Error details shown in the Command Output box.   
+      
+#### B.3.5&ensp;Finding ingredients  
+1. Finding ingredients 
    1. Prerequisites: None. 
 
-1. Listing filtered ingredients
+   1. Test case: `find ingredient chocolate egg banana`
+      Expected: Ingredients whose names contain any of the keywords are displayed in the Ingredients View Panel. A confirmation message is displayed at the Command Output box.
+    
+   1. Incorrect find commands to try: `find`, `find ingredient` <br>
+      Expected: No ingredient is found. Error details shown in the Command Output box.   
+         
+#### B.3.6&ensp;Listing ingredients 
+1. Listing ingredients 
    1. Prerequisites: None. 
    
+   1. Test case: `list ingredients` <br>
+     Expected: All recipes displayed in the Recipe View Panel. A confirmation message is displayed at the Command Output box.
+   
+   1. Test case: `list ingredients /name fruit` <br>
+     Expected: Output display same as previous. `/name fruit` is ignored when the command is parsed.
+   
+   1. Other incorrect list commands to try: `list`, `list ingredient` <br>
+     Expected: No ingredient is listed. Error details shown in the Command Output box.   
  
 ### B.4&ensp;Viewing statistics
 
