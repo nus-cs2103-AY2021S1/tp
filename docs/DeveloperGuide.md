@@ -228,16 +228,16 @@ current `case`.
 
 #### Adding a Document
 When a user executes `add doc n:name r:reference.txt`, to add a document with the specified name and file reference
-to the current "opened" case in the state, `AddDocumandCommandParser` will be invoked to parse the
+to the current "opened" case in the state, `AddDocumentCommandParser` will be invoked to parse the
 name (prefixed with n:) and reference (prefixed with r:) inputs. The program must be at an "opened" case at this point.
  <br><br>
-`AddDocumandCommandParser` will check for a valid name as well as a valid
+`AddDocumentCommandParser` will check for a valid name as well as a valid
 reference that exists in the `./references` directory. This is to prevent a user from creating a document when the
 program is active when they have yet to include the file in the program's directory. The appropriate error message
 should be returned for a better user experience. It will then successfully create a `Document` and
-return `AddDocumandCommand`
+return `AddDocumentCommand`
 <br><br>
-`AddDocumandCommand` will get the current `case` in the program `state` and adds the new `Document` to this `case`.
+`AddDocumentCommand` will get the current `case` in the program `state` and adds the new `Document` to this `case`.
 It will check for duplicated documents at this point as this is where the program accesses the list of documents in the
 current state. The `model` will then be updated with the updated `case`.
 
