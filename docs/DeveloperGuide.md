@@ -149,7 +149,7 @@ This section describes some noteworthy details on how certain features are imple
 The class diagram below shows how applicant and staff are related to each other and the various classes they are 
 associated to. The following sections will elaborate more on the applicant and staff management sections.
 
- <img src="images/ApplicantStaffClassDiagram.png" width="650" />
+ <img src="images/ApplicantStaffClassDiagram.png" width="750" />
 
 ### 3.2 Staff Management System
 
