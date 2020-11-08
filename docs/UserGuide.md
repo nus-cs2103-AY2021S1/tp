@@ -268,6 +268,11 @@ Example:
 
 Deletes a staff from Eva. 
 
+<div markdown="block" class="alert alert-danger">
+Please take note that this action is irreversible.
+</div>
+<br>
+
 Format: `dels INDEX`
 
 Example:
@@ -323,6 +328,11 @@ Should a staff be unable to take their leave and cancels or postpones, Eva allow
 
 This command removes the record of leave taken by staff, specified by the date given.<br>
 
+<div markdown="block" class="alert alert-danger">
+Please take note that this action is irreversible.
+</div>
+<br>
+
 Format: `dell INDEX d/DATE`
 
 <div markdown="block" class="alert alert-info">
@@ -343,6 +353,11 @@ Examples:
 
 In any case that you might want to remove all staff records, you can always use this command. <br>
 This command clears all staff entries from the Eva database. 
+
+<div markdown="block" class="alert alert-danger">
+Please take note that this action is irreversible.
+</div>
+<br>
 
 Format: `clear s-`
 
@@ -501,11 +516,16 @@ Example:
 
 Deletes an application from an applicant with the specified index under Eva.
 
+<div markdown="block" class="alert alert-danger">
+Please take note that this action is irreversible.
+</div>
+<br>
+
 Format: `delapp INDEX`
 
 <div markdown="span" class="alert alert-info">
 
-:note: **Note:** `delapp` replaces the current application of the target applicant with a blank application. <br>
+**:information_source: Note:** `delapp` replaces the current application of the target applicant with a blank application. <br>
 
 </div>
 
@@ -556,7 +576,7 @@ Commands to add, delete and edit comments on staff or applicants
 
 <div markdown="block" class="alert alert-primary">
 
-:info: **Important:** <br>
+**:information_source: Important:** <br>
 
 * Comment Commands take index reference from which type of person user is viewing. <br>
 
