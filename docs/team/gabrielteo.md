@@ -10,10 +10,6 @@ Hospify is an application to help maintain medical records.
 Given below are my contributions to the project.
 
 * **New Features**:
-  * Added the ability to `find` a patient. (Pull request [\#47]())
-    * What it does: Allows the user to find a patient.
-    * Justification: This feature provides a convenient way to access patients' details.
-    * Highlights: The implementation does not require changes to existing commands.
   * Added `Appointment` Class. (Pull requests [\#80](), [\#87](), [\#115](), [\#116]())
     * What it does: The user is now able to schedule and store new appointments for patients.
     * Justification: This feature provides added functionality to keep track of appointment for patients.
@@ -36,13 +32,14 @@ Given below are my contributions to the project.
   * Edited `find` command to take in both name and `NRIC`, returning all patients that match the keywords and `NRIC` (Pull request [\#47]())
   * Edited `delete` command to be able to delete by `NRIC`, in addition to just deleting by `INDEX` originally (Pull request [\#48]())
   * Updated the GUI color scheme for base colors (Pull request [\#50]())
-  * Edited `help` command to display a table of commands and updated the link to Hospify user guide (Pull request [\#68]())
+  * Edited `help` command to display a table of commands and updated the link to Hospify user guide in the help window (Pull requests [\#68](), [\#269]())
   * Edited `Appointment` class to include description field and more methods to get information needed for UI rendering of appointments (Pull request [\#116]())
 
 * **Contributions to the User Guide**:
   * User Guide:
     * Updated `find` command to include new find by `NRIC` functionality (Pull request [\#71](), [\#170]())
     * Updated `delete` command to include new delete by `NRIC` functionality (Pull request [\#71]())
+    * Updated Command summary table for new `NRIC` parameter (Pull request [\#71]())
     * Updated product screenshots and included some new screenshots (Pull requests [\#71](), [\#157](), [\#170]())
     * Added documentation for the feature `addAppt` (Pull request [\#170]())
     * Added documentation for the feature `editAppt` (Pull request [\#170]())
