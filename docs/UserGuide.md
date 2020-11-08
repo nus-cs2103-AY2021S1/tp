@@ -207,7 +207,8 @@ This command enables you to add a staff record into Eva. A staff record can cont
  - Address*
  - Tags
  - Comments
- - Leaves <br>
+ - Leaves 
+ 
 The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
 Without any of these fields, Eva will not accept you input. Tags and Comments can be added with these commands as shown 
 in the examples. To manage leave records for each staff, please refer to the commands 
@@ -218,9 +219,17 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
  - A staff can have any number of tags (including 0) <br>
  - A staff can have any number of comments (including 0) <br>
  
+:bulb: **Tip:**
+ - The details of each field can be provided in any order.
+ 
 Examples:
-* `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
+* To add only the necessary fields <br>
+`adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* To add a comment along with the necessary fields <br>
+`adds n/Kristina Ryan e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678
+c/ ti/Behaviour d/20/12/2020 desc/Very enthusiastic in meetings`
+* To add a tag along with the necessary fields <br>
+`adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
 
 ![addStaff](images/ugimages/AddStaff.png)
 
