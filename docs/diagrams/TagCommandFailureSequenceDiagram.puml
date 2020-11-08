@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+
+Participant ":TagCommand" as command LOGIC_COLOR
+Participant "model:Model" as model MODEL_COLOR
+Participant ":CommandException" as exception LOGIC_COLOR
+
+[-> command: execute()
+
+activate command
+
+command -> model: hasTag()
+
+activate model
+model --> command: false
+deactivate model
+
+command -> command: filePresent()
+activate command
+command --> command: false
+deactivate command
+
+create exception
+command -> exception
+activate exception
+exception --> command
+deactivate exception
+
+[<-- command: exception
+deactivate command
+[<-[hidden]- command
+destroy command
+
+@enduml

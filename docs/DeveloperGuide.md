@@ -144,15 +144,21 @@ serves as extra information of a tagged file.
 [TagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java) 
 adds a new `Tag` to `AddressBook` if the tag's `TagName` is not a duplicate and the tag's `FileAddress`
 is pointing to a valid file. 
+Moreover, TagCommand checks if the file is present before adding the tag to `Model`.
 
-Firstly, `TagCommand` checks if the file address given is absolute or relative file path.
+This diagram shows a successful execution of `TagCommand`, resulting in a new tag added to `Model`.
+![TagSuccessSequence](images/TagCommandSuccessSequenceDiagram.png)
+
+This diagram shows an unsuccessful execution of `TagCommand`, resulting in `CommandException` thrown.
+In this case, the file was not present.
+![TagFailureSequence](images/TagCommandFailureSequenceDiagram.png)
+
+`TagCommand` checks if the file address given is absolute or relative file path.
 If the address is relative, it converts the relative path to absolute address by concatenating the relative
 path to the current path stored in `Model`.
-
 We designed `TagCommand` this way so that the users can use our File Explorer interface to navigate to
 a folder, then tag files using relative file addresses.
 
-Lastly, TagCommand checks if the file is present using `java.io.File.exists()` before adding the tag to `Model`.
 
 ### Opening of Tags: OpenCommand
 
@@ -162,6 +168,9 @@ It filters the list of `Tags` stored in `AddressBook` by the `Tag` or `Label` su
 to be opened.
 After that, it opens the files located at the `Tag`'s `FileAddress` if the file is present and user has read permission.
 `CommandException` is thrown if tag is not present, the file cannot be found or no read permission.
+
+This sequence diagram shows a successful execution of `OpenCommand`.
+![OpenCommandSuccessExecution](images/OpenCommandSuccessSequenceDiagram.png)
 
 We implemented OpenCommand using `java.awt.Desktop`,
 which supports various desktop capabilities such as `open()`. `Desktop` ensures that our application can operation across
