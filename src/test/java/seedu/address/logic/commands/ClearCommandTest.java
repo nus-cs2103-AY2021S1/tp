@@ -37,13 +37,14 @@ public class ClearCommandTest {
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-}
-
-class ExerciseBookNoWritingStubs extends ExerciseBook {
-    @Override
-    public void resetAllData() {
-        super.exercises.resetAll();
-        TemplateList.reset();
+    private class ExerciseBookNoWritingStubs extends ExerciseBook {
+        @Override
+        public void resetAllData() {
+            super.exercises.resetAll();
+            TemplateList.reset();
+        }
     }
 }
+
+
 
