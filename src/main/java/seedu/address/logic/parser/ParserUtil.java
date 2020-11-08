@@ -36,10 +36,10 @@ public class ParserUtil {
             + "999 KG / L, which is the maximum capacity for any kind of ingredient for one stall.\n"
             + "Please double check the current amount and enter the actual current amount !";
     public static final String MESSAGE_EXCEED_MAXIMUM_LENGTH = "The amount entered has at least four "
-            + "digits(inclusive of Decimal Point), "
-            + "which is either more than the maximum capacity of storage\n"
-            + " (999 KG / L) for any one ingredient or contains decimal part."
-            + "\nPlease record the amount to nearest KG/L and remove any excess leading zeros !\n"
+            + "digits(inclusive of Decimal Point and special symbols), "
+            + "which is either more than the\n maximum capacity of storage"
+            + " (999 KG / L) for any one ingredient or contains decimal part/special symbols."
+            + "\nPlease record the amount to nearest KG/L and remove any special symbols or excess leading zeros !\n"
             + "Please note that only amounts with less than four digits will be accepted.\n"
             + "For example : 0000000000000000009 is not acceptable, but 009 is.";
     public static final String MESSAGE_INVALID_INGREDIENT_NAME = "The ingredient is not found, it "
