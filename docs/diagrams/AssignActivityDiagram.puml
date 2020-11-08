@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes command;
+:Check input;
+if() then ([user input is valid])
+    :Create assign command;
+    if() then ([input index is valid])
+        :Find the patient to be assigned with appointment;
+        :Create an appointment with user input and the patient detail;
+        if() then ([the appointment time slot is already occupied])
+            :Show error message to user;
+        else([the appointment time slot is available])
+            :Add the appointment in the model;
+            :Save the appointment book state;
+            :Save the patient book state;
+            :Show the success message to the user;
+        endif
+    else([input index is invalid])
+        :Show error message to user;
+    endif
+else([user input is invalid])
+    :Show error message to user;
+endif
+stop
+@enduml

@@ -306,9 +306,10 @@ The following class diagram showcases the relationship between the main classes 
 
 
 ![AssignLogicClassDiagram](images/AssignLogicClassDiagram.png)
+<br>**Diagram 3.1.1: Class diagram for classes involved in the assign feature of the Logic component**
 
 ![AssignModelClassDiagram](images/AssignModelClassDiagram.png)
-
+<br>**Diagram 3.1.1: Class diagram for classes involved in the assign feature of the Model component**
 
 Here below is an example usage scenario and how the `assign` feature works at each step:
 1. User enters respective input into the app.
@@ -334,6 +335,11 @@ Here below is an example usage scenario and how the `assign` feature works at ea
 11.  Lastly, the `AssignCommand` creates a `CommandResult` with `MESSAGE_SUCCESS`, and returns it into `LogicManager`.
 
 ![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
+<br>**Diagram 5.2.1: Sequence diagram showcasing the Assign Command process**
+
+The following activity diagram summarises the general workflow for the Assign Command:
+![AssignActivityDiagram](images/AssignActivityDiagram.png)
+<br>**Diagram3.1.3: Activity diagram showcasing the Assign Command execution flow**
 
 #### 3.2 Design Considerations
 
