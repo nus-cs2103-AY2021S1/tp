@@ -20,15 +20,16 @@ public class IngredientResetAllCommand extends Command {
     public static final String COMMAND_WORD = "i-reset-all";
     public static final String RESET_AMOUNT = "0";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Resets all ingredients' levels to zero in "
-            + "tCheck.\nIf the input contains extra words, those extra words will be ignored. For example, "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Resets the ingredients' levels of all ingredient "
+            + "types to zero.\nIf the input contains extra words, those extra words will be ignored. For example, "
             + "if the input is 'i-reset-all 121', \n"
             + "then tCheck will ignore the extra input '121' and resets all ingredients' levels to zero.\n"
             + "Parameters: There are no parameters.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "All ingredient levels are reset to 0.";
-    public static final String MESSAGE_NO_CHANGE = "All Ingredient levels are already at 0.";
+    public static final String MESSAGE_SUCCESS = "All ingredients' levels are reset to 0.";
+    public static final String MESSAGE_NO_CHANGE = "All Ingredients' levels have been already at 0 before the "
+            + "resetting all ingredient's levels command (i-reset-all) is entered.";
 
     /**
      * Executes the command and returns the result message.

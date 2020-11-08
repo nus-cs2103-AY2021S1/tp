@@ -93,7 +93,6 @@ public interface Model {
      */
     void setSalesBookFilePath(Path salesBookFilePath);
 
-
     /**
      * Sets the user prefs' ingredient book file path.
      */
