@@ -385,14 +385,14 @@ Figure X Appointments window with appointments of patient
 </div>
 
 <div markdown="span" class="alert alert-info">
-**:information_source: Notes:** `showAppt` takes in only **ONE** NRIC of the patient to show.
+**:information_source: Note:** `showAppt` takes in only **ONE** NRIC of the patient to show.
 </div>
 
 ### Adding an Appointment: `addAppt` (by Gabriel Teo Yu Xiang)
 
 This command allows you to schedule an `Appointment` for a patient in **Hospify**.
 
-Format: `addAppt NRIC appt/DATE TIME d/DESCRIPTION`
+Format: `addAppt NRIC appt/DATE TIME [d/DESCRIPTION]`
 
 * `NRIC` represents the `NRIC` of the patient you are adding an `Appointment` to.
 * `DATE` and `TIME` represent the date and time of the `Appointment` respectively.
@@ -403,6 +403,11 @@ Format: `addAppt NRIC appt/DATE TIME d/DESCRIPTION`
 
 **:warning: Important:** `DATE` and `TIME` parameters must be specified in the following formats:
 
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** The appointment description is **optional** and may be left out
 </div>
 
 - **Date format:**
@@ -418,7 +423,7 @@ Format | Example
 HH:mm | 20:00
 
 Examples:
-* `addAppt S1234567A appt/25/12/2020 15:00 d/Foot Therapy`
+* `addAppt S1234567A appt/25/12/2020 15:00`
 * `addAppt S0000001A appt/28/09/2022 20:00 d/Eye Check-up`
 
 When an `Appointment` is successfully added to a patient, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
@@ -429,7 +434,7 @@ When an `Appointment` is successfully added to a patient, a success message will
 
 This command allows you to edit an existing `Appointment` for a patient in **Hospify**.
 
-Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME`
+Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME [d/DESCRIPTION]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -440,15 +445,19 @@ Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME`
 * The old `Appointment` timing is preceded by a `oldappt/` prefix
 
 * The new `Appointment` timing is preceded by a `newappt/` prefix
+
+* The new `Appointment` description is **optional**  
+i.e. you can choose whether or not to edit the description
 </div>
 
 * The `Appointment` to edit must be an existing appointment of the patient.
-* Only the date and timing of the `Appointment` can be changed. The name/description cannot be changed.
 * `NRIC` represents the `NRIC` of the patient whose `Appointment` you are editing.
 * `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
+* `DESCRIPTION` represents the description of the new `Appointment` to be changed to.
 
 Examples:
 * `editAppt S0000001A oldappt/28/09/2022 20:00 newappt/30/09/2022 15:00`
+* `editAppt S1234567A oldappt/25/12/2020 20:00 newappt/10/01/2021 14:00 d/Revisit`
 
 When an `Appointment` is successfully edited, a success message will appear in the message box as shown in the figure below.<br>
 
@@ -570,7 +579,7 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ (Peh Jun Siang)
+## FAQ (by Peh Jun Siang)
 
 In this section, we will be looking at some of the frequently asked questions from our users.
 
@@ -653,20 +662,28 @@ In this section, we have summarised all the commands and their formats into a ta
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME ic/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho ic/S1234567A p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME ic/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS mr/MEDICAL_RECORD_URL [t/TAG]…​` <br> e.g., `add n/James Ho ic/S1234567A p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 mr/www.samplerecord/100 t/shellfish`
+**Add Appointment** | `addAppt NRIC appt/DATE TIME [d/DESCRIPTION]` <br> e.g., `addAppt S1234567A appt/30/12/2020 18:00 d/foot surgery`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`<br> `delete NRIC`<br> e.g., `delete S1234567A`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ic/NRIC] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com ic/S1234567A`
-**Find** | `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`<br> e.g., `find James Jake`<br> e.g., `find Curry Davis Heskey S1234567A`
-**List** | `list`
-**Help** | `help`
 **Count** | `count`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`<br> `delete NRIC`<br> e.g., `delete S1234567A`
+**Delete Appointment** | `deleteAppt NRIC appt/DATE TIME` <br> e.g., `deleteAppt S1234567A appt/30/12/2020 18:00`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ic/NRIC] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com ic/S1234567A`
+**Edit Appointment** | `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME` <br> e.g., `editAppt S1234567A oldappt/30/12/2020 18:00 newappt/27/11/2020 20:30`
+**Exit** | `exit`
+**Find** | `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`<br> e.g., `find James Jake`<br> e.g., `find Curry Davis Heskey S1234567A`
+**Help** | `help`
+**List** | `list`
+**Show Appointment** | `showAppt NRIC` or double click on patient <br> e.g., `showAppt S1234567A`
+**Show Medical Record** | `showMr NRIC` or double click `MR URL` button to copy the url and paste onto web browser manually <br> e.g., `showMr S1234567A`
+**Sort** | `sort name` or `sort NRIC` 
+
 
 * Valid email format
 
     * Emails should be of the format local-part@domain.topleveldomain
-    * The local-part (upper limit of 64 characters) only contains alphanumeric characters or special characters including !#$%&'*+/=?`{}~^.-
-    * The domain should be between 2 and 256 characters long (inclusive), start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any
+    * The local-part (upper limit of 64 characters) only contains alphanumeric characters or special characters including !#$%&'*+/=?`{}~^.- and the vertical line symbol
+    * The domain should be between 2 and 255 characters long (inclusive), start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any
     * The top level domain should be between 2 and 6 (inclusive) characters long and only contain alphabets<br>
     
 * Valid URL format

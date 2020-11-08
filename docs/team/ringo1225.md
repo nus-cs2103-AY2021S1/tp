@@ -14,7 +14,7 @@ Given below are my contributions to the project.
     * What it does:helps to parse the user input into a `addApptCommand`.
     
   * Added `addApptCommand` class.
-    * What it does: helps to add an appointment to a specific patient. 
+    * What it does: helps to add an appointment and a short description of that appointment to a specific patient. 
         
   
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ringo1225)
@@ -30,7 +30,7 @@ Given below are my contributions to the project.
       * What it does: makes users be able to keep a description of his/her appointment.
       
   * Included `description` field in  `editAppt` related commands
-    * What it does: maintain the `description` of an appointment unchanged when the appointment date has been edited.
+    * What it does: makes user to be able to edit the `description` of an appointment.
     
   * Revised the implementation of `delete` method.
 
