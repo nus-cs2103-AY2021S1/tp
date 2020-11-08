@@ -190,6 +190,21 @@ Given below is an example of the interaction between the Model and the `AddModul
 
 ![AddModuleSequenceDiagram](images/AddModSequenceDiagram.png)
 
+Step 1. The user executes `addMod m/CS2103T` to add a module called CS2103T to Trackr. The `addMod` command calls
+`LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `AddModuleCommandParser#parse(String)`. This method creates a new
+`Module` object with the parsed arguments. A `AddModuleCommand` object is then initialised with this `Module` object.
+
+Step 3. `LogicManager#execute(String)` calls the `AddModuleCommand#execute(Model)` method of the `AddModuleCommand`
+object.
+
+Step 4. Within `Model`, the method `Model#addModule(Module)` is executed and this adds the `Module` to the
+`internalList` of `UniqueModuleList`.
+
+Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand#execute(Model)` creates an
+`CommandResult` object and the `CommandResult` is returned to `LogicManager`.
+
 #### Design Considerations
 **Aspect: List to contain the models**
 - Option 1: Generic `UniqueList` that contains the models
@@ -198,6 +213,7 @@ Given below is an example of the interaction between the Model and the `AddModul
 - Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
     - Pros: Easier to implement
     - Cons: More repetitive code
+
 ### Section 4.2 - Delete Commands (deleteMod, deleteTG, deleteStudent)
 #### Overview
 
