@@ -1075,9 +1075,7 @@ ambiguity by ensuring all constraints related to the command are made known to t
     
 ### 3.4 Event list management feature
 
-
-
-### \[Proposed\] Add Event feature
+### Scheduler feature
 ![Structure of the Add Event command](images/AddEventSequenceDiagram.png)
 #### Proposed Implementation
 The idea of this feature is to be able to allow the user to keep track of his/her current events that
@@ -1114,6 +1112,136 @@ Cons:
 - Mess and less readible, hard to distinguish between differnt commands.
 - Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
 - LONG methods.
+
+### Add Event Feature
+
+#### Implementation
+The way this feature is currently implemented is similar to that of AB3. In the `Logic` component, we are using a specialised parser called
+`SchedulerParser` that is currently set to handle all event related commands called by the user. This parser will activate the *_AddEventParser_*
+that works similarly to AB3, returning the `AddEventCommand` that is executed in the `LogicManager`. Similar to AB3 and Module Tracker, the addevent
+command will create the event based on the given user input and add that to the `EventList` to be stored.
+
+This command is being facilitated by two supporting classes, `EventName` and `EventTime`. `EventName` is a logic container that contains the name of the
+event to be created, and `EventTime` is the logic container for holding the date and time set by the user, as a LocalDateTime object. These two
+classes are used in the creation of an `Event`, as the `Event` Object will take in a `EventName` and `EventTime`.
+
+This is how Add Event works:<br>
+Step 1. `LogicManager` takes the user input from the `UiManager` and checks the command word to decide which parser to pass onto.<br>
+Step 2. `ParserManager` then selects `SchedulerParser` based on the command word.<br>
+Step 3. `SchedulerParser` takes the user input and separate the command word from the arguments.<br>
+Step 4. Based on the command word, the switch case selects the `AddEventParser` and passes the arguments into the parser.<br>
+Step 5. `AddEventParser` then uses the `ArgumentTokenizer` to break down the arguments by the Prefixes and returns them in a `ArgumentMultiMap`.<br>
+Step 6. Information under the name, date and tag prefixes are pulled out and checked for any invalid and null values,
+if any are present, an `ParseException` is thrown.<br>
+Step 7. Once all the relevant information is parsed, the respective supporting objects are created such as `EventName`, `EventTime` and `Tag`.<br>
+Step 8. The supporting objects are used to create the new `Event` that passes to the `AddEventCommand` constructor.<br>
+Step 9. `LogicManager` receives the newly created `AddEventCommand` and executes it.<br>
+Step 10. The execute method of `AddEventCommand` takes in the current model and adds the `Event` to the eventlist of the model.<br>
+
+### Delete Event Feature
+
+#### Implementation
+The implementation is similar to that of AB3 and of Add Event as mentioned previously. The main difference is the arguments that
+delete event takes in. Delete event will take in just one parameter, which is the index of the event based on the eventlist shown in the
+GUI.
+
+This is how Delete Event works:<br>
+Step 1. `LogicManager` takes the user input from the `UiManager` and checks the command word to decide which parser to pass onto.<br>
+Step 2. `ParserManager` then selects `SchedulerParser` based on the command word.<br>
+Step 3. `SchedulerParser` takes the user input and separate the command word from the arguments.<br>
+Step 4. Based on the command word, the switch case selects the `DeleteEventParser` and passes the arguments into the parser.<br>
+Step 5. `DeleteEventParser` then uses the `ArgumentTokenizer` to break down the arguments by the Prefixes and returns them in a `ArgumentMultiMap`.<br>
+Step 6. The value of the index is pulled out and checked for any invalid (non-positive integers) and null values,
+if any are present, an `ParseException` is thrown.<br>
+Step 7. The value parsed is used to create an `Index` that represents the value.<br>
+Step 8. The `Index` passes to the `DeleteEventCommand` constructor.<br>
+Step 9. `LogicManager` receives the newly created `DeleteEventCommand` and executes it.<br>
+Step 10. The execute method of `DeleteEventCommand` takes in the current model and removes the `Event` from the eventlist of the model.<br>
+
+### Edit Event Feature
+
+#### Implementation
+Just like in AB3, this feature is supported by a static inner class `EditEventDescriptor` which serves as a logic container to
+hold all the information fields that needs to be changed in the target event.
+
+`EditEventDescriptor` is used to inform the later command of what needs to be changed and what will remain tha same. It is designed
+using `Optional` where if the user did not input a new value for a parameter, then it will be an empty optinal object. Later on
+in the execution of the command, when the value in the descriptor is empty, then it will take the original value in the target event.
+
+The `EditEventCommand` also has a method called `createEditedEvent` which will help to make the newly update `Event`. It takes in the target
+event object and the descriptor that holds the changes to be made. How this works is that it will check for each field in event, if there exist
+a new value for that field. If there is, then the new field will be used to create the `Event`. For instance, if there is a new name for the event,
+then a new `EventName` will be created based on the new name and the new `Event` will be created with thi new `EventName`.
+
+This is how Edit Event works:<br>
+Step 1. `LogicManager` takes the user input from the `UiManager` and checks the command word to decide which parser to pass onto.<br>
+Step 2. `ParserManager` then selects `SchedulerParser` based on the command word.<br>
+Step 3. `SchedulerParser` takes the user input and separate the command word from the arguments.<br>
+Step 4. Based on the command word, the switch case selects the `EditEventParser` and passes the arguments into the parser.<br>
+Step 5. `EditEventParser` then uses the `ArgumentTokenizer` to break down the arguments by the Prefixes and returns them in a `ArgumentMultiMap`.<br>
+Step 6. The values under the preamble, name, date and tag prefixes are extracted out and checked for any invalid (non-positive integers) and null values,
+if any are present, an `ParseException` is thrown.<br>
+Step 7. The values parsed are used to create the supporting classes, `Index`, `EventName`, `EventTime` and `Tag`.<br>
+Step 8. These supporting classes will be passed into the descriptor object using the respective `set` methods.<br>
+Step 9. The descriptor and index passes along to the `EditEventCommand` constructor.<br>
+Step 10. `LogicManager` receives the newly created `EditEventCommand` and executes it.<br>
+Step 11. The execute method of `EditEventCommand` takes in the current model and calls the `createEditedEvent` methods as mentioned above, and
+replaces the target event with the new `Event` that is created.<br>
+
+### Find Event Feature
+
+#### Implementation
+Same as the previously mentioned features, the Find Event feature is similar as well. The key difference is that all of the
+parameters are optional but at least one must be present. The Find Event feature will search through the EventList and return a
+new filtered list that contains all the events that matches the given keywords.
+
+This feature is supported by four classes:
+ * `FindEventCritera` is used as a logic container to hold all the predicates that are going to be entered into the find command.
+ * `EventNameContainsKeyWordsPredicate` is used to create the predicate that returns true for all events that contains any of the keywords in their `EventName` field.
+ * `EventContainsDatePredicate` is used to create the predicate that returns true for all events that have the exact same date and time as entered by the user.
+ * `EventContainsTagPredicate` is used to create the predicate that returns true for all events that have the same `Tag` under them.
+
+This is how Find Event works:<br>
+Step 1. Similar to the other features mentioned previously.<br>
+Step 2. Similar to the other features mentioned previously.<br>
+Step 3. Similar to the other features mentioned previously.<br>
+Step 4. Similar to the other features mentioned previously.<br>
+Step 5. Similar to the other features mentioned previously.<br>
+Step 6. The values parsed by the `ArgumentTokenizer` are extracted out and used to create the supporting classes, `EventNameContainsKeyWordsPredicate`,
+`EventNameContainsKeyWordsPredicate`, `EventContainsDatePredicate` and `EventContainsTagPredicate`.<br>
+Step 7. `FindEventCriteria` is created and all the predicates will be added to it using the add method.<br>
+Step 8. The `FindEventCriteria` is then passed to the `FindEventCommand` constructor.<br>
+Step 9. The `LogicManager` receives the `FindEventCommand` and executes it.<br>
+Step 10. The execute method of `FindEventCommand` will pass all the predicates to the filtered list.<br>
+Step 11. The filtered list will take in the predicates and filters out the events that passes the predicates and update the
+`FilteredList<Event>`, which will be displayed in the GUI.<br>
+
+
+### Calendar GUI Feature
+![Calendar](images/CalendarView.png)
+#### Implementation  
+The Calendar is added to help reflect the Eventlist in the model. It generates an accurate monthly Calendar based on the current date
+and time of the user. This Calendar feature has 2 main parts, the FXML design and the GUI-component class, `Calendar`.
+
+The design of the Calender mainly consists of 2 Gridpanes, one for the header and the other is used to form the days in each month. The header Gridpane
+is a 1 x 1 grid, that contains a Label for the month and year, and two buttons for the users to cycle between the months in the Calender.
+The second Gridpane is a 7 x 7 grid. The first row is reserved for headers for the different days of the week, while the rest are used
+for filling up the days based on the month and year.
+
+The logic of the Calender is located in the `Calendar` under the Ui component. It contains methods to load the month based on the date of the header, a method to scan
+through the eventlist in model to identify the days of the events in the eventlist, and the methods for the buttons to switch between the next month and previous month.
+The constructor of the Calendar takes in the `ReadOnlyEventList` from model, so that it can check for the dates that need to be marked out. The constructor also
+loads in the values for `headerMonth`, `headerYear` and `now`. The `headerMonth` and `headerYear` is used to track which month and year to display in the Calendar, while the `now` tracks the
+current month and year to start the Calendar in each time it loads up.
+
+Each time the user presses any of the two buttons, depending on which, the method for handling the buttons will either add or minus a month from the `headerMonth`. This updates the
+Calendar on which month to display. Also, the method will check if the current is either the start or end on the year, so that it knows when to change the values of the year.
+
+Next, the method that loads the Calendar will pull the values of `headerMonth` and `headerYear`. It will check if the month is Feburary, and if so, it will check if the
+year is a leap year. Then, it will return the appropriate number of days for the `headerMonth`. Then, it checks what is the day of the week that the first day of
+this month is on, then it starts to fill up the grid starting from the first day of the week. A VBox is created for each grid cell, and a Label is created and added
+to that VBox with the correct value of the dates. If there is an event that falls on the date, it the colour of the VBox will be set to a different color
+to indicate an existing event.
   
 ##General Features
 
