@@ -46,6 +46,13 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
 
         Index index;
 
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStaffCommand.MESSAGE_USAGE), pe);
+        } catch (IndexParseException pe) {
+            throw new ParseException(pe.getMessage());
+        }
 
         EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -64,17 +71,8 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
 
         parseCommentsForEdit(argMultimap.getAllValues(PREFIX_COMMENT)).ifPresent(editPersonDescriptor::setComments);
 
-
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStaffCommand.MESSAGE_USAGE), pe);
-        } catch (IndexParseException pe) {
-            throw new ParseException(pe.getMessage());
         }
 
         return new EditStaffCommand(index, editPersonDescriptor);

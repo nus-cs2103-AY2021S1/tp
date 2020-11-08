@@ -59,7 +59,6 @@ public class DeleteCommentCommandParser {
         }
 
         if (!commentPersonDescriptor.isAnyFieldEdited()) {
-            System.out.println("DELETECOMMENTparser");
             throw new ParseException(DeleteCommentCommand.MESSAGE_DELETECOMMENT_USAGE);
         }
         return new DeleteCommentCommand(index, commentPersonDescriptor);

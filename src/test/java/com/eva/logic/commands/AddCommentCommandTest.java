@@ -9,8 +9,6 @@ import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static com.eva.testutil.applicant.TypicalApplicants.getTypicalApplicantDatabase;
 import static com.eva.testutil.staff.TypicalStaffs.getTypicalStaffDatabase;
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -41,7 +39,6 @@ import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.testutil.ApplicantBuilder;
 import com.eva.testutil.CommentPersonDescriptorBuilder;
-import com.eva.testutil.PersonBuilder;
 import com.eva.testutil.staff.StaffBuilder;
 
 import javafx.collections.ObservableList;
@@ -163,30 +160,6 @@ public class AddCommentCommandTest {
         assertCommandFailure(addCommentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-
-    @Test
-    public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
-
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
-
-        // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
-
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
-    }
 
     /**
      * A default model stub that have all of the methods failing.
