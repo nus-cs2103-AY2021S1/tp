@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPatients.*;
+import static seedu.address.testutil.TypicalPatients.ALICE;
+import static seedu.address.testutil.TypicalPatients.BENSON;
+import static seedu.address.testutil.TypicalPatients.CARL;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
 

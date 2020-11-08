@@ -41,7 +41,7 @@ class FindEmptyRoomCommandTest {
     }
 
     @Test
-    void execute_numberOfRooms_containingOccupiedRooms_success() {
+    void execute_numberOfRoomsContainingOccupiedRooms_success() {
         Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
         Model expectedModel =
                 new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
