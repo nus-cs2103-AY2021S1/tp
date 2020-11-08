@@ -10,13 +10,14 @@ package DataAnalysis {
 }
 
 package Model {
+    Interface ObservableList <<Interface>>
     Class Task
     Class Lesson
     Class Tag
 }
 
 package UI {
-    Class ObservableList
+    Class HiddenLogic #FFFFFF
 }
 
 StatisticsData ..> Task
