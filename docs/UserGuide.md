@@ -54,6 +54,8 @@ and Bidder Id exists in the property list and bidder list.
 
 💡 DATE indicates the meeting date of the meeting.
 
+💡 PHONE_NUMBER indicates a local Singapore phone number (Maximum 10 digits including country code +65).
+
 # Keyboard Navigation
 1. When the `CommandBox` is not in focused (i.e when cursor is not blinking):
 
