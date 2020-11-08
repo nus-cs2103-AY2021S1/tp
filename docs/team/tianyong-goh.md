@@ -6,17 +6,12 @@ title: Goh Tian Yong's Project Portfolio Page
 ## Project: WishfulShrinking
 WishfulShrinking is a desktop diet manager refactor from an application called [AddressBook-Level 3(AB3)](https://github.com/nus-cs2103-AY2021S1/tp).
  It is an application used to helps on **managing the user's on-hand ingredients, organise personal recipes and track user's diet**.
- Wishful Shrinking facilitates a **healthier diet** in three main ways: 
-
-1. Provide a **source of healthy**, **customizable recipes** 
-1. **Recommend recipes** to improve ease of home cooking 
-1. **Track daily food and calorie** intake<br><br>
-
-Wishful Shrinking targets **office workers** who tend to neglect healthy eating. Office workers are also more
+ Wishful Shrinking targets **office workers** who tend to neglect healthy eating. Office workers are also more
  familiar with desktop applications and typing and correspondingly, Wishful Shrinking optimized for fast and efficient
  typers as it uses a Command Line Interface (CLI) and Graphical User Interface (GUI) created with JavaFX.
  Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.
  It is written in Java, and has about 10 kLoC. 
+ 
  
 Given below are my contributions to the project:
 
