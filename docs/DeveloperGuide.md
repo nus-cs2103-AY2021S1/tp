@@ -521,7 +521,6 @@ Use case ends
 
 **Extensions**
 - 2a. The list is empty.<br>
-
     Use case ends.
 
 - 3a. The given index is invalid.<br>
@@ -545,7 +544,6 @@ No extensions.
 2. McGymmy shows a list of food.
 3. User request to edit a specific food on the list.
 4. McGymmy updates the food.
-
 Use case ends.
 
 **Extensions**
@@ -633,8 +631,7 @@ Use case ends.
 
 **Extensions**
 - 1a. The list is empty.<br>
-    
-Use case ends.
+    Use case ends.
 
 **Use case: UC10 Import a McGymmy data file**
 
