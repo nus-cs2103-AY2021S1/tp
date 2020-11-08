@@ -660,6 +660,8 @@ Figure 999: <i>An activity diagram for the undo/redo feature</i>
 
 <h4>Design considerations</h4>
 
+<h5>Aspect: How state is saved</h5>
+
 * **Alternative 1 (current choice):** Save each undoable command as it is executed. Each command implements its own undo/redo operation.
   * Pros: Uses less memory since the entire state of the application does not have to be saved, and is also faster since only a small part of the model needs to be modified each time.
   * Cons: All model changes need to be restricted to the command, as each command needs to be able to fully reverse any changes made to the model.
