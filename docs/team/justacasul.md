@@ -51,7 +51,8 @@ Given below are my contributions to the project.
   * Code Review
   * Bug Reporting [\#43](https://github.com/AY2021S1-CS2103T-F13-1/tp/issues/43), 
     [\#82](https://github.com/AY2021S1-CS2103T-F13-1/tp/issues/82), 
-    [\#145](https://github.com/AY2021S1-CS2103T-F13-1/tp/issues/145) 
+    [\#145](https://github.com/AY2021S1-CS2103T-F13-1/tp/issues/145),
+    [\#170](https://github.com/AY2021S1-CS2103T-F13-1/tp/issues/170)
 
 * **Enhancements to existing features**:
   * Update `deli` and `delr` commands to delete the item completely. 
