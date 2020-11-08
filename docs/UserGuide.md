@@ -40,6 +40,25 @@ Wondering what each icon is used for? You can refer to the table below to find o
 
 All commands and their examples are demarcated with `markups`. `Markups` appear as a grey box as shown.
 
+<div markdown="block" class="alert alert-info">
+
+**:clipboard: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+  e.g. in `add n/NAME_OF_ASSIGNMENT`, `NAME_OF_ASSIGNMENT` is a parameter which can be used as `add n/Assignment 2`.
+
+* Items in square brackets are optional.<br>
+  e.g `n/NAME_OF_ASSIGNMENT [remind]` can be used as `n/Assignment 2 remind` or as `n/Assignment 2`.
+
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME_OF_ASSIGNMENT d/DEADLINE`, `d/DEADLINE n/NAME_OF_ASSIGNMENT` is also acceptable.
+  
+* All instances of `INDEX` **must be a positive integer**.<br>
+  e.g. 1, 2, 3, …​
+
+</div>
+
 ### Date and time format
 
 All commands with date and/or time parameters have a specific format you must follow, else your input will be deemed as invalid.
@@ -79,25 +98,6 @@ For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
-**:clipboard: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `add n/NAME_OF_ASSIGNMENT`, `NAME_OF_ASSIGNMENT` is a parameter which can be used as `add n/Assignment 2`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME_OF_ASSIGNMENT [remind]` can be used as `n/Assignment 2 remind` or as `n/Assignment 2`.
-
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME_OF_ASSIGNMENT d/DEADLINE`, `d/DEADLINE n/NAME_OF_ASSIGNMENT` is also acceptable.
-  
-* All instances of `INDEX` **must be a positive integer**.<br>
-  e.g. 1, 2, 3, …​
-
-</div>
-
 ### Adding an assignment: `add`
 
 Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​[p/PRIORITY] 
@@ -130,7 +130,7 @@ If the lab report assignment is of **high priority**, you can enter `add n/Lab r
 
 Examples:
 * `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind`
-* `add n/Lab report d/30-04-2020 1230 mod/CS2100 remind p/LOW`
+* `add n/Lab report d/30-04-2020 1230 mod/CS2100 p/LOW remind`
 
 ### Deleting assignments : `delete`
 
@@ -604,10 +604,6 @@ Format: `exit`
 
 You can use this command to exit the program.
 
-### Saving the data
-
-ProductiveNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
 
 ### Automated features and enhancements
 #### Upcoming tasks
@@ -625,15 +621,19 @@ Only assignments with deadlines **before** the current time and lessons with end
 #### Remarks on deadline of assignments and start time of lessons
 You can easily view how much time you have left before your assignment is due and when your lessons start. As such, you can better plan out your time to ensure you have enough time to complete your assignments and attend your lessons on time.
 
-For your assignments and lessons, assignments due in **more than a week's time** will be displayed in white, while assignments that are **overdue** or due in **less than a week's time** will be displayed in red (Figure 29).  
+For your assignments and lessons, assignments due in **more than a week's time** will be displayed in white, while assignments that are **overdue** or due in **less than a day's time** will be displayed in red (Figure 29).  
  ![AutoDiagram](images/AutoDiagram.png)
    *Figure 29: Hours or days due for assignments and lessons*
                  
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
-Unlike your `Upcoming tasks`, the remarks are currently not updated in real time. As such, the remarks displayed is the time you have left from when you open ProductiveNUS. Only when you interact with the assignments (clicking or using the commands to alter the assignment list) will the remarks get updated.
+Unlike your `Upcoming tasks`, the remarks are currently **not updated in real time**. As such, the remarks displayed is the time you have left from when you open ProductiveNUS. Only when you interact with the assignments (clicking or using the commands to alter the assignment list) will the remarks get updated.
 <br>Do look forward to the next version of ProductiveNUS to have your remarks updated in real time!
 </div>
+
+#### Saving the data
+
+ProductiveNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
