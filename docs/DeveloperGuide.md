@@ -493,139 +493,125 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC01 List food**
 
 **MSS**
-1. User requests to list food (UC01)
-2. McGymmy shows a list of food that user has added (UC02)
-Use case ends
+1. User requests to list food (UC01).
+2. McGymmy shows a list of food that user has added (UC02).<br>
+Use case ends.
 
 **Use case: UC02 Add food**
 
 **MSS**
-1. User requests to add food into the list
-2. McGymmy adds the food item into the list
-
+1. User requests to add food into the list.
+2. McGymmy adds the food item into the list.<br>
 Use case ends.
 
 **Extensions**
-- 1a. The format of add method is invalid
-    1a1. McGymmy shows an error message
+- 1a. The format of add method is invalid.
+    1a1. McGymmy shows an error message.<br>
     Use case ends.
 
 **Use case: UC03 Delete food**
 
 **MSS**
-1. User requests to list food (UC01)
-2. McGymmy shows a list of food
-3. User request to delete a specific food on the list
-4. McGymmy deletes the food
-
-Use case ends
+1. User requests to list food (UC01).
+2. McGymmy shows a list of food.
+3. User request to delete a specific food on the list.
+4. McGymmy deletes the food.<br>
+Use case ends.
 
 **Extensions**
-- 2a. The list is empty<br>
-
+- 2a. The list is empty.<br>
     Use case ends.
 
 - 3a. The given index is invalid.<br>
-   - 3a1. McGymmy shows an error message.
-
-    Use case resumes at step 2.
+   - 3a1. McGymmy shows an error message.<br>
+   Use case resumes at step 2.
 
 **Use case: UC04 Help**
 
 **MSS**
-1. User requests help
-2. McGymmy shows all commands and the usage of each command
-
-Use case ends
+1. User requests help.
+2. McGymmy shows all commands, and the usage of each command.<br>
+Use case ends.
 
 **Extensions**
-No extensions
+No extensions.
 
 **Use case: UC05 Update food**
 
 **MSS**
-1. User requests to list food (UC01)
-2. McGymmy shows a list of food
-3. User request to update a specific food on the list
-4. McGymmy updates the food
-
-Use case ends
+1. User requests to list food (UC01).
+2. McGymmy shows a list of food.
+3. User request to update a specific food on the list.
+4. McGymmy updates the food.<br>
+Use case ends.
 
 **Extensions**
-- 2a. The list is empty<br>
+- 2a. The list is empty.<br>
     Use case ends.
 - 3a. The given index is invalid.<br>
-   - 3a1. McGymmy shows an error message
-    Use case resumes at step 2.
+   - 3a1. McGymmy shows an error message.<br>
+   Use case resumes at step 2.
 
 **Use case: UC06 Import a McGymmy data file**
 
 **MSS**
 
 1. User imports McGymmy file to McGymmy.
-2. McGymmy overrides the old files with the new McGymmy files.
-
+2. McGymmy overrides the old files with the new McGymmy files.<br>
 Use case ends.
 
 **Extensions**
  - 1a. The format for the save file is invalid.
     - 1a1. McGymmy shows an error message.
+    Use case ends.
  - 1b. The path to the save file is invalid.
-    - 1b1. McGymmy shows an error message.
-
-Use case ends.
+    - 1b1. McGymmy shows an error message.<br>
+    Use case ends.
     
 **Use case: UC07 Export a McGymmy data file**
 
 **MSS**
 
-1. User exports his McGymmy file
-2. McGymmy creates a copy of his MyGymmy file in the selected directory
-
+1. User exports his McGymmy file.
+2. McGymmy creates a copy of his MyGymmy file in the selected directory.<br>
 Use case ends.
 
 **Extensions**
  - 1a. The path to directory is invalid.
-    - 1a1. McGymmy shows an error message.
-
-Use case ends.
+    - 1a1. McGymmy shows an error message.<br>
+    Use case ends.
     
 **Use case: UC08 Add a macro command**
 
 **MSS**
 
-1. User creates a macro to execute several commands in sequence
-2. McGymmy adds the macro to the list of available commands
-
-Use case ends
+1. User creates a macro to execute several commands in sequence.
+2. McGymmy adds the macro to the list of available commands.<br>
+Use case ends.
 
 **Extensions**
 
- - 1a. The format of the macro is invalid
-    - 1a1. McGymmy shows an error message
-
-Use case ends.
+ - 1a. The format of the macro is invalid.
+    - 1a1. McGymmy shows an error message.<br>
+    Use case ends.
     
 **Use case: UC09 Execute a macro command**
 
 **MSS**
 
 1. User executes a macro command
-2. McGymmy executes the commands in the macro command as if the user entered them one by one
-
+2. McGymmy executes the commands in the macro command as if the user entered them one by one<br>
 Use case ends
 
 **Extensions**
 
- - 1a. The macro does not exist
-    - 1a1. McGymmy shows the error message
-
-Use case ends.
+ - 1a. The macro does not exist.
+    - 1a1. McGymmy shows the error message.<br>
+    Use case ends.
 
  - 2a. One of the executed commands encounter an error.
-    - 2a1. McGymmy shows the error message from that command, and displays the commands that successfully executed, and the commands that have yet to execute.
-
-Use case ends.
+    - 2a1. McGymmy shows the error message from that command, and displays the commands that successfully executed, and the commands that have yet to execute.<br>
+    Use case ends.
 
 **Use case: UC10 List all macro commands**
 
