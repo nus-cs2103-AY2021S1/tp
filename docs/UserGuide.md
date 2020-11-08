@@ -81,7 +81,7 @@ This user guide provides in-depth documentation on the **installation process**,
  each feature and **troubleshooting recommendations**. <br><br>
 
 # 2. About the User Guide <a id="2-about-the-user-guide"></a>
-This section will explain the symbols in the user guide, and the format and parameters of commands. <br><br>
+This section will explain the symbols in the user guide, parameters and the format of commands. <br><br>
 
 ## 2.1 Symbols <a id="21-symbols"></a>
 
@@ -214,7 +214,7 @@ Adds a recipe to Recipe List.
 <img src="images/feature/recipe/AddRecipeImage.png" width="550" height="300">
 <br><br><br>
 
-Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES [img/IMAGE] inst
+Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES [img/IMAGE] instr
 /INSTRUCTION[. MORE INSTRUCTIONS] [t/TAG]...`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
@@ -239,6 +239,11 @@ Multiple ingredients are separated by `,`.
 * `IMAGE` can be in two formats:
     * Local path e.g. images/healthy1.jpg 
     * URL (online image) e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
+
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
+       If you copy and paste an image url, make sure there is no new line automatically added that can trigger a
+        format error.
+    </div>
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Everyone should have permission to access the image path or online image URL you provide.
@@ -266,7 +271,7 @@ Everyone should have permission to access the image path or online image URL you
  step of the instruction based on the end of a sentence, indicated by a `.`.
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
    Wishful Shrinking numbers each instruction step after separating the input instruction by the position(s) of
-    `.`.
+    `.` so there is no need to number the instructions.
 </div> 
 
 Examples:
@@ -334,6 +339,11 @@ Multiple ingredients are separated by `,`.
 * `IMAGE` can be in two formats:
     * Local path e.g. images/healthy1.jpg 
     * URL (online image) e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
+    
+    <div markdown="span" class="alert alert-success">:bulb: **Tip:**
+       If you copy and paste an image url, make sure there is no new line automatically added that can trigger a
+        format error.
+    </div> 
 
 * Here are the respective actions required by users depending on different usage of `IMAGE`:
 
@@ -364,17 +374,20 @@ Multiple ingredients are separated by `,`.
     Modifying a recipe **will not** affect the recipes that have been eaten in the consumption list.
 </div>
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
-    Specified fields will permanently override existing values with the new values- the edit is not cumulative. Typing `editR INDEX` and then hitting `Enter` will insert the information of the recipe at the specified `INDEX` into the command box, letting you directly modify the existing recipe.
+    Specified fields will permanently override existing values with the new values- the edit is not cumulative
+    . Typing `editR INDEX` and then hitting `Enter` will insert the information of the recipe at the specified
+     `INDEX` into the command box, letting you directly modify the existing recipe. Refer to 
 </div> 
 
 Examples:
 * `editR 2 n/Apple salad i/apple` will update the name of the 2nd recipe in the displayed Recipe List to Apple
- salad and the ingredients to contain an apple ingredient.
+ salad and the ingredients to contain only an apple ingredient.
 <br><br><br>
 
 ### 5.1.5 Getting a recipe to edit: `editR` <a id="get-edit-recipe"></a>
 
-Insert the information of the specified recipe to the edit into the command box for editing purposes.
+Insert the editR command concatenated with the information of the specified recipe into the command box for editing
+ purposes.
 
 <br>  The image below is what Wishful Shrinking looks like after you have gotten a recipe to edit. <br><br>
 <img src="images/feature/recipe/EditRecipeGetImage.png" width="550" height="300">
@@ -525,8 +538,7 @@ Examples:
 
 Shows a list of all ingredients in the Fridge.
 
-<br>  The image below is what Wishful Shrinking looks like after you have listed all ingredients in the Fridge. <br
-><br>
+<br>  The image below is what Wishful Shrinking looks like after you have listed all ingredients in the Fridge. <br><br>
 <img src="images/feature/ingredient/ListIngredientsImage.png" width="550" height="300">
 <br><br><br>
 
@@ -555,8 +567,7 @@ Examples:
 
 Edits the specified ingredient from Fridge.
 
-<br>  The image below is what Wishful Shrinking looks like after you have edited an ingredient in the Fridge. <br
-><br>
+<br>  The image below is what Wishful Shrinking looks like after you have edited an ingredient in the Fridge. <br><br>
 <img src="images/feature/ingredient/EditIngredientImage.png" width="550" height="300">
 <br><br><br>
 
@@ -583,14 +594,16 @@ Multiple ingredients are separated by a `,`.
 </div> 
 
 Examples:
-* `editF 2 i/apple` will update the value of the 2nd recipe in the displayed Ingredient List to apple.
+* `editF 2 i/apple` will update the name of the second ingredient in the displayed Ingredient List to
+ apple.
 <br><br><br>
 
 ### 5.2.5 Getting an ingredient to edit: `editF` <a id="get-edit-ingredient"></a>
 
-Adds the information of the specified ingredient to the edit command into the command box for editing purposes.
+Insert the editF command concatenated with the information of the specified ingredient into the command box for
+ editing purposes. <br>  
 
-<br>  The image below is what Wishful Shrinking looks like after you have gotten an ingredient in the Fridge to
+The image below is what Wishful Shrinking looks like after you have gotten an ingredient in the Fridge to
  edit
 . <br><br>
 <img src="images/feature/ingredient/EditIngredientGetImage.png" width="550" height="300">
@@ -761,12 +774,24 @@ Wishful Shrinking's data is saved in the hard disk automatically after any comma
 **A**: Remember to copy the jar file to an EMPTY folder before starting the app.
 <br>
 <br>
+**Q**: Why did my data get wiped out?<br>
+**A**: The Wishful Shrinking data file has been corrupted. 
+<br>
+<br>
+**Q**: How can I reset the data file into the original sample data file?<br>
+**A**: Delete the WishfulShrinking.json file and rerun the jar file.
+<br>
+<br>
 **Q**: Why is the app not running?<br>
 **A**: Ensure JDK `11` or above is installed. 
 <br>
 <br>
 **Q**: Why can't I add/edit images?<br>
 **A**: Refer to the section on image path restrictions under [add recipe.](#add-recipe)
+<br>
+<br>
+**Q**: I forgot how to use the app. Where can I find help?<br>
+**A**: Type help into the command box and hit enter. A link to the user guide will be provided.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -792,14 +817,14 @@ Term | Explanation
 
 Features | Format, Examples
 --------|------------------
-**Add recipe** | `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES [img/IMAGE] inst/INSTRUCTION[. MORE INSTRUCTIONS] [t/TAG]...` <br> e.g. `addR` n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat. t/fast t/easy
+**Add recipe** | `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES [img/IMAGE] instr/INSTRUCTION[. MORE INSTRUCTIONS] [t/TAG]...` <br> e.g. `addR` n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat. t/fast t/easy
 **List recipes** | `recipes`
 **Delete recipe** | `deleteR INDEX`<br> e.g. `deleteR 3`
-**Edit recipe** | `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] [inst/INSTRUCTION[. MORE INSTRUCTIONS]] [t/TAG]...` <br> e.g. `editR` 2 n/Apple salad i/apple
+**Edit recipe** | `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] [instr/INSTRUCTION[. MORE INSTRUCTIONS]] [t/TAG]...` <br> e.g. `editR` 2 n/Apple salad i/apple
 **Get edit recipe info** | `editR INDEX`<br> e.g. `editR 2`
 **Select recipe** | `selectR INDEX`<br> e.g. `selectR 3`
 **Close recipe drawer**| `close`
-**Search for recipe** | `searchR [i/INGREDIENT [MORE_INGREDIENT]] [n/NAME [MORE_NAME]] [t/TAG [MORE_TAG]]`<br> e.g. `searchR` i/lettuce tomato, `searchR` n/salad, `searchR` t/healthy
+**Search for recipe** | `searchR [i/INGREDIENT [ MORE INGREDIENTS]] [n/NAME [ MORE NAMES]] [t/TAG [ MORE TAGS]]`<br> e.g. `searchR` i/lettuce tomato, `searchR` n/salad, `searchR` t/healthy
 **Recommend recipe** | `recommend`
 **Clear all recipes** | `clearR`
 
@@ -812,7 +837,7 @@ Features | Format, Examples
 **Delete ingredient from the Fridge** | `deleteF INDEX`<br> e.g. `deleteF` 3
 **Edit ingredient in the Fridge** | `editF INDEX i/INGREDIENTS [ -QUANTITY]`<br> e.g. `editF` 3 i/apple sauce -20.0g
 **Get edit ingredient info** | `editF INDEX`<br> e.g. `editF 2`
-**Search for ingredient in the Fridge** | `searchF KEYWORD [MORE_KEYWORDS]`<br> e.g. `searchF` avocado
+**Search for ingredient in the Fridge** | `searchF KEYWORD [ MORE KEYWORDS]`<br> e.g. `searchF` avocado
 **Clear all ingredients from the Fridge** | `clearF`
 
 ## Consumption-Related Commands <a id="83-consumption-related-commands"></a>
