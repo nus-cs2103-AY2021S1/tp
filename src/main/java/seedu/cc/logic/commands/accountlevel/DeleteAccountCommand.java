@@ -29,7 +29,6 @@ public class DeleteAccountCommand extends Command {
     public static final String MESSAGE_ONE_ACCOUNT_LEFT = "You can't delete your only account left!";
     public static final String MESSAGE_ACTIVE_ACCOUNT = "The account you intend to delete is currently active!";
 
-
     private static final int SIZE_OF_ACCOUNT_LIST_WITH_ONE_ACCOUNT = 1;
 
     private final Index targetIndex;

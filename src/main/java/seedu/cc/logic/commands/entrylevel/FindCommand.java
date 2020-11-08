@@ -13,7 +13,6 @@ import seedu.cc.model.account.ActiveAccount;
 import seedu.cc.model.account.entry.ExpenseDescriptionContainsKeywordsPredicate;
 import seedu.cc.model.account.entry.RevenueDescriptionContainsKeywordsPredicate;
 
-
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String EMPTY_KEYWORD_LIST_MESSAGE = "Keyword list cannot be empty! Here are some examples\n"

@@ -6,14 +6,8 @@ repeat  while () is ([invalid args])
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 :Account is retrieved from ActiveAccount;
+:Calculate net profit;
 
-if () then ([is expense])
-:Calculate total expenses;
-
-else ([is revenue])
-:Calculate total revenue;
-
-endif
 stop
 
 @enduml
