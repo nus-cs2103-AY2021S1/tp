@@ -53,13 +53,13 @@ ModelManager o-up-> "1" UserPrefs
 UserPrefs .left.|> ReadOnlyUserPrefs
 
 ModelManager o--> "1" Notebook
-ModelManager --> "1" Note
+ModelManager --> Note
 
 Notebook *--> "1" NotesList
 Notebook .left.|> ReadOnlyNotebook
 NotesList o--> "*" Note
 
-ModelManager o-up----m--> "1" Scheduler
+ModelManager o-up------> "1" Scheduler
 ModelManager o-right-> "1" SchedulePrefs
 Scheduler ..> Student
 
