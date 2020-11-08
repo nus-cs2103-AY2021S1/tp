@@ -392,7 +392,7 @@ Figure X Appointments window with appointments of patient
 
 This command allows you to schedule an `Appointment` for a patient in **Hospify**.
 
-Format: `addAppt NRIC appt/DATE TIME d/DESCRIPTION`
+Format: `addAppt NRIC appt/DATE TIME [d/DESCRIPTION]`
 
 * `NRIC` represents the `NRIC` of the patient you are adding an `Appointment` to.
 * `DATE` and `TIME` represent the date and time of the `Appointment` respectively.
@@ -403,6 +403,11 @@ Format: `addAppt NRIC appt/DATE TIME d/DESCRIPTION`
 
 **:warning: Important:** `DATE` and `TIME` parameters must be specified in the following formats:
 
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** The appointment description is **optional** and may be left out
 </div>
 
 - **Date format:**
