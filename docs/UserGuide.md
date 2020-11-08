@@ -88,9 +88,9 @@ From here, you can choose between the different windows to view.
 
 Creates and add a new module to be stored in the system.
 
-  Format: `addmodule` `n/MODULE_NAME`
+  Format: `addmodule n/MODULE_NAME [t/TAG]...` 
 
-  * You can only key in the module code for the `MODULE_NAME`.
+  * You can only key in the module code for the `MODULE_NAME`. Invalid module codes, such as `CS2103TT` will not be accepted.
 
   * The module code you input must be **capitalised**, eg. `cs2103t` will be rejected while `CS2103T` is correct.
 
@@ -119,12 +119,14 @@ Creates and add a new completed module to be stored in the system.
 Views a module stored in the system.
 
  Format: `viewmodule` `INDEX`
-
+    
   * The module viewed will be at the `INDEX` position of the current displayed list.
 
   * The index refers to the index number of the module shown on the displayed module list.
 
   * The index **must be a positive integer** 1, 2, 3...
+  
+  * Clicking on the `ZoomLink` displayed(if any) will copy the `ZoomLink` into your clipboard.
 
   Example:
    * `viewmodule 1` views the first module in the displayed list.
