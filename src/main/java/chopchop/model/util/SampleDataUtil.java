@@ -52,6 +52,8 @@ public class SampleDataUtil {
                 Set.of(new Tag("kitchen"), new Tag("salty"))),
             new Ingredient("Vanilla Extract", Volume.millilitres(150), new ExpiryDate("2020-12-28"),
                 Set.of(new Tag("bakery"), new Tag("sweet"))),
+            new Ingredient("Milk", Volume.millilitres(750), new ExpiryDate("2020-12-14"),
+                Set.of(new Tag("dairy"), new Tag("frequently used")))
         };
     }
 
