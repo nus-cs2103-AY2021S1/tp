@@ -23,7 +23,7 @@ public class ProfileCommand extends Command {
             + "profile 92030888 25 Lower Kent Ridge Rd, Singapore 119081: "
                 + "Saves your address as '25 Lower Kent Ridge Rd, Singapore 119081' and phone number as '92030888'";
 
-    public static final String MESSAGE_SUCCESS = "Profile successfully added!";
+    public static final String MESSAGE_SUCCESS = "Profile has been set!";
 
     private final Address address;
     private final Phone phone;
