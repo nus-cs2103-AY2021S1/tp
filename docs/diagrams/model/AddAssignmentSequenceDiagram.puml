@@ -1,11 +1,12 @@
 @startuml
 !include ../style.puml
+skinparam classFontSize 12
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":ModuleListParser" as ModuleListParser LOGIC_COLOR
-participant ":AddAssignmentParser" as AddAssignmentParser LOGIC_COLOR
-participant "a:AddAssignmentCommand" as AddAssignmentCommand LOGIC_COLOR
+participant ":ParserManager" as ParserManager LOGIC_COLOR
+participant ":DeleteAssignmentParser" as DeleteAssignmentParser LOGIC_COLOR
+participant ":DeleteAssignmentCommand" as DeleteAssignmentCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -14,62 +15,62 @@ participant ":Model" as Model MODEL_COLOR
 participant ":Module" as Module MODEL_COLOR
 end box
 
-[-> LogicManager : execute("addassignment n/CS2100 a/Quiz 1 %/5 r/0.8")
+[-> LogicManager : execute("deleteassignment 1 n/CS2100")
 activate LogicManager
 
-LogicManager -> ModuleListParser : parseCommand("addassignment n/CS2100 a/Quiz 1 %/5 r/0.8")
-activate ModuleListParser
+LogicManager -> ParserManager : parseCommand("deleteassignment 1 n/CS2100")
+activate ParserManager
 
-create AddAssignmentParser
-ModuleListParser -> AddAssignmentParser
-activate AddAssignmentParser
+create DeleteAssignmentParser
+ParserManager -> DeleteAssignmentParser
+activate DeleteAssignmentParser
 
-AddAssignmentParser --> ModuleListParser
-deactivate AddAssignmentParser
+DeleteAssignmentParser --> ParserManager
+deactivate DeleteAssignmentParser
 
-ModuleListParser -> AddAssignmentParser : parse("n/CS2100 a/Quiz 1 %/5 r/0.8")
-activate AddAssignmentParser
+ParserManager -> DeleteAssignmentParser : parse("1 n/CS2100")
+activate DeleteAssignmentParser
 
-create AddAssignmentCommand
-AddAssignmentParser -> AddAssignmentCommand
-activate AddAssignmentCommand
+create DeleteAssignmentCommand
+DeleteAssignmentParser -> DeleteAssignmentCommand
+activate DeleteAssignmentCommand
 
-AddAssignmentCommand --> AddAssignmentParser : a
-deactivate AddAssignmentCommand
+DeleteAssignmentCommand --> DeleteAssignmentParser : a
+deactivate DeleteAssignmentCommand
 
-AddAssignmentParser --> ModuleListParser : a
-deactivate AddAssignmentParser
+DeleteAssignmentParser --> ParserManager : a
+deactivate DeleteAssignmentParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddAssignmentParser -[hidden]-> ModuleListParser
-destroy AddAssignmentParser
+DeleteAssignmentParser -[hidden]-> ParserManager
+destroy DeleteAssignmentParser
 
-ModuleListParser --> LogicManager : a
+ParserManager --> LogicManager : a
 deactivate ModuleListParser
 
-LogicManager -> AddAssignmentCommand : execute()
-activate AddAssignmentCommand
+LogicManager -> DeleteAssignmentCommand : execute()
+activate DeleteAssignmentCommand
 
-AddAssignmentCommand -> Model : getFilteredModuleList()
+DeleteAssignmentCommand -> Model : getFilteredModuleList()
 activate Model
 
-Model --> AddAssignmentCommand
+Model --> DeleteAssignmentCommand
 deactivate Model
 
-AddAssignmentCommand --> Module : addAssignment("Quiz 1")
+DeleteAssignmentCommand --> Module : deleteAssignment("Quiz 1")
 activate Module
 
-Module --> AddAssignmentCommand
+Module --> DeleteAssignmentCommand
 deactivate Module
 
 create CommandResult
-AddAssignmentCommand -> CommandResult
+DeleteAssignmentCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddAssignmentCommand
+CommandResult --> DeleteAssignmentCommand
 deactivate CommandResult
 
-AddAssignmentCommand --> LogicManager :
-deactivate AddAssignmentCommand
+DeleteAssignmentCommand --> LogicManager :
+deactivate DeleteAssignmentCommand
 
 [<--LogicManager
 deactivate LogicManager

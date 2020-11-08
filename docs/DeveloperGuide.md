@@ -196,7 +196,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * Stores a UniqueTodoList
 * Duplicate Task objects are now allowed
 
-TodoList will be explained more comprehensively in the [TodoList feature](#todolist-feature) Section
+TodoList will be explained more comprehensively in the [TodoList feature](#33-todolist-feature) Section
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -217,15 +217,30 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Module Assignment 
 
-### \[Proposed\] GradeTracker feature
+In order for CAP 5 Buddy to help students achieve better results, past grades and results should be stored as information in order to
+adequately assess the current grades the student currently has. With knowledge of the grades already achieved for the mdoule
 
-#### Proposed Implementation
+The section below provides details on the implementation of each assignment related function and design considerations of these features.
 
-The proposed grade tracker feature is an association class used to store additional information for the module. 
-The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`. 
+### Details of implementation
+
+The model below shows the implementation of the `GradeTracker` that is stored under the `Module` class.
+Each `Module` can only have one `GradeTracker` which manages the assignments under that module.
+The `GradeTracker` stores a list that 
+CAP 5 Buddy can store your past graded assignments using the grade tracker feature implemented. The grade tracker is an association
+class between the `Module` and `Assignment` classes. The storing and reading of assignments are done through the `assignment` commmands,
+such as `addassignment` which would store a new assignment with its results and `editassignment` which would edit an existing assignment. The
+viewing of assignments is done by calling the `viewmodule` command as viewing a singular assignment at a time does not provide much information.
 
 
-![Structure of the Module List Component](images/GradeTrackerDiagram.png)
+#### Add assignment feature
+
+This feature creates and adds a new `Assignment` to the `GradeTracker` of a `Module`. This action
+is only allowed if the `Assignment` does not already exist in the `GradeTracker`.
+Each `Assignment` contains the following three fields: an `AssignmentName`, `AssignmentPercentage` and `AssignmentResult`.
+
+
+![Structure of the Grade Tracker Component](images/GradeTrackerDiagram.png)
 
 
 When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
@@ -940,7 +955,7 @@ Pros:
 - Faster to implement.
 - Less effort needed, simply add on to the existing Parser.
 Cons:
-- Mess and less readible, hard to distinguish between differnt commands.
+- Mess and less readable, hard to distinguish between different commands.
 - Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
 - LONG methods.
   
