@@ -209,16 +209,20 @@ public class Task implements Comparable<Task> {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Task)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Task)) {
+            return false;
+        }
         Task task = (Task) o;
-        return getTaskName().equals(task.getTaskName()) &&
-                getDescription().equals(task.getDescription()) &&
-                Objects.equals(getDeadline(), task.getDeadline()) &&
-                getProgress().equals(task.getProgress()) &&
-                isDone.equals(task.isDone) &&
-                getAssignees().equals(task.getAssignees()) &&
-                getPublishDate().equals(task.getPublishDate());
+        return getTaskName().equals(task.getTaskName())
+                && getDescription().equals(task.getDescription())
+                && Objects.equals(getDeadline(), task.getDeadline())
+                && getProgress().equals(task.getProgress())
+                && isDone.equals(task.isDone)
+                && getAssignees().equals(task.getAssignees())
+                && getPublishDate().equals(task.getPublishDate());
     }
 
     @Override

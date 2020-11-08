@@ -18,7 +18,7 @@ import seedu.address.model.task.Task;
 public class PersonDashboard extends UiPart<Region> {
 
     private static final String FXML = "PersonDashboard.fxml";
-    public static final int WRAPPING_WIDTH = 500;
+    private static final int WRAPPING_WIDTH = 500;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
