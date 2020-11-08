@@ -96,19 +96,6 @@ public class FindPropertyCommand extends Command {
         }
 
         /**
-         * Copy constructor.
-         */
-        public FindPropertyDescriptor(FindPropertyDescriptor toCopy) {
-            setPropertyNameContainsKeywordsPredicate(toCopy.propertyNamePredicate);
-            setPropertyAddressContainsKeywordsPredicate(toCopy.addressPredicate);
-            setSellerIdContainsKeywordsPredicate(toCopy.sellerIdPredicate);
-            setPropertyTypeContainsKeywordsPredicate(toCopy.propertyTypePredicate);
-            setAskingPricePredicate(toCopy.askingPricePredicate);
-            setIsRentalPredicate(toCopy.isRentalPredicate);
-            setPropertyIdPredicate(toCopy.propertyIdPredicate);
-        }
-
-        /**
          * Returns true if at least one field is found.
          */
         public boolean isAnyFieldFound() {
