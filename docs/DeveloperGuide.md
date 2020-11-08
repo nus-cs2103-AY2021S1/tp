@@ -585,7 +585,13 @@ The following sequence diagram shows how the stats operation works:
 
 #### Design Considerations:
 
-{insert design considerations}
+* **Current choice:** Replaces the existing `Flashcard` with a new `Flashcard` that has a new `Statistics` with all attributes set at zero.
+  * Pros: `Flashcard` and `Statistics` are easier to debug.
+  * Cons: Waste of resources as new `Flashcard` and `Statistics` objects need to be created when a user wants to clear its statistics.
+
+* **Alternative:** Edit the `Statistics` of the `Flashcard` directly
+  * Pros: No "unnecessary" creation of a new `Flashcard` and `Statistics` object when a user requests to clear its statistics.
+  * Cons: `Flashcard` and `Statisitcs` become difficult to debug.
 
 ### Exporting Flashcards
 
