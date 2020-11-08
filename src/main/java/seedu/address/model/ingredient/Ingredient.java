@@ -26,8 +26,8 @@ public class Ingredient {
                     + "2. Ingredient quantity should be in format -(NUMBER)(STRING) e.g. -54.0 kilograms or "
                     + "-STRING e.g. -a pinch where NUMBER only accept "
                     + "up to 10 numbers, including a single forward slash to represent fractions or a single "
-                    + "full stop to represent decimal numbers or trailing whitespaces and STRING accepts " +
-                            "alphabets. \n"
+                    + "full stop to represent decimal numbers or trailing whitespaces and STRING accepts "
+                    + "alphabets. \n"
                     + "3. Ingredient quantity should be a number greater than 0.";
     public static final String HYPHEN_CONSTRAINTS = "Each ingredient has an optional field quantity that is "
             + "separated by a spaced followed by a hyphen.";
