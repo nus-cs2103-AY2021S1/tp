@@ -139,6 +139,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasParticipation(Participation participation) {
+        requireNonNull(participation);
+        return mainCatalogue.hasParticipation(participation);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         mainCatalogue.removePerson(target);
     }
@@ -158,7 +164,9 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteParticipation(Participation target) {
-        mainCatalogue.removeParticipation(target);
+        if (mainCatalogue.hasParticipation(target)) {
+            mainCatalogue.removeParticipation(target);
+        }
     }
 
     //    @Override
@@ -166,6 +174,15 @@ public class ModelManager implements Model {
     //        mainCatalogue.addParticipation(participation);
     //        update
     //    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Participation} backed by the internal list of
+     * {@code versionedMainCatalogue}
+     */
+    @Override
+    public ObservableList<Participation> getFilteredParticipationList() {
+        return filteredParticipations;
+    }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
@@ -308,15 +325,16 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return userPrefs.equals(other.userPrefs)
-               && filteredProjects.equals(other.filteredProjects);
-                //&& filteredTasks.equals(other.filteredTasks)
-                //&& filteredTeammates.equals(other.filteredTeammates);
+                && filteredProjects.equals(other.filteredProjects);
+        //&& filteredTasks.equals(other.filteredTasks)
+        //&& filteredTeammates.equals(other.filteredTeammates);
     }
 
     //=========== Project To Be Displayed On DashBoard Accessors ======================================================
 
     /**
      * Updates the project to be displayed on project dashboard.
+     *
      * @param project project to be displayed on dashboard
      */
     @Override
