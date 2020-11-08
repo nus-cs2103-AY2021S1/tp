@@ -72,14 +72,14 @@ class UsageListTest {
     void getUsagesAfter() {
         var ul = new UsageList<>(getRecipeList());
         var lst = ul.getUsagesAfter(USAGE_DATE_B);
-        assertEquals(getRecipeList().subList(4, 10), lst);
+        assertEquals(getListViewRecipeList().subList(0, 6), lst);
     }
 
     @Test
     void getUsagesBefore() {
         var ul = new UsageList<>(getRecipeList());
         var lst = ul.getUsagesBefore(USAGE_DATE_B);
-        assertEquals(getRecipeList().subList(0, 2), lst);
+        assertEquals(getListViewRecipeList().subList(8, 10), lst);
     }
 
     @Test
