@@ -78,10 +78,9 @@ public class EditSessionCommand extends Command {
         }
 
         // Checks for overlapping sessions
-        for (int i = 0; i < sessionList.size(); i++) {
-            Session currentSession = sessionList.get(i);
-            if (!currentSession.equals(sessionToEdit)) {
-                if (Interval.isOverlap(currentSession.getInterval(), editedSession.getInterval())) {
+        for (Session session : sessionList) {
+            if (!session.equals(sessionToEdit)) {
+                if (Interval.isOverlap(session.getInterval(), editedSession.getInterval())) {
                     throw new CommandException(MESSAGE_OVERLAPPING_SESSION);
                 }
             }
