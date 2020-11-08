@@ -24,9 +24,9 @@
         * [6.2.4 Find student command](#624-find-student-command)  
         * [6.2.5 Overdue command](#625-overdue-command)
         * [6.2.6 Detail commands](#626-detail-commands)
-            *[6.2.6.1 Add detail command](#6261-add-detail-command)
-            *[6.2.6.2 Edit detail command](#6262-edit-detail-command)
-            *[6.2.6.3 Delete detail command](#6263-delete-detail-command)            
+            * [6.2.6.1 Add detail command](#6261-add-detail-command)
+            * [6.2.6.2 Edit detail command](#6262-edit-detail-command)
+            * [6.2.6.3 Delete detail command](#6263-delete-detail-command)
     * [6.3 Student academic details features](#63-student-academic-details-features)
         * [6.3.1 Question commands](#631-question-commands)
             * [6.3.1.1 Add question command](#6311-add-question-command)
@@ -273,14 +273,6 @@ Figure \___. Sequence diagram for `ToggleStudentCardCommand` execution
 
 This section describes some key details on how administrative details features are implemented.
 
-The student administrative details feature keeps track of essential administrative student details. The feature comprises of the following commands,
-* `AddCommand` - Adds a student into the student list
-* `EditCommand` - Edits the details of a particular student
-* `DeleteCommand` - Deletes a particular student
-* `FindCommand` - Finds students matching certain parameters
-* `OverdueCommand` - Finds students who have overdue payments
-* `ClearCommand` - Deletes all students in the student list
-
 #### 6.2.1 Add Student Command
 
 The following describes the flow of how `AddCommand` is performed.
@@ -290,7 +282,7 @@ the added student already exists in the `UniqueStudentList` using the `Model#has
 2. A unique student is defined by `Name`, `Phone`, `School` and `Year`. If a duplicate student is defined,
 a `CommandException` is thrown and the student will not be added.
 3. The `AddCommand#execute(Model model)` also checks if the student to be added has clashing `ClassTime` with other students already in the `UniqueStudentList`.
-4. Two student's `ClassTime` is considered clashing if they overlap either partially or fully. A `CommandException` will be thrown if there are other students with clashing class time.
+4. Two student's `ClassTime` are considered clashing if they overlap either partially or fully. A `CommandException` will be thrown if there are other students with clashing class time.
 5. If the added student is not a duplicate and there are no clashes in class time, then the `Model#addStudent(Student toAdd)` is called to add the student.
 A new `CommandResult` is returned with a success message and the added student.
 6. The student is be added into `UniqueStudentList` and a success message is shown in the result display.
@@ -309,17 +301,16 @@ Figure /__. Sequence Diagram for `AddCommand`
 
 #### 6.2.2 Edit Student Command
 
-The edit student feature allows the tutor to edit a particular student within **Reeve**.
-It is handled by the `EditCommand`.
-
 The following describes the flow of how `EditCommand` is executed.
 
-1. Upon successfully parsing the user input, `EditCommand#execute(Model model)` is called to edit the existing student to the new edited student.
-2. `Model#setStudent(Student student)` is called to replace the student with edited student within the model.
-3. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is then called to update the student list with the new edited student.
-4. A new `CommandResult` is returned with a successful message indicating that the student has been edited.
-5. The edited student is now shown on the student list.
-
+1. Upon successfully parsing the user input, the `EditCommand#execute(Model model)` is called which checks if the student at the specified position exists.
+2. If there is no student at the specified position, a `CommandException` is thrown and the student is not edited.
+3. If there is such a student, the `EditCommand#execute(Model model)` then creates the edited student, and checks to see if the edited student already exists in the `UniqueStudentList` using the `Model#hasStudent(Student toAdd)`.
+4. If it is a duplicate student, a `CommandException` is thrown and the edited student will not be added.
+5. The `EditCommand#execute(Model model)` also checks if the edited student has clashing `ClassTime` with other students already in the `UniqueStudentList`.
+6. Two student's `ClassTime` are considered clashing if they overlap either partially or fully. A `CommandException` will be thrown if there are other students with clashing class time.
+7. If the edited student is not a duplicate and there are no clashes in class time, then the`Model#setStudent(Student target, Student editedStudent)` is called to replace the outdated student with the edited copy. A new `CommandResult` is returned with a success message showing the newly edited student.
+8. The edited student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 The following sequence diagram shows how the `EditCommand` execution works.
 
@@ -327,7 +318,7 @@ The following sequence diagram shows how the `EditCommand` execution works.
 
 Figure \___. Sequence diagram for `EditCommand` execution
 
-The following activity diagram summarises the flow of events when `EditCommand` is executed.
+The following activity diagram summarizes the flow of events when the `EditCommand` is executed.
 
 ![EditActivity](images/EditStudentActivityDiagram.png)
 
