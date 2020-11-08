@@ -28,8 +28,8 @@ Given below are my contributions to the project.
   * Maintained issue tracker
 
 * **Enhancements to existing features**:
-  * Modified and enhanced `cedit` from `edit` command. It will automatically show the edited Client detail executing the `cedit` command (PR [#53](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/53), [\#165](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/165))
-  * Modified Session model to use interval as unique identifier (PR [#95](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/95))
+  * Modified and enhanced `cedit` from `edit` command. It will automatically show the edited Client detail after executing a `cedit` command (PR [#53](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/53), [\#165](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/165))
+  * Modified Session model to use interval as unique identifier and its relation to Storage (PR [#95](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/95))
   * Added test cases for Schedule model (PR [#158](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/158))
   * Adapted saving to Storage to include Schedule objects (PR [#74](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/74))
 
@@ -39,7 +39,7 @@ Given below are my contributions to the project.
     * Added documentation for the feature `cedit`. (PR [\#242](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/242))
     * Added information on duplicate client. (PR [\#230](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/230))
   * Developer Guide:
-    * Added MSS for `schadd` and `schdel` feature.
+    * Added MSS and manual testing instructions for `schadd` and `schdel` feature. (PR [\#149](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/149))
     * Added implementation details of the `schadd` feature. (PR [\#149](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/149))
     * Updated the diagram of the Storage component. (PR [\#149](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/149))
 
@@ -49,6 +49,6 @@ Given below are my contributions to the project.
   * Review and comment on PRs regarding code quality (PR [#91](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/91)), implementation bug (PR [#226](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/226)), and other improvements.
 
 * **Community**:
-  * Asked questions in Gitter, one of which regarding code integration.
-  * Beyond this team: reported bugs and suggestion for other team (examples: PR [#188](https://github.com/AY2021S1-CS2103T-W17-3/tp/issues/188))
+  * Asked questions in Gitter, one of which was regarding code integration.
+  * Beyond this team: reported bugs and suggestion for other team via CATcher (examples: PR [#188](https://github.com/AY2021S1-CS2103T-W17-3/tp/issues/188))
 
