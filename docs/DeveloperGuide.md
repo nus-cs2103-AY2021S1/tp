@@ -1,25 +1,33 @@
-# Calgo Developer Guide
+# Calo Developer Guide
 
 ## Table of Contents
-1.[About This Guide](#1-about-this-guide)  
-2.[Setting Up](#2-setting-up)  
-3.[Design](#3-design)  
-* [3.1. Architecture](#31-architecture)
+1.[ About This Guide](#1-about-this-guide)  
+2.[ Setting Up](#2-setting-up)  
+3.[ Design](#3-design)  
+* [3.1. Architecture](#31-architecture)  
 * [3.2. Ui Component](#32-ui-component)
 * [3.3. Logic Component](#33-logic-component)
 * [3.4. Model Component](#34-model-component)
 * [3.4. Storage Component](#35-storage-component)
 * [3.4. Common Class](#36-common-classes)
 
+4.[ Implementation](#4-implementation)  
+5.[ Documentation, Logging and Testing](#5-documentation-logging-testing-configuration-dev-ops)  
+6.[ Appendix A: Requirements](#6-appendix-a-requirements)  
+7.[ Appendix B: User Stories](#7-appendix-b-user-stories)  
+8.[ Appendix C: Use Cases](#8-appendix-c-use-cases)  
+9.[ Appendix D: Non-Functional Requirements](#9-appendix-d-non-functional-requirements)  
+10.[ Appendix E: Instructions For Manual Testing](#10-appendix-e-instructions-for-manual-testing)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. About This Guide
 
-This document servers as a developer guide for Calo App with sufficient and comprehensive overview of the software
+This document serves as a developer guide for Calo App with sufficient and comprehensive overview of the software
 so that new developers, like you, will have a working knowledge of the application by the end of the guide.  
   
-Note that this guide only provide reasonable depth. By no means this guide servers as a replacement for the actual code. 
+Note that this guide only provide reasonable depth. By no meNans this guide serves as a replacement for the actual code. 
 
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Setting Up
@@ -145,7 +153,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -240,7 +248,7 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -250,7 +258,7 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 6. Appendix A: Requirements
 
 ### Product scope
 
@@ -265,7 +273,7 @@ _{more aspects and alternatives to be added}_
 **Value proposition**: manage workouts faster than a typical mouse/GUI driven desktop/mobile app
 
 
-### User stories
+### 7. Appendix B: User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -280,7 +288,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 8. Appendix C: Use cases
 
 (For all use cases below, the **System** is the `Calo` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -290,7 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add an exercise
 
-2.  Calo adds the exercise
+2.  Calo adds the exercise and displays on the Graph.
   Use case ends.
 
 #### **Use case: Find exercises with a keyword**
@@ -358,18 +366,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   2.  Calo shows a list of exercises
       Use case ends.
 
-### Non-Functional Requirements
+### 9. Appendix D: Non-Functional Requirements
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 exercise items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Calories Graph**: the graph that displays the trends of the user's calories burnt in the past 6 days (including today)
 * **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories)
+* **Exercise Tag**: Additional Tag that you want to assign to the Exercise you just did.
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Muscle Tag**: the muscles that the exercise works out.
+* **Template**: a skeleton of the template without date, muscleTag and exerciseTag. It exists to ensure that the user key in exercises, that he does frequently, more quickly.
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 10. Appendix E: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
