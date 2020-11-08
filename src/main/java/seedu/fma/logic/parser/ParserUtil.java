@@ -24,7 +24,7 @@ import seedu.fma.model.util.Name;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index should an integer >= 1.";
+    public static final String MESSAGE_INVALID_INDEX = "Index should be a positive integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
