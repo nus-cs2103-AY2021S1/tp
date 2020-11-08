@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes sort command;
+:Parses the command;
+if () then ([command is valid])
+    :Check the comparison means against the supported comparison means of comparators;
+    if () then ([comparison means matches a supported means])
+    :Create a new comparator based on matched comparison means;
+    :Update Reeve model with the comparator given;
+    :Display sort success message;
+    else ([comparison means does not match any supported means])
+    : Throw CommandException;
+    endif
+else ([command has no or invalid parameters])
+    :Show parse error message;
+endif
+end
+@enduml

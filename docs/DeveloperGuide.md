@@ -383,6 +383,25 @@ The following activity diagram summarises the flow of events when `OverdueComman
 
 Figure 5.1.5.2. Activity diagram for `OverdueCommand` execution
 
+#### 6.2.6 Sort Command
+
+This is an explanation of how `SortCommand` works.
+
+1. After the `SortCommand` is successfully parsed, `SortCommand#execute(Model model)` is called to execute the command.
+2. The `comparisonMeans` stored within the `SortCommand` is checked against `NameComparator.COMPARISON_MEANS`, `ClassTimeComparator.COMPARISON_MEANS` and `YearComparator.COMPARISON_MEANS`.
+3. If `comparisonMeans` matches the comparison means of `NameComparator`, `NameComparator.COMPARISON_MEANS`, a new `NameComparator` is created and `Model#updateSortedStudentList(Comparator<? extends Student> comparator)` called.
+4. Step 3 is repeated similarly for `ClassTimeComparator` and `YearComparator`.
+5. If `comparisonMeans` matches no comparison means in steps 3 and 4, a `CommandException` is thrown.
+6. The student list is sorted and a `CommandResult` with the success message is returned. 
+
+The following activity diagram summarises the flow of events when `SortCommand` is executed.
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+
+The following sequence diagram shows how the `SortCommand` execution works.
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
 ### 6.3 Student academic details features
 
 This section describes some key details on how academic details features are implemented.

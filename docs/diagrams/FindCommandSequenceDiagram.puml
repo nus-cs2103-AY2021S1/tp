@@ -1,7 +1,7 @@
 @startuml
 !include ./style.puml
 
-box "Logic" #LightBlue
+box "Logic" LOGIC_COLOR_T1
 
 Participant ":LogicManager" as logic LOGIC_COLOR
 Participant ":ReeveParser" as rp LOGIC_COLOR
@@ -41,6 +41,8 @@ fcp -> fc ++: findStudentDescriptor
 return command
 return command
 return command
+destroy fcp
+
 logic -> fc ++: execute(model)
 fc -> fcd++: getPredicates()
 fcd -> fcd: getNamePredicate()
@@ -51,8 +53,8 @@ return predicates
 
 end box
 
-box "Model" #Green
-Participant ":Model" as model #77dd77
+box "Model" MODEL_COLOR_T1
+Participant ":Model" as model MODEL_COLOR
 
 fc -> model++: updateFilteredPersonList(consolidatedPredicates)
 return
@@ -62,6 +64,7 @@ fc -> res ++
 return commandResult
 return commandResult
 return
+destroy fc
 end box
 
 @enduml
