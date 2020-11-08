@@ -15,12 +15,9 @@ public class CaloriesTest {
 
     @Test
     public void isValidCalories() {
-
-
         // Boundary Testing
         assertTrue(Calories.isValidCalories("0"));
-        assertTrue(Calories.isValidCalories("1000"));
-
+        assertTrue(Calories.isValidCalories("2147483647"));
 
         //Partition Testing
         assertFalse(Calories.isValidCalories("-1")); // long number
