@@ -16,6 +16,11 @@ public class NoteContainsKeywordsPredicate implements Predicate<Flashcard> {
     @Override
     public boolean test(Flashcard flashcard) {
         String flashcardNote = flashcard.getNote().toString().toLowerCase();
+
+        if (flashcardNote.isEmpty()) {
+            return false;
+        }
+
         return keywords.stream()
                 .anyMatch(keyword ->
                         flashcardNote.contains(keyword.toLowerCase()));

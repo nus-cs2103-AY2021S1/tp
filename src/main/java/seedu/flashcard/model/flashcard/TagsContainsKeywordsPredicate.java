@@ -20,6 +20,10 @@ public class TagsContainsKeywordsPredicate implements Predicate<Flashcard> {
     public boolean test(Flashcard flashcard) {
         Set<Tag> flashcardTags = flashcard.getTags();
 
+        if (flashcardTags.isEmpty()) {
+            return false;
+        }
+
         return keywords.stream()
                 .anyMatch(keyword ->
                         flashcardTags.stream()

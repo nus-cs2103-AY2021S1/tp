@@ -106,13 +106,6 @@ public class Flashcard {
     }
 
     /**
-     * Returns true if the input is the correct answer.
-     */
-    public boolean isCorrect(String inputAnswer) {
-        return answer.toString().equals(inputAnswer);
-    }
-
-    /**
      * Returns true if both flashcards have the same question.
      * This defines a weaker notion of equality between two flashcards.
      */
