@@ -19,7 +19,7 @@ public class PriceCommandParser implements Parser<PriceCommand> {
         ParserUtil.checkArgsLength(argsArr, PriceCommand.COMMAND_WORD, PriceCommand.MESSAGE_USAGE, 2);
         Inequality inequality = ParserUtil.parseInequality(argsArr[0]);
         double price = ParserUtil.parsePrice(argsArr[1]);
-        price = ((int) (price * 100))/100.0;
+        price = ((int) (price * 100)) / 100.0;
         return new PriceCommand(new PriceWithinRangePredicate(inequality, price));
     }
 }
