@@ -149,7 +149,7 @@ This section describes some noteworthy details on how certain features are imple
 The class diagram below shows how applicant and staff are related to each other and the various classes they are 
 associated to. The following sections will elaborate more on the applicant and staff management sections.
 
- <img src="images/ApplicantStaffClassDiagram.png" width="574" />
+ <img src="images/ApplicantStaffClassDiagram.png" width="650" />
 
 ### 3.2 Staff Management System
 
@@ -1023,25 +1023,19 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double clicking the jar file.<br>
         Expected: App launches into most recently viewed list.
 
-### 6.2 Deleting a person
-
-1. Deleting a person while all persons are being shown.
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-
 ### 6.3 Add staff
+
+1. Adding a staff record
+    
+    1. Test case: `adds n/Kristina p/90000020 e/email@email.com a/somewhere c/ ti/Title d/10/10/2010 desc/Description`
+       Expected: New staff record is added with the given details.
+       
+    1. Test case: `adds n/Christina p/90000020 a/somewhere c/ ti/Title d/10/10/2010 desc/Description`
+       Expected: No staff is added because essential email field is missing.
+       
+    1. Test case: `adds n/Kristina p/90000020 e/email@email.com a/somewhere c/ ti/Title d/10/10/2010 desc/Description`
+       Expected: No staff is added as this record has the same name as the one entered in test case 1.
+
 
 ### 6.4 Adding/deleting a comment
 
@@ -1194,3 +1188,4 @@ Eva generates a `data` directory to store databases and user preferences.
     1. Test case: `find Joe`<br>
        Expected: An error message as well as command usage shows up to inform the user of wrong command format.
 
+These test cases are not exhaustive and you can create more as you learn more about how the product works and is implemented. 
