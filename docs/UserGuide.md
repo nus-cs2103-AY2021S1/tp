@@ -10,7 +10,7 @@ title: CliniCal User Guide
 
 ## 1. Introduction
 
-CliniCal(Clinic Calendar) is a **desktop app that allows doctors to manage patient records and schedule upcoming appointments**. With CliniCal, you can enhance your daily workflow through the effective scheduling of medical appointments. You can also have access to a digital database that safely stores all your patient records. 
+CliniCal (Clinic Calendar) is a **desktop app that allows doctors to manage patient records and schedule upcoming appointments**. With CliniCal, you can enhance your daily workflow through the effective scheduling of medical appointments. You can also have access to a digital database that safely stores all your patient records. 
 
 Furthermore, CliniCal is optimized for use via a Command Line Interface (CLI) and even retains the benefits of a Graphical User Interface (GUI). If you can type fast, CliniCal can get your work done faster than traditional GUI apps.
 
@@ -31,24 +31,13 @@ This table below illustrates what each formatting means.
 | ----------    |-------------------------------------|-----------|--------------------------|
 | `add`      | Words in light-blue highlight, also known as a mark-up| A command that can be typed into CliniCal|`help`|
 | `p/PHONE_NUMBER` | Words in UPPER_CASE | A parameter to be supplied by the user |`p/91234567`|
-| `n/NAME [s/SEX]` | Words in square brackets| Optional|`n/John Doe` or <br> `n/John s/M` |
+| `n/NAME [s/SEX]` | Words in square brackets| Optional parameter |`n/John Doe` or <br> `n/John Doe s/M` |
 | `[g/ALLERGY]…` | Words with `…` after them| Parameters that can be input multiple times including 0 times|`g/sulfa g/zyrtec` or `g/levocetirizine `|
 | [Blue underline](#2-about-this-document)| Blue words that show underline on mouse-over| A clickable hyperlink, to either an external webpage or other parts of this User Guide|[1. Introduction](#1-introduction)|
-
-[**SOME OF THE CONTENTS INSIDE THE TABLE ABOVE AND THE NOTE BELOW SEEMS TO BE REDUNDANT**]
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [g/ALLERGY]` can be used as `n/John Doe g/penicillin` or as `n/John Doe`.
-
-* Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[g/ALLERGY]…` can be used as ` ` (i.e. 0 times), `g/penicillin`, `g/sulfa g/aspirin` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -67,6 +56,8 @@ You can follow the steps below to get CliniCal up and running:
 
 1. Double-click the file, `CliniCal.jar` to start the app. The GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
+
+1. If the GUI does not appear, you may try opening a command terminal in the home folder and enter `java -jar CliniCal.jar`.
 
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `help` and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
@@ -101,7 +92,7 @@ The layout of the GUI is as follows:
 
 On the first startup, CliniCal will be loaded with sample data to give you a feel of the features in CliniCal.
 
-If you wish to start afresh, enter the `clear` command to clear all entries from the appointment and patient database!
+If you wish to start afresh, enter the `clear` command to clear all entries from the appointment and patient database.
 
 ### 4.1 Overview Tab
 
@@ -161,7 +152,7 @@ This window shows you the individual patient profile picture and personal detail
 
 ## 5. Features
 
-This section highlights the commands that CliniCal supports. These include details about the format of the command and example scenarios of the command.
+This section highlights all the commands that CliniCal supports. These include details about the format of the command and example scenarios of each command.
 
 ### 5.1 General Commands
 
@@ -216,7 +207,7 @@ Format: `undo`
 
 * Only applies for commands that modify the patient database such as `add`, `edit`, `delete`, `clear`,
 `addvisit`, `editvisit`, `deletevisit`, `addappt`, `editappt` and `deleteappt`.
-* Does not support `addpicture`, so remember be careful when using modifying a patient's profile picture!
+* Does not support `addpicture`, so remember to be careful when modifying a patient's profile picture!
 * Does not apply for undoable commands such as `find`, `list` and `clearhistory`.
 
 Example: 
@@ -260,7 +251,7 @@ Examples:
 
 **:information_source: Note:**<br>
 
-* Only Singaporean NRIC format is accepted for NRIC field.
+* Only Singaporean NRIC format (@xxxxxxx#) is accepted for NRIC field.
 * `N/A` is accepted as a special placeholder for all optional fields.
 * To account for corporate email networks, we allow a wide range of email addresses, such as `user@desk102`. If you are entering normal email addresses, check that you have not missed out on any parts of the email.
 * A patient can have any number of allergies (including 0).
@@ -273,7 +264,7 @@ Examples:
 
 **:information_source: Note about color coding patients:**<br>
 
- * When your patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes.
+ * When your patient is tagged with a color tag, a portion of the patient's panel will be styled to show that color. The color tags can be used for a variety of purposes.
  * For example, you may color code patients at risk of terminal diseases as <span style="color:red">red</span>, for easier reference.
 
 </div>
@@ -288,7 +279,7 @@ If the person already has an existing profile picture, you can use this command 
 Format: `addpicture INDEX f/FILE_PATH`
 
 * All patient profiles are preloaded with a stock profile picture.
-* `addpicture` cannot be undone using `undo`. You can repeat the `addpicture` command to update your desired profile picture.
+* `addpicture` cannot be undone using `undo`. You can repeat the `addpicture` command to update the patient's profile with your desired profile picture.
 
 Examples:
 *  `addpicture 3 f/data/profile_3.jpg` Replaces existing profile picture with 'profile_3.jpg' found in
@@ -314,7 +305,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s
 * Edits the patient at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive number** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Note that only Singaporean IC format(@xxxxxxx#) is accepted for NRIC.
 * To account for corporate email networks, we allow a wide range of email addresses, such as `user@desk102`. If you are entering normal email addresses, check that you have not missed out on any parts of the email.
 * When editing allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
 * You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it. The same applies for color tags of a patient.
@@ -330,7 +320,7 @@ Examples:
 **:information_source: Note:**<br>
 
 * `N/A` is accepted as a special placeholder for all optional fields.
-* Only Singaporean NRIC format is accepted for NRIC field.
+* Only Singaporean NRIC format (@xxxxxxx#) is accepted for NRIC field.
 * If you have edited **patient name** or **patient NRIC**, please make sure to update the changes to any relevant appointments, using the `editappt` command.
 
 </div>
@@ -348,8 +338,8 @@ Format: `delete INDEX`
 * `INDEX` **must be a positive number** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 9` Deletes the 9th patient (duplicated entry of John Doe) in the patient database.
-* `find Betsy` followed by `delete 1` Deletes the 1st patient in the results of the `find` command.
+* `list` followed by `delete 9` deletes the 9th patient in the patient database.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 <div markdown="block" class="alert alert-info">
 
@@ -403,10 +393,10 @@ Format: `find KEYWORDS`
     * `Benson Meier` will return `Benson Yu`, `Andrew Meier`
 
 Examples:
-* `find John` Returns `john` and `John Doe`
-* `find ben` Returns `benjamin`
-* `find alex david` Returns `Alex Yeoh`, `David Li`<br>
-* `find 9123456` Returns the patient with the NRIC `s9123456z`
+* `find John` returns `john` and `John Doe`
+* `find ben` returns `benjamin`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find 9123456` returns the patient with the NRIC `s9123456z`
 
 #### 5.2.7 Listing all patients: `list`
 
@@ -509,7 +499,7 @@ Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
 
 **:information_source: Note:**<br>
 
-* If you do not wish to change the date, it is not needed to enter the same date again, even though CliniCal will still accept it.
+* If you do not wish to change the date, it is not required to enter the same date again, even though CliniCal will still accept it.
 * The date "01/01/1900" is reserved for internal usage, please do not use this date!
 
 </div>
@@ -572,14 +562,14 @@ Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
 
-* Note that only appointments of upcoming dates (including today) will be accepted.
+* Note that only appointments with future dates (including today) will be accepted, since patient appointments are scheduled in advance.
 * If you are having trouble converting your time to 24 hour format, check out a time format converter at <a href="https://www.timecalculator.net/12-hour-to-24-hour-converter">this link</a>.
 * You can retrieve your desired patient `INDEX` from the **Patients** tab.
 </div>
 
 Example: You want to add an appointment with the first patient on the list.
 
-**Step 1**: Input `addappt 6 st/11/11/2020 15:00 d/120` into the command box and press Enter.
+**Step 1**: Input `addappt 6 st/11/12/2020 15:00 d/120` into the command box and press Enter.
 
 **Step 2**: On the **Overview** tab, you can find your newly added appointment saved inside the appointment list.
 
@@ -615,7 +605,7 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_
 
 Example: You want to reschedule the first appointment in the appointment list.
 
-**Step 1**: Input `editappt 6 st/13/11/2020 18:00 d/240` into the command box and press Enter.
+**Step 1**: Input `editappt 6 st/12/12/2020 18:00 d/240` into the command box and press Enter.
 
 **Step 2**: On the **Overview** tab, you can find the newly updated appointment inside the appointment list. 
 
@@ -632,7 +622,7 @@ Example: You want to reschedule the first appointment in the appointment list.
 
 **:information_source: Note:**<br>
 
-* Only Singaporean NRIC format is accepted for NRIC field.
+* Only Singaporean NRIC format (@xxxxxxx#) is accepted for NRIC field.
 * Please make sure to **update the changes to the relevant patient**, using the `edit` command.
 
 </div>
@@ -672,8 +662,7 @@ Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kb
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
 
-* Useful when inputting repeated commands.
-* No need to retype them all over again!
+* This command is useful when inputting repeated commands, since you do not need to type them again.
 
 </div>
 
@@ -686,7 +675,7 @@ CliniCal data is saved in your hard disk automatically after any command that ch
 ## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CliniCal home folder.
+**A**: Install CliniCal in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CliniCal home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
