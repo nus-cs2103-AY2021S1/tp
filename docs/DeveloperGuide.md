@@ -547,7 +547,13 @@ The following sequence diagram shows how the stats operation works:
 
 #### Design Considerations:
 
-{insert design consideration}
+* **Current choice:** Passes the `Statistics` object to the GUI in `Feedback` which is an attribute of `CommandResult`.
+  * Pros: Provides more abstraction as all of the data the GUI needs to display are in the `Feedback` object.
+  * Cons: There is a violation of Demeter's law as GUI interacts with an attribute of `CommandResult`.
+
+* **Alternative:** Do not use the `Feedback` object. Place all the data in the `CommandResult` object directly.
+  * Pros: Demeter's law is no longer violated.
+  * Cons: There is less abstraction.
 
 ### Clear Statistics of Flashcard
 
