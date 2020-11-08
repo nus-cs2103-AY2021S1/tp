@@ -10,7 +10,7 @@ participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+participant "model:Model" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute("list 3")
@@ -46,18 +46,29 @@ ProductiveNusParser --> LogicManager : l
 deactivate ProductiveNusParser
 
 LogicManager -> ListCommand : execute()
-alt numberOfDays.getZeroBased() == 0
 activate ListCommand
 
+alt numberOfDays.getZeroBased() == 0
+ListCommand -> Model : updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT)
+activate Model
+deactivate Model
 
+else else
+ListCommand -> Model : updateFilteredAssignmentList(showLimitedAssignments())
+activate Model
+Model --> ListCommand
+deactivate Model
 
-
-
+end
 
 create CommandResult
 ListCommand -> CommandResult
 activate CommandResult
 
+CommandResult -> Model : getFilteredAssignmentList()
+activate Model
+Model --> CommandResult : size of assignment list
+deactivate Model
 CommandResult --> ListCommand
 deactivate CommandResult
 

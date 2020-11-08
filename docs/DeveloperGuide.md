@@ -369,15 +369,12 @@ The following is a usage scenario of when the user wants to list assignments tha
  1. `parseCommand("list 3")` parses the String `"list 3"` and returns an initialized `ListCommandParser` object. 
  1. `parseCommand("List 3")` calls the `parse` method in `ListCommandParser` to return a `ListCommand` object.
  1. There is return call to `LogicManager` which then calls the overridden `execute` method of `ListCommand`.
- 1. The `execute` method of `ListCommand` will call the `updateFilteredAssignmentList` method of the object `model`, which takes in `showLimitedAssignments` predicate.
- 1. If `getZeroBased` value of `Index` attribute `numberOfDays` is 0, it would take in `PREDICATE_SHOW_ALL_ASSIGNMENT`. Else, it would take in `showLimitedAssignments` to return assignments that passes this predicate.
+ 1. The `execute` method of `ListCommand` will call the `updateFilteredAssignmentList` method of the `Model` object, `model`, which takes in `showLimitedAssignments` method of return type `Predicate<Assignment>`.
+ 1. The `getFilteredAssignmentList` method of `model` is called so that the number of assignments in the list can be retrieved by calling `size` method from Java `List` API on the list obtained from the getter method. 
  1. The `execute()` method returns a `CommandResult` object.
  
  Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(list 3)` API call.
-
-
-DIAGRAM
-
+![Interactions Inside the Logic Component for the `list 3` Command](images/ListSequenceDiagram.png)
 
 
 ### Delete multiple assignments feature
@@ -404,10 +401,12 @@ The `DeleteCommandParser` class implements `Parser<DeleteCommand>` and it is res
 To delete an assignment, it calls the `deleteAssignment` method of `model`.
 
 When deleting multiple assignments, it calls this method repeatedly with a for loop as shown in the following sequence diagram under "Usage Scenario".
+
 Since the index of assignments in the list will update after each delete in the loop, we sorted the list from the largest index to the smallest, and implemented deleting of assignments from the largest index in the list to maintain order.
 
 #### Usage Scenario
-The following is a usage scenario of when the user wants to delete the first and second assignment in his displayed assignment list.
+The following is a usage scenario of when the user wants to delete the first and second assignment in his displayed assignment list:
+
 1. `execute("delete 1 2")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
  1. `parseCommand("delete 1 2")` parses the String `"delete 1 2"` and returns an initialized `DeleteCommandParser` object. 
  1. `parseCommand("delete 1 2")` calls the `parse` method in `DeleteCommandParser` which parses the user input into `List<Index>`. This is by calling the static method `parseIndexes()` of `ParserUtil`.
@@ -419,6 +418,8 @@ The following is a usage scenario of when the user wants to delete the first and
  1. The `execute()` method returns a `CommandResult` object.
  
  Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(delete 1 2)` API call.
+ ![Interactions Inside the Logic Component for the `delete 1 2` Command](images/DeleteSequenceDiagram.png)
+ 
  
 ### Unremind, Unprioritize and Undone
 
