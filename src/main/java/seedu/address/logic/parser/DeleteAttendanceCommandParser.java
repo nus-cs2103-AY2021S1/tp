@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEK;
 import java.util.Collection;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AddAttendanceCommand;
 import seedu.address.logic.commands.DeleteAttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -54,7 +55,13 @@ public class DeleteAttendanceCommandParser implements Parser<DeleteAttendanceCom
         String[] weeksToDeleteString = weeks.toArray(new String[0]);
         int[] weeksToDelete = new int[size];
         for (int i = 0; i < size; i++) {
-            weeksToDelete[i] = Integer.parseInt(weeksToDeleteString[i]);
+            try {
+                weeksToDelete[i] = Integer.parseInt(weeksToDeleteString[i]);
+            } catch (NumberFormatException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAttendanceCommand.MESSAGE_USAGE)
+            );
+        }
         }
         return weeksToDelete;
     }
