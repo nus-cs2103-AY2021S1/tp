@@ -221,7 +221,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Add Module feature
 
-This feature creates and adds a new `Module` into the `ModuleList` if the contact does not already exist. 
+This feature creates and adds a new `Module` into the `ModuleList` if the `Module` does not already exist. 
 
 This feature is facilitated by the following classes:
 
@@ -273,11 +273,11 @@ Given below is the sequence diagram of how the operation to delete a `Module` wo
 * **Alternative 1 (current choice):** Delete a `Module` based on its index in the displayed `ModuleList`
   * Pros: Using the `Module` index allows us to uniquely identify the target `Module` to delete, reducing the room for possible error
   * Cons: The target `Module` to be deleted might not be displayed on the `ModuleList` and hence the `Module` index might not be
-          readily available. This can inconvenience users who have to search for the `Module` to retrieve the `Module` index.
+          readily available. This can inconvenience users who have to search for the `Module` to retrieve the `Module` index
 
 * **Alternative 2:** Delete a `Module` based on the `Module` name
-  * Pros: It can make the deletion process simpler for **users** who can provide the name of the `Module` without having to execute more commands.
-  * Cons: This is more difficult to implement.
+  * Pros: It can make the deletion process simpler for **users** who can provide the name of the `Module` without having to execute more commands
+  * Cons: This is more difficult to implement
 
 Alternative 1 was chosen since it is easier to implement and it makes the command simpler for users to input.
 
@@ -294,7 +294,7 @@ This feature is facilitated by the following classes:
     * It stores the `Module` details which will be used to edit the target `Module`
 
   * `EditModuleCommand`:
-    * It implements `EditModuleCommand#execute()` to edit the contact in `Model`
+    * It implements `EditModuleCommand#execute()` to edit the `Module` in `Model`
 
 
 Given below is an example usage scenario and how the mechanism for editing a `Module` behaves at each step:
@@ -318,11 +318,11 @@ Given below is the sequence diagram of how the operation to edit a `Module` work
           or a need to consider how it might affect the other command classes
   * Cons: Additional methods have to be implemented to replace the target module with the edited module
 
-* **Alternative 2:** Reuse `DeleteModuleCommand` to delete the target `Module` and `AddModuleCommand` to add the edited contact
+* **Alternative 2:** Reuse `DeleteModuleCommand` to delete the target `Module` and `AddModuleCommand` to add the edited `Module`
   * Pros: Reusing other commands would make the implementation of `EditModuleCommand` simpler and easier
   * Cons: It increases coupling between the 3 commands and this can cause issues in `EditModuleCommand` if either 
           `DeleteModuleCommand` or `AddModuleCommand` developed bugs or errors. Also, it might affect performance since 
-          executing `EditModuleCommand` will execute 2 other commands.
+          executing `EditModuleCommand` will execute 2 other commands
 
 Alternative 1 was chosen since it gave more freedom with regard to the implementation of `EditModuleCommand` since
 we were not restricted to reusing other commands. Less coupling between the classes meant that changes in one class would 
@@ -343,12 +343,12 @@ This feature is facilitated by the following classes:
     * It implements `FindModuleParser#parse()` to parse and validate the user input
     * It creates `NameContainsKeywordsPredicate` objects using the command arguments
    
-  * `FindContactCommand`:
+  * `FindModuleCommand`:
     * It implements `FindModuleCommand#execute()` to find all matching modules by updating the 
       filtered displayed module list in `Model` using the `NameContainsKeywordsPredicate` from `FindModuleParser`
 
 Given below is an example usage scenario and how the mechanism for finding `Module` behaves at each step:
-Step 1. `LogicManager` receives the user input `findcontact n/CS2100` from `Ui`
+Step 1. `LogicManager` receives the user input `findmodule CS2100` from `Ui`
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create a `FindModuleParser`
 Step 3. Additionally, `ModuleListParser` will call the `FindModuleParser#parse()` method to parse the command arguments
 Step 4. This creates a `NameContainsKeywordsPredicate` that will be used to obtain the filtered displayed `ModuleList`
