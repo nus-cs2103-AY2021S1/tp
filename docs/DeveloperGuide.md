@@ -209,7 +209,7 @@ The following sequence diagram shows how the Edit Session operation works:
 
 <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
     <p>
-        <img src="images/EditSessionSquenceDiagram.png" style="width: 25%; height: auto;"/>
+        <img src="images/EditSessionSequenceDiagram.png" style="width: 25%; height: auto;"/>
     </p>
     <figcaption>Figure - Edit Session Sequence Diagram</figcaption>
 </figure>
