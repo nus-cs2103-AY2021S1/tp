@@ -49,7 +49,7 @@ public class DeleteApptCommandParser implements Parser<DeleteApptCommand> {
         Appointment appointment = new Appointment();
 
         if (argMultimap.getValue(PREFIX_APPOINTMENT).isPresent()) {
-            appointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT).get());
+            appointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT).get(), true);
         }
         assert !appointment.equals(new Appointment()) : "Appointment should not be empty!";
 

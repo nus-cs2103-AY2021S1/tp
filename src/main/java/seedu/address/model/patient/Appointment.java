@@ -12,12 +12,14 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Patient's appointment in Hospify.
- * is valid as declared in {@link #isValidAppointment(String)}
+ * is valid as declared in {@link #isValidDateTime(String)}
  */
 public class Appointment {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment dates should be valid and follow the format (dd/MM/yyyy HH:mm)";
+    public static final String MESSAGE_CONSTRAINTS_INVALID_DESCRIPTION =
+            "Description length should not exceed 300 characters.";
     public static final String MISSING_TIMING =
             "Appointment timing is missing!";
     public static final String TIME_RANGE_CONSTRAINTS = "Time entered cannot be earlier than system time!";
@@ -89,7 +91,7 @@ public class Appointment {
     /**
      * Returns true if a given string is a valid Appointment.
      */
-    public static boolean isValidAppointment(String input) {
+    public static boolean isValidDateTime(String input) {
         DateFormat dateFormat = new SimpleDateFormat("d/M/yyyy HH:mm");
         dateFormat.setLenient(false);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
@@ -101,6 +103,13 @@ public class Appointment {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if description length is less than or equal to 300.
+     */
+    public static boolean isValidDescription(String description) {
+        return description.length() <= 10;
     }
 
     /**
