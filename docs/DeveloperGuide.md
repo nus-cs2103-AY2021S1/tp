@@ -998,13 +998,14 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 
 :bell: **Note**                                                                                                    
                                                                                                                    
-These are common extensions that can apply to some commands. Let x be the step the extension begins at.
+These are common extensions that can apply to some commands. Let *X* be the step the extension begins at.
 
-**Invalid Index Extension** applicable to `delete`, `list`, `edit`, `select` commands 
+**Invalid Index Extension** applicable to `delete`,`list`, `edit`, get `edit`, `select`, and `eat` commands 
 * *X*a. The given index is not a positive integer that is greater than 0 or not a valid index in the item list.
-    * *X*a1. Wishful Shrinking shows an error message.
-    * *X*a2. User enters new index.
-        Step *X*a1 to Step (*X*+1)a2 are repeated until the index entered is valid.
+    * *X*a1. Wishful Shrinking shows an error message and requests for new data.
+    * *X*a2. User enters new index. 
+        Step *X*a1 to Step (*X*)a2 are repeated until the index entered is valid.
+        
       Use case resumes at step *X*+1.
 
 </div>
@@ -1062,7 +1063,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
+      :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 3
 </div>
 
  <br><br>
@@ -1086,7 +1087,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
+      :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 3
 </div>
 
  <br><br>
@@ -1110,7 +1111,7 @@ These are common extensions that can apply to some commands. Let x be the step t
     Use case resumes from step 2.
    
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 1
+      :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 1
 </div> 
 
  <br><br>
@@ -1155,17 +1156,9 @@ These are common extensions that can apply to some commands. Let x be the step t
 **Extensions**
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-  :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 1
+  :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 1
 </div>
 <br><br>
-     
-**Extensions**
-
-* 2a. The given index is invalid.
-
-    * 2a1. Wishful Shrinking shows an error message.
-
-      Use case ends. <br><br>
 
 **Use case: Clear all recipes in recipe list**
 
@@ -1228,7 +1221,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-     :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
+     :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 3
 </div>
  <br><br>
 	  
@@ -1250,7 +1243,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
+      :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 3
 </div>
  <br><br>
 	  
@@ -1273,7 +1266,7 @@ These are common extensions that can apply to some commands. Let x be the step t
     Use case resumes from step 2.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 1
+      :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 1
 </div>
  <br><br>
   
@@ -1323,7 +1316,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-  :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
+  :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 3
 </div>
  <br><br>
       
@@ -1361,7 +1354,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-  :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
+  :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 3
 </div>
  <br><br>
 
