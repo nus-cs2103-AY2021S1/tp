@@ -28,6 +28,9 @@ import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
  */
 public class UniqueExerciseList implements Iterable<Exercise> {
 
+    public static final String MESSAGE_INTEGER_OVERFLOW =
+            "That's too much calories burnt within the day. Calo is meant for human. Not superhuman like you";
+
     private final ObservableList<Exercise> internalList = FXCollections.observableArrayList();
     private final ObservableList<Exercise> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);

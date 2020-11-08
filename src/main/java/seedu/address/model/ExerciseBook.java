@@ -52,7 +52,7 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ExerciseBook} with {@code newData}.
      */
     public void resetData(ReadOnlyExerciseBook newData) {
         requireNonNull(newData);
