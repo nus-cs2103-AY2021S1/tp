@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 
 
 * **New Feature**: Implemented `Description` class in PIVOT. (Pull request [\#81](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/81))
-  * What was done: Set up the base class `Description` and refactored relevant components of a `Case` to accommodate for the `Suspect`. Abstracted most of the common functionalities of `Description`, `Title` and `Name` into a parent `Alphanumeric` class.
+  * What was done: Set up the base class `Description` and refactored relevant components of a `Case` to accommodate for the `Suspect`. Abstracted most of the common functionalities of `Description`, `Title` and `Name` into a parent `Alphanumeric` class. (Update: `Description` class is subsequently refactored. It is no longer an `Alphanumeric`)
   * What it does: The base class and the refactored components will then further be used by the team to develop the `Case` class, a major component in PIVOT.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation was carefully designed to integrate with the existing commands, keeping in mind of future extensions.  
 
@@ -55,6 +55,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Adapted AB3 Introduction for PIVOT (Pull request [\#45](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/45))
+    * Updated Quick Start into different sections (Pull request [\#242](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/242))
     * Updated Command Summary for PIVOT (Pull request [\#182](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/182))
   * Developer Guide:
     * Updated Target User Profile, Value Proposition and User Stories. (Pull request [\#61](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/61))
