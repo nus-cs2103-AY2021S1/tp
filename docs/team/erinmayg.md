@@ -63,7 +63,9 @@ Given below are my contributions to the project.
   [\#183](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/183),
   [\#187](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/187),
   [\#220](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/220),
-  [\#226](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/226))
+  [\#226](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/226),
+  [\#245](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/245),
+  [\#247](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/247),)
   * Wrote additional test utils for new features (Pull request 
    [\#61](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/61))
   * Wrote additional test cases for new and existing features (Pull requests 
