@@ -293,9 +293,9 @@ showcasing the usefulness of these features for tracking module related details 
 The section below provides details of the implementation of each zoom link related function and design considerations
 of these features.
 
-#### Details of implementation
+### Details of implementation
 
-##### 3.1.4.1  Add zoom link feature
+#### 3.1.4.1  Add zoom link feature
 
 This feature creates and adds a new `ZoomLink` for a `ModuleLesson` into a specific `Module`, if the 
 zoom link does not already exist in the module. Each `ModuleLesson` in a `Module` is only allowed to have one `ZoomLink`.
@@ -340,7 +340,7 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 The following activity diagram summarizes what happens when a user executes the `AddZoomLinkCommand`:
 ![AddZoomLinkActivityDiagram](images/AddZoomLinkCommandActivityDiagram.png)
 
-##### Design consideration:
+#### Design consideration:
 
 ##### Aspect: How to encapsulate zoom links and module lesson fields
 
@@ -362,7 +362,7 @@ Alternative 1 was chosen since it followed OOP principles which is a good practi
 greater flexibility for expansion of the project.
 
 
-##### 3.1.4.2  Delete zoom link feature
+#### 3.1.4.2  Delete zoom link feature
 
 This feature deletes an existing zoom link from a module using the module lesson that is mapped to the
 target zoom link.
@@ -392,7 +392,7 @@ Step 6. The `Model#setModule()` operation exposed in the `Model` interface is in
 Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
 
 
-##### Design consideration:
+#### Design consideration:
 
 ##### Aspect: Limit on the number of zoom links that can be mapped to each module lesson
 
@@ -412,7 +412,7 @@ Alternative 1 was chosen as it was significantly simpler to implement and did no
 We also took into consideration the fact that it is unlikely for a single lesson to have multiple zoom links.
 
 
-##### 3.1.4.3  Edit zoom link feature
+#### 3.1.4.3  Edit zoom link feature
 
 This feature edits an existing zoom link in a module using the module lesson that is mapped to the
 target zoom link.
@@ -451,7 +451,7 @@ The sequence diagram of how the operation to edit a zoom link works is similar t
 except that the respective parser and command classes are `EditZoomLinkParser` and `EditZoomLinkCommand`
 
 
-##### Design consideration:
+#### Design consideration:
 
 ##### Aspect: How to implement the command to edit zoom link
 
@@ -494,7 +494,7 @@ zoom link related commands.
 
 
 
-### 3.2 Contact list management feature
+## 3.2 Contact list management feature
 
 As a module tracking system, Cap 5 Buddy allows users to manage a list of module-related contacts with ease.
 This is especially important since being enrolled in numerous modules can result in the need to keep track of
@@ -503,7 +503,7 @@ numerous contacts, each with different contact details.
 The section below provides details of the implementation of each Contact List function and design considerations
 of these features.
 
-#### Contact list features
+### Contact list features
 
 Below is a list of all `Contact` related features:
 
@@ -523,9 +523,9 @@ Given below is the class diagram of the `Contact` class:
 
 Figure ?.? Class Diagram for Contact class
 
-####  Details of implementation
+###  Details of implementation
 
-##### 3.2.1  Add contact feature
+#### 3.2.1  Add contact feature
 
 This feature creates and adds a new `Contact` into the contact list if the contact does not already exist. 
 
@@ -565,7 +565,7 @@ The following activity diagram summarizes what happens when a user executes `Add
 ![AddContactCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
 Figure ?.? Activity diagram representing the execution of `AddContactCommand`
 
-##### Design consideration:
+#### Design consideration:
 
 ##### Aspect: Require users to provide all contact fields when adding a new contact
 
@@ -985,7 +985,6 @@ ambiguity by ensuring all constraints related to the command are made known to t
 
 
 
-
     
 ### 3.4 Event list management feature
 
@@ -1107,9 +1106,150 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
+
+**Use case: Add zoom link to module**
+
+**MSS**
+
+1. User requests to add a new zoom link to a specific module in the module list.
+2. User provides the module index, zoom link and module lesson name.
+3. CAP5BUDDY creates and zoom link and adds it into the specified module.
+4. CAP5BUDDY indicates that the zoom link has been successfully added and displays the newly created zoom link.
+
+  Use case ends.
+  
+**Extensions**
+
+  * 2a. CAP5BUDDY detects that the module index is invalid.
+  
+  * 2b.CAP5BUDDY detects that the provided zoom link details are invalid.
+  
+  *
+  
+**Use case: Delete zoom link from module**
+
+**MSS**
+
+1. User requests to delete a zoom link from a specific module.
+2. User provides the module index and module lesson which the target zoom link belongs to.
+3. CAP5BUDDY deletes the zoom link from the module.
+4. CAP5BUDDY indicates that the zoom has been successfully deleted.
+
+**Extensions**
+
+  * 2a. CAP5BUDDY detects that the module index is invalid.
+
+
 ## Contact list use cases
 
-**Use case
+**Use case: Add contact to contact list**
+
+**MSS**
+
+1. User requests to add a new contact to the contact list.
+2. User provides the name and email of the contact, and optionally a telegram field and/or tags.
+3. CAP5BUDDY creates the new contact and adds it into the contact list
+4. CAP5BUDDY indicates that the contact has been successfully added and displays the newly created contact.
+ 
+ Use case ends.
+
+**Extensions:**
+
+  * 2a. CAP5BUDDY detects that the contact details provided are invalid.
+    
+    * 2a1. CAP5BUDDY displays an error message and informs the user of the contact detail constraints.
+   
+      Use case ends.
+      
+  * 3a. CAP5BUDDY detects that a duplicate contact exists in the contact list.
+  
+    * 3a1. CAP5BUDDY displays an error message and informs the user that the contact could not be added as a duplciate contact exists.
+
+    Use case ends.
+
+
+**Use Case: Delete contact from contact list**
+
+**MSS**
+
+1. User requests to delete a contact from the contact list.
+2. User provides the index of the contact in the displayed contact list to be deleted.
+3. CAP5BUDDY deletes the contact from the contact list.
+4. CAP5BUDDY indicates that the contact was successfully deleted and displays the details of the deleted contact.
+
+  Use case ends.
+  
+**Extensions:**
+
+  * 2a. CAP5BUDDY detects that the contact index provided is invalid.
+  
+    * 2a1. CAP5BUDDY displays an error message and informs the user that the index provided is invalid.
+    
+      Use case ends.
+
+
+**Use Case: Edit contact in contact list**
+
+**MSS**
+
+1. User requests to edit a contact in the contact list.
+2. User provides the index of the target contact and the edited contact details.
+3. CAP5BUDDY edits the target contact with the provided contact details.
+4. CAP5BUDDY indicates that the contact was edited successfully and displays the details of the edited contact.
+
+  Use case ends.
+  
+**Extensions**
+
+  * 2a. CAP5BUDDY detects that the contact index provided is invalid.
+  
+    * 2a1. CAP5BUDDY displays an error message and informs the user that the index provided is invalid.
+    
+      Use case ends.
+  
+  * 2b. CAP5BUDDY detects that the contact details provided are invalid. (same as use case add contact)
+  
+  * 2c. same as use case add contact duplicate contact
+  
+  
+  
+**Use Case: Find contacts**
+
+**MSS**
+
+1. User requests to find contacts in the contact list.
+2. User provides the search keywords and parameter.
+3. CAP5BUDDY finds all the contacts that match the search parameters provided.
+4. CAP5BUDDY displays all the contacts.
+
+**Extensions**
+
+  * 2a. CAP5BUDDY detects that no search keywords or parameters were provided.
+  
+    * 2a1. CAP5BUDDY displays an error message and informs the user that at least one search parameter must be provided.
+    
+      Use case ends.
+          
+  
+
+**Use Case: View all contact details of a lecturer**
+
+  **MSS**
+   1. User requests to view all contact details of a lecturer.
+   2. User provides the name of the lecturer.
+   3. CAP5BUDDY searches for the specified lecturer from storage.
+   4. CAP5BUDDY retrieves all contact details of the lecturer from storage.
+   5. CAP5BUDDY displays the desired contact details.
+
+  **Extensions**
+
+   * 3a. The specified lecturer name does not exist.
+
+     * CAP5BUDDY displays an error message.
+
+     Use case ends.
+
+  
 
 
 ## Todo list use cases
@@ -1344,88 +1484,10 @@ Use case ends.
 
   *{More to be added}*
 
-**Use Case: View all contact details of a lecturer**
 
-  **MSS**
-   1. User requests to view all contact details of a lecturer.
-   2. User provides the name of the lecturer.
-   3. CAP5BUDDY searches for the specified lecturer from storage.
-   4. CAP5BUDDY retrieves all contact details of the lecturer from storage.
-   5. CAP5BUDDY displays the desired contact details.
 
-  **Extensions**
+  
 
-   * 3a. The specified lecturer name does not exist.
-
-     * CAP5BUDDY displays an error message.
-
-     Use case ends.
-
-  **Use Case: View the email of a Lecturer**
-
-  **MSS**
-  1. User requests to view the email of a lecturer.
-  2. User provides the name of the lecturer.
-  3. CAP5BUDDY searches for the specified lecturer from storage.
-  4. CAP5BUDDY retrieves the email of the lecturer from storage.
-  4. CAP5BUDDY displays the desired email address.
-
-  **Extensions**
-
-  * 3a. The specified lecturer name does not exist.
-
-    * CAP5BUDDY displays an error message.
-
-    Use case ends.
-
-  **Use Case: View the hand phone contact of a peer**
-
-  **MSS**
-  1. User requests to view the hand phone number of a peer.
-  2. User provides the name of the peer.
-  3. CAP5BUDDY searches for the specified peer from storage.
-  4. CAP5BUDDY retrieves the hand phone contact of the peer from storage.
-  4. CAP5BUDDY displays the desired hand phone contact.
-
-  **Extensions**
-
-* 3a. The specified peer name does not exist.
-
-  * CAP5BUDDY displays an error message.
-
-  Use case ends.
-
-* 4a. The specified peer does not have a hand phone contact saved.
-
-  * CAP5BUDDY displays an error message.
-
-  Use case ends.
-
-**Use Case: Edit the email of a TA**
-
-  **MSS**
-  1. User requests to edit the email of a TA.
-  2. User provides the name of the TA.
-  3. CAP5BUDDY searches for the specified TA from storage.
-  4. User provides the new email to replace the existing email.
-  5. CAP5BUDDY replaces the email of the TA with the user provided email.
-  6. CAP5BUDDY displays the success message.
-
-  **Extensions**
-
-  * 3a. The specified TA name does not exist.
-
-    * CAP5BUDDY displays an error message.
-
-    Use case ends.
-
-  * 4a. The provided email address is empty or null.
-
-    * CAP5BUDDY displays an error message.
-
-    Use case ends.
-
-    *{More to be added}*
 
 **Use Case: Add assignment to CAP5BUDDY**
 
