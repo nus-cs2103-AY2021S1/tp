@@ -15,8 +15,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FlashcardBook;
 import seedu.address.model.Model;
+import seedu.address.model.QuizBook;
 import seedu.address.model.person.Flashcard;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.quiz.Response;
 import seedu.address.testutil.EditFlashcardDescriptorBuilder;
 
 /**
@@ -106,6 +108,24 @@ public class CommandTestUtil {
         assertEquals(expectedFlashcardBook, actualModel.getFlashcardBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredFlashcardList());
     }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the address book, filtered flashcard list and selected flashcard in {@code actualModel} remain unchanged
+     */
+    public static void assertCommandFailureQuiz(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        QuizBook expectedQuizBook = new QuizBook(actualModel.getQuizBook());
+        List<Response> expectedFilteredList = new ArrayList<>(actualModel.getResponseList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedQuizBook, actualModel.getQuizBook());
+        assertEquals(expectedFilteredList, actualModel.getResponseList());
+    }
+
     /**
      * Updates {@code model}'s filtered list to show only the flashcard at the given {@code targetIndex} in the
      * {@code model}'s address book.

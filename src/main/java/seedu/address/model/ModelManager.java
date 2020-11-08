@@ -221,13 +221,16 @@ public class ModelManager implements Model {
     }
     @Override
     public void showAttempt(Attempt attempt) {
+        requireNonNull(attempt);
         responseList = attempt.getResponses();
     }
 
     @Override
     public void recordResponse(Response response) {
+        requireNonNull(response);
         quizBook.recordResponse(response);
     }
+
     @Override
     public void setSelectedIndex(Question question, String response) {
         requireAllNonNull(question, response);
@@ -262,6 +265,10 @@ public class ModelManager implements Model {
 
     public ObservableList<Response> getResponseList() {
         return this.responseList;
+    }
+
+    public QuizBook getQuizBook() {
+        return this.quizBook;
     }
 
     /**

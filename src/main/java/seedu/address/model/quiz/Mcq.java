@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.quiz.exceptions.InvalidQuestionAnswerException;
 
 /**
@@ -73,12 +74,11 @@ public class Mcq extends Question {
         try {
             int attempt = Integer.parseInt(response);
             if (!isValidResponse(attempt)) {
-                throw new InvalidQuestionAnswerException(
-                    "Response is not a valid option. Please enter integer number in the range of 1 to option size");
+                throw new InvalidQuestionAnswerException(Messages.MESSAGE_INVALID_MCQ_ANSWER);
             }
             return attempt == answer;
         } catch (NumberFormatException e) {
-            throw new InvalidQuestionAnswerException("Response is not a valid option.");
+            throw new InvalidQuestionAnswerException(Messages.MESSAGE_INVALID_MCQ_ANSWER);
         }
     }
     @Override
