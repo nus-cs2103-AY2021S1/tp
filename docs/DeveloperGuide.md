@@ -324,21 +324,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. HelloFile detects the file path entered to be invalid.
+* 2a. HelloFile detects the tag name entered to be invalid.
 
-    * 2a1. HelloFile prompts the user that the file path entered is invalid.
-
-        Use case resumes from step 1.
-
-* 2b. HelloFile detects the tag entered to be invalid.
-
-    * 2b1. HelloFile prompts the user that the tag entered is invalid.
+    * 2a1. HelloFile prompts the user that the tag name entered is invalid.
 
         Use case resumes from step 1.
 
-* 2c. HelloFile detects that the tag name already exists in HelloFile.
+* 2b. HelloFile detects the file path entered to be invalid.
 
-    * 2c1. HelloFile prompts the user that the tag name already exists.
+    * 2b1. HelloFile prompts the user that the file path entered is invalid.
+
+        Use case resumes from step 1.
+        
+* 2c. HelloFile detects the label entered to be invalid.
+
+    * 2c1. HelloFile prompts the user that the label entered is invalid.
+
+        Use case resumes from step 1.
+
+* 2d. HelloFile detects that the tag name already exists in HelloFile.
+
+    * 2d1. HelloFile prompts the user that the tag name already exists.
 
         Use case resumes from step 1.
 
