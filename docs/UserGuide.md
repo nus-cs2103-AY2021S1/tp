@@ -310,7 +310,7 @@ Format: `count`
 Example:
 
 ![Count example](images/CountExample.PNG)
-Figure 8.1
+Figure 8.1 Result of `count` command
 
 ### 3.8 Sorting the patients: `sort` (by Chong Jia Le)
 
@@ -328,36 +328,36 @@ Examples:
     1. Initially, list of patients is not sorted by name as seen below:
         
         ![Sort Nric example](images/SortNric.PNG)
-        Figure 9.1
+        Figure 9.1 List of patients not sorted by name
         
     2. After user inputs `sort name` list is sorted as seen below:
         
         ![Sort Name example](images/SortName.PNG)
-        Figure 9.2
+        Figure 9.2 List of patients after `sort name`
 
 * Performing `sort NRIC` would result in the patients to be sorted by their NRIC in ascending order, as shown in the steps below.
     
     1. Initially, list of patients is not sorted by NRIC as seen below:
         
         ![Sort Nric example](images/SortName.PNG)
-        Figure 9.3
+        Figure 9.3 List of patients not sorted by NRIC
     
     2. After user inputs `sort NRIC` list is sorted as seen below:
         
         ![Sort Name example](images/SortNric.PNG)
-        Figure 9.4
+        Figure 9.4 List of patients after `sort NRIC`
         
 * Performing `find amy` followed by `sort name` would result in the app displaying all patients whose names contain `amy` sorted in alphabetical order by their name.
     
     1. `find amy` is performed resulting in the application showing only patients whose names contain `amy` as shown below:
   
         ![Sort Find example 1](images/SortFind.PNG)
-        Figure 9.5
+        Figure 9.5 Partial list of patients after `find amy`
         
     2. After the user inputs `sort name`, the partial list is sorted as seen below:
         
         ![Sort Find example 2](images/SortFind2.PNG)
-        Figure 9.6
+        Figure 9.6 Partial list of patients after `sort name`
         
 ### 3.9 Showing Appointments of a Patient: `showAppt` (by Peh Jun Siang)
 
