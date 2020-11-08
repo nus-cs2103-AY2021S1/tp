@@ -55,11 +55,10 @@ You can follow the steps below to get CliniCal up and running:
 1. Copy the file to the folder you want to use as the _home folder_ for CliniCal.
 
 1. Double-click the file, `CliniCal.jar` to start the app. The GUI similar to the below should appear in a few seconds. <br>
-   ![Ui](images/Ui.png)
    <p align="center">
        <img src="images/Ui.png"/>
        <br>
-       <em style="color:#CC5500">Testing</em>
+       <em style="color:#CC5500">GUI of CliniCal</em>
    </p>
 
 1. If the GUI does not appear, you may try opening a command terminal in the home folder and enter `java -jar CliniCal.jar`.
@@ -87,7 +86,11 @@ You can follow the steps below to get CliniCal up and running:
 
 CliniCal contains a Graphical User Interface (GUI) which serves to allow you to easily view upcoming appointments and also patient records.
 
-![Main GUI Layout](images/mainLayout.png)
+<p align="center">
+    <img src="images/mainLayout.png"/>
+    <br>
+    <em style="color:#CC5500">Main GUI Layout</em>
+</p>
 
 The layout of the GUI is as follows:
 * Top Menu Bar
@@ -101,7 +104,11 @@ If you wish to start afresh, enter the `clear` command to clear all entries from
 
 ### 4.1 Overview Tab
 
-![Overview Tab Layout](images/overviewLayout.png)
+<p align="center">
+    <img src="images/overviewLayout.png"/>
+    <br>
+    <em style="color:#CC5500">Overview Tab Layout</em>
+</p>
 
 This would be the home page of CliniCal, where the appointment list would be on the left, and the calendar view on the right.
 
@@ -126,7 +133,11 @@ This would be the home page of CliniCal, where the appointment list would be on 
 
 ### 4.2 Patients Tab
 
-![Patient Tab Layout](images/patientLayout.png)
+<p align="center">
+    <img src="images/patientLayout.png"/>
+    <br>
+    <em style="color:#CC5500">Patient Tab Layout</em>
+</p>
 
 This tab shows you the patient database and the details of each patient, together with a summary of each visit.
 
@@ -138,7 +149,11 @@ This tab shows you the patient database and the details of each patient, togethe
 
 ### 4.3 Profile Window
 
-![Profile Window Layout](images/profileLayout.png)
+<p align="center">
+    <img src="images/profileLayout.png"/>
+    <br>
+    <em style="color:#CC5500">Profile Window Layout</em>
+</p>
 
 This window shows you the individual patient profile picture and personal details in an easy to read manner.
 
@@ -167,7 +182,11 @@ General commands help enhance your general user experience while using CliniCal.
 
 Access help page by referring to the link provided in the message pop-up.
 
-![help message](images/helpMessage.png)
+<p align="center">
+    <img src="images/helpMessage.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Help Message</em>
+</p>
 
 Format: `help`
 
@@ -181,7 +200,11 @@ Format: `help`
 
 View a list of past commands that you had used during the session.
 
-![example of command history](images/historyExample.png)
+<p align="center">
+    <img src="images/historyExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of History Command</em>
+</p>
 
 Format: `history`
 
@@ -189,7 +212,11 @@ Format: `history`
 
 Clear the command history.
 
-![example of cleared history](images/clearHistoryExample.png)
+<p align="center">
+    <img src="images/clearHistoryExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Clear History Command</em>
+</p>
 
 Format: `clearhistory`
 
@@ -206,7 +233,11 @@ Format: `clearhistory`
 
 Revert your previous command which modified the patient database.
 
-![example of undoing command](images/undoExample.png)
+<p align="center">
+    <img src="images/undoExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Undo Command</em>
+</p>
 
 Format: `undo`
 
@@ -223,7 +254,11 @@ Example:
 
 Redo the most recent command that you have undone.
 
-![example redoing command](images/redoExample.png)
+<p align="center">
+    <img src="images/redoExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Redo Command</em>
+</p>
 
 Format: `redo`
 
@@ -244,7 +279,11 @@ Patient commands help you make changes to your database of patients.
 
 Add a new patient to the patient database.
 
-![example of newly added patient](images/addExample.png)
+<p align="center">
+    <img src="images/addExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Add Patient Command</em>
+</p>
 
 Format: `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
@@ -279,7 +318,11 @@ Examples:
 Add a profile picture to the patient’s profile by specifying the image's filepath.
 If the person already has an existing profile picture, you can use this command to update the profile picture with a new picture.
 
-![example of patient with new profile](images/addProfileExample.png)
+<p align="center">
+    <img src="images/addProfileExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Add Profile Picture Command</em>
+</p>
 
 Format: `addpicture INDEX f/FILE_PATH`
 
@@ -303,7 +346,11 @@ Examples:
 
 Edit an existing patient in the patient database.
 
-![example of edited patient](images/editExample.png)
+<p align="center">
+    <img src="images/editExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Edit Patient Command</em>
+</p>
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
@@ -318,7 +365,11 @@ Examples:
 *  `edit 1 p/11111111 e/pauline@example.com` Edits the phone number and email address of the 1st patient to be `11111111` and `pauline@example.com` respectively.
 *  `edit 2 ct/red` Clears the existing color tag and edits the color tag of the 2nd patient to be <span style="color:red">red</span>.
 
-![example of color coded patient](images/colorTagExample.png)
+<p align="center">
+    <img src="images/colorTagExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Colour Coded Patient</em>
+</p>
 
 <div markdown="block" class="alert alert-info">
 
@@ -332,9 +383,13 @@ Examples:
 
 #### 5.2.4 Deleting a patient: `delete`
 
-![example of deleted patient](images/deleteExample.png)
-
 Delete a specified patient from the patient database.
+
+<p align="center">
+    <img src="images/deleteExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Delete Patient Command</em>
+</p>
 
 Format: `delete INDEX`
 
@@ -356,9 +411,13 @@ Examples:
 
 #### 5.2.5 Deleting all patients: `clear`
 
-![example of cleared list](images/clearExample.png)
-
 Clear all patient entries from the patient database.
+
+<p align="center">
+    <img src="images/clearExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Clear Command</em>
+</p>
 
 Format: `clear`
 
@@ -381,7 +440,11 @@ Format: `clear`
 
 Find patients whose names or NRIC contain any of the given keywords.
 
-![example of finding meier](images/findExample.png)
+<p align="center">
+    <img src="images/findExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Find Command</em>
+</p>
 
 Format: `find KEYWORDS`
 
@@ -405,7 +468,11 @@ Examples:
 
 #### 5.2.7 Listing all patients: `list`
 
-![example of listing patients](images/listExample.png)
+<p align="center">
+    <img src="images/listExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of List Command</em>
+</p>
 
 View a list of all your patients in the patient database.
 
