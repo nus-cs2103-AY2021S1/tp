@@ -3,6 +3,8 @@ layout: page
 title: Gilbert's Project Portfolio Page
 ---
 
+<link rel="stylesheet" href="PPP.css">
+
 ## Gilbert Tan - Project Portfolio for QuickCache (tP)
 
 --
