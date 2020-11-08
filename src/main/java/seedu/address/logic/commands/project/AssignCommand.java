@@ -62,10 +62,8 @@ public class AssignCommand extends Command {
             throw new CommandException(String.format(Messages.MESSAGE_REASSIGNMENT_OF_SAME_TASK_TO_SAME_PERSON,
                     assignee.getPerson().getGitUserName()));
         }
-        model.deleteParticipation(assignee);
 
         assignee.addTask(taskToAssociate);
-        model.addParticipation(assignee);
         taskToAssociate.addAssignee(assignee.getAssigneeName().toString());
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssociate, assignee));
