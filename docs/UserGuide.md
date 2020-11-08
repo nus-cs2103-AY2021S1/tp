@@ -628,15 +628,8 @@ User should not attempt to make any change in all data files.<br>
 
 #### 4.4 Calendar :
 
-tCheck also shows a current month's calendar when you start the application. You may use it for your working planning.
+tCheck also shows a current month's calendar when you start the application. You may use it for planning you work.
 
-
-<div markdown="span" class="alert alert-primary">
-
- **:information_source: Notes about calendar view:**<br>
- * In the current version, tCheck can only show the calendar for the current month.<br>
- 
- </div>
  
  Example:
  Let's say today is 8-Nov-2020, when you start tCheck, the calendar inside _Main View_ will show November's calendar,
