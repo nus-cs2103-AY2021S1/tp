@@ -19,7 +19,7 @@ import seedu.address.model.exercise.UniqueExerciseList;
  */
 public class ExerciseBook implements ReadOnlyExerciseBook {
 
-    private final UniqueExerciseList exercises;
+    protected final UniqueExerciseList exercises;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -72,10 +72,10 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
         //@@author Royxuzeng
     }
 
-    //// exercise-level operations
+    // exercise-level operations
 
     /**
-     * Returns true if a exercise with the same identity as {@code exercise} exists in the exercise book.
+     * Returns true if an Exercise with the same identity as {@code Exercise} exists in the exercise book.
      */
     public boolean hasExercise(Exercise exercise) {
         requireNonNull(exercise);

@@ -42,6 +42,10 @@ public class ExerciseModelManager implements ExerciseModel {
         this.filteredTemplates = new FilteredList<>(this.exerciseBook.getTemplateList());
     }
 
+    public ExerciseModelManager(ReadOnlyExerciseBook exerciseBook) {
+        this(exerciseBook, new UserPrefs());
+    }
+
     public ExerciseModelManager() {
         this(new ExerciseBook(), new UserPrefs());
     }
