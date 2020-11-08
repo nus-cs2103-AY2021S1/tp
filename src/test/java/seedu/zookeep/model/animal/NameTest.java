@@ -1,6 +1,8 @@
 package seedu.zookeep.model.animal;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.zookeep.testutil.Assert.assertThrows;
 
@@ -36,5 +38,16 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void hashcode() {
+        Name testName = new Name("Archie");
+
+        // same values -> returns same hashcode
+        assertEquals(testName.hashCode(), new Name("Archie").hashCode());
+
+        // different values -> returns different hashcode
+        assertNotEquals(testName.hashCode(), new Name("Buttercup").hashCode());
     }
 }
