@@ -271,18 +271,18 @@ It extends model with the ability to override the current data with an imported 
 
 #### 7.3.1 Implementation
 
-Given below is an example usage scenario and how the import mechanism behaves at each step
+Given below is an example usage scenario and how the import mechanism behaves at each step.
 
-Step 1. The User just installed his application on his new computer and wants to transfer his old data over
+Step 1. The User just installed his application on his new computer and wants to transfer his old data over.
 
-Step 2. The user transfers his previous save file to `C:/McGymmy/saveFile.json`
+Step 2. The user transfers his previous save file to `C:/McGymmy/saveFile.json`.
 
 Step 3. The User executes `import c:/McGymmy/saveFile.json`.
 The import command will check if the file is valid and exists before calling `JsonMcGymmyStorage`.
 `JsonMcGymmyStorage` will call `#readMcGymmy` if the read is successful, the old data will be overwritten.
 Otherwise, a CommandException will be thrown.
 
-Step 4. His old data files from his old computer will be overridden by his old data
+Step 4. His previous data files will be overwritten and updated.
 
 The following sequence diagram shows how the import operation works:
 
