@@ -383,8 +383,6 @@ The `unarchivemodule` command does the opposite — it calls `Model#unarchiv
 
 
 ### Module Assignment 
-
-In order for CAP 5 Buddy to help students achieve better results, past grades and results should be stored as information in order to
 adequately assess the current grades the student currently has. With knowledge of the grades already achieved for the mdoule
 
 The section below provides details on the implementation of each assignment related function and design considerations of these features.
@@ -393,12 +391,13 @@ The section below provides details on the implementation of each assignment rela
 
 The model below shows the implementation of the `GradeTracker` that is stored under the `Module` class.
 Each `Module` can only have one `GradeTracker` which manages the assignments under that module.
-The `GradeTracker` stores a list that 
-CAP 5 Buddy can store your past graded assignments using the grade tracker feature implemented. The grade tracker is an association
-class between the `Module` and `Assignment` classes. The storing and reading of assignments are done through the `assignment` commmands,
-such as `addassignment` which would store a new assignment with its results and `editassignment` which would edit an existing assignment. The
-viewing of assignments is done by calling the `viewmodule` command as viewing a singular assignment at a time does not provide much information.
+The `GradeTracker` stores a `UniqueAssignmentList` that ensures assignments within the list are not duplicates of each other.
 
+The list of all `GradeTracker` related features are:
+1. Add an Assignment: Adds a new assignment to the `GradeTracker`.
+2. Edit an Assignment: Edits a pre-existing assignment in the `GradeTracker`.
+3. Delete an Assignment: Deletes a pre-existing assignment in the `GradeTracker`.
+4. Add a Grade: Adds a grade for the overall 
 
 #### Add assignment feature
 
