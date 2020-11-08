@@ -68,7 +68,7 @@ Format: `help`
 
 ## 3.2. Add exercises : `add`
 
-Add an exercise to the application, with date, calories burnt, muscles worked and tags as optional.
+Adds an exercise to the application, with date, calories burnt, muscles worked and tags as optional.
 
 ![add command message](images/addCommandMessage.png)
 
@@ -76,13 +76,14 @@ Format: `add n/EXERCISE d/DESCRIPTION [at/DATE] [c/CALORIES] [m/MUSCLE]... [t/TA
 
 - The format for the DATE should be in the form of DD-MM-YYYY.
 - If DATE is not provided, the default date will be the current day.
+- Exercises are uniquely identified by names, descriptions, dates, and tags. Duplicate exercises cannot be added to Calo. You may consider including additional information in description (e.g. 2nd time) if you want to do the same exercise more than once a day.
 
 Examples:
 - `add n/running d/10 mins at/31-12-2020 c/100 m/chest m/arm t/home t/gym`
 
 ## 3.3. Update exercises : `update`
 
-Update an existing exercise.
+Updates an existing exercise.
 
 ### Before
 ![before update](images/exerciseBeforeUpdate.png)
@@ -100,7 +101,6 @@ Format: `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [m/MUS
 - When editing tags/muscles, the existing tags/muscles of the exercise will be removed i.e adding of tags/muscles is not cumulative.
 - You can remove all the exercise/muscle's tags by typing t/ or m/ respectively (without specifying any tags after it).
 
-Examples:
 - `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest m/arm t/home t/gym` Updates the exercise, the description, the date, calories burnt, muscles worked, and tags of the 1st exercise to be `push up`, `30`,  `09-07-2020`, `260`, `[chest, arm]`, and `[home, gym]` respectively.
 
 ## 3.4. Delete : `delete`
@@ -125,14 +125,15 @@ Lists out all the exercises that the user has keyed in.
 Format: `list`
 
 ## 3.6. Find exercises: `find`
-Finds an exercise that matches all the input fields.
+Finds exercises that match all the input fields.
 
 ![find command message](images/findCommandMessage.png)
 
 Format: `find [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`
-- For name, description, date, and calories, only exercises that exactly match the inputs will be listed. These fields are case-sensitive. e.g. Run will not match run.
-- For keywords, exercises whose names contain any of the keywords will be listed. Keyword is case-insensitive. e.g Squats will match squats.
-- in v1.3, find command does not support muscles and tags.
+- For name, description, date, and calories, only exercises that exactly match the inputs will be listed. These fields are case-insensitive. e.g. `Run` will match `run`.
+- For keywords, exercises whose names or descriptions contain any of the keywords will be listed. Only full words will be matched e.g. `run` will not match `running`. Keyword is case-insensitive. e.g `Squats` will match `squats`.
+- If both name/description and keywords are provided, only exercises that match both inputs will be listed.
+- in v1.4, find command does not support muscles and tags.
 
 Example:
 - find n/running
@@ -181,10 +182,11 @@ Recalls the most recent exercise with the specified name.
 ![recall command message](images/recallCommandMessage.png)
 
 Format: `recall EXERCISE`
-- the name of exercise is case-sensitive. e.g. Push up will not match push up.
+- the name of exercise is case-insensitive. e.g. `push up` will match `PUSH UP`.
+- Only exercises that are on or before the current day will be listed. Exercises with future dates will not be recalled.
 
 Example:
-- `recall run` finds the most recent exercise with the name "run".
+- `recall run` finds the most recent exercise with the name `run`.
 
 ## 3.12. Add templates : `create`
 Adds an exercise template.
