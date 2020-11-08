@@ -1,5 +1,6 @@
 package seedu.stock.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX_DESCRIPTION;
@@ -72,35 +73,56 @@ public class NoteDeleteCommand extends Command {
         logger.log(Level.INFO, "Starting to execute note delete command");
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
-        List<Stock> lastShownStocks = model.getFilteredStockList();
+        List<Stock> stockList = model.getFilteredStockList();
 
-        Optional<Stock> stockToDeleteNote = Optional.empty();
+        Stock stockToDeleteNote = getStockFromSerialNumber(serialNumber, stockList);
+
+        // there are no notes in the stock to delete
+        if (stockToDeleteNote.getNotes().size() == 0) {
+            throw new CommandException(MESSAGE_STOCK_HAS_NO_NOTE);
+        }
+
+        // the note index specified is not found
+        if (noteIndex.getOneBased() > stockToDeleteNote.getNotes().size()) {
+            throw new CommandException(MESSAGE_NOTE_INDEX_NOT_FOUND);
+        }
+
+        Stock stockWithDeletedNote = createStockWithDeletedNote(stockToDeleteNote, noteIndex);
+        model.setStock(stockToDeleteNote, stockWithDeletedNote);
+
+        logger.log(Level.INFO, "Valid serial number and note to delete from stock.");
+        logger.log(Level.INFO, "Finished deleting notes successfully");
+        return new CommandResult(generateSuccessMessage(stockWithDeletedNote));
+    }
+
+    /**
+     * Returns a Stock found from the list of Stock using the given the Serial Number
+     * @param serialNumber Serial Number of the Stock
+     * @param stockList list of Stock
+     * @throws SerialNumberNotFoundException if serial number is not found
+     */
+    private static Stock getStockFromSerialNumber(SerialNumber serialNumber, List<Stock> stockList)
+            throws SerialNumberNotFoundException {
+        requireNonNull(serialNumber);
+        requireNonNull(stockList);
+
+        Optional<Stock> stockToViewNotes = Optional.empty();
+
         // Find the stock to add note to
-        for (Stock currentStock : lastShownStocks) {
+        for (Stock currentStock : stockList) {
             String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
             if (currentStockSerialNumber.equals(serialNumber.getSerialNumberAsString())) {
-                stockToDeleteNote = Optional.of(currentStock);
+                stockToViewNotes = Optional.of(currentStock);
                 break;
             }
         }
 
-        if (stockToDeleteNote.isEmpty()) {
+        if (stockToViewNotes.isEmpty()) {
+            logger.log(Level.WARNING, "Valid serial number input but serial number not found.");
             throw new SerialNumberNotFoundException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
         }
 
-        if (stockToDeleteNote.get().getNotes().size() == 0) {
-            throw new CommandException(MESSAGE_STOCK_HAS_NO_NOTE);
-        }
-
-        if (noteIndex.getOneBased() > stockToDeleteNote.get().getNotes().size()) {
-            throw new CommandException(MESSAGE_NOTE_INDEX_NOT_FOUND);
-        }
-
-        Stock stockWithDeletedNote = createStockWithDeletedNote(stockToDeleteNote.get(), noteIndex);
-        model.setStock(stockToDeleteNote.get(), stockWithDeletedNote);
-
-        logger.log(Level.INFO, "Finished deleting notes successfully");
-        return new CommandResult(generateSuccessMessage(stockWithDeletedNote));
+        return stockToViewNotes.get();
     }
 
     /**

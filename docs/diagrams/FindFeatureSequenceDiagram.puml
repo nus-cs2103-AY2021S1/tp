@@ -20,7 +20,7 @@ end box
 [-> LogicManager : execute()
 activate LogicManager
 
-LogicManager -> StockBookParser : parseCommand()
+LogicManager -> StockBookParser : parseCommand(...)
 activate StockBookParser
 
 create FindCommandParser
@@ -33,10 +33,10 @@ deactivate FindCommandParser
 StockBookParser -> FindCommandParser : parse(args)
 activate FindCommandParser
 
-FindCommandParser -> FindCommandParser : parsePrefixAndKeywords()
+FindCommandParser -> FindCommandParser : parsePrefixAndKeywords(...)
 activate FindCommandParser
 
-FindCommandParser -> FindCommandParser : generatePredicate()
+FindCommandParser -> FindCommandParser : generatePredicate(...)
 activate FindCommandParser
 
 create FieldContainsKeywordsPredicate
@@ -56,7 +56,7 @@ create FindCommand
 FindCommandParser -> FindCommand
 activate FindCommand
 
-FindCommand -> FindUtil : generateCombinedPredicatesWithOr()
+FindCommand -> FindUtil : generateCombinedPredicatesWithOr(...)
 activate FindUtil
 
 FindUtil --> FindCommand
@@ -71,10 +71,10 @@ deactivate FindCommandParser
 StockBookParser --> LogicManager
 deactivate StockBookParser
 
-LogicManager -> FindCommand : execute()
+LogicManager -> FindCommand : execute(...)
 activate FindCommand
 
-FindCommand -> Model : updateFilteredStockList()
+FindCommand -> Model : updateFilteredStockList(...)
 activate Model
 
 Model --> FindCommand
