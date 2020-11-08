@@ -357,6 +357,8 @@ Given below is an example of the interaction between the Model and the `FindModu
 
 ![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
 
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
+
 Step 1. The user executes `findMod cs2100` to find module(s) that contain the keyword _cs2100_. The `findMod` command 
 calls `LogicManager#execute(String)`.
 
@@ -409,6 +411,8 @@ Given below is an example of the interaction between the Model and the `ListModu
 
 ![ListModSequenceDiagram](images/ListModuleCommandSequenceDiagram.png)
 
+![ListCommandActivityDiagram](images/ListCommandActivityDiagram.png)
+
 Step 1. The user executes `listMod` to view all the modules in Trackr. The `listMod` command calls
 `LogicManager#execute(String)`.
 
@@ -454,6 +458,8 @@ Given below is an example of the interaction between the Model and the `ViewTuto
 
 ![ViewTGSequenceDiagram](images/ViewTutorialGroupCommandSequenceDiagram.png)
 
+![ViewTGActivityDiagram](images/ViewTutorialGroupCommandActivityDiagram.png)
+
 Step 1. The user executes `viewTG 1` to view the tutorial groups of the first module within the Module View. The
 `viewTG` command calls `LogicManager#execute(String)`.
 
@@ -493,6 +499,8 @@ Given below is an example of the interaction between the Model and the `ClearCom
 
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
+![ClearCommandActivityDiagram](images/ClearCommandActivityDiagram.png)
+
 ### Section 5.8 - Exit Command - `exit`
 
 #### Overview
@@ -507,6 +515,8 @@ The command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ExitCommand` of Trackr.
 
 ![ExitCommandSequenceDiagram](images/ExitCommandSequenceDiagram.png)
+
+![ExitCommandActivityDiagram](images/ExitCommandActivityDiagram.png)
 
 ### Section 5.9 - Data saving and loading
 
