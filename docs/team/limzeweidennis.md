@@ -63,8 +63,12 @@ Given below are my contributions to the project.
   [#291](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/291))
   * Created integration tests for `unbookmark` feature (unbookmark command). (Pull Request 
   [#155](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/155))
-  * Created unit tests for `help` feature (helpCommandParser).
-  * Improved coverage by creating tests for `LogicManager`.
+  * Created unit tests for `help` feature (helpCommandParser). (Pull Request 
+  [#271](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/271))
+  * Created integration tests for `help` feature (helpCommand).
+  * Improved coverage by creating tests for `LogicManager` and `ArgumentTokenizer`. (Pull Request 
+  [#291](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/291)
+  [#309](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/309))
   * Reviewed other team members' tests and ensure the tests are adequate and working.
   * Help other team members debug testing when the tests failed and they don't know what causes the tests to fail.
 
