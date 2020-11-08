@@ -210,7 +210,7 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
 
 When a patient is successfully edited in **Hospify**, a success message will appear in the message box, and the edited patient is updated in the list as shown in figure 5.1 below. <br>
-![Edit patient](images/editPatient.PNG)
+![Edit patient](images/editPatient.png)
 Figure 5.1 Editing a patient(success scenario)
 
 <div markdown="block" class="alert alert-info">
@@ -270,7 +270,7 @@ Format: `delete INDEX` or `delete NRIC`
 
 Examples:
 
-scenario 1:
+scenario 1 (delete by index):
 
 * `list`(shown in Figure 2.4 below) followed by `delete 2`(shown in Figure 2.5 below) deletes the 2nd patient in **Hospify**.
 
@@ -282,7 +282,7 @@ scenario 1:
   ![result for 'delete 2'](images/deleteTwoResult.png)
   Figure 2.5 result of `delete 2` command
 
-scenario 2:
+scenario 2 (delete by nric):
 
 * `delete S0000004A`(shown in Figure 2.8 below) deletes `David Li` (whose NRIC is S0000004A).
 
