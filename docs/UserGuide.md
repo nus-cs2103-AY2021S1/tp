@@ -34,7 +34,7 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.
-    ![Sample UI With Explanation](images/SampleUi.png)
+    ![Sample UI With Explanation](images/Ui.png)
 5. Type the command in the command box and press Enter to execute it. For the details of each command, refer to the Features below.
 
 ---

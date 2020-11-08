@@ -298,7 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add an exercise
 
-2.  Calo adds the exercise
+2.  Calo adds the exercise and displays on the Graph.
   Use case ends.
 
 #### **Use case: Find exercises with a keyword**
