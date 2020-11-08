@@ -739,13 +739,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites:  List all events using the `list-task` command. Multiple events in the task list.
 
-   1. Test case: `event title:Project meeting date:29-10-2020 from:09:00 to:12:30 tag:CS2103T`<br>
+   1. Test case: `event title:Project meeting date:10-11-2020 from:09:00 to:12:30 tag:CS2103T`<br>
       Expected: a new event with title 'Project meeting' is added to the task list, a event card will be displayed with the detailed info about the event.
 
-   1. Test case: `event title:Project meeting date:29-10-2020 from:09:00 to:12:30 tag:CS2103T`<br>
+   1. Test case: `event title:Project meeting date:10-11-2020 from:09:00 to:12:30 tag:CS2103T`<br>
       Expected: No event is added because a event with the same details already exists in the task list. Status message informs user that event already exists.
 
-   1. Test case: `event title:Another Project meeting date:29-10-2020 from:09:00 to:12:30 tag:CS2103T`<br>
+   1. Test case: `event title:Another Project meeting date:10-11-2020 from:09:00 to:12:30 tag:CS2103T`<br>
       Expected: No event is added because the event time is overlapping with another event that exists in the task list.
       
    1. Test case: `event title:carer talk `<br>
@@ -757,20 +757,28 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a task
 
-1. Deleting a task while all tasks are being shown
+1. Deleting a task while all tasks(more than 3 tasks) are being shown
 
-   1. Prerequisites: List all tasks using the `list-task` command. Multiple tasks in the list.
+   1. Prerequisites: List all tasks using the `list-task` command. Multiple(more than 3 tasks) tasks in the list.
+
+   1. Test case: `delete-task 1 3`<br>
+      Expected: First task and third task is deleted from the list. Title of the deleted tasks are shown in the status message.
 
    1. Test case: `delete-task 1`<br>
-      Expected: First task is deleted from the list. Title of the deleted task shown in the status message. Timestamp in the status bar is updated.
+      Expected: First task is deleted from the list. Title of the deleted task shown in the status message.
 
    1. Test case: `delete-task 0`<br>
-      Expected: No task is deleted. Error details shown in the status message. index is not a non-zero unsigned integer.
+      Expected: No task is deleted. Error details shown in the status message. index is not a non-zero integer.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete-task`, `delete-task x`, `...` (where x is larger than the list size or negative number)<br>
       Expected: Similar to previous.
+      
+### Exiting the program
 
-1. _{ more test cases … }_
+1. Exiting the program
+
+ 1. Test case: `exit`<br>
+    Expected: The window of the program will close.
 
 ### Saving data
 
