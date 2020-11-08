@@ -20,8 +20,7 @@
    --- 4.2.3 [List all Tutorial Groups in the current Module: `listTG`](#423-list-all-tutorial-groups-in-the-current-module-listtg)<br>
    --- 4.2.4 [View all Students in a Tutorial Group: `viewStudent`](#424-view-all-students-in-a-tutorial-group-viewstudent)<br>
    --- 4.2.5 [List all Students in a Tutorial Group: `listStudent`](#425-list-all-students-in-a-tutorial-group-liststudent)<br>
-   --- 4.2.6 [Show the Attendance of target Student: `viewAttendance`](#426-show-the-attendance-of-target-student-viewattendance)<br>
-   --- 4.2.7 [Return to previous view: `prevView`](#427-return-to-previous-view-prevview)<br>
+   --- 4.2.6 [Return to previous view: `prevView`](#426-return-to-previous-view-prevview)<br>
    4.3 [Module Features](#43-module-features)<br>
    --- 4.3.1 [Add a module: `addMod`](#431-add-a-module-addmod)<br>
    --- 4.3.2 [Delete a module: `deleteMod`](#432-delete-a-module-deletemod)<br>
@@ -37,13 +36,13 @@
    --- 4.5.2 [Delete a student: `deleteStudent`](#452-delete-a-student-deletestudent)<br>
    --- 4.5.3 [Edit a student: `editStudent`](#453-edit-a-student-editstudent)<br>
    --- 4.5.4 [Find a student: `findStudent`](#454-find-a-student-findstudent)<br>
-   4.6 [Attendance Features]()<br>
+   4.6 [Attendance Features](#46-attendance-features)<br>
    --- 4.6.1 [Add attendance: `addAttendance`]()<br>
    --- 4.6.2 [Delete attendance: `deleteAttendance`]()<br>
    --- 4.6.3 [View all attendance of a Student: `viewAttendance`]()<br>
-   --- 4.6.4 []()<br>
-   --- 4.6.5 [Edit a Student's participation]()<br>
-   --- 4.6.6 []()<br>
+   --- 4.6.4 [Show Students who fall below an attendance score: `attendanceBelow`]()<br>
+   --- 4.6.5 [Edit a Student's participation: `editParticipation`]()<br>
+   --- 4.6.6 [Show Students who fall below a participation score: `participationBelow`]()<br>
 5. [FAQ](#5-faq)<br>
 6. [Command Summary](#6-command-summary)<br>
    6.1 [General Commands](#61-general-commands) <br>
@@ -264,20 +263,8 @@ Example: `listStudent`
 Expected Outcome:
 ![ListStudentCommand](images/ListStudentCommand.png)
 
-#### 4.2.6 Show the attendance of Target Student: 'viewAttendance'
-Shows the attendance of Target student: `viewAttendance`
-
-Format: `viewAttendance STUDENT_INDEX`
-
-> Note: You should perform this command in STUDENT view.
-
-Example: `viewAttendance 1`
-
-Expected Outcome:
-![ViewAttendanceCommand](images/ViewAttendanceCommand.png)
-
-#### 4.2.7 Return to previous view: `prevView`
-Returns to the previous view: `prevView`
+#### 4.2.6 Return to previous view: `prevView`
+Returns to the previous view.
 
 Format: `prevView`
 
@@ -554,9 +541,57 @@ Expected Outcome:
 
 #### 4.6.1 Add Attendance: `addAttendance`
 
+Marks the attendance of a student as present for specific week(s).
+
+Format: `addAttendance INDEX (must be a positive integer) week/WEEK_NUMBER [week/WEEK_NUMBER]...`
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - You can provide more than one WEEK_NUMBER to mark attendance for multiple weeks.
+- Marking attendance for weeks that have already been marked as present will not make any changes for those weeks.
+
+#### 4.6.2 Delete attendance: `deleteAttendance`
+
+Marks the attendance of a student as absent for specific week(s).
+
+Format: `deleteAttendance INDEX (must be a positive integer) week/WEEK_NUMBER [week/WEEK_NUMBER]...`
+
+> Note:
+>
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - You can provide more than one WEEK_NUMBER to mark attendance for multiple weeks.
+> - Marking attendance for weeks that have already been marked as absent will not make any changes for those weeks.
+
+#### 4.6.3 View all attendance of a Student: `viewAttendance`
+
+Shows the attendance of Target student.
+
+Format: `viewAttendance INDEX`
+
+> Note:
+>
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - You can provide more than one WEEK_NUMBER to mark attendance for multiple weeks.
+> - Marking attendance for weeks that have already been marked as absent will not make any changes for those weeks.
+
+Example: `viewAttendance 1`
+
+Expected Outcome:
+![ViewAttendanceCommand](images/ViewAttendanceCommand.png)
+
+#### 4.6.4 Show Students who fall below an attendance score: `attendanceBelow`
+
 Marks the attendance of a student.
 
-Format: `addAttendance INDEX (must be a positive integer) week/WEEK NUMBER [week/WEEK NUMBER]...`
+#### 4.6.5 Add Attendance: `addAttendance`
+
+Marks the attendance of a student.
+
+#### 4.6.6 Show Students who fall below a participation score: `participationBelow`
+
+Marks the attendance of a student.
 
 
 ## 5. FAQ
