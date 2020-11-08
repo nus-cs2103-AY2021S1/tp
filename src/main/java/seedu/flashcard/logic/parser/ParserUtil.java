@@ -194,8 +194,7 @@ public class ParserUtil {
     /**
      * Checks if all flags passed in contain a valid value.
      */
-    public static boolean areValidFlagValues(List<String> flagValueList,
-                                             String... validFlagValues) throws ParseException {
+    public static boolean areValidFlagValues(List<String> flagValueList, String... validFlagValues) {
         List<String> validFlagValueList = Arrays.asList(validFlagValues);
         boolean areAllValid = flagValueList.stream()
                 .allMatch(x -> validFlagValueList.stream().anyMatch(y -> y.equals(x)));
