@@ -6,9 +6,7 @@ import java.util.Objects;
 
 public class Calories {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Calories should be a integer, between 0 and 1000";
-
+    public static final String MESSAGE_CONSTRAINTS = "Calories should be a integer.";
 
     public final String value;
 
@@ -42,9 +40,7 @@ public class Calories {
             return false;
         }
 
-        //A valid calories burnt must be 0 or 1000.
-        //It is very difficult to burn 1000 calories from just one exercise.
-        return x >= 0 && x <= 1000;
+        return true;
     }
 
 
