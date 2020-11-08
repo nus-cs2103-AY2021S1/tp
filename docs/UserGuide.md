@@ -687,3 +687,15 @@ Install the app in the other computer and overwrite the empty data file it creat
 
 2. Do I have to manually save my data?<br>
 Reeve automatically saves data in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+3. How do I view the full details of my student?
+Type `toggle` and press `Enter`, your student's full details will be displayed.
+To hide the full details of students, type `toggle` and press `Enter` again.
+
+4. Where can I find the file that contains my student's data?
+Your student's data file can be found in the same file as the application.
+
+5. How can I set the application window to a fix size whenever I open it?
+Reeve automatically save your preferred window size when you close it.
+Hence, you could adjust the window size to your preferred one before closing Reeve.
+Reeve will automatically open according to this size.
