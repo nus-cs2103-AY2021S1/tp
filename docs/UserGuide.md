@@ -51,6 +51,7 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
    ![Adjustable Divider Horizontal](images/adjustable_panel_horizontal.png)
     
+<div style="page-break-after: always;"></div>
 ## Quick Start
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
