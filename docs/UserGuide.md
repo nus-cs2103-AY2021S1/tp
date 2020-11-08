@@ -391,6 +391,7 @@ Examples:
 ### 5.1.5 Getting a recipe to edit: `editR` <a id="get-edit-recipe"></a>
 Contributed by: Olivia
 
+<<<<<<< HEAD
 <br> Insert the editR command concatenated with the information of the specified recipe into the command box for editing purposes.
 
 <br>  The image below is what Wishful Shrinking looks like after you have gotten a recipe to edit. <br><br>
