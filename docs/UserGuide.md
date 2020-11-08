@@ -263,19 +263,21 @@ Multiple ingredients are separated by `,`.
 Everyone should have permission to access the image path or online image URL you provide.
 </div> 
 
-<div style="page-break-after: always;"></div>
-
 * Here are the respective actions required by users depending on different usage of `IMAGE`:
 
   Usage | Action | Example | Outcome
   ---------|-----------------------|---------|---------
   Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images/wishful<br>/data/myimage.png | Local image will be displayed
   Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg or jpeg or png | The image will be downloaded into data folder and displayed
+ 
+ <div style="page-break-after: always;"></div>
+  
+  Usage | Action | Example | Outcome
+  ---------|-----------------------|---------|---------
   Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to table [below](#table) ) | img/images/healthy1.jpg | Sample image is displayed
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection when adding an online image <br><br> 4. Wishful Shrinking doesn't have permission to access the folder or website | Default image will be displayed
   No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
  
-<div style="page-break-after: always;"></div>
 
 * Here is the table <a id="table"></a> containing built-in **sample images** provided by Wishful Shrinking:
 
@@ -334,8 +336,6 @@ Examples:
 * `recipes` followed by `deleteR 2` deletes the 2nd recipe in Recipe List.
 * `searchR n/salad` followed by `deleteR 1` deletes the 1st recipe in the result of the `searchR` command.
 <br><br><br>
-
-<div style="page-break-after: always;"></div>
 
 ### 5.1.4 Editing a recipe: `editR` <a id="edit-recipe"></a>
 Contributed by: Olivia, Jia Qi, Tian Yong, Caitlin
@@ -435,8 +435,6 @@ Examples:
  command box.
 <br><br><br>
 
-<div style="page-break-after: always;"></div>
-
 ### 5.1.6 Selecting a single recipe : `selectR` <a id="select-recipe"></a>
 Contributed by: Hieu
 
@@ -508,6 +506,9 @@ Contributed by: Caitlin
 <br>  The image below is what Wishful Shrinking looks like after you have gotten the recommended recipes. In
  this case, `recommend` returns the recipe `salad` with ingredients `lettuce`, `olive oil` and `tomato` since
   the example user has all the ingredients: `lettuce`, `olive oil` and `tomato` in their Fridge.<br><br>
+
+<div style="page-break-after: always;"></div>
+
 <img src="images/feature/recipe/RecommendImage.png" width="550" height="300">
 <br><br><br>
 
@@ -535,8 +536,6 @@ Contributed by: Tian Yong
 
 Format: `clearR`
 <br><br><br>
-
-<div style="page-break-after: always;"></div>
 
 ## 5.2 Fridge-related Commands <a id="52-fridge-related-commands"></a>
 
