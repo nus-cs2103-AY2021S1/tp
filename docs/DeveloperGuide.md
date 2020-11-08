@@ -30,6 +30,10 @@ This Developer Guide specifies the architecture, design, implementation and use 
 
 It is intended for developers, software testers, open-source contributors and any like-minded students who wish to contribute this project or gain deeper insights about **ResiReg**.
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note about sequence diagrams**: For all sequence diagrams, the lifeline should end at the end of the destroy marker (X), if there are any, but due to a limitation of PlantUML, the lifeline will reach the end of the diagram instead.
+</div>
+
 ## Setting Up
 
 Refer to the guide [here](./SettingUp.md).
@@ -44,11 +48,11 @@ The **_Architecture Diagram_** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103-T16-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/resireg/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/resireg/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -84,11 +88,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/resireg/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `MainPanel`, `StatusBarFooter` etc. `MainPanel` in turn is made up of the various tabs represented as `StudentListPanel`, `RoomListPanel` and `BinItemListPanel` and their constitutent parts. All these, including the `MainWindow`, inherit from the abstract `UiPart` class. Note that 
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/resireg/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -106,10 +110,11 @@ Notes:
 - Utility classes, such as those used by the CommandParsers (eg. `CliSyntax`, `ParserUtil`, `ArgumentMultimap`, `ArgumentTokenizer`) and those used by only a few specific Commands (eg. `CreateEditCopy`) have been omitted from the diagram for clarity.
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/resireg/logic/Logic.java)
 
-1. `LogicManager` generates a map of command words to `Parser`s from `CommandWordEnum` and a list of the current aliases from `Model`.
-1. `LogicManager` passes this map to `ResiRegParser`, which parses the user command.
+1. `LogicManager` gets a list of the current user-defined aliases from the `Model`.
+1. `LogicManager` uses the list of aliases together with information from `CommandWordEnum` to generate a map of strings (representing all the possible strings that a user may use to call a command) to `Parser`s.
+1. `LogicManager` passes the user input and this map to `ResiRegParser`, which parses the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -118,9 +123,6 @@ Notes:
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-student 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete-student 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 ### Model component
 
@@ -142,7 +144,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/resireg/storage/Storage.java)
 
 The `Storage` component,
 
@@ -483,6 +485,9 @@ HelpCommand basically requires a mapping of each command to its Help object. To 
    - Pros: 
        - Similar to alternative 2, this ensures the HelpCommand is always up to date as developers must bind the command word to both its Help and Parser. 
        - Does not violate the single responsibility principle like alternative 2. Both ResiRegParser and HelpCommand only store the information they need. 
+   - Cons:
+       - `CommandWordEnum` does not check if there are multiple commands with the same command word. 
+
 
 ---
 
@@ -520,10 +525,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------ | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | \*       | OHS admin                | find a room by searching for the room number             | get the details of a specific room, without getting cluttered by other information.                       |
 | \* \*    | OHS admin                | view a list of rooms filtered by a particular type       | select the rooms that needs to be upgraded, for example.                                                  |
+| \* \*    | advanced user       | redo the previous command using a keyboard shortcut      | do the same task without typing again, e.g. if two students wish to pay the same bill.                    |
+| \* \*    | careless user      | undo my last command                                     | fix any change that I made erroneously.                                                                   |
+| \* \*    | advanced user       | view previous commands using a keyboard shortcut         | check if I made an error in adding or deleting records.                                                   |
 | \* \* \* | OHS admin                | view a list of vacant rooms                              | start assigning rooms to students before the semester starts.                                             |
 | \* \* \* | OHS admin                | view a room allocation for a student                     | check and inform a student of their room allocation during check in.                                      |
 | \* \* \* | OHS admin                | allocate a room to a student                             | allocate a student to a room before the semester starts.                                                  |
 | \* \* \* | OHS admin                | delete a room allocation for a student                   | update vacancies when a student applies to leave their room.                                              |
+| \* \*    | OHS admin                | add a new semester                                       | make sure all new bills and allocations are made in the context of the semester.                          |
 | \* \* \* | OHS admin                | view a list of all allocated rooms                       | check which students stay in which rooms.                                                                 |
 | \* \* \* | OHS admin                | edit a room allocation for a student                     | change a student's room allocation and update the room vacancies.                                         |
 | \*       | OHS admin                | edit a room's type                                       | log upgrades like the installation of an aircon.                                                          |
@@ -556,6 +565,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | \* \*    | OHS admin                | view all outstanding bills for a student                 | inform the student of his/her due bills.                                                                  |
 | \* \*    | OHS admin                | mark a bill as paid                                      | easily keep track of the remaining amount a student has to pay to OHS.                                    |
 | \* \*    | OHS admin                | view a list of all students with outstanding bills       | remind students of outstanding payments.                                                                  |
+| \* \*    | OHS admin                | add a remark to a bill                                   | record any exceptional details about the bill (e.g. cash-only payment).                                   |
+| \* \*    | advanced user       | have autocompletions for a command                       | quickly and efficiently complete an operation.                                                            |
+| \* \*    | busy OHS Admin           | find a student by partial searching for their first name | type quickly without worrying about typos.                                                                |
 
 
 ### Use cases
@@ -636,12 +648,16 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+  
+- 2a. ResiReg shows an empty list of students or empty list of rooms.
+  
+  Use case ends.
 
 - 3a. Student belongs to an existing room allocation, room belongs to an existing room allocation, room does not exist or student does not exist.
 
   - ResiReg shows an error message.
 
-  Use case resumes at step 2.
+    Use case resumes at step 2.
 
 #### Use case: UC05 - Delete a room allocation for a student
 
@@ -744,8 +760,7 @@ Use case ends.
     - ResiReg shows an error message.
    
       Use case ends.
-
-
+      
 #### Use case: UC10 - Archive command
 
 **MSS**

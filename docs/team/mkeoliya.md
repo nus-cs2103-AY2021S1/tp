@@ -3,7 +3,7 @@ layout: page
 title: Mayank Keoliya's Project Portfolio Page
 ---
 
-**ResiReg** (**Res**idential **Reg**ulation) is a desktop app designed to help admin staff manage housing in Residential Colleges (RCs) in NUS. ResiReg has a GUI, but users can interact with ResiReg entirely using CLI-style commands. ResiReg is written in Java, with the GUI created using JavaFX.
+**ResiReg** (**Resi**dential **Reg**ulation) is a desktop app designed to help admin staff manage housing in Residential Colleges (RCs) in NUS. ResiReg has a GUI, but users can interact with ResiReg entirely using CLI-style commands. ResiReg is written in Java, with the GUI created using JavaFX.
 
 Given below are a summary of my contributions to the project.
 
@@ -12,7 +12,7 @@ Given below are a summary of my contributions to the project.
 * **New Feature**: Added support for aliasing ([#101](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/101))
   * What it does: The `alias` command adds a user-defined alias for a command word, allowing the (typically shorter) alias to be used in place of the command word 
   * Justification: Optimizes the user's CLI experience, especially for advanced users, as users can define shorter and more succinct aliases that are more intuitive to them. Makes the typing of commands more flexible.
-  * Highlights: This feature entailed a heavy refactoring of the way commands were linked to their parsers, choosing a single-source-of-truth approach of using an enum to link them, over AB3's ad-hoc switch statements. Multiple iterations and an in-depth analysis of design alternatives were needed. It was also tested comprehensively to handle several edge-cases (such as when the user tries to define an alias to be a command word). 
+  * Highlights: This feature entailed a heavy refactoring of the way commands were linked to their parsers, choosing a single-source-of-truth approach of using an enum to link them, over AB3's ad-hoc switch statements. Multiple iterations and an in-depth analysis of design alternatives were needed. It was also tested comprehensively to handle several edge-cases (such as when the user tries to define an alias to be a command word).
 
 * **New Feature**: Added the ability to move and restore items from a recycling bin ([#112](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/112))
   * What it does: Much like common OSes, items (students and rooms) are automatically moved to the recycling bin when deleted. They remain in the bin for a user-specified amount of time, and can be restored via a `restore` command. 

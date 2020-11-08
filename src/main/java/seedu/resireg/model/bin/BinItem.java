@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/*
+Implementation below adapted from https://github.com/AY1920S1-CS2103-F09-4/main.
+ */
 /**
  * Represents a BinItem in ResiReg.
  * Guarantees: details are present and not null, field values are validated, immutable.

@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-student";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
+    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
     public static final String MESSAGE_ROOM_ALLOCATION_EXISTS =
             "Student %1$s currently has a room! Deallocate student first!";
 
@@ -40,7 +40,7 @@ public class DeleteCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
@@ -54,7 +54,7 @@ public class DeleteCommand extends Command {
         BinItem studentBinItem = new BinItem(studentToDelete);
         model.addBinItem(studentBinItem);
         model.saveStateResiReg();
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete.getNameAsString()));
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete.getNameAsString()));
     }
 
     @Override
