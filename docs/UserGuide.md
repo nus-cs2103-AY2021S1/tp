@@ -251,6 +251,7 @@ Lists the ingredient's levels of all ingredient types.
 Format: `i-list`
 
 Example:
+
 Let's say you want to list all the ingredients. 
 You can follow these instructions.
 
@@ -258,6 +259,7 @@ You can follow these instructions.
 1. Press "Enter" on your keyboard to execute the command.
 
 Outcome:
+
 1. The _Result Display_ will show a success message.
 2. The Ingredient Tracker inside the _Main View_ will show the list of ingredients.
 
@@ -277,7 +279,9 @@ Format: `i-find KEYWORD [MORE_KEYWORDS]`
 * Ingredients with names matching at least one keyword will be listed in the Ingredient Tracker inside the _Main View_ 
 (i.e. `OR` search). For example, `i-find Milk Boba` will find the ingredient `Milk` and the ingredient `Boba`.<br>
 
-Example: Let's say you want to find the ingredients that have names containing the keyword `Tea`.
+Example: 
+
+Let's say you want to find the ingredients that have names containing the keyword `Tea`.
 You can follow these instructions:
 
 1. Type `i-find Tea Sugar` into the _Command Box_.
@@ -298,7 +302,9 @@ Resets all types of ingredients' levels to zero in tCheck.
 
 Format: `i-reset-all`
 
-Example: Let's say you want to reset all ingredients' levels to zero, and the ingredient's levels are not currently all at zero.
+Example: 
+
+Let's say you want to reset all ingredients' levels to zero, and the ingredient's levels are not currently all at zero.
 You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
@@ -326,7 +332,9 @@ Refer to the "Notes about ingredients" below the [Commands - Ingredients Trackin
 for details on the pre-determined default levels of different types of ingredients.
 </div>
 
-Example: Let's say you want to find out which ingredients you need to restock.
+Example: 
+
+Let's say you want to find out which ingredients you need to restock.
 You can follow these instructions:
 
 1. Type ` i-restock` into the _Command Box_.
@@ -344,7 +352,7 @@ Figure x. A screenshot showing the outcome of an `i-restock` command
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**<br>
-Due to the limited ize of the _Result Display_, only a part of the list of ingredients that the user should restock
+Due to the limited size of the _Result Display_, only a part of the list of ingredients that the user should restock
 is shown in the screenshot above. In the actual application, you can scroll down to see the entire list.
 </div>
 
@@ -531,7 +539,9 @@ Show a message explaining how to access the help page, which is the tCheck User 
 
 Format: `help`
 
-Example: Let's say you want to find out how tCheck can help you manage the employees.
+Example: 
+
+Let's say you want to find out how tCheck can help you manage the employees.
 You can follow these instructions:
 
 1. Type `help` into the _Command Box_.
@@ -539,7 +549,12 @@ You can follow these instructions:
 
 Outcome:
 
-1. tCheck will open the Help window, which shows a message explaining how to access the help page.
+1. The _Result Display_ will show a success message.
+2. tCheck will open the Help window, which shows a message explaining how to access the help page.
+
+![HelpCommandScreenshot](images/HelpCommandScreenshot.png)
+
+Figure x. A screenshot showing the outcome of a `help` command
 
 #### 4.2 Exiting the program : `exit`
 
