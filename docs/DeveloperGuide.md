@@ -463,12 +463,12 @@ When extending ChopChop to include new commands, it is important to follow these
 
 
 <a name="stats-feature"></a>
-### 4.5&ensp; Statistics feature
+### 4.5&ensp;Statistics feature
 
 Main developer: trav1st
 
 <a name="stats-curr-impl"></a>
-#### 4.5.1&ensp; Current implementation
+#### 4.5.1&ensp;Current implementation
 
 The statistics feature keeps track of the recipes that were made and the ingredients that were consumed in the process. 
 The feature spans across the 4 components of the App.
@@ -495,7 +495,7 @@ The process is demonstrated below by the code snippet of `MakeRecipeCommand#undo
 After changes to `Model` were made, the `Storage` component saves the usage lists in json format.
 Finally, the `StatsBox` is updated based on the `CommandResult` returned after the execution of each command.
 
-#### 4.5.2&ensp; Design considerations
+#### 4.5.2&ensp;Design considerations
 
 This section details the design considerations of the statistics feature.
 
@@ -548,7 +548,7 @@ Update the statistics box after every execution of command.
         * User will have to execute `stats recipe recent` to obtain the default view on statistics box again.
 
 <a name="stats-related-commands"></a>
-#### 4.5.3&ensp; Related commands 
+#### 4.5.3&ensp;Related commands 
 
 `StatsCommandParser` parses the Statistics commands and returns the corresponding Command object based on user's input.
 For more information on the Parser, view 
