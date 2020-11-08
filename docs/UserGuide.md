@@ -1065,7 +1065,7 @@ tCheck also shows the calendar for the current month when you start the applicat
 **Q**: Why does tCheck ignore additional or extra input that I add after single-word commands, like `help`? <br>
 **A**: Any extra input after a single-word command, for example, the input `123` inside the input `c-list 123`, will 
 be ignored because extra input does not affect the operation conducted by `c-list`. These single-word commands 
-include: `s-list`, `s-rank`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-list`, `c-today`, `c-tomorrow`,
+include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-list`, `c-today`, `c-tomorrow`,
   `c-clear`, `c-archive-all`, `c-archive-list`, `help`, `exit`.
 
 ## Command summary <a name="command-summary"></a>
@@ -1074,7 +1074,7 @@ include: `s-list`, `s-rank`, `i-set-default`, `i-list`, `i-reset-all`, `i-restoc
 
 Action | Format, Examples
 -------|------------------------------
-**Update**| `s-update A/NUM B/NUM C/NUM` <br> e.g., `s-update BSBM/100 BSBBT/120`
+**Update**| `s-update DRINK [MORE_DRINKS]` <br> e.g., `s-update BSBM/100 BSBBT/120`
 **List**| `s-list`
 **Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 
