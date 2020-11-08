@@ -1,6 +1,8 @@
 package chopchop.logic.commands;
 
 import static chopchop.testutil.Assert.assertThrows;
+import static chopchop.testutil.TypicalUsages.Date.FORMATTER;
+import static chopchop.testutil.TypicalUsages.Date.ON_FORMATTER;
 import static chopchop.testutil.TypicalUsages.Date.USAGE_DATE_A;
 import static chopchop.testutil.TypicalUsages.Date.USAGE_DATE_A0;
 import static chopchop.testutil.TypicalUsages.Date.USAGE_DATE_C;
@@ -13,7 +15,6 @@ import static chopchop.testutil.TypicalUsages.INGREDIENT_B_E;
 import static chopchop.testutil.TypicalUsages.getUnsortedIngredientList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -28,9 +29,6 @@ import chopchop.testutil.StubbedUsageModel;
 import chopchop.testutil.TypicalUsages;
 
 class StatsIngredientUsedCommandTest {
-    private final DateTimeFormatter onFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
     private Model model;
     private Model emptyModel;
 
@@ -48,8 +46,8 @@ class StatsIngredientUsedCommandTest {
         var cmd = new StatsIngredientUsedCommand(after, before);
         var cmdRes = cmd.execute(emptyModel, new HistoryManager());
         var expectedRes = CommandResult.statsMessage(new ArrayList<>(),
-            String.format("No ingredients were used between %s and %s", after.format(formatter),
-                before.format(formatter)));
+            String.format("No ingredients were used between %s and %s", after.format(FORMATTER),
+                before.format(FORMATTER)));
         assertEquals(cmdRes, expectedRes);
     }
 
@@ -73,8 +71,8 @@ class StatsIngredientUsedCommandTest {
         var cmdRes = cmd.execute(model, new HistoryManager());
         var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(
                 Arrays.asList(INGREDIENT_A_A.getListViewPair(), INGREDIENT_B_A.getListViewPair())),
-            String.format("Showing ingredients used between %s and %s", after.format(formatter),
-                before.format(formatter)));
+            String.format("Showing ingredients used between %s and %s", after.format(FORMATTER),
+                before.format(FORMATTER)));
         assertEquals(cmdRes, expectedRes);
 
         LocalDateTime afterOn = LocalDateTime.of(0, 1, 1, 0, 0);
@@ -82,7 +80,7 @@ class StatsIngredientUsedCommandTest {
         cmd = new StatsIngredientUsedCommand(afterOn, beforeOn);
         cmdRes = cmd.execute(model, new HistoryManager());
         expectedRes = CommandResult.statsMessage(new ArrayList<>(),
-            String.format("No ingredients were used on %s", afterOn.format(onFormatter)));
+            String.format("No ingredients were used on %s", afterOn.format(ON_FORMATTER)));
         assertEquals(cmdRes, expectedRes);
     }
 
@@ -96,7 +94,7 @@ class StatsIngredientUsedCommandTest {
                     .map(Usage::getListViewPair)
                     .collect(Collectors.toList())
             ),
-            String.format("Showing ingredients used after %s", after.format(formatter)));
+            String.format("Showing ingredients used after %s", after.format(FORMATTER)));
         assertEquals(cmdRes, expectedRes);
     }
 
@@ -110,23 +108,20 @@ class StatsIngredientUsedCommandTest {
                     .map(Usage::getListViewPair)
                     .collect(Collectors.toList())
             ),
-            String.format("Showing ingredients used before %s", before.format(formatter)));
+            String.format("Showing ingredients used before %s", before.format(FORMATTER)));
         assertEquals(cmdRes, expectedRes);
     }
 
     @Test
-    public void execute_afterMoreThanBefore_noIngredientsFound() {
-        var cmd = new StatsIngredientUsedCommand(USAGE_DATE_C, USAGE_DATE_A);
+    public void execute_afterMoreThanOrEqualBefore_noIngredientsFound() {
+        LocalDateTime before = USAGE_DATE_A;
+        LocalDateTime after = USAGE_DATE_C;
+        var cmd = new StatsIngredientUsedCommand(after, before);
         var cmdRes = cmd.execute(model, new HistoryManager());
         var expectedRes = CommandResult.error("'after' date cannot be later than 'before' date");
         assertEquals(cmdRes, expectedRes);
-    }
-
-    @Test
-    public void execute_afterEqualBefore_noIngredientsFound() {
-        var cmd = new StatsIngredientUsedCommand(USAGE_DATE_C, USAGE_DATE_C);
-        var cmdRes = cmd.execute(model, new HistoryManager());
-        var expectedRes = CommandResult.error("'after' date cannot be later than 'before' date");
+        cmd = new StatsIngredientUsedCommand(after, after);
+        cmdRes = cmd.execute(model, new HistoryManager());
         assertEquals(cmdRes, expectedRes);
     }
 
@@ -139,23 +134,11 @@ class StatsIngredientUsedCommandTest {
         var expectedRes = CommandResult.statsMessage(new ArrayList<>(
                 Arrays.asList(INGREDIENT_A_E.getListViewPair(), INGREDIENT_B_E.getListViewPair())
             ),
-            String.format("Showing ingredients used between %s and %s", after.format(formatter),
-                before.format(formatter)));
+            String.format("Showing ingredients used between %s and %s", after.format(FORMATTER),
+                before.format(FORMATTER)));
         assertEquals(cmdRes, expectedRes);
-    }
-
-    @Test
-    public void execute_unsortedUsages_ingredientsFound() {
-        LocalDateTime before = USAGE_DATE_E0;
-        LocalDateTime after = USAGE_DATE_D;
         this.model.setIngredientUsageList(new UsageList<>(getUnsortedIngredientList()));
-        var cmd = new StatsIngredientUsedCommand(after, before);
-        var cmdRes = cmd.execute(model, new HistoryManager());
-        var expectedRes = CommandResult.statsMessage(new ArrayList<>(
-                Arrays.asList(INGREDIENT_A_E.getListViewPair(), INGREDIENT_B_E.getListViewPair())
-            ),
-            String.format("Showing ingredients used between %s and %s", after.format(formatter),
-                before.format(formatter)));
+        cmdRes = cmd.execute(model, new HistoryManager());
         assertEquals(cmdRes, expectedRes);
     }
 
@@ -164,5 +147,4 @@ class StatsIngredientUsedCommandTest {
         var cmd = new StatsIngredientUsedCommand(null, null);
         assertThrows(AssertionError.class, () -> cmd.execute(null, new HistoryManager()));
     }
-
 }

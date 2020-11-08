@@ -41,7 +41,7 @@ public class ModelManager implements Model {
                         UsageList<RecipeUsage> recipeUsageList, UsageList<IngredientUsage> ingredientUsageList,
                         ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(recipeBook, ingredientBook, userPrefs);
+        requireAllNonNull(recipeBook, ingredientBook, userPrefs, recipeUsageList, ingredientUsageList);
 
         logger.debug("recipe book: %s", recipeBook);
         logger.debug("ingredient book: %s", ingredientBook);
@@ -165,8 +165,6 @@ public class ModelManager implements Model {
 
     /**
      * Sets the user prefs' ingredient book file path.
-     *
-     * @param ingredientBookFilePath
      */
     @Override
     public void setIngredientBookFilePath(Path ingredientBookFilePath) {
@@ -353,6 +351,8 @@ public class ModelManager implements Model {
                 && this.recipeBook.equals(other.recipeBook)
                 && this.filteredRecipes.equals(other.filteredRecipes)
                 && this.ingredientBook.equals(other.ingredientBook)
-                && this.filteredIngredients.equals(other.filteredIngredients);
+                && this.filteredIngredients.equals(other.filteredIngredients)
+                && this.recipeUsageList.equals(other.recipeUsageList)
+                && this.ingredientUsageList.equals(other.ingredientUsageList);
     }
 }
