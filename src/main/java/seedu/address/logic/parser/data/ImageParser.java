@@ -63,7 +63,6 @@ public class ImageParser {
             e.printStackTrace();
             imageLocalPath = "images/default.jpg";
         }
-        //return new RecipeImage("images/" + filename);
         if (imagePath.length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RecipeImage.MESSAGE_CONSTRAINTS));
         }

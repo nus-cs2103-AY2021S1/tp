@@ -71,13 +71,18 @@ Given below are my contributions to the project:
   * [User Guide](https://ay2021s1-cs2103t-w10-2.github.io/tp/UserGuide.html):
     * Transfer the user guide's draft from google document to UserGuide.md. (Pull Requests [\#31](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/31))
     * Updated the `addRecipe` (Pull Requests [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117))
+    
+    <div style="page-break-after: always;"></div>
+    
     * Added documentation for the features `eatR`, `calories`, `clearR`, `clearF` and `clearC`  (Pull Requests [\#51](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/51), [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117), [\#170](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/170))
+    * Added break page for pdf converting purpose. (Pull Requests [#294](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/294))
   * [Developer Guide](https://ay2021s1-cs2103t-w10-2.github.io/tp/DeveloperGuide.html):
     * Added implementation details and sequence diagrams of `eatRecipe`, `listConsumption`,  `selectRecipe` and `clear` feature. (Pull Requests [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117))
     * Combined the implementation of the similar feature e.g. combine `listConsumption`, `listRecipe` and `listIngredient` to `list`. (Pull Requests [\#181](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/181))
     * Added the table of content in Developer Guide. (Pull Requests [#245](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/245))
     * Added activity diagram for `clear` and `eat Recipe` features. (Pull Requests [#261](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/261))
     * Updated Class Diagrams(Model Component). (Pull Requests [#252](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/252))
+    * Added break page for pdf converting purpose. (Pull Requests [#294](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/294))
 <br><br>
 
 * **Community**:
