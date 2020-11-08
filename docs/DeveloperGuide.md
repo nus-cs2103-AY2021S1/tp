@@ -422,6 +422,30 @@ _{More to be added}_
   - 1b1. FixMyAbs shows an error message.
 
     Use case resumes at step 1.
+   
+**Use case: UC06 - Edit an exercise**
+
+**MSS** 
+
+1. User requests to edit the calories per rep of an existing exercise.
+2. FixMyAbs edits the indicated exercise
+    
+   Use case ends.
+
+**Extensions**
+
+- 1a. The given new exercise name exists.
+
+    - 1a1. FixMyAbs shows an error message.
+        
+        Use case resumes at step 1.
+        
+- 1b. The given calories per rep is invalid.
+
+    - 1b1. FixMyAbs shows an error message.
+    
+        Use case resumes at step 1.
+        
     
 ### Non-Functional Requirements
 
@@ -508,6 +532,53 @@ testers are expected to do more *exploratory* testing.
       Expected: No log is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size or less than 1)<br>
+      Expected: Similar to previous.
+      
+### Adding an exercise
+
+1. Adding an exercise in the shown exercises list.
+
+    1. Prerequisites: No prerequisites, you can add an exercise in any state of FixMyAbs.
+    
+    2. Test cases:  `addex e/High jump c/100`<br>.
+       Expected: The exercise with name as `High jump` and calories per rep as 100 is added to the end of the exercise list.
+       
+    3. Test case:  `addex e/  c/ `<br>
+        Expected: No exercise is added. Error details shown in the status message.
+    
+    4. Other incorrect addex commands to try: `addex e/High jump c/0`, `addex c/123`. 
+    
+### Deleting an exercise
+
+1. Deleting an exercise in the shown exercises list.
+
+   1. Prerequisites: No prerequisites, you can delete an exercise in any state of FixMyAbs.
+
+   1. Test case: `delete 1`<br>
+      Expected: First exercise is deleted from the list. Details of the deleted exercise shown in the status message.
+
+   1. Test case: `delete 0`<br>
+      Expected: No exercise is deleted. Error details shown in the status message.
+
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size or less than 1)<br>
+      Expected: Similar to previous.
+      
+### Editing an exercise
+
+1. Editing an exercise
+
+   1. Prerequisites: No prerequisites, you can delete an exercise in any state of FixMyAbs.
+
+   1. Test case: `editex 1 e/High jump`<br>
+      Expected: Edits the exercise at index 1, with a comment of `High jump`. Details of the edited exercise shown in the status message.
+
+   1. Test case: `editex 1 c/123 e/High jump`<br>
+      Expected: Edits the exercise at index 1, with name of `High jump` and calories per rep of `123`. Details of the edited exercise shown in the status message.
+
+   1. Test case: `edit 1`<br>
+      Expected: No exercise is edited. Error details shown in the status message.
+
+   1. Other incorrect edit commands to try: `edit`, `edit x ...` (where x is larger than the list size or less than 1)<br>
       Expected: Similar to previous.
 
 ### Saving data

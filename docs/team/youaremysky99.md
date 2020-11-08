@@ -31,6 +31,9 @@ Given below are my contributions to the project.
     * Refactored UG from Addressbook [\#39](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/39)
     * Added documentation for the features `editex` and `deletex` [\#172](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/172)
     * Did cosmetic tweaks to existing documentation of features `clear`: [\#216](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/216)
+  * Developer Guide:
+    * Added an usecase [\#224](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/224)
+    * Added testcases for manual testing [\#224](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/224) 
     
 * **Testing**
   * Refactored all the tests for Commands [\#62](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/62)
