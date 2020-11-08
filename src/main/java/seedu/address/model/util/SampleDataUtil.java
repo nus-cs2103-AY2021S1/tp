@@ -58,22 +58,22 @@ public class SampleDataUtil {
         GradeTracker gradeTrackerWithAssignments = new GradeTracker();
         gradeTrackerWithAssignments.addAssignment(new Assignment(new AssignmentName("Quiz1"),
                 new AssignmentPercentage(15), new AssignmentResult(70)));
-        Module CS2030 = new Module(new ModuleName("CS2030"),
+        Module cs2030 = new Module(new ModuleName("CS2030"),
                 getZoomLinkMap(new ModuleLesson("Lecture"), new ZoomLink("https://nus-sg.zoom.us/CS2030")),
                 gradeTrackerCompleted, getTagSet("CoreModule"), new ModularCredits(4));
-        Module CS2101 = new Module(new ModuleName("CS2101"),
+        Module cs2101 = new Module(new ModuleName("CS2101"),
                 getZoomLinkMap(new ModuleLesson("Lecture"), new ZoomLink("https://nus-sg.zoom.us/CS2101")),
                 gradeTrackerWithAssignments, getTagSet("CoreModule"), new ModularCredits(4));
-        Module CS2105 = new Module(new ModuleName("CS2105"),
+        Module cs2105 = new Module(new ModuleName("CS2105"),
                 getZoomLinkMap(new ModuleLesson("Lecture"), new ZoomLink("https://nus-sg.zoom.us/CS2105")),
                 gradeTrackerWithAssignments, getTagSet("CoreModule"), new ModularCredits(4));
-        Module CS1101S = new Module(new ModuleName("CS1101S"), getZoomLinkMap(new ModuleLesson("Lecture"),
+        Module cs1101S = new Module(new ModuleName("CS1101S"), getZoomLinkMap(new ModuleLesson("Lecture"),
                 new ZoomLink("https://nus-sg.zoom.us/CS2101")),
                 gradeTrackerWithAssignments, getTagSet("CoreModule"), new ModularCredits(4));
-        Module IS1103 = new Module(new ModuleName("IS1103"),
+        Module is1103 = new Module(new ModuleName("IS1103"),
                 getZoomLinkMap(new ModuleLesson("Lecture"), new ZoomLink("https://nus-sg.zoom.us/CS2101")),
                 gradeTrackerWithAssignments, getTagSet("CoreModule"), new ModularCredits(4));
-        return new Module[] {CS2030, CS2101, CS2105, CS1101S, IS1103
+        return new Module[] {cs2030, cs2101, cs2105, cs1101S, is1103
         };
     }
 
@@ -81,15 +81,14 @@ public class SampleDataUtil {
      * Generates list of sample archived modules
      */
     public static Module[] getSampleArchivedModules() {
-        GradeTracker gradeTrackerCompleted = new GradeTracker(5.0);
         GradeTracker gradeTrackerWithAssignments = new GradeTracker();
         gradeTrackerWithAssignments.addAssignment(new Assignment(new AssignmentName("Quiz1"),
                 new AssignmentPercentage(15), new AssignmentResult(70)));
-        Module ES2660 = new Module(new ModuleName("ES2660"),
+        Module es2660 = new Module(new ModuleName("ES2660"),
                 getTagSet("FluffModule", "Completed"), new ModularCredits(4));
-        Module CS3230 = new Module(new ModuleName("CS3230"),
+        Module cs3230 = new Module(new ModuleName("CS3230"),
                 getTagSet("CoreModule", "Completed"), new ModularCredits(4));
-        return new Module[] {ES2660, CS3230
+        return new Module[] {es2660, cs3230
         };
     }
 
