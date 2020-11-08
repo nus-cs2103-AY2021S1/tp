@@ -494,7 +494,7 @@ Example:
 The statistics feature works in conjunction with the [quiz](#quiz-flashcards-quiz) feature.
 
 The following information will be displayed on the view pane:
-* Question of the flashcard.
+* Question of the flashcard (may be truncated for brevity).
 * Reviewed count of the flashcard.
 * Correct count of the flashcard.
 * Pie chart to show the graphical representation of correct attempts vs wrong attempts in quiz mode of the flashcard. (No pie chart will be shown if the flashcard has not been reviewed.)
