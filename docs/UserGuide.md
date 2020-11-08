@@ -423,7 +423,7 @@ Format | Example
 HH:mm | 20:00
 
 Examples:
-* `addAppt S1234567A appt/25/12/2020 15:00 d/Foot Therapy`
+* `addAppt S1234567A appt/25/12/2020 15:00`
 * `addAppt S0000001A appt/28/09/2022 20:00 d/Eye Check-up`
 
 When an `Appointment` is successfully added to a patient, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
@@ -434,7 +434,7 @@ When an `Appointment` is successfully added to a patient, a success message will
 
 This command allows you to edit an existing `Appointment` for a patient in **Hospify**.
 
-Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME`
+Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME [d/DESCRIPTION]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -445,15 +445,18 @@ Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME`
 * The old `Appointment` timing is preceded by a `oldappt/` prefix
 
 * The new `Appointment` timing is preceded by a `newappt/` prefix
+
+* The new `Appointment` description is **optional**  
+i.e. you can choose whether or not to edit the description
 </div>
 
 * The `Appointment` to edit must be an existing appointment of the patient.
-* Only the date and timing of the `Appointment` can be changed. The name/description cannot be changed.
 * `NRIC` represents the `NRIC` of the patient whose `Appointment` you are editing.
 * `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
 
 Examples:
 * `editAppt S0000001A oldappt/28/09/2022 20:00 newappt/30/09/2022 15:00`
+* `editAppt S1234567A oldappt/25/12/2020 20:00 newappt/10/01/2021 14:00 d/Revisit`
 
 When an `Appointment` is successfully edited, a success message will appear in the message box as shown in the figure below.<br>
 
