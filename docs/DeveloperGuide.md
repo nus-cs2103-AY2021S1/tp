@@ -155,7 +155,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the flashcard deck data in json format and read it back.
 
 ### Common classes
 
