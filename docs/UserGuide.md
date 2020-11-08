@@ -65,6 +65,8 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 
 **:information_source: Notes about scoping:**<br>
 
+Each command has a restriction on the scope that it can be run. 
+Scopes include `PROJECT_LIST`, `PERSON_LIST`, `PROJECT`, `PERSON`, `TASK`, `TEAMMATE`.
 The hierarchy of command scoping is as follows:
 * global
     * `PROJECT_LIST`
@@ -74,9 +76,12 @@ The hierarchy of command scoping is as follows:
     * `PERSON_LIST`
       * `PERSON`
 
-<br>A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT`
-scope, it is also in the `PROJECT_LIST` scope. However, it is not necessarily in `TASK` scope because `TASK` is
-a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
+<br>
+
+A command may be valid in some scopes or another. For example, `startperson ` command can only be run under
+`PERSON_LIST` or `PERSON` scope, otherwise there will be an exception.
+The hierarchy list is above only aims to give you an overview of the meanings of the scopes, 
+and in most cases a command that is valid in a parent scope would be valid in any descendant scopes, but may not always be true.
 
 </div>
 
