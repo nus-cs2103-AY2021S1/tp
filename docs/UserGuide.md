@@ -61,7 +61,7 @@ You can start from the [Quick Start](#quick-start) section to learn how to obtai
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. About this document <a name="about">
+## 3. About this document <a name="about"></a>
 
 ### 3.1 Structure of this document
 
