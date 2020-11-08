@@ -5,8 +5,6 @@ title: Gilbert's Project Portfolio Page
 
 ## Gilbert Tan - Project Portfolio for QuickCache (tP)
 
---
-
 ### 1.Introduction
 
 This document serves as a project portfolio for QuickCache, and outlines my contributions to the project, including the features that I have implemented.
