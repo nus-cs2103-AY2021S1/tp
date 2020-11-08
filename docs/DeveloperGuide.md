@@ -1035,7 +1035,9 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### B.1&ensp;Launch and shutdown
+### B.1&ensp;General
+
+#### B.1.1&ensp;Launch and shutdown
 
 1. Initial launch
 
@@ -1050,7 +1052,58 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases … }_
+#### B.1.2&ensp;Recalling commands previously entered
+1. Recalling commands without any prior input
+   1. Prerequisites: No commands executed since launch.
+   
+   1. Test Case: `list recipe` without entering followed by pressing the <kbd>↑</kbd> key.  
+      Expected: `list recipe` remains in the command box with the caret before the first char of the text.
+      
+   1. Test Case: `list recipe` without entering followed by pressing the <kbd>↓</kbd> key.  
+      Expected: `list recipe` remains in the command box with the caret after the last char of the text.      
+      
+1. Recalling commands previously entered
+   1. Prerequisites: None.
+   
+   1. Test Case: `list recipe` followed by pressing the <kbd>↑</kbd> key.  
+      Expected: `list recipe` appears in the command box with the caret after the last char of the text.
+    
+   1. Test Case: `list rec` followed by pressing the <kbd>↑</kbd> key.  
+      Expected: The command box is cleared.
+      
+   1. Test Case: `list recipe` followed by `list ingredient` followed by pressing the <kbd>↑</kbd> twice. 
+      Expected: `list ingredient` appears in the command box, before `list recipe` appears in the command box with the caret after the last char of the text in both cases.
+      
+   1. Test Case: `list recipe` followed by `list ingredient` followed by pressing the <kbd>↑</kbd> key twice, then the <kbd>↓</kbd> key. 
+      Expected: `list ingredient`, then `list recipe` appears in the command box before being replaced by `list ingredient` with the caret after the last char of the text in all cases.
+
+#### B.1.3&ensp;Autocomplete input
+1. Autocomplete command
+   1. Prerequisites: None
+   
+   1. Test Case: Pressing the <kbd>tab</kbd> key.
+      Expected: Command box remains empty.
+   
+   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key.
+      Expected: `list` appears in the command box with the caret 1 en space after the last char of the text.
+
+1. Autocomplete command target
+   1. Prerequisites: None.
+   
+   1. Test Case: Pressing the <kbd>tab</kbd> key.
+      Expected: Command box remains empty.
+   
+   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key, then `r` before pressing <kbd>tab</kbd>.
+      Expected: `list recipe` appears in the command box with the caret 1 en space after the last char of the text.
+
+1. Autocomplete user defined parameters without prior data
+   1. Prerequisites: Test cases do not attempt to complete recipe/ingredient whose names are stored in ChopChop. In this section, we will start off with `view ` in the command box `view&ensp;`.
+   
+   1. Test Case: Pressing the <kbd>tab</kbd> key.
+      Expected: Command box remains empty.
+   
+   1. Test Case: Typing `v` followed by pressing <kbd>tab</kbd>, then .
+      Expected: `list recipe` appears in the command box with the caret 1 en space after the last char of the text.
 
 ### B.2&ensp;Deleting a person
 
