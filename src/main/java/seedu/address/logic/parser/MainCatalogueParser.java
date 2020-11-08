@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.global.AddCommand;
+import seedu.address.logic.commands.global.AddPersonCommand;
 import seedu.address.logic.commands.global.ClearCommand;
 import seedu.address.logic.commands.global.DeleteCommand;
 import seedu.address.logic.commands.global.EditCommand;
@@ -19,7 +20,6 @@ import seedu.address.logic.commands.global.ListPersonsCommand;
 import seedu.address.logic.commands.global.ListProjectsCommand;
 import seedu.address.logic.commands.global.StartPersonCommand;
 import seedu.address.logic.commands.global.StartProjectCommand;
-import seedu.address.logic.commands.global.AddPersonCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
