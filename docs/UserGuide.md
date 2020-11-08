@@ -63,11 +63,13 @@ and Bidder Id exists in the property list and bidder list.
 
 2. Next Month in `Calender`:
 
-        PRESS SHIFT
+        PRESS CONTROL
         
 3. Previous Month in `Calendar`:
 
-        PRESS CONTROL
+        PRESS ALT - Windows OS
+        or
+        PRESS OPTIONS - Mac OS
 
 Note that apart from `SHIFT` and `CONTROL`, there are `Calendar` navigation commands `next` and `prev` 
 (elaborated below) in the event that your computer or laptop keyboard layout does not allow you to access
