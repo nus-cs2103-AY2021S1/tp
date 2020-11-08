@@ -821,11 +821,11 @@ Similar to <u>UC03 - edit a student</u>, just replace student with room.
   - 1*1. ResiReg shows an error message.
   -  Use case starts over.
 
-#### Use case: UC16 - Delete an alias
+#### Use case: UC17 - Delete an alias
 Similar to <u>UC16 - add an alias</u>, except with deletion, and the addition of the following extension:
 - 1e. Alias supplied does not exist.
 
-#### Use case: UC17 - Restore deleted items
+#### Use case: UC18 - Restore deleted items
 **MSS**
 
 1. User requests to list recently deleted items from bin.
@@ -920,22 +920,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `restore`, `restore x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-
-### Restoring deleted items
-1. Restoring a room when list of bin items is being viewed
-
-  1. Prerequisites: List all bin items using the `bin` item command. A room at index 1 in the list of bin items.
-
-   1. Test case: `restore 1`<br>
-      Expected: First room is restored from the list. The room is added to the room list (visible if `rooms` command is issued). Timestamp in the status bar is updated.
-
-   1. Test case: `restore 0`<br>
-      Expected: No item is restored. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `restore`, `restore x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-### Permnanent deletion of bin items after expiry 
+### Permanent deletion of bin items after expiry 
 1. Verifying permanent deletion of bin items when the list of bin items is viewed. Note: remember to ensure that the pre-requisites are satisfied before either of the test cases is tried.
 
   1. Prerequisites: Set bin expiry time to 20 days via `set-bin-expiry 20`. Multiple items in the bin deleted on the current date. 
