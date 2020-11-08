@@ -33,6 +33,8 @@ Given below are my contributions to the project.
   * Justification: This feature improves the app by allowing commands (such as `find` and `findmod`) to be more
    flexible by not requiring users to provide all supported prefixes (users only need to input at least one prefix).
   * Highlights: This feature required an understanding of how the `ArgumentMultimap` class works.
+
+<div style="page-break-after: always;"></div>
    
 * **New Feature**: Displays the module list and a view of switching semesters
   * What it does: Switches the tabs in the GUI to represent the switching of semesters.
