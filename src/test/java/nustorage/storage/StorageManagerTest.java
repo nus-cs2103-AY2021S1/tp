@@ -93,9 +93,6 @@ public class StorageManagerTest {
     }
 
 
-    ;
-
-
     @Test
     public void getFinanceFilePath_returnsCorrectPath() {
         assertEquals(financeFilePath, storageManager.getFinanceAccountFilePath());
@@ -111,6 +108,4 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-
-    ;
 }
