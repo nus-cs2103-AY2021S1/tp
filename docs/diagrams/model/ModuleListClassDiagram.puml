@@ -15,7 +15,6 @@ Class ModularCredits
 Class GradeTracker
 Class ModuleLesson
 Class ZoomLink
-Class HashMap
 }
 
 Package Tag {
@@ -31,7 +30,7 @@ Module *---> "0..*" Tag
 Module *---> "1" HashMap
 Module *---> "1" ModularCredits
 Module *---> "1" GradeTracker
-ModuleLesson "0..*" -- "0..*" ZoomLink
-(ModuleLesson, ZoomLink) .. HashMap
-
+Module *---> "0..*" ModuleLesson
+Module *---> "0..*" ZoomLink
+ModuleLesson - ZoomLink
 @enduml
