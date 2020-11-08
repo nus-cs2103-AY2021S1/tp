@@ -2,68 +2,63 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":HospifyParser" as AddressBookParser LOGIC_COLOR
-participant ":FindCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:FindCommand" as DeleteCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":LogicManager" as L LOGIC_COLOR
+participant ":HospifyParser" as H LOGIC_COLOR
+participant ":findCommandParser" as P LOGIC_COLOR
+participant "f:findCommand" as S LOGIC_COLOR
+participant ":CommandResult" as R LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+participant ":Model" as M MODEL_COLOR
+participant ":HospifyBook" as B MODEL_COLOR
+participant ":UniquePatientList" as U MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
-activate LogicManager
+-> L : execute("find Alex A0000002S")
+activate L
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+L -> H : parseCommand("find Alex A0000002S")
+activate H
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+H -> P**
+activate P
+return
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+H -> P : parse(" Alex S0000002A")
+activate P
 
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+P -> S** :
+activate S
+return f
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+return f
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+return f
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+L -> S : execute(model)
+activate S
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+S -> M : findBy(predicate)
+activate M
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+M -> B : updateFilteredPatientList(predicate)
+activate B
 
-DeleteCommand -> Model : deletePatient(1)
-activate Model
+B -> U : updateFilteredPatientList(predicate)
+activate U
 
-Model --> DeleteCommand
-deactivate Model
+return
+return
+return
 
-create CommandResult
-DeleteCommand -> CommandResult
-activate CommandResult
+S -> R**
+activate R
+return
 
-CommandResult --> DeleteCommand
-deactivate CommandResult
+return result
+destroy S
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+return
 
-[<--LogicManager
-deactivate LogicManager
 @enduml
