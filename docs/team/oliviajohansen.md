@@ -2,7 +2,6 @@
 layout: page
 title: Olivia Johansen's Project Portfolio Page
 ---
-
 ## Project: Wishful Shrinking
 
 Wishful Shrinking is a desktop application for managing your diet, keeping track of your on-hand ingredients, recipes, as well as the food you’ve eaten (along with their calories). While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
@@ -30,7 +29,7 @@ Given below are my contributions to the project. These enhancements affect exist
 
 * **New Feature**: Added the ability to edit for a recipe in the recipe list.
   * What it does: allows the user to edit recipes to their recipe list.
-  * Justification: This feature improves the product significantly because a user can now edit recipes in the recipe list, saving them the hassle of having to delete then re-adding an entire recipe.
+  * Justification: This feature improves the product significantly because a user can edit recipes in the recipe list, saving them the hassle of having to delete then re-adding an entire recipe.
   * Credits: This feature was built off AB3 "edit" feature.
 
 * **New Feature**: Added the ability to directly modify an existing ingredient or recipe.
