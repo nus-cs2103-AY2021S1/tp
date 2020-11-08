@@ -568,11 +568,23 @@ Step 2: The user enters a DeleteTeammate command such as `deleteperson GeNiaaz`.
   `deleteperson`. A new instance of `DeletePersonParser` class is then created which proceeds to parse the various
    fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an
     exception at this stage. 
-    
 
-If the Git Username is valid, the `allPeople` list in Person would be searched for a teammate with a matching Git
-Username and deleted from the list. All projects would also be searched for instances of participation with a
-teammate with a matching Git Username and removed. 
+
+To illustrate, the object diagram below shows the how Project and Person classes are related to each other, through the
+ use of an association class Participations.
+    
+![Participations](images/ShowParticipationDiagram.png)
+
+**How Project and Person are associated**
+    
+Project and Person cannot be directly linked, and hence are related in this manner to allow the Participation class to
+ handle the association. If the instance of Participation is deleted for example, the Project and Person can still
+  exist, without an association between them.
+
+If the Git Username is valid, the `allPeople` list in Person (*which is a list of all persons, stored as a static
+ variable in Person class*) would be searched for a teammate with a matching Git Username and deleted from the list
+  . All projects would also be searched for instances of participation with a teammate with a matching Git Username
+   and removed. 
 
 Within the `DeletePersonCommand` class, an instance of `DeletePersonCommand` is created, and this instance of
  `Command` is passed back to `LogicManager`.
@@ -581,6 +593,23 @@ LogicManager then calls the method `execute` of the DeletePersonCommand which de
  all instances of participation as well as in memory and storage.
  
  ![DeletePersonActivityDiagram](images/DeletePersonActivityDiagram.png)
+ 
+ #### Design consideration:
+ 
+ ##### Aspect: Which scope deletion of a teammate should happen in.
+ 
+ * **Alternative 1 (current choice):** Deletion should happen in the listperson scope.
+   * Pros: All teammates can be viewed at once, and one can be selected for deletion there.
+   * Pros: Teammate can be deleted even if all associations deleted from all projects.
+   * Cons: The user has to navigate to another menu to delete the teammate.
+   
+   (While it does indeed require the user to change scope to delete a teammate, deleting a teammate is not something
+    the user will be doing regularly, and so we believe the pros outweigh the cons in this case.)
+ 
+ * **Alternative 2:** Deletion should happen in the project scope.
+   * Pros: A teammate can be deleted quickly.
+   * Cons: It would be impossible to delete a teammate if all associations are deleted.
+   * Cons: User would have to know which project the temmate is associated and navigate there to delete it. 
 
 
 --------------------------------------------------------------------------------------------------------------------
