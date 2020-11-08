@@ -708,7 +708,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 * *a. At any time, User requests to quit review mode.
 
-    *a1. SWEe! quits review mode.
+    * *a1. SWEe! quits review mode.
     
     Use case ends.
 
@@ -737,7 +737,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * *a. At any time, User requests to quit quiz mode.
 
-    *a1. SWEe! quits quiz mode.
+    * *a1. SWEe! quits quiz mode.
     
     Use case ends.
 
