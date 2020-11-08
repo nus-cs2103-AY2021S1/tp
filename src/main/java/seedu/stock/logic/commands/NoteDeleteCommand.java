@@ -93,7 +93,6 @@ public class NoteDeleteCommand extends Command {
         logger.log(Level.INFO, "Valid serial number and note to delete from stock.");
         logger.log(Level.INFO, "Finished deleting notes successfully");
         return new CommandResult(generateSuccessMessage(stockWithDeletedNote));
-        
     }
 
     /**

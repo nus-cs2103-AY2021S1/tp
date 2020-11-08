@@ -69,9 +69,9 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts i.e. 
+The UI consists of a `MainWindow` that is made up of parts i.e.
 `CommandBox`, `ResultDisplay`, `StockListPanel`, `StatusBarFooter`, `Tabs`
-etc. 
+etc.
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
@@ -268,7 +268,7 @@ Some of the important operations implemented here are:
 
 * `UpdateCommandParser#parse()` <br>
   Parses the prefixes and their values attained from user input. This method will first check if all compulsory prefixes
-  are present. This method will then create a new `UpdateStockDescriptor` based on the prefixes values. 
+  are present. This method will then create a new `UpdateStockDescriptor` based on the prefixes values.
   A `ParseException` will be thrown if any compulsory prefixes are missing or invalid values.
 
 #### UpdateStockDescriptor
@@ -361,31 +361,31 @@ The mechanism for bookmark feature is facilitated by BookmarkCommandParser, Book
 
 #### BookmarkCommand
 
-`BookmarkCommand` class extends the `Command` interface. `BookmarkCommand` class is tasked with changing 
-the isBookmarked parameter of the stocks indicated in parameters of the command to true and creating a 
+`BookmarkCommand` class extends the `Command` interface. `BookmarkCommand` class is tasked with changing
+the isBookmarked parameter of the stocks indicated in parameters of the command to true and creating a
 new `CommandResult` to be displayed to the user in the user interface.
 
 Some important operations implemented here are:
-* `BookmarkCommand#execute()` Bookmarks the stock in the stockbook if the stock is not already bookmarked. 
+* `BookmarkCommand#execute()` Bookmarks the stock in the stockbook if the stock is not already bookmarked.
 Returns a new `CommandResult` to be displayed to the user
 in the user interface.
 
 ### BookmarkCommandParser
 
-`BookmarkCommandParser` class extends the `Parser` interface. `BookmarkCommandParser` class is tasked with 
-parsing the user inputs and generating a new `BookmarkCommand`. The main logic of the bookmark feature is 
+`BookmarkCommandParser` class extends the `Parser` interface. `BookmarkCommandParser` class is tasked with
+parsing the user inputs and generating a new `BookmarkCommand`. The main logic of the bookmark feature is
 encapsulated here.
 
-`BookmarkCommandParser` receives user input, and extracts the serialNumbers of the stocks to be bookmarked 
+`BookmarkCommandParser` receives user input, and extracts the serialNumbers of the stocks to be bookmarked
 from the arguments. The `parse` method of `BookmarkCommandParser` receives the user input, and extracts
-the serialNumbers of the stocks to be bookmarked. The `parse` method then returns a new `BookmarkCommand` 
-with the given serialNumbers as argument if the user input is a valid `BookmarkCommand` and throws a 
+the serialNumbers of the stocks to be bookmarked. The `parse` method then returns a new `BookmarkCommand`
+with the given serialNumbers as argument if the user input is a valid `BookmarkCommand` and throws a
 `ParseException` otherwise.
 
 Some important operations implemented here are:
 * `BookmarkCommandParser#parse()` returns BookmarkCommand to be executed.
 
-### Example Usage Scenerio 
+### Example Usage Scenerio
 
 Given Below is one example usage scenerio and explains how the add feature behaves at each step. It is assumed
 that the stock with serial number `fairprice1` exists in the stock book.
@@ -396,7 +396,7 @@ Step 1. The user enters `bookmark sn/fairprice1` into the command box.
 Step 2. The command word `bookmark` is extracted out in the `StockBookParser` and checked if it matches any
 valid command word.
 
-Step 3. `bookmark` is a valid command word. User input prefixes ,and their values are being passed down to 
+Step 3. `bookmark` is a valid command word. User input prefixes ,and their values are being passed down to
 `BookmarkCommandParser#parse()`
 
 Step 4. `BookmarkCommandParser#parse()` will check if the prefixes `sn/` exists as it is compulsory.
@@ -404,14 +404,14 @@ Step 4. `BookmarkCommandParser#parse()` will check if the prefixes `sn/` exists 
 Step 5. The prefix `sn/` exist. `BookmarkCommandParser#parse()` will extract the value of the prefix `sn/`
 which in this case is `fairprice1`.
 
-Step 6. `BookmarkCommandParser#parse()` returns a new `BookmarkCommand` with the set of serial numbers 
+Step 6. `BookmarkCommandParser#parse()` returns a new `BookmarkCommand` with the set of serial numbers
 containing`fairprice1`.
 
-Step 7. `Logic Manager` then calls `BookmarkCommand#execute()`. Inside the method, it will check if the 
+Step 7. `Logic Manager` then calls `BookmarkCommand#execute()`. Inside the method, it will check if the
 stock with the serial number `fairprice1` exists in the `Model`.
 
-Step 8. The stock with serial number `fairprice1` exists. The `BookmarkCommand#execute()` method checks 
-if the stock is already bookmarked. Since the stock is not bookmarked before, the `isBookmarked` boolean 
+Step 8. The stock with serial number `fairprice1` exists. The `BookmarkCommand#execute()` method checks
+if the stock is already bookmarked. Since the stock is not bookmarked before, the `isBookmarked` boolean
 of the stock is changed to `true`. And the stock list is being sorted to push the newly bookmarked stock
 to the top of the stocklist.
 
@@ -438,14 +438,14 @@ The following activity diagram summarizes what happens when the bookmark feature
 #### Aspect:How does a stock get bookmarked
 
 * Alternative 1(current implementation):make a temporary copy then replace original with copy
-    * Pros: Eliminates the possibility of original data getting lost. If a bookmarking is unsuccessful then only the copy 
-      will be affected and not the original data. 
-    * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy of the current 
+    * Pros: Eliminates the possibility of original data getting lost. If a bookmarking is unsuccessful then only the copy
+      will be affected and not the original data.
+    * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy of the current
       stock, update the copy, and replace the original with the copy.
 * Alternative 2:directly changing `Stock` isBookmarked field in `StockBook`
     * Pros: Will be significantly faster than making a copy since we directly change the `Stock` itself.
-    * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently undergoing the 
-      update to be corrupted as the original data that has been bookmarked will be lost, but some fields may not be already 
+    * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently undergoing the
+      update to be corrupted as the original data that has been bookmarked will be lost, but some fields may not be already
       updated due to the midway interruption.
 
 ### Unbookmark Feature
@@ -454,30 +454,30 @@ The mechanism for bookmark feature is facilitated by UnbookmarkCommandParser, Un
 
 #### UnbookmarkCommand
 
-`UnbookmarkCommand` class extends the `Command` interface. `UnbookmarkCommand` class is tasked with changing 
-the isBookmarked parameter of the stocks indicated in parameters of the command to true and creating a 
+`UnbookmarkCommand` class extends the `Command` interface. `UnbookmarkCommand` class is tasked with changing
+the isBookmarked parameter of the stocks indicated in parameters of the command to true and creating a
 new `CommandResult` to be displayed to the user in the user interface.
 
 Some important operations implemented here are:
-* `UnbookmarkCommand#execute()` Bookmarks the stock in the stockbook if the stock is bookmarked. 
+* `UnbookmarkCommand#execute()` Bookmarks the stock in the stockbook if the stock is bookmarked.
 Returns a new `CommandResult` to be displayed to the user in the user interface.
 
 ### BookmarkCommandParser
 
-`UnbookmarkCommandParser` class extends the `Parser` interface. `UnbookmarkCommandParser` class is tasked with 
-parsing the user inputs and generating a new `UnbookmarkCommand`. The main logic of the bookmark feature is 
+`UnbookmarkCommandParser` class extends the `Parser` interface. `UnbookmarkCommandParser` class is tasked with
+parsing the user inputs and generating a new `UnbookmarkCommand`. The main logic of the bookmark feature is
 encapsulated here.
 
-`UnbookmarkCommandParser` receives user input, and extracts the serialNumbers of the stocks to be bookmarked 
+`UnbookmarkCommandParser` receives user input, and extracts the serialNumbers of the stocks to be bookmarked
 from the arguments. The `parse` method of `UnbookmarkCommandParser` receives the user input, and extracts
-the serialNumbers of the stocks to be bookmarked. The `parse` method then returns a new `UnbookmarkCommand` 
-with the given serialNumbers as argument if the user input is a valid `UnbookmarkCommand` and throws a 
+the serialNumbers of the stocks to be bookmarked. The `parse` method then returns a new `UnbookmarkCommand`
+with the given serialNumbers as argument if the user input is a valid `UnbookmarkCommand` and throws a
 `ParseException` otherwise.
 
 Some important operations implemented here are:
 * `UnbookmarkCommandParser#parse()` returns BookmarkCommand to be executed.
 
-### Example Usage Scenerio 
+### Example Usage Scenerio
 
 Given Below is one example usage scenerio and explains how the add feature behaves at each step. It is assumed
 that the stock with serial number `fairprice1` exists in the stock book and is already bookmarked.
@@ -488,7 +488,7 @@ Step 1. The user enters `unbookmark sn/fairprice1` into the command box.
 Step 2. The command word `unbookmark` is extracted out in the `StockBookParser` and checked if it matches any
 valid command word.
 
-Step 3. `bookmark` is a valid command word. User input prefixes ,and their values are being passed down to 
+Step 3. `bookmark` is a valid command word. User input prefixes ,and their values are being passed down to
 `UnbookmarkCommandParser#parse()`
 
 Step 4. `UnbookmarkCommandParser#parse()` will check if the prefixes `sn/` exists as it is compulsory.
@@ -496,14 +496,14 @@ Step 4. `UnbookmarkCommandParser#parse()` will check if the prefixes `sn/` exist
 Step 5. The prefix `sn/` exist. `UnbookmarkCommandParser#parse()` will extract the value of the prefix `sn/`
 which in this case is `fairprice1`.
 
-Step 6. `UnbookmarkCommandParser#parse()` returns a new `UnbookmarkCommand` with the set of serial numbers 
+Step 6. `UnbookmarkCommandParser#parse()` returns a new `UnbookmarkCommand` with the set of serial numbers
 containing`fairprice1`.
 
-Step 7. `Logic Manager` then calls `UnbookmarkCommand#execute()`. Inside the method, it will check if the 
+Step 7. `Logic Manager` then calls `UnbookmarkCommand#execute()`. Inside the method, it will check if the
 stock with the serial number `fairprice1` exists in the `Model`.
 
-Step 8. The stock with serial number `fairprice1` exists. The `UnbookmarkCommand#execute()` method checks 
-if the stock is already bookmarked. Since the stock is not bookmarked before, the `isBookmarked` boolean 
+Step 8. The stock with serial number `fairprice1` exists. The `UnbookmarkCommand#execute()` method checks
+if the stock is already bookmarked. Since the stock is not bookmarked before, the `isBookmarked` boolean
 of the stock is changed to `false`. And the stock list is being sorted to push the newly unbookmarked stock
 to its original index in the stocklist.
 
@@ -530,14 +530,14 @@ The following activity diagram summarizes what happens when the bookmark feature
 #### Aspect:How does a stock get bookmarked
 
 * Alternative 1(current implementation):make a temporary copy then replace original with copy
-    * Pros: Eliminates the possibility of original data getting lost. If a unbookmarking is unsuccessful then only the copy 
-      will be affected and not the original data. 
-    * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy of the current 
+    * Pros: Eliminates the possibility of original data getting lost. If a unbookmarking is unsuccessful then only the copy
+      will be affected and not the original data.
+    * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy of the current
       stock, update the copy, and replace the original with the copy.
 * Alternative 2:directly changing `Stock` isBookmarked field in `StockBook`
     * Pros: Will be significantly faster than making a copy since we directly change the `Stock` itself.
-    * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently undergoing the 
-      update to be corrupted as the original data that has been bookmarked will be lost, but some fields may not be already 
+    * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently undergoing the
+      update to be corrupted as the original data that has been bookmarked will be lost, but some fields may not be already
       updated due to the midway interruption.
 
 ### Suggestion Feature
@@ -803,7 +803,7 @@ In all possible editing operations, the value `D(i, j)` can only change to:
 Since we want to find the minimum edit distance, <br>
 `D(i, j) = min(D(i - 1, j) + 1, D(i, j - 1) + 1, D(i - 1, j - 1) + 3)`.
 
-Since it is a recursion, the algorithm is implemented using bottom-up dynamic programming to improve speed 
+Since it is a recursion, the algorithm is implemented using bottom-up dynamic programming to improve speed
 by remembering already computed states. The current implementation do the following steps:
 
 1. Creates a table to store computed states (2D `dp` array).
@@ -868,7 +868,7 @@ The list of `FieldContainsKeywordsPredicate` is obtained from parsing
 the user input, to produce either of the following predicates shown
 in the table below, for each `Prefix` and keywords pair.
 
-<div markdown="span" class="alert alert-info">:information_source: 
+<div markdown="span" class="alert alert-info">:information_source:
 
 **Note:**
 The user input should contain at least one `Prefix` and keywords to search.
@@ -1071,7 +1071,7 @@ at least one of `a`, `this`, `is`, `banana`.)
 ### Note Feature
 
 #### Description
-The Note feature allows users to add and delete notes from a stock. 
+The Note feature allows users to add and delete notes from a stock.
 
 There are two commands users can use:
 * `note` - Adds a note to the stock specified by the stock's serial number.
@@ -1083,14 +1083,14 @@ Prefixes used in the Note feature:
 Command       | Fields       | Prefixes
 --------------| -------------| ---------------------------
 `note`        | Serial Number<br>Note | sn/<br>nt/
-`notedelete`  | Serial Number<br>Note Index | sn/<br>ni/  
+`notedelete`  | Serial Number<br>Note Index | sn/<br>ni/
 
 
 #### Mechanism for Adding Notes
 The mechanism for adding notes is facilitated by classes `NoteCommand`, and `NoteCommandParser`.
 
 #### NoteCommandParser
-The `NoteCommandParser` class implements the `Parser` interface. 
+The `NoteCommandParser` class implements the `Parser` interface.
 `NoteCommandParser` class is tasked with parsing the user inputs
 to generate a `NoteCommand` with arguments `SerialNumber` of the stock
 and `Note` to add.
@@ -1110,7 +1110,7 @@ an error message is shown to prompt the user that Warenager cannot find the `Ser
  Parses the user input to produce a `NoteCommand`.
 
 #### NoteCommand
-The `NoteCommand` class extends the `Command` abstract class. The `NoteCommand` class is tasked with creating a new `CommandResult` that represents the result of the execution of a `NoteCommand`. 
+The `NoteCommand` class extends the `Command` abstract class. The `NoteCommand` class is tasked with creating a new `CommandResult` that represents the result of the execution of a `NoteCommand`.
 
 The construction of a `NoteCommand` takes in a `Serial Number` of stock and a `Note` to add to the stock.
 
@@ -1142,7 +1142,7 @@ The command word matches `COMMAND_WORD`: `note` in the `NoteCommand` class.
 Step 4. The remaining user input is passed to the `NoteCommandParser` where within the
 `NoteCommandParser#parse()` method, the respective `ParserUtil#parseSerialNumber()` and
 `ParserUtil#parseNote` methods are called to generate a `Serial Number` of the stock
-and `Note` to add to stock. 
+and `Note` to add to stock.
 
 Step 5. The `NoteCommandParser#parse()` method then returns a `NoteCommand`,
 constructed with the `Serial Number` of stock and `Note` to add to stock. 
