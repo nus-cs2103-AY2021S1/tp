@@ -581,6 +581,21 @@ Use case ends.
 
 Use case ends.
 
+**Use case: UC8 Import a McGymmy data file**
+
+**MSS**
+
+1. User imports McGymmy file to McGymmy.
+2. McGymmy overrides the old files with the new McGymmy files.
+
+Use case ends.
+
+**Extensions**
+ - 1a. The format for the save file is invalid.
+    - 1a1. McGymmy shows and error message.
+
+Use case ends.
+    
 
 ### 9.4 Non-Functional Requirements
 
