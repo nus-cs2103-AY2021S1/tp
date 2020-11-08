@@ -45,4 +45,3 @@ Given below are my contributions to the project.
 * **Tools**:
   * Integrated a new Github plugin (GithubCI [\#2](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/2)) to the team repo
 
-* _{you can add/remove categories in the list above}_
