@@ -127,9 +127,9 @@ All pending deliveries related command have a suffix `-d`.
     Figure 2: Help Start Window
     <br>
 
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 <a name="3-features"></a>
 ## 3. Features
 
@@ -301,8 +301,6 @@ Pointers to take note when adding a delivery:
 * You can add a delivery even if the same `Name`, `Phone` and `Address` already exists in the delivery book.
 * Unit of `Time` is minutes ie. `add-d n/JASON p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1 by/15` indicates
 that this order needs to be delivered out in 15 minutes.
-
-<div style="page-break-after: always;"></div>
 
 Example 1: 
 
@@ -642,6 +640,7 @@ Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
 
 ### 3.2 General Features
 
