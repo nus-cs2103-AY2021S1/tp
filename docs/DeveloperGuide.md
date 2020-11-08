@@ -961,14 +961,6 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
 ### Finding sales of drinks
 
 1. Finding the sales of a drink item while all sales are being shown.
@@ -987,3 +979,10 @@ testers are expected to do more *exploratory* testing.
    5. Test case: `s-find`<br>
       Expected: Error details shown in the status message.
 
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
