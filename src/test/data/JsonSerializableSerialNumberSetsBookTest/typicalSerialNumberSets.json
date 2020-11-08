@@ -1,5 +1,8 @@
 {
   "serialNumberSets" : [ {
+    "source" : "cold storage",
+    "accumulatedQuantity" : "1"
+  },{
     "source" : "ntuc",
     "accumulatedQuantity" : "1"
   }, {
