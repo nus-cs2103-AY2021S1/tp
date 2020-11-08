@@ -5,7 +5,7 @@ title: Goh Tian Yong's Project Portfolio Page
 
 ## Project: WishfulShrinking
 WishfulShrinking is a desktop diet manager refactor from an application called [AddressBook-Level 3(AB3)](https://github.com/nus-cs2103-AY2021S1/tp).
- It is used to helps on **managing the user's on-hand ingredients, organise personal recipes and track user's diet**.
+ It is used to helps on **managing the user's on-hand ingredients**, **organise personal recipes and track user's diet**.
  Wishful Shrinking optimized for fast and efficient typers as it uses a Command Line Interface (CLI) and Graphical User Interface (GUI) created with JavaFX.
  Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.
  It is written in Java, and has about 10 kLoC. 
@@ -17,8 +17,7 @@ Given below are my contributions to the project:
 * **New Feature 1**: Added the `Eat Recipe` command. (Pull Requests [\#51](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/51))
   * What it does: allows the user "eat" the recipe that is listed in the recipes' collection.
   * Justification: This feature improves the product as it is the base feature of Wishful Shrinking to help user to keep track of their daily consumption.
-  * Highlights: This feature work similar to `delete` feature. Instead of removing,
-   it intakes a positive index as an argument to indicate the specific recipe in the Recipe List and add the recipe into Consumption List.
+  * Highlights: This feature work similar to `delete` feature. Instead of removing, it copies the specific recipe from recipe list and add the recipe into Consumption List.
   * Credits: AddressBook Level 3 `delete` feature.
 <br>
 * **New Feature 2**: Added `List Consumption` feature. (Pull Requests [\#84](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/84), [\#87](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/87))
