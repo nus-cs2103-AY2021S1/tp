@@ -20,8 +20,12 @@ This User Guide will help you get started with the setup of Inventoryinator and 
 quick reference of the features available and how to use them. You can use the table of
 contents below for easy access to sections in this document. 
 
+<div style="page-break-after: always;"></div>
+
 * Table of Contents
 {:toc}
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -57,6 +61,8 @@ contents below for easy access to sections in this document.
 
 ___________________________________________________________________
 
+<div style="page-break-after: always;"></div>
+
 ## Legend:
 
 You can refer to this section to reference the syntax used in this guide to format
@@ -74,6 +80,8 @@ term | Standard command/variable term<br>
 default | If no parameter is given as input, this will be the input parameter
 
 ___________________________________________________________________
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
@@ -102,6 +110,7 @@ Action | Format
 **Help** | `help` \[command\]
 **Exit** | `exit`
 
+<div style="page-break-after: always;"></div>
 
 ## Features
 In this section, you can find a comprehensive list of Inventoryinator's commands and their descriptions, as of v1.4.
@@ -110,9 +119,11 @@ refer to the more succinct name, synopsis, description and example sections to d
 
 ```
 NOTE:
-We have removed all apostrophes (') from our example commands, but that does not mean you can't use them.
-We have only done so because github (or something else) formats apostrophes to be different from the ones 
-on our keyboard, which affects our Inventoryinator's case-sensitive commands.
+We have removed all apostrophes (') from our example commands, 
+but that does not mean you can't use them.
+We have only done so because github (or something else) formats apostrophes
+to be different from the ones on our keyboard, which affects our 
+Inventoryinator's case-sensitive commands.
 Now, you can copy and paste our example commands without worry.
 :)
 ```
@@ -152,9 +163,13 @@ found at location <u>Bobs banana farm</u> and tags <u>delicious</u>, <u>consumab
 ```
 TIPS:
 Quantity should be an integer between 0 and 2,147,483,647.
+
 Item names are case-sensitive.
+
 Tags must be alphanumerical and cannot contain spaces.
 ```
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a new Recipe: `addr`
 (Implemented by: Rahul)
@@ -189,10 +204,17 @@ This command adds a recipe to craft <u>Bobs anvil</u>, which takes 3 <u>blocks o
 ```
 TIPS:
 Item names are case-sensitive.
+
 You cannot edit recipes! Please be careful when typing in your quantities.
-To add a recipe that creates an item not yet in your inventory, you will need to add the item first.
-You CAN have 0 as a quantity for an item used, we like to call these items 'catalysts'.
+
+To add a recipe that creates an item not yet in your inventory, 
+you will need to add the item first.
+
+You CAN have 0 as a quantity for an item used, 
+we like to call these items 'catalysts'.
 ```
+
+<div style="page-break-after: always;"></div>
 
 ### Adding quantity to an item: `addq`
 (Implemented by: Jing Lin)
@@ -225,6 +247,8 @@ TIPS:
 Total quantity cannot exceed 2,147,483,647.
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### Adding tags to an item: `addt`
 (Implemented by: Stephen)
 
@@ -255,6 +279,8 @@ Tags must be alphanumerical and cannot contain spaces.
 Your input must contain at least one tag that the item does not currently have.
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all items: `listi`
 (Implemented by: Kheng Hun)
 
@@ -271,6 +297,8 @@ descriptions and tags.
 Lists all items that are in your inventory, and their quantities, descriptions and tags.
 
 <img height="400" src="images/UG images/UG listi.png"/>
+
+<div style="page-break-after: always;"></div>
 
 ### Listing all recipes: `listr`
 (Implemented by: Kheng Hun)
@@ -289,6 +317,8 @@ will also see the recipe description.
 Lists all recipes, products, descriptions and their ingredients.
 
 <img height="400" src="images/UG images/UG listr.png"/>
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting an item: `deli`
 (Implemented by: Stephen)
@@ -319,6 +349,8 @@ TIPS:
 If you accidentally delete an item, you can always undo it!
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a Recipe: `delr`
 (Implemented by: Kheng Hun)
 
@@ -346,9 +378,13 @@ Deletes the <u>first recipe</u> of the item <u>Bobs 28th finger</u> from your in
 
 ```
 TIPS:
-To find the index of the recipe you wish to delete, use the view command on the product item.
+To find the index of the recipe you wish to delete, 
+use the view command on the product item.
+
 The input recipe index should not exceed 2,147,483,647.
 ```
+
+<div style="page-break-after: always;"></div>
 
 ### Finding an item: `find`
 (Implemented by: Rahul)
@@ -382,6 +418,8 @@ TIPS:
 You can use `find .` to find all items in your inventory.
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### Finding items by tags: `findt`
 (Implemented by: Stephen)
 
@@ -413,6 +451,8 @@ TIPS:
 Search parameters must be alphanumerical and cannot contain spaces.
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### View item `view`
 (Implemented by: Zhengdao)
 
@@ -437,8 +477,11 @@ View all details of the item with the name <u>Bobs bitten fingernail clipping</u
 
 ```
 TIPS:
-This command will only show an item that matches the search parameter exactly. (case-sensitive)
+This command will only show an item that matches 
+the search parameter exactly. (case-sensitive)
 ```
+
+<div style="page-break-after: always;"></div>
 
 ### Edit an item: `edit`
 (Implemented by: Kheng Hun)
@@ -470,6 +513,8 @@ Edits the item named <u>Iron Ore</u> to have quantity of <u>20</u>.
 
 Edits the item named <u>Iron Ore</u> to have quantity of <u>20</u> and description of <u>mined</u>.
 
+<div style="page-break-after: always;"></div>
+
 ### Craft an item: `craft`
 (Implemented by: Kheng Hun)
 
@@ -500,8 +545,11 @@ added to your inventory.
 
 ```
 TIPS:
-This command may craft more of the desired item than your input, if the recipe used creates 2 or more of the product.
+This command may craft more of the desired item than your input, 
+if the recipe used creates 2 or more of the product.
 ```
+
+<div style="page-break-after: always;"></div>
 
 ### Check if crafting an item is possible: `check`
 (Implemented by: Kheng Hun)
@@ -528,6 +576,8 @@ Checks if it is possible for you to craft a quantity of the specified item using
 Checks and displays if any recipe in the recipe list can craft 5 (or more) <u>Iron Swords</u>
 based on your current inventory.
 
+<div style="page-break-after: always;"></div>
+
 ### Clear all items: `cleari`
 (Implemented by: Zhengdao)
 
@@ -548,6 +598,8 @@ Deletes all items and recipes. Your inventory will be empty after executing this
 
 <img height="400" src="images/UG images/UG cleari.png"/>
 
+<div style="page-break-after: always;"></div>
+
 ### Clear all recipes: `clearr`
 (Implemented by: Zhengdao)
 
@@ -567,6 +619,8 @@ Deletes all recipes.
     - `listr` will indicate "You have no recipes in your inventory now."
 
 <img height="400" src="images/UG images/UG clearr.png"/>
+
+<div style="page-break-after: always;"></div>
 
 ### Undo a command: `undo`
 (Implemented by: Jing Lin)
@@ -591,6 +645,8 @@ considers commands that adds, removes, or changes an item or recipe.
 
 <img height="400" src="images/UG images/UG undo.png"/>
 
+<div style="page-break-after: always;"></div>
+
 ### Redo a command: `redo`
 (Implemented by: Jing Lin)
 
@@ -613,6 +669,8 @@ Reverses the effect of the previous undo command.
 
 <img height="400" src="images/UG images/UG redo.png"/>
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing help: `help`
 This command opens a dialog box with a link to this user guide. If you're here, you don't need this command! :)
 
@@ -627,6 +685,8 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Exiting the program: `exit`
 This command allows you to close the application.
 
@@ -638,6 +698,8 @@ This command allows you to close the application.
 
 **DESCRIPTION:**
 Closes the application. 
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 

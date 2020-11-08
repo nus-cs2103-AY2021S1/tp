@@ -34,14 +34,14 @@ public class EditItemCommand extends Command {
             + "given the item name. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
-            + "[" + PREFIX_ORIGINAL_ITEM_NAME + "NAME] "
+            + PREFIX_ORIGINAL_ITEM_NAME + "NAME "
             + "[" + PREFIX_ITEM_NAME + "NAME] "
             + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
             + "[" + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_ITEM_TAG + "TAG/TAGS] "
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "[" + PREFIX_ITEM_TAG + "TAG/TAGS] \n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_ORIGINAL_ITEM_NAME + "Apple "
             + PREFIX_ITEM_QUANTITY + "20 "
-            + PREFIX_ITEM_TAG + "tag1, tag2,tag3 , tag4";
+            + PREFIX_ITEM_TAG + "tag1, tag2, tag3, tag4";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
