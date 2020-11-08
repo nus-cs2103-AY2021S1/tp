@@ -96,7 +96,7 @@ Action | Format
 **Craft Item** | `craft` **-n \<item name\>** **-q \<quantity\>** \[-i \<index\>\]
 **Check craft** | `check` **-n \<item name\>** **-q \<quantity\>** 
 **Delete Item** | `deli` **-n \<item name\>**
-**Delete Recipe** | `delr` **-n \<item name\> -i index**
+**Delete Recipe** | `delr` **-n \<item name\> -i \<index\>**
 **Edit Item** | `edit` **-o \<item name\>** \[-n \<name\>\] \[-q \<qty\>\] \[-d \<desc\>\] \[-t \<tag, …\>\]
 **Find Item by Name** | `find` **\<string, ...\>**
 **Find Item by Tag** | `findt` **\<string, ...\>**
@@ -110,7 +110,7 @@ Action | Format
 **Clear Recipes** | `clearr`
 **Undo** | `undo`
 **Redo** | `redo`
-**Help** | `help` \[command\]
+**Help** | `help` 
 **Exit** | `exit`
 
 <div style="page-break-after: always;"></div>
@@ -367,7 +367,7 @@ recipe and the index of the recipe in the product item.
 - `delr` - deletes a recipe
 
 **SYNOPSIS:**
-- `delr` **-n \<item name\>** **-i index**
+- `delr` **-n \<item name\>** **-i \<index\>**
 
 **DESCRIPTION:**
 - **n:** name of the product item of the recipe to be deleted
