@@ -79,11 +79,16 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel
+`, `IngredientListPanel`, `SalesRecordListPanel`, `CalendarView`, `StatusBarFooter` etc. All these, including the
+ `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of the
+[`MainWindow`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -123,6 +128,17 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+
+Given below is the class diagram showing details of the person model:
+
+The `Person` sub-component,
+* stores the address book data.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+![Structure of the Person Model Component](images/PersonModelClassDiagram.png)
+
+Figure x. Class diagram showing the structure of `Person` sub-component
+
 Given below is the class diagram showing the details of the `SalesRecordEntry` model:
 
 ![Structure of the SalesRecordEntry sub-component](images/SalesRecordEntryModelClassDiagram.png)
@@ -141,8 +157,13 @@ Given below is the class diagram showing details of the ingredient model:
  PlantUML, where there cannot be two textboxes at the arrow head, the role has been placed in the middle of the arrow.
 </div>
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP
+) model is given below. It has a `Tag` list in the `tCheck` application, which `Person` references. This allows
+ `tCheck` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
+Figure x. Class diagram showing the alternative structure of `Person` sub-component
 
 </div>
 
@@ -151,12 +172,15 @@ Given below is the class diagram showing details of the ingredient model:
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+Figure x. Class diagram showing the `Storage` structure
+
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 * can save the ingredient book data in json format and read it back.
+* can save the sales book data in json format and read it back.
 
 ### Common classes
 
@@ -459,27 +483,28 @@ The following activity diagram summarises what happens when a user executes the 
     * Pros: Clear implementation. Do not lead to creation of new ingredient objects.
     * Cons: Editing the ingredient's levels of the ingredients may be more error-prone.
 
-### \[Completed\] Archive person's contact information feature
+### \[Completed\] Archive employee(s) feature
 
-When employees are no longer working in the store, their contact information would usually be deleted, or kept in
+When employees are no longer working in the store, their information would usually be deleted, or kept in
 the archive. tCheck simulates this archive, storing these contact information in the app so that the user can still
 retrieve them back when needed. For example, when an employee is rehired by the manager, the manager(user) can move
 this specific employee's contact information back to the currently active contact information list from the
 archived record.
 
-The completed archive person's contact information feature consists of four commands with slightly different
+The archiving employee feature consists of four commands with slightly different
 formats, which complement one another, to provide a set of useful commands for enhanced user experiences. The four
 commands are :
 
-* `c-archive INDEX` — Archives the person identified by the index number used in the displayed person list.
-* `c-unarchive INDEX` — Unarchives the person identified by the index number used in the displayed person list.
-* `c-archive-all` — Archives all persons in the displayed person list.
-* `c-archive-list` — Shows a list of all archived persons' contact details.
+* `c-archive INDEX` — Archives the employee identified by the index number used in _Employee Directory_ pane.
+* `c-unarchive INDEX` —  Unarchives the employee identified by the index number used in _Employee Directory_ pane.
+* `c-archive-all` — Archives all employees in _Employee Directory_ pane.
+* `c-archive-list` — Shows a list of all archived employees.
 
-#### Completed Implementation
+#### Implementation
 
-The archiving of persons is facilitated by the `ArchiveStatus` attribute of a person. The following methods in the
- `Person` class and the `Model` interface facilitate this feature:
+In tCheck, each employee is modeled as `Person` object. The archiving employee feature is facilitated by the
+ `ArchiveStatus` attribute of a `Person`. The following methods in the `Person` class and the `Model`interface
+  facilitate this feature:
 
 * `Person#archive()` — A method that sets the person's `ArchiveStatus` to `true`. It's equivalent to archive the person.
 * `Person#unarchive()` — A method that sets the person's `ArchiveStatus` to `false`. It's equivalent to unarchive the
@@ -491,35 +516,43 @@ The archiving of persons is facilitated by the `ArchiveStatus` attribute of a pe
 
 ![Structure of the Archive/Unarchive Component](images/ArchiveClassDiagram.png)
 
-*Figure Archive-1. Overview class diagram representation of the person archiving/unarchiving implementation*
+*Figure Archive-1. Overview class diagram representation of archiving/unarchiving implementation*
 
 Given below shows how the `c-archive`, `c-unarchive`, and `c-archive-all` mechanism works in steps based on different scenarios. Two activity diagrams are provided before each detailed explanation to describe how tCheck handles an archiving/unarchiving commands. Three sequence diagrams are attached after the description
 
-##### 1. Archiving a person
+##### 1. Archive an employee
 
 *Figure Archive-2. Activity diagram representation of the general flow of archiving of a peron in tCheck*
 
-User can archive a specific person by entering the `c-archive INDEX` command. The following steps describe how this behavior is implemented:
+User can archive a specific employee (modeled as a `Person` in the code) by entering the `c-archive INDEX` command. The
+ following steps describe how this behavior is implemented:
 
 Step 1: The user archives a `Person` in the current observable `PersonList` with command `c-archive 1`. `ArchiveCommand` is created with the parsed arguments, and executed.
 
-Step 2: The `Person` will then be checked if the `ArchiveStatus` is `true`. An error message will be displayed if the user tries to archive a person from the archived person list.
-
+Step 2: The `Person` will then be checked if the `ArchiveStatus` is `true`. An error message will be displayed if the
+ user tries to archive a person from the archived person list.
+ 
 Step 3: The `Person` will have a new `ArchivedStatus` value, which will be set to `true` by using the `Person#archive()` method.
 
 Step 4: The current `FilteredList` will be updated to only show active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
 ![Structure of the Storage Component](images/ArchiveSequenceDiagram.png)
 
-*Figure Archive-3. Sequence diagram representation of archiving a person*
+*Figure Archive-2. Sequence diagram representation of archiving an employee*
 
-##### 2. Unarchiving a person
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommand`
+ should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+
+##### 2. Unarchive an employee
 
 ![Structure of the Storage Component](images/UnarchiveActivityDiagram.png)
 
-*Figure Archive-4. Activity diagram representation of the general flow of unarchiving of a peron in tCheck*
+*Figure Archive-3. Activity diagram representation of the general flow of unarchiving an employee in tCheck*
 
-User can unarchive an already-archived person's contact information by entering the `c-unarchive INDEX` command. The following steps describe how this behavior is implemented:
+User can unarchive an already-archived employee(modeled as `Person` in the code) by entering the `c-unarchive INDEX
+` command. The following steps describe how this behavior is implemented:
 
 Step 1: The user unarchives a `Person` in the current observable `PersonList` with command `c-unarchive 1`. `UnarchiveCommand` is created with the parsed arguments, and executed.
 
@@ -531,10 +564,15 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 ![Structure of the Storage Component](images/UnarchiveSequenceDiagram.png)
 
-*Figure Archive-5. Sequence diagram representation of unarchiving a person*
+*Figure Archive-4. Sequence diagram representation of unarchiving an employee*
 
-##### 3. Archiving all persons
-User can archive all persons' contact information by entering the `c-archive-all` command. The following steps describe how this behavior is implemented:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnarchiveCommand` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+##### 3. Archive all employees
+User can archive all employees(employee is modeled as `Person` in the code) by entering the `c-archive-all` command. The
+ following steps describe how this behavior is implemented:
 
 Step 1: The user archives all `Person`s in the current observable `PersonList` with command `c-archive-all`. `ArchiveAllCommand` is created with the parsed arguments, and executed.
 
@@ -544,11 +582,18 @@ Step 3: The current `FilteredList` will be updated to only show the empty active
 
 ![Structure of the Storage Component](images/ArchiveAllSequenceDiagram.png)
 
-*Figure Archive-6. Sequence diagram representation of archiving all persons*
+*Figure Archive-5. Sequence diagram representation of archiving all employees*
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveAllCommand` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 
 #### Design consideration:
 
-##### Aspect: The implementation to store archived persons
+##### Aspect: The implementation to store archived employees
+
+Notes: Employee is modeled as `Person` in the code.
 
 * **Alternative 1 (current choice):** `Person` contains an `ArchiveStatus` field.
 
@@ -556,7 +601,7 @@ Step 3: The current `FilteredList` will be updated to only show the empty active
     * Cons: If the `PersonList` contains a huge number of `Person`s, the processing speech will be slow for certain
       command (eg: c-archive-list), because it needs to go into each `Person` to check if the `ArchiveStatus` is `true`.
 
-* **Alternative 2:** Storing archived persons in a separate json file.
+* **Alternative 2:** Storing archived employees in a separate json file.
 
   * Pros:  Execute `c-archive-list` very fast, even for huge amount of data, because it can just display all the data
    inside this file.
@@ -713,38 +758,49 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 (For all use cases below, the **System** is the `tCheck` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use Case: UC01 - Archive a contact detail of an employee**
+**Use Case: UC01 - Archive an employee**
 
 **MSS**
 
-1. User chooses to archive one employee’s contact details.
-2. tCheck requests for details of the employee to archive.
-3. User enters the archive details.
-4. tCheck will move this corresponding contact detail into the archive and displays a success message.
+1. User archives an employee from employee directory. 
+2. tCheck will move this corresponding employee into the archive and displays a success message.
 
      Use case ends.
 
-
 **Extensions**
 
-* 3a. tCheck detects an incorrect input format or is unable to find the entered data.
+* 2a. tCheck detects an incorrect input format.
+        
+        * 2a1. tCheck requests the user to re-enter the data in the correct format.
+        
+    	* 2a2. User enters new data.
+    	
+    	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
+    	
+    	Use case resumes from step 2.
 
-        * 3a1. tCheck requests for the correct data.
+* 2b. tCheck detects that the specified employee does not exist.
+        
+        * 2b1. tCheck requests the user to re-enter a valid index that corresponds to an existing employee.
+        
+        * 2b2. User enters new index.
+        
+        Steps 2b1-2b2 are repeated until the index entered is valid.
+        
+        Use case resumes from step 2.
 
-    	* 3a2. User enters new data.
+* 2c. tCheck detects that the specified employee has already been archived.
+        
+        * 2c1. tCheck returns the error message to the user.
+        
+        Use case ends.
 
-    	Steps 3a1-3a2 are repeated until the data entered are correct.
-
-    	Use case resumes from step 4.
-
-
-**Use Case: UC02 - Archive all contact details**
+**Use Case: UC02 - Archive all employees**
 
 **MSS**
 
-1. User chooses to archive all employee’s contact details.
-2. User enters the request to archive all employees’ contact details.
-3. tCheck will move all contact details into the archive and displays a success message.
+1. User archives all employees. 
+2. tCheck will move all contact details into the archive and display a success message.
 
      Use case ends.
 
@@ -753,15 +809,15 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 * 2a. tCheck detects an incorrect input format.
 
-        * 2a1. tCheck requests for the input to be in the correct format.
-
-      	* 2a2. User enters new data.
-
-      	Steps 2a1-2a2 are repeated until the data entered are correct.
-
-      	Use case resumes from step 3.
-
-* 2b. tCheck detects an empty contact list.
+        * 2a1. tCheck requests the user to re-enter in the correct format.
+        
+    	* 2a2. User enters new data.
+    	
+    	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
+    	
+    	Use case resumes from step 2.
+      	
+* 2b. tCheck detects an empty Employee Directory.
 
    	    * 2b1. tCheck shows a warning message.
 
@@ -832,17 +888,17 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  Should be able to respond within 1 second for each operation.
-4.  Should be able to function fully without connecting to internet.
+2.  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
+3.  Should be able to respond within 2 seconds for each operation.
+4.  Should be able to function fully without access to internet.
 5.  Should be for a single user.
-6.  Should not handle the printing of the report (i.e. sales report).
-7.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+6.  Data files should remain unchanged when transferring from one computer to another.
+7.  Should not attempt to make any change in all data files.
+8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
  be able to accomplish most of the tasks faster using commands than using the mouse.
-8.  A user without prior experience on inventory management system should be able to accomplish most of the tasks
- using commands.
+9.  A user without prior experience in inventory management system should be able to accomplish most of the tasks
+ using commands. 
 
-*{More to be added}*
 
 ### Glossary
 
@@ -956,6 +1012,24 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect set commands to try: `i-set i/Milk m/1.2`, `i-set i/Milk m/1000`, `i-set i/Milk`<br>
       Expected: The amount of milk is unchanged. Corresponding error messages are shown in _Result Display_.
+
+### F.1 Archiving an employee
+
+1. Archiving an employee and hides his/her info from the active/unarchived employee directory.
+
+   1. Prerequisites: List all active(unarchived) employees using the `c-active-list` command. Multiple
+    unarchived employees in the employee directory. The following test cases assumes the commands are run on
+    unmodified sample data.
+
+   1. Test case: `c-archive 1`<br>
+      Expected: First employee is archived from the list. Details of the archived contact shown in the status message.
+
+   1. Test case: `c-archive 0`<br>
+      Expected: No employee is archived. Error details shown in the status message.
+
+   1. Other incorrect archive commands to try: `archive`, `c-archive x`, `...` (where x is larger than the list size
+   )<br>
+      Expected: No employee is archived. Error details shown in the status message.
 
 ### Saving data
 
