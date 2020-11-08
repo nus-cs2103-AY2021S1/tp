@@ -678,6 +678,8 @@ Examples:
  apple.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.2.5 Getting an ingredient to edit: `editF` <a id="get-edit-ingredient"></a>
 Contributed by: Olivia
 
@@ -697,6 +699,8 @@ Format: `editF INDEX`
 Examples:
 * `editF 1` followed by `Enter` will insert the information of the 1st ingredient in the displayed Ingredient List into the command box.
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.2.6 Searching for an Ingredient: `searchF` <a id="search-ingredient"></a>
 Contributed by: Caitlin
@@ -738,6 +742,8 @@ Contributed by: Tian Yong
 
 Format: `clearF`
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ## 5.3 Consumption-related Commands <a id="53-consumption-related-commands"></a>
 
