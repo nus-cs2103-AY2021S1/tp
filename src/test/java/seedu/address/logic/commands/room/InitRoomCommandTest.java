@@ -13,6 +13,7 @@ import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TypicalRooms;
 
+//@@author itssodium
 public class InitRoomCommandTest {
 
     @Test
