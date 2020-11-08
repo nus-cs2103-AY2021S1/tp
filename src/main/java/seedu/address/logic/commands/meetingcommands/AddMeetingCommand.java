@@ -25,6 +25,10 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
 
+    public static final String MESSAGE_PROPERTY_ID_INVALID = "The property Id does not exist in the property list";
+
+    public static final String MESSAGE_BIDDER_ID_INVALID = "The bidder Id does not exist in the bidder list";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the meeting book. "
             + "\n\nParameters: "
             + "\n" + PREFIX_MEETING_TYPE + "TYPE"
