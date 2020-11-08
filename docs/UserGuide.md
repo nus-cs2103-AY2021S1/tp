@@ -48,6 +48,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 4. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. Note how the app contains some sample data. <br>
     ![Quick Start UI](images/QuickStartUi.png)
     
+<div style="page-break-after: always;"></div>
+    
 5. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
@@ -63,7 +65,6 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
    * **`exit`** : Exits the app.
   
-
 6. Refer to the [Features](#features) below for details of each command.
 
 <div style="page-break-after: always;"></div>
@@ -77,6 +78,7 @@ The figures below show the annotated version of the graphic user interface. This
 ![filedirectory](images/ug/label2.png)
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## Notes about the command format
@@ -177,6 +179,8 @@ Examples:
 * `add q/What does OOP stand for? a/Object Oriented Programming d/images/diagram.png`
 * `add q/What does OOP stand for? a/Object Oriented Programming c/UML n/Important question! d/images/diagram.png`
 
+<div style="page-break-after: always;"></div>
+
 **Steps for adding a flashcard with diagram**:
 
 **Step 1**: Locate the relative file path of the image file. In this example, our file path is `images/classDiagramExample1.png` 
@@ -190,6 +194,8 @@ Root folder containing the jar file        |  Image directory
 **Step 2**: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png` and press Enter. Remember to include the file extension in `DIAGRAM`
 
 ![filedirectory](images/ug/ug_add_step2.png)
+
+<div style="page-break-after: always;"></div>
 
 **Step 3**: The flashcard is added to the list.
 
@@ -389,9 +395,13 @@ The review and success frequency of a flashcard is <b>not affected</b> by review
 
 ![filedirectory](images/ug/ug_review_step2.PNG)
 
+<div style="page-break-after: always;"></div>
+
 **Step 3**: In this example, we will demonstrate the behaviour of the `↓ key`. Upon pressing the `↓ key`, the answer of the flashcard is shown.
 
 ![filedirectory](images/ug/ug_review_step3.PNG)
+
+<div style="page-break-after: always;"></div>
 
 ### Quiz flashcards: `quiz`
 
@@ -415,6 +425,8 @@ The quiz mode works in conjunction with the [statistics](#view-the-statistics-of
 <div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses <code>y</code> or <code>n</code>, the review and success frequency of the flashcard is updated accordingly even if the user quits the quiz prematurely.
 </div>
 <br>
+
+<div style="page-break-after: always;"></div>
 
 **Steps for entering quiz mode**:
 
