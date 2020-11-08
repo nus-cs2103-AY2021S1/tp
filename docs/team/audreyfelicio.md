@@ -79,13 +79,13 @@ Given below are my contributions to the project.
       * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AudreyFelicio/ped/issues/1), [2](https://github.com/AudreyFelicio/ped/issues/2), [3](https://github.com/AudreyFelicio/ped/issues/3), [4](https://github.com/AudreyFelicio/ped/issues/4), [5](https://github.com/AudreyFelicio/ped/issues/5), [6](https://github.com/AudreyFelicio/ped/issues/6), [7](https://github.com/AudreyFelicio/ped/issues/7), [8](https://github.com/AudreyFelicio/ped/issues/8), [9](https://github.com/AudreyFelicio/ped/issues/9), [10](https://github.com/AudreyFelicio/ped/issues/10))
 
 * **Testing**:
-  * Created unit tests for `update` feature (update command parser, update command).
-  * Created integration tests for `update` feature (update command).
-  * Created unit tests for `suggestion` feature (suggestion command parser, suggestion util, suggestion command).
-  * Created integration tests for `suggestion` feature (suggestion command).
-  * Created unit tests for `sort` feature (sort command parser, sort util, sort command).
-  * Created integration tests for `sort` feature (sort command).
-  * Improved coverage by creating tests for `QuantityAdder` and `ModelManager`.
+  * Created unit tests for `update` feature (update command parser, update command). (Pull request [\#112](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/112))
+  * Created integration tests for `update` feature (update command). (Pull request [\#112](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/112))
+  * Created unit tests for `suggestion` feature (suggestion command parser, suggestion util, suggestion command). (Pull requests [\#190](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/190), [\#192](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/192))
+  * Created integration tests for `suggestion` feature (suggestion command). (Pull request [\#192](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/192))
+  * Created unit tests for `sort` feature (sort command parser, sort util, sort command). (Pull requests [\#188](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/188), [\#189](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/189))
+  * Created integration tests for `sort` feature (sort command). (Pull request [\#189](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/189))
+  * Improved coverage by creating tests for `QuantityAdder` and `ModelManager`. (Pull request [\#264](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/264))
   * Reviewed other team members' tests and ensure the tests are adequate and working.
   * Help other team members debug testing when the tests failed and they don't know what causes the tests to fail.
 
