@@ -141,7 +141,6 @@ title: Developer Guide
     <br><br>
 8. [Appendix E: Effort](#8-effort)
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 # 1. **Overview** <a id="1-overview"></a>
@@ -170,7 +169,6 @@ This developer guide provides in-depth documentation on how Wishful Shrinking is
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).<br><br>
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 # 2. **Design** <a id="2-design"></a>
@@ -200,6 +198,8 @@ Each of the four components,
 * defines its API in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
  API `interface` mentioned in the previous point. <br><br>
+
+<div style="page-break-after: always;"></div>
 
 The *Sequence Diagram* below shows how the **architecture components interact with each other** for the scenario
  where the user issues the command `deleteR 1`.
@@ -282,7 +282,6 @@ The `Storage` component:
 
 Classes used by multiple components are in the `seedu.address.commons` package. <br><br>
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 # 3. **Implementation** <a id="3-implementation"></a>
@@ -416,6 +415,8 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After successfully parsing the user's input, the `EatRecipeCommand#method` method is called.
 
 1. After successfully adding the recipe into the consumption list, a `CommandResult` object is instantiated and returned to `LogicManager`. <br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2.2 Design Consideration: <a id="322-design-consideration"></a>
 #### Aspect: What fields to extract from the eaten recipes to save in the Consumption List <a id="3221-aspect"></a>
@@ -926,7 +927,6 @@ Given below is an example usage scenario and how the mechanism behaves:
 * Workflow must be consistent with other commands. <br><br>
 
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 # 4. **Documentation, Logging, Testing, Configuration, Dev-ops** <a id="4-documentation-logging-testing-configuration-dev-ops"></a>
@@ -937,7 +937,6 @@ Given below is an example usage scenario and how the mechanism behaves:
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md) <br><br>
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 # 5. **Appendix A: *Requirements*** <a id="5-appendix-requirements"></a>
@@ -995,6 +994,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | **       | Expert user       | like to browse recipe                                         | filter the recipe base by my tags                                      | browse the recipe easily                                                              |
 | *        | Expert user       | likes convenience                                             | be able to export the recipes in the app to another device             | refer to the data from another device and share it with others                        |
 | *        | Expert user       | is a developer                                                | customize the app to my own preferences                                | contribute and extend the app further                                                 |
+
+<div style="page-break-after: always;"></div>
 
 ## 5.3 Use Cases <a id="53-use-cases"></a>
 For all use cases below, the **System** is the `Wishful Shrinking` and the **Actor** is the `User`, unless specified otherwise.
@@ -1415,7 +1416,6 @@ Term | Explanation
 **Consumption** | A tracker which calculates and displays your calorie intake based on the recipes you have consumed as well as a list of recipes consumed.<br>
 **Mainstream OS** | Windows, Linux, Unix, OS-X.
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 # 6. **Appendix B: *Instructions for Manual Testing*** <a id="6-appendix-instructions-for-manual-testing"></a>
@@ -1458,6 +1458,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `addR n/salad i/tomato c/100` <br>
        Expected: An error message will be shown, as the non-optional field instruction is omitted. The message will show the correct input format of the `addR` command, and your command in the command box will turn red. <br><br>
        
+<div style="page-break-after: always;"></div>
 
 ## 6.3 Adding an ingredient <a id="63-adding-an-ingredient"></a>
 
@@ -1765,6 +1766,8 @@ testers are expected to do more *exploratory* testing.
 
 ## 7.2 Ingredient <a id="72-ingredient"></a>
 ![Ingredient in Model Component](images/ModelClass_Ingredient.png)
+
+<div style="page-break-after: always;"></div>
 
 ## 7.3 Consumption <a id="73-consumption"></a>
 ![Consumption in Model Component](images/ModelClass_Consumption.png)
