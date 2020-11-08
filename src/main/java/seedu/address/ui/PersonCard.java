@@ -3,21 +3,11 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import seedu.address.model.person.Person;
-
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -25,7 +15,6 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
-    private static final double BORDER_SIZE = 5;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -104,58 +93,46 @@ public class PersonCard extends UiPart<Region> {
         setPriorityShape(person);
     }
 
+    /**
+     * Sets the color and border color for the priority indicator based on the Person class.
+     * It uses components from the PriorityIndicatorComponent Class.
+     */
     private void setPriorityShape(Person person) {
         switch (person.getPriority().value) {
         case "low":
             if (!person.getIsArchive()) {
-                priorityShape.setBorder(new Border(new BorderStroke(ColorPicker.TURQUOISE_BORDER,
-                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(BORDER_SIZE))));
-                priorityShape.setBackground(new Background(new BackgroundFill(ColorPicker.TURQUOISE, CornerRadii.EMPTY,
-                        Insets.EMPTY)));
+                priorityShape.setBorder(PriorityIndicatorComponent.UNARCHIVED_LOW_PRIORITY_BORDER);
+                priorityShape.setBackground(PriorityIndicatorComponent.UNARCHIVED_LOW_PRIORITY_BACKGROUND);
             } else {
-                priorityShape.setBorder(new Border(new BorderStroke(ColorPicker.TURQUOISE_BORDER_DARK,
-                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(BORDER_SIZE))));
-                priorityShape.setBackground(new Background(new BackgroundFill(ColorPicker.TURQUOISE_DARK,
-                        CornerRadii.EMPTY, Insets.EMPTY)));
+                priorityShape.setBorder(PriorityIndicatorComponent.ARCHIVED_LOW_PRIORITY_BORDER);
+                priorityShape.setBackground(PriorityIndicatorComponent.ARCHIVED_LOW_PRIORITY_BACKGROUND);
             }
             break;
         case "medium":
             if (!person.getIsArchive()) {
-                priorityShape.setBorder(new Border(new BorderStroke(ColorPicker.ORANGE_BORDER,
-                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(BORDER_SIZE))));
-                priorityShape.setBackground(new Background(new BackgroundFill(ColorPicker.ORANGE, CornerRadii.EMPTY,
-                        Insets.EMPTY)));
+                priorityShape.setBorder(PriorityIndicatorComponent.UNARCHIVED_MEDIUM_PRIORITY_BORDER);
+                priorityShape.setBackground(PriorityIndicatorComponent.UNARCHIVED_MEDIUM_PRIORITY_BACKGROUND);
             } else {
-                priorityShape.setBorder(new Border(new BorderStroke(ColorPicker.ORANGE_BORDER_DARK,
-                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(BORDER_SIZE))));
-                priorityShape.setBackground(new Background(new BackgroundFill(ColorPicker.ORANGE_DARK,
-                        CornerRadii.EMPTY, Insets.EMPTY)));
+                priorityShape.setBorder(PriorityIndicatorComponent.ARCHIVED_MEDIUM_PRIORITY_BORDER);
+                priorityShape.setBackground(PriorityIndicatorComponent.ARCHIVED_MEDIUM_PRIORITY_BACKGROUND);
             }
             break;
         case "high":
             if (!person.getIsArchive()) {
-                priorityShape.setBorder(new Border(new BorderStroke(ColorPicker.RED_BORDER,
-                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(BORDER_SIZE))));
-                priorityShape.setBackground(new Background(new BackgroundFill(ColorPicker.RED, CornerRadii.EMPTY,
-                        Insets.EMPTY)));
+                priorityShape.setBorder(PriorityIndicatorComponent.UNARCHIVED_HIGH_PRIORITY_BORDER);
+                priorityShape.setBackground(PriorityIndicatorComponent.UNARCHIVED_HIGH_PRIORITY_BACKGROUND);
             } else {
-                priorityShape.setBorder(new Border(new BorderStroke(ColorPicker.RED_BORDER_DARK,
-                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(BORDER_SIZE))));
-                priorityShape.setBackground(new Background(new BackgroundFill(ColorPicker.RED_DARK,
-                        CornerRadii.EMPTY, Insets.EMPTY)));
+                priorityShape.setBorder(PriorityIndicatorComponent.ARCHIVED_HIGH_PRIORITY_BORDER);
+                priorityShape.setBackground(PriorityIndicatorComponent.ARCHIVED_HIGH_PRIORITY_BACKGROUND);
             }
             break;
         case "undefined":
             if (!person.getIsArchive()) {
-                priorityShape.setBorder(new Border(new BorderStroke(ColorPicker.WHITE_BORDER,
-                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(BORDER_SIZE))));
-                priorityShape.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY,
-                        Insets.EMPTY)));
+                priorityShape.setBorder(PriorityIndicatorComponent.UNARCHIVED_UNDEFINED_PRIORITY_BORDER);
+                priorityShape.setBackground(PriorityIndicatorComponent.UNARCHIVED_UNDEFINED_PRIORITY_BACKGROUND);
             } else {
-                priorityShape.setBorder(new Border(new BorderStroke(ColorPicker.WHITE_BORDER_DARK,
-                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(BORDER_SIZE))));
-                priorityShape.setBackground(new Background(new BackgroundFill(ColorPicker.WHITE_DARK,
-                        CornerRadii.EMPTY, Insets.EMPTY)));
+                priorityShape.setBorder(PriorityIndicatorComponent.ARCHIVED_UNDEFINED_PRIORITY_BORDER);
+                priorityShape.setBackground(PriorityIndicatorComponent.ARCHIVED_UNDEFINED_PRIORITY_BACKGROUND);
             }
             break;
         default:

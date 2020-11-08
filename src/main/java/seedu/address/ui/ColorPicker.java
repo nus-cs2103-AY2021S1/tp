@@ -10,6 +10,7 @@ public class ColorPicker {
     public static final Color TURQUOISE = Color.rgb(0, 223, 187);
     public static final Color ORANGE = Color.rgb(252, 191, 98);
     public static final Color RED = Color.rgb(243, 118, 176);
+    public static final Color WHITE = Color.rgb(255, 255, 255);
     public static final Color TURQUOISE_BORDER = Color.rgb(32, 182, 157);
     public static final Color ORANGE_BORDER = Color.rgb(191, 141, 85);
     public static final Color RED_BORDER = Color.rgb(195, 111, 150);
@@ -23,5 +24,6 @@ public class ColorPicker {
     public static final Color ORANGE_BORDER_DARK = Color.rgb(116, 92, 55);
     public static final Color RED_BORDER_DARK = Color.rgb(128, 73, 99);
     public static final Color WHITE_BORDER_DARK = Color.rgb(140, 142, 142);
+
 
 }
