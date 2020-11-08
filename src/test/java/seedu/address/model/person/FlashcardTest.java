@@ -2,12 +2,13 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEFINITION_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEFINITION_HEAPING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HEAPING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FINAL;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalFlashcards.ALICE;
-import static seedu.address.testutil.TypicalFlashcards.BOB;
+import static seedu.address.testutil.TypicalFlashcards.BUBBLE_SORT;
+import static seedu.address.testutil.TypicalFlashcards.HEAPING;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,65 +23,65 @@ public class FlashcardTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameFlashcard() {
         // same object -> returns true
-        assertTrue(ALICE.isSameFlashcard(ALICE));
+        assertTrue(BUBBLE_SORT.isSameFlashcard(BUBBLE_SORT));
 
         // null -> returns false
-        assertFalse(ALICE.isSameFlashcard(null));
+        assertFalse(BUBBLE_SORT.isSameFlashcard(null));
 
         // different address -> returns true
-        Flashcard editedAlice = new FlashcardBuilder(ALICE).withDefinition(VALID_DEFINITION_BOB).build();
-        assertTrue(editedAlice.isSameFlashcard(ALICE));
+        Flashcard editedBubbleSort = new FlashcardBuilder(BUBBLE_SORT).withDefinition(VALID_DEFINITION_HEAPING).build();
+        assertTrue(editedBubbleSort.isSameFlashcard(BUBBLE_SORT));
 
         // different name -> returns false
-        editedAlice = new FlashcardBuilder(ALICE).withTitle(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameFlashcard(editedAlice));
-
-        // same name, same email, different attributes -> returns true
-        editedAlice = new FlashcardBuilder(ALICE).withDefinition(VALID_DEFINITION_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameFlashcard(editedAlice));
+        editedBubbleSort = new FlashcardBuilder(BUBBLE_SORT).withTitle(VALID_NAME_HEAPING).build();
+        assertFalse(BUBBLE_SORT.isSameFlashcard(editedBubbleSort));
 
         // same name, different attributes -> returns true
-        editedAlice = new FlashcardBuilder(ALICE).withDefinition(VALID_DEFINITION_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameFlashcard(editedAlice));
+        editedBubbleSort = new FlashcardBuilder(BUBBLE_SORT).withDefinition(VALID_DEFINITION_HEAPING)
+                .withTags(VALID_TAG_DIFFICULT).build();
+        assertTrue(BUBBLE_SORT.isSameFlashcard(editedBubbleSort));
 
         // same name, different attributes -> returns true
-        editedAlice = new FlashcardBuilder(ALICE)
-                .withDefinition(VALID_DEFINITION_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameFlashcard(editedAlice));
+        editedBubbleSort = new FlashcardBuilder(BUBBLE_SORT).withDefinition(VALID_DEFINITION_HEAPING)
+                .withTags(VALID_TAG_DIFFICULT).build();
+        assertTrue(BUBBLE_SORT.isSameFlashcard(editedBubbleSort));
+
+        // same name, different attributes -> returns true
+        editedBubbleSort = new FlashcardBuilder(BUBBLE_SORT)
+                .withDefinition(VALID_DEFINITION_HEAPING).withTags(VALID_TAG_DIFFICULT).build();
+        assertTrue(BUBBLE_SORT.isSameFlashcard(editedBubbleSort));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Flashcard aliceCopy = new FlashcardBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Flashcard bubbleSortCopy = new FlashcardBuilder(BUBBLE_SORT).build();
+        assertTrue(BUBBLE_SORT.equals(bubbleSortCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(BUBBLE_SORT.equals(BUBBLE_SORT));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(BUBBLE_SORT.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(BUBBLE_SORT.equals(5));
 
         // different flashcard -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(BUBBLE_SORT.equals(HEAPING));
 
         // different name -> returns false
-        Flashcard editedAlice = new FlashcardBuilder(ALICE).withTitle(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Flashcard editedBubbleSort = new FlashcardBuilder(BUBBLE_SORT).withTitle(VALID_NAME_HEAPING).build();
+        assertFalse(BUBBLE_SORT.equals(editedBubbleSort));
 
         // different address -> returns false
-        editedAlice = new FlashcardBuilder(ALICE).withDefinition(VALID_DEFINITION_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedBubbleSort = new FlashcardBuilder(BUBBLE_SORT).withDefinition(VALID_DEFINITION_HEAPING).build();
+        assertFalse(BUBBLE_SORT.equals(editedBubbleSort));
 
         // different tags -> returns false
-        editedAlice = new FlashcardBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedBubbleSort = new FlashcardBuilder(BUBBLE_SORT).withTags(VALID_TAG_FINAL).build();
+        assertFalse(BUBBLE_SORT.equals(editedBubbleSort));
     }
 }

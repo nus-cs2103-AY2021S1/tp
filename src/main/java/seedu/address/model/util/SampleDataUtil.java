@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.FlashcardBook;
 import seedu.address.model.QuizBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyFlashcardBook;
 import seedu.address.model.ReadOnlyQuizBook;
 import seedu.address.model.person.Definition;
 import seedu.address.model.person.Flashcard;
@@ -57,8 +57,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyFlashcardBook getSampleAddressBook() {
+        FlashcardBook sampleAb = new FlashcardBook();
         for (Flashcard sampleFlashcard : getSamplePersons()) {
             sampleAb.addFlashcard(sampleFlashcard);
         }

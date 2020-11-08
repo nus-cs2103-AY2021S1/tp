@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEFINITION_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BUBBLE_SORT;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_HEAPING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEFINITION_HEAPING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HEAPING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,32 +18,33 @@ public class EditFlashcardDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditFlashcardDescriptor descriptorWithSameValues = new EditFlashcardDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditFlashcardDescriptor descriptorWithSameValues = new EditFlashcardDescriptor(DESC_BUBBLE_SORT);
+        assertTrue(DESC_BUBBLE_SORT.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_BUBBLE_SORT.equals(DESC_BUBBLE_SORT));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_BUBBLE_SORT.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_BUBBLE_SORT.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_BUBBLE_SORT.equals(DESC_HEAPING));
 
         // different name -> returns false
-        EditFlashcardDescriptor editedAmy = new EditFlashcardDescriptorBuilder(DESC_AMY)
-            .withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditFlashcardDescriptor editedAmy = new EditFlashcardDescriptorBuilder(DESC_BUBBLE_SORT)
+            .withName(VALID_NAME_HEAPING).build();
+        assertFalse(DESC_BUBBLE_SORT.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditFlashcardDescriptorBuilder(DESC_AMY).withDefinition(VALID_DEFINITION_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditFlashcardDescriptorBuilder(DESC_BUBBLE_SORT)
+            .withDefinition(VALID_DEFINITION_HEAPING).build();
+        assertFalse(DESC_BUBBLE_SORT.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditFlashcardDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditFlashcardDescriptorBuilder(DESC_BUBBLE_SORT).withTags(VALID_TAG_DIFFICULT).build();
+        assertFalse(DESC_BUBBLE_SORT.equals(editedAmy));
     }
 }

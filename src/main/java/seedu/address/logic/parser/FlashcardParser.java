@@ -65,16 +65,16 @@ public class FlashcardParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case FlipCommand.COMMAND_WORD:
             return new FlipCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            return new ExitCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommandParser().parse(arguments);
 
         case EnterQuizCommand.COMMAND_WORD:
             return new EnterQuizCommandParser().parse(arguments);
@@ -83,10 +83,12 @@ public class FlashcardParser {
             return new SortCommandParser().parse(arguments);
 
         case ShowPerformanceCommand.COMMAND_WORD:
-            return new ShowPerformanceCommand();
+            return new ShowPerformanceCommandParser().parse(arguments);
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND + "\nMaybe you have used commands from Quiz or "
+                + "Performance interfaces, which are not allowed in Flashcard interface.\n"
+                + "Type 'help' to see the list of supported command lines from user guide.");
         }
     }
 

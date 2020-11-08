@@ -65,7 +65,7 @@ DSAce is a **desktop app for creating flashcards and attempting quiz questions f
 
       * **`start attempt`** : Start a proper attempt where answers will be recorded. (Only workable in quiz interface)
 
-      * **`answer`** `1 a/true` : Answer the first quiz question, type the question index and user's answer in this format `[a/ANSWER]`. (Only workable in quiz interface)
+      * **`answer`** `1 a/true` : Answer the first quiz question, type the question index and user's answer in this format `a/ANSWER`. (Only workable in quiz interface)
 
       * **`end attempt`**: End the curret attempt and results can be seemed in performance. (Only workable in quiz interface)
 
@@ -79,7 +79,7 @@ DSAce is a **desktop app for creating flashcards and attempting quiz questions f
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the three features below for details of each command.
 
 7. All sample data and flashcards created by the user will be stored in the `DSAce` folder.
 
@@ -90,7 +90,8 @@ DSAce is a **desktop app for creating flashcards and attempting quiz questions f
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
-* There are three sets of instructions at flashcard, quiz and performance interface. The sets of instructions are not mutual. eg: add n/name d/definition cannot be used in quiz and performance interface. <br>
+* There are three sets of instructions for Flashcard, Quiz and Performance interfaces. The sets of instructions are not mutual.
+ <br> eg: add n/name d/definition cannot be used in quiz and performance interface. <br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user. <br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Sorting`.
@@ -125,6 +126,7 @@ Examples:
 * `add n/Bubble Sort d/runtime: O(n^2) t/sorting t/midterm`
 
 Note:
+- `n/NAME` and `d/DEFINITION` are compulsory user's inputs. `[t/TAG]` and `[p/PRIORITY]` are optional inputs.
 - Priority will default to low when unspecified.
 - To add multiple tags, each of them requires its own label e.g `t/sorting t/midterm`
 - If there are multiple instances of name and/or definition, the one that appears last is taken
@@ -183,6 +185,7 @@ Finds flashcards with names, tags or priorities containing any of the given keyw
 
 Format: find `[n/KEYWORD]​` `[t/KEYWORD]​` `[p/KEYWORD]​`
 
+* All `find` operations are done on the original flashcards list which contains all flashcards.
 * The search is case-insensitive. e.g `sort` will match `Sort`
 * The order of the keywords does not matter. e.g. `runtime sort` will match `sort runtime`
 * Names, tags or priorities will be searched according to input prefixes.
@@ -237,7 +240,7 @@ Format: `enter quiz`
 
 ### Checking performance : `performance`
 
-Opens a new window of performance where historical attempts are stored
+Opens a new window of performance where historical attempts are stored.
 
 Format: `performance`
 
@@ -263,7 +266,7 @@ Format: `start attempt`
 
 Answers the specific indexed quiz question.
 
-Format: `answer [INDEX] [a/ANSWER]`
+Format: `answer INDEX a/ANSWER`
 
 * For True/False questions, answer in true/false. (case-insensitive)
 * For MCQ questions, answer in positive integer as labelled in the quiz list.
@@ -277,7 +280,7 @@ Ends the current attempt and store the result into Performance.
 
 ### Checking performance : `performance`
 
-Opens a new window of performance where historical attempts are stored
+Opens a new window of performance where historical attempts are stored.
 
 Format: `performance`
 
@@ -317,7 +320,7 @@ Format: `list`
 
 Shows the quiz questions attempted. Red options indicate wrong answer input and green options indicate correct answer/input.
 
-Format: `view [INDEX]`
+Format: `view INDEX`
 
 Example: Index input must start from 1. Out of bounce index will not be recorded. e.g `view 1`
 
@@ -363,9 +366,9 @@ Action | Format, Examples
 **Exit** | `exit`
 **Enter Quiz** | `enter quiz`
 **Start attempt**  | `start attempt`
-**Answer** | `answer [INDEX] [a/ANSWER]` <br> e.g., `ansewer 1 a/true` for True/False questions and `ansewer 2 a/1` for MCQ questions
+**Answer** | `answer INDEX a/ANSWER` <br> e.g., `ansewer 1 a/true` for True/False questions and `ansewer 2 a/1` for MCQ questions
 **End attempt**  | `end attempt`
 **Leave Quiz** | `leave quiz`
 **Performance** | `performance`
 **List** | `list` (performance interface)
-**View** | `view [INDEX]` <br> e.g., `view 1`
+**View** | `view INDEX` <br> e.g., `view 1`

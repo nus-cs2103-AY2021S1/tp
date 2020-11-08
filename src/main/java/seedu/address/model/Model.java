@@ -39,22 +39,22 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' flashcard book file path.
      */
-    Path getAddressBookFilePath();
+    Path getFlashcardBookFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFlashcardBookFilePath(Path flashcardBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setFlashcardBook(ReadOnlyFlashcardBook flashcardBook);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyFlashcardBook getFlashcardBook();
 
     /**
      * Returns true if a flashcard with the same identity as {@code flashcard} exists in the address book.
@@ -89,16 +89,16 @@ public interface Model {
     void setFlashcard(Flashcard target, Flashcard editedFlashcard);
 
     /** Returns an unmodifiable view of the filtered flashcard list */
-    ObservableList<Flashcard> getFilteredPersonList();
+    ObservableList<Flashcard> getFilteredFlashcardList();
 
     /**
      * Updates the filter of the filtered flashcard list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Flashcard> predicate);
+    void updateFilteredFlashcardList(Predicate<Flashcard> predicate);
 
     /** Sorts the flashcard list. */
-    void sortFilteredPersonList(String sortOrder);
+    void sortFilteredFlashcardList(String sortOrder);
 
 
     /** Returns an boolean indicating whether the application is in quiz mode */

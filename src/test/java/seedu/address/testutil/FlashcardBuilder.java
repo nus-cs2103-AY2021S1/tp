@@ -15,7 +15,7 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class FlashcardBuilder {
 
-    public static final String DEFAULT_NAME = "Alicia Pauline";
+    public static final String DEFAULT_NAME = "AVL Tree";
     public static final String DEFAULT_DEFINITION = "<DEFAULT DEFINITION> placeholder";
     public static final String DEFAULT_PRIORITY = "";
 

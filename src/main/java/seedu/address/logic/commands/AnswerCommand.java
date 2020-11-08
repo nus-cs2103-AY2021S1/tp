@@ -26,8 +26,8 @@ public class AnswerCommand extends Command {
             + "INDEX (must be a positive integer) "
             + PREFIX_ANSWER + "ANSWER\n"
             + "True/False Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_ANSWER + "true"
-            + "MCQ Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_ANSWER + "true\n"
+            + "MCQ Example: " + COMMAND_WORD + " 6 "
             + PREFIX_ANSWER + "1";
 
     public static final String MESSAGE_ANSWER_SUCCESS = "Your answer has successfully been recorded.";

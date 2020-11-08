@@ -11,7 +11,8 @@ import seedu.address.model.Model;
 public class StartAttemptCommand extends Command {
 
     public static final String COMMAND_WORD = "start";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "start attempt: Starts a quiz attempt.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "start attempt: Starts a quiz attempt. \n"
+        + "Example: " + COMMAND_WORD + " attempt" + " (case sensitive)";
     public static final String MESSAGE_ATTEMPT_ALREADY_ONGOING = "Attempt is already ongoing!";
     public static final String MESSAGE_ATTEMPT_ACKNOWLEDGEMENT = "Attempt started!";
 
