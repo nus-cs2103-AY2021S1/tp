@@ -21,6 +21,9 @@ Given below are my contributions to the project.
   * What it does: allows the user to enter quiz mode.
   * Justification: This feature allows users to test themselves on their content knowledge and prepare for upcoming examination or quiz.
   * Highlights: This feature involves coding the backend logic of the quiz mode. It also involves monitoring the user attempts in quiz mode to update the flashcard's statistics.  
+
+<div style="page-break-after: always;"></div>
+
 * Added statistics command. [#106](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/106)
   * What it does: allows the user to check the statistics of the flashcard.
   * Justification: This feature allows users to check the statistics of the flashcard. The statistics of flashcards are updated from the user's attempts in quiz mode. Users can see their number of attempts and the number of times they got the answer correct. This allows them to keep track of how well they did and know whether they have mastered the content properly.
@@ -29,8 +32,6 @@ Given below are my contributions to the project.
 * Modified various test cases for classes under the package storage. [#42](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/42) 
 * Modified test cases for `add` and `edit` commands. [#80](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/80)
 * Added test cases for `stats` command [#106](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/106)
-
-<div style="page-break-after: always;"></div>
 
 **Contribution to UG**:
 * Added documentation for `stats` and `quiz` feature [#104](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/104), [#105](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/105), [#166](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/166)
