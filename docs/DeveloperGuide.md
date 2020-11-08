@@ -210,6 +210,9 @@ under the `CurrentPath`.
 applies a `TagContainsCharPredicate` to the list of `FilteredTags` in `Model`. This effectively searches for tags.
 `TagContainsCharPredicate` matches any tag with `TagName` or any `Label` that contains the keyword given.
 
+This is the sequence diagram of the FindCommand.<br>  
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
 ### Showing a tag's file path: ShowCommand
 
 [ShowCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ShowCommand.java)

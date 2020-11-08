@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":TagNameContainsCharPredicate" as TagNameContainsCharPredicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find abc")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("find abc")
+activate AddressBookParser
+
+AddressBookParser -> FindCommandParser : parse("abc")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand : execute(m)
+activate FindCommand
+
+create TagNameContainsCharPredicate
+FindCommand -> TagNameContainsCharPredicate
+activate TagNameContainsCharPredicate
+
+
+TagNameContainsCharPredicate -> FindCommand
+deactivate TagNameContainsCharPredicate
+
+
+FindCommand -> Model : updateFilteredTagList(predicate)
+activate Model
+
+Model -> FindCommand : tags
+destroy Model
+
+create CommandResult
+FindCommand -> CommandResult : tags
+activate CommandResult
+
+CommandResult -> FindCommand : result
+deactivate CommandResult
+
+FindCommand -> FindCommandParser : result
+deactivate FindCommand
+
+FindCommandParser -> AddressBookParser : result
+deactivate FindCommandParser
+
+AddressBookParser -> LogicManager : result
+deactivate AddressBookParser
+
+LogicManager -> user : result
+deactivate LogicManager
+
+
+@enduml
