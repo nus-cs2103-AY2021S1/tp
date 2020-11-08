@@ -1,7 +1,7 @@
 @startuml
 skinparam defaultFontSize 20
 !include style.puml
-box UI UI_COLOR_T2
+box UI UI_COLOR_T1
 participant ":MainWindow" as MainWindow UI_COLOR
 participant ":ProfileWindow" as ProfileWindow UI_COLOR
 end box
@@ -85,8 +85,14 @@ destroy CommandResult
 activate ProfileWindow
 
 MainWindow <-- ProfileWindow
-MainWindow -> ProfileWindow : handleProfilePanel()
-MainWindow <-- ProfileWindow
+
+
+MainWindow -> MainWindow : handleProfilePanel()
+activate MainWindow
+
+MainWindow <-- MainWindow :
+deactivate MainWindow
+
 MainWindow -> ProfileWindow : show()
 MainWindow <-- ProfileWindow
 deactivate ProfileWindow

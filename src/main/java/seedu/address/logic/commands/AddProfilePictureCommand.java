@@ -25,7 +25,7 @@ public class AddProfilePictureCommand extends Command {
             + "Parameters: INDEX (must be a positive number) "
             + PREFIX_FILE_PATH + "File path to the image \n\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_FILE_PATH + "downloads/profile_picture";
+            + PREFIX_FILE_PATH + "downloads/profile_picture.png";
 
     public static final String MESSAGE_ADD_PROFILE_PICTURE_SUCCESS = "Profile picture added for %1$s";
 
