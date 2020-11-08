@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private BudgetDisplay budgetDisplay;
     private HelpWindow helpWindow;
+    private GraphicalDisplayWindow graphWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -70,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        graphWindow = new GraphicalDisplayWindow(logic.getExpenseBook());
     }
 
     public Stage getPrimaryStage() {
@@ -168,7 +170,19 @@ public class MainWindow extends UiPart<Stage> {
             (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        graphWindow.hide();
         primaryStage.hide();
+    }
+
+    /**
+     * Opens the graph window or focuses on it if it's already opened.
+     */
+    private void handleGraph() {
+        if (!graphWindow.isShowing()) {
+            graphWindow.show();
+        } else {
+            graphWindow.focus();
+        }
     }
 
     public ExpenseListPanel getExpenseListPanel() {
@@ -199,6 +213,10 @@ public class MainWindow extends UiPart<Stage> {
                 budgetDisplay.hide();
             } else {
                 budgetDisplay.show();
+            }
+
+            if (commandResult.isShowGraph()) {
+                handleGraph();
             }
 
             return commandResult;
