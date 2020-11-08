@@ -6,7 +6,7 @@
   * [1.2 Understanding the User Guide](#12-understanding-the-user-guide)
 - [2. Quick start](#2-quick-start)
   * [2.1 Setting up **Reeve**](#21-setting-up-reeve)
-  * [2.2 Making sense of **Reeve**'s layout](#22-making-sense-of-reeves-layout)
+  * [2.2 Making sense of **Reeve**'s layout](#22-making-sense-of-reeves-layout-by-alex)
 - [3. Features](#3-features)
   * [3.1 Understanding the command format](#31-understanding-the-command-format)
   * [3.2 General features](#32-general-features)
@@ -25,7 +25,7 @@
         + [3.3.8.1 Adding a detail: `detail add`](#3381-adding-a-detail-detail-add)
         + [3.3.8.2 Editing a detail: `detail edit`](#3382-editing-a-detail-detail-edit)
         + [3.3.8.3 Deleting a detail: `detail delete`](#3383-deleting-a-detail-detail-delete)
-    + [3.3.9 Viewing lesson schedule: `schedule` (By: Alex Chua)](#339-viewing-lesson-schedule-schedule)
+    + [3.3.9 Viewing lesson schedule: `schedule` (By: Alex Chua)](#339-viewing-lesson-schedule-schedule-by-alex)
     + [3.3.10 Clearing all entries: `clear`](#3310-clearing-all-entries-clear)
   * [3.4 Features for managing student academic details](#34-features-for-managing-student-academic-details)
     + [3.4.1 Recording questions from a student: `question` (By: Ying Gao)](#341-recording-questions-from-a-student-question-by-ying-gao)
@@ -40,9 +40,9 @@
         + [3.4.3.1 Adding an attendance record to a student: `attendance add`](#3431-adding-an-attendance-record-to-a-student-attendance-add)
         + [3.4.3.2 Deleting an attendance record for a student: `attendance delete`](#3432-deleting-an-attendance-record-for-a-student-attendance-delete)
   * [3.6 Notebook feature (By: Choon Siong)](#36-notebook-feature-by-choon-siong)
-    + [3.6.1 Adding a note: `note add`](#361-adding-a-note)
-    + [3.6.2 Editing a note: `note edit`](#362-editing-a-note)
-    + [3.6.3 Deleting a note: `note delete`](#363-deleting-a-note)
+    + [3.6.1 Adding a note: `note add`](#361-adding-a-note-note-add)
+    + [3.6.2 Editing a note: `note edit`](#362-editing-a-note-note-edit)
+    + [3.6.3 Deleting a note: `note delete`](#363-deleting-a-note-note-delete)
 - [4. Command summary](#4-command-summary)
 - [5. Glossary](#5-glossary)
 - [6. FAQ](#6-faq)
@@ -75,9 +75,9 @@ Table 1: Summary of symbols
 
 Symbol | Meaning
 :-----:|:-------
-`command` | a command that can be executed by **Reeve**.
-:information_source: | Important information. 
-:bulb: | Tips.
+`USER_INPUT` | User input into the CLI
+:information_source: | Important information
+:bulb: | Tips
 :warning: | Warnings
 
 ## 2. Quick start
@@ -197,7 +197,7 @@ Figure __. After entering command `toggle`.
 
 #### 3.2.3 Exiting the program: `exit`
 
-You can exit the program. Any changes you have made to **Reeve** is automatically saved to your drive, hence you do not have to worry about losing data.
+You can exit the program with the `exit` command. Any changes you have made to **Reeve** is automatically saved to your drive, so do not have to worry about losing data.
 
 Format: `exit`
 
@@ -212,18 +212,17 @@ You can add a student together with his/her administrative details into **Reeve'
 
 Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [d/LAST_PAYMENT_DATE] [a/ADDITIONAL_DETAILS]…​`
 
-* `FEE` defaults to $0.00 if not included.
-* `LAST_PAYMENT_DATE` defaults to today's date if not included.
-* The format of `CLASS_TIME` is as follows:
-    * `DAY_OF_WEEK START_TIME-END_TIME`
-    * `DAY_OF_WEEK` is any integer from 1 to 7, where 1 refers to Monday while 7 refers to Sunday.
-    * `START_TIME` and `END_TIME` follows the 24-hr clock format (e.g. 1300 refers to 1pm).
-* The format of `LAST_PAYMENT_DATE` is as follows:
-    * `d/m/yyyy or dd/mm/yyyy` (e.g. both 03/02/2020 and 3/2/2020 are acceptable).
 * The format of `YEAR` is as follows:
     * `TYPE_OF_SCHOOL LEVEL` (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
     * `TYPE_OF_SCHOOL` accepts Primary (Pri/P), Secondary (Sec/S) or JC (J), and is case-insensitive.
     * `LEVEL` has to be valid for the `TYPE_OF_SCHOOL` (i.e. Primary 1 - Primary 6, Secondary 1 - Secondary 5, JC 1 - JC 2)
+* The format of `CLASS_TIME` is as follows:
+    * `DAY_OF_WEEK START_TIME-END_TIME`
+    * `DAY_OF_WEEK` is any integer from 1 to 7, where 1 refers to Monday while 7 refers to Sunday.
+    * `START_TIME` and `END_TIME` follows the 24-hr clock format (e.g. 1300 refers to 1pm).
+* `FEE` defaults to $0.00 if not included.
+* `LAST_PAYMENT_DATE` defaults to today's date if not included.
+* The format of `LAST_PAYMENT_DATE` is `dd/mm/yy or dd/mm/yyyy` (e.g. both 3/2/20 and 3/2/2020 are acceptable).
 
 <div markdown="block" class="alert alert-info">
 
@@ -237,7 +236,11 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 
 </div>
 
-Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]`
+<div markdown="block" class="alert alert-info">
+
+:information_source: The specified `END_TIME` for the `CLASS_TIME` field **should not** be before the `START_TIME` (e.g. `1300-1200` is invalid).
+
+</div>
 
 Examples:
 * `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`
@@ -265,7 +268,7 @@ Format: `list`
 
 #### 3.3.3 Editing a student: `edit` (By: Vaishak)
 
-Edits an existing student in **Reeve**.
+You can edit an existing student in **Reeve** if you need to update his particulars.
 
 Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/LAST_PAYMENT_DATE] `
 
@@ -291,7 +294,7 @@ Examples:
 
 #### 3.3.4 Locating students: `find` (By: Choon Siong)
 
-Finds students who satisfy the given search criteria.
+You can search for students who satisfy the given search criteria.
 
 Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 
@@ -415,17 +418,9 @@ Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
 
 *  Displays a timetable view of your classes with the corresponding student's name tagged to it.
 * `DATE_TO_VIEW` refers to the date you wish to view the lesson schedule of.
-* `VIEW_MODE` refers to the mode where you would like the schedule to be rendered on screen. It could either be weekly or daily.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: `VIEW_MODE` can only be either **weekly** or **daily**.
- 
-:warning: The input for `VIEW_MODE` is case-insensitive. 
-
-:information_source: `DATE_TO_VIEW` must be in the format **dd/mm/yyyy**. For instance, `02/11/2020` refers to the date 2nd November 2020
-
-</div>
+* The format of `DATE_TO_VIEW` is `dd/mm/yy or dd/mm/yyyy` (e.g. both 3/2/20 and 3/2/2020 are acceptable).
+* `VIEW_MODE` refers to the mode where you would like the schedule to be rendered on screen.
+  It accepts either `weekly` or `daily` as inputs and is case-insensitive.
 
 Example:
 
@@ -461,17 +456,18 @@ To view schedule:
     Figure __ Shows various component of your schedule.
 
 <div markdown="block" class="alert alert-info">
-:warning: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
-Viewing it this way would open up your schedule of the current week in the weekly format.
-You could use this as quick way to open up schedule for the current week.
+    :warning: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
+    Viewing it this way would open up your schedule of the current week in the weekly format.
+    You could use this as quick way to open up schedule for the current week.
+</div>
 
+<div markdown="block" class="aler alert-info">
 :exclamation: A class duration of less than an hour may not be shown fully on the schedule.
- 
 </div>
 
 #### 3.3.10 Clearing all entries: `clear`
 
-You can clear all student data from **Reeve**.
+If you ever need to clear all existing data in **Reeve**, you can do so using this command.
 
 Format: `clear`
 
@@ -498,7 +494,7 @@ General Format: `question COMMAND_WORD STUDENT_INDEX DETAILS`
 
 ##### 3.4.1.1 Adding a question: `question add`
 
-Adds a new question to the student.
+If a student asks you a difficult question, you can record it in **Reeve** and find the answer to it after the lesson.
 
 Format: `question add STUDENT_INDEX t/QUESTION_TEXT`
 
@@ -516,7 +512,7 @@ Example:
 
 ##### 3.4.1.2 Resolving a question: `question solve`
 
-Marks a student's question as resolved.
+After finding the solution to the question, you can mark the student's question as resolved.
 
 Format: `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION_TEXT`
 
@@ -524,13 +520,15 @@ Format: `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION_TEXT`
 * This resolves the question at the `QUESTION_INDEX`. The `QUESTION_INDEX` refers to the position of the question in the student's list of questions.
 
 <div markdown="block" class="alert alert-info">
-
 :information_source: `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
+</div>
 
+<div markdown="block" class="alert alert-info">
 :information_source: `SOLUTION_TEXT` must not be empty.
+</div>
 
+<div markdown="block" class="alert alert-info">
 :information_source: You can only resolve unanswered questions (i.e. questions with a cross symbol next to it).
-
 </div>
 
 Example:
@@ -538,7 +536,7 @@ Example:
 
 ##### 3.4.1.3 Deleting a question: `question delete`
 
-Deletes a student's question.
+If you do not need a student's question anymore, you can delete it.
 
 Format: `question delete STUDENT_INDEX i/QUESTION_INDEX`
 
@@ -573,13 +571,10 @@ You can add an exam record to a specified student in **Reeve** to keep track of 
 Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 
 * Adds the given exam record to the student at the specified `STUDENT_INDEX`.
-
-* The format of EXAM_DATE is as follows:
-    * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020 or 2/3/2020).
-
-* The format of EXAM_SCORE is as follows:
-    * x/y where x and y are non-negative numbers.
-    * x has to be less than or equal to y (e.g. 30/50).
+* The format of `EXAM_DATE` is `dd/mm/yy or dd/mm/yyyy` (e.g. both 3/2/20 and 3/2/2020 are acceptable).
+* The format of `EXAM_SCORE` is as follows:
+    * `MARKS/TOTAL_SCORE` where `MARKS` and `TOTAL_SCORE` are non-negative numbers.
+    * `MARKS` has to be less than or equal to `TOTAL_SCORE` (e.g. 30/50).
     
 <div markdown="block" class="alert alert-info">
 
@@ -695,8 +690,7 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS [f/FEEDB
 
 * Adds the given attendance record to the student at the specified `STUDENT_INDEX`.
 * There can only be one attendance record for every `LESSON_DATE`.
-* The format of LESSON_DATE is as follows:
-    * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
+* The format of `LESSON_DATE` is `dd/mm/yy or dd/mm/yyyy` (e.g. both 3/2/20 and 3/2/2020 are acceptable).
 * `ATTENDANCE_STATUS` can only be either "present" or "absent".
 
 Examples:
@@ -752,7 +746,7 @@ Format: `note edit NOTE_INDEX [t/TITLE] [d/DESCRIPTION]`
 
 Example:
 * You left a note to mark practice papers earlier and have just finished marking them. Now, before you take a break,
- you want to remind yourself to review the marking before you can give it back to your students.
+  you want to remind yourself to review the marking before you can give it back to your students.
     * Assuming the previous note was the first note, you can use `note edit 1 d/review marking`
        to change the note to remind yourself to review the marking.
    
@@ -768,7 +762,6 @@ Example:
 * Your first note was to remind yourself to grab a cup of coffee. Now that you have bought your cup of coffee, the note is no longer needed.
     * You can use `note delete 1` to delete the note.
 
->>>>>>> master
 ## 4. Command summary
 
 This following table (Table 2) provides a summary of all the commands in **Reeve**.
@@ -833,9 +826,9 @@ To hide the full details of students, type `toggle` and press `Enter` again.
 Your student's data file can be found in the same file as the application.
 
 5. How can I set the application window to a fix size whenever I open it?<br>
-Reeve automatically save your preferred window size when you close it.
+**Reeve** automatically save your preferred window size when you close it.
 Hence, you could adjust the window size to your preferred one before closing Reeve.
-Reeve will automatically open according to this size.
+**Reeve** will automatically open according to this size.
 
 6. I forgot what are the various commands and their format, where can I find the list of commands?<br>
 Simply enter the `help` command and you will be directed the list of commands.
