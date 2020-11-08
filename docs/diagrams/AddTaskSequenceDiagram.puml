@@ -61,7 +61,7 @@ activate Model
 Model --> AddTaskCommand : Electrek
 deactivate Model
 
-AddTaskCommand -> Project : addProject(project)
+AddTaskCommand -> Project : addTask(task)
 activate Project
 
 Project --> AddTaskCommand :
