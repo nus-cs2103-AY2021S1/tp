@@ -17,6 +17,9 @@ public class IngredientListCommand extends Command {
     public static final String COMMAND_WORD = "i-list";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the ingredient levels in tCheck.\n"
+            + "If the input contains extra words, those extra words will be ignored. "
+            + "For example, if the input is 'i-list 121',\ntCheck will ignore the extra input '121' "
+            + "and show the list of ingredients \n"
             + "Parameters: There are no parameters.\n"
             + "Example: " + COMMAND_WORD;
 

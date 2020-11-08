@@ -12,7 +12,9 @@ public class Amount {
             "Amount should only contain numbers, and it should be equals to or greater than 0";
     public static final String VALIDATION_REGEX = "\\d{1,}";
 
-    private static final int RESTOCK_LEVEL = 5;
+    private static final int LIQUID_RESTOCK_LEVEL = 50;
+
+    private static final int SOLID_RESTOCK_LEVEL = 20;
 
     public final String amount;
 
@@ -35,12 +37,37 @@ public class Amount {
     }
 
     /**
-     * Returns the amount of ingredients in string format.
-     *
-     * @return the amount of ingredients in string format.
+     * Returns true if the liquid ingredient is below the restock level, which is the default level of the ingredient.
+     * @return true if the liquid ingredient is below the restock level, false otherwise.
      */
-    public boolean isBelowRestockLevel() {
-        return Integer.parseInt(amount) < RESTOCK_LEVEL;
+    public boolean isLiquidBelowRestockLevel() {
+        return Integer.parseInt(amount) < LIQUID_RESTOCK_LEVEL;
+    }
+
+    /**
+     * Returns true if the solid ingredient is below the restock level, which is the default level of the ingredient.
+     * @return true if the solid ingredient is below the restock level, false otherwise.
+     */
+    public boolean isSolidBelowRestockLevel() {
+        return Integer.parseInt(amount) < SOLID_RESTOCK_LEVEL;
+    }
+
+    /**
+     * Returns the amount of liquid ingredient needed to reach the restock level, which is the default level
+     * of the ingredient.
+     * @return the amount of liquid ingredient needed to reach the restock level in string format.
+     */
+    public String liquidAmountToReachRestockLevel() {
+        return Integer.toString(LIQUID_RESTOCK_LEVEL - Integer.parseInt(amount));
+    }
+
+    /**
+     * Returns the amount of solid ingredient needed to reach the restock level, which is the default level
+     * of the ingredient.
+     * @return the amount of solid ingredient needed to reach the restock level in string format.
+     */
+    public String solidAmountToReachRestockLevel() {
+        return Integer.toString(SOLID_RESTOCK_LEVEL - Integer.parseInt(amount));
     }
 
     @Override

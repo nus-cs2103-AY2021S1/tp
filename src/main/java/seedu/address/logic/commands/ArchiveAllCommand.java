@@ -14,11 +14,13 @@ public class ArchiveAllCommand extends Command {
     public static final String COMMAND_WORD = "c-archive-all";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Archives all persons in the displayed person list.\n";
+            + ": Archives all employees in the displayed Employee Directory.\n";
 
-    public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived all persons in the displayed person list";
+    public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived all employees in the displayed"
+            + " Employee Directory ";
 
-    public static final String MESSAGE_NOTHING_TO_ARCHIVE = "There is nothing in the current displayed list";
+    public static final String MESSAGE_NOTHING_TO_ARCHIVE = "There is no employee in the current displayed Employee"
+            + "Directory";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

@@ -17,9 +17,7 @@ public enum Drink {
             "Drink Names should only be chosen from the given list,"
                     + " and it should not be blank";
 
-    // TODO: drink ingredients?
     private final String name;
-
 
     Drink(String name) {
         this.name = name;
@@ -52,17 +50,4 @@ public enum Drink {
         }
         return false;
     }
-
-    /**
-     * Checks if the numberSoldToTest is a number in String format,
-     * and return true if the number is not less then 0.
-     *
-     * @param numberSoldToTest numberSoldToTest in String format.
-     * @return true if numberSoldToTest's value is larger or equals to 0.
-     */
-    public static boolean isValidNumberSold(String numberSoldToTest) {
-        assert numberSoldToTest != "" : "numberSoldToTest should not be empty";
-        return Integer.valueOf(numberSoldToTest) >= 0;
-    }
-
 }

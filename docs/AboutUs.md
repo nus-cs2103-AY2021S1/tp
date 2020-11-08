@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/ureshiiying.png" width="200px">
 
 [[github](https://github.com/ureshiiYing)]
-[[portfolio](team/tanyinghui.md)]
+[[portfolio](team/ureshiiying.md)]
 
 * Role: Developer
 * Responsibilities: Documentation
@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/wm71811.png" width="200px">
 
 [[github](http://github.com/WM71811)] 
-[[portfolio](team/wangmo.md)]
+[[portfolio](team/wm71811.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality
@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/persdre.png" width="200px">
 
 [[github](http://github.com/persdre)]
-[[portfolio](team/wangqian.md)]
+[[portfolio](team/persdre.md)]
 
 * Role: Developer & Code Quality Reviewer
 * Responsibilities: Develop & Check code quality
@@ -55,6 +55,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/diwu-yi.png" width="200px">
 
 [[github](https://github.com/Diwu-Yi)]
-[[portfolio](team/zhangyi.md)]
+[[portfolio](team/diwu-yi.md)]
 
 * Role: Project Tester and Contributor
