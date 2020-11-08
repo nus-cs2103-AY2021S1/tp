@@ -26,48 +26,48 @@ public class TypicalTasks {
             .withTags("Lab", "CS2030").withPriority("HIGH").withDate("2020-11-05")
             .withStatus("NOT_COMPLETED").build();
     public static final Task LAB_02 = new TaskBuilder().withName("Finish Lab02")
-        .withTags("Lab", "CS2030").withPriority("NORMAL").withDate("2020-11-06")
-        .withStatus("COMPLETED").build();
+            .withTags("Lab", "CS2030").withPriority("NORMAL").withDate("2020-11-06")
+            .withStatus("COMPLETED").build();
 
     // ASSIGNMENTS
     public static final Task ASSIGNMENT_01 = new TaskBuilder().withName("Finish Assignment01")
-        .withTags("Assignment", "CS2105").withPriority("HIGH").withDate("2020-11-07")
-        .withStatus("NOT_COMPLETED").build();
+            .withTags("Assignment", "CS2105").withPriority("HIGH").withDate("2020-11-07")
+            .withStatus("NOT_COMPLETED").build();
     public static final Task ASSIGNMENT_02 = new TaskBuilder().withName("Finish Assignment02")
-        .withTags("Assignment", "CS2105").withPriority("NORMAL").withDate("2020-11-08")
-        .withStatus("COMPLETED").build();
+            .withTags("Assignment", "CS2105").withPriority("NORMAL").withDate("2020-11-08")
+            .withStatus("COMPLETED").build();
 
     // PROBLEM SETS
     public static final Task PROBLEM_SET_01 = new TaskBuilder().withName("Submit Problem Set 1")
-        .withTags("ProblemSet", "CS2040").withPriority("HIGH").withDate("2020-11-09")
-        .withStatus("NOT_COMPLETED").build();
+            .withTags("ProblemSet", "CS2040").withPriority("HIGH").withDate("2020-11-09")
+            .withStatus("NOT_COMPLETED").build();
     public static final Task PROBLEM_SET_02 = new TaskBuilder().withName("Submit Problem Set 2")
-        .withTags("ProblemSet", "CS2040").withPriority("NORMAL").withDate("2020-11-10")
-        .withStatus("COMPLETED").build();
+            .withTags("ProblemSet", "CS2040").withPriority("NORMAL").withDate("2020-11-10")
+            .withStatus("COMPLETED").build();
 
     // QUIZZES
     public static final Task QUIZ_01 = new TaskBuilder().withName("Submit Quiz Week 1")
-        .withTags("Quiz", "CS2103T").withPriority("HIGH").withDate("2020-11-11")
-        .withStatus("NOT_COMPLETED").build();
+            .withTags("Quiz", "CS2103T").withPriority("HIGH").withDate("2020-11-11")
+            .withStatus("NOT_COMPLETED").build();
     public static final Task QUIZ_02 = new TaskBuilder().withName("Submit Quiz Week 2")
-        .withTags("Quiz", "CS2103T").withPriority("NORMAL").withDate("2020-11-12")
-        .withStatus("COMPLETED").build();
+            .withTags("Quiz", "CS2103T").withPriority("NORMAL").withDate("2020-11-12")
+            .withStatus("COMPLETED").build();
 
     // Manually added
-    public static final Task TUTORIAL_01 = new TaskBuilder().withName("Attemp Tutorial 1")
-        .withTags("Tutorial", "CS2106").withPriority("LOW").withDate("2020-11-13")
-        .withStatus("COMPLETED").build();
-    public static final Task TUTORIAL_02 = new TaskBuilder().withName("Attemp Tutorial 2")
-        .withTags("Tutorial", "CS1231S").withPriority("LOW").withDate("2020-11-14")
-        .withStatus("COMPLETED").build();
+    public static final Task TUTORIAL_01 = new TaskBuilder().withName("attemp Tutorial 1")
+            .withTags("Tutorial", "CS2106").withPriority("LOW").withDate("2020-11-13")
+            .withStatus("COMPLETED").build();
+    public static final Task TUTORIAL_02 = new TaskBuilder().withName("attemp Tutorial 2")
+            .withTags("Tutorial", "CS1231S").withPriority("LOW").withDate("2020-11-14")
+            .withStatus("COMPLETED").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task LAB_05 = new TaskBuilder().withName(VALID_NAME_LAB05)
-        .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_HIGH).withDate(VALID_DATE1)
-        .withStatus(VALID_STATUS_COMPLETED).build();
+            .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_HIGH).withDate(VALID_DATE1)
+            .withStatus(VALID_STATUS_COMPLETED).build();
     public static final Task LAB_07 = new TaskBuilder().withName(VALID_NAME_LAB07)
-        .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_NORMAL).withDate(VALID_DATE2)
-        .withStatus(VALID_STATUS_COMPLETED).build();
+            .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_NORMAL).withDate(VALID_DATE2)
+            .withStatus(VALID_STATUS_COMPLETED).build();
 
     public static final String KEYWORD_MATCHING_LAB_01 = "Finish Lab01"; // A keyword that matches LAB_01
 
