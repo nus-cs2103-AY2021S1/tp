@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to import NUSMods timetable into ProductiveNUS.
   * What it does: Allows the user to import their NUSMods lesson information into ProductiveNUS.
-  * Justification: This feature improves the product significantly because a user can conveniently refer to their timetable on ProductiveNUS instead of having to got to NUSMods. Other commands such as Schedule also works best if the user can import their weekly timetable.
+  * Justification: This feature improves the product significantly because a user can conveniently refer to their timetable on ProductiveNUS instead of having to go to NUSMods. Other commands such as Schedule also works best if the user can import their weekly timetable.
   * Highlights: This enhancement retrieves data from the NUSMods API. A new model class Lesson is also implemented to support the import command.
   * Credits: Code implemented is adapted from [Baldeung link](https://www.baeldung.com/java-http-request) and [NUSMods API](https://api.nusmods.com/v2/).
 
