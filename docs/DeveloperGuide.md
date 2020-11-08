@@ -738,17 +738,17 @@ Figure 6.4.2 Sequence diagram for `ScheduleCommand` execution
 
 :information_source: Figure 6.4.1 and 6.4.2 illustrates the `ScheduleCommand` execution within the `Logic` and `Model` Component.
 
-For the `Ui` component, a calendar using **jfxtras** library will be updated with the `LessonEvent` after the `CommandResult` is returned.
+For the `Ui` component, a calendar using  [jfxtras-icalendarfx](https://jfxtras.org/doc/8.0/jfxtras-icalendarfx/index.html) will be updated with the `LessonEvent` after the `CommandResult` is returned.
 The `'LessonEvent` is provided to the `Ui` by the `LogicManager` through the `Model` component.
 The `Model` in turns gets the `LessonEvent` from the `Scheduler` which keeps a list of updated events.
 The calendar with `LessonEvent` is then displayed to the user through the interface. This is assuming that no exception arises.
 
-### 6.4.1 Design Consideration
+### Design Consideration
 
 The following are the various design choices made regarding the feature and alternatives that were considered prior to implementation.
 
 * Current Implementation:
-    * The current implementation creates `LessonEvent`s from the `studentList` update the to the `Ui` whenever the `ScheduleViewCommand` is called.
+    * The current implementation creates `LessonEvent` from the `studentList` and update to the `Ui` whenever the `ScheduleViewCommand` is called.
 
 * Alternatives Considered:
     * Creating a `Event` storage component that stores `LessonEvent` based on `Student`'s `ClassTime`.
@@ -790,7 +790,7 @@ Refer to the [DevOps guide](DevOps.md).
 ## **Appendix B: User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
+                                                 
 | Priority | As a …​                            | I want to …​                                       | So that I can…​                                                                     |
 | -------- | --------------------------------------| ----------------------------------------------------- | ----------------------------------------------------------------------              |
 | `* * *`  | private tutor ready to use Reeve      | view a list of commands and how to use them           | learn how the application works or in case I forgot how some of the commands work   |
@@ -810,8 +810,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |  `* *`   | private tutor                         | input feedback to specific lessons                    | improve my capabilities as a tutor                                                  |
 |  `* *`   | private tutor                         | view a list of notes/reminders                        | keep track of tasks I have yet to do                                                |
 |  `* *`   | private tutor                         | view my tutoring schedule for a particular day        | plan ahead of my lessons for that day                                               |
+|  `* *`   | private tutor                         | view my tutoring schedule for a week                  | plan for the week ahead                                                             |
 |   `*`    | private tutor                         | view my students' academic progress                   | know which students need more help                                                  |
 |   `*`    | private tutor ready to use Reeve      | view the type of student details that are displayed   | focus on the details that I am currently concerned with                             |
+|   `*`    | private tutor that is impatient       | be able to get the command results in a reasonable time | save time                                                                         |
+|   `*`    | private tutor that is using Reeve for the first time      | view Reeve with sample data        | visualize how Reeve looks like when I use it                                       |
 
 ## **Appendix C: Use Cases**
 
@@ -1238,6 +1241,28 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
+**UC00**: View class schedule.
+
+**MSS**
+
+1. User enters command to view schedule.
+2. Reeve shows the schedule of the user's classes.
+
+    Use case ends.
+    
+**Extensions**
+
+* 1a. User enters command in an incorrect format.
+    1a1. Reeve displays error message.
+    1a2. User corrects command input.
+    
+    Use case resumes at step 2.
+    
+* 1b. There are no student in Reeve.
+    1b1. Schedule is shown with no classes.
+    
+    Use case ends.
+
 **UC00: Adding an attendance record to a student**
 
 **MSS**
@@ -1516,6 +1541,31 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `question delete 1 i/0`
        Expected: Similar to previous.
+<<<<<<< HEAD
+       
+    1. Test case: `question delete 1 i/QUESTION_INDEX`
+       Expected: Question at `QUESTION_INDEX` is removed. Details of deleted question included in status message.
+
+### F.00 Schedule
+
+1. Viewing schedule of classes
+
+    1. Prerequisites: There are students stored in Reeve currently with non-overlapping class times.
+    
+    1. Test case: `schedule m/weekly d/02/11/2020`
+       Expected: Shows the schedule of classes in the whole week of 02/11/2020.
+       
+    1. Test case: `schedule m/daily d/02/11/2020`
+       Expected: Shows the schedule of classes in the day of 02/11/2020.
+       
+    1. Test case: `schedule m/dAiLy d/02/11/2020`
+       Expected: Shows the schedule successfully as the case letters of the view mode does not matter.
+    
+    1. Test case: `schedule m/day d/02/11/2020`
+       Expected: Displays error message indicating invalid view mode.
+       
+    1. Test case: `schedule m/weekly d/02-11-2020`
+       Expected: Displays error message indicating invalid date format.
 
 1. _{ more test cases …​ }_
 
@@ -1601,3 +1651,4 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `attendance delete d/12/02/2020`
        Expected: Similar to previous.
+>>>>>>> master

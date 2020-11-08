@@ -25,7 +25,8 @@
         + [3.3.8.1 Adding a detail: `detail add`](#3381-adding-a-detail-detail-add)
         + [3.3.8.2 Editing a detail: `detail edit`](#3382-editing-a-detail-detail-edit)
         + [3.3.8.3 Deleting a detail: `detail delete`](#3383-deleting-a-detail-detail-delete)
-    + [3.3.9 Clearing all entries: `clear`](#339-clearing-all-entries-clear)
+    + [3.3.9 Viewing lesson schedule: `schedule` (By: Alex Chua)](#339-viewing-lesson-schedule-schedule)
+    + [3.3.10 Clearing all entries: `clear`](#3310-clearing-all-entries-clear)
   * [3.4 Features for managing student academic details](#34-features-for-managing-student-academic-details)
     + [3.4.1 Recording questions from a student: `question` (By: Ying Gao)](#341-recording-questions-from-a-student-question-by-ying-gao)
         + [3.4.1.1 Adding a question: `question add`](#3411-adding-a-question-question-add)
@@ -38,8 +39,6 @@
     + [3.4.3 Recording attendance of a student: `attendance` (By: Vaishak)](#343-recording-attendance-of-a-student-attendance-by-vaishak)
         + [3.4.3.1 Adding an attendance record to a student: `attendance add`](#3431-adding-an-attendance-record-to-a-student-attendance-add)
         + [3.4.3.2 Deleting an attendance record for a student: `attendance delete`](#3432-deleting-an-attendance-record-for-a-student-attendance-delete)
-  * [3.5 Schedule Feature (By: Alex)](#35-schedule-feature-by-alex)
-    + [3.5.1 Viewing lesson schedule: `schedule`](#351-viewing-lesson-schedule-schedule)
   * [3.6 Notebook feature (By: Choon Siong)](#36-notebook-feature-by-choon-siong)
     + [3.6.1 Adding a note: `note add`](#361-adding-a-note)
     + [3.6.2 Editing a note: `note edit`](#362-editing-a-note)
@@ -93,7 +92,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 3. Copy the file to the folder you want to use as the _home folder_ for **Reeve**.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/ReeveGUI.png)
+   ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -111,9 +110,8 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
 1. Refer to the [Features](#3-features) section below for details of each command.
 
-### 2.2 Making sense of **Reeve**'s layout
-
-![Reeve's Layout](images/ReeveLayout.png)
+### 2.2 Making sense of **Reeve**'s layout (By: Alex)
+![Reeve's Layou](images/ReeveLayout.png)
 
 1. **Menu**
 
@@ -121,7 +119,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
 2. **Main Panel**
 
-    The main panel shows your list of students for easy reference. It also displays your schedule when the schedule command is called.
+    The main panel shows your list of students for easy reference. You could also view your schedule in this panel.
 
 3. **Result Display**
 
@@ -409,7 +407,69 @@ Examples:
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
 * `detail delete 4 i/1` deletes the 1st detail for the 4th student in **Reeve**.
 
-#### 3.3.9 Clearing all entries: `clear`
+#### 3.3.9 Viewing lesson schedule: `schedule` (By: Alex)
+
+You can view your classes on a timetable in either a daily or weekly format.
+
+Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
+
+*  Displays a timetable view of your classes with the corresponding student's name tagged to it.
+* `DATE_TO_VIEW` refers to the date you wish to view the lesson schedule of.
+* `VIEW_MODE` refers to the mode where you would like the schedule to be rendered on screen. It could either be weekly or daily.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `VIEW_MODE` can only be either **weekly** or **daily**.
+ 
+:warning: The input for `VIEW_MODE` is case-insensitive. 
+
+:information_source: `DATE_TO_VIEW` must be in the format **dd/mm/yyyy**. For instance, `02/11/2020` refers to the date 2nd November 2020
+
+</div>
+
+Example:
+
+Suppose you have multiple classes in the coming week of 2nd November 2020 and you want to plan for them ahead.
+
+Instead of scrolling through your student details to find out who you have classes with,
+you can simply type `schedule m/weekly d/02/11/2020` to view them in a visual interface.
+
+To view schedule:
+
+1.  Type `schedule m/weekly d/02/11/2020` into the command box as shown in figure __ . Press `Enter` to execute the command.
+
+    <div markdown="block" class="alert alert-info">
+    :exclamation: Do not input command word as "Schedule" with a capital "S". Reeve will not recognise the command word.
+    </div>
+
+    ![Schedule Step 1](images/ScheduleStep1.png)
+    Figure __ Shows the schedule command input keyed into the command box.
+
+2.  The schedule panel, as labelled in figure __, will appear with all your classes for the week of 2nd November 2020 populated.
+
+    ![Schedule Step 2](images/ScheduleStep2.png)
+    Figure __ Shows the schedule panel in the weekly format.
+
+3.  You can easily view you classes for the week. The Date bar labelled in the figure below shows the day of the week as well as the date for your reference.
+    The Time bar in figure __ shows the time in 24-hour format with 1-hour intervals. 
+    The Classes labelled in the figure below are colored brown to match the color of Reeve for a better visual experience.
+    Furthermore, the name of the student that you are tutoring during that slot is labelled for you to identify classes easily.
+    The red bar in figure __ indicates your current time.
+    With the date, time and name of student shown in one view, you could plan your classes without a hassle.
+
+    ![Schedule Step 3](images/ScheduleStep3.png)
+    Figure __ Shows various component of your schedule.
+
+<div markdown="block" class="alert alert-info">
+:warning: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
+Viewing it this way would open up your schedule of the current week in the weekly format.
+You could use this as quick way to open up schedule for the current week.
+
+:exclamation: A class duration of less than an hour may not be shown fully on the schedule.
+ 
+</div>
+
+#### 3.3.10 Clearing all entries: `clear`
 
 You can clear all student data from **Reeve**.
 
@@ -657,29 +717,6 @@ Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 Example:
 * `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
 
-### 3.5 Schedule Feature (By: Alex)
-
-#### 3.5.1 Viewing lesson schedule: `schedule`
-
-You can view your upcoming classes on a timetable in either a daily or weekly format.
-
-Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
-
-* Displays a timetable view of your classes.
-* `DATE_TO_VIEW` refers to the date you wish to view the lesson schedule of.
-* A weekly view gives you an overview of all classes on the week of the given `DATE_TO_VIEW`. You could thus plan your time for the week ahead.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: `VIEW_MODE` can only be either **weekly** or **daily**. The case of the letters does not matter.
-
-:information_source: `DATE_TO_VIEW` must be in the format **dd/mm/yyyy**. For instance, 2/11/2020 refers to the date 2nd November 2020
-
-</div>
-
-Example:
-* `schedule m/weekly d/2/11/2020` shows the schedule of classes in the week of 2nd November 2020.
-
 ### 3.6 Notebook feature (By: Choon Siong)
 
 You can store notes containing small amounts of information inside the notebook. This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve. You should see the notes on the bottom right hand side of Reeve similar to the display shown below.
@@ -731,6 +768,7 @@ Example:
 * Your first note was to remind yourself to grab a cup of coffee. Now that you have bought your cup of coffee, the note is no longer needed.
     * You can use `note delete 1` to delete the note.
 
+>>>>>>> master
 ## 4. Command summary
 
 This following table (Table 2) provides a summary of all the commands in **Reeve**.
@@ -787,9 +825,22 @@ Install the app in the other computer and overwrite the empty data file it creat
 2. Do I have to manually save my data?<br>
 Reeve automatically saves data in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-3. I forgot what are the various commands and their format, where can I find the list of commands?<br>
+3. How do I view the full details of my student?<br>
+Type `toggle` and press `Enter`, your student's full details will be displayed.
+To hide the full details of students, type `toggle` and press `Enter` again.
+
+4. Where can I find the file that contains my student's data?<br>
+Your student's data file can be found in the same file as the application.
+
+5. How can I set the application window to a fix size whenever I open it?<br>
+Reeve automatically save your preferred window size when you close it.
+Hence, you could adjust the window size to your preferred one before closing Reeve.
+Reeve will automatically open according to this size.
+
+6. I forgot what are the various commands and their format, where can I find the list of commands?<br>
 Simply enter the `help` command and you will be directed the list of commands.
 
-4. I accidentally deleted all my data, is there a way to recover my past data?<br>
+7. I accidentally deleted all my data, is there a way to recover my past data?<br>
 Unfortunately, **Reeve** currently does not support a backup feature and is unable to recover any deleted data. The backup feature will be coming soon. 
 In the meantime, we advice you to refrain from accidentally clearing all data, you could perhaps create a backup `json` from time to time. 
+

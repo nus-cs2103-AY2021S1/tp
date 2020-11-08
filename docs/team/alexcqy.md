@@ -12,8 +12,12 @@ Given below are my contributions to the project.
 
 * **Feature added**: Added the **schedule** feature to **Reeve**.
   * What it does: Allows user to view classes on a timetable, rendered as a graphical user interface, either weekly or daily based on a date given.
-  * Justification: This feature helps tutor to plan for their schedule and lessons either for the week or day. As is gives a whole view of the lessons ahead. 
-
+  * Justification: This feature helps tutor to plan for their schedule and lessons either for the week or day. As is gives a whole view of the lessons ahead.
+  * Highlights: This enhancement uses the current data and maps them to an entity that allows meaningful information to be shown.
+  The implementation was challenging as it required integration of an external library with the current structure of the project. 
+  Care have also been given to maintain the data integrity of the current system.
+  * Credits: This feature uses the **[JFXtras](https://jfxtras.org/)** library which includes , [jfxtras-agenda](https://jfxtras.org/doc/8.0/jfxtras-agenda/index.html), [jfxtras-icalendarfx](https://jfxtras.org/doc/8.0/jfxtras-icalendarfx/index.html), [jfxtras-icalendaragenda](https://jfxtras.org/doc/8.0/jfxtras-icalendaragenda/index.html). 
+                                                                                                                              
 * **Other enhancements**:
   * Added the `Name` and `Year` fields in the `Student` class.
   * Updated json storage to be compatible with `Student` object.
@@ -22,13 +26,16 @@ Given below are my contributions to the project.
 * **Code contribution**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=alexcqy)
 
 * **Project management**:
-  * Helped to plan project base structure
+  * Helped to plan project base structure.
+  * Laid out plans for `Student`, `Academic` and `Admin`.
 
 * **Documentation**:
   * User Guide:
     * Added description for the feature `schedule` ([\#205](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/205)).
+    * Added a visuals and description for users to understand the application interface.
   * Developer Guide:
     * Added implementation details of the `schedule`.
+    * Updated design section for `Model` and `Ui` component.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): ([#62](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/62), [#68](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/68))
