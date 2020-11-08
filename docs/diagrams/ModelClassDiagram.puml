@@ -23,6 +23,7 @@ class Tag
 class Difficulty
 class UniqueFlashcardList
 class Flashcard
+class Statistics
 }
 }
 
@@ -37,6 +38,7 @@ OpenEndedQuestion *--> "1" Answer
 Flashcard *--> "1" Question
 Flashcard *--> "*" Tag
 Flashcard *--> "1" Difficulty
+Flashcard *--> "1" Statistics
 
 
 UniqueFlashcardList o--> "*" Flashcard
