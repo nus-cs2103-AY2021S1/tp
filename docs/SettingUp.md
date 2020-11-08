@@ -1,4 +1,4 @@
-#Calo - Setting Up
+# Calo - Setting Up
 
 ## Prerequiste
 1. Java version `11` or higher
@@ -6,16 +6,16 @@
     * [For this guide, only instructions for IntelliJ will be provided.]
  
 | Notes:| If you have disabled the plugins in IntelliJ, go to File > Settings > Plugins to enable them.|
--------------|-------------------
-|
+-------------|-------------------|
 
 ## Setting up the project in your computer
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution:</b>
 
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
 </div>
-
+  
+  
 1.  **Fork** this repo, and **clone** the fork into your computer.
 1. Open IntelliJ and
     * If you are at Welcome Page, select `New Project`
@@ -30,9 +30,9 @@ Follow the steps in the following guide precisely. Things will not work out if y
 
 1. **Configure the coding style**
 
-   If using IDEA, follow the guide [_[se-edu/guides] IDEA: Configuring the code style](https://se-education.org/guides/tutorials/checkstyle.html) to set up IDEA's coding style to match ours.
+   If using IDEA, follow the guide [_[se-edu/guides] IDEA: Configuring the code style_](https://se-education.org/guides/tutorials/checkstyle.html) to set up IDEA's coding style to match ours.
 
-   <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+   <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 
    Optionally, you can follow the guide [_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to find how to use the CheckStyle within IDEA e.g., to report problems _as_ you write code.
    </div>
@@ -43,7 +43,7 @@ Follow the steps in the following guide precisely. Things will not work out if y
 
 1. **Learn the design**
 
-   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
+   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [Calo's architecture](DeveloperGuide.md#architecture).
 
 --------------------------------------------------------------------------------------------------------------------
 
