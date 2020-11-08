@@ -1,3 +1,5 @@
+# Covigent - User Guide
+
 1. [Introduction](#1-introduction)
 1. [About this Guide](#2-about-this-guide)<br />
    2.1. [What's in Covigent](#21-what-is-in-covigent)<br />
