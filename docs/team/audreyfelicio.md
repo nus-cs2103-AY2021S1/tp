@@ -91,30 +91,31 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added prefixes table.
-    * Added command information and summary table.
-    * Added invalid prefixes warning.
-    * Added documentation for the feature `update`.
-    * Added documentation for the feature `sort`.
-    * Added documentation for the feature `suggestion`.
-    * Fix markdown formatting errors.
+    * Added prefixes table. (Pull request [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
+    * Added command information and summary table. (Pull request [\#252](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/252))
+    * Added invalid prefixes warning. (Pull request [\#252](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/252))
+    * Added documentation for the feature `update`. (Pull request [\#121](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/121))
+    * Added documentation for the feature `sort`. (Pull request [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164))
+    * Added documentation for the feature `suggestion`. (Pull request [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145))
+    * Fix markdown formatting errors. (Pull request [\#121](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/121))
 
   * Developer Guide:
-    * Added implementation details of the `update` feature.
-    * Added implementation details of the `sort` feature.
-    * Added implementation details of the `suggestion` feature.
-    * Added sequence and class diagrams for `Logic` API.
-    * Added UML diagrams for `update`, `sort`, and `suggestion` feature.
-    * Added user stories in the form of a table.
-    * Added use cases for `update` feature.
-    * Added use cases for `sort` feature.
-    * Added use cases for `suggestion` feature.
+    * Added implementation details of the `update` feature. (Pull request [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164))
+    * Added implementation details of the `sort` feature. (Pull request [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164))
+    * Added implementation details of the `suggestion` feature. (Pull request [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145))
+    * Added sequence and class diagrams for `Logic` API. (Pull request [\#221](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/221))
+    * Added UML diagrams for `update`, `sort`, and `suggestion` feature. (Pull requests [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145), [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
+    * Added user stories in the form of a table. (Pull request [\#51](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/51))
+    * Added use cases for `update` feature. (Pull request [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
+    * Added use cases for `sort` feature. (Pull request [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164))
+    * Added use cases for `suggestion` feature. (Pull request [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145))
 
 * **Project Management**:
   * Created meeting rooms via Zoom for regular team meeting every week.
   * Ensured meeting time is chosen such that everyone can attend.
   * Ensured everyone attend the meeting on time.
+  * Managed releases `v1.1` - `v1.3` (4 releases) on GitHub.
 
 * **UI**:
-  * Updated the table in help window and adjusted font.
+  * Updated the table in help window and adjusted font. (Pull request [\#219](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/219))
   * Gave feedback during the initial design of UI and helped with picking color scheme.
