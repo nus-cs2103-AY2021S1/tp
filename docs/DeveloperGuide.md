@@ -14,9 +14,8 @@ by Team W12-2
     * [3.5 - Storage Component](#section-35---storage-component)
     * [3.6 - Common Classes](#section-36---common-classes)
 * [Section 4 - Implementation](#section-4---implementation)
-    * [4.1 - Add feature](#section-41---add-feature)
-    * [4.2 - Undo/redo feature](#section-42---proposed-undoredo-feature)
-    * [4.3 - Data saving and loading](#section-43---data-saving-and-loading)
+    * [4.1 - Add Commands - `addMod`, `addTG` and `addStudent`](#section-41---add-commands---addmod-addtg-and-addstudent)
+    * [4.2 - Section 4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`](#section-42---delete-commands---deletemod-deletetg-and-deletestudent)
 * [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
 * [Section 6 - Appendix](#section-6---appendix)
 
@@ -176,7 +175,7 @@ Trackr's three data type also share the same commands, which are:
 
 Since Trackr stores and manages its data recursively, the commands for Module, Tutorial Group and Student work similarly.
 
-### Section 4.1 - Add Commands (addMod, addTG, addStudent)
+### Section 4.1 - Add Commands - `addMod`, `addTG` and `addStudent`
 #### Overview
 
 The Add command in Trackr enables users to easily add data types to the app. Users will be able to keep track of data they are
@@ -194,7 +193,7 @@ Step 1. The user executes `addMod m/CS2103T` to add a module called CS2103T to T
 `LogicManager#execute(String)`.
 
 Step 2. The contents of the `String` is parsed in `AddModuleCommandParser#parse(String)`. This method creates a new
-`Module` object with the parsed arguments. A `AddModuleCommand` object is then initialised with this `Module` object.
+`Module` object with the parsed arguments. An `AddModuleCommand` object is then initialised with this `Module` object.
 
 Step 3. `LogicManager#execute(String)` calls the `AddModuleCommand#execute(Model)` method of the `AddModuleCommand`
 object.
@@ -202,20 +201,20 @@ object.
 Step 4. Within `Model`, the method `Model#addModule(Module)` is executed and this adds the `Module` to the
 `internalList` of `UniqueModuleList`.
 
-Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand#execute(Model)` creates an
+Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand#execute(Model)` creates a
 `CommandResult` object and the `CommandResult` is returned to `LogicManager`.
 
 > Note: There are some differences for the add commands of `TutorialGroup` and `Student` during Step 4.
 >
 > For `TutorialGroup`:
-> - Within each `Module`, there is a `UniqueTutorialGroupList`.
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
 > - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
 > This ensures that there is a target `Module` for the `TutorialGroup` to be added to.
 > - `Model#addTutorialGroup(TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the target `Module`
 > and adds the `TutorialGroup` to the `internalList` of the `UniqueTutorialGroupList`.
 >
 > For `Student`:
-> - With each `TutorialGroup`, there is a `UniqueStudentList`.
+> - With each `TutorialGroup`, there is an `UniqueStudentList`.
 > - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be added to.
 > - `Model#addStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and `TutorialGroup`
@@ -230,7 +229,7 @@ Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand
     - Pros: Easier to implement
     - Cons: More repetitive code
 
-### Section 4.2 - Delete Commands (deleteMod, deleteTG, deleteStudent)
+### Section 4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`
 #### Overview
 
 The Delete command in Trackr enables users to easily delete data types from the app.
@@ -242,6 +241,37 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `DeleteModuleCommand` of Trackr.
 
 ![DeleteModuleSequenceDiagram](images/DeleteModuleSequenceDiagram.png)
+
+Step 1. The user executes `deleteMod 1` to delete the first module in the displayed list. The `deleteMod` command calls
+`LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `DeleteModuleCommandParser#parse(String)`. This method creates a new
+`Index` object with the parsed arguments. A `DeleteModuleCommand` object is then initialised with this `Index` object.
+
+Step 3. `LogicManager#execute(String)` calls the `DeleteModuleCommand#execute(Model)` method of the
+`DeleteModuleCommand` object.
+
+Step 4. Within `Model`, the method `Model#deleteModule(Module)` is executed and this deletes the `Module` from the
+`internalList` of `UniqueModuleList`.
+
+Step 5. Once the `Module` has been deleted from the `internaList`, `DeleteModuleCommand#execute(Model)` creates an
+`CommandResult` object and the `CommandResult` is returned to `LogicManager`.
+
+> Note: There are some differences for the delete commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be deleted from.
+> - `Model#deleteTutorialGroup(TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the target
+> `Module` and deletes the `TutorialGroup` from the `internalList` of the `UniqueTutorialGroupList`.
+>
+> For `Student`:
+> - With each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be deleted from.
+> - `Model#deleteStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
+> `TutorialGroup` and deletes the `Student` from the `internalList` of the `UniqueStudentList`.
 
 #### Design Considerations
 **Aspect: List to contain the models**
@@ -319,7 +349,7 @@ Given below is an example of the interaction between the Model and the `ListModu
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.6 - View Commands (addMod, addTG, addStudent)
+### Section 4.6 - View Commands (viewTG, viewStudent)
 #### Overview
 
 The Vieww command in Trackr enables users to easily navigate between the different views: Module View, Tutorial Group View and Student View.
