@@ -5,11 +5,9 @@ skinparam ClassBorderColor #000000
 
 title Initial content
 
-package System {
+package tCheck {
 
-    object IngredientBook {
-    {field} uniqueIngredientList : （Milk, Amount:0 Pearl, Amount:0 Boba, Amount:0 Oolong_Tea, Amount:0 Brown_Sugar, Amount:0）
-    }
+    class IngredientBook as "__:IngredientBook__"
 }
 
 class Pointer as "Model" #FFFFF

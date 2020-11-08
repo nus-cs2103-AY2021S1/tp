@@ -130,7 +130,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setIngredientBook(ReadOnlyIngredientBook ingredientBook) {
-        this.ingredientBook.setData(ingredientBook);
+        this.ingredientBook.setIngredientsData(ingredientBook);
     }
 
     @Override
