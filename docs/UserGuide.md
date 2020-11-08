@@ -146,7 +146,9 @@ Outcome:
 2. You can now see that tCheck has updated the sales of the two drinks in the Sales
  Tracker inside the _Main View_. 
 
-{Example outcome screenshot to be added later}
+![SalesUpdateCommandScreenshot](images/SalesUpdateCommandScreenshot.png)
+
+Figure x. A screenshot showing the outcome of an `s-update` command
 
 #### 1.2 Listing the number of drinks sold : `s-list`
 Shows a list of all types of drinks sold in the Sales Tracker. The list of drinks shown is 
@@ -154,8 +156,8 @@ ordered in descending order (i.e. ranked from the most to least sales).
 
 Format: `s-list`
 
-Example: Let's say you want to see a list of the drink sales that have been recorded. You can follow these
-instructions:
+Example: Let's say you want to see an ordered list of drink sales that have been recorded with `s-update`.
+You can follow these instructions:
 
 1. Type `s-list` into the _Command Box_.
 2. Press "Enter" to execute the command.
@@ -166,7 +168,9 @@ Outcome:
 2. The Sales Tracker inside the _Main View_ will show a list of the drinks sales in descending order, where the drink
  with the most sales is on top.
 
-{Example outcome screenshot to be added later}
+![SalesListCommandScreenshot](images/SalesListCommandScreenshot.png)
+
+Figure x. A screenshot showing the outcome of an `s-list` command
 
 #### 1.3 Finds the number of drinks by keywords : `s-find`
 
