@@ -1039,16 +1039,154 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file. <br>
+      Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
+
+1. Exit Application
+
+    1. Type `quit' in the command box, and press <kbd>enter</kbd> to exit the application. <br>
+       Expected: The window closes and the application exits.
+
+1. _{ more test cases … }_
+
+### B.2&ensp;General
+
+1. Getting Help
+    1. Prerequisites: none.
+    
+    1. Test case: `help`<br>
+       Expected: A general help message is displayed at the Command Output box.
+       
+    1. Test case: `help add`, `help delete ingredient`<br>
+       Expected: A help message for the specified command is displayed at the Command Output box.   
+
+    1. Incorrect help commands to try: `help 0`, `help recipe`, `...` <br>
+       Expected: No help message displayed. Error details shown in the Command Output box.
+       
+1. Undo the Last Undoable Command
+    1. Prerequisites: An undoable command was previously executed.
+    
+    1. Test case: `undo`<br>
+       Expected: The last undoable command undone. A confirmation message is displayed at the Command Output box.
+
+    1. Incorrect undo commands to try: `undo 0`, `undo recipe #2`, `...` <br>
+       Expected: No command undone. Error details shown in the Command Output box.
+       
+1. Redo the Last Undone Command
+    1. Prerequisites: A redoable command was previously undone.
+    
+    1. Test case: `redo`<br>
+       Expected: The last undone command redone. A confirmation message is displayed at the Command Output box.
+
+    1. Incorrect redo commands to try: `redo 0`, `redo add recipe #2`, `...` <br>
+       Expected: No command redone. Error details shown in the Command Output box.
+       
+1. List Recommendations
+    1. Prerequisites: none.
+    
+    1. Test case: `list recommendation` or `list recommendations`<br>
+       Expected: All recipes using ingredients in stock are listed. A confirmation message is displayed at the Command Output box. When there are insufficient ingredients or no matching recipe, no valid recommendation can be given.
+
+    1. Incorrect list recommendation(s) commands to try: `list`, `list recipe recommendation`, `...` <br>
+       Expected: No recommendation listed.Error details or irrelevant output shown in the Command Output box.
+
+### B.2&ensp;Managing Recipes
+
+1. Adding a recipe
+
+   1. Prerequisites: none.
+
+   1. Test case: 
+   ``````
+   add recipe Banana Smoothie 
+   /ingredient Banana /qty 2 
+   /ingredient milk /qty 200ml 
+   /step Chop the bananas and add to a blender with milk. 
+   /step Turn the blender on and blend until creamy and smooth.
+   /step Ready to serve.
+   /tag Summer Favourites /tag fruit
+   ``````
+      Expected: New recipe added. Details of the added recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+
+   1. Test case: `add recipe Cookies and Cream Cake`<br>
+      Expected: Output display similar to previous.
+
+   1. Incorrect add commands to try: `add`, `add recipe`<br>
+      Expected: No recipe is added. Error details shown in the Command Output box. 
+      
+1. Editing a recipe
+
+   1. Prerequisites: A recipe has been previously created.
+
+   1. Test case: 
+      ``````
+      edit recipe #3
+      /name Fruit Mix
+      /ingredient:edit Banana /qty 1
+      /ingredient:add Strawberry /qty 8
+      /ingredient:delete milk
+      /ingredient:add Yoghurt /qty 200ml 
+      /step:edit:1 Chop the bananas and strawberries and add to a blender with milk. 
+      /step:delete:3
+      /step:add:3 The fruit mix is now ready to serve.
+      /tag:add cooling /tag:delete fruit
+      ``````
+      Expected: Recipe #3 edited. Details of the added recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+
+   1. Incorrect edit commands to try: `edit`, `edit recipe`, `edit recipe #1`<br>
+      Expected: No recipe is edited. Error details shown in the Command Output box. 
+ 
+1. Filtering a recipe
+
+   1. Prerequisites: At least one recipe has been previously created.
+
+   1. Test case: 
+      ``````
+      filter recipe
+      /name fruit /name mix
+      /ingredient banana
+      /ingredient yoghurt
+      /tag cooling
+      ``````
+      Expected: Recipes matching all specified criteria displayed in the Recipe View Panel.
+
+   1. Incorrect filter commands to try: `filter`, `filter recipe`, `filter recipe /name`, `...`(where any search term is empty) <br>
+      Expected: No recipe is edited. Error details shown in the Command Output box.      
+
+1. Finding a recipe
+
+   1. Prerequisites: At least one recipe has been previously created.
+
+   1. Test case: `find recipe fruit mix salad`
+      Expected: Recipes whose name contains any of the keywords displayed in the Recipe View Panel.
+
+   1. Incorrect filter commands to try: `filter`, `filter recipe`, `filter recipe /name`, `...`(where any search term is empty) <br>
+      Expected: No recipe is edited. Error details shown in the Command Output box.      
+      
+1. Deleting a recipe
+
+   1. Prerequisites: A recipe has been previously created.
+
+   1. Test case: `delete recipe #1`
+      Expected: Recipe #2 deleted. All current recipes (after the deletion) shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+
+   1. Test case: `delete recipe Fruit Mix`<br>
+      Expected: Recipe with the name **Pancakes** deleted. Output display similar to previous.
+      
+   1. Test case: `delete recipe Salad` or `delete recipe #20` <br>
+      Expected: No recipe deleted as no matching recipe is found. Error details shown in the Command Output box. 
+
+   1. Other incorrect delete commands to try: `delete`, `delete recipe`<br>
+      Expected: No recipe is deleted. Output display similar to previous.
 
 1. _{ more test cases … }_
 
