@@ -5,7 +5,7 @@ title: User Guide
 * Table of Contents
     * [Introduction](#introduction)
     * [Quick start](#quick-start)
-    * [About](#about)
+    * [About This Document](#about)
     * [Features](#features)
         * [Commands - Sales Tracking](#commands-sales-tracking)
         * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
@@ -62,7 +62,7 @@ how the figure below shows some sample data.<br>
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. About <a name="about"></a>
+## 3. About this document <a name="about"></a>
 
 ### 3.1 Structure of this document
 
@@ -89,6 +89,51 @@ Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all compon
 
 <img src="images/tCheckInfographic.png" width="1000" height="700" />
 Figure 2 - Annotated GUI of tCheck
+
+#### 3.2.2. General Symbols and Syntax 
+
+The following table explains the general symbols and syntax used in this User Guide.
+
+| Syntax |  What it means |
+|----------|-------------|
+| `command` |  The grey block specifies an execuable command which can be entered in the command box |
+| _italics_ | Italicised text specifies the terms related to tCheck's GUI |
+|<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a note |
+|<div markdown="span" class="alert alert-primary">:bulb:  | An bulb indicates that the following text is a tip |
+
+#### 3.2.3. Command Syntax and Usage
+
+The following table explains the technical terms used in this user guide.
+
+| Technical Term | What it means |
+| ---------------| --------------|
+| Prefix | The first word of a command. tCheck uses this command word to decide what kinds of actions it should perform |
+| Command Word | It is the input that follows behind a prefix. It is used to distinguish different kinds of parameters |
+| Parameter | Values given for specific operations |
+
+**Example:** <br>
+`c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]`
+
+**Breakdown:** 
+* Command Word - `c-add` <br>
+* Prefixes - `n/`, `e/`, `p/`, `a/`, `t/`  <br>
+* Parameters - `NAME`, `PHONE_NUMBER`, `EMERGENCY_CONTACT`, `ADDRESS`, `TAG`
+
+The following points explain the format of a command. 
+
+* Words in `UPPER_CASE` are the parameters to be supplied.<br>
+   e.g. In `c-delete INDEX`, `INDEX` is a parameter and the command can be used as `c-delete 1`.
+
+* Items in square brackets are optional.<br>
+   e.g. `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]` can be used as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road t/Friday` 
+    or as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road`.
+
+* Items with `…​` after them can be used multiple times, including zero times.<br>
+   e.g. `[t/TAG] …​` can be used as ` ` (i.e. 0 times), `t/Friday`, `t/Friday t/PartTime`, etc.
+
+* Parameters can be in any order.<br>
+   e.g. If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
+    
 
 #### 3.2.4 Prefix process and usage
 
@@ -140,7 +185,6 @@ Thus, tCheck will ignore all words come after the command word `help` and the co
 
 * Items with `...`​ after them can be used once or multiple times.<br>
   e.g. `sales A/NUM B/NUM C/NUM ...` can be used as `sales BSBM/100` or `sales BSBM/100 BSBBT/120`.
-
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -230,7 +274,7 @@ Figure x. A screenshot showing the outcome of an `s-list` command
 
 Finds all drinks where their abbreviated names match the KEYWORD(s).
 
-Format: `s-find KEYWORD [MORE_KEYWORDS] ...`
+Format: `s-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.
 * Only the drink's abbreviated name is searched.
@@ -238,9 +282,23 @@ Format: `s-find KEYWORD [MORE_KEYWORDS] ...`
 * Drinks matching at least one keyword will be returned.
   e.g. `BSBBT BSBM` will return `BSBBT`, `BSBM`.
 
-Examples:
-* `s-find BSBBT` returns `BSBBT`'s sales data.
-* `s-find BSBBT BSBM` returns `BSBBT`'s sales data and `BSBM`'s sales data.<br>
+Example:
+
+Let's say you want to find BSBBT and BSBM's sales data, you can follow these instructions:
+
+1. Type `s-find BSBBT BSBM` into the _Command Box_.
+1. Press "Enter" to execute.
+
+
+Outcome:
+1. The _Result Display_ will show that how many drinks you find.
+2. All matching drink's sales data will be listed in the _Main View_.
+
+Before executing:<br>
+![BeforeSalesFind](images/BeforeSalesFind.png)
+
+After executing:<br>
+![SalesFindCommandScreenshot](images/SalesFindResult.png)
 
 #### 1.4 Ranking the list of drinks sold : `s-rank`
 Shows a ranked list of all types of drinks sold in the Sales Tracker. The list of drinks
@@ -473,53 +531,95 @@ is shown in the screenshot above. In the actual application, you can scroll down
 ### 3. Commands - Manpower Management <a name="commands-manpower-management"></a>
 #### 3.1 Adding an employee : `c-add`
 
-Adds an employee to the contact list.
+Adds an employee to the Employee Directory.
 
 Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
 
-<div markdown="span" class="alert alert-primary">:bulb:
 
-**Tip:**
-An employee can have any number of tags (including 0)
+* In tCheck, you may add an employee to the Employee Directory. When you add an employee, you need to provide his/her name, phone number, emergency contact, and address.
+* Tag is optional. Tags names should be alphanumeric. White space, characters are not allowed to be used in tags names. 
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+* PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
 </div>
 
-Examples:
-* `c-add n/John Doe p/98765432 e/81234567 a/Blk 123 ABC Road`.
-* `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road t/Friday t/PartTime`.
+Example: 
 
-#### 3.2 Listing all employees : `c-list`
+Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His emergency contact is 81234567. His address is Blk 123 ABC Road. Assume he is a part-time employee, and he only can work on Friday. So you want to indicate these two characteristics in tCheck. You can assign him two labels, "Friday" and "PartTime" so that you can use find-employees-by-tags features (refer to `c-tag-find` for more details) to find a group of employees by their tag(s).You can follow these instructions:
 
-Shows a list of all employees in the contact list.
+1. Type `c-add n/John Doe p/98765432 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime` into the _Command Box_.
+1. Press "Enter" to execute.
 
 
-Format: `c-list`
+Outcome:
+1. The _Result Display_ will show that you add a new employee.
+2. All active employees will be listed in the Employee Directory inside the _Main View_.
+
+![AddEmployeeCommandScreenshot](images/AddEmployeeCommandResult.png)
+
+#### 3.2 Listing all employees in the active list: `c-active-list`
+
+Lists all employees who are active. 
+
+Format: `c-active-list`
+
+Example: 
+
+All employees who are currently working in the shop are active/unarchived employees. They are stored in the active (unarchived) Employee Directory.
+Let's say you want to see all active (unarchived) employees in your store, you can follow these instructions:
+
+1. Type `c-active-list` into the _Command Box_.
+1. Press "Enter" to execute.
+
+
+Outcome:
+1. The _Result Display_ will show that all active (unarchived) employees are listed.
+2. All active employees will be listed in the Employee Directory inside the _Main View_.
+
+![ActiveEmployeeListCommand](images/ActiveListResult.png)
+
 
 #### 3.3 Editing a person : `c-edit`
 
 
-
-Edits the corresponding contact information in the contact list.
+Edits the corresponding employee's information in the Employee Directory.
 
 Format: `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG] ...`
 
 * Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
-* You can remove all the employees’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags, the existing tags of the employee will be removed i.e. adding of tags is not cumulative.
+* You can remove all the employee's tags by typing `t/` without specifying any tags after it.
 
-Examples:
-*  `c-edit 1 p/91234567 e/81234567` Edits the phone number and emergency contact of the 1st employee to be `91234567` and
- `81234567` respectively.
-*  `c-edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
+Example: 
+
+Let's say you want to edit an employee whose index is 1 in Employee Directory. His new phone number is 91234567. His new emergency contact is 81232744. 
+You can follow these instructions:
+
+
+1. Type `c-edit 1 p/91234567 e/81232744` into the _Command Box_.
+1. Press "Enter" to execute.
+
+Outcome:
+1. The _Result Display_ will show that you edit the employee.=
+2. All active employees will be listed in the _Main View_.
+
+Before executing:<br>
+![BeforeEditCommandScreenshot](images/BeforeClearCommand.png)
+
+
+After executing:<br>
+![EditCommandScreenshot](images/EditCommandResult.png)
 
 
 #### 3.4 Locating persons by keywords: `c-find`
 
-Finds all active (unarchived) contacts that contain the KEYWORD(s) in their names.
+Finds all active (unarchived) employees that contain the KEYWORD(s) in their names.
 
-Format: `c-find KEYWORD [MORE_KEYWORDS] ...`
+Format: `c-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
@@ -528,9 +628,19 @@ Format: `c-find KEYWORD [MORE_KEYWORDS] ...`
 * Employees matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
-Examples:
-* `c-find John` returns `john` and `John Doe`.
-* `c-find alex david` returns `Alex Yeoh`, `David Li`.<br>
+Example: 
+
+Let's say you want to find employees whose name contains "John". 
+You can follow these instructions:
+
+1. Type `c-find john` into the _Command Box_.
+1. Press "Enter" to execute.
+
+Outcome:
+1. The _Result Display_ will show how many employees' matching your find command
+2. Employees whose name contains "john" will be listed in the Employee Directory inside the _Main View_.
+
+![EmployeeFindCommandScreenshot](images/EmployeeFindResult.png)
 
 #### 3.5 Locating employees based on matching tags: `c-tag-find`
 
@@ -661,23 +771,49 @@ Figure x. A screenshot showing the outcome of an `c-tomorrow` command
 
 #### 3.8 Deleting a person : `c-delete`
 
-Deletes the specified employee from the contact list.
+Deletes the specified employee from the Employee Directory.
 
 Format: `c-delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, ...
+* The index refers to the index number shown in the displayed Employee Directory.
+* The index **must be a positive integer** 1, 2, 3, ...​
 
-Examples:
-* `c-list` followed by `c-delete 2` deletes the 2nd employee in the contact list.
-* `c-find Betsy` followed by `c-delete 1` deletes the 1st employee in the results of the `c-find` command.
+Example:
+* Let's say you want to delete the employee whose index is 1. You can follow these instructions:
+
+1. Type `c-delete 1` into the _Command Box_.
+2. Press "Enter" to execute.
+
+
+Outcome:
+1. The _Result Display_ will show deleted employee's information.
+2. Remaining employees will be listed in the Employee Directory inside the _Main View_.
+
+![DeleteEmployeeCommandScreenshot](images/DeleteEmployeeResult.png)
 
 #### 3.9 Clearing all entries : `c-clear`
 
-Clears all entries from the contact list.
+Clears all entries from the Employee Directory.
 
 Format: `c-clear`
+
+Example:
+
+* Let's say you want to delete all employees in Employee Directory. You can follow these instructions:
+
+1. Type `c-clear` into the _Command Box_.
+2. Press "Enter" to execute.
+
+
+Outcome:
+1. No employees will be listed in the Employee Directory inside the _Main View_.
+
+Before executing:<br>
+![ListEmployeeScreenshot](images/BeforeClearCommand.png)
+
+After executing:<br>
+![ClearEmployeeCommandScreenshot](images/ClearEmployeeResult.png)
 
 #### 3.10 Archiving an employee : `c-archive`
 
@@ -929,7 +1065,7 @@ tCheck also shows the calendar for the current month when you start the applicat
 **Q**: Why does tCheck ignore additional or extra input that I add after single-word commands, like `help`? <br>
 **A**: Any extra input after a single-word command, for example, the input `123` inside the input `c-list 123`, will 
 be ignored because extra input does not affect the operation conducted by `c-list`. These single-word commands 
-include: `s-list`, `s-rank`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-list`, `c-today`, `c-tomorrow`,
+include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-list`, `c-today`, `c-tomorrow`,
   `c-clear`, `c-archive-all`, `c-archive-list`, `help`, `exit`.
 
 ## Command summary <a name="command-summary"></a>
@@ -938,9 +1074,10 @@ include: `s-list`, `s-rank`, `i-set-default`, `i-list`, `i-reset-all`, `i-restoc
 
 Action | Format, Examples
 -------|------------------------------
-**Update**| `s-update DRINK [MORE_DRINKS] ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
+**Update**| `s-update DRINK [MORE_DRINKS]` <br> e.g., `s-update BSBM/100 BSBBT/120`
 **List**| `s-list`
-**Find**| `s-find KEYWORD [MORE_KEYWORDS] ...` <br> e.g., `s-find BSBM BSBBT`
+**Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
+
 
 ### Ingredients Tracking
 
@@ -959,9 +1096,9 @@ Action | Format, Examples
 Action | Format, Examples
 -------|------------------------------
 **Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
-**List** | `c-list`
+**List** | 1. **For all active (unarchived) employees:**  `c-active-list`<br>2. **For all archived employees:**  `c-archive-list`
 **Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
-**Find by name** | `c-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-find James Jake`
+**Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
 **Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Find available manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`

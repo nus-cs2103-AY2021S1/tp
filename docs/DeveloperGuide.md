@@ -24,9 +24,10 @@ This document specifies the architecture and software design for the application
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+### **Setting up**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+The code of tCheck is open sourced and published on a github repository. If you want to download the code and/or set up
+an environment to contribute to this repository, you can refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -68,7 +69,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `c-delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -79,11 +80,16 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel
+`, `IngredientListPanel`, `SalesRecordListPanel`, `CalendarView`, `StatusBarFooter` etc. All these, including the
+ `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of the
+[`MainWindow`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -123,6 +129,17 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+
+Given below is the class diagram showing details of the person model:
+
+The `Person` sub-component,
+* stores the address book data.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+![Structure of the Person Model Component](images/PersonModelClassDiagram.png)
+
+Figure x. Class diagram showing the structure of `Person` sub-component
+
 Given below is the class diagram showing the details of the `SalesRecordEntry` model:
 
 ![Structure of the SalesRecordEntry sub-component](images/SalesRecordEntryModelClassDiagram.png)
@@ -141,8 +158,13 @@ Given below is the class diagram showing details of the ingredient model:
  PlantUML, where there cannot be two textboxes at the arrow head, the role has been placed in the middle of the arrow.
 </div>
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP
+) model is given below. It has a `Tag` list in the `tCheck` application, which `Person` references. This allows
+ `tCheck` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
+Figure x. Class diagram showing the alternative structure of `Person` sub-component
 
 </div>
 
@@ -151,12 +173,15 @@ Given below is the class diagram showing details of the ingredient model:
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+Figure x. Class diagram showing the `Storage` structure
+
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 * can save the ingredient book data in json format and read it back.
+* can save the sales book data in json format and read it back.
 
 ### Common classes
 
@@ -304,7 +329,7 @@ The following activity diagram shows how the find drink's sales data operation w
   * **Current Choice**: Obtain the drink's name entered by the user, and use the
   drink's name to find the sales data by looping through the salesbook.
     * Pros: Code is more readable and consistent with the logic of finding employees.
-    * Cons: Every execution of the command will require one to access the sales record list loop through 
+    * Cons: Every execution of the command will require to access the sales record list loop through 
     the list once, which may increase the time required for the operation. 
 
 ### \[Completed\] Set ingredients' levels feature
@@ -459,27 +484,28 @@ The following activity diagram summarises what happens when a user executes the 
     * Pros: Clear implementation. Do not lead to creation of new ingredient objects.
     * Cons: Editing the ingredient's levels of the ingredients may be more error-prone.
 
-### \[Completed\] Archive person's contact information feature
+### \[Completed\] Archive employee(s) feature
 
-When employees are no longer working in the store, their contact information would usually be deleted, or kept in
+When employees are no longer working in the store, their information would usually be deleted, or kept in
 the archive. tCheck simulates this archive, storing these contact information in the app so that the user can still
 retrieve them back when needed. For example, when an employee is rehired by the manager, the manager(user) can move
 this specific employee's contact information back to the currently active contact information list from the
 archived record.
 
-The completed archive person's contact information feature consists of four commands with slightly different
+The archiving employee feature consists of four commands with slightly different
 formats, which complement one another, to provide a set of useful commands for enhanced user experiences. The four
 commands are :
 
-* `c-archive INDEX` — Archives the person identified by the index number used in the displayed person list.
-* `c-unarchive INDEX` — Unarchives the person identified by the index number used in the displayed person list.
-* `c-archive-all` — Archives all persons in the displayed person list.
-* `c-archive-list` — Shows a list of all archived persons' contact details.
+* `c-archive INDEX` — Archives the employee identified by the index number used in _Employee Directory_ pane.
+* `c-unarchive INDEX` —  Unarchives the employee identified by the index number used in _Employee Directory_ pane.
+* `c-archive-all` — Archives all employees in _Employee Directory_ pane.
+* `c-archive-list` — Shows a list of all archived employees.
 
-#### Completed Implementation
+#### Implementation
 
-The archiving of persons is facilitated by the `ArchiveStatus` attribute of a person. The following methods in the
- `Person` class and the `Model` interface facilitate this feature:
+In tCheck, each employee is modeled as `Person` object. The archiving employee feature is facilitated by the
+ `ArchiveStatus` attribute of a `Person`. The following methods in the `Person` class and the `Model`interface
+  facilitate this feature:
 
 * `Person#archive()` — A method that sets the person's `ArchiveStatus` to `true`. It's equivalent to archive the person.
 * `Person#unarchive()` — A method that sets the person's `ArchiveStatus` to `false`. It's equivalent to unarchive the
@@ -491,35 +517,43 @@ The archiving of persons is facilitated by the `ArchiveStatus` attribute of a pe
 
 ![Structure of the Archive/Unarchive Component](images/ArchiveClassDiagram.png)
 
-*Figure Archive-1. Overview class diagram representation of the person archiving/unarchiving implementation*
+*Figure Archive-1. Overview class diagram representation of archiving/unarchiving implementation*
 
 Given below shows how the `c-archive`, `c-unarchive`, and `c-archive-all` mechanism works in steps based on different scenarios. Two activity diagrams are provided before each detailed explanation to describe how tCheck handles an archiving/unarchiving commands. Three sequence diagrams are attached after the description
 
-##### 1. Archiving a person
+##### 1. Archive an employee
 
 *Figure Archive-2. Activity diagram representation of the general flow of archiving of a peron in tCheck*
 
-User can archive a specific person by entering the `c-archive INDEX` command. The following steps describe how this behavior is implemented:
+User can archive a specific employee (modeled as a `Person` in the code) by entering the `c-archive INDEX` command. The
+ following steps describe how this behavior is implemented:
 
 Step 1: The user archives a `Person` in the current observable `PersonList` with command `c-archive 1`. `ArchiveCommand` is created with the parsed arguments, and executed.
 
-Step 2: The `Person` will then be checked if the `ArchiveStatus` is `true`. An error message will be displayed if the user tries to archive a person from the archived person list.
-
+Step 2: The `Person` will then be checked if the `ArchiveStatus` is `true`. An error message will be displayed if the
+ user tries to archive a person from the archived person list.
+ 
 Step 3: The `Person` will have a new `ArchivedStatus` value, which will be set to `true` by using the `Person#archive()` method.
 
 Step 4: The current `FilteredList` will be updated to only show active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
 ![Structure of the Storage Component](images/ArchiveSequenceDiagram.png)
 
-*Figure Archive-3. Sequence diagram representation of archiving a person*
+*Figure Archive-2. Sequence diagram representation of archiving an employee*
 
-##### 2. Unarchiving a person
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommand`
+ should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+
+##### 2. Unarchive an employee
 
 ![Structure of the Storage Component](images/UnarchiveActivityDiagram.png)
 
-*Figure Archive-4. Activity diagram representation of the general flow of unarchiving of a peron in tCheck*
+*Figure Archive-3. Activity diagram representation of the general flow of unarchiving an employee in tCheck*
 
-User can unarchive an already-archived person's contact information by entering the `c-unarchive INDEX` command. The following steps describe how this behavior is implemented:
+User can unarchive an already-archived employee(modeled as `Person` in the code) by entering the `c-unarchive INDEX
+` command. The following steps describe how this behavior is implemented:
 
 Step 1: The user unarchives a `Person` in the current observable `PersonList` with command `c-unarchive 1`. `UnarchiveCommand` is created with the parsed arguments, and executed.
 
@@ -531,10 +565,15 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 ![Structure of the Storage Component](images/UnarchiveSequenceDiagram.png)
 
-*Figure Archive-5. Sequence diagram representation of unarchiving a person*
+*Figure Archive-4. Sequence diagram representation of unarchiving an employee*
 
-##### 3. Archiving all persons
-User can archive all persons' contact information by entering the `c-archive-all` command. The following steps describe how this behavior is implemented:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnarchiveCommand` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+##### 3. Archive all employees
+User can archive all employees(employee is modeled as `Person` in the code) by entering the `c-archive-all` command. The
+ following steps describe how this behavior is implemented:
 
 Step 1: The user archives all `Person`s in the current observable `PersonList` with command `c-archive-all`. `ArchiveAllCommand` is created with the parsed arguments, and executed.
 
@@ -544,11 +583,18 @@ Step 3: The current `FilteredList` will be updated to only show the empty active
 
 ![Structure of the Storage Component](images/ArchiveAllSequenceDiagram.png)
 
-*Figure Archive-6. Sequence diagram representation of archiving all persons*
+*Figure Archive-5. Sequence diagram representation of archiving all employees*
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveAllCommand` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 
 #### Design consideration:
 
-##### Aspect: The implementation to store archived persons
+##### Aspect: The implementation to store archived employees
+
+Notes: Employee is modeled as `Person` in the code.
 
 * **Alternative 1 (current choice):** `Person` contains an `ArchiveStatus` field.
 
@@ -556,7 +602,7 @@ Step 3: The current `FilteredList` will be updated to only show the empty active
     * Cons: If the `PersonList` contains a huge number of `Person`s, the processing speech will be slow for certain
       command (eg: c-archive-list), because it needs to go into each `Person` to check if the `ArchiveStatus` is `true`.
 
-* **Alternative 2:** Storing archived persons in a separate json file.
+* **Alternative 2:** Storing archived employees in a separate json file.
 
   * Pros:  Execute `c-archive-list` very fast, even for huge amount of data, because it can just display all the data
    inside this file.
@@ -672,79 +718,80 @@ The product provides an integrated system for the purpose of sales tracking, ing
 
 ### User stories
 
-Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| As a/an                           | I can/I want to (features that are going to be implemented)                                                                  | So that (benefit gained)                                                                                 | Priority |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| Store manager                     | have a centralised system that helps me keep track of my employees’ contact numbers                                          | I don't need to organize working contacts on my personal phone                                           | 1                                                             |
-| Store manager                     | have a software that helps me on daily inventory checking                                                                    | I can reduce the amount of human errors that may be involved and track the shop's inventory conveniently | 1                                                             |
-| Busy store manager                | receive reminders to restock                                                                                                 | I won't lose revenue because of unexpected ingredient shortage during operation                          | 1                                                             |
-| First-time user                   | be able to download the app                                                                                                  | I can play around and check out what it can do before actual usage                                       | 1                                                             |
-| First-time user                   | use the help feature                                                                                                         | I can get more familiar with the app features                                                            | 1                                                             |
-| First-time user                   | find out if the app is running smoothly and bug-free                                                                         | I can decide if using this app will indeed help me run a store                                           | 1                                                             |
-| Concerned manager                 | check the employees's contact number if they are absent without stating any reasons                                          | I can easily contact them in a short time                                                                | 1                                                             |
-| Second-time user                  | initialize the ingredients level in the app                                                                                  | I need not remember the amount of inventories, and only need to update when I do a restock               | 1                                                             |
-| Second-time user                  | find the emergency contacts of my employees quickly if they are injured                                                      | I can find the person to contact and know what action to take in the shortest time possible              | 1                                                             |
-| Intermediate user                 | input the number of each type of drinks sold into tCheck at the end of the day, and know the amount of remaining ingredients | I can document the amount of ingredients left                                                            | 1                                                             |
-| Expert user                       | to delete some of the employees' data who are no longer working at the shop                                                  | they are no longer tracked by the app.                                                                   | 1                                                             |
-| Second-time user                  | view the revenue from the last day                                                                                           | I can predict how much demand it would likely to be for today                                            | 1                                                             |
-| Store manager                     | have a software to help me calculate my daily revenue                                                                        | I don't need to manually calculate them and it will become less troublesome to do so                     | 2                                                             |
-| Busy and concenrned store manager | have a software to remind me on check my employees' health condition for each shift                                          | I won't forget to check, espcially when I'm busy                                                         | 2                                                             |
-| First-time user                   | read the "About" page in the app                                                                                             | I know how to use this software to help my business                                                      | 2                                                             |
-| First-time user                   | register for a password-protected account                                                                                    | I can be sure that my user data will not be viewed by non-users                                          | 2                                                             |
-| First-time user                   | be able to navigate the app easily                                                                                           | I only need basic intuition to use the navigation bar (For GUI)                                          | 2                                                             |
-| Impatient first-time user         | have a fast-response inventory keeping application                                                                           | I don't waste time waiting for the app to load                                                           | 2                                                             |
-| Second-time user                  | only use the software and access my data if I enter the correct login information                                            | it prevents unauthorised users from viewing the shop's information                                       | 2                                                             |
-| Second-time user                  | be reminded of the task of checking the employee's health condition                                                          | I would not forget to check the employees' health status each day before the shop opens                  | 2                                                             |
-| Concerned manager                 | check and record the health conditions of my employees                                                                       | I can do my best to ensure the safety of food is guanranteed                                             | 2                                                             |
-| Second-time user                  | view the inventory from the last day                                                                                         | I can restock before the ingredients ran out of stock and affect my business                             | 2                                                             |
-| Intermediate user                 | input the number of each type of drinks sold into tCheck at the end of the day,and find out the total revenue of the day     | I can document the daily revenue                                                                         | 2                                                             |
-| Intermediate user                 | do closing duties according to a check list shown on the app                                                                 | I will not forget important things                                                                       | 2                                                             |
-| Intermediate user                 | use the ingredient data                                                                                                      | I can prepare for next day's ingredients                                                                 | 2                                                             |
-| Busy store manager                | use shortcut commands                                                                                                        | it makes my input process into tCheck faster and more convenient.                                        | 2                                                             |
-| Expert user                       | my data to be saved reliably                                                                                                 | my data won't be lost even if my computer crashes                                                        | 2                                                             |
-| Expert user                       | have fast responses after a long usage period                                                                                | I will not waste time waiting for the app even after extensive usage                                     | 2                                                             |
-| Expert user                       | export my data from the application                                                                                          | the performace of the store can be analyzed easily by using other third-party softwares                  | 2                                                             |
-| Intermediate user                 | to look through my employees' health condition data of the last 10 days                                                      | I can roughly gauge the conditions of my employees                                                       | 3                                                             |                                              |
+| Priority | As a/an…  | I can/I want to                                                  | So that I can/I want to                                                                |
+| -------- | ------------| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `* * *`  | Store manager     | have a centralised system that helps me keep track of my employees’ contact details                                           | not need to organize working contacts on my personal phone|
+| `* * *`  | Store manager         | have a software that helps me on inventory checking                                                | reduce the amount of human errors that may be involved and track the shop's inventory conveniently |
+| `* * *`  | Store manager         | archive all employees' contact details with just one command   | quick-reset all the contact database without permanently deleting the information |
+| `* * *`  | Store manager         | archive some employees' contact details   | retrieve them if needed in the future |
+| `* * *`  | Busy store manager         | have a system that can automatically save the updated data after each command   | not need to click the save button every time and worry about data loss. |
+| `* * *`  | First-time user        | be able to download this app                                                | play around and check out what it can be before actual usage  |
+| `* * *`  | First-time user        | use the help feature                                          | get more familiar with the app features            |
+| `* * *`    | First-time user        | find out if the app is running smoothly and bug-free        | decide if using this app will indeed help me run a store                    |
+| `* * *`  | Concerned manager      | check the employee's contact number if they are absent without stating any reasons       | easily contact them in a short time  |
+| `* * *`  | Second-time user      | initialize the ingredients level   | need not remember the amount of inventories, and only need to update when I do a restock |
+| `* * *`  | Second-time user      | view all the ingredient levels from the last day   | restock before the ingredients ran out of stock and affect my business|
+| `* * *`    | Second-time user      | find the emergency contacts of my employees quickly if they are injured | find the person to contact and know what action to take in the shortest time possible |
+| `* * *`    | Second-time user      | set all different ingredients levels to standard default amounts   | easily start using tCheck to track ingredients in my store |
+| `* * *`    | Second-time user      | set different ingredients levels to different default amounts   | be able to use tCheck to track my store's ingredients and their usage levels |
+| `* * *`    | Intermediate user      | input the number of each type of drinks sold into tCheck at the end of the day | keep a record of the sales of the drinks |
+| `* * *`    | Intermediate user      | find a specific ingredient consumption  | check an individual ingredient's level quickly   |
+| `* * `    | Intermediate user      | see a ranking of the drinks sold | easily compare and identify the most popular drink in the shop so far   |
+| `* * `    | Intermediate user      | view the list of drinks sold for the day | check that I have input the correct number and see a visual overview of the sales of drinks   |
+| `* * `    | Store manager      | delete some of the employees' data who are no longer working at my shop | get them no longer tracked by tCheck   |
+| `* * `    | Store manager      | see all archived contact details | still find my former employees' contacts when needed |
+| `* * `    | Second-time user      | reset all ingredient levels to zero   | record new ingredient levels conveniently |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `tCheck` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use Case: UC01 - Archive a contact detail of an employee**
+**Use Case: UC01 - Archive an employee**
 
 **MSS**
 
-1. User chooses to archive one employee’s contact details.
-2. tCheck requests for details of the employee to archive.
-3. User enters the archive details.
-4. tCheck will move this corresponding contact detail into the archive and displays a success message.
+1. User archives an employee from employee directory. 
+2. tCheck will move this corresponding employee into the archive and displays a success message.
 
      Use case ends.
 
-
 **Extensions**
 
-* 3a. tCheck detects an incorrect input format or is unable to find the entered data.
+* 2a. tCheck detects an incorrect input format.
+        
+        * 2a1. tCheck requests the user to re-enter the data in the correct format.
+        
+    	* 2a2. User enters new data.
+    	
+    	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
+    	
+    	Use case resumes from step 2.
 
-        * 3a1. tCheck requests for the correct data.
+* 2b. tCheck detects that the specified employee does not exist.
+        
+        * 2b1. tCheck requests the user to re-enter a valid index that corresponds to an existing employee.
+        
+        * 2b2. User enters new index.
+        
+        Steps 2b1-2b2 are repeated until the index entered is valid.
+        
+        Use case resumes from step 2.
 
-    	* 3a2. User enters new data.
+* 2c. tCheck detects that the specified employee has already been archived.
+        
+        * 2c1. tCheck returns the error message to the user.
+        
+        Use case ends.
 
-    	Steps 3a1-3a2 are repeated until the data entered are correct.
-
-    	Use case resumes from step 4.
-
-
-**Use Case: UC02 - Archive all contact details**
+**Use Case: UC02 - Archive all employees**
 
 **MSS**
 
-1. User chooses to archive all employee’s contact details.
-2. User enters the request to archive all employees’ contact details.
-3. tCheck will move all contact details into the archive and displays a success message.
+1. User archives all employees. 
+2. tCheck will move all contact details into the archive and display a success message.
 
      Use case ends.
 
@@ -753,15 +800,15 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 * 2a. tCheck detects an incorrect input format.
 
-        * 2a1. tCheck requests for the input to be in the correct format.
-
-      	* 2a2. User enters new data.
-
-      	Steps 2a1-2a2 are repeated until the data entered are correct.
-
-      	Use case resumes from step 3.
-
-* 2b. tCheck detects an empty contact list.
+        * 2a1. tCheck requests the user to re-enter in the correct format.
+        
+    	* 2a2. User enters new data.
+    	
+    	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
+    	
+    	Use case resumes from step 2.
+      	
+* 2b. tCheck detects an empty Employee Directory.
 
    	    * 2b1. tCheck shows a warning message.
 
@@ -832,17 +879,17 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  Should be able to respond within 1 second for each operation.
-4.  Should be able to function fully without connecting to internet.
+2.  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
+3.  Should be able to respond within 2 seconds for each operation.
+4.  Should be able to function fully without access to internet.
 5.  Should be for a single user.
-6.  Should not handle the printing of the report (i.e. sales report).
-7.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+6.  Data files should remain unchanged when transferring from one computer to another.
+7.  Should not attempt to make any change in all data files.
+8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
  be able to accomplish most of the tasks faster using commands than using the mouse.
-8.  A user without prior experience on inventory management system should be able to accomplish most of the tasks
- using commands.
+9.  A user without prior experience in inventory management system should be able to accomplish most of the tasks
+ using commands. 
 
-*{More to be added}*
 
 ### Glossary
 
@@ -878,22 +925,34 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding an employee
 
-1. Deleting a person while all persons are being shown
+1. Adding a new employee to the active Employee Directory
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Test case: `c-add n/John Doe p/98765432 e/87654321 a/311, Clementi Ave 2, #02-25 t/Friday t/monday`<br>
+      Expected: An employee named John Doe should be added into the active Employee Directory with his phone number, emergency contact, address,
+      and tags.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `c-add`<br>
+      Expected: No employee is added. Error details shown in the status message. Status bar remains the same.
+      
+### Deleting an employee
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Deleting an employee while all active employees are being shown
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Prerequisites: List all active employees using the `c-active-list` command. Multiple employees in the list.
+
+   1. Test case: `c-delete 1`<br>
+      Expected: First employee is deleted from the active Employee Directory. Details of the deleted employee shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `c-delete 0`<br>
+      Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `c-delete`, `c-delete x`, `...` (where x is larger than the Employee Directory's size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
 
 ### Updating sales of drinks
 
@@ -924,7 +983,25 @@ testers are expected to do more *exploratory* testing.
      
     1. Test case: `s-list` <br>
        Expected: The list of drinks sales is now ordered from most to least number of sales.
-       
+
+### Finding sales of drinks
+
+1. Finding the sales of a drink item while all sales are being shown.
+
+   1. Prerequisites: List all sales using the `s-list` command. The full list of drinks sales will be shown.
+   
+   2. Test case: `s-find BSBBT`<br>
+      Expected: BSBBT's sales data shown in the sales tracker panel.
+      
+   3. Test case: `s-find BSBBT BSBM`<br>
+      Expected: BSBBT's sales data and BSBM's sales data shown in the sales tracker panel.
+      
+   4. Test case: `s-find HUGB`<br>
+      Expected: No drink's sales data shown in the sales tracker panel.
+   
+   5. Test case: `s-find`<br>
+      Expected: Error details shown in the status message. 
+      
 ### Resetting all ingredients' levels to zero
 
 1. Resetting all ingredients' levels to zero when not all ingredients' levels are at zero
@@ -956,6 +1033,25 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect set commands to try: `i-set i/Milk m/1.2`, `i-set i/Milk m/1000`, `i-set i/Milk`<br>
       Expected: The amount of milk is unchanged. Corresponding error messages are shown in _Result Display_.
+
+### F.1 Archiving an employee
+
+1. Archiving an employee and hides his/her info from the active/unarchived employee directory.
+
+   1. Prerequisites: List all active(unarchived) employees using the `c-active-list` command. Multiple
+    unarchived employees in the employee directory. The following test cases assumes the commands are run on
+    unmodified sample data.
+
+   1. Test case: `c-archive 1`<br>
+      Expected: First employee is archived from the list. Details of the archived contact shown in the status message.
+
+   1. Test case: `c-archive 0`<br>
+      Expected: No employee is archived. Error details shown in the status message.
+
+   1. Other incorrect archive commands to try: `archive`, `c-archive x`, `...` (where x is larger than the list size
+   )<br>
+      Expected: No employee is archived. Error details shown in the status message.
+
 
 ### Saving data
 
