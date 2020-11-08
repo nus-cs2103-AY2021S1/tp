@@ -10,8 +10,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-//import java.util.Arrays;
-//import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,11 +22,13 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FullNameMatchesKeywordPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonHasTagsAndKeywordInNamePredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -105,16 +105,22 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
-    // TODO: Fix this test case. Test fails cause of failed unit test in FindCommandParserTest:
-    //  parse_multipleNames_returnsFindCommand()
-    //    @Test
-    //    public void parseCommand_find() throws Exception {
-    //        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-    //        List<Tag> tags = Arrays.asList(new Tag("tag"));
-    //        FindCommand command = (FindCommand) parser.parseCommand(
-    //                FindCommand.COMMAND_WORD + " n/foo n/bar n/baz t/tag");
-    //        assertEquals(new FindCommand(new PersonHasTagsAndNamePredicate(keywords, tags)), command);
-    //    }
+    @Test
+    public void parseCommand_find() throws Exception {
+        Set<String> nameSet = new HashSet<>();
+        nameSet.add("Alice");
+        nameSet.add("Bob");
+        nameSet.add("Candy");
+        ArrayList<String> nameList = new ArrayList<>(nameSet);
+        Set<Tag> tagSet = new HashSet<>();
+        tagSet.add(new Tag("tag"));
+        tagSet.add(new Tag("person"));
+        ArrayList<Tag> tagList = new ArrayList<>(tagSet);
+
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " n/Alice n/Bob n/Candy t/tag t/person");
+        assertEquals(new FindCommand(new PersonHasTagsAndKeywordInNamePredicate(nameList, tagList)), command);
+    }
 
     @Test
     public void parseCommand_help() throws Exception {
