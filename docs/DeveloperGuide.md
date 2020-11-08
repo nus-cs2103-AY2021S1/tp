@@ -2796,11 +2796,11 @@ testers are expected to do more *exploratory* testing.
       Expected: No stock found due to empty input for field name.
       Error details shown in the status message. Suggestion message will be shown too.
 
-### Updating a stock
+### Updating stocks
 
 1. Updating a stock from the inventory.
 
-    1. Prerequisites: Multiple stocks in the list. Stocks exists in inventory.
+    1. Prerequisites: Multiple stocks in the list. `Flower11` and `Flower12` stocks exists in inventory.
 
     1. Test case: `update sn/FLower11 iq/+50`<br>
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50.
@@ -2814,23 +2814,79 @@ testers are expected to do more *exploratory* testing.
        Expected: The stock with serial number Flower11 will have a new quantity 2103.
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/Flower11 n/Rose`
+    1. Test case: `update sn/Flower11 n/Rose` <br>
        Expected: The stock with serial number Flower11 will have a new name Rose.
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/Flower11 l/Vase 3`
+    1. Test case: `update sn/Flower11 l/Vase 3` <br>
        Expected: The stock with serial number Flower11 will have a new location Vase 3.
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3`
+    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3` <br>
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50, a new name Rose,
        and a new location Vase3
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3`
+    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3` <br>
        Expected: The stock with serial number Flower11 and Flower12 will have an increase of quantity by 50, a new name Rose,
        and a new location Vase3.
        Details of the updated stock is shown in the status message.
+     
+    1. Test case: `update` <br>
+       Expected: No stock updated due to invalid command format.
+       Error details shown in the status message. Suggestion message will be shown too.
+    
+    1. Test case: `update sn/Flower13` <br>
+       Expected: No stock updated due to stock not found.
+       Error details shown in the status message. Suggestion message will be shown too.
+    
+    1. Test case: `update sn/Flower11 sn/Flower13 n/Rose` <br>
+       Expected: No stock updated due to stock `Flower13` not found.
+       Error details shown in the status message. Suggestion message will be shown too.
+
+### Sorting stocks
+
+1. Sorting a stock from the inventory.
+
+    1. Prerequisites: Multiple stocks in the list.
+
+    1. Test case: `sort o/ascending by/name`<br>
+       Expected: The stocks in inventory will be sorted lexicographically by name in ascending order.
+       Success message will be shown.
+       
+    1. Test case: `sort o/ascending by/quantity`<br>
+       Expected: The stocks in inventory will be sorted numerically by quantity in ascending order.
+       Success message will be shown.
+    
+    1. Test case: `sort o/descending by/serialnumber`<br>
+       Expected: The stocks in inventory will be sorted lexicographically by serial number in descending order.
+       Success message will be shown.
+    
+    1. Test case: `sort o/descending by/lowquantity`<br>
+       Expected: The stocks in inventory will not be sorted since `lowquantity` is an invalid field.
+       Error details shown in the status message. Suggestion message will be shown too.
+       
+    1. Test case: `sort o/random by/location`<br>
+       Expected: The stocks in inventory will not be sorted since `random` is an invalid order.
+       Error details shown in the status message. Suggestion message will be shown too.
+
+### Suggestion message
+
+1. Generates suggestion message for invalid commands.
+
+    1. Prerequisites: An invalid command format is entered.
+
+    1. Test case: `sor o/ascending by/name`<br>
+       Expected: Unknown command error will be shown, along with the suggestion `sort o/ascending by/name` and
+       `sort` command message usage.
+       
+    1. Test case: `add n/apple s/fairprice q/1000 lq/100`<br>
+       Expected: Invalid command format error will be shown, along with the suggestion 
+       `add n/apple s/fairprice q/1000 l/<location> lq/100` and `add` command message usage.
+    
+    1. Test case: `fin n/apple`<br>
+       Expected: Unknown command error will be shown, along with the suggestion `find n/apple`
+       and `find` command message usage.
 
 ### Generate statistics
 
@@ -3023,3 +3079,42 @@ testers are expected to do more *exploratory* testing.
     1. While not in a Warenager session, corrupt the json files under `/data` directory. Then start Warenager.
        Expected: Warenager senses the corrupted files, replaces them with empty content and functions as per normal.
 
+## **Appendix: Effort**
+
+### Difficulty Level
+
+To our team, Warenager is a very challenging project and in terms of difficulty level, it ranks higher than AB3 itself.
+Warenager is a morph of AB3 and not only did we changed some existing features of AB3, we also augmented Warenager with
+new features that didn't exist before in AB3. Some of the features we added that are not available in AB3 are
+suggestion feature, statistics feature, note features, bookmark and highlight stocks, and sorting feature.
+
+Our contributions to the project also justifies our claim about the difficulty level. Note that AB3 contains around 6
+KLoC. Compared to AB3, based on the [project's code contribution](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=T15-3&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship) in RepoSense,
+the total lines of code that we added or modified is around 24 KLoc, which is four times the amount of code in AB3.
+
+### Challenges
+* Team meetings are held online because of COVID-19.
+* Division of tasks sometimes not too effective since some tasks may depends on other tasks.
+* New features added to Warenager are challenging to implement.
+* Standardizing documentation.
+* Adhering to internal deadlines set, especially for hard to implement features.
+* Fixing bugs, especially those reported by other teams.
+* Adhering as best as we could, to the coding style of `CS2103T`.
+* Adhering to the forking workflow from the start of the project until the end.
+* Internal testing of product, to ensure Warenager will work properly.
+* Changing the UI of AB3 to fit Warenager.
+
+### Effort Required
+
+We can estimate that the effort required for creating Warenager is a lot more than what is required to build AB3 from
+scratch. As stated above, we did not only changed existing features of AB3, but also augmented new features not found
+on AB3 into Warenager. The new features we implemented has their own notable challenges.
+
+In terms of work and contribution, as stated above, our whopping 24 KLoC which is around four times the amount of code
+existing in AB3, justifies our claim that the effort to create Warenager is more than the effort to create AB3.
+
+### Achievements
+* One of the top 10 groups in terms of code contribution in [RepoSense](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=totalCommits%20dsc&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship).
+* Created a new UI for Warenager that is significantly different from AB3's UI.
+* Implemented all features including the new features augmented to Warenager.
+* Finished every milestones on time.
