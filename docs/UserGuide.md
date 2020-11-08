@@ -273,7 +273,7 @@ Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENU
 * Edits the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Start time has to be before end time.
+* Start time has to be before end time for `CLASS_TIME`.
 * The format of `CLASS_TIME`, `YEAR` and `LAST_PAYMENT_DATE` follows that as stated in the [add command section](#331-adding-a-student-add-by-hogan).
 
 <div markdown="block" class="alert alert-info">
@@ -416,9 +416,9 @@ Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
 
 *  Displays a timetable view of your classes with the corresponding student's name tagged to it.
 * `DATE_TO_VIEW` refers to the date you wish to view the lesson schedule of.
-* The format of `DATE_TO_VIEW` is `dd/mm/yy or dd/mm/yyyy` (e.g. both 3/2/20 and 3/2/2020 are acceptable).
+*  The format of `DATE_TO_VIEW` is `dd/mm/yy or dd/mm/yyyy` (e.g. both 3/2/20 and 3/2/2020 are acceptable).
 * `VIEW_MODE` refers to the mode where you would like the schedule to be rendered on screen.
-  It accepts either `weekly` or `daily` as inputs and is case-insensitive.
+   It accepts either `weekly` or `daily` as inputs and is case-insensitive.
 
 Example:
 
@@ -429,7 +429,7 @@ you can simply type `schedule m/weekly d/02/11/2020` to view them in a visual in
 
 To view schedule:
 
-1.  Type `schedule m/weekly d/02/11/2020` into the command box as shown in figure __ . Press `Enter` to execute the command.
+1.  Type `schedule m/weekly d/02/11/2020` into the command box as shown in Figure __ . Press `Enter` to execute the command.
 
     ![Schedule Step 1](images/ScheduleStep1.png)
     Figure __ Shows the schedule command input keyed into the command box.
@@ -439,24 +439,24 @@ To view schedule:
     ![Schedule Step 2](images/ScheduleStep2.png)
     Figure __ Shows the schedule panel in the weekly format.
 
-3.  You can easily view you classes for the week. The Date bar labelled in the figure below shows the day of the week as well as the date for your reference.
-    The Time bar in figure __ shows the time in 24-hour format with 1-hour intervals. 
+3.  You can easily view you classes for the week. The Date bar labelled in the Figure __ below shows the day of the week as well as the date for your reference.
+    The Time bar in Figure __ shows the time in 24-hour clock format with 1-hour intervals. 
     The Classes labelled in the figure below are colored brown to match the color of Reeve for a better visual experience.
     Furthermore, the name of the student that you are tutoring during that slot is labelled for you to identify classes easily.
-    The red bar in figure __ indicates your current time.
+    The red bar in Figure __ indicates your current time.
     With the date, time and name of student shown in one view, you could plan your classes without a hassle.
 
     ![Schedule Step 3](images/ScheduleStep3.png)
     Figure __ Shows various component of your schedule.
 
 <div markdown="block" class="alert alert-info">
-    :warning: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
-    Viewing it this way would open up your schedule of the current week in the weekly format.
-    You could use this as quick way to open up schedule for the current week.
+:warning: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
+Viewing it this way would open up your schedule of the current week in the weekly format.
+You could use this as quick way to open up schedule for the current week.
 </div>
 
-<div markdown="block" class="aler alert-info">
-:exclamation: A class duration of less than an hour may not be shown fully on the schedule.
+<div markdown="block" class="alert alert-info">
+:warning: A class duration of less than an hour may not be shown fully on the schedule.
 </div>
 
 #### 3.3.10 Clearing all entries: `clear`
@@ -769,9 +769,9 @@ Table 2: Summary of commands in **Reeve**
 
 Action | Format, Examples
 --------|------------------
-**Add Student** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]...​` <br> e.g., `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
-**Edit Student** | `edit STUDENT_INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
-**Find Student** | `find [n/NAME] [s/SCHOOL] [y/YEAR]`<br> e.g., `find n/alex s/yishun`
+**Add Student** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]...​` <br> e.g. `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
+**Edit Student** | `edit STUDENT_INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME]`<br> e.g.`edit 1 n/Alex p/99999999 s/Meridian Junior College`
+**Find Student** | `find [n/NAME] [s/SCHOOL] [y/YEAR]`<br> e.g. `find n/alex s/yishun`
 **List Students** | `list`
 **Delete Student** | `delete STUDENT_INDEX`<br> e.g. `delete 3`
 **Sort Students** | `sort COMPARISON_MEANS`<br> e.g. `sort year`
@@ -788,7 +788,7 @@ Action | Format, Examples
 **Exam Stats** | `exam stats STUDENT_INDEX`<br> e.g. `exam stats 1`
 **Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 a/present f/attentive`
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
-**Schedule View** | `schedule m/VIEW_MODE d/DATE_TO_VIEW` <br> e.g. `schedule m/weekly d/2/11/2020`
+**Schedule View** | `schedule m/VIEW_MODE d/DATE_TO_VIEW` <br> e.g. `schedule m/weekly d/02/11/2020`
 **Toggle View** | `toggle`
 **Add Note** | `note add t/TITLE d/DESCRIPTION`<br>e.g. `note add t/things to do d/buy coffee` 
 **Edit Note** | `note edit NOTE_INDEX [t/title] [d/DESCRIPTION]`<br>e.g. `note edit 1 d/mark practice papers` 

@@ -750,8 +750,6 @@ The `'LessonEvent` is provided to the `Ui` by the `LogicManager` through the `Mo
 The `Model` in turns gets the `LessonEvent` from the `Scheduler` which keeps a list of updated events.
 The calendar with `LessonEvent` is then displayed to the user through the interface. This is assuming that no exception arises.
 
-### Design Consideration
-
 The following are the various design choices made regarding the feature and alternatives that were considered prior to implementation.
 
 * Current Implementation:
