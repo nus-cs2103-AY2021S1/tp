@@ -101,7 +101,7 @@ This section will give you some useful information about the various command for
   * eg. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
   `q/What is my name? t/topic1 t/fun`
   * Multiple instances of the tag prefix is accepted, and the app will read every instance
-    in the input.<br><br>
+    in the input.<br>
 
 <div style="page-break-after: always;"></div>
 
