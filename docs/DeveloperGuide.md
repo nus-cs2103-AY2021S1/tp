@@ -10,7 +10,7 @@ title: Developer Guide
 ## **Introduction**
 
 ### **Purpose**
-This document specified architecture, software design decisions and features for the application, ProductiveNUS. It will provide you with the essential information on its development process. 
+This document specified architecture, software design decisions and features for the application, ProductiveNUS. It will provide you with the essential information on its development process.
 
 ### **Scope**
 The intended audience of this document are developers, designers, and software testers.
@@ -222,8 +222,8 @@ The user can find assignments by providing keywords of the following fields:
 The user can find assignments with single or multiple keywords of the same type of field.
 
 It implements the following operations:
-* `find n/Lab` - Finds assignments with a name that has "Lab".
-* `find mod/CS2100 CS2103T` - Finds assignments from the module CS2100 and CS2103T.
+* `find n/Lab` - Finds assignments with names that has "Lab".
+* `find mod/CS2100 CS2103T` - Finds assignments from the modules CS2100 and CS2103T.
 * `find d/1200 24-10-2020` - Finds assignments with due time 1200 (regardless of date), and with due date 24-10-2020 (regardless of time).
 * `find p/HIGH` - Finds assignments of high priority.
 
@@ -241,53 +241,41 @@ We thus concluded that finding by specific fields would be beneficial for users,
 #### Current Implementation
 
 ##### Prefixes used in identifying keywords
-The use of prefixes before keywords allows for validation of keywords in the user's input, with Regular Expressions.
+The use of prefixes before keywords allows for validation of keywords in the user's input.
 
-The following prefixes are used to identify the fields and its keywords:
-- `/n` for Name
-- `/mod` for Module code
-- `/d` for Due date or time
-- `/p` for Priority
+The following prefixes are used to identify the type of keywords:
+- `/n` for Name keywords
+- `/mod` for Module code keywords
+- `/d` for Due date or time keywords
+- `/p` for Priority keywords
 
 ##### Predicate classes 
-The following Predicate classes implements `Predicate<Assignment>` and are used when the user inputs keywords of its assigned field:
-- NameContainsKeywordsPredicate
-- ModuleCodeContainsKeywordsPredicate
-- DeadlineContainsKeywordsPredicate
-- PriorityContainsKeywordsPredicate
 
-Given below is the class diagram of these Predicate classes:
+![Class diagram for Predicate classes](images/PredicateClassDiagram.png)
+*Figure X: Class diagram for Predicate classes*
 
------- CLASS DIAGRAM---------
+The following Predicate classes implements `Predicate<Assignment>` and specific ones are passed into the constructor of `FindCommand` when the user inputs keywords of its assigned field:
 
+- NameContainsKeywordsPredicate for name keywords
+- ModuleCodeContainsKeywordsPredicate for module code keywords
+- DeadlineContainsKeywordsPredicate for date or time keywords
+- PriorityContainsKeywordsPredicate for priority keywords
 
-
-##### FindCommand Class
-- `FindCommand` extends abstract class `Command` and overrides the method `execute` in `CommandResult`.
-- The constructor of `FindCommand` takes in a Predicate depending on the prefix or keywords in the user's input. 
-- This class contains static `String` attributes of error messages to be displayed in the event of invalid user input.
+The keywords are stored in a `List<String>` that is passed into the constructor of the predicate so that the overridden `test` method from `Predicate<Assignment>` class can evaluate the keywords with the specific attribute of an assignment, being name, module code, deadline or priority, to return a boolean value.
 
 ##### FindCommandParser Class
-- The `FindCommandParser` class contains private methods to parse each type of keyword field, and to check for valid input format.
-- `FindCommandParser` implements `Parser<FindCommand>` and it parses the user's input to return a `FindCommand` object.
+The `FindCommandParser` class implements `Parser<FindCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `FindCommand` object. It contains private methods which checks for the presence of multiple prefixes and invalid keywords, which will throw a `ParseException` if detected.
 
-Given below is the class diagram of `FindCommandParser` class.
+Its `parse` method takes in a string of user input. If there are no multiple prefixes found and user input is not empty, it would then check for the type of prefix present as well as whether there is a preamble before the prefix and after the `find` input command. This ensures that there are no invalid command formats used by the user. 
 
+If no invalid command format is detected, each keyword in the string of keywords are parsed in a for loop. For name, module code and priority keywords, parsing is done via its parse method in `ParserUtil` to ensure that each keyword is valid. These parse methods are `parseName`, `parseModuleCode` and `parsePriority` respectively and they throw `ParseExceptions` in the event of invalid input. For date or time keywords, Regular expressions are used to identify its format, with date format being identified with `^\\d{2}-\\d{2}-\\d{4}$` and time format being identified with `^\\d{4}$`. Once the date and time keywords inputted by the user are identified, date keywords are parsed into `LocalDate` and time keywords are parsed into `LocalTime`. A `ParseException` will be thrown if a `DateTimeException` is caught in the event of failed parsing of date with `DateTimeFormatter` pattern `dd_MM-uuuu` or time with the `DateTimeFormatter` pattern `HHmm`.
 
+##### FindCommand Class
+The `FindCommand` class extends abstract class `Command` and it is responsible for finding assignments based on the user's input keywords. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and a `Predicate<Assignment>` attribute, `predicate`. The constructor of `FindCommand` takes in a `Predicate<Assignment>` depending on the prefix or keywords in the user's input and its attribute `predicate` is initialized to this value.
+ 
+ It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, it calls the `updatedFilteredAssignmentList` method of a `Model` object, `model`, it takes in, so that the filter of the filtered assignment list will be updated by the given predicate and a list of filtered assignments will be displayed to the user, along with an indication message on the number of assignments listed.
 
-
-
-
------- CLASS DIAGRAM---------
-
-
-
-
-
-
-
-
-
+Upon successful parsing, a `FindCommand` object is returned.
 
 #### Usage Scenario
 
@@ -305,9 +293,13 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
 ![Interactions Inside the Logic Component for the `find n/Lab` Command](images/FindSequenceDiagram.png)
 
 
-### \[Implemented\] Remind assignments feature
+### Remind assignments feature
 The user can set reminders for a single assignment or multiple assignments at a time.
-Reminded assignments will be displayed in the `Your Reminders` section in ProductiveNUS for easy referral.
+Reminded assignments will be displayed in the `Your reminders` section in ProductiveNUS for easy referral.
+
+It implements the following operations:
+* `remind 3` - Sets reminders for the 3rd assignment in the displayed assignment list.
+* `remind 1 4` - Sets reminders for the 1st and 4th assignment in the displayed assignment list.
 
 #### Reasons for Implementation
 It is likely that the user will want to receive reminders for assignments with deadlines that are far away, so that he will not forget to complete those assignments. It is also likely that the user will want to receive reminders for assignments that require more attention, so that he will know which assignments to focus on and plan his time accordingly.
@@ -318,10 +310,6 @@ Displaying reminded assignments in a list separate from the main assignment list
 - The remind command extends abstract class `Command` and overrides the method `execute` in `CommandResult`.
 - `RemindCommandParser` implements `Parser<RemindCommand>` and it parses the user's input to return a `RemindCommand` object.
 - The constructor of `RemindCommand` takes in `List<Index>`, and each `Index` in `List<Index>` is parsed from the zero based index of the user's input.
-
-It implements the following operations:
-* `remind 3` - Sets reminders for the 3rd assignment in the displayed assignment list.
-* `remind 1 4` - Sets reminders for the 1st and 4th assignment in the displayed assignment list.
 
 #### Usage Scenario
 The following is a usage scenario of when the user wants to set reminders for the 2nd and 3rd assignment in their displayed assignment list.
@@ -343,7 +331,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ### List by days feature
 
 The user can list all his assignments with `list` without a subsequent argument index, or list assignments with 
-deadlines within a number of days from the current date (and time), with this number being an argument index after `list`.
+deadlines within a 1 to 50 days from the current date and time, with the number of days being an argument index after `list`.
 
 It implements the following operations:
 * `list` - Lists all assignments
@@ -358,16 +346,20 @@ whereas finding assignments by date or time will only display assignments due on
 
 #### Current Implementation
 
-##### ListCommand Class
-- It extends the abstract class `Command` and overrides the method `execute` in `CommandResult`.
-- The constructor of `ListCommand` takes in an `Index` which is parsed from the zero based index of the user's input.
-- The class contains a private method `showLimitedAssignments()` that returns a `Predicate<Assignment>`. This method will filter 
-assignments to be displayed based on the argument index in the user's input.
-- The class also contains a private attribute `numberOfDays` of type `Index` and `String` attributes of messages to be displayed to the user.
-
 ##### ListCommandParser Class
-- `ListCommandParser` implements `Parser<ListCommand>`. It has a method `parse` which parses the user's input to return a `ListCommand` object.
-- With the use of Regular Expressions to identify index arguments present in the input, it sets a boolean variable `hasArgumentIndex`.
+The `ListCommandParser` class implements `Parser<ListCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `ListCommand` object. Regular Expressions are used to identify the presence of an input argument in `args`, which takes into account all characters and even special characters. If no argument index is found in `args`, a `ListCommand` object which takes in an `Index` of zero base 0 is returned and this 0 value will identify the command as listing all assignments.
+
+If input argument is found, it is then checked with Regular Expressions whether the argument is in the range 1 to 50 inclusive. If so, the string `args` is parsed into an `Index` which is then passed in as the argument to `ListCommand` that is returned.
+
+##### ListCommand Class
+The `ListCommand` class extends abstract class `Command` and it is responsible for listing assignments based on the user's input command. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and an `Index` attribute, `numberOfDays`. The constructor of ListCommand takes in an `Index` and its attribute `numberOfDays` is initialized to this value.
+
+It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, if the zero base value of `numberOfDays` is 0, a predicate `PREDICATE_SHOW_ALL_ASSIGNMENT` is passed into 
+the `updatedFilteredAssignmentList` method of a `Model` object, `model`. If the zero base value is not 0, `showLimitedAssignments` method with return type `Predicate<Assignment>` is passed into the `updatedFilteredAssignmentList` method. This method uses lambda expressions to filter assignments with deadlines that fall within the number of days window inputted by the user.
+
+##### Design Considerations
+
+
 
 #### Usage scenario
 The following is a usage scenario of when the user wants to list assignments that are due within the next 3 days from now.
@@ -400,15 +392,12 @@ It will provide convenience to users who want to delete more than one assignment
 #### Current Implementation
 
 ##### DeleteCommand class 
-- It extends the abstract class `Command` and overrides the method `execute` in `CommandResult`.
-- `DeleteCommandParser` implements `Parser<DeleteCommand>` and it parses the user's input to return a `DeleteCommand` object.
-- It contains a private attribute ` targetIndexes`, of type `List<Index>`. It stores a list of indexes of respective assignments to be deleted.  
-- The constructor of `DeleteCommand` takes in a `List<Index>`. 
+The `DeleteCommand` class extends abstract class `Command` and it is responsible for deleting assignments based on the user's input indexes. It contains static `String` attributes of messages to be displayed to the user, and a `List<Index>` attribute, `targetIndexes`. The constructor of `DeleteCommand` takes in a `List<Index>` argument and `targetIndexes` is initialized to this value.
+
+ It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, `targetIndexes` is sorted in descending order with `INDEX_COMPARATOR` in `CommandLogic` class and then it calls `checkForDuplicationIndexes` and `checkForInvalidIndexes` methods in `CommandLogic`. The zero base value of each `Index` in `targetIndexes` is stored in a `List<Integer>` and the number of distinct values and size of the list is found so that duplicated indexes can be found by comparing the number of distinct values and number of elements in the list. Invalid indexes includes numbers that are not in the range from 1 to the number of assignments in the list. If no `CommandException` is thrown when duplicated or invalid indexes are found, the assignments are deleted by calling `deleteAssignments` method on `model` repeatedly until all indexes in the `targetedIndexes` are accounted for.
 
 ##### DeleteCommandParser Class
-- `DeleteCommandParser` implements `Parser<DeleteCommand>`. 
-- It has a method `parse` which parses the user's input by calling `parseIndexes` method of `ParserUtil`, to return `parsedIndexes` of type `List<Index>`.
-- The `parse` method returns a `DeleteCommand` object that takes in `parsedIndexes`.
+The `DeleteCommandParser` class implements `Parser<DeleteCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `DeleteCommand` object. It calls `parseIndexes` method from `ParserUtil` class to parse the string user input into multiple `Index` which is then stored in a `List<Index>`. A `ParseException` is caught if parsing is unsuccessful.
 
 ##### Design Considerations
 To delete an assignment, it calls the `deleteAssignment` method of `model`.
@@ -430,12 +419,41 @@ The following is a usage scenario of when the user wants to delete the first and
  
  Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(delete 1 2)` API call.
  
- 
- DIAGRAM
- 
- 
+### Unremind, Unprioritize and Undone
 
-### \[Coming up\] Help feature
+The user can use the unremind, unprioritize and undone commands to do the following:
+- unremind removes specified assignments from 'Your reminders'. Assignments are specified using the index as shown in `Your reminders`.
+- unprioritize removes any priority tags for specified assignments. Assignments are specified using the index as shown in the displayed **assignment list**.
+- undone marks the specified done assignment as not done. Assignments are specified using the index as shwon in the displayed **assignment list**.
+
+The following operations are implemented:
+* `unremind 1` - Removes the first assignment found in `Your reminders` from `Your reminders`.
+* `unprioritze 1` - Removes priority tags for the first assignment found in the displayed assignment list.
+* `undone 1` - Marks the first assignment found in the displayed assignment list as not done.
+
+#### Reasons for Implementation
+It is possible for the user to mistakenly set reminders, set priority tags or mark an assignment as done. 
+
+It is also likely that the user's schedule is constantly changing. For example, the user may set reminders for an assignment with a faraway deadline; however, as the deadline approaches, the user may not need to be reminded as the assignment is now more urgent. Hence, it is likely that the user may want to remove the assignment from `Your reminders` as he no longer needs to be reminded to finish the assignment.
+
+Hence, the unremind, unprioritize and undone commands help users to easily manage their continuously changing schedule.
+
+#### Current implementations
+As all three commands have a similar format (command word followed by an index) and all start with the prefix "un", all three commands extends the **abstract** `NegateCommand` class in order to enforce abstraction principles (Figure X).
+
+The following is a Class diagram illustrating the relationship between the classes of the three commands and `NegateCommand`:
+
+   ![Class diagram for NegateCommand, Unremind, Unprioritize and Undone](images/NegateCommandClassDiagram.png)
+   <br/>*Figure X: Class diagram for NegateCommand, Unremind, Unpriortize and Undone*
+
+
+The NegateCommand class contains the **final** class-level member `COMMAND_WORD` with String **"un"**, and private attribute `targetIndex` of type `Index`.
+
+The NegateCommand class also extends from the abstract `Command` class in order to inherit the `execute()` method found in `Command`. Hence, similarly for the other commands, unremind, unprioritize and undone will be able to inherit and override the `execute()` command.
+
+#### Design considerations
+By implementing the abstract `NegateCommand` class, any future implementation of commands with similar functionality as unremind, unprioritize and undone will simply extend from the `NegateCommand` class, thereby enforcing the **Open-Closed Principle**.
+
 
 ### \[Implemented\] Undo
 
@@ -463,7 +481,7 @@ A usage scenario would be when a user wants to undo the most recent command that
 5. The `execute` method of `UndoCommand` will call the `getPreviousModel` of the `Model` object and reassign `Model`.
 6. The `execute` method returns a `CommandResult` object.
 
-### \[Implemented\] Updating of Upcoming tasks in real time
+### Updating of Upcoming tasks in real time
 
 The displayed task list under `Upcoming tasks` updates in real time when the deadline of an assignment or the end time of a lesson has passed.
 
@@ -471,17 +489,19 @@ The displayed task list under `Upcoming tasks` updates in real time when the dea
 It is likely that the user will refer to the `Upcoming tasks` to quickly view what is up next on their academic schedule. It is hence important that the `Upcoming tasks` accurately reflect what is next on their academic schedule.
 
 #### Current Implementation
-- The updating of `Upcoming tasks` in real time is implemented with **multithreading**.
-- The GUI of ProductiveNUS is implemented using JavaFX. Hence, Thread safety using synchronised thread actions cannot be achieved as JavaFx is modelled to execute on a **single JavaFX-Launcher thread.**
-- Therefore, this feature makes use of `javafx.concurrent.Task<V>` for multithreading operations, which is designed to handle multithreading operations in JavaFX applications in a **thread-safe manner**.
-- A `Timer` object is used alongside `javafx.concurrent.Task` to periodically check `Upcoming tasks` every second. The `Timer` object has `isDaemon` set to true.
-- If the deadline of the upcoming assignment or the end time of the upcoming lesson has passed, the `updateTasks()` method in `AddressBook` is called.
+The updating of `Upcoming tasks` in real time is implemented with **multithreading**.
+
+As the GUI of ProductiveNUS is implemented using JavaFX, Thread safety using synchronised thread actions cannot be achieved as JavaFx is modelled to execute on a **single JavaFX-Launcher thread.** Therefore, this feature makes use of `javafx.concurrent.Task<V>` for multithreading operations, which is designed to handle multithreading operations for JavaFX applications in a **thread-safe manner**.
+
+A `Timer` object is used alongside `javafx.concurrent.Task` to periodically check `UniqueTaskList` in `ProductiveNus` every second. The `Timer` object has `isDaemon` set to true. If the deadline of the upcoming assignment or the end time of the upcoming lesson has passed, the `updateTasks()` method in `ProductiveNus class` is called. The `Timer` object can be found in the private method `autoUpdateTaskList()` method in `ProductiveNus`, which is called in the `ProductiveNus constructor` when the user runs ProductiveNus.
 
 Below is an Activity Diagram illustrating the flow of activities when the application starts up.
 
-                               ------------------------------Activity diagram illustrating multithreading (will add later)--------------------------------
+![Activity diagram for Auto updating of task list](images/AutoUpdateTaskListActivityDiagram.png)
+<br/>*Figure X: Activity diagram for automated updating of UniqueTaskList*
 
---------------------------------------------------------------------------------------------------------------------
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to limitations of PlantUML, arrows are not able to point towards the branch indicator (represented by a diamond) to represent loops.
+
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -681,15 +701,14 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+       Expected: The most recent window size and location is retained.    
 
-1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting assignments
 
-1. Deleting a person while all persons are being shown
+1. Deleting one assignment while all assignments are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all assingments using the `list` command. Multiple assignments in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
@@ -699,9 +718,111 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+1. Deleting one assignment while some assignments are being shown
+1. Deleting multiple assignments while all assignments are being shown
+1. Deleting multiple assignments while some assignments are being shown
 
 1. _{ more test cases …​ }_
 
+### Setting reminders for assignments
+
+1. Setting reminders for assignments while all assignment are being shown
+   1. Prerequisites: List all assignments using the `list` command. Multiple assignments in the list. `Your reminders` is empty.
+   
+   1. Test case: `remind 1` <br>
+      Expected: First assignment in assignment list is now displayed in `Your reminders` as well. Details of the assignment shown in the Message box.
+      
+   1. Test case: `remind 0` <br>
+      Expected: No assignment is added into `Your reminders`. Error details shown int the Message box.
+      
+   1. Other incorrect unremind commands to try: `remind`, `remnid 1`, `remind x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Setting reminders for one assignment while some assignments are being shown
+   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date such that only some assignments are shown). Multiple assignments in the list. `Your reminders` is empty.
+   
+   1. Test case: `remind 1` <br>
+      Expected: Similar to `remind 1` test case when all assignments are shown.
+      
+   1. Test case: `remind 0` <br>
+      Expected: Similar to `remind 0` test case when all assignments are shown.
+      
+   1. Other incorrect unremind commands to try: `remind`, `remnid 1`, `remind x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+      
+1. Setting reminders for multiple assignments while all assignments are being shown
+   1. Prerequisites: List all assignments using the `list` command. Multiple assignments in the list. `Your reminders` is not empty.
+   
+   1. Test case: `remind 1 2` <br>
+      Expected: First and second assignment in assignment list is now displayed in `Your reminders` as well. Details of the assignments are shown in the Message box.
+      
+   1. Test case: `remind 1 x` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
+      Expected: No assignment is added into `Your reminders`. Error details shown int the Message box.
+      
+   1. Other incorrect unremind commands to try: `remind`, `remnid 0`, `remind x x`, `...` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
+      Expected: Similar to previous.
+      
+1. Setting reminders for multiple assignments while some assignments are being shown
+   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date such that only some assignments are shown).. Multiple assignments in the list. `Your reminders` is not empty.
+   
+   1. Test case: `remind 1 2` <br>
+      Expected: Similar to `remind 1 2` test case when some assignments are shown.
+      
+   1. Test case: `remind 1 x` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
+      Expected: Similar to `remind 1 x` test case when some assignments are shown.
+      
+   1. Other incorrect unremind commands to try: `remind`, `remnid 0`, `remind x x`, `...` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
+      Expected: Similar to previous.
+
+### Removing reminded assignments
+
+1. Removing reminders for assignments found in `Your reminders` when `Your reminders` is non-empty
+   1. Prerequisites: `Your reminders` must contain at least 1 assignment.
+   
+   1. Test case: `unremind 1` <br>
+      Expected: First assignment in `Your reminders` is removed from `Your reminders`. Details of the assignment shown in the Message box.
+      
+   1. Test case: `unremind x` (where x is larger than reminded list size but less then the assignment list size) <br>
+      Expected: No assignment is removed from `Your reminders`. Error details shown int the Message box.
+      
+   1. Other incorrect unremind commands to try: `unremind`, `unremnid 1`, `...`
+      Expected: Similar to previous.
+      
+1. Removing reminders for assignments found in `Your reminders` when `Your reminders` is empty.
+   1. Prerequisites: `Your reminders` must not contain any assignments.
+   
+   1. Test case: `unremind 1` <br>
+      Expected: No assignment is removed from `Your reminders`. Error details shown int the Message box.
+      
+   1. Other incorrect unremind commands to try: `unremind`, `unremnid 1`, `...`
+      Expected: Similar to previous.
+      
+      
+### Automated updating of task list
+1. Assignments in task list
+
+   1. Prerequisites: `Upcoming tasks` must not be empty.
+
+   1. Test case: Add or edit an assignment with a deadline 1 minute after the current time (if your current time is 1229, set the deadline with the current date and time 1230).<br>
+      Expected: The first task in `Upcoming task` is now the assignment you just added/edited.
+
+   1. Wait till the current time passes the deadline (if deadline has time 1230, wait till the clock on your computer is 1230).<br>
+      Expected: The first task is removed from `Upcoming tasks`.
+
+   1. Test case: Add or edit an assignment with a deadline equal to the current time (if your current time is 1229, set the deadline with the current date and time 1229).<br>
+      Expected: The assignment you just added/edited is not found in `Upcoming tasks`.
+
+1. Lessons in task list
+   1. Prerequisites: `Upcoming tasks` must be empty.
+
+   1. Go to NUSMods and make a timetable with a lesson that has an end time before the current time. Import the timetable with the import command.
+      Expected: The first task in `Upcoming task` is now the lesson you just imported.
+
+   1. Wait till the current time passes the end time of the lesson (if end time is 1230, wait till the clock on your computer is 1230).<br>
+      Expected: The first task is removed from `Upcoming tasks`.
+      
+ 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -709,3 +830,28 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## Effort
+Difficulty level: Hard
+
+### Challengers faced
+#### Brown-field project
+Familiarising ourselves with the code base was definitely one of the challenges faced when implementing ProductiveNUS. As ProductiveNUS is a brown-field project and builts upon the AddressBook3 (AB3) code base, implementing our desired features was extremely time-consuming during the first stages of this project.
+
+Furthermore, as ProductiveNUS implements similar features to AB3, editing the AB3 code to match what we wanted was extremely painful as well as we had to manually edit go through the entire code base and change the name of classes, attritbutes, methods and test cases to suit ProductiveNUS.
+
+As such, much effort in the beginning was pooled into changing the code base of AB3 to suit our needs before we could start implementing any features.
+
+#### Multiple entities
+Another challenged faced was that while AB3 only deals with one entity (Person), ProductiveNUS deals with 3 separate but related entities (Task, Assignment and Lessons). As such, it was challenging morphing the code base of AB3 to handle three separate entities instead of one, all while ensuring that all three entities are updated, saved and stored appropriately whenever the user would make changes to the data.
+
+#### JavaFx
+As beginner users of JavaFX, reading and understanding the code base of the implementation of the AB3 GUI was especially difficult. Learning JavaFX alongside implementing the features of ProductiveNUS and changing the code base to suit our needs, implementing our desired GUI definitely posed a challenge.
+
+Furthermore, JavaFX has its own set of classes for multithreading implementations. As we were unfamiliar with JavaFX, we first tried to implement multithreading using the Java 11 API. It was only after debugging for a few hours did we realise that using the conventional Thread class in Java 11 would not be feasible as JavaFX does not support multithreading using with the normal Java 11 API.
+
+### Effort required
+
+### Achievements
+#### JavaFx
+We have successfully imeplented multithreading with JavaFX applications in order to enhance the functionalities of ProductiveNUS.

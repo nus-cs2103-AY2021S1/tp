@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_PREFIXES_FOUND;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_HW;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_HW;
@@ -32,9 +33,9 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Priority;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 import seedu.address.testutil.AssignmentBuilder;
 
 public class AddCommandParserTest {
@@ -51,30 +52,6 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_LAB + DEADLINE_DESC_LAB
                 + MODULE_CODE_DESC_LAB, new AddCommand(expectedAssignment));
-
-        // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_HW + NAME_DESC_LAB + DEADLINE_DESC_LAB
-                + MODULE_CODE_DESC_LAB, new AddCommand(expectedAssignment));
-
-        // multiple names with remind - last name accepted
-        assertParseSuccess(parser, NAME_DESC_HW + NAME_DESC_LAB + DEADLINE_DESC_LAB
-                + MODULE_CODE_DESC_LAB + REMIND_DESC, new AddCommand(expectedAssignmentWithRemind));
-
-        // multiple deadlines - last deadline accepted
-        assertParseSuccess(parser, NAME_DESC_LAB + DEADLINE_DESC_HW + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB,
-                new AddCommand(expectedAssignment));
-
-        // multiple deadlines with remind - last deadline accepted
-        assertParseSuccess(parser, NAME_DESC_LAB + DEADLINE_DESC_HW + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB
-                + REMIND_DESC, new AddCommand(expectedAssignmentWithRemind));
-
-        // multiple module codes - last module code accepted
-        assertParseSuccess(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_HW
-                + MODULE_CODE_DESC_LAB, new AddCommand(expectedAssignment));
-
-        // multiple module codes with remind - last module code accepted
-        assertParseSuccess(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_HW
-                + MODULE_CODE_DESC_LAB + REMIND_DESC, new AddCommand(expectedAssignmentWithRemind));
 
         // TODO JERRY: Find out why an Add Command without priority passes the test case as well eg. expectedAssignment
         // all compulsory fields with priority
@@ -127,7 +104,7 @@ public class AddCommandParserTest {
 
         // invalid deadline
         assertParseFailure(parser, NAME_DESC_LAB + INVALID_DEADLINE_DESC + MODULE_CODE_DESC_LAB,
-                Deadline.MESSAGE_CONSTRAINTS);
+                Time.MESSAGE_CONSTRAINTS);
 
         // invalid module code
         assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + INVALID_MODULE_CODE_DESC,
@@ -139,16 +116,40 @@ public class AddCommandParserTest {
 
         // TODO JERRY: Double check with team on error message for invalid remind case
         // invalid remind
-        assertParseFailure(parser, NAME_DESC_HW + NAME_DESC_LAB + DEADLINE_DESC_LAB
+        assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB
                 + MODULE_CODE_DESC_LAB + INVALID_REMIND_DESC, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddCommand.MESSAGE_USAGE));
 
         // invalid priority
-        assertParseFailure(parser, NAME_DESC_HW + NAME_DESC_LAB + DEADLINE_DESC_LAB
+        assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB
                 + MODULE_CODE_DESC_LAB + INVALID_PRIORITY_DESC, Priority.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_LAB + DEADLINE_DESC_LAB
                 + MODULE_CODE_DESC_LAB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        // multiple names
+        assertParseFailure(parser, NAME_DESC_HW + NAME_DESC_LAB + DEADLINE_DESC_LAB
+                + MODULE_CODE_DESC_LAB, MESSAGE_MULTIPLE_PREFIXES_FOUND);
+
+        // multiple names with remind
+        assertParseFailure(parser, NAME_DESC_HW + NAME_DESC_LAB + DEADLINE_DESC_LAB
+                + MODULE_CODE_DESC_LAB + REMIND_DESC, MESSAGE_MULTIPLE_PREFIXES_FOUND);
+
+        // multiple deadlines
+        assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_HW + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB,
+                MESSAGE_MULTIPLE_PREFIXES_FOUND);
+
+        // multiple deadlines with remind
+        assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_HW + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB
+                + REMIND_DESC, MESSAGE_MULTIPLE_PREFIXES_FOUND);
+
+        // multiple module codes
+        assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_HW
+                + MODULE_CODE_DESC_LAB, MESSAGE_MULTIPLE_PREFIXES_FOUND);
+
+        // multiple module codes with remind
+        assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_HW
+                + MODULE_CODE_DESC_LAB + REMIND_DESC, MESSAGE_MULTIPLE_PREFIXES_FOUND);
     }
 }

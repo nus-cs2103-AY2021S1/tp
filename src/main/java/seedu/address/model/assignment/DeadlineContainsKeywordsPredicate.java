@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that an {@code Assignment}'s {@code Deadline} matches any of the keywords given.
+ * Tests that an {@code Assignment}'s deadline matches any of the keywords given.
  */
 public class DeadlineContainsKeywordsPredicate implements Predicate<Assignment> {
     private final List<String> keywords;

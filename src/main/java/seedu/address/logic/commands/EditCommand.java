@@ -19,9 +19,9 @@ import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 /**
  * Edits the details of an existing assignment in ProductiveNus.
@@ -30,15 +30,11 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the assignment identified "
-            + "by the index number used in the displayed assignment list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD
+            + " INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_MODULE_CODE + "MODULE CODE] "
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "01-01-2020 1800 ";
+            + "[" + PREFIX_MODULE_CODE + "MODULE CODE] ";
 
     public static final String MESSAGE_EDIT_ASSIGNMENT_SUCCESS = "Edited Assignment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -88,7 +84,7 @@ public class EditCommand extends Command {
                                                      EditAssignmentDescriptor editAssignmentDescriptor) {
         assert assignmentToEdit != null;
         Name updatedName = editAssignmentDescriptor.getName().orElse(assignmentToEdit.getName());
-        Deadline updatedDeadline = editAssignmentDescriptor.getDeadline().orElse(assignmentToEdit.getDeadline());
+        Time updatedDeadline = editAssignmentDescriptor.getDeadline().orElse(assignmentToEdit.getDeadline());
         ModuleCode updatedModuleCode = editAssignmentDescriptor.getModuleCode()
                 .orElse(assignmentToEdit.getModuleCode());
         Remind updatedRemind = assignmentToEdit.getRemind();
@@ -124,7 +120,7 @@ public class EditCommand extends Command {
      */
     public static class EditAssignmentDescriptor {
         private Name name;
-        private Deadline deadline;
+        private Time deadline;
         private ModuleCode moduleCode;
 
         public EditAssignmentDescriptor() {}
@@ -153,11 +149,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setDeadline(Deadline deadline) {
+        public void setDeadline(Time deadline) {
             this.deadline = deadline;
         }
 
-        public Optional<Deadline> getDeadline() {
+        public Optional<Time> getDeadline() {
             return Optional.ofNullable(deadline);
         }
 

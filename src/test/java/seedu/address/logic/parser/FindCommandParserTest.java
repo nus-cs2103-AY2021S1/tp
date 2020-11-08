@@ -16,15 +16,14 @@ import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.PriorityContainsKeywordsPredicate;
 import seedu.address.model.task.ModuleCode;
 
-
-
 public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.NO_PREFIX_AND_KEYWORD));
     }
 
     @Test
@@ -64,7 +63,7 @@ public class FindCommandParserTest {
         assertParseFailure(parser, " preamble d/1200", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, " preamble priority/MEDIUM", String.format(
+        assertParseFailure(parser, " preamble p/MEDIUM", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
@@ -80,7 +79,7 @@ public class FindCommandParserTest {
                 new FindCommand(new DeadlineContainsKeywordsPredicate(Arrays.asList("1200", "24-10-2020")));
 
         FindCommand expectedFindCommandByPriority =
-                new FindCommand(new PriorityContainsKeywordsPredicate(Arrays.asList("HIGH", "LOW")));
+                new FindCommand(new PriorityContainsKeywordsPredicate(Arrays.asList("HIGH", "low")));
 
         assertParseSuccess(parser, " n/CS1231S Homework", expectedFindCommandByName);
 
@@ -88,6 +87,6 @@ public class FindCommandParserTest {
 
         assertParseSuccess(parser, " d/1200 24-10-2020", expectedFindCommandByDeadline);
 
-        assertParseSuccess(parser, " p/HIGH LOW", expectedFindCommandByPriority);
+        assertParseSuccess(parser, " p/HIGH low", expectedFindCommandByPriority);
     }
 }

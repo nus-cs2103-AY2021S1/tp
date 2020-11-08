@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_LESSON;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_URL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMETABLE_URL;
 
 import java.util.stream.Stream;
@@ -26,8 +28,17 @@ public class ImportCommandParser implements Parser<ImportCommand> {
         }
 
         String url = argMultimap.getValue(PREFIX_TIMETABLE_URL).get();
-        TimetableData data = TimetableUrlParser.parseTimetableUrl(url);
-        return new ImportCommand(data);
+
+        if (!TimetableUrlParser.isValidUrl(url)) {
+            throw new ParseException(MESSAGE_INVALID_URL);
+        }
+
+        try {
+            TimetableData data = TimetableUrlParser.parseTimetableUrl(url);
+            return new ImportCommand(data);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_LESSON);
+        }
     }
 
     /**

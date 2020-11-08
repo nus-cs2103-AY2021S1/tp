@@ -33,14 +33,14 @@ public class FindCommandParser implements Parser<FindCommand> {
         return countPrefixesPresent > 1;
     }
 
-    private static FindCommand findByName(String[] keywords) throws ParseException {
+    private FindCommand findByName(String[] keywords) throws ParseException {
         for (String keyword : keywords) {
             ParserUtil.parseName(keyword);
         }
         return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
-    private static FindCommand findByModuleCode(String[] keywords) throws ParseException {
+    private FindCommand findByModuleCode(String[] keywords) throws ParseException {
         for (String keyword : keywords) {
             ParserUtil.parseModuleCode(keyword);
         }
@@ -71,7 +71,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
     }
 
-    private static FindCommand findByDeadline(String[] keywords) throws ParseException {
+    private FindCommand findByDeadline(String[] keywords) throws ParseException {
         requireNonNull(keywords);
         for (String keyword : keywords) {
             boolean isDateFormat = keyword.matches("^\\d{2}-\\d{2}-\\d{4}$");
@@ -89,15 +89,14 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(new DeadlineContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
-    private static FindCommand findByPriority(String[] keywords) throws ParseException {
+    private FindCommand findByPriority(String[] keywords) throws ParseException {
         for (String keyword : keywords) {
             ParserUtil.parsePriority(keyword);
-            System.out.println(keyword);
         }
         return new FindCommand(new PriorityContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
-    private static String[] getKeywords(Prefix prefix, ArgumentMultimap argMultimap) {
+    private String[] getKeywords(Prefix prefix, ArgumentMultimap argMultimap) {
         assert argMultimap.getValue(prefix).isPresent();
         return argMultimap.getValue(prefix).get().split("\\s+");
     }
@@ -119,12 +118,13 @@ public class FindCommandParser implements Parser<FindCommand> {
         boolean isPrefixDeadlinePresent = argMultimap.getValue(PREFIX_DEADLINE).isPresent();
         boolean isPrefixModuleCodePresent = argMultimap.getValue(PREFIX_MODULE_CODE).isPresent();
         boolean isPrefixPriorityPresent = argMultimap.getValue(PREFIX_PRIORITY).isPresent();
+        boolean isMoreThanOnePrefixPresent = moreThanOnePrefixPresent(
+                argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_DEADLINE, PREFIX_PRIORITY);
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        } else if (moreThanOnePrefixPresent(
-                argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_DEADLINE, PREFIX_PRIORITY)) {
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.NO_PREFIX_AND_KEYWORD));
+        } else if (isMoreThanOnePrefixPresent) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MORE_THAN_ONE_PREFIX_MESSAGE));
         } else if (isPrefixNamePresent && isPreambleMissing) {
@@ -137,7 +137,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             keywords = getKeywords(PREFIX_DEADLINE, argMultimap);
             return findByDeadline(keywords);
         } else if (isPrefixPriorityPresent && isPreambleMissing) {
-            keywords = argMultimap.getValue(PREFIX_PRIORITY).get().split("\\s+");
+            keywords = getKeywords(PREFIX_PRIORITY, argMultimap);
             return findByPriority(keywords);
         } else {
             throw new ParseException(

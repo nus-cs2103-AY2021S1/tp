@@ -5,7 +5,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,9 +13,9 @@ import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 
 /**
@@ -27,14 +26,11 @@ public class UnremindCommand extends NegateCommand {
     public static final String COMMAND_WORD_SUFFIX = "remind";
     public static final String COMMAND_WORD = NegateCommand.COMMAND_WORD + COMMAND_WORD_SUFFIX;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the reminder from the assignment identified by the index number "
-            + "used in the displayed reminders list."
-            + " Assignments will no longer have reminders set and will be removed from the displayed reminders list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " INDEX (must be a positive integer)";
 
     public static final String MESSAGE_UNREMIND_ASSIGNMENT_SUCCESS = "Removed reminder for Assignment: %1$s";
+    public static final String MESSAGE_INVALID_DISPLAYED_REMINDERS_INDEX = "The assignment's Your reminders index "
+            + "provided is invalid";
 
     /**
      * Constructs an UnremindCommand to remove reminders from the specified assignment.
@@ -50,7 +46,7 @@ public class UnremindCommand extends NegateCommand {
         List<Assignment> remindedAssignmentsList = model.getRemindedAssignmentsList();
 
         if (getTargetIndex().getZeroBased() >= remindedAssignmentsList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_DISPLAYED_REMINDERS_INDEX);
         }
 
         Assignment assignmentToUnremind = remindedAssignmentsList.get(getTargetIndex().getZeroBased());
@@ -70,7 +66,7 @@ public class UnremindCommand extends NegateCommand {
         assert assignmentToUnremind != null;
 
         Name updatedName = assignmentToUnremind.getName();
-        Deadline updatedDeadline = assignmentToUnremind.getDeadline();
+        Time updatedDeadline = assignmentToUnremind.getDeadline();
         ModuleCode updatedModuleCode = assignmentToUnremind.getModuleCode();
         Remind updatedRemind = new Remind();
         Schedule updatedSchedule = assignmentToUnremind.getSchedule();

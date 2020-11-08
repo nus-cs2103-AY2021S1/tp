@@ -40,6 +40,7 @@ public class DeleteCommandTest {
 
         Assignment assignmentToDelete = model.getFilteredAssignmentList()
                 .get(INDEX_SECOND_ASSIGNMENT.getZeroBased());
+
         assignmentsToDelete.add(assignmentToDelete);
 
         DeleteCommand deleteCommand = new DeleteCommand(indexesToDelete);
@@ -53,9 +54,30 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validMultipleIndexesUnfilteredList_success() {
+    public void execute_validIndexFilteredList_success() {
+        showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
+
         indexesToDelete.add(INDEX_FIRST_ASSIGNMENT);
-        indexesToDelete.add(INDEX_SECOND_ASSIGNMENT); // Two indexes of assignments to delete
+
+        Assignment firstAssignmentToDelete = model.getFilteredAssignmentList()
+                .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+
+        assignmentsToDelete.add(firstAssignmentToDelete);
+
+        DeleteCommand deleteCommand = new DeleteCommand(indexesToDelete);
+
+        String expectedMessage = String.format(MESSAGE_DELETE_TASK_SUCCESS, assignmentsToDelete);
+        Model expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
+        expectedModel.deleteAssignment(firstAssignmentToDelete);
+        showNoAssignment(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validMultipleIndexesUnfilteredList_success() {
+        indexesToDelete.add(INDEX_FIRST_ASSIGNMENT); // Add index 1
+        indexesToDelete.add(INDEX_SECOND_ASSIGNMENT); // Add index 2
 
         Assignment firstAssignmentToDelete = model.getFilteredAssignmentList()
                 .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
@@ -86,27 +108,6 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(assignmentIndexesToDelete);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
-
-        indexesToDelete.add(INDEX_FIRST_ASSIGNMENT);
-
-        Assignment firstAssignmentToDelete = model.getFilteredAssignmentList()
-                .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
-
-        assignmentsToDelete.add(firstAssignmentToDelete);
-
-        DeleteCommand deleteCommand = new DeleteCommand(indexesToDelete);
-
-        String expectedMessage = String.format(MESSAGE_DELETE_TASK_SUCCESS, assignmentsToDelete);
-        Model expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
-        expectedModel.deleteAssignment(firstAssignmentToDelete);
-        showNoAssignment(expectedModel);
-
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

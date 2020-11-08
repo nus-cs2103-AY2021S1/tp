@@ -5,13 +5,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public abstract class Task {
     // Identity fields
     private final Name name;
-    private final Deadline time;
+    private final Time time;
     private final ModuleCode moduleCode;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Deadline time, ModuleCode moduleCode) {
+    public Task(Name name, Time time, ModuleCode moduleCode) {
         requireAllNonNull(name, time, moduleCode);
         this.name = name;
         this.time = time;
@@ -22,7 +22,7 @@ public abstract class Task {
         return name;
     }
 
-    public Deadline getTime() {
+    public Time getTime() {
         return time;
     }
 

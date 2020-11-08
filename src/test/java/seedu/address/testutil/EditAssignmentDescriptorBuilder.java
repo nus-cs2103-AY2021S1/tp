@@ -2,9 +2,9 @@ package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
+import seedu.address.model.task.Time;
 
 /**
  * A utility class to help with building EditAssignmentDescriptor objects.
@@ -40,10 +40,10 @@ public class EditAssignmentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Deadline} of the {@code EditAssignmentDescriptor} that we are building.
+     * Sets the deadline of the {@code EditAssignmentDescriptor} that we are building.
      */
     public EditAssignmentDescriptorBuilder withDeadline(String deadline) {
-        descriptor.setDeadline(new Deadline(deadline));
+        descriptor.setDeadline(new Time(deadline));
         return this;
     }
 

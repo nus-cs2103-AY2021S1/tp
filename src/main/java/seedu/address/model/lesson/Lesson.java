@@ -4,24 +4,24 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Time;
 
 public class Lesson extends Task {
-    private final Deadline endTime;
+    private final Time endTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Lesson(Name name, Deadline deadline, Deadline endTime, ModuleCode moduleCode) {
-        super(name, deadline, moduleCode);
+    public Lesson(Name name, Time time, Time endTime, ModuleCode moduleCode) {
+        super(name, time, moduleCode);
         this.endTime = endTime;
-        requireAllNonNull(name, deadline, endTime, moduleCode);
+        requireAllNonNull(name, time, endTime, moduleCode);
     }
 
-    public Deadline getEndTime() {
+    public Time getEndTime() {
         return this.endTime;
     }
 
