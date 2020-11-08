@@ -153,11 +153,13 @@ Format: `listpersons`
 
 Example: `listpersons` lists all persons in the catalogue to the user.
 
-# 2.2 Features in project list scope
+# 2.2 Projects management
 
 ### 2.2.1 Start work on an existing project `startproject`
 
 Initialises the project specified.
+
+Valid scopes: `PROJECT_LIST`, `PROJECT`.
 
 Format: `startproject INDEX`
 - Initialises the project at the specified INDEX
@@ -169,6 +171,8 @@ Examples: `startproject 2` Initialises the second project in the project list.
 ### 2.2.2 Add a new project to the catalogue `add`
 
 Adds a project to the project list.
+
+Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `add n/PROJECT_NAME dl/DEADLINE ru/REPO_URL d/PROJECT_DESCRIPTION [tg/TAGS]... `
   - The fields can be entered in any order, as long as the prefixes are matched correctly
@@ -195,6 +199,8 @@ Adds a new project with the
 
 Deletes a project and all associated information from the project catalogue.
 
+Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
+
 Format: `delete INDEX `
 - Deletes the project at the specified INDEX
 - The index refers to the index number shown in the displayed project list
@@ -205,6 +211,8 @@ Examples: `delete 2` deletes the second project from the catalogue.
 ### 2.2.4 Locate projects by keyword `find`
 
 Finds projects whose names contain the given keywords.
+
+Valid scope: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 - The search is case-insensitive. e.g `run` will match `Run`
@@ -221,6 +229,8 @@ Outcome: The projects with matching names will be shown to the user.
 ### 2.2.5 Edits details of a project `edit`
 
 Updates the details of a project.
+
+Valid scope: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `edit INDEX [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] `
   - Edits the project at the specified index
@@ -239,11 +249,13 @@ Note: Please enter a valid repository URL. Taskmania is an offline application a
 
 Example: `edit 1 n/Resident Evil project /d new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
 
-# 2.3 Task-related features in project scope
+# 2.3 Tasks management within a project
 
 ### 2.3.1 Add task to a project `addtask`
 
 Creates a new task and adds it to the current project.
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `addtask tn/TASK NAME tp/TASK PROGRESS td/TASK DEADLINE `
   - All fields above are required
@@ -258,6 +270,8 @@ Example: `addtask tn/Do User Guide tp/30 td/29-02-2020 00:00:00` creates a task 
 
 Assigns a task to a teammate within a project.
 
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
 Format: `assign TASKINDEX TEAMMATE_GITHUB_USERNAME  `
 
   - TEAMMATE_GITHUB_USERNAME is the unique Github username of each teammate
@@ -269,6 +283,8 @@ Example: `assign 3 Lucas98` assigns task number 3 in the list to user *Lucas98*.
 ### 2.3.3 Edit task to a project `edittask`
 
 Edits the indicated task in a project.
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] `
   - Edits the task at the specified index
@@ -286,6 +302,8 @@ Example: `edittask 3 tn/Finish project` changes the name of task 3 in the list t
 
 Deletes a task and all associated information from the project.
 
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
 Format: `deletetask INDEX`
 
 - Deletes the project at the specified `INDEX`
@@ -302,6 +320,8 @@ Filters tasks in the task list by various task attributes:
   - by deadline (either specifying a deadline - `td/DEADLINE` or a time range for the deadline - `start/START_DATE end/END_DATE` )
   - by progress - `tp/TASK_PROGRESS`
   - by done status - `done/DONE_STATUS` (when a task's progress is 100, it is "done")
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `filter (ta/ASSIGNEE_GITHUB_USERNAME)||(tn/KEYWORD [MORE_KEYWORDS]...)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tp/TASK_PROGRESS)||(done/DONE_STATUS)` 
 
@@ -335,6 +355,8 @@ Example: `filter tn/CS2103T` finds all the tasks whose task names contain the ke
 
 Lists all tasks in the task list of the project.
 
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
 Format: `alltasks `
 
 Example: `alltasks` displays all tasks in the task list.
@@ -342,11 +364,12 @@ Example: `alltasks` displays all tasks in the task list.
 ### 2.3.7 Sort tasks `sort `
 
 Sorts tasks in the task list by various task's attributes in ascending/descending order:
-
   - by deadline - `td/`
   - by progress - `tp/`
   - by task's name - `tn/`
   - by done status - `done/` (when a task's progress is 100, it is "done")
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)||(done/)` 
 
@@ -359,17 +382,21 @@ Example: `sort sa/ td/` sorts the task list by task deadline in ascending order.
 
 View all the details of a task, beyond the little information given in the project view.
 
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
 Format: `viewtask INDEX `
   - View all the information of the task specified by the INDEX
   - Index has to be a valid number that is in the range of tasks displayed on screen
 
 Example: `viewtask 4` displays all information from task number 4 in the list.
 
-# 2.4 Teammate-related features in project scope
+# 2.4 Teammate management within a project
 
 ### 2.4.1 Create a new teammate in a project `addteammate`
 
 Creates a new teammate in a project with all the relevant fields contained in it.
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `addteammate mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS`
   - All fields are necessary to fill in
@@ -390,6 +417,8 @@ Example: `addteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/1
 
 Add an existing teammate to the current project.
 
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
 Format: `addtoproject GITHUB_USERNAME`
 
 Example: `addtoproject Lucas98` adds Lucas98 to the current project that the user is in.
@@ -398,6 +427,8 @@ Example: `addtoproject Lucas98` adds Lucas98 to the current project that the use
 
 Removes an existing teammate from the current project.
 
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
 Format: `deletefromproject GITHUB_USERNAME`
 
 Example: `deletefromproject Lucas98` removes Lucas98 from the current project.
@@ -405,6 +436,8 @@ Example: `deletefromproject Lucas98` removes Lucas98 from the current project.
 ### 2.4.4 Edit a teammate’s details `editteammate`
 
 Update the information of a teammate.
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `editteammate GITHUB_USERNAME [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]`
   - Any combination or number of fields can be filled in
@@ -420,6 +453,8 @@ Example: `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way` changes the name of t
 
 View all of a specific teammate's details.
 
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
 Format: `viewteammate GITHUB_USERNAME`
 
 Example: `viewteammate Lucas98` displays all the information about the teammate with the Github User Name Lucas98 to the user.
@@ -427,6 +462,8 @@ Example: `viewteammate Lucas98` displays all the information about the teammate 
 ### 2.4.6 Delete a teammate `deleteteammate`
 
 Delete all of a specific teammate's details, as well as remove teammate from all projects teammate was a part of.
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `deleteteammate GITHUB_USERNAME`
 
@@ -436,7 +473,10 @@ Example: `deleteteammate Lucas97` deletes the teammate with Github username Luca
 # 2.5 Features in person scope
 
 ### 2.5.1 Start work on an existing person `startperson`
+
 Initialises the person specified.
+
+Valid scopes: `PERSON_LIST`, `PERSON`.
 
 Format: `startperson INDEX`
 - Initialises the person at the specified INDEX

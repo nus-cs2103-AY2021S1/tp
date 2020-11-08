@@ -86,6 +86,9 @@ public class MainCatalogueParser {
         case DeleteCommand.COMMAND_WORD:
             switch (status) {
             case PROJECT_LIST:
+            case TASK:
+            case PROJECT:
+            case TEAMMATE:
                 return new DeleteCommandParser().parse(arguments);
             default:
                 throw new InvalidScopeException(Status.PROJECT_LIST, status);
@@ -127,9 +130,9 @@ public class MainCatalogueParser {
                 throw new ParseException(ClearCommand.MESSAGE_EXTRA_ARGS);
             }
             switch (status) {
-            case PROJECT:
-            case TASK:
-            case TEAMMATE:
+             case PROJECT:
+             case TASK:
+             case TEAMMATE:
                 throw new InvalidScopeException(Status.PERSON_LIST, status);
             default:
                 return new ListPersonsCommand();
@@ -240,6 +243,8 @@ public class MainCatalogueParser {
         case DeleteTeammateParticipationCommand.COMMAND_WORD:
             switch (status) {
             case PROJECT:
+            case TEAMMATE:
+            case TASK:
                 return new DeleteTeammateParticipationCommandParser().parse(arguments);
             default:
                 throw new InvalidScopeException(Status.PROJECT, status);
@@ -258,6 +263,8 @@ public class MainCatalogueParser {
         case DeleteTaskCommand.COMMAND_WORD:
             switch (status) {
             case PROJECT:
+            case TEAMMATE:
+            case TASK:
                 return new DeleteTaskCommandParser().parse(arguments);
             default:
                 throw new InvalidScopeException(Status.PROJECT, status);
