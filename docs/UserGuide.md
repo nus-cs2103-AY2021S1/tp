@@ -101,7 +101,7 @@ not be so obvious!
 The Sales Tracking features allows you to keep a record of the sales of the bubble tea drinks inside the
 Sales Tracker. You are able to view data related to sales tracking in the Sales Tracker inside the _Main View_.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about available drinks:**<br>
 
