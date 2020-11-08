@@ -728,7 +728,7 @@ Example: You want to reschedule the first appointment in the appointment list.
 Delete the specified appointment from the appointment database.
 
 <p align="center">
-    <img src="images/deleteApptExample.png"/>
+    <img src="images/DeleteApptExample.png"/>
     <br>
     <em style="color:#CC5500">Figure 25. Example of Delete Appointment Command</em>
 </p>
