@@ -114,7 +114,7 @@ You can also find the records in the `data` folder where the `eva.jar` file is l
 
 </div>
 
-Here is a brief overview on how this document is arranged. The first section brings you through the 
+Here is a brief overview on how this section is arranged. The first section brings you through the 
 [different panels](#31-eva-gui) you will see in our application. After getting familiar with that, we will share some 
 [general system commands](#32-system-commands) you can use at any point in time. In the third section, 
 we will bring you through the [features we have implemented for staff](#33-staff-commands). 
