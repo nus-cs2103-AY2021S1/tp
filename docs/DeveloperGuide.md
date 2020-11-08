@@ -118,14 +118,18 @@ The case below follows the same execution above. However, the AddCommandParser f
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](hhttps://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the PIVOT data.
+* stores the history of PIVOT states.
 * exposes an unmodifiable `ObservableList<Case>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+
+The detailed class diagram for the investigation case package is shown below. 
+![Investigation Case Class Diagram](images/InvestigationCaseClassDiagram.png)
 
 ### Storage component
 
@@ -186,7 +190,7 @@ As the user invokes `open case [INDEX]`, the arguments are passed from the GUI t
 
 In `PivotParser`, the arguments are processed and passed onto the `OpenCommandParser` to further process the arguments and create a new `OpenCaseCommand`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** TWhen the user gives an invalid `type`, such as `open suspect 1`, `OpenCommandParser` will raise and error and display the proper command format for the user.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** When the user gives an invalid `type`, such as `open suspect 1`, `OpenCommandParser` will raise and error and display the proper command format for the user.
 </div>
 
 Upon invoking `OpenCaseCommand#execute()`, the class will extract the `Case` that is to be opened, and update the state in `StateManager`.
@@ -224,16 +228,16 @@ current `case`.
 
 #### Adding a Document
 When a user executes `add doc n:name r:reference.txt`, to add a document with the specified name and file reference
-to the current "opened" case in the state, `addDocumandCommandParser` will be invoked to parse the
+to the current "opened" case in the state, `AddDocumandCommandParser` will be invoked to parse the
 name (prefixed with n:) and reference (prefixed with r:) inputs. The program must be at an "opened" case at this point.
  <br><br>
-`addDocumandCommandParser` will check for a valid name as well as a valid
+`AddDocumandCommandParser` will check for a valid name as well as a valid
 reference that exists in the `./references` directory. This is to prevent a user from creating a document when the
 program is active when they have yet to include the file in the program's directory. The appropriate error message
 should be returned for a better user experience. It will then successfully create a `Document` and
-return `addDocumandCommand`
+return `AddDocumandCommand`
 <br><br>
-`addDocumandCommand` will get the current `case` in the program `state` and adds the new `Document` to this `case`.
+`AddDocumandCommand` will get the current `case` in the program `state` and adds the new `Document` to this `case`.
 It will check for duplicated documents at this point as this is where the program accesses the list of documents in the
 current state. The `model` will then be updated with the updated `case`.
 
@@ -259,7 +263,7 @@ The following activity diagram shows a successful delete document operation at a
 * **Alternative 1 (current choice):** A reference object can be both valid but doesn't exists at the same time.
    - Pros: A document file deletion on the user's local machine will not affect loading the current cases in the Json
    file
-   - Cons: More prone to bugs
+   - Cons: User will only know that the file doesn't exist when he opens it
 
 * **Alternative 2:** A reference object must be both valid and exists to be created.
      - Pros: A document is only created when we know there is a valid and existing `Reference`. Easier for testing.
@@ -278,53 +282,90 @@ default file paths.
 
 ### Undo/Redo feature
 
-The undo/redo feature is facilitated by `VersionedPivot`. It extends `Pivot` with an undo/redo history, 
-stored internally as an `pivotStateList` and `currentStatePointer`. It also stores the corresponding commands 
-for each state in the `pivotStateList` as `commands`. Additionally, it implements the following operations:
+Commands that are able to be undone/redone will implement an interface `Undoable`, with the method `Undoable#getPage())`.
+When a main page command is being undone/redone, PIVOT will return to the main page. The method `Undoable#getPage())`
+informs the caller whether the command is a main page command or a case page command.
+
+The undo/redo feature is facilitated by `VersionedPivot`. It has an undo/redo history of `PivotState` objects,
+stored internally as a `pivotStateList`, and a `currentStatePointer`.
+`VersionedPivot` also keeps track of the command that is to be undone/redone as `commandResult`, and the corresponding
+command message as `commandMessageResult`. Both `commandResult` and `commandMessageResult` will be retrieved from
+the `PivotState` objects stored in `pivotStateList`.
+
+`PivotState` stores the current `ReadOnlyPivot` as a `pivotState`, the corresponding `command` that led to that
+`pivotState`, as well as the `commandMessage` displayed to the user when the command was called.
+`VersionedPivot` will only interact with the Commands via the `Undoable` interface.
+
+Additionally, `VersionedPivot` implements the following operations:
 
 * `VersionedPivot#canUndo()` — Indicates whether the current state can be undone.
 * `VersionedPivot#canRedo()` — Indicates whether the current state can be redone.
-* `VersionedPivot#commit(ReadOnlyPivot pivot, String command)` — Saves the current Pivot state as well as the 
-corresponding command that was called in its history.
+* `VersionedPivot#commit(String commandMessage, Undoable command)` — Saves the current Pivot state, the 
+corresponding command that was called and its command message in its history.
 * `VersionePivot#undo()` — Restores the previous Pivot state from its history.
 * `VersionedPivot#redo()` — Restores a previously undone Pivot state from its history.
 * `VersionedPivot#purgeStates()` — Purges the all the states after the current pointer.
+* `VersionedPivot#updateRedoUndoResult()` — Updates the `command` that is being undone/redone and the corresponding
+`commandMessage`.
+* `VersionedPivot#isMainPageCommand()` — Indicates whether the current command stored in `commandResult` is
+a main page command by using the method `Undoable#getPage())` of `commandResult`.
 
-These operations are exposed in the `Model` interface as `Model#canUndoPivot()`,`Model#canRedoPivot()`, 
-`Model#commitPivot(String command)`, `Model#undoPivot()` and `Model#redoPivot()` respectively.
+These operations are exposed in the `Model` interface as `Model#canUndoPivot()`,`Model#canRedoPivot()`,
+`Model#commitPivot(String commandMessage, Undoable command)`, `Model#undoPivot()`, `Model#redoPivot()`,
+`Model#getCommandMessage()` and `Model#isMainPageCommand()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedPivot` will be initialized with the initial Pivot state,
-and the `currentStatePointer` pointing to that single Pivot state.
+Step 1. The user launches the application for the first time. The `VersionedPivot` will be initialized with the initial `PivotState`,
+and the `currentStatePointer` pointing to that single `PivotState`.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete case 5` command to delete the 5th case in Pivot. The `delete` command calls `Model#commitPivot(String command)`, 
-causing the modified state of Pivot and the command message displayed to the user after the `delete case 5` command executes to be saved in 
-`pivotStateList` and `commands` respectively. The `currentStatePointer` is shifted to the newly inserted Pivot state.
+Step 2. The user executes `delete case 5` command to delete the 5th case in Pivot. The `delete case` command calls
+`Model#commitPivot(String commandMessage, Undoable command)`. This will create a new `PivotState` object with
+the modified state of Pivot, the delete case command and its command message. This `PivotState` object will then be saved in
+`pivotStateList`. The `currentStatePointer` is shifted to the newly inserted `PivotState` object.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add case t:Lost Wallet …​` to add a new case. The `add case` command also calls `Model#commitPivot(String command)`, 
-causing another modified Pivot state and its corresponding command message to be saved into `pivotStateList` and `commands`.
+Step 3. The user executes `add case t:Lost Wallet …​` to add a new case. The `add case` command also calls
+`Model#commitPivot(String commandMessage, Undoable command)`. This creates another `PivotState` object with the
+modified Pivot, the add case command and its corresponding command message.
+The `PivotState` object is saved into `pivotStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitPivot(String command)`, 
-so the Pivot state and the corresponding command message will not be saved into `pivotStateList` and `commands`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call
+`Model#commitPivot(String commandMessage, Undoable command)`, so a new `PivotState` object will not be created and will not be
+be saved into `pivotStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the case was a mistake, and decides to undo that action by executing the `undo` command. 
-The `undo` command will call `Model#undoPivot()`, which will retrieve the corresponding command message at the current state from `commands`
-to be displayed to the user the exact command that is being undone. The `currentStatePointer` will also be shifted once to the left, 
-pointing it to the previous Pivot state, and restores Pivot to that state.
+Step 4. The user then decides to open the newly added case and executes the command `open case 6` (assuming that the
+newly added case is the 6th case in the list). Commands that do not modify Pivot, such as `open case` commands, will
+not call `Model#commitPivot(String commandMessage, Undoable command)`. Thus, the `pivotStateList` remains unchanged.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
+Step 5. The user now decides that adding the case was a mistake, and decides to undo that action by executing the `undo` command.
+The `undo` command will call `Model#undoPivot()`, which will update `commandResult` to the command being undone, and
+`commandMessageResult` to the corresponding message to display to the user the exact command that is being undone.
+The `currentStatePointer` will also be shifted once to the left, pointing it to the previous `PivotState` object, and
+restores PIVOT to that state.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command to be undone is a main
+page command, we revert PIVOT back to the main page. The `undo` command uses `Model#isMainPageCommand()` to check if this
+is the case. If so, it will use `StateManager#resetState()` to return PIVOT to the main page. This is done because the
+list of cases in the main page changes as a result of the undo, which may affect the case page that is open currently.
+For instance, undo might result in the currently open case being removed from PIVOT (like in the above sequence of commands),
+and since the case that is open will no longer exist, it is necessary for PIVOT to return to the main page.
+
+</div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the
-initial Pivot state, then there are no previous Pivot states to restore. The `undo` command uses `Model#canUndoPivotk()` to check if this
+initial Pivot state, then there are no previous Pivot states to restore. The `undo` command uses `Model#canUndoPivot()` to check if this
 is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 </div>
@@ -339,23 +380,26 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoPivot()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores Pivot to that state. The corresponding command message
-at this new current state will be retrieved from `commands` to be displayed to the user the exact command that is being redone.
+to the right, pointing to the previously undone state, and restores Pivot to that state. `commandResult` will be updated to
+the command being redone, and `commandMessageResult` will be updated to the corresponding message in order to display to the
+user the exact command that is being redone.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Similar to undo, if the command to be redone
+is a main page command, we revert PIVOT back to the main page. The `redo` command uses `Model#isMainPageCommand()` to check
+if this is the case. If so, it will use `StateManager#resetState()` to return PIVOT to the main page.
+
+</div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index
-`pivotStateList.size() - 1`, pointing to the latest Pivot state, then there are no undone Pivot states to restore.
+`pivotStateList.size() - 1`, pointing to the latest `PivotState` object, then there are no undone `PivotState` objects to restore.
 The `redo` command uses `Model#canRedoPivot()` to check if this is the case. If so, it will return an error to the user
 rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify Pivot, such as `list`, will
-usually not call `Model#commitPivot(String command)`. Thus, the `pivotStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitPivot(String command)`. Since the `currentStatePointer` is not
-pointing at the end of the `pivotStateList`, all Pivot states after the `currentStatePointer` will be purged. Reason: It
+Step 6. The user executes `open case 1`, followed by `edit title t:Robbery`. The edit title command calls
+`Model#commitPivot(String commandMessage, Undoable command)`. Since the `currentStatePointer` is not pointing at the end
+of the `pivotStateList`, all `PivotState` objects after the `currentStatePointer` will be purged. Reason: It
 no longer makes sense to redo the `add case t:Lost Wallet …​` command. This is the behavior that most modern desktop
 applications follow.
 
@@ -378,10 +422,120 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete case`, just save the case being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### \[Proposed\] Data archiving
+### Archiving cases
 
-_{Explain here how the data archiving feature will be implemented}_
+The `archiveStatus` field of each `Case` determines whether a case is archived or not archived.
+The `archiveStatus` is `ArchiveStatus.ARCHIVED` if archived, and `ArchiveStatus.DEFAULT` if not archived.
 
+#### Implementation: Archive case
+The `archive case` command allows the user to archive an investigation case listed in the `Main Page` of the `Home` section in the GUI.
+The specified case will be removed from the list in the `Home` section and added to the `Archive` section in the GUI.
+
+The `archive case` command mechanism is facilitated by `ArchiveCommand`. It extends the abstract class `Command` and contains
+a `Index` of the `Case` to be archived. It implements the `ArchiveCommand#execute()` operation as required in the abstract parent class.
+
+The Sequence Diagram below shows how the `ArchiveCommand` works.
+
+![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
+
+The user inputs the command `archive case 1` and the arguments are passed to the `Logic` component.
+
+`PivotParser` processes the provided input and passes the arguments to `ArchiveCommandParser` to be processed.
+If the command is of a valid format, a new `ArchiveCommand` will be created.
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** When the user provides invalid arguments, such as `archive c 1`, `ArchiveCommandParser` will raise an error and display the proper command format for the user.
+</div>
+
+Upon invoking `ArchiveCommand#execute()`, the class will extract the `Case` to be archived as specified by the `Index` provided.
+A new `Case` with the same details will be created, except the `archiveStatus` field which will be set as `ArchiveStatus.ARCHIVED`.
+The case to be archived will be deleted from the `model` and the new `Case` object will be added to the model. 
+Thus, we have ensured that the `Case` is effectively archived.
+
+The GUI will be updated correspondingly, with the archived case being removed from the `Home` section. The archived case will
+appear in the `Archive` section when users input `list archive`.
+
+#### Implementation: Unarchive case
+The `unarchive case` command allows the user to unarchive an investigation case listed in the `Main Page` of the `Archive` section in the GUI.
+The specified case will be removed from the list in the `Archive` section and added to the `Home` section in the GUI.
+
+The `archive case` command mechanism is facilitated by `UnarchiveCommand`. It extends the abstract class `Command` and contains
+a `Index` of the `Case` to be unarchived. It implements the `UnarchiveCommand#execute()` operation as required in the abstract parent class.
+
+The Sequence Diagram below shows how the `UnarchiveCommand` works.
+
+![UnarchiveSequenceDiagram](images/UnarchiveSequenceDiagram.png)
+
+The `unarchive case` command works in a similar manner to the `archive case` command, 
+except that it sets the newly created `Case` object's `archiveStatus` as `ArchiveStatus.DEFAULT` before
+adding it to the `model`.
+
+#### Implementation: List case and List archive
+The GUI is split into the `Home` section and the `Archive` section. 
+By using the commands `list case` and `list archive`, users can switch between the two sections and interact
+with the cases at that particular section. 
+
+The `list archive` command mechanism is facilitated by `ListArchiveCommand`. It extends the abstract class `ListCommand`. 
+It implements the `ListArchiveCommand#execute()` operation as required in the abstract parent class.
+
+The Sequence Diagram below shows how the `ListArchiveCommand` works.
+
+![ListArchiveSequenceDiagram](images/ListArchiveSequenceDiagram.png)
+
+Upon invoking `ListArchiveCommand#execute()`, the `StateManager` will be notified via the `StateManager#setArchivedSection()`
+method, which will update and store the program's state to be in the `Archive` section. 
+
+The filtered case list in model will also be updated with the predicate to show archived cases. 
+This predicate checks for the `archiveStatus` of cases, taking those that are `ArchiveStatus.ARCHIVED`. 
+With this update, the GUI will also be automatically updated, bringing the program to the `Archive` section
+and listing all archived cases. 
+
+To switch back to the `Home` section, users can input the `list case` command. The `list case` command works in a similar manner
+to the `list archive` command, but now, the filtered case list in `model` will be updated with the predicate to show all unarchived cases,
+and the `StateManager` will be notified that the program's state is the `Home` section now.
+
+#### Design consideration:
+
+##### Aspect: How to consider a case as archived, and list archived cases.
+
+* **Alternative 1 (current implementation):** Store as an enum field in `Case` and make use of appropriate predicates to show the 
+cases
+  * Pros: Easier to implement.
+  * Cons: Do not have two separate lists for archived and unarchived cases, which results in more checks needed for other 
+  functionalities like `find` command.
+
+* **Alternative 2:** Store archived cases and unarchived cases as two different lists in `Model`.
+  * Pros: More clarity in terms of which cases are being shown, hence other functionalities are
+  less likely to be affected from the implementation. This could result in less bugs.
+  * Cons: Difficult to implement this as we need to take into consideration the parsing of JSON files, 
+  and the creation of two lists on startup.
+
+--------------------------------------------------------------------------------------------------------------------
+## **Effort**
+The original AB3 is a one-layered implementation, where users can only interact with one list of items, such as adding and deleting items.
+
+In PIVOT, we adopt a two-layer approach, which increases the complexity of the project. 
+
+In the `Main Page`, users can interact with the list of `Cases` they see, such as adding and deleting a `Case`. 
+Then, they can open a specific `Case`, opening up the `Case Page` which shows the details of the `Case`. They can interact with that particular `Case`, such as adding `Documents`, `Suspects` etc.
+
+This approach required us to consider the design of the program carefully, so as to ensure that we are able to 
+successfully open the correct `Case`, and ensure that the program is at the correct state each time, so that 
+only valid commands can be used. This led to the decision of a `StateManager` class to handle the states of the program.
+
+Various new features are also implemented.
+
+The new `Open Document` feature allows users to easily open `Documents` that are stored in our program. The implementation of this feature
+meant that we had to create a `references` folder on start-up, as well as properly store the file paths of the `Documents`.
+The implementation of the feature had to be carefully designed, as we had to consider the different ways a user might use 
+the program and handle them properly such that the program will not crash (e.g. if the user deletes a document that they added to PIVOT).
+
+
+The `Archive` feature also required a careful consideration of the design alternatives, so as to show a different view in the GUI. 
+We also had to consider how this feature would affect the existing commands.
+
+Much thought and effort has been given to the design of this project, and enhancements have been made to the existing features as well.
+The new features added will also increase the effectiveness of the program.   
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -433,30 +587,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | investigator                               | create investigation cases with a relevant title                                  | store resources inside                                   |
-| `* * *`  | investigator                               | view the list of investigation cases stored in PIVOT                              |                                                          |
-| `* * *`  | investigator                               | indicate and see the state of different cases (e.g. closed/in-progress/cold case) | edit or see the statuses of my cases                     |
-| `* * *`  | investigator                               | add a description to an investigation case                                        | capture key information about the investigation case     |
-| `* * *`  | investigator                               | delete investigation cases                                                        | delete unwanted cases or cases that are wrongly created  |
-| `* * *`  | investigator                               | open investigation cases easily and view the files that are stored inside         | retrieve the necessary information for those who need it |
-| `* * *`  | investigator                               | add relevant documents to an investigation case                                   |                                                          |
-| `* * *`  | investigator                               | view the list of documents relevant to an investigation case                      |                                                          |
-| `* * *`  | investigator                               | delete irrelevant documents to an investigation case                              | remove outdated documents                                |
-| `* * *`  | investigator                               | view the list of suspects tied to an investigation case                           | refer to all suspects in an investigation case           |
-| `* * *`  | investigator                               | add a list of suspects tied to an investigation case                              |                                                          |
-| `* * *`  | investigator                               | delete suspects tied to an investigation case                                     | delete irrelevant suspects                               |
-| `* * *`  | investigator                               | view the list of witnesses tied to an investigation case                          | refer to all witnesses in an investigation case          |
-| `* * *`  | investigator                               | add a list of witnesses tied to an investigation case                             |                                                          |
-| `* * *`  | investigator                               | delete witnesses tied to an investigation case                                    | delete irrelevant witnesses                              |
-| `* * *`  | investigator                               | view the list of victims tied to an investigation case                            | refer to all victims in an investigation case            |
-| `* * *`  | investigator                               | add a list of victims tied to an investigation case                               |                                                          |
-| `* * *`  | investigator                               | delete victims tied to an investigation case                                      | delete irrelevant victims                                |
-| `* * *`  | investigator                               | close the application when I am done using it                                     | safely exit the application                              |
-
-
-
-
-*{More to be added}*
+| `* * *`  | investigator                               | create investigation cases with a relevant title                                   | store resources inside                                                  |
+| `* * *`  | investigator                               | archive my cases                                                                   | organize and store records that are not relevant to me now              |
+| `* * *`  | investigator                               | restore my cases from the archive                                                  | update past records when there is new information                       |
+| `* * *`  | investigator                               | view the list of investigation cases that I'm currently handling                   | get an overview of the cases that I have                                |
+| `* * *`  | investigator                               | view the list of investigation cases stored in the archive                         | retrieve past cases that I have                                         |
+| `* * *`  | investigator                               | open individual investigation cases                                                | view the relevant details of that case                                  |
+| `* * *`  | investigator                               | find for cases using their case details                                            | quickly retrieve cases based on my search terms                         |
+| `* * *`  | investigator                               | indicate a state for different cases (e.g. closed/in-progress/cold case)           | easily see the status of my cases                                       |
+| `* * *`  | investigator                               | add a description to an investigation case                                         | capture key information about the investigation case                    |
+| `* * *`  | investigator                               | delete investigation cases                                                         | delete unwanted cases or cases that are wrongly created                 |
+| `* * *`  | investigator                               | edit the status of a case                                                          | update the status of a case to have the most updated information        |
+| `* * *`  | investigator                               | add relevant documents to an investigation case                                    | store multiple files related to a case                                  |
+| `* * *`  | investigator                               | view the list of documents in an investigation case                                |                                                                         |
+| `* * *`  | investigator                               | edit the documents in an investigation case                                        | give the document another name or change its file reference             |
+| `* * *`  | investigator                               | delete irrelevant documents to an investigation case                               |  remove outdated documents                                              |
+| `* * *`  | investigator                               | add relevant suspects to an investigation case                                     | link suspects to an investigation case with their personal information  |
+| `* * *`  | investigator                               | view the list of suspects tied to an investigation case                            | refer to all suspects in an investigation case                          |
+| `* * *`  | investigator                               | edit the suspects in an investigation case                                         | add or update information pertaining to that suspect                    |
+| `* * *`  | investigator                               | delete suspects tied to an investigation case                                      | delete irrelevant suspects                                              |
+| `* * *`  | investigator                               | add relevant witnesses to an investigation case                                    | link witnesses to an investigation case with their personal information |
+| `* * *`  | investigator                               | view the list of witnesses tied to an investigation case                           | refer to all witnesses in an investigation case                         |
+| `* * *`  | investigator                               | edit the witness in an investigation case                                          | add or update information pertaining to that witness                    |
+| `* * *`  | investigator                               | delete witnesses tied to an investigation case                                     | delete irrelevant witnesses                                             |
+| `* * *`  | investigator                               | add relevant victims to an investigation case                                      | link victims to an investigation case with their personal information   |
+| `* * *`  | investigator                               | view the list of victims tied to an investigation case                             | refer to all victims in an investigation case                           | 
+| `* * *`  | investigator                               | edit the victims in an investigation case                                          | add or update information pertaining to that victim                     |
+| `* * *`  | investigator                               | delete victims tied to an investigation case                                       | delete irrelevant victims                                               |
+| `* * *`  | new user                                   | view the available functions available in PIVOT                                    |                                                                         |
+| `* * *`  | careless investigator                      | undo my previous command                                                           | quickly remove the changes from my previous command                     |
+| `* * *`  | expert investigator                        | undo and redo multiple commands                                                    | navigate to the state of the program exactly as I need                  |
+| `* * *`  | investigator                               | close the application when I am done using it                                      | safely exit the application                                             |
 
 ### Use cases
 
@@ -465,15 +626,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add Investigation Case**
 
 **MSS**
-1.  User requests to create a new active investigation case and specifies a title
-2.  PIVOT adds the new investigation case
+1.  User requests to create a new active investigation case
+2.  User specifies a title.
+3.  PIVOT adds the new investigation case
 
     Use case ends.
 
 **Extensions**
-* 1a. The title is empty.
-    * 1a1. PIVOT shows an error message.
+* 2a. The title is invalid.
+    * 2a1. PIVOT shows an error message.
+    
+	  Use case ends.
+	  
+* 2b. User specifies a status for the case.
+    * 2b1. PIVOT adds the new investigation case
+      
+      Use case ends.
 
+* 2c. User specifies a status for the case.
+    * 2c1. The status is invalid.
+    * 2c2. PIVOT shows an error message.
+    
 	  Use case ends.
 
 **Use case: List Investigation Case**
@@ -481,6 +654,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1.  User requests to list investigation cases
 2.  PIVOT shows a list of investigation cases
+
+    Use case ends.
+    
+**Use case: List Cases in Archive**
+
+**MSS**
+1.  User requests to list investigation cases in the archive
+2.  PIVOT shows a list of investigation cases in the archive
 
     Use case ends.
 
@@ -502,8 +683,82 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 3.
 
+**Use case: Archive an investigation case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to archive a specific case in the list
+4. PIVOT moves the investigation case to the archive
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+
+      Use case resumes at step 3.    
+      
+**Use case: Restore a Case from the Archive**
+
+**MSS**
+1. User requests to list investigation cases in the Archive
+2. PIVOT shows a list of investigation cases in the Archive
+3. User requests to restore a specific case in the list
+4. PIVOT moves the investigation case from the archive to the Home section
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+
+      Use case resumes at step 3.    
+    
+    
+**Use case: Find an Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to find a specific investigation case in the list
+4. User specified search terms
+5. PIVOT shows a filtered list of the investigation cases which contain any search term
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends. 
+
+**Use case: Find an Investigation Case in the Archive**
+
+**MSS**
+1. User requests to list investigation cases in the archive
+2. PIVOT shows a list of investigation cases in the archive
+3. User requests to find a specific investigation case in the list
+4. User specified search terms
+5. PIVOT shows a filtered list of the investigation cases which contain any search term
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends. 
+  
+     
 **Use case: Open Investigation Case**
 
 **MSS**
@@ -524,104 +779,265 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: Tag Investigation Case**
-
-**MSS**
-1. User requests to list investigation cases
-2. PIVOT shows a list of investigation cases
-3. User specifies an investigation case
-4. PIVOT navigates to the specified investigation case page
-5. User requests to tag the investigation case with specific tag
-6. PIVOT tags the investigation case with specified tag
-
-   Use case ends.
-
-**Extensions**
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-    * 3a1. PIVOT shows an error message.
-
-      Use case resumes at step 1.
-
-* 5a. The given tag is invalid.
-    * 5a1. PIVOT shows an error message.
-
-      Use case resumes at step 5.
-
 **Use case: Add Description for an Investigation Case**
 
 **MSS**
-1. User requests to list investigation cases
-2. PIVOT shows a list of investigation cases
-3. User specifies an investigation case
-4. PIVOT navigates to the specified investigation case page
-5. User requests to add a description to the investigation case
-6. PIVOT adds the description to the investigation case
+1. User does (Use case: Open Investigation Case)
+2. User requests to add a description to the investigation case and specifies a description
+3. PIVOT adds the description to the investigation case
 
    Use case ends.
 
 **Extensions**
-* 2a. The list is empty.
+* 2a. The description is empty.
+    * 2a1. PIVOT shows an error message.
+    
+      Use case resumes at step 2.
 
-  Use case ends.
 
-* 3a. The given index is invalid.
-    * 3a1. PIVOT shows an error message.
+* 2b. There is already an existing description.
+    * 2b1. PIVOT shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
-* 5a. The given description is empty.
-    * 5a1. PIVOT shows an error message.
-
-      Use case resumes at step 5.
 
 **Use case: Add Document to Investigation Case**
 
 **MSS**
-1. User requests to add a document to investigation case, specifies a document title and reference
-2. PIVOT adds a new document to the investigation case
+1. User does (Use case: Open Investigation Case)
+2. User requests to add a document to investigation case, specifies a document name and reference
+3. PIVOT adds a new document to the investigation case
 
    Use case ends.
 
 **Extensions**
-* 1a. The title is empty.
-    * 1a1. PIVOT shows an error message.
+* 2a. The name is invalid.
+    * 2a1. PIVOT shows an error message.
+    
+      Use case resumes at step 2.
 
-      Use case resumes at step 1.
 
-* 1b. The reference is empty.
-    * 1b1. PIVOT shows an error message.
+* 2b. The reference is invalid.
+    * 2b1. PIVOT shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
-* 1c. The reference is invalid.
-    * 1c1. PIVOT shows an error message.
+**Use case: Add Person[Suspect/Witness/Victim] in Investigation Case**
 
-      Use case resumes at step 1.
+**MSS**
+1. User does (Use case: Open Investigation Case)
+2. User requests to add a person to a specified category (suspect/witness/victim).
+3. User specifies all the name, sex and phone number of that person.
+4. PIVOT adds the person to a specified category (suspect/witness/victim).
 
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given category of person to add is invalid.
+    * 2a1. PIVOT shows an error message.
+
+        Use case resumes at step 1.
+        
+* 3a. The name is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+      Use case resumes at step 3.
+
+* 3b. The sex is invalid.
+    * 3b1. PIVOT shows an error message.
+
+      Use case resumes at step 3.
+   
+* 3c. The phone number is invalid.
+    * 3c1. PIVOT shows an error message.
+
+      Use case resumes at step 3.
+      
+* 3d. User specifies other optional fields (email address and address).
+    * 3d1. PIVOT recognizes that fields are invalid.
+    * 3d1. PIVOT shows an error message.
+
+      Use case resumes at step 3.
+      
+* 3e. User specifies other optional fields (email address and address).
+    * 3e1. PIVOT recognizes that fields are valid.
+    * 3e1. PIVOT adds the person to a specified category (suspect/witness/victim).
+
+      Use case ends.
+      
+**Use case: List Person[Suspect/Witness/Victim] in Investigation Case**
+
+**MSS**
+1. User does (Use case: Open Investigation Case)
+2. User requests to list Persons in the case.
+3. PIVOT shows a list of Persons in the case.
+
+   Use case ends.
+   
 **Use case: List Document related to Investigation Case**
 
 **MSS**
-1. User requests to list documents related to the case
-2. PIVOT shows a list of documents related to the case
+1. User does (Use case: Open Investigation Case)
+2. User requests to list documents in the case
+3. PIVOT shows a list of documents in the case
 
    Use case ends.
 
-**Use case: Delete Document from Investigation Case**
+**Use case: Edit Investigation Case Title**
 
 **MSS**
-1. User requests to list investigation cases
-2. PIVOT shows a list of investigation cases
-3. User requests to delete a specific investigation case in the list
-4. PIVOT deletes the investigation case
+1. User does (Use case: Open Investigation Case)
+2. User requests to edit the title of the investigation case
+3. User specifies a title
+4. PIVOT updates the title of the investigation case
+
+    Use case ends.
+
+**Extensions**
+* 3a. The title is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+	  Use case ends.
+	  
+	 
+**Use case: Edit Investigation Case Status**
+
+**MSS**
+1. User does (Use case: Open Investigation Case)
+2. User requests to edit the status of the investigation case
+3. User specifies a status
+4. PIVOT updates the status of the investigation case
+
+    Use case ends.
+
+**Extensions**
+* 3a. The status is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+	  Use case ends.
+	  
+	  
+**Use case: Edit Description for an Investigation Case**
+
+**MSS**
+1. User does (Use case: Open Investigation Case)
+2. User requests to edit the description of the investigation case
+3. User specifies a description
+4. PIVOT updates the description of the investigation case
 
    Use case ends.
 
 **Extensions**
-* 2a. The list is empty.
+* 3a. The description is empty.
+    * 3a1. PIVOT shows an error message.
+    
+      Use case resumes at step 3.
+
+      
+**Use case: Edit Document to Investigation Case**
+
+**MSS**
+1. User does (Use case: List Document related to Investigation Case)
+2. User requests to edit a document to investigation case
+3. User specifies a document's index in the list
+4. User specifies fields(name and reference) that they want to edit
+5. PIVOT updates the document with the specified fields
+
+   Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+
+  Use case ends.
+  
+* 3a. The index is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+      Use case resumes at step 3.
+      
+* 4a. The name given is invalid.
+    * 4a1. PIVOT shows an error message.
+    
+      Use case resumes at step 4.
+
+
+* 4b. The reference given is invalid.
+    * 4b1. PIVOT shows an error message.
+
+      Use case resumes at step 4.
+      
+* 4c. User did not specify any fields to change.
+    * 4c1. PIVOT shows an error message.
+
+      Use case resumes at step 4.
+      
+
+**Use case: Edit Person[Suspect/Witness/Victim] in Investigation Case**
+
+**MSS**
+1. User does (Use case: List Person[Suspect/Witness/Victim] in Investigation Case)
+2. User requests to edit a person of a specified category (suspect/witness/victim).
+3. User specifies a person's index in the list
+4. User specifies fields(name/sex/phone/email/address) that they want to edit
+5. PIVOT updates the person of a specified category (suspect/witness/victim) with the specified fields.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+
+  Use case ends.
+  
+* 2a. The given category of person to add is invalid.
+    * 2a1. PIVOT shows an error message.
+
+        Use case resumes at step 2.
+        
+* 3a. The index is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+      Use case resumes at step 3.
+     
+    
+* 4a. The fields specified are invalid.
+    * 4a1. PIVOT recognizes that fields are invalid.
+    * 4a1. PIVOT shows an error message.
+
+      Use case resumes at step 4.
+      
+* 4b. User did not specify any fields to change.
+    * 4b1. PIVOT shows an error message.
+
+      Use case ends.
+      
+**Use case: Delete Description for an Investigation Case**
+
+**MSS**
+1. User does (Use case: Open Investigation Case)
+2. User requests to delete the description of the investigation case
+3. PIVOT deletes the description of the investigation case
+
+   Use case ends.
+
+**Extensions**
+* 2a. The case has no description to delete.
+    * 2a1. PIVOT shows an error message.
+    
+      Use case resumes at step 2.
+      
+**Use case: Delete Document from Investigation Case**
+
+**MSS**
+1. User does (Use case: List Document related to Investigation Case)
+2. User requests to delete a document to investigation case
+3. User specifies a document's index in the list
+4. PIVOT deletes the document from the list
+
+   Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
 
   Use case ends.
 
@@ -630,100 +1046,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+**Use case: Delete Person[Suspect/Witness/Victim] in Investigation Case**
+
+**MSS**
+1. User does (Use case: List Person[Suspect/Witness/Victim] in Investigation Case)
+2. User requests to delete a person of a specified category (suspect/witness/victim).
+3. User specifies a person's index in the list
+4. PIVOT deletes the person from the list.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+
+    Use case ends.
+    
+* 2a. The given category of person to add is invalid.
+    * 2a1. PIVOT shows an error message.
+
+        Use case resumes at step 2.
+        
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+
+        Use case resumes at step 3.
+        
 **Use case: Open Document**
 
 **MSS**
-1. User requests to list documents
-2. PIVOT shows a list of documents
-3. User requests to open a specific document in the list
+1. User does (Use case: List Document related to Investigation Case)
+2. User requests to open a specific document in the list
+3. User specifies a document's index in the list to open
 4. PIVOT opens the specified document
 
    Use case ends.
 
 **Extensions**
-* 2a. The list is empty.
+* 1a. The list is empty.
 
     Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
 
-        Use case resumes at step 1.
+        Use case resumes at step 3.
 
-* 4a. The specified document does not exist in the saved reference.
-    * 4a1. PIVOT shows an error message.
+* 3b. The specified document does not exist in the saved reference.
+    * 3b1. PIVOT shows an error message.
 
-        Use case resumes at step 1.
+        Use case resumes at step 3.
 
-**Use case: Add Person[Suspect/Witness/Victim] in Investigation Case**
-
-**MSS**
-1. User requests to list investigation cases
-2. PIVOT shows a list of investigation cases
-3. User requests to open a specific investigation case in the list
-4. PIVOT opens the specified investigation case
-5. User requests to add a person to a specified category (suspect/witness/victim).
-6. PIVOT adds the person to a specified category (suspect/witness/victim).
-
-   Use case ends.
-
-**Extensions**
-* 2a. The list is empty.
-
-    Use case ends.
-
-* 3a. The given index is invalid.
-    * 3a1. PIVOT shows an error message.
-
-        Use case resumes at step 1.
-
-* 5a. The given category of person to add is invalid.
-    * 5a1. PIVOT shows an error message.
-
-        Use case resumes at step 1.
-
-**Use case: List Person[Suspect/Witness/Victim] in Investigation Case**
-
-**MSS**
-1. User requests to list Persons related to the case.
-2. PIVOT shows a list of Persons related to the case.
-
-   Use case ends.
-
-**Use case: Delete Person[Suspect/Witness/Victim] in Investigation Case**
-
-**MSS**
-1. User requests to list all Persons
-2. PIVOT shows a list of all Persons
-3. User requests to delete a specific Person from the list
-4. PIVOT deletes the Person
-
-   Use case ends.
-
-**Extensions**
-* 2a. The list is empty.
-
-    Use case ends.
-
-* 3a. The given index is invalid.
-    * 3a1. PIVOT shows an error message.
-
-        Use case resumes at step 1.
 
 **Use case: Return to the Main Page**
 
 **MSS**
-1. User requests to list investigation cases
-2. PIVOT shows a list of investigation cases
-3. User requests to open a specific investigation case in the list
-4. PIVOT navigates to the specified investigation case
-5. User requests to navigate to the main page
-6. PIVOT navigates to the main page
+1. User does (Use case: Open Investigation Case)
+2. User requests to navigate to the main page
+3. PIVOT navigates to the main page
 
    Use case ends.
 
 **Extensions**
-* 1a. User requests to navigate to the main page.
+* *a. At any time, user can request to navigate to the main page.
+    * *a1. PIVOT brings the user back to the main page.
 
     Use case ends.
 
@@ -735,15 +1120,64 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+        
+**Use case: Undo command**
+
+**MSS**
+1. User starts up PIVOT
+2. User does a command
+3. User requests to undo the previous command
+4. PIVOT reverts the effects of the previous command that can be undone
+
+   Use case ends.
+
+**Extensions**
+* 1a. User requests to undo the previous command.
+    * 1a1. There is no command to undo
+    
+    Use case ends.
+    
+* 2a. User does a command that can be un-done.
+    * 2a1. User does (Use case: Delete Document from Investigation Case)
+    * 2a2. User requests to undo the previous command
+    * 2a3. PIVOT restores the Document which has been deleted by the previous command 
+    
+    Use case ends.
+
+* 2b. User does a command that cannot be undone.
+    * 2b1. User does (Use case: List Investigation Case)
+    * 2b2. User requests to undo the previous command
+    * 2b3. PIVOT is already at its initial state
+    
+    Use case ends.
+    
+
+**Use case: Redo command**
+
+**MSS**
+1. User does (Use case: Undo command)
+2. User requests to redo a command
+3. PIVOT restores the effects of the previous command that was undone, if any
+
+   Use case ends.
+
+**Extensions**
+    
+* 1a. Undo command was successful.
+    
+    Use case resumes at step 2.
+
+* 1b. There was nothing to undo.
+
+    Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 Cases without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The system should not take above 2 seconds to execute any command.
-
-*{More to be added}*
 
 ### Glossary
 
