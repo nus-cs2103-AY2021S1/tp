@@ -84,7 +84,9 @@ This section details the notations used to specify the command formats in the [c
   * Exception: commands that require the `INDEX` must have the `INDEX` directly after the command.
     * E.g. `edit_inventory 1 i/newname` is accepted but NOT `edit_inventory i/newname 1`
 * Range of valid inputs:
-  * Parameters that expect an integer must be between `0` and `2147483647`.
+  * Commands that are expecting an `INDEX` parameter must ensure that the `INDEX` specified is a positive, non-zero integer that is not more than the number of items on the list.
+  * Parameters that expect an integer must be between `0` and `2147483647`, with the exception of the `update_inventory` command. 
+  More details of the `update_inventory` command can be read [here](#516-update-inventory-record-update_inventory).
 
 </div>
 
@@ -176,7 +178,7 @@ The corresponding finance record is also deleted.
 
 #### 5.1.3. Edit record in inventory: `edit_inventory`
 
-Previously in the [Delete inventory records](#512-remove-items-from-inventory-delete_inventory) section, we have deleted one of our inventory records. For this section, ensure that you have at least one inventory record.
+Previously in the [Delete Inventory Records](#512-remove-items-from-inventory-delete_inventory) section, we have deleted one of our inventory records. For this section, ensure that you have at least one inventory record.
 
 If you are reading this section without having read the previous section, please ensure that your NUStorage application has at least one inventory record stored. If you are unclear on how to do so, refer to the [Add Inventory Records](#511-add-items-to-inventory-create_inventory) section.
 
@@ -189,7 +191,7 @@ Currently, our NUStorage has two records as shown below:
 
 `edit_inventory` allows us to edit the item name, quantity or unit cost of the specified record in the inventory list.
 
-**:information_source: Using the command:** Below are instructions on how to use the `delete_inventory` command.
+**:information_source: Using the command:** Below are instructions on how to use the `edit_inventory` command.
 
 __Format:__ `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY] [c/ITEM_COST]`
 
@@ -210,55 +212,114 @@ The corresponding finance record is also updated to reflect the new total cost o
 
 #### 5.1.4. Find record in inventory: `find_inventory`
 
-Searches and lists all inventory records that contain the keyword in the item name.
+Previously in the [Edit Inventory Records](#513-edit-record-in-inventory-edit_inventory) section, we have learnt how to edit inventory records.
+Now, we are going to learn how to navigate through your inventory records using the `find_inventory` command.
+
+For this section, ensure that you have least three inventory records in NUStorage. 
+This is not necessary for the functionality of this command but rather to make the outcome of the command clear. 
+If you are having trouble adding additional inventory records, please refer to the [Create Inventory Records](#511-add-items-to-inventory-create_inventory) section.
+
+After adding enough inventory records, your list would look something like this:
+![Inventory with three records](images/anotherInventory_withThreeRecords.jpg)
+
+**:information_source: What this command does:**
+
+`find_inventory` allows us to find a specific record using a specified keyword. 
+If the item name of the inventory record contains the specified keyword, it will be displayed on screen. 
+The image below highlights where the item name is:
+![Item name location](images/item_name_location.jpg)
+
+**:information_source: Using the command:** Below are instructions on how to use the `find_inventory` command.
 
 __Format:__ `find_inventory KEYWORD`
 
-__Example:__ `find_inventory ipad` finds for inventory records containing the name `ipad`.
+This allows us to find an inventory record that has an item name that contains the word `KEYWORD` within it.
 
-![Edit inventory command example](images/commands/find_inventory_command.png)
+__Example:__ `find_inventory ip` finds all inventory records containing the word `ip` in the item name and displays them.
 
-__Result:__ lists all inventory records with the word `ipad`.
+Enter the sample command as shown below:
+![Edit inventory command example](images/commands/find_inventory_command.jpg)
 
-![Edit inventory result example](images/commands/find_inventory_result.png)
+__Result:__ lists all inventory records with item names that contain `ip`.
+
+![Edit inventory result example](images/commands/find_inventory_result.jpg)
 
 ---
 
 #### 5.1.5. List inventory records: `list_inventory`
 
-Displays all records in the inventory list.
+Previously, in the [Find Inventory Records](#514-find-record-in-inventory-find_inventory) section, we have seen how we can find specific records using a specified keyword.
+However, this results in NUStorage only displaying records with item names that contain the keyword. 
+In order to revert back to the original listing, where every inventory record is listed, we can use the `list_inventory` command.
+
+For this section, we will be resuming where we left off in the [Find Inventory Records](#514-find-record-in-inventory-find_inventory) section.
+
+Our NUStorage currently looks like this:
+![Inventory after find command](images/inventory_after_find_command.jpg)
+
+Even though we have three inventory records stored, we only have two displayed as we entered a [find command](#514-find-record-in-inventory-find_inventory).
+
+**:information_source: What this command does:**
+
+`list_inventory` displays all stored inventory records in NUStorage.
+
+**:information_source: Using the command:** Below are instructions on how to use the `list_inventory` command.
 
 __Format:__ `list_inventory`
 
-__Example:__ `list_inventory` lists all inventory records.
+This command retrieves all stored inventory records in NUStorage and display them.
 
-![List inventory command example](images/commands/list_inventory_command.png)
+__Example:__ `list_inventory`
+
+Enter the sample command as shown below:
+![List inventory command example](images/commands/list_inventory_command.jpg)
 
 __Result:__ lists all inventory records.
 
-![List inventory result example](images/commands/list_inventory_result.png)
+![List inventory result example](images/commands/list_inventory_result.jpg)
 
 ---
 
 #### 5.1.6. Update inventory record: `update_inventory`
 
-Displays all records in the inventory list.
+In the [Edit Inventory Command](#513-edit-record-in-inventory-edit_inventory) section, we have learnt how to edit values and names of our inventory records.
+However, in many situations we would only need to update the quantity stored in the record based on the change in our inventory stock.
+It can get cumbersome if one were to have to calculate what the final quantity should be every time there is a change in inventory stock.
+This is where `update_inventory` comes in handy.
+
+For this section, we will be continuing where we left off previous in the [List Inventory Records](#515-list-inventory-records-list_inventory) section.
+
+If you are reading this section without having following the examples provided in the previous sections, ensure that you have at least one inventory record stored in NUStorage.
+If you are having trouble adding inventory records, refer to the [Add Inventory Records](#511-add-items-to-inventory-create_inventory) section.
+
+Currently, our NUStorage looks like this:
+![inventory with three records](images/inventory_after_list_command.jpg)
+
+**:information_source: What this command does:**
+
+`update_inventory` allows us to update the quantity of a specified inventory record with the specified change in quantity.
+
+**NOTE** `update_quantity` allows for both the increase and decrease in quantity of a specified inventory record. 
+However, the updated quantity must not only be more than zero, it must also not exceed 2 billion. 
+
+**:information_source: Using the command:** Below are instructions on how to use the `update_inventory` command.
 
 __Format:__ `update_inventory INDEX q/CHANGE_QUANTITY`
 
-<!-- Note that `QUANTITY` is currently limited to a maximum value of `2147483647` and that `INDEX` must be the **first** parameter for this command.-->
+This allows us to update the quantity of the inventory record with the ID of `INDEX` by the `CHANGE_QUANTITY` specified.
 
-__Example:__ `update_inventory 1 q/-5` changes the quantity of the inventory by `-5` and updates corresponding finance record. `CHANGE_QUANTITY` can be of negative value.
+__Example:__ `update_inventory 1 q/5` increases the quantity of the inventory with the ID of 1 by `5` and updates the linked finance record. `CHANGE_QUANTITY` can be of negative values to, in which case it would be specifying a decrease in quantity.
 
-![List inventory command example](images/commands/update_inventory_command.png)
+Enter the sample command as shown below:
+![List inventory command example](images/commands/update_inventory_command.jpg)
 
-__Result:__ Updated inventory record at `1` from `30` to `25`.
+__Result:__ Updated inventory record at `1` from `30` to `35`.
 
-![List inventory result example](images/commands/update_inventory_result.png)
+![List inventory result example](images/commands/update_inventory_result.jpg)
 
-__Result:__ Updated corresponding finance record.
+__Result:__ The linked finance record is also updated.
 
-![List inventory result example](images/commands/update_inventory_finance_result.png)
+![List inventory result example](images/commands/update_inventory_finance_result.jpg)
 
 ---
 
