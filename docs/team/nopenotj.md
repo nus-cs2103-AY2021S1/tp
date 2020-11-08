@@ -30,14 +30,14 @@ Given below are my contributions to the project.
   Additionally, setting up testFx and getting it to work was also very time-consuming.
   * Credits: Took inspiration from [this solution](https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions)
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=nopenotj&tabRepo=AY2021S1-CS2103-F10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=nopenotj&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
   * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
   * Updated the GUI to show Meeting and Module Panels (Pull requests [\#109](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/109), [\#93](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/93))
-  * Made Datetime in Meetings to be more user-friendly for readers and sort it by date and time (Pull requests [\#109](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/114), [\#120](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/120))
+  * Made Datetime in Meetings to be more user-friendly for readers and sort it by date and time (Pull requests [\#114](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/114), [\#120](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/120))
   * Wrote tests for meetings to increase coverage from 51% to 52% (Pull requests [\#121](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/121))
   * Wrote tests for FZF and Autocomplete Modules to increase coverage from 0% to ~100% for these 2 classes (Pull requests [\#264](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/264) , [\#249](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/249))
   * Add shortcuts for CommandBox (Pull requests [\#143](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/143), [\#236](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/236))
