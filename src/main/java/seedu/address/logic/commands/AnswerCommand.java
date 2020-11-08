@@ -28,7 +28,8 @@ public class AnswerCommand extends Command {
             + "True/False Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ANSWER + "true\n"
             + "MCQ Example: " + COMMAND_WORD + " 6 "
-            + PREFIX_ANSWER + "1";
+            + PREFIX_ANSWER + "1\n"
+            + "Answers should not be left blank!";
 
     public static final String MESSAGE_ANSWER_SUCCESS = "Your answer has successfully been recorded.";
 
