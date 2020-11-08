@@ -109,6 +109,6 @@ public class EditApplicantCommandParser implements Parser<EditApplicantCommand> 
         }
         Collection<String> commentSet = comments.size() == 1
                 && comments.contains("") ? Collections.emptySet() : comments;
-        return Optional.of(ParserUtil.parseComments(commentSet));
+        return Optional.of(ParserUtil.parseAddOrEditComments(commentSet));
     }
 }
