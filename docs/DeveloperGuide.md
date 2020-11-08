@@ -74,7 +74,9 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class. The Class Diagram below shows the components in greater detail. Each component of the MainWindow is a composition. 
+
+![Structure of the UI Components](images/UiComponentsClassDiagram.png)
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -233,16 +235,16 @@ current `case`.
 
 #### Adding a Document
 When a user executes `add doc n:name r:reference.txt`, to add a document with the specified name and file reference
-to the current "opened" case in the state, `AddDocumandCommandParser` will be invoked to parse the
+to the current "opened" case in the state, `AddDocumentCommandParser` will be invoked to parse the
 name (prefixed with n:) and reference (prefixed with r:) inputs. The program must be at an "opened" case at this point.
  <br><br>
-`AddDocumandCommandParser` will check for a valid name as well as a valid
+`AddDocumentCommandParser` will check for a valid name as well as a valid
 reference that exists in the `./references` directory. This is to prevent a user from creating a document when the
 program is active when they have yet to include the file in the program's directory. The appropriate error message
 should be returned for a better user experience. It will then successfully create a `Document` and
-return `AddDocumandCommand`
+return `AddDocumentCommand`
 <br><br>
-`AddDocumandCommand` will get the current `case` in the program `state` and adds the new `Document` to this `case`.
+`AddDocumentCommand` will get the current `case` in the program `state` and adds the new `Document` to this `case`.
 It will check for duplicated documents at this point as this is where the program accesses the list of documents in the
 current state. The `model` will then be updated with the updated `case`.
 
