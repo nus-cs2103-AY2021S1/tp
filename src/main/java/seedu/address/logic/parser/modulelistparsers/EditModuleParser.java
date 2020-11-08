@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
@@ -75,10 +76,7 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
         if (tags.isEmpty()) {
             return Optional.empty();
         }
-        if (tags.size() == 1 && tags.contains("")) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        Collection<String> tagSet = tags;
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 }
