@@ -21,7 +21,7 @@ import static seedu.address.testutil.TypicalPersons.DESC_A;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.project.AddTeammateCommand;
+import seedu.address.logic.commands.project.AddPersonCommand;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
@@ -29,9 +29,9 @@ import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 
 /**
- * Contains tests for AddTeammateCommandParser (interactions with AddTeammateCommand)
+ * Contains tests for AddTeammateCommandParser (interactions with AddPersonCommand)
  */
-public class AddTeammateCommandParsertest {
+public class AddPersonCommandParsertest {
     private AddTeammateCommandParser parser = new AddTeammateCommandParser();
 
     /**
@@ -44,7 +44,7 @@ public class AddTeammateCommandParsertest {
 
         // all fields filled (all compulsory)
         assertParseSuccess(parser, TEAMMATE_NAME_DESC_A + TEAMMATE_GIT_USERNAME_DESC_A + TEAMMATE_PHONE_DESC_A
-            + TEAMMATE_EMAIL_DESC_A + TEAMMATE_ADDRESS_DESC_A, new AddTeammateCommand(expectedPerson));
+            + TEAMMATE_EMAIL_DESC_A + TEAMMATE_ADDRESS_DESC_A, new AddPersonCommand(expectedPerson));
     }
 
     /**
@@ -53,7 +53,7 @@ public class AddTeammateCommandParsertest {
      */
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTeammateCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_TEAMMATE_NAME_A + TEAMMATE_GIT_USERNAME_DESC_A + TEAMMATE_PHONE_DESC_A

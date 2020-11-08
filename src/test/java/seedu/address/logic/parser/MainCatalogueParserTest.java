@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.TaskCommandTestUtil.PLAN_MEETING;
 import static seedu.address.logic.commands.TaskCommandTestUtil.TASK_TIME_RANGE_DESC;
 import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_TASK_PROGRESS_HALF;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_GIT_USERNAME_A;
+import seedu.address.logic.commands.project.AddPersonCommand;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASCENDING_SORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_ASSIGNEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -44,7 +45,6 @@ import seedu.address.logic.commands.global.ListPersonsCommand;
 import seedu.address.logic.commands.global.ListProjectsCommand;
 import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
-import seedu.address.logic.commands.project.AddTeammateCommand;
 import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
@@ -86,9 +86,9 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_addTeammate() throws Exception {
         Person teammate = new PersonBuilder().build();
-        AddTeammateCommand command =
-            (AddTeammateCommand) parser.parseCommand(PersonUtil.getAddTeammateCommand(teammate), Status.PROJECT);
-        assertEquals(new AddTeammateCommand(teammate), command);
+        AddPersonCommand command =
+            (AddPersonCommand) parser.parseCommand(PersonUtil.getAddTeammateCommand(teammate), Status.PROJECT);
+        assertEquals(new AddPersonCommand(teammate), command);
     }
 
     @Test
@@ -302,15 +302,6 @@ public class MainCatalogueParserTest {
             parser.parseCommand(
                 TaskSorterCommand.COMMAND_WORD + " " + PREFIX_ASCENDING_SORT + " " + PREFIX_TASK_NAME,
                 Status.PROJECT_LIST);
-            fail();
-        } catch (Exception e) {
-            assertEquals(new InvalidScopeException(Status.PROJECT, Status.PROJECT_LIST), e);
-        }
-
-
-        try {
-            parser.parseCommand(AddTeammateCommand.COMMAND_WORD + " "
-                + PersonUtil.getCommandInfo(ALICE), Status.PROJECT_LIST);
             fail();
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.PROJECT_LIST), e);

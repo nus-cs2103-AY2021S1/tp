@@ -18,35 +18,35 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains tests regarding AddTeammateCommand
+ * Contains tests regarding AddPersonCommand
  */
-public class AddTeammateCommandTest {
+public class AddPersonCommandTest {
     @Test
     public void execute_invalidPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> {
-            new AddTeammateCommand(null);
+            new AddPersonCommand(null);
         });
     }
 
     @Test
     public void execute_invalidModel_throwsNullPointerException() {
-        AddTeammateCommand addTeammateCommand = new AddTeammateCommand(DESC_A);
+        AddPersonCommand addPersonCommand = new AddPersonCommand(DESC_A);
         Model model = null;
         assertThrows(NullPointerException.class, () -> {
-            addTeammateCommand.execute(model);
+            addPersonCommand.execute(model);
         });
     }
 
     @Test
     public void execute_validModel() {
-        AddTeammateCommand addTeammateCommand = new AddTeammateCommand(DESC_A);
+        AddPersonCommand addPersonCommand = new AddPersonCommand(DESC_A);
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         model.updateProjectToBeDisplayedOnDashboard(AI);
-        String expectedResult = String.format(AddTeammateCommand.MESSAGE_NEW_TEAMMATE_SUCCESS,
+        String expectedResult = String.format(AddPersonCommand.MESSAGE_NEW_TEAMMATE_SUCCESS,
             DESC_A.getGitUserNameString());
 
         try {
-            CommandResult commandResult = addTeammateCommand.execute(model);
+            CommandResult commandResult = addPersonCommand.execute(model);
             assertEquals(expectedResult, commandResult.getFeedbackToUser());
         } catch (Exception e) {
             fail();
@@ -57,26 +57,26 @@ public class AddTeammateCommandTest {
     @Test
     public void execute_equals() {
 
-        AddTeammateCommand addTeammateCommand1 = new AddTeammateCommand(DESC_A);
-        AddTeammateCommand addTeammateCommand2 = new AddTeammateCommand(DESC_B);
-        AddTeammateCommand addTeammateCommand3 = new AddTeammateCommand(DESC_C);
+        AddPersonCommand addPersonCommand1 = new AddPersonCommand(DESC_A);
+        AddPersonCommand addPersonCommand2 = new AddPersonCommand(DESC_B);
+        AddPersonCommand addPersonCommand3 = new AddPersonCommand(DESC_C);
 
         // same object -> returns true
-        assertEquals(addTeammateCommand1, addTeammateCommand1);
+        assertEquals(addPersonCommand1, addPersonCommand1);
 
         // same values -> returns true
-        AddTeammateCommand addTeammateCommand1Copy = new AddTeammateCommand(DESC_A);
-        assertEquals(addTeammateCommand1Copy, addTeammateCommand1);
+        AddPersonCommand addPersonCommand1Copy = new AddPersonCommand(DESC_A);
+        assertEquals(addPersonCommand1Copy, addPersonCommand1);
 
         // different types -> returns false
-        assertNotEquals(addTeammateCommand1, "this test will return false");
+        assertNotEquals(addPersonCommand1, "this test will return false");
 
         // null -> returns false
-        assertNotEquals(addTeammateCommand1, null);
+        assertNotEquals(addPersonCommand1, null);
 
         // different tasks -> returns false
-        assertNotEquals(addTeammateCommand2, addTeammateCommand1);
-        assertNotEquals(addTeammateCommand3, addTeammateCommand2);
+        assertNotEquals(addPersonCommand2, addPersonCommand1);
+        assertNotEquals(addPersonCommand3, addPersonCommand2);
     }
 
 

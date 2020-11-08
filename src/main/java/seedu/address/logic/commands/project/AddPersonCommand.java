@@ -20,7 +20,7 @@ import seedu.address.model.project.Project;
 /**
  * Creates a new person within a project
  */
-public class AddTeammateCommand extends Command {
+public class AddPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "addperson";
 
@@ -43,7 +43,7 @@ public class AddTeammateCommand extends Command {
     /**
      * Creates an new teammate that is associated with the project
      */
-    public AddTeammateCommand(Person person) {
+    public AddPersonCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -80,7 +80,7 @@ public class AddTeammateCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddTeammateCommand // instanceof handles nulls
-            && toAdd.equals(((AddTeammateCommand) other).toAdd));
+            || (other instanceof AddPersonCommand // instanceof handles nulls
+            && toAdd.equals(((AddPersonCommand) other).toAdd));
     }
 }
