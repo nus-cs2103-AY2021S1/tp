@@ -1,0 +1,21 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor MODEL_COLOR
+
+interface "<<Interface>>\nPredicate<Assignment>"
+"<<Interface>>\nPredicate<Assignment>" : test(Assignment)
+
+Package Assignment {
+Class NameContainsKeywordsPredicate
+Class ModuleCodeContainsKeywordsPredicate
+Class DeadlineContainsKeywordsPredicate
+Class PriorityContainsKeywordsPredicate
+}
+
+NameContainsKeywordsPredicate ..up|> "<<Interface>>\nPredicate<Assignment>"
+ModuleCodeContainsKeywordsPredicate ..up|> "<<Interface>>\nPredicate<Assignment>"
+DeadlineContainsKeywordsPredicate ..up|> "<<Interface>>\nPredicate<Assignment>"
+PriorityContainsKeywordsPredicate ..up|> "<<Interface>>\nPredicate<Assignment>"
+@enduml

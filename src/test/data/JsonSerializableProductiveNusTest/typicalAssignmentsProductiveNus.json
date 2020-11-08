@@ -12,8 +12,8 @@
     "name" : "CS2103T Tutorial",
     "deadline" : "02-03-2020 2359",
     "moduleCode" : "CS2103T",
-    "suggestedStartTime" : "01-01-2000 0101",
-    "suggestedEndTime" : "01-01-2000 0101",
+    "suggestedStartTime" : "",
+    "suggestedEndTime" : "",
     "isReminded" : true,
     "isScheduled" : false
   }, {
@@ -28,8 +28,8 @@
     "name" : "CS2106 Tutorial Quiz",
     "deadline" : "03-03-2020 0300",
     "moduleCode" : "CS2106",
-    "suggestedStartTime" : "01-01-2000 0101",
-    "suggestedEndTime" : "01-01-2000 0101",
+    "suggestedStartTime" : "",
+    "suggestedEndTime" : "",
     "isReminded" : true,
     "isScheduled" : false
   }, {
@@ -44,8 +44,8 @@
     "name" : "Peer review",
     "deadline" : "10-10-2020 1700",
     "moduleCode" : "CS2101",
-    "suggestedStartTime" : "01-01-2000 0101",
-    "suggestedEndTime" : "01-01-2000 0101",
+    "suggestedStartTime" : "",
+    "suggestedEndTime" : "",
     "isReminded" : true,
     "isScheduled" : false
   }, {
@@ -56,7 +56,23 @@
     "suggestedEndTime" : "10-11-2020 0900",
     "isReminded" : true,
     "isScheduled" : true
-  } ],
+  }, {
+    "name" : "MA1101R Tut 1",
+    "deadline" : "03-12-2020 0400",
+    "moduleCode" : "MA1101R",
+    "suggestedStartTime" : "10-11-2020 0600",
+    "suggestedEndTime" : "10-11-2020 0900",
+    "isReminded" : true,
+    "isScheduled" : true
+  }, {
+    "name" : "MA1101R Tut 2",
+    "deadline" : "03-12-2020 0400",
+    "moduleCode" : "MA1101R",
+    "suggestedStartTime" : "10-11-2020 0600",
+    "suggestedEndTime" : "10-11-2020 0900",
+    "isReminded" : true,
+    "isScheduled" : true
+  }],
   "lessons" : [ ],
   "tasks" : [ ]
 }

@@ -4,7 +4,9 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
+
 Package Model <<Rectangle>>{
+scale 800*1000
 Interface ReadOnlyProductivenus <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
@@ -16,24 +18,27 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Package Assignment {
-Class Assignment
-Class Remind
-class Priority
-Class Schedule
-Class UniqueAssignmentList
+Class HiddenModel #FFFFFF
+'Class Assignment
+'Class Remind
+'class Priority
+'Class Schedule
+'Class UniqueAssignmentList
 }
 
 Package Lesson {
-class Lesson
-Class UniqueLessonList
+Class HiddenModel #FFFFFF
+'class Lesson
+'Class UniqueLessonList
 }
 
 Package Task {
-abstract class Task
-Class Deadline
-Class Name
-Class ModuleCode
-Class UniqueTaskList
+Class HiddenModel #FFFFFF
+'abstract class Task
+'Class Deadline
+'Class Name
+'Class ModuleCode
+'Class UniqueTaskList
 }
 
 Class HiddenOutside #FFFFFF
@@ -43,32 +48,41 @@ Productivenus .up.|> ReadOnlyProductivenus
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" Productivenus
+ModelManager o-.down-> "1" Productivenus
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-Productivenus *--> "1" UniqueAssignmentList
-UniqueAssignmentList o--> "*" Assignment
-Assignment *--> "1"Remind
-Assignment *--> "1"Schedule
-Assignment *--> "1"Priority
+Productivenus *-down-> Assignment
+'Productivenus *--> "1" Assignment
+'Productivenus o--> "*" Assignment
+'Productivenus *--> "1" UniqueAssignmentList
+'UniqueAssignmentList o--> "*" Assignment
+'Assignment *--> "1"Remind
+'Assignment *--> "1"Schedule
+'Assignment *--> "1"Priority
 
-Task <|-- Assignment
-Productivenus *--> "1" UniqueTaskList
-UniqueTaskList o--> "*" Task
-Task *--> "1"Name
-Task *--> "1"Deadline
-Task *--> "1"ModuleCode
+Task <|-up- Assignment
+Productivenus *--> Task
+'Productivenus *--> "1" Task
+'Productivenus o--> "*" Task
+'Productivenus *--> "1" UniqueTaskList
+'UniqueTaskList o--> "*" Task
+'Task *--> "1"Name
+'Task *--> "1"Deadline
+'Task *--> "1"ModuleCode
 
-Task <|-- Lesson
-Productivenus *--> "1" UniqueLessonList
-UniqueLessonList o--> "*" Lesson
+Task <|-up- Lesson
+Productivenus *--> Lesson
+'Productivenus *--> "1" Lesson
+'Productivenus o--> "*" Lesson
+'Productivenus *--> "1" UniqueLessonList
+'UniqueLessonList o--> "*" Lesson
 
-Lesson -[hidden]right-> Task
-Name -[hidden]right-> ModuleCode
-ModuleCode -[hidden]right-> Deadline
-Deadline -[hidden]right-> Remind
-Remind -[hidden]right-> Priority
+'Lesson -[hidden]right-> Task
+'Name -[hidden]right-> ModuleCode
+'ModuleCode -[hidden]right-> Deadline
+'Deadline -[hidden]right-> Remind
+'Remind -[hidden]right-> Priority
 ModelManager -->"1" Assignment : filtered list
 ModelManager -->"1" Task : filtered list
 @enduml
