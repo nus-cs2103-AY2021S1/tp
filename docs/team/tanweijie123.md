@@ -63,3 +63,4 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * Integrated a third party library (ControlsFX) to the project ([\#99](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/99))
+  * Reported bugs and suggestions for Group [CS2103T-W11-1](https://ay2021s1-cs2103t-w11-1.github.io/tp/UserGuide.html) on CATcher.
