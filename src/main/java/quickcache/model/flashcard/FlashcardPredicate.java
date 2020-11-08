@@ -48,10 +48,7 @@ public class FlashcardPredicate implements Predicate<Flashcard> {
 
     @Override
     public boolean test(Flashcard flashcard) {
-        if (flashcard == null) {
-            return false;
-        }
-
+        requireNonNull(flashcard);
         return predicate.test(flashcard);
     }
 

@@ -124,6 +124,13 @@ public class FlashcardPredicateTest {
         // Invalid arguments for constructor
         assertThrows(NullPointerException.class, () -> new FlashcardPredicate(null));
         assertThrows(IllegalArgumentException.class, () -> new FlashcardPredicate(invalidPredicateList));
+
+        ArrayList<Predicate<Flashcard>> validPredicateList = new ArrayList<>();
+        validPredicateList.add(new FlashcardContainsTagPredicate(prepareTagSet()));
+        validPredicateList.add(new QuestionContainsKeywordsPredicate(prepareKeywordList()));
+
+        // Invalid arguments for test method of FlashcardPredicate
+        assertThrows(NullPointerException.class, () -> new FlashcardPredicate(validPredicateList).test(null));
     }
 
     private Set<Tag> prepareTagSet(String... tags) {
