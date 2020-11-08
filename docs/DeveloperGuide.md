@@ -1323,3 +1323,57 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### F.0 Managing additional details in students
+
+1. Adding details to a student.
+
+    1. Prerequisite: List all students using `list` command. Multiple students present.
+
+    1. Test case: `detail add 1 t/DETAIL_TEXT`
+       Expected: New detail that matches your input `DETAIL_TEXT` added to first student.
+
+    1. Test case: `detail add 0 t/DETAIL_TEXT`
+       Expected: No detail added. Error details shown in status message. List stays the same.
+
+    1. Test case: `detail add 1 t/`
+       Expected: Similar to previous.
+
+    1. Test case: `detail add t/DETAIL_TEXT`
+       Expected: Similar to previous.
+
+1. Editing details for a student.
+
+    1. Prerequisite: List all students using `list` command. Multiple students present. Student to be edited has at least one detail.
+
+    1. Test case: `detail edit 1 i/1 t/DETAIL_TEXT`
+       Expected: New detail that matches your input `DETAIL_TEXT` replaces the first detail for first student.
+
+    1. Test case: `detail edit 0 i/1 t/DETAIL_TEXT`
+       Expected: No detail edited. Error details shown in status message. List stays the same.
+
+    1. Test case: `detail edit 1 i/1 t/`
+       Expected: Similar to previous.
+
+    1. Test case: `detail edit 1 i/ t/DETAIL_TEXT`
+       Expected: Similar to previous.
+
+    1. Test case: `detail edit i/1 t/DETAIL_TEXT`
+       Expected: Similar to previous.
+       
+
+1. Deleting details from a student.
+
+    1. Prerequisite: List all students using `list` command. Multiple students present. Student to be edited has at least one detail.
+       
+    1. Test case: `detail delete 1 i/1`
+       Expected: First detail in first student is deleted.
+           
+    1. Test case: `detail delete 0 i/1`
+       Expected: No detail deleted. Error details shown in status message.
+
+    1. Test case: `detail delete i/1`
+       Expected: Similar to previous.
+       
+    1. Test case: `detail delete`
+           Expected: Similar to previous.
