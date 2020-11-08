@@ -997,7 +997,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The response to any use action should become visible within 5 seconds.
-3.  The program should be able to handle at least 100 students.
+3.  The program should be able to handle at least 100 students (in practice, our target audience should not require as high a capacity, but this is a buffer to ensure it will not fail).
 4.  The graphical user interface should be easy to use for non-IT savvy users.
 5.  The program should be able to run even without internet connection.
 
