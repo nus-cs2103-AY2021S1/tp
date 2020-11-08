@@ -129,16 +129,16 @@ The features mentioned are:
 - [Tagging system](#tags)
 - [Editing a flashcard](#edit-flashcard)
 - [Deleting a flashcard by index](#delete-by-index)
-- [Delete by tags](#delete-by-tag)
-- [Finding flashcards](#finding-flashcards)
+- [Delete by Tags](#delete-by-tag)
+- [Finding flashcards](#find-flashcards)
 - [Setting difficulty for flashcards](#difficulty)
-- [Displaying statistics of a flashcard](#display-statistics-of-flashcard)
-- [Clear statistics of a flashcard](#clear-statistics-of-flashcard)
-- [Testing a flashcard](#testing-a-flashcard)
+- [Displaying statistics of a flashcard](#display-statistics-of-a-flashcard)
+- [Clear statistics of a flashcard](#clear-statistics-of-a-flashcard)
+- [Testing a flashcard](#test-a-flashcard)
 - [Export](#exporting-flashcards)
 - [Import](#importing-flashcards)
 
-### Add Flashcard with open-ended question
+### Add flashcard with open-ended question
 
 #### Implementation
 The Add Open Ended Question mechanism is facilitated by `QuickCache`.
@@ -162,14 +162,13 @@ The following sequence diagram shows how the Add Open Ended Question mechanism w
 
 ![AddOpenEndedSequenceDiagram](images/AddOpenEndedSequenceDiagram.png)
 
-
 #### Design considerations
 
 * **Current implementation:** Flashcard is saved upon creation inside the QuickCache.
   * Pros: Easy to implement and CLI-optimized.
   * Cons: May be complicated in the future as there will be too many prefixes along with the `add` command.
 
-### Add Flashcard with multiple choice question
+### Add flashcard with multiple choice question
 
 #### Implementation
 
@@ -178,7 +177,7 @@ The flashcard created is stored internally inside a `UniqueFlashcardList` within
 
 ##### Usage
 
-Given below is an example usage scenario and how the addmcq mechanism behaves at each step.
+Given below is an example usage scenario and how the Add Multiple Choice Question mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
 
@@ -201,11 +200,11 @@ The following sequence diagram shows how the Add Multiple Choice Question mechan
   * Pros: Easy to implement and CLI-optimized.
   * Cons: May be complicated in the future as there will be too many prefixes along with the `addmcq` command.
 
-### Open Flashcard
+### Open flashcard
 
 #### Implementation
 
-The Open flashcard feature will allow the user to open a flashcard specified by the given index and display it in the GUI.
+The Open flashcard mechanism will allow the user to open a flashcard specified by the given index and display it in the GUI.
 The `OpenCommandParser#parse` takes in a single `String` argument called `index`. It then parses the argument and creates an `Index` object to be passed on to
 the `OpenCommand` class instance. If no argument is given, then a `CommandException` will be thrown.
 
@@ -216,7 +215,7 @@ The GUI will change the content of some of its placeholders to display the quest
 The GUI will change the contents of its placeholders accordingly if other commands aside from another `OpenCommand` is called afterwards.
 
 ##### Usage
-Given below is an example usage scenario and how the `OpenCommand` mechanism behaves at each step.
+Given below is an example usage scenario and how the Open mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
 
@@ -234,7 +233,7 @@ The following sequence diagram shows how the parser operation works:
 
 ![OpenParserSequenceDiagram](images/OpenParserSequenceDiagram.png)
 
-The following sequence diagram shows how the open operation works:
+The following sequence diagram shows how the Open mechanism works:
 
 ![OpenSequenceDiagram](images/OpenSequenceDiagram.png)
 
@@ -275,11 +274,11 @@ Step 4. The `Flashcard` will then be constructed containing the `tagList`.
   * Pros: Easy and fast to find flashcards with a specified tag.
   * Cons: Many duplicate copies of flashcards will be created.
 
-### Edit Flashcard
+### Edit flashcard
 
 #### Implementation
 
-The Edit mechanism operates by editing the flashcard at a specified index of the last displayed list.
+The Edit flashcard mechanism operates by editing the flashcard at a specified index of the last displayed list.
 The new information is encapsulated inside a `EditFlashcardDescriptor` and is passed together with the `Index` object
 to the `EditCommand`.
 
@@ -288,7 +287,7 @@ if the `EditFlashcardDescriptor` does not have the new information, the old cont
 
 ##### Usage
 
-Given below is an example usage scenario and how the edit mechanism behaves at each step.
+Given below is an example usage scenario and how the Edit mechanism behaves at each step.
 
 Step 1. The user executes `edit 1 ans/answer` command to edit the answer field of the first flashcard.
 
@@ -311,7 +310,7 @@ The following sequence diagram shows how the parser operation works:
 
 ![EditSequenceDiagram](images/EditParserSequenceDiagram.png)
 
-The following sequence diagram shows how the edit operation works:
+The following sequence diagram shows how the Edit mechanism works:
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
@@ -326,7 +325,7 @@ The following sequence diagram shows how the edit operation works:
   * Cons: If the execution is stopped halfway, then the newly updated flashcard will contain wrong information. It will
   be difficult to debug as well.
 
-### Delete By Index
+### Delete by Index
 
 #### Implementation
 
@@ -364,7 +363,7 @@ The following sequence diagram shows how the Delete By Index mechanism works:
   * Pros: Less overlapping and easier to debug.
   * Cons: Extra work needed to implement the delete command.
 
-### Delete By Tag
+### Delete by Tag
 
 #### Implementation
 
@@ -407,7 +406,7 @@ The following sequence diagram shows how the Delete By Tag mechanism works:
   * Pros: Less overlapping and easier to debug.
   * Cons: Extra work needed to implement the delete command.
 
-### Finding flashcards
+### Find flashcards
 
 #### Implementation
 
@@ -417,7 +416,7 @@ A class called `FlashcardPredicate` will be introduced that collects all `Predic
 
 ##### Usage
 
-Given below is an example usage scenario and how the `FindCommand` mechanism behaves at each step.
+Given below is an example usage scenario and how the Find mechanism behaves at each step.
 
  Step 1. The user launches the application.
 
@@ -439,7 +438,7 @@ Given below is an example usage scenario and how the `FindCommand` mechanism beh
 
 ![FindParserSequenceDiagram](images/FindParserSequenceDiagram.png)
 
- The following sequence diagram shows how the find operation works:
+ The following sequence diagram shows how the Find mechanism works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
@@ -482,17 +481,17 @@ The edit command will change the internal structure of flashcard such that the `
   * Cons: There may be too many commands which can be combined to one.
 
 
-### Testing a flashcard
+### Test a flashcard
 
 #### Implementation
 
-The test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` stored within the flashcard. `Flashcard` implements the following methods.
+The Test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` stored within the flashcard. `Flashcard` implements the following methods.
 * `Flashcard#getFlashcardAfterTestSuccess()` — Returns a new `Flashcard` object with `Statistics:timesTested` and `Statistics:timesTestedCorrect` incremented by one.
 * `Flashcard#getFlashcardAfterTestFailure()` — Returns a new `Flashcard` object with `Statistics:timesTested` incremented by one.
 
 ##### Usage
 
-Given below is an example usage scenario and how the test mechanism behaves at each step.
+Given below is an example usage scenario and how the Test mechanism behaves at each step.
 
 Step 1. The user launches the application. The `Flashcard` to be tested will be initialized with the initial flashcard state.
 
@@ -508,7 +507,7 @@ Step 2b. The user executes `test 1 ans/wrong answer` command to test the `Flashc
 
 ![TestState2](images/TestState2.png)
 
-The following sequence diagram shows how the test operation works:
+The following sequence diagram shows how the Test mechanism works:
 
 ![TestSequenceDiagram](images/TestSequenceDiagram.png)
 
@@ -530,13 +529,13 @@ The following activity diagram summarizes what happens when a user executes a te
   * Pros: Retrieval of useful statistics will be possible.
   * Cons: Save file will expand very quickly because each `test` record needs to be logged.
 
-### Display Statistics of Flashcard
+### Display statistics of a flashcard
 
 #### Implementation
 
-The display statistics of flashcard feature will allow the user to view a Pie Chart of the statistics of the Flashcard specified by the given index and display it in the GUI.
+The Display mechanism will allow the user to view a Pie Chart of the statistics of the Flashcard specified by the given index and display it in the GUI.
 
-The display statistics of flashcard implementation requires the creation of a `StatsCommandParser` and a `StatsCommand`. The `StatsCommandParser#parse` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create a `StatsCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
+The implementation requires the creation of a `StatsCommandParser` and a `StatsCommand`. The `StatsCommandParser#parse` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create a `StatsCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
 
 The `StatsCommand` class will have to pass the `Statistics` to the GUI for it to display the `Statistics` of the `Flashcard` to the user. This will be done by passing the `Statistics` into a `Feedback` object which is an attribute of the `CommandResult` given to the GUI.
 
@@ -544,7 +543,7 @@ The GUI will change the content of some of its placeholders to display the `Stat
 
 ##### Usage
 
-Given below is an example usage scenario and how the `StatsCommand` mechanism behaves at each step.
+Given below is an example usage scenario and how the Display mechanism behaves at each step.
 
 Step 1. The user launches the application after a few times of using the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
 
@@ -562,7 +561,7 @@ The following sequence diagram shows how the parser operation works:
 
 ![StatsParserSequenceDiagram](images/StatsParserSequenceDiagram.png)
 
-The following sequence diagram shows how the stats operation works:
+The following sequence diagram shows how the Display mechanism works:
 
 ![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
 
@@ -576,19 +575,19 @@ The following sequence diagram shows how the stats operation works:
   * Pros: Demeter's law is no longer violated.
   * Cons: There is less abstraction.
 
-### Clear Statistics of Flashcard
+### Clear statistics of a flashcard
 
 #### Implementation
 
-The clear statistics of flashcard feature will allow the user to reset the statistics of the flashcard specified by the given index.
+The Clearstats mechanism  will allow the user to reset the statistics of the flashcard specified by the given index.
 
-The clear statistics of flashcard implementation requires the creation of a `ClearStatsCommandParser` and a `ClearStatsCommand`. The `ClearStatsCommandParser#parse` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create a `ClearStatsCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
+The implementation requires the creation of a `ClearStatsCommandParser` and a `ClearStatsCommand`. The `ClearStatsCommandParser#parse` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create a `ClearStatsCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
 
 The `ClearStatsCommand` class will replace the `Flashcard` at the specified `Index` with a copy of the original `Flashcard` that has its `Statistics` reset to zero for all fields.
 
 ##### Usage
 
-Given below is an example usage scenario and how the `ClearStatsCommand` mechanism behaves at each step.
+Given below is an example usage scenario and how the Clearstats mechanism behaves at each step.
 
 Step 1. The user launches the application after a few times of using the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
 
@@ -610,7 +609,7 @@ The following sequence diagram shows how the parser operation works:
 
 ![ClearStatsSequenceDiagram](images/ClearStatsParserSequenceDiagram.png)
 
-The following sequence diagram shows how the Clearstats operation works:
+The following sequence diagram shows how the Clearstats mechanism works:
 
 ![ClearStatsSequenceDiagram](images/ClearStatsSequenceDiagram.png)
 
@@ -628,11 +627,11 @@ The following sequence diagram shows how the Clearstats operation works:
 
 #### Implementation
 
-The export mechanism is facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be exported is passed to `Storage` to save to local data.
+The Export mechanism is facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be exported is passed to `Storage` to save to local data.
 
 ##### Usage
 
-Given below is an example usage scenario and how the export mechanism behaves at each step.
+Given below is an example usage scenario and how the Export mechanism behaves at each step.
 
 Step 1. The user inputs the `find t/cs2100` command to find all `Flashcard` containing the tag `cs2100`. The `Model` updates its current filtered flashcard list.
 
@@ -642,7 +641,7 @@ Step 2. The user inputs the `export out.json` command. The following sequence di
 
 Step 3. The parsed `Export` command is executed. The current filtered flashcard list is exported to `out.json`, located in the `/export/` directory.
 
-The following sequence diagram shows how the export operation works as a whole:
+The following sequence diagram shows how the Export mechanism works as a whole:
 
 ![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
 
@@ -665,11 +664,11 @@ The following activity diagram summarizes what happens when a user executes an `
 
 #### Implementation
 
-The import mechanism is similarly facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be imported is read by `Storage` from local data.
+The Import mechanism is similarly facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be imported is read by `Storage` from local data.
 
 ##### Usage
 
-Given below is an example usage scenario and how the export mechanism behaves at each step.
+Given below is an example usage scenario and how the Import mechanism behaves at each step.
 
 Step 1. The user places the file `in.json` that he wants to import in his `/import/`folder.
 
@@ -679,7 +678,7 @@ Step 2. The user inputs the `import in.json` command. The following sequence dia
 
 Step 3. The parsed `Import` command is executed. The flashcards from the file `in.json` is imported into his local `QuickCache`. If a flashcard has been imported before, it will not be imported again. The check for repitive flashcards is carried out using `Model#hasFlashcard` and `Flashcard#equals`.
 
-The following sequence diagram shows how the import operation works as a whole:
+The following sequence diagram shows how the Import mechanism works as a whole:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 
