@@ -20,7 +20,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to Hospify. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to Hospify. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_NRIC + "NRIC "
@@ -36,17 +36,19 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_MEDICAL_RECORD + "www.samplerecord.com/hospify01 "
-            + PREFIX_ALLERGY + "friends "
-            + PREFIX_ALLERGY + "owesMoney";
+            + PREFIX_ALLERGY + "peanuts "
+            + PREFIX_ALLERGY + "pollen";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in Hospify";
     public static final String MESSAGE_DUPLICATE_NRIC = "This NRIC already belongs to an existing patient in Hospify";
+    public static final String MESSAGE_DUPLICATE_MR_URL = "This Medial Record URL already belongs to an existing "
+            + "patient in Hospify";
 
     private final Patient toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Patient}
      */
     public AddCommand(Patient patient) {
         requireNonNull(patient);
@@ -59,8 +61,14 @@ public class AddCommand extends Command {
 
         if (model.hasPatient(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
-        } else if (model.hasPatientWithNric(toAdd.getNric())) {
+        }
+
+        if (model.hasPatientWithNric(toAdd.getNric())) {
             throw new CommandException(MESSAGE_DUPLICATE_NRIC);
+        }
+
+        if (model.hasPatientWithMrUrl(toAdd.getMedicalRecord())) {
+            throw new CommandException(MESSAGE_DUPLICATE_MR_URL);
         }
 
         model.addPatient(toAdd);

@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyHospifyBook getAddressBook() {
+    public ReadOnlyHospifyBook getHospifyBook() {
         return model.getHospifyBook();
     }
 
     @Override
-    public ObservableList<Patient> getFilteredPersonList() {
+    public ObservableList<Patient> getFilteredPatientList() {
         return model.getFilteredPatientList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getHospifyFilePath() {
+        return model.getHospifyFilePath();
     }
 
     @Override

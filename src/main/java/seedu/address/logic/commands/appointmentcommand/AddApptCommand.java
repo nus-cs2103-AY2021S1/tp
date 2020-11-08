@@ -8,9 +8,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -34,28 +34,30 @@ public class AddApptCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an appointment for the patient specified "
-            + "by the index number used in the displayed person list. \n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "by the NRIC of the patient. \n"
+            + "Parameters: [NRIC] "
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT TIME] "
             + "[" + PREFIX_DESCRIPTION + "APPOINTMENT DESCRIPTION]"
             + "\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " S1234567A "
             + PREFIX_APPOINTMENT + "28/09/2022 20:00 "
             + PREFIX_DESCRIPTION + "Eye Check-up";
 
     public static final String MESSAGE_ADD_APPT_SUCCESS = "Added appointment successfully!";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =
-            "This patient already has an appointment with this timing";
+            "This patient already has an appointment with this timing!";
 
-    private final Index index;
+    private final Nric nric;
     private final Appointment appointment;
 
     /**
-     * @param index of the person in the filtered person list to add appointment to
+     * @param nric of the patient in the filtered patient list to add appointment to
      * @param appointment the appointment to add to the patient
      */
-    public AddApptCommand(Index index, Appointment appointment) {
-        this.index = index;
+    public AddApptCommand(Nric nric, Appointment appointment) {
+        requireNonNull(nric);
+        requireNonNull(appointment);
+        this.nric = nric;
         this.appointment = appointment;
     }
 
@@ -64,17 +66,20 @@ public class AddApptCommand extends Command {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        Patient patientToAddAppt;
+        lastShownList = lastShownList.stream()
+                .filter(patient -> patient.getNric().value.equals(nric.value.toUpperCase()))
+                .collect(Collectors.toList());
+        if (lastShownList.size() != 1) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_NRIC);
         }
-
-        Patient patientToAddAppt = lastShownList.get(index.getZeroBased());
+        patientToAddAppt = lastShownList.get(0);
 
         if (patientToAddAppt.getAppointments().contains(appointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
-        Patient changedPatient = createChangedPerson(patientToAddAppt, appointment);
+        Patient changedPatient = createChangedPatient(patientToAddAppt, appointment);
 
         assert !patientToAddAppt.equals(changedPatient) : "changedPatient should be different from original";
 
@@ -87,7 +92,7 @@ public class AddApptCommand extends Command {
      * Creates and returns a {@code Patient} with the details of {@code patientToAddAppt}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Patient createChangedPerson(Patient patientToAddAppt, Appointment appointment) {
+    private static Patient createChangedPatient(Patient patientToAddAppt, Appointment appointment) {
         assert patientToAddAppt != null : "Patient to add Appointment should not be null!";
 
         Name updatedName = patientToAddAppt.getName();
@@ -120,7 +125,7 @@ public class AddApptCommand extends Command {
 
         // state check
         AddApptCommand e = (AddApptCommand) other;
-        return index.equals(e.index)
+        return nric.equals(e.nric)
                 && appointment.equals(e.appointment);
     }
 }

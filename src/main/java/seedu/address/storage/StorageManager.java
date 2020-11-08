@@ -66,8 +66,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveHospifyBook(ReadOnlyHospifyBook addressBook) throws IOException {
-        saveHospifyBook(addressBook, hospifyStorage.getHospifyFilePath());
+    public void saveHospifyBook(ReadOnlyHospifyBook hospifyBook) throws IOException {
+        saveHospifyBook(hospifyBook, hospifyStorage.getHospifyFilePath());
     }
 
     @Override

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalPatients.HOON;
 import static seedu.address.testutil.TypicalPatients.IDA;
 import static seedu.address.testutil.TypicalPatients.getTypicalHospifyBook;
@@ -19,7 +19,7 @@ public class CountCommandTest {
 
     @Test
     void execute_defaultCount_success() {
-        String expectedMessage = "There are 7 records.";
+        String expectedMessage = "There are 7 record(s).";
 
         CountCommand countCommand = new CountCommand();
 
@@ -28,10 +28,10 @@ public class CountCommandTest {
 
     @Test
     void execute_removePatients_success() {
-        Patient patientToDelete = model.getFilteredPatientList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToDelete = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         model.deletePatient(patientToDelete);
 
-        String expectedMessage = "There are 6 records.";
+        String expectedMessage = "There are 6 record(s).";
 
         CountCommand countCommand = new CountCommand();
 
@@ -46,7 +46,7 @@ public class CountCommandTest {
         model.addPatient(HOON);
         model.addPatient(IDA);
 
-        String expectedMessage = "There are 9 records.";
+        String expectedMessage = "There are 9 record(s).";
 
         CountCommand countCommand = new CountCommand();
 

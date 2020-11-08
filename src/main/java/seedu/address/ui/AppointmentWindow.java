@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.patient.Patient;
 
 public class AppointmentWindow extends UiPart<Stage> {
@@ -19,6 +20,7 @@ public class AppointmentWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final ObservableList<AppointmentDescription> appointmentDescriptions = FXCollections.observableArrayList();
+    private boolean sortByEarliestPolicy = true;
 
     @FXML
     private TableView<AppointmentDescription> appointmentTable;
@@ -30,10 +32,19 @@ public class AppointmentWindow extends UiPart<Stage> {
     private Label patientNric;
 
     @FXML
+    private Label patientPhone;
+
+    @FXML
     private Label patientAddress;
 
     @FXML
+    private Label patientEmail;
+
+    @FXML
     private FlowPane patientAllergies;
+
+    @FXML
+    private Label noAllergiesLabel;
 
     /**
      * Creates a Appointment Window.
@@ -49,6 +60,18 @@ public class AppointmentWindow extends UiPart<Stage> {
      */
     public AppointmentWindow(Stage root) {
         super(FXML, root);
+        appointmentTable.sortPolicyProperty().set(table -> {
+            Comparator<AppointmentDescription> comparator;
+            if (sortByEarliestPolicy) {
+                comparator = (a1, a2) -> a2.getLocalDateTime().compareTo(a1.getLocalDateTime());
+                sortByEarliestPolicy = false;
+            } else {
+                sortByEarliestPolicy = true;
+                comparator = Comparator.comparing(AppointmentDescription::getLocalDateTime);
+            }
+            FXCollections.sort(table.getItems(), comparator);
+            return true;
+        });
         appointmentTable.setItems(appointmentDescriptions);
     }
 
@@ -58,19 +81,38 @@ public class AppointmentWindow extends UiPart<Stage> {
      * @param patient Patient information to set.
      */
     public void setAppointmentWindow(Patient patient) {
-        patientName.setText(patient.getName().fullName);
-        patientAddress.setText(patient.getAddress().value);
+        String name = StringUtil.stringBreaker(patient.getName().fullName, 5, 30,
+                false, 1, "..");
+        patientName.setText(name);
+        patientAddress.setText(StringUtil.stringBreaker(patient.getAddress().value, 5, 85,
+                false, 3, ".."));
         patientNric.setText(patient.getNric().value);
+        patientPhone.setText(patient.getPhone().value);
+
+        String email = patient.getEmail().value;
+        if (email.isEmpty()) {
+            patientEmail.setText("NONE");
+        } else {
+            patientEmail.setText(StringUtil.stringBreaker(email, 5, 120, false, 2, ".."));
+        }
+
+        if (patient.getAllergies().isEmpty()) {
+            noAllergiesLabel.setText("NONE");
+        } else {
+            noAllergiesLabel.setText("");
+        }
+
         // clear the lists
         patientAllergies.getChildren().clear();
         appointmentDescriptions.clear();
-
+        appointmentTable.getColumns().get(1).setSortable(false);
         patient.getAllergies().stream()
                 .sorted(Comparator.comparing(allergy -> allergy.allergyName))
-                .forEach(allergy -> patientAllergies.getChildren().add(new Label(allergy.allergyName)));
+                .forEach(allergy -> patientAllergies.getChildren()
+                        .add(new Label(StringUtil.stringBreaker(allergy.allergyName, 7, 70, false))));
 
         patient.getAppointments().forEach(appointment -> appointmentDescriptions.add(
-                new AppointmentDescription(appointment.getAppointmentTimeString(), appointment
+                new AppointmentDescription(appointment.getAppointmentTime(), appointment
                         .getAppointmentDescription())));
     }
 
@@ -81,24 +123,25 @@ public class AppointmentWindow extends UiPart<Stage> {
         logger.fine("Showing appointment of patient");
         getRoot().show();
         getRoot().centerOnScreen();
+        appointmentTable.sort();
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if Appointment window is showing.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the Appointment window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the Appointment window.
      */
     public void focus() {
         getRoot().requestFocus();

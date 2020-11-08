@@ -7,9 +7,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -34,31 +34,34 @@ public class EditApptCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits an appointment at the "
             + "specified time for the patient specified "
-            + "by the index number used in the displayed person list. \n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "by the Nric of the patient. \n"
+            + "Parameters: [NRIC] "
             + "[" + PREFIX_APPOINTMENT_OLD + "OLD APPOINTMENT TIME] "
             + "[" + PREFIX_APPOINTMENT_NEW + "NEW APPOINTMENT TIME] \n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_APPOINTMENT_OLD + "28/09/2020 20:00 "
-            + PREFIX_APPOINTMENT_NEW + "30/09/2020 15:00";
+            + "Example: " + COMMAND_WORD + " S1234567A "
+            + PREFIX_APPOINTMENT_OLD + "28/09/2022 20:00 "
+            + PREFIX_APPOINTMENT_NEW + "30/09/2022 15:00";
 
     public static final String MESSAGE_EDIT_APPT_SUCCESS = "Edited appointment successfully!";
     public static final String MESSAGE_MISSING_APPOINTMENT =
             "This patient does not have any appointments with this timing";
 
-    private final Index index;
+    private final Nric nric;
     private final Appointment oldAppointment;
     private final Appointment newAppointment;
 
     /**
-     * Initialize an EditApptCommand using Index and Appointment.
+     * Initialize an EditApptCommand using Nric and Appointment.
      *
-     * @param index Index of the patient in the filtered person list to edit the appointment.
+     * @param nric Nric of the patient in the filtered person list to edit the appointment.
      * @param oldAppointment The appointment to be changed.
      * @param newAppointment The new appointment timing.
      */
-    public EditApptCommand(Index index, Appointment oldAppointment, Appointment newAppointment) {
-        this.index = index;
+    public EditApptCommand(Nric nric, Appointment oldAppointment, Appointment newAppointment) {
+        requireNonNull(nric);
+        requireNonNull(oldAppointment);
+        requireNonNull(newAppointment);
+        this.nric = nric;
         this.oldAppointment = oldAppointment;
         this.newAppointment = newAppointment;
     }
@@ -68,22 +71,27 @@ public class EditApptCommand extends Command {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
-        }
+        Patient patientToEditAppt;
 
-        Patient patientToEditAppt = lastShownList.get(index.getZeroBased());
+        lastShownList = lastShownList.stream()
+                .filter(patient -> patient.getNric().value.equals(nric.value.toUpperCase()))
+                .collect(Collectors.toList());
+        if (lastShownList.size() != 1) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_NRIC);
+        }
+        patientToEditAppt = lastShownList.get(0);
 
         if (!patientToEditAppt.getAppointments().contains(oldAppointment)) {
             throw new CommandException(MESSAGE_MISSING_APPOINTMENT);
         }
 
         Set<Appointment> appointments = patientToEditAppt.getModifiableAppointments();
+        Appointment appointmentToAdd = newAppointment.setDescription(appointments.stream()
+                .filter(appt -> appt.equals(oldAppointment))
+                .collect(Collectors.toList()).get(0).getAppointmentDescription());
         appointments.remove(oldAppointment);
-        appointments.add(newAppointment);
+        appointments.add(appointmentToAdd);
         Patient newPatient = createNewPatient(patientToEditAppt, appointments);
-
-        assert !patientToEditAppt.equals(newPatient) : "New patient should be different from original";
 
         model.setPatient(patientToEditAppt, newPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
@@ -123,7 +131,7 @@ public class EditApptCommand extends Command {
 
         // state check
         EditApptCommand e = (EditApptCommand) other;
-        return index.equals(e.index)
+        return nric.equals(e.nric)
                 && oldAppointment.equals(e.oldAppointment)
                 && newAppointment.equals(e.newAppointment);
     }

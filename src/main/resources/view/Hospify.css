@@ -49,6 +49,15 @@
     -fx-border-color: transparent;
 }
 
+.label.card_label {
+    -fx-text-fill: #4d3303 !important;
+}
+
+.label.card_label_important {
+    -fx-text-fill: #ff2b0a !important;
+}
+
+
 .label.text-dark{
     -fx-text-fill: black;
     -fx-font-weight: bold;

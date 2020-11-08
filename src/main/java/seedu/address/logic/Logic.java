@@ -28,15 +28,15 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getHospifyBook()
      */
-    ReadOnlyHospifyBook getAddressBook();
+    ReadOnlyHospifyBook getHospifyBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Patient> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of patients */
+    ObservableList<Patient> getFilteredPatientList();
 
     /**
      * Returns the user prefs' Hospify file path.
      */
-    Path getAddressBookFilePath();
+    Path getHospifyFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
@@ -68,14 +69,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getHospifyFilePath() {
         return userPrefs.getHospifyFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setHospifyFilePath(addressBookFilePath);
+    public void setHospifyFilePath(Path hospifyFilePath) {
+        requireNonNull(hospifyFilePath);
+        userPrefs.setHospifyFilePath(hospifyFilePath);
     }
 
     //=========== HospifyBook ================================================================================
@@ -100,6 +101,12 @@ public class ModelManager implements Model {
     public boolean hasPatientWithNric(Nric nric) {
         requireNonNull(nric);
         return hospifyBook.hasPatientWithNric(nric);
+    }
+
+    @Override
+    public boolean hasPatientWithMrUrl(MedicalRecord url) {
+        requireNonNull(url);
+        return hospifyBook.hasPatientWithMrUrl(url);
     }
 
     @Override

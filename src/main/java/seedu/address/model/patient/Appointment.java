@@ -1,7 +1,11 @@
 package seedu.address.model.patient;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -13,7 +17,7 @@ import java.time.format.DateTimeParseException;
 public class Appointment {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Appointment times should follow the format (dd/MM/yyyy HH:mm)";
+            "Appointment dates should be valid and follow the format (dd/MM/yyyy HH:mm)";
     public static final String MISSING_TIMING =
             "Appointment timing is missing!";
     public static final String TIME_RANGE_CONSTRAINTS = "Time entered cannot be earlier than system time!";
@@ -35,6 +39,7 @@ public class Appointment {
      * @param appointment A valid appointment time.
      */
     public Appointment(String description, LocalDateTime appointment) {
+        requireNonNull(description);
         this.description = description;
         time = appointment;
     }
@@ -72,28 +77,34 @@ public class Appointment {
 
     /**
      * Returns appointment time in a formatted string.
+     *
+     * @param localDateTime
+     * @return date and time formatted to stipulated format.
      */
-    public String getAppointmentTimeString() {
+    public static String getAppointmentTimeString(LocalDateTime localDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
-        return time.format(formatter);
+        return localDateTime.format(formatter);
     }
 
     /**
      * Returns true if a given string is a valid Appointment.
      */
     public static boolean isValidAppointment(String input) {
+        DateFormat dateFormat = new SimpleDateFormat("d/M/yyyy HH:mm");
+        dateFormat.setLenient(false);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
         LocalDateTime localDateTime;
         try {
+            dateFormat.parse(input);
             localDateTime = LocalDateTime.parse(input, formatter);
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException | ParseException e) {
             return false;
         }
         return true;
     }
 
     /**
-     * Returns true if appointment time is ahead of the current local time.
+     * Returns true if appointment time is past the current local time.
      *
      * @param givenTime current local time.
      */

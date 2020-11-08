@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
@@ -75,6 +76,19 @@ public class HospifyBook implements ReadOnlyHospifyBook {
         requireNonNull(nric);
         for (Patient patient : patients) {
             if (patient.getNric().equals(nric)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if a patient with the same Medical Record Url as {@code url} exists in Hospify.
+     */
+    public boolean hasPatientWithMrUrl(MedicalRecord url) {
+        requireNonNull(url);
+        for (Patient patient : patients) {
+            if (patient.getMedicalRecord().equals(url)) {
                 return true;
             }
         }

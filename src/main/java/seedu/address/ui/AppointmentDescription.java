@@ -1,19 +1,23 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+
 import javafx.beans.property.SimpleStringProperty;
+import seedu.address.commons.util.StringUtil;
+import seedu.address.model.patient.Appointment;
 
 public class AppointmentDescription {
-    private final SimpleStringProperty date = new SimpleStringProperty("");
+    private final LocalDateTime date;
     private final SimpleStringProperty description = new SimpleStringProperty("");
 
-    AppointmentDescription(String date, String description) {
+    AppointmentDescription(LocalDateTime date, String description) {
         assert date != null;
         if (description == null || description.isEmpty()) {
             this.description.set("No Description available for this Appointment");
         } else {
             this.description.set(description);
         }
-        this.date.set(date);
+        this.date = date;
     }
 
     /**
@@ -21,15 +25,16 @@ public class AppointmentDescription {
      * @return date.
      */
     public String getDate() {
-        return date.get();
+        return Appointment.getAppointmentTimeString(date);
     }
 
     /**
-     * Sets the Appointment date.
-     * @param date
+     * Return date as a LocalDateTime.
+     *
+     * @return date.
      */
-    public void setDate(String date) {
-        this.date.set(date);
+    public LocalDateTime getLocalDateTime() {
+        return date;
     }
 
     /**
@@ -37,7 +42,7 @@ public class AppointmentDescription {
      * @return
      */
     public String getDescription() {
-        return description.get();
+        return StringUtil.stringBreaker(description.get(), 20, 120, true, 10, "..");
     }
 
     /**

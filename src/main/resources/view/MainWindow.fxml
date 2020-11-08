@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.*?>
 
-<fx:root maximized="true" minHeight="600" minWidth="750.0" onCloseRequest="#handleExit" title="Hospify" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maximized="true" minHeight="600" minWidth="850.0" onCloseRequest="#handleExit" title="Hospify" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/hospify_400x400.png" />
   </icons>
@@ -35,7 +35,7 @@
         </StackPane>
             <VBox styleClass="pane-with-border" VBox.vgrow="NEVER">
                <children>
-              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100">
+              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100.0" minHeight="100.0" prefHeight="100.0">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>

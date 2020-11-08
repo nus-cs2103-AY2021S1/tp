@@ -45,14 +45,14 @@ import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PatientBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Patient expectedPatient = new PersonBuilder(BOB).withAllergies(VALID_ALLERGY_NUT).build();
+        Patient expectedPatient = new PatientBuilder(BOB).withAllergies(VALID_ALLERGY_NUT).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -75,7 +75,7 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + ALLERGY_DESC_NUT + URL_DESC_BOB, new AddCommand(expectedPatient));
 
         // multiple tags - all accepted
-        Patient expectedPatientMultipleTags = new PersonBuilder(BOB)
+        Patient expectedPatientMultipleTags = new PatientBuilder(BOB)
                 .withAllergies(VALID_ALLERGY_NUT, VALID_ALLERGY_POLLEN).build();
         assertParseSuccess(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + ALLERGY_DESC_POLLEN + ALLERGY_DESC_NUT + URL_DESC_BOB, new AddCommand(expectedPatientMultipleTags));
@@ -84,7 +84,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Patient expectedPatient = new PersonBuilder(AMY).withAllergies().build();
+        Patient expectedPatient = new PatientBuilder(AMY).withAllergies().build();
         assertParseSuccess(parser, NAME_DESC_AMY + NRIC_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + URL_DESC_AMY, new AddCommand(expectedPatient));
     }
@@ -103,10 +103,6 @@ public class AddCommandParserTest {
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + URL_DESC_BOB, expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB
                 + URL_DESC_BOB, expectedMessage);
 
         // missing address prefix

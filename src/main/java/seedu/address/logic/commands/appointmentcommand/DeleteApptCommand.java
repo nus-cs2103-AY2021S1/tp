@@ -6,9 +6,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -33,27 +33,29 @@ public class DeleteApptCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes an appointment at the "
             + "specified time for the patient specified "
-            + "by the index number used in the displayed person list. \n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "by the NRIC of the patient. \n"
+            + "Parameters: [NRIC] "
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT TIME] \n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " S1234567A "
             + PREFIX_APPOINTMENT + "28/09/2022 20:00";
 
     public static final String MESSAGE_DELETE_APPT_SUCCESS = "Deleted appointment successfully!";
     public static final String MESSAGE_MISSING_APPOINTMENT =
             "This patient does not have any appointments with this timing";
 
-    private final Index index;
+    private final Nric nric;
     private final Appointment appointment;
 
     /**
-     * Initialize a DeleteApptCommand using Index and Appointment.
+     * Initialize a DeleteApptCommand using Nric and Appointment.
      *
-     * @param index Index of the patient in the filtered person list to delete appointment from.
+     * @param nric Nric of the patient in the filtered person list to delete appointment from.
      * @param appointment The appointment to delete from the patient.
      */
-    public DeleteApptCommand(Index index, Appointment appointment) {
-        this.index = index;
+    public DeleteApptCommand(Nric nric, Appointment appointment) {
+        requireNonNull(nric);
+        requireNonNull(appointment);
+        this.nric = nric;
         this.appointment = appointment;
     }
 
@@ -62,11 +64,15 @@ public class DeleteApptCommand extends Command {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
-        }
+        Patient patientToDeleteAppt;
 
-        Patient patientToDeleteAppt = lastShownList.get(index.getZeroBased());
+        lastShownList = lastShownList.stream()
+                .filter(patient -> patient.getNric().value.equals(nric.value.toUpperCase()))
+                .collect(Collectors.toList());
+        if (lastShownList.size() != 1) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_NRIC);
+        }
+        patientToDeleteAppt = lastShownList.get(0);
 
         if (!patientToDeleteAppt.getAppointments().contains(appointment)) {
             throw new CommandException(MESSAGE_MISSING_APPOINTMENT);
@@ -75,8 +81,6 @@ public class DeleteApptCommand extends Command {
         Set<Appointment> appointments = patientToDeleteAppt.getModifiableAppointments();
         appointments.remove(appointment);
         Patient newPatient = createNewPatient(patientToDeleteAppt, appointments);
-
-        assert !patientToDeleteAppt.equals(newPatient) : "New patient should be different from original";
 
         model.setPatient(patientToDeleteAppt, newPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
@@ -116,7 +120,7 @@ public class DeleteApptCommand extends Command {
 
         // state check
         DeleteApptCommand e = (DeleteApptCommand) other;
-        return index.equals(e.index)
+        return nric.equals(e.nric)
                 && appointment.equals(e.appointment);
     }
 
