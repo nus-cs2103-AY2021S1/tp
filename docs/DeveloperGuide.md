@@ -205,9 +205,6 @@ url.
 `ImportCommandParser` and makes a HTTP GET request to NUSMods API. NUSMods sends `TimetableRetriever` the relevant JSON
 data. The data is parsed and returns as a list of `Lessons`.
 
-The following sequence diagram shows the sequence when LogicManager executes `import` command.
-![Interactions Inside the Logic Component for the `import url/URL` Command](images/ImportSequenceDiagram.png)
-
 #### Usage Scenario
 
 The following is the usage scenario of when a user imports an NUSMods timetable.
@@ -219,6 +216,9 @@ The following is the usage scenario of when a user imports an NUSMods timetable.
 1. There is return call to `LogicManager` which then calls the overridden `execute` method of `ImportCommand`.
 1. The `execute` method of `ImportCommand` will call the `retrieveLessons` method from `TimetableRetriever`, which returns a list of lessons to be added.
 1. The `execute` method returns a `CommandResult` object.
+
+The following sequence diagram shows the sequence when LogicManager executes `import` command.
+![Interactions Inside the Logic Component for the `import url/URL` Command](images/ImportSequenceDiagram.png)
 
 ### Find by specific fields feature
 
@@ -358,9 +358,6 @@ that are of greater priority.
 #### Usage Scenario
 The following is a usage scenario of when the user wants to set a high priority for the 3rd assignment in their displayed assignment list.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("prioritize 3 p/HIGH")` API call.
-![Interactions Inside the Logic Component for the `prioritize 3 p/HIGH` Command](images/PrioritizeSequenceDiagram.png)
-
 1. `execute("prioritize 3 p/HIGH")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
 1. `parseCommand("prioritize 3 p/HIGH")` parses the String `"prioritize 3 p/HIGH"` and returns an initialized `PrioritizeCommandParser` object. 
 1. `parseCommand("prioritize 3 p/HIGH")` calls the `parse` method in `PrioritizeCommandParser` and checks if index and priority input are valid.
@@ -369,6 +366,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 1. The `execute` method of `PrioritizeCommand` will call the `setAssignment` method of `Model` to update the assignment with the new priority.
 1. The `updateFilteredAssignmentList` method of the `Model` is then called to display all assignments in the assignment list.
 1. A `CommandResult` object is returned from `execute()`.
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("prioritize 3 p/HIGH")` API call.
+![Interactions Inside the Logic Component for the `prioritize 3 p/HIGH` Command](images/PrioritizeSequenceDiagram.png)
 
 ### List by days feature
 
