@@ -661,7 +661,7 @@ Use case ends.
 
     Steps 2a1-2a2 are repeated until the data entered are correct.
 
-    Use Case resumes at 3.
+    Use case resumes at 3.
 
 **Use case: UC04 - Delete a student**
 
