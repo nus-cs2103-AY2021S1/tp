@@ -144,6 +144,7 @@ public class MainPanel extends UiPart<Region> {
         if (!studentsAndRoomsAreCombined) {
             tabPane.getTabs().remove(0, 2); // remove first 2 tabs (students and room)
             addCombinedStudentsRoomsTab();
+            showStudentPanel();
         }
     }
 
@@ -155,6 +156,7 @@ public class MainPanel extends UiPart<Region> {
         if (studentsAndRoomsAreCombined) {
             tabPane.getTabs().remove(0);
             addSeparateStudentsRoomsTabs();
+            showStudentPanel();
         }
     }
 

@@ -881,11 +881,12 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file
+      Expected: Shows the GUI with a set of sample studentsn and rooms. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resiz e the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
@@ -942,15 +943,5 @@ testers are expected to do more *exploratory* testing.
    1. Test case: Change system time to 21 days in the future (procedure for [Mac](https://support.apple.com/en-za/guide/mac-help/mchlp2996/mac) and [Windows 10](https://support.microsoft.com/en-us/windows/how-to-set-your-time-and-time-zone-dfaa7122-479f-5b98-2a7b-fa0b6e01b261)). Restart ResiReg.<br>
     Expected: All bin items should be cleared from the bin item list. 
 
-    1. Test case: Change system time to 15 days in the future (procedure for [Mac](https://support.apple.com/en-za/guide/mac-help/mchlp2996/mac) and [Windows 10](https://support.microsoft.com/en-us/windows/how-to-set-your-time-and-time-zone-dfaa7122-479f-5b98-2a7b-fa0b6e01b261)) Restart ResiReg. <br>
+   1. Test case: Change system time to 15 days in the future (procedure for [Mac](https://support.apple.com/en-za/guide/mac-help/mchlp2996/mac) and [Windows 10](https://support.microsoft.com/en-us/windows/how-to-set-your-time-and-time-zone-dfaa7122-479f-5b98-2a7b-fa0b6e01b261)) Restart ResiReg. <br>
     Expected: No bin item is removed. 
-
-
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_

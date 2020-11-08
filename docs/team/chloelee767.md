@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Mayank Keoliya's Project Portfolio Page
+title: Chloe Lee Ke Er's Project Portfolio Page
 ---
 
 **ResiReg** (**Res**idential **Reg**ulation) is a desktop app designed to help admin staff manage housing in Residential Colleges (RCs) in NUS. ResiReg has a GUI, but users can interact with ResiReg entirely using CLI-style commands. ResiReg is written in Java, with the GUI created using JavaFX.

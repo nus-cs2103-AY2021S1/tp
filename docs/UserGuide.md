@@ -192,6 +192,9 @@ Format: `archive`
 
 ![UI after archiving](./images/AfterArchive.png)
 
+<div markdown="span" class="alert alert-info">:information_source: Performing <code>undo</code> on an <code>archive</code> command will reset and restore the state of the previous semester, but the created archival folder will not be deleted. Any changes followed by another <code>archive</code> command will overwrite the contents of that folder.
+</div>
+
 
 ### Student Management
 
@@ -204,11 +207,18 @@ Shows a list of all students in ResiReg, optionally filtered by some parameters.
 Format: `students [n/<name>] [p/<phone>] [e/<email>] [f/<faculty] [i/<student_id>]`
 - `name` is matched case-insensitively and partially (i.e partial matches appear)
 - `phone`, `email`, `faculty` and `student_id` are matched exactly, and must satisfy constraints listed in the `add-student` command
+- If no parameters are given, all students are shown.
+- Students can be filtered by multiple criteria. See the section below for some examples.
 
 Examples:
 
 - `students` switches to the Students tab if it is not already selected, and shows the list of students on the right pane.
 - `students n/alex` switches to the Students tab if it is not already selected, and shows the list of students matching the name "alex" case-insensitively, on the right pane.
+- `students n/Alex` switches to the Students tab if it is not already selected, and shows the list of students with names containing "Alex" on the right pane.
+- `students n/char f/LAW` switches to the Students tab if it is not already selected, and shows the list of students with names containing "char" and belonging to the "LAW" faculty on the right pane.
+
+<div markdown="span" class="alert alert-info">:information_source: The <code>n/</code> parameter is case-insensitive.
+</div>
 
 #### Adding a student : `add-student`
 
@@ -320,8 +330,8 @@ Examples:
 
 Sets the amount of time (in days) that bin items stay in the bin before they are permanently removed.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The default time for which a bin item stays in the bin is **30 days**. Use this command if this does not suit your needs.
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+The default time for which a bin item stays in the bin is <b>30 days</b>. Use this command if this does not suit your needs.
 </div>
 
 Format: `set-bin-expiry <number_of_days>​`
@@ -429,8 +439,8 @@ Reverses the most recent undo command.
 in the command box will execute the command as well.
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-`undo` and `redo` support the undoing and redoing respectively of commands
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+<code>undo</code> and <code>redo</code> support the undoing and redoing respectively of commands
 that change the state of ResiReg, which comprises of: students, rooms, allocations, semesters and bin items.
 </div>
 
@@ -439,7 +449,8 @@ Lists all nonempty commands that were previously entered in chronological order.
 n is also listed for each command, in front of it and separated by a tab. 
 This integer specifies that the command is the n<sup>th</sup> command to be entered.
 
-<div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>up</kbd> and <kbd>down</kbd> arrows will 
+<div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>ctrl-h</kbd> keyboard combination
+in the command box will execute the command as well. Additionally, pressing the <kbd>up</kbd> and <kbd>down</kbd> arrows will 
 display the previous and next command respectively in the command box.
 
 </div>
@@ -454,12 +465,20 @@ While allocating rooms to students, it is probably easier to view rooms and stud
 
 Format: `toggle-split`
 
+<div markdown="span" class="alert alert-info">
+:information_source: Note that `toggle-split` will cause the application to switch to the combined students and rooms tab, regardless of what tab you previously had open.
+</div>
+
 ![](images/CombinedStudentsRoomsTab.png)
 
 #### View students and rooms in separate tabs: `toggle-split`
 If the rooms and students tab are currently combined, `toggle-split` will separate them into 2 separate tabs, as shown below.
 
 Format: `toggle-split`
+
+<div markdown="span" class="alert alert-info">
+:information_source: Note that `toggle-split` will cause the application to switch to the students tab, regardless of what tab you previously had open.
+</div>
 
 ![](images/SeparateStudentsRoomsTab.png)
 
