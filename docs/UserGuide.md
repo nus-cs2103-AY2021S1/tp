@@ -265,9 +265,7 @@ You have successfully edited a flashcard.
 <a name="listing-all-flashcards"></a>
 ### Listing all flashcards : `list`
 
-Shows a list of all flashcards currently created.
-
-Format: `list`
+If you want to see all the flashcards you have created, use the `list` command.
 
 <a name="finding-flashcards"></a>
 ### Finding flashcards
