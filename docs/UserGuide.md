@@ -326,6 +326,8 @@ Edits an existing module in the displayed module list with new details.
   * At least **one** of the optional fields `[MODULE_NAME]`, `[MODULAR_CREDITS]` or `[GRADE_POINT]` must be present.
 
   * You can add `[TAG]`s to a module through this command,eg. `Tutorial`.
+   
+  * You can remove all the contact’s tags by typing `t/` without specifying any tags after it.
 
  Examples:
   * `editmodule 1 n/CS2030` edits the `MODULE_NAME` for a module at index `1` to `CS2030`.
