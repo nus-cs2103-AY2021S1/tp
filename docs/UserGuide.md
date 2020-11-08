@@ -40,7 +40,10 @@
         + [3.4.3.2 Deleting an attendance record for a student: `attendance delete`](#3432-deleting-an-attendance-record-for-a-student-attendance-delete)
   * [3.5 Schedule Feature (By: Alex)](#35-schedule-feature-by-alex)
     + [3.5.1 Viewing lesson schedule: `schedule`](#351-viewing-lesson-schedule-schedule)
-  * [3.6 Notes Feature (By: Choon Siong)](#36-notes-feature-by-choon-siong)
+  * [3.6 Notebook feature (By: Choon Siong)](#36-notebook-feature-by-choon-siong)
+    + [3.6.1 Adding a note: `note add`](#361-adding-a-note)
+    + [3.6.2 Editing a note: `note edit`](#362-editing-a-note)
+    + [3.6.3 Deleting a note: `note delete`](#363-deleting-a-note)
 - [4. Command summary](#4-command-summary)
 - [5. Glossary](#5-glossary)
 - [6. FAQ](#6-faq)
@@ -257,13 +260,13 @@ Finds students who satisfy the given search criteria.
 
 Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 
+* The search is case-insensitive. e.g `hans` will match `Hans`
 * At least one of the optional fields must be provided.
 * The order of the optional fields do not matter. e.g `n/Hans s/River Valley` is the same as `s/River Valley n/Hans`
 * For the name criteria, only students with a name that contains **any full keyword** specified will be matched.
 * For the school criteria, only students with a school that contains **all keywords** specified will be matched.
 * For the year criteria, only students with the **same year** will be matched. (See below for more elaboration for format of year)
 * Only students matching all criteria specified will be returned (i.e `AND` search).
-* The format of `YEAR` follows that as stated in [3.3.1 Adding a student](#331-adding-a-student-add-by-hogan).
 
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
@@ -293,20 +296,21 @@ Examples:
 
 #### 3.3.6 Sorting the list of students: `sort` (By: Choon Siong)
 
-Sorts the list of students by a specified comparison means. The comparison means must be their name, class time or year.
+You can sort your student list by a specified means of comparison. The means of comparison must be the student's name, class time or year.
+This is useful in situations where you want to look at your student list differently for various reasons. 
 
 Format: `sort COMPARISON_MEANS`
 
-* The valid options for the sorting method `COMPARISON_MEANS` are `name`, `classTime` or `year`.
-* Only one option for the sorting method can be specified.
-* The sorting method is case sensitive when being specified
-* Sorting methods:
-	* `name`: Sorts students by their name in alphabetical order. This is case insensitive.
-	* `classTime`: Sorts students by the the time of their class first by the day than the time.
-	* `year` Sorts students by the school year they are in with `Primary` type years coming before `Secondary` type coming before `JC` type.
+* The valid options for `COMPARISON_MEANS` are `name`, `classTime` or `year`.
+* Only one option for the means of comparison can be specified.
+* The means of comparison is case-sensitive when being specified
+* means of comparison:
+	* `name`: Sorts students by their name in case-insensitive alphabetical order. This is useful when you want to search through your student list easily.
+	* `classTime`: Sorts students by the day of their class followed by its time. This is useful when you want to look at your student list in order of upcoming classes.
+	* `year` Sorts students by their year with `Primary 1` coming first and `JC 2` last. This is useful when you want to group students by their year.
 
 Examples:
-* `sort year` to sort students by their year
+* `sort name` to sort students by their name in alphabetical order
 
 #### 3.3.7 Finding students with overdue fees: `overdue` (By: Ying Gao)
 
@@ -586,8 +590,56 @@ Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
 Example:
 * `schedule m/weekly d/2/11/2020` shows the schedule of classes in the week of 2nd November 2020.
 
-### 3.6 Notes Feature (By: Choon Siong)
+### 3.6 Notebook feature (By: Choon Siong)
 
+You can store notes containing small amounts of information inside the notebook. This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve. You should see the notes on the bottom right hand side of Reeve similar to the display shown below.
+
+![Location of notes panel](images/screenshots/Notes.png)
+
+
+#### 3.6.1 Adding a note `note add`
+
+You can add a note to the notebook for the information you want to store.
+
+Format: `note add t/TITLE d/DESCRIPTION`
+
+* `TITLE` is any string of up to 15 characters.
+* `DESCRIPTION` is any string of up to 80 characters.
+
+Example:
+* You have just collected a stack of practice papers from your students and want to do something else before marking them but are scared you might forget. 
+  
+    * You can use `note add t/things to do d/mark practice papers` to add a new note with title `things to do` and description `mark practice papers` so that you can remind yourself later.
+     
+    * You should see a screen similar to the screen below when the above command is entered.
+    ![Adding a note](images/screenshots/Adding a note.png)
+
+
+#### 3.6.2 Editing a note `note edit`
+
+You can edit a note that is inside the notebook to update the information inside.
+
+Format: `note edit NOTE_INDEX [t/TITLE] [d/DESCRIPTION]`
+
+* Edits the note at the specified `NOTE_INDEX`
+
+Example:
+* You left a note to mark practice papers earlier and have just finished marking them. Now, before you take a break,
+ you want to remind yourself to review the marking before you can give it back to your students.
+    * Assuming the previous note was the first note, you can use `note edit 1 d/review marking`
+       to change the note to remind yourself to review the marking.
+   
+#### 3.6.3 Deleting a note `note delete`
+
+You can delete a note from the notebook when the information is no longer needed.
+
+Format: `note delete NOTE_INDEX`
+
+* Deletes the note at the specified `NOTE_INDEX`
+
+Example:
+* Your first note was to remind yourself to grab a cup of coffee. Now that you have bought your cup of coffee, the note is no longer needed.
+    * You can use `note delete 1` to delete the note.
 
 ## 4. Command summary
 
@@ -618,6 +670,9 @@ Action | Format, Examples
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
 **Schedule View** | `schedule m/VIEW_MODE d/DATE_TO_VIEW` <br> e.g. `schedule m/weekly d/2/11/2020`
 **Toggle View** | `toggle`
+**Add Note** | `note add t/TITLE d/DESCRIPTION`<br>e.g. `note add t/things to do d/buy coffee` 
+**Edit Note** | `note edit NOTE_INDEX [t/title] [d/DESCRIPTION]`<br>e.g. `note edit 1 d/mark practice papers` 
+**Delete Note** | `note delete NOTE_INDEX`<br>e.g. `note delete 1` 
 **Help** | `help`
 **Exit** | `exit`
 
