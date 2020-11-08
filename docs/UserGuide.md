@@ -357,7 +357,7 @@ Outcome:
 
 2. Employees who are can work on `Monday` or `Friday` will be listed in the Employee Directory inside the _Main View_.
 
-{Screenshot}
+![FindByTagCommandScreenshot](images/FindByTagCommandScreenshot.png)
 
 #### 3.6 Locating all employees who are available to work today: `c-today`
 
@@ -396,7 +396,7 @@ Outcome:
     c. The success message.
 2. The available manpower for today will be listed in the Employee Directory inside the _Main View_.
 
-{Screenshot}
+![FindByTagTodayCommandScreenshot](images/FindByTagTodayCommandScreenshot.png)
 
 #### 3.7 Locating all employees who are available to work tomorrow: `c-tomorrow`
 
@@ -435,7 +435,7 @@ Outcome:
     c. The success message.
 2. The available manpower for tomorrow will be listed in the Employee Directory inside the _Main View_.
 
-{Screenshot}
+![FindByTagTomorrowCommandScreenshot](images/FindByTagTomorrowCommandScreenshot.png)
 
 #### 3.8 Deleting a person : `c-delete`
 
@@ -496,7 +496,7 @@ Outcome:
 1. The _Result Display_ will show a success message with the employee's name that you have archived.
 2. Alex Yeoh's information will be removed from Employee Directory inside the _Main View_.
 
-{Screenshot}
+![ArchiveCommandScreenshot](images/ArchiveCommandScreenshot.png)
 
 #### 3.11 Archiving all employees : `c-archive-all`
 
@@ -528,7 +528,7 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. All employees will be removed from Employee Directory inside the _Main View_.
 
-{Screenshot}
+![ArchiveAllCommandScreenshot](images/ArchiveAllCommandScreenshot.png)
 
 #### 3.12 Listing all archived employees : `c-archive-list`
 
@@ -557,7 +557,7 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. All archived employees will be listed in Employee Directory inside the _Main View_.
 
-{Screenshot}
+![ArchiveListCommandScreenshot](images/ArchiveListCommandScreenshot.png)
 
 #### 3.13 Unarchiving an employee : `c-unarchive`
 Unarchives the specified employee from the archived employee list.
@@ -599,7 +599,7 @@ Outcome:
 2. Alex Yeoh's information will be removed from the archived employee list shown in Employee Directory inside
  the _Main View_.
 
-{Screenshot}
+![UnarchiveCommandScreenshot](images/UnarchiveCommandScreenshot.png)
 
 ### 4. Commands - General <a name="commands-general"></a>
 #### 4.1 Viewing help : `help`
