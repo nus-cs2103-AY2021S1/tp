@@ -19,9 +19,9 @@ public class FindByTagTodayCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Today is %2$s."
             + "\nThere are total %1$s employees available today."
-            + "\nThey are listed below in the employee directory pane.";
+            + "\nThey are listed below in the Employee Directory.";
     public static final String MESSAGE_NO_EMPLOYEE = "Today is %1$s."
-            + "\nBased on the tCheck's employee directory, no employee is available today.";
+            + "\nBased on the tCheck's Employee Directory, no employee is available today.";
 
     @Override
     public CommandResult execute(Model model) {

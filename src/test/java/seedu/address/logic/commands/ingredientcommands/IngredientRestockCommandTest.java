@@ -18,7 +18,8 @@ public class IngredientRestockCommandTest {
 
     public static final char LINE_SEPARATOR = '\n';
 
-    public static final String AMOUNT_NEEDED_WHEN_RESTOCK = "    Amount needed to reach the minimum stock level: ";
+    public static final String AMOUNT_NEEDED_WHEN_RESTOCK = "    Amount needed to reach its pre-determined "
+            + "default level: ";
 
     @Test
     public void execute_viewIngredientsInShortage_success() {
