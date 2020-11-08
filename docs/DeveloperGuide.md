@@ -554,6 +554,13 @@ The following activity diagram summarizes how data from the Json file is read an
 
 ---
 
+## Section 5.2 - Tutorial Group Features
+In this section you will find all features related to Tutorial Groups and how they are implemented.   
+   
+The commands are: `addTG`, `editTG`, `findTG` and `deleteTG`. 
+
+cuz
+
 ## **Section 5 - Documentation, logging, testing, configuration, dev-ops**
 
 -   [Documentation guide](Documentation.md)
@@ -566,7 +573,7 @@ The following activity diagram summarizes how data from the Json file is read an
 
 ## **Appendix A - Product Scope**
 **Target user profile**:
-
+-   Teaching Assistants(TAs) across NUS
 -   Teaches multiple modules
 -   Needs to manage multiple classes
 -   Needs to manage multiple students
@@ -579,7 +586,8 @@ The following activity diagram summarizes how data from the Json file is read an
 
 **Value proposition**: 
 -   Trackr allows teaching assistants to manage modules, tutorial groups, and students all in one place.
--   Trackr stores and retrives information faster and more efficiently than a typical mouse/GUI driven app.
+-   Trackr stores and retrives information faster and more efficiently than a typical mouse/GUI driven app. 
+-   Breeze through your admin work with Trackr, so you can focus on the work that really matters
 
 
 ## **Appendix B - User Stories**
