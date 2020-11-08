@@ -143,11 +143,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Adding a `Lesson`
+### Adding a lesson
 
 #### Implementation
 
-Creates a lesson via `Lesson` and`LessonCommand`.
+Adds a lesson to PlaNus via `Lesson` and`LessonCommand`.
 
 A `Lesson`,
 * Contains the following attributes:
