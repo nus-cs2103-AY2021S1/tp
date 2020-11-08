@@ -36,6 +36,10 @@ import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
 import seedu.stock.testutil.StockBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code AddCommand}.
+ */
 public class AddCommandTest {
     private Model model;
 
