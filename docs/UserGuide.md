@@ -309,8 +309,6 @@ Format: `edit title t:TITLE`
 Example: 
 - `edit title t:Murder case 29` updates the title of this case to “Murder case 29”.
 
-<div style="page-break-after: always;"></div>
-
 #### Edit description of the current case: `edit desc d:DESC`
 Edits the description of the current case if it has a description.
 You must add a description first.[(See Add Description)](#add-description-to-the-current-case-add-desc-ddesc)
@@ -318,6 +316,7 @@ You must add a description first.[(See Add Description)](#add-description-to-the
 Format: `edit desc d:DESC`
 - `DESC` cannot be blank.
 
+<div style="page-break-after: always;"></div>
 Example: 
 - `edit desc d:Kovan double murders` edits the description of the current case to “Kovan double murders”.
 
