@@ -534,7 +534,7 @@ Use case ends
 
 **MSS**
 1. User requests help
-2. McGymmy shows all commands and examples of command usages
+2. McGymmy shows all commands and the usage of each command
 
 Use case ends
 
@@ -558,30 +558,7 @@ Use case ends
    - 3a1. McGymmy shows an error message
     Use case resumes at step 2.
 
-**Use case: UC06 Add a macro command**
-
-**MSS**
-
-1. User creates a macro to execute two 'add' commands in sequence
-2. McGymmy adds the macro to the list of available commands
-3. User uses the newly added macro command
-4. McGymmy executes the two commands consecutively
-
-Use case ends
-
-**Extensions**
-
- - 1a. The format of the macro is invalid.
-    - 1a1. McGymmy shows an error message.
-
-Use case ends.
-
- - 4a. One of the executed commands encounter an error.
-    - 4a1. McGymmy shows the error message from that command, and displays the commands that successfully executed, and the commands that have yet to execute.
-
-Use case ends.
-
-**Use case: UC8 Import a McGymmy data file**
+**Use case: UC06 Import a McGymmy data file**
 
 **MSS**
 
@@ -598,7 +575,7 @@ Use case ends.
 
 Use case ends.
     
-**Use case: UC9 Export a McGymmy data file**
+**Use case: UC07 Export a McGymmy data file**
 
 **MSS**
 
@@ -609,10 +586,54 @@ Use case ends.
 
 **Extensions**
  - 1a. The path to directory is invalid.
-    - 1a1. McGymmy shows and error message.
+    - 1a1. McGymmy shows an error message.
 
 Use case ends.
     
+**Use case: UC08 Add a macro command**
+
+**MSS**
+
+1. User creates a macro to execute several commands in sequence
+2. McGymmy adds the macro to the list of available commands
+
+Use case ends
+
+**Extensions**
+
+ - 1a. The format of the macro is invalid
+    - 1a1. McGymmy shows an error message
+
+Use case ends.
+    
+**Use case: UC09 Execute a macro command**
+
+**MSS**
+
+1. User executes a macro command
+2. McGymmy executes the commands in the macro command as if the user entered them one by one
+
+Use case ends
+
+**Extensions**
+
+ - 1a. The macro does not exist
+    - 1a1. McGymmy shows the error message
+
+Use case ends.
+
+ - 2a. One of the executed commands encounter an error.
+    - 2a1. McGymmy shows the error message from that command, and displays the commands that successfully executed, and the commands that have yet to execute.
+
+Use case ends.
+
+**Use case: UC10 List all macro commands**
+
+ - Similar to **UC04** except McGymmy lists *macros* instead of *commands*.
+
+**Use case: UC11 Remove a macro**
+
+ - Similar to **UC03** except the user requests to list *macros* instead of *food items*, and requests to delete a *macro* instead of a *food item*.
 
 ### 9.4 Non-Functional Requirements
 
