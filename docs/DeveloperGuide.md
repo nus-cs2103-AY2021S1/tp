@@ -234,7 +234,7 @@ The purpose of implementing Internal File Explorer is to make tagging files easi
 relative paths (*e.g. the file name*). This can make tagging files easier especially when the user wants to tag multiple files 
 under the same directory.
 
-**Implementation of Internal File Explorer:**
+Implementation of Internal File Explorer:
 
 Model
 
@@ -243,9 +243,9 @@ that directory.
 
 UI
 
-`FileExplorerPanel` is the UI component for displaying Internal File Explorer. It is a `javafx.scene.control.TitledPane` with 
-its title as the current directory and its content as the list of children files. 
-We use `FileCard` in the `javafx.scene.control.ListView` of the file explorer panel to display information of children files.
+`FileExplorerPanel` is the UI component for displaying Internal File Explorer. It contains a `javafx.scene.control.Label` 
+to display the current directory and a `javafx.scene.control.ListView` for the list of children files. 
+`FileCard` is a UI component for displaying the information of a file, and it is used to show the children files in the ListView in `FileExplorerPanel`.
 
 Storage
 
