@@ -292,7 +292,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowStockView()) {
-                Stock stockToView = commandResult.getStockToShowNotes();
+                Stock stockToView = commandResult.getStockToView();
                 handleStockView(Optional.of(stockToView));
             } else {
                 // stock view window used before

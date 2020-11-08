@@ -4,13 +4,11 @@
 box Ui UI_COLOR_T2
 participant ":UiManager" as UiManager UI_COLOR_T3
 participant ":MainWindow" as MainWindow UI_COLOR_T3
-participant ":StatisticsWindow" as StatisticsWindow UI_COLOR_T3
+participant ":StockViewWindow" as StockViewWindow UI_COLOR_T3
+participant ":StockViewCard" as StockViewCard UI_COLOR_T3
 participant ":CommandBox" as CommandBox UI_COLOR_T3
 end box
 
-box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-end box
 
 [-> UiManager : start()
 activate UiManager
@@ -18,29 +16,33 @@ activate UiManager
 UiManager -> MainWindow : fillInnerParts()
 activate MainWindow
 
-MainWindow -> MainWindow : executeCommand(...)
+MainWindow -> MainWindow : executeCommand(commandText)
 activate MainWindow
 
-MainWindow -> LogicManager : execute(...)
-activate LogicManager
-
-LogicManager -> MainWindow
-deactivate LogicManager
-
-MainWindow -> MainWindow : handleStatistics(...)
+MainWindow -> MainWindow : handleStockView(...)
 activate MainWindow
 
-MainWindow --> StatisticsWindow : updateData(...)
-activate StatisticsWindow
+MainWindow -> MainWindow : updateStockView(...)
+activate MainWindow
 
-StatisticsWindow --> StatisticsWindow : updateDataForSourceStatistics(...)
-activate StatisticsWindow
+create StockViewWindow
+MainWindow -> StockViewWindow
+activate StockViewWindow
 
-StatisticsWindow --> StatisticsWindow
-deactivate StatisticsWindow
+loop stock details
+    create StockViewCard
+    StockViewWindow -> StockViewCard
+    activate StockViewCard
 
-StatisticsWindow --> MainWindow
-deactivate StatisticsWindow
+    StockViewCard -> StockViewWindow
+    deactivate StockViewCard
+end
+
+StockViewWindow --> MainWindow
+deactivate StockViewWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
 
 MainWindow --> MainWindow
 deactivate MainWindow
