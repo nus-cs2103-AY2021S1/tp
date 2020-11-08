@@ -26,8 +26,7 @@ public class Ingredient {
                     + "2. Ingredient quantity should be in format -NUMBER STRING e.g. -54.0 kilograms or "
                     + "-STRING e.g. -a pinch where NUMBER only accept "
                     + "up to 10 numbers, including a single forward slash to represent fractions or a single "
-                    + "full stop to represent decimal numbers and STRING accepts alphabets. "
-                    + " or \n"
+                    + "full stop to represent decimal numbers and STRING accepts alphabets. \n"
                     + "3. Ingredient quantity should be a number greater than 0.";
     public static final String HYPHEN_CONSTRAINTS = "Each ingredient has an optional field quantity that is "
             + "separated by a spaced followed by a hyphen.";
@@ -117,6 +116,7 @@ public class Ingredient {
      * Returns true if a given string is a valid quantity.
      */
     public static boolean isValidQuantity(String quantity) {
+        int maxLengthOfDigits = 10;
         int fullStopIndex = quantity.indexOf(".");
         int forwardSlashIndex = quantity.indexOf("/");
 
@@ -137,9 +137,42 @@ public class Ingredient {
         }
         String digits = digitsAndUnits[0];
         String units = digitsAndUnits[1];
-        return ((!digits.equals("") && StringUtil.isNonZeroUnsignedFloat(digits) && digits.length() < 11)
-                || digits.equals(""))
-                && units.matches(VALIDATION_REGEX_STRING);
+        boolean isGreaterThanZero = StringUtil.isNonZeroUnsignedFloat(digits);
+        boolean isWithinMaxLength = digits.length() <= maxLengthOfDigits;
+        boolean isDigitValid = digits.equals("") || (isGreaterThanZero && isWithinMaxLength);
+
+        return isDigitValid && units.matches(VALIDATION_REGEX_STRING);
+    }
+
+    /**
+     * Removes leading zeroes from integer, decimals and fractions.
+     * @param quantity
+     * @return String trimmed and without leading zeroes
+     */
+    public static String removeLeadingZeroesFromNumber(String quantity) {
+        String [] digitsAndUnits = getDigitsAndUnitsFromQuantity(quantity);
+        assert digitsAndUnits != null;
+        String digits = digitsAndUnits[0];
+        String units = digitsAndUnits[1];
+        int indexOfDecimalPoint = digits.indexOf(".");
+        int size = digits.length();
+        int index = 0;
+        for (int i = 0; i < size; i++) {
+            char c = digits.charAt(i);
+            if (c == '0') {
+                index++;
+            } else {
+                break;
+            }
+        }
+        boolean hasZeroOnLeftOfDecimalPoint = indexOfDecimalPoint != -1 && indexOfDecimalPoint == index;
+        if (index == 0) {
+            return quantity;
+        } else if (hasZeroOnLeftOfDecimalPoint) {
+            return digits.substring(index - 1).trim() + " " + units.trim();
+        } else {
+            return digits.substring(index).trim() + " " + units.trim();
+        }
     }
 
     private static String[] getDigitsAndUnitsFromQuantity(String quantity) {
@@ -148,6 +181,8 @@ public class Ingredient {
         boolean hasEncounteredUnits = false;
         for (int i = 0; i < quantity.length(); i++) {
             char c = quantity.charAt(i);
+            boolean isStringFormat = !Character.isDigit(c) && !Character.isWhitespace(c) && c != '.' && c != '/';
+
             if (hasEncounteredUnits) {
                 //Digit in STRING area
                 if (Character.isDigit(c)) {
@@ -155,19 +190,16 @@ public class Ingredient {
                 }
                 units.append(c);
                 //Quantity is in STRING format
-            } else if (i == 0 && !Character.isDigit(c) && !Character.isWhitespace(c)) {
+            } else if (i == 0 && isStringFormat) {
                 units.append(quantity);
                 break;
 
             //Quantity is in NUMBER STRING format
-            } else if (!Character.isDigit(c) && !Character.isWhitespace(c) && c != '.' && c != '/') {
+            } else if (isStringFormat) {
                 hasEncounteredUnits = true;
                 units.append(c);
-            } else if (Character.isDigit(c) || Character.isWhitespace(c) || c == '.' || c == '/') {
+            } else { //is NUMBER format
                 value.append(c);
-            } else {
-                //should never reach here
-                return null;
             }
         }
         return new String[]{value.toString().trim(), units.toString().trim()};

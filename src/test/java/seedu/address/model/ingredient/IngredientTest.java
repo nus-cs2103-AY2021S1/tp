@@ -50,4 +50,5 @@ public class IngredientTest {
         assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake",
                 "1/0/12 cups"))); // More than one occurence of forward slash
     }
+
 }

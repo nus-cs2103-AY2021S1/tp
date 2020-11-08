@@ -54,7 +54,7 @@ public class IngredientParser {
         requireNonNull(args);
         ArgumentMultimap argMultimapQuantity =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY);
-        //getting from an Optional.empty throws the no such elem exception
+        //Getting from an Optional.empty throws the no such element exception
         try {
             return ParserUtil.parseQuantity(argMultimapQuantity.getValue(PREFIX_QUANTITY).get());
         } catch (NoSuchElementException e) {
