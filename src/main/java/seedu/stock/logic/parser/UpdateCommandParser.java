@@ -21,7 +21,10 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.commands.UpdateCommand.UpdateStockDescriptor;
 import seedu.stock.logic.parser.exceptions.ParseException;
@@ -33,6 +36,7 @@ import seedu.stock.model.stock.SerialNumber;
  * Parses user input and creates a new update command.
  */
 public class UpdateCommandParser implements Parser<UpdateCommand> {
+    private static final Logger logger = LogsCenter.getLogger(UpdateCommandParser.class);
 
     /**
      * Parses {@code args} into an update command.
@@ -43,6 +47,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
      */
     @Override
     public UpdateCommand parse(String args) throws ParseException {
+        logger.log(Level.INFO, "Starting to parse update command");
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefixes(args);
         List<Prefix> allPrefixes = CliSyntax.getAllPossiblePrefixes();
@@ -82,6 +87,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         UpdateStockDescriptor updateStockDescriptor = new UpdateStockDescriptor();
 
         // Store the serial number provided
+        assert isSerialNumberPresent : "Serial number not entered by user";
         List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
         List<SerialNumber> serialNumbers = new ArrayList<>();
         for (String keyword : keywords) {
@@ -126,6 +132,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             throw new ParseException(UpdateCommand.MESSAGE_NOT_UPDATED);
         }
 
+        logger.log(Level.INFO, "Finished parsing update command successfully");
         return new UpdateCommand(updateStockDescriptor);
     }
 }

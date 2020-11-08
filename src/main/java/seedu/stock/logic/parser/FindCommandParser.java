@@ -10,9 +10,12 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.predicates.FieldContainsKeywordsPredicate;
@@ -29,6 +32,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
     private static final Prefix[]
             validPrefixesForFind = { PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER };
+    private static final Logger logger = LogsCenter.getLogger(FindCommandParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -36,6 +40,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
+        logger.log(Level.INFO, "Starting to parse find command");
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
@@ -58,6 +63,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<FieldContainsKeywordsPredicate> predicatesToTest =
                 parsePrefixAndKeywords(argMultimap, validPrefixesForFind);
 
+        logger.log(Level.INFO, "Finished parsing find command successfully");
         return new FindCommand(predicatesToTest);
     }
 

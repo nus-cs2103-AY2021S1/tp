@@ -64,7 +64,7 @@
 
                         <StackPane fx:id="stockViewWindowPlaceholder" VBox.vgrow="ALWAYS"
                                    styleClass="pane-with-border-chart">
-                            <PieChart fx:id="mainPie" title="No stock viewed"
+                            <PieChart fx:id="defaultStockViewPie" title="No stock viewed"
                                       xmlns="http://javafx.com/javafx"
                                       xmlns:fx="http://javafx.com/fxml">
                             </PieChart>
