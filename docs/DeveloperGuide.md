@@ -1052,7 +1052,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-#### B.1.2&ensp;Recalling commands previously entered
+#### B.1.2&ensp;Recall commands previously entered
 1. Recalling commands without any prior input
    1. Prerequisites: No commands executed since launch.
    
@@ -1085,7 +1085,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Command box remains empty.
    
    1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key.
-      Expected: `list` appears in the command box with the caret 1 en space after the last char of the text.
+      Expected: `list` appears in the command box with the caret after the last char of the text.
 
 1. Autocomplete command target
    1. Prerequisites: None.
@@ -1094,41 +1094,43 @@ testers are expected to do more *exploratory* testing.
       Expected: Command box remains empty.
    
    1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key, then `r` before pressing <kbd>tab</kbd>.
-      Expected: `list recipe` appears in the command box with the caret 1 en space after the last char of the text.
+      Expected: `list recipe ` appears in the command box with the caret after the last char of the text.
 
-1. Autocomplete user defined parameters without prior data
-   1. Prerequisites: Test cases do not attempt to complete recipe/ingredient whose names are stored in ChopChop. In this section, we will start off with `view ` in the command box `view&ensp;`.
+1. Autocomplete user defined parameters without recipes and ingredients
+   1. Prerequisites: No recipes in ChopChop. In this section, we will start off with `view recipe ` in the command box.
    
    1. Test Case: Pressing the <kbd>tab</kbd> key.
       Expected: Command box remains empty.
    
-   1. Test Case: Typing `v` followed by pressing <kbd>tab</kbd>, then .
-      Expected: `list recipe` appears in the command box with the caret 1 en space after the last char of the text.
-
-### B.2&ensp;Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases … }_
-
-### B.3&ensp;Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases … }_
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd>.
+      Expected: `view recipe ` remains in the command box with the caret 1 en space after the last char of the text.
+      
+1. Autocomplete user defined parameters
+   1. Prerequisites: Only 3 recipes `apple pie`, `apple slices` and `apple juice` starting with the letter `a` in ChopCHop. In this section, we will start off with `view recipe ` in the command box.
+   
+   1. Test Case: Pressing the <kbd>tab</kbd> key.
+      Expected: Command box remains empty.
+   
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd>.
+      Expected: `view recipe apple pie ` appears in the command box with the caret 1 en space after the last char of the text.
+      
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> twice.
+      Expected: `view recipe apple juice ` appears in the command box with the caret 1 en space after the last char of the text.
+      
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> thrice.
+      Expected: `view recipe apple slices ` appears in the command box with the caret 1 en space after the last char of the text.
+      
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> four times.
+      Expected: `view recipe apple pie ` appears in the command box with the caret 1 en space after the last char of the text.
+ 
+#### B.1.4&ensp;Undo commands previously entered
+1. Autocomplete command
+   1. Prerequisites: None
+   
+   1. Test Case: Pressing the <kbd>tab</kbd> key.
+      Expected: Command box remains empty.           
+      
+      
 
 
 
