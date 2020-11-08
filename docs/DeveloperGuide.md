@@ -69,9 +69,9 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts i.e. 
+The UI consists of a `MainWindow` that is made up of parts i.e.
 `CommandBox`, `ResultDisplay`, `StockListPanel`, `StatusBarFooter`, `Tabs`
-etc. 
+etc.
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
@@ -268,7 +268,7 @@ Some of the important operations implemented here are:
 
 * `UpdateCommandParser#parse()` <br>
   Parses the prefixes and their values attained from user input. This method will first check if all compulsory prefixes
-  are present. This method will then create a new `UpdateStockDescriptor` based on the prefixes values. 
+  are present. This method will then create a new `UpdateStockDescriptor` based on the prefixes values.
   A `ParseException` will be thrown if any compulsory prefixes are missing or invalid values.
 
 #### UpdateStockDescriptor
@@ -361,31 +361,31 @@ The mechanism for bookmark feature is facilitated by BookmarkCommandParser, Book
 
 #### BookmarkCommand
 
-`BookmarkCommand` class extends the `Command` interface. `BookmarkCommand` class is tasked with changing 
-the isBookmarked parameter of the stocks indicated in parameters of the command to true and creating a 
+`BookmarkCommand` class extends the `Command` interface. `BookmarkCommand` class is tasked with changing
+the isBookmarked parameter of the stocks indicated in parameters of the command to true and creating a
 new `CommandResult` to be displayed to the user in the user interface.
 
 Some important operations implemented here are:
-* `BookmarkCommand#execute()` Bookmarks the stock in the stockbook if the stock is not already bookmarked. 
+* `BookmarkCommand#execute()` Bookmarks the stock in the stockbook if the stock is not already bookmarked.
 Returns a new `CommandResult` to be displayed to the user
 in the user interface.
 
 ### BookmarkCommandParser
 
-`BookmarkCommandParser` class extends the `Parser` interface. `BookmarkCommandParser` class is tasked with 
-parsing the user inputs and generating a new `BookmarkCommand`. The main logic of the bookmark feature is 
+`BookmarkCommandParser` class extends the `Parser` interface. `BookmarkCommandParser` class is tasked with
+parsing the user inputs and generating a new `BookmarkCommand`. The main logic of the bookmark feature is
 encapsulated here.
 
-`BookmarkCommandParser` receives user input, and extracts the serialNumbers of the stocks to be bookmarked 
+`BookmarkCommandParser` receives user input, and extracts the serialNumbers of the stocks to be bookmarked
 from the arguments. The `parse` method of `BookmarkCommandParser` receives the user input, and extracts
-the serialNumbers of the stocks to be bookmarked. The `parse` method then returns a new `BookmarkCommand` 
-with the given serialNumbers as argument if the user input is a valid `BookmarkCommand` and throws a 
+the serialNumbers of the stocks to be bookmarked. The `parse` method then returns a new `BookmarkCommand`
+with the given serialNumbers as argument if the user input is a valid `BookmarkCommand` and throws a
 `ParseException` otherwise.
 
 Some important operations implemented here are:
 * `BookmarkCommandParser#parse()` returns BookmarkCommand to be executed.
 
-### Example Usage Scenerio 
+### Example Usage Scenerio
 
 Given Below is one example usage scenerio and explains how the add feature behaves at each step. It is assumed
 that the stock with serial number `fairprice1` exists in the stock book.
@@ -396,7 +396,7 @@ Step 1. The user enters `bookmark sn/fairprice1` into the command box.
 Step 2. The command word `bookmark` is extracted out in the `StockBookParser` and checked if it matches any
 valid command word.
 
-Step 3. `bookmark` is a valid command word. User input prefixes ,and their values are being passed down to 
+Step 3. `bookmark` is a valid command word. User input prefixes ,and their values are being passed down to
 `BookmarkCommandParser#parse()`
 
 Step 4. `BookmarkCommandParser#parse()` will check if the prefixes `sn/` exists as it is compulsory.
@@ -404,14 +404,14 @@ Step 4. `BookmarkCommandParser#parse()` will check if the prefixes `sn/` exists 
 Step 5. The prefix `sn/` exist. `BookmarkCommandParser#parse()` will extract the value of the prefix `sn/`
 which in this case is `fairprice1`.
 
-Step 6. `BookmarkCommandParser#parse()` returns a new `BookmarkCommand` with the set of serial numbers 
+Step 6. `BookmarkCommandParser#parse()` returns a new `BookmarkCommand` with the set of serial numbers
 containing`fairprice1`.
 
-Step 7. `Logic Manager` then calls `BookmarkCommand#execute()`. Inside the method, it will check if the 
+Step 7. `Logic Manager` then calls `BookmarkCommand#execute()`. Inside the method, it will check if the
 stock with the serial number `fairprice1` exists in the `Model`.
 
-Step 8. The stock with serial number `fairprice1` exists. The `BookmarkCommand#execute()` method checks 
-if the stock is already bookmarked. Since the stock is not bookmarked before, the `isBookmarked` boolean 
+Step 8. The stock with serial number `fairprice1` exists. The `BookmarkCommand#execute()` method checks
+if the stock is already bookmarked. Since the stock is not bookmarked before, the `isBookmarked` boolean
 of the stock is changed to `true`. And the stock list is being sorted to push the newly bookmarked stock
 to the top of the stocklist.
 
@@ -438,14 +438,14 @@ The following activity diagram summarizes what happens when the bookmark feature
 #### Aspect:How does a stock get bookmarked
 
 * Alternative 1(current implementation):make a temporary copy then replace original with copy
-    * Pros: Eliminates the possibility of original data getting lost. If a bookmarking is unsuccessful then only the copy 
-      will be affected and not the original data. 
-    * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy of the current 
+    * Pros: Eliminates the possibility of original data getting lost. If a bookmarking is unsuccessful then only the copy
+      will be affected and not the original data.
+    * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy of the current
       stock, update the copy, and replace the original with the copy.
 * Alternative 2:directly changing `Stock` isBookmarked field in `StockBook`
     * Pros: Will be significantly faster than making a copy since we directly change the `Stock` itself.
-    * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently undergoing the 
-      update to be corrupted as the original data that has been bookmarked will be lost, but some fields may not be already 
+    * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently undergoing the
+      update to be corrupted as the original data that has been bookmarked will be lost, but some fields may not be already
       updated due to the midway interruption.
 
 ### Unbookmark Feature
@@ -454,30 +454,30 @@ The mechanism for bookmark feature is facilitated by UnbookmarkCommandParser, Un
 
 #### UnbookmarkCommand
 
-`UnbookmarkCommand` class extends the `Command` interface. `UnbookmarkCommand` class is tasked with changing 
-the isBookmarked parameter of the stocks indicated in parameters of the command to true and creating a 
+`UnbookmarkCommand` class extends the `Command` interface. `UnbookmarkCommand` class is tasked with changing
+the isBookmarked parameter of the stocks indicated in parameters of the command to true and creating a
 new `CommandResult` to be displayed to the user in the user interface.
 
 Some important operations implemented here are:
-* `UnbookmarkCommand#execute()` Bookmarks the stock in the stockbook if the stock is bookmarked. 
+* `UnbookmarkCommand#execute()` Bookmarks the stock in the stockbook if the stock is bookmarked.
 Returns a new `CommandResult` to be displayed to the user in the user interface.
 
 ### BookmarkCommandParser
 
-`UnbookmarkCommandParser` class extends the `Parser` interface. `UnbookmarkCommandParser` class is tasked with 
-parsing the user inputs and generating a new `UnbookmarkCommand`. The main logic of the bookmark feature is 
+`UnbookmarkCommandParser` class extends the `Parser` interface. `UnbookmarkCommandParser` class is tasked with
+parsing the user inputs and generating a new `UnbookmarkCommand`. The main logic of the bookmark feature is
 encapsulated here.
 
-`UnbookmarkCommandParser` receives user input, and extracts the serialNumbers of the stocks to be bookmarked 
+`UnbookmarkCommandParser` receives user input, and extracts the serialNumbers of the stocks to be bookmarked
 from the arguments. The `parse` method of `UnbookmarkCommandParser` receives the user input, and extracts
-the serialNumbers of the stocks to be bookmarked. The `parse` method then returns a new `UnbookmarkCommand` 
-with the given serialNumbers as argument if the user input is a valid `UnbookmarkCommand` and throws a 
+the serialNumbers of the stocks to be bookmarked. The `parse` method then returns a new `UnbookmarkCommand`
+with the given serialNumbers as argument if the user input is a valid `UnbookmarkCommand` and throws a
 `ParseException` otherwise.
 
 Some important operations implemented here are:
 * `UnbookmarkCommandParser#parse()` returns BookmarkCommand to be executed.
 
-### Example Usage Scenerio 
+### Example Usage Scenerio
 
 Given Below is one example usage scenerio and explains how the add feature behaves at each step. It is assumed
 that the stock with serial number `fairprice1` exists in the stock book and is already bookmarked.
@@ -488,7 +488,7 @@ Step 1. The user enters `unbookmark sn/fairprice1` into the command box.
 Step 2. The command word `unbookmark` is extracted out in the `StockBookParser` and checked if it matches any
 valid command word.
 
-Step 3. `bookmark` is a valid command word. User input prefixes ,and their values are being passed down to 
+Step 3. `bookmark` is a valid command word. User input prefixes ,and their values are being passed down to
 `UnbookmarkCommandParser#parse()`
 
 Step 4. `UnbookmarkCommandParser#parse()` will check if the prefixes `sn/` exists as it is compulsory.
@@ -496,14 +496,14 @@ Step 4. `UnbookmarkCommandParser#parse()` will check if the prefixes `sn/` exist
 Step 5. The prefix `sn/` exist. `UnbookmarkCommandParser#parse()` will extract the value of the prefix `sn/`
 which in this case is `fairprice1`.
 
-Step 6. `UnbookmarkCommandParser#parse()` returns a new `UnbookmarkCommand` with the set of serial numbers 
+Step 6. `UnbookmarkCommandParser#parse()` returns a new `UnbookmarkCommand` with the set of serial numbers
 containing`fairprice1`.
 
-Step 7. `Logic Manager` then calls `UnbookmarkCommand#execute()`. Inside the method, it will check if the 
+Step 7. `Logic Manager` then calls `UnbookmarkCommand#execute()`. Inside the method, it will check if the
 stock with the serial number `fairprice1` exists in the `Model`.
 
-Step 8. The stock with serial number `fairprice1` exists. The `UnbookmarkCommand#execute()` method checks 
-if the stock is already bookmarked. Since the stock is not bookmarked before, the `isBookmarked` boolean 
+Step 8. The stock with serial number `fairprice1` exists. The `UnbookmarkCommand#execute()` method checks
+if the stock is already bookmarked. Since the stock is not bookmarked before, the `isBookmarked` boolean
 of the stock is changed to `false`. And the stock list is being sorted to push the newly unbookmarked stock
 to its original index in the stocklist.
 
@@ -530,14 +530,14 @@ The following activity diagram summarizes what happens when the bookmark feature
 #### Aspect:How does a stock get bookmarked
 
 * Alternative 1(current implementation):make a temporary copy then replace original with copy
-    * Pros: Eliminates the possibility of original data getting lost. If a unbookmarking is unsuccessful then only the copy 
-      will be affected and not the original data. 
-    * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy of the current 
+    * Pros: Eliminates the possibility of original data getting lost. If a unbookmarking is unsuccessful then only the copy
+      will be affected and not the original data.
+    * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy of the current
       stock, update the copy, and replace the original with the copy.
 * Alternative 2:directly changing `Stock` isBookmarked field in `StockBook`
     * Pros: Will be significantly faster than making a copy since we directly change the `Stock` itself.
-    * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently undergoing the 
-      update to be corrupted as the original data that has been bookmarked will be lost, but some fields may not be already 
+    * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently undergoing the
+      update to be corrupted as the original data that has been bookmarked will be lost, but some fields may not be already
       updated due to the midway interruption.
 
 ### Suggestion Feature
@@ -803,7 +803,7 @@ In all possible editing operations, the value `D(i, j)` can only change to:
 Since we want to find the minimum edit distance, <br>
 `D(i, j) = min(D(i - 1, j) + 1, D(i, j - 1) + 1, D(i - 1, j - 1) + 3)`.
 
-Since it is a recursion, the algorithm is implemented using bottom-up dynamic programming to improve speed 
+Since it is a recursion, the algorithm is implemented using bottom-up dynamic programming to improve speed
 by remembering already computed states. The current implementation do the following steps:
 
 1. Creates a table to store computed states (2D `dp` array).
@@ -844,13 +844,10 @@ There are two commands users can use:
 * `findexact` - Stock that matches ALL keywords of ALL fields will be displayed.
 
 Find and FindExact features allow search for four fields:
-
-Field         | Prefix
--------| -------
-Name          |   n/
-Source        |   s/
-Serial Number |   sn/
-Location      |   l/
+* Name
+* Serial Number
+* Source
+* Location stored in warehouse
 
 #### Mechanism
 The mechanism for the Find feature is facilitated by classes `FindCommand`(or `FindExactCommand`),
@@ -871,7 +868,11 @@ The list of `FieldContainsKeywordsPredicate` is obtained from parsing
 the user input, to produce either of the following predicates shown
 in the table below, for each `Prefix` and keywords pair.
 
+<<<<<<< HEAD
 <div markdown="span" class="alert alert-info" markdown="1">:information_source: 
+=======
+<div markdown="span" class="alert alert-info">:information_source:
+>>>>>>> c984a70b161de21ef1eb120035acf6209062a7b2
 
 **Note:**
 The user input should contain at least one `Prefix` and keywords to search.
@@ -880,12 +881,21 @@ is generated for the specific `Prefix`.
 
 </div>
 
+<<<<<<< HEAD
 Prefix | FieldContainsKeywordsPredicate
 --------|------------------
 n/<keywords> | NameContainsKeywordsPredicate
 s/<keywords> | SourceContainsKeywordsPredicate
 l/<keywords> | LocationContainsKeywordsPredicate
 sn/<keywords>| SerialNumberContainsKeywordsPredicate
+=======
+Prefix             | FieldContainsKeywordsPredicate
+-------------------| --------------------------------------
+n/<keywords>       | NameContainsKeywordsPredicate
+s/<keywords>       | SourceContainsKeywordsPredicate
+l/<keywords>       | LocationContainsKeywordsPredicate
+sn/<keywords>      | SerialNumberContainsKeywordsPredicate
+>>>>>>> c984a70b161de21ef1eb120035acf6209062a7b2
 
 
 `FindCommandParser` implements the following important operations:
@@ -921,7 +931,7 @@ of the `FindCommand` into a composed `Predicate<Stock>`.
 
 `Find` feature requires the `Stock` to fulfill only one
 `FieldContainsKeywordsPredicate` in the list for `Stock`
-to be displayed. The mechansim used to combine the predicates
+to be displayed. The mechanism used to combine the predicates
 into a composed Predicate<Stock> for `Find` is Java 8 Predicate method,
 Predicate.or().
 
@@ -1075,7 +1085,7 @@ at least one of `a`, `this`, `is`, `banana`.)
 ### Note Feature
 
 #### Description
-The Note feature allows users to add and delete notes from a stock. 
+The Note feature allows users to add and delete notes from a stock.
 
 There are two commands users can use:
 * `note` - Adds a note to the stock specified by the stock's serial number.
@@ -1087,14 +1097,14 @@ Prefixes used in the Note feature:
 Command       | Fields       | Prefixes
 --------------| -------------| ---------------------------
 `note`        | Serial Number<br>Note | sn/<br>nt/
-`notedelete`  | Serial Number<br>Note Index | sn/<br>ni/  
+`notedelete`  | Serial Number<br>Note Index | sn/<br>ni/
 
 
 #### Mechanism for Adding Notes
 The mechanism for adding notes is facilitated by classes `NoteCommand`, and `NoteCommandParser`.
 
 #### NoteCommandParser
-The `NoteCommandParser` class implements the `Parser` interface. 
+The `NoteCommandParser` class implements the `Parser` interface.
 `NoteCommandParser` class is tasked with parsing the user inputs
 to generate a `NoteCommand` with arguments `SerialNumber` of the stock
 and `Note` to add.
@@ -1114,7 +1124,7 @@ an error message is shown to prompt the user that Warenager cannot find the `Ser
  Parses the user input to produce a `NoteCommand`.
 
 #### NoteCommand
-The `NoteCommand` class extends the `Command` abstract class. The `NoteCommand` class is tasked with creating a new `CommandResult` that represents the result of the execution of a `NoteCommand`. 
+The `NoteCommand` class extends the `Command` abstract class. The `NoteCommand` class is tasked with creating a new `CommandResult` that represents the result of the execution of a `NoteCommand`.
 
 The construction of a `NoteCommand` takes in a `Serial Number` of stock and a `Note` to add to the stock.
 
@@ -1146,7 +1156,7 @@ The command word matches `COMMAND_WORD`: `note` in the `NoteCommand` class.
 Step 4. The remaining user input is passed to the `NoteCommandParser` where within the
 `NoteCommandParser#parse()` method, the respective `ParserUtil#parseSerialNumber()` and
 `ParserUtil#parseNote` methods are called to generate a `Serial Number` of the stock
-and `Note` to add to stock. 
+and `Note` to add to stock.
 
 Step 5. The `NoteCommandParser#parse()` method then returns a `NoteCommand`,
 constructed with the `Serial Number` of stock and `Note` to add to stock. 
@@ -1159,15 +1169,6 @@ Step 7. The result of the note command is stored in the returning `CommandResult
 and displayed with `ResultDisplay`.
 
 Step 8. User views the new `StockListPanel` with the filtered stock list.
-
-#### Sequence Diagram
-The following sequence diagram shows how the Note feature (adding of note) works for Example 1:
-![Note Feature Sequence Diagram](images/NoteFeatureSequenceDiagram.png)
-
-#### Activity Diagram
-The following activity diagram summarizes what happens when
- the Note feature (adding of note) is triggered:
-![Note Feature Activity Diagram](images/NoteFeatureActivityDiagram.png)
 
 #### Mechanism for Deleting Notes
 The mechanism for deleting notes is facilitated by classes `NoteDeleteCommand`, `NoteDeleteCommandParser` and `NoteIndex`.
@@ -1214,11 +1215,11 @@ is generated in `NoteDeleteCommandParser` from the parsing of user input.
 
 `NoteIndex` implements the following important operations:
 
-* `NoteIndex#isValidNoteIndex() -
+* `NoteIndex#isValidNoteIndex()` -
  Checks the input and returns true if the given input is a valid note index
-* `NoteIndex#fromZeroBased() -
+* `NoteIndex#fromZeroBased()` -
  Creates a new NoteIndex using a zero-based index.
-* `NoteIndex#fromOneBased() - 
+* `NoteIndex#fromOneBased()` - 
  Creates a new NoteIndex using a one-based index.
 
 #### Example Usage Scenario (Deleting Note(s))
@@ -1268,13 +1269,19 @@ and the `Model` is updated with the stock with the deleted note.
 Steps 7 and 8 are the same as `Example 1: Deleting a note at index 1 from a stock with Serial Number "ntuc1"` above.
 
 #### Sequence Diagram
-The following sequence diagram shows how the NoteDelete feature works for Example 1:
-![NoteDelete Feature Sequence Diagram](images/NoteDeleteFeatureSequenceDiagram.png)
+The following sequence diagram shows how the Note feature (adding of note) works for Example 1:
+![Note Feature Sequence Diagram](images/NoteFeatureSequenceDiagram.png)
+
+Sequence diagram for deleting note(s) will not be shown as it is similar to that of the adding of note,
+with the replacement of certain methods meant for the adding of note to those meant for the deleting of note.
 
 #### Activity Diagram
 The following activity diagram summarizes what happens when
- the NoteDelete feature is triggered:
-![NoteDelete Feature Activity Diagram](images/NoteDeleteFeatureActivityDiagram.png)
+ the Note feature (adding of note) is triggered:
+![Note Feature Activity Diagram](images/NoteFeatureActivityDiagram.png)
+
+Activity diagram for deleting note(s) will not be shown as it is similar to that of the adding of note,
+with the replacement of adding to deleting.
 
 #### Design Consideration
 The below aspects are the design considerations for the Note feature in adding and deleting notes from stocks.
@@ -1787,6 +1794,168 @@ The following activity diagram summarizes what happens when the sort feature is 
 * **Alternative 2:** only allow ascending order.
   * Pros: A shorter command format for user to type in. Only need to specify the field to be sorted.
   * Cons: Gives less flexibility to the user. Less variation in behaviors.
+
+### Stock View Feature
+
+#### Description
+The Stock View feature allows users to view the details of a single stock under the `Stock View` tab. 
+
+The command that users can use is:
+* `stockview` - Displays the details of the stock, specified by its serial number, under the `Stock View` tab.
+
+Command       | Field        | Prefix
+--------------| -------------| ---------------------------
+`stockview`   | Serial Number | sn/
+
+Details of the stock that are displayed are:
+* Name
+* Serial Number
+* Source
+* Quantity (Quantity left, Low quantity)
+* Location stored in warehouse
+* Notes
+
+#### Mechanism
+The backend mechanism for viewing a stock is facilitated by classes `StockViewCommand`, `StockViewCommandParser`.
+
+The frontend mechanism for viewing a stock is mainly facilitated by these classes:
+* the controller class `StockViewCard` for StockViewCard.fxml
+* the controller class `StockViewWindow` for StockViewWindow.fxml
+
+The choice of display is JavaFX `ListView` in `StockViewWindow` of the details of stock, where graphics are displayed
+using containers `StockViewCard` for each field of stock.
+
+#### StockViewCommandParser
+The `StockViewCommandParser` class implements the `Parser` interface. 
+`StockViewCommandParser` class is tasked with parsing the user inputs
+to generate a `StockViewCommand` with the `SerialNumber` of the stock.
+
+The `SerialNumber` is obtained from parsing the user input.
+Upon successful parsing, `StockViewCommand` object generated will then be passed on to the `LogicManager` to be executed.
+
+If the user inputs do not conform to the valid format specified for the `StockViewCommand`,
+an exception is thrown and no `StockViewCommand` object will be created.
+
+If the `Serial Number` of stock is not found in Warenager's data,
+an error message is shown to prompt the user that Warenager cannot find the `Serial Number` given.
+
+`StockViewCommandParser` implements the following important operations:
+
+* `StockViewCommandParser#parse()` -
+ Parses the user input to produce a `StockViewCommand`.
+
+#### StockViewCommand
+The `StockViewCommand` class extends the `Command` abstract class. The `StockViewCommand` class is tasked with creating a new `CommandResult` that represents the result of the execution of a `StockViewCommand`. 
+
+The construction of a `StockViewCommand` takes in a `Serial Number` of stock to be viewed.
+
+When a `StockViewCommand` is executed, a `CommandResult` is constructed with the status message,
+showing the successful viewing of the stock.
+Upon successful execution of `StockViewCommand`, Warenager will jump to the `Stock View` tab, where the details of
+the stock is displayed.
+This command does not change the `Model`.
+
+`StockViewCommand` implements the following important operations:
+
+* `StockViewCommand#execute()` -
+Executes the search and returns the result message of the search.
+
+#### StockViewWindow
+
+The `StockViewWindow` class is the controller class for StockViewWindow.fxml. The `StockViewWindow` is tasked with
+creating a new `StockViewCard` for each detail of the stock.
+
+If there is a stock currently being viewed, `MainWindow#updateStockView()` will generate a new `StockViewWindow`
+with the updated details of the stock.
+
+It is to note that the `StockViewWindow` also implements a `StockViewCell` class which extends `ListCell`, where the
+graphics of the details of the Stock are displayed using the `StockViewCard`. Within `StockViewCell`, the method `StockViewCell#updateItem()` is implemented, which sets the graphics displayed by `StockViewCell`.
+
+`StockViewWindow` implements the following important operations:
+
+* `StockViewWindow#getStockToView()` -
+ Returns the Stock to be viewed from the updated stock list.
+
+* `StockViewWindow#upperCaseFirstCharacter()` -
+ Upper cases the first character of the string representation of the detail of the Stock
+ to the format to be displayed in Stock View tab.
+
+#### StockViewCard
+An UI component that displays information of a field of a `Stock`.
+A field is either: Name, Serial Number, Source, Quantity, Location stored in warehouse,
+or Notes represented as String.
+
+The `StockViewCard` is used in the setting of graphics in `StockViewCell` in `StockViewWindow`.
+
+#### Example Usage Scenario
+Given below are some example usage scenarios and how the stock view feature mechanism behaves
+at each step.
+
+**Example 1: Viewing a stock with Serial Number "ntuc1"**
+
+Step 1. The user enters `stockview sn/ntuc1`.
+
+Step 2. `MainWindow#executeCommand()` is called with the user input.
+Within this method, `LogicManager#execute()` is called with the
+user input to obtain a `CommandResult`.
+
+Step 3. The command word `stockview` is extracted out in `StockBookParser`.
+The command word matches `COMMAND_WORD`: `stockview` in the `StockViewCommand` class.
+
+Step 4. The remaining user input is passed to the `StockViewCommandParser` where within the
+`StockViewCommandParser#parse()` method, the `ParserUtil#parseSerialNumber()`  method is called
+to return a valid `Serial Number` of the stock. 
+
+Step 5. The `StockViewCommandParser#parse()` method then returns a `StockViewCommand`,
+constructed with the `Serial Number` of stock. 
+
+Step 6. When `MainWindow#fillInnerParts()` is called by `UIManager#start()`, `MainWindow#executeCommand()` is called.
+The `LogicManager#execute()` then calls `StockViewCommand#execute()` method. 
+The result of the stock view command and the `Stock` to view, is stored in the
+returning `CommandResult`object and displayed with `ResultDisplay`. 
+
+Step 7. Within `MainWindow#executeCommand()`, `MainWindow#handleStockView()` is called. Within this method call, `MainWindow#updateStockView()` which creates a `StockViewWindow` and update the details of the Stock
+to be displayed in the **Stock View** tab.
+
+Step 8. Warenagerr jumps to the **Stock View** tab, where the details of the Stock are displayed.
+
+#### Sequence Diagram
+The following sequence diagram shows how the Logic of Stock View feature works for Example 1:
+![Stock View Feature Logic Sequence Diagram](images/StockViewLogicSequenceDiagram.png)
+
+The following sequence diagram shows how the UI of Stock View feature works for Example 1:
+![Stock View Feature UI Sequence Diagram](images/StockViewUISequenceDiagram.png)
+
+#### Activity Diagram
+The following activity diagram summarizes what happens when the Stock View feature is triggered:
+![Stock View Feature Activity Diagram](images/StockViewActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: Retention of information in the Stock View tab
+* **Alternative 1 (current implementation):** When user clicks away from the Stock View tab, information
+of the stock that was viewed is retained in the Stock View tab. <br>
+ * Pros: User is able to click back to the Stock View tab to re-view the information that was viewed before.
+User does not have to retype the command to view the same stock.
+ * Cons: User may want to clean away the Stock View tab after viewing. 
+
+* **Alternative 2:** When user clicks away from the Stock View tab, the information displayed in the
+Stock View tab is cleared.
+ * Pros: User is able to have a cleaned Stock View tab, after leaving the Stock View tab.
+ * Cons: User is unable to refer back to the information that was viewed previously and would have to retype the command.
+ 
+##### Aspect: Updating of information of stock of the stock viewed
+* **Alternative 1 (current implementation):** For any updates to the stock that is being viewed,
+the information displayed under 'Stock View' tab is automatically updated. <br>
+ * Pros: When user clicks back to the 'Stock View' tab after updating, adding notes or deleting notes
+from the stock that was viewed, the stock's information displayed in the Stock View tab is updated.
+ * Cons: User may want to view the information that was before the update.
+ 
+* **Alternative 2:** For any updates to the stock that is being viewed,
+the information displayed under 'Stock View' tab is not updated. <br>
+ * Pros: User is able to see the information before the update.
+ * Cons: If user wants to view the information after the update, user has to retype the command to view
+the same stock.
 
 ### Print Feature
 
@@ -2933,11 +3102,11 @@ testers are expected to do more *exploratory* testing.
       Expected: No stock found due to empty input for field name.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
-### Updating a stock
+### Updating stocks
 
 1. Updating a stock from the inventory.
 
-    1. Prerequisites: Multiple stocks in the list. Stocks exists in inventory.
+    1. Prerequisites: Multiple stocks in the list. `Flower11` and `Flower12` stocks exists in inventory.
 
     1. Test case: `update sn/FLower11 iq/+50`<br>
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50.<br>
@@ -2968,6 +3137,62 @@ testers are expected to do more *exploratory* testing.
        Expected: The stock with serial number Flower11 and Flower12 will have an increase of quantity by 50, a new name Rose,
        and a new location Vase3.<br>
        Details of the updated stock is shown in the status message.
+     
+    1. Test case: `update` <br>
+       Expected: No stock updated due to invalid command format.
+       Error details shown in the status message. Suggestion message will be shown too.
+    
+    1. Test case: `update sn/Flower13` <br>
+       Expected: No stock updated due to stock not found.
+       Error details shown in the status message. Suggestion message will be shown too.
+    
+    1. Test case: `update sn/Flower11 sn/Flower13 n/Rose` <br>
+       Expected: No stock updated due to stock `Flower13` not found.
+       Error details shown in the status message. Suggestion message will be shown too.
+
+### Sorting stocks
+
+1. Sorting a stock from the inventory.
+
+    1. Prerequisites: Multiple stocks in the list.
+
+    1. Test case: `sort o/ascending by/name`<br>
+       Expected: The stocks in inventory will be sorted lexicographically by name in ascending order.
+       Success message will be shown.
+       
+    1. Test case: `sort o/ascending by/quantity`<br>
+       Expected: The stocks in inventory will be sorted numerically by quantity in ascending order.
+       Success message will be shown.
+    
+    1. Test case: `sort o/descending by/serialnumber`<br>
+       Expected: The stocks in inventory will be sorted lexicographically by serial number in descending order.
+       Success message will be shown.
+    
+    1. Test case: `sort o/descending by/lowquantity`<br>
+       Expected: The stocks in inventory will not be sorted since `lowquantity` is an invalid field.
+       Error details shown in the status message. Suggestion message will be shown too.
+       
+    1. Test case: `sort o/random by/location`<br>
+       Expected: The stocks in inventory will not be sorted since `random` is an invalid order.
+       Error details shown in the status message. Suggestion message will be shown too.
+
+### Suggestion message
+
+1. Generates suggestion message for invalid commands.
+
+    1. Prerequisites: An invalid command format is entered.
+
+    1. Test case: `sor o/ascending by/name`<br>
+       Expected: Unknown command error will be shown, along with the suggestion `sort o/ascending by/name` and
+       `sort` command message usage.
+       
+    1. Test case: `add n/apple s/fairprice q/1000 lq/100`<br>
+       Expected: Invalid command format error will be shown, along with the suggestion 
+       `add n/apple s/fairprice q/1000 l/<location> lq/100` and `add` command message usage.
+    
+    1. Test case: `fin n/apple`<br>
+       Expected: Unknown command error will be shown, along with the suggestion `find n/apple`
+       and `find` command message usage.
 
 ### Generate statistics
 
@@ -3160,3 +3385,42 @@ testers are expected to do more *exploratory* testing.
     1. While not in a Warenager session, corrupt the json files under `/data` directory. Then start Warenager.<br>
        Expected: Warenager senses the corrupted files, replaces them with empty content and functions as per normal.
 
+## **Appendix: Effort**
+
+### Difficulty Level
+
+To our team, Warenager is a very challenging project and in terms of difficulty level, it ranks higher than AB3 itself.
+Warenager is a morph of AB3 and not only did we changed some existing features of AB3, we also augmented Warenager with
+new features that didn't exist before in AB3. Some of the features we added that are not available in AB3 are
+suggestion feature, statistics feature, note features, bookmark and highlight stocks, and sorting feature.
+
+Our contributions to the project also justifies our claim about the difficulty level. Note that AB3 contains around 6
+KLoC. Compared to AB3, based on the [project's code contribution](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=T15-3&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship) in RepoSense,
+the total lines of code that we added or modified is around 24 KLoc, which is four times the amount of code in AB3.
+
+### Challenges
+* Team meetings are held online because of COVID-19.
+* Division of tasks sometimes not too effective since some tasks may depends on other tasks.
+* New features added to Warenager are challenging to implement.
+* Standardizing documentation.
+* Adhering to internal deadlines set, especially for hard to implement features.
+* Fixing bugs, especially those reported by other teams.
+* Adhering as best as we could, to the coding style of `CS2103T`.
+* Adhering to the forking workflow from the start of the project until the end.
+* Internal testing of product, to ensure Warenager will work properly.
+* Changing the UI of AB3 to fit Warenager.
+
+### Effort Required
+
+We can estimate that the effort required for creating Warenager is a lot more than what is required to build AB3 from
+scratch. As stated above, we did not only changed existing features of AB3, but also augmented new features not found
+on AB3 into Warenager. The new features we implemented has their own notable challenges.
+
+In terms of work and contribution, as stated above, our whopping 24 KLoC which is around four times the amount of code
+existing in AB3, justifies our claim that the effort to create Warenager is more than the effort to create AB3.
+
+### Achievements
+* One of the top 10 groups in terms of code contribution in [RepoSense](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=totalCommits%20dsc&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship).
+* Created a new UI for Warenager that is significantly different from AB3's UI.
+* Implemented all features including the new features augmented to Warenager.
+* Finished every milestones on time.
