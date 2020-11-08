@@ -50,7 +50,7 @@ own class instead. This would allow us to be better able to implement our `Multi
   or to merge together with the original delete by index command. After much deliberation, I decided to merge both functionalities together into
   the delete command. As a result, I had to tweak the `DeleteCommand` and `DeleteCommandParser` classes accordingly to ensure proper implementation of
   both features. I also had to design extensive tests to make sure that there wouldn't be any problems from this added enhancement.
- 
+
 #### 2.4 Find command [enhancement]
 
   * What it does: Allows the user to search for flashcards based on their tags
@@ -110,4 +110,3 @@ The following describes the various other contributions that I have made to the 
 
 * **Tools**:
   * Learned how to use plantuml and taught my teammates accordingly
-  
