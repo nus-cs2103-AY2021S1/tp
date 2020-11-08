@@ -508,6 +508,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `FaculType` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Listing all contacts and modules**
+
+**MSS**
+
+1.  User requests to list all contacts and modules.
+2.  FaculType shows all contacts and modules in the active semester.
+    
+    Use case ends.
+
+**Use case: Listing all contacts**
+
+**MSS**
+
+1.  User requests to list all contacts.
+2.  FaculType shows all contacts.
+    
+    Use case ends.
+
+**Use case: Listing all modules**
+
+**MSS**
+
+1.  User requests to list all modules.
+2.  FaculType shows all modules in the active semester.
+    
+    Use case ends.
+    
 **Use case: Add a contact**
 
 **MSS**
@@ -828,6 +855,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Use case: Resetting data**
+
+**MSS**
+
+1.  User requests to reset data.
+2.  FaculType deletes all contacts and modules.
+    
+    Use case ends.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -881,7 +917,97 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+       
+### Listing all contacts 
 
+1. Test case: `clist`
+   Expected: All contacts are shown in the contact list.
+    
+1. Test case: `clist x`
+   Expected: Contact list remain in their original state. Error details shown in the status message.
+   
+### Listing all modules
+
+1. Test case: `mlist`
+   Expected: All modules in the active semester are shown in the module list.
+    
+1. Test case: `mlist x`
+   Expected: Module list remain in their original state. Error details shown in the status message.
+
+### Adding a contact
+
+1. Adding a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `list` or `clist` command.
+   
+   1. Test case: `add n/Alice Liddel p/987654321 e/aliceliddel@example.com d/FASS o/AS5-04-03`<br>
+      Expected: The contact is added as the last index in the contact list. Details of the added contact shown in the
+       status message.
+       
+   1. Test case: `add n/Alice Liddel p/9876**** e/aliceliddel@example.com d/FASS o/AS5-04-03`<br>
+         Expected: The contact is not added. Error details shown in the status message.
+
+   1. Test case: `add n/Alice Liddel`<br>
+      Expected: No contact is added. Error details shown in the status message. 
+
+   1. Other incorrect delete commands to try: `add`, `add n/Alice * p/8765432 e/aliceliddel@example.com d/FASS o/As5
+   -04-03`, `...` <br>
+      Expected: Similar to previous.
+
+1. Adding a contact while contacts are being filtered
+    
+   1. Prerequisites: Filter contacts by attributes using the `find` command.
+
+   1. Test cases similar to previous.
+   Expected: similar to each respective test cases but the contact list is reset to show all contacts.
+   
+1. Adding a contact with identical attributes
+
+   1. Prerequisites: There exists a contact in the contact list.
+   Example: <br>
+   `name: Alex Yeoh`<br>
+   `phone: 987654321` <br>
+   `email: alexyeoh@example.com`<br>
+   `department: Computing`<br>
+   `office: COM2-03-04`
+   
+   1. Test case: `add n/Alex Yeoh p/87654321 e/alexyeoh@example.com d/Computing o/COM2-03-04`
+   Expected: The contact is added as the last index in the list. Details of the added contact shown in the status
+    message.
+    
+   1. Test case: `add n/Alex Yeoh p/987654321 e/alexyeoh@example.com d/FASS o/AS5-04-03`
+   Expected: The contact is not added. Error details shown in the status message.
+   
+   
+### Adding a module
+
+1. Adding a module while all modules are being shown
+
+   1. Prerequisites: List all contacts using the `list` or `mlist` command.
+   
+   1. Test case: `addmod m/CS2103 n/Software Engineering`<br>
+      Expected: The module is added as the last index in the module list of the active semester. Details of the added
+       module shown in the status message.
+       
+   1. Test case: `addmod m/CS2103`<br>
+         Expected: The module is added as the last index in the contact list. Details of the added contact shown in the
+          status message.
+
+   1. Test case: `add n/Alice Liddel`<br>
+      Expected: No contact is added. Error details shown in the status message. 
+
+   1. Other incorrect delete commands to try: `add`, `add n/Alice * p/8765432 e/aliceliddel@example.com d/FASS o/As5
+   -04-03`, `...` <br>
+      Expected: Similar to previous.
+
+1. Deleting a contact while contacts are being filtered
+    
+   1. Prerequisites: Filter contacts by attributes using the `find` command.
+
+   1. Test cases similar to previous.
+   Expected: similar to each respective test cases but the contact list is reset to show all contacts.
+
+   
 ### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown
@@ -903,9 +1029,52 @@ testers are expected to do more *exploratory* testing.
 
    1. Test cases similar to previous.
    
+### Deleting a module
+
+1. Prerequisites:  List all modules using the `list` or `mlist` command.
+Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
+
+1. Test case: `delmod m/CS2103`
+Expected: Module with module code `CS2103` would be deleted from the module list.
+
+1. Test case: `delmod m/CS1101S`
+Expected: No module is deleted from the module list since `CS1101S` is not a module that exists in the module list. Error details shown in the status message. 
+
+1. Test case: `delmod m/CS2103 m/CS2100`
+Expected: No module is deleted from the module list because `delmod` does not allow for multiple deletions. Error details shown in the status message. 
+   
+### Editing a contact
+
+1. Editing a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `list` or `clist` command. Multiple contacts in the list.
+
+   1. Test case: `edit 1 n/Tony Stark`<br>
+      Expected: First contact's name is changed to `Tony Stark`. Details of the edited contact shown in the status
+       message.
+       
+   1. Test case: `edit 1 t/`<br>
+         Expected: First contact's tags are deleted. Details of the edited contact shown in the status message. 
+         
+   1. Test case: `edit 1 n/**`<br>
+            Expected: No contact is edited. Error details shown in the status message. 
+
+   1. Test case: `edit 0`<br>
+      Expected: No contact is edited. Error details shown in the status message. 
+
+   1. Other incorrect delete commands to try: `edit`, `edit x`, `edit p/98765abcd`, `...` (where x is larger than the
+    list size)<br>
+      Expected: Similar to previous.
+
+1. Deleting a contact while contacts are being filtered
+    
+   1. Prerequisites: Filter contacts by attributes using the `find` command. Other prerequisites are similar to previous.
+
+   1. Test cases similar to previous.
+
 ### Finding a contact
 
-1. Prerequisites: List all contacts using the `list` or `clist` command. Multiple contacts in the list.
+1. Prerequisites: Multiple contacts in the list.
 
 1. Test case: `find n/Alice d/Math`<br>
    Expected: All contacts that has "Alice" in their name, and "Math" in their department are shown.
@@ -914,6 +1083,19 @@ testers are expected to do more *exploratory* testing.
    Expected: No contacts filtered. Error details shown in the status message. 
 
 1. Other incorrect find commands to try: `find p/abcdef`, `find`, `find Alice`, `...`
+   Expected: Similar to previous.
+
+### Finding a module
+
+1. Prerequisites: Multiple modules in the list.
+
+1. Test case: `findmod m/CS1010 n/Programming`<br>
+   Expected: All contacts that has "CS1010" in their module code, *and* "Programming" in their module name are shown.
+
+1. Test case: `findmod m/`<br>
+   Expected: No modules filtered. Error details shown in the status message. 
+
+1. Other incorrect find commands to try: `findmod m/CS**`, `findmod`, `findmod Alice`, `...`
    Expected: Similar to previous.
 
 ### Clearing all contacts from the contact list
@@ -935,20 +1117,6 @@ Expected : Success message saying "All modules deleted"
 
 1. Test case : `mclear` on an empty module list <br>
 Expected : Error message saying "Module list is already empty".
-
-### Deleting a module from the module list
-
-1. Prerequisites:  List all modules using the `list` or `mlist` command.
-Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
-
-1. Test case: `delmod m/CS2103`
-Expected: Module with module code `CS2103` would be deleted from the module list.
-
-1. Test case: `delmod m/CS1101S`
-Expected: No module is deleted from the module list since `CS1101S` is not a module that exists in the module list. Error details shown in the status message. 
-
-1. Test case: `delmod m/CS2103 m/CS2100`
-Expected: No module is deleted from the module list because `delmod` does not allow for multiple deletions. Error details shown in the status message. 
 
 ### Assigning a contact to one or more modules
 
@@ -1009,6 +1177,16 @@ Expected: No module is deleted from the module list because `delmod` does not al
 
    1. Test cases similar to previous.
    
+### Unassigning all contacts
+
+1. Prerequisites: There exists multiple modules and contacts in FaculType.
+
+1. Test case: `unassignall`
+   Expected: All contacts are unassigned from all modules.
+   
+1. Test case: `unassignall abcd`
+   Expected: No contact is unassigned. Error details shown in the status message.
+   
 ### Switching the active semester
 
 1. Prerequisites: Active semester is Semester 1.
@@ -1021,6 +1199,14 @@ Expected: No module is deleted from the module list because `delmod` does not al
 
 1. Other incorrect assign commands to try: `switch switch`
    Expected: Similar to previous.
+   
+### Resetting data
+
+1. Test case: `reset`
+   Expected: All contacts and modules are deleted from the app.
+
+1. Test case: `reset x`
+   Expected: Nothing is changed or deleted. Error details shown in the status message.
 
 ### Saving data
 
@@ -1085,5 +1271,3 @@ Expected: No module is deleted from the module list because `delmod` does not al
    1. Test case: delete `data/addressbook.json` <br>
       Expected: All contact and module information will be deleted and FaculType will restart with the placeholder
        contact and module information.
-   
-
