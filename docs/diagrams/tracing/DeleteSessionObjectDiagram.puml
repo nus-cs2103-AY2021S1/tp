@@ -16,10 +16,8 @@ object "__enduranceTraining:Session__" as session {
 object "__:Schedule__" as firstSchedule
 object "__:Schedule__" as secondSchedule
 
-firstSchedule *-- firstClient
-firstSchedule *-- session
+(firstClient, session) .. firstSchedule
 
-secondSchedule *-- secondClient
-secondSchedule *-- session
+(secondClient, session) .. secondSchedule
 
 @enduml
