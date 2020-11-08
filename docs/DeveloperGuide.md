@@ -868,12 +868,12 @@ The list of `FieldContainsKeywordsPredicate` is obtained from parsing
 the user input, to produce either of the following predicates shown
 in the table below, for each `Prefix` and keywords pair.
 
-Prefix              | FieldContainsKeywordsPredicate
------------------------------------ | --------------------------------------
-n/<keywords>        | NameContainsKeywordsPredicate
-s/<keywords>        | SourceContainsKeywordsPredicate
-l/<keywords>        | LocationContainsKeywordsPredicate
-sn/<keywords>       | SerialNumberContainsKeywordsPredicate
+Prefix | FieldContainsKeywordsPredicate
+--------------| ---------------
+n/<keywords>  | NameContainsKeywordsPredicate
+s/<keywords>  | SourceContainsKeywordsPredicate
+l/<keywords>  | LocationContainsKeywordsPredicate
+sn/<keywords> | SerialNumberContainsKeywordsPredicate
 
 `FindCommandParser` implements the following important operations:
 
