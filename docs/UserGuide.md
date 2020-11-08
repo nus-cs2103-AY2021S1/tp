@@ -212,9 +212,10 @@ Clears all staff entries from Eva.
 
 ### 3.3. Applicant commands
 
-<div>
+<div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
+
 - All commands under applicant can only be done on either applicant list or applicant profile except `adda`, 
  which can be done on anywhere
 - While in profiles, only details of the profile that is being viewed can be changed.
@@ -234,6 +235,7 @@ Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG
  - An applicant can have any number of tags (including 0) <br>
  - An applicant can have any number of comments (including 0) <br>
  - The interview date has to be in DD/MM/YYYY format <br>
+ - The order of inputs does not matter
  - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature [setting 
  of application status]() below
  - :bulb: **Tip** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
@@ -241,7 +243,8 @@ Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG
 
 Examples:
 * `adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
-* `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Developer`
+* `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/92345678 t/Developer
+    c/ ti/Working Ethics d/10/10/2010 desc/Good`
 
 #### 3.3.3. Find an applicant : `find a-`
 
