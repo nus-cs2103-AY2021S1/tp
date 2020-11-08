@@ -2,8 +2,6 @@ package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.Command;
@@ -22,9 +20,9 @@ public class DeleteTeammateCommand extends Command {
     public static final String COMMAND_WORD = "deleteteammate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the teammate identified by the Git Username in the current project.\n"
-        + "Parameters: Git UserName (must be a single word)\n"
-        + "Example: " + COMMAND_WORD + " LucasTai98";
+            + ": Deletes the teammate identified by the Git Username in the current project.\n"
+            + "Parameters: Git UserName (must be a single word)\n"
+            + "Example: " + COMMAND_WORD + " LucasTai98";
 
     public static final String MESSAGE_DELETE_TEAMMATE_SUCCESS = "Deleted Teammate: %1$s";
 
@@ -45,7 +43,6 @@ public class DeleteTeammateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-        List<Participation> lastShownList = project.getTeammates();
 
         if (!project.hasParticipation(gitUserIndex.getGitUserNameString())) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
@@ -54,8 +51,8 @@ public class DeleteTeammateCommand extends Command {
         Participation participation = project.getParticipation(gitUserIndex.getGitUserNameString());
         Person personToDelete = Person.getPersonFromList(gitUserIndex);
 
-        Project.deleteAllParticipationOf(participation);
-        model.deleteParticipation(participation);
+        Participation.deleteAllParticipationOf(model, personToDelete);
+
         model.deletePerson(personToDelete);
 
         if (model.getTeammateToBeDisplayedOnDashboard().isPresent()
@@ -67,10 +64,11 @@ public class DeleteTeammateCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_TEAMMATE_SUCCESS, personToDelete));
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DeleteTeammateCommand) // instanceof handles nulls
-            && gitUserIndex.equals(((DeleteTeammateCommand) other).gitUserIndex); // state check
+                || (other instanceof DeleteTeammateCommand) // instanceof handles nulls
+                && gitUserIndex.equals(((DeleteTeammateCommand) other).gitUserIndex); // state check
     }
 }

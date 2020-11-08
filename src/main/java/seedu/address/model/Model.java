@@ -100,6 +100,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person with the same identity as {@code person} exists in the main catalogue.
+     */
+    boolean hasParticipation(Participation participation);
+
+    /**
      * Deletes the given person.
      * The person must exist in the main catalogue.
      */
@@ -124,6 +129,8 @@ public interface Model {
      */
     void deleteParticipation(Participation target);
 
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Participation> getFilteredParticipationList();
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

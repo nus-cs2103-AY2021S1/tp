@@ -235,6 +235,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasParticipation(Participation participation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -251,6 +256,11 @@ public class AddCommandTest {
 
         @Override
         public void deleteParticipation(Participation target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Participation> getFilteredParticipationList() {
             throw new AssertionError("This method should not be called.");
         }
 

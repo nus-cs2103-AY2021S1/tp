@@ -3,6 +3,7 @@ package seedu.address.model.participation;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.Model;
 import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
@@ -117,6 +118,26 @@ public class Participation {
 
     public void setProject(String project) {
         this.project = project;
+    }
+
+    /**
+     * deletes all the participation that involves personToDelete.
+     *
+     * @param model current model.
+     * @param personToDelete person whose participations are to be deleted.
+     */
+    public static void deleteAllParticipationOf(Model model, Person personToDelete) {
+        Participation currentParticipation;
+        Project currentProject;
+
+        for (int i = 0; i < Project.getAllProjects().size(); i++) {
+            currentProject = Project.getAllProjects().get(i);
+            if (currentProject.hasParticipation(personToDelete.getGitUserNameString())) {
+                currentParticipation = currentProject.getParticipation(personToDelete.getGitUserNameString());
+                currentProject.removeParticipation(currentParticipation);
+                model.deleteParticipation(currentParticipation);
+            }
+        }
     }
 
     @Override

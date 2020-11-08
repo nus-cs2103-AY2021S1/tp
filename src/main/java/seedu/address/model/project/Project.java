@@ -245,7 +245,7 @@ public class Project {
     /**
      * Deletes the Participation with the member Git UserName.
      */
-    public void deleteParticipation(String gitUserName) {
+    public void removeParticipationWithName(String gitUserName) {
         if (listOfParticipations.containsKey(new GitUserName(gitUserName))) {
             listOfParticipations.remove(new GitUserName(gitUserName));
         }
@@ -334,9 +334,9 @@ public class Project {
     /**
      * Removes all instances of a person's participation
      */
-    public static void deleteAllParticipationOf(Participation participation) {
+    public static void deleteAllParticipationOf(String gitUsername) {
         for (Project allProject : allProjects) {
-            allProject.removeParticipation(participation);
+            allProject.removeParticipationWithName(gitUsername);
         }
     }
 
