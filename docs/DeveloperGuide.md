@@ -14,11 +14,22 @@ by Team W12-2
     * [3.5 - Storage Component](#section-35---storage-component)
     * [3.6 - Common Classes](#section-36---common-classes)
 * [Section 4 - Implementation](#section-4---implementation)
-    * [4.1 - Add feature](#section-41---add-feature)
-    * [4.2 - Undo/redo feature](#section-42---proposed-undoredo-feature)
-    * [4.3 - Data saving and loading](#section-43---data-saving-and-loading)
+    * [4.1 - Add Commands - `addMod`, `addTG` and `addStudent`](#section-41---add-commands---addmod-addtg-and-addstudent)
+    * [4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`](#section-42---delete-commands---deletemod-deletetg-and-deletestudent)
+    * [4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`](#section-43---edit-commands---editmod-edittg-and-editstudent)
+    * [4.4 - Find Commands - `findMod`, `findTG` and `findStudent`](#section-44---find-commands---findmod-findtg-and-findstudent)
+    * [4.5 - List Commands - `listMod`, `listTG` and `listStudent`](#section-45---list-commands---listmod-listtg-and-liststudent)
+    * [4.6 - View Commands - `viewTG` and `viewStudent`](#section-46---view-commands---viewtg-and-viewstudent)
+    * [4.7 - Clear Command - `clear`](#section-47---clear-command---clear)
+    * [4.8 - Exit Command - `exit`](#section-48---exit-command---exit)
+    * [4.9 - Data saving and loading](#section-49---data-saving-and-loading)
 * [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
-* [Section 6 - Appendix](#section-6---appendix)
+* [Appendix A - Product Scope](#appendix-a---product-scope)
+* [Appendix B - User Stories](#appendix-b---user-stories)
+* [Appendix C - Use Cases](#appendix-c---use-cases)
+* [Appendix D - Non-Functional Requirements](#appendix-d---non-functional-requirements)
+* [Appendix E - Glossary](#appendix-e---glossary)
+* [Appendix F - Instructions for Manual Testing](#appendix-f---instructions-for-manual-testing)
 
 ---
 
@@ -154,117 +165,347 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Section 4.1 - Add feature
-#### Overview
-
-The Add feature in Trackr enables users to easily add models to the app. Users will be able to keep track of models they are
-in charge of.
-
-There are three types of models:
+Trackr has three different data types: 
 - `Module`: The current module the user is teaching
 - `TutorialGroup`: The tutorial groups that the user is teaching
 - `Student`: The students currently being taught by the user
 
+As mentioned in [insert design diagram number], 
+Trackr stores these data in the following manner: UniqueModuleList contains Modules. Each module has a UniqueTutorialGroupList 
+that stores all the Tutorial Groups of that particular Module. Lastly, each Tutorial Group has a UniqueStudentList that stores all the
+Students of that particular Tutorial Group.
+
+Trackr's three data type also share the same commands, which are:
+* Add
+* Delete
+* Edit
+* Find
+* List
+* View
+* Clear
+* Exit
+
+Since Trackr stores and manages its data recursively, the commands for Module, Tutorial Group and Student work similarly.
+
+#### Design Considerations:
+**Aspect: List to contain the models**
+- Alternative 1: Use a single generic `UniqueList` that contains the models.
+    - Pros: Code that is easier to maintain due to abstraction. 
+    - Cons: Harder to implement.
+- Alternative 2 (Current choice): Use a separate `UniqueList` for each model such as `UniqueModuleList`.
+    - Pros: Easier to implement.
+    - Cons: More repetitive code.
+
+### Section 4.1 - Add Commands - `addMod`, `addTG` and `addStudent`
+
+#### Overview
+
+The Add command in Trackr enables users to easily add data types to the app. Users will be able to keep track of data they are
+in charge of.
+
 #### Implementation
-Trackr contains a `UniqueList<Module>`, which in turn, contains the modules taught by the user. Each Add command
-for `Module`, `TutorialGroup`, and `Student` is split into `AddModuleCommand`, `AddTutorialGroupCommand`, and `AddStudentCommand`.
+Each Add command for `Module`, `TutorialGroup`, and `Student` is split into `AddModuleCommand`, `AddTutorialGroupCommand`, and `AddStudentCommand`, respectively.
 Each command class extends `Command`.
 
 Given below is an example of the interaction between the Model and the `AddModuleCommand` of Trackr.
 
-![AddModSequenceDiagram](images/AddModSequenceDiagram.png)
+![AddModuleSequenceDiagram](images/AddModSequenceDiagram.png)
 
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
 
-### Section 4.2 - \[Proposed\] Undo/redo feature
+Step 1. The user executes `addMod m/CS2103T` to add a module called CS2103T to Trackr. The `addMod` command calls
+`LogicManager#execute(String)`.
 
-#### Proposed Implementation
+Step 2. The contents of the `String` is parsed in `AddModuleCommandParser#parse(String)`. This method creates a new
+`Module` object with the parsed arguments. An `AddModuleCommand` object is then initialised with this `Module` object.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Step 3. `LogicManager#execute(String)` calls the `AddModuleCommand#execute(Model)` method of the `AddModuleCommand`
+object.
 
--   `VersionedAddressBook#commit()` — Saves the current address book state in its history.
--   `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
--   `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Step 4. Within `Model`, the method `Model#addModule(Module)` is executed and this adds the `Module` to the
+`internalList` of `UniqueModuleList`.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand#execute(Model)` creates a
+`CommandResult` object and the `CommandResult` is returned to `LogicManager`.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+> Note: There are some differences for the add commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be added to.
+> - `Model#addTutorialGroup(TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the target `Module`
+> and adds the `TutorialGroup` to the `internalList` of the `UniqueTutorialGroupList`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is an `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be added to.
+> - `Model#addStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and `TutorialGroup`
+> and adds the `Student` to the `internalList` of the `UniqueStudentList`.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+### Section 4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`
 
-![UndoRedoState0](images/UndoRedoState0.png)
+#### Overview
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The Delete command in Trackr enables users to easily delete data types from the app.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+#### Implementation
+Each Delete command for `Module`, `TutorialGroup`, and `Student` is split into `DeleteModuleCommand`, `DeleteTutorialGroupCommand`, and `DeleteStudentCommand`, respectively.
+Each command class extends `Command`.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Given below is an example of the interaction between the Model and the `DeleteModuleCommand` of Trackr.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![DeleteModuleSequenceDiagram](images/DeleteModuleSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+![DeleteCommandActivityDiagram](images/DeleteCommandActivityDiagram.png)
 
-</div>
+Step 1. The user executes `deleteMod 1` to delete the first module in the displayed list. The `deleteMod` command calls
+`LogicManager#execute(String)`.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 2. The contents of the `String` is parsed in `DeleteModuleCommandParser#parse(String)`. This method creates a new
+`Index` object with the parsed arguments. A `DeleteModuleCommand` object is then initialised with this `Index` object.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Step 3. `LogicManager#execute(String)` calls the `DeleteModuleCommand#execute(Model)` method of the
+`DeleteModuleCommand` object.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+Step 4. Within `Model`, the method `Model#deleteModule(Module)` is executed and this deletes the `Module` from the
+`internalList` of `UniqueModuleList`.
 
-</div>
+Step 5. Once the `Module` has been deleted from the `internaList`, `DeleteModuleCommand#execute(Model)` creates an
+`CommandResult` object and the `CommandResult` is returned to `LogicManager`.
 
-The following sequence diagram shows how the undo operation works:
+> Note: There are some differences for the delete commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be deleted from.
+> - `Model#deleteTutorialGroup(TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the target
+> `Module` and deletes the `TutorialGroup` from the `internalList` of the `UniqueTutorialGroupList`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be deleted from.
+> - `Model#deleteStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
+> `TutorialGroup` and deletes the `Student` from the `internalList` of the `UniqueStudentList`.
+    
+### Section 4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+#### Overview
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+The Edit command in Trackr enables users to easily edit data types. Users will be able to modify data.
 
-</div>
+#### Implementation
+Each Edit command for `Module`, `TutorialGroup`, and `Student` is split into `EditModuleCommand`, `EditTutorialGroupCommand`, and `EditStudentCommand`, respectively.
+Each command class extends `Command`.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+Given below is an example of the interaction between the Model and the `EditModuleCommand` of Trackr.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+![EditModuleSequenceDiagram](images/EditModuleSequenceDiagram.png)
 
-</div>
+![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 1. The user executes `editMod 1 m/CS2100` to edit the first module in the displayed list. The `editMod` command 
+calls `LogicManager#execute(String)`.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+Step 2. The contents of the `String` is parsed in `EditModuleCommandParser#parse(String)`. This method creates a new
+`Index` and `EditModuleDescriptor` object with the parsed arguments. An `EditModuleCommand` object is then initialised
+with the `Index` and `EditModuleDescriptor` object.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behaviour that most modern desktop applications follow.
+Step 3. `LogicManager#execute(String)` calls the `EditModuleCommand#execute(Model)` method of the `EditModuleCommand`
+object. The method creates a new `Module` object with the edited fields.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+Step 4. Within `Model`, the method `Model#setModule(Module, Module)` is executed and this replaces the current `Module`
+from the `internalList` of `UniqueModuleList` with the edited one.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+Step 5. Once the `Module` has been edited in the `internaList`, `EditModuleCommand#execute(Model)` creates an
+`CommandResult` object and the `CommandResult` is returned to `LogicManager`.
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+> Note: There are some differences for the edit commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be edited from.
+> - `Model#setTutorialGroup(TutorialGroup, TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the
+> target `Module` and edits the `TutorialGroup` in the `internalList` of the `UniqueTutorialGroupList`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be edited from.
+> - `Model#setStudent(Student, Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
+> `TutorialGroup` and edits the `Student` in the `internalList` of the `UniqueStudentList`.
+    
+### Section 4.4 - Find Commands - `findMod`, `findTG` and `findStudent`
 
-#### Design consideration:
+#### Overview
 
-##### Aspect: How undo & redo executes
+The Find command in Trackr enables users to easily find data based on keywords. This will save their time whenever they want to 
+find a specific data.
 
--   **Alternative 1 (current choice):** Saves the entire address book.
+#### Implementation
+Each Find command for `Module`, `TutorialGroup`, and `Student` is split into `FindModuleCommand`, `FindTutorialGroupCommand`, and `FindStudentCommand`, respectively.
+Each command class extends `Command`.
 
-    -   Pros: Easy to implement.
-    -   Cons: May have performance issues in terms of memory usage.
+Given below is an example of the interaction between the Model and the `FindModuleCommand` of Trackr.
 
--   **Alternative 2:** Individual command knows how to undo/redo by
-    itself.
-    -   Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    -   Cons: We must ensure that the implementation of each individual command are correct.
+![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
 
-_{more aspects and alternatives to be added}_
+Step 1. The user executes `findMod cs2100` to find module(s) that contain the keyword _cs2100_. The `findMod` command 
+calls `LogicManager#execute(String)`.
 
-### Section 4.3 - Data saving and loading
+Step 2. The contents of the `String` is parsed in `FindModuleCommandParser#parse(String)`. This method creates a new
+`ModuleContainsKeywordsPredicate` object with the parsed arguments. A `FindModuleCommand` object is then initialised
+with the `ModuleContainsKeywordsPredicate` object.
+
+Step 3. `LogicManager#execute(String)` calls the `FindModuleCommand#execute(Model)` method of the `FindModuleCommand`
+object.
+
+Step 4. Within `Model`, the method `Model#updateFilteredModuleList(Predicate<Module>)` is executed and this updates
+the displayed list of modules.
+
+Step 5. `FindModuleCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned to
+`LogicManager`.
+
+> Note: There are some differences for the find commands of `TutorialGroup` and `Student` during Step 4. `TutorialGroup`
+> also has its own predicate class called `TutorialContainsKeywordsPredicate` while `Student`'s predicate class is
+> called `NameContainsKeywordsPredicate`.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be searched from.
+> - `Model#updateFilteredTutorialGroupList(Predicate<TutorialGroup>)` method then updates the displayed list of
+> tutorial groups.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be searched from.
+> - `Model#updateFilteredStudentList(Predicate<Student>)` method then updates the displayed list of students.
+>
+> The commands `attendanceBelow` and `participationBelow` also follow similar implementations. Their predicate classes
+> are `AttendanceBelowSpecifiedScorePredicate` and `ParticipationBelowSpecifiedScorePredicate` respectively. Like the
+> aforementioned find command for `Student`, `attendanceBelow` and `participationBelow` uses the 
+> `Model#updateFilteredStudentList` method to update the displaye list of students.
+    
+### Section 4.5 - List Commands - `listMod`, `listTG` and `listStudent`
+
+#### Overview
+
+The List command in Trackr enables users to easily list all data. Users will be able to see all data after using the Find Commands.
+
+#### Implementation
+Each List command for `Module`, `TutorialGroup`, and `Student` is split into `ListModuleCommand`, `ListTutorialGroupCommand`, and `ListStudentCommand`, respectively.
+Each command class extends `Command`.
+
+Given below is an example of the interaction between the Model and the `ListModuleCommand` of Trackr.
+
+![ListModSequenceDiagram](images/ListModuleCommandSequenceDiagram.png)
+
+Step 1. The user executes `listMod` to view all the modules in Trackr. The `listMod` command calls
+`LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `TrackrParser#parseCommand(String)`. This method creates a new
+`ListModuleCommand` object.
+
+Step 3. `LogicManager#execute(String)` calls the `ListModuleCommand#execute(Model)` method of the `ListModuleCommand`
+object.
+
+Step 4. Within `Model`, the method `Model#updateFilteredModuleList(Predicate<Module>)` is executed and this displays
+all the modules within Trackr.
+
+Step 5. `ListModuleCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned to
+`LogicManager`.
+
+> Note: There are some differences for the list commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be listed from.
+> - `Model#updateFilteredTutorialGroupList(Predicate<TutorialGroup>)` method then displays all the tutorial groups
+> within the target `Module`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is an `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be listed from.
+> - `Model#updateFilteredStudentList(Predicate<Student>)` method then displays all the students within the target 
+> `Module` and `TutorialGroup`.
+    
+### Section 4.6 - View Commands - `viewTG` and `viewStudent`
+
+#### Overview
+
+The View command in Trackr enables users to easily navigate between the different views: Module View, Tutorial Group View and Student View.
+
+#### Implementation
+Each View command for `TutorialGroup`, and `Student` is split into `ViewTutorialGroupCommand`, and `ViewStudentCommand`, respectively. Note that there
+is no View command for `Module`. Each command class extends `Command`.
+
+Given below is an example of the interaction between the Model and the `ViewTutorialGroupCommand` of Trackr.
+
+![ViewTGSequenceDiagram](images/ViewTutorialGroupCommandSequenceDiagram.png)
+
+Step 1. The user executes `viewTG 1` to view the tutorial groups of the first module within the Module View. The
+`viewTG` command calls `LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `ViewTutorialGroupCommandParser#parse(String)`. This method creates a
+new `Index` object with the parsed arguments. A `ViewTutorialGroupCommand` object is then initialised with this `Index`
+object.
+
+Step 3. `LogicManager#execute(String)` calls the `ViewTutorialGroupCommand#execute(Model)` method of the
+`ViewTutorialGroupCommand` object.
+
+Step 4. Within `Model`, the method `Model#setViewToTutorialGroup(Module)` is executed and this displays all the tutorial
+groups of the target `Module`.
+
+Step 5. `ViewTutorialGroupCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned
+to `LogicManager`.
+
+> Note: There are some differences for the view command of `Student` during Step 4.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is an `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be viewed from.
+> - `Model#setViewToStudent(TutorialGroup)` method then displays all the students of the target `Module` and 
+> `TutorialGroup`.
+
+### Section 4.7 - Clear Command - `clear`
+
+#### Overview
+
+The Clear command in Trackr enables users to easily clears all data. Users will be able to erase all data in one simple command.
+
+#### Implementation
+The Clear command is the same for `Module`, `TutorialGroup`, and `Student`, which falls under `ClearCommand`
+The command class extends `Command`.
+
+Given below is an example of the interaction between the Model and the `ClearCommand` of Trackr.
+
+![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
+
+### Section 4.8 - Exit Command - `exit`
+
+#### Overview
+
+The Exit command in Trackr enables users to easily exit the app. Users will be able to close the application. Data will be
+saved automatically.
+
+#### Implementation
+The Exit command is the same for `Module`, `TutorialGroup`, and `Student`, which falls under `ExitCommand`
+The command class extends `Command`.
+
+Given below is an example of the interaction between the Model and the `ExitCommand` of Trackr.
+
+![ExitCommandSequenceDiagram](images/ExitCommandSequenceDiagram.png)
+
+### Section 4.9 - Data saving and loading
 
 #### Implementation
 
@@ -329,11 +570,8 @@ cuz
 -   [DevOps guide](DevOps.md)
 
 ---
-# **Section 6 - Appendix**
-## **Appendix: Requirements**
 
-### Product scope
-
+## **Appendix A - Product Scope**
 **Target user profile**:
 
 -   Teaching Assistants(TAs) across NUS
@@ -350,7 +588,9 @@ cuz
 -   Manage your Modules, Tutorial Groups and Students all in one place in an efficient and straightforward manner
 -   Breeze through your admin work with Trackr, so you can focus on the work that really matters
 
-### User stories
+---
+
+## **Appendix B - User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -360,157 +600,202 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | TA                                    | add/delete modules                                                    |                                                                 |
 | `* * *`  | TA                                    | rename a module                                                       | correct any errors                                              |
 | `* * *`  | TA who needs to contact many students | search a person by name or module                                     | get their contact details                                       |
-| `* * *`  | TA managing many modules              | have a checklist of the things I want to do in each tutorial          | remember what I need to cover in each tutorial                  |
 | `* * *`  | TA                                    | save my data                                                          | continue where I left off                                       |
-| `* * *`  | TA                                    | update a checklist of task such as deleting or marking a task as done | know what to do and keep track of the tasks that have been done |
 
 _{More to be added}_
 
-### Use cases
+---
 
-(For all use cases below, the **System** is the `Trackr` and the **Actor** is the `user`, unless specified otherwise)
+## **Appendix C - Use Cases**
 
-**Use case: UC01 - Add a person**
+(For all use cases below, the **System** is `Trackr` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 - View all tutorial groups within a module**
+
+**Preconditions: User is in Module View**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Trackr shows a list of persons
-3.  User requests to add a specific person to the list
-4.  Trackr adds the person
+1. User keys in command to view the tutorial groups of a specific module.
+2. Trackr displays the list of tutorial groups and shows a confirmation message.
 
 Use case ends.
 
 **Extensions**
 
--   2a. Incorrect input format
-    -   2a1. Trackr shows an error message
-    Use Case resumes at 2
+- 1a. Trackr detects an error in the command parameter.
+    - 1a1. Trackr displays an error message and proper command format.
+    - 1a2. User enters a new parameter.
 
-**Use case: UC02 - Delete a person**
+    Steps 1a1-1a2 are repeated until the parameter entered are correct.
+
+    Use case resumes from step 2.
+
+**Use case: UC02 - View all students within a tutorial group of a module**
+
+**Preconditions: User is in Tutorial Group View**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Trackr shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  Trackr deletes the person
+1. User requests to view all tutorial groups within a module (UC01).
+2. User keys in command to view the students of a specific tutorial group.
+3. Trackr displays the list of students and shows a confirmation message.
 
 Use case ends.
 
 **Extensions**
 
--   2a. The list is empty.
+- 2a. Trackr detects an error in the command parameter.
+    - 2a1. Trackr displays an error message and proper command format.
+    - 2a2. User enters a new parameter.
 
-Use case ends.
+    Steps 2a1-2a2 are repeated until the parameter entered are correct.
 
--   3a. The given index is invalid.
+    Use case resumes from step 3.
 
-    -   3a1. Trackr shows an error message.
+**Use case: UC03 - Add a student**
 
-        Use case resumes at step 2.
-
-**Use case: UC03 - Loading a save file**
-
-**MSS**
-
-1. User launches the application
-2. Trackr attempts to read the save file
-3. Trackr successfully parses the save file and loads the lists of modules on it
-4. User can start using the application
-
-    Use case ends.
-
-**Extensions**
-
--   3a. The save file is corrupted / in the wrong format
-
-    -   3a1. Trackr shows an error message
-    -   3a2. Trackr starts a new save file and overwrites the existing one
-
-        Use case resumes at step 4.
-
--   3b. The save file does not exist
-
-    -   3b1. Trackr creates a new save file
-
-        Use case resumes at step 4.
-
-**Use case: UC04 - Search for a person**
+**Preconditions: User is in Student View**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Trackr shows a list of persons
-3.  User requests to search for a specific person in the list
-4.  Trackr displays the person
+1. User requests to view all students within a tutorial group of a module (UC02).
+2. User enters the student data.
+3. Trackr adds the student to the displayed list.
+4. Trackr shows a message with the added student's details.
 
 Use case ends.
 
 **Extensions**
 
--   2a. The list is empty.
+- 2a. Trackr detects that the data entered is in the wrong format.
+    - 2a1. Trackr displays an error message and proper command format.
+    - 2a2. User enters new data.
 
-Use case ends.
+    Steps 2a1-2a2 are repeated until the data entered are correct.
 
--   3a. The given information is invalid.
+    Use case resumes from step 3.
 
-    -   3a1. Trackr shows an error message.
+**Use case: UC04 - Delete a student**
 
-    Use case resumes at 1.
-
-**Use case: UC05 - Add a checklist of task**
+**Preconditions: User is in Student View**
 
 **MSS**
 
-1.  User requests to list checklist of tasks
-2.  Trackr shows a list of tasks
-3.  User requests to add a specific task to the list
-4.  Trackr adds the task to the list
+1. User requests to view all students within a tutorial group of a module (UC02).
+2. User enters command to delete a specific student in the displayed list.
+3. Trackr deletes the student from the displayed list.
+4. Trackr shows a message with the deleted student's details.
 
 Use case ends.
 
 **Extensions**
 
--   2a. Incorrect input format
-    -   2a1. Trackr shows an error message
-    Use Case resumes at 2
+- 1a. The list is empty.
+Use case ends.
 
-**Use case: UC06 - Mark a task in the list as done**
+- 2a. Trackr detects an error in the command parameter.
+    - 2a1. Trackr displays an error message and proper command format.
+    - 2a2. User enters a new parameter.
+
+    Steps 2a1-2a2 are repeated until the parameter entered are correct.
+
+    Use case resumes from step 3.
+
+**Use case: UC05 - Loading a save file**
 
 **MSS**
 
-1.  User requests to list checklist of tasks
-2.  Trackr shows a list of tasks
-3.  User requests to mark a specific task as done
-4.  Trackr marks the task as done
-    Use case ends.
+1. User launches the application.
+2. Trackr attempts to read the save file.
+3. Trackr successfully parses the save file and loads the lists of modules on it.
+4. User can start using the application.
+
+Use case ends.
 
 **Extensions**
 
--   2a. Incorrect input format
-    -   2a1. Trackr shows an error message
-    Use Case resumes at 2
+- 3a. The save file is corrupted or in the wrong format.
+    - 3a1. Trackr shows an error message.
+    - 3a2. Trackr starts a new save file and overwrites the existing one.
 
-### Non-Functional Requirements
+    Use case resumes from step 4.
+
+- 3b. The save file does not exist.
+    - 3b1. Trackr creates a new save file.
+
+    Use case resumes from step 4.
+
+**Use case: UC06 - Search for a student**
+
+**Preconditions: User is in Student View**
+
+**MSS**
+
+1. User requests to view all students within a tutorial group of a module (UC02).
+2. User enters the find command with keyword(s) to search for a specific student in the list.
+3. Trackr displays a list of student(s) with name(s) that match the keyword(s).
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The list is empty.
+
+Use case ends.
+
+**Use case: UC07 - Edit a student's details**
+
+**Preconditions: User is in Student View**
+
+**MSS**
+
+1. User requests to view all students within a tutorial group of a module (UC02).
+2. User enters the edit command with new student details for a specific student in the list.
+3. Trackr edits the student in the displayed list.
+4. Trackr shows a message with the edited student's details.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The list is empty.
+
+Use case ends.
+
+- 2a. Trackr detects an error in the command.
+    - 2a1. Trackr displays an error message and proper command format.
+    - 2a2. User enters new command.
+
+    Steps 2a1-2a2 are repeated until the parameter entered are correct.
+
+    Use case resumes from step 3.
+
+---
+
+## **Appendix D - Non-Functional Requirements**
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 student details without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The data should be stored locally so the user would not require the Internet to access his data.
+2.  Should be able to hold up to 1000 module, tutorial group and student details without a noticeable sluggishness in
+performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The data should be stored locally, so the user would not require the Internet to access his data.
 
-_{More to be added}_
+---
 
-### Glossary
+## **Appendix E - Glossary**
 
 -   **Mainstream OS**: Windows, Linux, Unix, OS-X
 -   **Private contact detail**: A contact detail that is not meant to be shared with others
 -   **TA**: Teaching Assistant
--   **Modules**: University courses that students are enrolled in
+-   **Modules**: University courses that Teaching Assistants teach
+-   **Tutorial Groups**: Small groups of Students within each Module that Teaching Assistants are responsible for
+-   **Students**: Students who are enrolled in a specific Module and a specific Tutorial Group under a specific Teaching Assistant
 
 ---
 
-## **Appendix: Instructions for manual testing**
+## **Appendix F - Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -525,31 +810,133 @@ testers are expected to do more *exploratory* testing.
 
 1. Download the jar file and copy into an empty folder
 
-1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
+1. Double-click the jar file or run `java -jar Trackr.jar` in Terminal. <br> 
+Expected: Shows the GUI with a sample Module CS2103T. The window size may not be optimum.
 
 1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-1. Re-launch the app by double-clicking the jar file.<br>
+1. Window preferences should be automatically saved.
+
+1. Close the app by clicking the close button located at the top left corner or run `exit` in Trackr.
+
+1. Re-launch the jar file.<br>
    Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a Module
 
-1. Deleting a person while all persons are shown
+1. Adding a module while all modules are being shown.
 
-1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Prerequisites: Navigate to the Module view using `prevView` or `listMod`. List all modules using the `listMod` command.
 
-1. Test case: `delete 1`<br>
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Test case: `addMod m/CS3243`<br>
+   Expected: New module with code CS3243 will be added to the bottom of the list. Details of the added Module is shown in the status message.
 
-1. Test case: `delete 0`<br>
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Test case: `addMod m/CS3243` (Attempting to add Module with the same code) <br>
+   Expected: No new module is added. An error message indicating the existence of duplicates is shown in the status message.
 
-1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-   Expected: Similar to previous.
+1. Test case: `addMod` (No parameters) <br>
+   Expected: Invalid command format error message is shown in the status message, along with an example command that works.
+   
+1. Test case: `addMod m/CS@` or `addMod m/` (Non-alphanumeric characters or blank module code) <br>
+   Expected: An error message indicating that module code can only be alphanumeric characters and should not be blank is shown in the status message.
+   
+1. _{ more test cases …​ }_
+   
+### Deleting a Module
+
+1. Deleting a module while all modules are being shown.
+
+1. Prerequisites: Navigate to the Module view using `prevView` or `listMod`. List all modules using the `listMod` command.
+
+1. Test case: `deleteMod 1` <br>
+   Expected: First module is deleted from the list. Details of the deleted module shown in the status message.
+
+1. Test case: `deleteMod 0` or `deleteMod`(Index 0 or no index specified) <br>
+   Expected: No module is deleted. Error details shown in the status message.
+
+1. Test case: `deleteMod [insert an index that does not exist]` (Index does not exist) <br>
+   Expected: No module is deleted. An error message indicating that the index is invalid is shown in the status message.
+   
+1. Test case: `deleteMod a` or `deleteMod 1.5` (Non-integer index)
+   Expected: No module is deleted. Error details shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Editing a Tutorial Group
+
+1. Editing a tutorial group while all tutorial groups are being shown.
+
+1. Prerequisites: Navigate to the Tutorial Group view using `prevView` or `viewTG MODULE_INDEX`. List all tutorial groups using the `listTG` command. 
+Add a tutorial group using the command `addTG tg/T03 day/MON start/11:00 end/13:00`.
+
+1. Test case: `editTG 1 tg/T18` <br>
+   Expected: The tutorial group code of the first tutorial group is modified to be _T18_. Details of the edited tutorial group shown in the status message.
+
+1. Test case: `editTG 1`(No specified field to be edited) <br>
+   Expected: No tutorial group is modified. Error details shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Finding a Tutorial Group
+
+1. Finding a tutorial group while all tutorial groups are being shown.
+
+1. Prerequisites: Navigate to the Tutorial Group view using `prevView` or `viewTG MODULE_INDEX`. List all tutorial groups using the `listTG` command. 
+Add two tutorial groups using the commands `addTG tg/T03 day/MON start/11:00 end/13:00` and `addTG tg/B03 day/MON start/11:00 end/13:00`.
+
+1. Test case: `findTG b` <br>
+   Expected: The list is filtered to only show the tutorial group whose code contains the letter _b_. The number of matching tutorial groups is shown in the status message.
+
+1. Test case: `findTG`(No specified keyword) <br>
+   Expected: The list is not filtered. Error details shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Listing all Tutorial Groups
+
+1. Listing all tutorial groups while not all tutorial groups are being shown.
+
+1. Prerequisites: Navigate to the Tutorial Group view using `prevView` or `viewTG MODULE_INDEX`. List all tutorial groups using the `listTG` command. 
+Filter the list shown using the `findTG b` command. This should make the list to only show the tutorial groups whose code match the letter _b_.
+
+1. Test case: `listTG` <br>
+   Expected: The list is restored to show all tutorial groups. A message indicating that all tutorial groups are shown is shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Viewing the Students of a Tutorial Group
+
+1. Viewing all students of a tutorial group.
+
+1. Prerequisites: Navigate to the Tutorial Group view using `prevView` or `viewTG MODULE_INDEX`. List all tutorial groups using the `listTG` command. 
+Add a tutorial group using the command `addTG tg/T03 day/MON start/11:00 end/13:00`.
+
+1. Test case: `viewStudent 1` <br>
+   Expected: The view is changed from Tutorial Group view to Student view. The list shown is restored to show all students of the first tutorial group. A message indicating that all students are shown is shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Clearing Trackr
+
+1. Clearing all data in Trackr.
+
+1. Prerequisites: List all modules using the `listMod` command. 
+
+1. Test case: `clear` <br>
+   Expected: The view is changed to Module view. The list shown is cleared. A message indicating that Trackr has been cleared is shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Exiting Trackr
+
+1. Exiting Trackr and saving all data.
+
+1. Prerequisites: List all modules using the `listMod` command. 
+
+1. Test case: `exit` <br>
+   Expected: Trackr will close by itself. The list shown is cleared. All data is saved automatically. When Trackr is re-launched, the same data will load.
 
 1. _{ more test cases …​ }_
 
@@ -557,6 +944,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Simulating a corrupted file. <br>
+    - Go to tp -> data -> modulelist.json.
+    - Change "moduleId" in line 3 to be "moduleeeeId"
+    - Close Trackr
+    - Re-launch Trackr
+    Expected: Trackr will start fresh. All data will be deleted when a command is executed.
+
+1. Suggestion: When data is missing unexpectedly, go over to modulelist.json and copy paste the file to another document. Check if each of the field is named correctly.
 
 1. _{ more test cases …​ }_
