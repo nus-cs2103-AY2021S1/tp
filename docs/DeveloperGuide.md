@@ -114,9 +114,6 @@ The `Model`,
 * stores an unmodifiable list of Accounts.
 * does not depend on any of the other three components.
 
-The `Account`,
-
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Entry` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
@@ -145,6 +142,8 @@ Classes used by multiple components are in the `seedu.cc.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Undo feature
+*(Written by Lim Zi Yang)* <br>
+
 This feature allows the user to undo their previous entry-level commands.
 
 #### Implementation
@@ -236,6 +235,8 @@ Explanation why a certain design is chosen.
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 ### Edit account feature
+*(Written by Lim Zi Yang)* <br>
+
 This feature allows the user to edit the information of a specific existing entry.
 
 #### Implementation
@@ -397,10 +398,6 @@ Explanation why a certain design is chosen.
 ##### Aspect: How calculate net profits executes:
 * Choice: Calculates the net profits by retrieving the expense and revenue lists from the account. 
     * Pros: Easy to implement 
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}
 
 --------------------------------------------------------------------------------------------------------------------
 
