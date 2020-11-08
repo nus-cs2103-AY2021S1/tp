@@ -181,7 +181,10 @@ The following sequence diagram describes what happens when `Planus` updates a ne
 
 The data analysis feature is facilitated by `Statistics` and `StatisticsData`. 
 
-The time taken to complete each task is stored internally in planus.json when the `DoneCommand` is executed. The `Statistics` class facilitates the reading of the data from Planus.json.
+![StatsClassDiagram](images/StatsClassDiagram.png)
+
+The time taken to complete each task is stored internally in planus.json when the `DoneCommand` is executed.
+The `Statistics` class facilitates updating `StatisticsData` from `ObservableList` in UI.
 
 `Statistics` implements the following operations:
 
@@ -218,9 +221,6 @@ The following sequence diagram describes what happens when the user keys in the 
 * **Alternative 1 (current choice)**: Allow user to input how much time he has spent on each deadline  with the `done` command and automatically calculating the time spent on each `event`/`lesson` by assuming the user has spent the amount of time between the start and end time of the `event`/`lesson`.
 
 The user enters the command `done index:duration` where `index` refers to the inedx of the deadline to be marked as done and `duration` refers to the time used to complete the deadline.
-
-The following sequence diagram shows how this approach works.
-
 
   * Pros: 
     * User does not have to key in as many commands as he inputs the time spent on each task when he completed the task. 

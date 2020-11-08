@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+package DataAnalysis {
+    Class StatisticsData
+    Class Statistics
+}
+
+package Model {
+    Class Task
+    Class Lesson
+    Class Tag
+}
+
+package UI {
+    Class ObservableList
+}
+
+StatisticsData ..> Task
+StatisticsData ..> Lesson
+StatisticsData ..> Tag
+Statistics ..> StatisticsData
+Statistics ..> ObservableList
+UI -left-> StatisticsData
+@enduml
