@@ -1153,7 +1153,7 @@ testers are expected to do more *exploratory* testing.
 
 #### B.1.3&ensp;Autocomplete input
 1. Autocomplete command
-   1. Prerequisites: None
+   1. Prerequisites: None.
    
    1. Test Case: Pressing the <kbd>tab</kbd> key.
       Expected: Command box remains empty.
@@ -1198,18 +1198,47 @@ testers are expected to do more *exploratory* testing.
       Expected: `view recipe apple pie ` appears in the command box with the caret 1 en space after the last char of the text.
  
 #### B.1.4&ensp;Undo commands previously entered
-1. Autocomplete command
-   1. Prerequisites: None
+1. Undoing an undoable command
+   1. Prerequisites: None.
    
-   1. Test Case: Pressing the <kbd>tab</kbd> key.
-      Expected: Command box remains empty.           
+   1. Test Case: `add recipe duck rice` followed by `undo`.
+      Expected: The added recipe is removed. The command output box shows details of the undone command.        
       
+   1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice.
+      Expected: The added recipes are removed. The command output box shows details of the second undone command.              
       
+1. Undoing an command that cannot be undone
+   1. Prerequisites: No commands entered since launch.
+   
+   1. Test Case: `list recipe` followed by `undo`.
+      Expected: The command output box shows an error message.       
 
+1. Undoing an command that cannot be undone with undoable commands entered before.
+   1. Prerequisites: None.
+   
+   1. Test Case: `add recipe duck rice` followed by `list recipe`, then `undo`.
+      Expected: The recipe `duck rice` is removed. The command output box shows details of the undone command.            
 
-
-
-
+#### B.1.5&ensp;Redo commands previously undone
+1. Redoing an undone command
+   1. Prerequisites: None.
+   
+   1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`.
+      Expected: The `duck rice` recipe removed by the `undo` command is added. The command output box shows details of the redone command.      
+      
+   1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice, then `redo` twice. 
+      Expected: The `duck rice` and `duck soup` recipes removed by the `undo` commands are added. The command output box shows details of the second redone command. 
+      
+1. Redoing when there is no undo command executed prior
+   1. Prerequisites: No undo command executed since launch, or all undoable commands have been redone.
+   
+   1. Test Case: `add recipe duck rice` followed by `redo`.
+      Expected: The command output box shows an error message.      
+      
+1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`, and then `redo`.
+      Expected: The `duck rice` recipe removed by the `undo` command is added after the first `redo`.  The command output box shows an error message after the second redo.             
+      
+          
 ## C&ensp;Effort
 
 With 10 being the baseline of AB3, we estimate the effort required to deliver the current version of ChopChop at **20**.
