@@ -575,7 +575,7 @@ This glossary provides definitions for the special terms used in the user guide.
 
 **Index:** The number on the left side of the corresponding entry in the patient or appointment book.
 
-**Tag:** A word or phrase that labels a patient.
+**Tag:** A word or phrase that indicates the medical condition of a patient.
 
 **GUI:** A acronym that stands for Graphic User Interface.
 
