@@ -435,8 +435,9 @@ commands by combining multiple commands together. This is a powerful tool that r
 repetitive long-winded command execution. The `macro` command specifically stores a new macro into
 your McGymmy system.
 
-<img src="./markups/warning-markup.svg">
+<div markdown="block" class="alert alert-warning">
 *__WARNING:__* this is an advanced feature!
+</div>
 
 Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; [COMMAND_2 PARAMETERS_TO_COMMAND_2; ...]` <br>
 
