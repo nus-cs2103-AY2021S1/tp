@@ -97,11 +97,11 @@ Expressions without `...` at the end takes the last parameter as the argument wh
 ### Adding a tag with filepath : `tag`
 
 Tags a file with a unique tag name.<br>
-You can add a nickname to a file. This make it easier to manage only some specific files that you want such as frequently used files, etc.
+You can add a nickname to a file. This makes you able to manage your files easily.
 
 Please take note of the following:
 * You can add any number of labels to the tag (including 0).
-* The `FILE_PATH` field can accept both absolute and relative file path from your current directory specified in the internal File Explorer of HelloFile.
+* The `FILE_PATH` field can accept both absolute and relative file path from your current directory which is specified in the internal File Explorer of HelloFile.
 * You can tag a file without access permission.
 
 Format: `tag t>TAG_NAME f>FILE_PATH [l>LABEL]...`
@@ -109,30 +109,30 @@ Format: `tag t>TAG_NAME f>FILE_PATH [l>LABEL]...`
 ![tag](images/screenshots/tag_command.png)
 
 Examples:
-* `tag t>Users f>C:\Users` (Adds a tag with tag's nickname `Users` that points to `C:\Users` with no label to the tag list)
-* `tag t>Users f>C:\Users l>Important` (Adds a tag with tag's nickname `Users` that points to`C:\Users` with a label `Important` to the tag list)
-* `tag t>Users f>.\Users` (Adds a tag with tag's nickname `Users` that points to a folder `Users` in the current directory with no label to the tag list)
-* `tag t>Users f>.\Users l>folder l>readonly` (Adds a tag with tag's nickname `Users` that points to a folder `Users` in the current directory with labels `folder` and `readonly`)
+* `tag t>Users f>C:\Users` (Adds a tag with nickname `Users` using absolute path. The tag has no label and points to `C:\Users`)
+* `tag t>Users f>C:\Users l>Important` (Adds a tag with nickname `Users` using absolute path. The tag has a label `important` and points to`C:\Users`)
+* `tag t>Users f>.\Users` (Adds a tag with nickname `Users` using relative path. The tag has no label and points to a folder `Users` in the current directory)
+* `tag t>Users f>.\Users l>folder l>readonly` (Adds a tag with nickname `Users` using relative path. The tag has labels `folder` as well as `readonly` and points to a folder `Users` in the current directory)
 
 ### Displaying information of a tagged file : `show`
 
-Displays the information of the specified tagged file.<br>
+Displays the information of the specified tag.<br>
 You can see some basic information of a tagged file by using this command.
-It will show you the tag's file path and label information in case of the UI can't fully show them.
+It will show you the tag's file path and label information in case the UI can't show them in detail.
 
 Format: `show t>TAG_NAME`
 
 ![show](images/screenshots/show_command.png)
 
 Examples:
-* `show t>my_research` (show you the details of the tag name `my_research`)
-* `show t>file2020` (show you the details of the tag name `file2020`)
+* `show t>my_research` (show you the details of the tag with nickname `my_research`)
+* `show t>file2020` (show you the details of the tag with nickname `file2020`)
 
 ### Accessing a tagged file : `open`
 
 Opens the file specified by the unique tag's nickname or label.<br>
 You can open a file using its tag, with the default application in your operating system.
-Additionally, you can open all files with a specific label.
+Additionally, you can open all files with the same label.
 
 Please take note of the following:
 * This command only accepts one tag or one label but not both.
@@ -171,7 +171,7 @@ Examples:
 Renames a tag. <br>
 Changes the specified tag's nickname into the new one in order to make the tag's nickname more descriptive for the user. 
 Note that this command can only change nickname. It can't change any other information such as label and file path.
-Existing values will be carried over.
+Existing data will be carried over.
 
 Format: `retag o>OLD_TAG_NAME t>NEW_TAG_NAME`
 
@@ -184,8 +184,8 @@ Examples:
 ### Adding a label to a tag : `label`
 
 Adds one or more labels to an existing tag.<br>
-You can use label to categorise tags so that you can open all the tags with the same label simultaneously.
-Additionally, you can use label to make a tag to be more descriptive.
+You can use label to categorise tags in order to make a tag to be more descriptive.
+Additionally, all tags with the same label can be opened simultaneously.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -204,7 +204,7 @@ Examples:
 ### Deleting multiple labels from a tag : `unlabel`
 
 Deletes one or more labels from a tag. <br>
-You can delete an unwanted label from a certain tag in order to uncategorized the tag.
+This command lets you to uncategorized a certain tag.
 If some labels are invalid, all the other valid labels will be deleted from the tag, 
 and the invalid ones will be shown to the user.
 
