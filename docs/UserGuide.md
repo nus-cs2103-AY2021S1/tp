@@ -485,37 +485,98 @@ you can simply enter `undone 2` into the command line based on the index labelle
 * The index **must be found in your assignment list**
 </div>
 
-### Scheduling assignments:
-
-Schedules the assignment identified by the `INDEX` number used in the displayed assignment list.
-The suggested schedule with start time and end time will be displayed in the assignment card.
-It is guaranteed that the suggested time slot will not class with any of your lessons or the suggested time
-slots of other assignments.
+### Scheduling assignments: `schedule`
 
 Format: `schedule INDEX hrs/EXPECTED_HOUR af/AFTER_DATE AFTER_TIME by/BEFORE_DATE BEFORE_TIME`
-* Suggests a schedule for the assignment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The expected number of hours for an assignment **must be a positive integer between `1` and `5`**.
+
+You can request for a possible suggested schedule to work on your assignments so that you will not be required to manually plan a time.
+
+You can schedule an assignment by specifying the assignment `INDEX` as shown in your assignment list,
+the expected hours to finish the assignment and the period of time you want to work on the assignment.
+
+The suggested schedule with start time and end time will be displayed in the assignment card (Highlighted
+in red in the figure below).
+
+You can be ensured that the suggested time slot will not clash with any of your lessons or the suggested time
+slots of other assignments.
+
+Here is an example with steps to follow:
+
+1) You want to schedule assignments with the name "CS2106 Lab" as shown in the figure below with an expected hour of 5 hours
+and need to be done by a week from now (although the actual deadline is longer).
+
+    ![UserGuideScheduleCommand](images/UserGuideScheduleCommand.PNG)
+    *Figure 28: Assignment to schedule*
+
+2) You can simply enter `schedule 3 hrs/5 af/01-01-2020 0000 by/23-12-2020 2359` into the command box.
+
+    ![UserGuideScheduleCommandInput](images/UserGuideScheduleCommandInput.PNG)
+    *Figure 29: Command inputted by user*
+
+3) The suggested time slot will be displayed in the assignment card.
+    
+    ![UserGuideScheduleCommandResult](images/UserGuideScheduleCommandResult.PNG)
+    *Figure 30: Message shown in Command Box and suggested schedule displayed in the assignment card*
 
 Examples:
 * `schedule 1 hrs/2 af/23-12-2020 1800 by/23-12-2020 2359`
 * `schedule 2 hrs/5 af/01-01-2020 0530 by/01-01-2021 0530`
 
-### Removing suggested time for assignments:
+<div markdown="block" class="alert alert-primary">
 
-Removes the suggested time slot of the assignment identified by the `INDEX` number used in the displayed assignment list.
+ **:clipboard: Pointers to note:**<br>
+* The index **must be found in your assignment list**.
+* The expected number of hours **must be a positive integer between `1` and `5`**.
+* `BEFORE_DATE` is in the format dd-MM-yyyy and `BEFORE_TIME` is in the format `HHmm`.
+
+</div>
+
+### Removing suggested time for assignments: `unschedule`
 
 Format: `unschedule INDEX`
 
-* Removes the suggested time slot of the assignment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed assignment list.
+You can remove the suggested time slot of your assignments from the assignment list by specifying the 
+assignment `INDEX` as shown in your assignment list.
 
-### Undoing commands:
+For example, `unschedule 3` will remove the suggested time slot of your third assignment.
+    ![UserGuideUnscheduleCommandInput](images/UserGuideUnscheduleCommandInput.PNG)
+    *Figure 31: Assignment to remove the suggested schedule*
+    ![UserGuideUnscheduleCommandResult](images/UserGuideUnscheduleCommandResult.PNG)
+    *Figure 32: Message shown in Command Box and suggested schedule removed*
+       
+Examples:
+* `unschedule 1`
+* `unschedule 3`
 
-Undoes the most recent command.
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+* The index **must be found in your assignment list**.
+
+</div>
+
+### Undoing commands: `undo`
 
 Format: `undo`
+
+You can undo all previous commands one at a time if you make mistakes in commands.
+
+Here is an example with steps to follow:
+
+1) You accidentally delete the first assignment by entering `delete 1` command.
+
+    ![UserGuideUndoCommandDeleteInput](images/UserGuideUndoCommandDeleteInput.PNG)
+    *Figure 33: Delete the first assignment*
+    ![UserGuideUndoCommandDeleteResult](images/UserGuideUndoCommandDeleteResult.PNG)
+    *Figure 34: Result after deleting the first assignment*
+    
+2) You can enter `undo` to undo the `delete 1` command.
+
+    ![UserGuideUndoCommandInput](images/UserGuideUndoCommandInput.PNG)
+    *Figure 35: Undo the delete command*
+    ![UserGuideUndoCommandResult](images/UserGuideUndoCommandResult.PNG)
+    *Figure 36: Result after undoing the delete command*
+    
 
 ### Clearing all assignments: `clear`
 
@@ -535,7 +596,7 @@ Format: `help`
 If you are new to ProductiveNUS or want to have a quick overview of all the available commands, you can simply enter `help` and a Help Window will appear as shown in the labelled diagram below.
 
    ![UserGuideHelpCommand](images/UserGuideHelpCommand.PNG)
-   *Figure 28: Help Window labelled*
+   *Figure 37: Help Window labelled*
 
 ### Exiting the program : `exit`
 
@@ -616,7 +677,7 @@ You can reschedule by using the schedule command on that assignment again.<br>
 
 1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the diagram below.<br>
    ![UserGuideReschedule](images/UserGuideReschedule.PNG)
-   *Figure 29: Index of the assignment to reschedule labelled*
+   *Figure 38: Index of the assignment to reschedule labelled*
    
 <div markdown="span" class="alert alert-success">
 **:bulb: Tip:**
@@ -627,7 +688,7 @@ You can paste the command into the command box after step 2 and repeat step 1-2 
 
 2. Press ENTER to reschedule your assignment and your assignment will be scheduled to another time or day as shown in the diagram below.<br>
    ![UserGuideRescheduleSuccess](images/UserGuideRescheduleSuccess.PNG)
-   *Figure 30: New suggested time for assignment labelled*
+   *Figure 39: New suggested time for assignment labelled*
 <br>
 
 **Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?<br>
@@ -636,17 +697,17 @@ You can paste the command into the command box after step 2 and repeat step 1-2 
 1. Open the folder where you have downloaded and saved the productivenus.jar file.
 2. Copy the file directory of the folder. You can refer to the labelled diagram below.<br>
    ![UserGuideLocateDirectory](images/UserGuideLocateDirectory.PNG)
-   *Figure 31: File directory labelled*
+   *Figure 40: File directory labelled*
    
 3. Open your command prompt. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
 4. Your command prompt will start, and it should look something similar to the diagram below.<br>
    ![UserGuideCommandPrompt](images/UserGuideCommandPrompt.PNG)
-   *Figure 32: Interface of Command Prompt*
+   *Figure 41: Interface of Command Prompt*
    
 4. In the command prompt, type `cd ` and paste the file directory that you have copied in step 2.
 <br>For example, `cd C:\Users\YourUserName\Desktop\ProductiveNUS`.
 5. Press ENTER and the file directory will be shown in the command prompt as shown in the diagram below.<br>
    ![UserGuideChangeDirectory](images/UserGuideChangeDirectory.PNG)
-   *Figure 33: After changing file directory in Command Prompt*
+   *Figure 42: After changing file directory in Command Prompt*
    
 6. Finally, type `java -jar productivenus.jar` and press ENTER to start the app.
