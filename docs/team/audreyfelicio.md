@@ -93,9 +93,9 @@ Given below are my contributions to the project.
     * Added prefixes table. (Pull request [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
     * Added command information and summary table. (Pull request [\#252](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/252))
     * Added invalid prefixes warning. (Pull request [\#252](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/252))
-    * Added documentation for the feature `update`. (Pull request [\#121](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/121))
-    * Added documentation for the feature `sort`. (Pull request [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164))
-    * Added documentation for the feature `suggestion`. (Pull request [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145))
+    * Added documentation for the feature `update`. (Pull request [\#121](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/121), [\#209](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/209), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
+    * Added documentation for the feature `sort`. (Pull request [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
+    * Added documentation for the feature `suggestion`. (Pull request [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
     * Fix markdown formatting errors. (Pull request [\#121](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/121))
 
   * Developer Guide:
