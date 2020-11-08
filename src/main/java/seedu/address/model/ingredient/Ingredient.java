@@ -116,6 +116,7 @@ public class Ingredient {
      * Returns true if a given string is a valid quantity.
      */
     public static boolean isValidQuantity(String quantity) {
+        int maxLengthOfDigits = 10;
         int fullStopIndex = quantity.indexOf(".");
         int forwardSlashIndex = quantity.indexOf("/");
 
@@ -136,7 +137,9 @@ public class Ingredient {
         }
         String digits = digitsAndUnits[0];
         String units = digitsAndUnits[1];
-        return ((!digits.equals("") && StringUtil.isNonZeroUnsignedFloat(digits) && digits.length() < 11)
+        boolean isGreaterThanZero = StringUtil.isNonZeroUnsignedFloat(digits);
+        boolean isWithinMaxLength = digits.length() <= maxLengthOfDigits;
+        return ((!digits.equals("") && isGreaterThanZero && isWithinMaxLength)
                 || digits.equals(""))
                 && units.matches(VALIDATION_REGEX_STRING);
     }
@@ -162,9 +165,10 @@ public class Ingredient {
                 break;
             }
         }
+        boolean hasZeroOnLeftOfDecimalPoint = indexOfDecimalPoint != -1 && indexOfDecimalPoint == index;
         if (index == 0) {
             return quantity;
-        } else if (indexOfDecimalPoint != -1 && indexOfDecimalPoint == index) {
+        } else if (hasZeroOnLeftOfDecimalPoint) {
             return digits.substring(index - 1).trim() + " " + units.trim();
         } else {
             return digits.substring(index).trim() + " " + units.trim();
@@ -177,6 +181,9 @@ public class Ingredient {
         boolean hasEncounteredUnits = false;
         for (int i = 0; i < quantity.length(); i++) {
             char c = quantity.charAt(i);
+            boolean isStringFormat = !Character.isDigit(c) && !Character.isWhitespace(c) && c != '.' && c != '/';
+            boolean isNumberFormat = Character.isDigit(c) || Character.isWhitespace(c) || c == '.' || c == '/';
+
             if (hasEncounteredUnits) {
                 //Digit in STRING area
                 if (Character.isDigit(c)) {
@@ -184,18 +191,17 @@ public class Ingredient {
                 }
                 units.append(c);
                 //Quantity is in STRING format
-            } else if (i == 0 && !Character.isDigit(c) && !Character.isWhitespace(c)) {
+            } else if (i == 0 && isStringFormat) {
                 units.append(quantity);
                 break;
 
             //Quantity is in NUMBER STRING format
-            } else if (!Character.isDigit(c) && !Character.isWhitespace(c) && c != '.' && c != '/') {
+            } else if (isStringFormat) {
                 hasEncounteredUnits = true;
                 units.append(c);
-            } else if (Character.isDigit(c) || Character.isWhitespace(c) || c == '.' || c == '/') {
+            } else if (isNumberFormat) {
                 value.append(c);
             } else {
-                //should never reach here
                 return null;
             }
         }
