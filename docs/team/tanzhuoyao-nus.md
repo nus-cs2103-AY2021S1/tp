@@ -34,6 +34,8 @@ Given below are my contributions to the project.
   ModelManagerTest to ensure remaining test cases fully support the application
   [#110](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/110)
 
+<div style="page-break-after: always;"></div>
+
 * **Contributions to DG**:
   * Added implementation for `filter` feature along with activity and sequence diagrams [#85](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/85)
   & [#210](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/210)
