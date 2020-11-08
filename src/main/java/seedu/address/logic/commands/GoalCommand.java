@@ -14,7 +14,7 @@ public class GoalCommand extends CommandForExercise {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a goal to Calo. \n"
             + "Parameters: "
-            + PREFIX_CALORIES + "CALORIES"
+            + PREFIX_CALORIES + "CALORIES "
             + PREFIX_DATE + "DATE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CALORIES + "100 "
