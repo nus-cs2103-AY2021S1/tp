@@ -154,4 +154,13 @@ public class UniqueBidderList implements Iterable<Bidder> {
         }
         return true;
     }
+
+    /**
+     * Returns true if the list contains a bidder that is equivalent to the bidder.
+     */
+    public boolean containsExceptBidderId(Bidder inCheck, BidderId excludedId) {
+        requireAllNonNull(inCheck, excludedId);
+        return internalList.stream().filter(bidder -> !(bidder.getId().equals(excludedId)))
+                .anyMatch(inCheck::isSameBidder);
+    }
 }

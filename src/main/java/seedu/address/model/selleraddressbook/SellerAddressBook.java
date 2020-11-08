@@ -1,6 +1,7 @@
 package seedu.address.model.selleraddressbook;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -60,9 +61,9 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
     /**
      * Returns true if a Seller with the same identity as {@code Seller} exists in the address book.
      */
-    public boolean hasSeller(Seller bidder) {
-        requireNonNull(bidder);
-        return sellers.contains(bidder);
+    public boolean hasSeller(Seller seller) {
+        requireNonNull(seller);
+        return sellers.contains(seller);
     }
 
     /**
@@ -112,6 +113,17 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
     @Override
     public ObservableList<Seller> getSellerList() {
         return sellers.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Checks seller existing in the seller address book with the exclusion of the id.
+     * @param editedSeller seller that is edited.
+     * @param sellerId the id of excluded seller.
+     * @return true if any information is true.
+     */
+    public boolean hasSellerExceptSellerId(Seller editedSeller, SellerId sellerId) {
+        requireAllNonNull(editedSeller, sellerId);
+        return sellers.containsExceptSellerId(editedSeller, sellerId);
     }
 
     @Override

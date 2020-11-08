@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.commands.bidcommands.AddBidCommand.MESSAGE_INVALID_BIDDER_ID;
 import static seedu.address.logic.commands.bidcommands.AddBidCommand.MESSAGE_INVALID_BID_AMOUNT;
 import static seedu.address.logic.commands.bidcommands.AddBidCommand.MESSAGE_INVALID_PROPERTY_ID;
+import static seedu.address.logic.commands.meetingcommands.AddMeetingCommand.MESSAGE_BIDDER_ID_INVALID;
+import static seedu.address.logic.commands.meetingcommands.AddMeetingCommand.MESSAGE_PROPERTY_ID_INVALID;
 import static seedu.address.model.price.Price.isValidPrice;
 
 import java.nio.file.Path;
@@ -362,16 +364,17 @@ public class ModelManager implements Model {
     private void checkIsValidMeeting(Meeting meeting) throws CommandException {
         requireNonNull(meeting);
         if (!containsPropertyId(meeting.getPropertyId())) {
-            throw new CommandException(MESSAGE_INVALID_PROPERTY_ID);
+            throw new CommandException(MESSAGE_PROPERTY_ID_INVALID);
         }
         if (!containsBidderId(meeting.getBidderId())) {
-            throw new CommandException(MESSAGE_INVALID_BIDDER_ID);
+            throw new CommandException(MESSAGE_BIDDER_ID_INVALID);
         }
     }
 
     @Override
-    public void setMeeting(Meeting target, Meeting editedMeeting) {
+    public void setMeeting(Meeting target, Meeting editedMeeting) throws CommandException {
         requireAllNonNull(target, editedMeeting);
+        checkIsValidMeeting(editedMeeting);
         meetingBook.setMeeting(target, editedMeeting);
     }
 
@@ -470,6 +473,12 @@ public class ModelManager implements Model {
         filteredBidders.setPredicate(predicate);
     }
 
+    @Override
+    public boolean hasBidderExceptBidderId(Bidder editedBidder, BidderId bidderId) {
+        requireNonNull(editedBidder);
+        return bidderAddressBook.hasBidderExceptBidderId(editedBidder, bidderId);
+    }
+
     //=========== Seller =============================================================
 
     @Override
@@ -492,7 +501,7 @@ public class ModelManager implements Model {
     public void deleteSeller(Seller target) {
         ArrayList<Property> propertiesToRemove = propertyBook.getPropertiesBySellerId((SellerId) target.getId());
         propertiesToRemove.forEach(this::deleteProperty);
-        propertyBook.removeAllPropertiesWithSellerId((SellerId) target.getId());
+        // propertyBook.removeAllPropertiesWithSellerId((SellerId) target.getId());
         sellerAddressBook.removeSeller(target);
     }
 
@@ -505,7 +514,6 @@ public class ModelManager implements Model {
     @Override
     public void setSeller(Seller target, Seller editedSeller) {
         requireAllNonNull(target, editedSeller);
-
         sellerAddressBook.setSeller(target, editedSeller);
     }
 
@@ -529,6 +537,12 @@ public class ModelManager implements Model {
     public void updateFilteredSellerList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
         filteredSellers.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasSellerExceptSellerId(Seller editedSeller, SellerId sellerId) {
+        requireNonNull(editedSeller);
+        return sellerAddressBook.hasSellerExceptSellerId(editedSeller, sellerId);
     }
 
     //=========== EQUALS =============================================================

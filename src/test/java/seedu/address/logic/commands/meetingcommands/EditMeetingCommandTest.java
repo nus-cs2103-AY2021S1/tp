@@ -12,28 +12,29 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.meeting.TypicalMeeting.getTypicalMeetingAddressBook;
+import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.meeting.EditMeetingDescriptorBuilder;
 
 class EditMeetingCommandTest {
     private Model model = new ModelManager(new UserPrefs(), new BidBook(),
-            new PropertyBook(), getTypicalBidderAddressBook(),
+            getTypicalPropertyBook(), getTypicalBidderAddressBook(),
             getTypicalSellerAddressBook(), getTypicalMeetingAddressBook());
 
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Meeting editedAdminMeeting = new MeetingBuilder().buildAdmin();
         EditMeetingCommand.EditMeetingDescriptor adminMeetingDescriptor =
                 new EditMeetingDescriptorBuilder(editedAdminMeeting).build();
@@ -42,7 +43,8 @@ class EditMeetingCommandTest {
 
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedAdminMeeting);
         ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), model.getMeetingBook());
+                model.getPropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(),
+                model.getMeetingBook());
 
         expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedAdminMeeting);
 
@@ -50,7 +52,7 @@ class EditMeetingCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Index indexLastMeeting = Index.fromOneBased(model.getFilteredMeetingList().size());
         Meeting lastMeeting = model.getFilteredMeetingList().get(indexLastMeeting.getZeroBased());
 
@@ -67,7 +69,8 @@ class EditMeetingCommandTest {
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
         ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), model.getMeetingBook());
+                getTypicalPropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(),
+                model.getMeetingBook());
 
         expectedModel.setMeeting(lastMeeting, editedMeeting);
 
@@ -83,13 +86,14 @@ class EditMeetingCommandTest {
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
         ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), model.getMeetingBook());
+                getTypicalPropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(),
+                model.getMeetingBook());
 
         assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws CommandException {
         showMeetingAtIndex(model, INDEX_FIRST_MEETING);
 
         Meeting meetingInFilteredList = model.getFilteredMeetingList().get(INDEX_FIRST_MEETING.getZeroBased());
@@ -100,7 +104,8 @@ class EditMeetingCommandTest {
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
         ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), model.getMeetingBook());
+                getTypicalPropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(),
+                model.getMeetingBook());
 
         expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
 
