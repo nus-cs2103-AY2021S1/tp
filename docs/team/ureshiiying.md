@@ -14,7 +14,8 @@ Given below are my contributions to the project.
 * **Implementation**: Implemented model `SalesBook`, and other related models, which are used to store sales tracking
  information.
   * What it does: Allows the app to record the sales data, as given by the user.
-  * Justification: This is a necessary step for the app to work as stated.   
+  * Justification: This is a necessary step for the app to work as stated. We can only add the commands after
+   building these models.  
  
 * **New Feature**: Added ability to add and update sales of drinks.
   * What it does: Allows the user to add and update the sales of drink items, in the Sales Tracker, with a single
