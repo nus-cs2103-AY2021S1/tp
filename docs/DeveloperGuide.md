@@ -190,6 +190,10 @@ command execution.
 In the **Model** Component, the following key method is used:
 * `Model#updateFilteredPatientLis(predicate)` : `Model` uses this method to update the displayed patients list.
 
+The following activity diagram summarizes what happens when the user inputs a find command.
+![FindActivityDiagram](images/UML_Diagrams/findActivityDiagram.png)
+
+
 
 #### 4.1.2 Design Consideration
 
