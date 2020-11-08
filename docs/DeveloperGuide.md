@@ -14,9 +14,15 @@ by Team W12-2
     * [3.5 - Storage Component](#section-35---storage-component)
     * [3.6 - Common Classes](#section-36---common-classes)
 * [Section 4 - Implementation](#section-4---implementation)
-    * [4.1 - Add feature](#section-41---add-feature)
-    * [4.2 - Undo/redo feature](#section-42---proposed-undoredo-feature)
-    * [4.3 - Data saving and loading](#section-43---data-saving-and-loading)
+    * [4.1 - Add Commands](#section-41---add-commands)
+    * [4.2 - Delete Commands](#section-42---delete-commands)
+    * [4.3 - Edit Commands](#section-43---edit-commands)
+    * [4.4 - Find Commands](#section-44---find-commands)
+    * [4.5 - List Commands](#section-45---list-commands)
+    * [4.6 - View Commands](#section-46---view-commands)
+    * [4.7 - Clear Command](#section-47---clear-command)
+    * [4.8 - Exit Command](#section-48---exit-command)
+    * [4.9 - Add Commands](#section-49---add-commands)
 * [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
 * [Section 6 - Appendix](#section-6---appendix)
 
@@ -176,7 +182,7 @@ Trackr's three data type also share the same commands, which are:
 
 Since Trackr stores and manages its data recursively, the commands for Module, Tutorial Group and Student work similarly.
 
-### Section 4.1 - Add Commands (addMod, addTG, addStudent)
+### Section 4.1 - Add Commands `addMod` `addTG` `addStudent`
 #### Overview
 
 The Add command in Trackr enables users to easily add data types to the app. Users will be able to keep track of data they are
@@ -198,7 +204,7 @@ Given below is an example of the interaction between the Model and the `AddModul
 - Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
     - Pros: Easier to implement
     - Cons: More repetitive code
-### Section 4.2 - Delete Commands (deleteMod, deleteTG, deleteStudent)
+### Section 4.2 - Delete Commands `deleteMod` `deleteTG` `deleteStudent`
 #### Overview
 
 The Delete command in Trackr enables users to easily delete data types from the app.
@@ -220,7 +226,7 @@ Given below is an example of the interaction between the Model and the `DeleteMo
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.3 - Edit Commands (editMod, editTG, editStudent)
+### Section 4.3 - Edit Commands `editMod` `editTG` `editStudent`
 #### Overview
 
 The Edit command in Trackr enables users to easily edit data types. Users will be able to modify data.
@@ -242,7 +248,7 @@ Given below is an example of the interaction between the Model and the `EditModu
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.4 - Find Commands (findMod, findTG, findStudent)
+### Section 4.4 - Find Commands `findMod` `findTG` `findStudent`
 #### Overview
 
 The Find command in Trackr enables users to easily find data based on keywords. This will save their time whenever they want to 
@@ -265,7 +271,7 @@ Given below is an example of the interaction between the Model and the `FindModu
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.5 - List Commands (listMod, listTG, listStudent)
+### Section 4.5 - List Commands `listMod` `listTG` `listStudent`
 #### Overview
 
 The List command in Trackr enables users to easily list all data. Users will be able to see all data after using the Find Commands.
@@ -287,7 +293,7 @@ Given below is an example of the interaction between the Model and the `ListModu
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.6 - View Commands (addMod, addTG, addStudent)
+### Section 4.6 - View Commands `viewTG` `viewStudent`
 #### Overview
 
 The Vieww command in Trackr enables users to easily navigate between the different views: Module View, Tutorial Group View and Student View.
@@ -309,7 +315,7 @@ Given below is an example of the interaction between the Model and the `ViewTuto
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.7 - Clear Commands (clear)
+### Section 4.7 - Clear Command `clear`
 #### Overview
 
 The Clear command in Trackr enables users to easily clears all data. Users will be able to erase all data in one simple command.
@@ -331,7 +337,7 @@ Given below is an example of the interaction between the Model and the `ClearCom
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.8 - Exit Commands (exit)
+### Section 4.8 - Exit Command `exit`
 #### Overview
 
 The Exit command in Trackr enables users to easily exit the app. Users will be able to close the application. Data will be

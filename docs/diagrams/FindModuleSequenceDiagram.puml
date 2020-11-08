@@ -38,7 +38,7 @@ ModuleContainsKeywordPredicate --> FindModuleCommandParser: pred
 deactivate ModuleContainsKeywordPredicate
 
 create FindModuleCommand
-FindModuleCommandParser -> FindModuleCommand
+FindModuleCommandParser -> FindModuleCommand: :FindModuleCommand(pred)
 activate FindModuleCommand
 
 FindModuleCommand --> FindModuleCommandParser : f
