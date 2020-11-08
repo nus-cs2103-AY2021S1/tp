@@ -12,7 +12,7 @@ import quickcache.model.flashcard.Flashcard;
 
 
 /**
- * Adds a OEQ to the QuickCache.
+ * Adds a Open ended question to the QuickCache.
  */
 public class AddOpenEndedQuestionCommand extends Command {
 
@@ -31,7 +31,7 @@ public class AddOpenEndedQuestionCommand extends Command {
     private final Flashcard toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Flashcard}
+     * Creates an AddOpenEndedQuestionCommand to add the specified {@code Flashcard}
      */
     public AddOpenEndedQuestionCommand(Flashcard flashcard) {
         requireNonNull(flashcard);

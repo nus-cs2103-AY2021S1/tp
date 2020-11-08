@@ -19,7 +19,7 @@ import quickcache.model.flashcard.Question;
 import quickcache.model.flashcard.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddOpenEndedQuestionCommand object
  */
 public class AddOpenEndedQuestionCommandParser implements Parser<AddOpenEndedQuestionCommand> {
 
@@ -32,8 +32,8 @@ public class AddOpenEndedQuestionCommandParser implements Parser<AddOpenEndedQue
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddOpenEndedQuestionCommand
+     * and returns an AddOpenEndedQuestionCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
