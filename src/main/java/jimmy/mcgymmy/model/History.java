@@ -9,7 +9,7 @@ import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.model.macro.MacroList;
 
 class History {
-    private final Stack<Pair<McGymmy, Pair<Predicate<Food>, MacroList>>> stack;
+    protected final Stack<Pair<McGymmy, Pair<Predicate<Food>, MacroList>>> stack;
 
     History() {
         stack = new Stack<>();

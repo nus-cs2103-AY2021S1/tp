@@ -4,13 +4,21 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
+/**
+ * Represents a food item with hidden internal logic.
+ */
 public abstract class Macronutrient {
-    protected static final String MESSAGE_CONSTRAINTS =
-            " can only contain non-negative integers less than 1000";
+
+    private static final int LOWER_BOUND = 0; //Inclusive
+    private static final int UPPER_BOUND = 999; //Non inclusive
     private static final String VALIDATION_REGEX = "(\\d){1,3}";
+
+    protected static final String MESSAGE_CONSTRAINTS = String.format(
+            " can only contain non-negative integers between %d and %d", LOWER_BOUND, UPPER_BOUND);
+
     private final int amount;
-    private final int caloricMultiplier;
     private final int totalCalories;
+    private final int caloricMultiplier;
 
     /**
      * Represents macronutrients of 3 types
@@ -24,12 +32,13 @@ public abstract class Macronutrient {
         // use this instead of assert because the amount < 0 error is more because of user input than developer's fault
         AppUtil.checkArgument(isValidAmount(amount), getMessageConstraint());
 
-        assert (caloricMultiplier == 4 || caloricMultiplier == 9) : "Invalid Macronutrient Multiplier";
+        // add assertion for negative multiplier
+        assert isValidMultiplier(caloricMultiplier) : "Caloric multiplier is negative";
+
         // initialise variables
         this.amount = amount;
         this.caloricMultiplier = caloricMultiplier;
         this.totalCalories = caloricMultiplier * amount;
-
     }
 
     /**
@@ -39,11 +48,16 @@ public abstract class Macronutrient {
      * @return if the String is valid.
      */
     public static boolean isValid(String value) {
-        return value.matches(VALIDATION_REGEX);
+        //Trim for defensive programming
+        return value.trim().matches(VALIDATION_REGEX);
     }
 
     private boolean isValidAmount(int amount) {
-        return amount >= 0 && amount < 1000;
+        return amount >= LOWER_BOUND && amount <= UPPER_BOUND;
+    }
+
+    private boolean isValidMultiplier(int amount) {
+        return amount > 0;
     }
 
     abstract String getMessageConstraint();
@@ -63,6 +77,7 @@ public abstract class Macronutrient {
         }
         Macronutrient otherMacronutrient = (Macronutrient) other;
         return this.getMacronutrientType().equals(otherMacronutrient.getMacronutrientType())
+                && this.getCaloricMultiplier() == otherMacronutrient.getCaloricMultiplier()
                 && this.getAmount() == otherMacronutrient.getAmount();
     }
 

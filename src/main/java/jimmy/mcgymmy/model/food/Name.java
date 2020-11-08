@@ -6,7 +6,7 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
 
 /**
- * Represents a Food's name in mcgymmy.
+ * Represents a Food's name in McGymmy.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

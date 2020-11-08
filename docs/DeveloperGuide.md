@@ -8,8 +8,8 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. **Purpose of this guide**
-This guide is made to help developers understand how McGymmy (MG) works.
-One of the major goals is to centralise all the jimmy.mcgymmy documentation within McGymmy itself.
+This guide aims to help developers understand how McGymmy (MG) works.
+One of the major goals is to centralise all the McGymmy documentation within McGymmy itself.
 Another major goal is to better help developers extend McGymmy to improve on its features.
 
 ##  2. Icon Legend
@@ -109,8 +109,8 @@ For more information on macros and the full parsing process please read the sect
 1. `Logic` uses the `McGymmyParser` class to parse the user command.
 1. This results in a `CommandExecutable` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a food item).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `UI`.
+1. In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions, such as displaying help to the user.
 
 Note that our implementation of this component is different from the one in the parent project, [AddressBook3](https://se-education.org/addressbook-level3/).
 One notable difference is the use of several `Parameter` classes in the various `Commands`.
@@ -308,7 +308,7 @@ The following sequence diagram shows how the import operation works:
 #### 7.4.1 Implementation
 
 The proposed undo mechanism is facilitated by `ModelManager` and `History`.
-`History` pairs `ReadOnlyMcGymmy` and `Predicate<Food>` gotten from `ModelManager` into a pair, then store multiple pairs of different versions in a stack, with the most recent version on top.
+`History` combines `ReadOnlyMcGymmy`, `Predicate<Food>` and `MacroList` gotten from `ModelManager` together, then store multiple groups of different versions in a stack, with the most recent version on top.
 Whenever there is a change to either `ModelManager`'s data, filter predicate, or macro list, `ModelManager` will pass itself into `History` to be saved into the stack.
 Additionally, `ModelManager` implements the following operations:
 
@@ -383,8 +383,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the food item being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### 7.5 Macro Command
 
@@ -476,16 +474,35 @@ This implementation is considerably more involved hence we proceeded with the cu
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an …​                                  | I want to …​                            | So that I can…​                                                         |
+| Priority | As a/an …​                              | I want to …​                        | So that I can…​                                                     |
 | -------- | ------------------------------------------ | -------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions                 | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | track what I am eating                 |                                                                        |
 | `* * *`  | user                                       | delete a food item                     | remove food items that I no longer care of                             |
 | `* * *`  | user                                       | easily add food items/details          | keep track of my diet                                                  |
+| `* * *`  | organised user                             | easily filter my food items            | find food items based on criteria                                      |
+| `* * *`  | user                                       | easily export my data                  | transfer my old data to a new computer or as backup                    |
+| `* * *`  | user                                       | easily load my data                    | restore the previous backups i have made                               |
+| `* * *`  | user                                       | undo my functions                      | fix my accidental mistakes in my commands                              |
 | `* *`    | frequent user                              | perform tasks on a group of food items |                                                                        |
-| `* *`    | expert user                                | create shortcuts for tasks             | frequently performed tasks                                             |
+| `* *`    | organised user                             | be able to clear food items            | reduce excess clutter within the application                           |
+| `* *`    | expert user                                | create shortcuts for tasks             | do frequently performed tasks faster                                   |
+| `* *`    | expert user                                | easily view the shortcuts I created    | remember what they do if I forget                                      |
+| `* *`    | expert user                                | delete the shortcuts I created         | remove shortcuts I no longer use                                       |
+| `* *`    | user                                       | tag my items for identification        | so that I can find them easily                                         |
+| `* *`    | user                                       | untag my items                         | in case I made a mistake in tagging                                    |
+| `* *`    | user                                       | view detailed statistics               | better keep track of my diet                                           |
 | `*`      | programmer                                 | make use of the CLI like design        | get used to CLI in the future                                          |
-
+| `*`      | programmer                                 | be able to customise the application   | improve my workflow and make it faster                                 |
+| `*`      | programmer                                 | automate repetitive tasks              | save time and energy                                                   |
+| `*`      | programmer                                 | shorten my commands                    | remember them better                                                   |
+| `*`      | dietician                                  | view my client's diet                  | ensure that they are eating healthily                                  |
+| `*`      | an underweight individual                  | track my caloric count                 | ensure that I am eating at a surplus                                   |
+| `*`      | an overweight individual                   | track my caloric count                 | ensure that I am eating at a deficit                                   |
+| `*`      | an student athlete                         | track my protein intake                | ensure that my diet promotes recovery                                  |
+| `*`      | a diabetic individual                      | find trends of sugary food with tags   | track what I ate that spikes my insulin level                          |
+| `*`      | a careless user with typos                 | find food with wrong macro values      | correct inaccurate inputs                                              |
+| `*`      | a minimalistic user                        | find outdated food items               | clear them from the list                                               |
 
 ### 9.3 Use cases
 
@@ -495,35 +512,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC01 List food**
 
 **MSS**
-1. User requests to list food (UC01)
-2. McGymmy shows a list of food that user has added (UC02)
-Use case ends
+1. User requests to list food. (UC01)
+2. McGymmy shows a list of food that user has added. (UC02)
+
+Use case ends.
 
 **Use case: UC02 Add food**
 
 **MSS**
-1. User requests to add food into the list
-2. McGymmy adds the food item into the list
+1. User requests to add food into the list.
+2. McGymmy adds the food item into the list.
 
 Use case ends.
 
 **Extensions**
-- 1a. The format of add method is invalid
-    1a1. McGymmy shows an error message
+- 1a. The format of add method is invalid.
+    - 1a1. McGymmy shows an error message.
     Use case ends.
 
 **Use case: UC03 Delete food**
 
 **MSS**
-1. User requests to list food (UC01)
-2. McGymmy shows a list of food
-3. User request to delete a specific food on the list
-4. McGymmy deletes the food
+1. User requests to list food. (UC01)
+2. McGymmy shows a list of food.
+3. User request to delete a specific food on the list.
+4. McGymmy deletes the food.
 
 Use case ends
 
 **Extensions**
-- 2a. The list is empty<br>
+- 2a. The list is empty.<br>
 
     Use case ends.
 
@@ -535,39 +553,39 @@ Use case ends
 **Use case: UC04 Help**
 
 **MSS**
-1. User requests help
-2. McGymmy shows all commands and examples of command usages
+1. User requests help.
+2. McGymmy shows all commands and examples of command usages.
 
-Use case ends
+Use case ends.
 
 **Extensions**
-No extensions
+No extensions.
 
 **Use case: UC05 Update food**
 
 **MSS**
-1. User requests to list food (UC01)
-2. McGymmy shows a list of food
-3. User request to update a specific food on the list
-4. McGymmy updates the food
+1. User requests to list food. (UC01)
+2. McGymmy shows a list of food.
+3. User request to update a specific food on the list.
+4. McGymmy updates the food.
 
-Use case ends
+Use case ends.
 
 **Extensions**
-- 2a. The list is empty<br>
+- 2a. The list is empty.<br>
     Use case ends.
 - 3a. The given index is invalid.<br>
-   - 3a1. McGymmy shows an error message
+   - 3a1. McGymmy shows an error message.
     Use case resumes at step 2.
 
 **Use case: UC06 Add a macro command**
 
 **MSS**
 
-1. User creates a macro to execute two 'add' commands in sequence
-2. McGymmy adds the macro to the list of available commands
-3. User uses the newly added macro command
-4. McGymmy executes the two commands consecutively
+1. User creates a macro to execute two 'add' commands in sequence.
+2. McGymmy adds the macro to the list of available commands.
+3. User uses the newly added macro command.
+4. McGymmy executes the two commands consecutively.
 
 Use case ends
 
@@ -583,20 +601,35 @@ Use case ends.
 
 Use case ends.
 
-*{More to be added}*
+**Use case: UC07 Undo the last command**
+
+**MSS**
+
+1. User requests to undo the last command.
+2. McGymmy successfully undo the last command.
+
+Use case ends.
+
+**Extensions**
+
+1a. McGymmy shows the error message that there is no command left to undo.
+
+Use case ends.
+
 
 ### 9.4 Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 food items without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The product should be for a single user i.e. (not a multi-user product).
-5. The data should be stored locally and should be in a human editable text file.
-6. The software should not depend on a private remote server.
-7. The size of the final compiled JAR file should be less than 100Mb.
-8. There should be CLI alternatives to every GUI input. (E.g. instead of clicking on a button I can type an equivalent command to achieve the same result.)
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. There should be CLI alternatives to every GUI input. (E.g. instead of clicking on a button I can type an equivalent command to achieve the same result.)
+1. Should be able to hold up to 1000 food items without a noticeable sluggishness in performance for typical usage.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. The data should be stored locally and should be in a human editable text file.
+1. The product should be for a single user i.e. (not a multi-user product).
+1. Each Command entered by the user should be processed within 1 second.
+1. All numeric values must be accurate to within 5 significant figures
+1. The size of the final compiled JAR file should be less than 100Mb.
+1. The software should not depend on a private remote server.
 
-*{More to be added}*
 
 ### 9.5 Glossary
 
@@ -662,7 +695,7 @@ testers are expected to do more *exploratory* testing.
    <br>
    Expected: A new data file is generated
 
-   1. Open the data file inside the `data` folder using any text editor and edit the file.
+   1. Open the data file inside the `data` folder using any text editor and edit the file to invalid values.
    <br>
    Expected: A new empty data file is generated which overwrites the old one.
 
