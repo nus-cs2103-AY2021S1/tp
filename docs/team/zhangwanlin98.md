@@ -37,5 +37,4 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
-    (example: [\#114](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/114),
-    [\#96](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/96))
+    (example: [\#114](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/114), [\#96](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/96))
