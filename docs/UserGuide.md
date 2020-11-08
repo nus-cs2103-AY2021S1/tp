@@ -62,12 +62,6 @@ You can start from the [Quick Start](#quick-start) section to learn how to obtai
 
 --------------------------------------------------------------------------------------------------------------------
 
-## About this document  <a name="about-this-document"></a>
-This document introduces the features of tCheck. 
-
-## 3. About <a name="about"></a>
-
-
 ### 3.1 Structure of this document
 
 We have structured this User Guide in a way so that you can find what you need easily and quickly. In the next section,
@@ -96,7 +90,7 @@ Figure 2 - Annotated GUI of tCheck
 
 #### 3.2.2. General Symbols and Syntax 
 
-The following table explains general symbols and syntax used in this User Guide.
+The following table explains the general symbols and syntax used in this User Guide.
 
 | Syntax |  What it means |
 |----------|-------------|
@@ -107,7 +101,7 @@ The following table explains general symbols and syntax used in this User Guide.
 
 #### 3.2.3. Command Syntax and Usage
 
-The following table explains technical terms used in this user guide.
+The following table explains the technical terms used in this user guide.
 
 | Technical Term | What it means |
 | ---------------| --------------|
@@ -133,7 +127,7 @@ The following points explain the format of a command.
     or as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road`.
 
 * Items with `…​` after them can be used multiple times, including zero times.<br>
-   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Friday`, `t/Friday t/PartTime`, etc.
+   e.g. `[t/TAG] …​` can be used as ` ` (i.e. 0 times), `t/Friday`, `t/Friday t/PartTime`, etc.
 
 * Parameters can be in any order.<br>
    e.g. If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
