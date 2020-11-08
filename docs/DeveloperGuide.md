@@ -140,14 +140,14 @@ The `Person` sub-component,
 
 Figure x. Class diagram showing the structure of `Person` sub-component
 
+The `SalesRecordEntry` sub-component,
+* stores the sales book data
+* exposes an unmodifiable `ObservableList<SalesRecordEntry>` that can be 'observed'. e.g. yhe UI can be bound to this
+ list so that the UI automatically updates when the data in the list change.
+
 Given below is the class diagram showing the details of the `SalesRecordEntry` model:
 
 ![Structure of the SalesRecordEntry sub-component](images/SalesRecordEntryModelClassDiagram.png)
-
-The `SalesRecordEntry` sub-component,
-* stores the sales book data
-* exposes an unmodifiable `ObservableList<SalesRecordEntry>` that can be 'observed'. e.The UI can be bound to this
- list so that the UI automatically updates when the data in the list change.
 
 Given below is the class diagram showing details of the ingredient model:
 
