@@ -1560,10 +1560,10 @@ Step 9. The `DeleteCommand#execute()` checks for each **serial number** in the `
         and if it does, deletes it and stores in the list of `stocksDeleted`. Else, the serial number will be added in
         the list of `unknownSerialNumbers`. 
 
-Step 10. `DeleteCommand#execute()` then prints out the respective message, depending on the number of successful deletions of stocks.
-         If **all** of the serial numbers are **found**, it will inform the user which stocks that are deleted, which in this case, all.
+Step 10. `DeleteCommand#execute()` then prints out the respective message, depending on the number of successful deletions of stocks.<br>
+         If **all** of the serial numbers are **found**, it will inform the user which stocks that are deleted, which in this case, all.<br>
          If **some** of the serial numbers are **found**, it will inform the user that which stocks are deleted and which 
-         serial numbers are not found.
+         serial numbers are not found.<br>
          If **all** of the serial numbers **not found**, it will inform the user which of the serial numbers are not found, which
          in this case, all.
 
