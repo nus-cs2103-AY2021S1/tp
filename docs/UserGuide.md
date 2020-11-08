@@ -7,7 +7,7 @@ Welcome to FitEgo! This document will serve as a user guide to the all-in-one sc
 
 Made with **fitness instructors** in mind, **FitEgo** is a **desktop program** that helps them **manage their clients and schedules**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **FitEgo** can get your client management tasks done faster than traditional GUI apps.
 
-## Table of Contents
+<h2>Table of Contents</h2>
 
 * Table of Contents
 {:toc}
@@ -834,3 +834,7 @@ You can find the comprehensive list of commands in the table below.
 
 # 6 Acknowledgement
 * This project uses libraries from [ControlsFX](https://github.com/controlsfx/controlsfx)
+
+---
+
+<center>~End of User Guide~</center>
