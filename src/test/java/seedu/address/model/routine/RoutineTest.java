@@ -1,4 +1,4 @@
-package seedu.address.model.routines;
+package seedu.address.model.routine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -14,7 +14,6 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.routine.Routine;
 import seedu.address.model.util.Name;
 
 public class RoutineTest {
@@ -35,7 +34,7 @@ public class RoutineTest {
         assertFalse(LEG_DAY.isSameActivity(null));
 
         // same Name, one has Exercise and the other does not -> returns true
-        Routine editedRoutine = LEG_DAY;
+        Routine editedRoutine = new Routine(new Name("Leg Day"));
         Name editedName = new Name("Leg Extensions");
         Exercise typicalExercise = new Exercise(editedName, new HashSet<>());
         editedRoutine.addExercise(typicalExercise);

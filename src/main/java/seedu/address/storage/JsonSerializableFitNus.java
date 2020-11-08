@@ -1,8 +1,11 @@
 package seedu.address.storage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -31,6 +34,7 @@ class JsonSerializableFitNus {
     public static final String MESSAGE_DUPLICATE_SLOT = "Slot list contains duplicate slot(s).";
     public static final String MESSAGE_OVERLAP_SLOT = "Slot list contains overlapping slot(s).";
     public static final String MESSAGE_DUPLICATE_DAILYCALORIE = "Calorie log contains duplicate calorie log(s).";
+
 
     private final List<JsonAdaptedExercise> exercises = new ArrayList<>();
     private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
@@ -111,12 +115,14 @@ class JsonSerializableFitNus {
             fitNus.addSlotToTimetable(slot);
         }
         List<DailyCalorie> calorieLog = new ArrayList<>();
+        Map<LocalDate, Integer> dateTracker = new HashMap<LocalDate, Integer>();
 
         for (JsonAdaptedDailyCalorie jsonAdaptedDailyCalorie: dailyCalories) {
             DailyCalorie dailyCalorie = jsonAdaptedDailyCalorie.toModelType();
-            if (fitNus.hasDailyCalorie(dailyCalorie)) {
+            if (dateTracker.containsKey(dailyCalorie.getDate())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_DAILYCALORIE);
             }
+            dateTracker.put(dailyCalorie.getDate(), 1);
             calorieLog.add(dailyCalorie);
         }
         Collections.sort(calorieLog);

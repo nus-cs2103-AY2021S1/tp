@@ -56,6 +56,7 @@ class JsonAdaptedDailyCalorie {
         int modelCalories;
         try {
             modelCalories = Integer.parseInt(calories);
+            modelDailyCalorie.addCalories(modelCalories);
         } catch (NumberFormatException e) {
             throw new IllegalValueException(INVALID_CALORIE_MESSAGE_FORMAT);
         }
@@ -63,7 +64,6 @@ class JsonAdaptedDailyCalorie {
         if (modelCalories < 0) {
             throw new IllegalValueException(INVALID_CALORIE_MESSAGE_FORMAT);
         }
-        modelDailyCalorie.addCalories(modelCalories);
         return modelDailyCalorie;
     }
 }
