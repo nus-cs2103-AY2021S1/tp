@@ -85,7 +85,7 @@ public class CalorieAddCommandTest {
 
         @Override
         public void addCalories(Calorie calorie) {
-            dailyCalorie.addCalories(calorie.getCalorie());
+            dailyCalorie.addCalories(calorie);
         }
     }
 

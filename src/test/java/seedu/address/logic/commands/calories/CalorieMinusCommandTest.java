@@ -80,7 +80,7 @@ public class CalorieMinusCommandTest {
     /**
      * Stub used to contain a single DailyCalorie.
      */
-    private class ModelStubWithDailyCalorie extends ModelStub {
+    private static class ModelStubWithDailyCalorie extends ModelStub {
         private final DailyCalorie dailyCalorie;
 
         ModelStubWithDailyCalorie(DailyCalorie dailyCalorie) {
@@ -95,14 +95,14 @@ public class CalorieMinusCommandTest {
 
         @Override
         public void addCalories(Calorie calorie) {
-            dailyCalorie.addCalories(calorie.getCalorie());
+            dailyCalorie.addCalories(calorie);
         }
     }
 
     /**
      * Stub that accepts any DailyCalorie added to it.
      */
-    private class ModelStubAcceptingDailyCalorie extends ModelStub {
+    private static class ModelStubAcceptingDailyCalorie extends ModelStub {
         final ArrayList<DailyCalorie> dailyCalories = new ArrayList<>();
         private int calories = 1001;
 
