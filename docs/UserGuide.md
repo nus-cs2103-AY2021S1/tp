@@ -425,6 +425,8 @@ Format: `list`
 
 #### 5.2.8 Viewing patient profile: `profile`
 
+![example of add appointment](images/profileExample.png)
+
 Display the patient's profile in a separate window.
 
 Format: `profile INDEX`
@@ -451,6 +453,8 @@ These visitation logs store the following as a short summary of a patient's visi
 * Comments
 
 #### 5.3.1 Adding a new visitation log for patient: `addvisit`
+
+![example of add visit](images/addVisitExample.png)
 
 Display a new window to add a new visitation log for the specified patient.
 
@@ -485,6 +489,8 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 </div>
 
 #### 5.3.2 Editing patient's visitation log: `editvisit`
+
+![example of edit visit](images/editVisitExample.png)
 
 Display a new window to edit the visitation log for a specified patient.
 
@@ -526,6 +532,8 @@ Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
 **Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully updated.
 
 #### 5.3.3 Deleting patient's visitation log: `deletevisit`
+
+![example of delete visit](images/deleteVisitExample.png)
 
 Delete the patient's visitation log.
 
