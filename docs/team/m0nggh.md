@@ -21,7 +21,7 @@ Given below are my contributions to the project.
   * Deleted the email field from AB3 since ZooKeep does not require it ([\#68](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/68))
   * Refactored human references to animals in ZooKeep ([\#94](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/94), [\#95](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/95))
   * Standardised ZooKeep feeding time references to feed time ([\#276](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/276))
-  * Wrote additional tests for existing features to increase coverage from 71% to 75% ([\#127](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/127), [\#196](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/196), [\#274](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/274))
+  * Wrote additional tests for existing features to increase coverage from 71% to 76% ([\#127](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/127), [\#196](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/196), [\#274](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/274), [\#320](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/320))
 
 * **Documentation**:
   * User Guide:
@@ -33,7 +33,7 @@ Given below are my contributions to the project.
     * Added details to the FAQ section ([\#181](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/181))
   * Developer Guide:
     * Added user profile, value proposition and user stories ([\#33](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/33))
-    * Added implementation details of the `sort` feature ([\#145](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/145), [\#150](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/150))
+    * Added implementation details of the `sort` feature ([\#145](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/145), [\#150](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/150), [\#326](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/326))
     * Added numbering for TOC ([\#301](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/301))
     * Modified formatting and edited details in the appendix ([\#301](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/301))
     * Added and modified all use cases ([\#151](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/151), [\#301](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/301))
