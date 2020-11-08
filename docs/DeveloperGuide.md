@@ -267,7 +267,7 @@ Then, a new `Tag` is created using the modified `Set<Label>` and added back to t
 
 ### Internal File Explorer
 
-Internal File Explorer is a simple file explorer that supports viewing files on your computer. It contains a `CurrentPath` that 
+Internal File Explorer is a simple file explorer that supports viewing files on your computer. It uses a `CurrentPath` that 
 represents the directory the explorer is viewing, as well as a `FileList` of the children files under that directory. The 
 user can use `CdCommand` to change the current directory of the explorer, so he or she can view files under different directories.
 
@@ -279,8 +279,11 @@ Implementation of Internal File Explorer:
 
 Model
 
-The model class `CurrentPath` saves the current directory of the explorer, and keeps a `FileList` of the children files under 
+The model class `CurrentPath` saves the current directory of the explorer, and keeps a `FileList` that contains the children files under 
 that directory.
+
+This is the class diagram for CurrentPath.
+![UnlabelSuccessSequence](images/CurrentPathClassDiagram.png)
 
 UI
 
