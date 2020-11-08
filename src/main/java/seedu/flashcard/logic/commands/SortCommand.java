@@ -20,6 +20,16 @@ public class SortCommand extends Command {
             + "Parameters: <success|reviewed> <-a|-d>\n"
             + "Example: " + COMMAND_WORD + " reviewed " + PREFIX_CRITERIA + "d";
 
+    public static final String MESSAGE_SORTED_REVIEWED_ASCENDING = "Sorted flashcards by review frequency "
+            + "in ascending order!";
+    public static final String MESSAGE_SORTED_REVIEWED_DESCENDING = "Sorted flashcards by review frequency "
+            + "in descending order!";
+    public static final String MESSAGE_SORTED_SUCCESS_ASCENDING = "Sorted flashcards by success rate in "
+            + "ascending order!";
+    public static final String MESSAGE_SORTED_SUCCESS_DESCENDING = "Sorted flashcards by success rate in "
+            + "descending order!";
+    public static final String MESSAGE_SORTED_INVALID = "Flashcards could not be sorted!";
+
     private final SortCriteria criteria;
 
     public SortCommand(SortCriteria criteria) {
@@ -30,8 +40,25 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.sortFilteredFlashcardList(criteria);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));
+        String message;
+        switch(criteria) {
+        case REVIEWED_ASCENDING:
+            message = MESSAGE_SORTED_REVIEWED_ASCENDING;
+            break;
+        case REVIEWED_DESCENDING:
+            message = MESSAGE_SORTED_REVIEWED_DESCENDING;
+            break;
+        case SUCCESS_RATE_ASCENDING:
+            message = MESSAGE_SORTED_SUCCESS_ASCENDING;
+            break;
+        case SUCCESS_RATE_DESCENDING:
+            message = MESSAGE_SORTED_SUCCESS_DESCENDING;
+            break;
+        default:
+            message = MESSAGE_SORTED_INVALID;
+            break;
+        }
+        return new CommandResult(message);
     }
 
     @Override

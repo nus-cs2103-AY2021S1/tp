@@ -414,10 +414,10 @@ Format: `sort <success|reviewed> <-a|-d>`
 * Specifying `-d` means sorting by the criteria in descending order.
 
 Examples: 
-* `sort reviewed -a` shows a list of all flashcards sorted according to review frequency in ascending order
-* `sort reviewed -d` shows a list of all flashcards sorted according to review frequency in descending order
-* `sort success -a` shows a list of all flashcards sorted according to success rate in ascending order
-* `sort success -d` shows a list of all flashcards sorted according to success rate in descending order
+* `sort reviewed -a` shows a list of current flashcards sorted according to review frequency in ascending order
+* `sort reviewed -d` shows a list of current flashcards sorted according to review frequency in descending order
+* `sort success -a` shows a list of current flashcards sorted according to success rate in ascending order
+* `sort success -d` shows a list of current flashcards sorted according to success rate in descending order
 
 <div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequencies of a flashcard are only affected by quiz mode.
 </div>
