@@ -486,11 +486,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | easily load my data                    | restore the previous backups i have made                               |
 | `* * *`  | user                                       | undo my functions                      | fix my accidental mistakes in my commands                              |
 | `* *`    | frequent user                              | perform tasks on a group of food items |                                                                        |
-| `* *`    | expert user                                | create shortcuts for tasks             | frequently performed tasks                                             |
+| `* *`    | expert user                                | create shortcuts for tasks             | do frequently performed tasks faster                                   |
+| `* *`    | expert user                                | easily view the shortcuts I created    | remember what they do if I forget                                      |
+| `* *`    | expert user                                | delete the shortcuts I created         | remove shortcuts I no longer use                                       |
 | `* *`    | user                                       | tag my items for identification        | so that I can find them easily                                         |
 | `* *`    | user                                       | untag my items                         | in case I made a mistake in tagging                                    |
 | `*`      | programmer                                 | make use of the CLI like design        | get used to CLI in the future                                          |
 | `*`      | programmer                                 | be able to customise the application   | improve my workflow and make it faster                                 |
+| `*`      | programmer                                 | automate repetitive tasks              | save time and energy                                                   |
 
 
 ### 9.3 Use cases
