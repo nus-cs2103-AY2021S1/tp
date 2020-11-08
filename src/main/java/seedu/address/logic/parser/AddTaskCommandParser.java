@@ -26,7 +26,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS,
-                        PREFIX_TASK_DEADLINE,PREFIX_DESCRIPTION);
+                        PREFIX_TASK_DEADLINE, PREFIX_DESCRIPTION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TASK_NAME,
                 PREFIX_TASK_PROGRESS)
