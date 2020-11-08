@@ -30,7 +30,7 @@ public class ListLowStocksCommand extends ListCommand {
         logger.log(Level.INFO, "Starting to execute list low stocks command");
         requireNonNull(model);
         model.updateFilteredStockList(IS_LOW_STOCK);
-        logger.log(Level.INFO, "Finished listing all stocks successfully");
+        logger.log(Level.INFO, "Finished listing all low stocks successfully");
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

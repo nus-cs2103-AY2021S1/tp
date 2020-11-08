@@ -30,7 +30,7 @@ public class ListBookmarkCommand extends ListCommand {
         logger.log(Level.INFO, "Starting to execute list bookmark command");
         requireNonNull(model);
         model.updateFilteredStockList(IS_BOOKMARKED);
-        logger.log(Level.INFO, "Finished listing all stocks successfully");
+        logger.log(Level.INFO, "Finished listing all bookmarked stocks successfully");
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
