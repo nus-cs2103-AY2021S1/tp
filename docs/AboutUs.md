@@ -1,6 +1,7 @@
 
 ---
-About Us
+layout: page
+title: About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
@@ -19,8 +20,8 @@ You can reach us at the repoUrl `seer[at]comp.nus.edu.sg`
 
 [[portfolio](team/geniaaz.md)]
 
-* Role: Project Member
-* Responsibilities: Developer
+* Role: Developer
+* Responsibilities: UG, Teammate related features
 
 ### Li Jiayu
 

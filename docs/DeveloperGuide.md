@@ -481,28 +481,30 @@ Step 1: The user enters `startproject 2` for example to start project 1 from the
 
    *Figure 23: What the app looks like after 'start 2' command*
 
-Step 2: The user enters a New Teammate command such as `addteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon
+Step 2: The user enters a AddPerson command such as `addteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon
 @gmail.com ma/13 Cupertino Loop`. The command text is passed into `LogicManager` (an implementation of Logic) which
  passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is
-  `addteammate`. A new instance of `TeammateCommandParser` class is then created which proceeds to parse the various
+  `addperson`. A new instance of `TeammateCommandParser` class is then created which proceeds to parse the various
    fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
 
 If the fields are all valid, a new `Person` object would be created in the same class and passed into the
- `AddTeammateCommand` class. 
+ `AddPersonCommand` class. 
 
-Within the `AddTeammateCommand` class, an instance of `AddTeammateCommand` is created, along with an instance of the
+Within the `AddTeammateCommand` class, an instance of `AddPersonCommand` is created, along with an instance of the
  teammate created in the same class and this instance of `Command` is passed back to `LogicManager`.
 
-LogicManager then calls the method `execute` of the NewTeammateCommand which stores the teammate into the respective project's participation list, and for the project to be stored in the teammate's participation list. While seeming to increase coupling, it however keeps both classes separate and would not break each other when something is changed.
+LogicManager then calls the method `execute` of the NewTeammateCommand which stores the teammate into the respective
+ project's participation list, and for the project to be stored in the teammate's participation list. 
+ While seeming to increase coupling, it however keeps both classes separate and would not break each other when something is changed.
 
 The diagram below summarises what is happening above with the help of a sequence diagram:
-![AddTeammateSequenceDiagramImage](images/AddTeammateSequenceDiagram.png)
+![AddPersonSequenceDiagramImage](images/AddPersonSequenceDiagram.png)
 
    *Figure 24: Sequence Diagram of the 'addteammate' command*
 
 The diagram below gives a short overview on what happens when a user's input is received:
 
-![AddTeammateActivityDiagramImage](images/AddTeammateActivityDiagram.png)
+![AddPersonActivityDiagramImage](images/AddPersonActivityDiagram.png)
 
    *Figure 25: Activity Diagram of the 'addteammate' command*
 
@@ -530,6 +532,85 @@ The diagram below gives a short overview on what happens when a user's input is 
   * Pros: The user has one less attribute to enter when instantiating the teammate.
   * Cons: If the gitUserName is very different from the teammate's actual name, it may be difficult for the user
   to remember, as is often the case for gitUserNames.
+
+### Delete Person feature
+
+#### Implementation
+
+The implementation of DeleteTeammate involves both the deleting of the teammate in memory through the use of
+ `Participation`, deleting from all projects the teammate is a part of, as well as deleting the Teammate in the JSON
+  file on the harddisk using the `Storage` class.
+
+The DeleteTeammate created is removed in the following places:
+ - global static variable `allPeople` in the Person class 
+ - within the project it added to, in the associated Participations.
+ 
+The Delete Teammate command has to be prefixed with `deleteperson` and include the following field:
+ - `mg/` prefix followed by the teammate's Github User Name
+
+*The field above is validated upon entry by the user, and failing the validation, will display to the user that the
+  command failed, and request the user to try again.*
+
+Delete Teammate is also performed in the scope of `ListPersons`.
+
+Given below is an example usage scenario and how the `DeletePerson` mechanism behaves at each step:
+
+Step 1: The user enters `listpersons` for example to list all persons from the mainscreen.The user is greeted with the
+ projects list on the left, and the description of the project in the centre.
+
+![listPersons](images/listPersons.png)
+
+   *Figure 26: What the app looks like after 'listpersons' command*
+
+Step 2: The user enters a DeleteTeammate command such as `deleteperson GeNiaaz`. The command text is passed into
+ `LogicManager` (an implementation of Logic) which
+ passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is
+  `deleteperson`. A new instance of `DeletePersonParser` class is then created which proceeds to parse the various
+   fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an
+    exception at this stage. 
+
+
+To illustrate, the object diagram below shows the how Project and Person classes are related to each other, through the
+ use of an association class Participations.
+    
+![Participations](images/ShowParticipationDiagram.png)
+
+**How Project and Person are associated**
+    
+Project and Person cannot be directly linked, and hence are related in this manner to allow the Participation class to
+ handle the association. If the instance of Participation is deleted for example, the Project and Person can still
+  exist, without an association between them.
+
+If the Git Username is valid, the `allPeople` list in Person (*which is a list of all persons, stored as a static
+ variable in Person class*) would be searched for a teammate with a matching Git Username and deleted from the list
+  . All projects would also be searched for instances of participation with a teammate with a matching Git Username
+   and removed. 
+
+Within the `DeletePersonCommand` class, an instance of `DeletePersonCommand` is created, and this instance of
+ `Command` is passed back to `LogicManager`.
+
+LogicManager then calls the method `execute` of the DeletePersonCommand which deletes instances of itself in
+ all instances of participation as well as in memory and storage.
+ 
+ ![DeletePersonActivityDiagram](images/DeletePersonActivityDiagram.png)
+ 
+ #### Design consideration:
+ 
+ ##### Aspect: Which scope deletion of a teammate should happen in.
+ 
+ * **Alternative 1 (current choice):** Deletion should happen in the listperson scope.
+   * Pros: All teammates can be viewed at once, and one can be selected for deletion there.
+   * Pros: Teammate can be deleted even if all associations deleted from all projects.
+   * Cons: The user has to navigate to another menu to delete the teammate.
+   
+   (While it does indeed require the user to change scope to delete a teammate, deleting a teammate is not something
+    the user will be doing regularly, and so we believe the pros outweigh the cons in this case.)
+ 
+ * **Alternative 2:** Deletion should happen in the project scope.
+   * Pros: A teammate can be deleted quickly.
+   * Cons: It would be impossible to delete a teammate if all associations are deleted.
+   * Cons: User would have to know which project the temmate is associated and navigate there to delete it. 
+
 
 --------------------------------------------------------------------------------------------------------------------
 
