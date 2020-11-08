@@ -807,7 +807,7 @@ Exits the program.
 
 Format: `exit`
 
-### 5. Other Features <a name="other-feature"></a>
+### 5. Other Features <a name="other-features"></a>
 #### 5.1 Saving the data :
 All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in the hard disk automatically after each
  command. There is no need to save manually.
