@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to edit a schedule created by the user.
   * What it does: Allows the user to edit a schedule’s details like a schedule’s updated session index, payment status, remark and weight.
   * Justification: This feature improves the product significantly because a user may have changes made to his schedules, therefore the app should provide a way to make update the changes to the schedule.
-  * Highlights: This enhancement was similar to the edit session feature. However, the implementation was slightly different form the edit session feature. 
+  * Highlights: This enhancement was similar to the edit session feature. However, the implementation was slightly different form the edit session feature and more variations of parameters were added to this feature. 
                 Much consideration was put into this implementation for ease of usage of this feature, therefore more time was required to create this feature.
   * Credits: {Credits to teammates Bennett and Dhafin for adding additional parameters that can be edited in the feature}
 
