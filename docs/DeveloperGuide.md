@@ -340,26 +340,26 @@ Step 4. The user then decides to execute the command `list`. This will revert th
   * Pros: Greater degree of customisation with regards to GUI.
   * Cons: Difficult to implement as it requires the creation of multiple subclasses of `ListCommand`.
 
-### \[Proposed\] Customisation of Command Keywords using Alias Feature
+### Customisation of Command Keywords using Alias Feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed implementation for the customisation of `COMMAND_WORD` field for various `Command` subclasses is by introducing another `Command` subclass, called the `AliasCommand`. This command takes in a command keyword for which the user wishes to create a shortcut (an alias), and takes a second keyword which determines what its alias would be. 
+The implementation for the customisation of command keyword shortcuts for various `Command` subclasses is by introducing a class called `AliasMap` which stores mappings between a command shortcut ('alias') and the actual command word of the class, as well as a class called `AliasCommand` which takes in two user input as parameters. The first parameter is the default command word for which the user wishes to create an alias, or if there is an existing alias for the command word, it must be the existing alias for which the user wishes to alter into a new alias. The second keyword determines what the command's (new) alias would be.
 
-Sample usage:
-By default, the only command word for `FindCommand` is `“find”`
+Sample usage: By default, the only command word for `FindCommand` is `"find"`
 
-* `alias find get` -> The user can now trigger a `FindCommand` with `“get”` command word, the alias for `"find"`.
+* `alias find get` -> The user can now trigger a `FindCommand` with `"get"` alias. The `"find"` command word will still work.
+* `alias get find` -> The "get" alias is removed from `AliasMap` object and only `"find"` can now trigger `FindCommand`. In other words, `FindCommand` no longer has an alias.
 
-To maintain some degree of simplicity and neatness, we require that `AliasCommand` cannot have an alias for itself. 
+To maintain some degree of simplicity and neatness, we require that `AliasCommand` and `ResetAliasCommand` cannot have aliases themselves. Furthermore, any custom alias is restricted to 10 case-sensitive alphabetical characters and each command can only have up to a single alias at any point in time. Default command words of each `Command` subclasses cannot be used as aliases. 
 
-To allow for customisation to remain even after the user exits the app and subsequently restarts it, a customised alias-to-command mapping will be stored in JSON format, which can be converted to `AliasMap` and `AliasEntry` objects when Bamboo runs. 
+To allow for customisation to remain even after the user exits the app and subsequently restarts it, a customised alias-to-command mapping will be stored in JSON format, which can be converted to `AliasMap` and `AliasEntry` objects when Bamboo runs.
 
-The `ExpenseBookParser`'s `parseCommand()` method now takes in an AliasMap object in addition to the user input, which allows the parser to map aliases to the default keyword and allows the execution of the associated Command object.
+The `ExpenseBookParser`'s `parseCommand()` method takes in an AliasMap object in addition to the user input, which allows the parser to map aliases to the default keyword and allows the execution of the associated `Command` object.
 
 Step 1. The user launches the application for the first time. Assume no alias is present (by default, aliases in the JSON file will be the default command word).
 
-Step 2. The user executes the `alias find get` command to update the alias for `FindCommand` as `”get”`.  
+Step 2. The user inputs `alias find get` to update the alias for `FindCommand` as `”get”`.  
 This will not only update the current AliasMap object, but will also update the JSON mapping with the help of StorageManager which handles all types of storage including JsonAliasMapStorage.
 
 The following is a sequence diagram showing how it works:

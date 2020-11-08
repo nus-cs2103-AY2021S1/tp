@@ -70,6 +70,7 @@ public class ExpenseBookParser {
             commandWord = aliasMap.getValue(commandWord);
         }
         final String arguments = matcher.group("arguments");
+
         LogsCenter.getLogger(LogicManager.class).info(
                 "----------------[USER COMMAND][" + commandWord + " " + arguments + "]");
         switch (commandWord) {
