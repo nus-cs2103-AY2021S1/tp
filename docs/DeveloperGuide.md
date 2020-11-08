@@ -146,6 +146,31 @@ Classes used by multiple components are in the `seedu.cc.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+## Delete feature
+This feature allows the user to delete previously added entries.
+
+#### Implementation
+
+The Find entries feature is facilitated by `DeleteCommand`. It extends `Command` and 
+is identified by `CommonCentsParser` and `DeleteCommandParser`. The DeleteCommand interacts 
+with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
+operations: 
+
+* `Account#deleteExpense(Expense expense)` — Executes delete logic for specified _Expense_ entry.
+* `Account#deleteRevenue(Revenue revenue)` — Executes delete logic for specified _Revenue_ entry.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+* Step 1: The user inputs the delete command to specify which entry to delete in the specified category
+of `ActiveAccount`. `CommandParser` identifies the command word `delete` and calls `DeleteCommandParser#parse(String args)`
+to parse the input into a valid `DeleteCommand`.
+
+* Step 2: `DeleteCommand` starts to be executed. In the execution:
+
+
+
+
 ### Undo feature
 This feature allows the user to undo their previous entry-level commands.
 
