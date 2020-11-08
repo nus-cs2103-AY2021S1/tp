@@ -69,9 +69,9 @@ Each command has a restriction on the scope that it can be run.
 Scopes include `PROJECT_LIST`, `PERSON_LIST`, `PROJECT`, `PERSON`, `TASK`, `TEAMMATE`.
 The hierarchy of command scoping is as follows:
 * global
-    * `PROJECT_LIST`
+    * `PROJECT_LIST` 
       * `PROJECT`
-        * `TASK`
+        * `TASK` 
         * `TEAMMATE`
     * `PERSON_LIST`
       * `PERSON`
@@ -82,6 +82,17 @@ A command may be valid in some scopes or another. For example, `startperson ` co
 `PERSON_LIST` or `PERSON` scope, otherwise there will be an exception.
 The hierarchy list is above only aims to give you an overview of the meanings of the scopes, 
 and in most cases a command that is valid in a parent scope would be valid in any descendant scopes, but may not always be true.
+
+The scope can be told from the user interface as follows: 
+
+Scope | Left panel | Middle panel | Right panel
+--------|------------------|-------|----------
+`PROJECT_LIST` | project list | empty | empty
+`PERSON_LIST` | person list | empty | empty
+`PROJECT` | project list | project dashboard | empty
+`PERSON` | person list | person dashboard | empty
+`TASK` | project list | project dashboard | task dashboard
+`TEAMMATE` | project list | project dashboard | teammate dashboard
 
 </div>
 
