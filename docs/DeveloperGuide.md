@@ -340,6 +340,10 @@ such as `CommandResult` and `Storage` are left out of the sequence diagram as th
 of the find entries command.
 </div>
 
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
 #### Design consideration
 Explanation why a certain design is chosen.
 
@@ -348,7 +352,7 @@ Explanation why a certain design is chosen.
     * Pros: 
         * Easy to implement as the arguments can be tokenized in the event of inputs with multiple arguments.
         * Able to handle multiple arguments as input for Category (with prefix "c/") is optional.
-    * Cons: Less convenience for the user. 
+    * Cons: Less convenience for the user as more needs to be typed (at least 3 characters). 
 
 ### Calculate net profits feature
 
