@@ -14,7 +14,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 <img src="images/ben-hanan.png" width="200px">
 
 [[github](http://github.com/Ben-Hanan)]
-[[portfolio](team/Ben-Hanan.md)]
+[[portfolio](team/ben-hanan.md)]
 
 * Role: Developer
 

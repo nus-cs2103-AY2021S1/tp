@@ -5,7 +5,6 @@ import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -76,7 +75,8 @@ public class DateUtil {
      */
     public static int getDaysBetween(LocalDate start, LocalDate end) {
         requireAllNonNull(start, end);
-        return Period.between(start, end).getDays() + 1;
+        List<LocalDate> datesBetween = getDatesBetween(start, end);
+        return datesBetween.size();
     }
 
     /**
