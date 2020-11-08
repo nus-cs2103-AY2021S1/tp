@@ -160,6 +160,10 @@ public interface Model {
     Optional<Room> getRoomWithRoomNumber(int roomNumber);
 
     /**
+     * sets specified room to roomList
+     */
+    void setRoom(Room room);
+    /**
      * Replaces the given room {@code target} with {@code editedRoom}.
      * {@code target} must exist in the application.
      * The room identity of {@code editedRoom} must not be the same as

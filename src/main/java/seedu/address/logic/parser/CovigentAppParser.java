@@ -15,7 +15,7 @@ import seedu.address.logic.commands.patient.EditPatientCommand;
 import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.commands.patient.SearchPatientCommand;
 import seedu.address.logic.commands.room.AllocateRoomCommand;
-import seedu.address.logic.commands.room.FindRoomCommand;
+import seedu.address.logic.commands.room.FindEmptyRoomCommand;
 import seedu.address.logic.commands.room.InitRoomCommand;
 import seedu.address.logic.commands.room.ListRoomCommand;
 import seedu.address.logic.commands.room.SearchRoomCommand;
@@ -114,8 +114,8 @@ public class CovigentAppParser {
         case SearchTaskCommand.COMMAND_WORD:
             return new SearchTaskCommandParser().parse(arguments);
 
-        case FindRoomCommand.COMMAND_WORD:
-            return new FindRoomCommand();
+        case FindEmptyRoomCommand.COMMAND_WORD:
+            return new FindEmptyRoomCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

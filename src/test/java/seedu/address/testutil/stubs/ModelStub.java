@@ -149,6 +149,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setRoom(Room room) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void setSingleRoom(Room target, Room editedRoom) {
         throw new AssertionError("This method should not be called.");
     }

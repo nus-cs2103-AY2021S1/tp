@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPatients.ALICE;
-import static seedu.address.testutil.TypicalPatients.BENSON;
+import static seedu.address.testutil.TypicalPatients.*;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
 
@@ -19,11 +18,15 @@ import seedu.address.model.room.Room;
  */
 public class TypicalRooms {
 
+    public static final Integer ROOM_NUMBER_1 = 1;
     public static final Integer ROOM_NUMBER_7 = 7;
     public static final Integer ROOM_NUMBER_8 = 8;
     public static final Integer ROOM_NUMBER_11 = 11;
     public static final Integer ROOM_NUMBER_16 = 16;
     public static final Integer ROOM_NUMBER_17 = 17;
+
+    public static final Room ROOM_PATIENT_NO_TASK = new RoomBuilder()
+            .withRoomNumber(ROOM_NUMBER_1).withIsOccupied(true).withPatient(CARL).build();
     public static final Room ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_1 = new RoomBuilder()
             .withIsOccupied(false).withPatient(null).withRoomNumber(ROOM_NUMBER_16).build();
     public static final Room ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_2 = new RoomBuilder()
