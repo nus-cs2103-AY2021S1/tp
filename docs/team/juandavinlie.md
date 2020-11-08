@@ -6,8 +6,8 @@ title: Juan Davin Lie's Project Portfolio Page
 ## Project: Trackr
 
 ### Project Overview
-Trackr is an application that is made specially for Teaching Assistants(TAs) to manage and analyze their student records. 
-It takes in user input in the form of Command Line Interface(CLI) and automatically stores it in an organized manner. 
+Trackr is an application that is made specially for Teaching Assistants(TAs) to manage and analyze their student records.
+It takes in user input in the form of Command Line Interface(CLI) and automatically stores it in an organized manner.
 Not only for storage, Trackr can also be used by TAs to do analytics on their students' performances thus making it 
 easier for them to cater to their students' needs. It currently has over 10kLoC
 
@@ -16,7 +16,7 @@ Code contributed: [tp Code Dashboard](https://nus-cs2103-ay2021s1.github.io/tp-d
 
 Given below is a summary of my contributions.
 
-* **New Feature**: Created the Module class along with its commands such as add, edit, delete, find and list.
+* **New Feature**: Created the Module-related commands such as add, edit, delete, find and list.
   * What it does: Allows TAs to add modules they are teaching.
   * Justification: This feature helps TAs to organize their student records in an organized manner. Instead of having one list of all students, TAs can split students into different modules. This way, it is easier to manage the records.
   * Highlights: This feature is a foundational block of Trackr as Trackr's default view is the module view. Users can then "zoom" into one Module to get more information on their students. The implementation was challenging as it did not exist before and is different from the already implemented classes.
@@ -37,6 +37,9 @@ Given below is a summary of my contributions.
     * Wrote the section for universal commands such as 'clear' and 'exit'.
   * Developer Guide:
     * Wrote the user stories table.
+    * Drew all sequence diagrams under Section 4 (Implementation)
+    * Glossary
+    * Instructions for Manual Testing
 
 * **Team-based Tasks**:
   * Review PRs. [Example](https://github.com/AY2021S1-CS2103T-W12-2/tp/pulls?q=is%3Apr+reviewed-by%3Ajuandavinlie+)

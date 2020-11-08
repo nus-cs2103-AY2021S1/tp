@@ -114,13 +114,9 @@ public class Trackr implements ReadOnlyTrackr<Module> {
             .removeTutorialGroup(tutorialGroupToDelete);
     }
 
-    public void setTutorialGroup(TutorialGroup target, TutorialGroup edited) {
+    public void setTutorialGroup(TutorialGroup target, TutorialGroup edited, Module currentModuleInView) {
         requireAllNonNull(target, edited);
-        for (Module module : moduleList) {
-            if (module.getUniqueTutorialGroupList().contains(target)) {
-                module.getUniqueTutorialGroupList().setTutorialGroup(target, edited);
-            }
-        }
+        currentModuleInView.getUniqueTutorialGroupList().setTutorialGroup(target, edited);
     }
 
     // Student Operations

@@ -4,38 +4,46 @@
 2. [About This Document](#2-about-this-document)<br>
     2.1 [Glossary](#21-glossary)<br>
 	2.2 [Formatting](#22-formatting)<br>
-	2.3 [Command format](#23-command-format)<br>
+	2.3 [Command Format](#23-command-format)<br>
 3. [Getting Started](#3-getting-started)<br>
     3.1 [Setting Up](#31-setting-up)<br>
     3.2 [Using Trackr](#32-using-trackr)<br>
     3.3 [Switching Views](#33-switching-views)<br>
 4. [Features](#4-features)<br>
-   4.1 [View help: `help`](#41-view-help-help)<br>
-   4.2 [Module features](#42-module-features)<br>
-   --- 4.2.1 [Add a module: `addMod`](#421-add-a-module-addmod)<br>
-   --- 4.2.2 [Delete a module: `deleteMod`](#422-delete-a-module-deletemod)<br>
-   --- 4.2.3 [Edit a module: `editMod`](#423-edit-a-module-editmod)<br>
-   --- 4.2.4 [Find a module: `findMod`](#424-find-a-module-findmod)<br>
-   --- 4.2.5 [List all modules: `listMod`](#425-list-all-modules-listmod)<br>
-   4.3 [Tutorial group features](#43-tutorial-group-features)<br>
-   --- 4.3.1 [View all tutorial groups in a module: `viewTG`](#431-view-all-tutorial-groups-in-a-module-viewtg)<br>
-   --- 4.3.2 [Add a tutorial group to a module: `addTG`](#432-add-a-tutorial-group-to-a-module-addtg)<br>
-   --- 4.3.3 [Find a tutorial group: `findTG`](#433-find-a-tutorial-group-findtg)<br>
-   --- 4.3.4 [Return to Tutorial Group List: `listTG`](#434-return-to-tutorial-group-list-listtg)<br>
-   --- 4.3.5 [Delete a tutorial group from a module: `deleteTG`](#435-delete-a-tutorial-group-from-a-module-deletetg)<br>
-   --- 4.3.6 [Edit a Tutorial Group: `editTG`](#436-edit-a-tutorial-group-edittg)<br>
-   4.4 [Student features](#44-student-features)<br>
-   --- 4.4.1 [View all students in a tutorial group: `viewStudent`](#441-view-all-students-in-a-tutorial-group-viewstudent)<br>
-   --- 4.4.2 [Add a student: `addStudent`](#442-add-a-student-addstudent)<br>
-   --- 4.4.3 [Delete a student: `deleteStudent`](#443-delete-a-student-deletestudent)<br>
-   --- 4.4.4 [Edit a student: `editStudent`](#444-edit-a-student-editstudent)<br>
-   --- 4.4.5 [Find a student: `findStudent`](#445-find-a-student-findstudent)<br>
-   --- 4.4.6 [List all students in a tutorial group: `listStudent`](#446-list-all-students-in-a-tutorial-group-liststudent)<br>
+   4.1 [General Features](#41-general-features)<br>
+   --- 4.1.1 [View help: `help`](#411-view-help-help)<br>
+   --- 4.1.2 [Clear Trackr: 'clear'](#412-clear-trackr-clear)<br>
+   --- 4.1.3 [Exit Trackr: 'exit'](#413-exit-trackr-exit)<br>
+   4.2 [Navigation Features](#42-navigation-features)<br>
+   --- 4.2.1 [List all Modules in Trackr: `listMod`](#421-list-all-modules-in-__trackr__-listmod)<br>
+   --- 4.2.2 [View all Tutorial Groups in a Module: `viewtTG`](#422-view-all-tutorial-groups-in-a-module-viewtg)<br>
+   --- 4.2.3 [List all Tutorial Groups in the current Module: `listTG`](#423-list-all-tutorial-groups-in-the-current-module-listtg)<br>
+   --- 4.2.4 [View all Students in a Tutorial Group: `viewStudent`](#424-view-all-students-in-a-tutorial-group-viewstudent)<br>
+   --- 4.2.5 [List all Students in a Tutorial Group: `listStudent`](#425-list-all-students-in-a-tutorial-group-liststudent)<br>
+   --- 4.2.6 [Show the Attendance of target Student: `viewAttendance`](#426-show-the-attendance-of-target-student-viewattendance)<br>
+   --- 4.2.7 [Return to previous view: `prevView`](#427-return-to-previous-view-prevview)<br>
+   4.3 [Module Features](#43-module-features)<br>
+   --- 4.3.1 [Add a module: `addMod`](#431-add-a-module-addmod)<br>
+   --- 4.3.2 [Delete a module: `deleteMod`](#432-delete-a-module-deletemod)<br>
+   --- 4.3.3 [Edit a module: `editMod`](#433-edit-a-module-editmod)<br>
+   --- 4.3.4 [Find a module: `findMod`](#434-find-a-module-findmod)<br>
+   4.4 [Tutorial Group Features](#44-tutorial-group-features)<br>
+   --- 4.4.1 [Add a tutorial group to a module: `addTG`](#441-add-a-tutorial-group-to-a-module-addtg)<br>
+   --- 4.4.2 [Find a tutorial group: `findTG`](#442-find-a-tutorial-group-findtg)<br>
+   --- 4.4.3 [Delete a tutorial group from a module: `deleteTG`](#443-delete-a-tutorial-group-from-a-module-deletetg)<br>
+   --- 4.4.4 [Edit a Tutorial Group: `editTG`](#444-edit-a-tutorial-group-edittg)<br>
+   4.5 [Student Features](#45-student-features)<br>
+   --- 4.5.1 [Add a student: `addStudent`](#451-add-a-student-addstudent)<br>
+   --- 4.5.2 [Delete a student: `deleteStudent`](#452-delete-a-student-deletestudent)<br>
+   --- 4.5.3 [Edit a student: `editStudent`](#453-edit-a-student-editstudent)<br>
+   --- 4.5.4 [Find a student: `findStudent`](#454-find-a-student-findstudent)<br>
 5. [FAQ](#5-faq)<br>
 6. [Command Summary](#6-command-summary)<br>
-   6.1 [Module commands](#61-module-commands)<br>
-   6.2 [Tutorial group commands](#62-tutorial-group-commands)<br>
-   6.3 [Student commands](#63-student-commands)<br>
+   6.1 [General Commands](#61-general-commands) <br>
+   6.2 [Navigation Commands](#62-navigation-commands)<br>
+   6.3 [Module Commands](#63-module-commands)<br>
+   6.4 [Tutorial Group Commands](#64-tutorial-group-commands)<br>
+   6.5 [Student Commands](#65-student-commands)<br>
 
 ## 1. Introduction
 
@@ -138,10 +146,9 @@ Figure 3.3.3 Student view
 
 ## 4. Features
 
-### 4.1 Navigation Features
+### 4.1 General Features
 
 #### 4.1.1 View help: `help`
-
 Shows a message explaining how to access the user guide.
 
 Format: `help`
@@ -153,7 +160,6 @@ Expected Outcome:
 ![HelpCommand](images/HelpCommand.png)
 
 #### 4.1.2 Clear Trackr: `clear`
-
 Clears all data inside Trackr.
 
 Format: `clear`
@@ -171,7 +177,6 @@ Expected Outcome:
 ![ClearCommand](images/ClearCommand.png)
 
 #### 4.1.3 Exit Trackr: `exit`
-
 Exits Trackr and automatically saves the data.
 
 Format: `exit`
@@ -182,16 +187,110 @@ Format: `exit`
 
 Example: `exit`
 
-### 4.2 Module features
+### 4.2 Navigation Features
 
-#### 4.2.1 Add a module: `addMod`
+#### 4.2.1 List all modules in __Trackr__: `listMod`
+
+Shows all the modules you have added in the Module view.
+
+Format: `listMod`
+
+> Note: You can perform this command in ANY view.
+
+Example: `listMod`
+    
+Expected Outcome:
+
+![ListModuleCommand](images/ListModuleCommand.png)
+
+#### 4.2.2 View all Tutorial Groups in a Module: `viewTG`
+Change view to Tutorial Groups of target Module.
+
+Format: `viewTG MODULE_INDEX`
+- MODULE_INDEX is the target Module's index in the currently displayed Module List.
+
+> Note: You should perform this command in the MODULE view.
+
+Example: `viewTG 1`
+
+Expected Outcome:
+![ViewTgCommand]()
+
+#### 4.2.3 List all Tutorial Groups in the current Module: `listTG`
+Lists all Tutorial Groups in the current Module.
+
+Format: `listTG`
+
+> Note: You should perform this command in the TUTORIAL GROUP view.
+
+Example: `listTG`
+- Can be used to show all Tutorial Groups after [findTG]() command.
+
+Expected Outcome:
+![ListTgCommand]()
+
+#### 4.2.4 View all students in a tutorial group: `viewStudent`
+Change view to Students of target Tutorial Group.
+
+Format: `viewStudent TG_INDEX`
+- `TG_INDEX` refers to the index number shown in the Tutorial Group view.
+- `TG_INDEX` must be a positive integer starting from 1.
+
+> Note: You should perform this command in the TUTORIAL GROUP view.
+
+Example: `viewStudent 1`
+- Views all students of tutorial group at _index 1_ of Tutorial Group List.
+
+Expected Outcome:
+![ViewStudentCommand](images/ViewStudentCommand.png)
+
+#### 4.2.5 List all students in a tutorial group: `listStudent`
+Lists all Students in the current Tutorial Group.
+
+Format: `listStudent`
+
+> Note: You should perform this command in the STUDENT view.
+
+Example: `listStudent`
+- Can be used to show all Students after [findStudent]() command.
+
+Expected Outcome:
+![ListStudentCommand](images/ListStudentCommand.png)
+
+#### 4.2.6 Show the attendance of Target Student: 'viewAttendance'
+Shows the attendance of Target student: `viewAttendance`
+
+Format: `viewAttendance STUDENT_INDEX`
+
+> Note: You should perform this command in STUDENT view.
+
+Example: `viewAttendance 1`
+
+Expected Outcome:
+![ViewAttendanceCommand](images/ViewAttendanceCommand.png)
+
+#### 4.2.7 Return to previous view: `prevView`
+Returns to the previous view: `prevView`
+
+Format: `prevView`
+
+> Note: You can perform this command in ANY view but MODULE is the last View.
+
+Example: `prevView`
+
+![PrevViewCommand](images/PrevViewCommand.png)
+
+### 4.3 Module Features
+
+> You should perform the following features while in the Module view.
+
+#### 4.3.1 Add a module: `addMod`
 
 Adds a module to the module list.
 
 Format: `addMod m/MODULE_CODE`
 
 > Note:
-> - Method can only be called in the Module view.
 > - Modules should not share the same code.
 > - It is recommended to use the exact code of the module.
 
@@ -204,14 +303,13 @@ Expected Outcome:
 
 ![AddModuleCommand](images/AddModuleCommand.png)
 
-#### 4.2.2 Delete a module: `deleteMod`
+#### 4.3.2 Delete a module: `deleteMod`
 
 Deletes a module based on the given `INDEX`
 
 Format: `deleteMod INDEX`
 
 > Note:
-> - Method can only be called in the Module view.
 > - `INDEX` refers to the index number shown in the Module view.
 > - `INDEX` must be a positive integer starting from 1.
 > - Deleting a module is irreversible.
@@ -225,14 +323,13 @@ Expected Outcome:
 
 ![DeleteModuleCommand](images/DeleteModuleCommand.png)
     
-#### 4.2.3 Edit a module: `editMod`
+#### 4.3.3 Edit a module: `editMod`
 
 Edits a module with the provided details.
 
 Format: `editMod INDEX m/MODULE_CODE`
 
 > Note:
-> - Method can only be called in the Module view.
 > - `INDEX` refers to the index number shown in the Module view.
 > - `INDEX` must be a positive integer starting from 1.
 > - New module code must be provided.
@@ -249,14 +346,13 @@ Expected Outcome:
 
 ![EditModuleCommand](images/EditMod.png)
 
-#### 4.2.4 Find a module: `findMod`
+#### 4.3.4 Find a module: `findMod`
 
 Finds and lists all modules in the current Module view whose field contains any of the given keywords.
 
 Format: `findMod KEYWORD`
 
 > Note:
-> - Method can only be called in the Module view.
 > - `KEYWORD` is not case-sensitive (e.g. _cs2100_ will match _CS2100_).
 > - `KEYWORD` can be a substring (e.g. _CS20_ will match _CS2020_).
 > - The search will look for matches in the module's code. 
@@ -272,34 +368,10 @@ Expected Outcome:
 
 ![FindModuleCommand](images/FindModuleCommand.png)
 
-#### 4.2.5 List all modules: `listMod`
 
-Shows all the modules you have added in the Module view.
+### 4.4 Tutorial Group Features
 
-Format: `listMod`
-
-> Note
-> - Method can be called in ANY view.
-
-Example:
-- Lists all modules in Trackr.
-    - `listMod`
-    
-Expected Outcome:
-
-![ListModuleCommand](images/ListModuleCommand.png)
-
-### 4.3 Tutorial Group features
-
-#### 4.3.1 View all Tutorial Groups in a Module: `viewTG`
-You can display all Tutorial Groups in a Module with this command. You can indicate which Module's Tutorial Groups to view by entering its index in the current list.
-
-Format: `viewTG MODULE_INDEX`
-Where MODULE_INDEX is the target Module's index in the currently displayed Module List.
-
-Example: `viewTG 1`
-
-#### 4.3.2 Add a Tutorial Group to a Module: `addTG`
+#### 4.4.1 Add a Tutorial Group to a Module: `addTG`
 You can add a Tutorial Group to the Module you are viewing using this command.
 
 > - You can only use this command when you are viewing Tutorial Groups of the Module you intend to add the Tutorial Group to.
@@ -310,7 +382,7 @@ Format: `addTG tg/TG_CODE day/MON/TUE/WED/THU/FRI start/HH:MM end/HH:MM`
 
 Example: `addTG tg/T03 day/MON start/08:00 end/10:00`
 
-#### 4.3.3 Find a Tutorial Group: `findTG`
+#### 4.4.2 Find a Tutorial Group: `findTG`
 If you need to quickly find a Tutorial from a list of Tutorials, use this command.
 
 > - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
@@ -322,15 +394,8 @@ Where TARGET_TG_CODE is the code of the Tutorial Group you want to search for.
 Example: `findTG B014`
 To search for a Tutorial Group with code B014
 
-#### 4.3.4 Return to Tutorial Group List: `listTG`
-After using the findTG command, you can use listTG to quickly return to the list of all Tutorial Groups in the Module.
 
-> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
-> - Refer to 4.2.1 - View all Tutorial Groups in a Module
-
-Format: `listTG`
-
-#### 4.3.5 Delete a Tutorial Group from a Module: `deleteTG`
+#### 4.4.3 Delete a Tutorial Group from a Module: `deleteTG`
 You can use this command to delete a Tutorial Group you have previously added to a Module.
 > - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
 > - Refer to 4.2.1 - View all Tutorial Groups in a Module
@@ -341,7 +406,7 @@ Where TG_INDEX is the index of the Tutorial Group you want to delete.
 Example: `deleteTG 2`
 To delete Tutorial Group with the index 2 in the currently displayed list.
 
-#### 4.3.6 Edit a Tutorial Group: `editTG`
+#### 4.4.4 Edit a Tutorial Group: `editTG`
 You can use this command to edit a Tutorial Group you have previously added to a Module.
 > - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
 > - Refer to 4.2.1 - View all Tutorial Groups in a Module
@@ -355,43 +420,21 @@ Example: `editTG 3 tg/T04 day/TUE start/08:00 end/10:00`
 
 These are the commands you can use to manage the different `Tutorial Groups` you teach. Now we look at how you can manage your `Students`.
 
-### 4.4 Student features
-
-#### 4.4.1 View all students in a tutorial group: `viewStudent`
-
-Shows all students within the given tutorial group.
-
-Format: `viewStudent INDEX`
-
-Note:
-
-- `INDEX` refers to the index number shown in the Tutorial Group view.
-- `INDEX` must be a positive integer starting from 1.
-- You should perform this command in the Tutorial Group view.
-
-Example:
-
-- Views all students of tutorial group at _index 1_.
-    - `viewStudent 1`
-
-Expected Outcome:
-
-![ViewStudentCommand](images/ViewStudentCommand.png)
+### 4.5 Student Features
 
 > You should perform the following features while in the Student view.
 
-#### 4.4.2 Add a student: `addStudent`
+#### 4.5.1 Add a student: `addStudent`
 
 Adds a student with your provided details.
 
 Format: `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...`
 
-Note:
-
-- Students should not share the same student ID within the same tutorial group.
-- Phone numbers should only contain numbers, and it should be at least 3 digits long.
-- Student IDs begin and end with a capital letter and should have 7 digits (e.g. A1243567X).
-- A student can have any number of tags, including 0.
+> Note:
+> - Students should not share the same student ID within the same tutorial group.
+> - Phone numbers should only contain numbers, and it should be at least 3 digits long.
+> - Student IDs begin and end with a capital letter and should have 7 digits (e.g. A1243567X).
+> - A student can have any number of tags, including 0.
 
 Example:
 
@@ -403,17 +446,16 @@ Expected Outcome:
 
 ![AddStudentCommand](images/AddStudentCommand.png)
 
-#### 4.4.3 Delete a student: `deleteStudent`
+#### 4.5.2 Delete a student: `deleteStudent`
 
 Deletes a student based on the given `INDEX`.
 
 Format: `deleteStudent INDEX`
 
-Note:
-
-- `INDEX` refers to the index number shown in the Student view.
-- `INDEX` must be a positive integer starting from 1.
-- Deleting a student is irreversible.
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - Deleting a student is irreversible.
 
 Example:
 
@@ -425,20 +467,19 @@ Expected Outcome:
 
 ![DeleteStudentCommand](images/DeleteStudentCommand.png)
 
-#### 4.4.4 Edit a student: `editStudent`
+#### 4.5.3 Edit a student: `editStudent`
 
 Edits a student at the given `INDEX` with the provided details.
 
 Format: `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...`
 
-Note:
-
-- `INDEX` refers to the index number shown in the Student view.
-- `INDEX` must be a positive integer starting from 1.
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the given values.
-- When you edit the tag(s), the existing tag(s) of the student will be replaced (adding of tag(s) is not cumulative).
-- You may wish to remove all the student's tags by typing `t/` without specifying any tags after it.
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - At least one of the optional fields must be provided.
+> - Existing values will be updated to the given values.
+> - When you edit the tag(s), the existing tag(s) of the student will be replaced (adding of tag(s) is not cumulative).
+> - You may wish to remove all the student's tags by typing `t/` without specifying any tags after it.
 
 Example:
 
@@ -450,18 +491,17 @@ Expected Outcome:
 
 ![EditStudentCommand](images/EditStudentCommand.png)
 
-#### 4.4.5 Find a student: `findStudent`
+#### 4.5.4 Find a student: `findStudent`
 
 Finds and lists all students in the current Student view whose name contains any of the given keywords.
 
 Format: `findStudent KEYWORD [KEYWORD]...`
 
-Note:
-
-- `KEYWORD` is not case-sensitive (e.g. _john_ will match _John_).
-- The search will look for matches, including partial match, in the student's name (e.g. _jo_ will match _John_,
- however, _jhn_ will not match _John_).
-- If no student matching the keyword is found, the Student view will be empty.
+> Note:
+> - `KEYWORD` is not case-sensitive (e.g. _john_ will match _John_).
+> - The search will look for matches, including partial match, in the student's name (e.g. _jo_ will match _John_,
+however, _jhn_ will not match _John_).
+> - If no student matching the keyword is found, the Student view will be empty.
 
 Example:
 
@@ -473,17 +513,6 @@ Expected Outcome:
 
 ![FindStudentCommand](images/FindStudentCommand.png)
 
-#### 4.4.6 List all students in a tutorial group: `listStudent`
-
-Shows a list of all students in the current Student view.
-
-Format: `listStudent`
-
-Note:
-
-- This is a quick way to view all of your students in the current Student view again after using the `findStudent`
-command.
-- `listStudent` command only works in Student view.
 
 ## 5. FAQ
 __Q:__ Why did the command I input change colour from white to red? <br>
@@ -500,16 +529,28 @@ for MacOS and Linux users.
 
 ## 6. Command Summary
 
-### 6.1 Navigation Features
+### 6.1 General Commands
 
 Command | Description | Compatible View
 --------|--------|--------
 `help` | Shows a message explaining how to access the user guide | ANY
 `clear` | Clears all data inside Trackr | ANY
-`exit` | Clears all data inside Trackr | ANY
+`exit` | Exits Trackr and automatically saves data | ANY
+
+### 6.2 Navigation Commands
+
+Command | Description | Compatible View
+--------|-------------|------------
+`listMod` | Views all modules in __Trackr__ | ANY
+`viewTG MODULE_INDEX` | Changes view to Tutorial Groups of target Module | MODULE
+`listTG` | Lists all Tutorial Groups in current Module | TUTORIAL GROUP
+`viewStudent TG_INDEX` | Change view to Students of target Tutorial Group | TUTORIAL GROUP
+`listStudent` | Lists all Students in current Tutorial Group | STUDENT
+`viewAttendance STUDENT_INDEX` | Shows the attendance for Target student | STUDENT
+`prevView` | Returns to the previous view | ANY
 
 
-### 6.2 Module Features
+### 6.3 Module Commands
 
 Command | Description | Compatible View
 --------|--------|--------
@@ -517,24 +558,21 @@ Command | Description | Compatible View
 `deleteMod INDEX` | Deletes a module from the current Module view | MODULE
 `editMod INDEX m/MODULE_CODE` | Edits the module code in the specified index to be the new module code | MODULE
 `findMod KEYWORD` | Finds module(s) that contain the keyword in the current Module view | MODULE
-`listMod` | Views all modules in __Trackr__ | ANY
 
-### 6.3 Tutorial Group Features
+
+### 6.4 Tutorial Group Commands
 
 Command | Description | Compatible View
 --------|--------|--------
-`viewTG MODULE_INDEX` | Views all Tutorial Groups in a Module | MODULE
 `addTG tg/TG_CODE` | Adds a Tutorial Group to a Module | TUTORIAL GROUP
 `findTG TARGET_TG_CODE` | Finds a Tutorial Group | TUTORIAL GROUP
 `deleteTG TG_INDEX` | Deletes a Tutorial Group from a Module | TUTORIAL GROUP
 
-### 6.4 Student Features
+### 6.5 Student Commands
 
 Command | Description | Compatible View
 --------|--------|--------
-`viewStudent INDEX` | Views all students in the given tutorial group | TUTORIAL GROUP
 `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view | STUDENT
 `deleteStudent INDEX` | Deletes a student from the current Student view | STUDENT
 `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...` | Edits a student in the current Student view | STUDENT
 `findStudent KEYWORD` | Finds student(s) whose name(s) contain the keyword in the current Student view | STUDENT
-`listStudent` | Shows a list of all students in the current Student view | STUDENT

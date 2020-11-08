@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+
+start
+
+:User enters an Delete Module
+command in the command box;
+
+:TrackrParser parses the argument
+to determine which command parser
+should further parse it;
+
+:DeleteModuleCommandParser
+parses the user input;
+
+if () then ([valid command input format])
+    if () then ([Trackr is in Module View])
+        if () then ([else])
+            :Module is deleted;
+        else ([index bigger than list of Modules])
+            :throws CommandException with
+            not in Module View error message;
+        endif
+    else ([else])
+        :throws ParseException with
+        module not edited message;
+    endif
+else ([else])
+    :throws ParseException with
+    invalid format message;
+endif
+:returns feedback to user;
+
+stop
+@enduml

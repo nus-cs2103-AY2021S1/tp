@@ -203,7 +203,7 @@ public class ModelManager implements Model {
     @Override
     public void setTutorialGroup(TutorialGroup target, TutorialGroup edited) {
         requireAllNonNull(target, edited);
-        moduleList.setTutorialGroup(target, edited);
+        moduleList.setTutorialGroup(target, edited, currentModuleInView);
     }
 
     @Override
