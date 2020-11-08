@@ -24,6 +24,7 @@ public class AddTeammateParticipationCommandTest {
 
     @Test
     public void execute_validGitUserIndex_success() {
+        Project.getAllProjects().clear();
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
