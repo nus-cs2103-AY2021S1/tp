@@ -11,15 +11,15 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 
 ## Project team
 
+[[team portfolio](https://github.com/AY2021S1-CS2103T-F13-1)]
+
 ### Shi Jing Lin
 
 ![shijinglin](images/aqcd.png)
 
-[[homepage](https://aqcd.github.io/)]
-
 [[github](https://github.com/aqcd)]
 
-[[team portfolio](https://github.com/AY2021S1-CS2103T-F13-1)]
+[[portfolio](team/aqcd.md)]
 
 * Role: Project Manager
 * Responsibilities:
@@ -63,7 +63,8 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 ![siewkhenghun](images/khenghun.png)
 
 [[github](https://github.com/khenghun)]
-[[portfolio](team/siewkhenghun.md)]
+
+[[portfolio](team/khenghun.md)]
 
 * Role: Developer
 * Responsibilities:

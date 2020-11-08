@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
 
-
 /**
  * Tests that a {@code Item}'s {@code Name} contains any of the keywords given, case-insensitive.
  */
@@ -33,6 +32,7 @@ public class NameMatchesKeywordsPredicate implements Predicate<Item> {
 
     @Override
     public boolean test(Item item) {
+        requireNonNull(item);
         return patterns.stream()
                 .anyMatch(keywordPattern -> StringUtil.matchesPatternIgnoreCase(item.getName(), keywordPattern));
     }

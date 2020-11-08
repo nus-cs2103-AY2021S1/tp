@@ -14,7 +14,7 @@ with JavaFX.
 Given below are my contributions to the project.
 
 * **New Feature**: Added the `deli` to delete items [\#40](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/40)
-  * What it does: allows the user to delete items from the item
+  * What it does: allows the user to delete items from the item list.
   * Justification: This feature improves the product significantly because a user can make mistakes in adding items and the app should provide a convenient way to delete them to prevent cluttering of the item list.
   * Highlights: This enhancement affects the deletion of recipes in existing items in the item list.
   * Credits: The implementation of `delr` command in editing the model was the inspiration of part of the execution of the command. 
