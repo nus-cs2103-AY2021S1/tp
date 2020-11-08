@@ -26,10 +26,6 @@ public class FindPropertyDescriptorBuilder {
         descriptor = new FindPropertyDescriptor();
     }
 
-    public FindPropertyDescriptorBuilder(FindPropertyDescriptor descriptor) {
-        this.descriptor = new FindPropertyDescriptor(descriptor);
-    }
-
     /**
      * Sets the {@code PropertyNameContainsKeywordsPredicate} of the {@code FindPropertyDescriptor}
      * that we are building.

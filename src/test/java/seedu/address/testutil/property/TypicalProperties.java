@@ -36,6 +36,19 @@ public class TypicalProperties {
             .withIsClosedDeal("close")
             .build();
 
+    // not in typical property book
+    public static final Property PROPERTY_D = new PropertyBuilder()
+            .withPropertyId("P4")
+            .withPropertyType("HDB 5 room")
+            .withPropertyName("Dragon Mountain")
+            .withAddress("101 Duigan Avenue")
+            .withAskingPrice(12345678)
+            .withSellerId("S3")
+            .withIsRental("yes")
+            .withIsClosedDeal("close")
+            .build();
+
+
     private TypicalProperties() {} // prevent instantiation
 
     /**

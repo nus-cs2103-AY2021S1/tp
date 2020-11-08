@@ -526,11 +526,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean containsSellerId(SellerId sellerId) {
-        return sellerAddressBook.containsSellerId(sellerId);
-    }
-
-    @Override
     public void updateFilteredSellerList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
         filteredSellers.setPredicate(predicate);
