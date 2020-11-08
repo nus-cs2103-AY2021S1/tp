@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_POINT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.HashMap;
