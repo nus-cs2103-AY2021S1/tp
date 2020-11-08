@@ -25,8 +25,8 @@ public class TaskMatchesDatePredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         requireNonNull(task);
-        boolean TaskDateIsPresent = task.getDate().isPresent();
-        if (TaskDateIsPresent) {
+        boolean taskDateIsPresent = task.getDate().isPresent();
+        if (taskDateIsPresent) {
             return task.hasSameDate(this.searchDate);
         }
         return false;

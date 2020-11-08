@@ -41,13 +41,6 @@ public class ContactList implements ReadOnlyContactList {
 
     //// contact list overwrite operations
 
-    /**
-     * Replaces the contents of the contact list with {@code contacts}.
-     * {@code contacts} must not contain duplicate contacts.
-     */
-    public void setContacts(List<Contact> contacts) {
-        this.contacts.setContacts(contacts);
-    }
 
     /**
      * * Resets the existing data of this {@code ContactList} with {@code newData}.
@@ -74,6 +67,14 @@ public class ContactList implements ReadOnlyContactList {
     public void addContact(Contact m) {
         requireNonNull(m);
         contacts.add(m);
+    }
+
+    /**
+     * Replaces the contents of the contact list with {@code contacts}.
+     * {@code contacts} must not contain duplicate contacts.
+     */
+    public void setContacts(List<Contact> contacts) {
+        this.contacts.setContacts(contacts);
     }
 
     /**

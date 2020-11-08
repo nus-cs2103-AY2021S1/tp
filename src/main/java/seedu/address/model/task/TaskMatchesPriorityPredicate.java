@@ -25,8 +25,8 @@ public class TaskMatchesPriorityPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         requireNonNull(task);
-        boolean TaskPriorityIsPresent = task.getPriority().isPresent();
-        if (TaskPriorityIsPresent) {
+        boolean taskPriorityIsPresent = task.getPriority().isPresent();
+        if (taskPriorityIsPresent) {
             return task.hasSamePriority(searchPriority);
         }
         return false;

@@ -28,8 +28,8 @@ public class TaskContainsTagsPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         requireNonNull(task);
-        boolean TaskTagIsPresent = task.getTags().isPresent();
-        if (TaskTagIsPresent) {
+        boolean taskTagIsPresent = task.getTags().isPresent();
+        if (taskTagIsPresent) {
             Set<Tag> taskTags = task.getTags().get();
             return tags.stream()
                     .anyMatch(tag -> taskTags.contains(tag));
