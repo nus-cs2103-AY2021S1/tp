@@ -29,7 +29,7 @@ public class InitRoomCommand extends Command {
             + "Example: " + COMMAND_WORD + " 123";
 
     private static final int ZERO = 0;
-    private static final int MAXIMUM_NUMBER_OF_ROOMS = 5000;
+    private static final int MAXIMUM_NUMBER_OF_ROOMS = 500;
 
     private int numOfRooms;
 
@@ -52,7 +52,7 @@ public class InitRoomCommand extends Command {
         } else if (model.getNumOfRooms() > numOfRooms && !model.hasSpaceForRooms()) {
             throw new CommandException(String.format(MESSAGE_INSUFFICIENT_ROOMS, model.getNumOfExcessOccupiedRooms()));
         }
-        model.addRooms(numOfRooms);
+        model.initRooms(numOfRooms);
         model.updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, numOfRooms));
     }

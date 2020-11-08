@@ -89,13 +89,13 @@ class JsonRoomOccupancyStorageTest {
         assertEquals(original, roomList);
 
         // Modify data, overwrite exiting file, and read back
-        original.addRooms(ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_1);
+        original.initRooms(ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_1);
         jsonRoomOccupancyStorage.saveRoomsInformation(original, filePath);
         readBack = jsonRoomOccupancyStorage.readOnlyRoomOccupancy(filePath).get();
         assertEquals(original, new RoomList(readBack));
 
         // Save and read without specifying file path
-        original.addRooms(ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_2);
+        original.initRooms(ROOM_NO_PATIENT_NO_TASK_ROOM_CORRECT_ORDER_2);
         jsonRoomOccupancyStorage.saveRoomsInformation(original); // file path not specified
         readBack = jsonRoomOccupancyStorage.readOnlyRoomOccupancy().get(); // file path not specified
         assertEquals(original, new RoomList(readBack));

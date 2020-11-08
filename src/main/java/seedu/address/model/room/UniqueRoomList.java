@@ -102,7 +102,7 @@ public class UniqueRoomList implements Iterable<Room> {
      *
      * @param room is added to RoomList
      */
-    public void addRooms(Room room) {
+    public void initRooms(Room room) {
         rooms.add(room);
         internalList.add(room);
     }
@@ -112,12 +112,12 @@ public class UniqueRoomList implements Iterable<Room> {
      *
      * @param numOfRooms is the number of rooms to be added
      */
-    public void addRooms(int numOfRooms) {
+    public void initRooms(int numOfRooms) {
         this.numOfRooms = numOfRooms;
-        addRooms();
+        initRooms();
     }
 
-    private void addRooms() {
+    private void initRooms() {
         if (numOfRooms <= 0) {
             return;
         } else if (numOfRooms > internalList.size()) {

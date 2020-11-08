@@ -133,7 +133,7 @@ public interface Model {
     /**
      * @param num is the number of rooms to define in a hotel.
      */
-    void addRooms(int num);
+    void initRooms(int num);
 
     /**
      * Returns whether a decrease in number of rooms would have space for existing rooms
@@ -159,6 +159,10 @@ public interface Model {
      */
     Optional<Room> getRoomWithRoomNumber(int roomNumber);
 
+    /**
+     * sets specified room to roomList
+     */
+    void setRoom(Room room);
     /**
      * Replaces the given room {@code target} with {@code editedRoom}.
      * {@code target} must exist in the application.

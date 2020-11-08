@@ -192,11 +192,11 @@ public class ModelManager implements Model {
 
     //=========== Room List =================================================================================
 
+    //@@author itssodium
     @Override
     public int getNumOfExcessOccupiedRooms() {
         return roomList.getNumOfExcessOccupiedRooms();
     }
-
     @Override
     public boolean hasSpaceForRooms() {
         return roomList.hasSpaceForRooms();
@@ -210,10 +210,14 @@ public class ModelManager implements Model {
         roomList.setPreferredNumOfRooms(numOfRooms);
     }
     @Override
-    public void addRooms(int num) {
-        roomList.addRooms(num);
+    public void initRooms(int num) {
+        roomList.initRooms(num);
     }
-
+    @Override
+    public void setRoom(Room room) {
+        roomList.setRoom(room);
+    }
+    //@@author itssodium
     //@@author LeeMingDe
     @Override
     public boolean hasRoom(Room room) {

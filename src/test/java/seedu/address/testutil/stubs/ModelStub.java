@@ -124,7 +124,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addRooms(int num) {
+    public void initRooms(int num) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -145,6 +145,11 @@ public class ModelStub implements Model {
 
     @Override
     public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setRoom(Room room) {
         throw new AssertionError("This method should not be called.");
     }
 

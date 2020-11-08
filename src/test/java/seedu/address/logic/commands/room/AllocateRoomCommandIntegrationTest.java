@@ -41,7 +41,7 @@ public class AllocateRoomCommandIntegrationTest {
             .withRoomNumber(Integer.parseInt(VALID_ROOM_NUMBER_ONE))
             .withPatient(CARL)
             .build();
-        model.addRooms(1);
+        model.initRooms(1);
         Room room = model.getFilteredRoomList().get(0);
 
         AllocateRoomCommand.AllocateRoomDescriptor descriptor = new AllocateRoomDescriptorBuilder(editedRoom).build();
@@ -62,7 +62,7 @@ public class AllocateRoomCommandIntegrationTest {
             .withPatient(null)
             .withIsOccupied(false)
             .build();
-        model.addRooms(1);
+        model.initRooms(1);
         Room room = model.getFilteredRoomList().get(0);
         room.setPatient(ALICE);
 
@@ -84,7 +84,7 @@ public class AllocateRoomCommandIntegrationTest {
             .withPatient(ALICE)
             .withIsOccupied(false)
             .build();
-        model.addRooms(2);
+        model.initRooms(2);
         Room roomWithAlice = model.getFilteredRoomList().get(0);
         Room emptyRoom = model.getFilteredRoomList().get(1);
         roomWithAlice.setPatient(ALICE);
