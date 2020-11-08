@@ -27,7 +27,7 @@ public class SampleDataUtil {
             new Ingredient("Butter", Mass.grams(200), new ExpiryDate("2020-12-01"),
                 Set.of(new Tag("dairy"), new Tag("high calorie"))),
             new Ingredient("Brown Sugar", Mass.grams(300), new ExpiryDate("2021-07-03"),
-                    Set.of(new Tag("sweet"), new Tag("kitchen"), new Tag("bakery"))),
+                Set.of(new Tag("sweet"), new Tag("kitchen"), new Tag("bakery"))),
             new Ingredient("Cream", Mass.grams(460), new ExpiryDate("2020-11-15"),
                 Set.of(new Tag("high calorie"), new Tag("high sugar level"))),
             new Ingredient("Egg", Count.of(12), new ExpiryDate("2020-12-01"),
@@ -52,6 +52,8 @@ public class SampleDataUtil {
                 Set.of(new Tag("kitchen"), new Tag("salty"))),
             new Ingredient("Vanilla Extract", Volume.millilitres(150), new ExpiryDate("2020-12-28"),
                 Set.of(new Tag("bakery"), new Tag("sweet"))),
+            new Ingredient("Milk", Volume.millilitres(750), new ExpiryDate("2020-12-14"),
+                Set.of(new Tag("dairy"), new Tag("frequently used")))
         };
     }
 
@@ -137,7 +139,7 @@ public class SampleDataUtil {
                     new Step("Serve generously with syrup")),
                 Set.of(new Tag("breakfast"), new Tag("simple"))),
 
-            new Recipe("Banana Milkshake",
+            new Recipe("Banana Smoothie",
                 List.of(
                     new IngredientReference("Banana", Count.of(1)),
                     new IngredientReference("Milk", Volume.millilitres(250)),
