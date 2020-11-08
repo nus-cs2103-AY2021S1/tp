@@ -281,17 +281,74 @@ The following class diagram depicts how a `Bid` is created.
 
 { end of Model Component section written by: Marcus Duigan Xing Yu }
 
+{ start of `model meeting` section written by: Harsha Vardhan  }
+
 ### Meeting 
+The following class diagram depicts how the different types of meetings are being created. The `Admin`, `Paperwork` and `Viewing` meeting types extend from the
+abstract `Meeting`.  
+
+![Meeting Diagram](images/meeting/MeetingModel.png)
+
+As seen from the diagram above there are three main types of Meetings: Admin, Paperwork and viewing. Each of the meeting
+types then contain the attributes of `BidderId`, `PropertyId`, `Venue`, `MeetingDate`, `StartTime` and `EndTime`.
+
+ ##### Design Considerations
+
+ 1. Alternative 1 (current choice): Extending `Admin`, `Paperwork` and `Viewing` from  and abstract `Meeting`.
+    - Pros: 
+        - Neater segmentation of the different meeting types.
+        - Easier extensibility for additional other types of meeting in the future.
+    - Cons: 
+        - Increased code complexity.
+
+ 2. Alternative 2: Identifying the different meeting types through a flag that stores the type of the meeting as a string.
+    - Pros: 
+        - Minimal code will be required as the same class can be used to instantiate the different meetings.
+        - Lesser code complexity.
+        - Less repetition of code.
+    - Cons: 
+        - Prone to lots of errors if the flag keyed in is wrong.
+        
+{ end of `model meeting` section written by: Harsha Vardhan  }
 
 ### Storage component
+{ start of `storage` section written by: Harsha Vardhan  }
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/storage/StorageDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
+* implements all the the different storage types as shown in the diagram above.
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the various storage books we have in json format and read it back.
+
+![Structure of the further details of Storage Component](images/storage/StorageDiagramFurther.png)
+
+The above shows the further implementations of each individual storage component.
+For the storage components,
+* the implementations across the different types of storage is similar.
+* the different JsonABCBookStorage is responsible for saving the datas in json format. For example, 
+let's take a look at PropertyBookStorage. The JsonPropertyBookStorage will store all the data that is 
+associated with property in the file in json format. In the JsonAdaptedProperty, there will be all the attributes
+that are associated with property that will eventually be stored in json format. The other storage books do follow 
+a similar implementation.
+
+#### Design Consideration
+   
+   1. Alternative Implementation 1 (current choice): Have different storage for the different entities.
+        - Pros: Easier to implement and do not require refactoring for the existing code base. The code can be reused 
+        and extended easily for the various entities. It will be easier to debug and find mistakes as when something goes wrong with a 
+        particular entity it will be easier to know which entity is affected.
+        - Cons: There will be a lot of files with repetitive code. 
+        
+   2. Alternative Implementation 2: Use the current AddressBookStorage and modify it to contain the different entities.
+        - Pros: Everything will be in one single folder and it will be easier to access the code. There will not be multiple repeats of the same code
+        across the different files. There will not be heavy edits required to the existing code base.
+        - Cons: The code file might become huge and might become difficult to debug when there is an error.
+
+{ end of `storage` Component section written by: Harsha Vardhan  }
+
 
 ### Common classes
 
@@ -356,6 +413,61 @@ by property Id followed by Bid Amount. For further clarification, refer to secti
 #### 3. Find
 
 #### 4. Sort 
+{ start of Sort section written by: Harsha Vardhan}
+The `Sort` command applies to **Meeting** and **Bids** in PropertyFree. Both `SortMeetingCommand` and the `SortBidCommand`
+follow similar implementations with slight differences. The `SortBidCommand` is slightly different as it has an auto-sort
+feature when bids are added or edited. Below we will look into the implementation of the `SortMeetingCommand`.
+
+The sort meeting feature sorts the meetings based on the different dates of the meetings from the earliest meeting
+to the last meeting in chronological order.
+1. When the `sort-m` command is executed by the user, the input it passed into
+   the `LogicManager` and gets parsed and identified in `AddressBookParser`. 
+2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
+   , the corresponding `SortMeetingCommandParser` object is formed. The user input then goes
+   through another level of parsing in `SortMeetingCommandParser`
+3. The `SortMeetingCommandParser` identifies the order in which the meetings are to be sort and creates a 
+ `SortMeetingComparator` comparator object accordingly.
+4. The ```SortMeetingCommandParser``` creates a ```SortMeetingCommand``` with the above comparator. The command
+is returned to the ```LogicManager```.
+5. The ```LogicManager``` calls ```SortMeetingCommand#execute()```, which adds a new duplicate list of meetings that is
+ sorted in chronological order in ```MeetingBook``` via the ```Model``` interface.
+6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
+![Sort Feature Sequence Diagram](images/SortSequenceDiagram.png)
+
+
+##### Design Considerations
+ For the `SortMeetingCommand`, we had several considerations that we made on whether to sort the list manually through
+ the `sort-m` command or to automatically sort the list for every meeting that is added or edited.
+  
+ 1. Alternative 1 (current choice): User has the option to sort the list manually in both ascending and descending format.
+ The meeting list will not be automatically sorted when a meeting has been added or changed. 
+ 
+    - Pros: 
+        - If the user types in wrong information for a certain meeting, he is able to see the meeting at the bottom rather 
+        than filtering through a sorted list which makes it easier to fix the error that he has made.
+        - Code will be easier to implement as we so not need to implement the auto sort phase.
+        
+    - Cons: 
+        - User has to manually sort the list, using the `sort-m` command, after keying in the new meetings to obtain an
+        ordered meeting list.
+        
+ 2. Alternative 2: The meeting list will be automatically sorted every time the user makes a new meeting or edits one.
+   
+      - Pros: 
+          - Meetings will always be in chronological order and user does not have to key in any command to sort the list.
+          
+      - Cons: 
+          - If the user adds in a meeting with wrong details to a huge list of meetings, it will be difficult to find the meeting.
+          If the previous method was used the new meting added will be at the bottom of the list. 
+          - The code will be much more complex compared to alternative 1.
+          - User will not be have the ability to sort the list in different orders. 
+
+
+
+
+
+{ end of Sort section written by: Harsha Vardhan}
 
 ##### 4.1 Auto-Sort Feature for add-bid and edit-bid
 { start of Add/Edit auto-sort feature section written by: Marcus Duigan Xing Yu}
@@ -840,17 +952,7 @@ The following sequence diagram shows the process of executing an ```FindMeetingC
 ![FineMeetingActivityDiagram](images/meeting/FindMeetingActivityDiagram.png)
   
 #### Sort Meeting Feature
-The sort meeting feature sorts the meetings based on the different timings of the meetings from the earliest meeting
-to the last meeting in chronological order.
-1. ```LogicManager``` executes the user input. 
-2. It calls ```AddressBookParser``` to parse the user input, which creates an ```SortMeetingCommandParser```, as 
-identified by the command word "sort-m".
-3. The ```SortMeetingCommandParser``` creates a ```SortMeetingComparator``` comparator object.
-4. The ```SortMeetingCommandParser``` creates a ```SortMeetingCommand``` with the above comparator. The command
-is returned to the ```LogicManager```.
-5. The ```LogicManager``` calls ```SortMeetingCommand#execute()```, which adds a new duplicate list of meetings that is
- sorted in chronological order in ```MeetingBook``` via the ```Model``` interface.
-6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
 
 
 --------------------------------------------------------------------------------------------------------------------
