@@ -46,9 +46,8 @@ Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Locati
 * **Suggesting** valid command formats when an invalid command is entered.
 * **Sorting** all stocks according to the field and order specified by the user.
 * **Storage** into CSV and JSON files.
-
-* Upon start up of the Warenager application, stocks are by default displayed
-in order of decreasing priority: low quantity stocks, bookmarked stocks, other stocks.
+* Upon start up of the Warenager application, stocks are by default displayed according to the order
+in `stockbook.json`.
 
 </div>
 
