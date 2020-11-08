@@ -1,22 +1,10 @@
 package com.eva.logic.commands;
 
-import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
-import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
-import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
-import static com.eva.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
-import static com.eva.model.Model.PREDICATE_SHOW_ALL_STAFFS;
-import static java.util.Objects.requireNonNull;
-
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import com.eva.commons.core.Messages;
-import com.eva.commons.core.index.Index;
 import com.eva.commons.util.CollectionUtil;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.model.Model;
@@ -41,73 +29,12 @@ import com.eva.model.tag.Tag;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + ", PERSONTYPE: s- / a-"
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 s- "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
-
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the eva database.";
 
-    private String personType;
-    private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
-
-    /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
-     */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor,
-                       String personType) {
-        requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
-
-        this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-        this.personType = personType;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<? extends Person> lastShownList;
-        if (this.personType.equals("staff")) {
-            lastShownList = model.getFilteredStaffList();
-        } else {
-            lastShownList = model.getFilteredApplicantList();
-        }
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
-        if (this.personType.equals("staff")) {
-            model.setStaff((Staff) personToEdit, (Staff) editedPerson);
-            model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
-        } else {
-            model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
-            model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
-        }
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        throw new CommandException("Invalid Command at Edit");
     }
 
     /**
@@ -138,6 +65,9 @@ public class EditCommand extends Command {
         } else if (personToEdit instanceof Applicant) {
             ApplicationStatus applicationStatus = ((Applicant) personToEdit).getApplicationStatus();
             Optional<InterviewDate> updatedInterviewDate = editPersonDescriptor.getInterviewDate();
+            if (updatedInterviewDate.isEmpty()) {
+                updatedInterviewDate = ((Applicant) personToEdit).getInterviewDate();
+            }
             Application application = ((Applicant) personToEdit).getApplication();
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
                     updatedTags, newComments, updatedInterviewDate, applicationStatus, application);
@@ -187,8 +117,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+        return false;
     }
 
     /**
