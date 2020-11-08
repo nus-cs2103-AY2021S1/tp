@@ -838,7 +838,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
    Use case ends.
 
-**UC06: Editing a student's details**
+**UC06: Editing a student's admin details**
 
 **MSS**
 
@@ -921,6 +921,90 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 2. Reeve displays a success message.
 
    Use case ends.
+
+**UC00: Adding an additional detail to a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to add a detail to a specific student in the list.
+4. Reeve updates the specified student in the list with the newly added detail.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student index.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User inputs a detail in an invalid format.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+**UC00: Editing an additional detail in a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to edit a detail from a specific student in the list.
+4. Reeve updates the specified student in the list with the edited detail.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User provides input with an invalid detail.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+**UC00: Deleting an additional detail from a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to delete a detail from a specific student in the list.
+4. Reeve updates the specified student in the list with the removed detail.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User provides input with an invalid detail.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
 
 **UC00: Adding a question to a student**
 
@@ -1116,6 +1200,61 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
+**UC00: Adding an attendance record to a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to add an attendance record to a specific student in the list.
+4. Reeve updates the specified student in the list with the newly added attendance record.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student index.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User inputs attendance with an invalid format.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+**UC00: Deleting an attendance record from a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to delete an attendance record from a specific student in the list.
+4. Reeve updates the specified student in the list with the removed attendance record.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User provides input with an invalid attendance record.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
 
 ## **Appendix D: Non-Functional Requirements**
 
