@@ -87,7 +87,7 @@ public class UpdateInventoryCommand extends Command {
         Integer newQuantity = updateQuantityBy + oldQuantity;
         Double unitCost = inventoryRecord.getUnitCost();
 
-        if (newQuantity < 0) {
+        if (newQuantity < 0 || newQuantity > 2000000000) {
             throw new CommandException(MESSAGE_INVALID_UPDATE_OPERATION);
         }
 

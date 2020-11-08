@@ -23,7 +23,9 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_AMOUNT = "Amount is not a decimal value.";
     public static final String MESSAGE_INVALID_DATETIME = "Date must be of the format yyyy-mm-dd HH:mm";
     public static final String MESSAGE_INVALID_QUANTITY = "Quantity must be an integer,"
-            + " more than or equal to zero, and has an upper limit of 2000,000,000";
+            + " more than or equal to zero, and has an upper limit of 2,000,000,000";
+    public static final String MESSAGE_INVALID_CHANGE_IN_QUANTITY = "Quantity must be an integer,"
+            + " and has an upper limit of 2,000,000,000 and a lower limit of -2,000,000,000";
     public static final String MESSAGE_INVALID_ITEM_COST = "Item cost must be more than or equal to zero,"
             + " and has an upper limit of 2000,000,000"
             + "\nWill be rounded up to the nearest 2 decimal place.";
@@ -102,7 +104,7 @@ public class ParserUtil {
             int itemQuantity = Integer.parseInt(trimmedQuantity);
             return itemQuantity;
         } catch (NumberFormatException e) {
-            throw new ParseException(MESSAGE_INVALID_QUANTITY);
+            throw new ParseException(MESSAGE_INVALID_CHANGE_IN_QUANTITY);
         }
     }
 
