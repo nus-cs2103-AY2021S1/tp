@@ -239,6 +239,46 @@ On the other hand, pressing `Enter` allows the user to lock in their suggestion,
 Because we iterate through autocompletion suggestions using `Tab` and `Shift-Tab` which conflicts with the inbuilt
 focus traversals commands. We have to disable it using the `AutocompleteCommandBox#DisableFocusTraversal()` operation.
 
+### Fuzzy Find Completion Feature (Fzf)
+
+![Fzf Example](images/FzfCompletionExample.gif)
+
+#### Overview
+This feature is actually an improvement from autocomplete which was inspired from reading this [article](https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions).
+Having visual feedback and improving flexibility of the search were the focus of this feature, however despite serving similar purposes
+we have decided to split this into two features because we want to position the `Autocomplete` feature as an entity-specific autocompletion, while our `Fuzzy Find` feature is a search-everywhere feature.
+
+The Fzf feature is facilitated by the `FzfModule` class which adopts the `TextField` module structure 
+similar to that in the `AutocompleteModule` class where we have the `FzfModule` class latching onto a TextField 
+enhancing it with Fzf capabilities. You can refer to the Autocomplete section to find out more, but to sum it up, upon attaching the module
+to a given `textfield` instance, the module instance will attach the relevant listeners to the `textfield` and manage the logic and state of the feature.
+
+This new feature exposes 1 new public function of `FzfModule` :
+* `attachTo(TextField textField, Suppler<List<Strings>> data)` — This method attaches the given `TextField` with the fzf module together with a list supplier from which suggestions will be generated from and returns the new `FzfModule` object.
+
+You can refer to Autocomplete to better understand how text field modules work, this section will focus on the main difference between fzf and autocomplete.
+
+#### Autocomplete vs Fzf : The `query`
+_In this section `query` refers to the string that the users wishes to autocomplete / generate suggestions from._
+
+Besides the differences in trigger points and exit points, the biggest difference is how the query is being calculated. For the autocomplete
+feature, the query is calculated from the caret position of the last character in the `commandPrefix` to the end of string.
+
+![ac query](./images/acQuery.png)
+ 
+This inevitably has some drawbacks which forces us to disallow autocompletion from the middle of the section. To support a truly dynamic `query` field, 
+one would have to track the caret position of the start and end positions of the query, and would have to update the position accordingly to any given keystroke (e.g. Backspace or when user jumps the caret position). 
+
+However, thankfully for us JavaFx already supports such a component out of the box : `TextField`. Below is a sequence diagram showing how
+`FzfModule` updates its query field using the `TextField` component.
+
+![FzfQuerySequenceDiagram](./images/FzfQuerySequenceDiagram.png)
+
+We see here that key strokes are "forwarded" to the query component while in fzf mode which allows query to be properly updated. This allows fzf mode to be
+triggered anywhere in the text field. However, this design decision may come with some performance overhead.
+
+In the future, we are looking to create a stripped down the TextField component that is able to fulfill this functionality which will allow us to swap out this text field component to reduce any performance overhead.
+
 ### Clearing all Contacts
 
 The mechanism to clear all contacts is facilitated by `ClearCommand`. It extends `Command` and implements the following methods:
@@ -666,7 +706,7 @@ Given below are the sequence diagrams of how the mechanism behaves when called u
 
 ### Adding a Meeting
 
-####Implementation
+#### Implementation
 
 The add meeting mechanism is primarily facilitated by `AddMeetingCommand`. It extends `Command` and implements the `execute` operation:
 
@@ -676,7 +716,7 @@ triggering a UI update in `MeetingListPanel`
 
 This operation is exposed in the Command class as `Command#execute`
 
-####Parsing the user input
+#### Parsing the user input
 The parsing of the user input for `AddMeetingCommand` is facilitated by `AddMeetingCommandParser`.
 `AddMeetingCommandParser` extends Parser and implements the following methods:
 * AddMeetingCommandParser#parse — Parses the user input and returns the appropriate `AddMeetingCommand`
@@ -684,33 +724,33 @@ The parsing of the user input for `AddMeetingCommand` is facilitated by `AddMeet
 `AddMeetingCommandParser` checks that all compulsory fields are provided in the user input and throws a `ParseException` if the user does not conform to the expected format.
 The user input is the parsed in the context of the `AddMeetingCommand`.
 
-####Executing the user input
+#### Executing the user input
 
-#####Check if model contains given module
+##### Check if model contains given module
 `AddMeetingCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
 
-#####Check if model contains given meeting
+##### Check if model contains given meeting
 `AddMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name.
 Meetings are identified by their modules and names for deletion, editing and viewing.
 If the given meeting already exists in the model, a `CommandException` is thrown, indicating that the user is trying to add a duplicate meeting.
 
-#####Check if model contains another meeting at same date and time
+##### Check if model contains another meeting at same date and time
 `AddMeetingCommand` checks if the model contains another meeting at the same time and date as the given meeting.
 We assume that a user is unable to attend two meetings simultaneously at the same time and date.
 If there is another meeting with conflicting time and date, a `CommandException` is thrown.
 
-#####Check if given module contains given participants
+##### Check if given module contains given participants
 `AddMeetingCommand` checks if the given participants are members of the given module.
 We assume that all meetings occur between members of the same module.
 If any one of the given participants are not members of the given module, a `CommandException` is thrown.
 
-####Activity Diagram
+#### Activity Diagram
 Given below is the activity diagram of how the logic component behaves when called using the `meeting add` command.
 ![AddMeetingActivityDiagram](images/AddMeetingActivityDiagram.png)
 
 ### Deleting a Meeting
 
-####Implementation
+#### Implementation
 
 The delete meeting mechanism is primarily facilitated by `DeleteMeetingCommand`. It extends `Command` and implements the `execute` operation:
 
@@ -720,7 +760,7 @@ triggering a UI update in `MeetingListPanel`
 
 This operation is exposed in the Command class as `Command#execute`
 
-####Parsing the user input
+#### Parsing the user input
 The parsing of the user input for `DeleteMeetingCommand` is facilitated by `DeleteMeetingCommandParser`.
 `DeleteMeetingCommandParser` extends Parser and implements the following methods:
 * DeleteMeetingCommandParser#parse — Parses the user input and returns the appropriate `DeleteMeetingCommand`
@@ -728,22 +768,22 @@ The parsing of the user input for `DeleteMeetingCommand` is facilitated by `Dele
 `DeleteMeetingCommandParser` checks that all compulsory fields are provided in the user input and throws a `ParseException` if the user does not conform to the expected format.
 The user input is the parsed in the context of the `DeleteMeetingCommand`.
 
-####Executing the user input
+#### Executing the user input
 
-#####Check if model contains given module
-`AddMeetingCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
+##### Check if model contains given module
+`DeleteMeetingCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
 
-#####Check if model contains given meeting
-`AddMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name.
+##### Check if model contains given meeting
+`DeleteMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name.
 If the given meeting does not exist in the model, a `CommandException` is thrown, indicating that the user is trying delete a non existent meeting.
 
-####Activity Diagram
+#### Activity Diagram
 Given below is the activity diagram of how the logic component behaves when called using the `meeting delete` command.
 ![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
 
 ### Editing a Meeting
 
-####Implementation
+#### Implementation
 
 The edit meeting mechanism is primarily facilitated by `EditMeetingCommand`. It extends `Command` and implements the `execute` operation:
 
@@ -753,7 +793,7 @@ triggering a UI update in `MeetingListPanel`
 
 This operation is exposed in the Command class as `Command#execute`
 
-####Parsing the user input
+#### Parsing the user input
 The parsing of the user input for `EditMeetingCommand` is facilitated by `EditMeetingCommandParser`.
 `EditMeetingCommandParser` extends Parser and implements the following methods:
 * EditMeetingCommandParser#parse — Parses the user input and returns the appropriate `EditMeetingCommand`
@@ -761,34 +801,34 @@ The parsing of the user input for `EditMeetingCommand` is facilitated by `EditMe
 `EditMeetingCommandParser` checks that all compulsory fields are provided in the user input and throws a `ParseException` if the user does not conform to the expected format.
 The user input is the parsed in the context of the `EditMeetingCommand`.
 
-####Executing the user input
+#### Executing the user input
 
-#####Check if model contains given module
+##### Check if model contains given module
 `EditMeetingCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
 
-#####Check if model contains given meeting
+##### Check if model contains given meeting
 `EditMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name.
 If the given meeting does not exist in the model, a `CommandException` is thrown, indicating that the user is trying to edit a non existent meeting.
 
-#####Check if model contains edited meeting
+##### Check if model contains edited meeting
 `EditMeetingCommand` checks if the model contains the edited meeting, identified by the unique combination of module and meeting name.
 If the edited meeting exists in the model, a `CommandException` is thrown, indicating that the user is trying to edit the meeting into a meeting that already exists.
 
-#####Check if model contains another meeting at same date and time
+##### Check if model contains another meeting at same date and time
 `EditMeetingCommand` checks if the model contains another meeting at the same time and date as the edited meeting.
 We assume that a user is unable to attend two meetings simultaneously at the same time and date.
 If there is another meeting with conflicting time and date, a `CommandException` is thrown.
 
-#####Check if given module contains given participants
+##### Check if given module contains given participants
 `EditMeetingCommand` checks if the edited participants are members of the given module.
 We assume that all meetings occur between members of the same module.
 If any one of the edited participants are not members of the given module, a `CommandException` is thrown.
 
-####Activity Diagram
+#### Activity Diagram
 Given below is the activity diagram of how the logic component behaves when called using the `meeting edit` command.
 ![EditMeetingActivityDiagram](images/EditMeetingActivityDiagram.png)
 
-####EditMeetingDescriptor
+#### EditMeetingDescriptor
 `EditMeetingDescriptor` is a nested class within EditMeetingCommand to facilitate the creation of the edited meeting.
 It stores the details to edit the meeting with and each non-empty field value will replace the corresponding field value of the given meeting.
 
@@ -883,7 +923,7 @@ Given below is the activity diagram which illustrates the workflow of this proce
       * Using a list is not very suitable since `SelectedMeeting` is a single value.
       * Only certain JavaFX views can be used with ObservableList.
 
-###Timeline Feature
+### Timeline Feature
 The mechanism to display the timeline window is facilitated by `TimelineWindow`, which extends `UiPart`.
 The components `TimelineSection` and `TimelineMeetingCard` help display various sections in the timeline window.
 
@@ -948,7 +988,8 @@ Anybody → Students → University Students → NUS Students → NUS Students h
 
 * needs to keep track of contacts for various people (Professors, TA, Groupmates)
 * needs to schedule school-related appointments
-* needs to keep track of school-related appointments
+* needs to keep track of the date and time of school-related appointments
+* needs to keep track of details of school-related appointments
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -956,9 +997,10 @@ Anybody → Students → University Students → NUS Students → NUS Students h
 
 **Value proposition**:
 
-* seamless contact management which is faster than a typical mouse/GUI driven app
+* seamless contact management which makes it easy to find relevant Professor, TA or Groupmates contacts
 * convenient scheduling of project meetings and consultations, making planning a work week effortless
-* effective visualisation of schedules and meetings with the application's timeline dashboard
+* effective visualisation of schedule and meeting details with the application's timeline dashboard and selected meeting panel
+* enhanced user experience with features such as autocompletion, fuzzy find, command history, copying and theme switching
 
 ### User stories
 
@@ -972,20 +1014,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | NUS Student                                | Edit an existing contact                                                                                                 | Change their contact details if it has changed                                                                     |
 | `* * *`  | NUS Student                                | View my entire list of contacts                                                                                          | Select who I want to contact                                                                                       |
 | `* * *`  | NUS Student                                | Clear all contacts                                                                                                       | Reset my contacts                                                                                                  |
-| `* * *`  | NUS Student                                | Tag my contacts based on the individual's relationship with me (e.g. TA, Professor, Classmate)                         | Easily identify the contacts relevant to my query                                                                  |
-| `* * *`  | NUS Student                                | Create meetings for events such as projects or assignments                                                               | I can keep track of commitments and upcoming work                                                                  |
+| `* * *`  | NUS Student                                | Tag my contacts based on the individual's relationship with me (e.g. TA, Professor, Classmate)                           | Easily identify the contacts relevant to my query                                                                  |
+| `* * *`  | NUS Student                                | Create meetings for events such as projects or consultations                                                             | I can keep track of commitments and upcoming work                                                                  |
 | `* * *`  | NUS Student                                | Add relevant contacts to a meeting                                                                                       | Keep track of who is participating in the meeting and their contact information                                    |
 | `* * *`  | Forgetful NUS Student                      | Assign a meeting a timeslot and date                                                                                     | Track exactly when I am supposed to meet                                                                           |
 | `* * *`  | NUS Student with many meetings             | View all scheduled meetings                                                                                              | Have an overview of all my meetings                                                                                |
-| `* * *`  | NUS Student                                | Create consultations with professors                                                                                     | Track when I have set up meetings with professors and TA’s                                                         |
-| `* * *`  | NUS Student                                | Add contacts to a consultation                                                                                           | Keep track of which professor I am consulting and access his/her contact details easily                            |
-| `* * *`  | NUS Student                                | Assign a consultation a timeslot and date                                                                                | Keep track of when my upcoming consultations are                                                                   |
+| `* * *`  | NUS Student with many meetings             | View agendas for meetings                                                                                                | Easily review agendas for my meetings                                                                              |
+| `* * *`  | NUS Student with many meetings             | View notes for meetings                                                                                                  | Take and access notes for my meetings                                                                              |
+| `* * *`  | NUS Student with a changing schedule       | Edit meetings                                                                                                            | Change the details of my meetings                                                                                  |
+| `* * *`  | NUS Student with a changing schedule       | Delete meetings                                                                                                          | Remove cancelled meetings                                                                                          |
+| `* * *`  | NUS Student                                | Create meetings with professors                                                                                          | Track when I have set up meetings with professors and TA’s                                                         |
 | `* * *`  | NUS Student taking many modules            | Create modules                                                                                                           | Add new modules whenever needed                                                                                    |
 | `* * *`  | NUS Student taking many modules            | View relevant groups of contacts by modules                                                                              | I can easily keep track of contact details of individuals in different modules                                     |
-| `* * `   | NUS Student                                | Hide private contact details                                                                                             | Minimize chances of someone else seeing them by accident                                                           |
-| `*    `  | Student who likes to personalise stuff     | Customise the layout of the App                                                                                          | I can organise relevant information in personalised way that I find easy to access                                 |
-
-*{More to be added}*
+| `* * `   | User with easily strained eyes             | Switch between light and dark mode                                                                                       | Reduce eye strain when using the application during different times of the day                                     |
+| `*   `   | NUS Student                                | Hide private contact details                                                                                             | Minimize chances of someone else seeing them by accident                                                           |
+| `*   `   | Student who likes to personalise stuff     | Customise the layout of the App                                                                                          | I can organise relevant information in personalised way that I find easy to access                                 |
 
 ### Use cases
 
@@ -1132,67 +1175,154 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**UC08: Create Meeting**
+**UC08: Add Meeting**
 
 **MSS**
 
-1.  User makes request to create a meeting
+1.  User makes request to add a meeting
 2.  Modduke accepts request and creates meeting
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Meeting Name is missing.
+* 1a. Module Name, Meeting Name, Date, Time or Participants are missing.
 
   * 1a1. Modduke shows an error message.
 
     Use case ends
-
-* 1b. Meeting with the same name already exists.
+    
+* 1b. Given module does not exist in Modduke.
 
   * 1b1. Modduke shows an error message.
 
+    Use case ends    
+
+* 1c. Meeting with the same combination of module and meeting name already exists.
+
+  * 1c1. Modduke shows an error message.
+
+    Use case ends.
+    
+* 1d. Meeting with the same date and time already exists.
+
+  * 1d1. Modduke shows an error message.
+
+    Use case ends.
+    
+* 1e. Participants indicated are not in given module.
+
+  * 1e1. Modduke shows an error message.
+
     Use case ends.
 
-**UC09: Set Time/Date for Meeting**
+**UC09: Delete Meeting**
 
 **MSS**
 
-1.  User makes request to edit a specific meeting
+1.  User makes request to delete a specific meeting
 2.  Modduke accepts request and makes changes to meeting
 
     Use case ends.
-
+    
 **Extensions**
 
-* 1a. Meeting Name is missing.
+* 1a. Specified combination of module and meeting does not exist.
 
   * 1a1. Modduke shows an error message.
 
+    Use case ends
+    
+**UC08: Edit Meeting**
+
+**MSS**
+
+1.  User makes request to edit a meeting
+2.  Modduke accepts request and creates meeting
+
     Use case ends.
 
-* 1b. Meeting with the same name already exists.
+**Extensions**
+
+* 1a. No field to edit was provided.
+
+  * 1a1. Modduke shows an error message.
+
+    Use case ends
+    
+* 1b. Given module does not exist in Modduke.
 
   * 1b1. Modduke shows an error message.
 
+    Use case ends    
+
+* 1c. Specified combination of module and meeting does not exist.
+
+  * 1c1. Modduke shows an error message.
+
+    Use case ends
+
+* 1d. Edited meeting has the same combination of module and meeting name as an existing meeting.
+
+  * 1d1. Modduke shows an error message.
+
+    Use case ends.
+    
+* 1e. Edited meeting results in the same date and time as an existing meeting exists.
+
+  * 1e1. Modduke shows an error message.
+
+    Use case ends.
+    
+* 1f. New participants indicated are not in given module.
+
+  * 1f1. Modduke shows an error message.
+
     Use case ends.
 
-**UC10: View all Meeting**
+**UC09: View Selected Meeting Details**
 
 **MSS**
 
-1.  User makes request to show all meetings
+1.  User chooses to view details of a meeting
+2.  Modduke accepts request and displays both agendas and notes for the selected meeting
+    
+    Use case ends.
+    
+**Extensions**
+
+* 1a. Modduke detects invalid command format.
+
+  * 1a1. Modduke gives an alert for the invalid command format.
+
+    Use case ends
+    
+* 1b. User enters a meeting that does not exist.
+
+  * 1b1. Modduke shows a message informing user that the meeting provided is not in the meeting list.
+
+    Use case ends  
+    
+
+**UC10: List Meetings**
+
+**MSS**
+
+1.  User makes request to list all meetings
 2.  Modduke accepts request and displays all meetings
 
     Use case ends.
+    
+**UC08: View Meeting**
 
-**UC11: Create Consult**
+Use case same as UC09: Delete Meeting
+
+**UC10: View Timeline**
 
 **MSS**
 
-1.  User makes request to create a consult
-2.  Modduke accepts request and creates consult
+1.  User makes request to view timeline window
+2.  Modduke accepts request and displays timeline window
 
     Use case ends.
 
@@ -1210,32 +1340,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**UC12: Set Time/Date for Consult**
+**UC12: Autocomplete Entity Name (Contact, Module, Meeting)**
 
 **MSS**
 
-1.  User makes request to edit a specific consult
-2.  Modduke accepts request and makes changes to consult
+1.  User makes a request to system to trigger autocomplete.
+2.  Modduke accepts request and enters autocomplete mode and request for text to be autocompleted
+3.  User specifies text to autocomplete.
+4.  Modduke takes user input and returns list of suggestions to user.
+5.  User selects his desired suggestion from list.
+6.  Modduke replaces user's text with autocomplete result.
+
+    Use case ends.
+    
+**UC13: Switch to light theme**
+
+**Guarantees**
+
+*  The theme set will be light theme regardless of current theme
+
+**MSS**
+
+1.  User makes request to switch to light theme
+2.  Modduke switches to light theme
+
+    Use case ends.
+
+**UC14: Switch to dark theme**
+
+**Guarantees**
+
+*  The theme set will be dark theme regardless of current theme
+
+**MSS**
+
+1.  User makes request to switch to dark theme
+2.  Modduke switches to dark theme
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Consult Name is missing.
+* 4a. No suggestions available for text entered
 
-  * 1a1. Modduke shows an error message.
+  * 4a1. Modduke shows an empty suggestions list
+
+    Use case resumes from step 3.
+
+* *a. At any time, User chooses to exit autocomplete mode.
+
+  * *a1. User makes a request to Modduke to exit autocomplete mode.
+  * *a2. Modduke accepts request and exits autocomplete mode.
 
     Use case ends.
-
-* 1b. Consult with the same name already exists.
-
-  * 1b1. Modduke shows an error message.
-
-    Use case ends.
-
-
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -1250,10 +1407,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. The use of third-party frameworks and libraries should be avoided.
 10. JAR files should not exceed 100Mb and PDF files should not exceed 15Mb/file.
 11. All features should be easy to test. (i.e., do not depend heavily on remote APIs, do not have audio-related features and do not require creating user accounts before usage)
-12. The system should repond within two seconds.
-13. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
-
-*{More to be added}*
+12. The system should respond within two seconds.
 
 ### Glossary
 
@@ -1262,9 +1416,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **.vcf,.csv files**: A format of files that contains contact information from users phones
 * **CLI**: CLI is the Command Line Interface where you can type in commands and get an output
 * **TA**: Teaching assistant
-* **Consultation**: A meeting between students and a professor or TA
-* **Meeting**: A general purpose appointment between students
-
+* **Meeting**: A general purpose appointment between students, professors or TAs. Examples include project meetings or consultations with professors.
 
 --------------------------------------------------------------------------------------------------------------------
 

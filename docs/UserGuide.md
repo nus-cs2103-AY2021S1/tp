@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Modduke is a **desktop app targeted towards NUS students. It allows them to easily manage their contacts, modules and meetings during the semester.** The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Modduke is a **desktop app targeted towards NUS students handling multiple projects. It allows them to easily manage their contacts, modules and meetings during the semester.** The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 13 kLoC.
 
 * Table of Contents
 {:toc}
@@ -61,7 +61,8 @@ Modduke is a **desktop app targeted towards NUS students. It allows them to easi
 * The `CONTACT_NAME` parameter refers to the full name of the contact.
 
 * There are 2 special tags `prof` and `ta`. Contacts with either of these tags will be classified as professor or ta
- respectively. Users are not allowed to tag a contact as both `prof` and `ta`.
+ respectively. Users are not allowed to tag a contact as both `prof` and `ta`. Hence, if your professor is also your ta, only the
+ `prof` tag should be used.
 
 </div>
 
@@ -145,7 +146,7 @@ The `Up` key brings users to previous command wheras the `Down` key brings users
 queue.
 
 * Note that the commands must be successful to be logged into command history and that command history only tracks commands
-in the current session. This means if restart Modduke, commands in the previous sessions won't be available.
+in the current session. This means if Moduke is restarted, commands in the previous sessions won't be available.
 
 ### Adding a contact : `contact add`
 
@@ -182,7 +183,8 @@ Edits an existing contact in Modduke.
 
 Format: `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]`
 
-Note: At least one optional field must be provided
+Note(s): 
+* At least one optional field must be provided
 
 Examples:
 *  `contact edit John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of John Doe to be `91234567` and `johndoe@example.com` respectively.
@@ -260,13 +262,12 @@ Example(s):
 
 Creates a Module with a given name and members .
 
-Format: `module add n/MODULE_NAME p/MEMBER_NAME [p/MEMBER_NAME]...`
+Format: `module add n/MODULE_NAME p/MEMBER_NAME...`
 
 Note(s):
 * A Module can have more than 1 member but can only have one name.
 * Need at least 1 member.
 * Professors and TA's can also be added in the same format as other contacts.
-* Note that module names are case-sensitive.
 
 Example(s):
 * `module add n/CS2103 p/Roy p/Jerryl p/Yeeloon p/Jay p/Ekam`
@@ -279,7 +280,6 @@ Format: `module list m/MODULE_NAME`
 
 Note(s):
 * To reset the contacts list in the gui you can do the contact list command
-* Note that module names are case-sensitive.
 
 Example(s):
 * `module list m/CS2103`
@@ -297,7 +297,6 @@ added participants.
 * You can change either the module name, the participants or both.
 * Changes to module will affect meetings based on that module, so if the meeting does not include any of the new module
 participants, it will be deleted.
-* Note that module names are case-sensitive.
 
 Example(s):
 * `module edit m/CS2103 n/CS2103T p/Roy p/Jerryl p/Yeeloon p/Jay p/Ekam`
@@ -477,8 +476,10 @@ Action | Format, Examples
 **Edit Contacts** | `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]` <br> e.g.,`contact edit Jay n/Roy e/roy@example.com`
 **List Contacts** | `contact list`
 **Find Contacts** | `find [n/KEYWORD]... [t/TAG_NAME]...` <br> e.g.,`find n/Roy t/friend`
-**Add Module** | `module add [n/MODULE_NAME] [m/MEMBER_NAMES]`<br> e.g., `module add n/CS2103 m/Jay, Roy`
-**List Modules** | `module list  [n/MODULE_NAME]`<br> e.g., `module list n/CS2103`
+**Add Module** | `module add [m/MODULE_NAME] p/MEMBER_NAMES...`<br> e.g., `module add n/CS2103 p/Jay p/Roy`
+**List Modules** | `module list  [m/MODULE_NAME]`<br> e.g., `module list m/CS2103`
+**Edit Modules** | `module edit m/MODULE_NAME [n/MODULE_NEWNAME] [p/MEMBER_NAMES]...`<br> e.g., `module edit m/CS2103 n/CS2103T p/Roy p/Jay`
+**Delete modules** | `module delete m/MODULE_NAME`<br> e.g., `module delete m/CS2103`
 **Add Tags** | `tag add CONTACT_NAME t/TAG_NAME...` <br> e.g., `tag add Jay t/acquaintance`
 **Delete Tags** | `tag delete CONTACT_NAME t/TAG_NAME...` <br> e.g., `tag delete Jay t/friend`
 **Clear Tags** | `tag clear CONTACT_NAME` <br> e.g., `tag clear Jay`
@@ -490,3 +491,7 @@ Action | Format, Examples
 **Copy Email** | `copy email [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy email m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
 **Copy Phone** | `copy phone [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy phone m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
 **Display Timeline** | `timeline`
+**Display Help** | `help`
+**Switch to Light Theme** | `light`
+**Switch to Dark Theme** | `dark`
+

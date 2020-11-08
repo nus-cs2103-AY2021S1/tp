@@ -178,10 +178,6 @@ public class AutocompleteModule {
         logger.info("Autocomplete prefix has set to :" + prefix);
     }
 
-    public HashMap<String, Suggestions> getSuggestionsList() {
-        return suggestionsList;
-    }
-
     /**
      * Sets the command box style to indicate a Autocomplete Mode.
      */
@@ -259,17 +255,6 @@ public class AutocompleteModule {
 
         private boolean isBackToPrefix() {
             return index == 0;
-        }
-
-        /**
-         * Returns full list of suggestions.
-         */
-        public List<String> getFilteredList() {
-            return suggestions;
-        }
-
-        public Supplier<List<String>> getListSupplier() {
-            return listSupplier;
         }
     }
 }
