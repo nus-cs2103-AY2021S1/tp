@@ -58,6 +58,6 @@ public class ParserManager {
     private boolean containsModuleListCommandWords(String commandWord) {
         return commandWord.contains("module") || commandWord.contains("undo") || commandWord.contains("redo")
                 || commandWord.contains("cap") || commandWord.contains("zoom") || commandWord.contains("archive")
-                || commandWord.contains("exit");
+                || commandWord.contains("exit") || commandWord.contains("help");
     }
 }
