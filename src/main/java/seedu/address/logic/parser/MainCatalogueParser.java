@@ -266,7 +266,7 @@ public class MainCatalogueParser {
         case DeletePersonCommand.COMMAND_WORD:
             switch (status) {
             case PERSON_LIST:
-                return new DeleteTeammateCommandParser().parse(arguments);
+                return new DeletePersonCommandParser().parse(arguments);
             default:
                 throw new InvalidScopeException(Status.PERSON_LIST, status);
             }
