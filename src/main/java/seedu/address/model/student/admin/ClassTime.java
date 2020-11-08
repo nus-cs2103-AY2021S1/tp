@@ -18,7 +18,7 @@ public class ClassTime implements Comparable<ClassTime> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Class Time should follow the following format: {int: day_of_week} {int: start_time}-{int: end_time}";
-    public static final String TIME_CONSTRAINTS = "End time should always be after Start time";
+    public static final String TIME_CONSTRAINTS = "Invalid Class Time! \nEnd time should always be after Start time";
 
     /*
      * The first character of the address must not be a whitespace,
