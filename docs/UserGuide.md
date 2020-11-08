@@ -294,6 +294,9 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Opens a window that displays a pie chart representing categorical expenses.
     - Format: `graph`
     - Example: `graph`
+    - Note: The pie chart does not update dynamically. 
+      If a command that edits the ExpenseBook is entered while the graph window is open, the pie chart will not be updated.
+      User must re-enter the graph command to update the pie chart accordingly.
     
     ![graph_example](./images/ug_example/graph_example.PNG)
     
