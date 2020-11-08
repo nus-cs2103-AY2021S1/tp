@@ -27,7 +27,7 @@ public class SampleDataUtil {
             new Ingredient("Butter", Mass.grams(200), new ExpiryDate("2020-12-01"),
                 Set.of(new Tag("dairy"), new Tag("high calorie"))),
             new Ingredient("Brown Sugar", Mass.grams(300), new ExpiryDate("2021-07-03"),
-                    Set.of(new Tag("sweet"), new Tag("kitchen"), new Tag("bakery"))),
+                Set.of(new Tag("sweet"), new Tag("kitchen"), new Tag("bakery"))),
             new Ingredient("Cream", Mass.grams(460), new ExpiryDate("2020-11-15"),
                 Set.of(new Tag("high calorie"), new Tag("high sugar level"))),
             new Ingredient("Egg", Count.of(12), new ExpiryDate("2020-12-01"),
