@@ -24,7 +24,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Location etc. <br>
 (These stock details are presented in a drop down window.)
 
-* **Adding** stocks: Unique serial number is generated based on the stock item and source company.
+* **Adding** stocks: Unique serial number is generated based on the stock item and source company
 * **Deleting** stocks
 * **Updating** stock fields
 * **Searching** for stocks by
@@ -34,15 +34,15 @@ Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Locati
     * location stored in warehouse
 * Adding / Deleting **optional notes** to stocks
 * **Viewing** all details of a stock
-* **Bookmarking** stocks: e.g. often used stocks, search bookmark<item>.
-* **Print** to generate CSV file for printing of stock list.
-* **Clear** to clear **all** existing data in Warenager.
-* **Tab** to toggle between tabs in Warenager.
-* **Listing** all stocks in Warenager.
-* **Suggesting** valid command formats when an invalid command is entered.
-* **Sorting** all stocks according to the field and order specified by the user.
-* **Storage** into CSV and JSON files.
-* Upon start up of the Warenager application, stocks are by default displayed according to the order
+* **Bookmarking** stocks: e.g. often used stocks, search bookmark<item>
+* **Print** to generate CSV file for printing of stock list
+* **Clear** to clear **all** existing data in Warenager
+* **Tab** to toggle between tabs in Warenager
+* **Listing** all stocks in Warenager
+* **Suggesting** valid command formats when an invalid command is entered
+* **Sorting** all stocks according to the field and order specified by the user
+* **Storage** into CSV and JSON files
+* Upon starting up of the Warenager application, stocks are by default displayed according to the order
 in `stockbook.json`.
 
 </div>
