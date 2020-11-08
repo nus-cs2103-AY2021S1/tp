@@ -697,6 +697,9 @@ attribute.
 | Date| `12-12-2021` `12-08-2021`| Date has to be of the format `DD-MM-YYYY` and cannot be a past date.|
 | Start Time, End Time| `16:20` `14:20`| Time has to be of the format `HH:MM`. The meetings timings are allowed to clash each other and can be past midnight.|
 
+💡 Note that we currently do not support conflicts between the start and end time of a meeting. 
+The user has to take into account if the start or end time that is added will overlap with any existing meetings in the meeting book.
+
 Example:
 
 ```
@@ -777,7 +780,9 @@ Edits an existing meeting in the meeting list. The existing meeting to be editte
 > - At least one optional field must be provided.
 > - Edits the meeting at the specified `INDEX_NUMBER`, which refers to the index shown on the displayed meeting list. The index must be a positive integer 1, 2, 3...
 
-💡 Note that the meeting type cannot be modified.  
+💡 Note that the meeting type cannot be modified and that we currently do not support conflicts between the start and end time of a meeting. 
+The user has to take into account if the start or end time that is editted will overlap with any existing meetings in the meeting book.
+
 Example:
 
 ```
