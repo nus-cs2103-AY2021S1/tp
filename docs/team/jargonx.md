@@ -53,8 +53,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Updated the command formats for all the features. (Pull Request [\#135](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/135))
-    * Updated the Quick Start guide. (Pull Request [\#178](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/178))
-    * Made minor cosmetic tweaks to all edit case persons commands for better understanding. (Pull Request [\#178](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/178))
+    * Updated the Quick Start guide and made minor cosmetic tweaks to all edit case persons commands for better understanding. (Pull Request [\#178](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/178))
   * Developer Guide:
     * Updated the `Logic` Segment of the Documentation. Included Sequence Diagrams for the Components for clarity. (Pull Request [\#154](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/154))
 
