@@ -57,9 +57,6 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
-
-    @FXML
     private VBox vendorBox;
 
     @FXML
@@ -93,6 +90,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -125,11 +123,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
+        foodListPanel = new FoodListPanel(logic.getFilteredMenuItemList());
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
         setFoodListDisplay(false);
 
-        vendorListPanel = new VendorListPanel(logic.getFilteredVendorList());
+        vendorListPanel = new VendorListPanel(logic.getObservableVendorList());
         vendorListPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
 
         orderItemListPanel = new OrderItemListPanel(logic.getFilteredOrderItemList());
@@ -138,9 +136,6 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -171,8 +166,12 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Displays menu if vendor has been selected, otherwise display vendor list.
      */
-    void displayMenu() {
+    void updateMode() {
         boolean bool = logic.isSelected();
+
+        foodListPanel = new FoodListPanel(logic.getFilteredMenuItemList());
+        foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
+
         setVendorListDisplay(!bool);
         setFoodListDisplay(bool);
         setOrderItemListDisplay(true);
@@ -218,16 +217,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    /**
-     * Updates the UI to display the menu of the selected vendor.
-     */
-    @FXML
-    public void handleVendor() {
-        foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
-        foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
-        displayMenu();
-    }
-
     public VendorListPanel getVendorListPanel() {
         return vendorListPanel;
     }
@@ -252,9 +241,9 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isVendor()) {
-                handleVendor();
+                updateMode();
             }
-            // TODO: add commandResult.isUpdatedMenu?
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
@@ -262,4 +251,6 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
+
 }

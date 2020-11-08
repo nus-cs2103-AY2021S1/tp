@@ -15,7 +15,8 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public RemoveCommand parse(String args) throws ParseException {
-        String trimArgs = args.trim();
+        String cleanedArgs = args.replaceAll("( )+", " ");
+        String trimArgs = cleanedArgs.trim();
         String[] argsArr = trimArgs.split(" ");
         ParserUtil.checkArgsLength(argsArr, RemoveCommand.COMMAND_WORD, RemoveCommand.MESSAGE_USAGE, 1, 2);
         Index index = ParserUtil.parseIndex(argsArr[0], "Menu Index");

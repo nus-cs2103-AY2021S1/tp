@@ -1,14 +1,19 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.food.Food;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.ReadOnlyOrderManager;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.ReadOnlyVendorManager;
 import seedu.address.model.vendor.Vendor;
 
 
@@ -16,12 +21,6 @@ import seedu.address.model.vendor.Vendor;
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
-    Predicate<Vendor> PREDICATE_SHOW_ALL_VENDORS = unused -> true;
-    Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
-    Predicate<OrderItem> PREDICATE_SHOW_ALL_ORDERITEMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -46,33 +45,23 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getVendorManagerFilePath();
 
     /**
      * Sets the user prefs' menu manager file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
-
-    /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getMenuManagerFolderPath();
-
-    /**
-     * Sets the user prefs' address book file path.
-     */
-    void setMenuManagerFolderPath(Path menuManagerFolderPath);
+    void setVendorManagerFilePath(Path vendorManagerFilePath);
 
     /**
      * Replaces menu manager data with the data in {@code menuManager}.
      */
 
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setVendorManager(ReadOnlyVendorManager vendorManager);
 
     /**
-     * Returns the AddressBook
+     * Returns the VendorManager
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyVendorManager getVendorManager();
 
     /**
      * Returns true if a vendor with the same identity as {@code vendor} exists in the address book.
@@ -80,30 +69,12 @@ public interface Model {
     boolean hasVendor(Vendor vendor);
 
     /**
-     * Deletes the given vendor.
-     * The vendor must exist in the address book.
-     */
-    void deleteVendor(Vendor target);
-
-    /**
-     * Adds the given vendor.
-     * {@code vendor} must not already exist in the address book.
-     */
-    void addVendor(Vendor vendor);
-
-    /**
      * Selects the vendor with index {@code vendorIndex} .
      * {@code vendorIndex} must be a valid index in the model.
      */
     void selectVendor(int vendorIndex);
 
-
-    /**
-     * Replaces the given vendor {@code target} with {@code editedVendor}.
-     * {@code target} must exist in the address book.
-     * The vendor identity of {@code editedVendor} must not be the same as another existing vendor in the address book.
-     */
-    void setVendor(Vendor target, Vendor editedVendor);
+    ObservableList<Vendor> getObservableVendorList();
 
     /**
      * Replaces address book data with the data in {@code menuManager}.
@@ -115,37 +86,16 @@ public interface Model {
      */
     ReadOnlyMenuManager getMenuManager(int index);
 
+    void sortMenuItemBy(String sortedBy, boolean ascending, boolean toggle);
+
+    void showDefaultMenu();
     /**
-     * Returns true if a food with the same identity as {@code food} exists in the address book.
+     * Replaces OrderManager data with the data in {@code orderItems}.
      */
-    boolean hasFood(Food food, int index);
+    void setOrder(List<OrderItem> orderItems);
 
     /**
-     * Deletes the given food.
-     * The food must exist in the menu manager.
-     */
-    void deleteFood(Food target, int index);
-
-    /**
-     * Adds the given food.
-     * {@code food} must not already exist in the menu manager.
-     */
-    void addFood(Food food, int index);
-
-    /**
-     * Replaces the given food {@code target} with {@code editedFood}.
-     * {@code target} must exist in the menu manager.
-     * The food identity of {@code editedFood} must not be the same as another existing food in the address book.
-     */
-    void setFood(Food target, Food editedFood, int index);
-
-    void sortFoodByName(boolean ascending);
-
-    void sortFoodByPrice(boolean ascending);
-
-    /**
-
-     * Replaces address book data with the data in {@code orderManager}.
+     * Replaces OrderManager data with the data in {@code orderManager}.
      */
     void setOrderManager(ReadOnlyOrderManager orderManager);
 
@@ -168,36 +118,16 @@ public interface Model {
     /**
      * Adds the given orderItem.
      * {@code orderItem} if orderItem exists in order manageradd to the current quantity.
+     * @throws CommandException if after adding, there is more than 100 of the same order item
      */
-    void addOrderItem(OrderItem orderItem);
+    void addOrderItem(OrderItem orderItem) throws CommandException;
 
     /**
-     * Replaces the given OrderItem {@code target} with {@code editedOrderItem}.
-     * {@code target} must exist in the menu manager.
-     * The OrderItem identity of {@code editedOrderItem}
-     * must not be the same as another existing orderItem in the address book.
+     * Returns an unmodifiable view of the filtered menu item list at the corresponding index
      */
-    void setOrderItem(OrderItem target, OrderItem editedOrderItem);
+    ObservableList<MenuItem> getFilteredMenuItemList();
 
-    /**
-     * Returns an unmodifiable view of the filtered vendor list
-     */
-    ObservableList<Vendor> getFilteredVendorList();
-
-
-    /**
-     * Updates the filter of the filtered vendor list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredVendorList(Predicate<Vendor> predicate);
-
-    /**
-     * Returns an unmodifiable view of the filtered food list at the corresponding index
-     */
-    ObservableList<Food> getFilteredFoodList();
-
-    int getFilteredFoodListSize();
+    int getFilteredMenuItemListSize();
 
     /**
      * Clears the order.
@@ -209,19 +139,27 @@ public interface Model {
      */
     void resetOrder();
 
-    void setVendorIndex(int vendorIndex);
-
     /**
-     * Updates the filter of the filtered food list at the corresponding index to filter by the given {@code predicate}.
+     * Updates the filter of the filtered menu item list at the corresponding index to filter by the given
+     * {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredFoodList(Predicate<Food> predicate);
+    void updateFilteredMenuItemList(Predicate<MenuItem> predicate);
+
+    /**
+     * Updates the filter of the filtered menu item list at the corresponding index to filter by the given
+     * {@code comparator}.
+     * Only used for test cases.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateFilteredMenuItemList(Comparator<MenuItem> comparator, boolean isSortedAsc);
+
 
     /**
      * Returns an unmodifiable view of the filtered orderItem list at the corresponding index
      */
-    ObservableList<OrderItem> getFilteredOrderItemList();
+    ObservableList<OrderItem> getObservableOrderItemList();
 
     int getOrderSize();
 
@@ -235,13 +173,7 @@ public interface Model {
 
     boolean isSelected();
 
-    /**
-     * Updates the filter of the filtered orderItem list at the
-     * corresponding index to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredOrderItemList(Predicate<OrderItem> predicate);
+    void tagOrderItem(OrderItem orderItem, Tag tag);
 
-    void updateVendor();
+    void untagOrderItem(OrderItem orderItem);
 }

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
+
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.OrderManager;
 
@@ -59,8 +62,12 @@ public class TypicalOrderItems {
      */
     public static OrderManager getTypicalOrderManager() {
         OrderManager orderManager = new OrderManager();
-        for (OrderItem orderItem : getTypicalOrderItems()) {
-            orderManager.addOrderItem(orderItem);
+        try {
+            for (OrderItem orderItem : getTypicalOrderItems()) {
+                orderManager.addOrderItem(orderItem);
+            }
+        } catch (CommandException e) {
+            Assertions.assertTrue(false);
         }
         return orderManager;
     }

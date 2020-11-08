@@ -1,0 +1,11 @@
+{
+  "presets" : [ [ {
+    "name" : "MyTestPreset",
+    "orderItems" : [ {
+      "name" : "Prata",
+      "price" : 1.0,
+      "tagged" : [ ],
+      "quantity" : 2
+    } ]
+  } ] ]
+}

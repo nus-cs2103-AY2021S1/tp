@@ -2,9 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -13,10 +10,12 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.food.NameContainsKeywordsPredicate;
+import seedu.address.model.vendor.VendorManager;
+import seedu.address.storage.StorageManager;
 
 /**
  * Contains helper methods for testing commands.
@@ -60,7 +59,7 @@ public class FoodCommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
                                             Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualModel, new StorageManager());
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -82,31 +81,32 @@ public class FoodCommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered food list and selected food in {@code actualModel} remain unchanged
+     * - the address book, filtered MenuItem list and selected food in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        VendorManager expectedVendorManager = new VendorManager(actualModel.getVendorManager());
         //check first filtered food list
-        List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFoodList());
+        List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredMenuItemListSize());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredFoodList());
+        assertThrows(CommandException.class, expectedMessage, () ->
+                command.execute(actualModel, new StorageManager()));
+        assertEquals(expectedVendorManager, actualModel.getVendorManager());
+        assertEquals(expectedFilteredList, actualModel.getFilteredMenuItemList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the food at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showFoodAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredFoodList().size());
+    public static void showMenuItemAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMenuItemList().size());
 
-        Food food = model.getFilteredFoodList().get(targetIndex.getZeroBased());
-        final String[] splitName = food.getName().split("\\s+");
-        model.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        MenuItem item = model.getFilteredMenuItemList().get(targetIndex.getZeroBased());
+        final String[] splitName = item.getName().split("\\s+");
+        model.updateFilteredMenuItemList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredFoodList().size());
+        assertEquals(1, model.getFilteredMenuItemList().size());
     }
 
 }

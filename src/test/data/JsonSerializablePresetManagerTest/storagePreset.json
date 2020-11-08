@@ -1,0 +1,75 @@
+{
+  "presets" : [ [
+    {
+      "name": "Preset 1",
+      "orderItems": [
+        {
+          "name": "Prata",
+          "price": 1,
+          "quantity": 3,
+          "tagged": [
+            "classic"
+          ]
+        },
+        {
+          "name": "Milo",
+          "price": 1.5,
+          "quantity": 2,
+          "tagged": [
+            "Iced"
+          ]
+        },
+        {
+          "name": "Nasi Goreng",
+          "price": 4.5,
+          "quantity": 1,
+          "tagged": [
+            "Bestseller"
+          ]
+        },
+        {
+          "name": "Nuggets",
+          "price": 3.2,
+          "quantity": 5,
+          "tagged": [
+            "six"
+          ]
+        },
+        {
+          "name": "Cheese Prata",
+          "price": 1.6,
+          "quantity": 2,
+          "tagged": [
+            "cheesy"
+          ]
+        }
+      ]
+    } ],
+    [{
+      "name" : "Preset 2",
+      "orderItems" : [ {
+        "name": "Prata",
+        "price": 1,
+        "quantity": 3,
+        "tagged": [
+          "classic"
+        ]
+      },
+        {
+          "name": "Milo",
+          "price": 1.5,
+          "quantity": 2,
+          "tagged": [
+            "Iced"
+          ]
+        },
+        {
+          "name": "Nasi Goreng",
+          "price": 4.5,
+          "quantity": 1,
+          "tagged": [
+            "Bestseller"
+          ]
+        } ]
+    }]]
+}

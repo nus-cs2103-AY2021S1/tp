@@ -1,25 +1,26 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.vendor.NameContainsKeywordsPredicate;
+import seedu.address.testutil.TypicalMenuItems;
+import seedu.address.testutil.TypicalModel;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -48,32 +49,44 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-    //        @Test
-    //        public void execute_unknownKeyword_noFoodFound() {
-    //            NameContainsKeywordsPredicate predicate = preparePredicate("*");
-    //            FindCommand command = new FindCommand(predicate);
-    //            expectedModel.setVendorIndex(1);
-    ////            expectedModel.updateFilteredFoodList(predicate);
-    //            //            Model model = new ModelManager();
-    //            String expectedMessage = "0 food listed!";
-    //            assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    ////            assertEquals(expectedModel.getMenuManager(1), Collections.EMPTY_LIST);
-    //        }
-    //
-    //    @Test
-    //    public void execute_multipleKeywords_multipleVendorsFound() {
-    //        String expectedMessage = String.format(MESSAGE_VENDORS_LISTED_OVERVIEW, 3);
-    //        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-    //        FindCommand command = new FindCommand(predicate);
-    //        expectedModel.updateFilteredFoodList(predicate);
-    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredVendorList());
-    //    }
+    @Test
+    public void execute_unknownKeyword_noMenuItemFound() {
+        Model model = TypicalModel.getModelManagerWithMenu();
+        NameContainsKeywordsPredicate predicate = preparePredicate("triangle square circle");
+        FindCommand command = new FindCommand(predicate);
+        Model expectedModel = TypicalModel.getModelManagerWithMenu();
+        expectedModel.updateFilteredMenuItemList(predicate);
+        String expectedMessage = "0 food listed!\n" + Messages.MESSAGE_CHAIN;
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(expectedModel.getFilteredMenuItemList(), Collections.EMPTY_LIST);
+    }
+
+    @Test
+    public void execute_multipleKeywords_multipleMenuItemFound() {
+        Model model = TypicalModel.getModelManagerWithMenu();
+        String expectedMessage = "2 food listed!\n" + Messages.MESSAGE_CHAIN;
+        NameContainsKeywordsPredicate predicate = preparePredicate("Milo prata");
+        FindCommand command = new FindCommand(predicate);
+        Model expectedModel = TypicalModel.getModelManagerWithMenu();
+        expectedModel.updateFilteredMenuItemList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TypicalMenuItems.PRATA, TypicalMenuItems.MILO), model.getFilteredMenuItemList());
+    }
+
+    @Test
+    public void execute_vendorNotSelected_throwsException() {
+        Model model = TypicalModel.getModelManagerWithMenu();
+        model.selectVendor(-1);
+        assertCommandFailure(new FindCommand(preparePredicate("hey")),
+                model, Messages.MESSAGE_VENDOR_NOT_SELECTED);
+    }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        String trimmedArgs = userInput.trim();
+        String finalArgs = trimmedArgs.replaceAll("( )+", " ");
+        return new NameContainsKeywordsPredicate(Arrays.asList(finalArgs.split("\\s+")));
     }
 }

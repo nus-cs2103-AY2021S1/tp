@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static seedu.address.storage.JsonAdaptedFood.INVALID_PRICE_FORMAT;
+import static seedu.address.storage.JsonAdaptedMenuItem.INVALID_PRICE_FORMAT;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -28,7 +28,7 @@ class JsonAdaptedOrderItem {
     private final int quantity;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedOrderItem} with the given orderItem details.
      */
     @JsonCreator
     public JsonAdaptedOrderItem(@JsonProperty("name") String name, @JsonProperty("price") double price,

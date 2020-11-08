@@ -4,10 +4,12 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 
 
 /**
@@ -22,10 +24,10 @@ public class FoodCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on VendorManager level 4</a>
      */
 
-    public final Food food;
+    public final MenuItem item;
 
     @FXML
     private HBox cardPane;
@@ -38,18 +40,33 @@ public class FoodCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    @FXML
+    private ImageView imageView;
+
     /**
      * Creates a {@code FoodCode} with the given {@code Food} and index to display.
      */
-    public FoodCard(Food food, int displayedIndex) {
+    public FoodCard(MenuItem item, int displayedIndex) {
         super(FXML);
-        this.food = food;
+        this.item = item;
         id.setText(displayedIndex + ". ");
-        name.setText(food.getName());
-        price.setText(food.getPriceString());
-        food.getTags().stream()
+        name.setText(item.getName());
+        price.setText(item.getPriceString());
+        item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        try {
+            Image image = new Image(this.getClass().getResourceAsStream("/images/food/" + item.getFilePath()));
+            imageView.setImage(image);
+        } catch (NullPointerException e) {
+            Image defaultImage = new Image(this.getClass()
+                    .getResourceAsStream("/images/food/default-menu-item.jpg"));
+            imageView.setImage(defaultImage);
+        }
+
+        imageView.setFitHeight(120);
+        imageView.setFitWidth(120);
     }
 
     @Override
@@ -67,6 +84,6 @@ public class FoodCard extends UiPart<Region> {
         // state check
         FoodCard card = (FoodCard) other;
         return id.getText().equals(card.id.getText())
-                && food.equals(card.food);
+                && item.equals(card.item);
     }
 }

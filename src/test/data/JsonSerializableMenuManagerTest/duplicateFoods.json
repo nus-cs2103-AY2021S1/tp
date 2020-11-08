@@ -2,11 +2,13 @@
   "foods" : [ {
     "name" : "Prata",
     "price": 1,
-    "tagged" : ["classic"]
+    "tagged" : ["classic"],
+    "filePath" : ""
   },
     {
       "name" : "Prata",
       "price": 1,
-      "tagged" : ["classic"]
+      "tagged" : ["classic"],
+      "filePath" : ""
     }]
 }

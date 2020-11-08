@@ -2,7 +2,6 @@ package seedu.address.model.food;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -13,7 +12,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Food in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Food {
+public abstract class Food {
 
     // Identity fields
     protected final String name;
@@ -66,13 +65,9 @@ public class Food {
         return String.format("$%.2f", price);
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
+    public abstract Set<Tag> getTags();
+
+    public abstract void setTags(Set<Tag> tags);
 
     /**
      * Returns true if both foods have the same identity and data fields.

@@ -10,7 +10,7 @@
 
 <fx:root minHeight="600.0" minWidth="900.0" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/food/default-menu-item.jpg" />
   </icons>
   <scene>
     <Scene fill="BLACK">
@@ -19,7 +19,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox style="-fx-background-color: BLACK;">
+      <VBox style="-fx-background-color: black;">
         <MenuBar fx:id="menuBar" minWidth="-Infinity" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -29,12 +29,12 @@
           </Menu>
         </MenuBar>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" minWidth="-Infinity" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="SOMETIMES">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="150.0" minWidth="-Infinity" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="SOMETIMES">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-        <HBox maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+        <HBox maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
           <children>
 
             <VBox fx:id="vendorBox" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
@@ -42,8 +42,8 @@
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
               <children>
-                <Label style="-fx-text-fill: WHITE;" text="Vendors" />
-                <StackPane fx:id="vendorListPanelPlaceholder" minWidth="-Infinity" prefWidth="200.0" />
+                <Label style="-fx-text-fill: white;" text="Vendors" />
+                <StackPane fx:id="vendorListPanelPlaceholder" minWidth="-Infinity" prefWidth="200.0" VBox.vgrow="ALWAYS" />
               </children>
             </VBox>
 
@@ -70,8 +70,6 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-
-        <StackPane fx:id="statusbarPlaceholder" minWidth="-Infinity" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

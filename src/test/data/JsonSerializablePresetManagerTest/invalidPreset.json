@@ -1,0 +1,21 @@
+{
+  "presets" : [ [ {
+    "name": "Preset 1",
+    "orderItems" : [ {
+      "name" : "Milo",
+      "price" : 0.9,
+      "tagged" : [ ],
+      "quantity" : 1
+    }]
+  },{
+    "name": "Preset 1",
+    "orderItems" : [ {
+      "name" : "Milo",
+      "price" : 0.9,
+      "tagged" : [ ],
+      "quantity" : 1
+    }]
+  }
+
+  ]]
+}

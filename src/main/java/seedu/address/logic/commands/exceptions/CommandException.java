@@ -14,4 +14,17 @@ public class CommandException extends Exception {
     public CommandException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof CommandException)) {
+            return false;
+        }
+
+        return ((CommandException) obj).getMessage().equals(getMessage());
+    }
 }

@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SupperStrikersParser" as SupperStrikersParser LOGIC_COLOR
+participant ":PresetCommandParser" as PresetCommandParser LOGIC_COLOR
+participant "d:LoadPresetCommand" as LoadPresetCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("preset load sample")
+activate LogicManager
+
+LogicManager -> SupperStrikersParser : parseCommand("preset load sample")
+activate SupperStrikersParser
+
+create PresetCommandParser
+SupperStrikersParser -> PresetCommandParser
+activate PresetCommandParser
+
+PresetCommandParser --> SupperStrikersParser
+deactivate PresetCommandParser
+
+SupperStrikersParser -> PresetCommandParser : parse("load sample")
+activate PresetCommandParser
+
+create LoadPresetCommand
+PresetCommandParser -> LoadPresetCommand
+activate LoadPresetCommand
+
+LoadPresetCommand --> PresetCommandParser : d
+deactivate LoadPresetCommand
+
+PresetCommandParser --> SupperStrikersParser : d
+deactivate PresetCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+PresetCommandParser -[hidden]-> SupperStrikersParser
+destroy PresetCommandParser
+
+SupperStrikersParser --> LogicManager : d
+deactivate SupperStrikersParser
+
+LogicManager -> LoadPresetCommand : execute()
+activate LoadPresetCommand
+
+LoadPresetCommand -> Storage : readPresetManager()
+activate Storage
+Storage --> LoadPresetCommand: allLists
+deactivate Storage
+|||
+
+LoadPresetCommand -> Model: setOrder(orderItems)
+activate Model
+Model --> LoadPresetCommand
+deactivate Model
+|||
+create CommandResult
+LoadPresetCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LoadPresetCommand
+deactivate CommandResult
+
+LoadPresetCommand --> LogicManager : result
+deactivate LoadPresetCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

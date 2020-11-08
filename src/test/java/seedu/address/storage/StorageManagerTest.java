@@ -21,9 +21,18 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonVendorManagerStorage vendorManagerStorage = new JsonVendorManagerStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonPresetManagerStorage orderManagerStorage =
+                new JsonPresetManagerStorage(getTempFilePath("presets"));
+        JsonProfileManagerStorage profileManagerStorage =
+                new JsonProfileManagerStorage(getTempFilePath("profile"));
+        storageManager = new StorageManager(
+                vendorManagerStorage,
+                userPrefsStorage,
+                orderManagerStorage,
+                profileManagerStorage
+        );
     }
 
     private Path getTempFilePath(String fileName) {
@@ -46,21 +55,22 @@ public class StorageManagerTest {
 
     //TODO: pass
     //    @Test
-    //    public void addressBookReadSave() throws Exception {
+    //    public void vendorManagerReadSave() throws Exception {
     //        /*
     //         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-    //         * {@link JsonAddressBookStorage} class.
-    //         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+    //         * {@link JsonVendorManagerStorage} class.
+    //         * More extensive testing of UserPref saving/reading is done in {@link JsonVendorManagerStorageTest}
+    //         class.
     //         */
-    //        AddressBook original = getTypicalAddressBook();
-    //        storageManager.saveAddressBook(original);
-    //        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-    //        assertEquals(original, new AddressBook(retrieved));
+    //        VendorManager original = getTypicalVendorManager();
+    //        storageManager.saveVendorManager(original);
+    //        ReadOnlyVendorManager retrieved = storageManager.readVendorManager().get();
+    //        assertEquals(original, new VendorManager(retrieved));
     //    }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getVendorManagerFilePath() {
+        assertNotNull(storageManager.getVendorManagerFilePath());
     }
 
 }

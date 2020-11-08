@@ -9,7 +9,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ClearCommandParserTest {
-    private final AddressBookParser parser = new AddressBookParser();
+    private final SupperStrikersParser parser = new SupperStrikersParser();
 
     @Test
     public void parse_extraFields_throwsParseException() {

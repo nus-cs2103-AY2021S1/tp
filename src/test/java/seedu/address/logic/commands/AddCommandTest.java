@@ -5,16 +5,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalVendors.getTypicalVendorManager;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.food.Food;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.order.OrderItem;
+import seedu.address.model.order.OrderManager;
 import seedu.address.testutil.TypicalModel;
+import seedu.address.testutil.TypicalVendors;
 
 public class AddCommandTest {
 
@@ -30,13 +37,18 @@ public class AddCommandTest {
         Index index = Index.fromOneBased(1);
         AddCommand addCommand = new AddCommand(index);
 
-        ObservableList<Food> menu = model.getFilteredFoodList();
-        Food firstItem = menu.get(0);
+
+        ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
+        MenuItem firstItem = menu.get(0);
         OrderItem addedItem = new OrderItem(firstItem, 1);
 
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
-        expectedModel.addOrderItem(addedItem);
-        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem);
+        try {
+            expectedModel.addOrderItem(addedItem);
+        } catch (CommandException e) {
+            Assertions.assertTrue(false);
+        }
+        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem.getName(), 1);
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
     }
@@ -49,13 +61,17 @@ public class AddCommandTest {
         int quantity = 3;
         AddCommand addCommand = new AddCommand(first, quantity);
 
-        ObservableList<Food> menu = model.getFilteredFoodList();
-        Food secondItem = menu.get(1);
+        ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
+        MenuItem secondItem = menu.get(1);
         OrderItem addedItem = new OrderItem(secondItem, 3);
 
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
-        expectedModel.addOrderItem(addedItem);
-        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem);
+        try {
+            expectedModel.addOrderItem(addedItem);
+        } catch (CommandException e) {
+            Assertions.assertTrue(false);
+        }
+        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem.getName(), quantity);
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
     }
@@ -64,12 +80,20 @@ public class AddCommandTest {
     public void execute_invalidIndex_throwsCommandException() {
         Model model = TypicalModel.getModelManagerWithMenu();
 
-        ObservableList<Food> menu = model.getFilteredFoodList();
+        ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
         Index outOfBoundIndex = Index.fromOneBased(menu.size() + 1);
         AddCommand addCommand = new AddCommand(outOfBoundIndex);
 
-        assertCommandFailure(addCommand, model, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
+        assertCommandFailure(addCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
 
+    }
+
+    @Test
+    public void execute_vendorNotSelected_throwsException() {
+        Model model = new ModelManager(getTypicalVendorManager(), new UserPrefs(), TypicalVendors.getManagers(),
+                new OrderManager());
+        assertCommandFailure(new AddCommand(Index.fromOneBased(1)),
+                model, Messages.MESSAGE_VENDOR_NOT_SELECTED);
     }
 
     @Test

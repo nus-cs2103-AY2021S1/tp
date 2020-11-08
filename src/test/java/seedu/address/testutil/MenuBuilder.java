@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.menu.Menu;
 
 public class MenuBuilder {
@@ -23,8 +23,8 @@ public class MenuBuilder {
     /**
      * Adds a food to the MenuBuilder.
      */
-    public MenuBuilder add(Food food) {
-        this.menu.add(food);
+    public MenuBuilder add(MenuItem item) {
+        this.menu.add(item);
         return this;
     }
 

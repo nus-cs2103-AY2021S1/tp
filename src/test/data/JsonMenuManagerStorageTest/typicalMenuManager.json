@@ -2,16 +2,19 @@
   "foods" : [ {
     "name" : "Prata",
     "price": 1,
-    "tagged" : []
+    "tagged" : [],
+    "filePath" : ""
   },
     {
       "name" : "Milo",
       "price": 1.5,
-      "tagged" : []
+      "tagged" : [],
+      "filePath" : ""
     },
     {
       "name": "Nasi Goreng",
       "price": 4.5,
-      "tagged": []
+      "tagged": [],
+      "filePath" : ""
     }]
 }

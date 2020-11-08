@@ -1,0 +1,47 @@
+{
+  "vendors": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "friends" ],
+    "menu" : [ {
+      "name" : "Prata",
+      "price" : 1.0,
+      "tagged" : [ "classic" ],
+      "filePath" : ""
+    }, {
+      "name" : "Milo",
+      "price" : 1.5,
+      "tagged" : [ "Iced" ],
+      "filePath" : ""
+    }, {
+      "name" : "Nuggets",
+      "price" : 3.2,
+      "tagged" : [ "six" ],
+      "filePath" : ""
+    } ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "address": "4th street",
+    "tagged": [],
+    "menu" : [ {
+      "name" : "Prata",
+      "price" : 1.0,
+      "tagged" : [ "classic" ],
+      "filePath" : ""
+    }, {
+      "name" : "Milo",
+      "price" : 1.5,
+      "tagged" : [ "Iced" ],
+      "filePath" : ""
+    }, {
+      "name" : "Nuggets",
+      "price" : 3.2,
+      "tagged" : [ "six" ],
+      "filePath" : ""
+    } ]
+  } ]
+}

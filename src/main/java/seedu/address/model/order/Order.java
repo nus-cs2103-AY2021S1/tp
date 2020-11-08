@@ -3,6 +3,7 @@ package seedu.address.model.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.order.exceptions.DuplicateOrderItemException;
 import seedu.address.model.order.exceptions.OrderItemNotFoundException;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.vendor.Vendor;
 
 public class Order implements Iterable<OrderItem> {
@@ -47,10 +49,16 @@ public class Order implements Iterable<OrderItem> {
      */
     public void add(OrderItem toAdd) {
         requireNonNull(toAdd);
+        int newQuantity = toAdd.getQuantity() + getQuantity(toAdd);
+        if (newQuantity > 100) {
+            throw new IllegalArgumentException();
+        }
+        assert(newQuantity <= 100);
         if (contains(toAdd)) {
             int index = internalList.indexOf(toAdd);
             OrderItem existingItem = internalList.get(index);
-            toAdd.setQuantity(toAdd.getQuantity() + existingItem.getQuantity());
+            toAdd.setQuantity(newQuantity);
+            toAdd.setTags(existingItem.getTags());
             setOrderItem(existingItem, toAdd);
         } else {
             internalList.add(toAdd);
@@ -159,6 +167,20 @@ public class Order implements Iterable<OrderItem> {
         return internalList.get(index).getQuantity();
     }
 
+    /**
+     * Gets the quantity of the orderItem in current order equal to the {@code orderItem}. Returns 0 if it doesn't
+     * exist.
+     */
+    public int getQuantity(OrderItem orderItem) {
+        requireNonNull(orderItem);
+        try {
+            OrderItem foundItem = getOrderItem(orderItem.getName());
+            return foundItem.getQuantity();
+        } catch (OrderItemNotFoundException e) {
+            return 0;
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -183,5 +205,23 @@ public class Order implements Iterable<OrderItem> {
             }
         }
         return true;
+    }
+
+    /**
+     * Tags an {@code orderItem} with a {@code tag}.
+     */
+    public void tagOrderItem(OrderItem orderItem, Tag tag) {
+        OrderItem newOrderItem = orderItem.makeCopy();
+        newOrderItem.addTag(tag);
+        setOrderItem(orderItem, newOrderItem);
+    }
+
+    /**
+     * Clears all tag of {@code orderItem}.
+     */
+    public void untagOrderItem(OrderItem orderItem) {
+        OrderItem newOrderItem = orderItem.makeCopy();
+        newOrderItem.setTags(new HashSet<>());
+        setOrderItem(orderItem, newOrderItem);
     }
 }

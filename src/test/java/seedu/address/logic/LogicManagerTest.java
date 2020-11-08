@@ -1,8 +1,11 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalVendors.getManagers;
+import static seedu.address.testutil.TypicalVendors.getTypicalVendorManager;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -11,18 +14,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.order.OrderManager;
+import seedu.address.model.vendor.ReadOnlyVendorManager;
+import seedu.address.model.vendor.VendorManager;
+import seedu.address.storage.JsonPresetManagerStorage;
+import seedu.address.storage.JsonProfileManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.JsonVendorManagerStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.TypicalModel;
+import seedu.address.testutil.TypicalVendors;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -30,16 +40,48 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private Model model;
     private Logic logic;
+
+    private VendorManager book;
+    private UserPrefs userPrefs;
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        this.book = TypicalVendors.getTypicalVendorManager();
+        this.userPrefs = new UserPrefs();
+        this.model = new ModelManager(book, userPrefs, getManagers(), new OrderManager());
+
+        JsonVendorManagerStorage vendorManagerStorage =
+                new JsonVendorManagerStorage(temporaryFolder.resolve("vendorManager.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonPresetManagerStorage orderManagerStorage =
+                new JsonPresetManagerStorage(temporaryFolder.resolve("presets.json"));
+        JsonProfileManagerStorage profileManagerStorage =
+                new JsonProfileManagerStorage(temporaryFolder.resolve("profile.json"));
+        StorageManager storage = new StorageManager(
+                vendorManagerStorage,
+                userPrefsStorage,
+                orderManagerStorage,
+                profileManagerStorage
+        );
+        model.selectVendor(0);
         logic = new LogicManager(model, storage);
+    }
+
+    @Test
+    public void execute_helpCommand_success() {
+        String helpCommand = "help";
+        try {
+            assertCommandSuccess(helpCommand, HelpCommand.SHOWING_HELP_MESSAGE, model);
+        } catch (Exception e) {
+            assertTrue(false);
+        }
+    }
+
+    @Test
+    public void getObservableVendorList_success() {
+        assertEquals(logic.getObservableVendorList(), getTypicalVendorManager().getVendorList());
     }
 
     @Test
@@ -51,25 +93,19 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String removeCommand = "remove 9";
-        assertCommandException(removeCommand, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        assertCommandException(removeCommand, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
     }
 
     //TODO: pass
     //    @Test
     //    public void execute_storageThrowsIoException_throwsCommandException() {
-    //        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-    //        JsonAddressBookStorage addressBookStorage =
-    //                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder
-    //                .resolve("ioExceptionAddressBook.json"));
+    //        // Setup LogicManager with JsonVendorManagerIoExceptionThrowingStub
+    //        JsonVendorManagerStorage vendorManagerStorage =
+    //                new JsonVendorManagerIoExceptionThrowingStub(temporaryFolder
+    //                .resolve("ioExceptionVendorManager.json"));
     //        JsonUserPrefsStorage userPrefsStorage =
     //                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-    //        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+    //        StorageManager storage = new StorageManager(vendorManagerStorage, userPrefsStorage);
     //        logic = new LogicManager(model, storage);
     //
     //        // Execute add command
@@ -84,7 +120,40 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredVendorList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredVendorList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getObservableVendorList().remove(0));
+    }
+
+    @Test
+    public void getFilteredFoodList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredMenuItemList().remove(0));
+    }
+
+    @Test
+    public void getFilteredOrderItemList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderItemList().remove(0));
+    }
+
+    @Test
+    public void isSelected_success() {
+        model.selectVendor(2);
+        assertTrue(logic.isSelected());
+    }
+
+    @Test
+    public void getVendorManagerFilePath_success() {
+        assertEquals(userPrefs.getVendorManagerFilePath(), logic.getVendorManagerFilePath());
+    }
+
+    @Test
+    public void getGuiSettings_success() {
+        assertEquals(model.getGuiSettings(), logic.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings_success() {
+        GuiSettings guiSettings = model.getGuiSettings();
+        logic.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, logic.getGuiSettings());
     }
 
     /**
@@ -123,7 +192,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = TypicalModel.getModelManagerWithMenu();
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -143,11 +212,11 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonVendorManagerIoExceptionThrowingStub extends JsonVendorManagerStorage {
+        private JsonVendorManagerIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveVendorManager(ReadOnlyVendorManager vendorManager, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

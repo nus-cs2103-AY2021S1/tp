@@ -2,10 +2,12 @@ package seedu.address.model.order;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,10 +28,20 @@ public class OrderItem extends Food {
     }
 
     /**
-     * Alternative constructor that takes in a food item and quantity. Every field must be present and not null.
+     * Alternative constructor that takes in a menu item and quantity. Every field must be present and not null.
      */
-    public OrderItem(Food food, int quantity) {
-        super(food.getName(), food.getPrice(), food.getTags());
+    public OrderItem(MenuItem menuItem, int quantity) {
+        super(menuItem.getName(), menuItem.getPrice(), menuItem.getTags());
+        requireAllNonNull(quantity);
+        tags.clear();
+        this.quantity = quantity;
+    }
+
+    /**
+     * Alternative constructor that takes in a order item. Every field must be present and not null.
+     */
+    public OrderItem(OrderItem orderItem, int quantity) {
+        super(orderItem.getName(), orderItem.getPrice(), orderItem.getTags());
         requireAllNonNull(quantity);
         this.quantity = quantity;
     }
@@ -76,21 +88,58 @@ public class OrderItem extends Food {
 
         return orderItem != null
                 && orderItem.getName().equals(getName())
-                && (orderItem.getPrice() == (getPrice()))
-                && (orderItem.getTags().equals(getTags()));
+                && (orderItem.getPrice() == (getPrice()));
     }
 
-    //    @Override
-    //    public boolean equals(Object other) {
-    //        return other == this // short circuit if same object
-    //                || (other instanceof OrderItem // instanceof handles nulls
-    //                && isSameOrderItem((OrderItem) other));
-    //    }
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
+    @Override
+    public void setTags(Set<Tag> newTags) {
+        tags.clear();
+        tags.addAll(newTags);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof OrderItem)) {
+            return false;
+        }
+
+        OrderItem otherFood = (OrderItem) other;
+        return otherFood.getName().equals(getName())
+                && otherFood.getPrice() == getPrice();
+    }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(super.name, super.price, super.tags, quantity);
+    }
+
+    /**
+     * Creates a text suitable for order.
+     */
+    public String toOrderText() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName() + " x " + getQuantity() + "\n");
+        for (Tag tag: tags) {
+            builder.append(" - " + tag.tagName + "\n");
+        }
+        return builder.toString();
+    }
+
+    public String addCommandString() {
+        return String.format("%s x%d", getName(), getQuantity());
     }
 
     @Override
@@ -106,4 +155,7 @@ public class OrderItem extends Food {
         return builder.toString();
     }
 
+    public void addTag(Tag tag) {
+        tags.add(tag);
+    }
 }
