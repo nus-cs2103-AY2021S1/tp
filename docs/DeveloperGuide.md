@@ -144,9 +144,20 @@ Classes used by multiple components are in the `com.eva.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 3.1 Staff Management System
+###3.1 Overview of Staff and Applicants
 
-#### 3.1.1 Leave System
+The class diagram below shows how applicant and staff are related to each other and the various classes they are 
+associated to. The following sections will elaborate more on the applicant and staff management sections.
+
+ <img src="images/ApplicantStaffClassDiagram.png.png" width="574" />
+
+### 3.2 Staff Management System
+
+Each staff record has the details of name, phone, email, address, leaves, tags, comments. 
+The details name, phone, email, address are mandatory.
+A staff record also contains `Leave`. More about how this is implemented is elaborated [here](#311-leave-system).
+
+#### 3.2.1 Leave System
 
 The current leave recording system is facilitated by the `ModelManager`. It contains a filtered list of all staffs, `filteredStaffs` and
 implements the following operations:
@@ -163,7 +174,7 @@ Step 1. While looking at the staff list, the command: `addl 1 l/d/10/10/2020` is
 The `addl` command calls 
 
 
-#### 3.1.2 Design consideration:
+#### 3.2.2 Design consideration:
 
 ##### Aspect: How undo & redo executes
 
@@ -176,15 +187,21 @@ The `addl` command calls
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
   
-### 3.2. Applicant Management System
+### 3.3. Applicant Management System
 
-Nikhila to update
+Each applicant record has the details of name, phone, email, address, interview date, application status and application. 
+The details name, phone, email, address are mandatory. The interview date is wrapped inside a Java
+[`optional`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html). 
+We have designed it to be as such so that the user can input the interview date at a later time or leave that detail in all cases.
+Application Status is a field that contains one of the `PossibleApplicationStatus` which is an enumeration of all possible application statuses namely,
+receieved, processing, accepted, rejected.
+An application also contains a `Application`. More about how this is implemented is elaborated [here](#321-application-system).
 
-#### 3.2.1 Application System:
+#### 3.3.1 Application System:
 
 Royce to update
 
-#### 3.2.2 Design consideration:
+#### 3.3.2 Design consideration:
 
 ##### Aspect: How undo & redo executes
 
