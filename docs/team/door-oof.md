@@ -17,11 +17,14 @@ Given below are my contributions to the project.
 
 ### Enhancements to existing features
 
-* Redesigned the entire UI of our programme.
+I was responsible for implementing the following features of NUStorage:
 
-* Wrote the `list_finance` command class which lists all finance records.
+* Finance:
+    * List Finance class ([\#41](https://github.com/AY2021S1-CS2103T-T11-3/tp/pull/41))
 
-* Wrote additional tests for existing features to increase coverage.
+* Redesigned the entire UI of NUStorage. (Pull requests [\#74](https://github.com/AY2021S1-CS2103T-T11-3/tp/pull/74), [\#120](https://github.com/AY2021S1-CS2103T-T11-3/tp/pull/120), [\#147](https://github.com/AY2021S1-CS2103T-T11-3/tp/pull/147))
+
+* Added tests cases to increase coverage. (Pull requests [\#33](https://github.com/AY2021S1-CS2103T-T11-3/tp/pull/212), [\#127](https://github.com/AY2021S1-CS2103T-T11-3/tp/pull/127))
 
 ### Documentation
 
@@ -39,6 +42,4 @@ Developer Guide:
 
 ### Community
 
-* Reported bugs and suggestions for [Team W15-4](https://github.com/AY2021S1-CS2103T-W15-4/tp) as part of the PE dry run, and reported around 10 errors.
-
-* Review PRs with feedback and suggestions.
+* Reported bugs and suggestions for [Team W15-4](https://github.com/AY2021S1-CS2103T-W15-4/tp) as part of the PE dry run, and reported 7 errors. These errors range from minor suggestions and inaccuracies in the user guide, to major bugs that may affect the programme.
