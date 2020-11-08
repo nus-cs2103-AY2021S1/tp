@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_GIT_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
 
-import seedu.address.logic.commands.project.AddTeammateCommand;
+import seedu.address.logic.commands.global.AddPersonCommand;
 import seedu.address.logic.commands.project.EditTeammateCommand;
 import seedu.address.model.person.Person;
 
@@ -24,7 +24,7 @@ public class PersonUtil {
      * Returns an addTeammateCommand string for adding the {@code project}.
      */
     public static String getAddTeammateCommand(Person person) {
-        return AddTeammateCommand.COMMAND_WORD + " " + getProjectDetails(person);
+        return AddPersonCommand.COMMAND_WORD + " " + getProjectDetails(person);
     }
 
     /**
