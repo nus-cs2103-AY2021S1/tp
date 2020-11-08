@@ -603,14 +603,14 @@ Example Scenario:
 
 ![editComment](images/ugimages/EditComment.png)
 
-### 3.5. Script Engine
+### 3.6. Script Engine
 
 Eva has a built-in script to execute JavaScript that can be used to extend the features of Eva.
 
 Please refer to [Nashorn official website](https://www.oracle.com/technical-resources/articles/java/jf14-nashorn.html)
 for supported JavaScript features, and how to import Java classes to extend Eva features.
 
-#### 3.5.1. Load a JavaScript script: `load`
+#### 3.6.1. Load a JavaScript script: `load`
 
 Format: `load SCRIPT_FILE_PATH`
 
@@ -657,7 +657,7 @@ Example Scenario:
 ### 5.3. Applicant
 
 | Action                | Format, Examples                                                                                                 |
-|-----------------------|------------------------------------------------------------------------------------------------------------------|
+|-----------------------|--------------------------------------------------------------------------------------------|
 | **List** | `list a-`   
 | **AddApplicant**      | `adda` <br> e.g., `adda n/John Doe p/98765432 e/jd@example.com a/John street, block 123, #01-01` |
 | **Find** | `find a- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find a- James Jake`                                                                 |
