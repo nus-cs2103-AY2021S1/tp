@@ -90,10 +90,15 @@ Given below are my contributions to the project.
     * Added UML diagrams for `bookmark`, `unbookmark` feature.
 
 * **UI**:
-  * Came up with the design of the UI (stockTable, resultDisplay, commandBox and enterButton).
-  * Edited the colour scheme using recommendations from groupmates.
-  * Created the table in help window.
-  * Updated the help window to include a clickable link.
+  * Came up with the design of the UI (stockTable, resultDisplay, commandBox and enterButton). (Pull Request 
+  [#114](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/114)
+  [#150](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/150))
+  * Edited the colour scheme using recommendations from groupmates. (Pull Request 
+  [#114](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/114))
+  * Created the table in help window. (Pull Request 
+  [#207](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/207))
+  * Updated the help window to include a clickable link. (Pull Request
+  [#114](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/114))
   
 * **Git & Repository**:
     * Used GitHub Projects feature to create kanban boards to track user stories.
