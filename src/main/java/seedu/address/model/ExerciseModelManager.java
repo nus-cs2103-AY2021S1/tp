@@ -48,7 +48,7 @@ public class ExerciseModelManager implements ExerciseModel {
     }
 
     public ExerciseModelManager(ReadOnlyExerciseBook exerciseBook) {
-        this(exerciseBook, new UserPrefs());
+        this(exerciseBook, new GoalBook(), new UserPrefs());
     }
 
     public ExerciseModelManager() {
