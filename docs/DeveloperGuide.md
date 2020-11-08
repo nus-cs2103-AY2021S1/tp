@@ -13,6 +13,15 @@ The Developer Guide is designed for those who are interested in understanding th
 of tCheck. In particular, this guide has been written with the current and future tCheck developers in mind because it details
 the knowledge necessary to know to be able to modify the codebase and customize tCheck for specific operational needs or extend current functionalities.
 
+## **Introduction**
+
+tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of 
+the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is 
+optimized for CLI users to update and retrieve the information more efficiently.
+
+### Purpose of Document
+This document specifies the architecture and software design for the application, tCheck.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -31,11 +40,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T12-2/tp/tree/master/docs/diagrams) folder.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -119,6 +128,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+
 Given below is the class diagram showing details of the person model:
 
 The `Person` sub-component,
@@ -129,9 +139,23 @@ The `Person` sub-component,
 
 Figure x. Class diagram showing the structure of `Person` sub-component
 
+Given below is the class diagram showing the details of the `SalesRecordEntry` model:
+
+![Structure of the SalesRecordEntry sub-component](images/SalesRecordEntryModelClassDiagram.png)
+
+The `SalesRecordEntry` sub-component,
+* stores the sales book data
+* exposes an unmodifiable `ObservableList<SalesRecordEntry>` that can be 'observed'. e.The UI can be bound to this
+ list so that the UI automatically updates when the data in the list change.
+
 Given below is the class diagram showing details of the ingredient model:
 
 ![Structure of the Ingredient Model Component](images/IngredientModelClassDiagram.png)
+
+<div markdown="block" class="alert alert-info">:information_source: **Note:** The text in the middle of the
+ association arrows represents the role of the class at the arrow head. However, due to a limitation of
+ PlantUML, where there cannot be two textboxes at the arrow head, the role has been placed in the middle of the arrow.
+</div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP
 ) model is given below. It has a `Tag` list in the `tCheck` application, which `Person` references. This allows
@@ -172,9 +196,13 @@ This section describes some noteworthy details on how certain features are imple
 ### \[Completed\] Recording/ Updating Sales Data
 
 tCheck allows users to record and update the sales information on the drink sold. The command to use this feature is:
-`s-update A/NUM B/NUM ...` where:
-* `A`, `B`, `C` are abbreviations for the drink types.
-* `NUM` refers to the number of drinks sold.
+`s-update DRINK [MORE_DRINKS]` where:
+* `DRINK` is formatted as `A/NUM`.
+    * `A` refers to the drink's abbreviation.
+    * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
+less than or equal to 99999999.
+
+The user may use this command for a single `Drink`, or multiple `Drink`s.
 
 Currently, tCheck supports the tracking of 6 types of `Drink`s.
 * `BSBM`  : Brown Sugar Boba Milk
@@ -184,7 +212,7 @@ Currently, tCheck supports the tracking of 6 types of `Drink`s.
 * `BSPBT` : Brown Sugar Pearl Black Tea
 * `BSPGT` : Brown Sugar Pearl Green Tea
 
-#### Completed Implementation
+#### Implementation
 
 The completed mechanism to record the sales data is facilitated by the `SalesBook`. It implements the
 `ReadOnlySalesBook` interface, which will allow the sales data to be displayed graphically in the user interface.
@@ -214,9 +242,10 @@ when it is executed. This is because the current `SalesBook` is empty. It calls
 `Model#overwrite(Map<Drink, Integer> salesInput)`, which will save the sales data into the `UniqueSalesRecordList` in
 the `SalesBook`. The other `Drink` types whose sales numbers were not given will be initialised to 0.
 
-Step 3: The user realises he left out some sales data. He executes the `s-update BSBBT/180 BSPM/64` command to record
-that 180 Brown Sugar Boba Black Tea (BSBBT) and 64 Brown Sugar Pearl Milk (BSPM) were sold. Since the `SalesBook` has
-already been initialised, when the `s-update` command executes, it calls
+Step 3: The user realises that he left out some sales data. He executes the `s-update BSBBT/180 BSPM/64` command to
+record that 180 Brown Sugar Boba Black Tea (BSBBT) and 64 Brown Sugar Pearl Milk (BSPM) were sold. Since the
+`SalesBook` has  already been initialised, when the `s-update` command executes, it calls 
+
 `Model#overwrite(Map<Drink, Integer> salesInput)` which will only overwrite the sales data for the `Drink` items that
 were given in the user input will be overwritten.
 
@@ -227,6 +256,11 @@ He then executes the `s-update BSBM/110` to correct this error. The `s-update` c
 The following sequence diagram shows how the sales update operation works:
 
 ![SalesUpdateSequenceDiagram](images/SalesUpdateSequenceDiagram.png)
+
+<div markdown="block" class="alert alert-info">:information_source: **Note:** The lifeline for `SalesUpdateCommand`
+ and the `SalesUpdateCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the
+  lifeline reaches the end of diagram.
+</div>
 
 The following activity diagram summarises what happens when a user executes the `s-update` command.
 
@@ -239,18 +273,18 @@ The following activity diagram summarises what happens when a user executes the 
 user in the `s-update` command
     *  Pros: More intuitive and convenient for the user. If the user made any error or miss out any details, he can
      correct the sales data with a shorter command.
-    *  Cons: Less easy to implement
+    *  Cons: Less easy to implement.
 
 * **Alternative 2**: Replace the sales record based on what has been given by the user, for every
   `s-update` command
-    * Pros: Easy to implement
+    * Pros: Easy to implement.
     * Cons: May not be intuitive and convenient for the user, as the user would have to ensure that his command has
      no error and contains all information. If he made an error or left something out, he would have to retype the
       entire command again.
 
-#### Aspect: How to implement `Drink` types
+##### Aspect: How to implement `Drink` types
 * **Alternative 1 (current choice)**: Implement `Drink` type as an Enumeration class
-    * Pros: Simple to implement. Since there is only a fixed set of drink items to represent, we can use an Enumeration
+    * Pros: Simple to implement. Since there is only a fixed set of drink items to represent, we can use an enumeration
      class to represent the types of `Drink`s. It is also easier to add more types of drinks in the future.
     * Cons: If more functionalities are required from `Drink` in the future, then it may not be feasible to use an
      Enumeration class.
@@ -650,23 +684,36 @@ with phone number, using a prefix to identify them.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
+The product provides an integrated system for the purpose of sales tracking, ingredient track and manpower management.
 
-* To manage the employees' contact information digitally
-    * The product will provide a platform to allow the user to save his/ her employees’ contact
-      information (eg. emergency contacts, address etc).
-    * It can manage contacts faster than a typical mouse/GUI driven app
-* To digitise inventory keeping
-    * The product will help to digitise inventory keeping, and thus helps to save the user’s time and prevent
-      human error in calculation. It does not ensure that the employees use the same amount of ingredients in making
-      the drinks. The user only needs to enter the number of each type of bubble tea sold on the day. It will notify the user
-      which ingredients are running low on stock and remind him/ her to restock them soon.
-    * The product could also help the user calculate the total cost for restocking.
-* To digitise daily revenue tracking
-    * Given the number of each type of bubble tea sold, the product can provide the user with the revenue for each day.
-    * The product also helps Amy to keep track of the daily revenue changes, and the revenue for each type of product.
-      This would allow Amy to check which kind of bubble tea sells better and consider adopting similar ideas when
-      making new products.
-
+* To digitalise sales tracking and provide simple sales data analytics
+    * Current Implementation at v1.4:
+        * The product can keep a record of the number of each type of bubble tea sold.
+        * The sales data can be analysed to give the user an insight of how the store is performing. This would allow 
+          the user to see which kind of bubble tea sells better and consider adopting similar ideas when creating 
+          new drinks.
+            * This is currently done through the sorting function when listing sales.
+    * Proposed added value for future implementations:
+        * Given the number of each type of bubble tea sold, the product can provide the user with the revenue for each day.
+        * The product can also help the user track the daily revenue changes, and the revenue for each
+          type of bubble tea. This can also be analysed to give a better insight of the store's performance. 
+        * The product integrates sales tracking and ingredient inventory tracking to provide the user with greater
+          time saving. Given the number of each type of bubble tea sold, the user need not manually update the
+          ingredient inventory as frequently, as the product can perform calculations to update them for the user.
+* To digitalise ingredient inventory keeping
+    * Current Implementation at v1.4:
+        * The product can keep a record of the amount of ingredient remaining.
+        * The product can remind the user when he needs to restock soon.
+    * Proposed added value for future implementations:
+        * The product will help to digitise inventory keeping, and thus help to save the user’s time and prevent 
+          human error in calculation. It does not ensure that the employees use the same amount of ingredients in making 
+          the drinks. The user only needs to enter the number of each type of bubble tea sold on the day. 
+        * The product could also help the user calculate the total cost for restocking.
+* To assist in manpower management
+    * Current implementation at v1.4:
+        * The product will provide a platform to allow the user to manage employees’ contact 
+          information (e.g. contact number, emergency contact, address etc).
+        * The product allows the user to find available manpower for specific days.
 
 ### User stories
 
@@ -806,43 +853,37 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
   Use case ends.
 
-**UC05 - Set sales level for all types of drinks**
+**UC04 - Set the sales volume for all types of drinks**
 
 **MSS**
 
 1. User chooses to set the sales volume for a type of drink.
 2. tCheck requests for the drink name.
 3. User enters the name of the drink.
-4. tCheck requests for the number of that type of drink sold on that day.
+4. tCheck requests for the number of that type of drink sold.
 5. User enters the number of that type of drink sold.
-6. tCheck will set the sales level for this drink and displays a success message.
-     Steps 1-6 are repeated until the sales of all types of drinks are updated.
-
-     Use case ends.
+6. tCheck sets the sales for this drink to the given number and displays a success message.
+   Steps 1-6 are repeated until the sales of all types of drinks have been updated.
 
 **Extensions**
 
 * 3a. tCheck is unable to find the entered name.
 
-  	    * 3a1. tCheck requests for the correct data.
+    * 3a1. tCheck requests for the correct data.
+    * 3a2. User enters new data. 
+  	
+  	Steps 3a1-3a2 are repeated until the data entered are correct.
+    
+    Use case resumes from step 4.
+      	
+* 5a. tCheck detects an invalid sales number.
 
-  	    * 3a2. User enters new data.
-
-        Steps 3a1-3a2 are repeated until the data entered are correct.
-
-      	Use case resumes from step 4.
-
-* 5a. tCheck detects an invalid sales amount.
-
- 	    * 5a1. tCheck requests for the correct data.
-
- 	    * 5a2. User enters new data.
-
-        Steps 5a1-5a2 are repeated until the data entered are correct.
-
-     	Use case resumes from step 6.
-
-*{More to be added}*
+ 	* 5a1. tCheck requests for the correct data.
+ 	* 5a2. User enters new data.
+ 	
+ 	Steps 5a1-5a2 are repeated until the data entered are correct.
+    
+    Use case resumes from step 6.
 
 ### Non-Functional Requirements
 
@@ -910,6 +951,36 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Updating sales of drinks
+
+1. Update the sales of one and several drink item while all sales are being shown.
+
+    1. Prerequisites: List all sales using the `s-list` command. The full list of drinks sales will be shown.
+    
+    1. Test case: `s-update BSBM/123` <br>
+       Expected: The sales number for `BSBM` changes to 123. There is no order in this updated list of drink sales.
+       
+    1. Test case: `s-update BSBM/321 BSBBT/40 BSPM/988` <br>
+       Expected: The sales number for `BSBM`, `BSBBT` and `BSPM` changes to 321, 40, and 988 respectively. There is no 
+       order in this updated list of drink sales.
+       
+    1. Test case: `s-update BSBM/999999999999999` <br>
+       Expected: No sales update is performed. An error message is shown in the Result Display. User is able to edit the
+       input.
+       
+    1. Other incorrect `s-update` commands to try: `s-update`, `s-update AAAA/32` <br>
+       Expected: Similar to previous.
+       
+### Listing sales of drinks in descending order
+
+1. List the sales of a drink item after an update is performed.
+
+    1. Prerequisite: Perform a sales update using the `s-update` command. The updated list of drink sales is not
+     ordered.
+     
+    1. Test case: `s-list` <br>
+       Expected: The list of drinks sales is now ordered from most to least number of sales.
+       
 ### Resetting all ingredients' levels to zero
 
 1. Resetting all ingredients' levels to zero when not all ingredients' levels are at zero

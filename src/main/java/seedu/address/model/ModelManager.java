@@ -191,7 +191,7 @@ public class ModelManager implements Model {
     @Override
     public void addSalesRecordEntry(SalesRecordEntry salesRecordEntry) {
         salesBook.addSalesRecordEntry(salesRecordEntry);
-        updateFilteredSalesList(PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
+        updateFilteredSalesRecordList(PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
     }
 
     @Override
@@ -258,7 +258,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredSalesList(Predicate<SalesRecordEntry> predicate) {
+    public void updateFilteredSalesRecordList(Predicate<SalesRecordEntry> predicate) {
         requireNonNull(predicate);
         filteredSalesRecordList.setPredicate(predicate);
     }
