@@ -403,17 +403,47 @@ This command undoes the last undoable command. Undoable commands are commands th
 
 **Usage**: `undo`
 
+The most common scenario to undo a command is when accidentally deleting something; for example, suppoes you wanted to delete the <i>Salted Water</i> recipe, but you accidentally deleted the <i>Scrambled Eggs</i> recipe instead:
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/undo_1.png" width="75%" /> <br />
+Figure 3.1: <i>Accidentally typing 'Scrambled Eggs' instead of 'Salted Water'</i>
+</div>
 
+Fear not, because fixing the mistake is a simple `undo` away:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/undo_2.png" width="75%" /> <br />
+Figure 3.2: <i>Simply use the `undo` command</i>
+</div>
+
+After pressing <kbd>enter</kbd>, notice that the <i>Scrambled Eggs</i> recipe is back:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/undo_3.png" width="75%" /> <br />
+Figure 3.3: <i>The scrambled eggs were saved</i>
+</div>
 
 
 
 <a name="RedoCommand"></a>
 #### 5.3.4&ensp;Redoing Commands — **`redo`**
-This command redoes the last redoable command. All undoable commands (as described [above](#UndoCommand)) can be redone.
+This command redoes the last redoable command, effectively functioning as an undo for undo itself. All undoable commands (as described [above](#UndoCommand)) can be redone.
 
 **Usage**: `redo`
 
+For example, let's say that you changed your mind, and you didn't really want those scrambled eggs anyway; you can use `redo` to redo the deletion of that recipe:
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/redo_1.png" width="75%" /> <br />
+Figure 4.1: <i>The scrambled eggs will be deleted again</i>
+</div>
+
+After pressing <kbd>enter</kbd>, the scrambled eggs are now deleted:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/redo_2.png" width="75%" /> <br />
+Figure 4.2: <i>The scrambled eggs are now gone</i>
+</div>
 
 
 <a name="ListRecommendationCommand"></a>
