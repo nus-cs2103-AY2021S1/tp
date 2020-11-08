@@ -1132,50 +1132,139 @@ testers are expected to do more *exploratory* testing.
     1. Type `quit' in the command box, and press <kbd>enter</kbd> to exit the application. <br>
        Expected: The window closes and the application exits.
 
-1. _{ more test cases … }_
+#### B.1.2&ensp;Recall commands previously entered
+1. Recalling commands without any prior input
+   1. Prerequisites: No commands executed since launch.
+   
+   1. Test Case: `list recipe` without entering followed by pressing the <kbd>↑</kbd> key. <br>
+      Expected: `list recipe` remains in the command box with the caret before the first char of the text.
+      
+   1. Test Case: `list recipe` without entering followed by pressing the <kbd>↓</kbd> key. <br>
+      Expected: `list recipe` remains in the command box with the caret after the last char of the text.      
+      
+1. Recalling commands previously entered
+   1. Prerequisites: None.
+   
+   1. Test Case: `list recipe` followed by pressing the <kbd>↑</kbd> key.  <br>
+      Expected: `list recipe` appears in the command box with the caret after the last char of the text.
+    
+   1. Test Case: `list rec` followed by pressing the <kbd>↑</kbd> key. <br> 
+      Expected: The command box is cleared.
+      
+   1. Test Case: `list recipe` followed by `list ingredient` followed by pressing the <kbd>↑</kbd> twice. <br>
+      Expected: `list ingredient` appears in the command box, before `list recipe` appears in the command box with the caret after the last char of the text in both cases.
+      
+   1. Test Case: `list recipe` followed by `list ingredient` followed by pressing the <kbd>↑</kbd> key twice, then the <kbd>↓</kbd> key. <br>
+      Expected: `list ingredient`, then `list recipe` appears in the command box before being replaced by `list ingredient` with the caret after the last char of the text in all cases.
 
-### B.2&ensp;General
+#### B.1.3&ensp;Autocomplete input
+1. Autocomplete command
+   1. Prerequisites: None.
+   
+   1. Test Case: Pressing the <kbd>tab</kbd> key.<br>
+      Expected: Command box remains empty.
+   
+   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key.<br>
+      Expected: `list` appears in the command box with the caret after the last char of the text.
+
+1. Autocomplete command target
+   1. Prerequisites: None.
+   
+   1. Test Case: Pressing the <kbd>tab</kbd> key.<br>
+      Expected: Command box remains empty.
+   
+   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key, then `r` before pressing <kbd>tab</kbd>.<br>
+      Expected: `list recipe ` appears in the command box with the caret after the last char of the text.
+
+1. Autocomplete user defined parameters without recipes and ingredients
+   1. Prerequisites: No recipes in ChopChop. In this section, we will start off with `view recipe ` in the command box.
+   
+   1. Test Case: Pressing the <kbd>tab</kbd> key.<br>
+      Expected: Command box remains empty.
+   
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd>.<br>
+      Expected: `view recipe ` remains in the command box with the caret 1 en space after the last char of the text.
+      
+1. Autocomplete user defined parameters
+   1. Prerequisites: Only 3 recipes `apple pie`, `apple slices` and `apple juice` starting with the letter `a` in ChopCHop. In this section, we will start off with `view recipe ` in the command box.
+   
+   1. Test Case: Pressing the <kbd>tab</kbd> key.<br>
+      Expected: Command box remains empty.
+   
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd>.<br>
+      Expected: `view recipe apple pie ` appears in the command box with the caret 1 en space after the last char of the text.
+      
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> twice.<br>
+      Expected: `view recipe apple juice ` appears in the command box with the caret 1 en space after the last char of the text.
+      
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> thrice.<br>
+      Expected: `view recipe apple slices ` appears in the command box with the caret 1 en space after the last char of the text.
+      
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> four times.<br>
+      Expected: `view recipe apple pie ` appears in the command box with the caret 1 en space after the last char of the text.
+ 
+#### B.1.4&ensp;Undo commands previously entered
+1. Undoing an undoable command
+   1. Prerequisites: None.
+   
+   1. Test Case: `add recipe duck rice` followed by `undo`.<br>
+      Expected: The added recipe is removed. The command output box shows details of the undone command.        
+      
+   1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice.<br>
+      Expected: The added recipes are removed. The command output box shows details of the second undone command.              
+      
+1. Undoing an command that cannot be undone
+   1. Prerequisites: No commands entered since launch.
+   
+   1. Test Case: `list recipe` followed by `undo`.<br>
+      Expected: The command output box shows an error message.       
+
+1. Undoing an command that cannot be undone with undoable commands entered before.
+   1. Prerequisites: None.
+   
+   1. Test Case: `add recipe duck rice` followed by `list recipe`, then `undo`.<br>
+      Expected: The recipe `duck rice` is removed. The command output box shows details of the undone command.            
+
+#### B.1.5&ensp;Redo commands previously undone
+1. Redoing an undone command
+   1. Prerequisites: None.
+   
+   1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`.<br>
+      Expected: The `duck rice` recipe removed by the `undo` command is added. The command output box shows details of the redone command.      
+      
+   1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice, then `redo` twice. <br>
+      Expected: The `duck rice` and `duck soup` recipes removed by the `undo` commands are added. The command output box shows details of the second redone command. 
+      
+1. Redoing when there is no undo command executed prior
+   1. Prerequisites: No undo command executed since launch, or all undoable commands have been redone.
+   
+   1. Test Case: `add recipe duck rice` followed by `redo`.<br>
+      Expected: The command output box shows an error message.      
+      
+   1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`, and then `redo`.<br>
+      Expected: The `duck rice` recipe removed by the `undo` command is added after the first `redo`.  The command output box shows an error message after the second redo.             
+
+#### B.1.6&ensp;Getting Help
 
 1. Getting Help
+
     1. Prerequisites: none.
     
     1. Test case: `help`<br>
-       Expected: A general help message is displayed at the Command Output box.
-       
+    Expected: A general help message is displayed at the Command Output box.
+    
     1. Test case: `help add`, `help delete ingredient`<br>
-       Expected: A help message for the specified command is displayed at the Command Output box.   
-
+    Expected: A help message for the specified command is displayed at the Command Output box.   
+    
     1. Incorrect help commands to try: `help 0`, `help recipe`, `...` <br>
-       Expected: No help message displayed. Error details shown in the Command Output box.
-       
-1. Undo the Last Undoable Command
-    1. Prerequisites: An undoable command was previously executed.
-    
-    1. Test case: `undo`<br>
-       Expected: The last undoable command undone. A confirmation message is displayed at the Command Output box.
-
-    1. Incorrect undo commands to try: `undo 0`, `undo recipe #2`, `...` <br>
-       Expected: No command undone. Error details shown in the Command Output box.
-       
-1. Redo the Last Undone Command
-    1. Prerequisites: A redoable command was previously undone.
-    
-    1. Test case: `redo`<br>
-       Expected: The last undone command redone. A confirmation message is displayed at the Command Output box.
-
-    1. Incorrect redo commands to try: `redo 0`, `redo add recipe #2`, `...` <br>
-       Expected: No command redone. Error details shown in the Command Output box.
-       
-1. List Recommendations
-    1. Prerequisites: none.
-    
-    1. Test case: `list recommendation` or `list recommendations`<br>
-       Expected: All recipes using ingredients in stock are listed. A confirmation message is displayed at the Command Output box. When there are insufficient ingredients or no matching recipe, no valid recommendation can be given.
-
-    1. Incorrect list recommendation(s) commands to try: `list`, `list recipe recommendation`, `...` <br>
-       Expected: No recommendation listed.Error details or irrelevant output shown in the Command Output box.
-
+    Expected: No help message displayed. Error details shown in the Command Output box.
+      
+      
 ### B.2&ensp;Managing Recipes
+
+#### B.2.1&ensp;Adding recipes  
+1. Adding a recipe without ingredients, steps and tags
+   1. Prerequisites: None.
 
 1. Adding a recipe
 
@@ -1198,226 +1287,126 @@ testers are expected to do more *exploratory* testing.
 
    1. Incorrect add commands to try: `add`, `add recipe`<br>
       Expected: No recipe is added. Error details shown in the Command Output box. 
+   
+#### B.2.2&ensp;Deleting recipes  
+1. Deleting a recipe using recipe index
+   1. Prerequisites: None.
+    
+   1. Test case: `delete recipe #1`<br>
+      Expected: Recipe #2 deleted. All current recipes (after the deletion) shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+    
+   1. Test case: `delete recipe #20` <br>
+      Expected: No recipe deleted as the recipe with the given index does not exist. Error details shown in the Command Output box. 
+
+1. Deleting a recipe using recipe index in a filtered list
+   1. Prerequisites: None.  
+   1. Test case: Similar to above.
+   1. Expected: Similar to above.
+   
+1. Deleting a recipe using recipe name
+   1. Prerequisites: None. 
       
-1. Editing a recipe
+   1. Test case: `delete recipe Fruit Mix`<br>
+      Expected: Recipe with the name **Pancakes** deleted. Output display similar to previous.
+      
+   1. Test case: ``delete recipe Salad`` <br>
+      Expected: No recipe deleted as the recipe with the given name does not exist. Error details shown in the Command Output box.
+   
+   1. Other incorrect delete commands to try: `delete`, `delete recipe`<br>
+      Expected: No recipe is deleted. Output display similar to previous.   
 
-   1. Prerequisites: A recipe has been previously created.
+#### B.2.3&ensp;Editing recipes  
+1. Editing a recipe using recipe index
 
+   1. Prerequisites: None. 
+   
    1. Test case: 
-      ``````
-      edit recipe #3
-      /name Fruit Mix
-      /ingredient:edit Banana /qty 1
-      /ingredient:add Strawberry /qty 8
-      /ingredient:delete milk
-      /ingredient:add Yoghurt /qty 200ml 
-      /step:edit:1 Chop the bananas and strawberries and add to a blender with milk. 
-      /step:delete:3
-      /step:add:3 The fruit mix is now ready to serve.
-      /tag:add cooling /tag:delete fruit
-      ``````
-      Expected: Recipe #3 edited. Details of the added recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
-
+    ``````
+    edit recipe #3
+    /name Fruit Mix
+    /ingredient:edit Banana /qty 1
+    /ingredient:add Strawberry /qty 8
+    /ingredient:delete milk
+    /ingredient:add Yoghurt /qty 200ml 
+    /step:edit:1 Chop the bananas and strawberries and add to a blender with milk. 
+    /step:delete:3
+    /step:add:3 The fruit mix is now ready to serve.
+    /tag:add cooling /tag:delete fruit
+    ``````
+    Expected: Recipe #3 edited. Details of the added recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+  
+1. Editing a recipe using recipe index in a filtered list
+   1. Prerequisites: None. 
+   
+   1. Test case: Similar to above.<br>
+      Expected: Similar to above.
+   
+1. Editing a recipe using recipe name
+   1. Prerequisites: None. 
+   
+   1. Test case: `edit recipe Fruit Mix /name Fruit Juice`<br>
+      Expected: Similar to above.
    1. Incorrect edit commands to try: `edit`, `edit recipe`, `edit recipe #1`<br>
       Expected: No recipe is edited. Error details shown in the Command Output box. 
- 
-1. Filtering a recipe
-
-   1. Prerequisites: At least one recipe has been previously created.
+      
+#### B.2.4&ensp;Filtering recipes  
+1. Filtering recipes
+   1. Prerequisites: None. 
 
    1. Test case: 
       ``````
       filter recipe
-      /name fruit /name mix
+      /name fruit /name juice
       /ingredient banana
       /ingredient yoghurt
       /tag cooling
       ``````
       Expected: Recipes matching all specified criteria displayed in the Recipe View Panel.
-
-   1. Incorrect filter commands to try: `filter`, `filter recipe`, `filter recipe /name`, `...`(where any search term is empty) <br>
-      Expected: No recipe is edited. Error details shown in the Command Output box.      
-
-1. Finding a recipe
-
-   1. Prerequisites: At least one recipe has been previously created.
-
-   1. Test case: `find recipe fruit mix salad`
-      Expected: Recipes whose name contains any of the keywords displayed in the Recipe View Panel.
-
-   1. Incorrect filter commands to try: `filter`, `filter recipe`, `filter recipe /name`, `...`(where any search term is empty) <br>
-      Expected: No recipe is edited. Error details shown in the Command Output box.      
-      
-1. Deleting a recipe
-
-   1. Prerequisites: A recipe has been previously created.
-
-   1. Test case: `delete recipe #1`
-      Expected: Recipe #2 deleted. All current recipes (after the deletion) shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
-
-   1. Test case: `delete recipe Fruit Mix`<br>
-      Expected: Recipe with the name **Pancakes** deleted. Output display similar to previous.
-      
-   1. Test case: `delete recipe Salad` or `delete recipe #20` <br>
-      Expected: No recipe deleted as no matching recipe is found. Error details shown in the Command Output box. 
-
-   1. Other incorrect delete commands to try: `delete`, `delete recipe`<br>
-      Expected: No recipe is deleted. Output display similar to previous.
-
-#### B.1.2&ensp;Recall commands previously entered
-1. Recalling commands without any prior input
-   1. Prerequisites: No commands executed since launch.
-   
-   1. Test Case: `list recipe` without entering followed by pressing the <kbd>↑</kbd> key.  
-      Expected: `list recipe` remains in the command box with the caret before the first char of the text.
-      
-   1. Test Case: `list recipe` without entering followed by pressing the <kbd>↓</kbd> key.  
-      Expected: `list recipe` remains in the command box with the caret after the last char of the text.      
-      
-1. Recalling commands previously entered
-   1. Prerequisites: None.
-   
-   1. Test Case: `list recipe` followed by pressing the <kbd>↑</kbd> key.  
-      Expected: `list recipe` appears in the command box with the caret after the last char of the text.
     
-   1. Test Case: `list rec` followed by pressing the <kbd>↑</kbd> key.  
-      Expected: The command box is cleared.
+   1. Incorrect filter commands to try: `filter`, `filter recipe`, `filter recipe /name`, `...`(where any search term is empty) <br>
+      Expected: No recipe is filtered. Error details shown in the Command Output box.   
       
-   1. Test Case: `list recipe` followed by `list ingredient` followed by pressing the <kbd>↑</kbd> twice. 
-      Expected: `list ingredient` appears in the command box, before `list recipe` appears in the command box with the caret after the last char of the text in both cases.
-      
-   1. Test Case: `list recipe` followed by `list ingredient` followed by pressing the <kbd>↑</kbd> key twice, then the <kbd>↓</kbd> key. 
-      Expected: `list ingredient`, then `list recipe` appears in the command box before being replaced by `list ingredient` with the caret after the last char of the text in all cases.
-
-#### B.1.3&ensp;Autocomplete input
-1. Autocomplete command
-   1. Prerequisites: None.
-   
-   1. Test Case: Pressing the <kbd>tab</kbd> key.
-      Expected: Command box remains empty.
-   
-   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key.
-      Expected: `list` appears in the command box with the caret after the last char of the text.
-
-1. Autocomplete command target
-   1. Prerequisites: None.
-   
-   1. Test Case: Pressing the <kbd>tab</kbd> key.
-      Expected: Command box remains empty.
-   
-   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key, then `r` before pressing <kbd>tab</kbd>.
-      Expected: `list recipe ` appears in the command box with the caret after the last char of the text.
-
-1. Autocomplete user defined parameters without recipes and ingredients
-   1. Prerequisites: No recipes in ChopChop. In this section, we will start off with `view recipe ` in the command box.
-   
-   1. Test Case: Pressing the <kbd>tab</kbd> key.
-      Expected: Command box remains empty.
-   
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd>.
-      Expected: `view recipe ` remains in the command box with the caret 1 en space after the last char of the text.
-      
-1. Autocomplete user defined parameters
-   1. Prerequisites: Only 3 recipes `apple pie`, `apple slices` and `apple juice` starting with the letter `a` in ChopCHop. In this section, we will start off with `view recipe ` in the command box.
-   
-   1. Test Case: Pressing the <kbd>tab</kbd> key.
-      Expected: Command box remains empty.
-   
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd>.
-      Expected: `view recipe apple pie ` appears in the command box with the caret 1 en space after the last char of the text.
-      
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> twice.
-      Expected: `view recipe apple juice ` appears in the command box with the caret 1 en space after the last char of the text.
-      
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> thrice.
-      Expected: `view recipe apple slices ` appears in the command box with the caret 1 en space after the last char of the text.
-      
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> four times.
-      Expected: `view recipe apple pie ` appears in the command box with the caret 1 en space after the last char of the text.
- 
-#### B.1.4&ensp;Undo commands previously entered
-1. Undoing an undoable command
-   1. Prerequisites: None.
-   
-   1. Test Case: `add recipe duck rice` followed by `undo`.
-      Expected: The added recipe is removed. The command output box shows details of the undone command.        
-      
-   1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice.
-      Expected: The added recipes are removed. The command output box shows details of the second undone command.              
-      
-1. Undoing an command that cannot be undone
-   1. Prerequisites: No commands entered since launch.
-   
-   1. Test Case: `list recipe` followed by `undo`.
-      Expected: The command output box shows an error message.       
-
-1. Undoing an command that cannot be undone with undoable commands entered before.
-   1. Prerequisites: None.
-   
-   1. Test Case: `add recipe duck rice` followed by `list recipe`, then `undo`.
-      Expected: The recipe `duck rice` is removed. The command output box shows details of the undone command.            
-
-#### B.1.5&ensp;Redo commands previously undone
-1. Redoing an undone command
-   1. Prerequisites: None.
-   
-   1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`.
-      Expected: The `duck rice` recipe removed by the `undo` command is added. The command output box shows details of the redone command.      
-      
-   1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice, then `redo` twice. 
-      Expected: The `duck rice` and `duck soup` recipes removed by the `undo` commands are added. The command output box shows details of the second redone command. 
-      
-1. Redoing when there is no undo command executed prior
-   1. Prerequisites: No undo command executed since launch, or all undoable commands have been redone.
-   
-   1. Test Case: `add recipe duck rice` followed by `redo`.
-      Expected: The command output box shows an error message.      
-      
-1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`, and then `redo`.
-      Expected: The `duck rice` recipe removed by the `undo` command is added after the first `redo`.  The command output box shows an error message after the second redo.             
-      
-### B.2&ensp;Managing Recipes
-
-#### B.2.1&ensp;Adding recipes  
-1. Adding a recipe without ingredients, steps and tags
-   1. Prerequisites: None.
-
-1. Adding a recipe
-   1. Prerequisites: None. 
-   
-#### B.2.2&ensp;Deleting recipes  
-1. Deleting a recipe using recipe index
+#### B.2.5&ensp;Finding recipes  
+1. Finding recipes
    1. Prerequisites: None. 
 
-1. Deleting a recipe using recipe index in a filtered list
-   1. Prerequisites: None. 
-   
-1. Deleting a recipe using recipe name
-   1. Prerequisites: None. 
-
-#### B.2.3&ensp;Editing recipes  
-1. Editing a recipe using recipe index
-   1. Prerequisites: None. 
-
-1. Editing a recipe using recipe index in a filtered list
-   1. Prerequisites: None. 
-   
-1. Editing a recipe using recipe name
-   1. Prerequisites: None. 
-
-#### B.2.4&ensp;Listing recipes  
+   1. Test case: `find recipe fruit mix juice`
+      Expected: Recipes whose names contain any of the keywords are displayed in the Recipe View Panel. A confirmation message is displayed at the Command Output box.
+    
+   1. Incorrect find commands to try: `find`, `find recipe` <br>
+      Expected: No recipe is found. Error details shown in the Command Output box.   
+         
+#### B.2.6&ensp;Listing recipes  
 1. Listing recipes
    1. Prerequisites: None. 
+   
+   1. Test case: `list recipe` <br>
+     Expected: All recipes displayed in the Recipe View Panel. A confirmation message is displayed at the Command Output box.
+   
+   1. Test case: `list recipe /name fruit` <br>
+     Expected: Output display similar to previous. `/name fruit` is ignored when the command is parsed.
+   
+   1. Other incorrect list commands to try: `list`, `list rec` <br>
+     Expected: No recipe is found. Error details shown in the Command Output box.   
 
 1. Listing filtered recipes
    1. Prerequisites: None. 
    
 1. Listing recipe recommendations
-  1. Prerequisites: None. 
+   1. Prerequisites: None. 
   
-#### B.2.5&ensp;Viewing recipes   
+   1. Test case: `list recommendation` or `list recommendations`<br>
+     Expected: All recipes using ingredients in stock are listed. A confirmation message is displayed at the Command Output box. When there are insufficient ingredients or no matching recipe, no valid recommendation can be given.
+    
+   1. Incorrect list recommendation(s) commands to try: `list`, `list recipe recommendation`, `...` <br>
+     Expected: No recommendation listed. Error details or irrelevant output shown in the Command Output box.
+  
+#### B.2.7&ensp;Viewing recipes   
 1. Viewing a recipe using recipe index
    1. Prerequisites: None. 
+   
+   1. Test case: `view recipe #1` <br>
+      Expected: Details of the recipe with index **#1** shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
 
 1. Viewing a recipe using recipe index in a filtered list
    1. Prerequisites: None. 
@@ -1425,15 +1414,30 @@ testers are expected to do more *exploratory* testing.
 1. Viewing a recipe using recipe name
    1. Prerequisites: None. 
    
-#### B.2.6&ensp;Making recipes   
+   1. Test case: `view recipe Fruit Juice` <br>
+    Expected: Details of the recipe with name **Fruit Juice** shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+   
+#### B.2.8&ensp;Making recipes   
 1. Making a recipe using recipe index
    1. Prerequisites: None. 
+   
+   1. Test case: `make recipe #1`<br>
+   Expected: Recipe with index **#1** made, if all ingredients needed are in stock. Details of the recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+
+   1. Test case: `make recipe #2`<br>
+   Expected: No recipe made, as some ingredients are missing. Error details shown in the Command Output box.
 
 1. Making a recipe using recipe index in a filtered list
    1. Prerequisites: None. 
    
 1. Making a recipe using recipe name
    1. Prerequisites: None. 
+   
+   1. Test case: `make recipe Fruit Juice`<br>
+      Expected: Recipe **Fruit Juice** made, if all ingredients needed are in stock. Details of the recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+   
+   1. Test case: `make recipe Apple Tart`<br>
+      Expected: No recipe made, as some ingredients are missing. Error details shown in the Command Output box.
 
 ### B.3&ensp;Managing Ingredients
 
