@@ -22,6 +22,9 @@ import chopchop.testutil.StubbedUsageModel;
 
 class StatsIngredientRecentCommandTest {
     private Model model;
+    private CommandResult ingredientListRes = CommandResult.statsMessage(getListViewIngredientList().stream()
+            .map(Usage::getListViewPair).collect(Collectors.toList()),
+        "Here are your recently used ingredients");
 
     @BeforeEach
     public void setUp() {
@@ -34,7 +37,6 @@ class StatsIngredientRecentCommandTest {
         assertCommandSuccess(cmd, model, model);
     }
 
-    // in the case where the user changed the order of usage
     @Test
     public void execute_modelUnsortedUsageListUnchanged_success() {
         var unsortedModel = StubbedUsageModel.filled();
@@ -66,39 +68,30 @@ class StatsIngredientRecentCommandTest {
 
     @Test
     public void execute_sortedUsages() {
-        var expectedRes = CommandResult.statsMessage(getListViewIngredientList().stream()
-                .map(Usage::getListViewPair).collect(Collectors.toList()),
-            "Here are your recently used ingredients");
         model.setIngredientUsageList(getIngredientUsageList());
         var cmd = new StatsIngredientRecentCommand();
         var cmdRes = cmd.execute(model, new HistoryManager());
-        assertEquals(expectedRes, cmdRes);
+        assertEquals(ingredientListRes, cmdRes);
     }
 
     @Test
     public void execute_unsortedUsages() {
-        var expectedRes = CommandResult.statsMessage(getListViewIngredientList().stream()
-                .map(Usage::getListViewPair).collect(Collectors.toList()),
-            "Here are your recently used ingredients");
         model.setIngredientUsageList(new UsageList<>(getUnsortedIngredientList()));
         var cmd = new StatsIngredientRecentCommand();
         var cmdRes = cmd.execute(model, new HistoryManager());
-        assertEquals(expectedRes, cmdRes);
+        assertEquals(ingredientListRes, cmdRes);
     }
 
 
     //max of 10 items in the list
     @Test
     public void execute_numerousUsages() {
-        var expectedRes = CommandResult.statsMessage(getListViewIngredientList().stream()
-                .map(Usage::getListViewPair).collect(Collectors.toList()),
-            "Here are your recently used ingredients");
         var newList = getIngredientList();
         newList.add(INGREDIENT_B_A);
         model.setIngredientUsageList(new UsageList<>(newList));
         var cmd = new StatsIngredientRecentCommand();
         var cmdRes = cmd.execute(model, new HistoryManager());
-        assertEquals(expectedRes, cmdRes);
+        assertEquals(ingredientListRes, cmdRes);
     }
 
     @Test

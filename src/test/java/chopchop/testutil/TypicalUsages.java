@@ -1,6 +1,7 @@
 package chopchop.testutil;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import chopchop.model.UsageList;
@@ -125,6 +126,9 @@ public class TypicalUsages {
     }
 
     public static class Date {
+        public static final DateTimeFormatter ON_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
         public static final LocalDateTime USAGE_DATE_A0 = LocalDateTime.of(1, 1, 1, 1, 0);
         public static final LocalDateTime USAGE_DATE_A = LocalDateTime.of(1, 1, 1, 1, 1);
         public static final LocalDateTime USAGE_DATE_B = LocalDateTime.of(200, 1, 1, 1, 1);
