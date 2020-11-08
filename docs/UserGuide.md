@@ -660,8 +660,24 @@ For your convenience, QuickCache data are saved in the hard disk automatically a
 <a name="faq"></a>
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous QuickCache home folder.
+**Q**: Why can't I open QuickCache on my device?<br>
+**A**: There are a few potential reasons as to why QuickCache is not opening on your device:
+
+1. You first need to ensure that your device is a **desktop device** as QuickCache is not supported on mobile devices. 
+2. Next, you need to ensure that you have **Java 11 or above** installed on your device. You can refer to this [guide to check your java version](https://superuser.com/questions/1221096/how-do-i-check-what-version-of-java-i-have-installed).
+3. Double clicking QuickCache doesn't work on every desktop device. If you are experiencing problems with this, you can try using terminal or the command prompt to navigate to the folder where `quickcache.jar` is located and then proceeed to execute the following command **`java -jar quickcache.jar`**. Note that if you rename `quickcache.jar` you have to tweak the command accordingly.
+
+**Q**: How do I transfer my flashcards to my friend?<br>
+**A**: You can first [export](#export) the flashcards that are stored in QuickCache into your desired file format. After exporting, you can proceed to send the file to your friend over your favourite messaging application. Upon receving the file, your friend can then proceed to [import](#import) the flashcards into QuickCache.
+
+**Q**: How can I contribute to QuickCache?<br>
+**A**: There are a few ways you can contribute to QuickCache: 
+
+* If you are an investor, you can reach out to us [here](mailto:damith@comp.nus.edu.sg).
+* If you are a developer, we greatly welcome you to contribute to QuickCache by submitting a pull request [here](https://github.com/AY2021S1-CS2103T-T13-2/tp/pulls). You can view QuickCache's source code at this [link](https://github.com/AY2021S1-CS2103T-T13-2/tp).
+
+**Q**: How do I give suggestions or report for bugs on QuickCache?<br>
+**A**: If you have something to suggest to us or experienced any bugs while using QuickCache, we would appreciate it if you post an issue on it [here](https://github.com/AY2021S1-CS2103T-T13-2/tp/issues).
 
 --------------------------------------------------------------------------------------------------------------------
 
