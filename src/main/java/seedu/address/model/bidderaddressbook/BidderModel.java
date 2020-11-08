@@ -70,4 +70,10 @@ public interface BidderModel {
      */
     void updateFilteredBidderList(Predicate<? super Person> predicate);
 
+    /**
+     * Checks the model if there are bidders that are the same as the current bidder except
+     * for the bidder itself
+     * @return
+     */
+    boolean hasBidderExceptBidderId(Bidder editedBidder, BidderId bidderId);
 }
