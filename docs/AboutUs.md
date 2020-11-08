@@ -63,7 +63,8 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 ![siewkhenghun](images/khenghun.png)
 
 [[github](https://github.com/khenghun)]
-[[portfolio](team/siewkhenghun.md)]
+
+[[portfolio](team/khenghun.md)]
 
 * Role: Developer
 * Responsibilities:
