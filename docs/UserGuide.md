@@ -22,17 +22,17 @@
    --- 4.2.5 [List all Students in a Tutorial Group: `listStudent`](#425-list-all-students-in-a-tutorial-group-liststudent)<br>
    --- 4.2.6 [Show the Attendance of target Student: `viewAttendance`](#426-show-the-attendance-of-target-student-viewattendance)<br>
    --- 4.2.7 [Return to previous view: `prevView`](#427-return-to-previous-view-prevview)<br>
-   4.3 [Module features](#43-module-features)<br>
+   4.3 [Module Features](#43-module-features)<br>
    --- 4.3.1 [Add a module: `addMod`](#431-add-a-module-addmod)<br>
    --- 4.3.2 [Delete a module: `deleteMod`](#432-delete-a-module-deletemod)<br>
    --- 4.3.3 [Edit a module: `editMod`](#433-edit-a-module-editmod)<br>
    --- 4.3.4 [Find a module: `findMod`](#434-find-a-module-findmod)<br>
-   4.4 [Tutorial group features](#44-tutorial-group-features)<br>
+   4.4 [Tutorial Group Features](#44-tutorial-group-features)<br>
    --- 4.4.1 [Add a tutorial group to a module: `addTG`](#441-add-a-tutorial-group-to-a-module-addtg)<br>
    --- 4.4.2 [Find a tutorial group: `findTG`](#442-find-a-tutorial-group-findtg)<br>
    --- 4.4.3 [Delete a tutorial group from a module: `deleteTG`](#443-delete-a-tutorial-group-from-a-module-deletetg)<br>
    --- 4.4.4 [Edit a Tutorial Group: `editTG`](#444-edit-a-tutorial-group-edittg)<br>
-   4.5 [Student features](#45-student-features)<br>
+   4.5 [Student Features](#45-student-features)<br>
    --- 4.5.1 [Add a student: `addStudent`](#451-add-a-student-addstudent)<br>
    --- 4.5.2 [Delete a student: `deleteStudent`](#452-delete-a-student-deletestudent)<br>
    --- 4.5.3 [Edit a student: `editStudent`](#453-edit-a-student-editstudent)<br>
