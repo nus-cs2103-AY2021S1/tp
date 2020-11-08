@@ -35,6 +35,7 @@ public class InventoryRecordBuilder {
     }
 
     /**
+     * Initializes the InventoryRecordBuilder with the data of the {@code InventoryRecord}supplied.
      * Initializes the InventoryRecordBuilder with the data of {@code recordToCopy}.
      */
     public InventoryRecordBuilder(InventoryRecord recordToCopy) {
@@ -46,6 +47,9 @@ public class InventoryRecordBuilder {
     }
 
     /**
+     * Sets the name of the inventory record that we are building and returns it
+     * @param itemName the name to set the record we are building to
+     * @return the builder object
      * Sets the {@code name} of the {@code Inventory Record} that we are building.
      */
     public InventoryRecordBuilder withName(String itemName) {
@@ -54,7 +58,7 @@ public class InventoryRecordBuilder {
     }
 
     /**
-     * Sets the record's unit cost and returns the record.
+     * Sets the record's unit cost and returns the builder.
      * @param cost updated cost of inventory record.
      * @return Inventory record builder
      */
@@ -64,6 +68,9 @@ public class InventoryRecordBuilder {
     }
 
     /**
+     * Sets the record's date time and returns the builder
+     * @param dateTime updated dateTime of the inventory record
+     * @return the updated InventoryRecordBuilder
      * Sets the {@code datetime} of the {@code Inventory Record} that we are building.
      */
     public InventoryRecordBuilder withDatetime(String dateTime) {
@@ -72,6 +79,16 @@ public class InventoryRecordBuilder {
         } catch (ParseException e) {
             return this;
         }
+        return this;
+    }
+
+    /**
+     * Sets the record's quantity and returns the builder
+     * @param quantity updated quantity of the inventory record
+     * @return the updated InventoryRecordBuilder
+     */
+    public InventoryRecordBuilder withQuantity(int quantity) {
+        this.quantity = quantity;
         return this;
     }
 
