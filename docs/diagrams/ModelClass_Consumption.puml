@@ -28,11 +28,11 @@ WishfulShrinking *--> "1" ConsumptionList
 ConsumptionList--> "*" Consumption
 Consumption--> "1" Recipe
 Recipe *--> "1" Name
-Recipe *--> "1..*" Ingredient
+Recipe --> "1..*" Ingredient
 Recipe *--> "1" Calories
 Recipe *--> "1..*" Instruction
 Recipe *--> "0..1" RecipeImage
-Recipe --> "*" Tag
+Recipe *--> "*" Tag
 
 Name -[hidden]right-> Ingredient
 Ingredient -[hidden]right-> Calories

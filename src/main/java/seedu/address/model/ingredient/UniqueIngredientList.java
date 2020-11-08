@@ -13,8 +13,8 @@ import seedu.address.model.ingredient.exceptions.IngredientNotFoundException;
 
 /**
  * A list of ingredients that enforces uniqueness between its elements and does not allow nulls.
- * An ingredient is considered unique by comparing using {@code Ingredients#isSameIngredient(Ingredient)}. As such,
- * adding and updating of ingredients uses Ingredient#isSameIngredient(Ingredient) for equality so as to ensure that
+ * An ingredient is considered unique by comparing using {@code Ingredients#isSameIngredientName(Ingredient)}. As such,
+ * adding and updating of ingredients uses Ingredient#isSameIngredientName(Ingredient) for equality so as to ensure that
  * the ingredient being added or updated is  * unique in terms of identity in the UniqueIngredientList. However, the
  * removal of a ingredient uses Ingredient#equals(Object) so  * as to ensure that the ingredient with exactly the same
  * fields will be removed.

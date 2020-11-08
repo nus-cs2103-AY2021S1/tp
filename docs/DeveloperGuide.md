@@ -123,7 +123,7 @@ title: Developer Guide
     - [6.10 Deleting an eaten recipe](#610-deleting-an-eaten-recipe)
     - [6.11 Getting edit recipe](#611-getting-a-recipe-to-edit)
     - [6.12 Editing a recipe](#612-editing-a-recipe)
-    - [6.13 Getting edit ingredient](#613-getting-ingredient-to-edit)
+    - [6.13 Getting edit ingredient](#613-getting-an-ingredient-to-edit)
     - [6.14 Editing an ingredient](#614-editing-an-ingredient)
     - [6.15 Selecting a recipe](#615-selecting-a-recipe)
     - [6.16 Searching for recipes](#616-searching-for-recipes)
@@ -139,9 +139,9 @@ title: Developer Guide
     - [7.2 Ingredient](#72-ingredient)
     - [7.3 Consumption](#73-consumption)
     <br><br>
-8. [Appendix E: Effort](#8-effort)
+8. [Appendix D: Effort](#8-effort)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 1. **Overview** <a id="1-overview"></a>
 Welcome to the Wishful Shrinking Developer Guide! In this section, you will be given an overview of what Wishful
@@ -169,7 +169,7 @@ This developer guide provides in-depth documentation on how Wishful Shrinking is
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).<br><br>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 2. **Design** <a id="2-design"></a>
 
@@ -198,6 +198,8 @@ Each of the four components,
 * defines its API in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
  API `interface` mentioned in the previous point. <br><br>
+
+<div style="page-break-after: always;"></div>
 
 The *Sequence Diagram* below shows how the **architecture components interact with each other** for the scenario
  where the user issues the command `deleteR 1`.
@@ -280,7 +282,7 @@ The `Storage` component:
 
 Classes used by multiple components are in the `seedu.address.commons` package. <br><br>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 3. **Implementation** <a id="3-implementation"></a>
 
@@ -413,6 +415,8 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After successfully parsing the user's input, the `EatRecipeCommand#method` method is called.
 
 1. After successfully adding the recipe into the consumption list, a `CommandResult` object is instantiated and returned to `LogicManager`. <br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2.2 Design Consideration: <a id="322-design-consideration"></a>
 #### Aspect: What fields to extract from the eaten recipes to save in the Consumption List <a id="3221-aspect"></a>
@@ -923,7 +927,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 * Workflow must be consistent with other commands. <br><br>
 
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 4. **Documentation, Logging, Testing, Configuration, Dev-ops** <a id="4-documentation-logging-testing-configuration-dev-ops"></a>
 
@@ -933,7 +937,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md) <br><br>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 5. **Appendix A: *Requirements*** <a id="5-appendix-requirements"></a>
 
@@ -991,6 +995,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | *        | Expert user       | likes convenience                                             | be able to export the recipes in the app to another device             | refer to the data from another device and share it with others                        |
 | *        | Expert user       | is a developer                                                | customize the app to my own preferences                                | contribute and extend the app further                                                 |
 
+<div style="page-break-after: always;"></div>
+
 ## 5.3 Use Cases <a id="53-use-cases"></a>
 For all use cases below, the **System** is the `Wishful Shrinking` and the **Actor** is the `User`, unless specified otherwise.
 
@@ -1004,7 +1010,7 @@ These are common extensions that can apply to some commands. Let *X* be the step
 * *X*a. The given index is not a positive integer that is greater than 0 or not a valid index in the item list.
     * *X*a1. Wishful Shrinking shows an error message and requests for new data.
     * *X*a2. User enters new index. 
-        Step *X*a1 to Step (*X*)a2 are repeated until the index entered is valid.
+        Step *X*a1 to Step *X*a2 are repeated until the index entered is valid.
         
       Use case resumes at step *X*+1.
 
@@ -1410,7 +1416,7 @@ Term | Explanation
 **Consumption** | A tracker which calculates and displays your calorie intake based on the recipes you have consumed as well as a list of recipes consumed.<br>
 **Mainstream OS** | Windows, Linux, Unix, OS-X.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 6. **Appendix B: *Instructions for Manual Testing*** <a id="6-appendix-instructions-for-manual-testing"></a>
 
@@ -1452,6 +1458,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `addR n/salad i/tomato c/100` <br>
        Expected: An error message will be shown, as the non-optional field instruction is omitted. The message will show the correct input format of the `addR` command, and your command in the command box will turn red. <br><br>
        
+<div style="page-break-after: always;"></div>
 
 ## 6.3 Adding an ingredient <a id="63-adding-an-ingredient"></a>
 
@@ -1581,7 +1588,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The result box will show all the details of the first recipe.
        
     1. Test case: `editR x` (x is invalid index) <br>
-       Expected: An error message will be shown, as it is the same recipe. Your command in the command box will turn red. <br><br>
+       Expected: An error message will be shown, as x is invalid index. Your command in the command box will turn red. <br><br>
        
        
 ## 6.12 Editing a recipe <a id="612-editing-a-recipe"></a>
@@ -1594,9 +1601,9 @@ testers are expected to do more *exploratory* testing.
        Expected: The fields specified for the first recipe in the recipe list will be updated with bread for its name and flour for its ingredient. The result box will show the newly updated details of the recipe.
        
     1. Test case: `editR 1 n/bread i/flour img/images/healthy1.jpg t/healthy` <br>
-       Expected: The fields specified for the first recipe in the recipe list will be updated with bread for its name and flour for its ingredient. The result box will show the newly updated details of the recipe. This test case differs with the previous test case in that it has the optional fields image and tags, which will also be updated with the new values.                                                                                                                                                                                                                                          
+       Expected: The fields specified for the first recipe in the recipe list will be updated with bread for its name and flour for its ingredient. Its image and tag will also be updated. The result box will show the newly updated details of the recipe. This test case differs with the previous test case in that it has the optional fields image and tags, which will also be updated with the new values.                                                                                                                                                                                                                                          
        
-    1. Test case: `editR 1 x` (same name and quantity of the ingredient in fridge) <br>
+    1. Test case: `editR 1 x` (where x has all the same fields as a recipe in the recipe list) <br>
        Expected: An error message will be shown, as it is the same recipe. The result box will show that no edits are made. Your command in the command box will turn red.
 
     1. Other incorrect `editR` commands to try: `editR` (no fields specified) <br>
@@ -1614,7 +1621,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The result box will show all the details of the first ingredient. 
        
     1. Test case: `editF x` (x is invalid index) <br>
-       Expected: An error message will be shown, as it is the same ingredient. Your command in the command box will turn red. <br><br>
+       Expected: An error message will be shown, as x is an invalid index. Your command in the command box will turn red. <br><br>
        
 
 ## 6.14 Editing an ingredient <a id="614-editing-an-ingredient"></a>
@@ -1629,7 +1636,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `editF 1` <br>
        Expected: An error message will be shown, as the eaten recipe with index 0 is not present. The message will show the correct input format of the editF command, and your command in the command box will turn red.                                                                                                                                                                                                                      
        
-    1. Test case: `editF 1 x` (same name and quantity of the ingredient in fridge) <br>
+    1. Test case: `editF 1 x` (where x has the same name and quantity of the ingredient in ingredient list) <br>
        Expected: An error message will be shown, as it is the same ingredient. The result box will show that no edits are made. Your command in the command box will turn red.
 
     1. Other incorrect `editF` commands to try: `editF` (no fields specified) <br>
@@ -1749,6 +1756,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: delete WishfulShrinking.json data file. <br>
       Expected: If WishfulShrinking.json file cannot be found, the app will create the data file populated with
        sample recipes. <br><br>
+       
+<div style="page-break-after: always;"></div>
 
 # 7. **Appendix C: *Model Component*** <a id="7-model-component"></a>
 
@@ -1758,10 +1767,14 @@ testers are expected to do more *exploratory* testing.
 ## 7.2 Ingredient <a id="72-ingredient"></a>
 ![Ingredient in Model Component](images/ModelClass_Ingredient.png)
 
+<div style="page-break-after: always;"></div>
+
 ## 7.3 Consumption <a id="73-consumption"></a>
 ![Consumption in Model Component](images/ModelClass_Consumption.png)
 
-# 8. **Appendix E: *Effort*** <a id="8-effort"></a>
+<div style="page-break-after: always;"></div>
+
+# 8. **Appendix D: *Effort*** <a id="8-effort"></a>
 
 | Term             | Scope/ Measured by                                                                                                                                                                                                                                                        |
 |------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

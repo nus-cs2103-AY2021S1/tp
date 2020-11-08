@@ -9,8 +9,8 @@ import seedu.address.model.Model;
 import seedu.address.model.recipe.RecipeContainsKeywordsPredicate;
 
 /**
- * Finds and lists all recipes in Recipe collection whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all recipes in Recipe collection who contains the ingredients, or whose name or tags contains
+ * any of the argument keywords. Keyword matching is case insensitive.
  */
 public class SearchRecipeCommand extends Command {
 
