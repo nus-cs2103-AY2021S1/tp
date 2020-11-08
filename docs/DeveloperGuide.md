@@ -870,10 +870,10 @@ in the table below, for each `Prefix` and keywords pair.
 
 Prefix | FieldContainsKeywordsPredicate
 --------------| ---------------
-n/<keywords>  | NameContainsKeywordsPredicate
-s/<keywords>  | SourceContainsKeywordsPredicate
-l/<keywords>  | LocationContainsKeywordsPredicate
-sn/<keywords> | SerialNumberContainsKeywordsPredicate
+n/\<keywords>  | NameContainsKeywordsPredicate
+s/\<keywords>  | SourceContainsKeywordsPredicate
+l/\<keywords>  | LocationContainsKeywordsPredicate
+sn/\<keywords> | SerialNumberContainsKeywordsPredicate
 
 `FindCommandParser` implements the following important operations:
 
