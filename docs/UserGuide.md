@@ -120,7 +120,7 @@ Here is a brief overview on how this section is arranged. The first section brin
 we will bring you through the [features we have implemented for staff](#33-staff-commands). 
 Following which, you will be introduced to the [features for managing applicant records](#34-applicant-commands). 
 Finally, you will learn about [how to add and delete comments to applicants and staff](#35-comment-commands) and 
-[our very own unique script engine](#35-script-engine). By then, you will definitely become a master in using Eva! 
+[our very own unique script engine](#35-script-engine) (experimental feature). By then, you will definitely become a master in using Eva! 
 So let's get started! 
 
 ### 3.1. Eva GUI
@@ -644,12 +644,22 @@ Example Scenario:
 
 ![editComment](images/ugimages/EditComment.png)
 
-### 3.6. Script Engine
+### 3.6. Script Engine (Experimental)
 
 Eva has a built-in script to execute JavaScript that can be used to extend the features of Eva.
 
 Please refer to [Nashorn official website](https://www.oracle.com/technical-resources/articles/java/jf14-nashorn.html)
 for supported JavaScript features, and how to import Java classes to extend Eva features.
+
+<div markdown="block" class="alert alert-primary">
+
+**Warning:** <br>
+
+* While loading script can extend the features of Eva and simplify the workflow, a script can also break the application. Use with caution! <br>
+
+* Scripts downloaded over Internet could contain malicious content and pose security threats to your computer. Use at your own risks! <br>
+
+</div>
 
 #### 3.6.1. Load a JavaScript script: `load`
 
