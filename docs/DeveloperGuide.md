@@ -643,12 +643,12 @@ Given below are some example usage scenarios and how the suggestion mechanism be
 
 **Example 1: Unknown command word**
 
-Step 1. The user enters `updt n/Milk s/Fairprice` which contains an unknown command word `updt`.
+Step 1. The user enters `updt n/Milk nq/100` which contains an unknown command word `updt`.
 
 Step 2. The command word `updt` is extracted out in `StockBookParser` and checked if it matches any valid command word.
 
 Step 3. The command word `updt` does not match any valid command word. It is then passed down to `SuggestionCommandParser`
-along with `n/Milk s/Fairprice` and `SuggestionCommandParser#parse()` is invoked.
+along with `n/Milk nq/100` and `SuggestionCommandParser#parse()` is invoked.
 
 Step 4. Inside `SuggestionCommandParser#parse()` method, the closest command word to `updt` will be inferred.
 The inference uses the minimum edit distance heuristic. `SuggestionCommandParser#parse()` will
@@ -666,8 +666,8 @@ first if the compulsory prefix exist. In this case the compulsory prefix which i
 
 Step 8. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then
 be appended to the suggestion message. If there exist prefix whose argument is empty, then `SuggestionCommandParser#generateUpdateSuggestion()`
-will fill the argument with a default value. In this case, prefixes `n/ s/` are present and their arguments are nonempty.
-`n/Milk s/Fairprice` is then added to the suggestion message.
+will fill the argument with a default value. In this case, prefixes `n/ nq/` are present and their arguments are nonempty.
+`n/Milk nq/100` is then added to the suggestion message.
 
 Step 9. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
 
@@ -676,13 +676,13 @@ to be displayed as its argument.
 
 Step 11. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
 
-Step 12. The suggestion `update sn/<serial number> n/Milk s/Fairprice` is displayed to the user along with what kind of
+Step 12. The suggestion `update sn/<serial number> nq/100 n/milk` is displayed to the user along with what kind of
 error and the message usage information. In this case the error is `unknown command` and the message usage is from
 `UpdateCommand`.
 
 **Example 2: Invalid command format**
 
-Step 1. The user enters `update n/Milk s/` which contains a valid command word `update`.
+Step 1. The user enters `update n/Milk nq/` which contains a valid command word `update`.
 
 Step 2. The command word `update` is extracted out in `StockBookParser` and checked if it matches any valid command word.
 
@@ -713,8 +713,8 @@ first if the compulsory prefix exist. In this case the compulsory prefix which i
 Step 11. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then
 be appended to the suggestion message. If there exist prefix whose argument is empty, then `SuggestionCommandParser#generateUpdateSuggestion()`
 will fill the argument with a default value. In this case, the prefix `n/` is present and its argument is nonempty.
-`n/Milk` is then added to the suggestion message. The prefix `s/` is present, but its argument is empty.
-`s/<source>` is then added to the suggestion message.
+`n/Milk` is then added to the suggestion message. The prefix `nq/` is present, but its argument is empty.
+`nq/<new quantity>` is then added to the suggestion message.
 
 Step 12. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
 
@@ -723,7 +723,7 @@ to be displayed as its argument.
 
 Step 14. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
 
-Step 15. The suggestion `update sn/<serial number> n/Milk s/<source>` is displayed to the user along with what kind of
+Step 15. The suggestion `update sn/<serial number> nq/<new quantity> n/milk` is displayed to the user along with what kind of
 error and the message usage information. In this case the error is `Invalid command format` and the message usage is from
 `UpdateCommand`.
 
