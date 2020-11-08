@@ -290,7 +290,9 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated all the ingredients' levels to zero in the Ingredient Tracker inside the _Main View_.
 
-{Example outcome screenshot to be added later}
+![IngredientResetAllCommandScreenshot](images/IngredientResetAllCommandScreenshot.png)
+
+Figure x. A screenshot showing the outcome of an `i-resert-all` command
 
 #### 2.7 Listing all ingredients that user should restock : `i-restock`
 Lists the ingredient's levels of all ingredient types that fall below their pre-determined default levels and require the user to 
@@ -300,7 +302,7 @@ Format: `i-restock`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Notes:**<br>
 Refer to the "Notes about ingredients" below the [Commands - Ingredients Tracking](#commands-ingredients-tracking)
 for details on the pre-determined default levels of different types of ingredients.
 </div>
@@ -316,7 +318,16 @@ Outcome:
 1. The _Result Display_ will show a list of ingredients that the user should restock, including each ingredient's name, 
 its ingredient's level and the amount needed for the ingredient to reach its pre-determined default level.
 
-{Example outcome screenshot to be added later}
+![IngredientRestockCommandScreenshot](images/IngredientRestockCommandScreenshot.png)
+
+Figure x. A screenshot showing the outcome of an `i-restock` command
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+Due to the limited ize of the _Result Display_, only a part of the list of ingredients that the user should restock
+is shown in the screenshot above. In the actual application, you can scroll down to see the entire list.
+</div>
 
 ### 3. Commands - Contact details <a name="commands-contact-details"></a>
 

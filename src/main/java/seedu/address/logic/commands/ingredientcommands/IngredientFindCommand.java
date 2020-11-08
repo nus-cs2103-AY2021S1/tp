@@ -19,8 +19,9 @@ public class IngredientFindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " : Finds all ingredients that have names containing "
             + "any of the specified keywords (case-insensitive) and displays them in the ingredient tracker.\n"
             + "The search is case-insensitive, and only full words will be matched.\n"
+            + "The order of the keywords does not matter.\n"
             + "Ingredients with names matching at least one keyword will be displayed in the Ingredient Tracker. \n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]\n"
             + "Example: " + COMMAND_WORD + " milk boba";
 
     private final IngredientNameContainsKeywordsPredicate predicate;
