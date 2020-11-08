@@ -217,7 +217,152 @@ This section describes some noteworthy details on how certain features are imple
 
 ## 3.1 Module list management feature
 
-### Module Tracker features
+### 3.1.1 Module Tracker features
+
+##### Add Module feature
+
+This feature creates and adds a new `Module` into the `ModuleList` if the contact does not already exist. 
+
+This feature is facilitated by the following classes:
+
+ * `AddModuleParser`:
+   * It implements `AddModuleParser#parse()` to parse and validate the user arguments to create a new `Module`.
+
+ * `AddModuleCommand`:
+   * It implements `AddModuleCommand#execute()` which executes the addition of the new `Module` into `Model`.
+
+Given below is an example usage scenario and how the mechanism for adding module behaves at each step:
+Step 1. `LogicManager` receives the user input `addmodule n/CS2100 mc/4.0 t/Coremodule ` from `Ui`
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `AddModuleParser`
+Step 3. Additionally, `ModuleListParser` will call the `AddModuleParser#parse()` method to parse the command arguments
+Step 4. This creates an `AddModuleCommand` and `AddModuleCommand#execute()` will be invoked by `LogicManager` to execute the command to add the `Module`
+Step 5. The `Model#addModule()` operation exposed in the `Model` interface is invoked to add the new `Module`
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to add a `Module` works:
+![AddModuleSequenceDiagram](images/Contact/AddContactSequenceDiagram.png)
+Figure 3.1.1.1 Sequence diagram for the execution of `AddModuleCommand`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddModuleCommand` and `AddModuleParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+
+The following activity diagram summarizes what happens when a user executes the `AddContactCommand`:
+![AddModuleCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
+Figure ?.? Activity diagram representing the execution of `AddContactCommand`
+
+#### Delete Module Feature
+
+The delete module feature deletes a pre-existing `module` using the index of the `Module` on the displayed `ModuleList`.
+This feature is facilitated by the following classes: 
+
+  * `DeleteModuleParser`:
+    * It implements `DeleteModuleParser#parse()` to parse and validate the `Module` ID
+
+  * `DeleteModuleCommand`:
+    * It implements `DeleteModuleCommand#execute()` to delete the `Module` from `Model`
+
+After the user input has been parsed by `DeleteModuleParser`, `LogicManager` will execute the delete operation by invoking
+`DeleteModuleCommand#execute()`. This deletes the target `Module` by invoking the `Model#deleteModule()` method exposed in the `Model` interface.
+
+Given below is the sequence diagram of how the operation to delete a `Module` works:
+![DeleteModuleSequenceDiagram](images/Contact/DeleteContactCommandSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Method to delete module
+
+* **Alternative 1 (current choice):** Delete a `Module` based on its index in the displayed `ModuleList`
+  * Pros: Using the `Module` index allows us to uniquely identify the target `Module` to delete, reducing the room for possible error
+  * Cons: The target `Module` to be deleted might not be displayed on the `ModuleList` and hence the `Module` index might not be
+          readily available. This can inconvenience users who have to search for the `Module` to retrieve the `Module` index.
+
+* **Alternative 2:** Delete a `Module` based on the `Module` name
+  * Pros: It can make the deletion process simpler for **users** who can provide the name of the `Module` without having to execute more commands.
+  * Cons: This is more difficult to implement.
+
+Alternative 1 was chosen since it is easier to implement and it makes the command simpler for users to input.
+
+
+#### Edit Module Feature
+
+The edit module feature edits a pre-existing `Module` in the `ModuleList` using `Module` details provided by the user.
+This feature is facilitated by the following classes:
+
+  * `EditModuleParser`: 
+    * It implements `EditModuleParser#parse()` to parse and validate the provided `Module` details and `Module` index
+
+  * `EditModuleDescriptor`:
+    * It stores the `Module` details which will be used to edit the target `Module`
+
+  * `EditModuleCommand`:
+    * It implements `EditModuleCommand#execute()` to edit the contact in `Model`
+
+
+Given below is an example usage scenario and how the mechanism for editing a `Module` behaves at each step:
+Step 1. `LogicManager` receives the user input `editmodule 1 n/CS2100 mc/4.0 gp/5.0 t/Coremodule ` from `Ui`
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `EditModuleParser`
+Step 3. Additionally, `ModuleListParser` will call the `EditModuleParser#parse()` method to parse the command arguments
+Step 4. This creates an `EditModuleCommand` and `EditModuleCommand#execute()` will be invoked by `LogicManager` to edit the target `Module`
+Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target `Module` with the edited `Module`
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to edit a `Module` works:
+![EditModuleSequenceDiagram](images/Contact/EditContactCommandSequenceDiagram.png)
+
+
+#### Design consideration:
+
+##### Aspect: Implementation of `EditModuleCommand`
+
+* **Alternative 1 (current choice):** 
+  * Pros: Reduces coupling between the command classes and `EditModuleCommand` can be implemented without restrictions,
+          or a need to consider how it might affect the other command classes
+  * Cons: Additional methods have to be implemented to replace the target module with the edited module
+
+* **Alternative 2:** Reuse `DeleteModuleCommand` to delete the target `Module` and `AddModuleCommand` to add the edited contact
+  * Pros: Reusing other commands would make the implementation of `EditModuleCommand` simpler and easier
+  * Cons: It increases coupling between the 3 commands and this can cause issues in `EditModuleCommand` if either 
+          `DeleteModuleCommand` or `AddModuleCommand` developed bugs or errors. Also, it might affect performance since 
+          executing `EditModuleCommand` will execute 2 other commands.
+
+Alternative 1 was chosen since it gave more freedom with regard to the implementation of `EditModuleCommand` since
+we were not restricted to reusing other commands. Less coupling between the classes meant that changes in one class would 
+less likely require changes to other classes.
+
+
+#### Find Contact Feature
+
+The find `Module` feature is important since sieving through all modules to search for a specific `Module` can be 
+tedious and not user-friendly.
+
+The find `Module` feature searches for modules using the `Module` name.
+For each search parameter, modules have to match at least one keyword to fulfil the search criteria.
+
+This feature is facilitated by the following classes:
+
+  * `FindModuleParser`:
+    * It implements `FindModuleParser#parse()` to parse and validate the user input
+    * It creates `NameContainsKeywordsPredicate` objects using the command arguments
+   
+  * `FindContactCommand`:
+    * It implements `FindModuleCommand#execute()` to find all matching modules by updating the 
+      filtered displayed module list in `Model` using the `NameContainsKeywordsPredicate` from `FindModuleParser`
+
+Given below is an example usage scenario and how the mechanism for finding `Module` behaves at each step:
+Step 1. `LogicManager` receives the user input `findcontact n/CS2100` from `Ui`
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create a `FindModuleParser`
+Step 3. Additionally, `ModuleListParser` will call the `FindModuleParser#parse()` method to parse the command arguments
+Step 4. This creates a `NameContainsKeywordsPredicate` that will be used to obtain the filtered displayed `ModuleList`
+Step 4. Additionally, a `FindModuleCommand` is created and `FindModuleCommand#execute()` will be invoked by `LogicManager` to find matching modules
+Step 5. The `Model#updateFilteredModuleList()` operation exposed in the `Model` interface is invoked to update the displayed `ModuleList`
+        using `NameContainsKeywordsPredicate`
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to find modules works:
+![FindModuleCommandSequenceDiagram](images/Contact/FindContactCommandSequenceDiagram.png)
+Fig ??
 
 #### Module list data archiving
 

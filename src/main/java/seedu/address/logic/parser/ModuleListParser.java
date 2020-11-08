@@ -79,7 +79,7 @@ public class ModuleListParser implements FeatureParser {
             return new DeleteModuleParser().parse(arguments);
 
         case FindModuleCommand.COMMAND_WORD:
-            return new FindModuleCommandParser().parse(arguments);
+            return new FindModuleParser().parse(arguments);
 
         case AddZoomLinkCommand.COMMAND_WORD:
             return new AddZoomLinkParser().parse(arguments);

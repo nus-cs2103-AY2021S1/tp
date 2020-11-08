@@ -11,7 +11,7 @@ import seedu.address.model.module.NameContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FindModuleCommandParser implements Parser<FindModuleCommand> {
+public class FindModuleParser implements Parser<FindModuleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
