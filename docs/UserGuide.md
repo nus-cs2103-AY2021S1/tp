@@ -236,7 +236,7 @@ Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENU
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Start time has to be before end time.
-* The format of `CLASS_TIME`, `YEAR` and `LAST_PAYMENT_DATE` follows that as stated in [the Adding Student Section](#331-adding-a-student-add-by-hogan).
+* The format of `CLASS_TIME`, `YEAR` and `LAST_PAYMENT_DATE` follows that as stated in the [add command section](#331-adding-a-student-add-by-hogan).
 
 <div markdown="block" class="alert alert-info">
 
