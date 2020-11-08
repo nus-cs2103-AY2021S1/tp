@@ -418,6 +418,10 @@ Given below is an example usage scenario and how the `FindCommand` mechanism beh
 
  Step 7. After execution, `CommandResult` will contain a message indicating that it has listed all `Flashcards` based on the specified restrictions.
 
+ The following sequence diagram shows how the parser operation works:
+
+![FindParserSequenceDiagram](images/FindParserSequenceDiagram.png)
+
  The following sequence diagram shows how the find operation works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
@@ -543,7 +547,13 @@ The following sequence diagram shows how the stats operation works:
 
 #### Design Considerations:
 
-{insert design consideration}
+* **Current choice:** Passes the `Statistics` object to the GUI in `Feedback` which is an attribute of `CommandResult`.
+  * Pros: Provides more abstraction as all of the data the GUI needs to display are in the `Feedback` object.
+  * Cons: There is a violation of Demeter's law as GUI interacts with an attribute of `CommandResult`.
+
+* **Alternative:** Do not use the `Feedback` object. Place all the data in the `CommandResult` object directly.
+  * Pros: Demeter's law is no longer violated.
+  * Cons: There is less abstraction.
 
 ### Clear Statistics of Flashcard
 
@@ -581,7 +591,13 @@ The following sequence diagram shows how the stats operation works:
 
 #### Design Considerations:
 
-{insert design considerations}
+* **Current choice:** Replaces the existing `Flashcard` with a new `Flashcard` that has a new `Statistics` with all attributes set at zero.
+  * Pros: `Flashcard` and `Statistics` are easier to debug.
+  * Cons: Waste of resources as new `Flashcard` and `Statistics` objects need to be created when a user wants to clear its statistics.
+
+* **Alternative:** Edit the `Statistics` of the `Flashcard` directly
+  * Pros: No "unnecessary" creation of a new `Flashcard` and `Statistics` object when a user requests to clear its statistics.
+  * Cons: `Flashcard` and `Statisitcs` become difficult to debug.
 
 ### Exporting Flashcards
 
@@ -742,40 +758,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-* 3b. User quits QuickCache while trying out quiz feature.
 
-  * 3b1. When opening QuickCache again, quiz resumes from where the User left off.
-
-    Use case resumes at step 3.
-
-* *a. User dislikes the GUI.
-
-  * *a1. User quits and deletes QuickCache.
-
-    Use case ends.
-
-
-
-**Use case: UC02 - View Statistics**
+**Use case: UC02 - View statistics of a flashcard**
 
 **Preconditions: User has QuickCache open.**
 
 **MSS**
 
-1.  User requests for statistics
-2.  QuickCache displays statistics
-3.  User completes a quiz and requests for statistics
-4.  QuickCache displays updated statistics
+1.  User requests for statistics of a flashcard
+2.  QuickCache displays statistics of the flashcard
+3.  User <u>tests himself with the same flashcard (UC05)</u>
+4.  User requests for statistics of the flashcard
+5.  QuickCache displays updated statistics of the flashcard
 
     Use case ends.
 
 **Extensions**
 
-* 1a. User has not done any quiz on QuickCache.
+* 1a. The given index is invalid.
 
   * 1a1. QuickCache shows an error message.
 
-    Use case resumes at step 3.
+    Use case resumes at step 1.
 
 
 **Use case: UC03 - Delete a flashcard**
@@ -1077,14 +1081,17 @@ MSS:
     Use case ends.
 
 
-**Use case: UC12 - Search for Flashcards based on Tags**
+**Use case: UC12 - Search for Flashcards based on Tags and/or Question**
 
 **Actor: User**
 
-MSS:
+**Preconditions: User has QuickCache open.**
 
-1. User enters the name of the tag he wants to search
-2. QuickCache filters through all existing Flashcards based on the tag and returns a list of Flashcards.
+**MSS**
+
+1. User enters the tags and/or keywords associated with the flashcard he wants to search for
+2. QuickCache filters all existing flashcards based on the tag and/or keywords.
+3. Quickcache displays all the requested flashcards to the user.
 
     Use case ends.
 
@@ -1095,18 +1102,13 @@ MSS:
 
 1. User double clicks on QuickCache.jar
 2. QuickCache opens and shows a list of flashcards
-3. User forgets the options of a question
+3. User forgets the choices of a flashcard's question
 4. User requests to open a specific flashcard in the list
-5. QuickCache opens the flashcard and displays the options
+5. QuickCache opens the flashcard and displays the choices
 
 	Use case ends.
 
-
 **Extensions**
-
-* 2a. The list is empty.
-
-  	Use case ends.
 
 * 4a. The given index is invalid.
 
@@ -1115,7 +1117,29 @@ MSS:
     Use case resumes at step 3.
 
 
-**Use case: UC14 - Export flashcard data file**
+**Use case: UC14 - Clear statistics of a flashcard**
+
+**Preconditions: User has QuickCache open.**
+
+**MSS**
+
+1.  User requests for statistics of a flashcard
+2.  QuickCache displays statistics of the flashcard
+3.  User clears the statistics of the flashcard
+4.  User requests for statistics of the flashcard
+5.  QuickCache displays reset statistics of the flashcard
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+  * 1a1. QuickCache shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: UC15 - Export flashcard data file**
 
 **Actor: User**
 
