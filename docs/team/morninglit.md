@@ -32,4 +32,3 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#234](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/234)
- 
