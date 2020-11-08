@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 
+/**
+ * Shows the week(s) where the student identified using it's displayed index is present.
+ */
 public class ViewAttendanceCommand extends Command {
     public static final String COMMAND_WORD = "viewAttendance";
 

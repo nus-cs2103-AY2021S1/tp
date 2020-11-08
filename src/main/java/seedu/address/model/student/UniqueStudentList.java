@@ -11,6 +11,17 @@ import javafx.collections.ObservableList;
 import seedu.address.model.exceptions.DuplicateShowableException;
 import seedu.address.model.exceptions.ShowableNotFoundException;
 
+/**
+ * A list of students that enforces uniqueness between its elements and does not allow nulls.
+ * A student is considered unique by comparing using {@code Student#isSame(Student)}. As such, adding and updating of
+ * students uses Student#isSame(Student) for equality so as to ensure that the student being added or updated is
+ * unique in terms of identity in the UniqueStudentList. However, the removal of a student uses Student#equals(Object)
+ * so as to ensure that the student with exactly the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Student#isSame(Student)
+ */
 public class UniqueStudentList implements Iterable<Student> {
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =

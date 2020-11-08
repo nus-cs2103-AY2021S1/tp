@@ -59,6 +59,10 @@ public class Module {
         return tutorialGroups;
     }
 
+    /**
+     * Adds tutorial group to the UniqueTutorialGroupList
+     * @param tutorialGroup to be added
+     */
     public void addTutorialGroup(TutorialGroup tutorialGroup) {
         tutorialGroups.addTutorialGroup(tutorialGroup);
     }

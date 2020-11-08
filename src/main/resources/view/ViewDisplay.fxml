@@ -3,6 +3,11 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="placeHolder" styleClass="view-display-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane
+        fx:id="placeHolder"
+        styleClass="view-display-pane"
+        xmlns="http://javafx.com/javafx/8"
+        xmlns:fx="http://javafx.com/fxml/1"
+>
    <TextArea fx:id="viewDisplay" prefHeight="109.0" prefWidth="407.0" styleClass="view-display-module" />
 </StackPane>
