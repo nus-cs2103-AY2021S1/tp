@@ -121,7 +121,6 @@ public class AddAssignmentCommandTest {
         ModuleName moduleToAddName = moduleToUpdate.getName();
         Module moduleWithAddedAssignment = new ModuleBuilder(moduleToUpdate).build();
         moduleWithAddedAssignment.addAssignment(ASSIGNMENT_QUIZ_2);
-        model.setModule(moduleToUpdate, moduleWithAddedAssignment);
 
         Assignment duplicateAssignmentQuiz1 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
                 .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1)

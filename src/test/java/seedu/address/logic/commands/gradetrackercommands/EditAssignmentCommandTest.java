@@ -34,8 +34,6 @@ import seedu.address.testutil.gradetracker.EditAssignmentDescriptorBuilder;
 public class EditAssignmentCommandTest {
     private static final Index FIRST_INDEX = Index.fromOneBased(1);
 
-    private static final Index SECOND_INDEX = Index.fromOneBased(1);
-
     private Model model = new ModelManager(getTypicalModulesWithAssignmentList(), new ModuleList(),
             new ContactList(), new TodoList(), new EventList(), new UserPrefs());
     @Test
@@ -45,6 +43,7 @@ public class EditAssignmentCommandTest {
         EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder(editedAssignment).build();
         EditAssignmentCommand editAssignmentCommand = new EditAssignmentCommand(FIRST_INDEX,
                 editedModule.getName(), descriptor);
+
         String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
         ModuleList updatedModuleList = new ModuleListBuilder(getTypicalModulesWithAssignmentList()).build();
         Model expectedModel = new ModelManager(new ModuleList(updatedModuleList), new ModuleList(),
@@ -61,6 +60,7 @@ public class EditAssignmentCommandTest {
                 .withAssignmentName(VALID_ASSIGNMENT_NAME_2).build();
         EditAssignmentCommand editAssignmentCommand = new EditAssignmentCommand(FIRST_INDEX,
                 editedModule.getName(), descriptor);
+
         String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
         ModuleList updatedModuleList = new ModuleListBuilder(getTypicalModulesWithAssignmentList()).build();
         Model expectedModel = new ModelManager(new ModuleList(updatedModuleList), new ModuleList(),
@@ -75,6 +75,7 @@ public class EditAssignmentCommandTest {
         Assignment editedAssignment = new AssignmentBuilder().build();
         EditAssignmentCommand editAssignmentCommand = new EditAssignmentCommand(FIRST_INDEX,
                 editedModule.getName(), new EditAssignmentDescriptor());
+
         String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
         ModuleList updatedModuleList = new ModuleListBuilder(getTypicalModulesWithAssignmentList()).build();
         Model expectedModel = new ModelManager(new ModuleList(updatedModuleList), new ModuleList(),

@@ -27,7 +27,6 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Grade;
 import seedu.address.testutil.ModuleBuilder;
 
-
 public class AddGradeCommandTest {
 
     private static final Grade GRADE_1 = new Grade(VALID_GRADE_1);
@@ -63,8 +62,6 @@ public class AddGradeCommandTest {
         expectedModule.addGrade(GRADE_1);
         AddGradeCommand command = new AddGradeCommand(expectedModule.getName(), GRADE_1);
         String expectedMessage = String.format(AddGradeCommand.MESSAGE_SUCCESS, GRADE_1);
-
-        expectedModel.setModule(expectedModule, expectedUpdatedModule);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 

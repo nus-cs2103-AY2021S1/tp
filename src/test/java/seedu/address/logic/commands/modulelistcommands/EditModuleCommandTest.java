@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MC_4;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LESSON_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CORE_MODULE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINKS_CS2030;
@@ -34,6 +35,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.ModuleListBuilder;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
@@ -44,6 +46,12 @@ public class EditModuleCommandTest {
             new EventList(), new UserPrefs());
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
+        Module testModule = new ModuleBuilder().withName(VALID_MODULENAME_CS2030)
+                .withZoomLink(VALID_MODULE_LESSON_LECTURE, VALID_ZOOM_LINK_CS2030).build();
+        ModuleList moduleListBuilder = new ModuleListBuilder().withModule(testModule).build();
+
+        model = new ModelManager(moduleListBuilder, new ModuleList(), new ContactList(), new TodoList(),
+                new EventList(), new UserPrefs());
         Module editedModule = new ModuleBuilder().build();
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
         EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FIRST_MODULE, descriptor);
