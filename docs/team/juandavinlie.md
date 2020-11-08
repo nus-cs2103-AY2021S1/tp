@@ -9,7 +9,7 @@ title: Juan Davin Lie's Project Portfolio Page
 Trackr is an application that is made specially for Teaching Assistants(TAs) to manage and analyze their student records. 
 It takes in user input in the form of Command Line Interface(CLI) and automatically stores it in an organized manner. 
 Not only for storage, Trackr can also be used by TAs to do analytics on their students' performances thus making it 
-easier for them to cater to their students' needs. It currently has over 10kLoC
+easier for them to cater to their students' needs. It currently has over 14kLoC
 
 ### Summary of Contributions
 Code contributed: [tp Code Dashboard](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=juandavinlie&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
