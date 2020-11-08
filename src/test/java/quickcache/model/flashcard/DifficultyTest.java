@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 
 public class DifficultyTest {
 
-    private final String LOW_DIFFICULTY = "LOW";
-    private final String MEDIUM_DIFFICULTY = "MEDIUM";
-    private final String HIGH_DIFFICULTY = "HIGH";
-    private final String UNSPECIFIED_DIFFICULTY = "UNSPECIFIED";
+    public static final String LOW_DIFFICULTY = "LOW";
+    public static final String MEDIUM_DIFFICULTY = "MEDIUM";
+    public static final String HIGH_DIFFICULTY = "HIGH";
+    public static final String UNSPECIFIED_DIFFICULTY = "UNSPECIFIED";
 
 
     @Test
