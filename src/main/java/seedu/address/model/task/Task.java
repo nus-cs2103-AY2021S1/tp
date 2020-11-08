@@ -220,7 +220,7 @@ public class Task implements Comparable<Task> {
                 && getDescription().equals(task.getDescription())
                 && Objects.equals(getDeadline(), task.getDeadline())
                 && getProgress().equals(task.getProgress())
-                && isDone.equals(task.isDone)
+                && isDone().equals(task.isDone())
                 && getAssignees().equals(task.getAssignees());
     }
 
@@ -253,6 +253,4 @@ public class Task implements Comparable<Task> {
             return this.deadline.compareTo(task.deadline);
         }
     }
-
-    // TODO: may add isValidTask method.
 }
