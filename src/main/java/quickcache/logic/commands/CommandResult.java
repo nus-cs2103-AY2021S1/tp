@@ -31,6 +31,11 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean changeWindow) {
         requireNonNull(feedbackToUser);
+
+        if ((showHelp && exit) || (showHelp && changeWindow) || (exit && changeWindow)) {
+            throw new IllegalArgumentException("GUI cannot display more than one window change at a time");
+        }
+
         this.feedbackToUser = new Feedback(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -44,6 +49,11 @@ public class CommandResult {
                          Question question, Boolean isCorrect) {
 
         this(feedbackToUser, showHelp, exit, changeWindow);
+
+        boolean isCorrectTrue = (isCorrect != null && isCorrect);
+        if (isCorrectTrue && !changeWindow) {
+            throw new IllegalArgumentException("GUI cannot display that answer is correct if window is not changed");
+        }
 
         requireNonNull(question);
         this.feedbackToUser.setQuestion(question);
@@ -74,6 +84,8 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, Question question, Statistics statistics) {
         this(feedbackToUser, false, false, true, question, null);
+
+        requireNonNull(statistics);
         this.feedbackToUser.setStatistics(statistics);
     }
 
@@ -84,6 +96,8 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, Statistics statistics) {
         this(feedbackToUser, false, false, true);
+
+        requireNonNull(statistics);
         this.feedbackToUser.setStatistics(statistics);
     }
 

@@ -3,6 +3,7 @@ package quickcache.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import quickcache.model.flashcard.Answer;
 import quickcache.model.flashcard.OpenEndedQuestion;
 import quickcache.model.flashcard.Question;
+import quickcache.model.flashcard.Statistics;
 
 public class CommandResultTest {
 
@@ -45,11 +47,11 @@ public class CommandResultTest {
         Answer answer = new Answer("answer");
         Question question = new OpenEndedQuestion("question", answer);
 
-        commandResult = new CommandResult("feedback", question, true, false);
+        commandResult = new CommandResult("feedback", question, false, false);
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback", question,
-                true, false)));
+                false, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -62,37 +64,61 @@ public class CommandResultTest {
 
         // different feedbackToUser value -> returns false
         assertFalse(commandResult.equals(new CommandResult("different", question,
-                true, false)));
+                false, false)));
 
         // different showHelp value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", true,
-                 false, false, question, true)));
+                 false, false, question, false)));
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true,
-                 false, question, true)));
+                 false, question, false)));
+    }
 
-        commandResult = new CommandResult("feedback", question, true, false);
+    @Test
+    public void constructors_invalidArguments_throwException() {
+
+        // null values that are not caught by static typing but are actually not allowed
+        assertThrows(NullPointerException.class, () -> new CommandResult(null));
+        assertThrows(NullPointerException.class, () -> new CommandResult("Feedback", null));
+        assertThrows(NullPointerException.class,
+                () -> new CommandResult("Feedback", null, new Statistics()));
+
+        // exceptions thrown when values don't make sense for GUI to process
+        assertThrows(IllegalArgumentException.class,
+                () -> new CommandResult("Feedback", true, true, false));
+        assertThrows(IllegalArgumentException.class,
+                () -> new CommandResult("Feedback", true, false, true));
+        assertThrows(IllegalArgumentException.class,
+                () -> new CommandResult("Feedback", false, true, true));
+
+        Question validQuestion = new OpenEndedQuestion("Valid Question", new Answer("Valid Answer"));
+        assertThrows(IllegalArgumentException.class,
+                () -> new CommandResult("Feedback", validQuestion, true, false));
     }
 
     @Test
     public void getters() {
-        CommandResult allTrueCommandResult =
-                new CommandResult("feedback", true, true, true);
+        CommandResult helpTrueCommandResult =
+                new CommandResult("feedback", true, false, false);
+        CommandResult exitTrueCommandResult =
+                new CommandResult("feedback", false, true, false);
+        CommandResult changeWindowTrueCommandResult =
+                new CommandResult("feedback", false, false, true);
         CommandResult allFalseCommandResult =
                 new CommandResult("feedback", false, false, false);
 
 
-        assertTrue(allTrueCommandResult.isChangeWindow());
-        assertTrue(allTrueCommandResult.isExit());
-        assertTrue(allTrueCommandResult.isShowHelp());
+        assertTrue(changeWindowTrueCommandResult.isChangeWindow());
+        assertTrue(exitTrueCommandResult.isExit());
+        assertTrue(helpTrueCommandResult.isShowHelp());
 
         assertFalse(allFalseCommandResult.isChangeWindow());
         assertFalse(allFalseCommandResult.isExit());
         assertFalse(allFalseCommandResult.isShowHelp());
 
-        assertEquals(allTrueCommandResult.getFeedback(), allFalseCommandResult.getFeedback());
-        assertEquals(allTrueCommandResult.getFeedbackToUser(), allFalseCommandResult.getFeedbackToUser());
+        assertEquals(helpTrueCommandResult.getFeedback(), allFalseCommandResult.getFeedback());
+        assertEquals(helpTrueCommandResult.getFeedbackToUser(), allFalseCommandResult.getFeedbackToUser());
     }
 
     @Test
