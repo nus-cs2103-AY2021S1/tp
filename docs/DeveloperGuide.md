@@ -1231,38 +1231,120 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Run the command `java -jar pivot.jar` using the Command Line at the home folder. 
+       Expected: Shows the GUI with a set of sample cases. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by running the command `java -jar pivot.jar` using the Command Line at the home folder to start the app.<br>
        Expected: The most recent window size and location is retained.
+      
+### Deleting a Case
 
-1. _{ more test cases …​ }_
+1. Deleting a Case while all Cases are being shown
 
-### Deleting a person
+    1. Prerequisites: List all cases using the `list case` command. Multiple cases in the list.
 
-1. Deleting a person while all persons are being shown
+    1. Test case: `delete case 1`<br>
+     Expected: First case is deleted from the list. Details of the deleted case shown in the result display.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Test case: `delete case 0`<br>
+     Expected: No case is deleted. Error details shown in the result display. List of cases remains the same.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Other incorrect delete commands to try: `delete case`, `delete case x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+### Archive
 
-1. _{ more test cases …​ }_
+1. Archiving a Case while all Cases are being shown
+    
+	1. Prerequisites: List all cases using the `list case` command. Multiple cases in the list.
+
+    1. Test case: `archive case 1`<br>
+       Expected: First case is archived. Details of the archived case shown in the result display. Doing a `list archive` should show the archived case at the bottom of the list of archive cases.
+
+  	1. Test case: `archive case 0`<br>
+       Expected: No case is archived. Error details shown in the result display. List of cases remains the same.
+
+  	1. Other incorrect archive commands to try: `archive`, `archive case`, `archive case x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+	1. Unarchive commands can be tested in a similar fashion, with the prerequisites: List all archived cases using the `list archive` command. Multiple archived cases in the list.
+
+### Undo
+1. Undoing a command
+
+    1. Prerequisites: No prior commands entered into the system. PIVOT starts with multiple cases in the list.
+        
+    1. Test case: `undo`<br>
+         Expected: Nothing is undone. Error details shown in the result display. List of cases remains the same.
+    
+        1. Test case: `add case t:Ang Murders`, `open case 1` then `undo`<br>
+         Expected: The added case is removed from the list. PIVOT returns back to the main page. The details of the undone command is shown in the result display.
+    
+    1. Test case: `open case 1`, `edit title t:New Title` then `undo`<br>
+         Expected: The edited title is undone and the previous title of the case is displayed. PIVOT remains at the case page. The details of the undone command is shown in the result display.
+
+### Redo
+1. Redoing a command
+
+    1. Prerequisites: No prior commands entered into the system. PIVOT starts with multiple cases in the list.
+  	
+    1. Test case: `redo`<br>
+        Expected: Nothing is redone. Error details shown in the result display. List of cases remains the same.
+
+  	1. Test case: `add case t:Ang Murders`, `undo`, `redo` <br>
+  	    Expected: The added case is removed from the list. The details of the redone command is shown in the result display.
+
+    1. Test case: `add case t:Ang Murders`,`undo`, `add case t:Bishan Theft`, `redo` <br>
+        Expected: The command `add case t:Ang Murders` is not redone. Error details shown in the result display. List of cases remains the same as after the `add case t:Bishan Theft` command is executed.
+
+### Adding a document
+
+1. Adding a document in a case
+
+  1. Prerequisites: Open a case with `open case INDEX` using a valid INDEX. 
+
+  1. Test case: `add doc n:NAME r:REFERENCE`<br>
+     Expected: The given NAME and REFERENCE is valid. New document added to the case and shown in the document list.
+
+  1. Test case: `add doc n:NAME r:REFERENCE`<br>
+     Expected: The given NAME or REFERENCE is invalid. Error details shown in the result display. New document is not added.
+
+### Opening a document
+
+1. Opening a document in a case with a document list 
+
+  1. Prerequisites: Open a case with `open case INDEX` using a valid INDEX and list the documents with `list doc`. Multiple documents being shown.
+
+  1. Test case: `open doc 1`<br>
+     Expected: The reference of document 1 is valid. The document representing this file opens up in the Desktop.
+
+  1. Test case: `open doc 1`<br>
+     Expected: The reference of document 1 does not exist. The document representing this file does not open.Error details shown in the result display.
+
+  1. Test case: `open doc 0`<br>
+     Expected: No document is opened. Error details shown in the result display.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+1. Dealing with missing data files for documents
+    1. Prerequisites: PIVOT starts with multiple cases in the list and the file `abc.txt` in the `./references` folder.
+    1. Steps to simulate:
+        1. A user adds a valid document in PIVOT with reference `abc.txt` using `add doc n:document r:abc.txt` in an opened case. 
+        1. The user manually deletes the file `abc.txt` in the `./references` folder. 
+        1. The user tries to open the document using `open doc INDEX`. The given INDEX is the INDEX of the document in the document list.
+    1. Expected behavior:
+        1. There is no such file and the document is unable to be opened. Error details shown in the result display.
+    
+2. Dealing with missing `data` folder which contains `pivot.json` data file. 
+    1. Steps to simulate:
+        1. The user deletes the `data` folder and runs the command `java -jar pivot.jar` using the Command Line at the home folder where `pivot.jar` is located.
+    1. Behavior:
+        1. PIVOT creates the sample file `test1.txt` in the `./references` folder for the sample data.
+        1. The user executes a command `add case t:Ang Robbery`.
+        1. The `data` folder will appear in the root directory and contains the `pivot.json` file with existing sample data.
+    
