@@ -151,6 +151,77 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 
+### Menu Commands
+
+Menu commands represent the operations with which the users can interact with the menu.
+
+
+#### Find Command
+
+- The Find Command allows the user to find items in the menu of their selected vendor `Model#updateFilteredMenuItemList()`.
+- If a vendor has not been selected, a `CommandException will be thrown`.
+
+
+The following diagram summarises the sequence when the MenuCommand is executed.
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+
+Given below is an example usage scenario and how the FindCommand behaves at each step.
+
+Step 1: The user has selected a vendor with vendor i.
+
+Step 2: The user enters the command `find Milo` which finds and displays all the items in the selected menu with Milo in their names.
+
+Step 3: `Model#updateFilteredMenuItemList()` is executed to filter the current menu to only contain items that have the string "Milo" in their names.
+
+
+#### Menu Command
+
+- The Menu Command allows the user to view the default menu of their selected vendor `Model#showDefaultMenu`.
+- If a vendor has not been selected, a `CommandException will be thrown`.
+
+
+The following diagram summarises the sequence when the MenuCommand is executed.
+
+![MenuCommandSequenceDiagram](images/MenuCommandSequenceDiagram.png)
+
+
+Given below is an example usage scenario and how the FindCommand behaves at each step.
+
+Step 1: The user has selected a vendor with vendor i.
+
+Step 2: The user enters the command `find Milo` which finds and displays all the items in the selected menu with Milo in their names.
+
+Step 3: The user enters the command `menu` to display the selected menu with all the items.
+
+Step 4: `Model#showDefaultMenu()` is executed to retrieve and display the selected menu. 
+
+
+#### Sort Command
+
+- The Sort Command allows the user to sort the selected menu based on price or name in ascending or descending order.
+- If a vendor has not been selected, a `CommandException will be thrown`.
+- If the parameters inputted are invalid, a `ParseException will be thrown`.
+
+
+The following diagram summarizes the sequence when the Sort Command is executed.
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+
+Given below is an example usage scenario and how the SortCommand behaves at each step.
+
+Step 1: The user has selected a vendor with vendor i.
+
+Step 2: The user enters the command `sort n a` which sorts the menu in ascending alphabetical order based on their names.
+
+Step 3: SortCommand checks whether the parameters - ascending and name, inputted are valid. The parameters are valid.
+
+Step 4: `Model#sortMenuItemBy()` is executed to sort the currently displayed menu in alphabetical ascending order of the menu item names.
+
+
+
 ### Order Commands
 
 Order commands represents the operations to which users interact with.
