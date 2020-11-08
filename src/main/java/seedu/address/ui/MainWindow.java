@@ -33,6 +33,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.recipe.CloseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.Recipe;
 
@@ -306,9 +307,9 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException,
             ParseException, IOException, URISyntaxException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult commandResult;
             //handle closing drawer
-            if (commandResult.isClose()) {
+            if (commandText.trim().equals(CloseCommand.COMMAND_WORD)) {
                 if (leftDrawer.isClosed()) {
                     commandResult = new CommandResult("Drawer is already closed!");
                     logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -321,6 +322,7 @@ public class MainWindow extends UiPart<Stage> {
                         new CommandException("Close drawer first! \n Hint: type \"close\"");
                 throw commandException;
             }
+            commandResult = logic.execute(commandText);
 
             //handle showing single recipe
             Recipe selected = commandResult.getRecipe();
