@@ -31,6 +31,7 @@ Given below are my contributions to the project.
     * Added documentation for the features `Done` and `Undone` (Pull request [\#135](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/135))
     * Added documentation for the features `Help` and `Clear` (Pull request [\#166](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/166))
     * Added documentation for the FAQ section: (Pull requests [\#166](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/166), [\#182](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/182))
+    * Added Sequence Diagram for `Add` and `Done` features, and Class Diagram for `Task`. 
     
   * Developer Guide:
     * Added implementation details of the `Add assignment` feature. (Pull request [\#279](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/279))
@@ -38,4 +39,5 @@ Given below are my contributions to the project.
     * Modified implementation details for the `Set reminders to assignments` feature (Combined it together with `Mark assignments as done` feature). (Pull request [\#279](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/279))
 
 * **Community**:
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/223), [2](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/222), [3](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/217), [4](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/219), [5](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/220), [6](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/221))
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/223), [2](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/222), [3](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/217), [4](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/219), [5](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/220), [6](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/221), [7](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/216), [8](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/218))
+  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/359))
