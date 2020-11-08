@@ -636,20 +636,20 @@ Example Scenario:
 
 | Action    | Format, Examples   |
 |-----------|--------------------|
-| **Load**  | `load`             |
 | **Help**  | `help`             |
 | **Exit**  | `exit`             |
+| **Load**  | `load`             |
 
 ### 5.2. Staff
 
 | Action          | Format, Examples                                                                                                                                        |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ListStaffs** | `list s-`   
+| **ListStaff**  | `list s-`   
 | **AddStaff**    | `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **FindStaff** | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find s- James Jake`                                                                 |
-| **View** | `view INDEX`<br> e.g., `view 2`                                                                                            |
+| **FindStaff**   | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find s- James Jake`                                                                 |
+| **View**        | `view INDEX`<br> e.g., `view 2`                                                                                            |
 | **DeleteStaff** | `dels INDEX`<br> e.g., `dels 1`         
-| **EditStaff** | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edits 2 n/James Lee e/jameslee@example.com` |
+| **EditStaff**   | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edits 2 n/James Lee e/jameslee@example.com` |
 | **AddLeave**    | `addl INDEX l/d/DATE [d/DATE]` <br> e.g., `addl 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`                                                   |
 | **DeleteLeave** | `dell INDEX d/DATE`<br> e.g., `dell 1 d/10/10/2020`                                                                                       |
 | **ClearStaffDatabase** | `clear s-`         |
@@ -666,4 +666,4 @@ Example Scenario:
 | **AddApplication**    | `addapp INDEX [filepath]` <br> e.g., `addapp 1 C:\Users\Public\Downloads\resume.txt`             |
 | **DeleteApplication** | `delapp INDEX` <br> e.g., `delapp 1`                                                       |
 | **SetAppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g., `setas 1 as/processing`                               |
-| **ClearApplicantDatabase** | `clear s-`         |
+| **ClearApplicantDatabase** | `clear a-`         |
