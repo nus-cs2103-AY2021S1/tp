@@ -14,20 +14,20 @@ import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a patient identified using it's displayed index or Nric from Hospify.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + " or deletes the person by his Nric number."
-            + "Parameters: INDEX (must be a positive integer) or NRIC (e.g. A00000001I)\n"
-            + "Example: " + COMMAND_WORD + " 1"
-            + "Example: " + COMMAND_WORD + " A00000001I";
+            + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
+            + " or deletes the patient by his NRIC number."
+            + "Parameters: INDEX (must be a positive integer) or NRIC (e.g. S1234567A)\n"
+            + "Example: " + COMMAND_WORD + " 3\n"
+            + "Example: " + COMMAND_WORD + " S1234567A";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
 
     private Optional<Index> targetIndex;
     private Optional<Nric> targetNric;
@@ -43,7 +43,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Initialize a DeleteCommand using Nric, set targetIndex to empty Optional
-     * @param targetNric
+     * @param targetNric Nric of patient
      */
     public DeleteCommand(Nric targetNric) {
         this.targetNric = Optional.ofNullable(targetNric);
@@ -58,7 +58,8 @@ public class DeleteCommand extends Command {
 
         if (!targetNric.isEmpty()) {
             lastShownList = lastShownList.stream()
-                    .filter(patient -> patient.getNric().equals(targetNric.get())).collect(Collectors.toList());
+                    .filter(patient -> patient.getNric().value.equals(targetNric.get().value.toUpperCase()))
+                    .collect(Collectors.toList());
             if (lastShownList.size() != 1) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_NRIC);
             }
@@ -71,7 +72,8 @@ public class DeleteCommand extends Command {
         }
 
         model.deletePatient(patientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete));
+        assert !model.hasPatient(patientToDelete) : "Patient not deleted!";
+        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
     }
 
     @Override

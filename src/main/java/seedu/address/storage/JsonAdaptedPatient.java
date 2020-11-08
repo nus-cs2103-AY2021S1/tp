@@ -10,43 +10,54 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.allergy.Allergy;
 import seedu.address.model.patient.Address;
+import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
-import seedu.address.model.tag.Tag;
+
 
 /**
  * Jackson-friendly version of {@link Patient}.
  */
 class JsonAdaptedPatient {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
 
     private final String name;
     private final String nric;
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedAllergy> allergy = new ArrayList<>();
+    private final List<JsonAdaptedAppointment> appointed = new ArrayList<>();
+    private final String medicalRecordUrl;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedPatient} with the given patient details.
      */
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("nric") String nric,
                               @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("allergy") List<JsonAdaptedAllergy> allergy,
+                              @JsonProperty("appointed") List<JsonAdaptedAppointment> appointed,
+                              @JsonProperty("medicalRecordUrl") String medicalRecordUrl) {
         this.name = name;
         this.nric = nric;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        this.medicalRecordUrl = medicalRecordUrl;
+        if (allergy != null) {
+            this.allergy.addAll(allergy);
+        }
+        if (appointed != null) {
+            this.appointed.addAll(appointed);
         }
     }
 
@@ -59,9 +70,13 @@ class JsonAdaptedPatient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        allergy.addAll(source.getAllergies().stream()
+                .map(JsonAdaptedAllergy::new)
                 .collect(Collectors.toList()));
+        appointed.addAll(source.getAppointments().stream()
+                .map(JsonAdaptedAppointment::new)
+                .collect(Collectors.toList()));
+        medicalRecordUrl = source.getMedicalRecord().value;
     }
 
     /**
@@ -70,9 +85,13 @@ class JsonAdaptedPatient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Patient toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+        final List<Allergy> personAllergies = new ArrayList<>();
+        final List<Appointment> personAppointments = new ArrayList<>();
+        for (JsonAdaptedAllergy allergy : allergy) {
+            personAllergies.add(allergy.toModelType());
+        }
+        for (JsonAdaptedAppointment appointment: appointed) {
+            personAppointments.add(appointment.toModelType());
         }
 
         if (name == null) {
@@ -103,7 +122,7 @@ class JsonAdaptedPatient {
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
+        if (!email.isEmpty() && !Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
@@ -116,8 +135,19 @@ class JsonAdaptedPatient {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Patient(modelName, modelNric, modelPhone, modelEmail, modelAddress, modelTags);
+        if (medicalRecordUrl == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MedicalRecord.class.getSimpleName()));
+        }
+        if (!MedicalRecord.isValidUrl(medicalRecordUrl)) {
+            throw new IllegalValueException(MedicalRecord.MESSAGE_CONSTRAINTS);
+        }
+        final MedicalRecord modelMedicalRecord = new MedicalRecord(medicalRecordUrl);
+
+        final Set<Allergy> modelAllergies = new HashSet<>(personAllergies);
+        final Set<Appointment> modelAppointments = new HashSet<>(personAppointments);
+        return new Patient(modelName, modelNric, modelPhone, modelEmail, modelAddress,
+                modelAllergies, modelAppointments, modelMedicalRecord);
     }
 
 }

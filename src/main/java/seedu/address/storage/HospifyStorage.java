@@ -5,41 +5,42 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.HospifyBook;
+import seedu.address.model.ReadOnlyHospifyBook;
 
 /**
- * Represents a storage for {@link seedu.address.model.AddressBook}.
+ * Represents a storage for {@link HospifyBook}.
  */
 public interface HospifyStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getHospifyFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns HospifyBook data as a {@link ReadOnlyHospifyBook}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyHospifyBook> readHospifyBook() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getHospifyFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyHospifyBook> readHospifyBook(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyHospifyBook} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveHospifyBook(ReadOnlyHospifyBook addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyAddressBook)
+     * @see #saveHospifyBook(ReadOnlyHospifyBook)
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
+    void saveHospifyBook(ReadOnlyHospifyBook addressBook, Path filePath) throws IOException;
 
 }

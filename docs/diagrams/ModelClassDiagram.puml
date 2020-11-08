@@ -5,11 +5,11 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyHospifyBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class HospifyBook
+Class ReadOnlyHospifyBook
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -23,32 +23,36 @@ Class Name
 Class Nric
 Class Phone
 Class UniquePatientList
+Class MedicalRecord
+Class Appointment
 }
 
-Package Tag {
-Class Tag
+Package Allergy {
+Class Allergy
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+HospifyBook .up.|> ReadOnlyHospifyBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" HospifyBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePatientList
+HospifyBook *--> "1" UniquePatientList
 UniquePatientList o--> "*" Patient
 Patient *--> Name
 Patient *--> Nric
 Patient *--> Phone
 Patient *--> Email
 Patient *--> Address
-Patient *--> "*" Tag
+Patient *--> MedicalRecord
+Patient *--> Appointment
+Patient *--> "*" Allergy
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

@@ -1,0 +1,40 @@
+@startuml
+sprite $rake [16x16/8] {
+0000000000000000
+0000000jj0000000
+0000000jj0000000
+0005555jj5555000
+000jjeejjeejj000
+000jj00jj00jj000
+000jj00jj00jj000
+0000000000000000
+}
+start
+:User lists all the the patients;
+:User selects a patient to check his appointments;
+if () then ([User clicks on GUI])
+:Get all the appointments of
+the selected Patient;
+else([User uses the commandline])
+    :Find the patient with the NRIC;
+        if () then ([Patient not found])
+        :Render error message;
+        stop
+        else([Patient found])
+                :Get all the appointments of the
+                Patient;
+endif
+endif
+:Display appointment window <$rake>;
+stop
+partition "display appointment window" {
+start
+if () then ([appointment window is opened])
+:update appointment window;
+else ([else])
+:show new appointment window;
+endif
+stop
+}
+
+@enduml

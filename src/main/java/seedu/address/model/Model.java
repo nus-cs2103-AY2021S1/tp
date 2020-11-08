@@ -1,10 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.patient.MedicalRecord;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -35,27 +38,37 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Hospify file path.
      */
-    Path getAddressBookFilePath();
+    Path getHospifyFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' Hospify file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setHospifyFilePath(Path hospifyFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces Hospify data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setHospifyBook(ReadOnlyHospifyBook hospifyBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the HospifyBook */
+    ReadOnlyHospifyBook getHospifyBook();
 
     /**
      * Returns true if a patient with the same identity as {@code person} exists in Hospify.
      */
     boolean hasPatient(Patient patient);
+
+    /**
+     * Returns true if a patient with the same NRIC as {@code nric} exists in Hospify.
+     */
+    boolean hasPatientWithNric(Nric nric);
+
+    /**
+     * Returns true if a patient with the same Medical Record URL as {@code url} exists in Hospify.
+     */
+    boolean hasPatientWithMrUrl(MedicalRecord url);
 
     /**
      * Deletes the given patient.
@@ -90,4 +103,9 @@ public interface Model {
      * @return number of patients.
      */
     int count();
+
+    /**
+     * Sorts the patient list based on predicate.
+     */
+    void sort(Comparator<Patient> comparator);
 }

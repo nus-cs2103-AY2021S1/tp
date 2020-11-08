@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as L LOGIC_COLOR
+participant ":HospifyParser" as H LOGIC_COLOR
+participant "c:CountCommand" as C LOGIC_COLOR
+participant ":CommandResult" as R LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as M MODEL_COLOR
+participant ":HospifyBook" as B MODEL_COLOR
+participant ":UniquePatientList" as U MODEL_COLOR
+end box
+
+-> L : execute("count")
+activate L
+
+L -> H : parseCommand("count")
+activate H
+
+H -> C**
+activate C
+return
+
+return countCommand
+
+L -> C : execute(model)
+activate C
+
+C -> M : count()
+activate M
+
+M -> B : count()
+activate B
+
+B -> U : count()
+activate U
+
+return
+return
+return
+
+C -> R**
+activate R
+return
+
+return result
+destroy C
+
+return
+@enduml

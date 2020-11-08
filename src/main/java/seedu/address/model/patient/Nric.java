@@ -1,22 +1,23 @@
 package seedu.address.model.patient;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- *
+ * Represents a Patient's Nric in Hospify.
+ * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
  */
 public class Nric {
 
-
     public static final String MESSAGE_CONSTRAINTS =
-            "Starts with an alphabet, followed by 7 digits and ends with another alphabet";
+            "NRIC must start with an alphabet, followed by 7 digits and ends with another alphabet";
     public static final String VALIDATION_REGEX = "[a-zA-Z]\\d{7}[a-zA-Z]$";
     public final String value;
 
     /**
-     * Creates a NRIC with a given value.
+     * Constructs an NRIC with a given value.
      *
-     * @param value
+     * @param value A valid NRIC.
      */
     public Nric(String value) {
         requireNonNull(value);
@@ -25,7 +26,7 @@ public class Nric {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid NRIC number.
      */
     public static boolean isValidNric(String test) {
         return test.trim().matches(VALIDATION_REGEX);

@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,12 +17,14 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.HospifyBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHospifyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.patient.MedicalRecord;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PatientBuilder;
 
 public class AddCommandTest {
 
@@ -33,7 +36,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Patient validPatient = new PersonBuilder().build();
+        Patient validPatient = new PatientBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
 
@@ -43,17 +46,17 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Patient validPatient = new PersonBuilder().build();
+        Patient validPatient = new PatientBuilder().build();
         AddCommand addCommand = new AddCommand(validPatient);
         ModelStub modelStub = new ModelStubWithPerson(validPatient);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PATIENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Patient alice = new PersonBuilder().withName("Alice").build();
-        Patient bob = new PersonBuilder().withName("Bob").build();
+        Patient alice = new PatientBuilder().withName("Alice").build();
+        Patient bob = new PatientBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -99,12 +102,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getHospifyFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setHospifyFilePath(Path hospifyFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -119,17 +122,32 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void sort(Comparator<Patient> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public void setHospifyBook(ReadOnlyHospifyBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyHospifyBook getHospifyBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasPatient(Patient patient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPatientWithNric(Nric nric) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPatientWithMrUrl(MedicalRecord url) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -170,6 +188,12 @@ public class AddCommandTest {
             requireNonNull(patient);
             return this.patient.isSamePatient(patient);
         }
+
+        @Override
+        public boolean hasPatientWithNric(Nric nric) {
+            requireNonNull(nric);
+            return this.patient.getNric().equals(nric);
+        }
     }
 
     /**
@@ -185,14 +209,26 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPatientWithNric(Nric nric) {
+            requireNonNull(nric);
+            return personsAdded.stream().anyMatch(patient -> hasPatientWithNric(patient.getNric()));
+        }
+
+        @Override
+        public boolean hasPatientWithMrUrl(MedicalRecord url) {
+            requireNonNull(url);
+            return personsAdded.stream().anyMatch(patient -> hasPatientWithMrUrl(patient.getMedicalRecord()));
+        }
+
+        @Override
         public void addPatient(Patient patient) {
             requireNonNull(patient);
             personsAdded.add(patient);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyHospifyBook getHospifyBook() {
+            return new HospifyBook();
         }
     }
 
