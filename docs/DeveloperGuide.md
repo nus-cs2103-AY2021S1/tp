@@ -55,7 +55,7 @@ Each of the four components,
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
-
+<div style="page-break-after: always;"></div>
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `addDeck n/Singapore`.
@@ -79,7 +79,7 @@ The Root Node contains the scene, which is composed of UI parts like`CommandBox`
 There are 2 different types of implementations available for the root node. One of them is the FlashCardListRoot, and the other is the DeckCardListRoot. Both classes implement RootNode interface so that the MainWindow object can access both through polymorphism.
 
 Note that the Review Window is a component of the FlashCardListRoot and not a component of the DeckCardListRoot. As a result, the review window can only be initiated from the FlashCardListRoot.
-
+<div style="page-break-after: always;"></div>
 The 2 of the 3 different modes mentioned in the user guide corresponds to the 2 implementations of root node. The last one corresponds to the Review window in terms of UI display. More info can be found at [Implementation of UI.](#implementation-of-ui-3-different-modes)
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/flashnotes/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T15-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
@@ -184,7 +184,7 @@ When the review window is open, there would be a total of 2 command boxes on the
 window and one in the review window). We did not think that it would make sense for the user to be interacting with the 
 main window when they are in review mode, so we decided to disable the command box in the main window when the review 
 window is open. This is so that users can focus more on the review session.
-    
+<div style="page-break-after: always;"></div>
 ### Implementation of commands
 
 The following general activity diagram summarizes what happens when a user executes a new command:
@@ -312,7 +312,7 @@ The following activity diagrams summarizes what happens when a user adds a new c
 
 The model has the methods `Model#getDefaultDeckName` and `Model#getReservedDeckName` to retrieve the default and reserved deck names. 
 The logic component will reference the these names from the model component during command executions.
-
+<div style="page-break-after: always;"></div>
 ##### Design Considerations: How to implement showing all cards.
 
 * **Alternative 1 (current choice):** Allow users to list all flashcards and add flashcards while in this list
@@ -453,7 +453,7 @@ The following is a sequence diagram that demonstrates how a flip command flips a
 This feature is implemented by adding an isFlipped boolean in the `Model` of the `Flashcard`. To toggle this boolean,
 a function call is made from the `ModelManager#carryOutFlipCommand()` which is called by the `FlipCommand#execute()` 
 when it is created from the `FlashNotesParser`.
-
+<div style="page-break-after: always;"></div>
 ##### Design Considerations: Flip Card Implementation
 * **Alternative 1 (current choice):** Change `isFlipped` boolean in the flashcard model.
     * Pros: 
@@ -499,7 +499,7 @@ FlashNotes application supports testing of the user's knowledge of the flashcard
 In addition to this, as a user wants to be able to see how many cards they got correct after a review session, so that
 they can track their topics' mastery and feel a sense of accomplishment for studying efficiently (user story). Due to
 this user story, FlashNotes will incorporate a review statistics feature to fulfill the user's needs.
-
+<div style="page-break-after: always;"></div>
 ##### Tracking and Generation of the Review Statistics Feature
 
 During a review session, FlashNotes will keep track of the number of questions the user answered correctly on their 
@@ -536,7 +536,7 @@ As such, only review sessions initiated from an existing deck will be saved to t
 
 In the event that a user initiated a review session for all of FlashNotes' flashcards, the review statistics will only
 be generated and displayed for the user's benefit, but not save to FlashNotes.
-
+<div style="page-break-after: always;"></div>
 ##### Extending Storage to Include Deck
 
 Seeing as FlashNotes already saves Flashcard data for the user, it seemed reasonable to expand the storage component to 
@@ -610,7 +610,7 @@ The following sequence diagram shows how the endReview command operation works:
 
 ![EndReviewSequenceDiagram](images/EndReviewSequenceDiagram.png)
 
-
+<div style="page-break-after: always;"></div>
 ### Implementation of Critical Classes:
 
 #### Implementation of CommandResult
@@ -646,6 +646,7 @@ FlashNotesParser is purely an object that determines the commands that are accep
 While inside of the `LogicManager#execute(...)` method, the method checks with Model for the booleans related to mode.
 Afterwards, FlashNotesParser takes in the mode checking booleans obtained from model in `FlashNotesParser#parseCommand(...)`. 
 The booleans regarding the modes enables FlashNotes to be able to decide which of the 3 following methods to use:
+<div style="page-break-after: always;"></div>
 * `parseCommandInReviewMode(...)`
 * `parseCommandInMainMode(...)`
 * `parseCommandInCardMode(...)`
@@ -676,7 +677,7 @@ The following activity diagram shows how the FlashNotesParser works:
 
 **Value proposition**: manage, read and create flashcards faster than a typical mouse/GUI driven app
 
-
+<div style="page-break-after: always;"></div>
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -697,6 +698,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* `    | user                                       | hide old cards                 | clear clutter when there are too many cards in the deck                |
 | `*`      | user with many related cards in the app    | nest the card decks by tags    | locate a cards of the same group easily when reviewing                 |
 
+
+<div style="page-break-after: always;"></div>
 ### Use cases
 
 (For all use cases below, the System is the FlashNotes and the Actor is the user, unless specified otherwise)
@@ -778,7 +781,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use Case ends.    
     
-
+<div style="page-break-after: always;"></div>
 ##### Use case: UC05 - Show all cards
 
 **Precondition**: User is in the Main Mode.
@@ -1072,6 +1075,7 @@ testers are expected to do more *exploratory* testing.
         Expected: The newly rendered list of flashcards can be seen. The list contains all flashcards currently stored 
         in FlashNotes irrespective of the deck.
 
+<div style="page-break-after: always;"></div>
 ### Adding a card
 
 1. Adding a card in a normal deck created by user.
@@ -1148,6 +1152,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `home` <br>
        Expected: The list of orange decks in the Main Mode can now be seen.
 
+<div style="page-break-after: always;"></div>
 ### Reviewing a deck of cards
 
 1. Opening the review window.
@@ -1198,7 +1203,6 @@ testers are expected to do more *exploratory* testing.
        Expected: Review Window closes, and you are returned to the Card Mode you started the review session from.
 
 -------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**

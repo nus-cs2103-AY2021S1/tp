@@ -30,7 +30,6 @@ Here's the Table of Contents for a brief overview of our User Guide, or for you 
 
 
 --------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
 ## Glossary
@@ -131,7 +130,8 @@ Users can:
    * **`enterDeck`**`Singapore `: Lists all cards inside the deck 'Singapore'.
 
    * **`exit`** : Exits the app.
-
+<br><br>
+   
 1. After executing each command, a success or failure message will be displayed in the **Result Box**. This will let you know if you have successfully executed the relevant commands or not. Given that you have provided the correct command prefixes, it can even provide additional information on why your command has failed.  <br>
 
 1. Refer to the **Features** section below for the details of each command.
@@ -151,9 +151,7 @@ Users can:
 
 
 --------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
-
 ## Explanation of Command Formats used in features
 
 <div markdown="block" class="alert alert-info">
@@ -170,8 +168,6 @@ Users can:
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## Main Mode Features
 <div markdown="block" class="alert alert-info">
@@ -207,7 +203,7 @@ Outcome expected:
 * Only **full phrases** will be matched with the relevant decks e.g. `GE` will not match `GET1025`
 
 </div>
-
+<div style="page-break-after: always;"></div>
 ### Create a new Deck : `addDeck`
 
 Creates a new empty deck and adds to the list of decks displayed.
@@ -240,7 +236,7 @@ Outcome expected:
 
 </div>
 
-
+<div style="page-break-after: always;"></div>
 ### Rename a new Deck : `editDeckName`
 
 Edit a deck name and the tags of all corresponding cards in the deck. 
@@ -273,8 +269,7 @@ Outcome Expected:
 
 </div>
 
-
-
+<div style="page-break-after: always;"></div>
 ### Delete a new Deck : `deleteDeck`
 
 Deletes the deck and all the associated cards in your specified deck.
@@ -304,7 +299,7 @@ Outcome Expected:
 * The index **must be a positive integer** 1, 2, 3, …​
 
 </div>
-
+<div style="page-break-after: always;"></div>
 ### List all flashcards : `listAll`
 
 Shows a list of all flashcards, and enters card mode.
@@ -327,7 +322,7 @@ Outcome Expected:
 * Note that starting a review in this screen will not attribute the review results to any deck. It will not be stored at the end of the review session.
 
 </div>
-
+<div style="page-break-after: always;"></div>
 ### Set card limit for review session : `setReviewLimit`
 
 Sets the maximum number of cards that can be reviewed in a single review session.
@@ -354,10 +349,8 @@ Outcome Expected:
 1. When successful, the following success message will be displayed.
 ![Set Review Limit After Main](images/setReviewLimit3After_Main.png)
 
-1. You can check that the review limit is indeed 3 by entering the commands
-`enterDeck Singapore` (which contains 4 flashcards in total) and type `review`.
-(3 flashcards will be chosen randomly from the deck of 4 cards) Use the `f` and `c` commands to review the flashcards. 
-After reviewing the 3rd flashcard, you should have reached the end of the review session as shown below.
+1. You can check that the review limit is indeed 3 by entering the commands `enterDeck Singapore` (which contains 4 flashcards in total) and type `review`. (3 flashcards will be chosen randomly from the deck of 4 cards) Use the `f` and `c` commands to review the flashcards. After reviewing the 3rd flashcard, you should have reached the end of the review session as shown below.
+<br><br>
 ![Set Review Limit After](images/setReviewLimit3ReviewAfter.png)
 
 1. When an invalid review limit is entered, the following error message will be displayed.
@@ -380,7 +373,7 @@ again after he/she closes and reopens the application)
 
 </div>
 
-
+<div style="page-break-after: always;"></div>
 ### Check card limit for review session : `checkReviewLimit`
 
 Checks the maximum number of cards that can be reviewed in a single review session.
@@ -519,7 +512,7 @@ Outcome Expected:
 * There is a 140 character limit for QUESTION and ANSWER.
 
 </div>
-
+<div style="page-break-after: always;"></div>
 ### Editing a flashcard : `editCard`
 
 Edits an existing flashcard in the flashcard deck.
@@ -553,6 +546,7 @@ changed. <br>
 
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Finding flashcards : `find`
 
 Finds flashcards which contain any of the given keywords in their respective questions. 
@@ -568,7 +562,7 @@ Examples:
 Outcome Expected:
 1. Enter the find Command into the command box as shown. 
 ![Find Before](images/FindCommandBefore.png)
-
+<br><br>
 1. When successful, the flashcard(s) with questions that contains the matching keywords will be displayed.
 ![Find After](images/FindCommandAfter.png)
 
@@ -798,9 +792,9 @@ Examples:
 * `w` returns next card in deck if any.
 
 Outcome Expected: <br>
-1. Initial view of flashcard that has been flipped. <br>
+1. Initial view of flashcard that has been flipped.
 ![Intitial View](images/wrongCommandStep1.png)
-
+<br><br>
 1. Type `w` into the command box and enter to mark the flashcard as wrong. <br>
 ![Type Wrong Command](images/wrongCommandStep2.png)
 
@@ -897,26 +891,22 @@ How do I transfer my data to another Computer?
 Install the app in the other computer and overwrite the data file with the file that contains the 
 data of your previous FlashNotes home folder.
 <br><br>
-<br>
 
 What should I do if I have problems launching the application?
 <br>
 Ensure that Java 11 has been installed on your computer, and that you have the most recent version of the application.
 <br><br>
-<br>
 
 When I exit the program, will all my new flashcards and updates be saved?
 <br>
 Yes! Whatever changes that have been made while the application was running will be saved in the data folder. To 
 ensure none of your data is lost, do not delete the data folder.
 <br><br>
-<br>
 
 Is it possible to restore a deck that I just deleted?
 <br>
 Sorry but no. There is no such functionality at this point in time.
 <br><br>
-<br>
 
 What should I do when I get a 'Java Quit unexpectedly' error. (For Mac Users)
 <br>
@@ -946,6 +936,7 @@ Action | Format, Examples
 **Check Review Limit** | `checkReviewLimit`
 **Exit** | `exit`
 
+<div style="page-break-after: always;"></div>
 ### Card Mode
 
 Action | Format, Examples
@@ -962,6 +953,7 @@ Action | Format, Examples
 **Check Review Limit** | `checkReviewLimit`
 **Exit** | `exit`
 
+<div style="page-break-after: always;"></div>
 ### Review Mode
 
 Action | Format
