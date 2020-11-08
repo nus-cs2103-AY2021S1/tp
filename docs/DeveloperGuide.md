@@ -238,7 +238,7 @@ through the configuration file (default: `config.json`)
 
 ### 3.3 Edit Session feature
 
-The Edit Session feature allows user to edit a Session.
+<div id="f10" >The Edit Session feature allows user to edit a Session.</div>
 
 #### 3.3.1 Implementation
 
@@ -256,7 +256,7 @@ The `sedit` command calls `Model#setSession()`, causing changes to be made in th
 
 The following sequence diagram shows how the Edit Session operation works:
 
-<figure id="f10" style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
     <p>
         <img src="images/EditSessionSequenceDiagram.png"/>
     </p>
@@ -459,7 +459,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     <figcaption>Figure 20 - Edit Schedule Activity Diagram</figcaption>
 </figure>
 
-#### 3.6.2 Design consideration:
+#### 3.6.2 Design considerations
 
 * **Alternative 1 (current choice):** Retrieve Schedule using Client and Session Index.
   * Pros: Clearer to retrieve.
