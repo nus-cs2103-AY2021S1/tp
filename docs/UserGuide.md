@@ -47,7 +47,7 @@ You may refer to [Quick Start](#quick-start) for a short tutorial on how to run 
    - `exit`: exits the app.
 7. Refer to “Features” for details of all the commands.
 
-## Command Format
+## Features
 
 <div markdown="block" class="alert alert-info">
 This section explains the format of commands in this User Guide.
