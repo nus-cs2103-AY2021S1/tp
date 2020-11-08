@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.global.AddCommand;
+import seedu.address.logic.commands.global.AddPersonCommand;
 import seedu.address.logic.commands.global.ClearCommand;
 import seedu.address.logic.commands.global.DeleteCommand;
 import seedu.address.logic.commands.global.EditCommand;
@@ -20,7 +21,6 @@ import seedu.address.logic.commands.global.ListProjectsCommand;
 import seedu.address.logic.commands.global.StartPersonCommand;
 import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
-import seedu.address.logic.commands.project.AddTeammateCommand;
 import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
@@ -220,15 +220,8 @@ public class MainCatalogueParser {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
-        case AddTeammateCommand.COMMAND_WORD:
-            switch (status) {
-            case PROJECT:
-            case TASK:
-            case TEAMMATE:
-                return new AddTeammateCommandParser().parse(arguments);
-            default:
-                throw new InvalidScopeException(Status.PROJECT, status);
-            }
+        case AddPersonCommand.COMMAND_WORD:
+            return new AddPersonCommandParser().parse(arguments);
 
         case AddTeammateParticipationCommand.COMMAND_WORD:
             switch (status) {
@@ -273,7 +266,7 @@ public class MainCatalogueParser {
         case DeletePersonCommand.COMMAND_WORD:
             switch (status) {
             case PERSON_LIST:
-                return new DeleteTeammateCommandParser().parse(arguments);
+                return new DeletePersonCommandParser().parse(arguments);
             default:
                 throw new InvalidScopeException(Status.PERSON_LIST, status);
             }

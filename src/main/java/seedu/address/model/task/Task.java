@@ -41,7 +41,7 @@ public class Task implements Comparable<Task> {
     private LocalDate publishDate;
 
     /**
-     * name and progress should be present and not null. description and deadline can be null.
+     * Name and progress should be present and not null. description and deadline can be null.
      */
     public Task(String taskName, String description, Deadline deadline, double progress) {
         requireAllNonNull(taskName, progress);
@@ -222,7 +222,7 @@ public class Task implements Comparable<Task> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTaskName(), getDescription(), getPublishDate(), getDeadline(), getProgress(), isDone());
+        return Objects.hash(getTaskName(), getDescription(), getDeadline(), getProgress(), isDone(), getAssignees());
     }
 
     @Override
@@ -249,6 +249,4 @@ public class Task implements Comparable<Task> {
             return this.deadline.compareTo(task.deadline);
         }
     }
-
-    // TODO: may add isValidTask method.
 }

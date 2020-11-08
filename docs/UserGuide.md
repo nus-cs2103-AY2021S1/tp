@@ -463,17 +463,18 @@ Example: `viewtask 1` displays all information from task number 1 in the list.
 
 # 2.4 Teammate and person management within a project
 
-### 2.4.1 Create a new teammate in a project `addteammate`
+### 2.4.1 Create a new person `addperson`
 
-Creates a new teammate in a project with all the relevant fields contained in it.
+Creates a new person in the main catalogue with all the relevant fields contained in it.
+If the app is currently working on a project, this person will also be added to this project at the same time.
 
-Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+Valid scopes: all.
 
 ![add_teammate](images/addTeammate.png)
 
    *Figure 22: New teammate `Lucas` is added to the project and shown on the teammate list*
 
-Format: `addteammate mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS`
+Format: `addperson mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS`
   - All fields are necessary to fill in
   - Teammate name has to be 1 or more words consisting only of letters
   - The Github username has to be a unique Github registered User Name
@@ -481,7 +482,7 @@ Format: `addteammate mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAI
   - The email has to have a proper prefix and proper domain name consisting of at least 2 letters
   - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank
 
-Example: `addteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` creates a new teamamte in the respective project with:
+Example: `addperson mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` creates a new teamamte in the respective project with:
   - name Lucas
   - Github username of Lucas98
   - phone number of 93824823
@@ -554,23 +555,23 @@ Format: `viewteammate GITHUB_USERNAME`
 
 Example: `viewteammate Lucas98` displays all the information about the teammate with the Github User Name Lucas98 to the user.
 
-### 2.4.6 Delete a teammate `deleteteammate`
+### 2.4.6 Delete a teammate `deleteperson`
 
 Delete all of a specific teammate's details, as well as remove teammate from all projects teammate was a part of.
 
 Valid scopes: `PERSON_LIST`.
 
-![delete_teammate](images/deleteTeammate.png)
+![delete_teammate](images/deletePerson.png)
 
    *Figure 28: The teammate with github user name `Modi` is deleted from the teammate list*
 
-![person_list_after_delete_teammate](images/listPersonsAfterDeleteTeammate.png)
+![person_list_after_delete_teammate](images/listPersonsAfterDelete.png)
 
    *Figure 29: The person with github user name `Modi` is also removed from the person list*
 
-Format: `deleteteammate GITHUB_USERNAME`
+Format: `deleteperson GITHUB_USERNAME`
 
-Example: `deleteteammate Lucas97` deletes the teammate with Github username Lucas97, and removes him from any project he
+Example: `deleteperson Lucas97` deletes the teammate with Github username Lucas97, and removes him from any project he
  was in.
 
 ### 2.4.7 Start work on an existing person `startperson`
@@ -626,12 +627,12 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 **Show all the tasks** | `alltasks` |                                                                                                                                                                                                                                            |   |   | √ |   | √ | √
 **Sort tasks** | <code>sort (sa/)&#124;&#124;(sd/) (td/)&#124;&#124;(tp/)&#124;&#124;(tn/)&#124;&#124;(done/)</code> <br>e.g. `sort sa/ td/` |                                                                                                                                   |   |   | √ |   | √ | √
 **View Details of A Task** | `viewtask INDEX` <br> e.g. `viewtask 1` |                                                                                                                                                                                                           |   |   | √ |   | √ | √
-**Create a new teammate** | `newteammate mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS` e.g. `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` |                                                                   |   |   | √ |   | √ | √
+**Create a new person** | `addperson mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS` e.g. `addperson mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` |                                                                         | √ | √ | √ | √ | √ | √
 **Add a teammate to a project** | `addtoproject GITHUB_USERNAME` e.g. `addtoproject LucasTai98` |                                                                                                                                                                                |   |   | √ |   | √ | √
 **Remove a teammate from a project** | `deletefromproject GITHUB_USERNAME` e.g. `deletefromproject LucasTai98` |                                                                                                                                                                 |   |   | √ |   | √ | √
 **Edit teammate details** | `editteammate GITHUB_USERNAME [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` e.g. `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|                                                                                                  |   |   | √ |   | √ | √
 **View a teammate’s details** | `viewteammate GITHUB_USERNAME` e.g. `viewteammate Lucas98`|                                                                                                                                                                                      |   |   | √ |   | √ | √
-**Delete a teammate** | `deleteteammate GITHUB_USERNAME` e.g. `deleteteammate Lucas98` |                                                                                                                                                                                         |   | √ |   |   |   | 
+**Delete a teammate** | `deleteperson GITHUB_USERNAME` e.g. `deleteperson Lucas98` |                                                                                                                                                                                         |   | √ |   |   |   | 
 
 # 5 Glossary
 

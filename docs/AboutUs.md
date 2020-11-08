@@ -21,8 +21,8 @@ You can reach us at the repoUrl `seer[at]comp.nus.edu.sg`
 
 [[portfolio](team/geniaaz.md)]
 
-* Role: Project Member
-* Responsibilities: Developer
+* Role: Developer
+* Responsibilities: UG, Teammate related features
 
 ### Li Jiayu
 
