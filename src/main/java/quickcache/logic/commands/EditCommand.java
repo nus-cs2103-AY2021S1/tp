@@ -7,6 +7,7 @@ import static quickcache.logic.parser.CliSyntax.PREFIX_DIFFICULTY;
 import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +33,7 @@ import quickcache.model.flashcard.Tag;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing flashcard in the QuickCache.
  */
 public class EditCommand extends Command {
 
@@ -51,9 +52,9 @@ public class EditCommand extends Command {
             + PREFIX_QUESTION + "New Question "
             + PREFIX_ANSWER + "New Answer";
 
-    public static final String MESSAGE_EDIT_FLASHCARD_SUCCESS = "Edited Flashcard: %1$s";
+    public static final String MESSAGE_EDIT_FLASHCARD_SUCCESS = "Edited Flashcard:\n\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This Flashcard already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This Flashcard already exists in QuickCache.";
     public static final String MESSAGE_DIFFERENT_TYPE = "The question do not have choices";
     private static final Logger logger = LogsCenter.getLogger(EditCommand.class);
 
@@ -61,8 +62,8 @@ public class EditCommand extends Command {
     private final EditFlashcardDescriptor editFlashcardDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editFlashcardDescriptor details to edit the person with
+     * @param index of the flashcard in the filtered flashcard list to edit
+     * @param editFlashcardDescriptor details to edit the flashcard with
      */
     public EditCommand(Index index, EditFlashcardDescriptor editFlashcardDescriptor) {
         requireNonNull(index);
@@ -84,7 +85,6 @@ public class EditCommand extends Command {
         boolean isMcq = flashcardToEdit.getQuestion() instanceof MultipleChoiceQuestion;
 
         Statistics statistics = flashcardToEdit.getStatistics();
-        Question previousQuestion = flashcardToEdit.getQuestion();
         Answer updatedAnswer = editFlashcardDescriptor.getAnswer()
                 .orElse(flashcardToEdit.getAnswerOrIndex());
         String updatedQuestion = editFlashcardDescriptor.getQuestion()
@@ -159,8 +159,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the flashcard with. Each non-empty field value will replace the
+     * corresponding field value of the flashcard.
      */
     public static class EditFlashcardDescriptor {
         private Answer answer;
@@ -217,6 +217,13 @@ public class EditCommand extends Command {
             this.difficulty = difficulty;
         }
 
+        private boolean checkChoiceEquality(Optional<Choice[]> c1, Optional<Choice[]> c2) {
+            if (c1.isEmpty() || c2.isEmpty()) {
+                return true;
+            } else {
+                return Arrays.equals(c1.get(), c2.get());
+            }
+        }
 
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
@@ -236,7 +243,7 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable String array.
+         * Returns an optional of Choice array.
          * Returns {@code Optional#empty()} if {@code choices} is null.
          */
         public Optional<Choice[]> getChoices() {
@@ -267,7 +274,7 @@ public class EditCommand extends Command {
 
             return getAnswer().equals(e.getAnswer())
                     && getQuestion().equals(e.getQuestion())
-                    && getChoices().equals(e.getChoices())
+                    && checkChoiceEquality(getChoices(), e.getChoices())
                     && getTags().equals(e.getTags())
                     && getDifficulty().equals(e.getDifficulty());
         }

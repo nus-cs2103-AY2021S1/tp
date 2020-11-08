@@ -10,7 +10,7 @@ import quickcache.model.flashcard.UniqueFlashcardList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameFlashcard comparison)
  */
 public class QuickCache implements ReadOnlyQuickCache {
 
@@ -31,7 +31,7 @@ public class QuickCache implements ReadOnlyQuickCache {
     }
 
     /**
-     * Creates an QuickCache using the Persons in the {@code toBeCopied}
+     * Creates an QuickCache using the Flashcards in the {@code toBeCopied}
      */
     public QuickCache(ReadOnlyQuickCache toBeCopied) {
         this();
@@ -42,7 +42,7 @@ public class QuickCache implements ReadOnlyQuickCache {
 
     /**
      * Replaces the contents of the flashcard list with {@code flashcards}.
-     * {@code persons} must not contain duplicate persons.
+     * {@code flashcards} must not contain duplicate flashcards.
      */
     public void setFlashcards(List<Flashcard> flashcards) {
         this.flashcards.setFlashcards(flashcards);
@@ -57,10 +57,10 @@ public class QuickCache implements ReadOnlyQuickCache {
         setFlashcards(newData.getFlashcardList());
     }
 
-    // person-level operations
+    // flashcard-level operations
 
     /**
-     * Returns true if a flashcard with the same identity as {@code person} exists in the address book.
+     * Returns true if a flashcard with the same identity as {@code flashcard} exists in the QuickCache.
      */
     public boolean hasFlashcard(Flashcard flashcard) {
         requireNonNull(flashcard);
@@ -68,17 +68,18 @@ public class QuickCache implements ReadOnlyQuickCache {
     }
 
     /**
-     * Adds a flashcard to the address book.
-     * The person must not already exist in the address book.
+     * Adds a flashcard to the QuickCache.
+     * The flashcard must not already exist in the QuickCache.
      */
     public void addFlashcard(Flashcard f) {
         flashcards.add(f);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given flashcard {@code target} in the list with {@code editedFlashcard}.
+     * {@code target} must exist in the QuickCache.
+     * The flashcard identity of {@code editedFlashcard} must not be the same as another existing flashcard
+     * in QuickCache.
      */
     public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
         requireNonNull(editedFlashcard);
@@ -88,7 +89,7 @@ public class QuickCache implements ReadOnlyQuickCache {
 
     /**
      * Removes {@code key} from this {@code QuickCache}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the QuickCache.
      */
     public void removeFlashcard(Flashcard key) {
         flashcards.remove(key);
@@ -99,7 +100,6 @@ public class QuickCache implements ReadOnlyQuickCache {
     @Override
     public String toString() {
         return flashcards.asUnmodifiableObservableList().size() + " flashcards";
-        // TODO: refine later
     }
 
     public ObservableList<Flashcard> getFlashcardList() {

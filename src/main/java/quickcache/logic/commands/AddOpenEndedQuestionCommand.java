@@ -12,7 +12,7 @@ import quickcache.model.flashcard.Flashcard;
 
 
 /**
- * Adds a person to the address book.
+ * Adds a Open ended question to the QuickCache.
  */
 public class AddOpenEndedQuestionCommand extends Command {
 
@@ -25,13 +25,13 @@ public class AddOpenEndedQuestionCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_DIFFICULTY + "DIFFICULTY]\n";
 
-    public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New flashcard added:\n\n%1$s";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in QuickCache";
 
     private final Flashcard toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Flashcard}
+     * Creates an AddOpenEndedQuestionCommand to add the specified {@code Flashcard}
      */
     public AddOpenEndedQuestionCommand(Flashcard flashcard) {
         requireNonNull(flashcard);

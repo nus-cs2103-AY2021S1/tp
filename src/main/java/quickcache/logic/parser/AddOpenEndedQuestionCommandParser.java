@@ -1,6 +1,9 @@
 package quickcache.logic.parser;
 
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_ANSWERS;
+import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_DIFFICULTIES;
+import static quickcache.commons.core.Messages.MESSAGE_TOO_MANY_QUESTIONS;
 import static quickcache.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static quickcache.logic.parser.CliSyntax.PREFIX_DIFFICULTY;
 import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
@@ -17,7 +20,7 @@ import quickcache.model.flashcard.Question;
 import quickcache.model.flashcard.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddOpenEndedQuestionCommand object
  */
 public class AddOpenEndedQuestionCommandParser implements Parser<AddOpenEndedQuestionCommand> {
 
@@ -30,8 +33,8 @@ public class AddOpenEndedQuestionCommandParser implements Parser<AddOpenEndedQue
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddOpenEndedQuestionCommand
+     * and returns an AddOpenEndedQuestionCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -44,6 +47,12 @@ public class AddOpenEndedQuestionCommandParser implements Parser<AddOpenEndedQue
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddOpenEndedQuestionCommand.MESSAGE_USAGE));
         }
+        if (argMultimap.getAllValues(PREFIX_QUESTION).size() > 1) {
+            throw new ParseException(MESSAGE_TOO_MANY_QUESTIONS);
+        }
+        if (argMultimap.getAllValues(PREFIX_ANSWER).size() > 1) {
+            throw new ParseException(MESSAGE_TOO_MANY_ANSWERS);
+        }
 
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
@@ -52,6 +61,10 @@ public class AddOpenEndedQuestionCommandParser implements Parser<AddOpenEndedQue
                 argMultimap.getValue(PREFIX_ANSWER).get());
 
         if (arePrefixesPresent(argMultimap, PREFIX_DIFFICULTY)) {
+
+            if (argMultimap.getAllValues(PREFIX_DIFFICULTY).size() > 1) {
+                throw new ParseException(MESSAGE_TOO_MANY_DIFFICULTIES);
+            }
             Difficulty difficulty = ParserUtil.parseDifficulty(argMultimap.getValue(PREFIX_DIFFICULTY).get());
             Flashcard flashcard = new Flashcard(question, tagList, difficulty);
             return new AddOpenEndedQuestionCommand(flashcard);

@@ -32,22 +32,34 @@ public class CommandTestUtil {
     public static final String VALID_ANSWER_TWO = "2";
     public static final String VALID_ANSWER_THREE = "3";
     public static final String VALID_DIFFICULTY_LOW = "LOW";
+    public static final String VALID_DIFFICULTY_HIGH = "HIGH";
     public static final String VALID_OPTION_ONE = "1";
     public static final String VALID_OPTION_TWO = "2";
     public static final String VALID_OPTION_THREE = "3";
     public static final String VALID_TAG_LSM1301 = "LSM1301";
-    public static final String VALID_TAG_MODULE = "Module";
+    public static final String VALID_TAG_TAG1 = "Tag1";
+    public static final String VALID_CHOICE_CHOICE1 = "choice 1";
+    public static final String VALID_CHOICE_CHOICE2 = "choice 2";
+    public static final String VALID_CHOICE_CHOICE3 = "choice 3";
+    public static final String VALID_CHOICE_CHOICE4 = "choice 4";
 
-    public static final String CHOICE_DESC = " " + CliSyntax.PREFIX_CHOICE + "First" + " "
-        + CliSyntax.PREFIX_CHOICE + "Second" + " " + CliSyntax.PREFIX_CHOICE + "Third" + " "
-        + CliSyntax.PREFIX_CHOICE + "Fourth";
+
+    public static final String CHOICE_DESC = " " + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE1 + " "
+        + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE2 + " " + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE3 + " "
+        + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE4;
     public static final String QUESTION_DESC_ONE = " " + CliSyntax.PREFIX_QUESTION + VALID_QUESTION_ONE;
     public static final String QUESTION_DESC_TWO = " " + CliSyntax.PREFIX_QUESTION + VALID_QUESTION_TWO;
     public static final String QUESTION_DESC_THREE = " " + CliSyntax.PREFIX_QUESTION + VALID_QUESTION_THREE;
     public static final String ANSWER_DESC_ONE = " " + CliSyntax.PREFIX_ANSWER + VALID_ANSWER_ONE;
     public static final String ANSWER_DESC_TWO = " " + CliSyntax.PREFIX_ANSWER + VALID_ANSWER_TWO;
     public static final String ANSWER_DESC_THREE = " " + CliSyntax.PREFIX_ANSWER + VALID_ANSWER_THREE;
+    public static final String TAG_DESC_TAG1 = " " + CliSyntax.PREFIX_TAG + VALID_TAG_TAG1;
+    public static final String CHOICE_DESC_CHOICE1 = " " + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE1;
+    public static final String CHOICE_DESC_CHOICE2 = " " + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE2;
+    public static final String CHOICE_DESC_CHOICE3 = " " + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE3;
+    public static final String CHOICE_DESC_CHOICE4 = " " + CliSyntax.PREFIX_CHOICE + VALID_CHOICE_CHOICE4;
     public static final String DIFFICULTY_DESC_LOW = " " + CliSyntax.PREFIX_DIFFICULTY + VALID_DIFFICULTY_LOW;
+    public static final String DIFFICULTY_DESC_HIGH = " " + CliSyntax.PREFIX_DIFFICULTY + VALID_DIFFICULTY_HIGH;
     public static final String OPTION_DESC_ONE = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_ONE;
     public static final String OPTION_DESC_TWO = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_TWO;
     public static final String OPTION_DESC_THREE = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_THREE;
@@ -56,6 +68,7 @@ public class CommandTestUtil {
     public static final String INVALID_QUESTION_DESC = " " + CliSyntax.PREFIX_QUESTION + " ";
     public static final String INVALID_ANSWER_DESC = " " + CliSyntax.PREFIX_ANSWER + " ";
     public static final String INVALID_OPTION_DESC = " " + CliSyntax.PREFIX_OPTION + " ";
+    public static final String INVALID_CHOICE_DESC = " " + CliSyntax.PREFIX_CHOICE + " ";
     public static final String INVALID_OPTION_NON_ALPHANUMERIC_DESC = " " + CliSyntax.PREFIX_OPTION + "abc";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

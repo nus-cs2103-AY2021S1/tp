@@ -20,7 +20,7 @@ import quickcache.model.QuickCache;
 import quickcache.model.ReadOnlyQuickCache;
 
 public class JsonQuickCacheStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonQuickCacheStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -47,17 +47,17 @@ public class JsonQuickCacheStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatQuickCache.json"));
     }
 
     @Test
     public void readQuickCache_invalidFlashcardQuickCache_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidFlashcardQuickCache.json"));
     }
 
     @Test
     public void readQuickCache_invalidAndValidFlashcardQuickCache_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidFlashcardQuickCache.json"));
     }
 
     @Test

@@ -1,0 +1,14 @@
+{
+  "flashcards" : [ {
+    "type" : "invalidType",
+    "question" : "test1",
+    "choices" : null,
+    "answer" : "ans",
+    "tagged" : [ "OEQ" ],
+    "difficulty" : "HIGH",
+    "statistics" : {
+      "timesTested" : 1,
+      "timesTestedCorrect" : 1
+    }
+  } ]
+}

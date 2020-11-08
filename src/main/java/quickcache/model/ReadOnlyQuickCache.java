@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import quickcache.model.flashcard.Flashcard;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an QuickCache
  */
 public interface ReadOnlyQuickCache {
 

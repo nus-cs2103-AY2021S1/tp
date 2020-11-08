@@ -21,7 +21,7 @@ public class FindCommand extends Command {
             + "[" + PREFIX_QUESTION + "KEYWORD]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + " and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: [" + PREFIX_QUESTION + "KEYWORD]..." + " [" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_QUESTION + "What "
             + PREFIX_TAG + "CS2100";

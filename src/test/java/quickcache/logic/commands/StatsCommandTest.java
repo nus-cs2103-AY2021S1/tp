@@ -49,7 +49,7 @@ public class StatsCommandTest {
         showFlashcardAtIndex(model, TypicalIndexes.INDEX_FIRST_FLASHCARD);
 
         Index outOfBoundIndex = TypicalIndexes.VERY_BIG_INDEX_FLASHCARD;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of QuickCache list
         assertFalse(outOfBoundIndex.getZeroBased() < model.getQuickCache().getFlashcardList().size());
 
         StatsCommand statsCommand = new StatsCommand(outOfBoundIndex);
@@ -75,6 +75,8 @@ public class StatsCommandTest {
 
         Statistics expectedStatistics = getStatisticsFromFlashcardList(flashcardList);
 
+        expectedModel.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
+
         assertCommandSuccess(statsCommand, model, expectedMessage, expectedModel, expectedStatistics);
     }
 
@@ -95,6 +97,8 @@ public class StatsCommandTest {
         List<Flashcard> flashcardList = expectedModel.getFilteredFlashcardList();
 
         Statistics expectedStatistics = getStatisticsFromFlashcardList(flashcardList);
+
+        expectedModel.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
 
         assertCommandSuccess(statsCommand, model, expectedMessage, expectedModel, expectedStatistics);
     }

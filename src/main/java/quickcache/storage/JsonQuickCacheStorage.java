@@ -46,14 +46,14 @@ public class JsonQuickCacheStorage implements QuickCacheStorage {
     public Optional<ReadOnlyQuickCache> readQuickCache(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableQuickCache> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableQuickCache> jsonQuickCache = JsonUtil.readJsonFile(
                 filePath, JsonSerializableQuickCache.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonQuickCache.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonQuickCache.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

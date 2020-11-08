@@ -82,9 +82,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> choices} into a {@code String[]} if {@code choices} is non-empty.
-     * If {@code choicess} contain only one element which is an empty string, it will be parsed into a
-     * {@code String[]} containing zero choices.
+     * Parses {@code Collection<String> choices} into a Optional of choices if {@code choices} is non-empty.
+     * If {@code choices} contain only one element which is an empty string, it will be parsed into a
+     * {@code Optional#empty()}.
      *
      * @return
      */
@@ -94,8 +94,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (choices.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = choices.size() == 1 && choices.contains("") ? Collections.emptySet() : choices;
-        return Optional.of(ParserUtil.parseChoices(tagSet));
+
+        if (choices.size() == 1 && choices.contains("")) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE));
+        }
+
+        return Optional.of(ParserUtil.parseChoices(choices));
     }
 
 }

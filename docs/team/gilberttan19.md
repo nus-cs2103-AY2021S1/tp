@@ -45,7 +45,6 @@ The following describes the feature and enhancement I have already done in the p
   * Justification: This feature improves the product significantly because as there will be too many flashcards as time goes on and the app should provide a convenient way to delete them.
   * Highlights: This command updates the internal state of the list and update them accordingly to the storage.
 
-
 ### 2.2. Code contributed
  Given below is the link to the code that I have contributed.
  [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=gilberttan19)
@@ -67,7 +66,9 @@ Given below is other contributions that I have made to the project.
   * Developer Guide:
     * Added implementation details of the `delete`, `add`, `edit`, abd `addmcq` feature. (Pull requests [\#128](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/128), [\#229](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/229))
 
-  
+* **Contribution to team based task**:
+  * Responsible for the code quality of QuickCache.
+
 * **Community**:
   * PRs reviewed (with non-trivial review comments): (Pull requests [\#115](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/115), [\#85](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/85), [\#227](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/227))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/GilbertTan19/ped/issues/1), [2](https://github.com/GilbertTan19/ped/issues/2), [3](https://github.com/GilbertTan19/ped/issues/3))
