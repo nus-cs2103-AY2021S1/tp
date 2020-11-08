@@ -437,7 +437,8 @@ your McGymmy system.
 
 <div markdown="block" class="alert alert-danger">
 
-*__WARNING:__* this is an advanced feature!
+
+:warning: *__WARNING:__* this is an advanced feature!
 
 </div>
 
