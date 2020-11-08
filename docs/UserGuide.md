@@ -190,16 +190,31 @@ Finds all drinks where their abbreviated names match the KEYWORD(s).
 
 Format: `s-find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.
-* Only the drink's abbreviated name is searched.
-* Only full words will be matched e.g. `BSB` will not match `BSBBT`.
-* Drinks matching at least one keyword will be returned.
-  e.g. `BSBBT BSBM` will return `BSBBT`, `BSBM`.
+**:information_source: Note:** <br>
+The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.<br>
+Only the drink's abbreviated name is searched.<br>
+Only full words will be matched e.g. `BSB` will not match `BSBBT`. <br>
+Drinks matching at least one keyword will be returned.
+  e.g. `BSBBT BSBM` will return `BSBBT`, `BSBM`.<br>
 
-Examples:
-* `s-find BSBBT` returns `BSBBT`'s sales data.
-* `s-find BSBBT BSBM` returns `BSBBT`'s sales data and `BSBM`'s sales data.<br>
- 
+Example: 
+Let's say you want to find BSBBT and BSBM's sales data, you can follow these instructions:
+
+Steps to find sales data:
+1. Type `s-find BSBBT BSBM` into the _Command Box_.
+1.  Press "Enter" to execute.
+
+Outcome:
+1. The _Result Display_ will show that how many drinks you find.
+
+2. All matching drink's sales data will be listed in the _Main View_.
+
+Before executing:
+![BeforeSalesFind](images/BeforeSalesFind.png)
+
+After executing:
+![SalesFindCommandScreenshot](images/SalesFindResult.png)
+
 #### 1.4 Ranking the list of drinks sold : `s-rank`
 Shows a ranked list of all types of drinks sold in the Sales Tracker. The list of drinks
 is ranked from the most popular to least popular.
@@ -315,9 +330,10 @@ Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**
+**:information_source: Note:** <br>
 In tCheck, you may add an employee to the Employee Directory. When you add an employee, you need to provide
-his/her name, phone number, emergency contact, and address. Tag is optional. <br>
+his/her name, phone number, emergency contact, and address.<br>
+Tag is optional. <br>
 PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
 An employee can have any number of tags (including 0).<br>
 
@@ -333,12 +349,7 @@ Outcome:
 
 2. All active employees will be listed in the _Main View_.
 
-#### 3.2 Listing all employees : `c-list`
-
-Shows a list of all employees in the Employee Directory.
-
-
-Format: `c-list`
+![AddEmployeeCommandScreenshot](images/AddEmployeeResult.png)
 
 #### 3.3 Listing all employees who are working today: `c-today`
 
@@ -366,22 +377,38 @@ tags contain `Thursday` will be listed out.
   
 #### 3.5 Editing a person : `c-edit`
 
-
 Edits the corresponding employee's information in the Employee Directory.
 
 Format: `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG]`
 
-* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, ...​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
-* You can remove all the employees’s tags by typing `t/` without
-    specifying any tags after it.
+    
+<div markdown="block" class="alert alert-info">
 
-Examples:
-*  `c-edit 1 p/91234567 e/81234567` Edits the phone number and emergency contact of the 1st employee to be `91234567` and
- `81234567` respectively.
-*  `c-edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
+**:information_source: Note:** <br>
+Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed Employee Directory. The index must be a positive integer 1, 2, 3, ...<br>
+At least one of the optional fields must be provided.<br>
+Existing values will be updated to the input values.<br>
+When editing tags, the existing tags of the employee will be removed i.e. adding of tags is not cumulative.<br>
+You can remove all the employee's tags by typing `t/` without specifying any tags after it.<br>
+
+Example: 
+Let's say you want to edit an employee whose index is 1 in Employee Directory. His new phone number is 91234567. His new emergency contact is 81232744. 
+You can follow these instructions:
+
+Steps to add an employee:
+1. Type `c-edit 1 p/91234567 e/81232744` into the _Command Box_.
+1. Press "Enter" to execute.
+
+Outcome:
+1. The _Result Display_ will show that you edit the employee.
+
+2. All active employees will be listed in the _Main View_.
+
+Before executing:
+![BeforeEditCommandScreenshot](images/BeforeClearCommand.png)
+
+After executing:
+![EditCommandScreenshot](images/EdirCommandResult.png)
 
 
 #### 3.6 Locating employees by keywords: `c-find`
@@ -397,9 +424,28 @@ Format: `c-find KEYWORD [MORE_KEYWORDS]`
 * Employees matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
-Examples:
-* `c-find John` returns `john` and `John Doe`.
-* `c-find alex david` returns `Alex Yeoh`, `David Li`.<br>
+**:information_source: Note:** <br>
+The search is case-insensitive. e.g. `hans` will match `Hans`.<br>
+The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.<br>
+Only the name is searched..<br>
+Only full words will be matched e.g. `Han` will not match `Hans`.<br>
+Employees matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.<br>
+
+Example: 
+Let's say you want to find employees whose name contains "John". 
+You can follow these instructions:
+
+Steps to add an employee:
+1. Type `c-find john` into the _Command Box_.
+1. Press "Enter" to execute.
+
+Outcome:
+1. The _Result Display_ will show how many employees' matching your find command
+
+2. Employees whose name contains "john" will be listed in the _Main View_.
+
+![EmployeeFindCommandScreenshot](images/EmployeeFindResult.png)
 
 #### 3.7 Locating employees based on matching tags: `c-tag-find`
 
@@ -428,15 +474,42 @@ Format: `c-delete INDEX`
 * The index refers to the index number shown in the displayed Employee Directory.
 * The index **must be a positive integer** 1, 2, 3, ...​
 
-Examples:
-* `c-list` followed by `c-delete 2` deletes the 2nd employee in the contact list.
-* `c-find Betsy` followed by `c-delete 1` deletes the 1st employee in the results of the `c-find` command.
+Example:
+* Let's say you want to delete the employee whose index is 1. You can follow these instructions:
+
+Step to delete the employee whoses index is 1:
+1. Type `c-delete 1` into the _Command Box_.
+2. Press "Enter" to execute.
+
+
+Outcome:
+1. The _Result Display_ will show deleted employee's information.
+2. Remaining employees will be listed in the Employee Directory inside the _Main View_.
+
+![DeleteEmployeeCommandScreenshot](images/DeleteEmployeeResult.png)
 
 #### 3.9 Clearing all entries : `c-clear`
 
 Clears all entries from the Employee Directory.
 
 Format: `c-clear`
+
+Example:
+* Let's say you want to delete all employees in Employee Directory. You can follow these instructions:
+
+Step to delete all employees:
+1. Type `c-clear` into the _Command Box_.
+2. Press "Enter" to execute.
+
+
+Outcome:
+2. No employees will be listed in the Employee Directory inside the _Main View_.
+
+Before executing:
+![ListEmployeeScreenshot](images/BeforeClearCommand.png)
+
+After executing:
+![ClearEmployeeCommandScreenshot](images/ClearEmployeeResult.png)
 
 #### 3.10 Archiving an employee : `c-archive`
 
@@ -539,7 +612,7 @@ Action | Format, Examples
 Action | Format, Examples
 -------|------------------------------
 **Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
-**List** | `c-list`
+**List** | `c-active-list`, `c-archive-list`
 **List avalible manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG]`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
 **Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
