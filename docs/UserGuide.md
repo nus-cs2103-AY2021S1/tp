@@ -58,6 +58,7 @@ To start using and experimenting with ChopChop, here are the steps you can follo
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. The app starts with some sample data for you to experiment with.<br/>
 
+<a name="Figure-1-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/sample_data.png" width="75%" /> <br />
 Figure 1.1: <i>The initial state of ChopChop, including sample data</i>
@@ -128,6 +129,7 @@ Specifically, this section covers:
 12. [Recipe Steps](#RecipeSteps)
 13. [Menu Bar](#MenuBar)
 
+<a name="Figure-1-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/recipe_panel_description.png" width="95%" /> <br />
 Figure 1.2: <i>The Recipe View Panel of ChopChop.</i>
@@ -154,14 +156,14 @@ ChopChop will always display textual responses to the commands you input — the
 <a name="RecipeButton"></a>
 ### 4.3&ensp;Recipe Button
 {:.no_toc}
-ChopChop is able to display all of your recipes as [Recipe Tiles](#RecipeTiles) in the `Main Display Area` as shown in Figure 1.2 when you press the `Recipes` button. The 4 buttons at the bottom of our GUI will take on a darker shade when they are currently selected.
+ChopChop is able to display all of your recipes as [Recipe Tiles](#RecipeTiles) in the `Main Display Area` as shown in [figure 1.2](#Figure-1-2) when you press the `Recipes` button. The 4 buttons at the bottom of our GUI will take on a darker shade when they are currently selected.
 
 
 
 <a name="IngredientButton"></a>
 ### 4.4&ensp;Ingredient Button
 {:.no_toc}
-ChopChop is able to display all of your ingredients as [Ingredient Tiles](#IngredientTiles) in the `Main Display Area` as shown in Figure 1.3 when you press the `Ingredients` button.
+ChopChop is able to display all of your ingredients as [Ingredient Tiles](#IngredientTiles) in the `Main Display Area` as shown in [figure 1.3](#Figure-1-3) when you press the `Ingredients` button.
 
 
 
@@ -183,14 +185,14 @@ ChopChop is able to produce statistics based on the food you make! To view your 
 <a name="RecipeTiles"></a>
 ### 4.7&ensp;Recipe Tiles
 {:.no_toc}
-ChopChop is able to show you your recipes in the form of tiles — simply click on a tile to view the detailed information about the selected recipe in the `Main Display Area`, as shown in Figure 1.4.
+ChopChop is able to show you your recipes in the form of tiles — simply click on a tile to view the detailed information about the selected recipe in the `Main Display Area`, as shown in [figure 1.4](#Figure-1-4).
 
 
 
 <a name="IngredientTiles"></a>
 ### 4.8&ensp;Ingredient Tiles
 {:.no_toc}
-ChopChop is able to show you your ingredients in the form of tiles, as shown in Figure 1.3. In each tile, there are 5 components:
+ChopChop is able to show you your ingredients in the form of tiles, as shown in [figure 1.3](#Figure-1-3). In each tile, there are 5 components:
 
 1. The `Index` shows the index of the ingredient for easier referencing.
 2. The `Expiry Date` of the ingredient.
@@ -199,11 +201,13 @@ ChopChop is able to show you your ingredients in the form of tiles, as shown in 
 5. The `Tags` associated with the ingredient.
 
 
+<a name="Figure-1-3"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/ingredient_panel_description.png" width="95%" /> <br />
 Figure 1.3: <i>The Ingredient View Panel of ChopChop.</i>
 </div>
 
+<a name="Figure-1-4"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/recipe_display_description.png" width="95%" /> <br />
 Figure 1.4: <i>The Recipe Display Panel of ChopChop.</i>
@@ -252,7 +256,7 @@ ChopChop provides two buttons here — `File` and `Help`. Click the `exit` optio
 
 While ChopChop has a graphical user interface, the main method of interaction is through the use of *typed commands*. Using these commands as described below, you can manipulate your recipes and ingredients without ever needing to move your mouse!
 
-Commands should be typed in the <i>Command Box</i> — you can refer to <i>Figure 1.2</i> above if you get lost. ChopChop also features [tab completion](#TabCompletion), which will make typing commands easier.
+Commands should be typed in the <i>Command Box</i> — you can refer to [figure 1.2](#Figure-1-2) above if you get lost. ChopChop also features [tab completion](#TabCompletion), which will make typing commands easier.
 
 ### 5.1&ensp;Command Syntax
 
@@ -372,6 +376,7 @@ Furthermore, you can also use this command to get help for specific commands. In
 Examples:
 - If you simply want a link to this page, you can use `help`:
 
+  <a name="Figure-2-1"></a>
   <div style="text-align: center; padding-bottom: 2em">
   <img src="images/ug/help_message_1.png" width="55%" /> <br />
   Figure 2.1: <i>The help message, with a link to this User Guide</i>
@@ -379,6 +384,7 @@ Examples:
 
 - If you want help for a specific command — for example, how to add recipes — you can use `help add recipe`, which will give you a link that brings you to that specific section:
 
+  <a name="Figure-2-2"></a>
   <div style="text-align: center; padding-bottom: 2em">
   <img src="images/ug/help_message_2.png" width="55%" /> <br />
   Figure 2.2: <i>The help message for a specific command</i>
@@ -404,6 +410,8 @@ This command undoes the last undoable command. Undoable commands are commands th
 **Usage**: `undo`
 
 The most common scenario to undo a command is when accidentally deleting something; for example, suppoes you wanted to delete the <i>Salted Water</i> recipe, but you accidentally deleted the <i>Scrambled Eggs</i> recipe instead:
+
+<a name="Figure-3-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/undo_1.png" width="75%" /> <br />
 Figure 3.1: <i>Accidentally typing 'Scrambled Eggs' instead of 'Salted Water'</i>
@@ -411,6 +419,7 @@ Figure 3.1: <i>Accidentally typing 'Scrambled Eggs' instead of 'Salted Water'</i
 
 Fear not, because fixing the mistake is a simple `undo` away:
 
+<a name="Figure-3-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/undo_2.png" width="75%" /> <br />
 Figure 3.2: <i>Simply use the `undo` command</i>
@@ -418,6 +427,7 @@ Figure 3.2: <i>Simply use the `undo` command</i>
 
 After pressing <kbd>enter</kbd>, notice that the <i>Scrambled Eggs</i> recipe is back:
 
+<a name="Figure-3-3"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/undo_3.png" width="75%" /> <br />
 Figure 3.3: <i>The scrambled eggs were saved</i>
@@ -433,6 +443,7 @@ This command redoes the last redoable command, effectively functioning as an und
 
 For example, let's say that you changed your mind, and you didn't really want those scrambled eggs anyway; you can use `redo` to redo the deletion of that recipe:
 
+<a name="Figure-4-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/redo_1.png" width="75%" /> <br />
 Figure 4.1: <i>The scrambled eggs will be deleted again</i>
@@ -440,6 +451,7 @@ Figure 4.1: <i>The scrambled eggs will be deleted again</i>
 
 After pressing <kbd>enter</kbd>, the scrambled eggs are now deleted:
 
+<a name="Figure-4-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/redo_2.png" width="75%" /> <br />
 Figure 4.2: <i>The scrambled eggs are now gone</i>
@@ -464,16 +476,18 @@ In the second case, only ingredients that expire within the next week will be ta
 
 In this example, ChopChop knows about some <i>Milk</i> that is about to expire within the next week (say, for example, it is the 4th of November):
 
+<a name="Figure-5-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/list_recommendations_1.png" width="40%" /> <br />
-Figure 3.1: <i>There's some milk expiring on the 9th of November</i>
+Figure 5.1: <i>There's some milk expiring on the 9th of November</i>
 </div>
 
 Then, in addition to showing recipes using in-stock ingredients, it also highlights the Pancake recipe, which uses milk:
 
+<a name="Figure-5-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/list_recommendations_2.png" width="75%" /> <br />
-Figure 3.2: <i>The recommendations view</i>
+Figure 5.2: <i>The recommendations view</i>
 </div>
 
 
@@ -503,16 +517,18 @@ Examples:
 	This displays the recipe named 'pancakes'. Note that the name here is case insensitive.
 
 To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the same recipe:
+<a name="Figure-6-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/view_recipe_1.png" width="75%" /> <br />
-Figure 4.1: <i>The recipe list view</i>
+Figure 6.1: <i>The recipe list view</i>
 </div>
 
 After pressing <kbd>enter</kbd>, you will see this view, showing the recipe you wish to view:
 
+<a name="Figure-6-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/view_recipe_2.png" width="75%" /> <br />
-Figure 4.2: <i>The detailed recipe view</i>
+Figure 6.2: <i>The detailed recipe view</i>
 </div>
 
 
@@ -532,9 +548,10 @@ This command shows a list of all recipes in ChopChop. You can use this to switch
 
 Executing this command simply brings you back to the recipe list view:
 
+<a name="Figure-7-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/list_recipes.png" width="75%" /> <br />
-Figure 5: <i>The recipe list view</i>
+Figure 7: <i>The recipe list view</i>
 </div>
 
 
@@ -576,23 +593,26 @@ add recipe Pancakes
 ```
 (note that this is displayed on separate lines for clarity, but you should type this in one go)
 
+<a name="Figure-8-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_1.png" width="75%" /> <br />
-Figure 6.1: <i>The add recipe command</i>
+Figure 8.1: <i>The add recipe command</i>
 </div>
 
 After pressing <kbd>enter</kbd>, you will see this view, showing your newly created recipe:
 
+<a name="Figure-8-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_2.png" width="75%" /> <br />
-Figure 6.2: <i>The recipe detail view</i>
+Figure 8.2: <i>The recipe detail view</i>
 </div>
 
 If you go back to the main recipe view (either by clicking on the tab at the bottom, or by using `list recipes`, you can see the new recipe in the list (ChopChop won't actually highlight it, but we do here for clarity):
 
+<a name="Figure-8-3"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_3.png" width="75%" /> <br />
-Figure 6.3: <i>The newly created recipe in the recipe list</i>
+Figure 8.3: <i>The newly created recipe in the recipe list</i>
 </div>
 
 
@@ -697,68 +717,78 @@ Examples:
 To illustrate how to use this powerful command, let us recreate the Pancake recipe from above, starting from a blank recipe instead. First, we make the empty recipe using `add recipe Pancakes`:
 
 <!-- to editors: don't mind the image names, i cut out some steps for brevity and i'm lazy to rename the files. -->
+<a name="Figure-9-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_1.png" width="75%" /> <br />
-Figure 7.1: <i>The empty recipe</i>
+Figure 9.1: <i>The empty recipe</i>
 </div>
 
 Now, let's add our ingredients, using `/ingredient:add`; first, 400 grams of flour:
 
+<a name="Figure-9-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_2.png" width="75%" /> <br />
-Figure 7.2: <i>The command to add a new ingredient to the recipe</i>
+Figure 9.2: <i>The command to add a new ingredient to the recipe</i>
 </div>
 
 Next, adding the eggs and milk in one go:
 
+<a name="Figure-9-3"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_3.png" width="75%" /> <br />
-Figure 7.3: <i>The edit command supports multiple operations at once</i>
+Figure 9.3: <i>The edit command supports multiple operations at once</i>
 </div>
 
 Oops, that's too many eggs, so let's edit the quantity using `/ingredient:edit`:
 
+<a name="Figure-9-4"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_4.png" width="75%" /> <br />
-Figure 7.4: <i>Editing an ingredient to change its quantity</i>
+Figure 9.4: <i>Editing an ingredient to change its quantity</i>
 </div>
 
+<a name="Figure-9-5"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_5.png" width="75%" /> <br />
-Figure 7.5: <i>The recipe now uses only 3 eggs</i>
+Figure 9.5: <i>The recipe now uses only 3 eggs</i>
 </div>
 
 Now let's add the steps with `/step:add`:
 
+<a name="Figure-9-6"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_6.png" width="75%" /> <br />
-Figure 7.6: <i>Multiple steps can be added at the same time</i>
+Figure 9.6: <i>Multiple steps can be added at the same time</i>
 </div>
 
+<a name="Figure-9-7"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_7.png" width="75%" /> <br />
-Figure 7.7: <i>The finished recipe</i>
+Figure 9.7: <i>The finished recipe</i>
 </div>
 
 Wait, we forgot to mix the ingredients together! Let's fix it by inserting a new step 2 with `/step:add:2`:
 
+<a name="Figure-9-8"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_8.png" width="75%" /> <br />
-Figure 7.8: <i>Adding a new step in the second position</i>
+Figure 9.8: <i>Adding a new step in the second position</i>
 </div>
 
 Oh no, we also forgot the most important thing — syrup! So let's modify the last step (4) to include syrup with `/step:edit:4`:
 
+<a name="Figure-9-9"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_9.png" width="75%" /> <br />
-Figure 7.9: <i>Editing the last step</i>
+Figure 9.9: <i>Editing the last step</i>
 </div>
 
 And now the pancake recipe is complete!
 
+<a name="Figure-9-10"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_10.png" width="75%" /> <br />
-Figure 7.10: <i>The finished recipe</i>
+Figure 9.10: <i>The finished recipe</i>
 </div>
 
 
@@ -785,9 +815,10 @@ Examples:
 
 In this example, both `delete recipe #7` and `delete recipe pancakes` will delete the **Pancakes** recipe:
 
+<a name="Figure-10-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_recipe_1.png" width="75%" /> <br />
-Figure 8: <i>The pancakes recipe can be referred to either by name or by number</i>
+Figure 10: <i>The pancakes recipe can be referred to either by name or by number</i>
 </div>
 
 
@@ -811,23 +842,26 @@ Examples:
 - `find recipe milk cake` will match **Milk Tea** and **Carrot Cake**.
 
 To illustrate, suppose you want to search for recipes with names containing 'cake', you would use `find recipe cake`:
+<a name="Figure-11-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_1.png" width="75%" /> <br />
-Figure 9.1: <i>The initial list of recipes</i>
+Figure 11.1: <i>The initial list of recipes</i>
 </div>
 
 After executing the command, note how the recipe list has changed, showing only the matching recipes, and that the item numbers in the corners have changed as well. As explained above, the 'Pancakes' recipe was not included in this list:
 
+<a name="Figure-11-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_2.png" width="75%" /> <br />
-Figure 9.2: <i>The recipes containing 'cake'</i>
+Figure 11.2: <i>The recipes containing 'cake'</i>
 </div>
 
 To go back to the full recipe view (resetting the search filter), you can either click the Recipes button at the bottom, or run the `list recipes` command:
 
+<a name="Figure-11-3"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_3.png" width="75%" /> <br />
-Figure 9.3: <i>Back to the main recipe list</i>
+Figure 11.3: <i>Back to the main recipe list</i>
 </div>
 
 
@@ -883,10 +917,11 @@ Examples:
 
 To illustrate, suppose you had the following two recipes:
 
+<a name="Figure-12-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
   <img src="images/ug/filter_recipe_1.png" width="35%" style="margin-right: 20px;" />
   <img src="images/ug/filter_recipe_2.png" width="35%" style="margin-left: 20px;" /> <br /> <br />
-  Figure 10.1: <i>The starting recipes</i>
+  Figure 12.1: <i>The starting recipes</i>
 </div>
 
 Then, if you wanted to search for recipes with tags **christmas** and **baked**, using ingredients **honey**, **ginger root**, and **molasses**, and whose names contain keywords **men** and **bread**, you would use this command (separated into lines for clarity):
@@ -899,9 +934,10 @@ filter recipe
 
 After executing the command, similar to the effect of [`find recipe`](#FindRecipeCommand) command, the recipe list has changed, showing only the matching recipe, **Gingerbread Men**:
 
+<a name="Figure-12-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_recipe_3.png" width="75%" /> <br />
-Figure 10.2: <i>Only one recipe matched all the provided criteria</i>
+Figure 12.2: <i>Only one recipe matched all the provided criteria</i>
 </div>
 
 Note the following:
@@ -929,23 +965,26 @@ Examples:
   This makes the recipe named 'pancakes'. Note that the name here is case insensitive.
 
 To illustrate suppose you wanted to make the pancakes here, you would use `make recipe pancakes`. You can run this command from any view (not necessarily from the recipe detail view):
+<a name="Figure-13-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_1.png" width="75%" /> <br />
-Figure 11.1: <i>Making pancakes</i>
+Figure 13.1: <i>Making pancakes</i>
 </div>
 
 After pressing <kbd>enter</kbd>, ChopChop will open up the recipe that you've just made:
 
+<a name="Figure-13-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_2.png" width="75%" /> <br />
-Figure 11.2: <i>The detailed recipe view</i>
+Figure 13.2: <i>The detailed recipe view</i>
 </div>
 
 If there are ingredients that are missing, or that you have insufficient amounts of, ChopChop will display this message in the command output window:
 
+<a name="Figure-13-3"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_3.png" width="55%" /> <br />
-Figure 11.3: <i>Insufficient ingredients to make the pancakes</i>
+Figure 13.3: <i>Insufficient ingredients to make the pancakes</i>
 </div>
 
 Furthermore, if the recipe used ingredients having incompatible units with existing ingredients (eg. you have Butter in grams, but the recipe wants Butter in tablespoons), then an error is also shown. In this situation, you should [edit the recipe](#EditRecipeCommand) so that it uses the correct units.
@@ -982,9 +1021,10 @@ This command shows a list of all recipes in ChopChop. As with the `list recipes`
 :bulb: **Tip:** For convenience, you can use either `list ingredients` or `list ingredient`.
 </div>
 
+<a name="Figure-14-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/list_ingredients.png" width="75%" /> <br />
-Figure 12: <i>The ingredient list view</i>
+Figure 14: <i>The ingredient list view</i>
 </div>
 
 
@@ -1019,37 +1059,42 @@ Examples:
 
 Suppose you just finished a grocery run, and want to add the items to ChopChop. First, you have 2 cartons of milk:
 
+<a name="Figure-15-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_1.png" width="75%" /> <br />
-Figure 13.1: <i>Adding 2 litres of milk</i>
+Figure 15.1: <i>Adding 2 litres of milk</i>
 </div>
 
 Since ChopChop did not know about 'milk' previously, a new ingredient entry is created for it:
 
+<a name="Figure-15-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_2.png" width="75%" /> <br />
-Figure 13.2: <i>The newly added milk ingredient</i>
+Figure 15.2: <i>The newly added milk ingredient</i>
 </div>
 
 Next, suppose you also bought 24 blueberries:
 
+<a name="Figure-15-3"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_3.png" width="75%" /> <br />
-Figure 13.3: <i>Adding 24 blueberries</i>
+Figure 15.3: <i>Adding 24 blueberries</i>
 </div>
 
 This time, since ChopChop already knew about blueberries, our previous 19 blueberries now become 43:
 
+<a name="Figure-15-4"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_4.png" width="75%" /> <br />
-Figure 13.4: <i>You now have 43 blueberries</i>
+Figure 15.4: <i>You now have 43 blueberries</i>
 </div>
 
 If you try to add an ingredient with incompatible quantities (for example, suppose you did not want to count the blueberries individually, and you only know that you bought a 400 gram box), ChopChop will display an error message, and not update the ingredient:
 
+<a name="Figure-15-5"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_5.png" width="45%" /> <br />
-Figure 13.5: <i>Ingredients must have compatible units to be combined</i>
+Figure 15.5: <i>Ingredients must have compatible units to be combined</i>
 </div>
 
 
@@ -1080,16 +1125,18 @@ Examples:
 
 To illustrate, suppose that you poured yourself a glass of cold milk to drink, without making a recipe. To tell ChopChop that there is less milk in the fridge, you would use this command:
 
+<a name="Figure-16-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_1.png" width="75%" /> <br />
-Figure 14.1: <i>Removing 350ml of milk</i>
+Figure 16.1: <i>Removing 350ml of milk</i>
 </div>
 
 Notice how the amount of milk decreased from 2 litres to 1.65 litres:
 
+<a name="Figure-16-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_2.png" width="75%" /> <br />
-Figure 14.2: <i>You now only have 1.65 litres of milk left</i>
+Figure 16.2: <i>You now only have 1.65 litres of milk left</i>
 </div>
 
 
@@ -1112,16 +1159,18 @@ Constraints:
 
 For example, suppose you wanted to find all ingredients containing fish (not in the literal sense, but only in their name):
 
+<a name="Figure-17-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_1.png" width="75%" /> <br />
-Figure 15.1: <i>The complete ingredient list</i>
+Figure 17.1: <i>The complete ingredient list</i>
 </div>
 
 Now, only the matching ingredients are shown:
 
+<a name="Figure-17-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_2.png" width="75%" /> <br />
-Figure 15.2: <i>Only ingredients containing 'fish' in their name are shown</i>
+Figure 17.2: <i>Only ingredients containing 'fish' in their name are shown</i>
 </div>
 
 To clear the search filter, you can either click the Ingredients button, or use `list ingredients` to return to the list of ingredients.
@@ -1175,16 +1224,18 @@ Examples:
 
 To illustrate, suppose you want to search for ingredients tagged both **bakery** and **sweet**, expiring before **2021-12-31** and containing **sugar** in the name; you can use `filter ingredient /tag bakery /expiry 2021-12-31 /tag sweet /name sugar`:
 
+<a name="Figure-18-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_ingredient_1.png" width="75%" /> <br />
-Figure 16.1: <i>The initial list of ingredients</i>
+Figure 18.1: <i>The initial list of ingredients</i>
 </div>
 
 After executing the command, similar to the effect of **filter recipe** command, the ingredient list has changed, showing the only matching ingredients, **Brown Sugar** and **Granulated Sugar**:
 
+<a name="Figure-18-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_ingredient_2.png" width="75%" /> <br />
-Figure 16.2: <i>The ingredients matching all the provided criteria</i>
+Figure 18.2: <i>The ingredients matching all the provided criteria</i>
 </div>
 
 Note that **Honey**, which was also tagged **bakery** and **sweet** and would expire before **2021-12-31**, was not included because its name does not contain **sugar**.
@@ -1247,9 +1298,10 @@ Note that, even if a recipe was deleted (with [`delete recipe`](#DeleteRecipeCom
 
 For example, here is the output for someone who really really loves pancakes:
 
+<a name="Figure-19-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_top.png" width="45%" /> <br />
-Figure 17: <i>No pancakes were sacrificed for this picture</i>
+Figure 19: <i>No pancakes were sacrificed for this picture</i>
 </div>
 
 
@@ -1262,9 +1314,10 @@ Note that this is also the view that is displayed by default when no statistics 
 
 **Usage**: `stats recipe recent`
 
+<a name="Figure-20-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_recent.png" width="45%" /> <br />
-Figure 18: <i>The recently-made recipes view</i>
+Figure 20: <i>The recently-made recipes view</i>
 </div>
 
 
@@ -1299,16 +1352,18 @@ Examples:
 
 For example, `stats recipe made /after 2020-11-02 /before 2020-11-04 23:00` shows this output:
 
+<a name="Figure-21-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_made_1.png" width="45%" /> <br />
-Figure 19: <i>Showing the recipes made between a date range</i>
+Figure 21: <i>Showing the recipes made between a date range</i>
 </div>
 
 Meanwhile, just executing `stats recipe made` only shows the recipes made on the current day:
 
+<a name="Figure-22-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_made_2.png" width="45%" /> <br />
-Figure 20: <i>Showing the recipes made on the current day</i>
+Figure 22: <i>Showing the recipes made on the current day</i>
 </div>
 
 
@@ -1334,9 +1389,10 @@ This command shows a list of the 10 most recently-used ingredients consumed by [
 
 For example, after having just made <i>Scrambled Eggs</i>, these will be the recently-used ingredients:
 
+<a name="Figure-23-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_ingredient_recent.png" width="45%" /> <br />
-Figure 21: <i>The recently used ingredients view</i>
+Figure 23: <i>The recently used ingredients view</i>
 </div>
 
 
@@ -1593,43 +1649,6 @@ view recipe &lt;#REF&gt;
   </tr>
 </tbody></table>
 
-
-
-
-
-
-
-
-<!--
-
-| Command                                      | Description                                                                | Undoable |
-|----------------------------------------------|----------------------------------------------------------------------------|----------|
-| [add ingredient](#AddIngredientCommand)      | Adds a new ingredient, or increases the quantity of an existing ingredient | **YES**  |
-| [add recipe](#AddRecipeCommand)              | Adds a new recipe                                                          | **YES**  |
-| [delete ingredient](#DeleteIngredientCommand)| Completely deletes an ingredient, or removes some quantity of it           | **YES**  |
-| [delete recipe](#DeleteRecipeCommand)        | Completely deletes a recipe                                                | **YES**  |
-| [edit recipe](#EditRecipeCommand)            | Edits an existing recipe                                                   | **YES**  |
-| [filter ingredient](#FilterIngredientCommand)| Searches for ingredients by one or more filtering criteria                 | **NO**   |
-| [filter recipe](#FilterRecipeCommand)        | Searches for recipes by one or more filtering criteria                     | **NO**   |
-| [find ingredient](#FindIngredientCommand)    | Searches for ingredients by their name                                     | **NO**   |
-| [find recipe](#FindRecipeCommand)            | Searches for recipes by their name                                         | **NO**   |
-| [help](#HelpCommand)                         | Shows help in general, or help for specific commands                       | **NO**   |
-| [list ingredient](#ListIngredientCommand)    | Shows the main ingredient list, and clears any search filters              | **NO**   |
-| [list recipe](#ListRecipeCommand)            | Shows the main recipe list, and clears any search filters                  | **NO**   |
-| [make](#MakeRecipeCommand)                   | Makes a recipe, consuming ingredients and recording statistics             | **YES**  |
-| [quit](#QuitCommand)                         | Exits ChopChop                                                             | **NO**   |
-| [redo](#RedoCommand)                         | Redoes a command that was previously undone                                | **NO**   |
-| [stats recipe top](#StatsRecipeTopCommand)              | Shows the top recipes                                           | **NO**   |
-| [stats recipe recent](#StatsRecipeRecentCommand)        | Shows the recently made recipes                                 | **NO**   |
-| [stats recipe made](#StatsRecipeMadeCommand)            | Shows the recipes made within the given time frame              | **NO**   |
-| [stats recipe clear](#StatsClearRecipeCommand)          | Clear recipe usage records                                      | **YES**  |
-| [stats ingredient recent](#StatsIngredientRecentCommand)| Shows the recently used ingredients                             | **NO**   |
-| [stats ingredient made](#StatsIngredientUsedCommand)    | Shows the ingredient used within the given time frame           | **NO**   |
-| [stats ingredient clear](#StatsIngredientClearCommand)  | Clear ingredient usage records                                  | **YES**  |
-| [undo](#UndoCommand)                         | Undoes a command that was previously executed                              | **NO**   |
-| [view](#ViewRecipeCommand)                   | Opens the detailed view for a recipe                                       | **NO**   |
-
- -->
 
 
 

@@ -22,6 +22,9 @@ import chopchop.testutil.StubbedUsageModel;
 
 class StatsRecipeRecentCommandTest {
     private Model model;
+    private CommandResult recipeListRes = CommandResult.statsMessage(getListViewRecipeList().stream()
+            .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
+        "Here are your recently made recipes");
 
     @BeforeEach
     public void setUp() {
@@ -66,38 +69,29 @@ class StatsRecipeRecentCommandTest {
 
     @Test
     public void execute_sortedUsages() {
-        var expectedRes = CommandResult.statsMessage(getListViewRecipeList().stream()
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
-            "Here are your recently made recipes");
         model.setRecipeUsageList(getRecipeUsageList());
         var cmd = new StatsRecipeRecentCommand();
         var cmdRes = cmd.execute(model, new HistoryManager());
-        assertEquals(expectedRes, cmdRes);
+        assertEquals(recipeListRes, cmdRes);
     }
 
     @Test
     public void execute_unsortedUsages() {
-        var expectedRes = CommandResult.statsMessage(getListViewRecipeList().stream()
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
-            "Here are your recently made recipes");
         model.setRecipeUsageList(new UsageList<>(getUnsortedRecipeList()));
         var cmd = new StatsRecipeRecentCommand();
         var cmdRes = cmd.execute(model, new HistoryManager());
-        assertEquals(expectedRes, cmdRes);
+        assertEquals(recipeListRes, cmdRes);
     }
 
     //max of 10 items in the list
     @Test
-    public void execute_numerousUsages() {
-        var expectedRes = CommandResult.statsMessage(getListViewRecipeList().stream()
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
-            "Here are your recently made recipes");
+    public void execute_elevenUsages_only10UsagesReturned() {
         var newList = getRecipeList();
         newList.add(RECIPE_B_A);
         model.setRecipeUsageList(new UsageList<>(newList));
         var cmd = new StatsRecipeRecentCommand();
         var cmdRes = cmd.execute(model, new HistoryManager());
-        assertEquals(expectedRes, cmdRes);
+        assertEquals(recipeListRes, cmdRes);
     }
 
     @Test
