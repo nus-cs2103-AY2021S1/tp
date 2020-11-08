@@ -23,6 +23,7 @@
         * [6.2.3 Delete student command](#623-delete-student-command)
         * [6.2.4 Find student command](#624-find-student-command)
         * [6.2.5 Overdue command](#625-overdue-command)
+        * [6.2.6 Sort command](#626-sort-command)
     * [6.3 Student academic details features](#63-student-academic-details-features)
         * [6.3.1 Student questions features](#631-student-questions-features)
             * [6.3.1.1 Add question command](#6311-add-question-command)
@@ -34,7 +35,7 @@
             * [6.3.2.3 Exam Stats command](#6323-exam-stats-command)
         * [6.3.3 Student attendance features](#633-student-attendance-features)
     * [6.4 Schedule command](#64-schedule-command)
-    * [6.5 Notes command](#65-notes-command)
+    * [6.5 Notebook feature](#65-notebook-feature)
 - [7. Documentation](#7-documentation)
 - [8. Logging](#8-logging)
 - [9. Testing](#9-testing)
@@ -356,7 +357,7 @@ This is a sequence diagram together with an explanation of the implementation.
 
  1. After the `FindCommand`  is created by parsing user input, `FindCommand::execute` is called.
  2. The method then calls `getPredicates()` of the `FindStudentDescriptor` stored within `FindCommand` to obtain a `List<Predicate>` to search with.
- 3. The predicates within `List<Predicate>`are then combined into `consolidatedPredicate`.
+ 3. The predicates within `List<Predicate>`are then combined into `consolidatedPredicates`.
  4. The `FilteredList<Student>` within the `Model` is then updated using `Model#updateFilteredPersonList(Predicate predicate)` for display.
  5. A new `CommandResult` will be returned with the success message.
 
@@ -583,7 +584,48 @@ The following are the various design choices made regarding the feature and alte
     This would violate the data integrity of the `Student` we currently have and introduce additional complexity in
     maintaining both data structures.
 
-### 6.5 Notes Command
+### 6.5 Notebook feature
+
+This section describes the implementation of the notebook feature and the various commands relating to notebook. The following diagram show the internal structure of a note. (refer to [5.4 Model Component](#54-model-component) for higher-level details about the structure of the design)
+
+![NotesModelClassDiagram](images/NotesModelClassDiagram.png)
+
+The notebook feature comprises three commands:
+
+* `AddNoteCommand` – Adds a note to the notebook.
+* `EditNoteCommand` – Edits a note in the notebook.
+* `DeleteNoteCommand` – Deletes a note from the notebook
+
+#### 6.5.1 Add note command
+
+This section describes how `AddNoteCommand` is performed.
+
+1. Upon successful parsing of the user input, `AddNoteCommand#execute(Model model)` is called which checks whether there is already a note with the same title in `NotesList` using `Model#hasNote(Note toAdd)`.
+2. If a duplicate note is found, a `CommandException` is thrown, and the note will not be added.
+3. Otherwise, `Model#addNote(Note toAdd)` will be called, and the note will be added.
+4. A `CommandResult` will be returned with the success message.
+
+#### 6.5.2 Edit note command
+
+This section describes how `EditNoteCommand` is performed.
+
+1. Upon successful parsing of the user input, `EditNoteCommand#execute(Model model)` is called.
+2. During the execution, `Model#getNotebook()` is called to retrieve the notebook in Reeve and `ReadOnlyNotebook#getNotesList()` is called from the notebook to retrieve the list of notes.
+3. The `Index` is checked to ensure that it is valid; if it is not, a `CommandException` is thrown, and no note will be edited.
+4. The note at `index` is retrieved, and a new note, `editedNote` is created based on this note and the `EditNoteDescriptor` stored within the `EditNoteCommand`.
+5. `editedNote` is checked to ensure that it is not the same as the original note retrieved. A `CommandException` is thrown if it is the same note.
+6. `Model#setNote(Note notetoEdit, Note editedNote)` is called to edit `noteToEdit` to `editedNote` in `model`.
+7. A `CommandResult` will be returned with the success message.
+
+#### 6.5.3 Delete note command
+
+This section describes how `DeleteNoteCommand` is performed.
+
+1. Upon successful parsing of the user input, `DeleteNoteCommand#execute(Model model)` is called.
+2. During the execution, `Model#getNotebook()` is called to retrieve the `ReadOnlyNotebook` in Reeve and `ReadOnlyNotebook#getNotesList()` is called to retrieve the `List<Note>`.
+3. The `Index` is checked to ensure that it is valid; if it is not, a `CommandException` is thrown, and no note will be deleted.
+4. The `Note` at `Index` is removed from the notebook using `Model#deleteNote(Note noteToDelete)`.
+5. A `CommandResult` will be returned with the success message.
 
 ## 7. **Documentation**
 Refer to the [Documentation guide](Documentation.md).
