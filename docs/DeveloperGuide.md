@@ -34,7 +34,8 @@ title: Developer Guide
     - [3.3. List Features](#33-list-features)
         * [3.3.1 Implementation](#331-implementation)
         * [3.3.2 Design Consideration - **List Recipes**](#332-design-consideration-list-recipe)
-            * [Aspect: Concern while adding a new feature](#3321-aspect)
+            * [Aspect 1 : Concern while adding a new feature](#3321-aspect-1)
+            * [Aspect 2: What recipe information to show and how to show them](#3322-aspect-2)
         * [3.3.3 Design Consideration - **List Ingredients**](#333-design-consideration-list-ingredient)
              * [Aspect: Concern while adding a new feature](#3331-aspect)
         * [3.3.4 Design Consideration - **List Consumptions**](#334-design-consideration-list-consumption)
@@ -44,12 +45,12 @@ title: Developer Guide
     - [3.4. Delete Features](#34-delete-features)
         * [3.4.1 Implementation](#341-implementation)
         * [3.4.2 Design Consideration - **Delete Recipe**](#342-design-consideration-delete-recipe)
-            * [Aspect: Concern while adding a new feature](#3421-aspect)
+            * [Aspect 1: Concern while adding a new feature](#3421-aspect-1)
+            * [Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present)](#3422-aspect-2)
         * [3.4.3 Design Consideration - **Delete Ingredient**](#343-design-consideration-delete-ingredient)
             * [Aspect: Concern while adding a new feature](#3431-aspect)
         * [3.4.4 Design Consideration - **Delete Consumption**](#344-design-consideration-delete-consumption)
-            * [Aspect 1: Concern while adding a new feature](#3441-aspect-1)
-	    	    * [Aspect 2: When the user deletes a recipe from the recipe list, should it also be deleted from the consumption list (if present)](#3442-aspect-2)
+            * [Aspect: Concern while adding a new feature](#3441-aspect)
 	    <br><br>
     - [3.5. Edit Features](#35-edit-features)
         * [3.5.1 Implementation](#351-implementation)
@@ -94,7 +95,9 @@ title: Developer Guide
             * [Aspect: Concern while adding a new feature](#31031-aspect)
         * [3.10.4 Design Consideration - **Clear Consumptions**](#3104-design-consideration-clear-consumption)
             * [Aspect: Concern while adding a new feature](#31041-aspect)
+        <br><br>
 4. [Documentation, Logging, Testing, Configuration, Dev-ops](#4-documentation-logging-testing-configuration-dev-ops)
+<br><br>
 5. [Appendix A: Requirements](#5-appendix-requirements)
     - [5.1 Product Scope](#51-product-scope)
     - [5.2 User Stories](#52-user-stories)
@@ -105,14 +108,36 @@ title: Developer Guide
         * [5.3.4 Other Use Cases](#534-other-use-cases) 
     - [5.4 Non-Functional Requirements](#54-non-function-requirements)
     - [5.5 Glossary](#55-glossary)
+    <br><br>
 6. [Appendix B: Instructions for Manual Testing](#6-appendix-instructions-for-manual-testing)
     - [6.1 Launch and Shutdown](#61-launch-and-shutdown)
-    - [6.2 Deleting a Recipe](#62-deleting-a-recipe)
-    - [6.3 Saving Data](#63-saving-data)
+    - [6.2 Adding a recipe](#62-adding-a-recipe)
+    - [6.3 Adding an ingredient](#63-adding-an-ingredient)
+    - [6.4 Eating a recipe](#64-eating-a-recipe)
+    - [6.5 Listing recipes](#65-listing-recipes)
+    - [6.6 Listing ingredients](#66-listing-ingredients)
+    - [6.7 Listing consumption](#67-listing-consumption)
+    - [6.8 Deleting a recipe](#68-deleting-a-recipe)
+    - [6.9 Deleting an ingredient](#69-deleting-an-ingredient)
+    - [6.10 Deleting an eaten recipe](#610-deleting-an-eaten-recipe)
+    - [6.11 Getting edit recipe](#611-getting-edit-recipe)
+    - [6.12 Editing a recipe](#612-editing-a-recipe)
+    - [6.13 Getting edit ingredient](#613-getting-edit-ingredient)
+    - [6.14 Editing an ingredient](#614-editing-an-ingredient)
+    - [6.15 Selecting a recipe](#615-selecting-a-recipe)
+    - [6.16 Searching for recipes](#616-searching-for-recipes)
+    - [6.17 Searching for ingredients](#617-searching-for-ingredients)
+    - [6.18 Recommend](#618-recommend)
+    - [6.19 Clearing recipes](#619-clearing-recipes)
+    - [6.20 Clearing ingredients](#620-clearing-ingredients)
+    - [6.21 Clearing eaten recipes](#621-clearing-eaten-recipes)
+    - [6.22 Saving data](#622-saving-data)
+    <br><br>
 7. [Appendix C: Model Components](#7-model-component)
     - [7.1 Recipe](#71-recipe)
     - [7.2 Ingredient](#72-ingredient)
     - [7.3 Consumption](#73-consumption)
+    <br><br>
 8. [Appendix E: Effort](#8-effort)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -225,7 +250,7 @@ The **Model Component** class diagram is given below.
 <div markdown="span" class="alert alert-info">
 
 :memo: **Note:** The lower level details of Recipe, Ingredient, and Consumption classes are represented
- by class diagrams attached in [Appendix C: Model Components](#7-appendix-model-component)
+ by class diagrams attached in [Appendix C: Model Components](#7-model-component)
 
 </div>
 
@@ -271,7 +296,8 @@ All lifeline with the destroy marker (X) should end with the mark (X) but due to
 **Note:** :bell: can indicate either: <br>
 - Source code with similar implementations have had their sequence or/and activity diagrams condensed into a
  single general diagram <br>
-- Similar use case extensions are grouped to avoid repetitiveness  
+- Similar use case extensions are grouped <br>
+to avoid repetitiveness  
 </div>                 
                                                    
 ## 3.1 Add Features <a id="31-add-features"></a>
@@ -284,14 +310,15 @@ Command and Parser makes use of Substitutability:
 * `AddRecipeCommandParser` implements `Parser<AddRecipeCommand>`
 * `AddIngredientCommandParser` implements `Parser<AddIngredientCommand>` <br><br>
 
-The following activity diagram shows how add operation generally works:
-![AddActivityDiagram](images/implementation/activityDiagrams/AddCommandActivityDiagram.png)
-
-The following sequence diagram shows how the add operation generally works when a recipe is added: <br> 
+The following two diagrams shows how add operation generally works when a recipe is added: <br> 
 `execute("addR n/Salad i/Veggies - 100g c/100 img/images/healthy3.jpg instr/Eat tag/healthy")` <br> 
 or when an ingredient is added: <br> 
-`execute("addF i/tomato")`
+`execute("addF i/tomato")`:
 
+The following activity diagram shows how the add operation generally works.
+![AddActivityDiagram](images/implementation/activityDiagrams/AddCommandActivityDiagram.png)
+
+The following sequence diagram shows how the add operation generally works.
 ![AddSequenceDiagram](images/implementation/sequenceDiagrams/AddSequence.png)
 
 <div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
@@ -370,10 +397,12 @@ Command and Parser makes use of Substitutability:
 * `EatRecipeCommand` extends `Command`
 * `EatRecipeCommandParser` implements `Parser<EatRecipeCommand>` <br><br>
 
-The following activity diagram shows how eat recipe operation works:
+The following two diagrams shows how eat recipe operation works when `execute("eatR 1")` is called:
+
+The following activity diagram shows how eat recipe operation works.
 ![EatRecipeActivityDiagram](images/implementation/activityDiagrams/EatRecipeCommandActivityDiagram.png)
 
-The following sequence diagram shows how eat recipe operation works when `execute(eatR 1)` is called:
+The following sequence diagram shows how eat recipe operation works.
 ![EatRecipeSequenceDiagram](images/implementation/sequenceDiagrams/EatRecipeSequence.png)
 
 Given below is an example usage scenario and how the mechanism behaves:
@@ -404,13 +433,18 @@ The List Consumption feature will also calculate and show the total calories con
 Command and Parser make use of Substitutability:
 * `ListRecipeCommand`, `ListIngredientCommand` and `ListConsumptionCommand` extends `Command` <br><br>
 
-The following activity diagram shows how list operation generally works: <br>
+The following two diagrams shows how list operation works when list recipes is called: <br> 
+`execute("recipes")` <br> 
+or list ingredients is called: <br>  
+`execute("fridge")` <br> 
+or list consumptions is called: <br> 
+ `execute("calories")` 
+
+The following activity diagram shows how list operation generally works.
 ![ListActivityDiagram](images/implementation/activityDiagrams/ListCommandActivityDiagram.png)
 
 
-The following sequence diagram shows how list operation works when `execute("recipes")`, `execute("fridge")` or
- `execute("calories")` is called:
-
+The following sequence diagram shows how list operation generally works.
 ![ListSequenceDiagram](images/implementation/sequenceDiagrams/ListSequence.png)
 
 <div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
@@ -438,12 +472,21 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After successfully getting the consumption list, a `CommandResult` object is instantiated and returned to
  `LogicManager`. <br><br>
 
-### 3.3.2 Design Consideration - **List Recipes**: <a id="332-design-consideration-list-recipe"></a>
-#### Aspect: Concern while adding a new feature <a id="3321-aspect"></a>
+#### 3.3.2 Design Consideration - **List Recipes**: <a id="332-design-consideration-list-recipe"></a>
+##### Aspect 1: Concern while adding a new feature <a id="3321-aspect-1"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-### 3.3.3 Design Consideration - **List Ingredients**: <a id="333-design-consideration-list-ingredient"></a>
-#### Aspect: Concern while adding a new feature <a id="3331-aspect"></a>
+##### Aspect 2: What recipe information to show and how to show them. <a id="3322-aspect-2"></a>
+* **Alternative 1 (*current choice*):** Show all fields and truncate if too long.
+  * Pros: Show all relevant fields of all recipes consistently.
+  * Cons: More inconvenience to see the full details of each recipe.
+
+* **Alternative 2:** Show all fields and all information of every recipe.
+  * Pros: Easy for users to see full recipe information.
+  * Cons: Recipe list may become hard to browse and unaesthetic if there are long recipes. <br><br>
+
+#### 3.3.3 Design Consideration - **List Ingredients**: <a id="333-design-consideration-list-ingredient"></a>
+##### Aspect: Concern while adding a new feature <a id="3331-aspect"></a>
 * Workflow must be consistent with other commands. <br><br>
 
 ### 3.3.4 Design Consideration - **List Consumption**: <a id="334-design-consideration-list-consumption"></a>
@@ -470,12 +513,17 @@ Command and Parser makes use of Substitutability:
 * `DeleteIngredientCommandParser` implements `Parser<DeleteIngredientCommand>`
 * `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>` <br><br>
 
-The following activity diagram shows how delete operation works when `execute("deleteR 1")`, `execute("deleteF 1")` or `execute("deleteC 1")` is called:
+The following two diagrams diagram show how delete operation generally works when delete recipe is called : <br>
+`execute("deleteR 1")` <br>
+or delete ingredient is called: <br>
+`execute("deleteF 1")` <br> 
+or delete consumption is called: <br> 
+`execute("deleteC 1")`
+
+The following sequence diagram shows how delete operation generally works. 
 ![DeleteActivity](images/implementation/activityDiagrams/DeleteCommandActivityDiagram.png)
 
-The following sequence diagram shows how delete operation works when `execute("deleteR 1")`, `execute("deleteF 1"
-)` or `execute("deleteC 1")` is called:
-
+The following sequence diagram shows how delete operation generally works.
 ![DeleteSequence](images/implementation/sequenceDiagrams/DeleteSequence.png)
 
 <div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
@@ -497,7 +545,7 @@ remove(key) | `removeRecipe(key)` | `removeIngredient(key)` | `removeConsumption
 </div>
 
 Given below is an example usage scenario and how the mechanism behaves:
-1. User inputs delete command with the item index, to delete that specific item from the respective list.
+1. User inputs delete command with the item index, to delete that specific item from their respective recipe, ingredient or consumption list.
 
 1. After successfully parsing the user's input, the `DeleteRecipeCommand#execute(Model model)`, `DeleteIngredientCommand#execute(Model model)` or `DeleteConsumptionCommand#execute(Model model)` method is called.
 
@@ -536,17 +584,15 @@ Command and Parser make use of Substitutability:
 * `EditRecipeCommandParser` implements `Parser<EditRecipeCommand>`
 * `EditIngredientCommandParser` implements `Parser<EditIngredientCommand>` <br><br>
 
-The following activity diagram shows how edit operation generally works when a recipe is edited: <br>
+The following two diagrams shows how edit operation generally works when a recipe is edited: <br>
  `execute("editR 1 n/Pea soup")` <br>
  or an ingredient is edited <br>
  `execute("editF 1 i/tomato")`
+ 
+The following activity diagram shows how edit operation generally works.
 ![EditActivity](images/implementation/activityDiagrams/EditCommandActivityDiagram.png)
 
-The following sequence diagram shows how edit operation generally works when a recipe is edited: <br>
- `execute("editR 1 n/Pea soup")` <br>
- or an ingredient is edited <br>
- `execute("editF 1 i/tomato")`
-
+The following sequence diagram shows how edit operation generally works.
 ![EditSequence](images/implementation/sequenceDiagrams/EditSequence.png)
 
 <div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
@@ -584,10 +630,11 @@ Given below is an example usage scenario and how the mechanism behaves:
 #### Aspect 2: How to provide users with more ease while editing a recipe <a id="3522-aspect-2"></a>
 * **Alternative 1 (current choice):** User can directly edit on the existing recipe, after getting its command in the command box
   * Pros: Easy for users to edit a recipe.
-  * Cons: Involves another command to set the command box to show the information of the recipe that the user wishes to edit. 
+  * Cons: Involves another command to set the command box to show the information of the recipe that the user
+   wishes to edit. The command is elaborated in section [3.6 Get Edit Features](#36-get-edit-features).
 
-* **Alternative 2:** User needs to retype the existing recipe's field that they wish to modify, if they want to modify only a part of the
- existing field
+* **Alternative 2:** User needs to retype the existing recipe's field that they wish to modify, if they want to
+ retain any part of the existing field
   * Pros: Easy to implement.
   * Cons: Not user friendly. <br><br>
 
@@ -598,10 +645,11 @@ Given below is an example usage scenario and how the mechanism behaves:
 #### Aspect 2: How to provide users with more ease while editing an ingredient <a id="3532-aspect-2"></a>
 * **Alternative 1 (current choice):** User can directly edit the existing ingredient, after getting its command in the command box
   * Pros: Easy for users to edit an ingredient.
-  * Cons: Involves another command to set the command box to show the information of the ingredient that the user wishes to edit.
+  * Cons: Involves another command to set the command box to show the information of the ingredient that the
+   user wishes to edit. The command is elaborated in section [3.6 Get Edit Features](#36-get-edit-features).
 
-* **Alternative 2:** User needs to retype the existing ingredient's field that they wish to modify, if they want to modify only a part of the
- existing field
+* **Alternative 2:** User needs to retype the existing ingredient's field that they wish to modify, if they want
+ to retain any part of the existing field
   * Pros: Easy to implement.
   * Cons: Not user friendly. <br><br>
 
@@ -615,12 +663,15 @@ Command and Parser make use of Substitutability:
 * `GetEditRecipeCommandParser` implements `Parser<GetEditRecipeCommand>`
 * `GetEditIngredientCommandParser` implements `Parser<GetEditIngredientCommand>` <br><br>
 
-The following activity diagram shows how get edit operation works when `execute("editR 1")` or `execute("editF 1")` is called:
+The following two diagrams shows how get edit operation generally works when get edit recipe is called: <br> 
+`execute("editR 1")` <br> 
+or get edit ingredient is called: <br>
+ `execute("editF 1")` 
 
+The following activity diagram shows how get edit operation generally works. 
 ![GetEditActivity](images/implementation/activityDiagrams/GetEditCommandActivityDiagram.png)
 
-The following sequence diagram shows how get edit operation works when `execute("editR 1")` or `execute("editF 1")` is called:
-
+The following sequence diagram shows how get edit operation generally works.
 ![GetEditSequence](images/implementation/sequenceDiagrams/GetEditSequence.png)
 
 <div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
@@ -644,10 +695,10 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 1. After successfully parsing the user's input, the `GetEditRecipeCommand#execute(Model model)`  or `GetEditIngredientCommand#execute(Model model)` method is called.
 
-1. The recipe or ingredient that the user has specified will be set into the command box with the edit command for
- the user to directly modify.
+1. The recipe or ingredient that the user has specified with the edit command for
+ the user to directly modify will be set in CommandResult.
 
-1. After the successfully editing the recipe or ingredient, a `CommandResult` object is instantiated and
+1. After the successfully setting the command box, a `CommandResult` object is instantiated and
  returned to `LogicManager`. <br><br>
 
 ### 3.6.2 Design Considerations - **Get Edit Recipe** <a id="362-design-consideration-get-edit-recipe"></a>
@@ -666,11 +717,12 @@ Command and Parser make use of Substitutability:
 * `SelectRecipeCommand` extends `Command`
 * `SelectRecipeCommandParser` implements `Parser<SelectRecipeCommand>` <br><br>
 
-The following acitivity diagram shows how select recipe works with `selectR 1`
+The following two diagrams shows how select recipe works when `execute("selectR 1")` is called.
+
+The following acitivity diagram shows how select recipe works.
 ![SelectRecipeActivity](images/SelectRecipeActivityDiagram.png)
 
-The following sequence diagram shows how select recipe operation works when `execute("selectR 1")` is called:
-
+The following sequence diagram shows how select recipe works.
 ![SelectRecipeSequence](images/implementation/sequenceDiagrams/SelectRecipeSequence.png)
 
 Given below is an example usage scenario and how the mechanism behaves:
@@ -700,15 +752,15 @@ Command and Parser make use of Substitutability:
 * `SearchRecipeCommandParser` implements `Parser<SearchRecipeCommand>`
 * `SearchIngredientCommandParser` implements `Parser<SearchIngredientCommand>` <br><br>
 
-The following activity diagram shows how search operation generally works:
-![SearchActivityDiagram](images/implementation/activityDiagrams/SearchCommandActivityDiagram.png)
-
-
 The following sequence diagram shows how the search operation generally works when searching for recipes: <br>
  `execute("searchR n/burger")` <br> 
  or searching for ingredients: <br> 
  `execute("searchF avocado")`
 
+The following activity diagram shows how search operation generally works:
+![SearchActivityDiagram](images/implementation/activityDiagrams/SearchCommandActivityDiagram.png)
+
+The following sequence diagram shows how search operation generally works:
 ![SearchSequence](images/implementation/sequenceDiagrams/SearchSequence.png)
 
 <div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
@@ -763,12 +815,12 @@ Recommend feature allows users to get the list of recipes whose ingredients matc
 Substitutability is used in Command:
 * `RecommendCommand` extends `Command` <br><br>
 
-The following activity diagram shows how recommend operation generally works:
+The following two diagrams shows how recommend operation works when `execute("recommend")` is called:
+
+The following activity diagram shows how recommend operation works.
 ![RecommendActivityDiagram](images/implementation/activityDiagrams/RecommendCommandActivityDiagram.png)
 
-
-The following sequence diagram shows how recommend operation works when `execute("recommend")` is called:
-
+The following sequence diagram shows how recommend operation works.
 ![RecommendSequence](images/implementation/sequenceDiagrams/RecommendSequence.png)
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
@@ -811,12 +863,17 @@ Clear features - `Clear Recipes`, `Clear Ingredients` and `Clear Consumption` al
 Command and Parser make use of Substitutability:
 * `ClearRecipeCommand`, `ClearIngredientCommand` and `ClearConsumptionCommand` extends `Command` <br><br>
 
-The following activity diagram shows how clear operation generally works:
+The following two diagrams shows how clear operation generally works when clear recipes: <br> 
+`execute("clearR")` <br> 
+or clear fridge: <br>  
+`execute("clearF")` <br> 
+or clear consumptions: <br> 
+ `execute("clearC")` is called:
+
+The following activity diagram shows how clear operation generally works.
 ![ClearActivityDiagram](images/implementation/activityDiagrams/ClearCommandActivityDiagram.png)
 
-The following sequence diagram shows how clear operation works when `execute(clearR)`, `execute(clearF)` or
- `execute(clearC)` is called:
-
+The following sequence diagram shows how clear operation generally works.
 ![ClearSequenceDiagram](images/implementation/sequenceDiagrams/ClearSequence.png)
 
 <div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
@@ -1376,7 +1433,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained. <br><br>
 
-## 6.2 Adding a recipe
+## 6.2 Adding a recipe <a id="62-adding-a-recipe"></a>
 
 1. Adding a recipe with all required fields into Wishful Shrinking’s recipe list.
 
@@ -1392,7 +1449,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as the non-optional field instruction is omitted. The message will show the correct input format of the `addR` command, and your command in the command box will turn red. <br><br>
        
 
-## 6.3 Adding an ingredient
+## 6.3 Adding an ingredient <a id="63-adding-an-ingredient"></a>
 
 1. Adding an ingredient into Wishful Shrinking’s ingredient list.
 
@@ -1408,7 +1465,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as the quantity is invalid. The message will show the correct input format of the `addF` command, and your command in the command box will turn red. <br><br>
        
        
-## 6.4 Eating a recipe
+## 6.4 Eating a recipe <a id="64-eating-a-recipe"></a>
 
 1. Eating a recipe at a specific index in the recipe list and adding it into Wishful Shrinking’s consumption list.
 
@@ -1424,7 +1481,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous test case. <br><br>
 
 
-## 6.5 Listing Recipes
+## 6.5 Listing Recipes <a id="65-listing-recipes"></a>
 
 1. Listing out all the recipes in Wishful Shrinking’s recipe list.
 
@@ -1437,7 +1494,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `recipes` does not have any arguments. The message will show the correct input format of the `recipes` command, and your command in the command box will turn red. <br><br>
 
 
-## 6.6 Listing Ingredients
+## 6.6 Listing Ingredients <a id="66-listing-ingredients"></a>
 
 1. Listing out all the ingredients in Wishful Shrinking’s ingredient list.
 
@@ -1450,7 +1507,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `fridge` does not have any arguments. The message will show the correct input format of the `fridge` command, and your command in the command box will turn red. <br><br>
 
 
-## 6.7 Listing Consumption
+## 6.7 Listing Consumption <a id="67-listing-consumption"></a>
 
 1. Listing out all the recipes eaten in Wishful Shrinking’s consumption list.
 
@@ -1461,9 +1518,111 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `calories x` (where x is any additional arguments) <br>
        Expected: An error message will be shown, as `calories` does not have any arguments. The message will show the correct input format of the `calories` command, and your command in the command box will turn red. <br><br>
+        
+## 6.8 Deleting a recipe <a id="68-deleting-a-recipe"></a>
+
+1. Deleting a recipe at a specific index while all recipes are being shown in the Wishful Shrinking's recipe list.
+
+    1. Prerequisites: List all recipes using the `recipes` command. Wishful Shrinking’s recipe list is not empty.
+    
+    1. Test case: `deleteR 1` <br>
+       Expected: Recipe with index 1 will be deleted from the Wishful Shrinking's recipe list. The result box will show details of the deleted recipe.
+       
+    1. Test case: `deleteR 0` <br>
+       Expected: An error message will be shown, as the recipe with index 0 is not present. The message will show the correct input format of the `deleteR` command, and your command in the command box will turn red.
+       
+    1. Other incorrect `deleteR` commands to try: `deleteR`, `deleteR x`, … (where x is larger than the recipe list size or x is not a positive integer) <br>
+       Expected: Similar to previous test case. <br><br>
+       
+     
+## 6.9 Deleting an ingredient <a id="69-deleting-an-ingredient"></a>
+
+1. Deleting an ingredient at a specific index while all recipes are being shown in the Wishful Shrinking's ingredient list.
+
+    1. Prerequisites: List all recipes using the `fridge` command. Wishful Shrinking’s ingredient list is not empty.
+    
+    1. Test case: `deleteF 1` <br>
+       Expected: Ingredient with index 1 will be deleted from the Wishful Shrinking's ingredient list. The result box will show details of the deleted ingredient.
+       
+    1. Test case: `deleteF 0` <br>
+       Expected: An error message will be shown, as the ingredient with index 0 is not present. The message will show the correct input format of the `deleteF` command, and your command in the command box will turn red.
+       
+    1. Other incorrect `deleteF` commands to try: `deleteF`, `deleteF x`, … (where x is larger than the ingredient list size or x is not a positive integer) <br>
+       Expected: Similar to previous test case. <br><br>  
+       
+       
+## 6.10 Deleting an eaten recipe <a id="610-deleting-an-eaten-recipe"></a>
+
+1. Deleting an eaten recipe at a specific index while all eaten recipes are being shown in the Wishful Shrinking's consumption list.
+
+    1. Prerequisites: List all eaten recipes using the `calories` command. Wishful Shrinking’s consumption list is not empty.
+    
+    1. Test case: `deleteC 1` <br>
+       Expected: Eaten recipe with index 1 will be deleted from the Wishful Shrinking's consumption list. The result box will show details of the deleted eaten recipe.
+       
+    1. Test case: `deleteC 0` <br>
+       Expected: An error message will be shown, as the recipe with index 0 is not present. The message will show the correct input format of the `deleteC` command, and your command in the command box will turn red.
+       
+    1. Other incorrect `deleteC` commands to try: `deleteC`, `deleteC x`, … (where x is larger than the consumption list size or x is not a positive integer) <br>
+       Expected: Similar to previous test case. <br><br>
+
+## 6.11 Getting edit recipe <a id="611-getting-edit-recipe"></a>
+
+1. Getting details of recipe at a specific index before edit.
+
+    1. Prerequisites: Wishful Shrinking’s recipe list is not empty.
+    
+    1. Test case: `editR 1` <br>
+       Expected: The result box will show all the details of the first recipe. <br><br>
+       
+## 6.12 Editing a recipe <a id="612-editing-a-recipe"></a>
+
+1. Editing some fields of a recipe in the Wishful Shrinking's recipe list at a specific index. 
+
+    1. Prerequisites: Wishful Shrinking’s recipe list is not empty.
+    
+    1. Test case: `editR` 1 n/bread i/flour <br>
+       Expected: The fields specified for the first recipe in the recipe list will be updated with bread for its name and flour for its ingredient. The result box will show the newly updated details of the recipe.
+       
+    1. Test case: `editR 1` n/bread i/flour img/images/healthy1.jpg t/healthy <br>
+       Expected: The fields specified for the first recipe in the recipe list will be updated with bread for its name and flour for its ingredient. The result box will show the newly updated details of the recipe. This test case differs with the previous test case in that it has the optional fields image and tags, which will also be updated with the new values.                                                                                                                                                                                                                                          
+       
+    1. Test case: `editR 1 x` (same name and quantity of the ingredient in fridge) <br>
+       Expected: An error message will be shown, as it is the same recipe. The result box will show that no edits are made. Your command in the command box will turn red.
+
+    1. Other incorrect `editR` commands to try: `editR` (no fields specified) <br>
+       Expected: Similar to previous test case. <br><br>
+    
+## 6.13 Getting edit ingredient <a id="613-getting-edit-ingredient"></a>
+
+1. Getting details of ingredient at a specific index before edit.
+
+    1. Prerequisites: Wishful Shrinking’s ingredient list is not empty.
+    
+    1. Test case: `editF 1` <br>
+       Expected: The result box will show all the details of the first ingredient. <br><br>
        
 
-## 6.15 Selecting a recipe
+## 6.14 Editing an ingredient <a id="614-editing-an-ingredient"></a>
+
+1. Editing some fields of an ingredient in the Wishful Shrinking's ingredient list at a specific index. 
+
+    1. Prerequisites: Wishful Shrinking’s ingredient list is not empty.
+    
+    1. Test case: `editF` 1 i/flour - 10g <br>
+       Expected: The name and quantity of the ingredient will be updated. The result box will show the newly updated details of the ingredient.
+       
+    1. Test case: `editF 1` <br>
+       Expected: An error message will be shown, as the eaten recipe with index 0 is not present. The message will show the correct input format of the editF command, and your command in the command box will turn red.                                                                                                                                                                                                                      
+       
+    1. Test case: `editF 1 x` (same name and quantity of the ingredient in fridge) <br>
+       Expected: An error message will be shown, as it is the same ingredient. The result box will show that no edits are made. Your command in the command box will turn red.
+
+    1. Other incorrect `editF` commands to try: `editF` (no fields specified)
+       Expected: Similar to previous test case. <br><br>
+       
+       
+## 6.15 Selecting a recipe <a id="615-selecting-a-recipe"></a>
 
 1. Selecting a recipe at a specific index in the recipe list to view its full information.
 
@@ -1479,7 +1638,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous test case. <br><br>
 
 
-## 6.16 Searching for Recipes
+## 6.16 Searching for Recipes <a id="616-searching-for-recipes"></a>
 
 1. Searching for recipes in Wishful Shrinking’s recipe list by their ingredients, name or tags.
 
@@ -1495,7 +1654,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `searchR` does not search by the calorie field. The message will show the correct input format of the `searchR` command, and your command in the command box will turn red. <br><br>
        
        
-## 6.17 Searching for Ingredients
+## 6.17 Searching for Ingredients <a id="617-searching-for-ingredients"></a>
 
 1. Searching for ingredients in Wishful Shrinking’s ingredient list by names.
 
@@ -1508,7 +1667,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `searchF` takes in keywords to search for. The message will show the correct input format of the `searchF` command, and your command in the command box will turn red. <br><br>
       
       
-## 6.18 Recommend
+## 6.18 Recommend <a id="618-recommend"></a>
 
 1. Listing out all the recipes in Wishful Shrinking’s recipe list whose ingredients are all in the fridge.
 
@@ -1521,24 +1680,46 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message will be shown, as `recommend` does not have any arguments. The message will show the correct input format of the `recommend` command, and your command in the command box will turn red. <br><br>
 
 
+## 6.19 Clearing recipes <a id="619-clearing-recipes"></a>
 
-## 6.2 Deleting a Recipe <a id="62-deleting-a-recipe"></a>
+1. Clear all recipes from the Wishful Shrinking’s recipe list.
 
-1. Deleting a recipe while all recipes are being shown
-
-   1. Prerequisites: List all recipes using the `recipes` command. Multiple recipes in the list.
-
-   1. Test case: `deleteR 1`<br>
-      Expected: First recipe is deleted from the list. Details of the deleted recipe shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `deleteR 0`<br>
-      Expected: No recipe is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `deleteR`, `deleteR x`, `...` (where x is larger than the recipe list size)<br>
-      Expected: Similar to previous. <br><br>
+    1. Prerequisites: Wishful Shrinking’s recipe list is not empty.
+    
+    1. Test case: `clearR` <br>
+       Expected: All recipes are cleared from the Wishful Shrinking's recipe list. The result box will show a message that indicates that all recipes are cleared.
+       
+    1. Test case: `clearR x` (where x is any additional arguments) <br>
+       Expected: An error message will be shown, as the `clearR` does not have any arguments. The message will show the correct input format of the `clearR` command, and your command in the command box will turn red. <br><br>
 
 
-## 6.3 Saving Data <a id="63-saving-data"></a>
+## 6.20 Clearing ingredients <a id="620-clearing-ingredients"></a>
+
+1. Clear all ingredients from the Wishful Shrinking’s ingredient list.
+
+    1. Prerequisites: Wishful Shrinking’s ingredient list is not empty.
+    
+    1. Test case: `clearF` <br>
+       Expected: All ingredients are cleared from the Wishful Shrinking's ingredient list. The result box will show a message that indicates that all ingredients are cleared.
+       
+    1. Test case: `clearF x` (where x is any additional arguments) <br>
+       Expected: An error message will be shown, as the `clearF` does not have any arguments. The message will show the correct input format of the `clearF` command, and your command in the command box will turn red. <br><br>
+
+
+## 6.21 Clearing eaten recipes <a id="621-clearing-eaten-recipes"></a>
+
+1. Clear all eaten recipes from the Wishful Shrinking’s consumption list.
+
+    1. Prerequisites: Wishful Shrinking’s consumption list is not empty.
+    
+    1. Test case: `clearC` <br>
+       Expected: All eaten recipes are cleared from the Wishful Shrinking's consumption list. The result box will show a message that indicates that all eaten recipes are cleared.
+       
+    1. Test case: `clearR x` (where x is any additional arguments) <br>
+       Expected: An error message will be shown, as the `clearC` does not have any arguments. The message will show the correct input format of the `clearC` command, and your command in the command box will turn red. <br><br>
+
+
+## 6.22 Saving Data <a id="622-saving-data"></a>
 
 1. Dealing with missing/corrupted data files
 
