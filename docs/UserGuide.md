@@ -106,6 +106,7 @@ This section will give you some useful information about the various command for
 * Multiple instances of the same prefix/flag will not throw an error. However, the app will only read the **last instance** in the input (except for tags).
   * eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category
   * eg. `sort reviewed -a -a -d` will sort flashcards according to review frequency in **descending** order
+  * eg. `filter f/yes f/no` will filter and list flashcards that are not favourited.
 
 <br>
   
@@ -148,7 +149,7 @@ Input Field | Restrictions and how to specify
 `a/ANSWER`      | This is the answer on the flashcard.<br>`ANSWER` has no character limit or restrictions (eg. can have spaces).<br>Cannot be empty.
 `c/CATEGORY`    | This is the category of the flashcard.<br>`CATEGORY` must be alphanumeric and have a maximum of 50 characters. It can consist of multiple words but there should only be 1 space between words.<br>Cannot be empty.
 `r/RATING`      | This is the star rating of the flashcard.<br>`RATING` must be a number between 1 and 5 inclusive.<br>Can be empty.
-`d/DIAGRAM`     | This is the diagram of the flashcard (associated with a question in the view pane).<br>`DIAGRAM` must be a valid relative or absolute path to a file. <br>Currently only supports file path **without** spaces.eg. <br>image/umlDiagram.png is supported but image/u mlDiagram.png is not supported <br>Only supports the following image file types: jpg, png, jpeg, bmp, gif<br>Can be empty.
+`d/DIAGRAM`     | This is the diagram of the flashcard (associated with a question in the view pane).<br>`DIAGRAM` must be a valid relative or absolute path to a file. <br>Currently only supports file path **without** spaces. <br>eg. image/umlDiagram.png is supported but image/u mlDiagram.png is not supported <br>Only supports the following image file types: jpg, png, jpeg, bmp <br>Can be empty.
 `n/NOTE`        | This is the notes of the flashcard (associated with an answer in the view pane).<br>`NOTE` has no character limit or restrictions.<br>Can be empty.
 `t/TAG`         | These are tags of the flashcard. A flashcard can have more than one tag.<br>`TAG` must be alphanumeric and have a maximum of 50 characters.<br>Must **only** be one word.<br>Cannot be empty.
 `INDEX`         | `INDEX` refers to the index number shown in the displayed flashcard list.<br>Every visible flashcard on the display list has an `INDEX`.<br>`INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
@@ -272,6 +273,8 @@ Examples:
 *  `filter c/SDLC` filters and lists all flashcards belonging to the SDLC category.
 *  `filter t/examinable t/study` filters and lists all flashcards that have both an “examinable” tag and a “study” tag.
 *  `filter r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
+*  `filter f/no f/yes c/General` filters and lists all favourited flashcards that belong to the General category.
+    (only last instance of f/ is read)
 
 **Steps for filtering for a flashcard based on category and tag**:
 

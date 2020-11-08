@@ -996,20 +996,20 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding flashcards in the flashcard deck
     
-   1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
+   i. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
        
-   1. Test case (finding by one keyword): `find general` <br>
+   ii. Test case (finding by one keyword): `find general` <br>
        Expected: Flashcard list panel updates to show only flashcards that have `general` contained within 
        `QUESTION`, `ANSWER`, `CATEGORY`, `NOTE` and/or `TAG`. Result display will
        output a success message indicating the number of flashcards found.
    
-   1. Test case (finding by multiple keywords): `find general stuff` <br>
+   iii. Test case (finding by multiple keywords): `find general stuff` <br>
        Expected: Flashcard list panel updates to show only flashcards that have `general` and/or `stuff` contained within 
        `QUESTION`, `ANSWER`, `CATEGORY`, `NOTE` and/or `TAG`. Result display will
        output a success message indicating the number of flashcards found.
        
-   1. Test case (missing keyword): `find` <br>
+   iv. Test case (missing keyword): `find` <br>
        Expected: Flashcard list panel will not update and input text will turn red to signal an error.
        Result display will output the invalid command format error message.
 
@@ -1017,18 +1017,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Entering review mode in the application to review flashcards
     
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
+    i. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
     
-    1. Test case: `review` <br>
+    ii. Test case: `review` <br>
         Expected: Main window of application switches to review mode and displays the first flashcard in the flashcard deck.
         
 1. Quitting review mode in the application
 
-    1. Prerequisites: Application must be in review mode. Refer to [Section 1ii](#reviewing-flashcards) on how to enter
+    i. Prerequisites: Application must be in review mode. Refer to [Section 1ii](#reviewing-flashcards) on how to enter
         review mode.
         
-    1. Test case: `q` <br>
+    ii. Test case: `q` <br>
         Expected: Main window of application switches to display flashcard list. Result display will output a success
         message: `Exited Review mode`
         
@@ -1036,18 +1036,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Entering quiz mode in the application
 
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
+    i. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
        
-    1. Test case: `quiz` <br>
+    ii. Test case: `quiz` <br>
         Expected: Main window of application switches to quiz mode and displays the first flashcard in the flashcard deck.
 
 1. Quitting quiz mode in the application
 
-    1. Prerequisites: Application must be in quiz mode. Refer to [Section 1ii](#quizzing-flashcards) on how to enter
+    i. Prerequisites: Application must be in quiz mode. Refer to [Section 1ii](#quizzing-flashcards) on how to enter
         quiz mode.
         
-    1. Test case: `q` <br>
+    ii. Test case: `q` <br>
         Expected: Main window of application switches to display flashcard list. Result display will output a success
         message: `Exited Quiz mode`
         
@@ -1055,35 +1055,35 @@ testers are expected to do more *exploratory* testing.
 
 1. Sort flashcards according to review frequency
 
-    1. Prerequisites: Flashcard deck contains more than one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
+    i. Prerequisites: Flashcard deck contains more than one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
        
-    1. Test case (sort flashcards in an ascending order): `sort reviewed -a` <br>
+    ii. Test case (sort flashcards in an ascending order): `sort reviewed -a` <br>
         Expected: Flashcard list panel updates to show a list of all flashcards sorted according to review frequency in ascending order.
-        Result display will output a success message indicating the number of flashcards sorted.
+        Result display will output a success message: `Sorted flashcards by review frequency in ascending order!`.
     
-    1. Test case (sort flashcards in an descending order): `sort reviewed -d` <br>
+    iii. Test case (sort flashcards in an descending order): `sort reviewed -d` <br>
         Expected: Flashcard list panel updates to show a list of all flashcards sorted according to review frequency in descending order.
-        Result display will output a success message indicating the number of flashcards sorted.
+        Result display will output a success message: `Sorted flashcards by review frequency in descending order!`.
         
-    1. Test case (sort flashcards with missing inputs): `sort` <br>
+    iv. Test case (sort flashcards with missing inputs): `sort` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
         
 1. Sort flashcards according to success rate
 
-    1. Prerequisites: Flashcard deck contains more than one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
+    i. Prerequisites: Flashcard deck contains more than one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
        
-    1. Test case (sort flashcards in an ascending order): `sort success -a` <br>
+    ii. Test case (sort flashcards in an ascending order): `sort success -a` <br>
         Expected: Flashcard list panel updates to show a list of all flashcards sorted according to success rate in ascending order.
-        Result display will output a success message indicating the number of flashcards sorted.
+        Result display will output a success message: `Sorted flashcards by success rate in ascending order!`.
         
-    1. Test case (sort flashcards in an descending order): `sort success -d` <br>
+    iii. Test case (sort flashcards in an descending order): `sort success -d` <br>
         Expected: Flashcard list panel updates to show a list of all flashcards sorted according to success rate in descending order.
-        Result display will output a success message indicating the number of flashcards sorted.
+        Result display will output a success message: `Sorted flashcards by success rate in descending order!`.
 
-    1. Test case (sort flashcards with missing inputs): `sort` <br>
+    iv. Test case (sort flashcards with missing inputs): `sort` <br>
         Expected: Flashcard list panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
         
@@ -1091,18 +1091,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Viewing a flashcard
 
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
+    i. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
        
-    1. Test case (view flashcard without answer): `view 1` <br>
+    ii. Test case (view flashcard without answer): `view 1` <br>
         Expected: Flashcard view panel on the right updates with the details of the flashcard at index 1 in the flashcard
         deck. Result display will output the status of the selected flashcard.
         
-    1. Test case (view flashcard with answer): `view 1 -a` <br>
+    iii. Test case (view flashcard with answer): `view 1 -a` <br>
         Expected: Flashcard view and flashcard answer panel on the right updates with the details and answer of the flashcard
         respectively, at index 1 in the flashcard deck. Result display will output the status of the selected flashcard.
 
-    1. Test case (view flashcard at invalid index): `view 0` <br>
+    iv. Test case (view flashcard at invalid index): `view 0` <br>
         Expected: Flashcard view and flashcard answer panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
                
@@ -1110,14 +1110,14 @@ testers are expected to do more *exploratory* testing.
     
 1. Viewing the statistics of a flashcard
     
-    1. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
+    i. Prerequisites: Flashcard deck contains at least one flashcard. Refer to [Section 1ii](#adding-a-flashcard) on 
        how to add a flashcard if flashcard deck is empty.
        
-    1. Test case (view statistics of flashcard at valid index): `stats 1` <br>
+    ii. Test case (view statistics of flashcard at valid index): `stats 1` <br>
         Expected: Flashcard view panel updates to display a pie chart along with statistics of reviewed count and correct
         count. Result display will output the status of the selected flashcard.
     
-    1. Test case (view statistics of flashcard at invalid index): `stats 0` <br>
+    iii. Test case (view statistics of flashcard at invalid index): `stats 0` <br>
         Expected: Flashcard view panel will not update and input text will turn red to signal an error.
         Result display will output the invalid command format error message.
         

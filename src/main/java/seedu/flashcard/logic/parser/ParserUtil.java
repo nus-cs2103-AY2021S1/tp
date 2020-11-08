@@ -2,7 +2,6 @@ package seedu.flashcard.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -90,20 +89,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> categories} into a {@code List<Category>}.
-     */
-    public static List<Category> parseCategories(Collection<String> categories) throws ParseException {
-        requireNonNull(categories);
-        final Set<Category> categorySet = new HashSet<>();
-        for (String categoryName : categories) {
-            categorySet.add(parseCategory(categoryName));
-        }
-        List<Category> categoryList = new ArrayList<>();
-        categoryList.addAll(categorySet);
-        return categoryList;
-    }
-
-    /**
      * Parses a {@code String isFavourite} into a {@code Boolean}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -139,20 +124,6 @@ public class ParserUtil {
             throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
         }
         return new Rating(trimmedRating);
-    }
-
-    /**
-     * Parses {@code Collection<String> ratings} into a {@code List<Category>}.
-     */
-    public static List<Rating> parseRatings(Collection<String> ratings) throws ParseException {
-        requireNonNull(ratings);
-        final Set<Rating> ratingSet = new HashSet<>();
-        for (String ratingValue : ratings) {
-            ratingSet.add(parseRating(ratingValue));
-        }
-        List<Rating> ratingList = new ArrayList<>();
-        ratingList.addAll(ratingSet);
-        return ratingList;
     }
 
     /**
@@ -196,8 +167,11 @@ public class ParserUtil {
         if (!Diagram.isValidFile(trimmedDiagramFilePath)) {
             throw new ParseException(Diagram.MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE);
         }
+        if (!Diagram.hasReadPermission(trimmedDiagramFilePath)) {
+            throw new ParseException(Diagram.MESSAGE_READ_PERMISSION_DENIED);
+        }
         if (!Diagram.isValidImageFileType(trimmedDiagramFilePath)) {
-            throw new ParseException(Diagram.MESSAGE_INVALID_DIAGRAM_FILE_TYPE);
+            throw new ParseException(Diagram.MESSAGE_INVALID_FILE_TYPE);
         }
         return new Diagram(trimmedDiagramFilePath);
     }
@@ -220,8 +194,7 @@ public class ParserUtil {
     /**
      * Checks if all flags passed in contain a valid value.
      */
-    public static boolean areValidFlagValues(List<String> flagValueList,
-                                             String... validFlagValues) throws ParseException {
+    public static boolean areValidFlagValues(List<String> flagValueList, String... validFlagValues) {
         List<String> validFlagValueList = Arrays.asList(validFlagValues);
         boolean areAllValid = flagValueList.stream()
                         .allMatch(flagValue -> validFlagValueList.stream()
