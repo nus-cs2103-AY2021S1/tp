@@ -119,7 +119,8 @@ The `Model`,
 
 The `SalesRecordEntry` sub-component,
 * stores the sales book data
-* exposes an unmodifiable `ObservableList<SalesRecordEntry>` that can be 'observed'. The UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<SalesRecordEntry>` that can be 'observed'. e.The UI can be bound to this
+ list so that the UI automatically updates when the data in the list change.
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:** The text in the middle of the
  association arrows represents the role of the class at the arrow head. However, due to a limitation of
@@ -899,7 +900,7 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
         
        	Use case resumes from step 6.
 
-**UC05 - Set the sales volume for all types of drinks**
+**UC04 - Set the sales volume for all types of drinks**
 
 **MSS**
 
@@ -908,7 +909,7 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 3. User enters the name of the drink.
 4. tCheck requests for the number of that type of drink sold.
 5. User enters the number of that type of drink sold.
-6. tCheck will set the sales for this drink to the given number and display a success message.
+6. tCheck sets the sales for this drink to the given number and displays a success message.
    Steps 1-6 are repeated until the sales of all types of drinks have been updated.
      
    Use case ends.
