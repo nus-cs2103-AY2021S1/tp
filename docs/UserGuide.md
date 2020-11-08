@@ -348,9 +348,9 @@ Example:
 - `edit doc 2 n:Fire outbreak details r:newFireDoc.pdf` updates the second document of the current opened case with 
 name `Fire outbreak details` and reference `newFireDoc.pdf`.
 <br>
+<div style="page-break-after: always;"></div>
 This document `newFireDoc.pdf` must be manually added to the `references` folder provided and must be present before the document can be successfully updated.
 
-<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the restrictions for the fields of a person (suspect/victim/witness):**<br>
@@ -415,6 +415,7 @@ You must add a description first.[(See Add Description.)](#add-description-to-th
 
 Format: `delete desc`
 
+<div style="page-break-after: always;"></div>
 #### Delete document: `delete doc DOC_NO `
 Deletes the document specified with `DOC_NO` from the list of documents.
 
