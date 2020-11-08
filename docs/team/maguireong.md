@@ -50,4 +50,4 @@ Given below are my contributions to the project.
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#96](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/96), [\#139](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/139), 
                                                     [\#137](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/137), [\#97](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/97)
-  * Reported bugs and suggestions for Group [CS2103T-W12](https://ay2021s1-cs2103t-w12-2.github.io/tp/UserGuide.html) on CATcher.
+  * Reported bugs and suggestions for Group [CS2103T-W12-2](https://ay2021s1-cs2103t-w12-2.github.io/tp/UserGuide.html) on CATcher.

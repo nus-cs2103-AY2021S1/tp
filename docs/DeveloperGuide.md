@@ -238,6 +238,10 @@ through the configuration file (default: `config.json`)
 
 ### 3.3 Edit Session feature
 
+<div id="f10" >The Edit Session feature allows user to edit a Session.</div>
+
+#### 3.3.1 Implementation
+
 The proposed Edit Session mechanism is facilitated by `Addressbook`.
 
 These operation is exposed in the `Model` interface as `Model#setSession()`.
@@ -433,11 +437,13 @@ On the other hand, invoking `schadd c/1 s/1` will result in an error shown to th
 
 ### 3.6 Edit Schedule feature
 
-The proposed Edit Schedule mechanism is facilitated by `Addressbook`, similar to the Edit Session Command.
-
-This operation is exposed in the `Model` interface as `Model#setSchedule()`.
+The Edit Schedule feature allows user to edit a Schedule that is associated with a Client and a Session.
 
 #### 3.6.1 Implementation
+
+The proposed Edit Schedule mechanism is facilitated by `Addressbook`, similar to the [Edit Session Command](#f10).
+
+This operation is exposed in the `Model` interface as `Model#setSchedule()`.
 
 Similar to the Edit Session mechanism, the example usage scenario below shows how Edit Schedule mechanism behaves:
 
@@ -453,7 +459,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     <figcaption>Figure 20 - Edit Schedule Activity Diagram</figcaption>
 </figure>
 
-#### 3.6.2 Design consideration:
+#### 3.6.2 Design considerations
 
 * **Alternative 1 (current choice):** Retrieve Schedule using Client and Session Index.
   * Pros: Clearer to retrieve.
