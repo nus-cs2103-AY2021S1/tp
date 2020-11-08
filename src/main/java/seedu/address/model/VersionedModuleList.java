@@ -64,14 +64,12 @@ public class VersionedModuleList extends ModuleList {
         this.currentStatePointer += 1;
         super.resetData(moduleListStateList.get(currentStatePointer));
     }
-
     /**
      * Returns true if state pointer is at 0.
      */
     public boolean isIndexZero() {
         return currentStatePointer == 0;
     }
-
     /**
      * Returns true if state pointer greater than the size of the eventList state list
      */

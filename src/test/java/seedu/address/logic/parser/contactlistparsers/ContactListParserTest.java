@@ -24,6 +24,7 @@ import seedu.address.logic.commands.contactlistcommands.ImportantContactCommand;
 import seedu.address.logic.commands.contactlistcommands.ListContactCommand;
 import seedu.address.logic.commands.contactlistcommands.ResetContactCommand;
 import seedu.address.logic.commands.contactlistcommands.SortContactCommand;
+import seedu.address.logic.parser.ContactListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
