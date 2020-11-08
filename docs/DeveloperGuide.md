@@ -149,18 +149,19 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
 
-Step 2. The user executes `add q/question...` command to add a flashcard. This will result in the creation of a flashcard with an open-ended question inside `QuickCache`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, QuickCache will not create the flashcard.
-</div>
-
-The following sequence diagram shows how the Parser operation works:
+Step 2. The user executes `add q/question...` command to add a flashcard. 
+The following sequence diagram shows how the input command gets parsed:
 
 ![AddOpenEndedSequenceDiagram](images/AddOpenEndedParserSequenceDiagram.png)
 
-The following sequence diagram shows how the Add Open Ended Question mechanism works:
+Step 3. This will result in the creation of a flashcard with an open-ended question inside `QuickCache`.
+
+The following sequence diagram shows how the flashcard is added:
 
 ![AddOpenEndedSequenceDiagram](images/AddOpenEndedSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, QuickCache will not create the flashcard.
+</div>
 
 #### Design considerations
 
@@ -181,18 +182,19 @@ Given below is an example usage scenario and how the Add Multiple Choice Questio
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
 
-Step 2. The user executes `addmcd q/question ans/1 c/first c/second` command to add a flashcard. This will result in the creation of a flashcard with an multiple choice question inside `QuickCache`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, QuickCache will not create the flashcard.
-</div>
-
-The following sequence diagram shows how the parser operation works:
+Step 2. The user executes `addmcd q/question ans/1 c/first c/second` command to add a flashcard. 
+The following sequence diagram shows how the input is parsed:
 
 ![AddMcqSequenceDiagram](images/AddMcqParserSequenceDiagram.png)
 
-The following sequence diagram shows how the Add Multiple Choice Question mechanism works:
+Step 3. This will result in the creation of a flashcard with an multiple choice question inside `QuickCache`.
+
+The following sequence diagram shows how flashcard is added:
 
 ![AddMcqSequenceDiagram](images/AddMcqSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, QuickCache will not create the flashcard.
+</div>
 
 #### Design considerations:
 
@@ -223,15 +225,14 @@ Step 2. The user executes `open 1` command to display the first flashcard in the
 
 Step 3. This will call `OpenCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input to index of the first `Flashcard`.
 
-Step 4. The `Index` is then passed to the `OpenCommand`
+Step 4. The `Index` is then passed to the `OpenCommand` during its construction.
+The following sequence diagram briefly shows how the parser operation works:
+
+![OpenParserSequenceDiagram](images/OpenParserSequenceDiagram.png)
 
 Step 5. `OpenCommand#execute` will get the `Flashcard` at the specified `Index` and get its `Question` to be passed to the GUI as part of the `Feedback` attribute within the `CommandResult`.
 
 Step 6. The GUI will then proceed to get the `Question` from `Feedback` and display its choices and question to the user.
-
-The following sequence diagram shows how the parser operation works:
-
-![OpenParserSequenceDiagram](images/OpenParserSequenceDiagram.png)
 
 The following sequence diagram shows how the Open mechanism works:
 
@@ -295,24 +296,22 @@ Step 2. `EditCommandParser#parse` will then parse the arguments provided. In thi
 created after parsing.
 
 Step 3. The `Answer` object will then be passed to the `EditFlashcardDescriptor` object. The `EditFlashcardDescriptor`
-object together with the original `Flashcard` will be passed to the `EditCommand` object.
+object together with the original `Flashcard` will be passed to the `EditCommand` object. The following sequence diagram
+briefly shows how the parser operation works (`Answer` and `EditFlashcardDescriptor` objects not included):
+
+![EditSequenceDiagram](images/EditParserSequenceDiagram.png)
 
 Step 4. The `EditCommand` will then create a new `Flashcard` using information from `EditFlashcardDescriptor`.
 In the example, only a new answer is present. All other information will be taken from the original `Flashcard`.
 
 Step 5. `EditCommand#execute` will then replace the old `Flashcard` in the `model` with the new `Flashcard`.
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
-</div>
-
-The following sequence diagram shows how the parser operation works:
-
-![EditSequenceDiagram](images/EditParserSequenceDiagram.png)
-
 The following sequence diagram shows how the Edit mechanism works:
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
 
 #### Design considerations:
 
@@ -385,6 +384,9 @@ Given below is an example usage scenario and how the Delete By Tag mechanism beh
 
  Step 4. A new `DeleteCommand` object will be created with its `isDeleteByTag` field set to `true`. The `FlashcardPredicate`
  will also be passed to the `DeleteCommand` object.
+ The following sequence diagram briefly shows how the parser operation works (`FlashcardPredicate` not shown):
+ 
+ ![DeleteByTagParserSequenceDiagram](images/DeleteByTagParserSequenceDiagram.png)
 
  Step 5. `DeleteCommand#execute` will filter the `QuickCache` model with the provided predicate and get back the filtered list
 
@@ -393,8 +395,6 @@ Given below is an example usage scenario and how the Delete By Tag mechanism beh
 The following sequence diagram shows how the Delete By Tag mechanism works:
 
 ![DeleteByTagSequenceDiagram](images/DeleteByTagSequenceDiagram.png)
-
-![DeleteByTagParserSequenceDiagram](images/DeleteByTagParserSequenceDiagram.png)
 
 #### Design considerations:
 
@@ -418,25 +418,24 @@ A class called `FlashcardPredicate` will be introduced that collects all `Predic
 
 Given below is an example usage scenario and how the Find mechanism behaves at each step.
 
- Step 1. The user launches the application.
+Step 1. The user launches the application.
 
- Step 2. The user executes `find t/Assembly q/What` command to find a `Flashcard` with the tag `Assembly` and the keyword `What` in its `Question`.
+Step 2. The user executes `find t/Assembly q/What` command to find a `Flashcard` with the tag `Assembly` and the keyword `What` in its `Question`.
 
- Step 3. This will call `FindCommandParser#parse` which will then parse the arguments provided.
- Within the method, `ParserUtil#parseTags`and `Parserutil#parseKeywords` will be called to create tags and keywords for the arguments.
+Step 3. This will call `FindCommandParser#parse` which will then parse the arguments provided.
+Within the method, `ParserUtil#parseTags`and `Parserutil#parseKeywords` will be called to create tags and keywords for the arguments.
 
- Step 4. A new `FlashcardPredicate` will then be created from the `QuestionContainsKeywordsPredicate` and `FlashcardContainsTagPredicate` generated from the given tags and keywords.
- It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `FindCommand`
+Step 4. A new `FlashcardPredicate` will then be created from the `QuestionContainsKeywordsPredicate` and `FlashcardContainsTagPredicate` generated from the given tags and keywords.
+It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `FindCommand`
+The following sequence diagram shows how the parser operation works:
+
+![FindParserSequenceDiagram](images/FindParserSequenceDiagram.png)
 
  Step 5. `FindCommand#execute` will set the `QuickCache` model's filter with the provided predicate.
 
  Step 6. The GUI will then proceed to get the filtered list based on the newly set predicate to display to the user.
 
  Step 7. After execution, `CommandResult` will contain a message indicating that it has listed all `Flashcards` based on the specified restrictions.
-
- The following sequence diagram shows how the parser operation works:
-
-![FindParserSequenceDiagram](images/FindParserSequenceDiagram.png)
 
  The following sequence diagram shows how the Find mechanism works:
 
@@ -446,7 +445,7 @@ Given below is an example usage scenario and how the Find mechanism behaves at e
 
 * **Current choice:** Use a `FlashcardPredicate` to filter for the `Flashcard`s.
   * Pros: `FlashcardPredicate` can be extended to be used for other operations.
-  * Cons: *nil*
+  * Cons: Multiple predicates will have be created if more search fields are used.
 
 ### Difficulty
 
@@ -543,7 +542,7 @@ The GUI will change the content of some of its placeholders to display the `Stat
 
 ##### Usage
 
-Given below is an example usage scenario and how the Display mechanism behaves at each step.
+Given below is an example usage scenario and how the Displaystats mechanism behaves at each step.
 
 Step 1. The user launches the application after a few times of using the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
 
@@ -551,17 +550,16 @@ Step 2. The user executes `stats 1` command to display the `Statistics` of the f
 
 Step 3. This will call `StatsCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the first `Flashcard`.
 
-Step 4. The `index` is then passed to the `StatsCommand`
+Step 4. The `index` is then passed to the `StatsCommand`.
+The following sequence diagram shows how the parser operation works:
+
+![StatsParserSequenceDiagram](images/StatsParserSequenceDiagram.png)
 
 Step 5. `StatsCommand#execute` will get the `Flashcard` at the specified `Index` and get its `Statistics` to be passed to the GUI as part of the `Feedback` attribute within the `CommandResult`.
 
 Step 6. The GUI will then proceed to get the `Statistics` from `Feedback` and display its data in the form of a Pie Chart to the user.
 
-The following sequence diagram shows how the parser operation works:
-
-![StatsParserSequenceDiagram](images/StatsParserSequenceDiagram.png)
-
-The following sequence diagram shows how the Display mechanism works:
+The following sequence diagram shows how the Displaystats mechanism works:
 
 ![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
 
@@ -597,17 +595,16 @@ Step 3. The user executes `clearstats 1` command to clear the `Statistics` of th
 
 Step 4. This will call `ClearStatsCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the first `Flashcard`.
 
-Step 5. The `index` is then passed to the `ClearStatsCommand`
+Step 5. The `index` is then passed to the `ClearStatsCommand`.
+The following sequence diagram shows how the parser operation works:
+
+![ClearStatsSequenceDiagram](images/ClearStatsParserSequenceDiagram.png)
 
 Step 6. `ClearStatsCommand#execute` will get the `Flashcard` at the specified `Index` and call `ClearStatsCommand#getFlashcardAfterClearStatistics` which will give a copy of the original `Flashcard` with its `Statistics` reset to zero for all fields. The original `Flashcard` will then be replaced by the new `Flashcard` copy.
 
 Step 7. After execution, `CommandResult` will contain a message indicating that it has cleared the `Statistics` of the `Flashcard` on the specified index.
 
 Step 7. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` is reset.
-
-The following sequence diagram shows how the parser operation works:
-
-![ClearStatsSequenceDiagram](images/ClearStatsParserSequenceDiagram.png)
 
 The following sequence diagram shows how the Clearstats mechanism works:
 
