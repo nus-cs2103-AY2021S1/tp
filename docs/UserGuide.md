@@ -195,15 +195,9 @@ For example, you can enter `addmcq q/Sample Question ans/1  c/Sample Choice c/Sa
 
 <div markdown="block" class="alert alert-danger">
 
-:exclamation:<br>
+:exclamation:
 - You cannot add flashcard with missing question or missing answer or missing choice.
 - <code>DIFFICULTY</code> can only be set to <code>LOW</code>, <code>MEDIUM</code>, <code>HIGH</code> or <code>UNSPECIFIED</code>.
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: You should have at least two choices.
-
 </div>
 
 <a name="opening-a-flashcard"></a>
@@ -237,6 +231,10 @@ You have successfully opened a flashcard!
 
 You can edit a flashcard that you have created previously.
 
+<div markdown="block" class="alert alert-danger">
+:exclamation: At least one field of the flashcard must be changed!
+</div>
+
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
     ![edit](images/Edit.png)
@@ -252,10 +250,9 @@ For example, if you want to edit the 3rd flashcard in the displayed list, you ca
 
 You have successfully edited a flashcard.
 
-<div markdown="block"class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source:<br> 
-- You must have at least one edited field which is different from the previous flashcard.
 - When editing tags, the existing tags of the flashcard will be removed i.e adding of tags is not cumulative.
 - You can remove all the flashcard’s tags by typing <code>t/</code> without specifying any tags after it.
 - You can remove the flashcard’s difficulty by typing d/ without specifying any difficulty after it. Or you can manually set it to <code>d/UNSPECIFIED</code>.
