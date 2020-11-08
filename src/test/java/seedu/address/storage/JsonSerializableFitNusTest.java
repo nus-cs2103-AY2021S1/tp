@@ -5,12 +5,16 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.FitNus;
+import seedu.address.model.calorie.Calorie;
+import seedu.address.model.calorie.DailyCalorie;
+import seedu.address.testutil.FitNusBuilder;
 import seedu.address.testutil.TypicalExercises;
 import seedu.address.testutil.TypicalLessons;
 import seedu.address.testutil.TypicalRoutines;
@@ -36,6 +40,11 @@ public class JsonSerializableFitNusTest {
     private static final Path INVALID_SLOT_FILE = TEST_DATA_FOLDER.resolve("invalidSlotFitNus.json");
     private static final Path DUPLICATE_SLOT_FILE = TEST_DATA_FOLDER.resolve("duplicateSlotFitNus.json");
     private static final Path OVERLAP_SLOT_FILE = TEST_DATA_FOLDER.resolve("overlapSlotFitNus.json");
+
+    private static final Path TYPICAL_DAILY_CALORIE_FILE = TEST_DATA_FOLDER.resolve("typicalDailyCalorieFitNus.json");
+    private static final Path INVALID_DAILY_CALORIE_FILE = TEST_DATA_FOLDER.resolve("invalidDailyCalorieFitNus.json");
+    private static final Path DUPLICATE_DAILY_CALORIE_FILE = TEST_DATA_FOLDER.resolve(
+            "duplicateDailyCalorieFitNus.json");
 
     @Test
     public void toModelType_typicalExercisesFile_success() throws Exception {
@@ -138,6 +147,33 @@ public class JsonSerializableFitNusTest {
         JsonSerializableFitNus dataFromFile = JsonUtil.readJsonFile(OVERLAP_SLOT_FILE,
                 JsonSerializableFitNus.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableFitNus.MESSAGE_OVERLAP_SLOT,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_typicalDailyCalorieFile_success() throws Exception {
+        JsonSerializableFitNus dataFromFile = JsonUtil.readJsonFile(TYPICAL_DAILY_CALORIE_FILE,
+                JsonSerializableFitNus.class).get();
+        FitNus actualFitNus = dataFromFile.toModelType();
+        FitNus expectedFitNus = TypicalRoutines.getTypicalFitNus();
+        Calorie modelCalorie = new Calorie(1500);
+        expectedFitNus.addCalories(modelCalorie);
+        assertEquals(expectedFitNus.getDailyCalorieList(), actualFitNus.getDailyCalorieList());
+    }
+
+    @Test
+    public void toModelType_duplicateDailyCalorie_throwsIllegalValueException() throws Exception {
+        JsonSerializableFitNus dataFromFile = JsonUtil.readJsonFile(DUPLICATE_DAILY_CALORIE_FILE,
+                JsonSerializableFitNus.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableFitNus.MESSAGE_DUPLICATE_DAILYCALORIE,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDailyCalorie_throwsIllegalValueException() throws Exception {
+        JsonSerializableFitNus dataFromFile = JsonUtil.readJsonFile(INVALID_DAILY_CALORIE_FILE,
+                JsonSerializableFitNus.class).get();
+        assertThrows(IllegalValueException.class, JsonAdaptedDailyCalorie.INVALID_CALORIE_MESSAGE_FORMAT,
                 dataFromFile::toModelType);
     }
 

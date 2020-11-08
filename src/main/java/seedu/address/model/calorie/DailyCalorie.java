@@ -65,7 +65,7 @@ public class DailyCalorie implements Comparable<DailyCalorie> {
         }
 
         return otherDailyCalorie != null
-                && otherDailyCalorie.getDate().equals(getDate());
+                && otherDailyCalorie.getDate().isEqual(getDate());
     }
 
     /**

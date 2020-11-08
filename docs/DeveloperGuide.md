@@ -191,7 +191,7 @@ Given below is the sequence diagram showing how the routine creation command is 
 
 ![Routine Create](./images/RoutineAddSequenceDiagram.png)
 
-Given below is the activity diagram a user will go through when creating a routine in fitNUS.
+Given below is the activity diagram a user will go through when creating a routine in fitNUS. It shows clearly the input checks at every step and the different errors that will be thrown. 
 
 ![Routine create activity](./images/RoutineCreateActivityDiagram.png)
 
@@ -716,14 +716,59 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with no entries. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file.<br>.
        Expected: The most recent window size and location is retained.
+
+1. Exiting fitNUS
+
+    1. Enter `exit` in order to save fitNUS data and close the GUI.
+    1. ` exit ` is still an acceptable command, with whitespace before and after.
+
+
+### Features
+
+1. Adding an Exercise
+   1. Prerequisites: Exercise named "Squats" must not already exist in fitNUS.
+   1. Test case: `exercise_add e/Squats t/Leg`<br>
+      Expected: Creates an Exercise called "Squats" that is tagged with "Leg" tag. Success message will be shown.
+   1. Test case: `exercise_add e/Bicep`<br>
+      Expected: Creates an Exercise called "Bicep" with no tags. Success message will be shown.
+   1. Test case: `exercise_add e/GRE@T EXERCISE`<br>
+      Expected: Error is thrown due to input not following alphanumeric format. 
+   1. Other incorrect commands to try: `exercise_add`, `exercise_add e/Bicep e/Curls`, `...`<br>
+      Expected: Similar to previous.
+1. Deleting an Exercise
+   1. Prerequisites: Exercise indicated must already exist in fitNUS. In this case, there exist 1 Exercise.
+
+   1. Test case: `exercise_delete 1`<br>
+      Expected: First Exercise is deleted from the list. Successful message will be shown.
+
+   1. Test case: `routine_delete 0`<br>
+      Expected: No Exercise is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `exercise_delete`, `exercise_delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous. 
+      
+1. Finding an Exercise using keywords
+
+    1.Prerequisites: There must be Exercise existing in fitNUS to search for. In this case, we assume there are 2 named
+    "Squats" and "Bench Press".
+    1. Test case: `exercise_find bench`<br>Expected: Exercise "Bench Press" will be the only Exercise listed in fitNUS.
+    Success message will inform user how many exercises were successfully found.
+    1. Test case: `exercise_find benc`<br>Expected: Exercise "Bench Press" will be the only Exercise listed in fitNUS.
+    Success message will inform user how many exercises were successfully found.
+    1.Test case: `exercise_find benc`<br>
+1. Editing an existing Exercise
+
+1. Listing all Exercise
+
+1. 
 
 1. Adding a Routine
 
@@ -816,8 +861,47 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. To simulate a missing data file, delete the save file named `fitnus.json` under `./data/`.
+    1. Open fitNUS jar file by either command line or double-clicking jar file.<br>Expected: fitNUS with no data inside.
+   
+1. Dealing with corrupted data files
 
-1. _{ more test cases …​ }_
+    1. To simulate a corrupted data file, there are several ways to do this. The easiest method would be to change the
+    count to negative for any day or changing the value of the pre-configured height/weight.
+    1. If you ran fitNUS by command line, you will receive a warning that there has been a corruption and fitNUS will
+    now clear the data and restart, deleting all previous data.
+    
+## Appendix: Effort
+
+### 1. Overall efforts
+
+Adapting AB3 to fit our vision for fitNUS was no small task. This was everyone's first introduction to a brown-field
+software engineering project and the scope and depth of AB3 took everyone by surprise. We faced a lot of difficulties
+juggling both understanding and dissecting the code, as well as adhering to the proper workflow arrangement. On top of
+refactoring Person into Exercise, we had to find an elegant solution to the other classes of fitNUS, while ensuring low
+coupling and abstraction.
+
+### 2. Exercises and Routines
+
+We knew that we wanted to center fitNUS around Exercise. Intertwining of Exercise with Routine, Timetable and the other
+classes proved to be extremely challenging. Whenever an Exercise was edited or removed, relevant Routines will have to
+changed and similarly edited. We went through several iterations of refactoring these classes due to
+design issues as we learnt more about design principles in the course and defensive programming. 
+
+### 3. User Interface
+
+We envisioned fitNUS to be more of a "visual" product, where users will feel that the product is intuitive to use and
+the interface is lean. We are proud and sure that we have achieved this goal, despite not knowing any JavaFX before
+CS2103T.  We are especially proud of the calorie graph that is on the homepage that dynamically updates as the user
+enters calories as well as the timetable tab that is able to concisely display the user's routines and lessons.
+
+
+### 4. Conclusion
+
+No matter how much you plan for a project, things will always hiccup. 
+We had a lot of unique ideas and features that we wish we could have implemented, but due to the unforeseen workload and the already
+large scale of fitNUS, we had to shed some really good ideas. Nevertheless, we are extremely proud of what we have
+accomplished with fitNUS. We can say without a doubt, that this was definitely the most challenging and the most
+rewarding module yet.

@@ -1,0 +1,17 @@
+{
+  "exercises" : [ ],
+  "lessons" : [ ],
+  "routines" : [ ],
+  "slots" : [ ],
+  "dailyCalories" : [ {
+    "date" : "2020-11-08",
+    "calories" : "1500"
+  }, {
+    "date" : "2020-11-08",
+    "calories" : "2000"
+  }],
+  "body" : {
+    "height" : 160.0,
+    "weight" : 45.0
+  }
+}
