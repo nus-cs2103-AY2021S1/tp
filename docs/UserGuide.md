@@ -4,7 +4,7 @@
 2. [About This Document](#2-about-this-document)<br>
     2.1 [Glossary](#21-glossary)<br>
 	2.2 [Formatting](#22-formatting)<br>
-	2.3 [Command format](#23-command-format)<br>
+	2.3 [Command Format](#23-command-format)<br>
 3. [Getting Started](#3-getting-started)<br>
     3.1 [Setting Up](#31-setting-up)<br>
     3.2 [Using Trackr](#32-using-trackr)<br>
@@ -280,7 +280,7 @@ Example: `prevView`
 
 ![PrevViewCommand](images/PrevViewCommand.png)
 
-### 4.3 Module features
+### 4.3 Module Features
 
 #### 4.3.1 Add a module: `addMod`
 
@@ -371,7 +371,7 @@ Expected Outcome:
 ![FindModuleCommand](images/FindModuleCommand.png)
 
 
-### 4.4 Tutorial Group features
+### 4.4 Tutorial Group Features
 
 #### 4.4.1 Add a Tutorial Group to a Module: `addTG`
 You can add a Tutorial Group to the Module you are viewing using this command.
@@ -422,7 +422,7 @@ Example: `editTG 3 tg/T04 day/TUE start/08:00 end/10:00`
 
 These are the commands you can use to manage the different `Tutorial Groups` you teach. Now we look at how you can manage your `Students`.
 
-### 4.5 Student features
+### 4.5 Student Features
 
 > You should perform the following features while in the Student view.
 
