@@ -1175,9 +1175,25 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### F.3 Finding a Student
 
-### F.3 Saving Data
+1. Finding a student while all students are being shown with several matching students
+
+   1. Prerequisites: List all students using the `list` command. Two students in the list. One student has name _Samuel_ and has school _yishun secondary_. Another student has name _Sam_ and has school _yishun sec school_.
+
+   1. Test case: `find n/samuel`<br>
+      Expected: Only the student with name _Samuel_ and school _yishun secondary_ shows up in the list.
+
+   2. Test case: `find n/sam`<br>
+      Expected: Only the student with name _Sam_ and school _yishun sec school_ showsinp on the list.
+
+   3. Test case: `find s/yishun sec`<br>
+      Expected: Both students show up in the list.
+
+   4. Incorrect find commands to try: `find`, `find samuel`, `find yishun sec`
+      Expected: No changes show up on the list. Error details shown in the status message.
+
+### F.4 Saving Data
 
 1. Dealing with missing/corrupted data files
 
