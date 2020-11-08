@@ -937,7 +937,9 @@ will be highlighted in `CalenderView`.
 
 2. User would be able to mark if listed property is a closed deal or not.
 
-3. Meeting date will be able to handle dates beyond the year of 2050 (exclusive).
+3. Check for clash of `Meeting` timings across the different timings that are listed.
+
+4. User will not be able to create a `Meeting` with a very long venue length.
 
 # Thank You For Using PropertyFree!
 
