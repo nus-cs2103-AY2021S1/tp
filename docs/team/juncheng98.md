@@ -23,6 +23,7 @@ Given below are my contributions to the project.
   * Morphed the Phone field in the original AB3 to ID field in the current ZooKeep: [\#62](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/62), [\#64](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/64)
   * Enhanced the find command to enable searching in all fields: [\#114](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/114)
   * Enhanced the find command to allow substring matching: [\#269](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/269)
+  * Added logging and assertions to raise code quality: [\#305](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/305)
 
 * **Documentation**:
   * User Guide:
@@ -41,6 +42,6 @@ Given below are my contributions to the project.
 * **Team-based tasks**:
   * [DG] Added relevant Non-Functional Requirements (NFRs) and Glossary: [\#20](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/20)
   * [UG] Modified the descriptions of all available features to be more user-centric: [\#222](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/222)
-  * [UG] Included different screenshots of ZooKeep to complement the examples given for all the features: [\#268](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/268)
+  * [UG] Included different screenshots of ZooKeep to complement the examples given for all the features: [\#268](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/268), [\#313](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/313)
   * [DG] Modified entries in NFRs and added some new Glossary entries: [\#305](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/305)
-  * Added several issues to the repository: ([\#217](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues/217), [\#218](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues/218), [\#219](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues/219))
+  * Added relevant documentation issues to the repository: ([\#217](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues/217), [\#218](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues/218), [\#219](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues/219))
