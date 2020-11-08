@@ -9,8 +9,9 @@ Welcome to the User Guide for Eva!
 
 ## 1. Introduction
 
-<img src="evalogo.png" alt="Eva logo" width="500" height="500" \>
-
+<p align="center">
+   <img src="images/ugimages/evalogo.png" alt="Eva logo" width="500" height="500"  />
+</p>
 Welcome and thanks for downloading Eva!
 
 What is _Eva_?
@@ -76,6 +77,7 @@ Note how the app contains some sample data.<br>
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
+Here are some general information you would need to know about our commands as you read through the user guide.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -89,6 +91,17 @@ Note how the app contains some sample data.<br>
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* In Eva, you can store information about staff and applicants. Information includes details like name, phone number 
+and more. As such, in order to prevent incorrect details from being stored, make sure you follow these guidelines
+on storing these details
+  * Names can be contain only alphanumeric characters and have a character limit of 70 characters.
+  * Phone numbers can only contain numbers, and should be at least 8 digits long.
+  * Emails should be of the format local-part@domain where the local-part should contain alpha numeric characters or 
+    special characters which includes ( !#$%&'*+/=?`{|}~^.- ) excluding the parentheses. The domain name should have 
+    at least 2 characters and contain only alphanumeric with a period or a hyphen for the characters in between if 
+    needed.
+  * Tags can only contain alphanumeric characters. 
+  * All dates should be in the format DD/MM/YYYY. 
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -100,6 +113,15 @@ There is no need to save manually! <br>
 You can also find the records in the `data` folder where the `eva.jar` file is located.
 
 </div>
+
+Here is a brief overview on how this document is arranged. The first section brings you through the 
+[different panels](#31-eva-gui) you will see in our application. After getting familiar with that, we will share some 
+[general system commands](#32-system-commands) you can use at any point in time. In the third section, 
+we will bring you through the [features we have implemented for staff](#33-staff-commands). 
+Following which, you will be introduced to the [features for managing applicant records](#34-applicant-commands). 
+Finally, you will learn about [how to add and delete comments to applicants and staff](#35-comment-commands) and 
+[our very own unique script engine](#35-script-engine). By then, you will definitely become a master in using Eva! 
+So let's get started! 
 
 ### 3.1. Eva GUI
 
@@ -156,6 +178,8 @@ As mentioned earlier in [Features](#3-features), there is no need to manually sa
 
 ### 3.3. Staff commands
 
+Staff commands give you the ability to keep track of your staffs which help you make business and manpower decisions.
+
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**<br>
@@ -166,7 +190,6 @@ As mentioned earlier in [Features](#3-features), there is no need to manually sa
 
 </div>
 
-Staff commands give you the ability to keep track of your staffs which help you make business and manpower decisions.
 
 #### 3.3.1. List all staffs : `list`
 
@@ -180,16 +203,38 @@ Format: `list s-`
 
 #### 3.3.2. Add a staff: `adds`
 
-Adds a staff to Eva.
+This command enables you to add a staff record into Eva. A staff record can contain the details listed below:
+ - Name*
+ - Phone Number*
+ - Email*
+ - Address*
+ - Tags
+ - Comments
+ - Leaves 
+ 
+The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
+Without any of these fields, Eva will not accept your input. Tags and comments can be added with these commands as shown 
+in the examples. To manage leave records for each staff, please refer to the commands 
+[addl](#337-record-leave-taken-by-staff-addl) and [dell](#338-delete-leave-taken-by-staff-dell)
 
 Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
  - A staff can have any number of tags (including 0) <br>
  - A staff can have any number of comments (including 0) <br>
  
+:bulb: **Tip:**
+ - The details of each field can be provided in any order.
+ 
 Examples:
-* `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
+* To add only the necessary fields <br>
+`adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* To add a comment along with the necessary fields <br>
+`adds n/Kristina Ryan e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678
+c/ ti/Behaviour d/20/12/2020 desc/Very enthusiastic in meetings`
+* To add a tag along with the necessary fields <br>
+`adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
+
+The image below shows what you would see after executing the second command in the examples given above. 
 
 ![addStaff](images/ugimages/AddStaff.png)
 
@@ -294,11 +339,13 @@ Examples:
 
 #### 3.3.9. Clear staff database : `clear s-`
 
-Want to get rid of all entries at once?
-
-This command clears all staff entries from the Eva database.
+In any case that you might want to remove all staff records, you can always use this command. <br>
+This command clears all staff entries from the Eva database. 
 
 Format: `clear s-`
+
+The image below shows what you would see after using this command. Notice that there are no more records of staff in the
+Staff List.
 
 ![clearStaff](images/ugimages/ClearStaff.png)
 
@@ -323,21 +370,43 @@ Shows a list of all applicants in Eva.
 
 #### 3.4.2 Add an applicant: `adda`
 
-Adds an applicant to Eva.
+This command enables you to add an applicant record into Eva. An applicant record can contain the details listed below:
+ - Name*
+ - Phone Number*
+ - Email*
+ - Address*
+ - Tags
+ - Comments
+ - Interview Date
+ - Application Status
+ - Application
+ 
+The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
+Without any of these fields, Eva will not accept your input. Tags and comments can be added with these commands as shown 
+in the examples. To manage application records for each applicant, please refer to the commands 
+[addapp](#347-add-an-application-addapp) and [delapp](#348-delete-an-application-delapp)
 
 Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
 
- - An applicant can have any number of tags (including 0) <br>
- - An applicant can have any number of comments (including 0) <br>
- - The interview date has to be in DD/MM/YYYY format <br>
- - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature [setting 
- of application status]() below
+ - An applicant can have any number of tags (including 0) 
+ - An applicant can have any number of comments (including 0) 
+ - The interview date has to be in DD/MM/YYYY format 
+ - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature 
+ [setting of application status](#349-set-application-status-setas) below
+ - :bulb: **Tip:** The details of each field can be provided in any order. 
  - :bulb: **Tip** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
 <br>
 
 Examples:
-* `adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
-* `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Developer`
+* To add an applicant without an interview date 
+`adda n/Vicky Santana p/98765432 e/vsc@xample.com a/John street, block 123, #01-01`
+* To add an applicant with an interview date 
+`adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
+* To add an applicant with tags and comments
+ `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 
+ p/92345678 t/Developer c/ ti/Working Ethics d/10/10/2010 desc/Good`
+
+The image below shows what you would see after executing the second command in the examples given above.
 
 ![addApplicant](images/ugimages/AddApplicant.png)
 
@@ -365,8 +434,13 @@ Example:
 
 #### 3.4.5. Delete an applicant: `dela`
 
-Deletes an applicant with the specified index on the displayed list in Eva. 
+If you need to remove specific records of applicants, you may use this command. By providing the index of the 
+applicant you see on Applicant List, you can remove that applicant's record. 
 
+<div markdown="block" class="alert alert-danger">
+Please take note that this action is irreversible.
+</div>
+<br>
 Format: `dela INDEX`
 
 Example:
@@ -437,7 +511,9 @@ Example:
 ![deleteApplication](images/ugimages/DeleteApplication.png)
 
 #### 3.4.9. Set application status: `setas`
-Sets the application status of an applicant with the specified index on the displayed list in Eva.
+
+We understand that the process of hiring new talent requires multiple stages and this can be tracked using the
+application status. You can use this command to change the status of any applicant at any time.
 
 Format: `setas INDEX as/NEW_APPLICATION_STATUS`
 
@@ -452,7 +528,21 @@ Example:
 
 ![setApplicationStatus](images/ugimages/SetApplicationStatus.png)
 
-### 3.4.10 Clear applicant database: `clear`
+#### 3.4.10 Clear applicant database: `clear`
+
+In any case that you might want to remove all applicant records, you can always use this command.
+This command clears all applicant entries from the Eva database.
+
+<div markdown="block" class="alert alert-danger">
+Please take note that this action is irreversible.
+</div>
+<br>
+
+Format: `clear a-`
+
+The image below shows what you would see after using this command. 
+Notice that there are no more records of staff in the
+Applicant List.
 
 ![clearApplicantDatabase](images/ugimages/ClearApplicant.png)
 
@@ -513,14 +603,14 @@ Example Scenario:
 
 ![editComment](images/ugimages/EditComment.png)
 
-### 3.5. Script Engine
+### 3.6. Script Engine
 
 Eva has a built-in script to execute JavaScript that can be used to extend the features of Eva.
 
 Please refer to [Nashorn official website](https://www.oracle.com/technical-resources/articles/java/jf14-nashorn.html)
 for supported JavaScript features, and how to import Java classes to extend Eva features.
 
-#### 3.5.1. Load a JavaScript script: `load`
+#### 3.6.1. Load a JavaScript script: `load`
 
 Format: `load SCRIPT_FILE_PATH`
 
@@ -546,20 +636,20 @@ Example Scenario:
 
 | Action    | Format, Examples   |
 |-----------|--------------------|
-| **Load**  | `load`             |
 | **Help**  | `help`             |
 | **Exit**  | `exit`             |
+| **Load**  | `load`             |
 
 ### 5.2. Staff
 
 | Action          | Format, Examples                                                                                                                                        |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ListStaffs** | `list s-`   
+| **ListStaff**  | `list s-`   
 | **AddStaff**    | `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **FindStaff** | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find s- James Jake`                                                                 |
-| **View** | `view INDEX`<br> e.g., `view 2`                                                                                            |
+| **FindStaff**   | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find s- James Jake`                                                                 |
+| **View**        | `view INDEX`<br> e.g., `view 2`                                                                                            |
 | **DeleteStaff** | `dels INDEX`<br> e.g., `dels 1`         
-| **EditStaff** | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edits 2 n/James Lee e/jameslee@example.com` |
+| **EditStaff**   | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edits 2 n/James Lee e/jameslee@example.com` |
 | **AddLeave**    | `addl INDEX l/d/DATE [d/DATE]` <br> e.g., `addl 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`                                                   |
 | **DeleteLeave** | `dell INDEX d/DATE`<br> e.g., `dell 1 d/10/10/2020`                                                                                       |
 | **ClearStaffDatabase** | `clear s-`         |
@@ -567,7 +657,7 @@ Example Scenario:
 ### 5.3. Applicant
 
 | Action                | Format, Examples                                                                                                 |
-|-----------------------|------------------------------------------------------------------------------------------------------------------|
+|-----------------------|--------------------------------------------------------------------------------------------|
 | **List** | `list a-`   
 | **AddApplicant**      | `adda` <br> e.g., `adda n/John Doe p/98765432 e/jd@example.com a/John street, block 123, #01-01` |
 | **Find** | `find a- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find a- James Jake`                                                                 |
@@ -576,4 +666,4 @@ Example Scenario:
 | **AddApplication**    | `addapp INDEX [filepath]` <br> e.g., `addapp 1 C:\Users\Public\Downloads\resume.txt`             |
 | **DeleteApplication** | `delapp INDEX` <br> e.g., `delapp 1`                                                       |
 | **SetAppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g., `setas 1 as/processing`                               |
-| **ClearApplicantDatabase** | `clear s-`         |
+| **ClearApplicantDatabase** | `clear a-`         |
