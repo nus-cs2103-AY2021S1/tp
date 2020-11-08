@@ -562,6 +562,7 @@ User data automatically saves when there is a change in data.
 |**edit status**        | `edit status s:STATUS`                                                            |
 |**edit document**      | `edit doc DOC_NO [n:NAME] [r:REFERENCE]`                                         |
 |**edit suspect**       | `edit suspect SUSPECT_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`      |
+<div style="page-break-after: always;"></div>
 |**edit victim**        | `edit victim VICTIM_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`        |
 |**edit witness**       | `edit witness WITNESS_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`      |
 |**delete description** | `delete desc`                                                                     |
