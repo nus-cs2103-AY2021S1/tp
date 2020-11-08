@@ -274,6 +274,7 @@ Examples:
 *  `filter t/examinable t/study` filters and lists all flashcards that have both an “examinable” tag and a “study” tag.
 *  `filter r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
 *  `filter f/no f/yes c/General` filters and lists all favourited flashcards that belong to the General category.
+    (only last instance of f/ is read)
 
 **Steps for filtering for a flashcard based on category and tag**:
 
