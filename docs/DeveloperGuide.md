@@ -825,10 +825,7 @@ testers are expected to do more *exploratory* testing.
       Expected: lessons with title including either "tutorial" or "lab" will be displayed
       
    1. Test case: `find-lesson datetime:10-11-2020 12:00`<br>
-      Expected: lessons happening on 10-1102020 at 12:00 will be displayed.
-
-   1. Other incorrect delete commands to try: `delete-lesson`, `delete-lesson x`, `...` (where x is larger than the list size or negative number)<br>
-      Expected: Similar to previous.
+      Expected: lesson happening on 10-1102020 at 12:00 will be displayed.
             
 ### Deleting a lesson
 
