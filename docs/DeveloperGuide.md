@@ -286,9 +286,6 @@ command is given by:
 When using this command, the `INDEX` should refer to the index shown in the Session List on the right panel.
 The user can follow up with an optional force parameters to delete all Schedules associated to the Session.
 
-These delete operations are exposed in the `Model` interface as `Model#deleteSession`, `Model#deleteSessionAssociatedSchedules`
-and `Model#hasAnyScheduleAssociatedWithSession`.
-
 The following activity diagram summarizes what happens when a user executes a new `DeleteSession` command, with the assumption that the user inputs a valid command.
 
 <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
@@ -329,13 +326,13 @@ For simplicity, we will refer to this command input as `commandText`.
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-The sequence diagram above shows how the `DeleteSessionCommand` is executed in FitEgo. The LogicManager receives user 
+The sequence diagram above shows how the `DeleteSessionCommand` is executed in FitEgo. The `LogicManager` receives user 
 command as commandText and parses it with `AddressBookParser`. It will parse the command and pass the remaining
 arguments to `DeleteSessionCommandParser` to construct a `DeleteSessionCommand`. This `DeleteSessionCommand` is 
 returned to the `LogicManager` which will then executes it with reference to the model argument.
 
-The model will first get the current `FilteredSessionList` instance to get the Session to be deleted. It will then check
-whether there exist any `Schedule` associated to the Session. As there are currently 2 schedules associated to the "enduranceTraining" session in FitEgo and the boolean `isForced` 
+The model will first get the current `FilteredSessionList` instance to get the `Session` to be deleted. It will then check
+whether there exist any schedule associated to the session. As there are currently 2 schedules associated to the "enduranceTraining" session in FitEgo and the boolean `isForced` 
 is set to true, the model will remove them from `AddressBook`. It will then create a `CommandResult` to relay feedback 
 message back to the UI and return control back to `LogicManager`. It will persist these changes by saving it to the storage.
 
@@ -640,7 +637,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | trainer                                       | delete a client                | remove entries that I no longer need                                   |
 | `* * *`  | trainer                                       | find a client by name          | locate details of clients without having to go through the entire list |
 | `* * *`  | trainer                                       | tag my client         | I know their allergy / injury history and can advise them an appropriate training / diet schedule |
-| `* * *`  | trainer                                       | create a Session               |                                                                        |
+| `* * *`  | trainer                                       | add a new session               |                                                                        |
 | `* * *`  | trainer                                       | edit a session                 | change the details of a session                                        |
 | `* * *`  | trainer                                       | view a session's detail        | view at all of the session's details at a glance                       |
 | `* * *`  | busy fitness trainer                          | filter sessions by time        | view only the upcoming or other important sessions                             |
