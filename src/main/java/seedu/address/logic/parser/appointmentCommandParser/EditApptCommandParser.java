@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_NEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_OLD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +37,7 @@ public class EditApptCommandParser implements Parser<EditApptCommand> {
         logger.log(Level.INFO, "Start parsing");
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT_OLD, PREFIX_APPOINTMENT_NEW);
+                ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT_OLD, PREFIX_APPOINTMENT_NEW, PREFIX_DESCRIPTION);
 
         Nric nric;
 
@@ -53,6 +54,10 @@ public class EditApptCommandParser implements Parser<EditApptCommand> {
             oldAppointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT_OLD).get());
         }
         assert !oldAppointment.equals(new Appointment()) : "Appointment should not be empty!";
+
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            oldAppointment = oldAppointment.setDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        }
 
         Appointment newAppointment = new Appointment();
 
