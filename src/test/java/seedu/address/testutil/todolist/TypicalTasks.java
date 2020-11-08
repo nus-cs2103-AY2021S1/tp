@@ -11,9 +11,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_LAB07;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LAB05;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LAB07;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.model.TodoList;
 import seedu.address.model.task.Task;
@@ -91,5 +93,21 @@ public class TypicalTasks {
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(LAB_01, LAB_02, ASSIGNMENT_01, ASSIGNMENT_02, PROBLEM_SET_01,
                 PROBLEM_SET_02, QUIZ_01, QUIZ_02));
+    }
+
+    public static TodoList getStaticTypicalTodoList() {
+        TodoList tl = new TodoList();
+        for (Task task : getStaticTypicalTasks()) {
+            tl.addTask(task);
+        }
+        return tl;
+    }
+    public static List<Task> getStaticTypicalTasks() {
+        final LocalDate defaultCreatedDate = LocalDate.parse("2020-11-02");
+        return new ArrayList<>(Arrays.asList(LAB_01, LAB_02, ASSIGNMENT_01, ASSIGNMENT_02, PROBLEM_SET_01,
+            PROBLEM_SET_02, QUIZ_01, QUIZ_02))
+            .stream()
+            .map(t -> t.setDateCreated(defaultCreatedDate))
+            .collect(Collectors.toList());
     }
 }
