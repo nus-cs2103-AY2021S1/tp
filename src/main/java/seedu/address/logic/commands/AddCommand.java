@@ -53,7 +53,6 @@ public class AddCommand extends CommandForExercise {
     @Override
     public CommandResult execute(ExerciseModel model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasExercise(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
         }
