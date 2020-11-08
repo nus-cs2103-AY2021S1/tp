@@ -103,7 +103,7 @@ Unexpected prefix(es) entered for commands which do not take in any parameter | 
 `i-set i/Milk i/Boba m/90`
 
 **How the command is processed:**
-In this case, the situation of duplicate valid prefixes detected takes place. Hence, only the last, in this case, the second prefix and its following parameters are accepted.
+In this example, the situation of duplicate valid prefixes detected takes place. Hence, only the last, in this case, the second prefix and its following parameters are accepted.
 Thus, the command will be processed in the same way as `i-set i/Boba m/90`.
 
 **Example 2:**
@@ -118,7 +118,7 @@ part of the parameter for the nearest previous prefix, which is `S/`. This will 
 `help i/Milk i don't know what to do `
 
 **How the command is processed:**
-In this case, `help` is a command which does not take in any parameter. Hence, the situation of unexpected prefix(es) entered for commands which do not take in any parameter takes place.
+In this example, `help` is a command which does not take in any parameter. Hence, the situation of unexpected prefix(es) entered for commands which do not take in any parameter takes place.
 Thus, tCheck will ignore all words come after the command word `help` and the command will be processed in the same way as `help`.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -249,6 +249,8 @@ Format: `s-rank`
 
 * All ingredients' initial levels (the levels you see when running tCheck for the very first time) are set to 0.<br>
 
+* Recording ingredients' leves to the nearest **KG**/**L** is sufficient for inventory keeping.<br>
+
 * tCheck is designed specifically for an imaginary bubble tea brand, T-Sugar, which produces all their drinks using six ingredients. Hence, all available ingredients in a T-Sugar store are pre-defined in tCheck's ingredient book and no other ingredient can be added.<br>
 
 * Please note that the ingredient names are **case-sensitive** to ensure consistency with the ingredient names displayed in Ingredient Tracker section of the _Main View_.<br>
@@ -277,21 +279,24 @@ Format: `i-set i/INGREDIENT_NAME m/AMOUNT`
 * Sets the `INGREDIENT_NAME` to the specified `AMOUNT`.
 
 Example:
-Let's say you wants to set the ingredient Milk's level to 90 L. 
+
+Let's say you want to set the ingredient Milk's level to 90 L. 
 You can follow these instructions:
 
 1. Type `i-set i/Milk m/90` into the _Command Box_.
 2. Press "Enter" on your keyboard to execute the command.
 
-
-<img src="images/IngredientSetCommand.png" width="1000" height="700" />
-Figure above shows tCheck's GUI during the command is being entered.
-
 Outcome:
+
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated Milk's level to 90 L in The Ingredient Tracker inside the _Main View_.
 
-<img src="images/IngredientSetCommandResultDisplay.png" width="1000" height="700" />
+Before the execution:
+
+<img src="images/IngredientSetCommand.png" width="850" height="595" />
+Figure above shows tCheck's GUI during the command is being entered.
+
+<img src="images/IngredientSetCommandResultDisplay.png" width="850" height="595" />
 Figure above showing tCheck's GUI after pressing "Enter". Note that the amount for Milk is updated in Ingredient Tracker section inside the _Main View_.
 
 #### 2.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
@@ -303,20 +308,22 @@ Format: `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOU
 * Sets all ingredients' levels as such : Milk : `AMOUNT_FOR_MILK` L, Pearl : `AMOUNT_FOR_PEARL` KG, Boba : `AMOUNT_FOR_BOBA` KG, Black Tea : `AMOUNT_FOR_BLACK_TEA` L, Green Tea: `AMOUNT_FOR_GREEN_TEA`, Brown Sugar : `AMOUNT_FOR_BROWN_SUGAR` KG.
 
 Example:
+
 Let's say you want to set Milk's level to 20, Pearl's level to 20, Boba's level to 20, Black Tea's level to 20, Green Tea's level to 80 and Brown Sugar's level to 50.
 You can follow these instructions:
 
 1. Type `i-set-all M/20 P/20 B/20 L/50 G/80 S/50` into the _Command Box_.
 2. Press "Enter" on your keyboard to execute the command.
 
-<img src="images/IngredientSetAllCommand.png" width="1000" height="700" />
-Figure above shows tCheck's GUI during the command is being entered.
-
 Outcome:
+
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated all ingredients' levels to the specified amounts in the Ingredient Tracker inside the _Main View_.
 
-<img src="images/IngredientSetAllCommandResultDisplay.png" width="1000" height="700" />
+<img src="images/IngredientSetAllCommand.png" width="850" height="595" />
+Figure above shows tCheck's GUI during the command is being entered.
+
+<img src="images/IngredientSetAllCommandResultDisplay.png" width="850" height="595" />
 Figure above showing tCheck's GUI after pressing "Enter". Note that all amounts for the ingredients are updated in Ingredient Tracker inside the _Main View_.
 
 #### 2.3 Setting all ingredients to different levels : `i-set-default`
@@ -328,6 +335,7 @@ Format: `i-set-default`
 * Sets all ingredients' levels to their default levels : Milk : 50 L, Pearl : 20 KG, Boba : 20 KG, Black Tea : 50 L, Green Tea : 50 L, Brown Sugar : 20 KG.
 
 Example:
+
 Let's say you want to set all ingredients' levels to their pre-determined default amounts in tCheck.
 You can follow these instructions:
 
@@ -335,6 +343,7 @@ You can follow these instructions:
 2. Press "Enter" on your keyboard to execute the command.
 
 Outcome:
+
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated all ingredients' levels to the pre-determined default amounts in the Ingredient Tracker inside the _Main View_.
 
