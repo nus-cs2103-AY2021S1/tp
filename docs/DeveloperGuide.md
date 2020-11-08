@@ -5,25 +5,26 @@ by Team W12-2
 
 ## **Table of Contents**
 * [Section 1 - Preface](#section-1---preface)
-* [Section 2 - Setting up, getting started](#section-2---setting-up-getting-started)
-* [Section 3 - Design](#section-3---design)
-    * [3.1 - High-Level Architecture](#section-31---high-level-architecture)
-    * [3.2 - UI Component](#section-32---ui-component)
-    * [3.3 - Logic Component](#section-33---logic-component)
-    * [3.4 - Model Component](#section-34---model-component)
-    * [3.5 - Storage Component](#section-35---storage-component)
-    * [3.6 - Common Classes](#section-36---common-classes)
-* [Section 4 - Implementation](#section-4---implementation)
-    * [4.1 - Add Commands - `addMod`, `addTG` and `addStudent`](#section-41---add-commands---addmod-addtg-and-addstudent)
-    * [4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`](#section-42---delete-commands---deletemod-deletetg-and-deletestudent)
-    * [4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`](#section-43---edit-commands---editmod-edittg-and-editstudent)
-    * [4.4 - Find Commands - `findMod`, `findTG` and `findStudent`](#section-44---find-commands---findmod-findtg-and-findstudent)
-    * [4.5 - List Commands - `listMod`, `listTG` and `listStudent`](#section-45---list-commands---listmod-listtg-and-liststudent)
-    * [4.6 - View Commands - `viewTG` and `viewStudent`](#section-46---view-commands---viewtg-and-viewstudent)
-    * [4.7 - Clear Command - `clear`](#section-47---clear-command---clear)
-    * [4.8 - Exit Command - `exit`](#section-48---exit-command---exit)
-    * [4.9 - Data saving and loading](#section-49---data-saving-and-loading)
-* [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
+* [Section 2 - Using this document](#section-2---using-this-document)
+* [Section 3 - Setting up, getting started](#section-3---setting-up-getting-started)
+* [Section 4 - Design](#section-4---design)
+    * [4.1 - High-Level Architecture](#section-41---high-level-architecture)
+    * [4.2 - UI Component](#section-42---ui-component)
+    * [4.3 - Logic Component](#section-43---logic-component)
+    * [4.4 - Model Component](#section-44---model-component)
+    * [4.5 - Storage Component](#section-45---storage-component)
+    * [4.6 - Common Classes](#section-46---common-classes)
+* [Section 5 - Implementation](#section-5---implementation)
+    * [5.1 - Add Commands - `addMod`, `addTG` and `addStudent`](#section-51---add-commands---addmod-addtg-and-addstudent)
+    * [5.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`](#section-52---delete-commands---deletemod-deletetg-and-deletestudent)
+    * [5.3 - Edit Commands - `editMod`, `editTG` and `editStudent`](#section-53---edit-commands---editmod-edittg-and-editstudent)
+    * [5.4 - Find Commands - `findMod`, `findTG` and `findStudent`](#section-54---find-commands---findmod-findtg-and-findstudent)
+    * [5.5 - List Commands - `listMod`, `listTG` and `listStudent`](#section-55---list-commands---listmod-listtg-and-liststudent)
+    * [5.6 - View Commands - `viewTG` and `viewStudent`](#section-56---view-commands---viewtg-and-viewstudent)
+    * [5.7 - Clear Command - `clear`](#section-57---clear-command---clear)
+    * [5.8 - Exit Command - `exit`](#section-58---exit-command---exit)
+    * [5.9 - Data saving and loading](#section-59---data-saving-and-loading)
+* [Section 6 - Documentation, logging, testing, configuration, dev-ops](#section-6---documentation-logging-testing-configuration-dev-ops)
 * [Appendix A - Product Scope](#appendix-a---product-scope)
 * [Appendix B - User Stories](#appendix-b---user-stories)
 * [Appendix C - Use Cases](#appendix-c---use-cases)
@@ -41,16 +42,18 @@ This is a Developer Guide to Trackr. A student and task management system for Te
 
 ---
 
+## **Section 2 - Using this Document**
 
-## **Section 2 - Setting up, getting started**
+
+## **Section 3 - Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
 
-## **Section 3 - Design**
+## **Section 4 - Design**
 
-### Section 3.1 - High-Level Architecture
+### Section 4.1 - High-Level Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -91,7 +94,7 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### Section 3.2 - UI component
+### Section 4.2 - UI component
 The UI Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -106,7 +109,7 @@ The `UI` component,
 -   Executes user commands using the `Logic` component.
 -   Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Section 3.3 - Logic component
+### Section 4.3 - Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -126,7 +129,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Section 3.4 - Model component
+### Section 4.4 - Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -144,7 +147,7 @@ The `Model`,
 
 </div>
 
-### Section 3.5 - Storage component
+### Section 4.5 - Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -155,13 +158,13 @@ The `Storage` component,
 -   can save `UserPref` objects in json format and read it back.
 -   can save the module data in json format and read it back.
 
-### Section 3.6 - Common classes
+### Section 4.6 - Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 ---
 
-## **Section 4 - Implementation**
+## **Section 5 - Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -196,7 +199,7 @@ Since Trackr stores and manages its data recursively, the commands for Module, T
     - Pros: Easier to implement.
     - Cons: More repetitive code.
 
-### Section 4.1 - Add Commands - `addMod`, `addTG` and `addStudent`
+### Section 5.1 - Add Commands - `addMod`, `addTG` and `addStudent`
 
 #### Overview
 
@@ -244,7 +247,7 @@ Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand
 > - `Model#addStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and `TutorialGroup`
 > and adds the `Student` to the `internalList` of the `UniqueStudentList`.
 
-### Section 4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`
+### Section 5.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`
 
 #### Overview
 
@@ -291,7 +294,7 @@ Step 5. Once the `Module` has been deleted from the `internaList`, `DeleteModule
 > - `Model#deleteStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
 > `TutorialGroup` and deletes the `Student` from the `internalList` of the `UniqueStudentList`.
     
-### Section 4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`
+### Section 5.3 - Edit Commands - `editMod`, `editTG` and `editStudent`
 
 #### Overview
 
@@ -339,7 +342,7 @@ Step 5. Once the `Module` has been edited in the `internaList`, `EditModuleComma
 > - `Model#setStudent(Student, Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
 > `TutorialGroup` and edits the `Student` in the `internalList` of the `UniqueStudentList`.
     
-### Section 4.4 - Find Commands - `findMod`, `findTG` and `findStudent`
+### Section 5.4 - Find Commands - `findMod`, `findTG` and `findStudent`
 
 #### Overview
 
@@ -392,7 +395,7 @@ Step 5. `FindModuleCommand#execute(Model)` creates a `CommandResult` object and 
 > aforementioned find command for `Student`, `attendanceBelow` and `participationBelow` uses the 
 > `Model#updateFilteredStudentList` method to update the displaye list of students.
     
-### Section 4.5 - List Commands - `listMod`, `listTG` and `listStudent`
+### Section 5.5 - List Commands - `listMod`, `listTG` and `listStudent`
 
 #### Overview
 
@@ -437,7 +440,7 @@ Step 5. `ListModuleCommand#execute(Model)` creates a `CommandResult` object and 
 > - `Model#updateFilteredStudentList(Predicate<Student>)` method then displays all the students within the target 
 > `Module` and `TutorialGroup`.
     
-### Section 4.6 - View Commands - `viewTG` and `viewStudent`
+### Section 5.6 - View Commands - `viewTG` and `viewStudent`
 
 #### Overview
 
@@ -476,7 +479,7 @@ to `LogicManager`.
 > - `Model#setViewToStudent(TutorialGroup)` method then displays all the students of the target `Module` and 
 > `TutorialGroup`.
 
-### Section 4.7 - Clear Command - `clear`
+### Section 5.7 - Clear Command - `clear`
 
 #### Overview
 
@@ -490,7 +493,7 @@ Given below is an example of the interaction between the Model and the `ClearCom
 
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
-### Section 4.8 - Exit Command - `exit`
+### Section 5.8 - Exit Command - `exit`
 
 #### Overview
 
@@ -505,7 +508,7 @@ Given below is an example of the interaction between the Model and the `ExitComm
 
 ![ExitCommandSequenceDiagram](images/ExitCommandSequenceDiagram.png)
 
-### Section 4.9 - Data saving and loading
+### Section 5.9 - Data saving and loading
 
 #### Implementation
 
@@ -554,15 +557,7 @@ The following activity diagram summarizes how data from the Json file is read an
 
 ---
 
-## Section 5.2 - Tutorial Group Features
-In this section you will find all features related to Tutorial Groups and how they are implemented.   
-   
-The commands are: `addTG`, `editTG`, `findTG` and `deleteTG`. 
-
-cuz
-
-## **Section 5 - Documentation, logging, testing, configuration, dev-ops**
-
+## **Section 6 - Documentation, logging, testing, configuration, dev-ops**
 -   [Documentation guide](Documentation.md)
 -   [Testing guide](Testing.md)
 -   [Logging guide](Logging.md)
