@@ -11,7 +11,6 @@ import seedu.address.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "c-clear";
-  
     public static final String MESSAGE_SUCCESS = "Employee Directory has been cleared!";
 
 
