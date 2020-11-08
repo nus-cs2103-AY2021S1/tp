@@ -247,7 +247,7 @@ e.g. `Mon-Lecture` and `Wed-Lecture`.
 
   Example:
   * `addzoom 1 n/lecture-weds z/https://nus-sg.zoom.us/j/auya7164hg` adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
-   in the displayed module list for the lesson `lecture`.
+   in the displayed module list for the lesson `lecture-weds`.
 
 
 #### Editing a zoom link of a specific lesson in a module: `editzoom`
@@ -256,11 +256,13 @@ Edits a zoom link of a specific lesson in a module.
 
   Format: `editzoom INDEX n/LESSON_NAME z/EDITED_ZOOM_LINK`
 
-   * Edits the zoom link of the specified `LESSON_NAME` in the module at the specified `INDEX`.
+   * Edits the zoom link of the module at the specified `INDEX`.
 
    * The index refers to the index number of the module shown on the displayed module list.
 
    * The index **must be a positive integer** 1, 2, 3...
+   
+   * `LESSON_NAME` refers to the name of the lesson which the target zoom link to be edited belongs to.
 
    * The edited zoom link provided must be a link that uses the NUS domain. A typical zoom link that is under the NUS domain
      would start with: `https://nus-sg.zoom.us/`. Zoom links that do not belong to the NUS domain would not be accepted.

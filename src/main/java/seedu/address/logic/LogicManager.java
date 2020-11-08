@@ -101,17 +101,17 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getContactListFilePath() {
-        return this.model.getContactListFilePath();
+        return model.getContactListFilePath();
     }
 
     @Override
     public ReadOnlyContactList getContactList() {
-        return this.model.getContactList();
+        return model.getContactList();
     }
 
     @Override
     public ObservableList<Contact> getFilteredContactList() {
-        return this.model.getFilteredContactList();
+        return model.getFilteredContactList();
     }
 
 
