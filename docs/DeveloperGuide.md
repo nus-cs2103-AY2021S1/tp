@@ -525,25 +525,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new contact              |                                                                        |
-| `* * *`  | user                                       | delete a contact               | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a contact by name         | locate details of contacts without having to go through the entire list|
-| `* * *`  | forgetful user                             | add remarks to contacts        | remember certain details about them                                    |
-| `* * *`  | faculty leader                             | store a contact's office       | keep track of where to find them                                       |
-| `* * *`  | faculty leader                             | store a contact's department   | keep track of their respective field                                   |
-| `* * *`  | faculty leader                             | edit a contact's office        | keep the data up to date                                               |
-| `* * *`  | faculty leader                             | edit a contact's department    | keep the data up to date                                               |
-| `* * *`  | faculty leader                             | add a new module               |                                                                        |
-| `* * *`  | faculty leader                             | delete a module                | remove modules no longer offered                                       |
-| `* * *`  | faculty leader                             | assign instructors to various modules | keep a record of all the modules they teach                     |
-| `* * *`  | user                                       | clear all contacts             |                                                                        |
-| `* * *`  | faculty leader                             | clear all modules              | discard all previous semester's information                            |
-| `* * *`  | faculty leader                             | find modules by their code     |                                                                        |
-| `* * *`  | faculty leader                             | find modules by their name     |                                                                        |
-| `* * *`  | faculty leader                             | find modules by the instructor's name |                                                                 |
+| Priority | As a …​                                 | I want to …​                   | So that I can…​                                                        |
+| -------- | ------------------------| -----------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | new user                | see usage instructions             | refer to instructions when I forget how to use the App                               |
+| `* * *`  | user                    | add a new contact                  |                                                                                      |
+| `* * *`  | user                    | delete a contact                   | remove entries that I no longer need                                                 |
+| `* * *`  | user                    | find a contact by attributes       | locate details of contacts without having to go through the entire list              |
+| `* * *`  | forgetful user          | add remarks to contacts            | remember certain details about them                                                  | 
+| `* * *`  | faculty leader          | store a contact's office           | keep track of where to find them                                                     |
+| `* * *`  | faculty leader          | store a contact's department       | keep track of their respective field                                                 |
+| `* * *`  | faculty leader          | edit a contact's office            | keep the data up to date                                                             |
+| `* * *`  | faculty leader          | edit a contact's department        | keep the data up to date                                                             |
+| `* * *`  | faculty leader          | add a new module                   |                                                                                      |
+| `* * *`  | faculty leader          | delete a module                    | remove modules no longer offered                                                     |
+| `* * *`  | faculty leader          | find modules by their code         |                                                                                      |
+| `* * *`  | faculty leader          | find modules by their name            |                                                                                   |
+| `* * *`  | faculty leader          | find modules by the instructor's name |                                                                                   |
+| `* * *`  | faculty leader          | assign a contact to various modules       | keep a record of all the modules they teach                                   |
+| `* * *`  | faculty leader          | unassign a contact from various modules   | update the record of instructors when necessary                               |
+| `* * *`  | faculty leader          | unassign all instructors from all modules | update the record of instructors when there are syllabus restructuring        |
+| `* * *`  | user                    | clear all contacts                  |                                                                                     |
+| `* * *`  | faculty leader          | clear all modules                   | discard all previous semester's information                                         |
+| `* * *`  | faculty leader          | be able to switch semester easily   | shift semester without having to reassign all instructors                           | 
 
 *{More to be added}*
 
