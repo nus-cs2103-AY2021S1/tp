@@ -527,7 +527,7 @@ overlap with any other lesson or event in PlaNus.
 
 **MSS**
 
-1. User <ins>lists a set of tasks (UC03 or UC05)</ins>
+1. User <ins>lists a set of tasks (UC03)</ins>
 
 2. User requests to find tasks with specified search phrase(s) in specified attribute(s).
 
@@ -564,7 +564,7 @@ does not overlap with any other lesson or event in PlaNus.
 
 **MSS**
 
-1. User <ins>lists a set of tasks (UC03 or UC05)</ins>
+1. User <ins>lists a set of tasks (UC03)</ins>
 
 2. User requests to edit values of specified attribute(s) of a task.
 
@@ -591,7 +591,7 @@ does not overlap with any other lesson or event in PlaNus.
 
 **MSS**
 
-1. User <ins>lists a set of tasks (UC03 or UC05)</ins>
+1. User <ins>lists a set of tasks (UC03)</ins>
 
 2. User requests to delete certain tasks from the list.
 
@@ -645,11 +645,29 @@ overlap with any other lesson or event in PlaNus.
 
 <br>
 
-**Use case: UC09 - Find lessons**
+**Use case: UC09 - List all lessons**
 
 **MSS**
 
-1. User <ins>lists a set of lessons (UC08 or UC09)</ins>
+1. User requests to list all lessons.
+
+2. PlaNus shows a list of all lessons.
+
+  Use case ends.
+
+**Extensions**
+
+  - 2a. The list is empty.
+
+    Use case ends.
+
+<br>
+
+**Use case: UC10 - Find lessons**
+
+**MSS**
+
+1. User <ins>lists a set of lessons (UC09)</ins>
 
 2. User requests to find lessons with specified search phrase(s) in specified attribute(s).
 
@@ -677,7 +695,7 @@ overlap with any other lesson or event in PlaNus.
 
 <br>
 
-**Use case: UC10 - Edit a lesson**
+**Use case: UC11 - Edit a lesson**
 
 **Guarantees**
 
@@ -709,11 +727,11 @@ does not overlap with any other lesson or event in PlaNus.
 
 <br>
 
-**Use case: UC11 - Delete lessons**
+**Use case: UC12 - Delete lessons**
 
 **MSS**
 
-1. User <ins>lists a set of lessons (UC08 or UC09)</ins>
+1. User <ins>lists a set of lessons (UC09)</ins>
 
 2. User requests to delete certain lessons from the list.
 
@@ -735,7 +753,7 @@ does not overlap with any other lesson or event in PlaNus.
 
 <br>
 
-**Use case: UC12 - Request help**
+**Use case: UC13 - Request help**
 
 **MSS**
 
@@ -747,7 +765,7 @@ does not overlap with any other lesson or event in PlaNus.
 
 <br>
 
-**Use case: UC13 - Exit application**
+**Use case: UC14 - Exit application**
 
 **MSS**
 
