@@ -21,6 +21,10 @@ public class Weight {
         return String.valueOf(weight);
     }
 
+    public Double getWeight() {
+        return weight;
+    }
+
     private Double convertCalorieToWeight (Calories calories) {
         return Double.valueOf(calories.toString()) / CALORIE_PER_KG;
     }

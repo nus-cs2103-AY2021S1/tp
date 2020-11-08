@@ -27,15 +27,15 @@ public class AddExerciseFromTemplate extends CommandForExercise {
             + PREFIX_DATE + "31-12-2020 "
             + PREFIX_CALORIES + "100";
 
-    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s \n "
-            + "You have burnt %1$s kg";
+    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s\n";
+    public static final String MESSAGE_WEIGHT = "You have burnt %.5s kg\n";
 
     private final Exercise toAdd;
     private final Weight burntWeight;
 
     /**
      * Adds exercise from template
-     * @param toAdd
+     * @param toAdd the exercise to be added
      */
     public AddExerciseFromTemplate(Exercise toAdd) {
         this.toAdd = toAdd;
@@ -47,6 +47,7 @@ public class AddExerciseFromTemplate extends CommandForExercise {
         requireNonNull(model);
 
         model.addExercise(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd, burntWeight));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)
+                + String.format(MESSAGE_WEIGHT, burntWeight));
     }
 }
