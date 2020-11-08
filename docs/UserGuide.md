@@ -403,6 +403,8 @@ Examples:
  `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 
  p/92345678 t/Developer c/ ti/Working Ethics d/10/10/2010 desc/Good`
 
+The image below shows what you would see after executing the second command in the examples given above.
+
 ![addApplicant](images/ugimages/AddApplicant.png)
 
 #### 3.4.3. Find an applicant : `find a-`
@@ -429,7 +431,12 @@ Example:
 
 #### 3.4.5. Delete an applicant: `dela`
 
-Deletes an applicant with the specified index on the displayed list in Eva. 
+If you need to remove specific records of applicants, you may use this command. By providing the index of the 
+applicant you see on Applicant List, you can remove that applicant's record. 
+
+<div markdown="block" class="alert alert-danger">
+Please take note that this action is irreversible.
+</div>
 
 Format: `dela INDEX`
 
@@ -501,7 +508,9 @@ Example:
 ![deleteApplication](images/ugimages/DeleteApplication.png)
 
 #### 3.4.9. Set application status: `setas`
-Sets the application status of an applicant with the specified index on the displayed list in Eva.
+
+We understand that the process of hiring new talent requires multiple stages and this can be tracked using the
+application status. You can use this command to change the status of any applicant at any time.
 
 Format: `setas INDEX as/NEW_APPLICATION_STATUS`
 
