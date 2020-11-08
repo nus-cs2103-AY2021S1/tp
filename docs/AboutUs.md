@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/mehak24k.png" width="200px">
 
 [[github](http://github.com/mehak24k)]
-[[portfolio](team/mehakvirdi.md)]
+[[portfolio](team/mehak24k.md)]
 
 * Role: Developer
 * Responsibilities: Testing + Code Quality
