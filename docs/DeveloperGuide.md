@@ -988,7 +988,8 @@ Anybody → Students → University Students → NUS Students → NUS Students h
 
 * needs to keep track of contacts for various people (Professors, TA, Groupmates)
 * needs to schedule school-related appointments
-* needs to keep track of school-related appointments
+* needs to keep track of the date and time of school-related appointments
+* needs to keep track of details of school-related appointments
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -996,9 +997,10 @@ Anybody → Students → University Students → NUS Students → NUS Students h
 
 **Value proposition**:
 
-* seamless contact management which is faster than a typical mouse/GUI driven app
+* seamless contact management which makes it easy to find relevant Professor, TA or Groupmates contacts
 * convenient scheduling of project meetings and consultations, making planning a work week effortless
-* effective visualisation of schedules and meetings with the application's timeline dashboard
+* effective visualisation of schedule and meeting details with the application's timeline dashboard and selected meeting panel
+* enhanced user experience with features such as autocompletion, fuzzy find, command history, copying and theme switching
 
 ### User stories
 
@@ -1013,19 +1015,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | NUS Student                                | View my entire list of contacts                                                                                          | Select who I want to contact                                                                                       |
 | `* * *`  | NUS Student                                | Clear all contacts                                                                                                       | Reset my contacts                                                                                                  |
 | `* * *`  | NUS Student                                | Tag my contacts based on the individual's relationship with me (e.g. TA, Professor, Classmate)                           | Easily identify the contacts relevant to my query                                                                  |
-| `* * *`  | NUS Student                                | Create meetings for events such as projects or assignments                                                               | I can keep track of commitments and upcoming work                                                                  |
+| `* * *`  | NUS Student                                | Create meetings for events such as projects or consultations                                                             | I can keep track of commitments and upcoming work                                                                  |
 | `* * *`  | NUS Student                                | Add relevant contacts to a meeting                                                                                       | Keep track of who is participating in the meeting and their contact information                                    |
 | `* * *`  | Forgetful NUS Student                      | Assign a meeting a timeslot and date                                                                                     | Track exactly when I am supposed to meet                                                                           |
 | `* * *`  | NUS Student with many meetings             | View all scheduled meetings                                                                                              | Have an overview of all my meetings                                                                                |
-| `* * *`  | NUS Student with a changing schedule       | Edit meetings                                                                                                            | Change the details of my meetings                                                                            |
-| `* * *`  | NUS Student with a changing schedule       | Delete meetings                                                                                                          | Remove cancelled meetings                                                        |
+| `* * *`  | NUS Student with many meetings             | View agendas for meetings                                                                                                | Easily review agendas for my meetings                                                                              |
+| `* * *`  | NUS Student with many meetings             | View notes for meetings                                                                                                  | Take and access notes for my meetings                                                                              |
+| `* * *`  | NUS Student with a changing schedule       | Edit meetings                                                                                                            | Change the details of my meetings                                                                                  |
+| `* * *`  | NUS Student with a changing schedule       | Delete meetings                                                                                                          | Remove cancelled meetings                                                                                          |
 | `* * *`  | NUS Student                                | Create meetings with professors                                                                                          | Track when I have set up meetings with professors and TA’s                                                         |
 | `* * *`  | NUS Student taking many modules            | Create modules                                                                                                           | Add new modules whenever needed                                                                                    |
 | `* * *`  | NUS Student taking many modules            | View relevant groups of contacts by modules                                                                              | I can easily keep track of contact details of individuals in different modules                                     |
-| `* * `   | NUS Student                                | Hide private contact details                                                                                             | Minimize chances of someone else seeing them by accident                                                           |
-| `*    `  | Student who likes to personalise stuff     | Customise the layout of the App                                                                                          | I can organise relevant information in personalised way that I find easy to access                                 |
-
-*{More to be added}*
+| `* * `   | User with easily strained eyes             | Switch between light and dark mode                                                                                       | Reduce eye strain when using the application during different times of the day                                     |
+| `*   `   | NUS Student                                | Hide private contact details                                                                                             | Minimize chances of someone else seeing them by accident                                                           |
+| `*   `   | Student who likes to personalise stuff     | Customise the layout of the App                                                                                          | I can organise relevant information in personalised way that I find easy to access                                 |
 
 ### Use cases
 
@@ -1277,6 +1280,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**UC09: View Selected Meeting Details**
+
+**MSS**
+
+1.  User chooses to view details of a meeting
+2.  Modduke accepts request and displays both agendas and notes for the selected meeting
+    
+    Use case ends.
+    
+**Extensions**
+
+* 1a. Modduke detects invalid command format.
+
+  * 1a1. Modduke gives an alert for the invalid command format.
+
+    Use case ends
+    
+* 1b. User enters a meeting that does not exist.
+
+  * 1b1. Modduke shows a message informing user that the meeting provided is not in the meeting list.
+
+    Use case ends  
+    
+
 **UC10: List Meetings**
 
 **MSS**
@@ -1325,6 +1352,32 @@ Use case same as UC09: Delete Meeting
 6.  Modduke replaces user's text with autocomplete result.
 
     Use case ends.
+    
+**UC13: Switch to light theme**
+
+**Guarantees**
+
+*  The theme set will be light theme regardless of current theme
+
+**MSS**
+
+1.  User makes request to switch to light theme
+2.  Modduke switches to light theme
+
+    Use case ends.
+
+**UC14: Switch to dark theme**
+
+**Guarantees**
+
+*  The theme set will be dark theme regardless of current theme
+
+**MSS**
+
+1.  User makes request to switch to dark theme
+2.  Modduke switches to dark theme
+
+    Use case ends.
 
 **Extensions**
 
@@ -1363,7 +1416,7 @@ Use case same as UC09: Delete Meeting
 * **.vcf,.csv files**: A format of files that contains contact information from users phones
 * **CLI**: CLI is the Command Line Interface where you can type in commands and get an output
 * **TA**: Teaching assistant
-* **Meeting**: A general purpose appointment between students, professors or TAs
+* **Meeting**: A general purpose appointment between students, professors or TAs. Examples include project meetings or consultations with professors.
 
 --------------------------------------------------------------------------------------------------------------------
 
