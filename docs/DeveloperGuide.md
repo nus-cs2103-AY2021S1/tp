@@ -312,7 +312,7 @@ The following sequence diagram shows how the import operation works:
 #### 7.4.1 Implementation
 
 The proposed undo mechanism is facilitated by `ModelManager` and `History`.
-`History` combines `ReadOnlyMcGymmy`, `Predicate<Food>` and `MacroList` gotten from `ModelManager` together, then store multiple groups of different versions in a stack, with the most recent version on top.
+`History` combines `ReadOnlyMcGymmy`, `Predicate<Food>` and `MacroList` with `ModelManager`, then store multiple groups of different versions in a stack, with the most recent version on top.
 Whenever there is a change to either `ModelManager`'s data, filter predicate, or macro list, `ModelManager` will pass itself into `History` to be saved into the stack.
 Additionally, `ModelManager` implements the following operations:
 
@@ -386,7 +386,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Individual command knows how to undo by
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the food item being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  * Cons: We must ensure that the implementation of each individual command is correct.
 
 ### 7.5 Macro Command
 
