@@ -359,7 +359,7 @@ drag each view to the size desired.
 ![Fig. 4. Resizing filebar](images/screenshots/filebar_resize.png)
 
 ### Persistent customisation
-All of your customisation options are saved and persist even when you close the application. HelloFile remembers your choices,
+Your customisation options (window size and theme) are saved and persist even when you close the application. HelloFile remembers your choices,
 so you can spend your time on more productive pursuits.
 
 --------------------------------------------------------------------------------------------------------------------
