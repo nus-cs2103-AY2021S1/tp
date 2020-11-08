@@ -77,11 +77,9 @@ Symbol | Meaning
 :-----:|:-------
 `USER_INPUT` | User input into the CLI
 :information_source: | Important information
-:bulb: | Tips
 :warning: | Warnings
 
 ## 2. Quick start
-
 This section serves to explain how to set up **Reeve** on your computer and how to make sense of the visual layout of the application.
 
 ### 2.1 Setting up Reeve
@@ -220,9 +218,9 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
     * `DAY_OF_WEEK START_TIME-END_TIME`
     * `DAY_OF_WEEK` is any integer from 1 to 7, where 1 refers to Monday while 7 refers to Sunday.
     * `START_TIME` and `END_TIME` follows the 24-hr clock format (e.g. 1300 refers to 1pm).
+* The format of `LAST_PAYMENT_DATE` is `dd/mm/yy or dd/mm/yyyy` (e.g. both 3/2/20 and 3/2/2020 are acceptable).
 * `FEE` defaults to $0.00 if not included.
 * `LAST_PAYMENT_DATE` defaults to today's date if not included.
-* The format of `LAST_PAYMENT_DATE` is `dd/mm/yy or dd/mm/yyyy` (e.g. both 3/2/20 and 3/2/2020 are acceptable).
 
 <div markdown="block" class="alert alert-info">
 
@@ -541,7 +539,12 @@ If you do not need a student's question anymore, you can delete it.
 Format: `question delete STUDENT_INDEX i/QUESTION_INDEX`
 
 * This deletes the question at the specified `QUESTION_INDEX`.
-* `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+</div>
 
 Example:
 * `question delete 1 i/1` deletes the 1st question of the 1st student in **Reeve**.
@@ -807,8 +810,8 @@ Term | Definition
 --------|------------------
 Administrative Details | Details such as class venue, class time, tuition fee, last payment date and other details
 Academic Details | Details such as questions, exam records and attendance records
-Detail | Any miscellaneous information regarding a student.
-Exam Record | A record of an exam which includes its name, date and the student's score.
+Detail | Any miscellaneous information regarding a student
+Exam Record | A record of an exam which includes its name, date and the student's score
 
 ## 6. FAQ
 This section provides the answers to Frequently Asked Questions (FAQ) by users.
