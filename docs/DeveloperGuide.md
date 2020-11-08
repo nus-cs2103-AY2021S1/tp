@@ -191,6 +191,8 @@ Given below is an example of the interaction between the Model and the `AddModul
 
 ![AddModuleSequenceDiagram](images/AddModSequenceDiagram.png)
 
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
 Step 1. The user executes `addMod m/CS2103T` to add a module called CS2103T to Trackr. The `addMod` command calls
 `LogicManager#execute(String)`.
 
@@ -244,6 +246,8 @@ Given below is an example of the interaction between the Model and the `DeleteMo
 
 ![DeleteModuleSequenceDiagram](images/DeleteModuleSequenceDiagram.png)
 
+![DeleteCommandActivityDiagram](images/DeleteCommandActivityDiagram.png)
+
 Step 1. The user executes `deleteMod 1` to delete the first module in the displayed list. The `deleteMod` command calls
 `LogicManager#execute(String)`.
 
@@ -296,6 +300,8 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `EditModuleCommand` of Trackr.
 
 ![EditModuleSequenceDiagram](images/EditModuleSequenceDiagram.png)
+
+![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
 
 Step 1. The user executes `editMod 1 m/CS2100` to edit the first module in the displayed list. The `editMod` command 
 calls `LogicManager#execute(String)`.
