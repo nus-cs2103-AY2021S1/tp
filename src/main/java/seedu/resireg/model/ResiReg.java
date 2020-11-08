@@ -2,6 +2,7 @@ package seedu.resireg.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -285,11 +286,14 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void deleteExpiredBinItems(int daysStoredInBin) {
         assert daysStoredInBin > 0 : "Days Stored in bin should be a positive integer";
+        List<BinItem> toRemove = new ArrayList<>();
         for (BinItem binItem : binItems) {
             if (binItem.isExpired(daysStoredInBin)) {
-                binItems.remove(binItem);
+                toRemove.add(binItem);
             }
         }
+
+        binItems.removeAll(toRemove);
     }
 
     //// allocation-level operations

@@ -1,4 +1,4 @@
-package seedu.resireg.ui;
+package seedu.resireg.ui.student;
 
 import java.util.Comparator;
 
@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Student}.

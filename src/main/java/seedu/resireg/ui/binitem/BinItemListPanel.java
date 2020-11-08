@@ -1,4 +1,4 @@
-package seedu.resireg.ui;
+package seedu.resireg.ui.binitem;
 
 import java.util.logging.Logger;
 
@@ -10,8 +10,12 @@ import javafx.scene.layout.Region;
 import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.bin.Binnable;
+import seedu.resireg.model.bin.exceptions.InvalidBinnedItemException;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.ui.UiPart;
+import seedu.resireg.ui.room.RoomCard;
+import seedu.resireg.ui.student.StudentCard;
 
 /**
  * Panel containing the list of items in the bin.
@@ -54,7 +58,7 @@ public class BinItemListPanel extends UiPart<Region> {
                     Room room = (Room) item;
                     setGraphic(new RoomCard(room, getIndex() + 1).getRoot());
                 } else {
-                    assert false : "Another Binnable instance must be created!";
+                    throw new InvalidBinnedItemException();
                 }
             }
         }

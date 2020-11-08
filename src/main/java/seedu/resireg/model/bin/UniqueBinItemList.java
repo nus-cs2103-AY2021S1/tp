@@ -134,4 +134,8 @@ public class UniqueBinItemList implements Iterable<BinItem> {
         }
         return true;
     }
+
+    public void removeAll(List<BinItem> toRemove) {
+        internalList.removeAll(toRemove);
+    }
 }

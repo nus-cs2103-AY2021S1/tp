@@ -1,4 +1,4 @@
-package seedu.resireg.ui;
+package seedu.resireg.ui.room;
 
 import java.util.logging.Logger;
 
@@ -11,7 +11,9 @@ import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.ui.UiPart;
 
+//@@author JingYenLoh
 public class RoomListPanel extends UiPart<Region> {
     private static final String FXML = "RoomListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RoomListPanel.class);

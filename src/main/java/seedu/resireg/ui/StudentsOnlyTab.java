@@ -3,6 +3,7 @@ package seedu.resireg.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.StackPane;
+import seedu.resireg.ui.student.StudentListPanel;
 
 public class StudentsOnlyTab extends UiPart<Tab> implements StudentsTab {
     private static final String FXML = "StudentsOnlyTab.fxml";

@@ -15,15 +15,19 @@ end box
 [-> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteStudent(1)
+DeleteCommand -> Model : deleteStudent(student)
 activate Model
 
 Model -> Model : deleteStudent(studentToDelete)
 activate Model
 deactivate Model
 
-Model -> BinItem **: BinItem(studentBinItem)
+create BinItem
+Model -> BinItem
 activate BinItem
+
+BinItem --> Model
+deactivate BinItem
 
 Model -> ResiReg : addBinItem(studentBinItem)
 activate ResiReg
