@@ -16,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
+import seedu.address.logic.commands.todolistcommands.EditTaskDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
@@ -28,6 +29,7 @@ import seedu.address.model.module.ZoomLink;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.contact.EditContactDescriptorBuilder;
+import seedu.address.testutil.todolist.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -99,6 +101,11 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_NOT_COMPLETED = "NOT_COMPLETED";
     public static final String VALID_DATE_CREATED_1 = "2020-11-01";
     public static final String VALID_DATE_CREATED_2 = "2020-12-01";
+    public static final String NAME_DESC_LAB05 = "Submit Lab 5 Report";
+    public static final String NAME_DESC_LAB07 = "Submit Lab 7 Report";
+
+    public static final EditTaskDescriptor DESC_LAB05;
+    public static final EditTaskDescriptor DESC_LAB07;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -142,6 +149,14 @@ public class CommandTestUtil {
         DESC_BOB = new EditContactDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .build();
+        DESC_LAB05 = new EditTaskDescriptorBuilder().withName(NAME_DESC_LAB05)
+                .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_HIGH)
+                .withDate(VALID_DATE1)
+                .build();
+        DESC_LAB07 = new EditTaskDescriptorBuilder().withName(NAME_DESC_LAB07)
+                .withTags(VALID_TAG_CS2100).withPriority(VALID_PRIORITY_NORMAL)
+                .withDate(VALID_DATE2)
                 .build();
     }
     /**
