@@ -48,8 +48,6 @@ The following describes the feature and enhancement I have already done in the p
   * Justification: This feature improves the product significantly because as there will be too many flashcards as time goes on and the app should provide a convenient way to delete them.
   * Highlights: This command updates the internal state of the list and update them accordingly to the storage.
 
-<div style="page-break-after: always;"></div>
-
 ### 2.2. Code contributed
  Given below is the link to the code that I have contributed.
  * [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=gilberttan19)
