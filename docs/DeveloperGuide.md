@@ -17,6 +17,7 @@ by Team W12-2
     * [4.1 - Add Commands - `addMod`, `addTG` and `addStudent`](#section-41---add-commands---addmod-addtg-and-addstudent)
     * [4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`](#section-42---delete-commands---deletemod-deletetg-and-deletestudent)
     * [4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`](#section-43---edit-commands---editmod-edittg-and-editstudent)
+    * [4.4 - Find Commands - `findMod`, `findTG` and `findStudent`](#section-44---find-commands---findmod-findtg-and-findstudent)
 * [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
 * [Section 6 - Appendix](#section-6---appendix)
 
@@ -337,7 +338,7 @@ Step 5. Once the `Module` has been edited in the `internaList`, `DeleteModuleCom
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.4 - Find Commands (findMod, findTG, findStudent)
+### Section 4.4 - Find Commands - `findMod`, `findTG` and `findStudent`
 #### Overview
 
 The Find command in Trackr enables users to easily find data based on keywords. This will save their time whenever they want to 
