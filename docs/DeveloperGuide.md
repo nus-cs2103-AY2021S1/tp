@@ -210,6 +210,12 @@ The following sequence diagram describes what happens when the user keys in the 
 ##### Aspect: How to track time spent on each task or lesson
 
 * **Alternative 1 (current choice)**: Allow user to input how much time he has spent on each deadline  with the `done` command and automatically calculating the time spent on each `event`/`lesson` by assuming the user has spent the amount of time between the start and end time of the `event`/`lesson`.
+
+The user enters the command `done index:duration` where `index` refers to the inedx of the deadline to be marked as done and `duration` refers to the time used to complete the deadline.
+
+The following sequence diagram shows how this approach works.
+
+
   * Pros: 
     * User does not have to key in as many commands as he inputs the time spent on each task when he completed the task. 
     * User does not have to worry about time spent on all `event` and `lesson`.
@@ -222,11 +228,6 @@ The following sequence diagram describes what happens when the user keys in the 
   * Cons: Keying in multiple `start` and `stop` commands may be tedious for the user.
 
 
-
-**This is where my part ends**
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
 
 ### \[Proposed\] Undo/redo feature
 

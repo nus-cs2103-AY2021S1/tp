@@ -1,0 +1,20 @@
+@startuml
+!include ./style.puml
+
+Participant ":Planus" as planus LOGIC_COLOR
+Participant ":Lesson" as lesson LOGIC_COLOR
+Participant ":Task" as task LOGIC_COLOR
+
+[-> planus: addLesson(lesson)
+activate lesson
+planus -> lesson: createRecurringTasks(lesson)
+loop all events in lesson
+create task
+lesson -> task
+task --> lesson
+end
+lesson --> planus
+
+
+
+@enduml
