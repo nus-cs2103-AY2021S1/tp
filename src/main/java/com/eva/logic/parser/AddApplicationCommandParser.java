@@ -34,6 +34,10 @@ public class AddApplicationCommandParser implements Parser<AddApplicationCommand
             }
             String indexNo = substrings[1];
             String filePath = substrings[2];
+            if (indexNo.equals("") || filePath.equals("")) { // handles extra spacing in user input
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddApplicationCommand.MESSAGE_USAGE_2));
+            }
             Index index = ParserUtil.parseIndex(indexNo);
             if (!filePath.equals("sample")) {
                 // filePath = "src\\main\\java\\com\\eva\\logic\\parser\\resume.txt";
