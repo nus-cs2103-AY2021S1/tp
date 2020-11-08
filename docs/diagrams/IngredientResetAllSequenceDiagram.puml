@@ -36,7 +36,7 @@ activate Model
 Model --> IngredientResetAllCommand :
 deactivate Model
 
-IngredientResetAllCommand -> Model : setIngredient(originalIngredient, updatedIngredient)
+IngredientResetAllCommand -> Model : setIngredient(Ingredient target, Ingredient newAmount)
 activate Model
 
 Model --> IngredientResetAllCommand :

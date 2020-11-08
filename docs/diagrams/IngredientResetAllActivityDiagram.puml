@@ -6,14 +6,17 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([not all ingredients' levels are already at zero])
-    :Replace the ingredients that have non-zero ingredient's levels
-    in IngredientBook by new ingredient objects that have
-    the same ingredient names and zero ingredient's levels;
-    : Show a success message and the updated ingredient list
-     to the user;
+    :Replace the ingredients that have
+    non-zero ingredient's levels by new
+    ingredient objects that have the
+    same ingredient names and zero
+    ingredient's levels;
+    :Show a success message to the user;
 else ([else])
-    : Show a message to the user, stating that
-     all ingredient levels are already at zero;
+    :Show a message to the user
+    stating that all ingredients'
+    levels are already at zero
+    before the command is entered;
 endif
 stop
 @enduml

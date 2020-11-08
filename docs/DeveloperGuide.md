@@ -331,42 +331,57 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ## \[Completed\] Reset all ingredients' levels feature
 
-tCheck allows the user to reset all the ingredient levels to zero. It helps the user to
-remove data that are no longer needed. The command is:
+tCheck allows the user to reset the ingredient's levels of all ingredient types to zero. It helps the user to
+remove some data that are no longer needed. The command is:
   
-* `i-reset-all` - Resets the ingredients' levels of all ingredients to zero.
+* `i-reset-all` - Resets the ingredients' levels of all ingredient types to zero.
   
 #### Implementation
   
 The completed reset all ingredients' levels mechanism is facilitated by `IngredientBook`. It implements 
-`ReadOnlyIngredientBook` interface, which will allow the ingredients to be displayed in the user interface.
-Particularly, it implements the following operation:
+`ReadOnlyIngredientBook` interface, which will allow the ingredients to be displayed graphically in the user interface.
+Particularly, it implements the following operations:
   
-  * `IngredientBook#setIngredient(originalIngredient, updatedIngredient)` — Replaces the original ingredient object with the
-  updated ingredient object in the ingredient book.
+  * `IngredientBook#setIngredient(Ingredient target, Ingredient newAmount)` — Replaces the `target` ingredient 
+  by the ingredient `newAmount`.
+  * `IngredientBook#getIngredientList()` - Returns the list of ingredients recorded by the `IngredientBook`.
   
-This operation is exposed in the `Model` interface as `Model#setIngredient(originalIngredient, updatedIngredient)`.
+These operations are exposed in the `Model` interface as `Model#setIngredient(Ingredient target, Ingredient newAmount)`
+and `Model#getFilteredIngredientList()` respectively.
 
-It also implements the following operation:
-  * `Model#getFilteredIngredientList()` - Returns the list of ingredients in the `IngredientBook`.
+Given below is an example usage scenario that shows how the reset all ingredients' levels mechanism behaves at each step.
+  
+Step 1. The user, a store manager of the imaginary bubble tea brand, T-Sugar, launches tCheck for the very first time. 
+The `IngredientBook` will be initialized with a `UniqueIngredientList` containing the six pre-defined ingredients, 
+namely `Milk`, `Pearl`, `Boba`, `Black Tea` , `Green Tea` and `Brown Sugar`, with an amount of 0 for all ingredients.
+  
+Step 2. The user executes `i-reset-all` to reset all ingredients' levels to zero. The `i-reset-all` command calls
+`Model#getFilteredIngredientList()`, which returns the list of ingredients recorded by `IngredientBook`. 
+The `i-reset-all` command checks the list of ingredients to see whether all ingredients' levels are already at zero. 
+Since all ingredients' levels are at zero as the user is using tCheck for the first time and the `IngredientBook`
+is just initialized in step 1, the user will be informed through a message that states all ingredients' levels are 
+already at zero before the command is entered.
 
-Given below is an example usage scenario and how the reset all ingredients' levels mechanism behaves at each step.
+Step 3. The user executes `i-set-default` to set the amounts of all ingredients to the default levels of the store, 
+which are 50 L for liquids and 20 KG for solids.  The `i-set-default` command calls 
+`Model#setIngredientBook(ReadOnlyIngredientBook ingredientBook)`, causing the initial `IngredientBook` to be replaced 
+by the `ingredientBook` with the amounts of ingredients equal to the ingredients' default levels.
+
+Step 4. The user now decides that he or she wants to reset all ingredients' levels to zero again, since actually the 
+ingredients' levels are at zero rather than at default levels, and it was a mistake to set the amounts of all 
+ingredients to their default levels. Thus, the user executes `i-reset-all` to reset all ingredients' levels to zero.
+The `i-reset-all` command calls `Model#getFilteredIngredientList()`, which returns the list of ingredients recorded 
+by the `IngredientBook`. The `i-reset-all` command checks the list of ingredients to see whether all ingredients' levels 
+are already at zero. Since all ingredients' levels are not at zero as they are set to default levels, the `i-reset-all` 
+command calls `Model#setIngredient(Ingredient target, Ingredient newAmount)` each time the command finds an ingredient 
+with a non-zero ingredient's level, causing the ingredient, `target`, to be replaced by the ingredient `newAmount` with 
+the same ingredient name and a zero ingredient's level. In this case, 
+`Model#setIngredient(Ingredient target, Ingredient newAmount)` is called six times since all six ingredients have
+non-zero ingredient's levels.
   
-Step 1. The user launches the application. If the storage file for the ingredient book is empty, `IngredientBook` will 
-be initialized with the six pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Black Tea`, `Green Tea` and `Brown Sugar`, 
-with an amount of zero for all. If the storage file for the ingredient book is not empty, `IngredientBook` will read the  
-data from the storage file.
-  
-Step 2. The user executes `i-reset-all` command to reset all ingredients' levels to zero. The `i-reset-all` command calls
-`Model#getFilteredIngredientList()`, which returns the list of ingredients in `IngredientBook`. The `i-reset-all` command checks the list of 
-ingredients to see whether all ingredients' levels are already at zero. If it is true, the user will 
-be informed that all ingredient levels are already at zero. Otherwise, The `i-reset-all` command would call
-`IngredientBook#setIngredient(originalIngredient, updatedIngredient)` each time the command find an ingredient with a non-zero ingredient's level,
-which replaces the ingredient with a non-zero ingredient's level by a new ingredient object with the same ingredient name and a zero ingredient level. 
-  
-The following sequence diagram shows how the reset all ingredients' levels operation works, assuming that The `i-reset-all` command calls
- `IngredientBook#setIngredient(originalIngredient, updatedIngredient)` only once, which is when only one ingredient's level 
- is not at zero.
+The following sequence diagram shows how the reset all ingredients' levels operation works, assuming that the 
+`i-reset-all` command calls `Model#setIngredient(Ingredient target, Ingredient newAmount)` only once. This happens when 
+only one ingredient's level is not at zero before `i-reset-all` is executed.
 ![Reset all Ingredients' Levels Sequence Diagram](images/IngredientResetAllSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `IngredientResetAllCommand` should 
@@ -382,15 +397,15 @@ The following activity diagram summarises what happens when a user executes the 
   
   * **Alternative 1 (current choice):** Loop through the ingredient list twice, the first time to check if all 
   ingredients' levels are at zero, the second time to replace the original ingredient that has a non-zero ingredient's 
-  level with a new ingredient with the same ingredient name and a zero ingredient's level.
-    * Pros: Easier implementation.
+  level with a new ingredient which have the same ingredient name and a zero ingredient's level.
+    * Pros: Easier to implement.
     * Cons: Execution of the command may require one to create one or more new ingredients, which may increase the time 
     required for the operation.
     
   * **Alternative 2:** Loop through the ingredient list twice, the first time to check if all ingredients' levels are 
-  already at zero, the second time to update the ingredient's level to zero.
+  already at zero, the second time to update the ingredient's level to zero without creating new ingredients.
     * Pros: Clear implementation. Do not lead to creation of new ingredient objects.
-    * Cons: Editing the ingredient level may be more error-prone.
+    * Cons: Editing the ingredient's levels of the ingredients may be more error-prone.
 
 ### \[Completed\] Archive person's contact information feature
 
