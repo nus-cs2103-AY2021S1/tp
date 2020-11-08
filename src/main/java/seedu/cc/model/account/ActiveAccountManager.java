@@ -106,13 +106,6 @@ public class ActiveAccountManager implements ActiveAccount {
     }
 
     @Override
-    public boolean hasEntry(Entry entry) {
-        requireNonNull(entry);
-
-        return activeAccount.hasEntry(entry);
-    }
-
-    @Override
     public boolean hasExpense(Expense expense) {
         requireNonNull(expense);
 
