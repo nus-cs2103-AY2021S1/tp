@@ -18,7 +18,7 @@ Given below are my contributions to the project.
   * Credits: Some reference was made to RemindCommand*
 
 * **Enhancements to existing features**:
-  * Updated the Add Assignment feature to handle the new features (Remind & Priority) added by my teammates (Pull requests [\#74](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/74), [\#154](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/154))
+  * Updated the Add assignment feature to handle the new features (remind & priority) added by my teammates (Pull requests [\#74](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/74), [\#154](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/154))
   * Updated the Help feature to make it informative by providing a comprehensive summary of the features in our project (Pull requests [\#146](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/146), [\#233](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/233))
   * Updated the Remind feature and made the error messages more informative (added support for multiple remind) (Pull request [\#280](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/280))
 
@@ -38,5 +38,4 @@ Given below are my contributions to the project.
     * Modified implementation details for the `Set reminders to assignments` feature (Combined it together with `Mark assignments as done` feature). (Pull request [\#279](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/279))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/223), [2](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/222), [3](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/217), [4](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/219), [5](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/220), [6](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/221))
