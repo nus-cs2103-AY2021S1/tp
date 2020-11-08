@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.ContactListStorage;
 import seedu.address.storage.EventListStorage;
 import seedu.address.storage.JsonContactListStorage;
@@ -193,7 +194,7 @@ public class MainApp extends Application {
             contactListOptional = storage.readEventList();
             if (!contactListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample EventList");
-                initialEventList = new EventList();
+                initialEventList = SampleDataUtil.getSampleEventList();
             } else {
                 initialEventList = contactListOptional.get();
             }
