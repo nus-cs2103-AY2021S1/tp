@@ -231,10 +231,10 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
-                if (keyEvent.getCode() == KeyCode.SHIFT) {
+                if (keyEvent.getCode() == KeyCode.CONTROL) {
                     calendarView.handleToNext();
                 }
-                if (keyEvent.getCode() == KeyCode.CONTROL) {
+                if (keyEvent.getCode() == KeyCode.ALT) {
                     calendarView.handleToPrev();
                 }
                 if (!commandBox.isCommandTextFieldFocused() && keyEvent.getCode() == KeyCode.ENTER) {
