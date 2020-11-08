@@ -68,6 +68,23 @@ public class TypicalStudents {
             .withAttendance("1", "2", "4", "10")
             .build();
 
+    public static final Student ATTENDANCE_TEST = new StudentBuilder()
+            .withName("Attendance Test")
+            .withEmail("fionachan@u.nus.edu")
+            .withPhone("82938378")
+            .withTags("CS1231S")
+            .withStudentId("A2038468T")
+            .build();
+
+    public static final Student ATTENDANCE_TEST_WEEK_2 = new StudentBuilder()
+            .withName("Attendance Test")
+            .withEmail("fionachan@u.nus.edu")
+            .withPhone("82938378")
+            .withTags("CS1231S")
+            .withStudentId("A2038468T")
+            .withAttendance("2")
+            .build();
+
     private TypicalStudents() {} // prevents instantiation
 
     /**

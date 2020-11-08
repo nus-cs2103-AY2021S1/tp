@@ -88,13 +88,13 @@ public class ModelManager implements Model {
 
     @Override
     public Path getTrackrFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getModuleListFilePath();
     }
 
     @Override
     public void setTrackrFilePath(Path trackrFilePath) {
         requireNonNull(trackrFilePath);
-        userPrefs.setAddressBookFilePath(trackrFilePath);
+        userPrefs.setModuleListFilePath(trackrFilePath);
     }
 
     //=========== moduleList ================================================================================

@@ -47,6 +47,13 @@ public class TypicalTutorialGroups {
             new TimeOfDay("10:00")
     );
 
+    public static final TutorialGroup V10 = new TutorialGroup(
+            new TutorialGroupId("V10"),
+            new DayOfWeek("WED"),
+            new TimeOfDay("09:00"),
+            new TimeOfDay("10:00")
+    );
+
     /**
      * Returns an {@code UniqueTutorialGroupList} with all the typical tutorial groups.
      */

@@ -8,5 +8,5 @@
     }
   },
   "addressBookFilePath" : "addressbook.json",
-  "moduleListFilePath" : "data\\modulelist.json"
+  "moduleListFilePath" : "data/modulelist.json"
 }

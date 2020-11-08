@@ -1,39 +1,144 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "tagged" : [ "friends" ]
+  "modules" : [ {
+    "moduleId" : "CS2100",
+    "tutorialGroups" : [ {
+      "tutorialGroupId" : "T05",
+      "dayOfWeek" : "MON",
+      "startTime" : "13:00",
+      "endTime" : "14:00",
+      "students" : [ {
+        "name" : "Alex Tan",
+        "phone" : "91234567",
+        "email" : "alextan@u.nus.edu",
+        "studentId" : "A1234567X",
+        "tagged" : [ {
+          "tagName" : "CS2103T"
+        } ],
+        "attendance" : {
+          "weekNumbers" : [ {
+            "weekNumber" : "1"
+          }, {
+            "weekNumber" : "2"
+          }, {
+            "weekNumber" : "3"
+          }, {
+            "weekNumber" : "6"
+          } ],
+          "participationScore" : "96"
+        }
+      }, {
+        "name" : "Ah Beng",
+        "phone" : "81234567",
+        "email" : "abeng@u.nus.edu",
+        "studentId" : "A7654321B",
+        "tagged" : [ {
+          "tagName" : "CS2103T"
+        } ],
+        "attendance" : {
+          "weekNumbers" : [ {
+            "weekNumber" : "1"
+          }, {
+            "weekNumber" : "2"
+          }, {
+            "weekNumber" : "5"
+          }, {
+            "weekNumber" : "13"
+          } ],
+          "participationScore" : "0"
+        }
+      }, {
+        "name" : "CHARLIE CHEN",
+        "phone" : "82223333",
+        "email" : "charlie@hi.com",
+        "studentId" : "A1928835B",
+        "tagged" : [ {
+          "tagName" : "CS2103T"
+        } ],
+        "attendance" : {
+          "weekNumbers" : [ ],
+          "participationScore" : "0"
+        }
+      }, {
+        "name" : "David Ong",
+        "phone" : "81320987",
+        "email" : "dong@u.nus.edu",
+        "studentId" : "A1837538N",
+        "tagged" : [ {
+          "tagName" : "CS2103T"
+        }, {
+          "tagName" : "UTCP"
+        } ],
+        "attendance" : {
+          "weekNumbers" : [ {
+            "weekNumber" : "1"
+          }, {
+            "weekNumber" : "3"
+          }, {
+            "weekNumber" : "4"
+          }, {
+            "weekNumber" : "12"
+          } ],
+          "participationScore" : "24"
+        }
+      }, {
+        "name" : "Elizabeth Teo",
+        "phone" : "89993333",
+        "email" : "eteo@u.nus.edu",
+        "studentId" : "A1938563M",
+        "tagged" : [ {
+          "tagName" : "DDP"
+        }, {
+          "tagName" : "CS2103T"
+        } ],
+        "attendance" : {
+          "weekNumbers" : [ ],
+          "participationScore" : "100"
+        }
+      }, {
+        "name" : "Fiona Chan",
+        "phone" : "82938378",
+        "email" : "fionachan@u.nus.edu",
+        "studentId" : "A2038468T",
+        "tagged" : [ {
+          "tagName" : "CS1231S"
+        } ],
+        "attendance" : {
+          "weekNumbers" : [ {
+            "weekNumber" : "1"
+          }, {
+            "weekNumber" : "2"
+          }, {
+            "weekNumber" : "4"
+          }, {
+            "weekNumber" : "10"
+          } ],
+          "participationScore" : "0"
+        }
+      } ]
+    }, {
+      "tutorialGroupId" : "B06",
+      "dayOfWeek" : "THU",
+      "startTime" : "12:00",
+      "endTime" : "14:00",
+      "students" : [ ]
+    }, {
+      "tutorialGroupId" : "S12",
+      "dayOfWeek" : "FRI",
+      "startTime" : "08:00",
+      "endTime" : "10:30",
+      "students" : [ ]
+    }, {
+      "tutorialGroupId" : "V04",
+      "dayOfWeek" : "TUE",
+      "startTime" : "09:00",
+      "endTime" : "10:00",
+      "students" : [ ]
+    } ]
   }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "tagged" : [ "owesMoney", "friends" ]
+    "moduleId" : "CS2103T",
+    "tutorialGroups" : [ ]
   }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "tagged" : [ ]
-  }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "tagged" : [ "friends" ]
-  }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "tagged" : [ ]
-  }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "tagged" : [ ]
-  }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "tagged" : [ ]
+    "moduleId" : "CS2040",
+    "tutorialGroups" : [ ]
   } ]
 }
