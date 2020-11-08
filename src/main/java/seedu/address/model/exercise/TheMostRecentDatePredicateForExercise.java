@@ -20,7 +20,7 @@ public class TheMostRecentDatePredicateForExercise implements Predicate<Exercise
         if (name == null || date == null) {
             return false;
         }
-        return name.equals(exercise.getName()) && date.equals(exercise.getDate());
+        return name.fullName.equalsIgnoreCase(exercise.getName().fullName) && date.equals(exercise.getDate());
     }
 
 }
