@@ -99,7 +99,6 @@ public class FlashcardDeck implements ReadOnlyFlashcardDeck {
     @Override
     public String toString() {
         return flashcards.asUnmodifiableObservableList().size() + " flashcards";
-        // TODO: refine later
     }
 
     @Override
