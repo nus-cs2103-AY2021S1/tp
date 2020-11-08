@@ -855,7 +855,7 @@ subclasses that include:
 * `SourceContainsKeywordsPredicate`
 * `LocationContainsKeywordsPredicate`
 
-#### FindCommandParser
+#### FindCommandParser / FindExactCommandParser
 The `FindCommandParser` (as with the `FindExactCommandParser`) class
 implements the `Parser` interface.
 `FindCommandParser` class is tasked with parsing the user inputs
@@ -902,13 +902,13 @@ of the `FindCommand` into a composed `Predicate<Stock>`.
 `Find` feature requires the `Stock` to fulfill only one
 `FieldContainsKeywordsPredicate` in the list for `Stock`
 to be displayed. The mechanism used to combine the predicates
-into a composed Predicate<Stock> for `Find` is Java 8 Predicate method,
-Predicate.or().
+into a composed `Predicate<Stock>` for Find is Java 8 Predicate method,
+`Predicate.or()`.
 
 `FindExact` feature requires the `Stock` to fulfill all
 `FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed.
-The mechansim used to combine the predicates into a composed Predicate<Stock>
-for `FindExact` is Java 8 Predicate method, Predicate.and().
+The mechanism used to combine the predicates into a composed `Predicate<Stock>`
+for FindExact is Java 8 Predicate method, `Predicate.and()`.
 
 `FindUtil` implements the following important operations:
 
@@ -920,7 +920,7 @@ for `FindExact` is Java 8 Predicate method, Predicate.and().
 #### FieldContainsKeywordsPredicate
 
 `FieldContainsKeywordsPredicate` is an abstract class
-that implements the interface Predicate<Stock>.
+that implements the interface `Predicate<Stock>`.
 Its subclasses are `NameContainsKeywordsPredicate`,
 `LocationContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate`
 and `SourceContainsKeywordsPredicate`, which inherit and implement the method
@@ -979,7 +979,7 @@ a composed `Predicate<Stock>` with the list of `FieldContainsKeywordsPredicate`
 Step 8. `LogicManager#execute()` then calls `FindCommand#execute()` method,
 with current `Model` as argument. Within this method call,
 `Model#updateFilteredStockList` method evaluates the composed
-Predicate<Stock> on all the stocks in the stock list.
+predicate on all the stocks in the stock list.
 
 Step 9. For each `FieldContainsKeywordsPredicate`, `FieldContainsKeywordsPredicate#test()`
 evaluates the predicate on the stock.
