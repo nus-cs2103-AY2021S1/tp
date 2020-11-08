@@ -35,6 +35,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -64,6 +66,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 6. Refer to the [Features](#features) below for details of each command.
 
+<div style="page-break-after: always;"></div>
+
 ## Application layout
 
 The figures below show the annotated version of the graphic user interface. This will help you better identify the various sections and elements in the application, as well as understand the technical terms stated in this documentation.
@@ -73,6 +77,8 @@ The figures below show the annotated version of the graphic user interface. This
 ![filedirectory](images/ug/label2.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Notes about the command format
 
 This section will give you some useful information about the various command formats and notations you will see in [Features](#features).
@@ -97,6 +103,8 @@ This section will give you some useful information about the various command for
   Multiple instances of the tag prefix is accepted, and the app will read every instance
     in the input.<br>
 
+<div style="page-break-after: always;"></div>
+
 * Multiple instances of the same prefix/flag will not throw an error. However, the app will only read the **last instance** in the input (except for tags).<br>
   eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category<br>
   eg. `sort reviewed -a -a -d` will sort flashcards according to review frequency in **descending** order<br>
@@ -117,6 +125,8 @@ This section will give you some useful information about the various command for
   eg. `-a` is not the same as `-A`
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ## Common Input Fields
 
@@ -141,6 +151,7 @@ Input Field | Restrictions and how to specify
 `INDEX`         | `INDEX` refers to the index number shown in the displayed flashcard list.<br>Every visible flashcard on the display list has an `INDEX`.<br>`INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 `KEYWORD`       | `KEYWORD` can be alphanumeric or punctuations. `KEYWORD` has no character limit but there should be no spaces within the keyword. 
 
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -174,6 +185,8 @@ Root folder containing the jar file        |  Image directory
 :-------------------------:|:-------------------------:
 ![filedirectory](images/ug/ug_add_step1.png) |  ![filedirectory](images/ug/ug_add_step1.1.PNG)
 
+<div style="page-break-after: always;"></div>
+
 **Step 2**: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png` and press Enter. Remember to include the file extension in `DIAGRAM`
 
 ![filedirectory](images/ug/ug_add_step2.png)
@@ -181,6 +194,8 @@ Root folder containing the jar file        |  Image directory
 **Step 3**: The flashcard is added to the list.
 
 ![filedirectory](images/ug/ug_add_step3.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Clear all flashcards : `clear` 
 
@@ -201,6 +216,8 @@ Format: `delete INDEX`
 Examples:
 *  `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list.
 
+<div style="page-break-after: always;"></div>
+
 ### Edit a flashcard  : `edit`
 
 Edits a flashcard.
@@ -218,12 +235,14 @@ Examples:
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming c/General`
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 * `edit 3 n/Important question! r/`
+<div style="page-break-after: always;"></div>
 
 **Steps for editing a flashcard's category and rating**:
 
 **Step 1**: Locate the flashcard you wish to edit. In this example, we want to edit the flashcard at index 2.
 
 ![filedirectory](images/ug/ug_edit_step1.PNG)
+<div style="page-break-after: always;"></div>
 
 **Step 2**: We want to edit the category of the flashcard to Trivial and rating to 1. Type the command `edit 2 c/Trivial r/1` and press Enter.
 
@@ -232,6 +251,8 @@ Examples:
 **Step 3**: The flashcard's category and rating are edited to Trivial and 1 respectively.
 
 ![filedirectory](images/ug/ug_edit_step3.PNG)
+
+<div style="page-break-after: always;"></div>
 
 ### Filter for flashcards  : `filter`
 
@@ -262,6 +283,7 @@ Examples:
 *  `filter f/no f/yes c/General` filters and lists all favourited flashcards that belong to the General category.
     (only last instance of f/ is read)
 
+<div style="page-break-after: always;"></div>
 **Steps for filtering for a flashcard based on category and tag**:
 
 **Step 1**: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded` and press Enter.
@@ -271,6 +293,8 @@ Examples:
 **Step 2**: The flashcard with the category Trivial and tag field preloaded is shown.
 
 ![filedirectory](images/ug/ug_filter_step2.PNG)
+
+<div style="page-break-after: always;"></div>
 
 ### Favourite a flashcard  : `fav`
 
@@ -295,6 +319,8 @@ Format: `unfav INDEX`
 
 Examples: 
 * `list` followed by `unfav 2` unfavourites the 2nd flashcard in the displayed flashcard list.
+
+<div style="page-break-after: always;"></div>
 
 ### Find flashcards : `find`
 
@@ -330,6 +356,8 @@ Shows a list of all flashcards. This is useful for removing any `filter` or `fin
 
 Format: `list`
 
+<div style="page-break-after: always;"></div>
+
 ### Review flashcards: `review`
 
 Reviews the current list of flashcards. This puts the user in review mode and the user can no 
@@ -348,6 +376,8 @@ Upon entering review mode, the following user input will be recognised:
 The review and success frequency of a flashcard is <b>not affected</b> by review mode.
 </div>
 <br>
+
+<div style="page-break-after: always;"></div>
 
 **Steps for entering review mode**:
 
@@ -396,6 +426,8 @@ The quiz mode works in conjunction with the [statistics](#view-the-statistics-of
 
 ![filedirectory](images/ug/ug_quiz_step2.PNG)
 
+<div style="page-break-after: always;"></div>
+
 **Step 3**: In this example, we will demonstrate the behaviour of the `↓ key`. Upon pressing the `↓ key`, we will be prompted if we got the answer correct.
 
 ![filedirectory](images/ug/ug_quiz_step3.PNG)
@@ -404,6 +436,7 @@ The quiz mode works in conjunction with the [statistics](#view-the-statistics-of
 
 ![filedirectory](images/ug/ug_quiz_step4.PNG)
 
+<div style="page-break-after: always;"></div>
 
 ### Sort all flashcards : `sort`
 
@@ -426,7 +459,9 @@ Examples:
 </div>
 <div markdown="span" class="alert alert-primary">:memo: Note: Sorting results in a permanent change in the ordering of the flashcards. This means your list of flashcards will follow the sorted order even after you relaunch the app.
 </div>
-    
+
+<div style="page-break-after: always;"></div>
+
 ### View a flashcard  : `view`
 
 Views the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user.
@@ -446,6 +481,8 @@ flashcard was not modified/deleted.
 </div>
 <br>
 
+<div style="page-break-after: always;"></div>
+
 **Steps for viewing a specific flashcard**:
 
 **Step 1**: Locate the flashcard you wish to view. In this example, we want to view the flashcard at index 3. Type the command `view 3` and press Enter.
@@ -456,14 +493,17 @@ flashcard was not modified/deleted.
 
 ![filedirectory](images/ug/ug_view_step2.PNG)
 
-**Step 3**: To view the answer and notes (if applicable) of the flashcard on the view pane. Type the command `view 3 -a` and press Enter.
+<div style="page-break-after: always;"></div>
 
+**Step 3**: To view the answer and notes (if applicable) of the flashcard on the view pane. Type the command `view 3 -a` and press Enter.
 
 ![filedirectory](images/ug/ug_view_step3.PNG)
 
 **Step 4**: The answer of the flashcard is displayed on the view pane.
 
 ![filedirectory](images/ug/ug_view_step4.PNG)
+
+<div style="page-break-after: always;"></div>
 
 ### View the statistics of flashcard : `stats`
 
@@ -490,6 +530,8 @@ flashcard was not modified/deleted.
 </div>
 <br>
 
+<div style="page-break-after: always;"></div>
+
 **Steps for viewing the statistics of a specific flashcard**:
 
 **Step 1**: Locate the flashcard you wish to view the statistics of. In this example, we want to view the statistics of the flashcard at index 1. Type the command `stats 1` and press Enter.
@@ -499,6 +541,8 @@ flashcard was not modified/deleted.
 **Step 2**: The statistics of the flashcard at index 1 will be displayed in the view pane.
 
 ![filedirectory](images/ug/ug_stats_step2.PNG)
+
+<div style="page-break-after: always;"></div>
 
 ### Exit the program : `exit`
 
@@ -511,6 +555,8 @@ Format: `exit`
 Flashcards data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -531,6 +577,8 @@ If you still want to perform the action, do take note that you may face unintend
 **A**: Success rate of a flashcard is measured by `(success frequency) / (review frequency) x 100%`. If a flashcard has a review frequency of 0, then its success rate will be 0%.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
