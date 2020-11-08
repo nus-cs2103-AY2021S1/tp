@@ -29,6 +29,10 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `list`, `edit`and `find` [\#47](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/47)
+    * Authored introduction for `Command` section.
+    * Added `Natural Date & Time` section under `Command format`.
+    * Added link between `Date & Time format` and `FAQ`.
+    * Authored `Glossary` section.
 
   * Developer Guide:
     * Authored `Use Cases` segment. ([\#48](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/48))
