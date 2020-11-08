@@ -353,88 +353,8 @@ Given below is an example of the interaction between the Model and the `ExitComm
 - Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
     - Pros: Easier to implement
     - Cons: More repetitive code
-### Section 4.2 - \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
--   `VersionedAddressBook#commit()` — Saves the current address book state in its history.
--   `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
--   `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behaviour that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
--   **Alternative 1 (current choice):** Saves the entire address book.
-
-    -   Pros: Easy to implement.
-    -   Cons: May have performance issues in terms of memory usage.
-
--   **Alternative 2:** Individual command knows how to undo/redo by
-    itself.
-    -   Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    -   Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### Section 4.3 - Data saving and loading
+### Section 4.9 - Data saving and loading
 
 #### Implementation
 
@@ -663,7 +583,9 @@ _{More to be added}_
 -   **Mainstream OS**: Windows, Linux, Unix, OS-X
 -   **Private contact detail**: A contact detail that is not meant to be shared with others
 -   **TA**: Teaching Assistant
--   **Modules**: University courses that students are enrolled in
+-   **Modules**: University courses that Teaching Assistants teach
+-   **Tutorial Groups**: Small groups of Students within each Module that Teaching Assistants are responsible for
+-   **Students**: Students who are enrolled in a specific Module and a specific Tutorial Group under a specific Teaching Assistant
 
 ---
 
@@ -682,31 +604,133 @@ testers are expected to do more *exploratory* testing.
 
 1. Download the jar file and copy into an empty folder
 
-1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
+1. Double-click the jar file or run `java -jar Trackr.jar` in Terminal. <br> 
+Expected: Shows the GUI with a sample Module CS2103T. The window size may not be optimum.
 
 1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-1. Re-launch the app by double-clicking the jar file.<br>
+1. Window preferences should be automatically saved.
+
+1. Close the app by clicking the close button located at the top left corner or run `exit` in Trackr.
+
+1. Re-launch the jar file.<br>
    Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a Module
 
-1. Deleting a person while all persons are being shown
+1. Adding a module while all modules are being shown.
 
-1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Prerequisites: Navigate to the Module view using `prevView` or `listMod`. List all modules using the `listMod` command.
 
-1. Test case: `delete 1`<br>
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Test case: `addMod m/CS3243`<br>
+   Expected: New module with code CS3243 will be added to the bottom of the list. Details of the added Module is shown in the status message.
 
-1. Test case: `delete 0`<br>
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Test case: `addMod m/CS3243` (Attempting to add Module with the same code) <br>
+   Expected: No new module is added. An error message indicating the existence of duplicates is shown in the status message.
 
-1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-   Expected: Similar to previous.
+1. Test case: `addMod` (No parameters) <br>
+   Expected: Invalid command format error message is shown in the status message, along with an example command that works.
+   
+1. Test case: `addMod m/CS@` or `addMod m/` (Non-alphanumeric characters or blank module code) <br>
+   Expected: An error message indicating that module code can only be alphanumeric characters and should not be blank is shown in the status message.
+   
+1. _{ more test cases …​ }_
+   
+### Deleting a Module
+
+1. Deleting a module while all modules are being shown.
+
+1. Prerequisites: Navigate to the Module view using `prevView` or `listMod`. List all modules using the `listMod` command.
+
+1. Test case: `deleteMod 1` <br>
+   Expected: First module is deleted from the list. Details of the deleted module shown in the status message.
+
+1. Test case: `deleteMod 0` or `deleteMod`(Index 0 or no index specified) <br>
+   Expected: No module is deleted. Error details shown in the status message.
+
+1. Test case: `deleteMod [insert an index that does not exist]` (Index does not exist) <br>
+   Expected: No module is deleted. An error message indicating that the index is invalid is shown in the status message.
+   
+1. Test case: `deleteMod a` or `deleteMod 1.5` (Non-integer index)
+   Expected: No module is deleted. Error details shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Editing a Tutorial Group
+
+1. Editing a tutorial group while all tutorial groups are being shown.
+
+1. Prerequisites: Navigate to the Tutorial Group view using `prevView` or `viewTG MODULE_INDEX`. List all tutorial groups using the `listTG` command. 
+Add a tutorial group using the command `addTG tg/T03 day/MON start/11:00 end/13:00`.
+
+1. Test case: `editTG 1 tg/T18` <br>
+   Expected: The tutorial group code of the first tutorial group is modified to be _T18_. Details of the edited tutorial group shown in the status message.
+
+1. Test case: `editTG 1`(No specified field to be edited) <br>
+   Expected: No tutorial group is modified. Error details shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Finding a Tutorial Group
+
+1. Finding a tutorial group while all tutorial groups are being shown.
+
+1. Prerequisites: Navigate to the Tutorial Group view using `prevView` or `viewTG MODULE_INDEX`. List all tutorial groups using the `listTG` command. 
+Add two tutorial groups using the commands `addTG tg/T03 day/MON start/11:00 end/13:00` and `addTG tg/B03 day/MON start/11:00 end/13:00`.
+
+1. Test case: `findTG b` <br>
+   Expected: The list is filtered to only show the tutorial group whose code contains the letter _b_. The number of matching tutorial groups is shown in the status message.
+
+1. Test case: `findTG`(No specified keyword) <br>
+   Expected: The list is not filtered. Error details shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Listing all Tutorial Groups
+
+1. Listing all tutorial groups while not all tutorial groups are being shown.
+
+1. Prerequisites: Navigate to the Tutorial Group view using `prevView` or `viewTG MODULE_INDEX`. List all tutorial groups using the `listTG` command. 
+Filter the list shown using the `findTG b` command. This should make the list to only show the tutorial groups whose code match the letter _b_.
+
+1. Test case: `listTG` <br>
+   Expected: The list is restored to show all tutorial groups. A message indicating that all tutorial groups are shown is shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Viewing the Students of a Tutorial Group
+
+1. Viewing all students of a tutorial group.
+
+1. Prerequisites: Navigate to the Tutorial Group view using `prevView` or `viewTG MODULE_INDEX`. List all tutorial groups using the `listTG` command. 
+Add a tutorial group using the command `addTG tg/T03 day/MON start/11:00 end/13:00`.
+
+1. Test case: `viewStudent 1` <br>
+   Expected: The view is changed from Tutorial Group view to Student view. The list shown is restored to show all students of the first tutorial group. A message indicating that all students are shown is shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Clearing Trackr
+
+1. Clearing all data in Trackr.
+
+1. Prerequisites: List all modules using the `listMod` command. 
+
+1. Test case: `clear` <br>
+   Expected: The view is changed to Module view. The list shown is cleared. A message indicating that Trackr has been cleared is shown in the status message.
+
+1. _{ more test cases …​ }_
+
+### Exiting Trackr
+
+1. Exiting Trackr and saving all data.
+
+1. Prerequisites: List all modules using the `listMod` command. 
+
+1. Test case: `exit` <br>
+   Expected: Trackr will close by itself. The list shown is cleared. All data is saved automatically. When Trackr is re-launched, the same data will load.
 
 1. _{ more test cases …​ }_
 
@@ -714,6 +738,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Simulating a corrupted file. <br>
+    - Go to tp -> data -> modulelist.json.
+    - Change "moduleId" in line 3 to be "moduleeeeId"
+    - Close Trackr
+    - Re-launch Trackr
+    Expected: Trackr will start fresh. All data will be deleted when a command is executed.
+
+1. Suggestion: When data is missing unexpectedly, go over to modulelist.json and copy paste the file to another document. Check if each of the field is named correctly.
 
 1. _{ more test cases …​ }_
