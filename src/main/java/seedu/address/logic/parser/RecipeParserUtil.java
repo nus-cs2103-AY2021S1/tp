@@ -45,7 +45,8 @@ public class RecipeParserUtil {
         String[] splitParts;
         for (String ingredient : splitIngredients) {
             splitParts = ingredient.trim().split("\\[");
-            ingredientPrecursors.add(new IngredientPrecursor(splitParts[0].trim(), Integer.parseInt(splitParts[1].trim())));
+            ingredientPrecursors.add(new IngredientPrecursor(splitParts[0].trim(),
+                    Integer.parseInt(splitParts[1].trim())));
         }
         return ingredientPrecursors;
     }
