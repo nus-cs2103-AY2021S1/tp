@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ReeveParser" as ReeveParser LOGIC_COLOR
+participant ":DetailCommandParser" as DetailCommandParser LOGIC_COLOR
+participant "e:EditDetailCommand" as EditDetailCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "updatedStudent:Student" as Student MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(...)
+activate LogicManager
+
+LogicManager -> ReeveParser : parseCommand(...)
+activate ReeveParser
+
+create DetailCommandParser
+ReeveParser -> DetailCommandParser : DetailCommandParser()
+activate DetailCommandParser
+
+DetailCommandParser --> ReeveParser
+deactivate DetailCommandParser
+
+ReeveParser -> DetailCommandParser : parse(...)
+activate DetailCommandParser
+
+create EditDetailCommand
+DetailCommandParser -> EditDetailCommand : EditDetailCommand(...)
+activate EditDetailCommand
+
+EditDetailCommand --> DetailCommandParser : e
+deactivate EditDetailCommand
+
+DetailCommandParser --> ReeveParser : e
+deactivate DetailCommandParser
+
+DetailCommandParser -[hidden]> ReeveParser
+destroy DetailCommandParser
+
+ReeveParser --> LogicManager : e
+deactivate ReeveParser
+
+LogicManager -> EditDetailCommand : execute(...)
+activate EditDetailCommand
+
+EditDetailCommand -> EditDetailCommand : updateStudentDetail(...)
+activate EditDetailCommand
+
+create Student
+EditDetailCommand -> Student : Student(...)
+activate Student
+
+Student --> EditDetailCommand : updatedStudent
+deactivate Student
+
+EditDetailCommand --> EditDetailCommand : updatedStudent
+deactivate EditDetailCommand
+
+EditDetailCommand -> Model : setStudent(student, updatedStudent)
+activate Model
+
+Model --> EditDetailCommand
+deactivate Model
+
+EditDetailCommand --> LogicManager : result
+deactivate EditDetailCommand
+
+EditDetailCommand -[hidden]> LogicManager
+destroy EditDetailCommand
+
+[<-- LogicManager : result
+deactivate LogicManager
+@enduml

@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ReeveParser" as ReeveParser LOGIC_COLOR
+participant ":DetailCommandParser" as DetailCommandParser LOGIC_COLOR
+participant "d:DeleteDetailCommand" as DeleteDetailCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "updatedStudent:Student" as Student MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(...)
+activate LogicManager
+
+LogicManager -> ReeveParser : parseCommand(...)
+activate ReeveParser
+
+create DetailCommandParser
+ReeveParser -> DetailCommandParser : DetailCommandParser()
+activate DetailCommandParser
+
+DetailCommandParser --> ReeveParser
+deactivate DetailCommandParser
+
+ReeveParser -> DetailCommandParser : parse(...)
+activate DetailCommandParser
+
+create DeleteDetailCommand
+DetailCommandParser -> DeleteDetailCommand : DeleteDetailCommand(...)
+activate DeleteDetailCommand
+
+DeleteDetailCommand --> DetailCommandParser : d
+deactivate DeleteDetailCommand
+
+DetailCommandParser --> ReeveParser : d
+deactivate DetailCommandParser
+
+DetailCommandParser -[hidden]> ReeveParser
+destroy DetailCommandParser
+
+ReeveParser --> LogicManager : d
+deactivate ReeveParser
+
+LogicManager -> DeleteDetailCommand : execute(...)
+activate DeleteDetailCommand
+
+DeleteDetailCommand -> DeleteDetailCommand : updateStudentDetail(...)
+activate DeleteDetailCommand
+
+create Student
+DeleteDetailCommand -> Student : Student(...)
+activate Student
+
+Student --> DeleteDetailCommand : updatedStudent
+deactivate Student
+
+DeleteDetailCommand --> DeleteDetailCommand : updatedStudent
+deactivate DeleteDetailCommand
+
+DeleteDetailCommand -> Model : setStudent(student, updatedStudent)
+activate Model
+
+Model --> DeleteDetailCommand
+deactivate Model
+
+DeleteDetailCommand --> LogicManager : result
+deactivate DeleteDetailCommand
+
+DeleteDetailCommand -[hidden]> LogicManager
+destroy DeleteDetailCommand
+
+[<-- LogicManager : result
+deactivate LogicManager
+@enduml

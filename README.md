@@ -9,5 +9,5 @@
 * Interested in developing Reeve? The [**Developer Guide**](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/docs/DeveloperGuide.md) is a good place to start!
 
 ## Acknowledgements
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Jfxtras](http://jfxtras.org/)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [jfxtras-agenda](https://jfxtras.org/doc/8.0/jfxtras-agenda/index.html), [jfxtras-icalendarfx](https://jfxtras.org/doc/8.0/jfxtras-icalendarfx/index.html), [jfxtras-icalendaragenda](https://jfxtras.org/doc/8.0/jfxtras-icalendaragenda/index.html)
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

@@ -31,10 +31,10 @@ logic -> fc ++: execute(model)
 fc -> fcd++: getPredicates()
 return consolidatedPredicates
 
-
 end box
 
 box "Model" MODEL_COLOR_T1
+
 Participant ":Model" as model MODEL_COLOR
 
 fc -> model++: updateFilteredPersonList(consolidatedPredicates)
@@ -42,6 +42,7 @@ return
 return result
 return
 destroy fc
+
 end box
 
 @enduml
