@@ -10,7 +10,6 @@ FlashNotes is a desktop address book application used for creating and accessing
 Given below are my contributions to the project.
 
 * **New Feature 1**: Flipping of flashcard in Review Mode
-
     * What it does: This feature flips the flashcard currently being reviewed when the user calls the `f` command.
     This will switch between question and answer of the flashcard currently being reviewed.
     * Justification: This is an important feature in the review mode as when the user is reviewing a deck of flashcards, 
@@ -24,7 +23,6 @@ Given below are my contributions to the project.
     the user doesn't accidentally view the answer to the question when they are not supposed to be able to.
  
 * **New Feature 2**: Marking flashcard as correct in Review Mode
-
     * What it does: Marks the flashcard currently being reviewed in the Review Mode as correct and shows the next 
     card in the review list.
     * Justification: This feature is important as it enables users to keep track of the flashcards that they get right 
@@ -35,7 +33,6 @@ Given below are my contributions to the project.
     that particular review session.  
     
 * **New Feature 3**: Marking flashcard as wrong in Review Mode
-
     * What it does: Marks the flashcard currently being reviewed in the Review Mode as wrong and shows the next 
     card in the review list.
     * Justification: This feature is important as it enables users to keep track of the flashcards that they get wrong 
@@ -51,14 +48,12 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Sruthisarav&tabRepo=AY2021S1-CS2103T-T15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * **Project management**:
-
     * Merged PRs for v1.3 documentation and double-checked everyone's documentation.
     * Attended weekly team meetings about implementation details, deliverables, and deadlines and shared my 
     inputs/opinions/suggestions.
     * Brainstorm ideas for the different features.
  
 * **Enhancements to existing features**:
-
     * Refactored code for `Phone` class in the original AddressBook3 application
     into the `Answer` class for FlashNotes application.
     * Updated old testcases for `Phone` and changed them to `Answer`.
@@ -69,7 +64,6 @@ Given below are my contributions to the project.
     such that they return appropriate error messages. 
  
 * **Documentation**:
-
   * User Guide:
     * Wrote documentation for the commands: `f`, `c`, `w`.
     * Updated the documentation for `editCard`.
@@ -89,5 +83,4 @@ Given below are my contributions to the project.
     * Updated Manual Testing section to include all the new features in FlashNotes.    
 
 * **Community**:
-
     * Reviewed teammates' pull requests. [link](https://github.com/AY2021S1-CS2103T-T15-2/tp/pull/184)
