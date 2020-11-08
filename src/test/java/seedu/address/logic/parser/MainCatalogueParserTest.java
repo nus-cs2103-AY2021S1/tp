@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.TaskCommandTestUtil.PLAN_MEETING;
 import static seedu.address.logic.commands.TaskCommandTestUtil.TASK_TIME_RANGE_DESC;
 import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_TASK_PROGRESS_HALF;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_GIT_USERNAME_A;
-import seedu.address.logic.commands.global.AddPersonCommand;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASCENDING_SORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_ASSIGNEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -33,6 +32,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.global.AddCommand;
+import seedu.address.logic.commands.global.AddPersonCommand;
 import seedu.address.logic.commands.global.ClearCommand;
 import seedu.address.logic.commands.global.DeleteCommand;
 import seedu.address.logic.commands.global.EditCommand;
