@@ -117,7 +117,7 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
      * {@code model}'s task manager.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
@@ -125,6 +125,15 @@ public class CommandTestUtil {
         model.updateFilteredTaskList(new TitleOrDescriptionContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
         assertEquals(1, model.getFilteredTaskList().size());
+    }
+
+    /**
+     * Deletes the first task in {@code model}'s filtered list from {@code model}'s task manager.
+     */
+    public static void deleteFirstTask(Model model) {
+        Task firstTask = model.getFilteredTaskList().get(0);
+        model.deleteTask(firstTask);
+        model.commitTaskManager();
     }
 
 }

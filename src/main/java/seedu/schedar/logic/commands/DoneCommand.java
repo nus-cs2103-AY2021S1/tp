@@ -5,6 +5,7 @@ import static seedu.schedar.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
+import seedu.schedar.commons.core.Messages;
 import seedu.schedar.commons.core.index.Index;
 import seedu.schedar.logic.CommandHistory;
 import seedu.schedar.logic.commands.exceptions.CommandException;
@@ -21,7 +22,7 @@ public class DoneCommand extends Command {
 
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Mark task as done: %1$s";
 
-    public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "Index invalid";
+    //public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "Index invalid";
 
     private final Index targetIndex;
 
@@ -35,12 +36,13 @@ public class DoneCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToMarkDone = lastShownList.get(targetIndex.getZeroBased());
         model.doneTask(taskToMarkDone);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.commitTaskManager();
         return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskToMarkDone));
     }
 

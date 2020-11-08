@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.schedar.commons.core.Messages;
 import seedu.schedar.commons.core.index.Index;
 import seedu.schedar.logic.CommandHistory;
 import seedu.schedar.logic.commands.exceptions.CommandException;
@@ -20,8 +21,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task: %1$s";
 
-    // TODO: Change to use universal invalid index message
-    public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "Index invalid";
+    //public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
     private final Index targetIndex;
 
@@ -35,12 +35,13 @@ public class DeleteCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.addRecentDeletedTask(taskToDelete);
         model.deleteTask(taskToDelete);
+        model.commitTaskManager();
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 
