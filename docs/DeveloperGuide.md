@@ -1032,7 +1032,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: The json file saved contains data for at least one patient.
    
    1. Test case: Corrupted json file<br>
-      Open up `data/clinical.json` in a text editor and change any field to an invalid value. For example, try including an alphabet in the phone number of a patient.
+      Open up `data/clinical.json` in a text editor and change any field to an invalid value. For example, try including an alphabet in the phone number of a patient.<br>
       Expected: The application should start gracefully with an empty set of data, without crashing. The application will log an error to the console.
 
 
@@ -1042,14 +1042,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all patients using the list command. Multiple patients in the list.
    
-   1. Test case: `profile 2`
+   1. Test case: `profile 2`<br>
        Expected: A separate window that displays details of the second patient will appear. Relevant patient records, as well as
        past visitation logs will be shown.
    
-   1. Test case: `profile -1`
+   1. Test case: `profile -1`<br>
        Expected: Error message will be shown as an invalid patient index is given.
    
-   1. Other incorrect commands to try: `profile 0`, `profile one`, `profile 90000` (assuming 90000 is larger than size of patient list)
+   1. Other incorrect commands to try: `profile 0`, `profile one`, `profile 90000` (assuming 90000 is larger than size of patient list)<br>
        Expected: Error message will be shown as an invalid command is given.
        
 ##### F.6 Adding profile picture
@@ -1058,16 +1058,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all patients using the list command. Multiple patients in the list.
    
-   1. Test case: `addpicture 1 f/downloads/profile_picture.png`
+   1. Test case: `addpicture 1 f/downloads/profile_picture.png`<br>
        Expected: Patient's profile picture will be updated with the desired profile picture.
        
-   1. Test case: `addpicture 0 f/downloads/profile_picture.png`
+   1. Test case: `addpicture 0 f/downloads/profile_picture.png`<br>
        Expected: Error message will be shown as invalid patient index is given.
        
-   1. Test case: `addpicture 1 f/downloads/profile_picture`
+   1. Test case: `addpicture 1 f/downloads/profile_picture`<br>
        Expected: Error message will be shown as invalid filepath is given.
        
-   1. Other incorrect commands to try: `addpicture -1 f/downloads/profile_picture`, `addpicture 1 f/downloads/profile_picture.gif`
+   1. Other incorrect commands to try: `addpicture -1 f/downloads/profile_picture`, `addpicture 1 f/downloads/profile_picture.gif`<br>
        Expected: Error message will be shown as an invalid command is given.
 
 ##### F.7 Adding visitation log
@@ -1076,17 +1076,17 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all patients using the list command. Multiple patients in the list.
    
-   1. Test case: `addvisit 1`
+   1. Test case: `addvisit 1`<br>
        Expected: A separate window displaying the three fields (Diagnosis, Prescription, Comments) required for a visitation log will appear.
        After inputting the relevant details, saving the visitation log will result in a success message being shown in the main window.
        
-   1. Test case: `addvisit 1 vd/31/07/2020`
+   1. Test case: `addvisit 1 vd/31/07/2020`<br>
        Expected: Similar to previous scenario.
        
-   1. Test case: `addvisit 1 vd/35/12/2020`
+   1. Test case: `addvisit 1 vd/35/12/2020`<br>
        Expected: Error message will be shown as an invalid date is given.
        
-   1. Other incorrect commands to try: `addvisit 1 vd/test`, `addvisit 90000 vd/test` (assuming 90000 is larger than size of patient list)
+   1. Other incorrect commands to try: `addvisit 1 vd/test`, `addvisit 90000 vd/test` (assuming 90000 is larger than size of patient list)<br>
        Expected: Error message will be shown as an invalid command is given.
        
 ##### F.8 Adding an appointment

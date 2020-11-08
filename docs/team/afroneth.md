@@ -59,12 +59,14 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `addpicture`, `addvisit` and `profile` ([\#148]())
+    * Improve overall styling and removed discrepancies on formatting issues ([\#255](), [\#265]())
   * Developer Guide:
     * Added implementation details of the `addpicture`, `addvisit` and `profile`feature ([\#83]())
     * Added new use cases for `addpicture` functionality. ([\#83]())
+    * Added manual testing instructions for `addpicture`, `addvisit` and `profile` features ([\#266]())
 
 * **Community**:
   * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/afroneth/ped/issues)
-
+  * PR reviewed (with non-trivial review comments) ([\#252]())
 * **Tools**:
   * Integrated a third party library (Commons IO) to the project ([\#61]())
