@@ -1,0 +1,11 @@
+{
+  "persons": [ {
+    "title": "H@ns Muster",
+    "description": "",
+    "status": "ACTIVE",
+    "suspects": [],
+    "victims": [],
+    "witnesses": [],
+    "archiveStatus": "DEFAULT"
+  } ]
+}

@@ -1,0 +1,28 @@
+{
+  "persons": [ {
+    "title": "Alice Pauline",
+    "description": "",
+    "status": "ACTIVE",
+    "witnesses": [],
+    "documents": [ {
+      "name" : "name",
+      "reference" : "test1.txt"
+    } ],
+    "suspects": [],
+    "victims": [],
+    "tagged": [ "friends" ],
+    "archiveStatus" : "DEFAULT"
+  }, {
+    "title": "Alice Pauline",
+    "description": "",
+    "witnesses": [],
+    "status": "ACTIVE",
+    "documents": [ {
+      "name" : "name",
+      "reference" : "test1.txt"
+    } ],
+    "suspects": [],
+    "victims": [],
+    "archiveStatus" : "DEFAULT"
+  } ]
+}

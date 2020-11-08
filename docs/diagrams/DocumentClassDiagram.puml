@@ -1,0 +1,23 @@
+@startuml
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T1
+skinparam classBackgroundColor LOGIC_COLOR_T1
+
+class Document
+class Name
+abstract class Alphanumeric
+class Reference {
+    - path : Path
+    - fileName : String
+    {static} + isValidReference(fileName: String)
+    + isExists() : boolean
+}
+
+Name "1"-up> Document
+Alphanumeric -up|> Name
+Reference"1" -up-> Document
+
+
+@enduml

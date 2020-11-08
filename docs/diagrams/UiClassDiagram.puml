@@ -15,6 +15,13 @@ Class PersonListPanel
 Class PersonCard
 Class StatusBarFooter
 Class CommandBox
+Class DocumentListPanel
+Class DocumentCard
+Class CasePersonListPanel
+Class CasePersonCard
+Class Index
+Class ArchiveStatus
+Class TabStatus
 }
 
 package Model <<Rectangle>> {
@@ -25,6 +32,10 @@ package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
 }
 
+package State <<Rectangle>> {
+Class HiddenState #FFFFFF
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
@@ -33,28 +44,50 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> DocumentListPanel
+MainWindow *-down-> CasePersonListPanel
+MainWindow *-down-> PersonListPanel
 
-PersonListPanel -down-> PersonCard
+
+DocumentListPanel -down--> DocumentCard
+CasePersonListPanel -down--> CasePersonCard
+PersonListPanel -down--> PersonCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
-HelpWindow -down-|> UiPart
+HelpWindow --|> UiPart
+DocumentListPanel --|> UiPart
+DocumentCard ---|> UiPart
+CasePersonListPanel --|> UiPart
+CasePersonCard ---|> UiPart
+PersonListPanel --|> UiPart
+PersonCard ---|> UiPart
 
 PersonCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
+MainWindow --> Index
+MainWindow --> ArchiveStatus
+MainWindow --> TabStatus
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
+Index ..> State
+ArchiveStatus ..> State
+TabStatus ..> State
+
+TabStatus -[hidden]left- ArchiveStatus
+ArchiveStatus -[hidden]left- Index
+Index -[hidden]left- HelpWindow
+HelpWindow -[hidden]left- PersonListPanel
+PersonListPanel -[hidden]left- CasePersonListPanel
+CasePersonListPanel -[hidden]left- DocumentListPanel
+DocumentListPanel -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+
 
 MainWindow -[hidden]-|> UiPart
 @enduml

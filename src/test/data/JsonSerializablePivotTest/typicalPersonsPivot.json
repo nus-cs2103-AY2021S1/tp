@@ -1,0 +1,143 @@
+{
+  "_comment": "PIVOT save file which contains the same Person values as in TypicalCases#getTypicalPivot()",
+  "persons" : [ {
+    "title" : "Alice Pauline Assault",
+    "description": "",
+    "status": "COLD",
+    "documents": [ {
+      "name" : "name",
+      "reference" : "validButShouldNotExist.txt"
+    } ],
+    "witnesses": [ {
+      "name" : "Janice",
+      "sex" : "F",
+      "phone" : "912345678",
+      "email" : "",
+      "address" : ""
+    } ],
+    "suspects": [ {
+      "name" : "Peter",
+      "sex" : "M",
+      "phone" : "912345678",
+      "email" : "peter@gmail.com",
+      "address" : "Blk 123"
+    } ],
+    "victims" : [ {
+      "name" : "Tom",
+      "sex" : "M",
+      "phone" : "912345678",
+      "email" : "tom@gmail.com",
+      "address" : "Blk 123"
+    } ],
+    "tagged" : [ "friends" ],
+    "archiveStatus" : "DEFAULT"
+  }, {
+    "title" : "Benson Meier Robbery",
+    "description": "Was hit with a very big banana!",
+    "status": "CLOSED",
+    "documents": [ {
+      "name" : "name",
+      "reference" : "test1.txt"
+    } ],
+    "witnesses": [ {
+      "name" : "Janice",
+      "sex" : "F",
+      "phone" : "912345678",
+      "email" : "",
+      "address" : ""
+    } ],
+    "suspects": [],
+    "victims" : [ {
+      "name" : "Tom",
+      "sex" : "M",
+      "phone" : "912345678",
+      "email" : "tom@gmail.com",
+      "address" : "Blk 123"
+    } ],
+    "tagged" : [ "owesMoney", "friends" ],
+    "archiveStatus" : "DEFAULT"
+  }, {
+    "title" : "Carl Kurz Fire",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
+  }, {
+    "title" : "Daniel Meier Shoplifting",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ "friends" ],
+    "archiveStatus" : "DEFAULT"
+  }, {
+    "title" : "Elle Meyer Shooting",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
+  }, {
+    "title" : "Fiona Kunz Kidnapping",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
+  }, {
+    "title" : "George Best Vandalism",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
+  }, {
+    "title" : "Junk Yard Murder",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ ],
+    "archiveStatus" : "ARCHIVED"
+  },
+    {
+      "title" : "Klook Scam",
+      "description": "",
+      "status": "ACTIVE",
+      "documents" : [ ],
+      "witnesses": [],
+      "suspects": [],
+      "victims" : [],
+      "tagged" : [ ],
+      "archiveStatus" : "ARCHIVED"
+    },
+    {
+      "title" : "Louis Homicide",
+      "description": "",
+      "status": "ACTIVE",
+      "documents" : [ ],
+      "witnesses": [],
+      "suspects": [],
+      "victims" : [],
+      "tagged" : [ ],
+      "archiveStatus" : "ARCHIVED"
+    }
+  ]
+}
