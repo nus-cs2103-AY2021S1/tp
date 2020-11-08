@@ -542,6 +542,7 @@ User data automatically saves when there is a change in data.
 |**unarchive**      | `unarchive case CASE_NO`              |
 |**find**           | `find KEYWORD [MORE KEYWORDS]`        |
 
+<div style="page-break-after: always;"></div>
 #### Investigation Page Commands
 
 | Command               | Format                                                                            |
