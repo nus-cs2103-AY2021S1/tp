@@ -1,12 +1,5 @@
 package seedu.address.logic.parser.modulelistparsers;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.modulelistcommands.EditZoomLinkCommand;
-import seedu.address.logic.commands.modulelistcommands.ZoomDescriptor;
-import seedu.address.model.module.ModuleLesson;
-import seedu.address.model.module.ZoomLink;
-import seedu.address.testutil.ZoomDescriptorBuilder;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LESSON_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ZOOM_LINK_DESC;
@@ -20,6 +13,14 @@ import static seedu.address.logic.commands.CommandTestUtil.ZOOM_LINK_DESC_ES2660
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.modulelistcommands.EditZoomLinkCommand;
+import seedu.address.logic.commands.modulelistcommands.ZoomDescriptor;
+import seedu.address.model.module.ModuleLesson;
+import seedu.address.model.module.ZoomLink;
+import seedu.address.testutil.ZoomDescriptorBuilder;
 
 public class EditZoomLinkParserTest {
 

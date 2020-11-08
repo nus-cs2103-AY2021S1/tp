@@ -112,10 +112,10 @@ public class EditContactParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_CONTACT;
-        String userInput = targetIndex.getOneBased() + TELEGRAM_DESC_AMY + EMAIL_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + TELEGRAM_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND;
 
         EditContactDescriptor descriptor = new EditContactDescriptorBuilder().withTelegram(VALID_TELEGRAM_AMY)
-                .withEmail(VALID_EMAIL_AMY).build();
+                .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
         EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
