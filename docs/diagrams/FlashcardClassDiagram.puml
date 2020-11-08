@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+package Flashcard <<Rectangle>> {
+class MultipleChoiceQuestion
+class OpenEndedQuestion
+interface Question <<Interface>>
+class Answer
+class Choice
+class Tag
+class Difficulty
+class Flashcard
+class Statistics
+}
+
+Class HiddenOutside #FFFFFF
+
+MultipleChoiceQuestion -[dashed]-|> Question
+OpenEndedQuestion -[dashed]-|> Question
+MultipleChoiceQuestion *--> "1..*" Choice
+MultipleChoiceQuestion *--> "1" Answer
+OpenEndedQuestion *--> "1" Answer
+
+Flashcard *--> "1" Question
+Flashcard *--> "*" Tag
+Flashcard *--> "1" Difficulty
+Flashcard *--> "1" Statistics
+
+
+UniqueFlashcardList o--> "*" Flashcard
+QuickCache *--> "1" UniqueFlashcardList
+@enduml
