@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.IntegerOverflow;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Exercise;
 
@@ -18,7 +19,6 @@ import seedu.address.model.exercise.Exercise;
 public class AddCommand extends CommandForExercise {
 
     public static final String COMMAND_WORD = "add";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exercise to Calo. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -36,9 +36,9 @@ public class AddCommand extends CommandForExercise {
             + PREFIX_MUSCLE + "arm "
             + PREFIX_TAG + "home "
             + PREFIX_TAG + "gym";
-
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the exercise book";
+
 
     private final Exercise toAdd;
 
@@ -56,6 +56,10 @@ public class AddCommand extends CommandForExercise {
 
         if (model.hasExercise(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
+        }
+
+        if (model.checkOverflow(toAdd)) {
+            throw new IntegerOverflow();
         }
 
         model.addExercise(toAdd);

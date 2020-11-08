@@ -28,9 +28,6 @@ import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
  */
 public class UniqueExerciseList implements Iterable<Exercise> {
 
-    public static final String MESSAGE_INTEGER_OVERFLOW =
-            "That's too much calories burnt within the day. Calo is meant for human. Not superhuman like you";
-
     private final ObservableList<Exercise> internalList = FXCollections.observableArrayList();
     private final ObservableList<Exercise> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -51,6 +48,10 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         return caloriesByDay;
     }
 
+    public Integer getCaloriesForDay(String date) {
+        return caloriesByDay.get(date);
+    }
+
     /**
      * Adds an exercise to the list.
      * The exercise must not already exist in the list.
@@ -60,6 +61,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         if (contains(toAdd)) {
             throw new DuplicateExerciseException();
         }
+
         internalList.add(toAdd);
         addCaloriesForDay(toAdd);
     }

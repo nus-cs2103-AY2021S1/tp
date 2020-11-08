@@ -110,6 +110,16 @@ public class ExerciseModelManager implements ExerciseModel {
     }
 
     @Override
+    public boolean checkOverflow(Exercise e) {
+        return exerciseBook.checkOverflow(e);
+    }
+
+    @Override
+    public boolean checkOverflow(Exercise oldE, Exercise newE) {
+        return exerciseBook.checkOverflow(oldE, newE);
+    }
+
+    @Override
     public void addTemplate(Template template) {
         TemplateList.addTemplate(template);
         //updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
@@ -154,6 +164,7 @@ public class ExerciseModelManager implements ExerciseModel {
         requireNonNull(predicate);
         filteredExercises.setPredicate(predicate);
     }
+
 
     @Override
     public boolean equals(Object obj) {

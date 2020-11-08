@@ -79,6 +79,51 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     }
 
     /**
+     * Return true if the new exercise will cause Integer Overflow.
+     * An overflow occurs when the calories burnt from all the exercises done for the
+     * day is more than INTEGER.MAX_VALUE.
+     * @param e The new exercise to be added.
+     */
+    public boolean checkOverflow(Exercise e) {
+        Integer oldCalories = exercises.getCaloriesForDay(e.getDate().value);
+        Integer valueToAdd = Integer.parseInt(e.getCalories().value);
+
+        //Since valueToAdd is always > 0, the given case is true only when an Integer Overflow occurs.
+        if (oldCalories + valueToAdd < oldCalories) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Return true if the new exercise will cause Integer Overflow.
+     * An overflow occurs when the calories burnt from all the exercises done for the
+     * day is more than INTEGER.MAX_VALUE.
+     * @param oldE The old Exercise to be removed.
+     * @param newE The new Exercise to be added.
+     */
+    public boolean checkOverflow(Exercise oldE, Exercise newE) {
+        if (oldE.getDate().value.equals(newE.getDate().value)) {
+            Integer currentCalories = exercises.getCaloriesForDay(oldE.getDate().value);
+            Integer valueToMinus = Integer.parseInt(oldE.getCalories().value);
+            Integer valueToAdd = Integer.parseInt(newE.getCalories().value);
+            if (currentCalories - valueToMinus + valueToAdd < 0) {
+                return true;
+            }
+            return false;
+        }
+
+        Integer currentCaloriesForNewE = exercises.getCaloriesForDay(newE.getDate().value);
+        Integer valueToAdd = Integer.parseInt(newE.getCalories().value);
+        if (currentCaloriesForNewE + valueToAdd < 0) {
+            return true;
+        }
+        return false;
+
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.

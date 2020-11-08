@@ -19,6 +19,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.IntegerOverflow;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
@@ -89,6 +90,10 @@ public class UpdateCommand extends CommandForExercise {
 
         if (!exerciseToEdit.isSameExercise(editedExercise) && model.hasExercise(editedExercise)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
+        }
+
+        if (model.checkOverflow(exerciseToEdit, editedExercise)) {
+            throw new IntegerOverflow();
         }
 
         model.setExercise(exerciseToEdit, editedExercise);

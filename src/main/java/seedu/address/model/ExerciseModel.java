@@ -74,11 +74,28 @@ public interface ExerciseModel {
      */
     void deleteExercise(Exercise target);
 
+
     /**
      * Adds the given exercise.
      * {@code exercise} must not already exist in the address book.
      */
     void addExercise(Exercise exercise);
+
+    /**
+     * Return true if the new exercise will cause Integer Overflow.
+     * An overflow occurs when the calories burnt from all the exercises done for the
+     * day is more than INTEGER.MAX_VALUE.
+     * @param e The new exercise to be added.
+     */
+    boolean checkOverflow(Exercise e);
+
+    /**
+     * Return true if the new exercise that will replace the old exercise will cause Integer Overflow.
+     * An overflow occurs when the calories burnt from all the exercises done for the
+     * day is more than INTEGER.MAX_VALUE.
+     * @param e The new exercise to be added.
+     */
+    boolean checkOverflow(Exercise oldE, Exercise newE);
 
 
     void addTemplate(Template template);
