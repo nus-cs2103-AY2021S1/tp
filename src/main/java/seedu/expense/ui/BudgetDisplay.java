@@ -21,7 +21,7 @@ public class BudgetDisplay extends UiPart<Region> {
 
     private static final String FXML = "BudgetDisplay.fxml";
     private static final String BUDGET_BALANCE = "$%s / $%s";
-    public static final String DEFAULT_HEADER_MESSAGE = "Total Budget Balance:";
+    private static final String DEFAULT_HEADER_MESSAGE = "Total Budget Balance:";
     private static final String HEADER_MESSAGE_SUFFIX = " Budget Balance:";
     private static final String GREEN_BAR_STYLE_CLASS = "green-bar";
     private static final String ORANGE_BAR_STYLE_CLASS = "orange-bar";
