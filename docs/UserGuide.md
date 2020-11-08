@@ -478,7 +478,9 @@ find s/ntuc l/singapore
 ```
 will match only Stock 1.
 
-<h4>Below is a guided example for finding stocks using the `find` command:</h4>
+<h4>Below is a guided example for finding stocks:
+</h4>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source:** 
@@ -529,7 +531,7 @@ Type `find n/` into the command box and enter. You will see that no stocks will 
 **After input:**
 ![find-step-4](images/find/find-step-5.png)
 
-Let's try finding with an **invalid prefix**: `/nt` for the `find` command.
+Let's try finding with an **invalid prefix**: `nt/` for the `find` command.
 
 Type `find nt/apple` into the command box and enter. 
 
@@ -605,7 +607,9 @@ findexact n/banana s/ntuc l/singapore
 ```
 will not match Stock 1 and Stock 2.
 
-<h4>Below is a guided example for finding stocks using the `findexact` command:</h4>
+<h4>Below is a guided example for finding stocks using findexact:
+</h4>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source:** The links provided are for reference if you do not know how to use the respective commands mentioned.
@@ -1601,6 +1605,7 @@ Data (all stocks in inventory in JSON) is automatically saved to
 * add
 * delete
 * note
+* notedelete
 * update
 * clear
 
