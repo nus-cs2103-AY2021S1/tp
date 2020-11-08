@@ -208,7 +208,56 @@ Explanation why a certain design is chosen.
         * Allows Parser to filter out invalid commands
     * Cons: Less convenience for the user. 
 
+## Clear feature
 
+*(Written by Jordan Yoong)* <br>
+
+This feature allows the user to clear previously added entries.
+
+#### Implementation
+
+The clear entries feature is facilitated by `ClearCommand`. It extends `Command` and 
+is identified by `CommonCentsParser` and `ClearCommandParser`. The ClearCommand interacts 
+with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
+operations: 
+
+* `Account#clearExpenses()` — Executes clear all entries logic in _Expense_ category.
+* `Account#clearRevenues()` — Executes clear all entries logic in _Revenue_ category.
+
+Given below is an example usage scenario and how the clear command mechanism behaves at each step.
+
+* Step 1: The user inputs the clear command to specify which category it wants to clear in either lists
+of `ActiveAccount`. `CommandParser` identifies the command word `clear` and calls `ClearCommandParser#parse(String args)`
+to parse the input into a valid `ClearCommand`.
+
+* Step 2: `ClearCommand` starts to be executed. In the execution:
+    * If user input does not specify a category, both _Expense_ and _Revenue_ Lists will be cleared.
+    * If the user input for category matches that of the _Expense_ keyword, Expense List will be cleared.
+    * If the user input for category matches that of the _Revenue_ keyword, Revenue List will be cleared.
+
+The following sequence diagram shows how a clear entry operation works:
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
+such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the find entries command.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![ClearActivityDiagram](images/ClearActivityDiagram.png)
+
+#### Design consideration
+Explanation why a certain design is chosen.
+
+##### Aspect: How find entries command is parsed
+* **Choice:** User needs to use prefixes before the keywords.
+    * Pros: 
+        * Easy to implement as the arguments can be tokenized
+        * Allows Parser to filter out invalid commands
+    * Cons: Less convenience for the user. 
+    
 ### Undo feature
 *(Written by Lim Zi Yang)* <br>
 
