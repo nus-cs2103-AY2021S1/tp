@@ -621,6 +621,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                               | I want to …​                                          | So that I can…​                                                                     |
 | -------- | --------------------------------------| ----------------------------------------------------- | ----------------------------------------------------------------------              |
+| `* * *`  | private tutor that is using Reeve for the first time      | view Reeve with sample data           | visualize how Reeve looks like when I use it                                    |
 | `* * *`  | private tutor ready to use Reeve      | view a list of commands and how to use them           | learn how the application works or in case I forgot how some of the commands work   |
 | `* * *`  | private tutor ready to use Reeve      | add my students' details                              | store them and retrieve them whenever I need                                        |
 | `* * *`  | private tutor                         | view my students' preferred tutoring location         | figure out how to get that location                                                 |
@@ -634,9 +635,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |  `* *`   | private tutor                         | track my students' attendance                         | keep track of students' lesson records                                              |
 |  `* *`   | private tutor                         | input feedback to specific lessons                    | improve my capabilities as a tutor                                                  |
 |  `* *`   | private tutor                         | view a list of notes/reminders                        | keep track of key information easily                                                |
-|  `* *`   | private tutor                         | view my tutoring schedule for a particular day        | plan my plans accordingly                                                           |
+|  `* *`   | private tutor                         | view my tutoring schedule for a particular day        | plan for the day                                                                    |
+|  `* *`   | private tutor                         | view my tutoring schedule for a week                  | plan for the week ahead                                                             |
 |   `*`    | private tutor                         | view my students' academic progress                   | know which students need more help                                                  |
-|   `*`    | private tutor  ready to use Reeve     | view the type of student details that are displayed   | focus on the details that I am currently concerned with                             |
+|   `*`    | private tutor ready to use Reeve      | view the type of student details that are displayed   | focus on the details that I am currently concerned with                             |
+|   `*`    | private tutor that is impatient       | be able to get the command results in a reasonable time | save time                                                                         |
 
 ## **Appendix C: Use Cases**
 
