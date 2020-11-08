@@ -250,6 +250,7 @@ Format: `add doc n:NAME r:REFERENCE`
 Example: 
 - `add doc n:Case Details r:case_details.pdf` adds a new document with title “Case Details” with the file name case_details.pdf to the investigation case.
 
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
