@@ -639,6 +639,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | expert investigator                        | undo and redo multiple commands                                                    | navigate to the state of the program exactly as I need                  |
 | `* * *`  | investigator                               | close the application when I am done using it                                      | safely exit the application                                             |
 
+<div style="page-break-after: always;"></div>
+
 ### Use cases
 
 (For all use cases below, the **System** is the `PIVOT` and the **Actor** is the `user`, unless specified otherwise)
@@ -1264,13 +1266,13 @@ testers are expected to do more *exploratory* testing.
 	1. Prerequisites: List all cases using the `list case` command. Multiple cases in the list.
 
     1. Test case: `archive case 1`<br>
-       Expected: First case is archived. Details of the archived case shown in the result display. Doing a `list archive` should show the archived case at the bottom of the list of archive cases.
+     Expected: First case is archived. Details of the archived case shown in the result display. Doing a `list archive` should show the archived case at the bottom of the list of archive cases.
 
   	1. Test case: `archive case 0`<br>
-       Expected: No case is archived. Error details shown in the result display. List of cases remains the same.
+     Expected: No case is archived. Error details shown in the result display. List of cases remains the same.
 
   	1. Other incorrect archive commands to try: `archive`, `archive case`, `archive case x` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+     Expected: Similar to previous.
 
 	1. Unarchive commands can be tested in a similar fashion, with the prerequisites: List all archived cases using the `list archive` command. Multiple archived cases in the list.
 
