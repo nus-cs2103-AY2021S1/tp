@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-## Introduction
+## 1. Introduction
 
 As the information age encroaches out lives, our digital footprint has become larger and larger.
 When we accumulate many files from work, school and daily lives,
@@ -19,26 +19,56 @@ By using our application, you can tag frequently used files/folders with a short
 with a single command. We hope by using our application, you can manage your files with ease. You can
 make your life easier one file at a time, and free up your precious time to spend on things you truly enjoy.
 
-## Table of Contents
+## 2. Table of Contents
+* [1. Introduction](#introduction)
+* [2. Table of Contents](#table-of-contents)
+* [3. Getting Started](#getting-started)
+    * [3.1 Installation](#installation)
+    * [3.2 Quick Start](#quick-start)
+    * [3.3 User Interface](#user-interface)
+    * [3.4 Basic Workflow](#basic-workflow)
+* [4. Features](#features)
+    * [4.1 Adding a tag with filepath: `tag`](#adding-a-tag-with-filepath--tag)
+    * [4.2 Displaying information of a tagged file: `show`](#displaying-information-of-a-tagged-file--show)
+    * [4.3 Accessing a tagged file : `open`](#accessing-a-tagged-file--open)
+    * [4.4 Removing a tag: `untag`](#removing-a-tag--untag)
+    * [4.5 Renaming a tag: `retag`](#renaming-a-tag--retag)
+    * [4.6 Adding a label to a tag : `label`](#adding-a-label-to-a-tag--label)
+    * [4.7 Deleting multiple labels from a tag : `unlabel`](#deleting-multiple-labels-from-a-tag--unlabel)
+    * [4.8 Finding a tag: `tag`](#finding-a-tag--find)
+    * [4.9 Changing current directory: `cd`](#changing-current-directory--cd)
+    * [4.10 Listing all tags: `list`](#listing-all-tags--ls)
+    * [4.11 Undoing command: `undo`](#undoing-command--undo)
+    * [4.12 Redoing command: `redo`](#redoing-command--redo)
+    * [4.13 Clearing all tags: `clear`](#clearing-all-tags--clear)
+    * [4.14 Exiting the application: `exit`](#exiting-the-application--exit)
+    * [4.15 Viewing the help: `help`](#viewing-help--help)
+* [5. Customisation](#customisation)
+    * [5.1 Changing themes](#changing-themes)
+    * [5.2 Changing view size](#changing-view-sizes)
+    * [5.3 Persistent customisation](#persistent-customisation)
+* [6. FAQ](#faq)
+* [7. Glossary](#glossary)
+* [8. Command Summary](#command-summary)
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Getting Started
+## 3. Getting Started
 As a first time user, you might be overwhelmed by the many features that *HelloFile* offers.
 The following subsections will explain to you how to install and start using HelloFile quickly.
 
-### Installation
+### 3.1 Installation
 1. Ensure you have [Java 11](https://www.java.com/en/download/) or above installed in your computer. 
 2. Download the latest HelloFile.jar [here](https://github.com/AY2021S1-CS2103T-F12-1/tp/releases/tag/v1.2).
 
-### Quick start
+### 3.2 Quick start
 1. Move HelloFile.jar to the folder you intend to use as the home folder for HelloFile.
 2. Double-click the HelloFile.jar icon to start the application. Alternatively, run the command `java -jar HelloFile.jar` in the command line.
 3. Type `help` into the command box, followed by pressing the `Enter` key to view the supported features. Alternatively, click the help button in the menu bar to access our webpage.
 
-### User Interface
+### 3.3 User Interface
 ![Illustration](images/screenshots/Illustrations.PNG)
 
 This diagram shows our interface.
@@ -48,7 +78,7 @@ This diagram shows our interface.
 4. Below the *Result Panel* is the *Command History*. It shows your last command entered.
 5. The *Command Box* at the bottom of the app window is at the bottom. You can type your commands here.
 
-### Basic workflow
+### 3.4 Basic workflow
 1. Tag important files with the `tag` command for ease of access.<br>
 ![Tag](images/screenshots/tag.PNG) <br><br>
 2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.<br>
@@ -62,7 +92,7 @@ This diagram shows our interface.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 4. Features
 
 There are many file management features in *HelloFile*.
 We will explain them in detail in this section.
@@ -100,7 +130,7 @@ Expressions without `...` at the end takes the last parameter as the argument wh
 
 </div>
 
-### Adding a tag with filepath : `tag`
+### 4.1 Adding a tag with filepath : `tag`
 
 Tags a file with a unique tag name.<br>
 You can add a nickname to a file. This makes you able to manage your files easily.
@@ -120,7 +150,7 @@ Examples:
 * `tag t>Users f>.\Users` (Adds a tag with nickname `Users` using relative path. The tag has no label and points to a folder `Users` in the current directory)
 * `tag t>Users f>.\Users l>folder l>readonly` (Adds a tag with nickname `Users` using relative path. The tag has labels `folder` as well as `readonly` and points to a folder `Users` in the current directory)
 
-### Displaying information of a tagged file : `show`
+### 4.2 Displaying information of a tagged file : `show`
 
 Displays the information of the specified tag.<br>
 You can see some basic information of a tagged file by using this command.
@@ -134,7 +164,7 @@ Examples:
 * `show t>my_research` (show you the details of the tag with nickname `my_research`)
 * `show t>file2020` (show you the details of the tag with nickname `file2020`)
 
-### Accessing a tagged file : `open`
+### 4.3 Accessing a tagged file : `open`
 
 Opens the file specified by the unique tag's nickname or label.<br>
 You can open a file using its tag, with the default application in your operating system.
@@ -158,7 +188,7 @@ Examples:
 * `open t>my_research` (open the file with tag name `my_research`)
 * `open l>notes` (open all the files with label `notes`)
 
-### Removing a tag : `untag`
+### 4.4 Removing a tag : `untag`
 
 Removes the specified tag from the list of tags.<br>
 You can delete an unwanted tag by using this command in order to clean up the tag list. 
@@ -172,7 +202,7 @@ Examples:
 * `untag t>notes` (delete tag with tag name `notes`)
 * `untag t>secret_file` (delete tag with tag name `secret_file`)
 
-### Renaming a tag : `retag`
+### 4.5 Renaming a tag : `retag`
 
 Renames a tag. <br>
 Changes the specified tag's nickname into the new one in order to make the tag's nickname more descriptive for the user. 
@@ -187,7 +217,7 @@ Examples:
 
 ![retag](images/screenshots/retag_command.png)
 
-### Adding a label to a tag : `label`
+### 4.6 Adding a label to a tag : `label`
 
 Adds one or more labels to an existing tag.<br>
 You can use label to categorise tags in order to make a tag to be more descriptive.
@@ -207,7 +237,7 @@ Examples:
 * `label t>file1 l>important` (Add a label `important` to an existing tag name `file1`) 
 * `label t>file2 l>important l>exam` (Add labels of label name `important` and `exam` to an existing tag name `file2`)
 
-### Deleting multiple labels from a tag : `unlabel`
+### 4.7 Deleting multiple labels from a tag : `unlabel`
 
 Deletes one or more labels from a tag. <br>
 This command lets you to uncategorized a certain tag.
@@ -222,7 +252,7 @@ Examples:
 * `unlabel t>notes l>secret` (Deletes a label of label name `secret` from tag name `notes`)
 * `unlabel t>file1 l>important l>exams` (Deletes labels of label name `important` and `exams` from tag name `file1`)
 
-### Finding a tag : `find`
+### 4.8 Finding a tag : `find`
 
 Finds a tag using one or more keywords. <br>
 This command lets you find a specific tag easily by providing one or more keywords.
@@ -240,7 +270,7 @@ Examples:
 * `find he` (finds tags which contains `he` in label / tag name, e.g. `hello`, `hero`, etc.)
 * `find tagname label` (finds tags which contains `tagname` or `label` in label / tag name, e.g. `tagname123`, `label345`, etc.)
 
-### Changing current directory : `cd`
+### 4.9 Changing current directory : `cd`
 
 Changes the current directory of the HelloFile internal File Explorer. <br>
 This command allows you to navigate through your folders and tag your files using relative file path.
@@ -265,7 +295,7 @@ Examples:
 * `cd ./tp` (Changes the current directory to the child directory `tp`)
 * `cd ../` (Changes the current directory to the parent directory)
 
-### Listing all tags : `ls`
+### 4.10 Listing all tags : `ls`
 
 Lists all added tags. <br>
 Shows all the tags saved in HelloFile in the *Tag Panel*. This command is useful after you used
@@ -279,7 +309,7 @@ Before executing command:
 After executing command:
 ![after](images/screenshots/list_command.png)
 
-### Undoing command : `undo`
+### 4.11 Undoing command : `undo`
 
 Undo a recently executed command.<br>
 You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear`, and `redo`.
@@ -297,7 +327,7 @@ Before executing command:
 After executing command:
 ![after](images/screenshots/undo_command.png)
 
-### Redoing command : `redo`
+### 4.12 Redoing command : `redo`
 
 Redo a recently executed command.<br>
 Redo only exists when undo has been executed.
@@ -315,7 +345,7 @@ Before executing command:
 After executing command:
 ![after](images/screenshots/redo_command.png)
 
-### Clearing all tags : `clear`
+### 4.13 Clearing all tags : `clear`
 
 Clears the list of all tags.<br>
 <div markdown="block" class="alert alert-warning">
@@ -328,13 +358,13 @@ Format: `clear`
 
 ![clear](images/screenshots/clear_command.png)
 
-### Exiting the application : `exit`
+### 4.14 Exiting the application : `exit`
 
 Exits the application.
 
 Format: `exit`
 
-### Viewing help : `help`
+### 4.15 Viewing help : `help`
 
 Displays help for all/certain commands.
 
@@ -352,11 +382,11 @@ Examples :
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Customisation
+## 5. Customisation
 *HelloFile* supports user customisation such as themes.
 You can choose a theme from our theme library, so that you can personalise *HelloFile* to your liking.
 
-### Changing themes
+### 5.1 Changing themes
 HelloFile comes with many themes. To change the theme, navigate to the top left-hand corner of the application,
 and select `view`, followed by `theme`. A new pop up window will be shown with available themes along with a quick preview
 as illustrated below.
@@ -364,20 +394,20 @@ as illustrated below.
 
 ![Fig. 2](images/screenshots/changing_themes2.png)
 
-### Changing view sizes
+### 5.2 Changing view sizes
 HelloFile allows you to resize the view of each sub components for a clearer view of tags and folders. You can simply
 drag each view to the size desired.
 ![Fig. 3. Resizing taskbar](images/screenshots/taskbar_resize.png)
 
 ![Fig. 4. Resizing filebar](images/screenshots/filebar_resize.png)
 
-### Persistent customisation
+### 5.3 Persistent customisation
 Your customisation options (window size and theme) are saved and persist even when you close the application. HelloFile remembers your choices,
 so you can spend your time on more productive pursuits.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 6. FAQ
 **Q**: What if the name or the directory of the file I tagged is changed? Can I still access the file using HelloFile?<br>
 **A**: No. HelloFile is currently unable to track a file if its name or directory is changed. You will need to delete the old tag and retag the file.
 
@@ -395,7 +425,7 @@ so you can spend your time on more productive pursuits.
 from command line to HelloFile to be as smooth as possible for our target users.
 
 --------------------------------------------------------------------------------------------------------------------
-## Glossary
+## 7. Glossary
 
 Terminology | Definition
 --------------|------------------
@@ -406,7 +436,7 @@ Terminology | Definition
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 8. Command summary
 
 Action | Format | Examples
 --------|--------|----------
