@@ -232,7 +232,7 @@ public class Ingredient {
      * @return String
      */
     public String parseToString() {
-        if (quantity != "") {
+        if (!quantity.equals("")) {
             return value + " -" + quantity;
         } else {
             return value;
