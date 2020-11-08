@@ -564,10 +564,9 @@ Only assignments with deadlines **before** the current time and lessons with end
 #### Remarks on deadline of assignments and start time of lessons
 You can easily view how much time you have left before your assignment is due and when your lessons start. As such, you can better plan out your time to ensure you have enough time to complete your assignments and attend your lessons on time.
 
-For your assignments, assignments due in **more than a week's time** will be displayed in white, while assignments that are **overdue** or due in **less than a week's time** will be displayed in red (Figure X).  
-
-
-                 ------------------------------------------------------------Diagram to be added--------------------------------------------------------
+For your assignments and lessons, assignments due in **more than a week's time** will be displayed in white, while assignments that are **overdue** or due in **less than a week's time** will be displayed in red (Figure 29).  
+ ![AutoDiagram](images/AutoDiagram.png)
+   *Figure 29: Hours or days due for assignments and lessons*
                  
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
