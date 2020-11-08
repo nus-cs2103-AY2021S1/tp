@@ -463,7 +463,7 @@ Outcome:
 
 #### 3.7 Locating employees based on matching tags: `c-tag-find`
 
-Finds all active(unarchived) employees that contain the KEYWORD(s) in their tags.
+Finds all active (unarchived) employees that contain the KEYWORD(s) in their tags.
 
 Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 
