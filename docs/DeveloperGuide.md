@@ -140,7 +140,7 @@ An outline of how a command is processed through `Logic` is as follows:
 
 1. `Logic` uses the `NuStorageParser` class to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
-3. The command execution can affect the `Model` (e.g. adding a person).
+3. The command execution can affect the `Model` (e.g. adding an inventory record).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -254,7 +254,7 @@ With this, the Create Inventory Record command fully finishes executing and NUSt
 
 ### 3.2. Edit Records Command Feature
 
-This section explains the implementation of the `Edit Record command` feature. As the implementation of editing Inventory / Finance Records are similar, this section will focus only on the implementation of the editing of __Finance Records__.
+This section explains the implementation of the `Edit Record command` feature. As the implementation of editing Inventory / Finance Records are similar, this section will focus only on the implementation of the editing of __Finance Records__. Note that to edit a finance record, the finance record **MUST** be a stand-alone record (i.e not linked to an inventory record).
 
 The Edit Finance command results in the specified finance record being modified. This command requires a compulsory field Index to specify which record is to be edited. Furthermore, at least one field in the command must be provided: Amount, Date or Time.
 

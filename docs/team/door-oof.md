@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 ### Code Contributed
 
-* View my contributions [here](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=door-oof).
+You can view my contributions [here](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=door-oof).
 
 ### Enhancements to existing features
 
@@ -38,8 +38,8 @@ Developer Guide:
 
 ### Contributions to Team Based Task
 
-* Helped my teammates in debugging, including identifying sources of major bugs.
+I helped my teammates in debugging, including identifying sources of major bugs that could break our programme.
 
 ### Community
 
-* Reported bugs and suggestions for [Team W15-4](https://github.com/AY2021S1-CS2103T-W15-4/tp) as part of the PE dry run, and reported 7 errors. These errors range from minor suggestions and inaccuracies in the user guide, to major bugs that may affect the programme.
+I helped reviewed bugs for [Team W15-4](https://github.com/AY2021S1-CS2103T-W15-4/tp) as part of the PE dry run, and reported 7 errors. These errors range from minor suggestions and inaccuracies in the user guide, to major bugs that can affect the programme.
