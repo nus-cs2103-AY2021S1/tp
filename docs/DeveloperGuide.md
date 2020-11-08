@@ -389,9 +389,9 @@ Given below is an example usage scenario and how the LoadPresetCommand behaves a
 
 Step 1: The user has selected a vendor with `vendor i`.
 
-Step 2: The user enters the command `load preset sample` to load the preset named sample.
+Step 2: The user enters the command `load preset sample` to load the preset named `sample`.
 
-Step 3: `Storage#readPresetManager()` is executed to retrieve the list of all presets, `presets` from the json file.
+Step 3: `Storage#readPresetManager()` is executed to retrieve the list of all presets, `allLists`,from the presets json file.
 
 Step 4: The preset with the name `sample` for vendor `i` exists and is valid.
 
@@ -417,9 +417,9 @@ Step 1: The user has selected a vendor with `vendor i`.
 
 Step 2: The user has added items with `add i qty`.
 
-Step 3: The user enters the command `save preset sample` to save the preset as named sample.
+Step 3: The user enters the command `save preset sample` to save the preset with the name `sample`.
 
-Step 4: `Storage#readPresetManager()` is executed to retrieve the list of all presets, `presets` from the json file.
+Step 4: `Storage#readPresetManager()` is executed to retrieve the list of all presets, `allLists`, from the presets json file.
 
 Step 5: The preset with the name `sample` for vendor `i` does not exist.
 
@@ -427,9 +427,9 @@ Step 6:  The current order item list, `orderItemList`, is retrieved by executing
 
 Step 7: `orderItemList` is converted to a preset named `sample`.
 
-Step 7: `sample` is added to the vendor index `i` position of `allLists`.
+Step 8: `sample` is added to the vendor index `i` position of `allLists`.
 
-Step 8: `Storage#savePresetManager()` is executed to save the modified `allLists` into the `presets` json file.
+Step 9: `Storage#savePresetManager()` is executed to save the modified `allLists` into the `presets` json file.
 
 
 
@@ -437,6 +437,31 @@ Given below is the activity diagram for SavePresetCommand.
 
 ![SavePresetCommandActivityDiagram](images/SavePresetCommandActivityDiagram.png)
 
+
+
+The following diagram sequence summarises the sequence when the DeletePresetCommand is executed.
+
+![DeletePresetSequenceDiagram](images/DeletePresetCommandSequenceDiagram.png)
+
+Given below is an example usage scenario and how the DeletePresetCommand behaves at each step.
+
+Step 1: The user has selected a vendor with `vendor i`.
+
+Step 2: The user enters the command `delete preset sample` to delete the preset named 'sample' stored in the user's presets json file.
+
+Step 3: `Storage#readPresetManager()` is executed to retrieve the list of all presets, from the presets json file.
+
+Step 4: The preset with the name `sample` for vendor `i` exists.
+
+Step 5: `sample` is removed from the vendor index `i` position of `allLists`.
+
+Step 6: `Storage#savePresetManager()` is executed to save the modified `allLists` into the `presets` json file.
+
+
+
+Given below is the activity diagram for SavePresetCommand.
+
+![SavePresetCommandActivityDiagram](images/SavePresetCommandActivityDiagram.png)
 
 
 
@@ -601,6 +626,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SupperStrikers` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Display user instructions**
+
+**MSS**
+
+1. User requests to see the user instructions.
+2. SupperStrikers displays the link to the user guide.
+
+  Use case ends.
+
+**Use case: Exit the program**
+
+**MSS**
+
+1. User requests to exit the program.
+2. SupperStrikers terminates and closes.
+
+  Use case ends.
+
 **Use case: Showing and selecting a particular vendor**
 
 **MSS**
@@ -627,10 +670,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 3.
 
 
-
 **Use case: Showing list of all vendors**
 
-Precondition: <u>User has already selected a particular vendor</u> 
+Precondition: User has already selected a particular vendor 
 
 **MSS**
 
@@ -641,7 +683,55 @@ Precondition: <u>User has already selected a particular vendor</u>
 
   Use case ends.
 
+**Use case: Display current menu**
+
+Precondition: User has already selected a particular vendor 
+
+**MSS**
+
+1. User requests to see the current default menu for his selected vendor.
+2. SupperStrikers displays the default menu to the user.
+
+  Use case ends.
+
+**Use case: Find a keyword**
+
+Precondition: User has already selected a particular vendor 
+
+**MSS**
+
+1. User requests to search for specified keyword(s) in the menu.
+2. SupperStrikers filter out the current menu using the specified keyword(s).
+3. SupperStrikers displays the matching menu items that contains the keyword(s) to the user.
+
+  Use case ends.
+
+**Use case: Filter menu item by price**
+
+Precondition: User has already selected a particular vendor 
+
+**MSS**
+
+1. User requests to see menu items that satisfy a specified price range.
+2. SupperStrikers filter out the current menu using the specified price range.
+3. SupperStrikers displays the matching menu items that satisfy the price range to the user.
+
+  Use case ends.
+
+**Use case: Sort menu items**
+
+Precondition: User has already selected a particular vendor 
+
+**MSS**
+
+1. User requests to sort the menu items by price or name.
+2. SupperStrikers sorts the current menu.
+
+  Use case ends.
+
 **Use case: Viewing total**
+
+Precondition: User has already selected a particular vendor 
 
 **MSS**
 
@@ -658,7 +748,10 @@ Precondition: <u>User has already selected a particular vendor</u>
   
     Use case ends.
 
+
 **Use case: Clearing current order**
+
+Precondition: User has already selected a particular vendor 
 
 **MSS**
 
@@ -676,7 +769,34 @@ Precondition: <u>User has already selected a particular vendor</u>
   
     Use case ends.
 
+
+**Use case: Set a profile**
+
+**MSS**
+
+1. User requests to set his profile which includes his phone number and address.
+2. SupperStrikers creates a new profile that has the user's inputted details.
+3. SupperStrikers saves the created profile into storage.
+
+  Use case ends.
+
+**Extensions**
+
+- 1a. The user's details are invalid.
+
+  - 1a1. SupperStrikers displays an error message.
+  
+    Use case resumes at step 1.
+
+- 3a. The user has an existing profile.
+
+  - 3a1. SupperStrikers overwrite the existing profile with the newly created profile.
+  
+    Use case ends.
+
 **Use case: Submit order**
+
+Precondition: User has already selected a particular vendor and User has created a profile
 
 **MSS**
 
@@ -695,6 +815,8 @@ Precondition: <u>User has already selected a particular vendor</u>
     Use case ends.
 
 **Use case: Add an item**
+
+Precondition: User has already selected a particular vendor 
 
 **MSS**
 
@@ -732,6 +854,8 @@ Precondition: <u>User has already selected a particular vendor</u>
 
 **Use case: Remove an item**
 
+Precondition: User has already selected a particular vendor 
+
 **MSS**
 
 1.  User requests to remove a quantity of a specific item in the current order.
@@ -768,6 +892,8 @@ Precondition: <u>User has already selected a particular vendor</u>
 
 **Use case: Add a tag to an item**
 
+Precondition: User has already selected a particular vendor 
+
 **MSS**
 
 1.  User requests to tag a specific item in the current order.
@@ -797,6 +923,8 @@ Precondition: <u>User has already selected a particular vendor</u>
 
 **Use case: Remove tags from an item**
 
+Precondition: User has already selected a particular vendor 
+
 **MSS**
 
 1.  User requests to remove all tags from a specific item in the current order.
@@ -814,6 +942,8 @@ Precondition: <u>User has already selected a particular vendor</u>
       
 
 **Use case: Load a Preset**
+
+Precondition: User has already selected a particular vendor 
 
 **MSS**
 
@@ -852,6 +982,8 @@ Precondition: <u>User has already selected a particular vendor</u>
 
 **Use case: Save a Preset**
 
+Precondition: User has already selected a particular vendor 
+
 **MSS**
 
 1. User requests to save preset with a specific name.
@@ -884,6 +1016,8 @@ Precondition: <u>User has already selected a particular vendor</u>
 
 **Use case: Delete a Preset**
 
+Precondition: User has already selected a particular vendor 
+
 **MSS**
 
 1. User requests to delete a preset with a specific name.
@@ -906,6 +1040,25 @@ Precondition: <u>User has already selected a particular vendor</u>
   - 2a1. SupperStrikers shows an error message.
 
     Use case resumes at step 1.
+
+**Use case: Undo changes to an order**
+
+Precondition: User has already selected a particular vendor
+
+**MSS**
+
+1.  User requests to undo a change from his current order.
+2.  SupperStrikers reverts his order back to an older history of his order.
+
+  Use case ends.
+
+**Extensions**
+
+- 1a. The user is at the oldest history of his order.
+
+  - 1a1. SupperStrikers shows an error message.
+
+    Use case ends.
 
 *{More to be added}*
 
