@@ -318,7 +318,7 @@ Format: `preset MODE [NAME]`
   * `load`: Used to load a preset. (If used without a `NAME`, will list all saved presets for the current vendor)
   * `delete`: Used to delete a preset. (`NAME` must be specified)
 * `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
-  * if `NAME` already exists and in preset is in save mode, the new preset will overwrite the existing preset.
+  * if `NAME` already exists and preset is in save mode, the new preset will overwrite the existing preset.
   * `NAME` is **case-sensitive** and supports space characters.
   * if `NAME` does not exist and preset is in delete mode, an error message will be returned to the user.
 * Presets are split by vendors, therefore running `preset save PresetName` for two different vendors will not affect one
