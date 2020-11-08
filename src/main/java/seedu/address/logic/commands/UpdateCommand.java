@@ -19,6 +19,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
@@ -76,7 +78,7 @@ public class UpdateCommand extends CommandForExercise {
     }
 
     @Override
-    public CommandResult execute(ExerciseModel model) throws CommandException {
+    public CommandResult execute(ExerciseModel model) throws CommandException, ParseException {
         requireNonNull(model);
         List<Exercise> lastShownList = model.getFilteredExerciseList();
 
@@ -89,6 +91,10 @@ public class UpdateCommand extends CommandForExercise {
 
         if (!exerciseToEdit.isSameExercise(editedExercise) && model.hasExercise(editedExercise)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
+        }
+
+        if (model.checkOverflow(exerciseToEdit, editedExercise)) {
+            throw new CaloriesOverflow();
         }
 
         model.setExercise(exerciseToEdit, editedExercise);

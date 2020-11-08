@@ -1,5 +1,6 @@
 package seedu.address.model.goal;
 
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 
@@ -9,7 +10,6 @@ import seedu.address.model.exercise.Date;
  */
 public class Goal {
 
-    public static final Calories DEFAULT_CALORIES = new Calories("0");
     public final Calories goal;
     public final Date date;
 
@@ -27,12 +27,12 @@ public class Goal {
      * Creates a default goal with 0 calories at a particular date.
      * @param date
      */
-    public Goal(Date date) {
-        this.goal = DEFAULT_CALORIES;
+    public Goal(Date date) throws CaloriesOverflow {
+        this.goal = new Calories("0");
         this.date = date;
     }
 
-    public Goal updateGoal (Calories calorie) {
+    public Goal updateGoal (Calories calorie) throws CaloriesOverflow {
         return new Goal(goal.subtract(calorie), this.date);
     }
 

@@ -108,6 +108,7 @@ The `Model`,
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Exercise` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Exercise` needing their own `Tag` object.<br>
+
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>

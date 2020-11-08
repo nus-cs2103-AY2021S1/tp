@@ -22,6 +22,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.ExerciseModelManager;
@@ -34,6 +35,7 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManagerForExercise;
 import seedu.address.storage.StorageManagerForGoal;
 import seedu.address.testutil.ExerciseBuilder;
+
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -86,14 +88,19 @@ public class LogicManagerTest {
         logic = new LogicManagerForExercise(model, storage, null);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD
-                  + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP
-                  + CALORIES_DESC_PUSH_UP;
-        Exercise expectedExercise = new ExerciseBuilder(PUSH_UP).withTags().withMuscleTags().build();
-        ExerciseModelManager expectedModel = new ExerciseModelManager();
-        expectedModel.addExercise(expectedExercise);
-        String expectedMessage = LogicManagerForExercise.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        try {
+            String addCommand = AddCommand.COMMAND_WORD
+                    + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP
+                    + CALORIES_DESC_PUSH_UP;
+            Exercise expectedExercise = new ExerciseBuilder(PUSH_UP)
+                    .withTags().withMuscleTags().build();
+            ExerciseModelManager expectedModel = new ExerciseModelManager();
+            expectedModel.addExercise(expectedExercise);
+            String expectedMessage = LogicManagerForExercise.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+            assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        } catch (CaloriesOverflow err) {
+            throw new AssertionError("Invalid Calories");
+        }
     }
 
     @Test

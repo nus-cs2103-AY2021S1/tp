@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Template;
 import seedu.address.model.goal.Goal;
@@ -57,16 +58,12 @@ public interface ExerciseModel {
     void setExerciseBookFilePath(Path exerciseBookFilePath);
 
     /**
-<<<<<<< HEAD
-     * Replaces exercise book data with the data in {@code exerciseBook}.
-=======
      * Sets the user prefs' goal book file path.
      */
     void setGoalBookFilePath(Path goalBookFilePath);
 
     /**
-     * Replaces goal book data with the data in {@code goalBook}.
->>>>>>> 73964788116bf5a1204853ef6458f89a192c3eae
+     * Replaces exercise book data with the data in {@code exerciseBook}.
      */
     void setExerciseBook(ReadOnlyExerciseBook exerciseBook);
 
@@ -102,6 +99,7 @@ public interface ExerciseModel {
      */
     void deleteExercise(Exercise target);
 
+
     /**
      * Deletes the given goal.
      * The goal must exist in the exercise book.
@@ -109,10 +107,27 @@ public interface ExerciseModel {
     void deleteGoal(Goal target);
 
     /**
+     * Return true if the new exercise will cause Integer Overflow.
+     * An overflow occurs when the calories burnt from all the exercises done for the
+     * day is more than INTEGER.MAX_VALUE.
+     * @param e The new exercise to be added.
+     */
+    boolean checkOverflow(Exercise e);
+
+    /**
+     * Return true if the new exercise that will replace the old exercise will cause Integer Overflow.
+     * An overflow occurs when the calories burnt from all the exercises done for the
+     * day is more than INTEGER.MAX_VALUE.
+     * @param oldE The exercise to be replaced.
+     * @param newE The exercise to be replace the oldE.
+     */
+    boolean checkOverflow(Exercise oldE, Exercise newE);
+
+    /**
      * Adds the given exercise.
      * {@code exercise} must not already exist in the exercise book.
      */
-    Optional<Goal> addExercise(Exercise exercise);
+    Optional<Goal> addExercise(Exercise exercise) throws CaloriesOverflow;
 
     /**
      * Adds the given template.

@@ -17,6 +17,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ExerciseBook;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Exercise;
@@ -31,7 +32,6 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_PUSH_UP = "Push Up Description";
     public static final String VALID_DATE_PUSH_UP = "10-10-2020";
     public static final String VALID_CALORIES_PUSH_UP = "100";
-    public static final String VALID_MUSCLE_CHEST = "chest";
     public static final String VALID_TAG_GYM = "gym";
     public static final String VALID_TAG_HOUSE = "house";
 
@@ -39,7 +39,36 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_SIT_UP = "Sit Up Description";
     public static final String VALID_DATE_SIT_UP = "10-10-2020";
     public static final String VALID_CALORIES_SIT_UP = "100";
+
+
+    public static final String VALID_NAME_RUN = "Run";
+    public static final String VALID_DESCRIPTION_RUN = "Run Description";
+    public static final String VALID_DATE_RUN = "12-10-2020";
+    public static final String VALID_CALORIES_RUN = "1000";
+
+
+    public static final String VALID_NAME_WALK = "WALK";
+    public static final String VALID_DESCRIPTION_WALK = "Walk Description";
+    public static final String VALID_DATE_WALK = "13-10-2020";
+    public static final String VALID_CALORIES_WALK = "1200";
+
+    public static final String VALID_NAME_SQUAT = "SQUAT";
+    public static final String VALID_DESCRIPTION_SQUAT = "SQUAT Description";
+    public static final String VALID_DATE_SQUAT = "14-10-2020";
+    public static final String VALID_CALORIES_SQUAT = "1800";
+
+    public static final String VALID_NAME_PULL_UP = "PULL UP";
+    public static final String VALID_DESCRIPTION_PULL_UP = "PULL UP Description";
+    public static final String VALID_DATE_PULL_UP = "18-10-2020";
+    public static final String VALID_CALORIES_PULL_UP = "1800";
+
+
+
+
     public static final String VALID_MUSCLE_ARM = "ab";
+    public static final String VALID_MUSCLE_CHEST = "chest";
+    public static final String VALID_MUSCLE_LEG = "leg";
+
 
     public static final String NAME_DESC_PUSH_UP = " " + PREFIX_NAME + VALID_NAME_PUSH_UP;
     public static final String DESCRIPTION_DESC_PUSH_UP = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_PUSH_UP;
@@ -72,13 +101,18 @@ public class CommandTestUtil {
     public static final UpdateCommand.EditExerciseDescriptor DESC_SIT_UP;
 
     static {
-        // Calo
-        DESC_PUSH_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP)
-                .withDescription(VALID_DESCRIPTION_PUSH_UP).withDate(VALID_DATE_PUSH_UP)
-                .withCalories(VALID_CALORIES_PUSH_UP).withTags(VALID_TAG_GYM).build();
-        DESC_SIT_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_SIT_UP)
-                .withDescription(VALID_DESCRIPTION_SIT_UP).withDate(VALID_DATE_SIT_UP)
-                .withCalories(VALID_CALORIES_SIT_UP).withTags(VALID_TAG_GYM, VALID_TAG_HOUSE).build();
+        try {
+            DESC_PUSH_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP)
+                    .withDescription(VALID_DESCRIPTION_PUSH_UP).withDate(VALID_DATE_PUSH_UP)
+                    .withCalories(VALID_CALORIES_PUSH_UP).withTags(VALID_TAG_GYM).build();
+
+            DESC_SIT_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_SIT_UP)
+                    .withDescription(VALID_DESCRIPTION_SIT_UP).withDate(VALID_DATE_SIT_UP)
+                    .withCalories(VALID_CALORIES_SIT_UP).withTags(VALID_TAG_GYM, VALID_TAG_HOUSE).build();
+        } catch (ParseException err) {
+            //It should not happens since all the inputs are valid.
+            throw new RuntimeException("Execution of command should not fail.");
+        }
     }
 
     /**
@@ -93,7 +127,7 @@ public class CommandTestUtil {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
-        } catch (CommandException | IOException ce) {
+        } catch (CommandException | IOException | ParseException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
