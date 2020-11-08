@@ -82,6 +82,7 @@ Given below are my contributions to the project.
 
 #### Developer Guide:
   * **Added details to `Storage` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#storage-component)
+  * **Added details to `UI` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#ui-component)
   * **Added prefaces to all headers**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html)
   * **Added implementation details of the `Find entries` feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#find-entries-feature)
   * **Added some details to `Use case` section (use cases for `find`)**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#use-cases)
