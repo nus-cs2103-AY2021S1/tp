@@ -253,7 +253,7 @@ Format: `i-list`
 Example:
 
 Let's say you want to list all the ingredients. 
-You can follow these instructions.
+You can follow these instructions:
 
 1. Type `i-list` into the _Command Box_.
 1. Press "Enter" on your keyboard to execute the command.
