@@ -2,6 +2,7 @@ package seedu.address.model.exercise;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -96,8 +97,9 @@ public class TemplateList {
     /**
      * Empty the content of TemplateList.
      */
-    public static void reset() {
+    public static void reset() throws IOException{
         list.clear();
         observableList.clear();
+        Template.writeToFile(list);
     }
 }
