@@ -95,12 +95,12 @@ public class TestCommand extends Command {
         if (question instanceof MultipleChoiceQuestion) {
             MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) question;
             Option option = testAnswerDescriptor.getOption().get();
-            Index index = option.getIndex();
 
             // Tries to get the answer based on the option's index, throws an error if invalid index
             try {
+                Index index = option.getIndex();
                 answer = mcq.getAnswerFromIndex(index);
-            } catch (IllegalArgumentException iae) {
+            } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
                 throw new CommandException(MESSAGE_OPTION_INVALID);
             }
 
