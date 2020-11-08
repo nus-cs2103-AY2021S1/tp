@@ -37,6 +37,13 @@
    --- 4.5.2 [Delete a student: `deleteStudent`](#452-delete-a-student-deletestudent)<br>
    --- 4.5.3 [Edit a student: `editStudent`](#453-edit-a-student-editstudent)<br>
    --- 4.5.4 [Find a student: `findStudent`](#454-find-a-student-findstudent)<br>
+   4.6 [Attendance Features]()<br>
+   --- 4.6.1 [Add attendance: `addAttendance`]()<br>
+   --- 4.6.2 [Delete attendance: `deleteAttendance`]()<br>
+   --- 4.6.3 [View all attendance of a Student: `viewAttendance`]()<br>
+   --- 4.6.4 []()<br>
+   --- 4.6.5 [Edit a Student's participation]()<br>
+   --- 4.6.6 []()<br>
 5. [FAQ](#5-faq)<br>
 6. [Command Summary](#6-command-summary)<br>
    6.1 [General Commands](#61-general-commands) <br>
@@ -540,6 +547,8 @@ Example:
 Expected Outcome:
 
 ![FindStudentCommand](images/FindStudentCommand.png)
+
+### 4.6 Attendance Features
 
 
 ## 5. FAQ
