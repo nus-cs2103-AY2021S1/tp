@@ -26,16 +26,4 @@ public class ShowMrCommandTest {
         NricPredicate nricPredicate = new NricPredicate(list);
         assertCommandFailure(new ShowMrCommand(nricPredicate), model, "No patient with the NRIC found!");
     }
-
-    @Test
-    public void execute_showMr_success() {
-        Model model = new ModelManager();
-        Patient validPatient = new PatientBuilder().build();
-        model.addPatient(validPatient);
-        ArrayList<String> list = new ArrayList<>();
-        list.add(validPatient.getNric().toString());
-        NricPredicate nricPredicate = new NricPredicate(list);
-        assertCommandSuccess(new ShowMrCommand(nricPredicate), model, String.format(Messages.MESSAGE_OPEN_URL_SUCCESS,
-                "MR of patient below opened successfully!"), model);
-    }
 }
