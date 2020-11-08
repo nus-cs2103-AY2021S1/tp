@@ -297,6 +297,8 @@ Examples:
 * `addR n/sandwiches i/breads, cheese -2 slices c/80 img/https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg instr/Cook. Eat.`
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.1.2 Listing all recipes : `recipes` <a id="list-recipe"></a>
 Contributed by: Jia Qi
 
@@ -330,6 +332,8 @@ Examples:
 * `recipes` followed by `deleteR 2` deletes the 2nd recipe in Recipe List.
 * `searchR n/salad` followed by `deleteR 1` deletes the 1st recipe in the result of the `searchR` command.
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.1.4 Editing a recipe: `editR` <a id="edit-recipe"></a>
 Contributed by: Olivia, Jia Qi, Tian Yong, Caitlin
@@ -425,6 +429,8 @@ Examples:
  the
  command box.
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.1.6 Selecting a single recipe : `selectR` <a id="select-recipe"></a>
 Contributed by: Hieu
@@ -667,6 +673,9 @@ Format: `searchF KEYWORD [ MORE KEYWORDS]`
 * The search is case-insensitive. e.g `peanut` will match `Peanut`.
 * The search will match partial keywords. e.g. `tomat` will match `tomato`.
 * The order of the keywords does not matter. e.g. Peanut Butter will match Butter with Peanut.
+
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
     Ingredient quantity is not taken into account when determining whether two ingredients matches.
 </div>
@@ -746,6 +755,8 @@ Contributed by: Caitlin
 <br>  The image below is what Wishful Shrinking looks like after you have deleted a recipe from the consumption list. <br><br>
 <img src="images/feature/consumption/DeleteConsumptionImage.png" width="550" height="300">
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 Format: `deleteC INDEX`
 
@@ -881,6 +892,11 @@ Features | Format, Examples
 **Delete ingredient from the Fridge** | `deleteF INDEX`<br> e.g. `deleteF` 3
 **Edit ingredient in the Fridge** | `editF INDEX i/INGREDIENTS [ -QUANTITY]`<br> e.g. `editF` 3 i/apple sauce -20.0g
 **Get edit ingredient info** | `editF INDEX`<br> e.g. `editF 2`
+
+<div style="page-break-after: always;"></div>
+
+Features | Format, Examples
+--------|------------------
 **Search for ingredient in the Fridge** | `searchF KEYWORD [ MORE KEYWORDS]`<br> e.g. `searchF` avocado
 **Clear all ingredients from the Fridge** | `clearF`
 
