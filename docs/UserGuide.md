@@ -40,18 +40,26 @@ title: User Guide
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   E.g. in `find KEYWORD`, `KEYWORD` is a parameter which can be used as `find spicy`.
+  
 * Items in square brackets are optional.<br>
   E.g `add INDEX [QUANTITY]` can be used as `add 3 2` or as `add 3`.
+  
 * **Friendly syntax** is supported! For any command, typing the short-form of the command will already be recognized, unless there is any ambiguity. 
 
   * E.g. `help` only requires the user to type `h` to be recognized, while `sort` will require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The commands
   will be explained below. To minimize confusion, the whole command will be shown instead of the prefix.)
+  
+* Extra whitespaces in between arguments will be ignored.
+
+  E.g. `add 1 3` is interpreted as the same command as `add   1        3`.
+
+  E.g `tag 1 this  is    a      tag` is interpreted as the same command as `tag 1 this is a tag`.
 
 </div>
 
 The application is divided into two modes, vendor mode and menu mode. Vendor mode is when a vendor is not yet selected,
 as seen by the section on the left displaying a list of vendors. In vendor mode, only vendor
-related commands can be executed. In menu mode, both vendor and menu commands can be executed.
+related commands can be executed. In menu mode, vendor, menu and order commands can be executed.
 
 ## General
 
@@ -67,9 +75,14 @@ Format: `help`
 
 See you next time! 
 
+Note that any arguments written after the `exit` command will be ignored. 
+
+- `exit` and `exit 1` is treated as the same command
+- This also applies to all other commands with no arguments
+
 Format: `exit`
 
-- Note that anything written after the `exit` command will be ignored.
+- This command closes the jar file.
 
 ## Vendor related commands
 
@@ -95,13 +108,13 @@ Examples:
 Displays the default menu from the selected vendor.
 
 - Can be used to display the menu after a `sort` / `find` / `price` command.
-- Note that anything written after the `menu` command will be ignored, and menu will be listed as intended.
+- Note that any arguments written after the `menu` command will be ignored, and menu will be listed as intended.
 
 Format: `menu`
 
 Example:
 
-- `menu`: Displays the menu of the selected vendor.
+- `menu`: Displays the full menu of the selected vendor.
 
 
 ### Sorting the menu: `sort`
@@ -112,10 +125,15 @@ Format: `sort MODE [DIRECTION]`
 
 * `MODE` dictates which mode it will sort by, with format:
   * `n`: sorts by name
+  
   * `p`: sorts by price
+  
+    
 * `DIRECTION` dictates which direction it will sort by, with format:
+  
   * `a`: sort in ascending order
   * `d`: sort in descending order
+  * `t`: toggles the direction, if previous sort was ascending, new direction is descending. If no direction was previously specified, sort in ascending order
 * If `DIRECTION` is not specified, it will be treated as a toggle, and ascending direction will be sorted as descending order and vice versa
 
 Examples:
@@ -202,7 +220,7 @@ Format: `tag INDEX REMARK`
 - Unlimited tags can be added, and is left up to the user's discretion.
 
 Examples:
-* `tag 5 2 no egg`: tags the order item at INDEX 5 with the REMARK 'no egg'.
+* `tag 5 2 no egg`: tags the order item at INDEX 5 with the REMARK '2 no egg'.
 
 
 ### Untag an order item: `untag`
@@ -225,7 +243,7 @@ Removes everything from the order.
 
 Format: `clear`
 
-- Note that anything written after the `clear` command will be ignored.
+- Note that any arguments written after the `clear` command will be ignored.
 
 Example:
 
@@ -238,7 +256,8 @@ Undoes last change to the order. Note that it does not affect commands unrelated
 
 Format: `undo`
 
-- Note that anything written after the `undo` command will be ignored.
+- Note that any arguments written after the `undo` command will be ignored.
+- Note that an error message will be returned to the user if there are no changes left to undo.
 
 Example:
 
@@ -250,7 +269,8 @@ Displays the total cost of the order currently.
 
 Format: `total`
 
-- Note that anything written after the `total` command will be ignored.
+- Note that any arguments written after the `total` command will be ignored.
+- Note that an error message will be returned to the user if the order is empty.
 
 Example:
 
@@ -264,7 +284,7 @@ Add delivery address and phone number for submission.
 
 Format: `profile PHONE ADDRESS`
 
-- `PHONE` represents your contact number and must be a valid phone number  (First digit must start with a 6/8/9 and must be 8 digits long).
+- `PHONE` represents your contact number and must be a valid phone number (First digit must start with a 6/8/9 and must be 8 digits long).
 
 - `ADDRESS` represents your delivery address.
 
@@ -280,7 +300,8 @@ Displays a copy-paste-able text of profile with order. A profile must be set up 
 Format: `submit`
 
 - Text obtained will be copied to clipboard if possible.
-- Note that anything written after the `submit` command will be ignored.
+- Note that an error message will be returned to the user if the order is empty.
+- Note that any arguments written after the `submit` command will be ignored.
 
 Example:
 
@@ -297,8 +318,9 @@ Format: `preset MODE [NAME]`
   * `load`: Used to load a preset. (If used without a `NAME`, will list all saved presets for the current vendor)
   * `delete`: Used to delete a preset. (`NAME` must be specified)
 * `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
-  * if `NAME` already exists and in save mode, the new preset will overwrite the existing preset.
+  * if `NAME` already exists and in preset is in save mode, the new preset will overwrite the existing preset.
   * `NAME` is **case-sensitive** and supports space characters.
+  * if `NAME` does not exist and preset is in delete mode, an error message will be returned to the user.
 * Presets are split by vendors, therefore running `preset save PresetName` for two different vendors will not affect one
 another. Similar for `preset load`.
 
@@ -322,9 +344,8 @@ Examples:
 **A**: These are intended as an example of what is shown if vendors lack a picture for a food item.
 
 **Q**: Why am I not allowed to add vendors or menu items?
-**A**: We realised that allowing users to add vendors or menu items from the command line would be too complicated, and
- it is not something we would like the user to handle.
- 
+**A**: We realised that allowing users to add vendors or menu items from the command line is unfeasible, as each vendor will have many menu items and it would be extremely time consuming for the user. However, the user is able to manually add vendors or menu items in the json file, but the user must ensure that all details are included correctly.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
