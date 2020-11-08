@@ -1238,7 +1238,133 @@ testers are expected to do more *exploratory* testing.
 1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`, and then `redo`.
       Expected: The `duck rice` recipe removed by the `undo` command is added after the first `redo`.  The command output box shows an error message after the second redo.             
       
+### B.2&ensp;Managing Recipes
+
+#### B.2.1&ensp;Adding recipes  
+1. Adding a recipe without ingredients, steps and tags
+   1. Prerequisites: None.
+
+1. Adding a recipe
+   1. Prerequisites: None. 
+   
+#### B.2.2&ensp;Deleting recipes  
+1. Deleting a recipe using recipe index
+   1. Prerequisites: None. 
+
+1. Deleting a recipe using recipe index in a filtered list
+   1. Prerequisites: None. 
+   
+1. Deleting a recipe using recipe name
+   1. Prerequisites: None. 
+
+#### B.2.3&ensp;Editing recipes  
+1. Editing a recipe using recipe index
+   1. Prerequisites: None. 
+
+1. Editing a recipe using recipe index in a filtered list
+   1. Prerequisites: None. 
+   
+1. Editing a recipe using recipe name
+   1. Prerequisites: None. 
+
+#### B.2.4&ensp;Listing recipes  
+1. Listing recipes
+   1. Prerequisites: None. 
+
+1. Listing filtered recipes
+   1. Prerequisites: None. 
+   
+1. Listing recipe recommendations
+  1. Prerequisites: None. 
+  
+#### B.2.5&ensp;Viewing recipes   
+1. Viewing a recipe using recipe index
+   1. Prerequisites: None. 
+
+1. Viewing a recipe using recipe index in a filtered list
+   1. Prerequisites: None. 
+   
+1. Viewing a recipe using recipe name
+   1. Prerequisites: None. 
+   
+#### B.2.6&ensp;Making recipes   
+1. Making a recipe using recipe index
+   1. Prerequisites: None. 
+
+1. Making a recipe using recipe index in a filtered list
+   1. Prerequisites: None. 
+   
+1. Making a recipe using recipe name
+   1. Prerequisites: None. 
+
+### B.3&ensp;Managing Ingredients
+
+#### B.3.1&ensp;Adding ingredients  
+1. Adding an ingredient without quantity, expiry date and tags.
+   1. Prerequisites: None.
+
+1. Adding an ingredient
+   1. Prerequisites: None. 
+   
+#### B.3.2&ensp;Deleting ingredients  
+1. Deleting an ingredient using ingredient index
+   1. Prerequisites: None. 
+
+1. Deleting an ingredient using ingredient index in a filtered list
+   1. Prerequisites: None. 
+   
+1. Deleting an ingredient using ingredient name
+   1. Prerequisites: None. 
+
+#### B.3.3&ensp;Editing ingredients  
+1. Editing an ingredient using ingredient index
+   1. Prerequisites: None. 
+
+1. Editing an ingredient using ingredient index in a filtered list
+   1. Prerequisites: None. 
+   
+1. Editing an ingredient using ingredient name
+   1. Prerequisites: None. 
+
+#### B.3.4&ensp;Listing ingredients  
+1. Listing ingredients
+   1. Prerequisites: None. 
+
+1. Listing filtered ingredients
+   1. Prerequisites: None. 
+   
+ 
+### B.4&ensp;Viewing statistics
+
+#### B.4.1&ensp;Viewing recipes made in a given time frame 
+1. xx
+   1. xx
+
+#### B.4.2&ensp;Viewing recipes made most recently
+1. xx
+   1. xx
+   
+#### B.4.3&ensp;Viewing recipes made most frequently
+1. xx
+   1. xx
+
+#### B.4.4&ensp;Clearing recipe statistics
+1. xx
+   1. xx
+   
+#### B.4.5&ensp;Viewing ingredients used in a given time frame 
+1. xx
+   1. xx
+   
+#### B.4.6&ensp;Viewing ingredients used most recently
+1. xx
+   1. xx
+   
+#### B.4.7&ensp;Clearing ingredient statistics
+1. xx
+   1. xx
           
+                   
 ## C&ensp;Effort
 
 With 10 being the baseline of AB3, we estimate the effort required to deliver the current version of ChopChop at **20**.
