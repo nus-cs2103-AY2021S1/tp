@@ -53,7 +53,7 @@ ModelManager o-up-> "1" UserPrefs
 UserPrefs .left.|> ReadOnlyUserPrefs
 
 ModelManager o--> "1" Notebook
-ModelManager --> Note
+ModelManager ..> Note
 
 Notebook *--> "1" NotesList
 Notebook .left.|> ReadOnlyNotebook
@@ -77,5 +77,4 @@ Phone -[hidden]right-> School
 School -[hidden]right-> Year
 ModelManager-[hidden]- UniqueStudentList
 
-ModelManager -down->"filtered list *" Student
 @enduml
