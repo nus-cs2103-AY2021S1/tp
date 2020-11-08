@@ -146,11 +146,8 @@ The following steps to set up Covigent are applicable to Windows, Mac OS X, and 
 1. You may move `covigent.jar` to any other folder. Your save data and preferences for Covigent will be saved to the same folder.
 
 1. Double-click on `covigent.jar` to start Covigent. Here is what you will see if everything goes right:
-    <p align="center">
-        <img src="images/ug/f3_startingcovigent.png" width="400" height="300">
-        <br />
-        <i>Figure 3. Covigent after Starting Up</i>
-    </p>
+
+///HERE
 
 In case there are any problems during setup, please refer to [Section 7, "FAQ"](#7-faq) for instructions to resolve them.
 
@@ -339,7 +336,7 @@ You can use this command to add a patient with the following details: name, temp
 
 Field | Description
 ------------ | -------------
-`NAME` | The name of the patient. It should preferably be the full name of the patient. The name should be less than 150 characters. 
+`NAME` | The name of the patient. It should preferably be the full name of the patient. The maximum number of characters allowed is 150.
 `TEMPERATURE` | The temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37) and must be within the range 32.0 to 41.0 degree celsius, both inclusive.
 `PERIOD_OF_STAY` | The period of stay of the patient in the facility. It must be in the format YYYYMMDD-YYYYMMDD. Both dates must be valid and the start date must be before or equals to the end date.
 `PHONE_NUMBER` | The phone number of the patient that the patient wishes to be contacted by. The maximum number of digits allowed is 20.
@@ -368,8 +365,7 @@ Field | Description
        <i>Figure 15. <code>addpatient</code> Command in Command Box</i>
     </p>
 1. Press Enter to run the command.
-1. The Result Box displays the sucess message shown in Figure 16 and the newly added patient can now be found in the list of patients in Covigent.
-1. To view the details of the newly added patient, click on the newly added patient in the patient list.
+1. The Result Box displays the sucess message shown in Figure 16. The patient details panel now reflects the information of the newly added patient and the newly added patient is selected in the patient list.
     <p align="center">
         <img src="images/ug/f16_addpatientsuccess.png" width="620" height="400">
         <br />
@@ -411,12 +407,8 @@ Field | Description
        <i>Figure 18. <code>deletepatient</code> Command in Command Box</i>
     </p>
 1. Press Enter to run the command.
-1. The Result Box displays the success message shown in Figure 19 and the deleted patient can no longer be found in the list of patients in Covigent.
-    <p align="center">
-        <img src="images/ug/f19_deletepatientsuccess.png" width="620" height="400">
-        <br />
-        <i>Figure 19. A Successful Execution of <code>deletepatient</code></i>
-    </p>
+1. The Result Box displays the success message shown in Figure 19 and the deleted patient can no longer be found in the list of patients in Covigent. The patient list now hovers back to the first patient in the list and the patient details panel shows the information of the first patient.
+   
 1. If you do not see the success message as shown in Figure 19, please repeat step 2 onwards.
 
 _Written by: Yun Qing_
@@ -430,7 +422,7 @@ You can use this command to edit an existing patient's details in Covigent.
 Field | Description
 ------------ | -------------
 `ORIGINAL_NAME` | The name of the patient whom details are to be edited. It must match exactly with the name of the patient that was input into Covigent previously. It is case-insensitive.
-`NEW_NAME` | The new name of the patient. The new name must not already exist within Covigent and should be less than 150 characters. 
+`NEW_NAME` | The new name of the patient. The new name must not already exist within Covigent and the maximum number of characters allowed is 150. 
 `TEMPERATURE` | The new temperature of the patient. It must be keyed in to 1 decimal place (e.g. 37.0 instead of 37) and must be within the range 32.0 to 41.0 degree Celsius, both inclusive.
 `PERIOD_OF_STAY` | The new period of stay of the patient. It must be in the format YYYYMMDD-YYYYMMDD. Both dates must be valid and the start date must be before or equals to the end date.
 `PHONE_NUMBER` | The new phone number of the patient. The maximum number of digits allowed is 20.
