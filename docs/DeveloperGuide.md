@@ -431,11 +431,12 @@ as overwriting a file is irreversible and would be disastrous for zookeepers if 
 
 #### 4.4.1. Implementation
 
-This section explains the implementation of the Sort command feature in the ZooKeepBook. This feature is used to sort the animals based on the different categories: **name, id or feedtime**.
+This section explains the implementation of the Sort command feature in the ZooKeepBook. This feature is used to sort the animals based on the different categories: **name, id, feedtime or medical**.
 
 * For the animal name, it will be in alphabetical order.
-* For the animal id, it will be in increasing order.
-* For the animal feed time, it will be from earliest to latest. 
+* For the animal id, it will be in ascending order.
+* For the animal feed time, it will be the earliest feed time in chronological order.
+* For the animal medical condition, it will be the number of conditions in ascending order.
 
 The following Sequence Diagram (*Figure 24*) shows the Logic and Model Components when a sort command is being executed:
 
@@ -446,16 +447,16 @@ The following Sequence Diagram (*Figure 24*) shows the Logic and Model Component
 <div markdown="span" class="alert alert-info">:information_source:  **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-In the **Logic** Component,
+In the **Logic** Component,<br>
 After the user keys in "sort name" as input, these key methods are called:
-* `LogicManager#execute("sort name")`: The `LogicManager` takes in a command text string ("sort name/id/feedtime").
+* `LogicManager#execute("sort name")`: The `LogicManager` takes in a command text string ("sort name/id/feedtime/medical").
 * `ZooKeepBookParser#parseCommand("sort name")`: The `ZooKeepBookParser` parses the user input into a command word ("sort") and arguments ("name"). Using the command word, a `SortCommandParser` is created. 
 * `SortCommandParser#parse("name")`: The `SortCommandParser` takes in the argument("name") and parses it. An `AnimalComparator` is created and contains the specific static comparator required to sort the animals according to the category provided. A `SortCommand` is created with the `AnimalComparator` as an attribute.
-	* The `AnimalComparator` contains 3 different static comparators to be used for sorting: `ANIMAL_NAME_COMPARATOR`,  `ANIMAL_ID_COMPARATOR` and `ANIMAL_FEEDTIME_COMPARATOR`.
+	* The `AnimalComparator` contains 4 different static comparators to be used for sorting: `ANIMAL_NAME_COMPARATOR`,  `ANIMAL_ID_COMPARATOR`, `ANIMAL_FEEDTIME_COMPARATOR` and `ANIMAL_MEDICAL_COMPARATOR`.
 	* In this case, the `ANIMAL_NAME_COMPARATOR` is taken.
 * `SortCommand#execute(model)`: The `SortCommand` uses the `AnimalComparator` to sort the animals and returns a `CommandResult` object which represents the result of a command execution. 
 
-In the **Model** Component,
+In the **Model** Component,<br>
 The in-memory model of the ZooKeepBook data sorts and updates the animal list. The following key methods are used: 
 * `Model#sortAnimals(animalComparator)`: sorts the animals in the `ZooKeepBook` using the given `AnimalComparator` object.
 * `ZooKeepBook#sortAnimals(animalComparator)` : Retrieves the static comparator in the `AnimalComparator` object and creates a `SortedList` object. The `UniqueAnimalList` in the `ZooKeepBook` is then replaced by this `SortedList` object.
@@ -472,7 +473,7 @@ The following Activity Diagram (*Figure 25*) summarises what happens when a user
 #### 4.4.2. Design Consideration:
   
 ##### 4.4.2.1. Aspect: Sorting based on different categories  
-We chose to allow the user to sort not only based on animal names but also by their id and feedtime to ease the convenience of the user when he needs data to be sorted in other ways.
+We chose to allow the user to sort not only based on animal names but also by their id, earliest feed times or number of medical conditions to ease the convenience of the user when he needs data to be sorted in other ways.
 
 
 ### 4.5. Feed times feature (by Jeremy)
@@ -585,7 +586,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | zookeeper                                       | exit the program after I have finished using it        |  |
 | `* *`    | zookeeper                                       | search for a specific animal   | filter through the large number of animals without viewing the entire list                |
 | `* *`    | zookeeper                                       | quickly edit the data of certain animals   | avoid deleting and adding the animal to do so              |
-| `*`      | zookeeper with many animals in the address book | sort animals by name and type           | locate a specific animal easily                                                 |
+| `*`      | zookeeper with many animals in the ZooKeepBook | sort animals by name and type           | locate a specific animal easily                                                 |
 | `*`      | experienced user | use shortcut commands to carry out tasks           | save time without needing to type the full length commands                                                 |
 
 *{More to be added}*
