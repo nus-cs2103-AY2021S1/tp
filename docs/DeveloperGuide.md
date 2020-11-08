@@ -384,7 +384,7 @@ The following sequence diagram shows how the reset all ingredients' levels opera
 only one ingredient's level is not at zero before `i-reset-all` is executed.
 ![Reset all Ingredients' Levels Sequence Diagram](images/IngredientResetAllSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `IngredientResetAllCommand` should 
+<div markdown="block" class="alert alert-info">:information_source: **Notes:** The lifeline for `IngredientResetAllCommand` should 
 end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
