@@ -129,6 +129,9 @@ public class ParserUtil {
             if (dateObject.before(currentActualDate)) {
                 throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS_PAST_DATE);
             }
+            if (dateObject.after(formatter.parse("01-01-2050"))) {
+                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS_FUTURE_DATE);
+            }
             String dateString = formatter.format(dateObject);
             return new MeetingDate(dateString);
         } catch (java.text.ParseException e) {
