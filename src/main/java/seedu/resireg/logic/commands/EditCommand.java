@@ -37,9 +37,9 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit-student";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in ResiReg.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in ResiReg.";
 
     public static final Help HELP = new Help(COMMAND_WORD,
             "Edits the details of the student identified by the index number used in the displayed student list.",
@@ -76,14 +76,14 @@ public class EditCommand extends Command {
         List<Allocation> lastShownAllocationList = model.getFilteredAllocationList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         if (model.isAllocated(studentToEdit)) {
@@ -100,7 +100,7 @@ public class EditCommand extends Command {
 
         model.setStudent(studentToEdit, editedStudent);
         model.saveStateResiReg();
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent.getNameAsString()));
+        return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent.getNameAsString()));
     }
 
     /**

@@ -1,5 +1,32 @@
-package seedu.resireg.logic.commands;
+package seedu.resireg.logic;
 
+import seedu.resireg.logic.commands.AddAliasCommand;
+import seedu.resireg.logic.commands.AddCommand;
+import seedu.resireg.logic.commands.AddRoomCommand;
+import seedu.resireg.logic.commands.AllocateCommand;
+import seedu.resireg.logic.commands.ArchiveCommand;
+import seedu.resireg.logic.commands.ClearCommand;
+import seedu.resireg.logic.commands.Command;
+import seedu.resireg.logic.commands.DeallocateCommand;
+import seedu.resireg.logic.commands.DeleteAliasCommand;
+import seedu.resireg.logic.commands.DeleteCommand;
+import seedu.resireg.logic.commands.DeleteRoomCommand;
+import seedu.resireg.logic.commands.EditCommand;
+import seedu.resireg.logic.commands.EditRoomCommand;
+import seedu.resireg.logic.commands.ExitCommand;
+import seedu.resireg.logic.commands.Help;
+import seedu.resireg.logic.commands.HelpCommand;
+import seedu.resireg.logic.commands.HistoryCommand;
+import seedu.resireg.logic.commands.ListAliasCommand;
+import seedu.resireg.logic.commands.ListBinCommand;
+import seedu.resireg.logic.commands.ListRoomsCommand;
+import seedu.resireg.logic.commands.ListStudentsCommand;
+import seedu.resireg.logic.commands.ReallocateCommand;
+import seedu.resireg.logic.commands.RedoCommand;
+import seedu.resireg.logic.commands.RestoreCommand;
+import seedu.resireg.logic.commands.SetBinExpiryCommand;
+import seedu.resireg.logic.commands.ToggleTabSplitCommand;
+import seedu.resireg.logic.commands.UndoCommand;
 import seedu.resireg.logic.parser.AddAliasCommandParser;
 import seedu.resireg.logic.parser.AddCommandParser;
 import seedu.resireg.logic.parser.AddRoomCommandParser;
@@ -18,9 +45,9 @@ import seedu.resireg.logic.parser.RestoreCommandParser;
 import seedu.resireg.logic.parser.SetBinExpiryCommandParser;
 
 /**
- * Enums representing all the commands in ResiReg. Each enum is bound to its command word, help, parser and a
- * list of AppModes that the command is available in. This enum is the single source of truth about all commands
- * in ResiReg, so developers who want to add new commands must add an enum to this class.
+ * Enums representing all the commands in ResiReg. Each enum is bound to its command word, help, and parser.
+ * This enum is the single source of truth about all commands in ResiReg, so developers who want to add new
+ * commands must add an enum to this class.
  */
 public enum CommandWordEnum {
 

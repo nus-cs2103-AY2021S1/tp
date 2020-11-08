@@ -3,8 +3,8 @@ package seedu.resireg.logic.parser;
 import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.resireg.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.resireg.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ public class ReallocateCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsReallocateCommand() {
-        assertParseSuccess(parser, " si/1 ri/1", new ReallocateCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ROOM));
+        assertParseSuccess(parser, " si/1 ri/1", new ReallocateCommand(INDEX_FIRST_STUDENT, INDEX_FIRST_ROOM));
     }
 
     @Test
