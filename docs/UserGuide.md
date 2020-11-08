@@ -97,15 +97,15 @@ Recipe and ingredient names have the same constraints, of which there is only on
 
 Here are some examples of names that are valid and invalid:
 
-| name     | valid      |
-|----------|------------|
-| `#1`     | <b>no</b>  |
-| `#1234`  | <b>no</b>  |
-| `#`      | <b>yes</b> |
-| `#asdf`  | <b>yes</b> |
-| `#1a`    | <b>yes</b> |
-| `#1 abc` | <b>yes</b> |
-| `#12 34` | <b>yes</b> |
+| name     | valid    |
+|----------|----------|
+| `#1`     | &#x274C; |
+| `#1234`  | &#x274C; |
+| `#`      | &#x2714; |
+| `#asdf`  | &#x2714; |
+| `#1a`    | &#x2714; |
+| `#1 abc` | &#x2714; |
+| `#12 34` | &#x2714; |
 
 
 
@@ -511,12 +511,12 @@ This command opens the detailed view for the given recipe, allowing you to see i
 **Usage**: `view recipe <#REF>`
 
 Examples:
-- `view recipe #4` <br />
-	This displays the fourth recipe currently shown in the recipe list.
+- `view recipe #1` <br />
+	This displays the first recipe currently shown in the recipe list.
 - `view recipe pancakes` <br />
 	This displays the recipe named 'pancakes'. Note that the name here is case insensitive.
 
-To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the same recipe:
+To illustrate, in the scenario below, both `#1` and `pancakes` will refer to the same recipe:
 <a name="Figure-6-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/view_recipe_1.png" width="75%" /> <br />
@@ -1447,7 +1447,7 @@ add ingredient &lt;name&gt;
   [/expiry &lt;expiry-date&gt;]
   [/tag &lt;tag-name&gt;]...
 </pre></td>
-    <td><b>YES</b></td>
+    <td>&#x2714;</td>
   </tr><tr>
     <td><a href="#AddRecipeCommand">add recipe</a></td>
     <td>Adds a new recipe</td>
@@ -1458,7 +1458,7 @@ add recipe &lt;name&gt;
   [/step &lt;step&gt;]...
   [/tag &lt;tag-name&gt;]...
 </pre></td>
-    <td><b>YES</b></td>
+    <td>&#x2714;</td>
   </tr><tr>
     <td><a href="#DeleteIngredientCommand">delete ingredient</a></td>
     <td>Completely deletes an ingredient, or removes some quantity of it</td>
@@ -1466,14 +1466,14 @@ add recipe &lt;name&gt;
 delete ingredient &lt;#REF&gt;
   [/qty &lt;quantity&gt;]
 </pre></td>
-    <td><b>YES</b></td>
+    <td>&#x2714;</td>
   </tr><tr>
     <td><a href="#DeleteRecipeCommand">delete recipe</a></td>
     <td>Completely deletes a recipe</td>
     <td><pre>
 delete recipe &lt;#REF&gt;
 </pre></td>
-    <td><b>YES</b></td>
+    <td>&#x2714;</td>
   </tr><tr>
     <td><a href="#EditIngredientCommand">edit ingredient</a></td>
     <td>Edits an existing ingredient</td>
@@ -1482,7 +1482,7 @@ edit ingredient &lt;#REF&gt;
   [/tag:&lt;action&gt;
     &lt;tag-name&gt;]...
 </pre></td>
-    <td><b>YES</b></td>
+    <td>&#x2714;</td>
   </tr><tr>
     <td><a href="#EditRecipeCommand">edit recipe</a></td>
     <td>Edits an existing recipe</td>
@@ -1498,7 +1498,7 @@ edit recipe &lt;#REF&gt;
   [/tag:&lt;action&gt;
     &lt;tag-name&gt;]...
 </pre></td>
-    <td><b>YES</b></td>
+    <td>&#x2714;</td>
   </tr><tr>
     <td><a href="#FilterIngredientCommand">filter ingredient</a></td>
     <td>Searches for ingredients by one or more filtering criteria</td>
@@ -1508,7 +1508,7 @@ filter ingredient
   [/expiry &lt;expiry-date&gt;]
   [/tag &lt;tag-keywords&gt;...]...
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#FilterRecipeCommand">filter recipe</a></td>
     <td>Searches for recipes by one or more filtering criteria</td>
@@ -1519,7 +1519,7 @@ filter recipe
   [/ingredient
     &lt;ingr-keywords&gt;...]...
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#FindIngredientCommand">find ingredient</a></td>
     <td>Searches for ingredients by their name</td>
@@ -1527,7 +1527,7 @@ filter recipe
 find ingredient &lt;keyword&gt;
   [&lt;keyword&gt;]...
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#FindRecipeCommand">find recipe</a></td>
     <td>Searches for recipes by their name</td>
@@ -1535,7 +1535,7 @@ find ingredient &lt;keyword&gt;
 find recipe &lt;keyword&gt;
   [&lt;keyword&gt;]...
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#HelpCommand">help</a></td>
     <td>Shows help in general, or help for specific commands</td>
@@ -1543,49 +1543,49 @@ find recipe &lt;keyword&gt;
 help [&lt;command-name&gt;
   [&lt;command-target&gt;]]
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#ListIngredientCommand">list ingredient</a></td>
     <td>Shows the main ingredient list, and clears any search filters</td>
     <td><pre>
 list ingredients
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#ListRecipeCommand">list recipe</a></td>
     <td>Shows the main recipe list, and clears any search filters</td>
     <td><pre>
 list recipes
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#MakeRecipeCommand">make recipe</a></td>
     <td>Makes a recipe, consuming ingredients and recording statistics</td>
     <td><pre>
 make recipe &lt;#REF&gt;
 </pre></td>
-    <td><b>YES</b></td>
+    <td>&#x2714;</td>
   </tr><tr>
     <td><a href="#QuitCommand">quit</a></td>
     <td>Exits ChopChop</td>
     <td><pre>
 quit
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#RedoCommand">redo</a></td>
     <td>Redoes a command that was previously undone</td>
     <td><pre>
 redo
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#StatsRecipeClearCommand">stats recipe clear</a></td>
     <td>Clear cooked recipe history</td>
     <td><pre>
 stats recipe clear
 </pre></td>
-    <td><b>YES</b></td>
+    <td>&#x2714;</td>
   </tr><tr>
     <td><a href="#StatsRecipeMadeCommand">stats recipe made</a></td>
     <td>Shows recipes made within a given time frame</td>
@@ -1594,35 +1594,35 @@ stats recipe made
   [/after &lt;date-time&gt;]
   [/before &lt;date-time&gt;]
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#StatsRecipeRecentCommand">stats recipe recent</a></td>
     <td>Shows recently made recipes</td>
     <td><pre>
 stats recipe recent
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#StatsRecipeTopCommand">stats recipe top</a></td>
     <td>Shows the top recipes</td>
     <td><pre>
 stats recipe top
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#StatsIngredientClearCommand">stats ingredient clear</a></td>
     <td>Clear ingredient usage history</td>
     <td><pre>
 stats ingredient clear
 </pre></td>
-    <td><b>YES</b></td>
+    <td>&#x2714;</td>
   </tr><tr>
     <td><a href="#StatsIngredientRecentCommand">stats ingredient recent</a></td>
     <td>Shows recently used ingredients</td>
     <td><pre>
 stats ingredient recent
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#StatsIngredientUsedCommand">stats ingredient used</a></td>
     <td>Shows ingredients used within a given time frame</td>
@@ -1631,21 +1631,21 @@ stats ingredient used
   [/after &lt;date-time&gt;]
   [/before &lt;date-time&gt;]
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#UndoCommand">undo</a></td>
     <td>Undoes a command that was previously executed</td>
     <td><pre>
 undo
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr><tr>
     <td><a href="#ViewRecipeCommand">view</a></td>
     <td>Opens the detailed view for a recipe</td>
     <td><pre>
 view recipe &lt;#REF&gt;
 </pre></td>
-    <td><b>NO</b></td>
+    <td>&#x274C;</td>
   </tr>
 </tbody></table>
 
