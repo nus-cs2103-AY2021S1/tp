@@ -37,7 +37,8 @@ title: Developer Guide
             * [Aspect 1 : Concern while adding a new feature](#3321-aspect-1)
             * [Aspect 2: What recipe information to show and how to show them](#3322-aspect-2)
         * [3.3.3 Design Consideration - **List Ingredients**](#333-design-consideration-list-ingredient)
-             * [Aspect: Concern while adding a new feature](#3331-aspect)
+             * [Aspect 1: Concern while adding a new feature](#3331-aspect-1)
+             * [Aspect 2: How to display ingredient name and quantity](#3332-aspect-2)
         * [3.3.4 Design Consideration - **List Consumptions**](#334-design-consideration-list-consumption)
              * [Aspect 1: Concern while adding a new feature](#3341-aspect-1)<br>
              * [Aspect 2: What information in the recipe is useful to display in the consumption list](#3342-aspect-2)
@@ -486,11 +487,20 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Cons: Recipe list may become hard to browse and unaesthetic if there are long recipes. <br><br>
 
 #### 3.3.3 Design Consideration - **List Ingredients**: <a id="333-design-consideration-list-ingredient"></a>
-##### Aspect: Concern while adding a new feature <a id="3331-aspect"></a>
+##### Aspect 1: Concern while adding a new feature <a id="3331-aspect-1"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-### 3.3.4 Design Consideration - **List Consumption**: <a id="334-design-consideration-list-consumption"></a>
-#### Aspect 1: Concern while adding a new feature <a id="3341-aspect-1"></a>
+##### Aspect 2: How to display ingredient name and quantity. <a id="3332-aspect-2"></a>
+* **Alternative 1 (*current choice*):** Display ingredient name first then explicitly label the quantity.
+  * Pros: User can differentiate between ingredient name and quantity easily.
+  * Cons: Might clutter up the UI as it should be easy to differentiate ingredient name and quantity.
+
+* **Alternative 2:** Show quantity directly in front of ingredient name without any explicit quantity label.
+  * Pros: Less clutter and repetition of the label 'quantity' at every ingredient.
+  * Cons: For ingredient names with numbers, users might confuse them with the quantity. <br><br>
+
+#### 3.3.4 Design Consideration - **List Consumption**: <a id="334-design-consideration-list-consumption"></a>
+##### Aspect 1: Concern while adding a new feature <a id="3341-aspect-1"></a>
 * Workflow must be consistent with other commands. <br><br>
 
 #### Aspect 2: What information in the recipe is useful to display in the consumption list <a id="3342-aspect-2"></a>
@@ -609,6 +619,7 @@ EditCommand | `EditRecipeCommand` | `EditIngredientCommand`
 info | `"n/Pea soup"` | `"i/tomato"`                  
 updateFilteredList(predicate) | `updateFilteredRecipeList(predicate)` | `updateFilteredIngredientList(predicate)`
 set(old, new) | `setRecipe(oldRecipe, newRecipe)` | `setIngredient(oldIngredient, newIngredient)`
+item | recipe | ingredient
  
 </div>
 
@@ -687,6 +698,7 @@ edit | `editR` | `editF`
 GetEditCommandParser | `GetEditRecipeCommandParser` | `GetEditIngredientCommandParser`                                      
 GetEditCommand | `GetEditRecipeCommand` | `GetEditIngredientCommand`                           
 commandType | `editR <existing recipe>` | `editF <existing ingredient>`
+item | recipe | ingredient
 
 </div>
 
@@ -695,11 +707,10 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 1. After successfully parsing the user's input, the `GetEditRecipeCommand#execute(Model model)`  or `GetEditIngredientCommand#execute(Model model)` method is called.
 
-1. The recipe or ingredient that the user has specified with the edit command for
- the user to directly modify will be set in CommandResult.
+1. The recipe or ingredient that the user has specified with the get edit command will be stored in
+ CommandResult. This will be used to set the command box on the main window.
 
-1. After the successfully setting the command box, a `CommandResult` object is instantiated and
- returned to `LogicManager`. <br><br>
+1. After, a `CommandResult` object is instantiated and returned to `LogicManager`. <br><br>
 
 ### 3.6.2 Design Considerations - **Get Edit Recipe** <a id="362-design-consideration-get-edit-recipe"></a>
 #### Aspect: Concern while adding a new feature <a id="3621-aspect"></a>
@@ -987,13 +998,14 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 
 :bell: **Note**                                                                                                    
                                                                                                                    
-These are common extensions that can apply to some commands. Let x be the step the extension begins at.
+These are common extensions that can apply to some commands. Let *X* be the step the extension begins at.
 
-**Invalid Index Extension** applicable to `delete`, `list`, `edit`, `select` commands 
+**Invalid Index Extension** applicable to `delete`,`list`, `edit`, get `edit`, `select`, and `eat` commands 
 * *X*a. The given index is not a positive integer that is greater than 0 or not a valid index in the item list.
-    * *X*a1. Wishful Shrinking shows an error message.
-    * *X*a2. User enters new index.
-        Step *X*a1 to Step (*X*+1)a2 are repeated until the index entered is valid.
+    * *X*a1. Wishful Shrinking shows an error message and requests for new data.
+    * *X*a2. User enters new index. 
+        Step *X*a1 to Step (*X*)a2 are repeated until the index entered is valid.
+        
       Use case resumes at step *X*+1.
 
 </div>
@@ -1051,7 +1063,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
+      :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 3
 </div>
 
  <br><br>
@@ -1075,7 +1087,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
+      :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 3
 </div>
 
  <br><br>
@@ -1099,7 +1111,7 @@ These are common extensions that can apply to some commands. Let x be the step t
     Use case resumes from step 2.
    
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 1
+      :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 1
 </div> 
 
  <br><br>
@@ -1144,17 +1156,9 @@ These are common extensions that can apply to some commands. Let x be the step t
 **Extensions**
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-  :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 1
+  :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 1
 </div>
 <br><br>
-     
-**Extensions**
-
-* 2a. The given index is invalid.
-
-    * 2a1. Wishful Shrinking shows an error message.
-
-      Use case ends. <br><br>
 
 **Use case: Clear all recipes in recipe list**
 
@@ -1217,7 +1221,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-     :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
+     :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 3
 </div>
  <br><br>
 	  
@@ -1239,7 +1243,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
+      :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 3
 </div>
  <br><br>
 	  
@@ -1262,7 +1266,7 @@ These are common extensions that can apply to some commands. Let x be the step t
     Use case resumes from step 2.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-      :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 1
+      :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 1
 </div>
  <br><br>
   
@@ -1312,7 +1316,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-  :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
+  :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 3
 </div>
  <br><br>
       
@@ -1350,7 +1354,7 @@ These are common extensions that can apply to some commands. Let x be the step t
   Use case ends.
 
 <div markdown="span" class="alert alert-info" style="display: inline-block; overflow: auto;">
-  :bell: **Note** Invalid Index Extension is applicable where beginning step *X* = step 3
+  :bell: **Invalid Index Extension** is applicable where beginning step *X* = step 3
 </div>
  <br><br>
 
