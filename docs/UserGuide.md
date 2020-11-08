@@ -43,18 +43,26 @@ TAskmaster is a **desktop app for managing students, optimized for use via a Com
 
 ### Usage
 1. Add the students that you are currently teaching into TAskmaster using the `add-student` command.
-    * You can use the `list-students`, `edit-student`, `find-students` and `delete-student` commands to read and modify your student list.
+    * You can use the `list-students`, `edit-student`, `find-students` and `delete-student` commands to read, filter and modify your student list.
 2. Create a new session that represents a tutorial, lab or recitation session using the `add-session` command.
+    * Use `goto` and `delete-session` to switch between and delete sessions.
 3. Mark your students' attendance and award them class participation marks with the `mark` and `score` commands respectively.
     * Note that you will not be allowed to use these commands outside of a session.
+4. Find present students to call on with the `lowest-score` or `random-student` commands.
+    * Note that you will not be allowed to use these commands outside of a session.
+5. Clear all data with the `clear` command.
+    * This deletes both session and student data.
 
 ## Walkthrough
+
+### Step 1: Set-up
 On the first use of TAskmaster, the program will be loaded with a sample student list.
 ![walkthrough1](images/walkthrough/1.png)
 
 Enter the `clear` command to delete all existing data in TAskmaster.
 ![walkthrough2](images/walkthrough/2.png)
 
+### Step 2: Add Students
 Then, add the students that you are currently teaching into the student list using the `add-student` command.
 ![walkthrough3](images/walkthrough/3.png)
 
@@ -62,6 +70,7 @@ Then, add the students that you are currently teaching into the student list usi
 * No two students in the student list can share the same NUSNET id.
 * You can use the `find-students`, `edit-student` and `delete-student` commands to filter and modify your student list.
 
+### Step 3: Add a Session
 After adding all your students, you can create a new session that represents a tutorial, lab or recitation session using
 the `add-session` command. TAskmaster will automatically switch to the new session view.
 ![walkthrough4](images/walkthrough/4.png)
@@ -71,10 +80,24 @@ the `add-session` command. TAskmaster will automatically switch to the new sessi
 * This list of records, once created, will be **independent of the student list**. Any modifications to the student list after a session is created **will not** affect the student records in that session.
 * You can use the `delete-session` command to delete a session from the session list. This will delete all data (including student records) stored in that session.
 
-Within the session view, you can mark your students' attendance with the `mark` commands.
+### Step 4: Session View
+Within the session view, you can see a list of records representing the students that are enrolled in that session.
+![walkthrough10](images/walkthrough/10.png)
+
+Legend:
+1. Session name
+2. Session date and time
+3. Name of student
+4. NUSNET ID of student
+5. Attendance
+6. Class participation score  
+
+### Step 5: Mark Attendance
+Mark your students' attendance with the `mark` commands.
 ![walkthrough5](images/walkthrough/5.png)
 ![walkthrough6](images/walkthrough/6.png)
 
+### Step 6: Get Present Students
 TAskmaster provides you with two ways to get students to call on to answer questions.
 * The `lowest-score` command shows a student that is present and currently have the lowest score. If there are multiple
 present students with the lowest score, the command will show all of them.
@@ -82,13 +105,16 @@ present students with the lowest score, the command will show all of them.
 * The `random-student` command chooses a student that is present randomly.
 ![walkthrough8](images/walkthrough/8.png)
 
+### Step 7: Award Class Participation
 You can award class participation score to students using the `score` command.
 ![walkthrough9](images/walkthrough/9.png)
 
+### Step 8: Switch Views
 Note that you will not be allowed to use any session view commands outside of a session.
 * To switch to a session view, use the `goto` command or click the corresponding button on the left, under 'Sessions'. 
 * To go back to student list view, use the `list-students` command or click the Student List button on the left.
 
+### Step 9: Exit TAskmaster
 When you are done with TAskmaster, use the `exit` command to close the application.
  * Data will be saved automatically.
 
@@ -121,7 +147,7 @@ list-students
 ```
 
 ### Finding students by name: `find-students`
-Finds students whose name contains any of the given keywords.
+Finds students in the student list whose name contains any of the given keywords.
 ```
 find-students KEYWORD [MORE_KEYWORDS]
 ```
@@ -217,15 +243,17 @@ Marks the attendance of the specified student (or all students) in the session.
 ```
 mark INDEX a/ATTENDANCE_TYPE
 ```
+- This command can only be used when a session is selected.
 - Marks the attendance at the specified `INDEX` number shown in the displayed student record list.
 - The `INDEX` **must be a positive integer** that exists in said list.
 - Alternatively, the `INDEX` can be replaced with `all` to mark all students in the student record list.
-- The `ATTENDANCE_TYPE` must either be `present` or `absent`.
+- The `ATTENDANCE_TYPE` must either be `present`, `absent` or `no_record`.
 
 Example Usage:
 ```
 mark all a/present
 mark 1 a/absent
+mark 2 a/no_record
 ```
 
 ### Scoring students' participation: `score`
@@ -233,6 +261,7 @@ Scores the participation of the specified student in the session.
 ```
 score INDEX cp/SCORE
 ```
+- This command can only be used when a session is selected.
 - Scores the participation of the student associated with the specified `INDEX` number shown in the displayed student record list.
 - The `INDEX` **must be a positive integer** that exists in said list.
 - The `SCORE` **must be a non-negative number** between 0 and 10, inclusive. 
@@ -258,6 +287,7 @@ Displays all students with the lowest score in the current session.
 ```
 lowest-score
 ```
+- This command can only be used when a session is selected.
 - Lists the records of all present students in the current session with the lowest score.
 - Will show no students if the student record list has no present students.
 
@@ -266,6 +296,7 @@ Displays a random present student from the current session
 ```
 random-student
 ```
+- This command can only be used when a session is selected.
 - Lists a random student that is present from the current session.
 - Does not work if the session has no present students.
 
@@ -285,6 +316,8 @@ exit
 
 ## Command Summary
 
+Commands labelled with an asterisk (*) can only be used when a session is selected.
+
 | Action            | Format, Examples                                                                                              |
 |-------------------|---------------------------------------------------------------------------------------------------------------|
 | Add student       | ```add-student n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]``` <br> e.g., ```add-student n/John Tan u/johntan98```<br>```e/johntan98@gmail.com i/e0012345 t/tardy```  |
@@ -295,12 +328,12 @@ exit
 | Add session       | ```add-session s/SESSION_NAME dt/SESSION_DATE_TIME``` <br> e.g., ```add-session s/CS2103 Tutorial 9 dt/23-10-2020 0900```|
 | Change session    | ```goto s/SESSION_NAME``` <br> e.g., ```goto s/CS2103 Tutorial 9```
 | Delete session    | ```delete-session s/SESSION_NAME``` <br> e.g., ```delete-session s/CS2103 Tutorial 9```
-| Mark              | ```mark INDEX a/ATTENDANCE_TYPE``` <br> e.g., `mark 1 a/absent`                                             |
-| Mark all          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
-| Score             | ```score INDEX cp/SCORE``` <br> e.g., `score 1 cp/5`                                             |
-| Score all         | ```score all cp/SCORE``` <br> e.g., `score all cp/10`
-| Lowest score      | ```lowest-score```      |
-| Random student    | ```random-student```     |
+| Mark*              | ```mark INDEX a/ATTENDANCE_TYPE``` <br> e.g., `mark 1 a/absent`                                             |
+| Mark all*          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
+| Score*             | ```score INDEX cp/SCORE``` <br> e.g., `score 1 cp/5`                                             |
+| Score all*         | ```score all cp/SCORE``` <br> e.g., `score all cp/10`
+| Lowest score*      | ```lowest-score```      |
+| Random student*    | ```random-student```     |
 | Clear             | ```clear```                                                                                              |
 | Exit              | ```exit```                                                                                              |
 
