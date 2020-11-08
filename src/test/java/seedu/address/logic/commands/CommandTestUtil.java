@@ -54,6 +54,8 @@ public class CommandTestUtil {
             + "911b"; // 'b' not allowed in emergency_contact
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_LONG_TAG = " " + PREFIX_TAG
+            + "abcdefghijklmnhusbwuhfpduehjsbhabvsueydbhwienjfgyst"; // longer than 50 characters' tag is not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
