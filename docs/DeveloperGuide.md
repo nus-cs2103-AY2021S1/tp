@@ -224,7 +224,7 @@ The **Model Component** class diagram is given below.
 <div markdown="span" class="alert alert-info">
 
 :memo: **Note:** The lower level details of Recipe, Ingredient, and Consumption classes are represented
- by class diagrams attached in [Appendix C: Model Components](#7-appendix-model-component)
+ by class diagrams attached in [Appendix C: Model Components](#7-model-component)
 
 </div>
 
@@ -270,7 +270,8 @@ All lifeline with the destroy marker (X) should end with the mark (X) but due to
 **Note:** :bell: can indicate either: <br>
 - Source code with similar implementations have had their sequence or/and activity diagrams condensed into a
  single general diagram <br>
-- Similar use case extensions are grouped to avoid repetitiveness  
+- Similar use case extensions are grouped <br>
+to avoid repetitiveness  
 </div>                 
                                                    
 ### 3.1 Add Features <a id="31-add-features"></a>
