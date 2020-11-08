@@ -405,10 +405,18 @@ The list of all `GradeTracker` related features are:
 3. Delete an Assignment: Deletes a pre-existing assignment in the `GradeTracker`.
 4. Add a Grade: Adds a grade for the overall module.
 
-#### Add assignment feature
+#### Add Assignment Feature
 
 This feature creates and adds a new `Assignment` to the `GradeTracker` of a `Module`. This action
 is only allowed if the `Assignment` does not already exist in the `GradeTracker`.
+
+This feature is facilitated by the following classes:
+
+* `AddAssignmentParser`:
+  * It implements `AddAssignmentParser#parse()` to validate and parse the module name and assignment details.
+* `AddAssignmentCommand`:
+  * It implements `AddAssignmentCommand#execute()` which executes the creation of the `Assignment` and adds the
+  assignment to the module identified by the `ModuleName` that was parsed.
 
 When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
 to the rest of the project as the command is parsed and then executed.
@@ -425,11 +433,60 @@ Step 3. Additionally, `AddAssignmentParser` will call the `AddAssignmentParser#p
 
 Step 4. An `AddAssignmentCommand` is created and the command arguments are passed to it.
 
-Step 5.  `AddAssignmentCommand#execute` will be evoked by `LogicManager` to creates an `Assignment` using the parsed inputs, `Quiz 1` for `AssignmentName`, `20` for `AssignmentPercentage`
+Step 5.  `AddAssignmentCommand#execute()` will be evoked by `LogicManager` to creates an `Assignment` using the parsed inputs, `Quiz 1` for `AssignmentName`, `20` for `AssignmentPercentage`
 and `85` for `AssignmentResult`. A `ModuleName` is also created using the input `CS2100`.
 
 Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
 `Module#addAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+#### Design consideration:
+
+##### Aspect: Whether to directly store the assignments under module
+* Alternative 1 : Module stores assignments directly without any association class.
+    * Pros : Less work to be done.
+    * Cons : Less OOP.
+    
+* Alternative 2 (current choice): Module stores a separate class that then stores the assignments
+    * Pros : More OOP and the assignments are less coupled to the Module.
+    * Cons : Takes more effort and complexity to recreate the unique object list within another layer(`Module`).
+    
+We implemented the second option despite its difficulty and complexity, taking more time to carry out as we felt
+that this feature was major enough to warrant the time and depth to implement.
+
+####Edit Assignment Feature
+
+This feature allows `assignments` within a `GradeTracker` to be edited. The fields that can be edited are the
+`AssignmentName`, `AssignmentPercentage` and its `AssignmentResult`. The grade tracker of the module to act on must
+currently have a valid assignment to target.
+
+This feature requires the following classes:
+
+* `EditAssignmentDescriptor`:
+  * It represents and encapsulates the edited assignment and stores the fields to replace the current ones.
+* `EditAssignmentParser`:
+  * It implements `EditAssignmentParser#parse()` to validate and parse the assignment `Index`, module name and assignment
+  edited details, creating an `EditAssignmentDescriptor` object with the edited details.
+* `EditAssignmentCommand`:
+  * It implements `EditAssignmentCommand#execute()` which will execute the editing of the assignment at the corresponding
+  assignment `Index` in the corresponding `Module` identified by the parsed module name.
+
+Given below is an example usage scenario and how the mechanism for editing an `Assignment` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `editassignment 1 n/CS2100 a/Quiz 1` from `Ui`
+
+Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `EditAssignmentParser`
+
+Step 3. Additionally, `EditAssignmentParser` will call the `EditAssignmentParser#parse()` method to parse the command arguments
+
+Step 4. An `EditAssignmentCommand` is created and the command arguments are passed to it.
+
+Step 5. `EditAssignmentCommand#execute()` will be evoked by `LogicManager` to creates an `EditAssignmentDescriptor`
+using the parsed inputs, `Quiz 1` for `AssignmentName`. A `ModuleName` is also created using the input `CS2100`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`Module#setAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
 
 Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
 
