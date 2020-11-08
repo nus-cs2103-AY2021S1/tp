@@ -1,8 +1,8 @@
 @startuml
 start
-:user executes search command: search keyword;
+:user executes search command: search info;
 :Logic executes search command;
-:SearchCommandParser parses the command: search keyword;
+:SearchCommandParser parses the command: search info;
 
     if () then ([fields to search for specified])
         if () then ([valid fields to search for specified])
