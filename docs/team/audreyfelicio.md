@@ -102,7 +102,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `update` feature. (Pull requests [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
     * Added implementation details of the `sort` feature. (Pull requests [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
-    * Added implementation details of the `suggestion` feature. (Pull requests [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
+    * Added implementation details of the `suggestion` feature. (Pull requests [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284), [\#344](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/344))
     * Added sequence and class diagrams for `Logic` API. (Pull request [\#221](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/221))
     * Added UML diagrams for `update` feature. (Pull requests [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
     * Added UML diagrams for `sort` feature (Pull requests [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
