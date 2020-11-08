@@ -7,15 +7,14 @@ import java.util.LinkedList;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 
+/*
+ * Code for InvalidationListenerList is adapted from addressbook-level4,
+ * which can be found at https://github.com/se-edu/addressbook-level4.
+ */
 /**
  * Contains a list of {@link InvalidationListener} objects. Added so that
  * storage functions are invoked only when necessary, which improves
  * performance while also allowing history to be updated.
- */
-
-/*
- * Code for InvalidationListenerList is adapted from addressbook-level4,
- * which can be found at https://github.com/se-edu/addressbook-level4.
  */
 public class InvalidationListenerList {
     private final LinkedList<InvalidationListener> listeners = new LinkedList<>();

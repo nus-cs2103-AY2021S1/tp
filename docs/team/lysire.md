@@ -41,6 +41,7 @@ Given below are my contributions to the project.
     it provides the user with a convenient way to rectify mistakes made with regard to command execution.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it 
     not only required changes to existing commands but changes to support handling of keyboard shortcuts.
+  * Credits: Code for the undo/redo command is adapted from addressbook-level4, which can be found at https://github.com/se-edu/addressbook-level4.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#search=lysire&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=zoom&zA=Lysire&zR=AY2021S1-CS2103-T16-3%2Ftp%5Bmaster%5D&zACS=370.3076923076923&zS=2020-08-14&zFS=lysire&zU=2020-11-06&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 

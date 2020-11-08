@@ -31,7 +31,7 @@ This Developer Guide specifies the architecture, design, implementation and use 
 It is intended for developers, software testers, open-source contributors and any like-minded students who wish to contribute this project or gain deeper insights about **ResiReg**.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note about sequence diagrams**: For all sequence diagrams, the lifeline should end at the end of the destroy marker (X), if there are any, but due to a limitation of PlantUML, the lifeline will reach the end of the diagram instead.
+:information_source: <b>Note about sequence diagrams</b>: For all sequence diagrams, the lifeline should end at the end of the destroy marker (X), if there are any, but due to a limitation of PlantUML, the lifeline will reach the end of the diagram instead.
 </div>
 
 ## Setting Up
@@ -311,8 +311,8 @@ current unmodified state to be saved in the `undoStatesStack` and `currState` to
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#saveStateResiReg()`, so 
-both `currState` and `undoStatesStack` will not be updated.
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> If a command fails its execution, it will not call <code>Model#saveStateResiReg()</code>, so 
+both <code>currState</code> and <code>undoStatesStack</code> will not be updated.
 
 </div>
 
@@ -322,8 +322,8 @@ which will add the current state `stateAfterAdd` to `redoStatesStack` and set `c
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `redoStatesStack` is empty, then there are no previous ResiReg states to restore. 
-The `undo` command uses `Model#canUndoResiReg()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> If the <code>redoStatesStack</code> is empty, then there are no previous ResiReg states to restore. 
+The <code>undo</code> command uses <code>Model#canUndoResiReg()</code> to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -332,14 +332,11 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
 The `redo` command does the opposite — it calls `Model#redoResiReg()`, which adds the current state to `undoStatesStack` and set `currState` to the last entry in
 `redoStatesStack`, the next ResiReg state, and restores the ResiReg to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If `redoStatesStack` is empty, then there are no undone ResiReg states to restore. The `redo` command uses `Model#canRedoResiReg()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> If <code>redoStatesStack</code> is empty, then there are no undone ResiReg states to restore. 
+The <code>redo</code> command uses <code>Model#canRedoResiReg()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
@@ -359,7 +356,7 @@ that is not `undo` or `redo`:
 ![SaveActivityDiagram](images/SaveActivityDiagram.png)
 
 Separately, the following activity diagram summarizes what happens when a user executes
-the `undo` command. (The activity diagram for redo is largely similar).
+the `undo` command. (The activity diagram for `redo` is largely similar).
 
 ![UndoActivityDiagram](images/UndoActivityDiagram.png)
 
@@ -887,8 +884,8 @@ Extensions
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> These instructions only provide a starting point for testers to work on;
+testers are expected to do more <i>exploratory</i> testing.
 
 </div>
 
