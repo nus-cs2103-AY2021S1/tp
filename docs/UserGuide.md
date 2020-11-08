@@ -298,7 +298,7 @@ the ingredient `Brown Sugar`.
 Figure x. A screenshot showing the outcome of an `i-find` command
 
 #### 2.6 Resetting all ingredients' levels to zero : `i-reset-all`
-Resets all types of ingredients' levels to zero in tCheck.
+Resets the ingredients' levels of all ingredient types to zero.
 
 Format: `i-reset-all`
 
