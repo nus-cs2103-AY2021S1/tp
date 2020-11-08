@@ -1189,4 +1189,4 @@ Eva generates a `data` directory to store databases and user preferences.
     1. Test case: `find Joe`<br>
        Expected: An error message as well as command usage shows up to inform the user of wrong command format.
 
-These test cases are not exhaustive and you can create more as you learn more about how the product works and is implemented. 
+These test cases are not exhaustive and you can create more as you learn more about how the product works and is implemented.
