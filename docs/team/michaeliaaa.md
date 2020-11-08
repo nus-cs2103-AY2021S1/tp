@@ -9,27 +9,50 @@ CliniCal is a desktop app that allows doctors to manage patient records and sche
 
 Given below are my contributions to the project.
 
-* **New Feature**: Add/delete appointment for existing patients
-  * What it does: Add and delete appointments.
-  * Justification: Allows user to add and delete appointments for existing patients.
-  * Highlights: The add appointment command is made simple to use as all you need to provide is the patient index, appointment's start date, time and duration. 
-  Based on the provided patient index, the command will retrieve the patient's name and IC. It will also generate the appointment's end date and time automatically based on the provided duration.
-  * Credits: NIL
+* **Morphing of AddressBook**:
+  * Refactor Person name to Patient. [\#51](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/51)
 
-* **New Feature**: Added a view command history and clear command history commands that allows the user to view and clear the command history.
-  * What it does: Show a list of previous commands.
-  * Justification: Allows user to recall their previous commands.
-  * Highlights: There is a shortcut which is even better and I am going to mention it below this feature.
+* **New Implementation**: Implemented Command History.
+  * What it does: Store used commands.
+  * Justification: Allows user to view their recently used commands.
+  * Highlights: This implementation is useful for users, developers and testers who might not be able to replicate the exact command used. Difficulty wise, it is pretty simple as it make use of stack ADT.
+  * Credits: 
+    * Referred to past-year students' works to figure out the best way to implement command history and wrote it myself afterward: [BillBoard](https://github.com/AY1920S1-CS2103T-F12-4/main/blob/master/src/main/java/seedu/billboard/model/history/CommandHistory.java)
+
+* **New Feature**: View recently used commands or command history
+  * What it does: Show a list of recently used commands.
+  * Justification: Allows user to view their recently used commands.
+  * Highlights: Implemented the navigation shortcut, as stated below.
   * Credits: NIL
   
 * **New Feature**: Added a navigation feature that allows the user to view and reuse previous commands using up/down arrow keys.
-  * What it does: View and reuse previous commands.
-  * Justification: Allows user to conveniently reuse commonly used previous commands and even check what they input wrongly previously.
-  * Highlights: Highly user-centric and is extremely convenient and common to use. A lot of my peers who tested our application really liked this feature.
-  * Credits: NIL  
+  * What it does: Display previous commands onto the command box for users to reuse.
+  * Justification: Allows user to conveniently reuse commonly used previous commands and even check what they input wrong previously.
+  * Highlights: Highly user-centric and is extremely convenient to use. A lot of my peers who tested our application really liked this feature and I use it a lot during testing and documentations. 
+  Requires understanding of JavaFX's KeyEvent and KeyCode.
+  * Credits: 
+    * The implementation of such feature is inspired by: [BillBoard](https://github.com/AY1920S1-CS2103T-F12-4/main/blob/master/)
+    * For understanding of KeyEvent and KeyCode:  [KeyEvent](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/input/KeyEvent.html), [KeyCode](https://docs.oracle.com/javafx/2/api/javafx/scene/input/KeyCode.html)
+
+* **New Feature**: Clear command history
+  * What it does: Clear the list of recently used commands.
+  * Justification: Allows user to clear the entire unwanted command history.
+  * Highlights: NIL
   
-* **Morphing of AddressBook**:
-  * Refactor Person name to Patient. [\#51](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/51)
+* **New Feature**: Add appointment for existing patients
+  * What it does: Add an appointment
+  * Justification: Allows user to add appointments for existing patients.
+  * Highlights: The add appointment command involves taking a snapshot of the patient's name and ic number from the provided patient index. 
+  This feature is fairly tedious to implement as I have to study the existing AB3 code, implement new methods in Model's API and linking it to the UniqueAppointmentList.
+  * Credits: 
+    * Adopted similar solution used in existing AB3 codebase: [https://github.com/se-edu/addressbook-level3](https://github.com/se-edu/addressbook-level3)
+
+* **New Feature**: Delete existing appointment
+  * What it does: Delete an appointment
+  * Justification: Allows user to deleting existing appointments.
+  * Highlights: The delete appointment command is easy to implement after add appointment feature is set up properly.
+  * Credits: Adopted similar solution used in existing AB3 codebase: [https://github.com/se-edu/addressbook-level3](https://github.com/se-edu/addressbook-level3)
+  * Credits: NIL
   
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=michaeliaaa)
 
@@ -39,13 +62,13 @@ Given below are my contributions to the project.
     * Did cosmetic tweaks to existing documentation: [\#177](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/177)
   * Developer Guide:
     * Added glossary. [\#38](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/38)
-    * Added implementation details and use cases of the `history`, `clearhistory` and `up down arrow keys` features. [\#100](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/100)
+    * Added implementation details, diagrams and use cases of the `history`, `clearhistory` and `up down arrow keys` features. [\#100](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/100)
     
 * **Project management**:
   * Setup tP Team Organisation and Repo Setup.
         
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#235](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/235)
+  * PRs reviewed (with non-trivial review comments): (examples: [\#235](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/235), [\#252](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/252))
   * Contributed to forum discussions (examples: [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/3), [147](https://github.com/nus-cs2103-AY2021S1/forum/issues/147))
   * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/Michaeliaaa/ped/issues)
 

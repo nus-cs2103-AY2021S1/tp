@@ -91,7 +91,7 @@ You can follow the steps below to get CliniCal up and running:
 
 CliniCal contains a Graphical User Interface (GUI) which serves to allow you to easily view upcoming appointments and also patient records.
 
-[**INSERT PICTURE ON FIRST STARTUP OF CLINICAL WITH ANNOTATIONS OF THE MAIN PARTS OF THE GUI (indicated below)**]
+![Main GUI Layout](images/mainLayout.png)
 
 The layout of the GUI is as follows:
 * Top Menu Bar
@@ -105,7 +105,7 @@ If you wish to start afresh, enter the `clear` command to clear all entries from
 
 ### 4.1 Overview Tab
 
-[**INSERT PICTURE ON FIRST STARTUP ON OVERVIEW TAB WITH ANNOTATIONS OF APPOINTMENT LIST, CALENDAR AND APPOINTMENT INDEX**]
+![Overview Tab Layout](images/overviewLayout.png)
 
 This would be the home page of CliniCal, where the appointment list would be on the left, and the calendar view on the right.
 
@@ -130,7 +130,7 @@ This would be the home page of CliniCal, where the appointment list would be on 
 
 ### 4.2 Patients Tab
 
-[**INSERT PICTURE OF SAMPLE DATA PATIENTS TAB WITH ANNOTATIONS OF PATIENT LIST AND PATIENT INDEX**]
+![Patient Tab Layout](images/patientLayout.png)
 
 This tab shows you the patient database and the details of each patient, together with a summary of each visit.
 
@@ -142,7 +142,7 @@ This tab shows you the patient database and the details of each patient, togethe
 
 ### 4.3 Profile Window
 
-[**INSERT PICTURE OF SAMPLE DATA OF BERNICE YU PATIENT PROFILE WITH ANNOTATIONS OF PATIENT PROFILE PICTURE, PERSONAL DETAILS PANE, VISITS PANEL AND VISITATION LOG INDEX**]
+![Profile Window Layout](images/profileLayout.png)
 
 This window shows you the individual patient profile picture and personal details in an easy to read manner.
 
@@ -556,7 +556,7 @@ Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 * `INDEX` refers to the patient's index number as shown in the displayed patient list in the **Patients** tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
 * `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment.
-    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/21/2020 23:59`.
+    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/12/2020 23:59`.
     * Note that you will need to input the hour (`HH`) in  the 24-hour format.
 
 * `DURATION` refers to the duration of the appointment, in minutes.
@@ -571,7 +571,7 @@ Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 
 Example: You want to add an appointment with the first patient on the list.
 
-**Step 1**: Input `addappt 6 st/29/12/2020 16:00 d/120` into the command box and press Enter.
+**Step 1**: Input `addappt 6 st/11/11/2020 15:00 d/120` into the command box and press Enter.
 
 **Step 2**: On the **Overview** tab, you can find your newly added appointment saved inside the appointment list.
 
@@ -601,13 +601,13 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_
 * `PATIENT_NAME` refers to the name of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab.
 * `PATIENT_IC` refers to the NRIC of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab. 
 * `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment. 
-    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/21/2020 23:59`.
+    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/12/2020 23:59`.
     * Note that you will need to input the hour (`HH`) in  the 24-hour format. 
 * `DURATION` refers to the duration of the appointment, in minutes.
 
 Example: You want to reschedule the first appointment in the appointment list.
 
-**Step 1**: Input `editappt 1 st/29/12/2020 17:00 d/120` into the command box and press Enter.
+**Step 1**: Input `editappt 6 st/13/11/2020 18:00 d/240` into the command box and press Enter.
 
 **Step 2**: On the **Overview** tab, you can find the newly updated appointment inside the appointment list. 
 
