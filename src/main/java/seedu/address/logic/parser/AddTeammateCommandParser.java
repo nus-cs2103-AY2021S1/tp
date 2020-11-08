@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_GIT_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
 
-import seedu.address.logic.commands.project.AddPersonCommand;
+import seedu.address.logic.commands.global.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;

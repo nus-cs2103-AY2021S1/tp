@@ -19,7 +19,7 @@ import seedu.address.logic.commands.global.ListPersonsCommand;
 import seedu.address.logic.commands.global.ListProjectsCommand;
 import seedu.address.logic.commands.global.StartPersonCommand;
 import seedu.address.logic.commands.global.StartProjectCommand;
-import seedu.address.logic.commands.project.AddPersonCommand;
+import seedu.address.logic.commands.global.AddPersonCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;

@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.project.AddPersonCommand;
+import seedu.address.logic.commands.global.AddPersonCommand;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_GIT_USERNAME;
