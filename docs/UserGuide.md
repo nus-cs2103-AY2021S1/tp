@@ -190,19 +190,16 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 
 * `FEE` defaults to $0.00 if not included.
 * `LAST_PAYMENT_DATE` defaults to today's date if not included.
-
 * The format of `CLASS_TIME` is as follows:
     * `DAY_OF_WEEK START_TIME-END_TIME`
-    * `DAY_OF_WEEK` is any number from 1 to 7, where 1 refers to Monday while 7 refers to Sunday.
-    * `START_TIME` and `END_TIME` follows the 24-hr clock format (e.g. 1pm refers to 1300).
-
+    * `DAY_OF_WEEK` is any integer from 1 to 7, where 1 refers to Monday while 7 refers to Sunday.
+    * `START_TIME` and `END_TIME` follows the 24-hr clock format (e.g. 1300 refers to 1pm).
 * The format of `LAST_PAYMENT_DATE` is as follows:
     * `d/m/yyyy or dd/mm/yyyy` (e.g. both 03/02/2020 and 3/2/2020 are acceptable).
-
 * The format of `YEAR` is as follows:
     * `TYPE_OF_SCHOOL LEVEL` (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
-    * `TYPE_OF_SCHOOL` can be primary(pri, p), secondary(sec, s) or jc.
-    * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
+    * `TYPE_OF_SCHOOL` accepts Primary (Pri/P), Secondary (Sec/S) or JC (J), and is case-insensitive.
+    * `LEVEL` has to be valid for the `TYPE_OF_SCHOOL` (i.e. Primary 1 - Primary 6, Secondary 1 - Secondary 5, JC 1 - JC 2)
 
 <div markdown="block" class="alert alert-info">
 
@@ -233,19 +230,15 @@ Format: `list`
 
 Edits an existing student in **Reeve**.
 
-Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] `
+Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/LAST_PAYMENT_DATE] `
 
 * Edits the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Start time has to be before end time.
+* The format of `CLASS_TIME`, `YEAR` and `LAST_PAYMENT_DATE` follows that as stated in [3.3.1 Adding a student](#331-adding-a-student-add-by-hogan).
 
 <div markdown="block" class="alert alert-info">
-
-:information_source: The format of TIME is {int: Day_of_week} {int: Start_time}-{int: End_time}<br>
-Day_of_week refers to an Integer value from 1 - 7, with 1, 3 and 7 representing Monday, Wednesday and Sunday respectively.<br>
-Start_time and End_time refer to time values in 24hr format (1200-1700)<br>
-E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.
 
 :information_source: If using this command after `find`, the edited student may no longer satisfy the search criteria depending on the field changed.
 In that case the student will be hidden from view and can be viewed again using `list` or `find`.<br>
@@ -270,11 +263,7 @@ Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 * For the school criteria, only students with a school that contains **all keywords** specified will be matched.
 * For the year criteria, only students with the **same year** will be matched. (See below for more elaboration for format of year)
 * Only students matching all criteria specified will be returned (i.e `AND` search).
-
-* The format of `YEAR` is as follows:
-    * `TYPE_OF_SCHOOL LEVEL` (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
-    * `TYPE_OF_SCHOOL` can be primary(pri, p), secondary(sec, s) or jc. 
-    * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
+* The format of `YEAR` follows that as stated in [3.3.1 Adding a student](#331-adding-a-student-add-by-hogan).
 
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
