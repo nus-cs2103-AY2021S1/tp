@@ -3,6 +3,13 @@ layout: page
 title: User Guide
 ---
 
+<div id="cover-page">
+  <div id="cover-page-title"><h1>ChopChop</h1></div>
+  <img id="cover-page-logo" src="images/logo.png"/>
+</div>
+
+
+
 * Table of Contents
 {:toc}
 
@@ -11,14 +18,14 @@ title: User Guide
 ---------------
 ## 1&ensp;Introduction
 
-ChopChop is a food recipe management system, which aims to make it easier for people to manage their recipes and ingredients in an easy and effective manner. It is a *desktop app*, optimised for use through typing textual commands; for fast typists, ChopChop will be able to manage your recipes more efficiently than other applications. Even so, it also features a graphical user interface (GUI) to display ingredients and recipes in an interactive manner.
+ChopChop is a food recipe management system, which aims to help users manage their recipes and ingredients in an easy and effective manner. It is a *desktop app*, optimised for use through typing textual commands; for fast typists, ChopChop will be able to manage your recipes more efficiently than other applications. Even so, it also features a graphical user interface (GUI) to display ingredients and recipes in an interactive manner.
 
 Furthermore, our command interface also features [tab completion](#TabCompletion), which will greatly increase the speed at which you can use ChopChop by reducing the amount of typing required.
 
 
 ### 1.1&ensp;Navigating this Document
 
-This user guide provides an in-depth guide about how to use ChopChop; simply choose a topic from the Table of Contents above to find answers or get step-by-step instructions. In addition, the quick start guide provides an end-to-end setup process to get you started on the ChopChop installation process.
+This user guide provides an in-depth guide about how to use ChopChop; simply choose a topic from the Table of Contents above to find answers or get step-by-step instructions. In addition, the [quick start guide](#QuickStart) provides an end-to-end setup process to help you get started with installing ChopChop.
 
 Specifically, this document covers:
 1. The components of the user interface
@@ -38,6 +45,7 @@ In this document, some elements are styled differently for emphasis. These inclu
 
 
 --------------
+<a name="QuickStart"></a>
 ## 2&ensp;Quick Start
 
 To start using and experimenting with ChopChop, here are the steps you can follow:
@@ -68,11 +76,13 @@ To exit ChopChop, you can either use the `quit` command, or simply close the app
 
 ChopChop manages two key components — ingredients and recipes — and they will be the main pieces you will interact with. Common to both are names and tags, the latter of which allow you to quickly group related ingredients or recipes together, or to organise them in any way you desire.
 
-The names for both ingredients and recipes are case insensitive, so <i>pAnCaKeS</i> and <i>Pancakes</i> refer to the same recipe. Note that you cannot have duplicate recipes nor ingredients in ChopChop; items are duplicates if their names are the same.
+Names and tags are both case insensitive, so <i>pAnCaKeS</i> and <i>Pancakes</i> refer to the same recipe. Note that you cannot have duplicate recipes nor ingredients in ChopChop; items are duplicates if their names are the same.
 
 ### 3.1&ensp;Recipes
-A recipe consists of a list of used ingredients (and their quantities), as well as a list of ordered steps in textual form.
+A recipe consists of a list of ingredients and associated quantities used, as well as a list of ordered steps in textual form.
 
+
+<a name="OverviewIngredients"></a>
 ### 3.2&ensp;Ingredients
 An ingredient consists of a quantity with an associated unit, and an optional expiry date. Each ingredient can have multiple *sets*, where each set is a given quantity of that ingredient, expiring on a certain date.
 
@@ -129,7 +139,7 @@ Figure 1.2: <i>The Recipe View Panel of ChopChop.</i>
 ChopChop does your bidding by listening to your commands — the `Command Box` is where you type your textual commands.
 After typing your commands, press <kbd>enter</kbd> to input the command. You can also use the <kbd>up</kbd> and <kbd>down</kbd> arrow keys to navigate through the history of commands you've typed previously.
 
-To learn about the commands you can perform, check out our [command summary](#CommandSummary) for a quick overview or our [commands](#Commands) for a detailed list.
+To learn about the commands you can use, check out our [command summary](#CommandSummary) for a quick overview or our [commands](#Commands) for a detailed list.
 If you have yet to check out ChopChop's [tab completion](#TabCompletion) section, do drop by to learn this handy feature!
 
 
@@ -249,18 +259,19 @@ Commands should be typed in the <i>Command Box</i> — you can refer to <i>Figur
 To succinctly represent the syntax of the various commands, we adopt a simple notation in this User Guide, as shown below:
 
 * Words starting with a slash (`/`) denote named parameters; these names are case sensitive (eg. `/STEP` is not the same as `/step`). All the text following a named parameter *belong* to it, until either the end of the input, or the next named parameter. <br />
-For example, in `/param1 lorem ipsum /param2 dolor sit amet`, the parameter <i>param1</i> will have the value &ldquo;<i>lorem ipsum</i>&rdquo;, while the parameter <i>param2</i> will have the value &ldquo;<i>dolor sit amet</i>&rdquo;.
+<b>Example:</b> in `/param1 lorem ipsum /param2 dolor sit amet`, the parameter <i>param1</i> will have the value &ldquo;<i>lorem ipsum</i>&rdquo;, while the parameter <i>param2</i> will have the value &ldquo;<i>dolor sit amet</i>&rdquo;.
 
 * Words in angle brackets (eg. `<name>`) denote an input that is provided by *you*, the user. <br />
-For example, the <i>add ingredient</i> command is specified like this: `add ingredient <name> /qty <quantity> [/expiry <expiry-date>]`; in this case, you would need to provide the <i>name</i>, <i>quantity</i>, and <i>expiry date</i>.
+<b>Example:</b> the <i>add ingredient</i> command is specified like this: `add ingredient <name> /qty <quantity> [/expiry <expiry-date>]`; in this case, you would need to provide the <i>name</i>, <i>quantity</i>, and <i>expiry date</i>.
 
 * Portions in square brackets (eg. `[/expiry <expiry-date>]`) denote optional parts of the command. In this example, not all ingredients will expire, so the expiry date is optional.
 
 * Portions with trailing ellipses (eg. `[/step <step>]...`) denote commands accepting one or more of the given parameter. In this example, a recipe can have multiple steps, so you can specify multiple `/step` arguments.
 
-* A `<#REF>` refers to an item reference, and is used to refer to either a recipe or an ingredient. It can either be the (case-insensitive) name of the item, or it can be a number prefixed with '#', eg. `#3` to refer to the third item in the list. In the GUI, displayed items are numbered in the corner.
+* A `<#REF>` refers to an item reference, and is used to refer to either a recipe or an ingredient. It can either be the (case-insensitive) name of the item, or it can be a number prefixed with '#'. <br/>
+<b>Example:</b> `#3` refers to the third item in the list, while `Best Pancakes` refers to the recipe named 'Best Pancakes'. In the GUI, you can see the number of an item in the corner of [Recipe Tiles](#RecipeTiles) and [Ingredient Tiles](#IngredientTiles).
 
-* In general, the order of arguments is important; for example, the order of `/step` determines the order of the steps in the recipe, while a `/qty` in an <i>add recipe</i> command must only appear after an `/ingredient`.
+* Generally, the order of arguments is important; for example, the order of `/step` determines the order of the steps in the recipe, while a `/qty` in an <i>add recipe</i> command must only appear after an `/ingredient`.
 
 
 #### 5.1.1&ensp;Escaping Slashes
@@ -330,7 +341,7 @@ How does it work? ChopChop uses the current text when completing and searches fo
 :information_source: **Note:** For tab completion to work, you must type at least one character before pressing <kdb>tab</kdb>. ChopChop cannot read your mind!
 </div>
 
-What if there are multiple items that share a prefix, for example <i>baking powder</i> and <i>baking soda</i> in the pancake recipe above? Worry not; pressing <kbd>tab</kbd> <i>repeatedly</i> will cycle through the available completions, and they are sorted lexicographically (length, followed by alphabetical order) — pressing <kbd>tab</kbd> after `/ingredient b` would give you <i>butter</i>, <i>baking powder</i>, and <i>baking soda</i>, in that order.
+What if there are multiple items that share a prefix, for example <i>baking powder</i> and <i>baking soda</i> in the pancake recipe above? Worry not; pressing <kbd>tab</kbd> <i>repeatedly</i> will cycle through the available completions, and they are sorted lexicographically (length, followed by alphabetical order) — pressing <kbd>tab</kbd> after `/ingredient b` would give you <i>butter</i>, <i>baking powder</i>, and <i>baking soda</i>, in that order, before giving you <i>butter</i> again.
 
 The same thing applies to commands; <code>f <kbd>tab</kbd></code> would cycle between `find` and `filter`.
 
@@ -359,16 +370,14 @@ Furthermore, you can also use this command to get help for specific commands. In
 **Usage**: `help [<command-name> [<command-target>]]`
 
 Examples:
-- `help` <br />
-  This shows the link to bring you to this User Guide, as shown in figure 2.1 below.
+- If you simply want a link to this page, you can use `help`:
 
   <div style="text-align: center; padding-bottom: 2em">
   <img src="images/ug/help_message_1.png" width="55%" /> <br />
   Figure 2.1: <i>The help message, with a link to this User Guide</i>
   </div>
 
-- `help add recipe` <br />
-  This gives a brief description of the command provided, as well as a link to its section.
+- If you want help for a specific command — for example, how to add recipes — you can use `help add recipe`, which will give you a link that brings you to that specific section:
 
   <div style="text-align: center; padding-bottom: 2em">
   <img src="images/ug/help_message_2.png" width="55%" /> <br />
@@ -390,29 +399,59 @@ This command quits ChopChop. You can rest assured that your data is automaticall
 
 <a name="UndoCommand"></a>
 #### 5.3.3&ensp;Undoing Commands — **`undo`**
-Undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop. You can check the <a href="#CommandSummary">command summary</a> for a quick list of which commands can be undone.
+This command undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop. You can check the <a href="#CommandSummary">command summary</a> for a quick list of which commands can be undone.
 
 **Usage**: `undo`
 
+The most common scenario to undo a command is when accidentally deleting something; for example, suppoes you wanted to delete the <i>Salted Water</i> recipe, but you accidentally deleted the <i>Scrambled Eggs</i> recipe instead:
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/undo_1.png" width="75%" /> <br />
+Figure 3.1: <i>Accidentally typing 'Scrambled Eggs' instead of 'Salted Water'</i>
+</div>
 
+Fear not, because fixing the mistake is a simple `undo` away:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/undo_2.png" width="75%" /> <br />
+Figure 3.2: <i>Simply use the `undo` command</i>
+</div>
+
+After pressing <kbd>enter</kbd>, notice that the <i>Scrambled Eggs</i> recipe is back:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/undo_3.png" width="75%" /> <br />
+Figure 3.3: <i>The scrambled eggs were saved</i>
+</div>
 
 
 
 <a name="RedoCommand"></a>
 #### 5.3.4&ensp;Redoing Commands — **`redo`**
-Redoes the last redoable command. All undoable commands (as described [above](#UndoCommand)) can be redone.
+This command redoes the last redoable command, effectively functioning as an undo for undo itself. All undoable commands (as described [above](#UndoCommand)) can be redone.
 
 **Usage**: `redo`
 
+For example, let's say that you changed your mind, and you didn't really want those scrambled eggs anyway; you can use `redo` to redo the deletion of that recipe:
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/redo_1.png" width="75%" /> <br />
+Figure 4.1: <i>The scrambled eggs will be deleted again</i>
+</div>
+
+After pressing <kbd>enter</kbd>, the scrambled eggs are now deleted:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/redo_2.png" width="75%" /> <br />
+Figure 4.2: <i>The scrambled eggs are now gone</i>
+</div>
 
 
 <a name="ListRecommendationCommand"></a>
 #### 5.3.5&ensp;Listing Recommendations — **`list`**`recommendations`
 
-This command allows you to switch to the recommendations pane, to view recipe recommendations. There are currently main types of recommendations that ChopChop will make:
+This command allows you to switch to the recommendations pane, to view recipe recommendations. There are currently two types of recommendations that ChopChop will make:
 
-1. Recipes that only use ingredients you have
+1. Recipes that only use ingredients you have in stock
 2. Recipes that use ingredients that are about to expire
 
 In the second case, only ingredients that expire within the next week will be taken into account.
@@ -423,14 +462,14 @@ In the second case, only ingredients that expire within the next week will be ta
 :bulb: **Tip:** For convenience, you can use either `list recommendations` or `list recommendation`.
 </div>
 
-In this example, ChopChop knows about some <i>Milk</i> that is about to expire within the next week:
+In this example, ChopChop knows about some <i>Milk</i> that is about to expire within the next week (say, for example, it is the 4th of November):
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/list_recommendations_1.png" width="40%" /> <br />
 Figure 3.1: <i>There's some milk expiring on the 9th of November</i>
 </div>
 
-So it highlights the Pancake recipe, which uses milk, while the rest of the recipes displayed all use ingredients that you have in stock:
+Then, in addition to showing recipes using in-stock ingredients, it also highlights the Pancake recipe, which uses milk:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/list_recommendations_2.png" width="75%" /> <br />
@@ -453,13 +492,13 @@ These commands allow you to add, delete, edit, view, and make recipes.
 
 <a name="ViewRecipeCommand"></a>
 #### 5.4.1&ensp;Viewing Recipes — **`view`**`recipe`
-This command opens the detailed recipe view, allowing you to see the steps, ingredients, and tags of the recipe.
+This command opens the detailed view for the given recipe, allowing you to see its steps, ingredients, and tags.
 
 **Usage**: `view recipe <#REF>`
 
 Examples:
 - `view recipe #4` <br />
-	This displays the fourth recipe currently shown in the GUI's recipe view.
+	This displays the fourth recipe currently shown in the recipe list.
 - `view recipe pancakes` <br />
 	This displays the recipe named 'pancakes'. Note that the name here is case insensitive.
 
@@ -504,7 +543,7 @@ Figure 5: <i>The recipe list view</i>
 
 <a name="AddRecipeCommand"></a>
 #### 5.4.3&ensp;Adding Recipes — **`add`**`recipe` (Zhia Yang)
-This command adds a recipe to ChopChop, specifying zero or more ingredients, each with an optional quantity, and zero or more steps. After a recipe is added, you will be able to see it immediately in the application.
+This command adds a recipe to ChopChop, and you can specify zero or more ingredients, each with an optional quantity, and zero or more steps. After a recipe is added, you will be able to see it immediately.
 
 **Usage**:
 ```
@@ -515,14 +554,15 @@ add recipe <name>
 ```
 
 Constraints:
-- Recipe name should not be empty
-- Ingredient names should not be empty
-- Steps should not be empty
-- Tag names should not be empty
+- Recipe name must not be empty
+- Ingredient names must not be empty
+- Steps must not be empty
+- Tag names must not be empty
 - Quantities (`/qty`) must only appear after an `/ingredient`
 
 If an ingredient is specified without a quantity, it is treated *as if* you used `/qty 1`. This works for counted ingredients (eg. eggs), but it will cause errors for other ingredients (eg. volume of milk).
 
+If the ingredient does not <i>currently</i> exist in ChopChop, it is still okay to add a recipe using it (you might add it later). Recipes are only checked for correctness when you try to [`make`](#MakeRecipeCommand) them.
 
 For example, suppose you wanted to add a recipe for pancakes using flour, eggs, and milk, you would type this:
 ```
@@ -568,7 +608,7 @@ Figure 6.3: <i>The newly created recipe in the recipe list</i>
 <a name="EditRecipeCommand"></a>
 #### 5.4.4&ensp;Editing Recipes — **`edit`**`recipe` (Alex)
 
-This command edits a specific recipe in ChopChop. The `edit recipe` lets you perform different actions on the name, ingredients, steps, and tags, as specified below.
+This command edits a specific recipe in ChopChop, letting you perform different actions on the name, ingredients, steps, and tags, as specified below.
 
 To accommodate the various different kinds of editing operations, ChopChop has special syntax for editing, known as *edit-arguments*, eg. `/step:add`. The component following the colon is the *ACTION*, which can take these values:
 
@@ -578,19 +618,19 @@ To accommodate the various different kinds of editing operations, ChopChop has s
 
 
 <h4>Name</h4>
-If you want to edit a recipe's name, use `/name`, for example `/name new recipe name`.
+If you want to edit a recipe's name, simply use `/name`, for example `/name new recipe name`.
 
 
 <h4>Ingredients</h4>
 If you want to edit a recipe's ingredients, use `/ingredient` with the corresponding action (eg. `/ingredient:add`).
 
-When adding or editing ingredients, a `/qty` *must* be specified after the ingredient (similar to an `add recipe` command). Here are some examples:
+When adding or editing ingredients, a `/qty` *must* be specified after the ingredient. Here are some examples:
 
 - `/ingredient:add milk /qty 500ml` <br />
   This makes the recipe require 500ml of milk; if the recipe already used milk, then an error is displayed — here, you should use `/ingredient:edit` instead.
 
 - `/ingredient:edit beef /qty 200g` <br />
-  This changes the quantity of beef used in the recipe from its previous value, to 200 grams. If the recipe did not use beef as an ingredient, an error is displayed — here, you should use `/ingredient:add` instead.
+  This changes the quantity of beef used in the recipe from its previous value to 200 grams. If the recipe did not use beef as an ingredient, an error is displayed — here, you should use `/ingredient:add` instead.
 
 - `/ingredient:delete carrot` <br />
   This removes carrots from the recipe entirely. If the recipe did not use carrots, then an error is displayed.
@@ -608,17 +648,17 @@ If you want to edit the tags for a recipe, use `/tag` with the corresponding act
 
 
 <h4>Steps</h4>
-Since steps have a fixed ordering in a recipe, editing them is slightly more involved; when editing or deleting steps, you are required to provide the step number as an additional component in the *edit-argument*, for example `/step:edit:3` edits the third step in the recipe.
+Since steps have a fixed ordering in a recipe, editing them is slightly more involved; when editing or deleting steps, you are required to provide the step number as an additional component in the *edit-argument*. For example, `/step:edit:3` edits the third step in the recipe.
 
-When adding a step, the step number is optional; if not specified, the new step will be added at the end. If it is specified, then the new step will be inserted at the corresponding position, and the following steps will be re-numbered.
+When adding a step, the step number is optional; if not specified, the new step will be added as the last step. If it is specified, then the new step will be inserted at the corresponding position, and the following steps will be re-numbered.
 
 For example:
 
 - `/step:add Bake for 80 minutes at 400 C` <br />
-  This adds a new step at the end of the existing steps of the recipe.
+  This adds a new step as the last step of the recipe.
 
 - `/step:edit:4 Bake for 50 minutes at 250 C` <br />
-  This changes the content of step number 4, so the cake does not get burnt.
+  This changes the content of step number 4.
 
 - `/step:delete:1` <br />
   This deletes the first step of the recipe.
@@ -643,7 +683,7 @@ edit recipe <#REF>
 
 Examples:
 - `edit recipe #4 /name soup` <br/>
-	This changes the name of the fourth recipe currently shown in the GUI's view to 'soup'.
+	This changes the name of the fourth recipe in the recipe list to 'soup'.
 
 - `edit recipe pancakes /ingredient:add syrup /qty 500ml` <br/>
 	This edits the recipe named 'pancakes' by adding 500ml of syrup to its ingredient list.
@@ -654,7 +694,7 @@ Examples:
 - `edit recipe beef curry /ingredient:delete apple /step:delete:4` <br/>
   This edits the recipe named 'beef curry' to remove both the ingredient 'apple' as well as the 4th step.
 
-To illustrate how to use this powerful command, let us recreate the Pancake recipe from above, but starting from a blank recipe. First, we make the empty recipe using `add recipe Pancakes`:
+To illustrate how to use this powerful command, let us recreate the Pancake recipe from above, starting from a blank recipe instead. First, we make the empty recipe using `add recipe Pancakes`:
 
 <!-- to editors: don't mind the image names, i cut out some steps for brevity and i'm lazy to rename the files. -->
 <div style="text-align: center; padding-bottom: 2em">
@@ -739,15 +779,15 @@ This command deletes a specific recipe from ChopChop. Don't worry if you did thi
 
 Examples:
 - `delete recipe #4` <br />
-	This deletes the fourth recipe currently shown in the GUI's view.
+	This deletes the fourth recipe in the recipe list.
 - `delete recipe pancakes` <br />
 	This deletes the recipe named 'pancakes'. Note that the name here is case insensitive.
 
-In this example, `delete recipe #7` will delete the **Pancakes** recipe:
+In this example, both `delete recipe #7` and `delete recipe pancakes` will delete the **Pancakes** recipe:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_recipe_1.png" width="75%" /> <br />
-Figure 8: <i>The initial list of ingredients</i>
+Figure 8: <i>The pancakes recipe can be referred to either by name or by number</i>
 </div>
 
 
@@ -764,7 +804,7 @@ This command finds all recipes containing the given keywords in the name.
 Constraints:
 - At least one search keyword must be given
 
-Only the recipe name is searched, and only full words are matched, case-insensitively. In the case of multiple search keywords, recipes containing any of those words will be returned.
+Only the recipe name is searched, and only full words are matched, case-insensitively. In the case of multiple search keywords, recipes containing <b>any</b> of those words will be returned.
 
 Examples:
 - `find recipe cake` will match **Chocolate Cake** and **Strawberry Cake**, but *not* **Pancakes**.
@@ -776,7 +816,7 @@ To illustrate, suppose you want to search for recipes with names containing 'cak
 Figure 9.1: <i>The initial list of recipes</i>
 </div>
 
-After executing the command, note how the recipe list has changed, showing only the matching recipes, and that item number in the corners have changed as well. As explained above, the 'Pancakes' recipe was not included in this list:
+After executing the command, note how the recipe list has changed, showing only the matching recipes, and that the item numbers in the corners have changed as well. As explained above, the 'Pancakes' recipe was not included in this list:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_2.png" width="75%" /> <br />
@@ -800,7 +840,7 @@ Figure 9.3: <i>Back to the main recipe list</i>
 <a name="FilterRecipeCommand"></a>
 #### 5.4.7&ensp;Filtering Recipes — **`filter`**`recipe` (Jialei)
 
-This command filters all recipes and lists those containing all given name, tag and ingredient keywords.
+This command filters all recipes and lists those containing the given name, tag and ingredient keywords. Unlike the [`find recipe`](#FindRecipeCommand) command, the search terms here have to <b>all</b> match a recipe for it to be found.
 
 **Usage**:
 ```
@@ -821,16 +861,16 @@ Constraints:
 
 Examples:
 - `filter recipe /name ginger`<br />
-  This matches **Gingerbread Man** and **Ginger Chicken Soup**, the only recipes which names include **ginger**.
-  
+  This matches **Gingerbread Man** and **Ginger Chicken Soup**, the only recipes whose names include **ginger**.
+
 - `filter recipe /name sweet /name cake`<br />
-  This matches **Sweet Choco Cake** and **Sweet Caramel Cake**, the only recipes which names include both **sweet** and **cake**.
-  
+  This matches **Sweet Choco Cake** and **Sweet Caramel Cake**, the only recipes whose names include <i>both</i> **sweet** and **cake**.
+
 - `filter recipe /tag family reunion`<br />
-  This matches **Spring Rolls** and **Hot Pot**, the only recipes with 'tag' **family reunion**.
+  This matches **Spring Rolls** and **Hot Pot**, the only recipes tagged **family reunion**.
 
 - `filter recipe /tag snacks /tag sweet` <br />
-  This matches **Chocolate Cookie** and **Gummy Bears**, the only recipes with both 'tag' **snacks** and 'tag' **sweet**.
+  This matches **Chocolate Cookie** and **Gummy Bears**, the only recipes tagged <i>both</i> **snacks** and **sweet**.
 
 - `filter recipe /ingredient eggs` <br />
   This matches **Egg Tart** and **Scrambled Eggs**, assuming they are the only recipes using **eggs**.
@@ -849,7 +889,7 @@ To illustrate, suppose you had the following two recipes:
   Figure 10.1: <i>The starting recipes</i>
 </div>
 
-Then, you wanted to search for recipes with tags **christmas** and **baked**, using ingredients **honey**, **ginger root**, and **molasses**, and whose names contain keywords **ginger** and **bread** — you would use this command (separated into lines for clarity):
+Then, if you wanted to search for recipes with tags **christmas** and **baked**, using ingredients **honey**, **ginger root**, and **molasses**, and whose names contain keywords **men** and **bread**, you would use this command (separated into lines for clarity):
 ```
 filter recipe
   /name men /name bread
@@ -864,7 +904,12 @@ After executing the command, similar to the effect of [`find recipe`](#FindRecip
 Figure 10.2: <i>Only one recipe matched all the provided criteria</i>
 </div>
 
-Note how the search term `ginger` matched the ingredient `ginger root`, the search term `baked` matched the tag `home baked`, and search terms `men` and `bread` matched the name`Gingerbread Men`. Again, to reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
+Note the following:
+- `ginger` found the ingredient <b>ginger root</b>
+- `baked` found the tag <b>home baked</b>
+- `men` and `bread` found the name <b>Gingerbread Men</b>
+
+To reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
 
 
 
@@ -903,7 +948,7 @@ If there are ingredients that are missing, or that you have insufficient amounts
 Figure 11.3: <i>Insufficient ingredients to make the pancakes</i>
 </div>
 
-
+Furthermore, if the recipe used ingredients having incompatible units with existing ingredients (eg. you have Butter in grams, but the recipe wants Butter in tablespoons), then an error is also shown. In this situation, you should [edit the recipe](#EditRecipeCommand) so that it uses the correct units.
 
 
 
@@ -949,10 +994,10 @@ Figure 12: <i>The ingredient list view</i>
 <a name="AddIngredientCommand"></a>
 #### 5.5.2&ensp;Adding Ingredients — **`add`**`ingredient` (Zhia Yang)
 This command adds an ingredient to ChopChop, with an optional quantity and expiry date:
-- If the quantity is not specified, ChopChop will infer a counted quantity, like eggs.
+- If the quantity is not specified, ChopChop will infer <b>1</b> of a counted quantity, like eggs.
 - If the expiry date is not specified, it is assumed that the ingredient (eg. salt) does not expire.
 
-As mentioned in the overview above, an ingredient can consist of multiple sets; the `add ingredient` command will intelligently *combine* ingredients as appropriate.
+As mentioned in the [overview above](#OverviewIngredients), an ingredient can consist of multiple sets; the `add ingredient` command will intelligently *combine* ingredients as appropriate.
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note:** Ingredients need to have compatible units in order to be combined; see [this section](#QuantitiesAndUnits) for how it works.
@@ -970,7 +1015,7 @@ add ingredient <name>
 
 Examples:
 - `add ingredient milk /qty 1l /expiry 2020-11-09` adds one litre of milk that expires on the 9th of November.
-- `add ingredient egg /expiry 2020-12-25` adds one egg that expires on Christmas day.
+- `add ingredient egg /expiry 2020-12-25` adds <b>one</b> egg that expires on Christmas day.
 
 Suppose you just finished a grocery run, and want to add the items to ChopChop. First, you have 2 cartons of milk:
 
@@ -1029,7 +1074,7 @@ If `/qty` is not specified, then the behaviour of this command is to completely 
 
 Examples:
 - `delete ingredient #4` <br />
-	This deletes the fourth ingredient currently shown in the GUI's view.
+	This deletes the fourth ingredient currently shown in the recipe list.
 - `delete ingredient milk /qty 500ml` <br />
 	This removes 500ml of milk from ChopChop's inventory.
 
@@ -1058,7 +1103,7 @@ Figure 14.2: <i>You now only have 1.65 litres of milk left</i>
 
 <a name="FindIngredientCommand"></a>
 #### 5.5.4&ensp;Finding Ingredients — **`find`**`ingredient`
-This command finds all ingredients containing the given keywords in the name, and it works identically to the `find recipe` command [above](#FindRecipeCommand).
+This command finds all ingredients containing the given keywords in the name, and it works identically to the [`find recipe`](#FindRecipeCommand) command above.
 
 Constraints:
 - At least one search keyword must be given
@@ -1079,7 +1124,7 @@ Now, only the matching ingredients are shown:
 Figure 15.2: <i>Only ingredients containing 'fish' in their name are shown</i>
 </div>
 
-Again, you can either click the Ingredients button, or use `list ingredients` to clear the search filter.
+To clear the search filter, you can either click the Ingredients button, or use `list ingredients` to return to the list of ingredients.
 
 
 
@@ -1091,20 +1136,19 @@ Again, you can either click the Ingredients button, or use `list ingredients` to
 <a name="FilterIngredientCommand"></a>
 #### 5.5.5&ensp;Filtering Ingredients — **`filter`**`ingredient` (Jialei)
 
-This command filters all ingredients and lists those that match all the name keywords, tags and expiry dates specified in the command.
+This command filters all ingredients and lists those matching the name keywords, tags, and expiry dates specified in the command. Except for the changes in the search fields, this feature works identically to the [`filter recipe`](#FilterRecipeCommand) command above. Notably, <b>all</b> the search terms have to match an ingredient before it is found.
 
 **Usage**:
 ```
 filter ingredient
   [/name <name-keywords>...]...
-  [/expiry <expiry-date>]
   [/tag <tag-keywords>...]...
+  [/expiry <expiry-date>]
 ```
 
-- Keywords following `/tag` and `/name` do not have to be complete to match the 'tag' or the ingredient's 'name'.
+- Keywords following `/tag` and `/name` do not have to be complete to match the tag or the ingredient's name.
 - `/expiry <expiry-date>` filters the ingredients and only lists those that expire before the date provided.
 - When there are multiple expiry dates specified, only the earliest one will be considered.
-- Except for the changes in the search fields, this feature works identically to the [`filter recipe`](#FilterRecipeCommand) command above.
 
 Constraints:
 - At least one search term must be given, and they should be either `/name`, `/expiry` or `/tag`.
@@ -1113,15 +1157,15 @@ Constraints:
 Examples:
 - `filter ingredient /name dark chocolate` <br />
   This matches **dark chocolate** and **dark chocolate syrup**, assuming they are the only ingredients whose names contain **dark chocolate**.
-  
-- `filter ingredient /name dark chocolate /syrup` <br />
+
+- `filter ingredient /name dark chocolate /name syrup` <br />
   This matches **dark chocolate syrup**, assuming it is the only ingredient whose name contains both **dark chocolate** and **syrup**.
 
 - `filter ingredient /tag bitter taste` <br />
   This matches **bitter melon** and **dark chocolate**, assuming they are the only ingredients tagged with **bitter taste**.
 
 - `filter ingredient /tag frequently used /tag sweet` <br />
-  This matches **sugar**, if it is the only ingredient tagged both **frequently used** and **sweet**.
+  This matches **sugar**, if it is the only ingredient tagged <i>both</i> **frequently used** and **sweet**.
 
 - `filter ingredient /expiry 2020-12-01 /expiry 2020-10-31 /expiry 2023-01-01` <br />
   This matches **apple**, if it is the only ingredient expiring before **2020-10-31**. Note that only the earliest date is considered here (in this case, 31st October 2020), and the rest are ignored.
@@ -1145,7 +1189,7 @@ Figure 16.2: <i>The ingredients matching all the provided criteria</i>
 
 Note that **Honey**, which was also tagged **bakery** and **sweet** and would expire before **2021-12-31**, was not included because its name does not contain **sugar**.
 
-Again, to reset the search filter or go back to the full ingredient view, you can click the Ingredients button or run the `list ingredients` command.
+To reset the search filter or go back to the full ingredient view, you can click the Ingredients button or run the `list ingredients` command.
 
 
 
@@ -1155,7 +1199,7 @@ Again, to reset the search filter or go back to the full ingredient view, you ca
 
 This command edits the given ingredient, in a similar fashion to the [`edit recipe`](#EditRecipeCommand) command. However, currently its functionality is limited to only editing the tags of an ingredient (more features coming soon!).
 
-Again, do refer to the documention on the [`edit recipe`](#EditRecipeCommand) above to find out how edit-descriptors work; this command currently only supports `/tag:add` and `/tag:delete`.
+Do refer to the documention on the [`edit recipe`](#EditRecipeCommand) command above to find out how edit-descriptors work; this command currently only supports `/tag:add` and `/tag:delete`.
 
 It is an error to delete a tag from an ingredient that did not contain that tag, and similarly to add a duplicate tag to an ingredient.
 
@@ -1167,7 +1211,7 @@ edit ingredient <#REF>
 
 Examples:
 - `edit ingredient #4 /tag:add frozen` <br/>
-  This tags the fourth ingredient currently shown in the GUI's view with **frozen**.
+  This tags the fourth ingredient currently shown in the ingerdient list with **frozen**.
 
 - `edit ingredient sprinkles /tag:delete fridge` <br/>
   This removes the tag **fridge** from the ingredient named 'sprinkles'.
@@ -1189,9 +1233,7 @@ Examples:
 
 ### 5.6&ensp;Statistics Commands (Travis)
 
-Whenever you make a recipe or consume an ingredient, ChopChop saves a record of the usage. You can view these records with the commands below.
-
-The output of these statistics commands are shown in the [statistics box](#StatisticsBox) on the right side of ChopChop's interface.
+Whenever you make a recipe or consume an ingredient, ChopChop makes a record, which you can view with the commands below. The output of these statistics commands are shown in the [statistics box](#StatisticsBox) on the right side of ChopChop's interface.
 
 
 <a name="StatsRecipeTopCommand"></a>
@@ -1199,7 +1241,7 @@ The output of these statistics commands are shown in the [statistics box](#Stati
 
 This command shows a list of recipes that were made the most, in descending order (the recipe listed first was made the most number of times).
 
-Note that, even if a recipe was deleted (with `delete recipe`), its cooking records will still exist in ChopChop. To remove these statistics, you can use `stats recipe clear` to clear them for all recipes.
+Note that, even if a recipe was deleted (with [`delete recipe`](#DeleteRecipeCommand)), its cooking records will still exist in ChopChop. To remove these statistics, you can use [`stats recipe clear`](#StatsRecipeClearCommand) to clear them for all recipes.
 
 **Usage**: `stats recipe top`
 
@@ -1214,7 +1256,7 @@ Figure 17: <i>No pancakes were sacrificed for this picture</i>
 <a name="StatsRecipeRecentCommand"></a>
 #### 5.6.2&ensp;Listing Recent Recipes — **`stats`**`recipe recent`
 
-This command shows a list of the 10 recently made recipes, with the most recent one at the top of the list. As with the other statistics commands, deleting a recipe from ChopChop does not delete it from this list.
+This command shows a list of the 10 most recently-made recipes, with the most recent one at the top of the list. As with the other statistics commands, deleting a recipe from ChopChop does not delete it from this list.
 
 Note that this is also the view that is displayed by default when no statistics commands have been used yet.
 
@@ -1286,9 +1328,16 @@ This command clears the history of the recipes that you've made from ChopChop. I
 <a name="StatsIngredientRecentCommand"></a>
 #### 5.6.5&ensp;Listing Recent Ingredients — **`stats`**`ingredient recent`
 
-This command shows a list of the 10 most recently-used ingredients consumed by `make`-ing recipes. The output format is identical to that of [`stats recipe recent`](#StatsRecipeRecentCommand) as discussed above, so it will be omitted for brevity.
+This command shows a list of the 10 most recently-used ingredients consumed by [`make`](#MakeRecipeCommand)-ing recipes. It is similar to the [`stats recipe recent`](#StatsRecipeRecentCommand) command as discussed above, except it deals with ingredients.
 
 **Usage**: `stats ingredient recent`
+
+For example, after having just made <i>Scrambled Eggs</i>, these will be the recently-used ingredients:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/stats_ingredient_recent.png" width="45%" /> <br />
+Figure 21: <i>The recently used ingredients view</i>
+</div>
 
 
 
@@ -1607,9 +1656,52 @@ Quantities without a unit are assumed to be dimensionless 'counts'; for example,
 
 As mentioned above, ChopChop will combine ingredients when you `add` them, provided they have compatible units. Combining works as you would expect, and is rather flexible; adding `3 cups` of milk to an existing stock of `400ml` will yield `1.15l`.
 
-However, you cannot, for example, add `300g` of blueberries to `4` blueberries, as grams and counts are incompatible units.
+However you cannot, for example, add `300g` of blueberries to `4` blueberries, as grams and counts are incompatible units.
 
 
 
 
+
+
+
+--------------------------
+<a name="FAQ"></a>
+## 7&ensp;Frequently Asked Questions
+
+Here are some frequently asked questions about ChopChop:
+
+<b>Q:</b> How do I save my changes? <br/>
+<b>A:</b> ChopChop saves your changes automatically whenever a change is made, so you do not need to worry about doing it manually.
+
+<b>Q:</b> How do I transfer my data to another computer? <br/>
+<b>A:</b> Simply copy the folder named `data` that you will find next to `chopchop.jar` to the new computer, and all your recipes and ingredients will be copied over as well.
+
+<b>Q:</b> How can I rename an ingredient? <br/>
+<b>A:</b> Currently, ingredients cannot be renamed.
+
+<b>Q:</b> Why is ChopChop telling me that there are incompatible ingredients? <br/>
+<b>A:</b> Due to the way quantities are handled, recipes need to use the same <i>kind</i> of unit as the ingredient you have in storage. For example, if <b>Butter</b> was recorded as <i>mass</i> (in grams), you can only refer to it in recipes using grams/milligrams/kilograms, but not <i>volumes</i> (tablespoons/cups, etc.).
+
+<b>Q:</b> How can I use a unit like `oz`? <br/>
+<b>A:</b> Currently custom units are not supported in ChopChop, though they are coming in a future version! We only support metric units for now.
+
+
+
+
+
+--------------------------
+<a name="Glossary"></a>
+## 8&ensp;Glossary
+
+Here are some terms you might be unfamiliar with in this document, and their associated meanings:
+
+| Word/Phrase     | Meaning                                                                                                               |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------|
+| Case Insensitive| Capitalisation is not considered, eg. `aAaAaAaA` and `aaaaaaaa` are the same when comparing case insensitively        |
+| Command         | A series of text you type into the [Command Box](#CommandBox) in order to perform an action in ChopChop               |
+| GUI             | A <i>graphical user interface</i>, which is the visual display that you see in ChopChop                               |
+| Index           | A number that you can use to refer to an ingredient or recipe in a command; it appears in the top left corner of items|
+| Ingredient      | A food item (eg. salt, butter) that you keep in stock; needed to make recipes                                         |
+| Recipe          | A dish that can be made using some ingredients; has a list steps to make it, and a list of ingredients used           |
+| Tag             | A word or short phrase (eg. `sweet`, `simple recipe`) that you can attach to ingredients and recipes to identify them |
 
