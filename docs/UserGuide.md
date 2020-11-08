@@ -359,11 +359,11 @@ Contributed by: Olivia, Jia Qi, Tian Yong, Caitlin
 Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] 
 [instr/INSTRUCTION[. MORE INSTRUCTIONS]] [t/TAG]...`
 
+<div style="page-break-after: always;"></div>
+
 * Edits the recipe at the specified `INDEX`.
 * The index refers to the index number shown in the recent displayed Recipe List.
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
-
-<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
