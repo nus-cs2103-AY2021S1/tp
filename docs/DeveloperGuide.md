@@ -1110,8 +1110,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3b1. Modduke shows an error message.
 
     Use case resumes at step 2.
-
-
+    
 **UC04: View Contacts**
 
 **MSS**
@@ -1120,12 +1119,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Modduke shows a list of contacts
 
  Use case ends.
-
+ 
 **Extensions**
 
 * 2a. The list is empty.
 
     Use case ends.
+ 
+**UC0X: Find Contacts**
+
+Same as View Contacts Use Case except only contacts that match the given parameters are listed.
 
 **UC05: Tag a Contact**
 
@@ -1135,6 +1138,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Modduke shows a list of contacts
 3.  User requests to tag a specific contact in the list
 4.  Modduke tags the contact
+
+ Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given name is invalid.
+
+  * 3a1. Modduke shows an error message.
+
+    Use case resumes at step 2.
+
+* 3b. No tags are provided.
+
+  * 3b1. Modduke shows an error message.
+
+    Use case resumes at step 2.
+    
+**UC0X: Delete Tags of a Contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Modduke shows a list of contacts
+3.  User requests to delete tags of a specific contact in the list
+4.  Modduke deletes the specified tags of the contact
 
  Use case ends.
 
@@ -1327,6 +1359,29 @@ Use case same as UC09: Delete Meeting
     Use case ends
 
 * 1b. Consult with the same name already exists.
+
+  * 1b1. Modduke shows an error message.
+
+    Use case ends.
+    
+**UC11: Copy Contact Information**
+
+**MSS**
+
+1.  User makes request to copy information of contacts matching the given parameters
+2.  Modduke accepts request and copies information of contacts to the user's system clipboard
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. No contact matches the given parameters.
+
+  * 1a1. Modduke shows an error message.
+
+    Use case ends
+
+* 1b. No parameters are given.
 
   * 1b1. Modduke shows an error message.
 
