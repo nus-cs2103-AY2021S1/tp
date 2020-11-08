@@ -265,9 +265,12 @@ __Result:__ Updated corresponding finance record.
 
 ### 5.2. Finance Commands
 
-NUStorage supports the storage and manipulation of finance records. The following sections detail the commands related to finance storage, given in alphabetical order.
+NUStorage supports the storage and manipulation of finance records. 
+The following sections detail the commands related to finance storage in alphabetical order.
 
-Commands in this section are best executed when you are in the finance tab. If you don not know how to switch to the finance tab, please refer to the [switch between tabs](#534-switch-tabs-switch) section for more information.
+Commands in this section are best executed when you are in the finance tab. 
+If you do not know how to switch to the finance tab, please refer to the [switch between tabs](#534-switch-tabs-switch) 
+section for more information.
 
 **NOTE:** that some of these commands only work for [stand-alone finance records](#8-glossary-and-terms) (i.e. finance records that are not attached to any inventory records).
 
