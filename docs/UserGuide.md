@@ -81,6 +81,8 @@ Names and tags are both case insensitive, so <i>pAnCaKeS</i> and <i>Pancakes</i>
 ### 3.1&ensp;Recipes
 A recipe consists of a list of ingredients and associated quantities used, as well as a list of ordered steps in textual form.
 
+
+<a name="OverviewIngredients"></a>
 ### 3.2&ensp;Ingredients
 An ingredient consists of a quantity with an associated unit, and an optional expiry date. Each ingredient can have multiple *sets*, where each set is a given quantity of that ingredient, expiring on a certain date.
 
@@ -877,7 +879,7 @@ Note the following:
 - `baked` found the tag <b>home baked</b>
 - `men` and `bread` found the name <b>Gingerbread Men</b>
 
-Again, to reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
+To reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
 
 
 
@@ -962,10 +964,10 @@ Figure 12: <i>The ingredient list view</i>
 <a name="AddIngredientCommand"></a>
 #### 5.5.2&ensp;Adding Ingredients — **`add`**`ingredient` (Zhia Yang)
 This command adds an ingredient to ChopChop, with an optional quantity and expiry date:
-- If the quantity is not specified, ChopChop will infer a counted quantity, like eggs.
+- If the quantity is not specified, ChopChop will infer <b>1</b> of a counted quantity, like eggs.
 - If the expiry date is not specified, it is assumed that the ingredient (eg. salt) does not expire.
 
-As mentioned in the overview above, an ingredient can consist of multiple sets; the `add ingredient` command will intelligently *combine* ingredients as appropriate.
+As mentioned in the [overview above](#OverviewIngredients), an ingredient can consist of multiple sets; the `add ingredient` command will intelligently *combine* ingredients as appropriate.
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note:** Ingredients need to have compatible units in order to be combined; see [this section](#QuantitiesAndUnits) for how it works.
@@ -983,7 +985,7 @@ add ingredient <name>
 
 Examples:
 - `add ingredient milk /qty 1l /expiry 2020-11-09` adds one litre of milk that expires on the 9th of November.
-- `add ingredient egg /expiry 2020-12-25` adds one egg that expires on Christmas day.
+- `add ingredient egg /expiry 2020-12-25` adds <b>one</b> egg that expires on Christmas day.
 
 Suppose you just finished a grocery run, and want to add the items to ChopChop. First, you have 2 cartons of milk:
 
@@ -1071,7 +1073,7 @@ Figure 14.2: <i>You now only have 1.65 litres of milk left</i>
 
 <a name="FindIngredientCommand"></a>
 #### 5.5.4&ensp;Finding Ingredients — **`find`**`ingredient`
-This command finds all ingredients containing the given keywords in the name, and it works identically to the `find recipe` command [above](#FindRecipeCommand).
+This command finds all ingredients containing the given keywords in the name, and it works identically to the [`find recipe`](#FindRecipeCommand) command above.
 
 Constraints:
 - At least one search keyword must be given
@@ -1092,7 +1094,7 @@ Now, only the matching ingredients are shown:
 Figure 15.2: <i>Only ingredients containing 'fish' in their name are shown</i>
 </div>
 
-Again, you can either click the Ingredients button, or use `list ingredients` to clear the search filter.
+To clear the search filter, you can either click the Ingredients button, or use `list ingredients` to return to the list of ingredients.
 
 
 
@@ -1104,20 +1106,19 @@ Again, you can either click the Ingredients button, or use `list ingredients` to
 <a name="FilterIngredientCommand"></a>
 #### 5.5.5&ensp;Filtering Ingredients — **`filter`**`ingredient` (Jialei)
 
-This command filters all ingredients and lists those that match all the name keywords, tags and expiry dates specified in the command.
+This command filters all ingredients and lists those matching the name keywords, tags, and expiry dates specified in the command. Except for the changes in the search fields, this feature works identically to the [`filter recipe`](#FilterRecipeCommand) command above. Notably, <b>all</b> the search terms have to match an ingredient before it is found.
 
 **Usage**:
 ```
 filter ingredient
   [/name <name-keywords>...]...
-  [/expiry <expiry-date>]
   [/tag <tag-keywords>...]...
+  [/expiry <expiry-date>]
 ```
 
-- Keywords following `/tag` and `/name` do not have to be complete to match the 'tag' or the ingredient's 'name'.
+- Keywords following `/tag` and `/name` do not have to be complete to match the tag or the ingredient's name.
 - `/expiry <expiry-date>` filters the ingredients and only lists those that expire before the date provided.
 - When there are multiple expiry dates specified, only the earliest one will be considered.
-- Except for the changes in the search fields, this feature works identically to the [`filter recipe`](#FilterRecipeCommand) command above.
 
 Constraints:
 - At least one search term must be given, and they should be either `/name`, `/expiry` or `/tag`.
@@ -1127,14 +1128,14 @@ Examples:
 - `filter ingredient /name dark chocolate` <br />
   This matches **dark chocolate** and **dark chocolate syrup**, assuming they are the only ingredients whose names contain **dark chocolate**.
 
-- `filter ingredient /name dark chocolate /syrup` <br />
+- `filter ingredient /name dark chocolate /name syrup` <br />
   This matches **dark chocolate syrup**, assuming it is the only ingredient whose name contains both **dark chocolate** and **syrup**.
 
 - `filter ingredient /tag bitter taste` <br />
   This matches **bitter melon** and **dark chocolate**, assuming they are the only ingredients tagged with **bitter taste**.
 
 - `filter ingredient /tag frequently used /tag sweet` <br />
-  This matches **sugar**, if it is the only ingredient tagged both **frequently used** and **sweet**.
+  This matches **sugar**, if it is the only ingredient tagged <i>both</i> **frequently used** and **sweet**.
 
 - `filter ingredient /expiry 2020-12-01 /expiry 2020-10-31 /expiry 2023-01-01` <br />
   This matches **apple**, if it is the only ingredient expiring before **2020-10-31**. Note that only the earliest date is considered here (in this case, 31st October 2020), and the rest are ignored.
@@ -1158,7 +1159,7 @@ Figure 16.2: <i>The ingredients matching all the provided criteria</i>
 
 Note that **Honey**, which was also tagged **bakery** and **sweet** and would expire before **2021-12-31**, was not included because its name does not contain **sugar**.
 
-Again, to reset the search filter or go back to the full ingredient view, you can click the Ingredients button or run the `list ingredients` command.
+To reset the search filter or go back to the full ingredient view, you can click the Ingredients button or run the `list ingredients` command.
 
 
 
@@ -1168,7 +1169,7 @@ Again, to reset the search filter or go back to the full ingredient view, you ca
 
 This command edits the given ingredient, in a similar fashion to the [`edit recipe`](#EditRecipeCommand) command. However, currently its functionality is limited to only editing the tags of an ingredient (more features coming soon!).
 
-Again, do refer to the documention on the [`edit recipe`](#EditRecipeCommand) above to find out how edit-descriptors work; this command currently only supports `/tag:add` and `/tag:delete`.
+Do refer to the documention on the [`edit recipe`](#EditRecipeCommand) command above to find out how edit-descriptors work; this command currently only supports `/tag:add` and `/tag:delete`.
 
 It is an error to delete a tag from an ingredient that did not contain that tag, and similarly to add a duplicate tag to an ingredient.
 
@@ -1299,9 +1300,16 @@ This command clears the history of the recipes that you've made from ChopChop. I
 <a name="StatsIngredientRecentCommand"></a>
 #### 5.6.5&ensp;Listing Recent Ingredients — **`stats`**`ingredient recent`
 
-This command shows a list of the 10 most recently-used ingredients consumed by `make`-ing recipes. The output format is identical to that of [`stats recipe recent`](#StatsRecipeRecentCommand) as discussed above, so it will be omitted for brevity.
+This command shows a list of the 10 most recently-used ingredients consumed by `make`-ing recipes. It is similar to the [`stats recipe recent`](#StatsRecipeRecentCommand) as discussed above, except it deals with ingredients.
 
 **Usage**: `stats ingredient recent`
+
+For example, after just having made <i>Scrambled Eggs</i>, these will be the recently-used ingredients:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/stats_ingredient_recent.png" width="45%" /> <br />
+Figure 21: <i>The recently used ingredients view</i>
+</div>
 
 
 
