@@ -419,7 +419,9 @@ Examples:
 * `sort success -a` shows a list of all flashcards sorted according to success rate in ascending order
 * `sort success -d` shows a list of all flashcards sorted according to success rate in descending order
 
-<div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequencies of a flashcard are only affected by quiz mode.
+<div markdown="span" class="alert alert-primary">:memo: Note: The review frequency of a flashcard refers to the number of times you review in <b>quiz mode</b>, and the success rate refers to the rate at which you get the question correct in <b>quiz mode</b>.
+</div>
+<div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequencies of a flashcard are <b>only affected by quiz mode</b>, not review mode. So you can think of review mode as a trial that <b>does not affect</b> the statistics of the flashcard.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: Note: Sorting results in a permanent change in the ordering of the flashcards. This means your list of flashcards will follow the sorted order even after you relaunch the app.
 </div>
