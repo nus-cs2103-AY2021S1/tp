@@ -34,17 +34,24 @@ Given below are my contributions to the project.
   ModelManagerTest to ensure remaining test cases fully support the application
   [#110](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/110)
 
+<div style="page-break-after: always;"></div>
+
 * **Contributions to DG**:
-  * Added implementation for `filter` feature along with activity and sequence diagrams
+  * Added implementation for `filter` feature along with activity and sequence diagrams [#85](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/85)
+  & [#210](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/210)
+  * Added instructions for manual testing [#201](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/201)
+  * Added terms to glossary [#208](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/208)
   * Minor fixes to formatting of DG
 
 * **Contributions to UG**:
-  * Added documentation to `filter` feature
+  * Added documentation to `filter` feature [#41](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/41/files) & 
+  [#103](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/103)
   * Minor fixes to formatting of UG
 
-* **Contributions to team-based tasks:**:
+* **Contributions to team-based tasks**:
   * Maintaining the issue-tracker
-  * Refactor remaining test cases to remove instances of AB3
+  * Refactor remaining test cases to remove instances of AB3 [#110](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/110)
+  * Added instructions for manual testing in DG [#201](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/201)
 
 **Review/mentoring contributions**:
   * Reported bugs to other teams: [Issue Tracker](https://github.com/tanzhuoyao-nus/ped/issues)
@@ -53,4 +60,7 @@ Given below are my contributions to the project.
   [#105](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/105),
   [#106](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/106),
   [#109](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/109),
-  [#164](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/164)
+  [#164](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/164),
+  [#175](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/175)
+  
+  
