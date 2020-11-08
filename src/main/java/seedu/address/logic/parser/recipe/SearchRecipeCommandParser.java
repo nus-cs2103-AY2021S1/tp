@@ -20,7 +20,7 @@ import seedu.address.model.recipe.RecipeContainsKeywordsPredicate;
 import seedu.address.model.recipe.TagContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new SearchRecipe object
+ * Parses input arguments and creates a new SearchRecipeCommand object
  */
 public class SearchRecipeCommandParser implements Parser<SearchRecipeCommand> {
 

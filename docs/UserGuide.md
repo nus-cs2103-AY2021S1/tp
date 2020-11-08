@@ -36,7 +36,7 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
         * [5.2.4 Editing an ingredient: `editF`](#edit-ingredient)
         * [5.2.5 Getting an ingredient to edit: `editF`](#get-edit-ingredient)
         * [5.2.6 Searching for an Ingredient: `searchF`](#search-ingredient)
-        * [5.2.7 Clearing all ingredients : `clearF`](#clear-ingredient) 
+        * [5.2.7 Clearing all ingredients : `clearF`](#clear-ingredient)
         <br><br>
     - [5.3 Consumption-related Commands](#53-consumption-related-commands)
         * [5.3.1 Eating a recipe : `eatR`](#eat-consumption)
@@ -155,9 +155,9 @@ The image below is a labeled diagram of each of Wishful Shrinking's components.<
    <img src="images/UiExplained.png" width="550" height="300">
    <br><br><br>
    
-   Below is a brief explanation on each of the components:
-
 <div style="page-break-after: always;"></div>
+
+   Below is a brief explanation on each of the components:
 
 Component | Explanation
 --------|------------------
@@ -189,13 +189,15 @@ Component | Explanation
 
    * **`addR`**` n/salad i/lettuce, carrots, olive oil c/40 instr/Prepare the ingredients. Toss the ingredients together. Serve. img/https://www.onceuponachef.com/images/2019/07/Big-Italian-Salad.jpg t/yummy t/healthy` : Adds a `salad` recipe to Wishful Shrinking.
 
+<div style="page-break-after: always;"></div>
+
    * **`deleteR`**`3` : Deletes the 3rd recipe shown in the current recipe list.
 
    * **`exit`** : Exits the app.
    
    * **`help`** : Opens the help window.
 
-6. Refer to the [next section](#5-command) for details of each command.
+6. Refer to the [next section](#5-commands) for details of each command.
 <br><br>
 
 <div style="page-break-after: always;"></div>
@@ -273,6 +275,8 @@ Everyone should have permission to access the image path or online image URL you
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection when adding an online image <br><br> 4. Wishful Shrinking doesn't have permission to access the folder or website | Default image will be displayed
   No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
  
+<div style="page-break-after: always;"></div>
+
 * Here is the table <a id="table"></a> containing built-in **sample images** provided by Wishful Shrinking:
 
      Image | File Path | Image | File Path
@@ -293,6 +297,8 @@ Examples:
 * `addR n/sandwiches i/breads, cheese -2 slices c/80 img/https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg instr/Cook. Eat.`
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.1.2 Listing all recipes : `recipes` <a id="list-recipe"></a>
 Contributed by: Jia Qi
 
@@ -304,6 +310,8 @@ Contributed by: Jia Qi
 
 Format: `recipes`
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.1.3 Deleting a recipe : `deleteR` <a id="delete-recipe"></a>
 Contributed by: Jia Qi
@@ -327,6 +335,8 @@ Examples:
 * `searchR n/salad` followed by `deleteR 1` deletes the 1st recipe in the result of the `searchR` command.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.1.4 Editing a recipe: `editR` <a id="edit-recipe"></a>
 Contributed by: Olivia, Jia Qi, Tian Yong, Caitlin
 
@@ -342,6 +352,9 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 * Edits the recipe at the specified `INDEX`.
 * The index refers to the index number shown in the recent displayed Recipe List.
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
+
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
@@ -422,6 +435,8 @@ Examples:
  command box.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.1.6 Selecting a single recipe : `selectR` <a id="select-recipe"></a>
 Contributed by: Hieu
 
@@ -454,6 +469,8 @@ Format: `close`
 * This command closes the left drawer that is opened after you select a recipe.
 * Nothing will happen if you use this command when the left drawer is not open.
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.1.8 Searching for a recipe: `searchR` <a id="search-recipe"></a>
 Contributed by: Caitlin
@@ -537,6 +554,8 @@ Contributed by: Caitlin, Olivia
 <br>  The image below is what Wishful Shrinking looks like after you have added an ingredient to the Fridge. <br><br>
 <img src="images/feature/ingredient/AddIngredientImage.png" width="550" height="300">
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
@@ -661,6 +680,9 @@ Format: `searchF KEYWORD [ MORE KEYWORDS]`
 * The search is case-insensitive. e.g `peanut` will match `Peanut`.
 * The search will match partial keywords. e.g. `tomat` will match `tomato`.
 * The order of the keywords does not matter. e.g. Peanut Butter will match Butter with Peanut.
+
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
     Ingredient quantity is not taken into account when determining whether two ingredients matches.
 </div>
@@ -684,8 +706,6 @@ Contributed by: Tian Yong
 
 Format: `clearF`
 <br><br><br>
-
-<div style="page-break-after: always;"></div>
 
 ## 5.3 Consumption-related Commands <a id="53-consumption-related-commands"></a>
 
@@ -722,6 +742,8 @@ Contributed by: Tian Yong
 <img src="images/feature/consumption/ListConsumptionImage.png" width="550" height="300">
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 Format: `calories`
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
@@ -738,6 +760,8 @@ Contributed by: Caitlin
 <br>  The image below is what Wishful Shrinking looks like after you have deleted a recipe from the consumption list. <br><br>
 <img src="images/feature/consumption/DeleteConsumptionImage.png" width="550" height="300">
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 Format: `deleteC INDEX`
 
@@ -824,7 +848,6 @@ Wishful Shrinking's data is saved in the hard disk automatically after any comma
 **Q**: I forgot how to use the app. Where can I find help?<br>
 **A**: Type help into the command box and hit enter. A link to the user guide will be provided.
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 # 7. Glossary <a id="7-glossary"></a>
@@ -841,7 +864,6 @@ Term | Explanation
 **GUI** | A Graphical User Interface (GUI) is a form of user interface that allows users to interact with the program through graphical icons instead of text-based user interfaces.
 **Absolute Path** | The complete details needed to locate a file or folder, starting from the root element.
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 # 8. Command summary <a id="8-command-summary"></a>
@@ -856,6 +878,11 @@ Features | Format, Examples
 **Edit recipe** | `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] [instr/INSTRUCTION[. MORE INSTRUCTIONS]] [t/TAG]...` <br> e.g. `editR` 2 n/Apple salad i/apple
 **Get edit recipe info** | `editR INDEX`<br> e.g. `editR 2`
 **Select recipe** | `selectR INDEX`<br> e.g. `selectR 3`
+
+<div style="page-break-after: always;"></div>
+
+Features | Format, Examples
+--------|------------------
 **Close recipe drawer**| `close`
 **Search for recipe** | `searchR [i/INGREDIENT [ MORE INGREDIENTS]] [n/NAME [ MORE NAMES]] [t/TAG [ MORE TAGS]]`<br> e.g. `searchR` i/lettuce tomato, `searchR` n/salad, `searchR` t/healthy
 **Recommend recipe** | `recommend`
@@ -870,6 +897,11 @@ Features | Format, Examples
 **Delete ingredient from the Fridge** | `deleteF INDEX`<br> e.g. `deleteF` 3
 **Edit ingredient in the Fridge** | `editF INDEX i/INGREDIENTS [ -QUANTITY]`<br> e.g. `editF` 3 i/apple sauce -20.0g
 **Get edit ingredient info** | `editF INDEX`<br> e.g. `editF 2`
+
+<div style="page-break-after: always;"></div>
+
+Features | Format, Examples
+--------|------------------
 **Search for ingredient in the Fridge** | `searchF KEYWORD [ MORE KEYWORDS]`<br> e.g. `searchF` avocado
 **Clear all ingredients from the Fridge** | `clearF`
 
