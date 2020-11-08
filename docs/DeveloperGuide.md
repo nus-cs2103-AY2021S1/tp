@@ -943,6 +943,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. CliniCal shows an error message.
 
     Use case resumes at step 1.
+    
+##### Use case: UC11 - Add appointment
+
+**MSS**
+
+1. User requests to add appointment for a particular patient by keying in the patient index, appointment date, time and duration.
+2. CliniCal shows a message that the appointment is successfully added and displays the updated appointment list and calendar in the overview tab.
+
+      Use case ends.    
+      
+**Extensions**
+      
+* 1a. The given command is invalid.
+    * 1a1. CliniCal shows an error message.
+      
+    Use case resumes at step 1.
 
 ## **Appendix D: Non-Functional Requirements**
 
@@ -1072,6 +1088,32 @@ testers are expected to do more *exploratory* testing.
        
    1. Other incorrect commands to try: `addvisit 1 vd/test`, `addvisit 90000 vd/test` (assuming 90000 is larger than size of patient list)
        Expected: Error message will be shown as an invalid command is given.
+       
+##### F.8 Adding an appointment
+
+1. Adding a new appointment to the appointment list and calendar
+
+   1. Test case: `addappt 1 st/11/11/2020 12:00 d/60`<br>
+      Expected: An appointment containing the details of the first patient, appointment date, starting and ending time will be added to the appointment list and reflected in the calendar.
+
+   1. Test case: `addappt`<br>
+      Expected: No appointment is added. Error details shown in the status message. Status bar remains the same.
+      
+   1. Other incorrect add appointment commands to try: `addappt x st/11/11/2020 12:00 d/60` (where x is larger than the list size), `addappt 0 st/11/11/2020 12:00 d/60`, `addappt 0 st/42/42/2020 25:00 d/2147483647`<br>
+      Expected: Similar to previous.  
+      
+##### F.9 Deleting an appointment
+
+1. Deleting an appointment in the appointment list and calendar
+
+   1. Test case: `deleteappt 1`<br>
+      Expected: First appointment is deleted from the list and removed from calendar. Details of the deleted appointment shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `deleteappt 0`<br>
+      Expected: No appointment is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `deleteappt`, `deleteappt x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.       
        
 ## **Appendix G: Effort**
 
