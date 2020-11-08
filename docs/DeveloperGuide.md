@@ -773,6 +773,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Extensions**
 * 2a. The list is empty.
 
