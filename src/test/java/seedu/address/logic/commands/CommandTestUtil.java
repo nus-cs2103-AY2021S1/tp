@@ -97,6 +97,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_CS2105 = "CS2105";
     public static final String VALID_TAG_CS2030 = "CS2030";
     public static final String VALID_TAG_LAB = "Lab";
+    public static final String VALID_TAG_DAILY = "Daily";
     public static final String VALID_DATE1 = "2020-11-05";
     public static final String VALID_DATE2 = "2020-12-03";
     public static final String VALID_STATUS_COMPLETED = "COMPLETED";
@@ -107,6 +108,7 @@ public class CommandTestUtil {
     // unnamed desc
     public static final String TAG_DESC_CS2100 = " " + PREFIX_TAG + VALID_TAG_CS2100;
     public static final String TAG_DESC_LAB = " " + PREFIX_TAG + VALID_TAG_LAB;
+    public static final String TAG_DESC_DAILY = " " + PREFIX_TAG + VALID_TAG_DAILY;
 
     // invalid value
     public static final String INVALID_TASK_NAME_DESC = " " + PREFIX_NAME + "Finish lab 5 report for next week lab";
@@ -114,7 +116,7 @@ public class CommandTestUtil {
     public static final String INVALID_TASK_PRIORITY_DESC = " " + PREFIX_PRIORITY + "important";
     public static final String INVALID_TASK_DATE_DESC = " " + PREFIX_DATE + "2020-02-30";
 
-    // LAB05 and LAB07DESC
+    // LAB05 and LAB07
     public static final String VALID_NAME_LAB05 = "Finish Lab 5 Report";
     public static final String VALID_NAME_LAB07 = "Finish Lab 7 Report";
     public static final String VALID_TAG_LAB05 = "CS2100";
