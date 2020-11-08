@@ -10,6 +10,7 @@ title: User Guide
 
 
 
+<h2>Table of Contents</h2>
 * Table of Contents
 {:toc}
 
@@ -72,7 +73,7 @@ Now that you have ChopChop installed, you can start to play around with the samp
 To exit ChopChop, you can either use the `quit` command, or simply close the application window.
 
 
------------
+------------------
 ## 3&ensp;Overview
 
 ChopChop manages two key components — ingredients and recipes — and they will be the main pieces you will interact with. Common to both are names and tags, the latter of which allow you to quickly group related ingredients or recipes together, or to organise them in any way you desire.
@@ -199,6 +200,8 @@ ChopChop is able to show you your ingredients in the form of tiles, as shown in 
 3. The `Quantity` of the ingredient.
 4. The `Ingredient Name` of the ingredient.
 5. The `Tags` associated with the ingredient.
+
+Note: if the tags are too long, some graphical glitches might occur. This will be fixed in the next version!
 
 
 <a name="Figure-1-3"></a>
@@ -1355,7 +1358,7 @@ For example, `stats recipe made /after 2020-11-02 /before 2020-11-04 23:00` show
 <a name="Figure-21-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_made_1.png" width="45%" /> <br />
-Figure 21: <i>Showing the recipes made between a date range</i>
+Figure 21.1: <i>Showing the recipes made between a date range</i>
 </div>
 
 Meanwhile, just executing `stats recipe made` only shows the recipes made on the current day:
@@ -1363,7 +1366,7 @@ Meanwhile, just executing `stats recipe made` only shows the recipes made on the
 <a name="Figure-22-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_made_2.png" width="45%" /> <br />
-Figure 22: <i>Showing the recipes made on the current day</i>
+Figure 21.2: <i>Showing the recipes made on the current day</i>
 </div>
 
 
@@ -1392,7 +1395,7 @@ For example, after having just made <i>Scrambled Eggs</i>, these will be the rec
 <a name="Figure-23-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_ingredient_recent.png" width="45%" /> <br />
-Figure 23: <i>The recently used ingredients view</i>
+Figure 22: <i>The recently used ingredients view</i>
 </div>
 
 
