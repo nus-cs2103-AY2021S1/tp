@@ -141,6 +141,11 @@ public class Ingredient {
                 && units.matches(VALIDATION_REGEX_STRING);
     }
 
+    /**
+     * Removes leading zeroes from integer, decimals and fractions.
+     * @param quantity
+     * @return String trimmed and without leading zeroes
+     */
     public static String removeLeadingZeroesFromNumber(String quantity) {
         String [] digitsAndUnits = getDigitsAndUnitsFromQuantity(quantity);
         assert digitsAndUnits != null;
@@ -158,7 +163,7 @@ public class Ingredient {
             }
         }
         if (index == 0) {
-          return quantity;
+            return quantity;
         } else if (indexOfDecimalPoint != -1 && indexOfDecimalPoint == index) {
             return digits.substring(index - 1).trim() + " " + units.trim();
         } else {
