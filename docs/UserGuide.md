@@ -155,9 +155,9 @@ The image below is a labeled diagram of each of Wishful Shrinking's components.<
    <img src="images/UiExplained.png" width="550" height="300">
    <br><br><br>
    
-   Below is a brief explanation on each of the components:
-
 <div style="page-break-after: always;"></div>
+
+   Below is a brief explanation on each of the components:
 
 Component | Explanation
 --------|------------------
@@ -189,13 +189,15 @@ Component | Explanation
 
    * **`addR`**` n/salad i/lettuce, carrots, olive oil c/40 instr/Prepare the ingredients. Toss the ingredients together. Serve. img/https://www.onceuponachef.com/images/2019/07/Big-Italian-Salad.jpg t/yummy t/healthy` : Adds a `salad` recipe to Wishful Shrinking.
 
+<div style="page-break-after: always;"></div>
+
    * **`deleteR`**`3` : Deletes the 3rd recipe shown in the current recipe list.
 
    * **`exit`** : Exits the app.
    
    * **`help`** : Opens the help window.
 
-6. Refer to the [next section](#5-command) for details of each command.
+6. Refer to the [next section](#5-commands) for details of each command.
 <br><br>
 
 <div style="page-break-after: always;"></div>
@@ -273,6 +275,8 @@ Everyone should have permission to access the image path or online image URL you
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection when adding an online image <br><br> 4. Wishful Shrinking doesn't have permission to access the folder or website | Default image will be displayed
   No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
  
+<div style="page-break-after: always;"></div>
+
 * Here is the table <a id="table"></a> containing built-in **sample images** provided by Wishful Shrinking:
 
      Image | File Path | Image | File Path
@@ -538,6 +542,8 @@ Contributed by: Caitlin, Olivia
 <img src="images/feature/ingredient/AddIngredientImage.png" width="550" height="300">
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
@@ -722,6 +728,8 @@ Contributed by: Tian Yong
 <img src="images/feature/consumption/ListConsumptionImage.png" width="550" height="300">
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 Format: `calories`
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
@@ -824,7 +832,6 @@ Wishful Shrinking's data is saved in the hard disk automatically after any comma
 **Q**: I forgot how to use the app. Where can I find help?<br>
 **A**: Type help into the command box and hit enter. A link to the user guide will be provided.
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 # 7. Glossary <a id="7-glossary"></a>
@@ -841,7 +848,6 @@ Term | Explanation
 **GUI** | A Graphical User Interface (GUI) is a form of user interface that allows users to interact with the program through graphical icons instead of text-based user interfaces.
 **Absolute Path** | The complete details needed to locate a file or folder, starting from the root element.
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 # 8. Command summary <a id="8-command-summary"></a>
@@ -857,6 +863,11 @@ Features | Format, Examples
 **Get edit recipe info** | `editR INDEX`<br> e.g. `editR 2`
 **Select recipe** | `selectR INDEX`<br> e.g. `selectR 3`
 **Close recipe drawer**| `close`
+
+<div style="page-break-after: always;"></div>
+
+Features | Format, Examples
+--------|------------------
 **Search for recipe** | `searchR [i/INGREDIENT [ MORE INGREDIENTS]] [n/NAME [ MORE NAMES]] [t/TAG [ MORE TAGS]]`<br> e.g. `searchR` i/lettuce tomato, `searchR` n/salad, `searchR` t/healthy
 **Recommend recipe** | `recommend`
 **Clear all recipes** | `clearR`
