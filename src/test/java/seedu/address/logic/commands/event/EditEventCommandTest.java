@@ -17,6 +17,8 @@ import static seedu.address.testutil.event.EventUtil.VALID_EVENT;
 import static seedu.address.testutil.event.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.event.TypicalIndexes.INDEX_SECOND_EVENT;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -33,12 +35,14 @@ import seedu.address.model.EventList;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.event.EditEventDescriptorBuilder;
 import seedu.address.testutil.event.EventBuilder;
 
 public class EditEventCommandTest {
 
     private Model model = new ModelStubAlwaysAcceptsEditEvent();
+    private Set<Tag> tags = new HashSet<Tag>();
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
@@ -124,7 +128,7 @@ public class EditEventCommandTest {
     @Test
     public void execute_duplicateEventFilteredList_editFailure() {
         model.addEvent(VALID_EVENT);
-        model.addEvent(new Event(new EventName("homework"), VALID_DATE));
+        model.addEvent(new Event(new EventName("homework"), VALID_DATE, tags));
         // update Contact filtered list to contain only a single Contact
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
