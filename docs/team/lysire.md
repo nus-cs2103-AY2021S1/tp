@@ -29,9 +29,9 @@ Given below are my contributions to the project.
     but also the process of making invalid commands valid as the user can simply navigate to the command and make minor modifications
     instead of having to type the entire command.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it 
-    required changes to existing commands. While setting up the keyboard shortcuts for the history command, 
-    a `KeyboardShortcutsEnum` class similar to the `CommandWordEnum` class was created to prevent code duplication and allow easier addition of keyboard
-    shortcuts in the future.
+    required changes to existing commands. While setting up the keyboard shortcuts for the history command,
+    a `KeyboardShortcutsEnum` class similar to the `CommandWordEnum` class was first created to prevent code duplication and allow easier addition of keyboard
+    shortcuts in the future. The keyboard shortcut was then set up in this new class. 
   * Credits: Code for the history command is adapted from addressbook-level4, which can be found at https://github.com/se-edu/addressbook-level4. 
       
 * **New Feature**: Added the ability to undo/redo previous commands that change the state of ResiReg, either through
@@ -60,5 +60,6 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments): [\#178](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/178), 
   [\#179](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/179), 
   [\#185](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/185)
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/Lysire/ped/issues))
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/Lysire/ped/issues), 
+  [2](https://github.com/AY2021S1-CS2103-F09-1/tp/issues/237), [3](https://github.com/AY2021S1-CS2103-F09-1/tp/issues/238))
 
