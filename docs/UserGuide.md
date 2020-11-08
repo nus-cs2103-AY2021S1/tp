@@ -271,6 +271,7 @@ Example:
 Deletes a staff from Eva. 
 
 <div markdown="block" class="alert alert-danger">
+:exclamation: **Important!**<br>
 Please take note that this action is irreversible.
 </div>
 <br>
@@ -341,6 +342,7 @@ Should a staff be unable to take their leave and cancels or postpones, Eva allow
 This command removes the record of leave taken by staff, specified by the date given.<br>
 
 <div markdown="block" class="alert alert-danger">
+:exclamation: **Important!**<br>
 Please take note that this action is irreversible.
 </div>
 <br>
@@ -367,6 +369,7 @@ In any case that you might want to remove all staff records, you can always use 
 This command clears all staff entries from the Eva database. 
 
 <div markdown="block" class="alert alert-danger">
+:exclamation: **Important!**<br>
 Please take note that this action is irreversible.
 </div>
 <br>
@@ -470,6 +473,7 @@ If you need to remove specific records of applicants, you may use this command. 
 applicant you see on Applicant List, you can remove that applicant's record. 
 
 <div markdown="block" class="alert alert-danger">
+:exclamation: **Important!**<br>
 Please take note that this action is irreversible.
 </div>
 <br>
@@ -534,6 +538,7 @@ Example:
 Deletes an application from an applicant with the specified index under Eva.
 
 <div markdown="block" class="alert alert-danger">
+:exclamation: **Important!**<br>
 Please take note that this action is irreversible.
 </div>
 <br>
@@ -575,6 +580,7 @@ In any case that you might want to remove all applicant records, you can always 
 This command clears all applicant entries from the Eva database.
 
 <div markdown="block" class="alert alert-danger">
+:exclamation: **Important!**<br>
 Please take note that this action is irreversible.
 </div>
 <br>
@@ -593,7 +599,7 @@ Commands to add, delete and edit comments on staff or applicants
 
 <div markdown="block" class="alert alert-primary">
 
-**:information_source: Important:** <br>
+**:information_source: Note:** <br>
 
 * Comment Commands take index reference from which type of person user is viewing. <br>
 
