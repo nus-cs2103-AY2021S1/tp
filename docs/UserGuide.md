@@ -336,7 +336,7 @@ Examples:
 
 #### 3.3.9. Clear staff database : `clear s-`
 
-In any case that you might want to remove all staff or applicant records, you can always use the `clear` command. <br>
+In any case that you might want to remove all staff records, you can always use this command. <br>
 This command clears all staff entries from the Eva database. 
 
 Format: `clear s-`
@@ -437,7 +437,7 @@ applicant you see on Applicant List, you can remove that applicant's record.
 <div markdown="block" class="alert alert-danger">
 Please take note that this action is irreversible.
 </div>
-
+<br>
 Format: `dela INDEX`
 
 Example:
@@ -526,6 +526,20 @@ Example:
 ![setApplicationStatus](images/ugimages/SetApplicationStatus.png)
 
 ### 3.4.10 Clear applicant database: `clear`
+
+In any case that you might want to remove all applicant records, you can always use this command.
+This command clears all applicant entries from the Eva database.
+
+<div markdown="block" class="alert alert-danger">
+Please take note that this action is irreversible.
+</div>
+<br>
+
+Format: `clear a-`
+
+The image below shows what you would see after using this command. 
+Notice that there are no more records of staff in the
+Applicant List.
 
 ![clearApplicantDatabase](images/ugimages/ClearApplicant.png)
 
