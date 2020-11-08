@@ -549,6 +549,7 @@ meant that we had to create a `references` folder on start-up, as well as proper
 The implementation of the feature had to be carefully designed, as we had to consider the different ways a user might use 
 the program and handle them properly such that the program will not crash (e.g. if the user deletes a document that they added to PIVOT).
 
+<div style="page-break-after: always;"></div>
 
 The `Archive` feature also required a careful consideration of the design alternatives, so as to show a different view in the GUI. 
 We also had to consider how this feature would affect the existing commands.
