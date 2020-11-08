@@ -18,7 +18,7 @@ Given below are my contributions to the project.
   on the tP Code Dashboard.
 
 * **Features and Enhancements Implemented**
-  * **New Feature**: Added the ability to update existing stocks in the inventory. (Pull request [\#101](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/101))
+  * **New Feature**: Added the ability to update existing stocks in the inventory. (Pull requests [\#101](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/101), [\#157](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/157), [\#214](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/214), [\#222](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/222), [\#258](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/258))
     * What it does: Allows the user to update the details of the desired stock.
     
     * Justification: This feature improves the user experience as user can easily edit the details of
@@ -42,7 +42,7 @@ Given below are my contributions to the project.
     adaptation to the `ModelManager` was needed in order to sort the internal `FilteredList` inside `ModelManager`.
     Another thing that is challenging is to generate different comparators for different fields.
   
-  * **New Feature**: Added the ability to suggest correct commands to the user. (Pull request [\#133](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/133))
+  * **New Feature**: Added the ability to suggest correct commands to the user. (Pull requests [\#133](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/133), [\#187](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/187))
     * What it does: Suggests the correct command format to the user if the command user input is in the wrong format.
     
     * Justification: This feature improves the user experience as the user can view and type the correct command form
@@ -68,15 +68,14 @@ Given below are my contributions to the project.
   * Setup codecov for the team to track coverage for tests (Pull request [\#69](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/69))
   * Managed the issue tracker: [Link to issues created](https://github.com/AY2021S1-CS2103T-T15-3/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Aaudreyfelicio)
 
-* **Community**
-    * **Reviews & Merging**:
-      * PRs reviewed (with non-trivial review comments): [\#62](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/62), [\#64](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/64), [\#156](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/156), [\#213](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/213), [\#256](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/256)
-      * All PRs reviewed: [Link to PRs reviewed](https://github.com/AY2021S1-CS2103T-T15-3/tp/pulls?page=2&q=is%3Apr+reviewed-by%3Aaudreyfelicio+is%3Aclosed)
-    
-    * **Bugs & Forums**:
-      * Fixed bugs in update feature (Pull request [\#258](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/258))
-      * Fixed bugs in suggestion feature (Pull request [\#261](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/261))
-      * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AudreyFelicio/ped/issues/1), [2](https://github.com/AudreyFelicio/ped/issues/2), [3](https://github.com/AudreyFelicio/ped/issues/3), [4](https://github.com/AudreyFelicio/ped/issues/4), [5](https://github.com/AudreyFelicio/ped/issues/5), [6](https://github.com/AudreyFelicio/ped/issues/6), [7](https://github.com/AudreyFelicio/ped/issues/7), [8](https://github.com/AudreyFelicio/ped/issues/8), [9](https://github.com/AudreyFelicio/ped/issues/9), [10](https://github.com/AudreyFelicio/ped/issues/10))
+* **Reviews & Merging**:
+  * PRs reviewed (with non-trivial review comments): [\#62](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/62), [\#64](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/64), [\#156](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/156), [\#213](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/213), [\#256](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/256)
+  * All PRs reviewed: [Link to PRs reviewed](https://github.com/AY2021S1-CS2103T-T15-3/tp/pulls?page=2&q=is%3Apr+reviewed-by%3Aaudreyfelicio+is%3Aclosed)
+
+* **Bugs & Forums**:
+  * Fixed bugs in update feature (Pull request [\#258](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/258))
+  * Fixed bugs in suggestion feature (Pull request [\#261](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/261))
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AudreyFelicio/ped/issues/1), [2](https://github.com/AudreyFelicio/ped/issues/2), [3](https://github.com/AudreyFelicio/ped/issues/3), [4](https://github.com/AudreyFelicio/ped/issues/4), [5](https://github.com/AudreyFelicio/ped/issues/5), [6](https://github.com/AudreyFelicio/ped/issues/6), [7](https://github.com/AudreyFelicio/ped/issues/7), [8](https://github.com/AudreyFelicio/ped/issues/8), [9](https://github.com/AudreyFelicio/ped/issues/9), [10](https://github.com/AudreyFelicio/ped/issues/10))
 
 * **Testing**:
   * Created unit tests for `update` feature (update command parser, update command). (Pull request [\#112](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/112))
