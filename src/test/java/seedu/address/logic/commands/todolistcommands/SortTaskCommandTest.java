@@ -276,6 +276,67 @@ public class SortTaskCommandTest {
     }
 
     @Test
+    public void execute_byNameReversedFilteredListFilterThenSort_success() {
+
+        // filter then sort
+
+        model.setTodoList(getTypicalTodoList());
+
+        expectedModel.setTodoList(getTypicalTodoList());
+
+        String expectedMessage = SortTaskCommand.MESSAGE_SUCCESS;
+        Comparator<Task> comparator = new TaskComparatorByName().reversed();
+        SortTaskCommand command = new SortTaskCommand(comparator);
+
+        model.updateFilteredTodoList(t -> t.getStatus().get().equals(Status.COMPLETED));
+
+        expectedModel.updateFilteredTodoList(t -> t.getStatus().get().equals(Status.COMPLETED));
+        expectedModel.updateSortedTodoList(comparator);
+
+        // this statement modified the original model, no defensive copy was made
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+        List<Task> sortedList = new ArrayList<>();
+
+        sortedList.add(QUIZ_02);
+        sortedList.add(PROBLEM_SET_02);
+        sortedList.add(LAB_02);
+        sortedList.add(ASSIGNMENT_02);
+
+        assertEquals(sortedList, model.getFilteredTodoList());
+    }
+
+    @Test
+    public void execute_byNameReversedFilteredListSortThenFilter_success() {
+
+        // sort then filter
+
+        model.setTodoList(getTypicalTodoList());
+
+        expectedModel.setTodoList(getTypicalTodoList());
+
+        String expectedMessage = SortTaskCommand.MESSAGE_SUCCESS;
+        Comparator<Task> comparator = new TaskComparatorByName();
+        SortTaskCommand command = new SortTaskCommand(comparator);
+
+        expectedModel.updateFilteredTodoList(t -> t.getStatus().get().equals(Status.COMPLETED));
+        expectedModel.updateSortedTodoList(comparator);
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+        List<Task> sortedList = new ArrayList<>();
+
+        sortedList.add(QUIZ_02);
+        sortedList.add(PROBLEM_SET_02);
+        sortedList.add(LAB_02);
+        sortedList.add(ASSIGNMENT_02);
+
+        model.updateFilteredTodoList(t -> t.getStatus().get().equals(Status.COMPLETED));
+
+        assertEquals(sortedList, model.getFilteredTodoList());
+    }
+
+    @Test
     public void equals() {
         Comparator<Task> firstComparator = new TaskComparatorByName();
         Comparator<Task> secondComparator = new TaskComparatorByPriority();
