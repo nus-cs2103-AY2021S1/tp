@@ -462,7 +462,7 @@ find Kai Kai
 
 <p align="center"><i>Figure 15: User entering find command</i></p>
 
-Example Outcome:
+Expected Outcome:
 ```
 1 animals listed!
 ```
@@ -478,7 +478,7 @@ The animal with name `Kai Kai` is displayed as seen in *Figure 16* above.
 ### 5.4. Sorting animals: `sort` (Malcolm)
 
 If you need to create some sort of ordering in your `ZooKeep` book, such as a chronological order by feed times to organise
-your feeding schedule, this feature helps to sort the animals by the given category and updates the list of animals accordingly.
+your feeding schedule, this feature helps you to sort all your animals by the given category and updates the list of animals accordingly.
 
 Format: `sort CATEGORY`
 
@@ -515,7 +515,7 @@ sort id
 
 <p align="center"><i>Figure 17: User entering sort command</i></p>
 
-Example Outcome:
+Expected Outcome:
 ```
 Sorted all animals by id
 ```
