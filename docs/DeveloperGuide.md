@@ -34,7 +34,8 @@ title: Developer Guide
     - [3.3. List Features](#33-list-features)
         * [3.3.1 Implementation](#331-implementation)
         * [3.3.2 Design Consideration - **List Recipes**](#332-design-consideration-list-recipe)
-            * [Aspect: Concern while adding a new feature](#3321-aspect)
+            * [Aspect 1 : Concern while adding a new feature](#3321-aspect-1)
+            * [Aspect 2: What and how to show recipe information](#3322-aspect-2)
         * [3.3.3 Design Consideration - **List Ingredients**](#333-design-consideration-list-ingredient)
              * [Aspect: Concern while adding a new feature](#3331-aspect)
         * [3.3.4 Design Consideration - **List Consumptions**](#334-design-consideration-list-consumption)
@@ -284,14 +285,15 @@ Command and Parser makes use of Substitutability:
 * `AddRecipeCommandParser` implements `Parser<AddRecipeCommand>`
 * `AddIngredientCommandParser` implements `Parser<AddIngredientCommand>` <br><br>
 
-The following activity diagram shows how add operation generally works:
-![AddActivityDiagram](images/implementation/activityDiagrams/AddCommandActivityDiagram.png)
-
-The following sequence diagram shows how the add operation generally works when a recipe is added: <br> 
+The following two diagrams shows how add operation generally works when a recipe is added: <br> 
 `execute("addR n/Salad i/Veggies - 100g c/100 img/images/healthy3.jpg instr/Eat tag/healthy")` <br> 
 or when an ingredient is added: <br> 
-`execute("addF i/tomato")`
+`execute("addF i/tomato")`:
 
+The following activity diagram shows how the add operation generally works.
+![AddActivityDiagram](images/implementation/activityDiagrams/AddCommandActivityDiagram.png)
+
+The following sequence diagram shows how the add operation generally works.
 ![AddSequenceDiagram](images/implementation/sequenceDiagrams/AddSequence.png)
 
 <div markdown="block" class="alert alert-info">
@@ -370,10 +372,12 @@ Command and Parser makes use of Substitutability:
 * `EatRecipeCommand` extends `Command`
 * `EatRecipeCommandParser` implements `Parser<EatRecipeCommand>` <br><br>
 
-The following activity diagram shows how eat recipe operation works:
+The following two diagrams shows how eat recipe operation works when `execute(eatR 1)` is called:
+
+The following activity diagram shows how eat recipe operation works.
 ![EatRecipeActivityDiagram](images/implementation/activityDiagrams/EatRecipeCommandActivityDiagram.png)
 
-The following sequence diagram shows how eat recipe operation works when `execute(eatR 1)` is called:
+The following sequence diagram shows how eat recipe operation works.
 ![EatRecipeSequenceDiagram](images/implementation/sequenceDiagrams/EatRecipeSequence.png)
 
 Given below is an example usage scenario and how the mechanism behaves:
@@ -404,13 +408,18 @@ The List Consumption feature will also calculate and show the total calories con
 Command and Parser make use of Substitutability:
 * `ListRecipeCommand`, `ListIngredientCommand` and `ListConsumptionCommand` extends `Command` <br><br>
 
-The following activity diagram shows how list operation generally works: <br>
+The following two diagrams shows how list operation works when list recipes is called: <br> 
+`execute("recipes")` <br> 
+or list ingredients is called: <br>  
+`execute("fridge")` <br> 
+or list consumptions is called: <br> 
+ `execute("calories")` 
+
+The following activity diagram shows how list operation generally works.
 ![ListActivityDiagram](images/implementation/activityDiagrams/ListCommandActivityDiagram.png)
 
 
-The following sequence diagram shows how list operation works when `execute("recipes")`, `execute("fridge")` or
- `execute("calories")` is called:
-
+The following sequence diagram shows how list operation generally works.
 ![ListSequenceDiagram](images/implementation/sequenceDiagrams/ListSequence.png)
 
 <div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
@@ -439,8 +448,17 @@ Given below is an example usage scenario and how the mechanism behaves:
  `LogicManager`. <br><br>
 
 #### 3.3.2 Design Consideration - **List Recipes**: <a id="332-design-consideration-list-recipe"></a>
-##### Aspect: Concern while adding a new feature <a id="3321-aspect"></a>
+##### Aspect 1: Concern while adding a new feature <a id="3321-aspect-1"></a>
 * Workflow must be consistent with other commands. <br><br>
+
+##### Aspect 2: What and how to show recipe information. <a id="3322-aspect-2"></a>
+* **Alternative 1 (*current choice*):** Show all fields and truncate if too long.
+  * Pros: Show all relevant fields of all recipes consistently.
+  * Cons: More inconvenience to see the full details of each recipe.
+
+* **Alternative 2:** Show all fields and all information of every recipe.
+  * Pros: Easy for users to see full recipe information.
+  * Cons: Recipe list may become hard to browse and unaesthetic if there are long recipes. <br><br>
 
 #### 3.3.3 Design Consideration - **List Ingredients**: <a id="333-design-consideration-list-ingredient"></a>
 ##### Aspect: Concern while adding a new feature <a id="3331-aspect"></a>
@@ -470,12 +488,17 @@ Command and Parser makes use of Substitutability:
 * `DeleteIngredientCommandParser` implements `Parser<DeleteIngredientCommand>`
 * `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>` <br><br>
 
-The following activity diagram shows how delete operation works when `execute("deleteR 1")`, `execute("deleteF 1")` or `execute("deleteC 1")` is called:
+The following two diagrams diagram show how delete operation generally works when delete recipe is called : <br>
+`execute("deleteR 1")` <br>
+or delete ingredient is called: <br>
+`execute("deleteF 1")` <br> 
+or delete consumption is called: <br> 
+`execute("deleteC 1")`
+
+The following sequence diagram shows how delete operation generally works. 
 ![DeleteActivity](images/implementation/activityDiagrams/DeleteCommandActivityDiagram.png)
 
-The following sequence diagram shows how delete operation works when `execute("deleteR 1")`, `execute("deleteF 1"
-)` or `execute("deleteC 1")` is called:
-
+The following sequence diagram shows how delete operation generally works.
 ![DeleteSequence](images/implementation/sequenceDiagrams/DeleteSequence.png)
 
 <div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
@@ -497,7 +520,8 @@ remove(key) | `removeRecipe(key)` | `removeIngredient(key)` | `removeConsumption
 </div>
 
 Given below is an example usage scenario and how the mechanism behaves:
-1. User inputs delete command with the item index, to delete that specific item from the respective list.
+1. User inputs delete command with the item index, to delete that specific item from their respective recipe
+ list, fridge or consumption list.
 
 1. After successfully parsing the user's input, the `DeleteRecipeCommand#execute(Model model)`, `DeleteIngredientCommand#execute(Model model)` or `DeleteConsumptionCommand#execute(Model model)` method is called.
 
@@ -536,20 +560,18 @@ Command and Parser make use of Substitutability:
 * `EditRecipeCommandParser` implements `Parser<EditRecipeCommand>`
 * `EditIngredientCommandParser` implements `Parser<EditIngredientCommand>` <br><br>
 
-The following activity diagram shows how edit operation generally works when a recipe is edited: <br>
+The following two activity diagrams shows how edit operation generally works when a recipe is edited: <br>
  `execute("editR 1 n/Pea soup")` <br>
  or an ingredient is edited <br>
  `execute("editF 1 i/tomato")`
+ 
+The following activity diagram shows how edit operation generally works.
 ![EditActivity](images/implementation/activityDiagrams/EditCommandActivityDiagram.png)
 
-The following sequence diagram shows how edit operation generally works when a recipe is edited: <br>
- `execute("editR 1 n/Pea soup")` <br>
- or an ingredient is edited <br>
- `execute("editF 1 i/tomato")`
-
+The following sequence diagram shows how edit operation generally works.
 ![EditSequence](images/implementation/sequenceDiagrams/EditSequence.png)
 
-<div markdown="block" class="alert alert-info" style="overflow:auto">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
 :bell: **Note**                                                                                               
                                                                                                               
 These are condensed diagrams. Several terms in the sequence and activity diagram above have been substituted by a common
@@ -584,10 +606,11 @@ Given below is an example usage scenario and how the mechanism behaves:
 ##### Aspect 2: How to provide users with more ease while editing a recipe <a id="3522-aspect-2"></a>
 * **Alternative 1 (current choice):** User can directly edit on the existing recipe, after getting its command in the command box
   * Pros: Easy for users to edit a recipe.
-  * Cons: Involves another command to set the command box to show the information of the recipe that the user wishes to edit. 
+  * Cons: Involves another command to set the command box to show the information of the recipe that the user
+   wishes to edit. The command is elaborated in section [3.6 Get Edit Features](#36-get-edit-features).
 
-* **Alternative 2:** User needs to retype the existing recipe's field that they wish to modify, if they want to modify only a part of the
- existing field
+* **Alternative 2:** User needs to retype the existing recipe's field that they wish to modify, if they want to
+ retain any part of the existing field
   * Pros: Easy to implement.
   * Cons: Not user friendly. <br><br>
 
@@ -598,10 +621,11 @@ Given below is an example usage scenario and how the mechanism behaves:
 ##### Aspect 2: How to provide users with more ease while editing an ingredient <a id="3532-aspect-2"></a>
 * **Alternative 1 (current choice):** User can directly edit the existing ingredient, after getting its command in the command box
   * Pros: Easy for users to edit an ingredient.
-  * Cons: Involves another command to set the command box to show the information of the ingredient that the user wishes to edit.
+  * Cons: Involves another command to set the command box to show the information of the ingredient that the
+   user wishes to edit. The command is elaborated in section [3.6 Get Edit Features](#36-get-edit-features).
 
-* **Alternative 2:** User needs to retype the existing ingredient's field that they wish to modify, if they want to modify only a part of the
- existing field
+* **Alternative 2:** User needs to retype the existing ingredient's field that they wish to modify, if they want
+ to retain any part of the existing field
   * Pros: Easy to implement.
   * Cons: Not user friendly. <br><br>
 
@@ -615,15 +639,18 @@ Command and Parser make use of Substitutability:
 * `GetEditRecipeCommandParser` implements `Parser<GetEditRecipeCommand>`
 * `GetEditIngredientCommandParser` implements `Parser<GetEditIngredientCommand>` <br><br>
 
-The following activity diagram shows how get edit operation works when `execute("editR 1")` or `execute("editF 1")` is called:
+The following two diagrams shows how get edit operation generally works when get edit recipe is called: <br> 
+`execute("editR 1")` <br> 
+or get edit ingredient is called: <br>
+ `execute("editF 1")` 
 
+The following activity diagram shows how get edit operation generally works. 
 ![GetEditActivity](images/implementation/activityDiagrams/GetEditCommandActivityDiagram.png)
 
-The following sequence diagram shows how get edit operation works when `execute("editR 1")` or `execute("editF 1")` is called:
-
+The following sequence diagram shows how get edit operation generally works.
 ![GetEditSequence](images/implementation/sequenceDiagrams/GetEditSequence.png)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
 
 :bell: **Note**                                                                                               
                                                                                                               
@@ -644,10 +671,10 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 1. After successfully parsing the user's input, the `GetEditRecipeCommand#execute(Model model)`  or `GetEditIngredientCommand#execute(Model model)` method is called.
 
-1. The recipe or ingredient that the user has specified will be set into the command box with the edit command for
- the user to directly modify.
+1. The recipe or ingredient that the user has specified with the edit command for
+ the user to directly modify will be set in CommandResult.
 
-1. After the successfully editing the recipe or ingredient, a `CommandResult` object is instantiated and
+1. After the successfully setting the command box, a `CommandResult` object is instantiated and
  returned to `LogicManager`. <br><br>
 
 #### 3.6.2 Design Considerations - **Get Edit Recipe** <a id="362-design-consideration-get-edit-recipe"></a>
@@ -666,11 +693,12 @@ Command and Parser make use of Substitutability:
 * `SelectRecipeCommand` extends `Command`
 * `SelectRecipeCommandParser` implements `Parser<SelectRecipeCommand>` <br><br>
 
-The following acitivity diagram shows how select recipe works with `selectR 1`
+The following two diagrams shows how select recipe works when `execute("selectR 1")` is called.
+
+The following acitivity diagram shows how select recipe works.
 ![SelectRecipeActivity](images/SelectRecipeActivityDiagram.png)
 
-The following sequence diagram shows how select recipe operation works when `execute("selectR 1")` is called:
-
+The following sequence diagram shows how select recipe works.
 ![SelectRecipeSequence](images/implementation/sequenceDiagrams/SelectRecipeSequence.png)
 
 Given below is an example usage scenario and how the mechanism behaves:
@@ -700,18 +728,18 @@ Command and Parser make use of Substitutability:
 * `SearchRecipeCommandParser` implements `Parser<SearchRecipeCommand>`
 * `SearchIngredientCommandParser` implements `Parser<SearchIngredientCommand>` <br><br>
 
-The following activity diagram shows how search operation generally works:
-![SearchActivityDiagram](images/implementation/activityDiagrams/SearchCommandActivityDiagram.png)
-
-
 The following sequence diagram shows how the search operation generally works when searching for recipes: <br>
  `execute("searchR n/burger")` <br> 
  or searching for ingredients: <br> 
  `execute("searchF avocado")`
 
+The following activity diagram shows how search operation generally works:
+![SearchActivityDiagram](images/implementation/activityDiagrams/SearchCommandActivityDiagram.png)
+
+The following sequence diagram shows how search operation generally works:
 ![SearchSequence](images/implementation/sequenceDiagrams/SearchSequence.png)
 
-<div markdown="block" class="alert alert-info" style="overflow:auto">
+<div markdown="block" class="alert alert-info" style="overflow:auto; display: inline-block">
 
 :bell: **Note**                                                                                                   
                                                                                                                   
@@ -763,12 +791,12 @@ Recommend feature allows users to get the list of recipes whose ingredients matc
 Substitutability is used in Command:
 * `RecommendCommand` extends `Command` <br><br>
 
-The following activity diagram shows how recommend operation generally works:
+The following two diagrams shows how recommend operation works when `execute("recommend")` is called:
+
+The following activity diagram shows how recommend operation works.
 ![RecommendActivityDiagram](images/implementation/activityDiagrams/RecommendCommandActivityDiagram.png)
 
-
-The following sequence diagram shows how recommend operation works when `execute("recommend")` is called:
-
+The following sequence diagram shows how recommend operation works.
 ![RecommendSequence](images/implementation/sequenceDiagrams/RecommendSequence.png)
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
@@ -811,12 +839,17 @@ Clear features - `Clear Recipes`, `Clear Ingredients` and `Clear Consumption` al
 Command and Parser make use of Substitutability:
 * `ClearRecipeCommand`, `ClearIngredientCommand` and `ClearConsumptionCommand` extends `Command` <br><br>
 
-The following activity diagram shows how clear operation generally works:
-![ClearActivityDiagram](images/implementation/activityDiagrams/ClearCommandActivityDiagram.png)
-
-The following sequence diagram shows how clear operation works when `execute(clearR)`, `execute(clearF)` or
+The following two diagrams shows how clear operation generally works when clear recipes: <br> 
+`execute(clearR)` <br> 
+or clear fridge: <br>  
+`execute(clearF)` <br> 
+or clear consumptions: <br> 
  `execute(clearC)` is called:
 
+The following activity diagram shows how clear operation generally works.
+![ClearActivityDiagram](images/implementation/activityDiagrams/ClearCommandActivityDiagram.png)
+
+The following sequence diagram shows how clear operation generally works.
 ![ClearSequenceDiagram](images/implementation/sequenceDiagrams/ClearSequence.png)
 
 <div markdown="block" class="alert alert-info" style="overflow:auto">
