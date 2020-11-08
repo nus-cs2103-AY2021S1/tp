@@ -481,7 +481,7 @@ Below is an Activity Diagram illustrating the flow of activities when the applic
 
                                ------------------------------Activity diagram illustrating multithreading (will add later)--------------------------------
 
-### \[Implemented\] Adding an assignment feature
+### Adding an assignment feature
 
 The user can add an assignment by providing keywords of the following fields:
 - Name of assignment
@@ -516,7 +516,6 @@ The following prefixes are used to identify the type of keywords:
 - `/mod` for Module code keyword
 - `/d` for Deadline keyword
 - `/p` for Priority keyword
-- `/remind` for Remind keyword 
 
 ##### AddCommand Class
 The `AddCommand` class extends abstract class `Command` and is responsible for adding assignments based on the user's input keywords.
@@ -535,7 +534,7 @@ If there are missing or invalid keywords, a `ParseException` will be thrown.
 The `parse` method takes in a String of user input, `args` and contains a `ArgumentMultimap` object, `argMultimap`.
 Regular expressions are used to identify whether optional keywords like `remind` and `/p` are present.
 The remind keyword is identified using `.*\bremind\b.*` while priority keyword is identified using `.*\bp/\b.*`.
-In the event that the remind keyword is present, `remind` will be removed from `args` before the parsing of the other keywords by `argMultimap`.
+In the event that the remind keyword is present, `remind` will be removed from `args` before the parsing of the other keywords by `argMultimap` since `remind` has no prefixes.
 The `tokenize` method of `ArgumentTokenizer` will be called. The keywords are parsed and return as `argMultimap`.
 The keywords are subsequently extracted from `argMultimap` to create a new `Assignment` object, `assignment`, which is used
 to return a new `AddCommand` object. 
@@ -561,7 +560,7 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
    ![Sequence Diagram for AddCommand](images/AddSequenceDiagram.png)
    <br/>*Figure X: Sequence Diagram for AddCommand*
 
-### \[Implemented\] Marking assignments as done and Setting reminders for assignments features
+### Marking assignments as done and Setting reminders for assignments features
 
 Both features are implemented in a similar way, though the reasons for implementation differs.There are also some differences in the implementation, which will be pointed out along the way.
 
