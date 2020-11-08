@@ -567,27 +567,51 @@ The following activity diagram summarizes how data from the Json file is read an
 ## **Appendix A - Product Scope**
 **Target user profile**:
 
--   has a need to manage a significant number of students
--   prefer desktop apps over other types
--   can type fast
--   prefers typing to mouse interactions
--   is reasonably comfortable using CLI apps
+-   Teaches multiple modules
+-   Needs to manage multiple classes
+-   Needs to manage multiple students
+-   Prefers desktop apps over other types
+-   Prefers data to be consolidated in one place
+-   Prefers data to be saved locally
+-   Can type fast
+-   Prefers typing to mouse interactions
+-   Is reasonably comfortable using Command Line Interface (CLI) apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+-   Trackr allows teaching assistants to manage modules, tutorial groups, and students all in one place.
+-   Trackr stores and retrives information faster and more efficiently than a typical mouse/GUI driven app.
 
----
 
 ## **Appendix B - User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                               | I want to …​                                                          | So that I can…​                                                 |
-| -------- | ------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------- |
-| `* * *`  | TA                                    | add/delete students to my list                                        | easily categorize them                                          |
-| `* * *`  | TA                                    | add/delete modules                                                    |                                                                 |
-| `* * *`  | TA                                    | rename a module                                                       | correct any errors                                              |
-| `* * *`  | TA who needs to contact many students | search a person by name or module                                     | get their contact details                                       |
-| `* * *`  | TA                                    | save my data                                                          | continue where I left off                                       |
+| -------- | ------------------------------------- | -----------------------------------| --------------------------------------------------------------- |
+| `* * *`  | Teaching Assistant         | add/delete a module                             | properly manage the list of modules                           |
+| `* * *`  | Teaching Assistant         | edit a module                                   | correct any errors                                            |
+| `* * *`  | Teaching Assistant         | find a module                                   | search for a module I'm looking for                           |
+| `* * *`  | Teaching Assistant         | list all the modules I teach                    | have an overall view of all the modules                       |
+| `* * *`  | Teaching Assistant         | add/delete a tutorial group                     | properly manage the list of tutorial groups                   |
+| `* * *`  | Teaching Assistant         | edit a tutorial group                           | correct any errors                                            |
+| `* * *`  | Teaching Assistant         | find a tutorial group                           | search for a tutorial group I'm looking for                   |
+| `* * *`  | Teaching Assistant         | list all the tutorial groups I teach            | have an overall view of all the tutorial groups               |
+| `* * *`  | Teaching Assistant         | add/delete students to my list                  | properly manage the list of students                          |
+| `* * *`  | Teaching Assistant         | edit a student                                  | correct any errors                                            |
+| `* * *`  | Teaching Assistant         | find a student                                  | search for a student I'm looking for                          |
+| `* * *`  | Teaching Assistant         | add/delete attendance to a student              | properly track the attendance of my students                  |
+| `* * *`  | Teaching Assistant         | list all the students I teach                   | have an overall view of all the students                      |
+| `* * *`  | Teaching Assistant         | edit attendance of a student                    | correct any errors                                            |
+| `* * *`  | Teaching Assistant         | filter attendance of my students                | check the attendance rate of my students                      |
+| `* * *`  | Teaching Assistant         | add participation scores of my students         | properly track my student's participation level               |
+| `* * *`  | Teaching Assistant         | edit participation scores of my students        | correct any errors in their scores                            |
+| `* * *`  | Teaching Assistant         | filter participation scores of my students      | check if any of my students are not participating             |
+| `* * *`  | Teaching Assistant         | save my data                                    | continue where I left off                                     |
+| `* * *`  | Teaching Assistant         | clear all my existing data                      | easily start on a clean slate for a new semester              |
+| `* * *`  | Teaching Assistant         | access a help guide                             | look up my problems if when I encounter any                   |
+| `* * *`  | Teaching Assistant         | exit the app                                    | exit the app immediately to close it                          |
+| `* * `   | Teaching Assistant         | have a way to upload stored on an excel sheet   | input information I already have stored elsewhere             |
+| `* * `   | Teaching Assistant         | have a way to export data onto an excel sheet   | easily extract information from the app to submit             |
 
 _{More to be added}_
 
