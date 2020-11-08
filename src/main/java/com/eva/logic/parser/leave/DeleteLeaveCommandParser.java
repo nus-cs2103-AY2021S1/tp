@@ -48,7 +48,7 @@ public class DeleteLeaveCommandParser implements Parser<DeleteLeaveCommand> {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteLeaveCommand.MESSAGE_USAGE), pe);
         } catch (IndexParseException pe) {
-            throw new ParseException(pe.getMessage());
+            throw new ParseException(String.format("%s\n%s", pe.getMessage(), DeleteLeaveCommand.MESSAGE_USAGE));
         }
     }
 }

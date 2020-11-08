@@ -49,7 +49,7 @@ public class AddLeaveCommandParser implements Parser<AddLeaveCommand> {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
         } catch (IndexParseException | IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
+            throw new ParseException(String.format("%s\n%s", e.getMessage(), AddLeaveCommand.MESSAGE_USAGE));
         }
     }
 }
