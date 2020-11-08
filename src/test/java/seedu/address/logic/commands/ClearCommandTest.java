@@ -1,14 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalExercise.getTypicalExerciseBook;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.address.model.ExerciseBook;
-import seedu.address.model.ExerciseModel;
-import seedu.address.model.ExerciseModelManager;
-import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
 
