@@ -159,7 +159,7 @@ The Model component:
 
 Of note in the Model component are the `Recipe` and `Ingredient` classes; below is the class diagram for both:
 <div style="text-align: center; padding-bottom: 2em">
-<h2 style="background-color: pink">TODO: class diagram for Recipe and Ingredient</h2>
+<img src="images/dg/RecipeIngredient.png"> <br/>
 Figure 7: <i>The class diagram for Recipes and Ingredients</i>
 </div>
 
