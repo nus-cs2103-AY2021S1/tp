@@ -240,7 +240,6 @@ public class MainApp extends Application {
         logger.info("============================ [ Stopping PropertyFree ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
-            storage.savePropertyBook(model.getPropertyBook());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
