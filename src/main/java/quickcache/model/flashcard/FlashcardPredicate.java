@@ -1,7 +1,10 @@
 package quickcache.model.flashcard;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -19,6 +22,12 @@ public class FlashcardPredicate implements Predicate<Flashcard> {
      * @param predicates a list of predicates for testing flashcard.
      */
     public FlashcardPredicate(List<Predicate<Flashcard>> predicates) {
+        requireNonNull(predicates);
+
+        if (predicates.stream().anyMatch(Objects::isNull)) {
+            throw new IllegalArgumentException("There should not be a null value in the list of predicates");
+        }
+
         this.predicates = predicates;
         this.predicate = predicates.stream().reduce(Predicate::and).get();
     }
@@ -39,6 +48,10 @@ public class FlashcardPredicate implements Predicate<Flashcard> {
 
     @Override
     public boolean test(Flashcard flashcard) {
+        if (flashcard == null) {
+            return false;
+        }
+
         return predicate.test(flashcard);
     }
 

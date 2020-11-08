@@ -1,6 +1,7 @@
 package quickcache.model.flashcard;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -111,6 +112,18 @@ public class FlashcardPredicateTest {
         predicate = preparePredicate(prepareTagSet("Carol"), prepareKeywordList("Why"));
         assertFalse(predicate.test(new FlashcardBuilder().withQuestion("Who is this?")
                 .withTags("Programming", "English").build()));
+    }
+
+    @Test
+    public void constructor_invalidArguments_throwException() {
+        ArrayList<Predicate<Flashcard>> invalidPredicateList = new ArrayList<>();
+        invalidPredicateList.add(new FlashcardContainsTagPredicate(prepareTagSet()));
+        invalidPredicateList.add(null);
+        invalidPredicateList.add(new QuestionContainsKeywordsPredicate(prepareKeywordList()));
+
+        // Invalid arguments for constructor
+        assertThrows(NullPointerException.class, () -> new FlashcardPredicate(null));
+        assertThrows(IllegalArgumentException.class, () -> new FlashcardPredicate(invalidPredicateList));
     }
 
     private Set<Tag> prepareTagSet(String... tags) {
