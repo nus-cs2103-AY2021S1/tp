@@ -422,6 +422,30 @@ _{More to be added}_
   - 1b1. FixMyAbs shows an error message.
 
     Use case resumes at step 1.
+   
+**Use case: UC06 - Edit an exercise**
+
+**MSS** 
+
+1. User requests to edit the calories per rep of an existing exercise.
+2. FixMyAbs edits the indicated exercise
+    
+   Use case ends.
+
+**Extensions**
+
+- 1a. The given new exercise name exists.
+
+    - 1a1. FixMyAbs shows an error message.
+        
+        Use case resumes at step 1.
+        
+- 1b. The given calories per rep is invalid.
+
+    - 1b1. FixMyAbs shows an error message.
+    
+        Use case resumes at step 1.
+        
     
 ### Non-Functional Requirements
 
