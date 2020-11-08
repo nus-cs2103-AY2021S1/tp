@@ -658,7 +658,7 @@ Calendar view displays:
 
 **:information_source: Notes**<br>
 
-* Boxes in grey are days not in the current month and therefore unclickable. However, it displays the lesson and event numbers for your information. 
+* Boxes in grey are days not in the current month and therefore unclickable. However, it displays the lesson and event numbers for the users. 
 
 * Users can click on each box in the calendar view to view specific schedule in the day view on the right. 
 
