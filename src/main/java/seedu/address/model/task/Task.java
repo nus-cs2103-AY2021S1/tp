@@ -221,13 +221,12 @@ public class Task implements Comparable<Task> {
                 && Objects.equals(getDeadline(), task.getDeadline())
                 && getProgress().equals(task.getProgress())
                 && isDone.equals(task.isDone)
-                && getAssignees().equals(task.getAssignees())
-                && getPublishDate().equals(task.getPublishDate());
+                && getAssignees().equals(task.getAssignees());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTaskName(), getDescription(), getPublishDate(), getDeadline(), getProgress(), isDone());
+        return Objects.hash(getTaskName(), getDescription(), getDeadline(), getProgress(), isDone(), getAssignees());
     }
 
     @Override
