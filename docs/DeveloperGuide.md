@@ -1,13 +1,20 @@
----
-layout: page
-title: Developer Guide
----
-* Table of Contents
-{:toc}
+# Calgo Developer Guide
+
+## Table of Contents
+[1. About This Guide](#1-about-this-guide)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 1. About This Guide
+
+This document servers as a developer guide for Calo App with sufficient and comprehensive overview of the software
+so that new developers, like you, will have a working knowledge of the application by the end of the guide.  
+  
+Note that this guide only provide reasonable depth. By no means this guide servers as a replacement for the actual code. 
+
+--------------------------------------------------------------------------------------------------------------------
+## 2. Setting Up
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 

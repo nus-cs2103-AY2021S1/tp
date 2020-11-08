@@ -1,13 +1,13 @@
----
-layout: page
-title: Setting up and getting started
----
+#Calo - Setting Up
 
-* Table of Contents
-{:toc}
-
-
---------------------------------------------------------------------------------------------------------------------
+## Prerequiste
+1. Java version `11` or higher
+2. An IDE that supports `Gradle` and `Javafx` plugins. 
+    * [For this guide, only instructions for IntelliJ will be provided.]
+ 
+| Notes:| If you have disabled the plugins in IntelliJ, go to File > Settings > Plugins to enable them.|
+-------------|-------------------
+|
 
 ## Setting up the project in your computer
 
@@ -16,15 +16,13 @@ title: Setting up and getting started
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
 </div>
 
-First, **fork** this repo, and **clone** the fork into your computer.
-
-If you plan to use Intellij IDEA (highly recommended):
-1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to to ensure Intellij is configured to use **JDK 11**.
-1. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IDEA.<br>
-  :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
-1. **Verify the setup**:
-   1. Run the `seedu.address.Main` and try a few commands.
-   1. [Run the tests](Testing.md) to ensure they all pass.
+1.  **Fork** this repo, and **clone** the fork into your computer.
+1. Open IntelliJ and
+    * If you are at Welcome Page, select `New Project`
+    * Else, Click on `File` -> `Project...` -> Select JDK 11 or higher -> `Next`
+1. Once you have started a new Project, Click `File` -> `Import Project`
+1. Locate the `build.gradle` file from the root of the cloned folder and select it. Click `OK`
+1. Click `Open as Project` and accept all defaults settings.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -47,9 +45,10 @@ If you plan to use Intellij IDEA (highly recommended):
 
    When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
 
-1. **Do the tutorials**
-   These tutorials will help you get acquainted with the codebase.
+--------------------------------------------------------------------------------------------------------------------
 
-   * [Tracing code](tutorials/TracingCode.md)
-   * [Removing fields](tutorials/RemovingFields.md)
-   * [Adding a new command](tutorials/AddRemark.md)
+## Verify Successful Setup
+
+1. Run the `Main.class` and you will see the Ui as shown below.
+1. Try out a few commands listed inside [UserGuide](UserGuide.md)
+![Ui](images/Ui.png)
