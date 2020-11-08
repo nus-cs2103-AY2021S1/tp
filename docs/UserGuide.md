@@ -11,6 +11,7 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## Set Up
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -22,7 +23,8 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 1. Run the command `java -jar pivot.jar` using the Command Line at the _home folder_ to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    
     ![Home Page at Main](images/home_main.png)
-   
+
+<div style="page-break-after: always;"></div>
 ## Navigating PIVOT
 
 1. When you first start the app, you will be at the `Home` section's `Main Page` (You can navigate between the `Home` or `Archive` sections). In the image below, the `navigation bar` is highlighted. It shows where you are in the app at any point in time. The `Command Line` allows you to enter the commands, and the feedback is displayed in the `Result Display`.
@@ -97,6 +99,8 @@ Users cannot add a `Suspect`/`Witness`/`Victim` to a `Case` if there is an exist
 There can be a `Suspect` with the same `Name`, `Sex` and `Phone` as an existing `Victim`/`Witness` in that `Case` and vice versa.
 The same `Suspect`/`Witness`/`Victim` can also appear in different cases.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Main page
 The commands listed below can only be used in the `Main Page` of the app.
@@ -192,6 +196,8 @@ Example:
 * `find Ang` could return cases titled `ang` and `Ang Mo Kio Car Theft`, and cases with a suspect named `Ang`
 * `find dhoby bishan` could return cases `Dhoby Ghaut Murder Case` and `Bishan Shopping Theft`, and cases containing `dhoby` or `bishan` in their description
 * `find 91234567 bishan` could return a case with the Victim having Phone number `91234567`, and cases containing `bishan` in their details
+
+<br>
 
 ### Investigation Case page
 The commands listed below can only be used in the `Case Page` of the app.
