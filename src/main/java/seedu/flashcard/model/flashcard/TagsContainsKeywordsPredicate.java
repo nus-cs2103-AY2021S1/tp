@@ -20,11 +20,16 @@ public class TagsContainsKeywordsPredicate implements Predicate<Flashcard> {
     public boolean test(Flashcard flashcard) {
         Set<Tag> flashcardTags = flashcard.getTags();
 
+        if (flashcardTags.isEmpty()) {
+            return false;
+        }
+
         return keywords.stream()
+                .map(keyword -> keyword.toLowerCase())
                 .anyMatch(keyword ->
                         flashcardTags.stream()
-                                .map(tag -> tag.toString())
-                                .anyMatch(tag -> tag.toLowerCase().contains(keyword.toLowerCase())));
+                                .map(tag -> tag.toString().toLowerCase()) //Convert tag to string
+                                .anyMatch(tag -> tag.contains(keyword)));
     }
 
     @Override
