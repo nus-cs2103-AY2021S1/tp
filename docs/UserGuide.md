@@ -547,6 +547,34 @@ You can use this command to exit the program.
 
 ProductiveNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+
+### Automated features and enhancements
+#### Upcoming tasks
+Your `Upcoming tasks` are updated in real time.
+
+If the current time is pass the **deadline of an assignment or the end time of a lesson**, ProductiveNUS **automatically removes** the assignment or lesson from `Upcoming tasks`.
+
+As such, you do not need to worry about manually updating your `Upcoming tasks` as you will receive accurate information of your academic schedule in real time.
+
+<div markdown="block" class="alert alert-primary">
+ **:clipboard: Pointers to note:**<br>
+Only assignments with deadlines **before** the current time and lessons with end time **before** the current time if displayed in `Upcoming tasks`. For example, if the deadline of an assignment has time `2359`, when the current time changes from `2358` to `2359`, the assignment will automatically be removed from `Upcoming tasks`.
+</div>
+
+#### Remarks on deadline of assignments and start time of lessons
+You can easily view how much time you have left before your assignment is due and when your lessons start. As such, you can better plan out your time to ensure you have enough time to complete your assignments and attend your lessons on time.
+
+For your assignments, assignments due in **more than a week's time** will be displayed in white, while assignments that are **overdue** or due in **less than a week's time** will be displayed in red (Figure X).  
+
+
+                 ------------------------------------------------------------Diagram to be added--------------------------------------------------------
+                 
+<div markdown="block" class="alert alert-primary">
+ **:clipboard: Pointers to note:**<br>
+Unlike your `Upcoming tasks`, the remarks are currently not updated in real time. As such, the remarks displayed is the time you have left from when you open ProductiveNUS. Only when you interact with the assignments (clicking or using the commands to alter the assignment list) will the remarks get updated.
+<br>Do look forward to the next version of ProductiveNUS to have your remarks updated in real time!
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
