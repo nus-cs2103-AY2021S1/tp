@@ -21,11 +21,11 @@ To navigate around this user guide, you may use the hyperlinks provided at the t
 
 1. `text in box` - represents a command, action, input, output or file
 
-1. **:information_source: Notes:** - represents noteworthy important information
+1. **:information_source: Notes:** - represents noteworthy information
 
 1. **:bulb: Tip:** - represents a useful tip
 
-1. **:warning: Important:** - represents important information
+1. **:warning: Important:** - represents important warnings
 
 ## Quick start
 
@@ -46,7 +46,7 @@ There are many versions of Java `11` listed. Select the correct version based on
 
 1. Double-click the file to start the app. A Graphical User Interface (GUI) similar to the one as shown in figure 1.2 below should appear in a few seconds. Notice that **Hospify** came listed with some sample patients.<br>
    
-   ![Ui](images/Ui.png)
+   ![Ui](images/SamplePatients.PNG)
    Figure 1.2 Start up UI showing list of sample patients
 
 1. You can now try typing your very first command in the command box and press `Enter` to execute it! Not sure what to type? Try typing **`help`** and pressing `Enter`. A help window as shown in figure 1.3 below should appear.<br>
@@ -85,7 +85,7 @@ In this section, we will be looking at a series of commands that **Hospify** sup
   e.g `n/NAME [t/ALLERGIES]` can be used as `n/John Doe t/shellfish` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times (including zero times).<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/shellfish`, `t/shellfish t/grass` etc.
+  e.g. `[t/ALLERGIES]…​` can be used as ` ` (i.e. 0 times), `t/shellfish`, `t/shellfish t/grass` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME ic/ NRIC p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME ic/S1234567A` is also acceptable.
@@ -93,14 +93,18 @@ In this section, we will be looking at a series of commands that **Hospify** sup
 
 ### Displaying usage instructions: `help` (by Peh Jun Siang)
 
-The `help` command shows a list of all the commands and their usages with examples supported by **Hospify**.
-
-![tp_help_command](images/helpWindow.png)
+The `help` command shows the list of all the commands and their usages with examples supported by **Hospify**.
 
 Format: `help`
+
+After executing the `help`, the **sizable Help Window** pops up as shown below. The commands are sorted alphabetically.
+
+![tp_help_command](images/helpWindow.PNG)\
+Figure 1.1 Help window
+
 <div markdown="block" class="alert alert-primary">
 
-**:bulb: Tip:** You can click on the headers `COMMAND` and `USAGE` to sort the commands in a descending or ascending manner.
+**:bulb: Tip:** Whenever you feel lost when using **Hospify**, the `help` command can be very helpful.
 
 **:bulb: Tip:** You can copy the URL of the **Hospify User Guide** to your clipboard to view a more detailed description
 for the commands.
@@ -140,15 +144,16 @@ Let us summarise the information above to a single line of command in the follow
 
 Format: `add n/NAME ic/NRIC p/PHONE_NUMBER [e/EMAIL] a/ADDRESS mr/MEDICAL_RECORD_URL [t/ALLERGIES]…​`
 
-* The `NAME` and `ALLERGIES` field should contain alphanumeric characters.
+* The `NAME` (upper limit of 100 characters) and `ALLERGIES` (upper limit of 100 characters) field should contain alphanumeric characters.
 * The `NRIC` field should start with an alphabet, followed by 7 digits, before ending with another alphabet.
-* The `PHONE_NUMBER` field should contain a number that is at least 3 digits long.
+* The `PHONE_NUMBER` field should contain a number that is between 3 and 15 digits (inclusive) long.
 * The `EMAIL` field should contain a valid email address (for more information on email validity, please refer to the [Command Summary](#command-summary)).
-* The `ADDRESS` field can contain any word or number.
+* The `ADDRESS` (upper limit of 200 characters) field can contain any word or number.
 * The `MEDICAL_RECORD` field should contain a valid url (for more information on url validity, please refer to the [Command Summary](#command-summary)).
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A patient can have any number of allergies (including 0)
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** A patient can have any number of allergies (including 0)
 </div>
 
 Let us use some examples (as shown below) to see how this command can actually be used.
@@ -159,7 +164,7 @@ Examples:
 
 When a patient is successfully added to **Hospify**, a success message will appear in the message box, and the patient is shown at the bottom of the list as shown in figure 3.1 below. <br>
 
-![Add patient](images/Add%20patient.PNG)
+![Add patient](images/AddPatient.PNG)
 Figure 3.1 Adding a patient (success scenario)
 
 ### Listing all patients: `list` (by Cedric Lim Jun Wei)
@@ -170,21 +175,21 @@ To use the command, simply type in `list` on the command line with no additional
 
 Format: `list`
 
-In the example below, we first use the `find` command to search for patient `Bernice Yu`. This results in a partial list containing only one patient as shown in figure 4.1 below.
+In the example below, we first use the `find` command to search for patient `Bernice Yu`. To do so, we type `find Bernice Yu` on the command line. This results in a partial list containing only one patient as shown in figure 4.1 below.
 
-![Find patient](images/list1.png)
+![Find patient](images/ListPatient1.PNG)
 Figure 4.1 Finding patient `Bernice Yu`
 
 With the help of the `list` command, we can revert back to the complete list of patients as shown in figure 4.2 below.
 
-![List patients](images/list2.png)
+![List patients](images/ListPatient2.PNG)
 Figure 4.2 Listing all patients
 
-### Editing a patient: `edit` (by Peh Jun Siang)
+### Editing a patient: `edit` (by Cao Qin)
 
 Edits an existing patient in **Hospify**.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/ALLERGIES]…​`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -344,12 +349,13 @@ Unlike other commands, you can click on the patient's information to show the ap
 You can simply **double click** on the patient to display all the appointments of that patient.
 
 ![show appointments via gui](images/showAppt/showAppt_gui.PNG)
-
+Figure X Show appointments via GUI
 ###### 2. Using the `Command Line`
 If the number of patients is too large, it might be difficult to find the patient's information to click.
 In that case, you can use the command line to show the patient's appointments.
 
-![show appointments via gui](images/showAppt/showAppt_input.PNG)
+![show appointments via command line](images/showAppt/showAppt_input.PNG)\
+Figure X Show appointments via Command Line
 
 Format: `showAppt NRIC`
 
@@ -358,9 +364,10 @@ Example: `showAppt S1234567A`
 The **Appointment window should pop up** after successfully running the command either through the `GUI` or the `Command Line` shown below.
 
 ![Appointment Window](images/showAppt/showAppt_window.PNG)
+Figure X Appointments window with appointments of patient
 
 <div markdown="span" class="alert alert-primary">
-**:bulb: Tip:** You can **click on the headers** to sort the appointments from earliest to latest or latest to earliest.
+**:bulb: Tip:** You can **click on the **DATE** header** to sort the appointments from earliest to latest or latest to earliest.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -458,7 +465,7 @@ When an `Appointment` is successfully deleted, a success message will appear in 
 
 ### Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 
-By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit-by-peh-jun-siang) patients by including the `mr/MEDICAL_RECORD_URL` field. Recall that this is a compulsory field for the `add` command while it is an optional field for the `edit` command and we can summarise the command formats as shown below.
+By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit-by-cao-qin) patients by including the `mr/MEDICAL_RECORD_URL` field. Recall that this is a compulsory field for the `add` command while it is an optional field for the `edit` command and we can summarise the command formats as shown below.
 
 Format: `add n/NAME …​ mr/MEDICAL_RECORD_URL …​` or `edit INDEX …​ [mr/MEDICAL_RECORD_URL] …​`
 
@@ -477,27 +484,55 @@ With this field, you can store the url to the online medical record of the patie
 
 In the following example, we will be using [Google Docs](https://docs.google.com) to store the medical record of patient `John Doe`.
 
-1. First, we add patient `John Doe` using the `add` command. Upon successful addition, you should be able to see a success message including the `MEDICAL_RECORD_URL` you have just added when you scroll the message box to the right as shown in figure 14.1 below.<br>
+1. First, we add patient `John Doe` using the `add` command. For this step, we will be using the url `https://docs.google.com/document/d/1cWm83218iwKEzNHP41vHFWLukaDn6eYompjyCcJxBiA/edit`. Upon successful addition, you should be able to see a success message including the `MEDICAL_RECORD_URL` you have just added when you scroll the message box to the bottom as shown in figure 14.1 below.<br>
     
-    ![medical record example 1](images/Medical%20record%20example%20(1).png)
+    ![medical record example 1](images/MrUrl1.PNG)
     Figure 14.1 Adding patient John Doe
     
 1. Next, to copy the medical record url of patient `John Doe` that we have just added, locate the patient in the list and click on the `MR URL` button located on the bottom right corner as shown in figure 14.2 below. A `Link Copied!` success message should appear once clicked, indicating that the link has been copied to the system clipboard.<br>
     
-    ![medical record example 2](images/Medical%20record%20example%20(2).png)
+    ![medical record example 2](images/MrUrl2.PNG)
     Figure 14.2 Copying medical record url of John Doe
     
 1. Then, open the web browser of your choice and paste the medical record url onto the search bar as shown in figure 14.3 below.<br>
     
-    ![medical record example 3](images/Medical%20record%20example%20(3).png)
+    ![medical record example 3](images/MrUrl3.PNG)
     Figure 14.3 Pasting medical record url of John Doe onto search bar
     
 1. Finally, you can access the medical record of the patient and make edits if applicable. A sample medical record is shown in figure 14.4 below for your reference.<br>
     
-    ![medical record example 4](images/Medical%20record%20example%20(4).png)
+    ![medical record example 4](images/MrUrl4.png)
     Figure 14.4 Sample medical record of John Doe on Google Docs
 
 The example we have just discussed uses the `add` command. The usage of the `MEDICAL_RECORD_URL` field in `edit` works in the same way as described in the `add` example as well.
+
+Another method to access the online medical record of the patient directly (without the copy-and-paste mechanism) is shown in the `showMr` command section below.
+
+### Show medical record directly: `showMr` (by Peh Jun Siang)
+We understand that it might be quite a hassle to copy the URL and paste it in your browser manually. Therefore, we
+implemented a short cut so that you can open up your default browser with the URL to the medical record directly from **Hospify** with the `showMr`
+command!
+
+Format: `showMr NRIC`\
+Example: `showMr s1234567A`
+
+Running the command as shown below will open your computer's **default browser** with the patient's medical record.
+![showMr command](images/showMrExample.PNG)
+Diagram X Using the `showMr` command to open patient's medical record.
+
+<div markdown="block" class="alert alert-warning">
+
+In the unlikely event that `showMr` command does not open up the medical record in your default browser,
+use the **manual method** described in [the above section](#using-the-medical-record-feature-mr-by-cedric-lim-jun-wei)
+on the medical record feature.
+
+**:warning: Important:** - Check that your URL is valid if the medical record does not open on your browser.
+
+Depending on the `Operating System` you are using, the `showMr` command may not work 
+sometimes because there might be some issues with your default browser. Do drop us an email
+at **hospify_enquiry@gmail.com** to notify the tech team if it does not open on your browser.
+
+</div>
 
 ### Clearing all entries: `clear`
 
@@ -515,7 +550,7 @@ Figure 14.6 clear command result
 
 ### Exiting the program: `exit` (by Cao Qin)
 
-Exits the program.
+You can exit the program by typing `exit` on the command line. Alternatively, you can close the window directly. Don't worry, either way, your data is automatically saved in the program!
 
 Format: `exit`
 
@@ -530,40 +565,73 @@ Format: `exit`
 In this section, we will be looking at some of the frequently asked questions from our users.
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Hospify** home folder.
+**A**: Install the app in the other computer and overwrite the **data file** with the `hospify.json` 
+that is in the **data file** of your other computer.
+* **Step 1.** Go into the **data file** in the previous home directory of the **Hospify** app.\
+![data file](images/faq/data_file.PNG)
+Figure 4.1.1 Go to the **Data File**
+* **Step 2.** Transfer the `hospify.json` file to your other computer through a flash drive or
+the web and paste the `hospify.json` file in the **data file** of your new **Hospify** app.
+![replace json file](images/faq/replace_json.PNG)
+Figure 4.1.2 Replace `hospify.json` file
 
 **Q**: I cannot run the `JAR` file! How do I get the program to run?<br/>
 **A**: Check if you have at least `Java 11` installed on your Computer.
 * On **Windows**\
-Step 1. Open up **Command Prompt** by searching for **cmd** in the task bar.\
-Step 2. Type the command `java -version` to check for the version.
-![windows java version](images/faq/windows_javaVersion.PNG)
+    **Step 1.** Open up **Command Prompt** by searching for **command prompt** in the task bar shown below.\
+![windows search command prompt](images/faq/search_commandPrompt.PNG)\
+Figure 4.2.1 Windows search for command prompt\
+    **Step 2.** Type the command `java -version` to check for the version.
+![windows java version](images/faq/windows_javaVersion.PNG)\
+Figure 4.2.2 Check windows java version
 
 <div markdown="block" class="alert alert-warning">
-**:warning: Important:** Ensure that the java version is at least **11**.
+**:warning: Important:** Ensure that the java version is at least `11`. If your version is less than `11`, 
+scroll down to the **:information_source: Notes** to the view the download link.
+
+After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
+
+If it still does not run, type the command `java -jar hospify.jar` in the command prompt in the **SAME directory** 
+containing your `hospify.jar` file shown below.
+
+![running jar from windows prompt](images/faq/windows_runJar.PNG)
+Figure 4.2.3 Running jar from windows prompt
+
 </div>
 
 * On **MAC**\
-Step 1. Open up **Terminal** by searching for **terminal** in the search bar.\
-![mac search bar](images/faq/mac_search.PNG)
-Step 2. Type the command `java -version` to check for the version.
-![windows java version](images/faq/mac_javaVersion.PNG)
+**Step 1.** Open up **Terminal** by searching for **terminal** in the search bar shown below.\
+![mac search bar](images/faq/mac_search.PNG)\
+Figure 4.2.4 mac search bar\
+**Step 2.** Type the command `java -version` to check for the version shown below.
+![mac java version](images/faq/mac_javaVersion.PNG)\
+Figure 4.2.5 Mac java version command
 
 <div markdown="block" class="alert alert-warning">
-**:warning: Important:** Ensure that the java version is at least **11**.
+**:warning: Important:** Ensure that the java version is at least `11`. If your version is less than `11`,
+scroll down to the **:information_source: Notes** to the view the download link.
+
+After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
+
+If it still does not run, type the command `java -jar hospify.jar` in the **TERMINAL** in the **SAME directory** 
+containing your `hospify.jar` file. 
+
+![running jar from Mac prompt](images/faq/mac_runJar.PNG)
+Figure 4.2.6 Running jar from Mac terminal
 </div>
 
 <div markdown="block" class="alert alert-primary">
-**:information_source: Notes:** If your java version is **less than 11**, visit
+**:information_source: Notes:** If your java version is **less than 11**, download from
  the official Java website [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 </div>
 
 **Q**: How do I get the latest version of **Hospify**?\
 **A**: As of the latest version, **Hospify** does not support updating within the application. In order to get the
  latest version, go to the **GitHub releases** [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.\
-![download jar](images/faq/download_jar.PNG)
+![download jar](images/faq/download_jar.PNG)\
+Figure 4.3.1 Download latest jar file
 
-**Q**: My question is not listed in the FAQ?\
+**Q**: My question is not listed in the FAQ. What should I do?\
 **A**: For inquires, please send email to our developer team at **hospify_enquiry@gmail.com**.
 
 
@@ -587,14 +655,14 @@ Action | Format, Examples
 * Valid email format
 
     * Emails should be of the format local-part@domain.topleveldomain
-    * The local-part should only contain alphanumeric characters or special characters including !#$%&'*+/=?`{}~^.-
-    * The domain should be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any
-    * The top level domain should be between 2 to 6 (inclusive) characters long and only contain alphabets<br>
+    * The local-part (upper limit of 64 characters) only contains alphanumeric characters or special characters including !#$%&'*+/=?`{}~^.-
+    * The domain should be between 2 and 256 characters long (inclusive), start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any
+    * The top level domain should be between 2 and 6 (inclusive) characters long and only contain alphabets<br>
     
 * Valid URL format
     
     * URL should be of the format (http:// or https://)(www.)domain.topleveldomain/path
     * The URL can start with `http://`, `https://`, `www.` or any of the first two paired with `www.`
-    * The domain should be between 2 to 256 characters long (inclusive) and should only contain alphanumeric characters or special characters including @:%._+~#?&=/
-    * The top level domain should be between 2 to 6 (inclusive) characters long and only contain alphabets
+    * The domain should be between 2 and 256 characters long (inclusive) and should only contain alphanumeric characters or special characters including @:%._+~#?&=/
+    * The top level domain should be between 2 and 6 (inclusive) characters long and only contain alphabets
     * The path follows the same rule as the domain except there is no restriction in its length
