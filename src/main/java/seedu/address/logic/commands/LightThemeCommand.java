@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
 
+/**
+ * Sets the theme to light theme.
+ */
 public class LightThemeCommand extends Command {
     public static final String COMMAND_WORD = "light";
 

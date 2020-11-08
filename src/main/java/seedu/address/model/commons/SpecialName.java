@@ -6,19 +6,20 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import seedu.address.model.person.Name;
 
 /**
- * Represents a special Name that allows any characters. However, the special name should not contain empty spaces.
+ * Represents a special Name that allows any characters. However, the special name should not be a string with only
+ * white spaces and should not be empty.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class SpecialName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should not be empty";
+            "Names should not be empty or only have whitespaces";
 
     public final String fullName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code SpecialName}.
      *
-     * @param name A valid name.
+     * @param name A valid special name.
      */
     public SpecialName(String name) {
         requireNonNull(name);

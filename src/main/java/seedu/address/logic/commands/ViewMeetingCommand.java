@@ -16,6 +16,9 @@ import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 
+/**
+ * Updates the user interface to view the agendas and notes of the selected meeting if valid.
+ */
 public class ViewMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "meeting view";
