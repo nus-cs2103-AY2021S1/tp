@@ -2796,7 +2796,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No stock found due to empty input for field name.
       Error details shown in the status message. Suggestion message will be shown too.
 
-### Updating a stock
+### Updating stocks
 
 1. Updating a stock from the inventory.
 
@@ -2842,6 +2842,32 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `update sn/Flower11 sn/Flower13 n/Rose` <br>
        Expected: No stock updated due to stock `Flower13` not found.
+       Error details shown in the status message. Suggestion message will be shown too.
+
+### Sorting stocks
+
+1. Sorting a stock from the inventory.
+
+    1. Prerequisites: Multiple stocks in the list.
+
+    1. Test case: `sort o/ascending by/name`<br>
+       Expected: The stocks in inventory will be sorted lexicographically by name in ascending order.
+       Success message will be shown.
+       
+    1. Test case: `sort o/ascending by/quantity`<br>
+       Expected: The stocks in inventory will be sorted numerically by quantity in ascending order.
+       Success message will be shown.
+    
+    1. Test case: `sort o/descending by/serialnumber`<br>
+       Expected: The stocks in inventory will be sorted lexicographically by serial number in descending order.
+       Success message will be shown.
+    
+    1. Test case: `sort o/descending by/lowquantity`<br>
+       Expected: The stocks in inventory will not be sorted since `lowquantity` is an invalid field.
+       Error details shown in the status message. Suggestion message will be shown too.
+       
+    1. Test case: `sort o/random by/location`<br>
+       Expected: The stocks in inventory will not be sorted since `random` is an invalid order.
        Error details shown in the status message. Suggestion message will be shown too.
 
 ### Generate statistics
