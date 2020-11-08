@@ -1,4 +1,4 @@
-package seedu.resireg.ui;
+package seedu.resireg.ui.room;
 
 import java.util.Comparator;
 
@@ -10,7 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Name;
 import seedu.resireg.model.student.StudentId;
+import seedu.resireg.ui.UiPart;
 
+//@@author JingYenLoh
 public class RoomCard extends UiPart<Region> {
     private static final String FXML = "RoomListCard.fxml";
 
