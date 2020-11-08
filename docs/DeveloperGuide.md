@@ -153,9 +153,15 @@ The classes involved in creating a lesson are `Lesson` and`LessonCommand`. The u
 
 * `Lesson#createRecurringTasks` — Creates a list of recurring event tasks based on the lesson's details.
 
+The created tasks are then added to the `Planus#UniqueTaskList` via the `Planus#addTask` method. Together with the tasks, the calendar is also
+updated and the new calendar tasks are added to `Planus#Clendar` via the `Planus#addTaskToCalendar` method. Lastly, the newly added lesson is added to
+`Planus#UniqueLessonList` which finishes the state update. 
+
   <br>
 
-The following sequence diagram describes what happens when a user adds a lesson:
+The following sequence diagram describes what happens when `Planus` updates a newly added `lesson`:
+
+![AddLessonSequenceDiagram](images/AddLessonSequenceDiagram.png)
 
 #### Design consideration:
 
@@ -201,7 +207,7 @@ The following activity diagram summarises when the data analysis chart and data 
 
 
 
-The following sequence diagram describes what happens when the user keys in the `done` comman:
+The following sequence diagram describes what happens when the user keys in the `done` command:
 
 
 

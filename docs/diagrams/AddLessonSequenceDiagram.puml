@@ -1,4 +1,5 @@
 @startuml
+autoactivate on
 !include ./style.puml
 
 Participant ":Planus" as planus LOGIC_COLOR
@@ -6,15 +7,19 @@ Participant ":Lesson" as lesson LOGIC_COLOR
 Participant ":Task" as task LOGIC_COLOR
 
 [-> planus: addLesson(lesson)
-activate lesson
-planus -> lesson: createRecurringTasks(lesson)
-loop all events in lesson
+planus -> lesson: createRecurringTasks()
+loop all time slots for lesson events
 create task
 lesson -> task
 task --> lesson
 end
 lesson --> planus
-
-
+loop all tasks created
+planus -> planus: addTask(task)
+return
+planus -> planus: addTaskToCalendar(task)
+return
+end
+return
 
 @enduml
