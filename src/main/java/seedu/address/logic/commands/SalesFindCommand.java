@@ -13,12 +13,6 @@ public class SalesFindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS] where KEYWORD refers to the drink abbreviation. \n"
             + "Example: " + COMMAND_WORD + " " + "BSBBT";
 
-
-    public static final String MESSAGE_SUCCESS = "Here is the drink and its sales data: ";
-
-    public static final String MESSAGE_NO_RECORD_SUCCESS = "This drink is not in the sales list. Use "
-            + SalesListCommand.COMMAND_WORD + " to see the sales list.";
-
     private final InputContainsKeywordsPredicate predicate;
 
     public SalesFindCommand(InputContainsKeywordsPredicate predicate) {
