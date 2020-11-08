@@ -10,6 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.contact.exceptions.ContactNotFoundException;
 import seedu.address.model.contact.exceptions.DuplicateContactException;
+import seedu.address.model.module.exceptions.DuplicateModuleException;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls.
@@ -43,7 +45,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public void add(Module toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateContactException();
+            throw new DuplicateModuleException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +60,11 @@ public class UniqueModuleList implements Iterable<Module> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ContactNotFoundException();
+            throw new ModuleNotFoundException();
         }
 
         if (!target.isSameModule(editedModule) && contains(editedModule)) {
-            throw new DuplicateContactException();
+            throw new DuplicateModuleException();
         }
 
         internalList.set(index, editedModule);
@@ -75,7 +77,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public void remove(Module toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ContactNotFoundException();
+            throw new ModuleNotFoundException();
         }
     }
 
@@ -91,7 +93,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public void setModules(List<Module> modules) {
         requireAllNonNull(modules);
         if (!modulesAreUnique(modules)) {
-            throw new DuplicateContactException();
+            throw new DuplicateModuleException();
         }
 
         internalList.setAll(modules);

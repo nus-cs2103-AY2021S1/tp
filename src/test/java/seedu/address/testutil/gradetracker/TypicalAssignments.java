@@ -30,7 +30,7 @@ public class TypicalAssignments {
     public static final Assignment FINAL_ASSESSMENT = new AssignmentBuilder().withAssignmentName("Final Assessment")
             .withAssignmentPercentage(50).withAssignmentResult(65).build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Assignment's details found in {@code CommandTestUtil}
     public static final Assignment QUIZ_1 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
             .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1).withAssignmentResult(VALID_ASSIGNMENT_RESULT_1)
             .build();

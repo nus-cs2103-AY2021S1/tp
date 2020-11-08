@@ -4,9 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADEPOINT_4;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_1;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.gradetracker.TypicalAssignments.LAB_1;
 import static seedu.address.testutil.gradetracker.TypicalAssignments.QUIZ_2;
@@ -15,8 +13,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand;
+import seedu.address.logic.commands.gradetrackercommands.EditAssignmentDescriptor;
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.Grade;
 import seedu.address.model.module.grade.GradePoint;
@@ -110,6 +111,23 @@ public class GradeTrackerTest {
         expectedSortedAssignments.add(LAB_1);
         expectedSortedAssignments.add(QUIZ_2);
         assertEquals(gradeTracker.getSortedAssignments(), expectedSortedAssignments);
+    }
+
+    @Test
+    public void throwsExceedPercentage_success() {
+        GradeTracker gradeTracker = new GradeTracker();
+        gradeTracker.addAssignment(QUIZ_2);
+        gradeTracker.addAssignment(LAB_1);
+        double largePercentageExceedsTotal = 99;
+        double lowPercentage = 0;
+        Assignment editedLab1 = new AssignmentBuilder(LAB_1).withAssignmentPercentage(largePercentageExceedsTotal)
+                .build();
+        Assignment editedQuiz2 = new AssignmentBuilder(QUIZ_2).withAssignmentPercentage(lowPercentage)
+                .build();
+        assertTrue(gradeTracker.exceedsAssignmentPercentageThreshold(LAB_1, editedLab1),
+                EditAssignmentCommand.MESSAGE_ASSIGNMENT_PERCENTAGE_THRESHOLD_EXCEEDED);
+        assertFalse(gradeTracker.exceedsAssignmentPercentageThreshold(QUIZ_2, editedQuiz2),
+                EditAssignmentCommand.MESSAGE_ASSIGNMENT_PERCENTAGE_THRESHOLD_EXCEEDED);
     }
 
     @Test

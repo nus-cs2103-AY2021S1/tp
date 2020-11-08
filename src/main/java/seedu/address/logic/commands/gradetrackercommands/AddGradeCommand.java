@@ -40,6 +40,7 @@ public class AddGradeCommand extends Command {
      * Creates an AddAssignmentCommand to add the specified {@code Grade}
      */
     public AddGradeCommand(ModuleName moduleToAdd, Grade grade) {
+        requireNonNull(moduleToAdd);
         requireNonNull(grade);
         logger.info("Adding a grade: " + grade.toString());
         this.moduleToAdd = moduleToAdd;

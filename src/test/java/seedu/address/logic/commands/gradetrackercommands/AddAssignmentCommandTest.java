@@ -1,16 +1,7 @@
 package seedu.address.logic.commands.gradetrackercommands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERCENTAGE_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
@@ -30,21 +21,22 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.ModuleListBuilder;
 import seedu.address.testutil.gradetracker.AssignmentBuilder;
 
 public class AddAssignmentCommandTest {
 
-    private Assignment assignmentQuiz1 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
+    private static final Assignment ASSIGNMENT_QUIZ_2 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
             .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1)
             .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
 
-    private Assignment assignmentOralPresentation2 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_2)
+    private static final Assignment ASSIGNMENT_ORAL_PRESENTATION_2 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_2)
             .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_2)
             .withAssignmentResult(VALID_ASSIGNMENT_RESULT_2).build();
 
     @Test
     public void constructor_nullModuleToAdd_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddAssignmentCommand(null, assignmentQuiz1));
+        assertThrows(NullPointerException.class, () -> new AddAssignmentCommand(null, ASSIGNMENT_QUIZ_2));
     }
 
     @Test
@@ -60,25 +52,27 @@ public class AddAssignmentCommandTest {
 
     @Test
     public void executeValidAssignmentAddSuccess() {
-        Model model = new ModelManager(getTypicalModuleList(), new ModuleList(),
+        ModuleList moduleList = new ModuleListBuilder().build();
+        Module module = new ModuleBuilder().withName(VALID_MODULENAME_CS2030).build();
+        moduleList.addModule(module);
+        Model model = new ModelManager(moduleList, new ModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
 
-        Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_SECOND_MODULE.getOneBased());
+        ModuleList expectedModuleList = new ModuleListBuilder().build();
+        Module expectedModule = new ModuleBuilder().withName(VALID_MODULENAME_CS2030).build();
 
-        ModuleName moduleToAddName = moduleToUpdate.getName();
+        Assignment expectedAssignment = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
+                .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1)
+                .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
 
-        AddAssignmentCommand command = new AddAssignmentCommand(moduleToAddName, assignmentQuiz1);
-
-        String expectedMessage = String.format(AddAssignmentCommand.MESSAGE_SUCCESS, assignmentQuiz1);
-
-        Model expectedModel = new ModelManager(getTypicalModuleList(), new ModuleList(),
+        expectedModuleList.addModule(expectedModule.addAssignment(expectedAssignment));
+        Model expectedModel = new ModelManager(model.getModuleList(), new ModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
 
-        Module expectedModule = expectedModel.getFilteredModuleList().get(INDEX_FIRST_MODULE.getOneBased());
+        AddAssignmentCommand command = new AddAssignmentCommand(module.getName(), expectedAssignment);
 
-        Module expectedUpdatedModule = expectedModule.addAssignment(assignmentQuiz1);
+        String expectedMessage = String.format(AddAssignmentCommand.MESSAGE_SUCCESS, expectedAssignment);
 
-        expectedModel.setModule(expectedModule, expectedUpdatedModule);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
@@ -90,7 +84,7 @@ public class AddAssignmentCommandTest {
         Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
 
         ModuleName moduleToAddName = moduleToUpdate.getName();
-        AddAssignmentCommand command = new AddAssignmentCommand(moduleToAddName, assignmentQuiz1);
+        AddAssignmentCommand command = new AddAssignmentCommand(moduleToAddName, ASSIGNMENT_QUIZ_2);
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
@@ -99,11 +93,8 @@ public class AddAssignmentCommandTest {
         Model model = new ModelManager(getTypicalModuleList(), new ModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
 
-        Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
-
-        ModuleName moduleToAddName = moduleToUpdate.getName();
         ModuleName moduleNameNotInList = new ModuleName(VALID_MODULENAME_ES2660);
-        AddAssignmentCommand command = new AddAssignmentCommand(moduleNameNotInList, assignmentQuiz1);
+        AddAssignmentCommand command = new AddAssignmentCommand(moduleNameNotInList, ASSIGNMENT_QUIZ_2);
 
         assertCommandFailure(command, model, AddAssignmentCommand.MESSAGE_ASSIGNMENT_NOT_ADDED);
     }
@@ -117,7 +108,7 @@ public class AddAssignmentCommandTest {
 
         ModuleName moduleToAddName = moduleToUpdate.getName();
         Module moduleWithAddedAssignment = new ModuleBuilder(moduleToUpdate).build();
-        moduleWithAddedAssignment.addAssignment(assignmentQuiz1);
+        moduleWithAddedAssignment.addAssignment(ASSIGNMENT_QUIZ_2);
         model.setModule(moduleToUpdate, moduleWithAddedAssignment);
 
         Assignment duplicateAssignmentQuiz1 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
@@ -138,38 +129,38 @@ public class AddAssignmentCommandTest {
         ModuleName moduleToAddName = moduleToUpdate.getName();
 
         final AddAssignmentCommand standardCommand = new AddAssignmentCommand(moduleToAddName,
-                assignmentOralPresentation2);
+                ASSIGNMENT_ORAL_PRESENTATION_2);
 
-        // same index and descriptor -> returns true
+        // same index and details -> returns true
         Assignment duplicateAssignmentOralPresentation2 = new AssignmentBuilder()
                 .withAssignmentName(VALID_ASSIGNMENT_NAME_2).withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_2)
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_2).build();
         AddAssignmentCommand commandWithSameValues = new AddAssignmentCommand(moduleToAddName,
                 duplicateAssignmentOralPresentation2);
 
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(null, standardCommand);
 
         // different type -> returns false
-        assertFalse(standardCommand.equals(8));
+        assertNotEquals(8, standardCommand);
 
         // different command types -> returns false
-        assertFalse(standardCommand.equals(new ExitCommand()));
+        assertNotEquals(standardCommand, new ExitCommand());
 
         moduleToUpdate = model.getFilteredModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
         ModuleName differentModuleName = moduleToUpdate.getName();
         // different index, same descriptor -> returns false
-        assertFalse(standardCommand.equals(new AddAssignmentCommand(differentModuleName, assignmentOralPresentation2)));
+        assertNotEquals(standardCommand, new AddAssignmentCommand(differentModuleName, ASSIGNMENT_ORAL_PRESENTATION_2));
 
-        // different descriptor, same index -> returns false
+        // different details, same index -> returns false
         Assignment assignmentQuiz1 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
                 .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1)
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
-        assertFalse(standardCommand.equals(new AddAssignmentCommand(moduleToAddName, assignmentQuiz1)));
+        assertNotEquals(standardCommand, new AddAssignmentCommand(moduleToAddName, assignmentQuiz1));
     }
 }

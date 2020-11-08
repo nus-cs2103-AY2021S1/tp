@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.grade.comparator.AssignmentNameComparator;
 
 /**
@@ -81,9 +82,8 @@ public class GradeTracker implements ReadOnlyGradeTracker {
     }
 
     public List<Assignment> getSortedAssignments() {
-        List<Assignment> sortedAssignments = new SortedList<>(assignments
+        return new SortedList<>(assignments
                 .asUnmodifiableObservableList(), comparator);
-        return sortedAssignments;
     }
 
     @Override
@@ -156,8 +156,8 @@ public class GradeTracker implements ReadOnlyGradeTracker {
             }
         }
 
-        return totalAssignmentPercentage + assignment.getAssignmentPercentage().get().assignmentPercentage
-                > ASSIGNMENT_PERCENTAGE_TOTAL;
+        return assignment.getAssignmentPercentage().isPresent() && totalAssignmentPercentage
+                + assignment.getAssignmentPercentage().get().assignmentPercentage > ASSIGNMENT_PERCENTAGE_TOTAL;
     }
 
     /**
@@ -173,8 +173,11 @@ public class GradeTracker implements ReadOnlyGradeTracker {
                 totalAssignmentPercentage += eachAssignment.getAssignmentPercentage().get().assignmentPercentage;
             }
         }
-        totalAssignmentPercentage = totalAssignmentPercentage + (editedAssignment.getAssignmentPercentage().get()
-                .assignmentPercentage - assignmentToEdit.getAssignmentPercentage().get().assignmentPercentage);
+        if (editedAssignment.getAssignmentPercentage().isPresent()
+                && assignmentToEdit.getAssignmentPercentage().isPresent()) {
+            totalAssignmentPercentage = totalAssignmentPercentage + (editedAssignment.getAssignmentPercentage().get()
+                    .assignmentPercentage - assignmentToEdit.getAssignmentPercentage().get().assignmentPercentage);
+        }
         return totalAssignmentPercentage > ASSIGNMENT_PERCENTAGE_TOTAL;
     }
 
@@ -195,6 +198,9 @@ public class GradeTracker implements ReadOnlyGradeTracker {
                 accumulatedAssignmentResult = (assignmentPercentage / ASSIGNMENT_PERCENTAGE_TOTAL) * assignmentResult;
             }
         }
+        if (accumulatedAssignmentPercentage == 0) {
+            return new Grade(0);
+        }
         Grade newGrade = new Grade(accumulatedAssignmentResult
                 / (accumulatedAssignmentPercentage / ASSIGNMENT_PERCENTAGE_TOTAL));
         this.grade = newGrade;
@@ -203,14 +209,16 @@ public class GradeTracker implements ReadOnlyGradeTracker {
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) {
+        if (other == this) {
             return true;
-        } else if (other instanceof GradeTracker) {
-            GradeTracker gT = (GradeTracker) other;
-            return this.grade.equals(gT.grade)
-                    && this.assignments.equals(gT.assignments);
-        } else {
+        }
+
+        if (!(other instanceof GradeTracker)) {
             return false;
         }
+
+        GradeTracker otherGradeTracker = (GradeTracker) other;
+        return otherGradeTracker.getGrade().equals(getGrade())
+                && otherGradeTracker.getAssignments().equals(getAssignments());
     }
 }

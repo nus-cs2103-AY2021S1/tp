@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -43,6 +44,8 @@ public class DeleteAssignmentCommand extends Command {
      * @param targetModule the module to remove the assignment from.
      */
     public DeleteAssignmentCommand(Index targetIndex, ModuleName targetModule) {
+        requireNonNull(targetIndex);
+        requireNonNull(targetModule);
         logger.info("Deleting assignment " + targetIndex.getOneBased() + " from:" + targetModule.toString() + "");
         this.targetIndex = targetIndex;
         this.targetModule = targetModule;
@@ -63,7 +66,10 @@ public class DeleteAssignmentCommand extends Command {
             throw new CommandException(MESSAGE_ASSIGNMENT_NOT_DELETED);
         }
         GradeTracker gradeTracker = module.getGradeTracker();
-        Assignment assignmentToDelete = gradeTracker.getSortedAssignments().get(targetIndex.getZeroBased());
+        if (targetIndex.getOneBased() > gradeTracker.getSortedAssignments().size() || targetIndex.getOneBased() < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        }
+        Assignment assignmentToDelete = gradeTracker.getSortedAssignments().get(targetIndex.getOneBased());
         gradeTracker.removeAssignment(assignmentToDelete);
         gradeTracker.calculateNewGrade();
         module.setGradeTracker(gradeTracker);
