@@ -57,6 +57,12 @@ deactivate StockBookParser
 LogicManager -> NoteCommand : execute(...)
 activate NoteCommand
 
+NoteCommand -> NoteCommand : getStockFromSerialNumber(...)
+activate NoteCommand
+
+NoteCommand -> NoteCommand
+deactivate NoteCommand
+
 NoteCommand -> NoteCommand : createStockWithAddedNote(...)
 activate NoteCommand
 

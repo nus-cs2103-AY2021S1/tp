@@ -47,6 +47,12 @@ deactivate StockBookParser
 LogicManager -> StockViewCommand : execute(...)
 activate StockViewCommand
 
+StockViewCommand -> StockViewCommand : getStockFromSerialNumber(...)
+activate StockViewCommand
+
+StockViewCommand -> StockViewCommand
+deactivate StockViewCommand
+
 StockViewCommand --> LogicManager
 deactivate StockViewCommand
 
