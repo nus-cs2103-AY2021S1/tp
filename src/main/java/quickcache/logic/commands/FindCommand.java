@@ -5,7 +5,6 @@ import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
 import quickcache.commons.core.Messages;
-import quickcache.logic.commands.exceptions.CommandException;
 import quickcache.model.Model;
 import quickcache.model.flashcard.FlashcardPredicate;
 

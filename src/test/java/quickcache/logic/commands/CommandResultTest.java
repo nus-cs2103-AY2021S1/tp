@@ -81,20 +81,15 @@ public class CommandResultTest {
         // null values that are not caught by static typing but are actually not allowed
         assertThrows(NullPointerException.class, () -> new CommandResult(null));
         assertThrows(NullPointerException.class, () -> new CommandResult("Feedback", null));
-        assertThrows(NullPointerException.class,
-                () -> new CommandResult("Feedback", null, new Statistics()));
+        assertThrows(NullPointerException.class, () -> new CommandResult("Feedback", null, new Statistics()));
 
         // exceptions thrown when values don't make sense for GUI to process
-        assertThrows(IllegalArgumentException.class,
-                () -> new CommandResult("Feedback", true, true, false));
-        assertThrows(IllegalArgumentException.class,
-                () -> new CommandResult("Feedback", true, false, true));
-        assertThrows(IllegalArgumentException.class,
-                () -> new CommandResult("Feedback", false, true, true));
+        assertThrows(IllegalArgumentException.class, () -> new CommandResult("Feedback", true, true, false));
+        assertThrows(IllegalArgumentException.class, () -> new CommandResult("Feedback", true, false, true));
+        assertThrows(IllegalArgumentException.class, () -> new CommandResult("Feedback", false, true, true));
 
         Question validQuestion = new OpenEndedQuestion("Valid Question", new Answer("Valid Answer"));
-        assertThrows(IllegalArgumentException.class,
-                () -> new CommandResult("Feedback", validQuestion, true, false));
+        assertThrows(IllegalArgumentException.class, () -> new CommandResult("Feedback", validQuestion, true, false));
     }
 
     @Test
