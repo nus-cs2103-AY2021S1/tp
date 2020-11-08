@@ -68,14 +68,14 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#26-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#22-ui-component): The UI of the App.
+* [**`Logic`**](#23-logic-component): The command executor.
+* [**`Model`**](#24-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#25-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -217,7 +217,7 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 and logging destinations.
 
 - The logging level can be controlled using the `logLevel` setting in the configuration file 
-(See [Section 3.2](#configuration), “Configuration”)
+(See [Section 3.2](#32-configuration), “Configuration”)
 - The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according 
 to the specified logging level
 - Currently log messages are output through both `Console` and to a `.log` file.
@@ -308,7 +308,7 @@ In the following sequence diagram, we trace the execution when the user decides 
 `sdel 1 f/` into FitEgo with the above application state, where the first Session in the Session List is the `enduranceTraining` Session. 
 For simplicity, we will refer to this command input as `commandText`. 
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure id="f14" style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
     <p>
         <img src="images/DeleteSessionSequenceDiagram.png"/>
     </p>
@@ -400,7 +400,7 @@ Now, consider two cases of Add Schedule command to be invoked.
 
 Here is what happens when `schadd c/2 s/1` is invoked.
 
-To some extent, the mechanism (on how it involves `LogicManager`, `AddressBookParser`, and saving the changes to `Storage`) is similar to that of [Delete Session](#delete-session-feature), as illustrated in [Delete Session](#delete-session-feature)'s sequence diagram. The main differences are on the method call `parseCommand()` and `DeleteSessionCommand#execute(model)`.
+To some extent, the mechanism (on how it involves `LogicManager`, `AddressBookParser`, and saving the changes to `Storage`) is similar to that of [Delete Session](#34-delete-session-feature), as illustrated in [its sequence diagram](#f14). The main differences are on the method call `parseCommand()` and `DeleteSessionCommand#execute(model)`.
 
 `parseCommand()` method call:
 Instead of using `DeleteSessionCommandParser`, it uses `AddScheduleCommandParser` to parse the argument `c/2 s/1` such that it returns an `AddScheduleCommand` object called `a` with Client index `2` and Session index `1`.
@@ -436,6 +436,8 @@ The proposed Edit Schedule mechanism is facilitated by `Addressbook`, similar to
 
 This operation is exposed in the `Model` interface as `Model#setSchedule()`.
 
+#### 3.6.1 Implementation
+
 Similar to the Edit Session mechanism, the example usage scenario below shows how Edit Schedule mechanism behaves:
 
 The user executes `schedit c/1 s/1 us/2` command to edit the Schedule with the first Session and first Client in the address book. 
@@ -450,9 +452,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     <figcaption>Figure 20 - Edit Schedule Activity Diagram</figcaption>
 </figure>
 
-#### 3.6.1 Design consideration:
-
-##### 3.6.1.1 Aspect: How edit schedule executes
+#### 3.6.2 Design consideration:
 
 * **Alternative 1 (current choice):** Retrieve Schedule using Client and Session Index.
   * Pros: Clearer to retrieve.
@@ -513,15 +513,17 @@ In designing this weight tracking feature, we had considered several alternative
 
 The View Session by period feature allows users to filter the Session List to show only those within the requested time period.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The Ui component RightSideBar comprises a ListView of 
- Session List and a title that reflects the latest filter on Session List resulting from ViewSessionCommand. 
- Session List's list and Ui-related operations are handled by <code>Model</code> and RightSideBar respectively.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The Ui component <code>RightSideBar</code> comprises a <code>ListView</code> of 
+ Session List and a title that reflects the latest filter on Session List resulting from <code>ViewSessionCommand</code>. 
+ Session List's list and Ui-related operations are handled by <code>Model</code> and <code>RightSideBar</code> respectively.
 </div>
 
 The View Session mechanism is facilitated by `ViewSessionCommand` which extends `Command`. The format of the 
 command is given by: 
 
 ```sview p/PERIOD```
+
+#### 3.8.1 Implementation
 
 When using this command, `PERIOD` should refer to either a variable period or fixed period
 that returns true after running `ViewSessionCommand#isValidPeriod`. Fixed periods are found in `ViewSessionCommand#PREDICATE_HASH_MAP`, whereas variable periods
@@ -576,22 +578,22 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 1. The `RightSideBar` retrieves the latest period "WEEK" from the command result and text. `Title` is set to "WEEK". It then retrieves the filtered Session List from `LogicManager` and updates the items in `SessionListView`.
 
-#### 3.8.1 Design Considerations
+#### 3.8.2 Design Considerations
 
 In designing this feature, we had to consider several alternative ways in which we can choose to handle viewing session by period.
 
 * **Alternative 1 (current choice):** Update title of `RightSideBar` based on command result.
     * Pros: Does not lower maintainability and requires the least changes to existing implementation and test code. 
-    * Cons: Violates Separation of Concerns principle as RightSideBar has to check whether command result is from ViewSessionCommand.
+    * Cons: Violates Separation of Concerns principle as `RightSideBar` has to check whether command result is from `ViewSessionCommand`.
     
 
 * **Alternative 2:** Using Observer pattern (Observer RightSideBar, Observable Command) to update title of `RightSideBar`.
-    * Pros: Reduces coupling between Ui and Logic.
+    * Pros: Reduces coupling between `Ui` and `Logic`.
     * Cons: 
-        1. `RightSideBar` would only be updated when ViewSessionCommand is run. 
-        If we set the default session view to Week when Logic is initialised, all sessions in existing test cases will need to start within 7 days of current date, which introduces additional complexity.
+        1. `RightSideBar` would only be updated when `ViewSessionCommand` is run. 
+        If we set the default session view to Week when `Logic` is initialised, all sessions in existing test cases will need to start within 7 days of current date, which introduces additional complexity.
         Hence, we would not customise `RightSideBar`'s default session view.
-        2. Violates YAGNI principle as making `Command` implement Observable interface requires addition of notify and add observer methods for all commands.
+        2. Violates YAGNI principle as making `Command` implement `Observable` interface requires addition of notify and add observer methods for all commands.
          This also increases chances of errors made in implementation.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -639,18 +641,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | trainer                                       | tag my client         | I know their allergy / injury history and can advise them an appropriate training / diet schedule |
 | `* * *`  | trainer                                       | add a new session               |                                                                        |
 | `* * *`  | trainer                                       | edit a session                 | change the details of a session                                        |
-| `* * *`  | trainer                                       | view a session's detail        | view at all of the session's details at a glance                       |
-| `* * *`  | busy fitness trainer                          | filter sessions by time        | view only the upcoming or other important sessions                             |
+| `* * *`  | busy fitness trainer                          | filter sessions by time        | view only the upcoming or other important sessions                     |
 | `* * *`  | trainer                                       | delete a session               | cancel all schedules if there is an urgent need                        |
 | `* * *`  | trainer                                       | add a new schedule             |                                                                        |
 | `* * *`  | trainer                                       | edit a schedule                | change the details of a schedule                                       |
 | `* * *`  | trainer                                       | view a schedule's detail       | view at all of the schedule's details at a glance                      |
 | `* * *`  | trainer                                       | delete a schedule              | remove schedule that are cancelled or completed                        |
-| `* *`    | trainer                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* *`    | international trainer                         | input and view weight in either kg or pound| save time on manual conversion                             |
+| `* *`    | fitness trainer                               | store clients' session feedback and weight| utilise previous sessions and plan exercises for upcoming sessions     |
 | `* *`    | forgetful fitness trainer                     | track clients' payments        | remind those who have not paid up                                      |
 | `* *`    | busy fitness trainer                          | query if a particular time slot is open     | add new clients to that time slot                         |
 | `* *`    | fitness trainer                               | track clients' weight over time| keep track of my clients progress over time                            |
-| `* *`    | fitness trainer                               | store clients' session feedback| utilise previous sessions and plan exercises for upcoming sessions     |
 | `*`      | trainer with many clients in the address book | sort clients by name           | locate a client easily                                                 |
 | `*`      | user                                          | change software background between light and dark mode | customise my experience                        |
 | `*`      | trainer focused on coaching pre-NS teen       | track client's date of birth   | adjust the fitness intensity depending on IPPT period                  |
@@ -671,18 +672,17 @@ Use case ends.
     
 **Extensions**
 
-* 1a. The client is within the list.
+* 1a. The Client is within the list.
     
     * 1a1. FitEgo shows an error message.
 
       Use case ends.
       
-* 1b. The Session is missing some required details.
+* 1b. The Client is missing some required details.
 
     * 1b1. FitEgo shows an error message.
     
        Use case ends.
-       
 
 <br/>
 
