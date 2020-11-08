@@ -2,8 +2,10 @@ package seedu.flashcard.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.flashcard.commons.core.index.Index;
@@ -25,6 +27,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String INVALID_FAV_INPUT = "Favourite should only take in 'yes' or 'no'.";
+    public static final String INVALID_FLAG = "Invalid flags";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -183,5 +186,16 @@ public class ParserUtil {
             throw new ParseException(SortCriteria.MESSAGE_INVALID_SORT_CRITERIA);
         }
         return SortCriteria.getCriteria(sortCriteria);
+    }
+
+    /**
+     * Checks if all flags passed in contain a valid value.
+     */
+    public static boolean areValidFlagValues(List<String> flagValueList,
+                                             String... validFlagValues) throws ParseException {
+        List<String> validFlagValueList = Arrays.asList(validFlagValues);
+        boolean areAllValid = flagValueList.stream()
+                .allMatch(x -> validFlagValueList.stream().anyMatch(y -> y.equals(x)));
+        return areAllValid;
     }
 }

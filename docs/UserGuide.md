@@ -118,6 +118,18 @@ This section will give you some useful information about the various command for
 * All additional input after commands which do not have input fields such as `list`, `exit`, `clear`, `help`, `review`, `quiz` will be ignored.
   * eg. `list` and `list 123` will have the same effect.
 
+<br>
+
+* Flags such as `-a` and `-d` allow white spaces within them.
+  * eg. `sort success -   a` is valid and will sort flashcards by success rate in ascending order.
+  * eg. `view 1 -  a` is valid and will view the first flashcard in the displayed flashcard list with answer shown.
+
+<br>
+
+* Prefixes and flags are both case sensitive.
+  * eg. `q/` is not the same as `Q/`
+  * eg. `-a` is not the same as `-A`
+
 </div>
 
 ## Common Input Fields
@@ -416,10 +428,10 @@ Format: `sort <success|reviewed> <-a|-d>`
 * Specifying `-d` means sorting by the criteria in descending order.
 
 Examples: 
-* `sort reviewed -a` shows a list of all flashcards sorted according to review frequency in ascending order
-* `sort reviewed -d` shows a list of all flashcards sorted according to review frequency in descending order
-* `sort success -a` shows a list of all flashcards sorted according to success rate in ascending order
-* `sort success -d` shows a list of all flashcards sorted according to success rate in descending order
+* `sort reviewed -a` shows a list of current flashcards sorted according to review frequency in ascending order
+* `sort reviewed -d` shows a list of current flashcards sorted according to review frequency in descending order
+* `sort success -a` shows a list of current flashcards sorted according to success rate in ascending order
+* `sort success -d` shows a list of current flashcards sorted according to success rate in descending order
 
 <div markdown="span" class="alert alert-primary">:memo: Note: The review frequency of a flashcard refers to the number of times you review in <b>quiz mode</b>, and the success rate refers to the rate at which you get the question correct in <b>quiz mode</b>.
 </div>
@@ -514,6 +526,10 @@ Flashcards data are saved in the hard disk automatically after any command that 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+
+**Q**: What does it mean if some action is **not supported**?<br>
+**A**: It means that our app is not intended to allow said action to work although it may work under certain circumstances.
+If you still want to perform the action, do take note that you may face unintended or unexplained behaviour.
 
 **Q**: What is the difference between review mode and quiz mode?<br>
 **A**: Review mode is like a sandbox mode where you can move back and forth between flashcards. In quiz mode, you can only go forward. Also, quiz mode asks you for feedback and keeps track of statistics but review mode doesn't.

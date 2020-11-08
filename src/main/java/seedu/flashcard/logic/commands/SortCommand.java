@@ -1,9 +1,8 @@
 package seedu.flashcard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CRITERIA;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_FLAG;
 
-import seedu.flashcard.commons.core.Messages;
 import seedu.flashcard.model.Model;
 import seedu.flashcard.model.flashcard.SortCriteria;
 
@@ -18,7 +17,17 @@ public class SortCommand extends Command {
             + "Can sort according to review frequency or success rate of the flashcards in ascending or "
             + "descending order.\n"
             + "Parameters: <success|reviewed> <-a|-d>\n"
-            + "Example: " + COMMAND_WORD + " reviewed " + PREFIX_CRITERIA + "d";
+            + "Example: " + COMMAND_WORD + " reviewed " + PREFIX_FLAG + "d";
+
+    public static final String MESSAGE_SORTED_REVIEWED_ASCENDING = "Sorted flashcards by review frequency "
+            + "in ascending order!";
+    public static final String MESSAGE_SORTED_REVIEWED_DESCENDING = "Sorted flashcards by review frequency "
+            + "in descending order!";
+    public static final String MESSAGE_SORTED_SUCCESS_ASCENDING = "Sorted flashcards by success rate in "
+            + "ascending order!";
+    public static final String MESSAGE_SORTED_SUCCESS_DESCENDING = "Sorted flashcards by success rate in "
+            + "descending order!";
+    public static final String MESSAGE_SORTED_INVALID = "Flashcards could not be sorted!";
 
     private final SortCriteria criteria;
 
@@ -30,8 +39,25 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.sortFilteredFlashcardList(criteria);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));
+        String message;
+        switch(criteria) {
+        case REVIEWED_ASCENDING:
+            message = MESSAGE_SORTED_REVIEWED_ASCENDING;
+            break;
+        case REVIEWED_DESCENDING:
+            message = MESSAGE_SORTED_REVIEWED_DESCENDING;
+            break;
+        case SUCCESS_RATE_ASCENDING:
+            message = MESSAGE_SORTED_SUCCESS_ASCENDING;
+            break;
+        case SUCCESS_RATE_DESCENDING:
+            message = MESSAGE_SORTED_SUCCESS_DESCENDING;
+            break;
+        default:
+            message = MESSAGE_SORTED_INVALID;
+            break;
+        }
+        return new CommandResult(message);
     }
 
     @Override
