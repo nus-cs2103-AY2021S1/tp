@@ -1934,7 +1934,67 @@ testers are expected to do more *exploratory* testing.
 ### Todo List
 
 
+
+
+
+
+
+#### Finding a task
+
+1. Prerequisites: List out all tasks using the `listtask` command. Multiple tasks in the list.
+
+   1. Test case: `findtask n/lab`
+      Expected: All tasks with their name containing the word `lab` will be displayed in the todolist panel.
+
+   1. Test case: `findtask t/easy`
+      Expected: All tasks containing the tag `easy` will be displayed in the todolist panel.
+      
+   1. Test case: `findtask d/2020-01-01`
+      Expected: All tasks with the date `2020-01-01` will be displayed in the todolist panel.
+      
+   1. Test case: `findtask p/high`
+      Expected: All tasks with the priority `high` will be displayed in the todolist panel.
+   
+   1. Test case: `findtask s/completed`
+      Expected: All tasks with the status `completed` will be displayed in the todolist panel.       
+
+   1. Test case: `findtask n/lab d/2020-01-01 p/high`
+      Expected: All tasks which fulfil **all** the following criteria will be displayed in the todolist panel.
+        
+        * Task name contains the word `lab`
+        
+        * Has the date `2020-01-01`
+        
+        * Has the priority `high`
+
+   1. Test case: `findtask 1 t/easy`
+      Expected: No task will be found. Error message for invalid command format shown in the status message. The displayed todolist remains unchanged.
+   
+   1. Test case: `findtask n/***`
+      Expected: No task will be found. Error message for invalid task name shown in the status message. The displayed todolist remains unchanged.
+
+   1. Test case: `findtask t/$$`
+      Expected: No task will be found. Error message for invalid task tag shown in the status message. The displayed todolist remains unchanged.
+
+   1. Test case: `findtask p/invalidPriority`
+      Expected: No task will be found. Error message for invalid task priority shown in the status message. The displayed todolist remains unchanged.
+
+   1. Test case: `findtask d/invalidDate`
+      Expected: No task will be found. Error message for invalid task date shown in the status message. The displayed todolist remains unchanged.
+   
+   1. Test case: `findtask s/invalidStatus`
+      Expected: No task will be found. Error message for invalid task status shown in the status message. The displayed todolist remains unchanged.
+   
+   1. Test case: `findtask`
+      Expected: No task will be found. Error message for invalid command format shown in the status message. The displayed todolist remains unchanged.
+
+
+
+
+
 ### Event List
+
+
 
 ### Saving data
 

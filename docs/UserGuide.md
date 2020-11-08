@@ -713,7 +713,7 @@ Examples:
 
  * When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
 
- * You can remove all the contact’s tags by typing `t/` without specifying any tags after it.
+ * You can remove all the contact’s tags by typing `t/` without specifying any tags after it, e.g. `editcontact 1 t/`
 
  Examples:
 
