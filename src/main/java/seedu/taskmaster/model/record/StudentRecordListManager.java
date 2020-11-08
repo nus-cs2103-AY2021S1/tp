@@ -153,26 +153,6 @@ public class StudentRecordListManager implements StudentRecordList {
     }
 
     /**
-     * Creates and returns a {@code StudentRecord} with the details of {@code studentRecordToEdit}
-     * edited with {@code editStudentRecordDescriptor}.
-     * Note that the {@code name} and {@code nusnetId} should not be edited.
-     */
-    private static StudentRecord createEditedStudentRecord(
-            StudentRecord studentRecordToEdit,
-            StudentRecordListManager.EditStudentRecordDescriptor editStudentRecordDescriptor) {
-        assert studentRecordToEdit != null;
-        assert editStudentRecordDescriptor.isAnyFieldEdited();
-
-        AttendanceType updatedAttendanceType = editStudentRecordDescriptor.getAttendanceType()
-                .orElse(studentRecordToEdit.getAttendanceType());
-        ClassParticipation updatedClassParticipation = editStudentRecordDescriptor.getClassParticipation()
-                .orElse(studentRecordToEdit.getClassParticipation());
-
-        return new StudentRecord(studentRecordToEdit.getName(), studentRecordToEdit.getNusnetId(),
-                updatedAttendanceType, updatedClassParticipation);
-    }
-
-    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}
      */
     @Override
@@ -206,6 +186,26 @@ public class StudentRecordListManager implements StudentRecordList {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    /**
+     * Creates and returns a {@code StudentRecord} with the details of {@code studentRecordToEdit}
+     * edited with {@code editStudentRecordDescriptor}.
+     * Note that the {@code name} and {@code nusnetId} should not be edited.
+     */
+    private static StudentRecord createEditedStudentRecord(
+            StudentRecord studentRecordToEdit,
+            StudentRecordListManager.EditStudentRecordDescriptor editStudentRecordDescriptor) {
+        assert studentRecordToEdit != null;
+        assert editStudentRecordDescriptor.isAnyFieldEdited();
+
+        AttendanceType updatedAttendanceType = editStudentRecordDescriptor.getAttendanceType()
+                .orElse(studentRecordToEdit.getAttendanceType());
+        ClassParticipation updatedClassParticipation = editStudentRecordDescriptor.getClassParticipation()
+                .orElse(studentRecordToEdit.getClassParticipation());
+
+        return new StudentRecord(studentRecordToEdit.getName(), studentRecordToEdit.getNusnetId(),
+                updatedAttendanceType, updatedClassParticipation);
     }
 
     /**

@@ -129,7 +129,7 @@ Classes used by multiple components are in the `seedu.taskmaster.commons` packag
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Additional Features to Be Implemented**
+## **Additional Features Implemented**
 
 ### SessionList
 
@@ -168,20 +168,21 @@ Author: **Goh Siau Chiak**
 ![Structure of StudentRecordList Component](images/StudentRecordDiagram.png)
 
 The `StudentRecordList`,
+![Student Record List Class](images/StudentRecordListDiagram.png)
 * is stored by a `Session`.
 * encapsulates a list of zero or more `StudentRecord` objects.
 * can provide a list of the `StudentRecord` objects that it contains (to pass to the UI).
 * can mark the attendance of a student in the `Session`.
+* can award class participation score to a student in the `Session`.
 
 The `StudentRecord`,
-* represents an immutable record of a student's attendance in a particular `Session`
+* represents an immutable record of a student enrolled in a particular `Session`.
+  * When the user wants to update the record, a new `StudentRecord` object will be created. 
 * contains
-  * a `NusnetId` that indicates which student the record represents
-  * the `Name` of the student represented
-  * the `AttendanceType` of the student for the `Session`
-  * a `ClassParticipation` representing the score awarded to the student for participating in the `Session`
-
-When the user wants to update the attendance or class participation score, a new `StudentRecord` object will be created. 
+  * an `NusnetId` that indicates which student the record represents.
+  * the `Name` of the student represented.
+  * the `AttendanceType` of the student for the `Session`.
+  * a `ClassParticipation` representing the score awarded to the student for participating in the `Session`.
 
 Given below is the Sequence Diagram for interactions within the `StudentRecordListManager` component when `StudentRecordListManager#markStudentAttendance(nusnetId, attendanceType)` is called.
 
@@ -202,11 +203,13 @@ Design alternatives:
     student record list represents the record of students **for that particular session only**. If we 
     implemented this alternative, edits to the student list will result in changes to all the student record
     lists, which does not follow the design of the student record list. For example:
-    - suppose a TA is currently teaching three students, `A, B, C`
-    - when the TA creates a new session `S1` , it will contain three corresponding student records
-    - subsequently after the session is over, student `A` informs the TA that he is going to drop the module
-    - when the TA deletes student `A` from the student list, the student record list of `S1` will update and
+    - Suppose a TA is currently teaching three students, `A, B, C` which are all present for the first session.
+    - When the TA creates a new session `S1` , it will contain three corresponding student records.
+    - Subsequently after the session is over, student `A` informs the TA that he is going to drop the module
+    - When the TA deletes student `A` from the student list, the student record list of `S1` will update and
     no longer reflect that `A` was enrolled in the module when `S1` occurred
+    - However, this does not change the fact that student `A` was present at session `S1`, and so the records of `S1`
+    should reflect that `A` was present.
 
 - Have `StudentRecord` contain the whole `Student` object, not just its `Name` and `NusnetId`
 
