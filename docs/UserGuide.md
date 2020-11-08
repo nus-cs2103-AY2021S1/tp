@@ -385,7 +385,7 @@ You can view your classes on a timetable in either a daily or weekly format.
 
 Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
 
-*  Displays a timetable view of your classes.
+*  Displays a timetable view of your classes with the corresponding student's name tagged to it.
 * `DATE_TO_VIEW` refers to the date you wish to view the lesson schedule of.
 * `VIEW_MODE` refers to the mode where you would like the schedule to be rendered on screen. It could either be weekly or daily.
 
@@ -425,15 +425,19 @@ To view schedule:
 3.  You can easily view you classes for the week. The Date bar labelled in the figure below shows the day of the week as well as the date for your reference.
     The Time bar in the figure shows the time in 24-hour format with 1-hour intervals. 
     The Classes labelled in the figure below are colored brown to match the color of Reeve for a better visual experience.
-    Furthermore, the name of the student that you are tutoring during that slot will also be shown.
+    Furthermore, the name of the student that you are tutoring during that slot is labelled for you to identify classes easily.
     With the date, time and name of student shown in one view, you could plan your classes without a hassle.
 
     ![Schedule Step 3](images/ScheduleStep3.png)
+    Figure __ Shows various component of your schedule.
 
 <div markdown="block" class="alert alert-info">
 :bulb: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
-This will automatically open up your schedule of the current week in the weekly format.
-You could use this as quick way to open up schedule for the current week. 
+Viewing it this way would open up your schedule of the current week in the weekly format.
+You could use this as quick way to open up schedule for the current week.
+
+:exclamation: A class duration of less than an hour may not be shown fully on the schedule.
+ 
 </div>
 
 #### 3.3.10 Clearing all entries: `clear`
