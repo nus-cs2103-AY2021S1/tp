@@ -551,7 +551,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `FaculType` and the **Actor** is the `user`, unless specified otherwise)
 
-
 **Use case: Add a contact**
 
 **MSS**
@@ -575,6 +574,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+**Use case: Add a module**
+
+**MSS**
+
+1.  User requests to add a module to the module list
+2.  FaculType adds the module
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The attributes are in an invalid format.
+
+    * 1a1. FaculType shows an error message.
+
+      Use case resumes at step 1.
+
+*   1b. The module code already exists.
+
+    * 1b1. FaculType shows an error message.
+
+      Use case resumes at step 1.
+      
 **Use case: Delete a contact**
 
 **MSS**
@@ -598,6 +620,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Delete a module**
+
+**MSS**
+
+1.  FaculType shows a list of modules
+2.  User requests to delete a module
+3.  FaculType deletes the module
+
+    Use case ends.
+
+**Extensions**
+
+*   1a. The module list is empty.
+
+    Use case ends.
+
+*   2a. The given module code does not exist.
+
+    * 2a1. FaculType shows an error message.
+
+    Use case resumes at step 1.
+
 **Use case: Edit a contact**
 
 **MSS**
@@ -618,32 +662,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *   3a. The given index is invalid.
 
     * 3a1. FaculType shows an error message.
-    
+
       Use case resumes at step 2.
-      
+
 *   3b. The attributes to be edited are invalid.
 
     * 3b1. FaculType shows an error message.
-    
+
       Use case resumes at step 2.
- 
-**Use case: Find a contact**
 
-**MSS**
-
-1.  User requests to list contacts
-2.  FaculType shows a list of contacts
-3.  User requests to find a specific contact
-4.  FaculType shows the contact(s)
-
-    Use case ends.
-
-**Extensions**
-
-*  2a. The list is empty.
-
-   Use case ends.
- 
 **Use case: Add or update a remark**
 
 **MSS**
@@ -667,63 +694,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a module**
+**Use case: Find contact(s)**
 
 **MSS**
 
-1.  User requests to add a module to the module list
-2.  FaculType adds the module
+1.  User requests to list contacts
+2.  FaculType shows the list of contacts
+3. User requests to find contact(s) by their attributes
+4.  FaculType shows a list of contacts that fulfills all constraints specified
 
     Use case ends.
 
 **Extensions**
 
-*   1a. The module code already exists.
-
-    * 1a1. FaculType shows an error message.
- 
-      Use case resumes at step 1.
-
-**Use case: Delete a module**
-
-**MSS**
-
-1.  FaculType shows a list of modules
-2.  User requests to delete a module
-3.  FaculType deletes the module
+*   2a. The contact list is empty.
 
     Use case ends.
 
-**Extensions**
+*   3a. The user's keywords are invalid.
 
-*   1a. The module list is empty.
+    * 3a1. FaculType shows an error message.
+    
+      Use case resumes at step 2.
 
-    Use case ends.
-
-*   2a. The given module code does not exist.
-
-    * 2a1. FaculType shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: Find a module**
+**Use case: Find module(s)**
 
 **MSS**
 
-1.  User requests to list all modules
-2.  FaculType shows a list of all modules
-3.  User requests to find a specific module
-4.  FaculType shows the module(s)
+1.  User requests to list modules
+2.  FaculType shows the list of modules
+3.  User requests to find module(s) by their attributes
+4.  FaculType shows a list of modules that fulfills all constraints specified
 
    Use case ends.
 
 **Extensions**
 
-*  2a. The module list is empty.
+*   2a. The module list is empty.
 
-   Use case ends.
+    Use case ends.
 
-**Use case: Assign a contact to a module**
+*   3a. The user's keywords are invalid.
+
+    * 3a1. FaculType shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Assign a contact to module(s)**
 
 **MSS**
 
@@ -748,27 +765,123 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *   5a. The given contact does not exist.
 
-    *   5a1. FaculType shows an error message.
+    * 5a1. FaculType shows an error message.
 
-    Use case resumes at step 4.
+      Use case resumes at step 4.
 
 *   5b. The given module does not exist.
 
-    * 5b2. FaculType shows an error message.
+    * 5b1. FaculType shows an error message.
 
-    Use case resumes at step 4.
+      Use case resumes at step 4.
+
+**Use case: Unassign a contact from module(s)**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  FaculType shows the list of contacts
+3.  User requests to list modules
+4.  FaculType shows the list of modules
+5.  User requests to unassign a contact to some modules
+6.  FaculType updates the instructor list of the specified modules
+
+   Use case ends.
+
+**Extensions**
+
+*   2a. The contact list is empty.
+
+    Use case ends.
+
+*   4a. The module list is empty.
+
+    Use case ends.
+
+*   5a. The given contact does not exist.
+
+    * 5a1. FaculType shows an error message.
+
+      Use case resumes at step 4.
+
+*   5b. Any of the modules specified does not exist.
+
+    * 5b1. FaculType shows an error message.
+
+      Use case resumes at step 4.
+
+*   5c. The contact is not an instructor for any of the modules.
+
+    * 5c1. FaculType shows an error message.
+
+      Use case resumes at step 4.
+
+**Use case: Unassign a contact from all module(s)**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  FaculType shows the list of contacts
+3.  User requests to list modules
+4.  FaculType shows the list of modules
+5.  User requests to unassign a contact
+6.  FaculType updates the instructor list of the modules.
+
+   Use case ends.
+ 
+**Extensions**
+
+*   2a. The contact list is empty.
+
+    Use case ends.
+
+*   4a. The module list is empty.
+
+    Use case ends.
+
+**Use case: Unassign all contacts from all modules**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  FaculType shows the list of contacts
+3.  User requests to list modules
+4.  FaculType shows the list of modules
+5.  User requests to unassign all contacts from all modules
+6.  FaculType updates the instructor list of modules
+
+   Use case ends.
+
+**Extensions**
+
+*   2a. The contact list is empty.
+
+    Use case ends.
+
+*   4a. The module list is empty.
+
+    Use case ends.
+
+**Use case: Switch active semester**
+
+**MSS**
+
+1. User requests to switch the active semester
+2. FaculType updates the module list to show modules active in the other semester
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should be usable by a novice who has never used a contact management system/command line application before.
-5. Should adhere to the schedule specified in the CS2103 website.
-6. Not required to support contacting the faculty members.
-7. Not required to handle printing of faculty member/module data.
-8. Not required to connect to any backend system/DBMS.
-9. Not required to support multiple users on a single device.
+4.  Should be usable by a novice who has never used a contact management system/command line application before.
+5.  Should adhere to the schedule specified in the CS2103 website.
+6.  Not required to support contacting the faculty members.
+7.  Not required to handle printing of faculty member/module data.
+8.  Not required to connect to any backend system/DBMS.
+9.  Not required to support multiple users on a single device.
 10. Not required to support any language other than English.
 11. Should be able to work without users having Gradle/JavaFX installed beforehand.
 12. Each time a user opens the application, the user should be able to view the latest version of the data (new/updated data should be there and deleted data should no longer exist).
