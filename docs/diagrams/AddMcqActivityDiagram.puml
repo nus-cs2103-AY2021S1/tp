@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes add multiple choice question command;
+:QuickCache parse the input from user;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([flashcard already exists])
+    :throw CommandException;
+else ([else])
+    : Model add flashcard to the list;
+endif
+:return CommandResult to UI;
+stop
+@enduml

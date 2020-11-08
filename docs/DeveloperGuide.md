@@ -162,6 +162,9 @@ The following sequence diagram shows how the Add Open Ended Question mechanism w
 
 ![AddOpenEndedSequenceDiagram](images/AddOpenEndedSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes add open ended question  command on a specified flashcard:
+
+![AddOpenEndedActivityDiagram](images/AddOpenEndedActivityDiagram.png)
 
 #### Design considerations
 
@@ -194,6 +197,10 @@ The following sequence diagram shows how the parser operation works:
 The following sequence diagram shows how the Add Multiple Choice Question mechanism works:
 
 ![AddMcqSequenceDiagram](images/AddMcqSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes add multiple choice question  command on a specified flashcard:
+
+![AddMcqActivityDiagram](images/AddMcqActivityDiagram.png)
 
 #### Design considerations:
 
