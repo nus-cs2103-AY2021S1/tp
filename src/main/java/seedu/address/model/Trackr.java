@@ -88,10 +88,20 @@ public class Trackr implements ReadOnlyTrackr<Module> {
 
     //Tutorial Group Operations
 
+    /**
+     * Returns an ObservableList of the target's UniqueTutorialGroupList
+     * @param target must exist in trackr.
+     * @return ObservableList
+     */
     public ObservableList<TutorialGroup> getTutorialGroupListOfModule(Module target) {
         return moduleList.getTutorialGroupListOfModule(target);
     }
 
+    /**
+     * Returns an UniqueTutorialGroupList of the target
+     * @param target must exist in trackr.
+     * @return UniqueTutorialGroupList
+     */
     public UniqueTutorialGroupList getUniqueTutorialGroupList(Module target) {
         return moduleList.getUniqueTutorialGroupList(target);
     }
@@ -114,6 +124,12 @@ public class Trackr implements ReadOnlyTrackr<Module> {
             .removeTutorialGroup(tutorialGroupToDelete);
     }
 
+    /**
+     * Replaces the given tutorial group {@code target} in the list with {@code edited}.
+     * @param target must exist in Trackr.
+     * @param edited must not be the same as another existing tutorial group in the currentModuleInView.
+     * @param currentModuleInView the Module Model is currently in.
+     */
     public void setTutorialGroup(TutorialGroup target, TutorialGroup edited, Module currentModuleInView) {
         requireAllNonNull(target, edited);
         currentModuleInView.getUniqueTutorialGroupList().setTutorialGroup(target, edited);
@@ -121,10 +137,22 @@ public class Trackr implements ReadOnlyTrackr<Module> {
 
     // Student Operations
 
+    /**
+     * Returns an ObservableList of the target's UniqueStudentList
+     * @param targetModule must exist in Trackr.
+     * @param targetTG must exist in Trackr.
+     * @return ObservableList
+     */
     public ObservableList<Student> getStudentListOfTutorialGroup(Module targetModule, TutorialGroup targetTG) {
         return moduleList.getUniqueTutorialGroupList(targetModule).getStudentListOfTutorialGroup(targetTG);
     }
 
+    /**
+     * Returns the target's UniqueStudentList
+     * @param targetModule must exist in Trackr.
+     * @param targetTg must exist in Trackr.
+     * @return UniqueStudentList
+     */
     public UniqueStudentList getUniqueStudentList(Module targetModule, TutorialGroup targetTg) {
         return moduleList.getUniqueTutorialGroupList(targetModule).getUniqueStudentList(targetTg);
     }

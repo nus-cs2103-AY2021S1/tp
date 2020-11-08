@@ -62,8 +62,14 @@ public interface Model {
     /** Returns the module Trackr */
     ReadOnlyTrackr<Module> getModuleList();
 
+    /**
+     * Sets the current view to be Module View.
+     */
     void setViewToModule();
 
+    /**
+     * Sets the current view to be Module View.
+     */
     void setCurrentViewToModule();
 
     /**
@@ -90,18 +96,29 @@ public interface Model {
      */
     void setModule(Module target, Module editedModule);
 
+    /**
+     * Checks if the current view is the Module View.
+     * @return returns isInModuleView
+     */
     boolean isInModuleView();
 
+    /**
+     * Returns the Module object that is currently in view.
+     * @return
+     */
     Module getCurrentModuleInView();
 
     //TutorialGroup Operations
 
     /**
-     * Sets the view to the tutorial group list of the given module
+     * Sets the current view to be the tutorial group list of the given module and filteredTutorialGroup to be it.
      * @param target
      */
     void setViewToTutorialGroup(Module target);
 
+    /**
+     * Sets the current view to be the tutorial group view.
+     */
     void setCurrentViewToTutorialGroup();
 
     /**
@@ -110,23 +127,48 @@ public interface Model {
      */
     void addTutorialGroup(TutorialGroup tutorialGroup);
 
+    /**
+     * Deletes the given tutorial group.
+     * The tutorial group must exist in trackr.
+     */
     void deleteTutorialGroup(TutorialGroup tutorialGroup);
 
+    /**
+     * Returns whether the tutorial group is already inside the currentModuleInView.
+     * @param tutorialGroup
+     * @return boolean
+     */
     boolean hasTutorialGroup(TutorialGroup tutorialGroup);
 
+    /**
+     * Replaces the given tutorial group {@code target} with {@code edited}.
+     * {@code target} must exist in trackr.
+     * The tutorial group identity of {@code edited} must not be the same as another existing tutorial group in trackr.
+     */
     void setTutorialGroup(TutorialGroup target, TutorialGroup edited);
 
+    /**
+     * Returns whether the current view is the Tutorial Group view.
+     * @return isInTutorialGroupView
+     */
     boolean isInTutorialGroupView();
     // Student Operations
 
     /**
-     * Sets the view to the tutorial group list of the given module
+     * Sets the view to the student list of the given tutorial group in the currentModuleInView
      * @param target
      */
     void setViewToStudent(TutorialGroup target);
 
+    /**
+     * Sets the current view to be the Student view.
+     */
     void setCurrentViewToStudent();
 
+    /**
+     * Returns the current tutorial group in view.
+     * @return currentTgInView
+     */
     TutorialGroup getCurrentTgInView();
 
     /**
@@ -153,6 +195,10 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
+    /**
+     * Returns whether the current view is the Student view.
+     * @return
+     */
     boolean isInStudentView();
 
     // FilteredList Operations
