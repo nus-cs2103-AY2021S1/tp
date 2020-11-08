@@ -585,9 +585,9 @@ Figure 8000. GUI of statistics box after `stats recipe top` command is executed<
 </div>
 
 
-### 4.7&ensp;Undo/redo feature
+### 4.6&ensp;Undo/redo feature
 
-#### Proposed Implementation
+Main developer: **seowalex**
 
 The undo/redo feature is implemented using a `HistoryManager`, which keeps track of and stores the command history, along with a list of parsed undoable `Command`s.
 Every command that can be undone/redone implements the `Undoable` interface, which requires the implementation of the `Undoable#undo()` method.
@@ -605,45 +605,66 @@ Further details can be seen in the example usage scenario detailing the mechanis
 Step 1. The user launches the application for the first time.
 The `HistoryManager` is initialised with an empty list of `CommandHistory`s, as no commands have been entered, and the `currentIndex` pointer is intialised to 0.
 
-![UndoRedoState0](images/dg/state/UndoRedoState0.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/state/UndoRedoState0.png"> <br />
+Figure 999: <i>The initial state of HistoryManager</i>
+</div>
 
 Step 2. The user executes `delete recipe #5` to delete the 5th recipe from the recipe book.
 The model is updated accordingly, and the `DeleteRecipeCommand` is saved by the `HistoryManager` by adding to the `CommandHistory` list, as the command implements the `Undoable` interface.
 The `currentIndex` pointer is also incremented by one, as the application is currently at the state after the `DeleteRecipeCommand` is executed.
 
-![UndoRedoState1](images/dg/state/UndoRedoState1.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/state/UndoRedoState1.png"> <br />
+Figure 999: <i>The state of HistoryManager after command "delete recipe #5"</i>
+</div>
 
 Step 3. The user executes `add recipe beef noodles` to add a new recipe.
 Similarly, the model is updated accordingly, and the `AddRecipeCommand` is added to the `CommandHistory` list.
 The `currentIndex` pointer is once again incremented by one.
 
-![UndoRedoState2](images/dg/state/UndoRedoState2.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/state/UndoRedoState2.png"> <br />
+Figure 999: <i>The state of HistoryManager after command "add recipe beef noodles"</i>
+</div>
 
 Step 4. The user now desires to undo the last action, and executes the `undo` command.
 The `undo` command will call `HistoryManager#undo()`, which will decrement the `currentIndex` pointer by one and retrieve the command from the list at the specified index.
 The command's `Undoable#undo()` operation will then be executed.
 
-![UndoRedoState3](images/dg/state/UndoRedoState3.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/state/UndoRedoState3.png"> <br />
+Figure 999: <i>The state of HistoryManager after command "undo"</i>
+</div>
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/dg/UndoSequenceDiagram.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/UndoSequenceDiagram.png"> <br />
+Figure 999: <i>A sequence diagram for an <code>undo</code> command</i>
+</div>
 
-The `redo` command does the opposite — it calls `HistoryManager#redo()`, which executes the command `currentIndex` is pointing to, and increments the `currentIndex` by one.
+The `redo` command does the opposite — it calls `HistoryManager#redo()`, which executes the command `currentIndex` is pointing to, and decrements the `currentIndex` by one.
 
 Step 5. The user then decides to execute the command `list recipes`.
 Commands that do not modify the model, such as `list recipes`, will not be stored by the `HistoryManager` as they cannot be undone.
 Since the `currentIndex` is not pointing to the end of the `CommandHistory` list, all commands starting from the `currentIndex` will be cleared, which in this case is the `add recipe beef noodles` command.
 
-![UndoRedoState4](images/dg/state/UndoRedoState4.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/state/UndoRedoState4.png"> <br />
+Figure 999: <i>The state of HistoryManager after command "list recipes"</i>
+</div>
 
 The following activity diagram summarises what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/dg/CommitActivityDiagram.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/CommitActivityDiagram.png"> <br />
+Figure 999: <i>An activity diagram for the undo/redo feature</i>
+</div>
 
-#### Design consideration:
+<h4>Design considerations</h4>
 
-##### Aspect: How undo & redo executes
+<h5>Aspect: How state is saved</h5>
 
 * **Alternative 1 (current choice):** Save each undoable command as it is executed. Each command implements its own undo/redo operation.
   * Pros: Uses less memory since the entire state of the application does not have to be saved, and is also faster since only a small part of the model needs to be modified each time.
@@ -1856,7 +1877,9 @@ Significant effort was undertaken to ensure that the completer works in all case
 
 
 #### C.1.6&ensp;Command History
-fsdf
+To ensure that any mistakes that the user make are not permanent, an undo/redo feature is implemented so that any changes made to ChopChop can be easily reverted.
+
+Effort was made to ensure that implementing the undo/redo feature for new commands is as straightforward as possible, through the use of an `Undoable` interface.
 
 
 ### C.2&ensp;Minor Implementation Efforts
