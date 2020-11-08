@@ -178,35 +178,40 @@ public class Person {
         final StringBuilder builder = new StringBuilder();
 
         builder.append(getName())
-                .append(personFieldToString(getPhone()))
-                .append(personFieldToString(getEmail()))
-                .append(personFieldToString(getAddress()));
+                .append(personFieldToStringBuilder(getPhone()))
+                .append(personFieldToStringBuilder(getEmail()))
+                .append(personFieldToStringBuilder(getAddress()));
 
         if (getClientSources().size() > 0) {
             builder.append(" ClientSources: ");
             getClientSources().forEach(builder::append);
         }
 
-        builder.append(personFieldToString(getNote()))
-                .append(personFieldToString(getPolicy()))
-                .append(personFieldToString(getPriority()));
+        builder.append(personFieldToStringBuilder(getNote()))
+                .append(personFieldToStringBuilder(getPolicy()))
+                .append(personFieldToStringBuilder(getPriority()));
 
         return builder.toString();
     }
 
     /**
-     * Returns a formatted string containing the field's class name and the field.
-     * If the field is not present, return an empty string.
+     * Returns a formatted string builder containing the field's class name and the field.
+     * If the field is not present, return an empty string builder.
      *
      * @param field The field in the Person class.
-     * @return String with field's class name and the field.
+     * @return String builder with field's class name and the field.
      */
-    private String personFieldToString(Object field) {
-        if (field != null) {
-            return " " + field.getClass().getSimpleName() + ": " + field;
-        } else {
-            return "";
+    private StringBuilder personFieldToStringBuilder(Object field) {
+        final StringBuilder builder = new StringBuilder();
+        if (field == null) {
+            // return the empty builder
+            return builder;
         }
+        builder.append(" ")
+                .append(field.getClass().getSimpleName())
+                .append(": ")
+                .append(field);
+        return builder;
     }
 
 }
