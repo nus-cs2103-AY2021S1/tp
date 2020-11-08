@@ -23,12 +23,6 @@ public class PersonCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label gitUserName;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label email;
-    @FXML
-    private Label address;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -38,10 +32,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         personName.setText(person.getPersonName().fullPersonName);
-        gitUserName.setText(person.getGitUserNameString());
-        phone.setText(person.getPhone().value);
-        email.setText(person.getEmail().value);
-        address.setText(person.getAddress().value);
+        gitUserName.setText("GitHub username: " + person.getGitUserNameString());
     }
 
     @Override
