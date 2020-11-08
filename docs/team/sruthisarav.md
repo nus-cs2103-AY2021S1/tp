@@ -32,6 +32,7 @@ Given below are my contributions to the project.
     increase until it reaches full 100% which means that the user has completed reviewing the list of flashcards for 
     that particular review session.  
     
+<div style="page-break-after: always;"></div>
 * **New Feature 3**: Marking flashcard as wrong in Review Mode
     * What it does: Marks the flashcard currently being reviewed in the Review Mode as wrong and shows the next 
     card in the review list.
@@ -62,7 +63,8 @@ Given below are my contributions to the project.
     error messages instead.
     * Created three new parser functions inside FlashNotesParser to parse incorrect commands in the respective modes 
     such that they return appropriate error messages. 
- 
+
+<div style="page-break-after: always;"></div>
 * **Documentation**:
   * User Guide:
     * Wrote documentation for the commands: `f`, `c`, `w`.
