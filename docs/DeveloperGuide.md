@@ -704,7 +704,7 @@ does not overlap with any other lesson or event in PlaNus.
 
 **MSS**
 
-1. User <ins>lists a set of lessons (UC08 or UC09)</ins>
+1. User <ins>lists a set of lessons (UC09)</ins>
 
 2. User requests to edit values of specified attribute(s) of a lesson.
 
