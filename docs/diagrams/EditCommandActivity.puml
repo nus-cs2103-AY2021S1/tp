@@ -3,7 +3,7 @@
 
 start
 
-:User enters an EditModule
+:User enters an Edit Module
 command in the command box;
 
 :TrackrParser parses the argument
@@ -20,7 +20,6 @@ to determine index of Module to Edit;
         :User Input passed to ParserUtil
         to determine edited ModuleId;
         if () then ([Trackr is in Module View])
-            if () then ([is valid index])
                 if () then ([else])
                         :Module is updated;
                         :All Modules displayed by Trackr;
@@ -28,10 +27,6 @@ to determine index of Module to Edit;
                         :throws CommandException with
                         duplicate module error message;
                 endif
-            else ([else])
-                :throws CommandException with
-                invalid module index message;
-            endif
         else ([else])
             :throws CommandException with
             not in Module View error message;

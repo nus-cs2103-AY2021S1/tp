@@ -3,7 +3,7 @@
 
 start
 
-:User enters an DeleteModule
+:User enters an Delete Module
 command in the command box;
 
 :TrackrParser parses the argument
@@ -13,13 +13,11 @@ should further parse it;
 :DeleteModuleCommandParser
 parses the user input;
 
-:ParserUtil parses User Input
-to determine index of Module to Delete;
-
+if () then ([valid command input format])
     if () then ([Trackr is in Module View])
         if () then ([else])
             :Module is deleted;
-        else ([Index bigger than list of Modules])
+        else ([index bigger than list of Modules])
             :throws CommandException with
             not in Module View error message;
         endif
@@ -27,6 +25,10 @@ to determine index of Module to Delete;
         :throws ParseException with
         module not edited message;
     endif
+else ([else])
+    :throws ParseException with
+    invalid format message;
+endif
 :returns feedback to user;
 
 stop
