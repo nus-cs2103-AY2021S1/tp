@@ -82,7 +82,7 @@ You can follow the steps below to get started with ZooKeep.
    * **`list`** : Lists all animals.
    * **`exit`** : Exits the app.
 
-1. You can refer to the features below for the details of each command. For the convenience of new users, the [Basic features](#basic-features) are listed first, followed by additional [Advanced features](#advanced-features) which may be useful for the user.
+1. You can refer to the features below for the details of each command. For the convenience of new users, the [basic features](#4-basic-features-malcolm) are listed first, followed by additional [advanced features](#5-advanced-features-zhi-yuan) which may be useful for the user.
 
 ## 4. Basic features (Malcolm)
 This section provides you with the most basic features to get you started with ZooKeep.
