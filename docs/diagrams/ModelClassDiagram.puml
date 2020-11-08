@@ -4,7 +4,8 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
+Package Model <<Rectangle>> {
+
 Interface ReadOnlyReeve <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
@@ -14,7 +15,7 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
-}
+
 
 Package Notes <<Rectangle>> {
 Class Notebook
@@ -38,6 +39,7 @@ Class UniqueStudentList
 Class Academic
 Class Admin
 }
+}
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
@@ -50,15 +52,14 @@ ModelManager o-down-> "1" Reeve
 ModelManager o-up-> "1" UserPrefs
 UserPrefs .left.|> ReadOnlyUserPrefs
 
-ModelManager o-right-> "1" Notebook
+ModelManager o--> "1" Notebook
 ModelManager --> "1" Note
 
 Notebook *--> "1" NotesList
 Notebook .left.|> ReadOnlyNotebook
 NotesList o--> "*" Note
 
-
-ModelManager o-right-> "1" Scheduler
+ModelManager o-up-> "1" Scheduler
 ModelManager o-right-> "1" SchedulePrefs
 Scheduler ..> Student
 
@@ -75,6 +76,7 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> School
 School -[hidden]right-> Year
 ModelManager-[hidden]- UniqueStudentList
+Model -[hidden]down- Scheduler
 
 ModelManager -down->"filtered list *" Student
 @enduml
