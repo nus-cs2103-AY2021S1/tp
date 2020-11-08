@@ -448,4 +448,4 @@ The following activity diagram summarizes what happens when a user executes an `
   * Cons: Difficult to implement.
   * Cons: Command becomes more complicated as the entire path needs to be typed out.
 
-_{more aspects and alternatives to be added}_
+_{more aspects and alternatives to be added}
