@@ -354,34 +354,40 @@ This document `newFireDoc.pdf` must be manually added to the `references` folder
 * There are no restrictions on `ADDRESS`.
 </div>
 
-#### Edit an existing suspect in the current case: `edit suspect INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Edit an existing suspect in the current case: `edit suspect SUSPECT_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Edits the fields of the suspect specified with the index in the case that is currently open.
 At least one of the fields is to be specified to make edits.
+A blank field for the email and address is considered a valid edit, unless the edit does not change any field of the suspect.
 
-Format: `edit suspect INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit suspect SUSPECT_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+- `SUSPECT_NO` must be a valid index (starting from 1) of the suspect list.
 
 Example:
 - `edit suspect 1 e:newEmail@mail.com a:New Road Crescent` edits the first suspect in the list with the email 
 `newEmail@mail.com` and the address `New Road Crescent`.
 
-#### Edit an existing victim in the current case: `edit victim INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Edit an existing victim in the current case: `edit victim VICTIM_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Edits the fields of the victim specified with the index in the case that is currently open.
 At least one of the fields is to be specified to make edits.
+A blank field for the email and address is considered a valid edit, unless the edit does not change any field of the victim.
 
 Format: `edit victim VICTIM_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+- `VICTIM_NO` must be a valid index (starting from 1) of the victim list.
 
 Example:
 - `edit victim 1 e:newEmail@mail.com a:New Road Crescent` edits the first victim in the list with the email 
 `newEmail@mail.com` and the address `New Road Crescent`.
 
-#### Edit an existing witness in the current case: `edit witness INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Edit an existing witness in the current case: `edit witness WITNESS_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Edits the fields of the witness specified with the index in the case that is currently open. 
 At least one of the fields is to be specified to make edits.
+A blank field for the email and address is considered a valid edit, unless the edit does not change any field of the witness.
 
-Format: `edit witness INDEX [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit witness WITNESS_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+- `WITNESS_NO` must be a valid index (starting from 1) of the witness list.
 
 Example:
 - `edit witness 1 e:newEmail@mail.com a:New Road Crescent` edits the first witness in the list with the email 
