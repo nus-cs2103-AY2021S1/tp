@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 
 public class CategoryTest {
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Category(null));
@@ -89,8 +90,8 @@ public class CategoryTest {
         Category validExpense = new Category("expEnse");
         Category validRevenue = new Category("r");
 
-        assertEquals("expEnse", validExpense.toString());
-        assertEquals("r", validRevenue.toString());
+        assertEquals(Category.EXPENSE_MESSAGE, validExpense.toString());
+        assertEquals(Category.REVENUE_MESSAGE, validRevenue.toString());
     }
 
     @Test

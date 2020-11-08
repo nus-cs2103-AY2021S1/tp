@@ -6,7 +6,7 @@ title: About Us
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg) mentored
 by Professor Damith.
 
-You can reach us at the email `jordany@comp.nus.edu.sg` or our supervisor at `damithc@gmail.comp.nus.edu.sg`
+You can reach us at the email `jordany@comp.nus.edu.sg` or our supervisor at `damithc@comp.nus.edu.sg`
 
 ## Project team
 
@@ -26,7 +26,7 @@ You can reach us at the email `jordany@comp.nus.edu.sg` or our supervisor at `da
 <img src="images/lettuceman4.png" width="200px">
 
 [[github](https://github.com/lettuceman4)]
-[[portfolio](team/man-cv.pdf)]
+[[portfolio](team/lettuceman4.md)]
 
 * Role: Scheduling and Tracking/Deliverables and Deadlines
 * Responsibilities: In charge of defining, assigning, and tracking project tasks and

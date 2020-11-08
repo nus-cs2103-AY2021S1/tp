@@ -22,9 +22,9 @@ public class ClearCommand extends Command {
             + "Example: " + COMMAND_WORD + "\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + "CATEGORY";
     public static final String PREFIXES = PREFIX_CATEGORY + "CATEGORY";
-    public static final String MESSAGE_CLEAR_ENTRY_SUCCESS = "Cleared all %1$s" + "s";
+    public static final String MESSAGE_CLEAR_ENTRY_SUCCESS = "Cleared all %1$s" + "s!";
 
-    public static final String MESSAGE_CLEAR_BOTH_CATEGORY_SUCCESS = "Cleared all expenses and revenues";
+    public static final String MESSAGE_CLEAR_BOTH_CATEGORY_SUCCESS = "Cleared all expenses and revenues!";
 
     private static final Category NO_CATEGORY = null;
 
@@ -47,10 +47,10 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
-        boolean hasNoCategory = category == NO_CATEGORY;
+        boolean isNoCategoryPresent = category == NO_CATEGORY;
         activeAccount.setPreviousState();
 
-        if (hasNoCategory) {
+        if (isNoCategoryPresent) {
             activeAccount.clearExpenses();
             activeAccount.clearRevenues();
         } else {
@@ -65,7 +65,7 @@ public class ClearCommand extends Command {
         }
 
         model.setAccount(activeAccount.getAccount());
-        if (hasNoCategory) {
+        if (isNoCategoryPresent) {
             return CommandResultFactory
                     .createCommandResultForEntryListChangingCommand(
                             MESSAGE_CLEAR_BOTH_CATEGORY_SUCCESS);

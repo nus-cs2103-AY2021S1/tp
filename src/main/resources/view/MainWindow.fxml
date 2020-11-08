@@ -65,13 +65,6 @@
           </padding>
         </StackPane>
 
-<!--        <VBox fx:id="entryList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">-->
-<!--          <padding>-->
-<!--            <Insets bottom="10" left="10" right="10" top="10" />-->
-<!--          </padding>-->
-<!--          <StackPane fx:id="entryListPanelPlaceholder" VBox.vgrow="ALWAYS" />-->
-<!--        </VBox>-->
-
         <HBox fx:id="entryListPlaceholder"
               VBox.vgrow="ALWAYS" spacing="10" >
               <padding>
