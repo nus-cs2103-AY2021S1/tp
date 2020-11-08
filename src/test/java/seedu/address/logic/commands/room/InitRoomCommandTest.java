@@ -24,7 +24,7 @@ public class InitRoomCommandTest {
     }
 
     @Test
-    void execute_numberOfRooms_success1() {
+    void execute_middleRangeNumberOfRooms_success() {
         Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
         Model expectedModel =
                 new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
@@ -36,7 +36,7 @@ public class InitRoomCommandTest {
     }
 
     @Test
-    void execute_numberOfRooms_success2() {
+    void execute_minRangeNumberOfRooms_success() {
         Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
         Model expectedModel =
                 new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
@@ -48,7 +48,7 @@ public class InitRoomCommandTest {
     }
 
     @Test
-    void execute_numberOfRooms_success3() {
+    void execute_maxNumberOfRooms_success() {
         Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
         Model expectedModel =
                 new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
@@ -135,7 +135,7 @@ public class InitRoomCommandTest {
     }
 
     @Test
-    void execute_largeNumberOfRooms_failure1() {
+    void execute_aboveMaxNumberOfRooms_failure() {
         Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
 
         //initRoom to 5001 rooms -> too many rooms initialised
@@ -144,7 +144,7 @@ public class InitRoomCommandTest {
     }
 
     @Test
-    void execute_largeNumberOfRooms_failure2() {
+    void execute_zeroNumberOfRooms_failure() {
         Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
 
         //initRoom to 0 rooms -> zero rooms initialised
@@ -153,7 +153,7 @@ public class InitRoomCommandTest {
     }
 
     @Test
-    void execute_largeNumberOfRooms_failure3() {
+    void execute_belowMinNumberOfRooms_failure() {
         Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
 
         //initRoom to -1 rooms -> negative number of rooms initialised

@@ -14,7 +14,7 @@ import seedu.address.model.PatientRecords;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 
-class AddRoomsCommandTest {
+class InitRoomCommandTest1 {
 
     @Test
     void execute_addRooms_success() {
