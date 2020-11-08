@@ -4,19 +4,21 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePatientList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePatientList
-UniqueTagList -[hidden]down- UniquePatientList
+HospifyBook *-right-> "1" UniquePatientList
+HospifyBook *-right-> "1" UniqueAllergyList
+UniqueAllergyList -[hidden]down- UniquePatientList
+UniqueAllergyList -[hidden]down- UniquePatientList
 
-UniqueTagList *-right-> "*" Tag
+UniqueAllergyList *-right-> "*" Allergy
 UniquePatientList o-right-> Patient
 
-Patient -up-> "*" Tag
+Patient -up-> "*" Allergy
 
 Patient *--> Name
 Patient *--> Nric
 Patient *--> Phone
 Patient *--> Email
 Patient *--> Address
+Patient *--> MedicalRecord
+Patient *--> Appointment
 @enduml

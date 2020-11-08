@@ -42,7 +42,7 @@ public class AppointmentDescription {
      * @return
      */
     public String getDescription() {
-        return StringUtil.stringBreaker(description.get(), 8, 90, false, 10, "..");
+        return StringUtil.stringBreaker(description.get(), 20, 120, true, 10, "..");
     }
 
     /**

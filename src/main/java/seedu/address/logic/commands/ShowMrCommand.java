@@ -19,7 +19,8 @@ public class ShowMrCommand extends Command {
 
     public static final String COMMAND_WORD = "showMr";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Open Mr of a patient in default browser\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Open the medical record of a patient in your system's default browser\n"
             + "Parameters: NRIC\n"
             + "Example: " + COMMAND_WORD + " S1234567A\n";
 

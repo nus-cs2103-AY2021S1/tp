@@ -42,7 +42,7 @@ public class HelpWindow extends UiPart<Stage> {
     private final CommandDescription addCommandDes =
             new CommandDescription(AddCommand.COMMAND_WORD, AddCommand.MESSAGE_USAGE);
     private final CommandDescription clearCommandDes =
-            new CommandDescription(ClearCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD);
+            new CommandDescription(ClearCommand.COMMAND_WORD, ClearCommand.MESSAGE_USAGE);
     private final CommandDescription deleteCommandDes =
             new CommandDescription(DeleteCommand.COMMAND_WORD, DeleteCommand.MESSAGE_USAGE);
     private final CommandDescription editCommandDes =
@@ -50,7 +50,7 @@ public class HelpWindow extends UiPart<Stage> {
     private final CommandDescription findCommandDes =
             new CommandDescription(FindCommand.COMMAND_WORD, FindCommand.MESSAGE_USAGE);
     private final CommandDescription listCommandDes =
-            new CommandDescription(ListCommand.COMMAND_WORD, ListCommand.COMMAND_WORD);
+            new CommandDescription(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_USAGE);
     private final CommandDescription helpCommandDes =
             new CommandDescription(HelpCommand.COMMAND_WORD, HelpCommand.MESSAGE_USAGE);
     private final CommandDescription countCommandDes =
