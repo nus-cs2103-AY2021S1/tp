@@ -16,7 +16,10 @@ public class AddNoteCommand extends NoteCommand {
             + ": Adds a note to the notebook.\n\n"
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
-            + PREFIX_DESCRIPTION + "DESCRIPTION ";
+            + PREFIX_DESCRIPTION + "DESCRIPTION\n\n"
+            + "Example: " + NoteCommand.COMMAND_WORD + " " + COMMAND_WORD + " "
+            + PREFIX_TITLE + "things to do "
+            + PREFIX_DESCRIPTION + "get coffee";
 
 
     public static final String MESSAGE_SUCCESS = "New note added:\n%1$s";

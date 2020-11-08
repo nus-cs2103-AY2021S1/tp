@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +30,14 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Given a non-empty list of filter criteria, "
             + "finds all persons whose fields match or contain keywords (if applicable, case-insensitive) "
             + "of each of the filter criteria and displays them as a list with index numbers.\n"
-            + "Parameters: [n/NAME] [s/SCHOOL] [y/YEAR]\n"
-            + "Example: " + COMMAND_WORD + " n/Alex david s/yishun";
+            + "Parameters: "
+            + " [" + PREFIX_NAME + "NAME]"
+            + " [" + PREFIX_SCHOOL + "SCHOOL]"
+            + " [" + PREFIX_YEAR + "YEAR]\n\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "Alex "
+            + PREFIX_SCHOOL + "Yishun "
+            + PREFIX_YEAR + "Secondary 2";
 
     public static final String FIELD_NOT_GIVEN = "At least one field to search by must be provided.";
 
@@ -54,7 +63,7 @@ public class FindCommand extends Command {
         }
         model.updateFilteredStudentList(consolidatedPredicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getSortedStudentList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_FOUND_OVERVIEW, model.getSortedStudentList().size()));
     }
 
     @Override
