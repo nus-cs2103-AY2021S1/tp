@@ -775,7 +775,7 @@ Wishful Shrinking's data is saved in the hard disk automatically after any comma
 <br>
 <br>
 **Q**: Why did my data get wiped out?<br>
-**A**: The Wishful Shrinking data file was corrupt. 
+**A**: The Wishful Shrinking data file has been corrupted. 
 <br>
 <br>
 **Q**: How can I reset the data file into the original sample data file?<br>
