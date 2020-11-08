@@ -80,8 +80,8 @@ public class Attendance {
 
     @Override
     public String toString() {
-        String feedback = getFeedback().map(Feedback::toString).orElse("");
-        return String.format("%1$s (%2$s) %3$s",
+        String feedback = getFeedback().map(fdb -> String.format("[%1$s]", fdb)).orElse("");
+        return String.format("(%2$s) %1$s %3$s",
                 print(lessonDate), (isStudentPresent() ? "\u2713" : "\u2718"), feedback);
     }
 
