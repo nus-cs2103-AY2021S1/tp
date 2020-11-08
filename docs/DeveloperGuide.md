@@ -142,6 +142,7 @@ title: Developer Guide
 8. [Appendix E: Effort](#8-effort)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 1. **Overview** <a id="1-overview"></a>
 Welcome to the Wishful Shrinking Developer Guide! In this section, you will be given an overview of what Wishful
@@ -170,6 +171,7 @@ This developer guide provides in-depth documentation on how Wishful Shrinking is
 Refer to the guide [_Setting up and getting started_](SettingUp.md).<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 2. **Design** <a id="2-design"></a>
 
@@ -281,6 +283,7 @@ The `Storage` component:
 Classes used by multiple components are in the `seedu.address.commons` package. <br><br>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 3. **Implementation** <a id="3-implementation"></a>
 
@@ -924,6 +927,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 4. **Documentation, Logging, Testing, Configuration, Dev-ops** <a id="4-documentation-logging-testing-configuration-dev-ops"></a>
 
@@ -934,6 +938,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 * [DevOps guide](DevOps.md) <br><br>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 5. **Appendix A: *Requirements*** <a id="5-appendix-requirements"></a>
 
@@ -1411,6 +1416,7 @@ Term | Explanation
 **Mainstream OS** | Windows, Linux, Unix, OS-X.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 6. **Appendix B: *Instructions for Manual Testing*** <a id="6-appendix-instructions-for-manual-testing"></a>
 
@@ -1581,7 +1587,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The result box will show all the details of the first recipe.
        
     1. Test case: `editR x` (x is invalid index) <br>
-       Expected: An error message will be shown, as it is the same recipe. Your command in the command box will turn red. <br><br>
+       Expected: An error message will be shown, as x is invalid index. Your command in the command box will turn red. <br><br>
        
        
 ## 6.12 Editing a recipe <a id="612-editing-a-recipe"></a>
@@ -1594,9 +1600,9 @@ testers are expected to do more *exploratory* testing.
        Expected: The fields specified for the first recipe in the recipe list will be updated with bread for its name and flour for its ingredient. The result box will show the newly updated details of the recipe.
        
     1. Test case: `editR 1 n/bread i/flour img/images/healthy1.jpg t/healthy` <br>
-       Expected: The fields specified for the first recipe in the recipe list will be updated with bread for its name and flour for its ingredient. The result box will show the newly updated details of the recipe. This test case differs with the previous test case in that it has the optional fields image and tags, which will also be updated with the new values.                                                                                                                                                                                                                                          
+       Expected: The fields specified for the first recipe in the recipe list will be updated with bread for its name and flour for its ingredient. Its image and tag will also be updated. The result box will show the newly updated details of the recipe. This test case differs with the previous test case in that it has the optional fields image and tags, which will also be updated with the new values.                                                                                                                                                                                                                                          
        
-    1. Test case: `editR 1 x` (same name and quantity of the ingredient in fridge) <br>
+    1. Test case: `editR 1 x` (where x has all the same fields as a recipe in the recipe list) <br>
        Expected: An error message will be shown, as it is the same recipe. The result box will show that no edits are made. Your command in the command box will turn red.
 
     1. Other incorrect `editR` commands to try: `editR` (no fields specified) <br>
@@ -1614,7 +1620,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The result box will show all the details of the first ingredient. 
        
     1. Test case: `editF x` (x is invalid index) <br>
-       Expected: An error message will be shown, as it is the same ingredient. Your command in the command box will turn red. <br><br>
+       Expected: An error message will be shown, as x is an invalid index. Your command in the command box will turn red. <br><br>
        
 
 ## 6.14 Editing an ingredient <a id="614-editing-an-ingredient"></a>
@@ -1629,7 +1635,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `editF 1` <br>
        Expected: An error message will be shown, as the eaten recipe with index 0 is not present. The message will show the correct input format of the editF command, and your command in the command box will turn red.                                                                                                                                                                                                                      
        
-    1. Test case: `editF 1 x` (same name and quantity of the ingredient in fridge) <br>
+    1. Test case: `editF 1 x` (where x has the same name and quantity of the ingredient in ingredient list) <br>
        Expected: An error message will be shown, as it is the same ingredient. The result box will show that no edits are made. Your command in the command box will turn red.
 
     1. Other incorrect `editF` commands to try: `editF` (no fields specified) <br>
@@ -1749,6 +1755,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: delete WishfulShrinking.json data file. <br>
       Expected: If WishfulShrinking.json file cannot be found, the app will create the data file populated with
        sample recipes. <br><br>
+       
+<div style="page-break-after: always;"></div>
 
 # 7. **Appendix C: *Model Component*** <a id="7-model-component"></a>
 
@@ -1760,6 +1768,8 @@ testers are expected to do more *exploratory* testing.
 
 ## 7.3 Consumption <a id="73-consumption"></a>
 ![Consumption in Model Component](images/ModelClass_Consumption.png)
+
+<div style="page-break-after: always;"></div>
 
 # 8. **Appendix E: *Effort*** <a id="8-effort"></a>
 

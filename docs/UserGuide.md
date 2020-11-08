@@ -58,6 +58,7 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
         
         
 
+<div style="page-break-after: always;"></div>
 
 # 1. Overview <a id="1-overview"></a>
 Welcome to the Wishful Shrinking User Guide! In this section, you will be given an overview of what Wishful
@@ -79,6 +80,8 @@ Wishful Shrinking targets **office workers** who tend to neglect healthy eating.
 ## 1.2 Purpose <a id="12-purpose"></a>
 This user guide provides in-depth documentation on the **installation process**, **step-by-step instructions** for
  each feature and **troubleshooting recommendations**. <br><br>
+
+<div style="page-break-after: always;"></div>
 
 # 2. About the User Guide <a id="2-about-the-user-guide"></a>
 This section will explain the symbols in the user guide, parameters and the format of commands. <br><br>
@@ -141,6 +144,8 @@ t/ | TAG | Recipe tag
 </div>
 <br><br>
 
+<div style="page-break-after: always;"></div>
+
 # 3. GUI Layout <a id="3-gui-layout"></a>
 Contributed by: Hieu
 
@@ -160,6 +165,7 @@ Component | Explanation
  **Command Box** | Here is where you will type all your commands.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 4. Quick start <a id="4-quick-start"></a>
 
@@ -191,6 +197,7 @@ Component | Explanation
 <br><br>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 5. Commands <a id="5-commands"></a>
 
@@ -782,6 +789,7 @@ Wishful Shrinking's data is saved in the hard disk automatically after any comma
 [Back to table of contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 6. FAQ <a id="6-faq"></a>
 
@@ -809,6 +817,7 @@ Wishful Shrinking's data is saved in the hard disk automatically after any comma
 **A**: Type help into the command box and hit enter. A link to the user guide will be provided.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 7. Glossary <a id="7-glossary"></a>
 
@@ -825,6 +834,7 @@ Term | Explanation
 **Absolute Path** | The complete details needed to locate a file or folder, starting from the root element.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 8. Command summary <a id="8-command-summary"></a>
 
