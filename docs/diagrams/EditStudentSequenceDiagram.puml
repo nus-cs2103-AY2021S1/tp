@@ -11,7 +11,6 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant "editedStudent:Student" as Student MODEL_COLOR
-participant "studentToEdit:Student" as OldStudent MODEL_COLOR
 end box
 
 [-> LogicManager : execute(...)
@@ -67,8 +66,6 @@ activate Model
 
 Model --> Command
 deactivate Model
-
-destroy OldStudent
 
 Command --> LogicManager : result
 deactivate Command
