@@ -1,7 +1,7 @@
 [![CI Status](https://github.com/AY2021S1-CS2103T-W15-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W15-2/tp/actions)
 
 ## Reeve
-![Ui](docs/images/ReeveGUI.png)
+![Ui](docs/images/Ui.png)
 
 **Reeve** is a desktop application for **private tutors to better manage both administrative and academic details of their students**, optimised for use via a **Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information.
 
