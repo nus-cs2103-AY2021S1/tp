@@ -115,6 +115,12 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
         return sellers.asUnmodifiableObservableList();
     }
 
+    /**
+     * Checks seller existing in the seller address book with the exclusion of the id.
+     * @param editedSeller seller that is edited.
+     * @param sellerId the id of excluded seller.
+     * @return true if any information is true.
+     */
     public boolean hasSellerExceptSellerId(Seller editedSeller, SellerId sellerId) {
         requireAllNonNull(editedSeller, sellerId);
         return sellers.containsExceptSellerId(editedSeller, sellerId);

@@ -136,7 +136,7 @@ public class EditSellerCommandTest {
 
     @Test
     public void execute_sameNameDifferentPhoneUnfilteredList_failure() {
-        String phoneNumberOfFirstSeller = "99999";
+        String phoneNumberOfFirstSeller = "1111";
         Index indexLastSeller = Index.fromOneBased(model.getFilteredSellerList().size());
         Seller lastSeller = model.getFilteredSellerList().get(indexLastSeller.getZeroBased());
 

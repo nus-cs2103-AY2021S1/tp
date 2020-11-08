@@ -51,7 +51,6 @@ public class Bidder extends ClientPerson {
         Bidder otherBidder = (Bidder) other;
         return otherBidder.getName().equals(getName())
                 && otherBidder.getPhone().equals(getPhone())
-                && otherBidder.getId().equals(getId())
                 && otherBidder.getTag().equals(getTag());
     }
 

@@ -102,6 +102,12 @@ public class BidderAddressBook implements ReadOnlyBidderAddressBook {
         bidders.remove(key);
     }
 
+    /**
+     * Checks bidder existing in the bidder address book with the exclusion of the id.
+     * @param editedBidder seller that is edited.
+     * @param bidderId the id of excluded seller.
+     * @return true if any information is true.
+     */
     public boolean hasBidderExceptBidderId(Bidder editedBidder, BidderId bidderId) {
         requireAllNonNull(editedBidder, bidderId);
         return bidders.containsExceptBidderId(editedBidder, bidderId);
