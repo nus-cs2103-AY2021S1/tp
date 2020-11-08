@@ -57,16 +57,15 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The **_Architecture Diagram_** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The **_Architecture Diagram_** given above explains the high-level design of Trackr. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
-
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
--   At app launch: Initializes the components in the correct sequence, and connects them up with each other.
--   At shut down: Shuts down the components and invokes cleanup methods where necessary.
+-   at app launch: Initializes the components in the correct sequence, and connects them up with each other.
+-   at shut down: Shuts down the components and invokes clean-up methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -100,31 +99,33 @@ The UI Component defines what the user will see and interact with while using Tr
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class. The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
--   Executes user commands using the `Logic` component.
--   Listens for changes to `Model` data so that the UI can be updated with the modified data.
+-   executes user commands using the `Logic` component.
+-   listens for changes to `Model` data so that the `UI` can be updated with the modified data.
 
 ### Section 4.3 - Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+The `Logic` component contains the `TrackrParser` object that creates `Parser` objects for each `Command` based on the user input taken from the `UI` component. The `Parser` object will break down the user input to obtain the arguments, and either create the corresponding `Command` object or throw an exception in the case of invalid inputs for the arguments. The `Logic` component also contains the `Model` component which allows for execution of the created `Command`.
+
+1. `Logic` uses the `TrackrParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a student to a tutorial group).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteTG 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deleteTG 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -133,17 +134,17 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-The `Model`,
+The `Model` component contains the `Trackr` object, that handles the main type of data in the app, which is in the form of a list of `Module` objects. The `Module` object contains a list of `TutorialGroup` objects, and the `TutorialGroup` objects contains a list of `Student` objects. The `ModelManager` class exposes the methods which allows for the manipulation of this data (e.g. Editing a `Module` object's `ModuleId` object, deleting a `TutorialGroup` object, adding participation score for a `Student` object).
+
+The `Model` component,
 
 -   stores a `UserPref` object that represents the user’s preferences.
 -   stores the Trackr data.
 -   exposes unmodifiable `ObservableList<Module>`, `ObservableList<TutorialGroup>` and `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 -   does not depend on any of the other three components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
 
@@ -151,16 +152,23 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+The `Storage` component contains the `JsonModuleListStorage` object, which contains the `JsonSerializableModuleListStorage` which serves as the JSON version of a Trackr object; the main data type in the app. The methods `readModuleList()` and `saveModuleList()` convert the JSON objects to and from their native object types respectively (e.g. Converting a `JsonAdaptedTutorialGroup` object into a `TutorialGroup` object).
 
 The `Storage` component,
 
 -   can save `UserPref` objects in json format and read it back.
--   can save the module data in json format and read it back.
+-   can save the `Trackr` data in json format and read it back.
 
 ### Section 4.6 - Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.addressbook.commons` package, the package contains 2 sub packages, which are:
+
+- core: Contains software settings and information, also contains loggers for debugging purposes.
+- util: Contains utilities for other classes to use. Utilities can perform tasks such as parse strings or convert objects to and from Json format.
+
+
 
 ---
 
@@ -293,7 +301,7 @@ Step 5. Once the `Module` has been deleted from the `internaList`, `DeleteModule
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be deleted from.
 > - `Model#deleteStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
 > `TutorialGroup` and deletes the `Student` from the `internalList` of the `UniqueStudentList`.
-    
+
 ### Section 5.3 - Edit Commands - `editMod`, `editTG` and `editStudent`
 
 #### Overview
@@ -341,7 +349,7 @@ Step 5. Once the `Module` has been edited in the `internaList`, `EditModuleComma
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be edited from.
 > - `Model#setStudent(Student, Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
 > `TutorialGroup` and edits the `Student` in the `internalList` of the `UniqueStudentList`.
-    
+
 ### Section 5.4 - Find Commands - `findMod`, `findTG` and `findStudent`
 
 #### Overview
@@ -356,6 +364,8 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `FindModuleCommand` of Trackr.
 
 ![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
+
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
 
 Step 1. The user executes `findMod cs2100` to find module(s) that contain the keyword _cs2100_. The `findMod` command 
 calls `LogicManager#execute(String)`.
@@ -394,7 +404,7 @@ Step 5. `FindModuleCommand#execute(Model)` creates a `CommandResult` object and 
 > are `AttendanceBelowSpecifiedScorePredicate` and `ParticipationBelowSpecifiedScorePredicate` respectively. Like the
 > aforementioned find command for `Student`, `attendanceBelow` and `participationBelow` uses the 
 > `Model#updateFilteredStudentList` method to update the displaye list of students.
-    
+
 ### Section 5.5 - List Commands - `listMod`, `listTG` and `listStudent`
 
 #### Overview
@@ -408,6 +418,8 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ListModuleCommand` of Trackr.
 
 ![ListModSequenceDiagram](images/ListModuleCommandSequenceDiagram.png)
+
+![ListCommandActivityDiagram](images/ListCommandActivityDiagram.png)
 
 Step 1. The user executes `listMod` to view all the modules in Trackr. The `listMod` command calls
 `LogicManager#execute(String)`.
@@ -439,7 +451,7 @@ Step 5. `ListModuleCommand#execute(Model)` creates a `CommandResult` object and 
 > that there is a target `Module` and `TutorialGroup` for the `Student` to be listed from.
 > - `Model#updateFilteredStudentList(Predicate<Student>)` method then displays all the students within the target 
 > `Module` and `TutorialGroup`.
-    
+
 ### Section 5.6 - View Commands - `viewTG` and `viewStudent`
 
 #### Overview
@@ -453,6 +465,8 @@ is no View command for `Module`. Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ViewTutorialGroupCommand` of Trackr.
 
 ![ViewTGSequenceDiagram](images/ViewTutorialGroupCommandSequenceDiagram.png)
+
+![ViewTGActivityDiagram](images/ViewTutorialGroupCommandActivityDiagram.png)
 
 Step 1. The user executes `viewTG 1` to view the tutorial groups of the first module within the Module View. The
 `viewTG` command calls `LogicManager#execute(String)`.
@@ -493,6 +507,8 @@ Given below is an example of the interaction between the Model and the `ClearCom
 
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
+![ClearCommandActivityDiagram](images/ClearCommandActivityDiagram.png)
+
 ### Section 5.8 - Exit Command - `exit`
 
 #### Overview
@@ -507,6 +523,8 @@ The command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ExitCommand` of Trackr.
 
 ![ExitCommandSequenceDiagram](images/ExitCommandSequenceDiagram.png)
+
+![ExitCommandActivityDiagram](images/ExitCommandActivityDiagram.png)
 
 ### Section 5.9 - Data saving and loading
 
