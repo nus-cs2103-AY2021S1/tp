@@ -9,11 +9,13 @@ This User Guide is co-written by Josiah, Joshua, Gilbert, Francis and Xingjian. 
 
 --------------------------------------------------------------------------------------------------------------------
 
-##Table of Contents
+## Table of Contents
+
+<link rel="stylesheet" href="UserGuide.css">
 
 1. [Introduction](#intro)
 2. [Using this guide](#using-this-guide)
-3. [Quick start](#quickstart)
+3. [Quick start](#quick-start)
 4. [Features](#features)
     1. [Viewing help](#help)
     2. [Creating a new flashcard](#creating-a-new-flashcard)
@@ -25,6 +27,7 @@ This User Guide is co-written by Josiah, Joshua, Gilbert, Francis and Xingjian. 
     6. [Finding flashcards](#finding-flashcards)
         1. [Finding by question](#finding-by-question)
         2. [Finding by tags](#finding-by-tags)
+        3. [Finding by tags and question](#finding-by-tags-and-question)
     7. [Deleting flashcards](#deleting-flashcards)
         1. [Deleting by index](#deleting-by-index)
         2. [Deleting by tags](#deleting-by-tags)
@@ -46,7 +49,8 @@ This User Guide is co-written by Josiah, Joshua, Gilbert, Francis and Xingjian. 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction to QuickCache <a name="intro"></a>
+<a name="intro"></a>
+## Introduction to QuickCache
 
 **QuickCache** is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
@@ -57,7 +61,8 @@ The **QuickCache User Guide** helps you get started with using **QuickCache**. T
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Using this guide <a name="using-this-guide"></a>
+<a name="using-this-guide"></a>
+## Using this guide
 
 Before diving into **QuickCache** and getting to know its features, lets get familiar with the symbols used in this user guide.
 
@@ -70,16 +75,18 @@ Before diving into **QuickCache** and getting to know its features, lets get fam
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start <a name="quickstart"></a>
+<a name="quick-start"></a>
+## Quick start
 Here is a quick start on how you can start using our app in your own computer.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `quickcache.jar` from [here](https://github.com/AY2021S1-CS2103T-T13-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your QuickCache.
+1. Copy the file to the folder you want to use as the _home folder_ for QuickCache.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -95,7 +102,7 @@ Here is a quick start on how you can start using our app in your own computer.
 
    * **`list`** : Lists all FlashCards.
 
-   * **`find`** `find t/MCQ q/What CS2103T q/is t/GoodQuestion` : Finds all Flashcards tagged to the tag `MCQ` and `GoodQuestion` and has keywords `What`, `CS2103T` and `is` in question.
+   * **`find`** `find t/MCQ q/All mammals q/survive t/Biology` : Finds all Flashcards tagged to the tag `MCQ` and `Biology` and has keywords `All`, `mammals` and `survive` in question.
 
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
 
@@ -117,7 +124,8 @@ Here is a quick start on how you can start using our app in your own computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features <a name="features"></a>
+<a name="features"></a>
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -137,7 +145,8 @@ Here is a quick start on how you can start using our app in your own computer.
 
 </div>
 
-### Viewing help : `help` <a name="help"></a>
+<a name="help"></a>
+### Viewing help : `help`
 
 If you want to see a step-by-step guide for all QuickCache commands, you can get the URL to the QuickCache user guide by using the help command.
 
@@ -145,17 +154,16 @@ Format: `help`
 
 ![HelpMessage](images/helpMessage.png)
 
-### Creating a new flashcard <a name="creating-a-new-flashcard"></a>
+<a name="creating-a-new-flashcard"></a>
+### Creating a new flashcard
 You can add a new flashcard to the list.
 
-<div class="alert alert-danger">
-:exclamation:<br>
-
-You cannot have multiple question and answer prefixes.
-
+<div markdown="block" class="alert alert-danger">
+:exclamation: You cannot have multiple question and answer prefixes.
 </div>
 
-#### Creating a flashcard with open ended question: `add q/QUESTION ans/ANSWER [t/TAG]... [d/DIFFICULTY]` <a name="oeq"></a>
+<a name="oeq"></a>
+#### Creating a flashcard with open ended question: `add q/QUESTION ans/ANSWER [t/TAG]... [d/DIFFICULTY]`
 You can create a flashcard that contains an open ended question which will be added to the list.
 
 1. You can use the add command to add a flashcard with an open ended question which will be added to the list.
@@ -167,16 +175,13 @@ For example, you can enter`add q/Sample Question ans/Sample Answer`
 
     ![addOpenEnded2](images/addOpenEnded2.png)
 
-<div class="alert alert-danger">
-:exclamation:<br>
-
-* You cannot add a flashcard with empty question and empty answer.
-
-* `DIFFICULTY` can only be set to `LOW`, `MEDIUM`, `HIGH` or `UNSPECIFIED`.
-
+<div markdown="block" class="alert alert-danger">
+:exclamation: You cannot add a flashcard with empty question and empty answer. Additionally, <code>DIFFICULTY</code> 
+can only be set to <code>LOW</code>, <code>MEDIUM</code>, <code>HIGH</code> or <code>UNSPECIFIED</code>.
 </div>
 
-#### Creating a flashcard with multiple choice question: `addmcq q/QUESTION ans/ANSWER c/CHOICE... [t/TAG]... [d/DIFFICULTY]` <a name="mcq"></a>
+<a name="mcq"></a>
+#### Creating a flashcard with multiple choice question: `addmcq q/QUESTION ans/ANSWER c/CHOICE... [t/TAG]... [d/DIFFICULTY]`
 You can create a flashcard that contains a multiple choice question which will be added to the list.
 
 1. You can use the addmcq command to add a flashcard with a multiple choice question which will be added to the list.
@@ -188,18 +193,15 @@ For example, you can enter `addmcq q/Sample Question ans/1  c/Sample Choice c/Sa
 
     ![addMCQ2](images/addMCQ2.png)
 
-<div class="alert alert-danger">
-:exclamation:<br>
+<div markdown="block" class="alert alert-danger">
 
-* You cannot add flashcard with missing question or missing answer or missing choice.
-
-* You should have at least two choices.
-
-* `DIFFICULTY` can only be set to `LOW`, `MEDIUM`, `HIGH` or `UNSPECIFIED`.
-
+:exclamation:
+- You cannot add flashcard with missing question or missing answer or missing choice.
+- <code>DIFFICULTY</code> can only be set to <code>LOW</code>, <code>MEDIUM</code>, <code>HIGH</code> or <code>UNSPECIFIED</code>.
 </div>
 
-### Opening a flashcard: `open INDEX` <a name="opening-a-flashcard"></a>
+<a name="opening-a-flashcard"></a>
+### Opening a flashcard: `open INDEX`
 
 To view a flashcard you can open it by its index.
 
@@ -224,9 +226,14 @@ To view a flashcard you can open it by its index.
 
 You have successfully opened a flashcard!
 
-### Editing a flashcard: `edit INDEX [q/QUESTION] [ans/ANSWER] [c/CHOICE]... [t/TAG]... [d/DIFFICULTY]` <a name="editing-a-flashcard"></a>
+<a name="editing-a-flashcard"></a>
+### Editing a flashcard: `edit INDEX [q/QUESTION] [ans/ANSWER] [c/CHOICE]... [t/TAG]... [d/DIFFICULTY]`
 
 You can edit a flashcard that you have created previously.
+
+<div markdown="block" class="alert alert-danger">
+:exclamation: At least one field of the flashcard must be changed!
+</div>
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
@@ -243,35 +250,35 @@ For example, if you want to edit the 3rd flashcard in the displayed list, you ca
 
 You have successfully edited a flashcard.
 
-<div class="alert alert-danger">
-:information_source:<br>
-:exclamation: You must have at least one edited field which is different from the previous flashcard.
+<div markdown="block" class="alert alert-info">
 
-* When editing tags, the existing tags of the flashcard will be removed i.e adding of tags is not cumulative.
-
-* You can remove all the flashcard’s tags by typing t/ without specifying any tags after it.
-
-* You can remove the flashcard’s difficulty by typing d/ without specifying any difficulty after it. Or you can manually set it to `d/UNSPECIFIED`.
+:information_source:<br> 
+- When editing tags, the existing tags of the flashcard will be removed i.e adding of tags is not cumulative.
+- You can remove all the flashcard’s tags by typing <code>t/</code> without specifying any tags after it.
+- You can remove the flashcard’s difficulty by typing d/ without specifying any difficulty after it. Or you can manually set it to <code>d/UNSPECIFIED</code>.
 
 </div>
 
-### Listing all flashcards : `list` <a name="listing-all-flashcards"></a>
+<a name="listing-all-flashcards"></a>
+### Listing all flashcards : `list`
 
 Shows a list of all flashcards currently created.
 
 Format: `list`
 
-### Finding flashcards <a name="finding-flashcards"></a>
+<a name="finding-flashcards"></a>
+### Finding flashcards
 
 To find flashcards, you can find them by specifying keywords within their questions and/or specifying their tags.
 
 <div markdown="block" class="alert alert-info">
 
-:exclamation: You must have at least one find field provided.
+:information_source: You must have at least one find field provided.
 
 </div>
 
-#### Finding by question: `find q/KEYWORD...` <a name="finding-by-question"></a>
+<a name="finding-by-question"></a>
+#### Finding by question: `find q/KEYWORD...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -285,15 +292,16 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindQuestionStep1](./images/FindQuestionStep1.png)
 
-2. Enter the find command followed by `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the keyword `CS2103T` in their question in the displayed list, you can enter `find q/CS2103T`.
+2. Enter the find command followed by `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the keyword `CS2103` in their question in the displayed list, you can enter `find q/CS2103`.
 
 	![FindQuestionStep2](./images/FindQuestionStep2.png)
 
-3. Press enter and QuickCache will display all the flashcards with the keyword `CS2103T` in their question.
+3. Press enter and QuickCache will display all the flashcards with the keyword `CS2103` in their question.
 
 	![FindQuestionStep3](./images/FindQuestionStep3.png)
 
-#### Finding by tags: `find t/TAG1...` <a name="finding-by-tags"></a>
+<a name="finding-by-tags"></a>
+#### Finding by tags: `find t/TAG1...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -305,15 +313,16 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindTagsStep1](./images/FindTagsStep1.png)
 
-2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. For example, if you want to find flashcards with the tag `Assembly` in the displayed list, you can enter `find t/Assembly`.
+2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. For example, if you want to find flashcards with the tag `Biology` in the displayed list, you can enter `find t/Biology`.
 
 	![FindTagsStep2](./images/FindTagsStep2.png)
 
-3. Press enter and QuickCache will display all the flashcards with the tag `Assembly`.
+3. Press enter and QuickCache will display all the flashcards with the tag `Biology`.
 
 	![FindTagsStep3](./images/FindTagsStep3.png)
 
-#### Finding by tags and keywords: `find t/TAG... q/KEYWORD...`
+<a name="finding-by-tags-and-question"></a>
+#### Finding by tags and question: `find t/TAG... q/KEYWORD...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -328,15 +337,16 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindQuestionAndTagsStep1](./images/FindQuestionAndTagsStep1.png)
 
-2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. Proceed to include `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the tag `TCPforLife` and the keyword `What` in the question, you can enter `find t/TCPforLife q/What`.
+2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. Proceed to include `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the tag `General` and the keyword `University` in the question, you can enter `find t/General q/University`.
 
 	![FindQuestionAndTagsStep2](./images/FindQuestionAndTagsStep2.png)
 
-3. Press enter and QuickCache will display all the flashcards with the tag `TCPforLife ` and the keyword `What` in their question.
+3. Press enter and QuickCache will display all the flashcards with the tag `General ` and the keyword `University` in their question.
 
 	![FindQuestionAndTagsStep3](./images/FindQuestionAndTagsStep3.png)
 
-### Deleting flashcards <a name="deleting-flashcards"></a>
+<a name="deleting-flashcards"></a>
+### Deleting flashcards
 
 To delete a flashcard, you can either delete it by its index or based off its tags.
 
@@ -346,7 +356,8 @@ To delete a flashcard, you can either delete it by its index or based off its ta
 
 </div>
 
-#### Deleting by index : `delete INDEX` <a name="deleting-by-index"></a>
+<a name="deleting-by-index"></a>
+#### Deleting by index : `delete INDEX`
 
 You can delete a flashcard based on the index shown in the last displayed list.
 
@@ -361,7 +372,7 @@ You can delete a flashcard based on the index shown in the last displayed list.
 
 	![DeleteIndexStep1](./images/DeleteIndexStep1.png)
 
-2. Using the indices of the displayed list, enter the delete command followed by the index of the flashcard you want to delete. For example, if you want to delete the 4th flashcard in the displayed list, you can enter `delete 4`.
+2. Using the indices of the displayed list, enter the delete command followed by the index of the flashcard you want to delete. For example, if you want to delete the 3rd flashcard in the displayed list, you can enter `delete 3`.
 
 	![DeleteIndexStep2](./images/DeleteIndexStep2.png)
 
@@ -369,10 +380,10 @@ You can delete a flashcard based on the index shown in the last displayed list.
 
 	![DeleteIndexStep3](./images/DeleteIndexStep3.png)
 
-
 You have successfully deleted a flashcard!
 
-#### Deleting by tags : `delete t/TAG...` <a name="deleting-by-tags"></a>
+<a name="deleting-by-tags"></a>
+#### Deleting by tags : `delete t/TAG...`
 
 You can delete a group of flashcards based on a specified tag. All flashcards that have this specified tag will be deleted.
 
@@ -382,32 +393,38 @@ You can delete a group of flashcards based on a specified tag. All flashcards th
 
 </div>
 
-1. In the user input box, enter in the delete command together with the tags that you want to use as the criteria. For example, if you want to delete all flashcards with the tag `SolarSystem`, type `delete t/SolarSystem`.
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
-	![DeleteTagStep1](./images/DeleteTagStep1.png)
+	![DeleteIndexStep1](./images/DeleteTagStep1.png)
 
-2. Press enter and QuickCache will delete the flashcards accordingly.
+2. In the user input box, enter in the delete command together with the tags that you want to use as the criteria. For example, if you want to delete all flashcards with the tag `MCQ`, type `delete t/MCQ`.
 
 	![DeleteTagStep2](./images/DeleteTagStep2.png)
 
-All flashcards with your specified tag(s) are now deleted!
+3. Press enter and QuickCache will delete the flashcards accordingly.
 
-#### Clearing all entries : `clear` <a name="clear"></a>
+	![DeleteTagStep3](./images/DeleteTagStep3.png)
+
+You have successfully deleted all the flashcards with the specified tag(s)!
+
+<a name="clear"></a>
+#### Clearing all entries : `clear`
+
 Suppose you are in a situation where you want to get rid of all the flashcards in QuickCache. You might find it troublesome to delete each flashcard one-by-one. Instead, you can utilize the clear command to clear all flashcards on QuickCache directly.
 
-Format: `clear`
+<a name="testing-flashcard"></a>
+### Testing a flashcard
 
-### Testing a flashcard <a name="testing-flashcard"></a>
-
-#### Containing an open-ended question : `test INDEX ans/ANSWER` <a name="testing-oeq"></a>
+<a name="testing-oeq"></a>
+#### Containing an open-ended question : `test INDEX ans/ANSWER`
 
 You can test yourself with a flashcard containing open-ended question by specifying an answer.
 
-1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.s
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
     ![TestStep1](./images/TestStep1.png)
 
-2. Using the indices of the displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the answer `a computer organization module`, you can enter `test 2 ans/a computer organization module`.
+2. Using the indices of the displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the first flashcard in the displayed list with the answer `Singapore`, you can enter `test 1 ans/Singapore`.
 
     <div markdown="block" class="alert alert-info">
     :bulb: Answer is <b>case insensitive</b>.
@@ -424,7 +441,8 @@ You can test yourself with a flashcard containing open-ended question by specify
 
 You have successfully tested yourself on an open-ended question!
 
-#### Containing a multiple choice question : `test INDEX o/OPTION` <a name="testing-mcq"></a>
+<a name="testing-mcq"></a>
+#### Containing a multiple choice question : `test INDEX o/OPTION`
 
 You can also test yourself a flashcard containing a multiple choice question by specifying an option.
 
@@ -432,11 +450,11 @@ You can also test yourself a flashcard containing a multiple choice question by 
 
     ![TestStep1](./images/TestStep1.png)
 
-2. Using the indices of the displayed list, enter the `open` command followed by the index of the flashcard you want to see the options of. For example, if you want to see the options from the second flashcard in the displayed list, you can enter `open 1`.
+2. Using the indices of the displayed list, enter the `open` command followed by the index of the flashcard you want to see the options of. For example, if you want to see the options from the second flashcard in the displayed list, you can enter `open 2`.
 
     ![TestMCQStep2](./images/TestMCQStep2.png)
 
-3. Using the indices of the previous displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the 2nd option, you can enter `test 1 o/2`.
+3. Using the indices of the previous displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the 1st option, you can enter `test 2 o/1`.
 
     <div markdown="block" class="alert alert-danger">
     :exclamation: The index and option <b>must both be a positive integer</b> 1, 2, 3, ...
@@ -450,9 +468,10 @@ You can also test yourself a flashcard containing a multiple choice question by 
 
 You have successfully tested yourself on a multiple choice question!
 
-### Displaying statistics <a name="displaying-statistics"></a>
+<a name="displaying-statistics"></a>
+### Displaying statistics
 
-<div class="alert alert-danger">
+<div markdown="block" class="alert alert-danger">
 :exclamation: You can only show statistics based on index or based on tags but not both!
 </div>
 
@@ -461,7 +480,8 @@ Statistics include:
 * The number of times and the percentage the user answers all flashcards containing the specified tag(s) correctly.
 * The number of times and the percentage the user answers all flashcards containing the specified tag(s) incorrectly.
 
-#### Statistics by index: `stats INDEX` <a name="stats-by-index"></a>
+<a name="stats-by-index"></a>
+#### Statistics by index: `stats INDEX`
 
 You can display the statistics of a specified flashcard in a Pie Chart based on the last displayed list.
 
@@ -483,14 +503,15 @@ You can display the statistics of a specified flashcard in a Pie Chart based on 
 
 You have successfully displayed the statistics of a flashcard!
 
-#### Statistics by tags: `stats t/TAG...` <a name="stats-by-tags"></a>
+<a name="stats-by-tags"></a>
+#### Statistics by tags: `stats t/TAG...`
 
 You can also display the statistics of multiple flashcards in a Pie Chart by specifying tags.
 
 1. In the user input box, enter the stats command together with the tags that you want to use as the criteria. For example, if you want to display statistics for all flashcards with the tag `MCQ`, type `stats t/MCQ`.
 
     <div markdown="block" class="alert alert-info">
-    :bulb: You can specify more than one tag to be used when displaying statistics of multiple flashcards. Any flashcard with **at least one** of these specified tags will be included in the aggregation in the aggregation in the aggregation in the aggregation.
+    :bulb: You can specify more than one tag to be used when displaying statistics of multiple flashcards. Any flashcard with **at least one** of these specified tags will be included in the aggregation.
     </div>
 
     ![StatsTagsStep1](./images/StatsTagsStep1.png)
@@ -501,7 +522,8 @@ You can also display the statistics of multiple flashcards in a Pie Chart by spe
 
 You have successfully displayed the statistics of all flashcards containing the specified tags!
 
-### Clearing a flashcard's statistics : `clearstats INDEX` <a name="clearing-a-flashcards-statistics"></a>
+<a name="clearing-a-flashcards-statistics"></a>
+### Clearing a flashcard's statistics : `clearstats INDEX`
 
 To clear the statistics of a flashcard you can use the clearstats command.
 
@@ -541,9 +563,11 @@ To clear the statistics of a flashcard you can use the clearstats command.
 
 You have successfully cleared the statistics of a flashcard!
 
-### Sharing flashcards <a name="sharing-flashcards"></a>
+<a name="sharing-flashcards"></a>
+### Sharing flashcards
 
-#### Exporting a set of flashcards : `export FILE_NAME` <a name="export"></a>
+<a name="export"></a>
+#### Exporting a set of flashcards : `export FILE_NAME`
 
 You can export all flashcards from the last displayed list into a file named `FILE_NAME` for backup or sharing with your friends.
 
@@ -562,23 +586,29 @@ You can export all flashcards from the last displayed list into a file named `FI
 3. Press enter and the file containing the flashcards will be exported into the `export` folder, located in the same directory as `QuickCache.jar`
 
     ![ExportStep3a](./images/ExportStep3a.png)
-
+    
+    Here is the file location on Mac OS.
+    
     ![ExportStep3b](./images/ExportStep3b.png)
 
-    ![ExportStep3bW](./images/ExportStep3bW.png)
-
     ![ExportStep3c](./images/ExportStep3c.png)
+    
+    Here is the file location on Windows.
+    
+    ![ExportStep3bW](./images/ExportStep3bW.png)
 
     ![ExportStep3cW](./images/ExportStep3cW.png)
 
 
 Voila! You have successfully exported your flashcards into a file.
 
-#### Importing a set of flashcards : `import FILE_NAME` <a name="import"></a>
+<a name="import"></a>
+#### Importing a set of flashcards : `import FILE_NAME`
 
 You can import external flashcards into your local QuickCache as well.
 
-1. Create an `import` folder in the same directory as where `QuickCache.jar` is located.
+1. Create an `import` folder in the same directory as where `QuickCache.jar` is located. The pictures shown are the equivalents 
+for both Mac OS and Windows.
 
     ![ImportStep1](./images/ImportStep1.png)
 
@@ -608,24 +638,44 @@ You can import external flashcards into your local QuickCache as well.
 
 Good job! You have successfully imported flashcards from an external file.
 
-### Exiting the program : `exit` <a name="exit"></a>
+<a name="exit"></a>
+### Exiting the program : `exit`
 
 You can exit QuickCache by using the exit command.
 
-Format: `exit`
+<a name="save"></a>
+### Saving the data
 
-### Saving the data <a name="save"></a>
 For your convenience, QuickCache data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ <a name="faq"></a>
+<a name="faq"></a>
+## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous QuickCache home folder.
+**Q**: Why can't I open QuickCache on my device?<br>
+**A**: There are a few potential reasons as to why QuickCache is not opening on your device:
+
+1. You first need to ensure that your device is a **desktop device** as QuickCache is not supported on mobile devices. 
+2. Next, you need to ensure that you have **Java 11 or above** installed on your device. You can refer to this [guide to check your java version](https://superuser.com/questions/1221096/how-do-i-check-what-version-of-java-i-have-installed).
+3. Double clicking QuickCache doesn't work on every desktop device. If you are experiencing problems with this, you can try using terminal or the command prompt to navigate to the folder where `quickcache.jar` is located and then proceeed to execute the following command **`java -jar quickcache.jar`**. Note that if you rename `quickcache.jar` you have to tweak the command accordingly.
+
+**Q**: How do I transfer my flashcards to my friend?<br>
+**A**: You can first [export](#export) the flashcards that are stored in QuickCache into your desired file format. After exporting, you can proceed to send the file to your friend over your favourite messaging application. Upon receving the file, your friend can then proceed to [import](#import) the flashcards into QuickCache.
+
+**Q**: How can I contribute to QuickCache?<br>
+**A**: There are a few ways you can contribute to QuickCache: 
+
+* If you are an investor, you can reach out to us [here](mailto:damith@comp.nus.edu.sg).
+* If you are a developer, we greatly welcome you to contribute to QuickCache by submitting a pull request [here](https://github.com/AY2021S1-CS2103T-T13-2/tp/pulls). You can view QuickCache's source code at this [link](https://github.com/AY2021S1-CS2103T-T13-2/tp).
+
+**Q**: How do I give suggestions or report for bugs on QuickCache?<br>
+**A**: If you have something to suggest to us or experienced any bugs while using QuickCache, we would appreciate it if you post an issue on it [here](https://github.com/AY2021S1-CS2103T-T13-2/tp/issues).
 
 --------------------------------------------------------------------------------------------------------------------
-## Command summary <a name="command-summary"></a>
+
+<a name="command-summary"></a>
+## Command summary
 
 If you need to quickly look up a command, we have added a table below to summarize all the commands offered by QuickCache.
 

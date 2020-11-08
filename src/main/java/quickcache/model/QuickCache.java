@@ -100,7 +100,6 @@ public class QuickCache implements ReadOnlyQuickCache {
     @Override
     public String toString() {
         return flashcards.asUnmodifiableObservableList().size() + " flashcards";
-        // TODO: refine later
     }
 
     public ObservableList<Flashcard> getFlashcardList() {

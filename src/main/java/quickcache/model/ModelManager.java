@@ -25,7 +25,7 @@ public class ModelManager implements Model {
 
 
     /**
-     * Initializes a ModelManager with the given quickCache and userPrefs.
+     * Initializes a ModelManager with the given QuickCache and userPrefs.
      */
     public ModelManager(ReadOnlyQuickCache quickCache, ReadOnlyUserPrefs userPrefs) {
         super();
