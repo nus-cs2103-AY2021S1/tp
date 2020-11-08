@@ -22,7 +22,7 @@ ___
 ##Developers of PropertyFree:
 
 PropertyFree is developed by a group of second year Computer Science Students from the School of Computing, National
-University if Singapore. This was developed for the team projects assignment fro the module CS2103 and is a
+University if Singapore. This was developed for the team projects assignment for the module CS2103 and is a
 brown-field project adapting from existing projects.
 ___
 

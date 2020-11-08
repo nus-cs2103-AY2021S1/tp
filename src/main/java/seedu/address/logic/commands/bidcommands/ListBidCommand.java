@@ -12,7 +12,7 @@ public class ListBidCommand extends Command {
 
     public static final String COMMAND_WORD = "list-bid";
 
-    public static final String MESSAGE_SUCCESS = "Listed all bids";
+    public static final String MESSAGE_SUCCESS = "Displaying full bid list.";
 
     @Override
     public CommandResult execute(Model model) {
