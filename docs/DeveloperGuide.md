@@ -1512,3 +1512,27 @@ testers are expected to do more *exploratory* testing.
     
     1. Other incorrect copy commands to try: `copy email`, `copy email n/x` (where x is a name not in the list of contacts), `copy phone t/y` (where y is a tag not in the list of contacts), `copy phone m/z` (where z is a module not in the list of modules)<br>
        Expected: Status message will be an error message.
+
+### Viewing a selected meeting details
+
+1. View a selected meeting's agenda and notes
+
+    1. Prerequisites: Meeting is a valid meeting.
+
+    1. Test case: `meeting view m/CS1100 n/Weekly Meeting` <br>
+       Expected: Selected meeting panel should display the correct meeting. User can toggle between viewing the meeting's agenda or notes by clicking on the corresponding Agenda or Notes tab.
+
+### Change to light theme
+
+1. Switch the application theme to light theme
+
+   1. Test case: `light` <br>
+      Expected: Application should switch to light theme and status message should say "Light theme set successfully."
+
+### Change to dark theme
+
+1. Switch the application theme to dark theme
+
+   1. Test case: `dark` <br>
+      Expected: Application should switch to dark theme and status message should say "Dark theme set successfully."
+          
