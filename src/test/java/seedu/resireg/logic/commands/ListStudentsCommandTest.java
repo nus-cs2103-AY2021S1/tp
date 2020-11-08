@@ -3,6 +3,7 @@ package seedu.resireg.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.resireg.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertToggleCommandSuccess;
@@ -42,6 +43,12 @@ public class ListStudentsCommandTest {
     public void setUp() {
         model = new ModelManager(getTypicalResiReg(), new UserPrefs());
         expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());
+    }
+
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ListStudentsCommand(filter)
+                .execute(null, null, null));
     }
 
     @Test
