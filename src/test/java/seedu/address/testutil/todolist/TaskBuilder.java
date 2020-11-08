@@ -21,7 +21,7 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_NAME = "Finish Lab02";
+    public static final String DEFAULT_NAME = "Finish LAB 02";
     public static final String[] ARRAY_OF_TAGS = new String[] {"CS2100", "LAB"};
     public static final List<String> DEFAULT_TAGS = new ArrayList<>(Arrays.asList(ARRAY_OF_TAGS));
     public static final String DEFAULT_PRIORITY = "HIGH";
