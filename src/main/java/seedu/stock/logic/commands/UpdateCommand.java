@@ -244,6 +244,7 @@ public class UpdateCommand extends Command {
             setQuantity(toCopy.quantity);
             setLocation(toCopy.location);
             setQuantityAdder(toCopy.quantityAdder);
+            setLowQuantity(toCopy.lowQuantity);
         }
 
         /**
@@ -332,7 +333,8 @@ public class UpdateCommand extends Command {
                     && getSource().equals(castedOther.getSource())
                     && getQuantity().equals(castedOther.getQuantity())
                     && getLocation().equals(castedOther.getLocation())
-                    && getQuantityAdder().equals(castedOther.getQuantityAdder());
+                    && getQuantityAdder().equals(castedOther.getQuantityAdder())
+                    && getLowQuantity().equals(castedOther.getLowQuantity());
         }
     }
 }

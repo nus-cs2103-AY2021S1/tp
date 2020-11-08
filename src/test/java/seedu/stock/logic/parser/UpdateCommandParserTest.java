@@ -213,7 +213,7 @@ public class UpdateCommandParserTest {
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
                 .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase(), VALID_SERIAL_NUMBER_BANANA.toLowerCase())
                 .withLocation(VALID_LOCATION_APPLE.toLowerCase()).withQuantity(VALID_QUANTITY_APPLE.toLowerCase())
-                .build();
+                .withLowQuantity("0").build();
         UpdateCommand expectedCommand = new UpdateCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -225,7 +225,7 @@ public class UpdateCommandParserTest {
         descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
                 .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase(), VALID_SERIAL_NUMBER_BANANA.toLowerCase())
                 .withLocation(VALID_LOCATION_APPLE.toLowerCase()).withQuantityAdder(VALID_QUANTITY_APPLE.toLowerCase())
-                .build();
+                .withLowQuantity("0").build();
         expectedCommand = new UpdateCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

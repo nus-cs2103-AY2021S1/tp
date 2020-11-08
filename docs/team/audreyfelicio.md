@@ -85,6 +85,7 @@ Given below are my contributions to the project.
   * Created unit tests for `sort` feature (sort command parser, sort util, sort command). (Pull requests [\#188](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/188), [\#189](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/189))
   * Created integration tests for `sort` feature (sort command). (Pull request [\#189](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/189))
   * Improved coverage by creating tests for `QuantityAdder` and `ModelManager`. (Pull request [\#264](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/264))
+  * Created unit tests for `UpdateStockDescriptor`. (Pull request [\#313](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/313))
   * Reviewed other team members' tests and ensure the tests are adequate and working.
   * Help other team members debug testing when the tests failed and they don't know what causes the tests to fail.
 

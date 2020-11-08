@@ -31,6 +31,7 @@ import seedu.stock.model.StockBook;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
 import seedu.stock.model.stock.predicates.NameContainsKeywordsPredicate;
+import seedu.stock.testutil.UpdateStockDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -137,6 +138,20 @@ public class CommandTestUtil {
     public static final String[] VALID_SOURCE_APPLE_KEYWORDS = VALID_SOURCE_APPLE.split("\\s+");
     public static final String[] VALID_LOCATION_APPLE_KEYWORDS = VALID_LOCATION_APPLE.split("\\s+");
     public static final String[] VALID_SERIAL_NUMBER_BANANA_KEYWORDS = VALID_SERIAL_NUMBER_BANANA.split("\\s+");
+
+    public static final UpdateCommand.UpdateStockDescriptor DESC_APPLE;
+    public static final UpdateCommand.UpdateStockDescriptor DESC_BANANA;
+
+    static {
+        DESC_APPLE = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE).withQuantity(VALID_QUANTITY_APPLE)
+                .withLocation(VALID_LOCATION_APPLE).withLowQuantity(VALID_LOW_QUANTITY_APPLE)
+                .build();
+        DESC_BANANA = new UpdateStockDescriptorBuilder().withName(VALID_NAME_BANANA)
+                .withSerialNumber(VALID_SERIAL_NUMBER_BANANA).withQuantity(VALID_QUANTITY_BANANA)
+                .withLocation(VALID_LOCATION_BANANA).withLowQuantity(VALID_LOW_QUANTITY_BANANA)
+                .build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
