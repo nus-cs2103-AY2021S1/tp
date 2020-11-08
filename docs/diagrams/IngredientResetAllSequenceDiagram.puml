@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":tCheckParser" as tCheckParser LOGIC_COLOR
+participant ":IngredientResetAllCommand" as IngredientResetAllCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("i-reset-all")
+activate LogicManager
+
+LogicManager -> tCheckParser : parseCommand("i-reset-all")
+activate tCheckParser
+
+create IngredientResetAllCommand
+tCheckParser -> IngredientResetAllCommand
+activate IngredientResetAllCommand
+
+IngredientResetAllCommand --> tCheckParser
+deactivate IngredientResetAllCommand
+
+tCheckParser --> LogicManager :
+deactivate tCheckParser
+
+LogicManager -> IngredientResetAllCommand : execute()
+activate IngredientResetAllCommand
+
+IngredientResetAllCommand -> Model : getFilteredIngredientList()
+activate Model
+
+Model --> IngredientResetAllCommand :
+deactivate Model
+
+IngredientResetAllCommand -> Model : setIngredient(Ingredient target, Ingredient newAmount)
+activate Model
+
+Model --> IngredientResetAllCommand :
+deactivate Model
+
+create CommandResult
+IngredientResetAllCommand -> CommandResult : CommandResult(message)
+activate CommandResult
+
+CommandResult --> IngredientResetAllCommand
+deactivate CommandResult
+
+IngredientResetAllCommand --> LogicManager :commandResult
+deactivate IngredientResetAllCommand
+
+IngredientResetAllCommand -[hidden]-> LogicManager : result
+destroy IngredientResetAllCommand
+
+[<--LogicManager : commandResult
+deactivate LogicManager
+@enduml
