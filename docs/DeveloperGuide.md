@@ -573,7 +573,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Edits the exercise at index 1, with a comment of `High jump`. Details of the edited exercise shown in the status message.
 
    1. Test case: `editex 1 c/123 e/High jump`<br>
-      Expected: Edits the exercise at index 1, with name of `High jumo` and calories per rep of `123`. Details of the edited exercise shown in the status message.
+      Expected: Edits the exercise at index 1, with name of `High jump` and calories per rep of `123`. Details of the edited exercise shown in the status message.
 
    1. Test case: `edit 1`<br>
       Expected: No exercise is edited. Error details shown in the status message.
