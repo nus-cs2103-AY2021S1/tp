@@ -14,5 +14,5 @@ if () then ([command is valid])
 else ([command has no or invalid parameters])
     :Show parse error message;
 endif
-end
+stop
 @enduml

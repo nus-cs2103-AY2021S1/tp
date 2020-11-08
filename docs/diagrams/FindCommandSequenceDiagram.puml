@@ -6,11 +6,8 @@ box "Logic" LOGIC_COLOR_T1
 Participant ":LogicManager" as logic LOGIC_COLOR
 Participant ":ReeveParser" as rp LOGIC_COLOR
 Participant ":FindCommandParser" as fcp LOGIC_COLOR
-Participant ":FindStudentDescriptor" as fcd LOGIC_COLOR
-Participant ":NameContainsKeywordsPredicate" as namePredicate LOGIC_COLOR
-Participant ":SchoolContainsKeywordsPredicate" as schoolPredicate LOGIC_COLOR
+Participant "d:FindStudentDescriptor" as fcd LOGIC_COLOR
 Participant "command:FindCommand" as fc LOGIC_COLOR
-Participant ":CommandResult" as res LOGIC_COLOR
 
 
 [-> logic : execute
@@ -20,24 +17,11 @@ create fcp
 rp -> fcp
 rp -> fcp ++: parse(args)
 create fcd
-fcp -> fcd
-opt If finding by name
+fcp -> fcd ++:
+return d
 
-    create namePredicate
-    fcp -> namePredicate: nameKeywords
-    fcp -> fcd: setNamePredicate(NameContainsKeywordsPredicate)
-    end
-
-opt If finding by school
-
-    create schoolPredicate
-    fcp -> schoolPredicate: schoolKeywords
-    fcp -> fcd: setSchoolPredicate(SchoolContainsKeywordsPredicate)
-    end
-
-fcp -> fcd: isAnyPredicatePresent()
 create fc
-fcp -> fc ++: findStudentDescriptor
+fcp -> fc ++: new FindCommand(d)
 return command
 return command
 return command
@@ -45,10 +29,7 @@ destroy fcp
 
 logic -> fc ++: execute(model)
 fc -> fcd++: getPredicates()
-fcd -> fcd: getNamePredicate()
-fcd -> fcd: getSchoolPredicate()
-fcd -> fcd: getYearPredicate()
-return predicates
+return consolidatedPredicates
 
 
 end box
@@ -58,11 +39,7 @@ Participant ":Model" as model MODEL_COLOR
 
 fc -> model++: updateFilteredPersonList(consolidatedPredicates)
 return
-fc -> model: getFilteredPersonList()
-create res
-fc -> res ++
-return commandResult
-return commandResult
+return result
 return
 destroy fc
 end box
