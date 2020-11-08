@@ -154,7 +154,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Undo feature
 *(Written by Lim Zi Yang)* <br>
 
-This feature allows the user to undo their previous entry-level commands.
+This feature allows the user to undo their previous _entry-level_ commands.
 
 #### Implementation
 
@@ -209,7 +209,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `ActiveAccount#setPreviousState()` is only called in `add`, `delete`, `edit`, and `clear` commands. 
-Hence, the `undo` command only works on the previously stated entry-level commands.
+Hence, the `undo` command only works on the previously stated _entry-level_ commands.
 
 </div>
 
@@ -945,7 +945,9 @@ This specifies criteria that can be used to judge the operation of _Common Cents
 Definitions of certain terms used in this Developer Guide.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Entry-level commands**: Commands that interacts with expenses or revenues.
+* **Account-level commands**: Commands that interacts with accounts.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -967,7 +969,8 @@ Basic instructions to test the launch and shutdown of _Common Cents_.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file <br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -978,7 +981,7 @@ Basic instructions to test the launch and shutdown of _Common Cents_.
 
 
 ### Entry-level commands
-Basic instructions to test entry-level commands of _Common Cents_.
+Basic instructions to test _entry-level_ commands of _Common Cents_.
 
 1. Adding an entry while all entries are being shown
    1. Prerequisites: List all entries using the `list` command.
@@ -1024,35 +1027,35 @@ Basic instructions to test entry-level commands of _Common Cents_.
         * Expense list is updated with only 1 expense that has the description `canvas` inside. 
         * Revenue list remains the same. 
         * Result display shows "Entries updated". 
-        * Pie chart and total expense value remain.
+        * Pie chart and total expense value remain unchanged.
     
    1. Test case: `find c/revenue k/cases`<br>
         Expected: 
         * Expense list remains the same.
         * Revenue list is updated with only 1 revenue that has the description containing `cases`.
         * Result display shows "Entries updated". 
-        * Pie chart and total expense value remain. 
+        * Pie chart and total expense value remain unchanged. 
 
    1. Test case: `find k/cases canvas`<br>
         Expected: 
         * Both lists are updated with 1 expense that has the description containing `canvas` and 
-        1 revenue that has the description containing `cases`.
+        * revenue that has the description containing `cases`.
         * Result display shows "Entries updated". 
-        * Pie chart and total expense value remain. 
+        * Pie chart and total expense value remain unchanged. 
          
    1. Test case: `find c/expense k/nonexistent`<br>
         Expected: 
         * Expense list is updated with no entries inside.
         * Revenue list remains the same. 
         * Result display shows "No entries found". 
-        * Pie chart and total expense value remain. 
+        * Pie chart and total expense value remain unchanged. 
    
    1. Test case: `find c/revenue k/nonexistent`<br>
        Expected: 
        * Expense list remains the same.
        * Revenue list is updated with no entries inside. 
        * Result display shows "No entries found". 
-       * Pie chart and total expense value remain.
+       * Pie chart and total expense value remain unchanged.
 
    1. Test case: `find c/expense`<br>
        Expected: Neither list is updated. Error details shown in the status message.
@@ -1061,7 +1064,7 @@ Basic instructions to test entry-level commands of _Common Cents_.
         Expected: Similar behaviour with previous testcase. Note that error details may differ based on 
         which parameters of the input that is in an incorrect format. 
 
-1. Undoing an entry-level command
+1. Undoing an _entry-level_ command
 
    1. Prerequisites: Use at least one add, edit or delete `command`.
    
@@ -1070,7 +1073,7 @@ Basic instructions to test entry-level commands of _Common Cents_.
    Pie chart is reverted to the state prior to the previous command.
    
 ### Account-level commands
-Basic instructions to test account-level commands of _Common Cents_.
+Basic instructions to test _account-level_ commands of _Common Cents_.
 1. Adding a new unique account
    1. Prerequisite: Ensure no accounts in _Common Cents_ has the name `New Account`.
 
@@ -1081,7 +1084,7 @@ Basic instructions to test account-level commands of _Common Cents_.
    1. Test case: `newacc n/`<br>
       Expected: No account is added. Error details shown in the status message.
       
-   1. Other incorrect add account commands to try: `newacc`.<br>
+   1. Other incorrect add account commands to try: `newacc`<br>
       Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
          
 1. Deleting an account
@@ -1113,8 +1116,8 @@ Basic instructions to test saving and loading of user data of _Common Cents_.
 This section highlights the team effort to build _Common Cents_ from AB3. While it was not easy, it was a fufilling and valuable experience for all of us.
 
 ### Effort
-* Total of 10kLoC written.
-* Total 245 hours of work: 7 hours spent per person (total 5 of us) per week.
+* Total of 10k LoC written.
+* Total 245 hours of work: 7 hours spent per person per week (total 5 of us).
 * ~30 pages of UG
 * ~40 pages of DG
 
