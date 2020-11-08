@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes ""addvisit"" command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([visit date provided])
+    if () then ([valid visit date])
+    :Process visit date;
+    else ([else])
+        :Invalid visitdate,
+        throws ParseException;
+        stop
+    endif
+else ([else])
+:Use date as of now;
+endif
+:User fills in information
+in Visitation Log Window;
+:User saves new visit information;
+:Update VisitHistory with new
+Visit using SaveVisitCommand;
+stop
+@enduml

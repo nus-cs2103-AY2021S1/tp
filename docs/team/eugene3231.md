@@ -15,26 +15,23 @@ Given below are my contributions to the project.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. 
   The implementation was challenging as it required changes to existing commands and continuous updates for new commands added at each iteration. This included new commands such as adding, editing, deleting of visits and appointments added in `v1.3`
   * Credits:
-    1. Existing AB3 codebase: https://github.com/se-edu/addressbook-level3
+    1. Existing AB3 codebase: [AddressBook Level-3](https://github.com/se-edu/addressbook-level3)
+    2. Design pattern consideration: [Best Practice for Undo Redo implementation](https://stackoverflow.com/questions/1915907/best-practice-for-undo-redo-implementation)
     
-* **New Feature**: Added the command to edit an existing visitation log.
+* **New Feature**: Added commands to edit and delete an existing visitation log.
   * What it does: Allows the user to modify or remove the existing visitation log seen from the profile window.
-  * Justification: This feature allows the user to amend visit details when the user makes a mistake or wants to make amendments to an existing visit summary.
-  * Highlights: Also implemented the functionality of a new popup window to modify visit details, as stated below.
-  * Credits: TODO
+  * Justification: This feature allows the user to amend visit details when the user makes a mistake or wants to make amendments to an existing visit summary. Also allows the user to organize the visitation logs and remove visits that are not required anymore.
+  * Highlights: Also implemented the functionality of a new popup window to modify visit details, as stated below. And integrated undo and redo functions for the visit commands.
+  * Credits: 
+    1. Existing AB3 codebase: [AddressBook Level-3](https://github.com/se-edu/addressbook-level3)
 
 * **New Feature**: Implemented a pop-up window to add and edit a visitation log.
   * What it does: Allows the user to add or modify visit details such as diagnosis, prescription and comments in a user-friendly interface.
-  * Justification: This feature improves the product significantly as there is a new pop-up window for the user to manage visit details other than the main GUI.
-  * Highlights: Created UI mockups and implemented this pop-up window for use in add visit and edit visit command.
-  * Credits: TODO
-
- * **New Feature**: Added the command to delete an existing visitation log.
-   * What it does: Allows the user to remove delete a visitation log based on its index in the profile window.
-   * Justification: This feature allows the user to organize the visitation logs and remove visits that are not required anymore.
-   * Highlights: Also enabled the undo function for the visit commands. 
-   * Credits: TODO
-
+  * Justification: This feature improves the product significantly as there is a new interface for the user to manage visit details other than the main GUI.
+  * Highlights: Created UI mockups and adapted this pop-up window for use in add visit and edit visit commands.
+  * Credits: 
+    1. Creating a new pop-up window: [How to create a popup window in javafx](https://stackoverflow.com/questions/22166610/how-to-create-a-popup-windows-in-javafx) and [Visit](https://github.com/AY1920S1-CS2103T-F12-2/main)
+    2. Setting keyboard shortcuts for shifting focus to next text box: [Keyboard Navigation](https://wiki.openjdk.java.net/display/OpenJFX/Keyboard+Navigation)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=eugene3231)
 
@@ -68,6 +65,6 @@ Given below are my contributions to the project.
   * Reported bugs and suggestions for other teams in the class (during Practical Exam - Dry Run): [Issues Link](https://github.com/eugene3231/ped/issues)
 
 * **Tools**:
-  * Integrated a third party library (JFoenix) to the project ([\#42]()) (TODO)
+  * Integrated a third party library (JFoenix) to the project ([\#252](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/252)) (TODO)
 
 

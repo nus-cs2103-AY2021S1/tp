@@ -551,6 +551,12 @@ The mechanism utilises the following classes and methods to display the patients
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
+<p align="center">
+    <img src="images/ProfileCommandSequenceDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 26. Sequence Diagram for ProfileCommand</em>
+</p>
+
 Step 1. User inputs "profile 1" command to display the first patient's profile.
 
 Step 2. Input command is parsed to obtain the patient's index, and a `ProfileCommand` object is returned. 
@@ -561,12 +567,6 @@ Step 4. Next, `MainWindow#executeCommand` method is executed which in turn calls
         loaded with all relevant details that belongs to the first `Patient`. 
 
 Step 5. Finally, `MainWindow#handleProfilePanel()` method is executed to display the first patient's profile.
-
-<p align="center">
-    <img src="images/ProfileCommandSequenceDiagram.png"/>
-    <br>
-    <em style="color:#CC5500">Figure 26. Sequence Diagram for ProfileCommand</em>
-</p>
 
 The following activity diagram summarizes the main steps taken to display the patient's profile.
 
@@ -632,6 +632,68 @@ Step 6. As a result of the successful deletion of the appointment object, a `Com
     * Cons:
         * Requires an extreme increase in complexity of code, as the modification would be different for addition/deletion/edit of appointments.
         * Increases coupling between `CalendarDisplay`, a UI element, and `Model`.
+        
+### 3.8 Visitation Log Feature
+
+#### 3.8.1 Implementation
+
+This feature allows the user to save the details of each visitation of a patient. Each `Patient` has a `VisitHistory` object which contains a list of `Visit` objects,
+each containing the visitation details stored as the attributes of the `Visit` object. These attributes include the Diagnosis, Prescription and Comments of the visitation. 
+
+This feature is acheieved through a new Visitation Log pop-up window which allows the user to fill in the relevant details of the visitation. 
+
+The mechanism utilises the following classes and methods to display the patients' profile:
+
+   * `AddVisitCommandParser#parse` - Parses the input to return a `AddVisitCommand` object
+   * `AddVisitCommand#execute` - Executes the command to display patient profile
+   * `MainWindow#handleDisplayVisit` - Displays the Visitation Log Window
+   * `VisitFormWindow#saveVisit` - Processes the visitation details into a `SaveVisitCommand`
+   * `SaveVisitCommand#execute` - Executes the command to save the visitation details
+
+This feature comprises the `AddVisitCommand`, `EditVisitCommand` and `DeleteVisitCommand` classes. 
+Given below is an example usage scenario for `AddVisitCommand` and how the mechanism behaves at each step. 
+
+<p align="center">
+    <img src="images/AddVisitSequenceDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 29. UI and Logic Component Interactions for AddVisit Command </em>
+</p>
+
+Step 1: User inputs `addvisit 1 ` command to add to the first patient's profile.
+
+Step 2: User input is parsed to return a `AddVisitCommand` object is returned.
+
+Step 3: The `AddVisitCommand#execute` method is called and the patient whose visitation to be added to is returned in a `CommandResult` object.
+
+Step 4: In the `MainWindow` object, `MainWindow#handleDisplayVisit` method is called and displays `VisitFormWindow` to the user.
+
+Step 5: The user inputs the new visitation details, clicks the save buttton and the `VisitFormWindow` closes.
+
+Step 6: The method `VisitFormWindow#saveVisit` is called and returns a `SaveVisitCommand` which is executed in the same `VisitFormWindow` object.
+
+Step 7 : In `SaveVisitCommand`, the patient's VisitHistory is updated with the new `Visit` created with the visitation details entered in the `VisitFormWindow`.
+
+The following diagram shows a summary of the steps taken when an `addvisit` command is run.
+
+<p align="center">
+    <img src="images/AddVisitActivityDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 30. Activity Diagram for User Execution of Command</em>
+</p>
+
+#### 3.8.2 Design Considerations
+##### 3.8.2.1 Aspect: Dates to be accepted in `addvisit` and `editvisit` commands
+
+* **Current Implementation:** Only dates in the past up till and including today.
+    * Pros:
+        * More logical as only visitations that have been completed can be recorded in the database.
+    * Cons:
+        * Requires refactoring as we have to ensure dates in the sample data and tests are compliant with this new restriction.
+ * **Alternative Implementation:** Accept any dates to be input as the date of visitation including past and present dates.
+    * Pros:
+        * Easier to implement as any date can be accepted as the date of visitation.
+    * Cons:
+        * May introduce visitations that do not make sense as the visitation has not occurred yet.
         
 --------------------------------------------------------------------------------------------------------------------
 
