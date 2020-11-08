@@ -696,7 +696,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. SWEe! shows an error message.
 
-    Use case ends.
+        Use case ends.
   
 * 3a. User requests to hide the answer.
 
@@ -710,7 +710,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * *a1. SWEe! quits review mode.
     
-    Use case ends.
+        Use case ends.
 
 
 #### Use case: UC13 - Quiz flashcards
@@ -733,13 +733,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. SWEe! shows an error message.
 
-    Use case ends.
+        Use case ends.
 
 * *a. At any time, User requests to quit quiz mode.
 
     * *a1. SWEe! quits quiz mode.
     
-    Use case ends.
+        Use case ends.
 
 
 #### Use case: UC14 - View a flashcard
