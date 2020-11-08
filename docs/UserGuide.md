@@ -106,6 +106,8 @@ Scope | Left panel | Middle panel | Right panel
 
 Shows a message explaning how to access the help page.
 
+Valid scopes: all.
+
 ![help message](images/helpMessage.png)
    *Figure 2: Help message popup*
 
@@ -115,33 +117,41 @@ Format: `help`
 
 Closes the application for the user.
 
-Format: exit
+Valid scopes: all.
 
-### 2.1.3 List all projects in the catalogue `listprojects`
+Format: `exit`
+
+### 2.1.3 Leave a current page `leave`
+
+Leave the current page and go back to the parent scope (one level up).
+
+Valid scopes: all.
+
+Format: `leave`
+- Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope
+- If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect
+
+### 2.1.4 List all projects in the catalogue `listprojects`
 
 List all projects currently in the project catalogue.
+
+Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`, `PERSON_LIST`.
 
 Format: `listprojects`
 - Lists all projects if there are projects in the catalogue
 
 Example: `listprojects` lists all projects in the catalogue to the user.
 
-### 2.1.4 List all persons in the catalogue `listpersons`
+### 2.1.5 List all persons in the catalogue `listpersons`
 
 List all persons currently in the catalogue.
+
+Valid scopes: `PROJECT_LIST`, `PERSON_LIST`, `PERSON`.
 
 Format: `listpersons`
 - Lists all persons if there are persons in the catalogue
 
 Example: `listpersons` lists all persons in the catalogue to the user.
-
-### 2.1.5 Leave a current page `leave`
-
-Leave the current page and go back to the parent scope (one level up).
-
-Format: `leave`
-- Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope
-- If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect
 
 # 2.2 Features in project list scope
 
