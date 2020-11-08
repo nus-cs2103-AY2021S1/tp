@@ -147,7 +147,8 @@ Moreover, TagCommand checks if the file is present before adding the tag to `Mod
 This diagram shows a successful execution of `TagCommand`, resulting in a new tag added to `Model`.
 ![TagSuccessSequence](images/TagCommandSuccessSequenceDiagram.png)
 
-This diagram shows a unsuccessful execution of `TagCommand`, resulting in `CommandException` thrown.
+This diagram shows an unsuccessful execution of `TagCommand`, resulting in `CommandException` thrown.
+In this case, the file was not present.
 ![TagFailureSequence](images/TagCommandFailureSequenceDiagram.png)
 
 `TagCommand` checks if the file address given is absolute or relative file path.
@@ -165,6 +166,9 @@ It filters the list of `Tags` stored in `AddressBook` by the `Tag` or `Label` su
 to be opened.
 After that, it opens the files located at the `Tag`'s `FileAddress` if the file is present and user has read permission.
 `CommandException` is thrown if tag is not present, the file cannot be found or no read permission.
+
+This sequence diagram shows a successful execution of `OpenCommand`.
+![OpenCommandSuccessExecution](images/OpenCommandSuccessSequenceDiagram.png)
 
 We implemented OpenCommand using `java.awt.Desktop`,
 which supports various desktop capabilities such as `open()`. `Desktop` ensures that our application can operation across
