@@ -239,6 +239,46 @@ On the other hand, pressing `Enter` allows the user to lock in their suggestion,
 Because we iterate through autocompletion suggestions using `Tab` and `Shift-Tab` which conflicts with the inbuilt
 focus traversals commands. We have to disable it using the `AutocompleteCommandBox#DisableFocusTraversal()` operation.
 
+### Fuzzy Find Completion Feature (Fzf)
+
+![Fzf Example](images/FzfCompletionExample.gif)
+
+#### Overview
+This feature is actually an improvement from autocomplete which was inspired from reading this [article](https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions).
+Having visual feedback and improving flexibility of the search were the focus of this feature, however despite serving similar purposes
+we have decided to split this into two features because we want to position the `Autocomplete` feature as an entity-specific autocompletion, while our `Fuzzy Find` feature is a search-everywhere feature.
+
+The Fzf feature is facilitated by the `FzfModule` class which adopts the `TextField` module structure 
+similar to that in the `AutocompleteModule` class where we have the `FzfModule` class latching onto a TextField 
+enhancing it with Fzf capabilities. You can refer to the Autocomplete section to find out more, but to sum it up, upon attaching the module
+to a given `textfield` instance, the module instance will attach the relevant listeners to the `textfield` and manage the logic and state of the feature.
+
+This new feature exposes 1 new public function of `FzfModule` :
+* `attachTo(TextField textField, Suppler<List<Strings>> data)` — This method attaches the given `TextField` with the fzf module together with a list supplier from which suggestions will be generated from and returns the new `FzfModule` object.
+
+You can refer to Autocomplete to better understand how text field modules work, this section will focus on the main difference between fzf and autocomplete.
+
+#### Autocomplete vs Fzf : The `query`
+_In this section `query` refers to the string that the users wishes to autocomplete / generate suggestions from._
+
+Besides the differences in trigger points and exit points, the biggest difference is how the query is being calculated. For the autocomplete
+feature, the query is calculated from the caret position of the last character in the `commandPrefix` to the end of string.
+
+![ac query](./images/acQuery.png)
+ 
+This inevitably has some drawbacks which forces us to disallow autocompletion from the middle of the section. To support a truly dynamic `query` field, 
+one would have to track the caret position of the start and end positions of the query, and would have to update the position accordingly to any given keystroke (e.g. Backspace or when user jumps the caret position). 
+
+However, thankfully for us JavaFx already supports such a component out of the box : `TextField`. Below is a sequence diagram showing how
+`FzfModule` updates its query field using the `TextField` component.
+
+![FzfQuerySequenceDiagram](./images/FzfQuerySequenceDiagram.png)
+
+We see here that key strokes are "forwarded" to the query component while in fzf mode which allows query to be properly updated. This allows fzf mode to be
+triggered anywhere in the text field. However, this design decision may come with some performance overhead.
+
+In the future, we are looking to create a stripped down the TextField component that is able to fulfill this functionality which will allow us to swap out this text field component to reduce any performance overhead.
+
 ### Clearing all Contacts
 
 The mechanism to clear all contacts is facilitated by `ClearCommand`. It extends `Command` and implements the following methods:
