@@ -189,7 +189,7 @@ Step 1. The user enters `add n/Apple s/Fairprice q/1000 l/Fruits section`.
 
 Step 2. The command word add is extracted out in `StockBookParser`, and matches the `COMMAND_WORD`for AddCommand class.
 
-Step 3. The remaining user input is the given to the AddCommandParser to determine if the user input contains the required fields.
+Step 3. The remaining user input is the given to the `AddCommandParser` to determine if the user input contains the required fields.
 
 Step 4. Inside `AddCommandParser#parse()` method, the remaining user input `n/Apple s/Fairprice q/1000 l/Fruits section`,
  will be subjected to checks by `AddCommandParser#arePrefixesPresent()` and `AddCommandParser#doesPrefixesAppearOnce()` methods. In this case,
@@ -1910,6 +1910,24 @@ the same stock.
 The mechanism for print feature is facilitated by `PrintCommandParser`, `PrintCommand`, `FileUtil` and
 `Model`.
 
+#### PrintCommand
+
+`PrintCommand` class extends `Command` interface. `PrintCommand` class is tasked to create a csv file and
+ write all stocks in the stock book into this file. `PrintCommand` then creates a new `CommandResult`
+that represents the result of the execution of a `PrintCommand`.
+
+Some important operations implemented here are:
+
+* `PrintCommand#execute()`
+  Creates a CSV file and writes all stocks in the stock book into this file and returns a new `CommandResult`
+  to be displayed to the user in the user interface.
+* `PrintCommand#makeFileCreationTime()` <br>
+  Creates the file creation time of the CSV file.
+* `PrintCommand#makeTitleHeader()`
+  Creates the header for the CSV file.
+* `PrintCommand#printStock()`
+  Converts the stock into a string to be stored in the CSV file.
+  
 #### PrintCommandParser
 `PrintCommandParser` class extends `Parser` interface. `PrintCommandParser` class is tasked with parsing the
 user inputs and generate a new `PrintCommand`. The main logic of the print feature is encapsulated here.
@@ -1927,29 +1945,11 @@ Some important operations implemented here are:
 * `PrintCommandParser#doesPrefixesAppearOnce()` <br>
   Returns true if all required prefixes appear only once in the user input.
 
-#### PrintCommand
-
-`PrintCommand` class extends `Command` interface. `PrintCommand` class is tasked to create a csv file and
- write all stocks in the stock book into this file. `PrintCommand` then creates a new `CommandResult`
-that represents the result of the execution of a `PrintCommand`.
-
-Some important operations implemented here are:
-
-* `PrintCommand#execute()`
-  Creates a csv file and writes all stocks in the stock book into this file and returns a new `CommandResult`
-  to be displayed to the user in the user interface.
-* `PrintCommand#makeFileCreationTime()` <br>
-  Creates the file creation time of the csv file.
-* `PrintCommand#makeTitleHeader()`
-  Creates the header for the csv file.
-* `PrintCommand#printStock()`
-  Converts the stock into a string to be stored in the csv file.
-
 #### Example Usage Scenario
 
 Given below is an example usage scenario and how the print feature behaves at each step.
 
-**Example 1: Creating a csv file with valid file name**
+**Example 1: Creating a CSV file with valid file name**
 
 Step 1. The user enters `print fn/stocks`.
 
@@ -1972,10 +1972,10 @@ Step 7. `PrintCommand#execute()` then calls `FileUtil#createIfMissing()` method 
  in `[root directory of Warenager]/data/userinput.csv`.
  
 Step 8. `PrintCommand#execute()` then calls `PrintCommand#makeFileCreationTime()`, `PrintCommand#makeTitleHeader()` to create the
- file creation time and headers for the fields in stock and stores them in the csv file.
+ file creation time and headers for the fields in stock and stores them in the CSV file.
 
 Step 9. `PrintCommand#execute()` then calls `PrintCommand#printStock()` to get string of the stock to be stored in the csv file,
- and stores this string into the csv file. This step is repeated for all stocks in the stock book.
+ and stores this string into the CSV file. This step is repeated for all stocks in the stock book.
  
 Step 10. `PrintCommand#execute()` then returns a new `CommandResult` to be displayed to the user.
 
@@ -2798,12 +2798,12 @@ unless specified otherwise.
 
     Use case ends.
 
-#### Use case 21: Generating a csv file that contains all stocks
+#### Use case 21: Generating a CSV file that contains all stocks
 
 **MSS**
 
 1.  User requests to print stocks in stock book.
-2.  Warenager generates a csv file containing all stocks.
+2.  Warenager generates a CSV file containing all stocks.
  
     Use case ends.
  
@@ -2821,19 +2821,19 @@ unless specified otherwise.
  
       Use case resumes at step 1.
  
-* 1c. There is an error when creating the csv file.
+* 1c. There is an error when creating the CSV file.
  
     * 1c1. Warenager shows an error message.
  
       Use case resumes at step 1.
 
-#### Use case 22: Generating a csv file that contains all stocks sorted in desired order
+#### Use case 22: Generating a CSV file that contains all stocks sorted in desired order
 
  **MSS**
  
- 1.  User sort stocks in stock book (Use case 17) in their desired order.
- 2.  User request to generate csv file based on the existing stock book (Use case 19).
- 3.  Warenager generates a csv file containing all stocks.
+ 1.  User sort stocks in stock book (Use case 20) in their desired order.
+ 2.  User request to generate CSV file based on the existing stock book (Use case 21).
+ 3.  Warenager generates a CSV file containing all stocks.
  
      Use case ends.
 
@@ -3397,7 +3397,7 @@ testers are expected to do more *exploratory* testing.
           Expected: No stock viewed due to unknown / invalid command format.<br>
           Error details shown in the status message. Suggestion message will be shown too.
 
-### Print of CSV file
+### Printing of CSV file
 
 1. Generates a CSV file that contains all stocks.
 

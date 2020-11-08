@@ -1457,7 +1457,7 @@ You now enter a valid input `add n/eggplant s/fairprice q/500 l/vegetable sectio
 
 As shown above, the stock has been successfully added.
 
-### Generates a CSV file that contains all stocks: `print`
+### Generating a CSV file that contains all stocks: `print`
 Generates a CSV file that contains all stocks.
 
 <div markdown="block" class="alert alert-info">
