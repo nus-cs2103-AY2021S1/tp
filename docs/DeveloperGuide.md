@@ -21,7 +21,7 @@
         * [6.2.1 Add student command](#621-add-student-command)
         * [6.2.2 Edit student command](#622-edit-student-command)
         * [6.2.3 Delete student command](#623-delete-student-command)
-        * [6.2.4 Find student command](#624-find-student-command)  
+        * [6.2.4 Find student command](#624-find-student-command)
         * [6.2.5 Overdue command](#625-overdue-command)
         * [6.2.6 Detail commands](#626-detail-commands)
             * [6.2.6.1 Add detail command](#6261-add-detail-command)
@@ -55,13 +55,13 @@
     * [F.1 Launch and Shutdown](#f1-launch-and-shutdown)
     * [F.2 Deleting a Student](#f2-deleting-a-student)
     * [F.3 Saving Data](#f3-saving-data)
-          
+
 
 ## 1. Introduction
 Welcome to **Reeve**!
 
 **Reeve** is a desktop application for **private tutors to better manage both administrative and academic details of their students**, optimised for use via a
-**Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information. 
+**Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information.
 In addition, **Reeve** comes with a customisable personal scheduler to assist users to keep track of their classes. **Reeve** also allows users to set timely reminders for themselves.
 
 Reeve is optimized for users that are very comfortable with typing as it works on a Command Line Interface (CLI).
@@ -70,8 +70,8 @@ Students' details are displayed in a neat and organized manner through the use o
 
 ## 2. About
 
-This developer guide will provide you the details of the software architecture and implementation of **Reeve**. 
-It is made for developers who wish to understand the internal and external workings of the application. 
+This developer guide will provide you the details of the software architecture and implementation of **Reeve**.
+It is made for developers who wish to understand the internal and external workings of the application.
 
 All developers are warmly welcome to contribute your ideas and improve **Reeve**!
 To contribute, simply head over to [our github](https://github.com/AY2021S1-CS2103T-W15-2/tp) and raise an issue.
@@ -80,10 +80,10 @@ To contribute, simply head over to [our github](https://github.com/AY2021S1-CS21
 
 This section will share with you how should you go about understanding this guide in order to best understand **Reeve**.
 
-We have adopted the "top-down" approach into the structure of this guide where we will first look at the high-level structure of our application 
+We have adopted the "top-down" approach into the structure of this guide where we will first look at the high-level structure of our application
 before going into the implementation details of each feature.
 
-We highly encourage you to read the guide from top to bottom in order to have the best understanding of **Reeve**. 
+We highly encourage you to read the guide from top to bottom in order to have the best understanding of **Reeve**.
 
 Here is a summary (Table 1) of the symbols that are used in this Developer Guide:
 
@@ -92,7 +92,7 @@ Table 1: Summary of symbols
 Symbol | Meaning
 :-----:|:-------
 `command` | A grey highlight indicates a command that can be executed by **Reeve**.
-:information_source: | Indicates important information. 
+:information_source: | Indicates important information.
 :bulb: | Indicates tips.
 
 ## 4. **Getting Started**
@@ -239,7 +239,7 @@ The following describes the flow of how `HelpCommand` is performed.
 
 1. Upon successfully parsing the user input, the `HelpCommand#execute(Model model)` is called.
 2. A `CommandResult` with the `shouldShowHelp` field set to true is returned and `MainWindow#handleHelp()` is called.
-3. A Help display window will be opened showing a link to the User Guide. 
+3. A Help display window will be opened showing a link to the User Guide.
 
 <div markdown="block" class="alert alert-info">
 
@@ -253,7 +253,7 @@ The following describes the flow of how `ToggleStudentCardCommand` is performed.
 
 1. Upon successfully parsing the user input, the `ToggleStudentCardCommand#execute(Model model)` is called.
 2. A `CommandResult` with the `toggleStudentCard` field set to true is returned and `MainWindow#handleAcademicPanel()` is called.
-3. Student cards in `StudentListPanel` will be switched. 
+3. Student cards in `StudentListPanel` will be switched.
 
 <div markdown="block" class="alert alert-info">
 
@@ -575,7 +575,7 @@ The following describes the flow of how `AddExamCommand` is performed.
 7. `Model#setStudent(Student selectedStudent, Student updatedStudent)` is called to replace the student with the updated copy. A new `CommandResult` is returned with a success message showing the affected student and the exam added.
 8. The updated student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
-The sequence(insert image reference here) of how add exam operates is very similar to that of add question. 
+The sequence(insert image reference here) of how add exam operates is very similar to that of add question.
 
 ##### 6.3.2.2 Delete exam command
 
@@ -595,7 +595,7 @@ The following describes the flow of how `DeleteExamCommand` is performed.
 
 </div><br>
 
-The sequence(insert image reference here) of how add exam operates is very similar to that of delete question. 
+The sequence(insert image reference here) of how add exam operates is very similar to that of delete question.
 
 ##### 6.3.2.3 Exam Stats command
 
@@ -603,7 +603,7 @@ The following describes the flow of how `ExamStatsCommand` is performed.
 
 1. Upon successfully parsing the user input, `ExamStatsCommand#execute(Model model)` is called to check if the student at the specified position exists.
 2. If there is no student at the specified position,  a `CommandException` is thrown and no exam statistics window will be shown.
-3. If the student exists, `ExamStatsCommand#execute(Model model)` gets the specified student from `sortedStudentList`. 
+3. If the student exists, `ExamStatsCommand#execute(Model model)` gets the specified student from `sortedStudentList`.
 4. A `CommandResult` with a non-null student input is returned and `MainWindow#handleExamStats(Student student)` is called.
 5. A new ExamStats display window will be opened showing a line graph representing the exam scores of the specified student.
 
@@ -682,8 +682,8 @@ This section describes the operations that `ScheduleViewCommand` performs.
 
 1. Upon successful parsing of the user input, the `ScheduleViewCommand#execute(Model)` method is called.
 2. The method `Model#setViewDate(LocalDate)` is then called to set the viewing date of the user in `SchedulePrefs`
-3. Similarly, the method `ModelsetViewMode(ScheduleViewMode)` is called next to set the viewing mode (weekly/daily) of the user in `SchedulePrefs`. 
-4. After which, the method `updateFilteredStudentList(Predicate)` is called to get all the students. 
+3. Similarly, the method `ModelsetViewMode(ScheduleViewMode)` is called next to set the viewing mode (weekly/daily) of the user in `SchedulePrefs`.
+4. After which, the method `updateFilteredStudentList(Predicate)` is called to get all the students.
 The `Predicate` argument will be `PREDICATE_SHOW_ALL_STUDENTS` which is a reusable final predicate variable.
 5. Thereafter, the method `Model#updateClassTimesToEvent()` will be called to translate all student's `ClassTime` to `LessonEvent`
 6. The `Scheduler` then calls the method `resetData(List<Event>)` with the updated `LessonEvent` objects.
@@ -714,10 +714,10 @@ The following are the various design choices made regarding the feature and alte
 
 * Current Implementation:
     * The current implementation creates `LessonEvent`s from the `studentList` update the to the `Ui` whenever the `ScheduleViewCommand` is called.
-    
+
 * Alternatives Considered:
-    * Creating a `Event` storage component that stores `LessonEvent` based on `Student`'s `ClassTime`. 
-    This would violate the data integrity of the `Student` we currently have and introduce additional complexity in 
+    * Creating a `Event` storage component that stores `LessonEvent` based on `Student`'s `ClassTime`.
+    This would violate the data integrity of the `Student` we currently have and introduce additional complexity in
     maintaining both data structures.
 
 ### 6.5 Notes Command
@@ -777,8 +777,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## **Appendix C: Use Cases**
 
-For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise. 
-Use cases also assume that whenever an invalid command is entered by the user, Reeve displays an error message. 
+For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise.
+Use cases also assume that whenever an invalid command is entered by the user, Reeve displays an error message.
 
 **UC01: Displaying help menu**
 
@@ -797,7 +797,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 2. Reeve displays a success message and the toggled display of students details.
 
    Use case ends.
-   
+
 **UC03: Exiting the application**
 
 **MSS**
@@ -806,7 +806,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 2. All processes of Reeve ends.
 
    Use case ends.
-   
+
 
 **UC04: Adding a student**
 
@@ -828,7 +828,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
     * 1b1. Reeve displays an error message.
 
       Use case resumes from step 1.
-  
+
 **UC05: Listing all students**
 
 **MSS**
@@ -837,7 +837,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 2. Reeve displays the students list with student details.
 
    Use case ends.
-      
+
 **UC06: Editing a student's details**
 
 **MSS**
@@ -1037,7 +1037,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   * 1b1. Reeve displays an empty list.
 
     Use case ends.
-    
+
 **UC00: Adding an exam record to a student**
 
 **MSS**
@@ -1065,7 +1065,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
     * 3b1. Reeve displays an error message.
 
       Use case resumes at step 2.
-      
+
 **UC00: Deleting an exam record from a student**
 
 **MSS**
@@ -1089,11 +1089,11 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-* 3b. User provides input with an invalid exam record. 
+* 3b. User provides input with an invalid exam record.
     * 3b1. Reeve displays an error message.
 
       Use case resumes at step 2.
-      
+
 **UC00: Displaying exam statistics of a student**
 
 **MSS**
@@ -1115,7 +1115,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
     * 3a1. Reeve displays an error message.
 
       Use case resumes at step 2.
-      
+
 
 ## **Appendix D: Non-Functional Requirements**
 
