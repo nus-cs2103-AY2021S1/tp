@@ -745,7 +745,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | categorize my flashcards       | easily find the flashcard associated with the category                    |
 | `* *`    | user                                       | import a set of flashcard      | easily add new category of flashcard                                      |
 | `* *`    | user                                       | export a set of flashcard      | easily transfer a category of flashcard                                   |
-| `*`      | user who has created a lot of flashcard    | delete a category of flashcard | easily transfer a category of flashcard                                   |
+| `*`      | user who has created many flashcards       | delete a category of flashcard | easily transfer a category of flashcard                                   |
 | `*`      | user with many flashcards in the list      | specify the importance         |                                                                           |
 | `*`      | user                                       | randomize the question         | test myself better                                                        |
 | `*`      | user                                       | get the statistic of quiz      | get a visualisation form of my performance                                |
