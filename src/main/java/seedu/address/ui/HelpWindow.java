@@ -5,8 +5,6 @@ import java.util.logging.Logger;
 
 import javafx.application.HostServices;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -78,22 +76,17 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void show(HostServices hostServices, String theme) {
         logger.fine("Showing help page about the application.");
-        hyperlink.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                hostServices.showDocument(hyperlink.getText());
-            }
-        });
+        hyperlink.setOnAction(event -> hostServices.showDocument(hyperlink.getText()));
         ObservableList<String> helpContainerStylesheets = helpContainer.getStylesheets();
         if (helpContainerStylesheets.size() != 0) {
             helpContainerStylesheets.remove(0);
         }
         switch (theme) {
-        case "DarkTheme.css":
-            helpContainerStylesheets.add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
+        case Themes.DARK_THEME_FILE:
+            helpContainerStylesheets.add(getClass().getResource(Themes.DARK_THEME_PATH).toExternalForm());
             break;
-        case "LightTheme.css":
-            helpContainerStylesheets.add(getClass().getResource("/view/LightTheme.css").toExternalForm());
+        case Themes.LIGHT_THEME_FILE:
+            helpContainerStylesheets.add(getClass().getResource(Themes.LIGHT_THEME_PATH).toExternalForm());
             break;
         default:
             assert false : theme;

@@ -15,7 +15,7 @@ import seedu.address.model.commons.SpecialName;
 import seedu.address.model.meeting.Meeting;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Meeting}.
  */
 public class MeetingDetailsPanel extends UiPart<Region> {
 

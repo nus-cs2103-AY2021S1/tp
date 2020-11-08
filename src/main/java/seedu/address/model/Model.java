@@ -159,11 +159,13 @@ public interface Model {
 
     /**
      * Sets the selected Meeting for the model manager.
+     * @param selectedMeeting The selected meeting, can be null.
      */
-    void setSelectedMeeting(Meeting target);
+    void setSelectedMeeting(Meeting selectedMeeting);
 
     /**
-     * Returns a selected Meeting in an observable list.
+     * Returns a selected Meeting in an observable list. Can return a null value representing that there is no
+     * selected meeting.
      */
     Meeting getSelectedMeeting();
 

@@ -50,7 +50,7 @@ public interface Logic {
     ReadOnlyMeetingBook getMeetingBook();
 
     /**
-     * Returns a meeting.
+     * Returns the selected Meeting.
      *
      * @see seedu.address.model.Model#getSelectedMeeting()
      */

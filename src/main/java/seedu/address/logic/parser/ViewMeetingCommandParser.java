@@ -11,12 +11,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.module.ModuleName;
 
-
+/**
+ * Parses input arguments and creates a new ViewMeetingCommand object
+ */
 public class ViewMeetingCommandParser implements Parser<ViewMeetingCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteMeetingCommand
-     * and returns a DeleteMeetingCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ViewMeetingCommand
+     * and returns a ViewMeetingCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewMeetingCommand parse(String args) throws ParseException {

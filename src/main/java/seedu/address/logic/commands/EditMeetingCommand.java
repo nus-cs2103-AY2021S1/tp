@@ -302,7 +302,7 @@ public class EditMeetingCommand extends Command {
         /**
          * Returns an unmodifiable person set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code memberNames} is null.
          */
         public Optional<Set<Name>> getMemberNames() {
             return (memberNames != null) ? Optional.of(Collections.unmodifiableSet(memberNames)) : Optional.empty();
@@ -311,7 +311,7 @@ public class EditMeetingCommand extends Command {
         /**
          * Returns an unmodifiable agenda set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code agendas} is null.
          */
         public Optional<Set<SpecialName>> getAgendas() {
             return (agendas != null) ? Optional.of(Collections.unmodifiableSet(agendas)) : Optional.empty();
@@ -320,7 +320,7 @@ public class EditMeetingCommand extends Command {
         /**
          * Returns an unmodifiable note set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code notes} is null.
          */
         public Optional<Set<SpecialName>> getNotes() {
             return (notes != null) ? Optional.of(Collections.unmodifiableSet(notes)) : Optional.empty();

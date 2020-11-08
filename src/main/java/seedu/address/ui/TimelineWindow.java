@@ -93,11 +93,11 @@ public class TimelineWindow extends UiPart<Stage> {
             timelineContainerStylesheets.remove(0);
         }
         switch (theme) {
-        case "DarkTheme.css":
-            timelineContainerStylesheets.add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
+        case Themes.DARK_THEME_FILE:
+            timelineContainerStylesheets.add(getClass().getResource(Themes.DARK_THEME_PATH).toExternalForm());
             break;
-        case "LightTheme.css":
-            timelineContainerStylesheets.add(getClass().getResource("/view/LightTheme.css").toExternalForm());
+        case Themes.LIGHT_THEME_FILE:
+            timelineContainerStylesheets.add(getClass().getResource(Themes.LIGHT_THEME_PATH).toExternalForm());
             break;
         default:
             assert false : theme;

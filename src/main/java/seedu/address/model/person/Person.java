@@ -44,6 +44,7 @@ public class Person {
 
     /**
      * Mark a person as Professor or TA if there's a prof tag or ta tag. Otherwise set PersonType as CONTACT.
+     * @throws PersonTagConstraintException if there is both prof tag and ta tag.
      */
     private PersonType parseTags(Set<Tag> tags) throws PersonTagConstraintException {
         Tag profTag = new Tag(Tag.PROF_TAG_NAME);

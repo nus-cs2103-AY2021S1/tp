@@ -56,8 +56,8 @@ public class CommandResult {
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified triggerLightTheme and triggerDarkTheme,
-     * and other fields set to false.
+     * Constructs a {@code CommandResult} with the specified {@code triggerLightTheme} and {@code triggerDarkTHeme},
+     * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean triggerLightTheme, boolean triggerDarkTheme) {
         this.feedbackToUser = requireNonNull(feedbackToUser);

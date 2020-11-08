@@ -34,8 +34,6 @@ import seedu.address.logic.textfieldmodules.FzfModule;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-    private static final String LIGHT_THEME = "light";
-    private static final String DARK_THEME = "dark";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -106,7 +104,7 @@ public class MainWindow extends UiPart<Stage> {
         timelineWindow = new TimelineWindow(logic);
 
         // default theme is dark
-        setStylesheet(DARK_THEME, false);
+        setStylesheet(Themes.DARK_THEME, false);
     }
 
     public Stage getPrimaryStage() {
@@ -156,19 +154,19 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void setStylesheet(String theme, boolean triggerResultDisplay) {
         logger.info("Switching to " + theme + " theme");
-        assert theme.equals(LIGHT_THEME) || theme.equals(DARK_THEME);
+        assert theme.equals(Themes.LIGHT_THEME) || theme.equals(Themes.DARK_THEME);
         ObservableList<String> mainContainerStylesheets = mainContainer.getStylesheets();
         if (mainContainerStylesheets.size() != 0) {
             mainContainerStylesheets.remove(0);
         }
         String feedbackToUser;
         switch (theme) {
-        case DARK_THEME:
-            mainContainerStylesheets.add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
+        case Themes.DARK_THEME:
+            mainContainerStylesheets.add(getClass().getResource(Themes.DARK_THEME_PATH).toExternalForm());
             feedbackToUser = "Dark theme set successfully.";
             break;
-        case LIGHT_THEME:
-            mainContainerStylesheets.add(getClass().getResource("/view/LightTheme.css").toExternalForm());
+        case Themes.LIGHT_THEME:
+            mainContainerStylesheets.add(getClass().getResource(Themes.LIGHT_THEME_PATH).toExternalForm());
             feedbackToUser = "Light theme set successfully.";
             break;
         default:
@@ -285,7 +283,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void toggleLight() {
-        setStylesheet(LIGHT_THEME, true);
+        setStylesheet(Themes.LIGHT_THEME, true);
     }
 
     /**
@@ -293,7 +291,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void toggleDark() {
-        setStylesheet(DARK_THEME, true);
+        setStylesheet(Themes.DARK_THEME, true);
     }
 
     /**
@@ -391,11 +389,11 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isTriggerDarkTheme()) {
-                setStylesheet(DARK_THEME, false);
+                setStylesheet(Themes.DARK_THEME, false);
             }
 
             if (commandResult.isTriggerLightTheme()) {
-                setStylesheet(LIGHT_THEME, false);
+                setStylesheet(Themes.LIGHT_THEME, false);
             }
 
             commandHistory.addCommand(commandText);
